@@ -1,0 +1,27 @@
+
+package com.github.badoualy.telegram.tl.api;
+
+
+import com.github.badoualy.telegram.tl.core.*;
+import com.github.badoualy.telegram.tl.*;
+import java.io.*;
+import rx.Observable;
+
+import static com.github.badoualy.telegram.tl.StreamUtils.*;
+
+
+
+public abstract class TLAbsChatParticipants extends TLObject {
+
+    protected int chatId;
+
+
+    public int getChatId() {
+        return chatId;
+    }
+
+    public void setChatId(int value) {
+        this.chatId = value;
+    }
+
+}

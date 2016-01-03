@@ -1,0 +1,7 @@
+/build
+
+# Files containing secret/personnal values
+Main.java
+auth*.key
+C.java
+*.save
