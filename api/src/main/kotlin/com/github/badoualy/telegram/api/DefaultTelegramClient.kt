@@ -19,8 +19,9 @@ internal class DefaultTelegramClient internal constructor(val application: Teleg
 
     private val TAG = "TelegramClient"
 
-    private var mtProtoHandler: MTProtoHandler? = null
-    var authKey: AuthKey? = null
+    internal var mtProtoHandler: MTProtoHandler? = null
+        private set
+    internal var authKey: AuthKey? = null
         private set
 
     private val generateKey: Boolean
@@ -106,6 +107,5 @@ internal class DefaultTelegramClient internal constructor(val application: Teleg
 
     override fun authSendCode(phoneNumber: String, smsType: Int) = super.authSendCode(phoneNumber, smsType, application.apiId, application.apiHash, application.langCode)
 
-    @Suppress("UNCHECKED_CAST")
-    override fun <T : TLObject> initConnection(query: TLMethod<T>) = executeRpcQuery(TLRequestInitConnection(application.apiId, application.deviceModel, application.systemVersion, application.appVersion, application.langCode, query)) as T
+    override fun <T : TLObject> initConnection(query: TLMethod<T>) = executeRpcQuery(TLRequestInitConnection(application.apiId, application.deviceModel, application.systemVersion, application.appVersion, application.langCode, query))
 }
