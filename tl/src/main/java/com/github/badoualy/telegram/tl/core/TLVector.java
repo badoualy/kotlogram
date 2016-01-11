@@ -15,7 +15,7 @@ import static com.github.badoualy.telegram.tl.StreamUtils.*;
  * vector of integer, strings or long.
  *
  * @param <T> type of elements in vector
- * @author Korshakov Stepan <me@ex3ndr.com>
+ * @author Korshakov Stepan me@ex3ndr.com
  */
 public class TLVector<T> extends TLObject implements List<T> {
 

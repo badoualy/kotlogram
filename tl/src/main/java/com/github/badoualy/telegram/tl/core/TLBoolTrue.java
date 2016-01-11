@@ -3,7 +3,7 @@ package com.github.badoualy.telegram.tl.core;
 /**
  * Packed type of tl-bool true value
  *
- * @author Korshakov Stepan <me@ex3ndr.com>
+ * @author Korshakov Stepan me@ex3ndr.com
  */
 public class TLBoolTrue extends TLBool {
 

@@ -10,7 +10,7 @@ import java.io.OutputStream;
 /**
  * Basic class of gzipped object
  *
- * @author Korshakov Stepan <me@ex3ndr.com>
+ * @author Korshakov Stepan me@ex3ndr.com
  */
 public class TLGzipObject extends TLObject {
     public static final int CLASS_ID = 0x3072CFA1;

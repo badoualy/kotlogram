@@ -9,7 +9,7 @@ import java.io.OutputStream;
 /**
  * Helper class for writing and reading data for tl (de-)serialization.
  *
- * @author Korshakov Stepan <me@ex3ndr.com>
+ * @author Korshakov Stepan me@ex3ndr.com
  */
 public class StreamUtils {
 

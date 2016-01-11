@@ -14,7 +14,7 @@ import java.io.*;
  * It is recommended to declare public static final CLASS_ID with tl class id and
  * return this in getClassId and passing it to TLContext.registerClass method during class registration
  *
- * @author Korshakov Stepan <me@ex3ndr.com>
+ * @author Korshakov Stepan me@ex3ndr.com
  */
 public abstract class TLObject implements Serializable {
 

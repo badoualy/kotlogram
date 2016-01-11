@@ -10,7 +10,7 @@ import java.io.InputStream;
  * Basic object for RPC methods. It contains special methods for deserializing result of RPC method call.
  *
  * @param <T> return type of method
- * @author Korshakov Stepan <me@ex3ndr.com>
+ * @author Korshakov Stepan me@ex3ndr.com
  */
 public abstract class TLMethod<T extends TLObject> extends TLObject {
     public T deserializeResponse(byte[] data, TLContext context) throws IOException {
