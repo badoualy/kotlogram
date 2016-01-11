@@ -10,7 +10,6 @@ import java.io.*;
  * Basic class for all tl-objects. Contains methods for serializing and deserializing object.
  * Each tl-object has class id for using in object header for identifying object class for deserialization.
  * This number might be unique and often equals to crc32 of tl-record of tl-constructor.
- * <p/>
  * It is recommended to declare public static final CLASS_ID with tl class id and
  * return this in getClassId and passing it to TLContext.registerClass method during class registration
  *
