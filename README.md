@@ -32,7 +32,7 @@ repositories {
 
 Then add the library dependency:
 ```gradle
-compile 'com.github.badoualy:kotlogram:0.0.1'
+compile 'com.github.badoualy:kotlogram:0.0.2'
 ```
 
 
