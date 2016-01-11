@@ -1,4 +1,5 @@
 ![Kotlogram](http://s28.postimg.org/u3sc3e24t/logo.png)
+[![Release](https://img.shields.io/github/release/badoualy/kotlogram.svg?label=jitpack)](https://jitpack.io/#badoualy/kotlogram)
 ===========
 > **Easy to use** and **straightforward** Kotlin (and Java) binding of [Telegram API](https://core.telegram.org/api).
 > The project is coded in **Kotlin**, with some classes (mostly legacy classes cloned from ex3nder library, see below for more details)
@@ -19,8 +20,6 @@ Main tasks left:
 Usage
 ----------------
 #### Dependency
-
-[![Release](https://img.shields.io/github/release/badoualy/kotlogram.svg?label=jitpack)](https://jitpack.io/#badoualy/kotlogram)
 
 First, add [JitPack](https://jitpack.io/) to your project if that's not already the case, in your `build.gradle`:
 
