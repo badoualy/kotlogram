@@ -42,6 +42,7 @@ internal class TelegramClientDelegateImpl(val application: TelegramApp, val apiS
 
     private fun init(attemptCount: Int = 0): MTProtoHandler {
         val mtProtoHandler = if (generateAuthKey) initWithoutKey() else MTProtoHandler(dataCenter, authKey!!)
+        this.mtProtoHandler = mtProtoHandler
         mtProtoHandler.startWatchdog()
 
         checkNearestDc(attemptCount)
@@ -85,7 +86,7 @@ internal class TelegramClientDelegateImpl(val application: TelegramApp, val apiS
                     // We have to re-open connection to new dc
                     dataCenter = Kotlogram.PROD_DCS[nearestDc.nearestDc - 1]
                     apiStorage.saveNearestDc(dataCenter)
-                    generateAuthKey = true;
+                    generateAuthKey = true
                     init(attemptCount + 1)
                 }
             }

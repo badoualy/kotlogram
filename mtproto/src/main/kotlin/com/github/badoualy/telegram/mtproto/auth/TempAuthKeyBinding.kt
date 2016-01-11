@@ -59,6 +59,7 @@ object TempAuthKeyBinding {
         val request = TLRequestAuthBindTempAuthKey(authKey.getKeyIdAsLong(), nonce,
                                                    tempAuthKey.expiresAt,
                                                    TLBytes(encryptedMessage.data))
+        @Suppress("UNUSED_VARIABLE")
         val message = MTMessage(msgId, 0, request.serialize())
 
         return false

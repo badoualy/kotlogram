@@ -128,6 +128,7 @@ object AuthKeyCreation {
         val inputStream = ByteArrayInputStream(response)
         val authId = StreamUtils.readLong(inputStream)
         if (authId == 0L) {
+            @Suppress("UNUSED_VARIABLE")
             val messageId = StreamUtils.readLong(inputStream)
             val length = StreamUtils.readInt(inputStream)
             val messageResponse = StreamUtils.readBytes(length, inputStream)
@@ -162,7 +163,7 @@ object AuthKeyCreation {
 
     /** see https://core.telegram.org/mtproto/auth_key#dh-key-exchange-complete  */
     @Throws(IOException::class)
-    private fun lastStep(resPQ: ResPQ, newNonce: ByteArray, serverDhOk: ServerDhOk, step4Duration: Long): Pair<ByteArray, Long> {
+    private fun lastStep(resPQ: ResPQ, newNonce: ByteArray, serverDhOk: ServerDhOk, @Suppress("UNUSED_PARAMETER") step4Duration: Long): Pair<ByteArray, Long> {
         val encryptedAnswer = serverDhOk.encryptedAnswer
         val tmpAesKey = concat(SHA1(newNonce, resPQ.serverNonce), substring(SHA1(resPQ.serverNonce, newNonce), 0, 12))
         val tmpAesIv = concat(concat(substring(SHA1(resPQ.serverNonce, newNonce), 12, 8),
