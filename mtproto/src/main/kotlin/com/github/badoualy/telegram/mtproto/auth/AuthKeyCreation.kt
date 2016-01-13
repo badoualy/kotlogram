@@ -153,7 +153,9 @@ object AuthKeyCreation {
         val paddingSize = 255 - (data.size + hash.size)
         val padding = if (paddingSize > 0) RandomUtils.randomByteArray(paddingSize) else ByteArray(0)
         val dataWithHash = concat(hash, data, padding)
+        Log.d(TAG, "Encrypting data")
         val encryptedData = RSA(dataWithHash, publicKey.publicKey, publicKey.exponent)
+        Log.d(TAG, "Data encrypted")
 
         val reqDhParams = ReqDhParams(resPQ.nonce, resPQ.serverNonce,
                                       fromBigInt(pq.p), fromBigInt(pq.q), publicKey.fingerprint,
@@ -252,6 +254,7 @@ object AuthKeyCreation {
         val pair = createStep4Request(resPQ, solvedPQ, publicKey, tmpKey)
         val reqDhParams = pair.first
         val newNonce = pair.second
+        Log.d(TAG, "Step4 request created")
 
         val start = System.nanoTime()
         val dhParams = executeMethod(reqDhParams)
