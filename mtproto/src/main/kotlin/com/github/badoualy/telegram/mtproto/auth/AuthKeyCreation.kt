@@ -140,18 +140,24 @@ object AuthKeyCreation {
     /** see https://core.telegram.org/mtproto/auth_key#presenting-proof-of-work-server-authentication  */
     @Throws(IOException::class)
     private fun createStep4Request(resPQ: ResPQ, pq: SolvedPQ, publicKey: Key, tmpKey: Boolean): Pair<ReqDhParams, ByteArray> {
+        Log.d(TAG, "createStep4Request " + tmpKey)
         val newNonce = RandomUtils.randomInt256()
-        val pqInnerData = if (tmpKey)
-            PQInnerTemp(resPQ.pq, fromBigInt(pq.p), fromBigInt(pq.q),
-                        resPQ.nonce, resPQ.serverNonce, newNonce, tmpKeyExpireDelay)
-        else
-            PQInner(resPQ.pq, fromBigInt(pq.p), fromBigInt(pq.q),
+        Log.d(TAG, "newNonce created")
+//        val pqInnerData = if (tmpKey)
+//            PQInnerTemp(resPQ.pq, fromBigInt(pq.p), fromBigInt(pq.q),
+//                        resPQ.nonce, resPQ.serverNonce, newNonce, tmpKeyExpireDelay)
+//        else
+            val pqInnerData = PQInner(resPQ.pq, fromBigInt(pq.p), fromBigInt(pq.q),
                     resPQ.nonce, resPQ.serverNonce, newNonce)
 
+        Log.d(TAG, "Serializing pqinner")
         val data = pqInnerData.serialize()
+        Log.d(TAG, "SHA1")
         val hash = SHA1(data)
+        Log.d(TAG, "SHA1 done")
         val paddingSize = 255 - (data.size + hash.size)
         val padding = if (paddingSize > 0) RandomUtils.randomByteArray(paddingSize) else ByteArray(0)
+        Log.d(TAG, "Calculating padding")
         val dataWithHash = concat(hash, data, padding)
         Log.d(TAG, "Encrypting data")
         val encryptedData = RSA(dataWithHash, publicKey.publicKey, publicKey.exponent)
@@ -232,7 +238,7 @@ object AuthKeyCreation {
     /** For details about the protocol, see https://core.telegram.org/mtproto/auth_key  */
     @Throws(IOException::class, FingerprintNotFoundException::class)
     private fun createKey(tmpKey: Boolean): AuthResult {
-        Log.d(TAG, "Attempting to create an" + (if (tmpKey) "Temporary " else "Permanent") + " Authorization Key")
+        Log.d(TAG, "Attempting to create a " + (if (tmpKey) "temporary " else "permanent") + " Authorization Key")
 
         // Step 1
         val nonce = RandomUtils.randomInt128() // int128
