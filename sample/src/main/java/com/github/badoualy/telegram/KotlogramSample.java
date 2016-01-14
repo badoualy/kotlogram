@@ -104,5 +104,23 @@ public class KotlogramSample {
 
             return null;
         }
+
+        @Override
+        public void deleteAuthKey() {
+            try {
+                FileUtils.forceDelete(AUTH_KEY_FILE);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+
+        @Override
+        public void deleteNearestDc() {
+            try {
+                FileUtils.forceDelete(NEAREST_DC_FILE);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
     }
 }

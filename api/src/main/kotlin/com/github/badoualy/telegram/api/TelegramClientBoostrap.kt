@@ -14,6 +14,7 @@ import java.io.IOException
 internal interface TelegramClientDelegate {
     var mtProtoHandler: MTProtoHandler?
     var authKey: AuthKey?
+    var dataCenter: DataCenter?
 }
 
 internal class TelegramClientDelegateImpl(val application: TelegramApp, val apiStorage: TelegramApiStorage,
@@ -23,38 +24,40 @@ internal class TelegramClientDelegateImpl(val application: TelegramApp, val apiS
 
     override var mtProtoHandler: MTProtoHandler? = null
     override var authKey: AuthKey? = null
+    override var dataCenter: DataCenter? = null
 
-    private var dataCenter: DataCenter
     private var generateAuthKey: Boolean
 
     init {
         authKey = apiStorage.loadAuthKey()
-        val nearestDc = apiStorage.loadNearestDc()
+        dataCenter = apiStorage.loadNearestDc()
 
-        if (authKey != null && nearestDc == null)
+        if (authKey != null && dataCenter == null) {
             throw RuntimeException("Found an authorization key in storage, but the nearest DC configuration was not found")
+            apiStorage.deleteAuthKey()
+            apiStorage.deleteNearestDc()
+        }
 
-        dataCenter = nearestDc ?: preferredDataCenter
+        if (dataCenter == null) {
+            Log.d(TAG, "No data center found in storage, using preferred " + preferredDataCenter.toString())
+            dataCenter = preferredDataCenter
+        }
         generateAuthKey = authKey == null
 
-        mtProtoHandler = init()
+        init()
     }
 
-    private fun init(attemptCount: Int = 0): MTProtoHandler {
-        val mtProtoHandler = if (generateAuthKey) initWithoutKey() else MTProtoHandler(dataCenter, authKey!!)
-        this.mtProtoHandler = mtProtoHandler
-        mtProtoHandler.startWatchdog()
-
+    private fun init(attemptCount: Int = 0){
+        mtProtoHandler = if (generateAuthKey) initWithoutKey() else MTProtoHandler(dataCenter!!, authKey!!)
+        mtProtoHandler!!.startWatchdog()
         checkNearestDc(attemptCount)
-        return mtProtoHandler
     }
 
     private fun initWithoutKey(): MTProtoHandler {
-        val authResult = AuthKeyCreation.createAuthKey(dataCenter)
+        val authResult = AuthKeyCreation.createAuthKey(dataCenter!!)
         if (authResult != null) {
-            val mtProtoHandler = MTProtoHandler(authResult)
             apiStorage.saveAuthKey(authResult.authKey)
-            return mtProtoHandler
+            return MTProtoHandler(authResult)
         } else {
             throw RuntimeException("Couldn't generate authorization key")
         }
@@ -87,7 +90,7 @@ internal class TelegramClientDelegateImpl(val application: TelegramApp, val apiS
                     dataCenter = Kotlogram.PROD_DCS[nearestDc.nearestDc - 1]
                     Log.d(TAG, "Updated dataCenter to DC${nearestDc.nearestDc} ${dataCenter.toString()}")
                     apiStorage.deleteAuthKey()
-                    apiStorage.saveNearestDc(dataCenter)
+                    apiStorage.saveNearestDc(dataCenter!!)
                     generateAuthKey = true
                     init(attemptCount + 1)
                 }
