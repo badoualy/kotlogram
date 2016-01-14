@@ -2,6 +2,7 @@ package com.github.badoualy.telegram.mtproto.secure
 
 import java.math.BigInteger
 import java.security.SecureRandom
+import java.util.*
 
 class RandomUtils {
 
@@ -13,25 +14,27 @@ class RandomUtils {
             random.setSeed(System.currentTimeMillis())
         }
 
-        @JvmStatic @Synchronized fun randomByteArray(byteCount: Int) = random.generateSeed(byteCount)
+        @JvmStatic @Synchronized fun randomByteArray(byteCount: Int): ByteArray {
+            val byteArray = ByteArray(byteCount)
+            random.nextBytes(byteArray)
+            return byteArray
+        }
 
         @JvmStatic @Synchronized fun randomInt() = random.nextInt()
-
-        @JvmStatic @Synchronized fun setSeed(data: ByteArray) = random.setSeed(data)
 
         /**
          * @return a (random) 64-bit byte array
          * @see [MTProto description](https://core.telegram.org/mtproto/description.session)
          */
-        @JvmStatic @Synchronized fun randomSessionId() = random.generateSeed(8)
+        @JvmStatic @Synchronized fun randomSessionId() = randomByteArray(8)
 
         /** @return a (random) 64-bit long number */
-        @JvmStatic @Synchronized fun randomLong() = BigInteger(random.generateSeed(8)).longValueExact()
+        @JvmStatic @Synchronized fun randomLong() = BigInteger(randomByteArray(8)).longValueExact()
 
         /** @return a (random) int128 */
-        @JvmStatic @Synchronized fun randomInt128() = random.generateSeed(16)
+        @JvmStatic @Synchronized fun randomInt128() = randomByteArray(16)
 
         /** @return a (random) int256 */
-        @JvmStatic @Synchronized fun randomInt256() = random.generateSeed(32)
+        @JvmStatic @Synchronized fun randomInt256() = randomByteArray(32)
     }
 }

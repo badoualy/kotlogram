@@ -85,10 +85,14 @@ internal class TelegramClientDelegateImpl(val application: TelegramApp, val apiS
                 } else {
                     // We have to re-open connection to new dc
                     dataCenter = Kotlogram.PROD_DCS[nearestDc.nearestDc - 1]
+                    Log.d(TAG, "Updated dataCenter to DC${nearestDc.nearestDc} ${dataCenter.toString()}")
+                    apiStorage.deleteAuthKey()
                     apiStorage.saveNearestDc(dataCenter)
                     generateAuthKey = true
                     init(attemptCount + 1)
                 }
+            } else {
+                Log.d(TAG, "Connected to the nearest DC${nearestDc.thisDc}")
             }
         } catch(e: IOException) {
             mtProtoHandler?.close()
