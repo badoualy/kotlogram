@@ -23,21 +23,21 @@ interface TelegramApiStorage {
     fun deleteAuthKey()
 
     /**
-     * Save the nearest data center information
+     * Save the data center information
      * @param dataCenter nearest data center
      */
-    fun saveNearestDc(dataCenter: DataCenter)
+    fun saveDc(dataCenter: DataCenter)
 
     /**
-     * Load a previously saved nearest data center information
+     * Load a previously saved data center information
      * @return the nearest data center information saved, or null if nothing previously saved
      */
-    fun loadNearestDc(): DataCenter?
+    fun loadDc(): DataCenter?
 
     /**
-     * Delete the given nearest data center information from persistent memory
+     * Delete the given data center information from persistent memory
      */
-    fun deleteNearestDc()
+    fun deleteDc()
 
     /**
      * Save the given server salts to a persistent memory

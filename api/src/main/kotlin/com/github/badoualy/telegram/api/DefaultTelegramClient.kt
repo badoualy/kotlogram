@@ -31,6 +31,18 @@ internal class DefaultTelegramClient internal constructor(val application: Teleg
             return mtProtoHandler!!.executeMethod(method).toBlocking().first()
         } catch(exception: RuntimeException) {
             when (exception.cause) {
+                is RpcErrorException -> {
+                    val error = (exception.cause as RpcErrorException).error
+                    if (error.errorCode == 303) {
+                        // DC error
+                        Log.e(TAG, "Received DC error: " + error.message)
+                        if (error.message.startsWith("PHONE_MIGRATE_")) {
+                            migrate(error.message.removePrefix("PHONE_MIGRATE_").toInt())
+                            return executeRpcQuery(method)
+                        }
+                    }
+                    throw exception.cause as IOException
+                }
                 is IOException -> throw exception.cause as IOException
                 else -> throw exception
             }

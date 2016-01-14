@@ -83,7 +83,7 @@ public class KotlogramSample {
         }
 
         @Override
-        public void saveNearestDc(@NotNull DataCenter dataCenter) {
+        public void saveDc(@NotNull DataCenter dataCenter) {
             try {
                 FileUtils.write(NEAREST_DC_FILE, dataCenter.toString());
             } catch (IOException e) {
@@ -93,7 +93,7 @@ public class KotlogramSample {
 
         @Nullable
         @Override
-        public DataCenter loadNearestDc() {
+        public DataCenter loadDc() {
             try {
                 String[] infos = FileUtils.readFileToString(NEAREST_DC_FILE).split(":");
                 return new DataCenter(infos[0], Integer.parseInt(infos[1]));
@@ -115,7 +115,7 @@ public class KotlogramSample {
         }
 
         @Override
-        public void deleteNearestDc() {
+        public void deleteDc() {
             try {
                 FileUtils.forceDelete(NEAREST_DC_FILE);
             } catch (IOException e) {
