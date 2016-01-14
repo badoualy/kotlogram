@@ -7,6 +7,7 @@ import com.github.badoualy.telegram.api.TelegramClient;
 import com.github.badoualy.telegram.mtproto.DataCenter;
 import com.github.badoualy.telegram.mtproto.auth.AuthKey;
 import com.github.badoualy.telegram.mtproto.exception.RpcErrorException;
+import com.github.badoualy.telegram.mtproto.tl.MTRpcError;
 import com.github.badoualy.telegram.tl.api.TLAbsMessage;
 import com.github.badoualy.telegram.tl.api.TLUserSelf;
 import com.github.badoualy.telegram.tl.api.auth.TLAbsSentCode;

@@ -5,11 +5,11 @@ import com.github.badoualy.telegram.mtproto.DataCenter
 object Kotlogram {
 
     @JvmOverloads @JvmStatic
-    fun getDefaultClient(application: TelegramApp, apiStorage: TelegramApiStorage, preferredDataCenter: DataCenter = PROD_DC2)
+    fun getDefaultClient(application: TelegramApp, apiStorage: TelegramApiStorage, preferredDataCenter: DataCenter = PROD_DC4)
             : TelegramClient = DefaultTelegramClient(application, apiStorage, preferredDataCenter)
 
     @JvmOverloads @JvmStatic
-    fun getDefaultReactiveClient(application: TelegramApp, apiStorage: TelegramApiStorage, preferredDataCenter: DataCenter = PROD_DC2)
+    fun getDefaultReactiveClient(application: TelegramApp, apiStorage: TelegramApiStorage, preferredDataCenter: DataCenter = PROD_DC4)
             : TelegramReactiveClient = DefaultTelegramReactiveClient(application, apiStorage, preferredDataCenter)
 
     @JvmStatic @JvmField val PROD_DC1 = DataCenter("149.154.175.50", 443)

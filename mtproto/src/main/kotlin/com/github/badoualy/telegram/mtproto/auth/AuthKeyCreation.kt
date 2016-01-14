@@ -140,9 +140,7 @@ object AuthKeyCreation {
     /** see https://core.telegram.org/mtproto/auth_key#presenting-proof-of-work-server-authentication  */
     @Throws(IOException::class)
     private fun createStep4Request(resPQ: ResPQ, pq: SolvedPQ, publicKey: Key, tmpKey: Boolean): Pair<ReqDhParams, ByteArray> {
-        Log.d(TAG, "createStep4Request " + tmpKey)
         val newNonce = RandomUtils.randomInt256()
-        Log.d(TAG, "newNonce created")
 //        val pqInnerData = if (tmpKey)
 //            PQInnerTemp(resPQ.pq, fromBigInt(pq.p), fromBigInt(pq.q),
 //                        resPQ.nonce, resPQ.serverNonce, newNonce, tmpKeyExpireDelay)
@@ -150,18 +148,12 @@ object AuthKeyCreation {
             val pqInnerData = PQInner(resPQ.pq, fromBigInt(pq.p), fromBigInt(pq.q),
                     resPQ.nonce, resPQ.serverNonce, newNonce)
 
-        Log.d(TAG, "Serializing pqinner")
         val data = pqInnerData.serialize()
-        Log.d(TAG, "SHA1")
         val hash = SHA1(data)
-        Log.d(TAG, "SHA1 done")
         val paddingSize = 255 - (data.size + hash.size)
         val padding = if (paddingSize > 0) RandomUtils.randomByteArray(paddingSize) else ByteArray(0)
-        Log.d(TAG, "Calculating padding")
         val dataWithHash = concat(hash, data, padding)
-        Log.d(TAG, "Encrypting data")
         val encryptedData = RSA(dataWithHash, publicKey.publicKey, publicKey.exponent)
-        Log.d(TAG, "Data encrypted")
 
         val reqDhParams = ReqDhParams(resPQ.nonce, resPQ.serverNonce,
                                       fromBigInt(pq.p), fromBigInt(pq.q), publicKey.fingerprint,

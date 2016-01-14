@@ -1,6 +1,16 @@
 apply plugin: 'java'
 
+def compileLocal = true
+
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
-    compile project(':api')
+
+    if (compileLocal)
+        compile project(':api')
+    else
+        compile 'com.github.badoualy:kotlogram:8c1e5a4e12'
+}
+
+repositories {
+    maven { url "https://jitpack.io" }
 }
