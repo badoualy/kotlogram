@@ -30,7 +30,7 @@ import kotlin.concurrent.schedule
 class MTProtoHandler {
 
     private val TAG = "MTProtoHandler"
-    private val DEFAULT_TIMEOUT = 5000L
+    private val DEFAULT_TIMEOUT = 15000L
     private val ACK_BUFFER_SIZE = 15
     private val ACK_BUFFER_TIMEOUT: Long = 60 * 1000
 

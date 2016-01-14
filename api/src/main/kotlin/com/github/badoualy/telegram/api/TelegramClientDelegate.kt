@@ -33,7 +33,7 @@ internal class TelegramClientDelegateImpl(val application: TelegramApp, val apiS
         dataCenter = apiStorage.loadNearestDc()
 
         if (authKey != null && dataCenter == null) {
-            throw RuntimeException("Found an authorization key in storage, but the nearest DC configuration was not found")
+            throw RuntimeException("Found an authorization key in storage, but the nearest DC configuration was not found, deleting authorization key and nearest data center")
             apiStorage.deleteAuthKey()
             apiStorage.deleteNearestDc()
         }
@@ -56,7 +56,7 @@ internal class TelegramClientDelegateImpl(val application: TelegramApp, val apiS
     private fun initWithoutKey(): MTProtoHandler {
         val authResult = AuthKeyCreation.createAuthKey(dataCenter!!)
         if (authResult != null) {
-            apiStorage.saveAuthKey(authResult.authKey)
+            authKey = authResult.authKey
             return MTProtoHandler(authResult)
         } else {
             throw RuntimeException("Couldn't generate authorization key")
@@ -87,14 +87,16 @@ internal class TelegramClientDelegateImpl(val application: TelegramApp, val apiS
                     throw RuntimeException("You tried to connect to an incorrect data center (DC${nearestDc.thisDc}) with an authorization key stored, please connect to the nearest (DC${nearestDc.nearestDc})")
                 } else {
                     // We have to re-open connection to new dc
+                    authKey = null
                     dataCenter = Kotlogram.PROD_DCS[nearestDc.nearestDc - 1]
                     Log.d(TAG, "Updated dataCenter to DC${nearestDc.nearestDc} ${dataCenter.toString()}")
                     apiStorage.deleteAuthKey()
-                    apiStorage.saveNearestDc(dataCenter!!)
                     generateAuthKey = true
                     init(attemptCount + 1)
                 }
             } else {
+                apiStorage.saveAuthKey(authKey!!)
+                apiStorage.saveNearestDc(dataCenter!!)
                 Log.d(TAG, "Connected to the nearest DC${nearestDc.thisDc}")
             }
         } catch(e: IOException) {
