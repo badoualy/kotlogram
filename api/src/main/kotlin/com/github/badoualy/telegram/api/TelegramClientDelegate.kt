@@ -38,15 +38,15 @@ internal class TelegramClientDelegateImpl(val application: TelegramApp, val apiS
         if (dataCenter == null && !generateAuthKey) {
             apiStorage.deleteAuthKey()
             apiStorage.deleteDc()
-            throw RuntimeException("Found an authorization key in storage, but the nearest DC configuration was not found, deleting authorization key and nearest data center")
+            throw RuntimeException("Found an authorization key in storage, but the nearest DC configuration was not found, deleting authorization key")
         }
 
         if (dataCenter == null) {
-            Log.d(TAG, "No data center found in storage, using preferred " + preferredDataCenter.toString())
+            Log.d(TAG, "No data center found in storage, using preferred ${preferredDataCenter.toString()}")
             dataCenter = preferredDataCenter
         }
 
-        init()
+        init(checkNearestDc = generateAuthKey)
     }
 
     private fun init(attemptCount: Int = 0, checkNearestDc: Boolean = true) {
@@ -89,7 +89,7 @@ internal class TelegramClientDelegateImpl(val application: TelegramApp, val apiS
                 if (!generateAuthKey) {
                     // Key was provided, yet selected DC is not the nearest
                     // TODO: Should handle authKey migration via auth.exportAuthorization
-                    throw RuntimeException("You tried to connect to an incorrect data center (DC${nearestDc.thisDc}) with an authorization key stored, please connect to the nearest (DC${nearestDc.nearestDc})")
+                    throw RuntimeException("You tried to connect to an incorrect data center (DC${nearestDc.thisDc}) with an authorization key, please connect to the nearest (DC${nearestDc.nearestDc})")
                 } else {
                     // We have to re-open connection to new dc
                     authKey = null
@@ -116,6 +116,7 @@ internal class TelegramClientDelegateImpl(val application: TelegramApp, val apiS
         authKey = null
         dataCenter = Kotlogram.PROD_DCS[dcId - 1]
         apiStorage.deleteAuthKey()
+        apiStorage.deleteDc()
         generateAuthKey = true
 
         init(checkNearestDc = false)

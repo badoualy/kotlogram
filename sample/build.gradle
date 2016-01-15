@@ -1,6 +1,6 @@
 apply plugin: 'java'
 
-def compileLocal = true
+def compileLocal = false
 
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
@@ -8,7 +8,7 @@ dependencies {
     if (compileLocal)
         compile project(':api')
     else
-        compile 'com.github.badoualy:kotlogram:8c1e5a4e12'
+        compile 'com.github.badoualy:kotlogram:966cc99e8e'
 }
 
 repositories {
