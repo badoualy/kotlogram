@@ -4,6 +4,7 @@ import com.github.badoualy.telegram.mtproto.DataCenter
 import com.github.badoualy.telegram.mtproto.MTProtoHandler
 import com.github.badoualy.telegram.mtproto.auth.AuthKey
 import com.github.badoualy.telegram.mtproto.auth.AuthKeyCreation
+import com.github.badoualy.telegram.mtproto.auth.AuthResult
 import com.github.badoualy.telegram.mtproto.exception.RpcErrorException
 import com.github.badoualy.telegram.mtproto.util.Log
 import com.github.badoualy.telegram.tl.api.TLNearestDc
@@ -17,7 +18,14 @@ internal interface TelegramClientDelegate {
     var authKey: AuthKey?
     var dataCenter: DataCenter?
 
+    /**
+     * Disconnect from current data center and connect to the new one
+     * @param dcId id of the new data center [1, 5]
+     */
     fun migrate(dcId: Int)
+
+    /** Closes all connections and stop all threads used by the client. */
+    fun close()
 }
 
 internal class TelegramClientDelegateImpl(val application: TelegramApp, val apiStorage: TelegramApiStorage,
@@ -36,32 +44,30 @@ internal class TelegramClientDelegateImpl(val application: TelegramApp, val apiS
         dataCenter = apiStorage.loadDc()
         generateAuthKey = authKey == null
 
-        if (dataCenter == null && !generateAuthKey) {
-            apiStorage.deleteAuthKey()
-            apiStorage.deleteDc()
-            throw RuntimeException("Found an authorization key in storage, but the nearest DC configuration was not found, deleting authorization key")
-        }
-
         if (dataCenter == null) {
+            if (!generateAuthKey) {
+                apiStorage.deleteAuthKey()
+                throw RuntimeException("Found an authorization key in storage, but the DC configuration was not found, deleting authorization key")
+            }
             Log.d(TAG, "No data center found in storage, using preferred ${preferredDataCenter.toString()}")
             dataCenter = preferredDataCenter
         }
 
-        init(checkNearestDc = generateAuthKey)
+        init(generateAuthKey)
     }
 
-    private fun init(attemptCount: Int = 0, checkNearestDc: Boolean = true) {
-        mtProtoHandler = if (generateAuthKey) initWithoutKey() else MTProtoHandler(dataCenter!!, authKey!!)
+    private fun init(checkNearestDc: Boolean = true) {
+        mtProtoHandler = if (generateAuthKey) MTProtoHandler(generateAuthKey()) else MTProtoHandler(dataCenter!!, authKey!!)
         mtProtoHandler!!.startWatchdog()
 
         try {
             // Call to initConnection to setup information about this app for the user to see in "active sessions"
-            // Also will indicate to Telegram that we're using layer 18
+            // Also will indicate to Telegram which layer to use through InvokeWithLayer
             val nearestDc = mtProtoHandler!!
                     .executeMethod(TLRequestInvokeWithLayer18(TLRequestInitConnection(application.apiId, application.deviceModel, application.systemVersion, application.appVersion, application.langCode, TLRequestHelpGetNearestDc())))
                     .toBlocking().first()
             if (checkNearestDc)
-                checkNearestDc(nearestDc, attemptCount)
+                checkNearestDc(nearestDc)
         } catch(e: IOException) {
             mtProtoHandler?.close()
             if (e is RpcErrorException && e.error.errorCode == -404)
@@ -70,40 +76,24 @@ internal class TelegramClientDelegateImpl(val application: TelegramApp, val apiS
         }
     }
 
-    private fun initWithoutKey(): MTProtoHandler {
-        val authResult = AuthKeyCreation.createAuthKey(dataCenter!!)
-        if (authResult != null) {
-            authKey = authResult.authKey
-            apiStorage.saveAuthKey(authKey!!)
-            apiStorage.saveDc(dataCenter!!)
-            return MTProtoHandler(authResult)
-        } else {
-            throw RuntimeException("Couldn't generate authorization key")
-        }
+    private fun generateAuthKey(): AuthResult {
+        val authResult = AuthKeyCreation.createAuthKey(dataCenter!!) ?: throw RuntimeException("Couldn't generate authorization key")
+        authKey = authResult.authKey
+        apiStorage.saveAuthKey(authKey!!)
+        apiStorage.saveDc(dataCenter!!)
+        return authResult
     }
 
     @Throws(IOException::class)
-    private fun checkNearestDc(nearestDc: TLNearestDc, attemptCount: Int) {
+    private fun checkNearestDc(nearestDc: TLNearestDc) {
         if (nearestDc.thisDc != nearestDc.nearestDc) {
-            mtProtoHandler?.close()
-            Log.d(TAG, "Current DC${nearestDc.thisDc} is not the nearest, connecting to DC${nearestDc.nearestDc}")
-
-            if (attemptCount > 0)
-                throw RuntimeException("TLRequestHelpGetNearestDc returned inconsistent values: got two different values for two consecutive calls")
-
             if (!generateAuthKey) {
                 // Key was provided, yet selected DC is not the nearest
                 // TODO: Should handle authKey migration via auth.exportAuthorization
-                throw RuntimeException("You tried to connect to an incorrect data center (DC${nearestDc.thisDc}) with an authorization key, please connect to the nearest (DC${nearestDc.nearestDc})")
-            } else {
-                // We have to re-open connection to new dc
-                authKey = null
-                dataCenter = Kotlogram.PROD_DCS[nearestDc.nearestDc - 1]
-                apiStorage.deleteAuthKey()
-                Log.d(TAG, "Updated dataCenter to DC${nearestDc.nearestDc} ${dataCenter.toString()}")
-                generateAuthKey = true
-                init(attemptCount + 1)
+                mtProtoHandler?.close()
+                throw RuntimeException("You tried to connect to an incorrect data center (DC${nearestDc.thisDc}) with an authorization key in storage, please connect to the nearest (DC${nearestDc.nearestDc})")
             }
+            migrate(nearestDc.nearestDc)
         } else {
             Log.d(TAG, "Connected to the nearest DC${nearestDc.thisDc}")
         }
@@ -120,4 +110,6 @@ internal class TelegramClientDelegateImpl(val application: TelegramApp, val apiS
 
         init(checkNearestDc = false)
     }
+
+    override fun close() = mtProtoHandler?.close() ?: Unit
 }

@@ -35,7 +35,7 @@ object AuthKeyCreation {
 
     private val AUTH_ATTEMPT_COUNT = 5
     private val AUTH_RETRY_COUNT = 5
-    private val TEMPORARY_KEY_DEFAULT_EXPIRE_DELAY = 86400000 // 24 hours
+    private val TEMPORARY_KEY_DEFAULT_EXPIRE_DELAY = 24 * 60 * 60 // 24 hours
 
     private var connection: MTProtoConnection? = null
     private val authContext = TlAuthContext
@@ -52,25 +52,15 @@ object AuthKeyCreation {
     /**
      * Create a temporary authorization key
      * Note: You should bind this key to your permanent key
-     * @return an object containing the auth key, the connection created, and the server salt received, or null if the creation failed
-     * @see [Creating an Authorization Key](https://core.telegram.org/mtproto/auth_key)
-     * and [Perfect Forward Secrecy](https://core.telegram.org/api/pfs)
-     */
-    @JvmStatic
-    fun createTmpAuthKey(dataCenter: DataCenter) = createAuthKeyInternal(dataCenter, true)
-
-    /**
-     * Create a temporary authorization key
-     * Note: You should bind this key to your permanent key
      * @param expireDelay the delay (in seconds) before the key is invalidated (it may be invalited before by Telegram's server)
      * @return an object containing the auth key, the connection created, and the server salt received, or null if the creation failed
      * @see [Creating an Authorization Key](https://core.telegram.org/mtproto/auth_key)
      * and [Perfect Forward Secrecy](https://core.telegram.org/api/pfs)
      */
-    @JvmStatic
-    fun createTmpAuthKey(dataCenter: DataCenter, expireDelay: Int): AuthResult? {
+    @JvmStatic @JvmOverloads
+    fun createTmpAuthKey(dataCenter: DataCenter, expireDelay: Int = TEMPORARY_KEY_DEFAULT_EXPIRE_DELAY) {
         tmpKeyExpireDelay = expireDelay
-        return createTmpAuthKey(dataCenter)
+        createAuthKeyInternal(dataCenter, true)
     }
 
     private fun createAuthKeyInternal(dataCenter: DataCenter, tmpKey: Boolean): AuthResult? {
@@ -141,11 +131,11 @@ object AuthKeyCreation {
     @Throws(IOException::class)
     private fun createStep4Request(resPQ: ResPQ, pq: SolvedPQ, publicKey: Key, tmpKey: Boolean): Pair<ReqDhParams, ByteArray> {
         val newNonce = RandomUtils.randomInt256()
-//        val pqInnerData = if (tmpKey)
-//            PQInnerTemp(resPQ.pq, fromBigInt(pq.p), fromBigInt(pq.q),
-//                        resPQ.nonce, resPQ.serverNonce, newNonce, tmpKeyExpireDelay)
-//        else
-            val pqInnerData = PQInner(resPQ.pq, fromBigInt(pq.p), fromBigInt(pq.q),
+        val pqInnerData = if (tmpKey)
+            PQInnerTemp(resPQ.pq, fromBigInt(pq.p), fromBigInt(pq.q),
+                    resPQ.nonce, resPQ.serverNonce, newNonce, tmpKeyExpireDelay)
+        else
+            PQInner(resPQ.pq, fromBigInt(pq.p), fromBigInt(pq.q),
                     resPQ.nonce, resPQ.serverNonce, newNonce)
 
         val data = pqInnerData.serialize()
@@ -156,8 +146,8 @@ object AuthKeyCreation {
         val encryptedData = RSA(dataWithHash, publicKey.publicKey, publicKey.exponent)
 
         val reqDhParams = ReqDhParams(resPQ.nonce, resPQ.serverNonce,
-                                      fromBigInt(pq.p), fromBigInt(pq.q), publicKey.fingerprint,
-                                      encryptedData)
+                fromBigInt(pq.p), fromBigInt(pq.q), publicKey.fingerprint,
+                encryptedData)
         return Pair.create(reqDhParams, newNonce)
     }
 
@@ -167,8 +157,8 @@ object AuthKeyCreation {
         val encryptedAnswer = serverDhOk.encryptedAnswer
         val tmpAesKey = concat(SHA1(newNonce, resPQ.serverNonce), substring(SHA1(resPQ.serverNonce, newNonce), 0, 12))
         val tmpAesIv = concat(concat(substring(SHA1(resPQ.serverNonce, newNonce), 12, 8),
-                                     SHA1(newNonce, newNonce)),
-                              substring(newNonce, 0, 4))
+                SHA1(newNonce, newNonce)),
+                substring(newNonce, 0, 4))
 
         val answer = AES256IGEDecrypt(encryptedAnswer, tmpAesIv, tmpAesKey)
         val stream = ByteArrayInputStream(answer)

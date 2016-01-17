@@ -8,9 +8,9 @@ object Kotlogram {
     fun getDefaultClient(application: TelegramApp, apiStorage: TelegramApiStorage, preferredDataCenter: DataCenter = PROD_DC4)
             : TelegramClient = DefaultTelegramClient(application, apiStorage, preferredDataCenter)
 
-    @JvmOverloads @JvmStatic
-    fun getDefaultReactiveClient(application: TelegramApp, apiStorage: TelegramApiStorage, preferredDataCenter: DataCenter = PROD_DC4)
-            : TelegramReactiveClient = DefaultTelegramReactiveClient(application, apiStorage, preferredDataCenter)
+//    @JvmOverloads @JvmStatic
+//    fun getDefaultReactiveClient(application: TelegramApp, apiStorage: TelegramApiStorage, preferredDataCenter: DataCenter = PROD_DC4)
+//            : TelegramReactiveClient = DefaultTelegramReactiveClient(application, apiStorage, preferredDataCenter)
 
     @JvmStatic @JvmField val PROD_DC1 = DataCenter("149.154.175.50", 443)
     @JvmStatic @JvmField val PROD_DC2 = DataCenter("149.154.167.51", 443)

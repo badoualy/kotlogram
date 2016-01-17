@@ -15,10 +15,9 @@ internal class DefaultTelegramReactiveClient internal constructor(val applicatio
 
     private val TAG = "TelegramReactiveClient"
 
-    override fun close() = mtProtoHandler!!.close()
-
     override fun <T : TLObject> executeRpcQuery(method: TLMethod<T>): Observable<T> {
         return mtProtoHandler!!.executeMethod(method)
+        // TODO: handle migration after error 303
     }
 
     override fun authSendCode(phoneNumber: String, smsType: Int) = super.authSendCode(phoneNumber, smsType, application.apiId, application.apiHash, application.langCode)

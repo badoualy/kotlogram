@@ -8,6 +8,7 @@ import com.github.badoualy.telegram.mtproto.auth.AuthResult
 import com.github.badoualy.telegram.mtproto.exception.RpcErrorException
 import com.github.badoualy.telegram.mtproto.util.Log
 import com.github.badoualy.telegram.tl.api.TelegramApiWrapper
+import com.github.badoualy.telegram.tl.api.auth.TLAuthorization
 import com.github.badoualy.telegram.tl.api.requests.TLRequestHelpGetNearestDc
 import com.github.badoualy.telegram.tl.api.requests.TLRequestInitConnection
 import com.github.badoualy.telegram.tl.core.TLMethod
@@ -21,8 +22,6 @@ internal class DefaultTelegramClient internal constructor(val application: Teleg
         TelegramClientDelegate by TelegramClientDelegateImpl(application, apiStorage, preferredDataCenter) {
 
     private val TAG = "TelegramClient"
-
-    override fun close() = mtProtoHandler!!.close()
 
     @Throws(IOException::class)
     override fun <T : TLObject> executeRpcQuery(method: TLMethod<T>): T {

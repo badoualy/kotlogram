@@ -9,10 +9,16 @@ import com.github.badoualy.telegram.mtproto.auth.AuthKey;
 import com.github.badoualy.telegram.mtproto.exception.RpcErrorException;
 import com.github.badoualy.telegram.mtproto.tl.MTRpcError;
 import com.github.badoualy.telegram.tl.api.TLAbsMessage;
+import com.github.badoualy.telegram.tl.api.TLAbsUserProfilePhoto;
+import com.github.badoualy.telegram.tl.api.TLFileLocation;
+import com.github.badoualy.telegram.tl.api.TLInputFileLocation;
+import com.github.badoualy.telegram.tl.api.TLUserProfilePhoto;
 import com.github.badoualy.telegram.tl.api.TLUserSelf;
 import com.github.badoualy.telegram.tl.api.auth.TLAbsSentCode;
 import com.github.badoualy.telegram.tl.api.auth.TLAuthorization;
 import com.github.badoualy.telegram.tl.api.messages.TLAbsDialogs;
+import com.github.badoualy.telegram.tl.api.upload.TLFile;
+
 import org.apache.commons.io.FileUtils;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -42,9 +48,17 @@ public class KotlogramSample {
             TLAuthorization authorization = client.authSignIn(PHONE_NUMBER, sentCode.getPhoneCodeHash(), code);
             TLUserSelf self = (TLUserSelf) authorization.getUser();
             System.out.println("You are now signed in as " + self.getFirstName() + " " + self.getLastName());
-
             // Start making cool stuff!
-            TLAbsDialogs dialogs = client.messagesGetDialogs(0, 0, 0);
+
+            // Get user profile picture
+            TLFileLocation photoLocation = (TLFileLocation) ((TLUserProfilePhoto) self.getPhoto()).getPhotoBig();
+            TLInputFileLocation inputLocation = new TLInputFileLocation(photoLocation.getVolumeId(),
+                                                                              photoLocation.getLocalId(),
+                                                                              photoLocation.getSecret());
+            TLFile photo = client.uploadGetFile(inputLocation, 0, 0);
+            FileUtils.writeByteArrayToFile(PHOTO_FILE, photo.getBytes().getData());
+
+            // TLAbsDialogs dialogs = client.messagesGetDialogs(0, 0, 0);
             // Do something with recent chats :)
         } catch (RpcErrorException e) {
             // Error with the request, invalid argument, etc

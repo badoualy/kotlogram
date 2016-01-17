@@ -1,9 +1,9 @@
 package com.github.badoualy.telegram.api
 
 import com.github.badoualy.telegram.mtproto.exception.RpcErrorException
-import com.github.badoualy.telegram.tl.api.TelegramApi
-import com.github.badoualy.telegram.tl.api.TelegramReactiveApi
+import com.github.badoualy.telegram.tl.api.*
 import com.github.badoualy.telegram.tl.api.auth.TLAbsSentCode
+import com.github.badoualy.telegram.tl.api.upload.TLFile
 import com.github.badoualy.telegram.tl.core.TLMethod
 import com.github.badoualy.telegram.tl.core.TLObject
 import rx.Observable
@@ -33,6 +33,28 @@ interface TelegramClient : TelegramApi {
 
     @Deprecated("Use initConnection for more convenience", ReplaceWith("initConnection(query)"))
     override fun <T : TLObject?> initConnection(apiId: Int, deviceModel: String?, systemVersion: String?, appVersion: String?, langCode: String?, query: TLMethod<T>?): T
+
+    /** Convenience method to download an user profile photo */
+    @JvmOverloads
+    @Throws(RpcErrorException::class, IOException::class)
+    fun getUserPhoto(user: TLAbsUser, big: Boolean = true): TLFile? {
+        val userPhoto = when (user) {
+            is TLUserSelf -> user.photo
+            is TLUserContact -> user.photo
+            is TLUserRequest -> user.photo
+            is TLUserForeign -> user.photo
+            is TLUserEmpty, is TLUserDeleted -> null
+            else -> null
+        } ?: return null
+
+        val photoLocation = when (userPhoto) {
+            is TLUserProfilePhoto -> if (big) userPhoto.photoBig else userPhoto.photoSmall
+            else -> null
+        } ?: return null
+
+        val inputLocation = TLInputFileLocation(photoLocation.volumeId, photoLocation.localId, photoLocation.secret)
+        return uploadGetFile(inputLocation, 0, 0)
+    }
 }
 
 interface TelegramReactiveClient : TelegramReactiveApi {
