@@ -37,6 +37,21 @@ interface TelegramClient : TelegramApi {
     /** Convenience method to download an user profile photo */
     @JvmOverloads
     @Throws(RpcErrorException::class, IOException::class)
+    fun getUserPhoto(user: TLUserFull, big: Boolean = true): TLFile? {
+        val userPhoto = user.profilePhoto
+
+        val photoLocation = when (userPhoto) {
+            is TLUserProfilePhoto -> if (big) userPhoto.photoBig else userPhoto.photoSmall
+            else -> null
+        } ?: return null
+
+        val inputLocation = TLInputFileLocation(photoLocation.volumeId, photoLocation.localId, photoLocation.secret)
+        return uploadGetFile(inputLocation, 0, 0)
+    }
+
+    /** Convenience method to download an user profile photo */
+    @JvmOverloads
+    @Throws(RpcErrorException::class, IOException::class)
     fun getUserPhoto(user: TLAbsUser, big: Boolean = true): TLFile? {
         val userPhoto = when (user) {
             is TLUserSelf -> user.photo
@@ -49,6 +64,40 @@ interface TelegramClient : TelegramApi {
 
         val photoLocation = when (userPhoto) {
             is TLUserProfilePhoto -> if (big) userPhoto.photoBig else userPhoto.photoSmall
+            else -> null
+        } ?: return null
+
+        val inputLocation = TLInputFileLocation(photoLocation.volumeId, photoLocation.localId, photoLocation.secret)
+        return uploadGetFile(inputLocation, 0, 0)
+    }
+
+    /** Convenience method to download a chat photo */
+    @JvmOverloads
+    @Throws(RpcErrorException::class, IOException::class)
+    fun getChatPhoto(chat: TLChatFull, big: Boolean = true): TLFile? {
+        val chatPhoto = chat.chatPhoto
+
+        val photoLocation = when (chatPhoto) {
+            is TLChatPhoto -> if (big) chatPhoto.photoBig else chatPhoto.photoSmall
+            else -> null
+        } ?: return null
+
+        val inputLocation = TLInputFileLocation(photoLocation.volumeId, photoLocation.localId, photoLocation.secret)
+        return uploadGetFile(inputLocation, 0, 0)
+    }
+
+    /** Convenience method to download a chat photo */
+    @JvmOverloads
+    @Throws(RpcErrorException::class, IOException::class)
+    fun getChatPhoto(chat: TLAbsChat, big: Boolean = true): TLFile? {
+        val chatPhoto = when (chat) {
+            is TLChat -> chat.photo
+            is TLChatEmpty, is TLChatForbidden -> null
+            else -> null
+        } ?: return null
+
+        val photoLocation = when (chatPhoto) {
+            is TLChatPhoto -> if (big) chatPhoto.photoBig else chatPhoto.photoSmall
             else -> null
         } ?: return null
 
