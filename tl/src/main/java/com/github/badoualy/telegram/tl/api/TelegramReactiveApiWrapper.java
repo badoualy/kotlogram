@@ -1,15 +1,102 @@
 
 package com.github.badoualy.telegram.tl.api;
 
-import com.github.badoualy.telegram.tl.core.*;
-import com.github.badoualy.telegram.tl.*;
-import java.io.*;
+import com.github.badoualy.telegram.tl.api.requests.TLRequestAccountCheckUsername;
+import com.github.badoualy.telegram.tl.api.requests.TLRequestAccountGetNotifySettings;
+import com.github.badoualy.telegram.tl.api.requests.TLRequestAccountGetWallPapers;
+import com.github.badoualy.telegram.tl.api.requests.TLRequestAccountRegisterDevice;
+import com.github.badoualy.telegram.tl.api.requests.TLRequestAccountResetNotifySettings;
+import com.github.badoualy.telegram.tl.api.requests.TLRequestAccountUnregisterDevice;
+import com.github.badoualy.telegram.tl.api.requests.TLRequestAccountUpdateNotifySettings;
+import com.github.badoualy.telegram.tl.api.requests.TLRequestAccountUpdateProfile;
+import com.github.badoualy.telegram.tl.api.requests.TLRequestAccountUpdateStatus;
+import com.github.badoualy.telegram.tl.api.requests.TLRequestAccountUpdateUsername;
+import com.github.badoualy.telegram.tl.api.requests.TLRequestAuthBindTempAuthKey;
+import com.github.badoualy.telegram.tl.api.requests.TLRequestAuthCheckPhone;
+import com.github.badoualy.telegram.tl.api.requests.TLRequestAuthExportAuthorization;
+import com.github.badoualy.telegram.tl.api.requests.TLRequestAuthImportAuthorization;
+import com.github.badoualy.telegram.tl.api.requests.TLRequestAuthLogOut;
+import com.github.badoualy.telegram.tl.api.requests.TLRequestAuthResetAuthorizations;
+import com.github.badoualy.telegram.tl.api.requests.TLRequestAuthSendCall;
+import com.github.badoualy.telegram.tl.api.requests.TLRequestAuthSendCode;
+import com.github.badoualy.telegram.tl.api.requests.TLRequestAuthSendInvites;
+import com.github.badoualy.telegram.tl.api.requests.TLRequestAuthSendSms;
+import com.github.badoualy.telegram.tl.api.requests.TLRequestAuthSignIn;
+import com.github.badoualy.telegram.tl.api.requests.TLRequestAuthSignUp;
+import com.github.badoualy.telegram.tl.api.requests.TLRequestContactsBlock;
+import com.github.badoualy.telegram.tl.api.requests.TLRequestContactsDeleteContact;
+import com.github.badoualy.telegram.tl.api.requests.TLRequestContactsDeleteContacts;
+import com.github.badoualy.telegram.tl.api.requests.TLRequestContactsExportCard;
+import com.github.badoualy.telegram.tl.api.requests.TLRequestContactsGetBlocked;
+import com.github.badoualy.telegram.tl.api.requests.TLRequestContactsGetContacts;
+import com.github.badoualy.telegram.tl.api.requests.TLRequestContactsGetStatuses;
+import com.github.badoualy.telegram.tl.api.requests.TLRequestContactsGetSuggested;
+import com.github.badoualy.telegram.tl.api.requests.TLRequestContactsImportCard;
+import com.github.badoualy.telegram.tl.api.requests.TLRequestContactsImportContacts;
+import com.github.badoualy.telegram.tl.api.requests.TLRequestContactsSearch;
+import com.github.badoualy.telegram.tl.api.requests.TLRequestContactsUnblock;
+import com.github.badoualy.telegram.tl.api.requests.TLRequestHelpGetAppUpdate;
+import com.github.badoualy.telegram.tl.api.requests.TLRequestHelpGetConfig;
+import com.github.badoualy.telegram.tl.api.requests.TLRequestHelpGetInviteText;
+import com.github.badoualy.telegram.tl.api.requests.TLRequestHelpGetNearestDc;
+import com.github.badoualy.telegram.tl.api.requests.TLRequestHelpGetSupport;
+import com.github.badoualy.telegram.tl.api.requests.TLRequestHelpSaveAppLog;
+import com.github.badoualy.telegram.tl.api.requests.TLRequestInitConnection;
+import com.github.badoualy.telegram.tl.api.requests.TLRequestInvokeAfterMsg;
+import com.github.badoualy.telegram.tl.api.requests.TLRequestInvokeAfterMsgs;
+import com.github.badoualy.telegram.tl.api.requests.TLRequestInvokeWithLayer18;
+import com.github.badoualy.telegram.tl.api.requests.TLRequestMessagesAcceptEncryption;
+import com.github.badoualy.telegram.tl.api.requests.TLRequestMessagesAddChatUser;
+import com.github.badoualy.telegram.tl.api.requests.TLRequestMessagesCreateChat;
+import com.github.badoualy.telegram.tl.api.requests.TLRequestMessagesDeleteChatUser;
+import com.github.badoualy.telegram.tl.api.requests.TLRequestMessagesDeleteHistory;
+import com.github.badoualy.telegram.tl.api.requests.TLRequestMessagesDeleteMessages;
+import com.github.badoualy.telegram.tl.api.requests.TLRequestMessagesDiscardEncryption;
+import com.github.badoualy.telegram.tl.api.requests.TLRequestMessagesEditChatPhoto;
+import com.github.badoualy.telegram.tl.api.requests.TLRequestMessagesEditChatTitle;
+import com.github.badoualy.telegram.tl.api.requests.TLRequestMessagesForwardMessage;
+import com.github.badoualy.telegram.tl.api.requests.TLRequestMessagesForwardMessages;
+import com.github.badoualy.telegram.tl.api.requests.TLRequestMessagesGetChats;
+import com.github.badoualy.telegram.tl.api.requests.TLRequestMessagesGetDhConfig;
+import com.github.badoualy.telegram.tl.api.requests.TLRequestMessagesGetDialogs;
+import com.github.badoualy.telegram.tl.api.requests.TLRequestMessagesGetFullChat;
+import com.github.badoualy.telegram.tl.api.requests.TLRequestMessagesGetHistory;
+import com.github.badoualy.telegram.tl.api.requests.TLRequestMessagesGetMessages;
+import com.github.badoualy.telegram.tl.api.requests.TLRequestMessagesReadEncryptedHistory;
+import com.github.badoualy.telegram.tl.api.requests.TLRequestMessagesReadHistory;
+import com.github.badoualy.telegram.tl.api.requests.TLRequestMessagesReadMessageContents;
+import com.github.badoualy.telegram.tl.api.requests.TLRequestMessagesReceivedMessages;
+import com.github.badoualy.telegram.tl.api.requests.TLRequestMessagesReceivedQueue;
+import com.github.badoualy.telegram.tl.api.requests.TLRequestMessagesReportSpam;
+import com.github.badoualy.telegram.tl.api.requests.TLRequestMessagesRequestEncryption;
+import com.github.badoualy.telegram.tl.api.requests.TLRequestMessagesSearch;
+import com.github.badoualy.telegram.tl.api.requests.TLRequestMessagesSendBroadcast;
+import com.github.badoualy.telegram.tl.api.requests.TLRequestMessagesSendEncrypted;
+import com.github.badoualy.telegram.tl.api.requests.TLRequestMessagesSendEncryptedFile;
+import com.github.badoualy.telegram.tl.api.requests.TLRequestMessagesSendEncryptedService;
+import com.github.badoualy.telegram.tl.api.requests.TLRequestMessagesSendMedia;
+import com.github.badoualy.telegram.tl.api.requests.TLRequestMessagesSendMessage;
+import com.github.badoualy.telegram.tl.api.requests.TLRequestMessagesSetEncryptedTyping;
+import com.github.badoualy.telegram.tl.api.requests.TLRequestMessagesSetTyping;
+import com.github.badoualy.telegram.tl.api.requests.TLRequestPhotosDeletePhotos;
+import com.github.badoualy.telegram.tl.api.requests.TLRequestPhotosGetUserPhotos;
+import com.github.badoualy.telegram.tl.api.requests.TLRequestPhotosUpdateProfilePhoto;
+import com.github.badoualy.telegram.tl.api.requests.TLRequestPhotosUploadProfilePhoto;
+import com.github.badoualy.telegram.tl.api.requests.TLRequestUpdatesGetDifference;
+import com.github.badoualy.telegram.tl.api.requests.TLRequestUpdatesGetState;
+import com.github.badoualy.telegram.tl.api.requests.TLRequestUploadGetFile;
+import com.github.badoualy.telegram.tl.api.requests.TLRequestUploadSaveBigFilePart;
+import com.github.badoualy.telegram.tl.api.requests.TLRequestUploadSaveFilePart;
+import com.github.badoualy.telegram.tl.api.requests.TLRequestUsersGetFullUser;
+import com.github.badoualy.telegram.tl.api.requests.TLRequestUsersGetUsers;
+import com.github.badoualy.telegram.tl.core.TLBool;
+import com.github.badoualy.telegram.tl.core.TLBytes;
+import com.github.badoualy.telegram.tl.core.TLMethod;
+import com.github.badoualy.telegram.tl.core.TLObject;
+
+import java.io.IOException;
+
 import rx.Observable;
-
-import static com.github.badoualy.telegram.tl.StreamUtils.*;
-
-
-import com.github.badoualy.telegram.tl.api.requests.*;
 
 /** Generated class that implements TelegramApi methods with a default behavior, and make the implementation more
 convenient by just having to implement a method to execute the RPC (Remote Procedure Call) query */

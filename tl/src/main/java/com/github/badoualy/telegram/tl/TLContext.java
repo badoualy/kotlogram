@@ -1,6 +1,14 @@
 package com.github.badoualy.telegram.tl;
 
-import com.github.badoualy.telegram.tl.core.*;
+import com.github.badoualy.telegram.tl.core.TLBoolFalse;
+import com.github.badoualy.telegram.tl.core.TLBoolTrue;
+import com.github.badoualy.telegram.tl.core.TLBytes;
+import com.github.badoualy.telegram.tl.core.TLGzipObject;
+import com.github.badoualy.telegram.tl.core.TLIntVector;
+import com.github.badoualy.telegram.tl.core.TLLongVector;
+import com.github.badoualy.telegram.tl.core.TLObject;
+import com.github.badoualy.telegram.tl.core.TLStringVector;
+import com.github.badoualy.telegram.tl.core.TLVector;
 
 import java.io.BufferedInputStream;
 import java.io.ByteArrayInputStream;
@@ -39,17 +47,17 @@ public abstract class TLContext {
         return registeredClasses.containsKey(classId);
     }
 
-    public <T extends TLObject> void registerClass(Class<T> tClass) {
+    public <T extends TLObject> void registerClass(Class<T> clazz) {
         try {
-            int classId = tClass.getField("CLASS_ID").getInt(null);
-            registeredClasses.put(classId, tClass);
+            int classId = clazz.getField("CLASS_ID").getInt(null);
+            registeredClasses.put(classId, clazz);
         } catch (IllegalAccessException | NoSuchFieldException e) {
             e.printStackTrace();
         }
     }
 
-    public <T extends TLObject> void registerClass(int clazzId, Class<T> tClass) {
-        registeredClasses.put(clazzId, tClass);
+    public <T extends TLObject> void registerClass(int clazzId, Class<T> clazz) {
+        registeredClasses.put(clazzId, clazz);
     }
 
     public TLObject deserializeMessage(byte[] data) throws IOException {
@@ -60,7 +68,8 @@ public abstract class TLContext {
         if (clazzId == TLGzipObject.CLASS_ID) {
             TLGzipObject obj = new TLGzipObject();
             obj.deserializeBody(stream, this);
-            BufferedInputStream gzipInputStream = new BufferedInputStream(new GZIPInputStream(new ByteArrayInputStream(obj.getPackedData())));
+            BufferedInputStream gzipInputStream = new BufferedInputStream(
+                    new GZIPInputStream(new ByteArrayInputStream(obj.getPackedData())));
             int innerClazzId = StreamUtils.readInt(gzipInputStream);
             return deserializeMessage(innerClazzId, gzipInputStream);
         }
@@ -105,7 +114,8 @@ public abstract class TLContext {
         } else if (clazzId == TLGzipObject.CLASS_ID) {
             TLGzipObject obj = new TLGzipObject();
             obj.deserializeBody(stream, this);
-            BufferedInputStream gzipInputStream = new BufferedInputStream(new GZIPInputStream(new ByteArrayInputStream(obj.getPackedData())));
+            BufferedInputStream gzipInputStream = new BufferedInputStream(
+                    new GZIPInputStream(new ByteArrayInputStream(obj.getPackedData())));
             return deserializeVector(gzipInputStream);
         } else {
             throw new IOException("Unable to deserialize vector");
@@ -121,7 +131,8 @@ public abstract class TLContext {
         } else if (clazzId == TLGzipObject.CLASS_ID) {
             TLGzipObject obj = new TLGzipObject();
             obj.deserializeBody(stream, this);
-            BufferedInputStream gzipInputStream = new BufferedInputStream(new GZIPInputStream(new ByteArrayInputStream(obj.getPackedData())));
+            BufferedInputStream gzipInputStream = new BufferedInputStream(
+                    new GZIPInputStream(new ByteArrayInputStream(obj.getPackedData())));
             return deserializeIntVector(gzipInputStream);
         } else {
             throw new IOException("Unable to deserialize vector");
@@ -137,7 +148,8 @@ public abstract class TLContext {
         } else if (clazzId == TLGzipObject.CLASS_ID) {
             TLGzipObject obj = new TLGzipObject();
             obj.deserializeBody(stream, this);
-            BufferedInputStream gzipInputStream = new BufferedInputStream(new GZIPInputStream(new ByteArrayInputStream(obj.getPackedData())));
+            BufferedInputStream gzipInputStream = new BufferedInputStream(
+                    new GZIPInputStream(new ByteArrayInputStream(obj.getPackedData())));
             return deserializeLongVector(gzipInputStream);
         } else {
             throw new IOException("Unable to deserialize vector");
@@ -153,7 +165,8 @@ public abstract class TLContext {
         } else if (clazzId == TLGzipObject.CLASS_ID) {
             TLGzipObject obj = new TLGzipObject();
             obj.deserializeBody(stream, this);
-            BufferedInputStream gzipInputStream = new BufferedInputStream(new GZIPInputStream(new ByteArrayInputStream(obj.getPackedData())));
+            BufferedInputStream gzipInputStream = new BufferedInputStream(
+                    new GZIPInputStream(new ByteArrayInputStream(obj.getPackedData())));
             return deserializeStringVector(gzipInputStream);
         } else {
             throw new IOException("Unable to deserialize vector");

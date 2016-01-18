@@ -2,12 +2,16 @@
 package com.github.badoualy.telegram.tl.api.contacts;
 
 
-import com.github.badoualy.telegram.tl.core.*;
-import com.github.badoualy.telegram.tl.*;
-import java.io.*;
-import rx.Observable;
+import com.github.badoualy.telegram.tl.TLContext;
 
-import static com.github.badoualy.telegram.tl.StreamUtils.*;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+
+import static com.github.badoualy.telegram.tl.StreamUtils.readInt;
+import static com.github.badoualy.telegram.tl.StreamUtils.readTLVector;
+import static com.github.badoualy.telegram.tl.StreamUtils.writeInt;
+import static com.github.badoualy.telegram.tl.StreamUtils.writeTLVector;
 
 
 

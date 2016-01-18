@@ -1,6 +1,14 @@
 package com.github.badoualy.telegram.tl;
 
-import com.github.badoualy.telegram.tl.core.*;
+import com.github.badoualy.telegram.tl.core.TLBoolFalse;
+import com.github.badoualy.telegram.tl.core.TLBoolTrue;
+import com.github.badoualy.telegram.tl.core.TLBytes;
+import com.github.badoualy.telegram.tl.core.TLIntVector;
+import com.github.badoualy.telegram.tl.core.TLLongVector;
+import com.github.badoualy.telegram.tl.core.TLMethod;
+import com.github.badoualy.telegram.tl.core.TLObject;
+import com.github.badoualy.telegram.tl.core.TLStringVector;
+import com.github.badoualy.telegram.tl.core.TLVector;
 
 import java.io.IOException;
 import java.io.InputStream;

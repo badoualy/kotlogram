@@ -1,12 +1,17 @@
 
 package com.github.badoualy.telegram.tl.api.photos;
 
-import com.github.badoualy.telegram.tl.core.*;
-import com.github.badoualy.telegram.tl.*;
-import java.io.*;
-import rx.Observable;
+import com.github.badoualy.telegram.tl.TLContext;
+import com.github.badoualy.telegram.tl.core.TLObject;
 
-import static com.github.badoualy.telegram.tl.StreamUtils.*;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+
+import static com.github.badoualy.telegram.tl.StreamUtils.readTLObject;
+import static com.github.badoualy.telegram.tl.StreamUtils.readTLVector;
+import static com.github.badoualy.telegram.tl.StreamUtils.writeTLObject;
+import static com.github.badoualy.telegram.tl.StreamUtils.writeTLVector;
 
 
 public class TLPhoto extends TLObject {

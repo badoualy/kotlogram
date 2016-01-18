@@ -1,15 +1,12 @@
 
 package com.github.badoualy.telegram.tl.api;
 
-import com.github.badoualy.telegram.tl.core.*;
-import com.github.badoualy.telegram.tl.*;
-import java.io.*;
-import rx.Observable;
+import com.github.badoualy.telegram.tl.core.TLBool;
+import com.github.badoualy.telegram.tl.core.TLBytes;
+import com.github.badoualy.telegram.tl.core.TLMethod;
+import com.github.badoualy.telegram.tl.core.TLObject;
 
-import static com.github.badoualy.telegram.tl.StreamUtils.*;
-
-
-import com.github.badoualy.telegram.tl.api.requests.*;
+import java.io.IOException;
 
 public interface TelegramApi {
 

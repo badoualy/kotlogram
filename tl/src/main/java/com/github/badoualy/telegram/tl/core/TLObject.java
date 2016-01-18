@@ -4,7 +4,11 @@ import com.github.badoualy.telegram.tl.DeserializeException;
 import com.github.badoualy.telegram.tl.StreamUtils;
 import com.github.badoualy.telegram.tl.TLContext;
 
-import java.io.*;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.io.Serializable;
 
 /**
  * Basic class for all tl-objects. Contains methods for serializing and deserializing object.

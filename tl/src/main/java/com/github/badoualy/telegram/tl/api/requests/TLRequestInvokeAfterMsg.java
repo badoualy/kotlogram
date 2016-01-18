@@ -1,12 +1,18 @@
 
 package com.github.badoualy.telegram.tl.api.requests;
 
-import com.github.badoualy.telegram.tl.core.*;
-import com.github.badoualy.telegram.tl.*;
-import java.io.*;
-import rx.Observable;
+import com.github.badoualy.telegram.tl.TLContext;
+import com.github.badoualy.telegram.tl.core.TLMethod;
+import com.github.badoualy.telegram.tl.core.TLObject;
 
-import static com.github.badoualy.telegram.tl.StreamUtils.*;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+
+import static com.github.badoualy.telegram.tl.StreamUtils.readLong;
+import static com.github.badoualy.telegram.tl.StreamUtils.readTLMethod;
+import static com.github.badoualy.telegram.tl.StreamUtils.writeLong;
+import static com.github.badoualy.telegram.tl.StreamUtils.writeTLMethod;
 
 
 public class TLRequestInvokeAfterMsg extends TLMethod<TLObject> {
