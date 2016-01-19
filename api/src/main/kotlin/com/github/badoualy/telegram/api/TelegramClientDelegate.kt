@@ -1,22 +1,31 @@
 package com.github.badoualy.telegram.api
 
+import com.github.badoualy.telegram.mtproto.ApiCallback
 import com.github.badoualy.telegram.mtproto.DataCenter
 import com.github.badoualy.telegram.mtproto.MTProtoHandler
+import com.github.badoualy.telegram.api.UpdateCallback
 import com.github.badoualy.telegram.mtproto.auth.AuthKey
 import com.github.badoualy.telegram.mtproto.auth.AuthKeyCreation
 import com.github.badoualy.telegram.mtproto.auth.AuthResult
 import com.github.badoualy.telegram.mtproto.exception.RpcErrorException
 import com.github.badoualy.telegram.mtproto.util.Log
-import com.github.badoualy.telegram.tl.api.TLNearestDc
+import com.github.badoualy.telegram.tl.api.*
 import com.github.badoualy.telegram.tl.api.requests.TLRequestHelpGetNearestDc
 import com.github.badoualy.telegram.tl.api.requests.TLRequestInitConnection
 import com.github.badoualy.telegram.tl.api.requests.TLRequestInvokeWithLayer18
 import java.io.IOException
 
 internal interface TelegramClientDelegate {
+    val application: TelegramApp
+
     var mtProtoHandler: MTProtoHandler?
     var authKey: AuthKey?
     var dataCenter: DataCenter?
+
+    val apiStorage: TelegramApiStorage?
+    val preferredDataCenter: DataCenter
+
+    var updateCallback: UpdateCallback?
 
     /**
      * Disconnect from current data center and connect to the new one
@@ -28,8 +37,8 @@ internal interface TelegramClientDelegate {
     fun close()
 }
 
-internal class TelegramClientDelegateImpl(val application: TelegramApp, val apiStorage: TelegramApiStorage,
-                                          val preferredDataCenter: DataCenter) : TelegramClientDelegate {
+internal class TelegramClientDelegateImpl(override val application: TelegramApp, override val apiStorage: TelegramApiStorage,
+                                          override val preferredDataCenter: DataCenter, override var updateCallback: UpdateCallback?) : TelegramClientDelegate, ApiCallback {
 
     private val TAG = "TelegramClientDelegateImpl"
 
@@ -57,7 +66,7 @@ internal class TelegramClientDelegateImpl(val application: TelegramApp, val apiS
     }
 
     private fun init(checkNearestDc: Boolean = true) {
-        mtProtoHandler = if (generateAuthKey) MTProtoHandler(generateAuthKey()) else MTProtoHandler(dataCenter!!, authKey!!)
+        mtProtoHandler = if (generateAuthKey) MTProtoHandler(generateAuthKey(), apiStorage.loadServerSalt(), this) else MTProtoHandler(dataCenter!!, authKey!!, apiStorage.loadServerSalt(), this)
         mtProtoHandler!!.startWatchdog()
 
         try {
@@ -68,7 +77,7 @@ internal class TelegramClientDelegateImpl(val application: TelegramApp, val apiS
                     .toBlocking().first()
             if (checkNearestDc)
                 checkNearestDc(nearestDc)
-        } catch(e: IOException) {
+        } catch(e: Exception) {
             mtProtoHandler?.close()
             if (e is RpcErrorException && e.error.errorCode == -404)
                 throw RuntimeException("Your authorization key seems to be invalid (error " + e.error.errorCode + ")")
@@ -112,4 +121,47 @@ internal class TelegramClientDelegateImpl(val application: TelegramApp, val apiS
     }
 
     override fun close() = mtProtoHandler?.close() ?: Unit
+
+    override fun onUpdates(update: TLAbsUpdates) {
+        when (update) {
+            is TLUpdatesTooLong -> updateCallback?.onUpdateTooLong()
+            is TLUpdateShortMessage -> updateCallback?.onShortMessage(update)
+            is TLUpdateShortChatMessage -> updateCallback?.onShortChatMessage(update)
+            is TLUpdateShort -> handleUpdate(update.update)
+            is TLUpdatesCombined -> update.updates.forEach { u -> handleUpdate(u) }
+            is TLUpdates -> update.updates.forEach { u -> handleUpdate(u) }
+        }
+    }
+
+    fun handleUpdate(update: TLAbsUpdate): Unit? = when (update) {
+        is TLUpdateNewMessage -> updateCallback?.onNewMessage(update)
+        is TLUpdateMessageID -> Unit
+        is TLUpdateReadMessages -> Unit
+        is TLUpdateDeleteMessages -> Unit
+    //is TLUpdateRestoreMessages -> Unit
+        is TLUpdateUserTyping -> Unit
+        is TLUpdateChatUserTyping -> Unit
+        is TLUpdateChatParticipants -> Unit
+        is TLUpdateUserStatus -> Unit
+        is TLUpdateUserName -> Unit
+        is TLUpdateUserPhoto -> Unit
+        is TLUpdateContactRegistered -> Unit
+        is TLUpdateContactLink -> Unit
+    //is TLUpdateActivation -> Unit
+        is TLUpdateNewAuthorization -> Unit
+    //is TLUpdateNewGeoChatMessage -> Unit
+        is TLUpdateNewEncryptedMessage -> Unit
+        is TLUpdateEncryptedChatTyping -> Unit
+        is TLUpdateEncryption -> Unit
+        is TLUpdateEncryptedMessagesRead -> Unit
+        is TLUpdateChatParticipantAdd -> Unit
+        is TLUpdateChatParticipantDelete -> Unit
+        is TLUpdateDcOptions -> Unit
+        is TLUpdateUserBlocked -> Unit
+        is TLUpdateNotifySettings -> Unit
+        is TLUpdateServiceNotification -> Unit
+        else -> Unit
+    }
+
+    override fun onSalt(salt: Long) = apiStorage.saveServerSalt(salt)
 }

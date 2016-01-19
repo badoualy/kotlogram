@@ -3,8 +3,8 @@ package com.github.badoualy.telegram.mtproto.auth
 
 import com.github.badoualy.telegram.mtproto.DataCenter
 import com.github.badoualy.telegram.mtproto.exception.FingerprintNotFoundException
-import com.github.badoualy.telegram.mtproto.exception.ServerException
-import com.github.badoualy.telegram.mtproto.exception.TransportSecurityException
+import com.github.badoualy.telegram.mtproto.exception.AuthorizationException
+import com.github.badoualy.telegram.mtproto.exception.SecurityException
 import com.github.badoualy.telegram.mtproto.secure.CryptoUtils.*
 import com.github.badoualy.telegram.mtproto.secure.Key
 import com.github.badoualy.telegram.mtproto.secure.RandomUtils
@@ -165,7 +165,7 @@ object AuthKeyCreation {
         val answerHash = StreamUtils.readBytes(20, stream) // Hash
         val dhInner = authContext.deserializeMessage(stream) as ServerDhInner
         if (!Arrays.equals(answerHash, SHA1(dhInner.serialize()))) {
-            throw TransportSecurityException()
+            throw SecurityException()
         }
 
         TimeOverlord.setServerTime(dhInner.serverTime * 1000L)
@@ -193,7 +193,7 @@ object AuthKeyCreation {
                 val newNonceHash = substring(SHA1(newNonce, byteArrayOf(1), authAuxHash), 4, 16)
 
                 if (!Arrays.equals(result.newNonceHash, newNonceHash))
-                    throw TransportSecurityException()
+                    throw SecurityException()
 
                 val serverSalt = StreamUtils.readLong(xor(substring(newNonce, 0, 8), substring(resPQ.serverNonce, 0, 8)), 0)
 
@@ -202,19 +202,19 @@ object AuthKeyCreation {
                 val newNonceHash = substring(SHA1(newNonce, byteArrayOf(2), authAuxHash), 4, 16)
 
                 if (!Arrays.equals(result.newNonceHash, newNonceHash))
-                    throw TransportSecurityException()
+                    throw SecurityException()
 
             } else if (result is DhGenFailure) {
                 val newNonceHash = substring(SHA1(newNonce, byteArrayOf(3), authAuxHash), 4, 16)
 
                 if (!Arrays.equals(result.newNonceHash, newNonceHash))
-                    throw TransportSecurityException()
+                    throw SecurityException()
 
-                throw ServerException()
+                throw AuthorizationException()
             }
         }
 
-        throw ServerException()
+        throw AuthorizationException()
     }
 
     /** For details about the protocol, see https://core.telegram.org/mtproto/auth_key  */
@@ -231,7 +231,7 @@ object AuthKeyCreation {
         // Step 2
         val publicKey = Arrays.stream(Key.AVAILABLE_KEYS).filter { k ->
             resPQ.fingerprints.contains(k.fingerprint)
-        }.findFirst().orElseThrow { FingerprintNotFoundException() }
+        }.findFirst().orElseThrow { FingerprintNotFoundException(resPQ.fingerprints.joinToString(", ")) }
         Log.d(TAG, "Step2 done")
 
         // Step 3
@@ -252,9 +252,9 @@ object AuthKeyCreation {
         // Step 5
         if (dhParams is ServerDhFailure) {
             if (Arrays.equals(dhParams.newNonceHash, SHA1(newNonce))) {
-                throw ServerException("Received " + dhParams.toString())
+                throw AuthorizationException("Received " + dhParams.toString())
             } else {
-                throw TransportSecurityException("Received " + dhParams.toString() + " with incorrect hash")
+                throw SecurityException("Received " + dhParams.toString() + " with incorrect hash")
             }
         }
 

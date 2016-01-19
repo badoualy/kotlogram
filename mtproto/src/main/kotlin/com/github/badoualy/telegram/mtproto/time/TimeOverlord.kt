@@ -15,6 +15,4 @@ object TimeOverlord {
     }
 
     fun generateMessageId() = (serverTime / 1000) shl 32
-
-    fun onMethodExecuted(responseId: Long) = setServerTime((responseId shr 32) * 1000)
 }

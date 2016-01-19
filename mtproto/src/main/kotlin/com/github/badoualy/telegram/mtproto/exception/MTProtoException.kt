@@ -1,6 +1,6 @@
 package com.github.badoualy.telegram.mtproto.exception
 
-class MTProtoException : Exception {
+open class MTProtoException : Exception {
     constructor() {
     }
 

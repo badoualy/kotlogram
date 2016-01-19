@@ -137,5 +137,16 @@ public class KotlogramSample {
                 e.printStackTrace();
             }
         }
+
+        @Override
+        public void saveServerSalt(long salt) {
+
+        }
+
+        @Nullable
+        @Override
+        public Long loadServerSalt() {
+            return null;
+        }
     }
 }

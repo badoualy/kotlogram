@@ -2,7 +2,7 @@ package com.github.badoualy.telegram.mtproto.exception
 
 import java.io.IOException
 
-class TransportSecurityException : IOException {
+class AuthorizationException : IOException {
     constructor() {
     }
 

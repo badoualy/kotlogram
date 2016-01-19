@@ -35,7 +35,6 @@ interface TelegramClient : TelegramApi {
     override fun <T : TLObject?> initConnection(apiId: Int, deviceModel: String?, systemVersion: String?, appVersion: String?, langCode: String?, query: TLMethod<T>?): T
 
     /** Convenience method to download an user profile photo */
-    @JvmOverloads
     @Throws(RpcErrorException::class, IOException::class)
     fun getUserPhoto(user: TLAbsUser, big: Boolean = true): TLFile? {
         val userPhoto = when (user) {
@@ -57,7 +56,6 @@ interface TelegramClient : TelegramApi {
     }
 
     /** Convenience method to download a chat photo */
-    @JvmOverloads
     @Throws(RpcErrorException::class, IOException::class)
     fun getChatPhoto(chat: TLAbsChat, big: Boolean = true): TLFile? {
         val chatPhoto = when (chat) {

@@ -7,11 +7,11 @@ import com.github.badoualy.telegram.tl.core.TLMethod
 import com.github.badoualy.telegram.tl.core.TLObject
 import rx.Observable
 
-internal class DefaultTelegramReactiveClient internal constructor(val application: TelegramApp, val apiStorage: TelegramApiStorage,
-                                                                  val preferredDataCenter: DataCenter) :
+internal class DefaultTelegramReactiveClient internal constructor(application: TelegramApp, apiStorage: TelegramApiStorage,
+                                                                  preferredDataCenter: DataCenter) :
         TelegramReactiveApiWrapper(),
         TelegramReactiveClient,
-        TelegramClientDelegate by TelegramClientDelegateImpl(application, apiStorage, preferredDataCenter) {
+        TelegramClientDelegate by TelegramClientDelegateImpl(application, apiStorage, preferredDataCenter, null) {
 
     private val TAG = "TelegramReactiveClient"
 

@@ -34,20 +34,15 @@ interface TelegramApiStorage {
      */
     fun loadDc(): DataCenter?
 
-    /**
-     * Delete the given data center information from persistent memory
-     */
+    /** Delete the data center information from persistent memory */
     fun deleteDc()
 
-    /**
-     * Save the given server salts to a persistent memory
-     * @param salts all known valid server salts
-     */
-    //fun saveServerSalts(salts: Array<MTFutureSalt>)
+    /** Save the given server salt to a persistent memory */
+    fun saveServerSalt(salt: Long)
 
     /**
-     * Save the given server salts to a persistent memory
-     * @return all previously saved server salts (whether they are valid or not), or empty array of none previously saved
+     * Load a previously server salt from persistent memory
+     * @return the server salt, or null if none was saved
      */
-    //fun saveServerSalts(salts: LongArray): Array<MTFutureSalt>
+    fun loadServerSalt(): Long?
 }

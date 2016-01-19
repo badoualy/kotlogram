@@ -15,11 +15,11 @@ import com.github.badoualy.telegram.tl.core.TLMethod
 import com.github.badoualy.telegram.tl.core.TLObject
 import java.io.IOException
 
-internal class DefaultTelegramClient internal constructor(val application: TelegramApp, val apiStorage: TelegramApiStorage,
-                                                          val preferredDataCenter: DataCenter) :
+internal class DefaultTelegramClient internal constructor(application: TelegramApp, apiStorage: TelegramApiStorage,
+                                                          preferredDataCenter: DataCenter) :
         TelegramApiWrapper(),
         TelegramClient,
-        TelegramClientDelegate by TelegramClientDelegateImpl(application, apiStorage, preferredDataCenter) {
+        TelegramClientDelegate by TelegramClientDelegateImpl(application, apiStorage, preferredDataCenter, null) {
 
     private val TAG = "TelegramClient"
 

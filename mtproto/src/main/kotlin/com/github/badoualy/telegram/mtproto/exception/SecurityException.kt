@@ -1,8 +1,6 @@
 package com.github.badoualy.telegram.mtproto.exception
 
-import java.io.IOException
-
-class ServerException : IOException {
+class SecurityException : MTProtoException {
     constructor() {
     }
 

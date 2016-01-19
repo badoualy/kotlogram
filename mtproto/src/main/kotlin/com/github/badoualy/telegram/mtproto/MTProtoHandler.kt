@@ -53,22 +53,29 @@ class MTProtoHandler {
 
     private var crMessageSent = 0 // Number of content related message sent
     private var lastMessageId: Long = 0
+
     private val timer = Timer()
     private var timerTask: TimerTask? = null
     private var bufferId = 0
 
-    constructor(authResult: AuthResult) {
+    private val apiCallback: ApiCallback?
+
+    @JvmOverloads
+    constructor(authResult: AuthResult, salt: Long? = 0, apiCallback: ApiCallback?) {
         connection = authResult.connection
         authKey = authResult.authKey
-        salt = authResult.serverSalt
+        this.salt = salt ?: 0
+        this.apiCallback = apiCallback
 
         init()
     }
 
-    constructor(dataCenter: DataCenter, authKey: AuthKey) {
+    @JvmOverloads
+    constructor(dataCenter: DataCenter, authKey: AuthKey, salt: Long? = 0, apiCallback: ApiCallback?) {
         connection = MTProtoTcpConnection(dataCenter.ip, dataCenter.port)
         this.authKey = authKey
-        salt = 0L // TODO: improve by sending getSalt ASAP instead of sending twice same request to get salt
+        this.salt = salt ?: 0
+        this.apiCallback = apiCallback
 
         init()
     }
@@ -357,7 +364,7 @@ class MTProtoHandler {
         when (messageContent) {
             is MTMsgsAck -> {
                 Log.d(TAG, "Received ack for ${StringUtils.join(messageContent.messages, ", ")}")
-                // TODO
+                // TODO check missing ack ?
             }
             is MTRpcResult -> {
                 handleResult(messageContent)
@@ -365,9 +372,10 @@ class MTProtoHandler {
             }
             is MTRpcError -> {
                 Log.e(TAG, "RpcError ${messageContent.errorCode}: ${messageContent.message}")
+                throw IllegalStateException("RpcError handled in handleMessage()")
                 // This should never happen, it should always be contained in MTRpcResult
             }
-            is TLAbsUpdates -> handleUpdate(messageContent)
+            is TLAbsUpdates -> apiCallback?.onUpdates(messageContent)
             is MTNewSessionCreated -> {
                 //salt = message.serverSalt
                 sendMessageAck(message.messageId)
@@ -378,6 +386,9 @@ class MTProtoHandler {
 
                 // Message contains a good salt to use
                 salt = messageContent.newSalt
+                apiCallback?.onSalt(salt)
+
+                // Resend message with good salt
                 val sentMessage = sentMessageList.filter({ m -> m.messageId == messageContent.badMsgId }).firstOrNull()
                 if (sentMessage != null) {
                     Log.d(TAG, "Re-sending message ${messageContent.badMsgId} with new salt")
@@ -459,15 +470,5 @@ class MTProtoHandler {
         }
 
         subscriber?.onCompleted()
-    }
-
-    @Throws(IOException::class)
-    private fun handleUpdate(update: TLAbsUpdates) {
-        Log.d(TAG, "handleUpdate ${update.toString()}")
-
-        if (update is TLUpdateShort) {
-            val absUpdate = update.update
-            Log.e(TAG, absUpdate.toString())
-        }
     }
 }
