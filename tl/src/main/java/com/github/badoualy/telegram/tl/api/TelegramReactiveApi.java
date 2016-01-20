@@ -54,6 +54,8 @@ public interface TelegramReactiveApi {
 
     Observable<com.github.badoualy.telegram.tl.core.TLVector<com.github.badoualy.telegram.tl.api.TLAbsWallPaper>> accountGetWallPapers() throws IOException;
 
+    Observable<TLBool> accountReportPeer(com.github.badoualy.telegram.tl.api.TLAbsInputPeer peer, com.github.badoualy.telegram.tl.api.TLAbsReportReason reason) throws IOException;
+
     Observable<com.github.badoualy.telegram.tl.core.TLVector<com.github.badoualy.telegram.tl.api.TLAbsUser>> usersGetUsers(com.github.badoualy.telegram.tl.core.TLVector<com.github.badoualy.telegram.tl.api.TLAbsInputUser> id) throws IOException;
 
     Observable<com.github.badoualy.telegram.tl.api.TLUserFull> usersGetFullUser(com.github.badoualy.telegram.tl.api.TLAbsInputUser id) throws IOException;
@@ -186,6 +188,28 @@ public interface TelegramReactiveApi {
 
     Observable<com.github.badoualy.telegram.tl.api.contacts.TLFound> contactsSearch(String q, int limit) throws IOException;
 
-    <T extends TLObject> Observable<T> invokeWithLayer18(TLMethod<T> query) throws IOException;
+    Observable<com.github.badoualy.telegram.tl.api.account.TLPrivacyRules> accountGetPrivacy(com.github.badoualy.telegram.tl.api.TLInputPrivacyKey key) throws IOException;
+
+    Observable<com.github.badoualy.telegram.tl.api.account.TLPrivacyRules> accountSetPrivacy(com.github.badoualy.telegram.tl.api.TLInputPrivacyKey key, com.github.badoualy.telegram.tl.core.TLVector<com.github.badoualy.telegram.tl.api.TLAbsInputPrivacyRule> rules) throws IOException;
+
+    Observable<TLBool> accountDeleteAccount(String reason) throws IOException;
+
+    Observable<com.github.badoualy.telegram.tl.api.TLAccountDaysTTL> accountGetAccountTTL() throws IOException;
+
+    Observable<TLBool> accountSetAccountTTL(com.github.badoualy.telegram.tl.api.TLAccountDaysTTL ttl) throws IOException;
+
+    <T extends TLObject> Observable<T> invokeWithLayer(int layer, TLMethod<T> query) throws IOException;
+
+    Observable<com.github.badoualy.telegram.tl.api.TLAbsUser> contactsResolveUsername(String username) throws IOException;
+
+    Observable<com.github.badoualy.telegram.tl.api.account.TLSentChangePhoneCode> accountSendChangePhoneCode(String phoneNumber) throws IOException;
+
+    Observable<com.github.badoualy.telegram.tl.api.TLAbsUser> accountChangePhone(String phoneNumber, String phoneCodeHash, String phoneCode) throws IOException;
+
+    Observable<com.github.badoualy.telegram.tl.api.messages.TLAbsStickers> messagesGetStickers(String emoticon, String hash) throws IOException;
+
+    Observable<com.github.badoualy.telegram.tl.api.messages.TLAbsAllStickers> messagesGetAllStickers(String hash) throws IOException;
+
+    Observable<TLBool> accountUpdateDeviceLocked(int period) throws IOException;
 
 }

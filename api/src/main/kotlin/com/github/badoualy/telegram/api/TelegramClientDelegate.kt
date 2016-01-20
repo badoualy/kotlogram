@@ -12,7 +12,7 @@ import com.github.badoualy.telegram.mtproto.util.Log
 import com.github.badoualy.telegram.tl.api.*
 import com.github.badoualy.telegram.tl.api.requests.TLRequestHelpGetNearestDc
 import com.github.badoualy.telegram.tl.api.requests.TLRequestInitConnection
-import com.github.badoualy.telegram.tl.api.requests.TLRequestInvokeWithLayer18
+import com.github.badoualy.telegram.tl.api.requests.TLRequestInvokeWithLayer
 import java.io.IOException
 
 internal interface TelegramClientDelegate {
@@ -73,7 +73,7 @@ internal class TelegramClientDelegateImpl(override val application: TelegramApp,
             // Call to initConnection to setup information about this app for the user to see in "active sessions"
             // Also will indicate to Telegram which layer to use through InvokeWithLayer
             val nearestDc = mtProtoHandler!!
-                    .executeMethod(TLRequestInvokeWithLayer18(TLRequestInitConnection(application.apiId, application.deviceModel, application.systemVersion, application.appVersion, application.langCode, TLRequestHelpGetNearestDc())))
+                    .executeMethod(TLRequestInvokeWithLayer(23, TLRequestInitConnection(application.apiId, application.deviceModel, application.systemVersion, application.appVersion, application.langCode, TLRequestHelpGetNearestDc())))
                     .toBlocking().first()
             if (checkNearestDc)
                 checkNearestDc(nearestDc)

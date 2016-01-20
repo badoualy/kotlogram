@@ -12,31 +12,32 @@ import static com.github.badoualy.telegram.tl.StreamUtils.readInt;
 import static com.github.badoualy.telegram.tl.StreamUtils.readLong;
 import static com.github.badoualy.telegram.tl.StreamUtils.readTLObject;
 import static com.github.badoualy.telegram.tl.StreamUtils.readTLString;
+import static com.github.badoualy.telegram.tl.StreamUtils.readTLVector;
 import static com.github.badoualy.telegram.tl.StreamUtils.writeInt;
 import static com.github.badoualy.telegram.tl.StreamUtils.writeLong;
 import static com.github.badoualy.telegram.tl.StreamUtils.writeTLObject;
 import static com.github.badoualy.telegram.tl.StreamUtils.writeTLString;
+import static com.github.badoualy.telegram.tl.StreamUtils.writeTLVector;
 
 
 
 public class TLDocument extends TLAbsDocument {
-    public static final int CLASS_ID = 0x9efc6326;
+    public static final int CLASS_ID = 0xf9a39f4f;
 
     public TLDocument() {
 
     }
 
 
-    public TLDocument(        long _id,         long _accessHash,         int _userId,         int _date,         String _fileName,         String _mimeType,         int _size,         com.github.badoualy.telegram.tl.api.TLAbsPhotoSize _thumb,         int _dcId) {
+    public TLDocument(        long _id,         long _accessHash,         int _date,         String _mimeType,         int _size,         com.github.badoualy.telegram.tl.api.TLAbsPhotoSize _thumb,         int _dcId,         com.github.badoualy.telegram.tl.core.TLVector<com.github.badoualy.telegram.tl.api.TLAbsDocumentAttribute> _attributes) {
         this.id = _id;
         this.accessHash = _accessHash;
-        this.userId = _userId;
         this.date = _date;
-        this.fileName = _fileName;
         this.mimeType = _mimeType;
         this.size = _size;
         this.thumb = _thumb;
         this.dcId = _dcId;
+        this.attributes = _attributes;
 
     }
 
@@ -48,11 +49,7 @@ public class TLDocument extends TLAbsDocument {
 
     protected long accessHash;
 
-    protected int userId;
-
     protected int date;
-
-    protected String fileName;
 
     protected String mimeType;
 
@@ -61,6 +58,8 @@ public class TLDocument extends TLAbsDocument {
     protected com.github.badoualy.telegram.tl.api.TLAbsPhotoSize thumb;
 
     protected int dcId;
+
+    protected com.github.badoualy.telegram.tl.core.TLVector<com.github.badoualy.telegram.tl.api.TLAbsDocumentAttribute> attributes;
 
 
     public long getAccessHash() {
@@ -71,28 +70,12 @@ public class TLDocument extends TLAbsDocument {
         this.accessHash = value;
     }
 
-    public int getUserId() {
-        return userId;
-    }
-
-    public void setUserId(int value) {
-        this.userId = value;
-    }
-
     public int getDate() {
         return date;
     }
 
     public void setDate(int value) {
         this.date = value;
-    }
-
-    public String getFileName() {
-        return fileName;
-    }
-
-    public void setFileName(String value) {
-        this.fileName = value;
     }
 
     public String getMimeType() {
@@ -127,19 +110,26 @@ public class TLDocument extends TLAbsDocument {
         this.dcId = value;
     }
 
+    public com.github.badoualy.telegram.tl.core.TLVector<com.github.badoualy.telegram.tl.api.TLAbsDocumentAttribute> getAttributes() {
+        return attributes;
+    }
+
+    public void setAttributes(com.github.badoualy.telegram.tl.core.TLVector<com.github.badoualy.telegram.tl.api.TLAbsDocumentAttribute> value) {
+        this.attributes = value;
+    }
+
 
     @Override
     public void serializeBody(OutputStream stream) throws IOException {
 
         writeLong(this.id, stream);
         writeLong(this.accessHash, stream);
-        writeInt(this.userId, stream);
         writeInt(this.date, stream);
-        writeTLString(this.fileName, stream);
         writeTLString(this.mimeType, stream);
         writeInt(this.size, stream);
         writeTLObject(this.thumb, stream);
         writeInt(this.dcId, stream);
+        writeTLVector(this.attributes, stream);
     }
 
 
@@ -148,20 +138,19 @@ public class TLDocument extends TLAbsDocument {
 
         this.id = readLong(stream);
         this.accessHash = readLong(stream);
-        this.userId = readInt(stream);
         this.date = readInt(stream);
-        this.fileName = readTLString(stream);
         this.mimeType = readTLString(stream);
         this.size = readInt(stream);
         this.thumb = (com.github.badoualy.telegram.tl.api.TLAbsPhotoSize)readTLObject(stream, context);
         this.dcId = readInt(stream);
+        this.attributes = readTLVector(stream, context);
     }
 
 
 
     @Override
     public String toString() {
-        return "document#9efc6326";
+        return "document#f9a39f4f";
     }
 
 }

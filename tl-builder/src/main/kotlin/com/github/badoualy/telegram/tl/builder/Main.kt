@@ -12,7 +12,7 @@ fun printUsage() {
 fun main(args: Array<String>) {
     println("TL Compiler based on Stepan Korshakov's work, Kotlogram (c) 2015 v1.0")
 
-    var inputDefinition = "./tl-builder/src/main/resources/tl-schema-18.json"
+    var inputDefinition = "./tl-builder/src/main/resources/tl-schema-23.json"
 
     if (!args.isEmpty()) {
         if (args.size != 2 && args.size != 4 && args.size != 6) {

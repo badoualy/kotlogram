@@ -9,21 +9,23 @@ import java.io.InputStream;
 import java.io.OutputStream;
 
 import static com.github.badoualy.telegram.tl.StreamUtils.readInt;
+import static com.github.badoualy.telegram.tl.StreamUtils.readTLObject;
 import static com.github.badoualy.telegram.tl.StreamUtils.writeInt;
+import static com.github.badoualy.telegram.tl.StreamUtils.writeTLObject;
 
 
 public class TLContactStatus extends TLObject {
 
-    public static final int CLASS_ID = 0xaa77b873;
+    public static final int CLASS_ID = 0xd3680c61;
 
     public TLContactStatus() {
 
     }
 
 
-    public TLContactStatus(        int _userId,         int _expires) {
+    public TLContactStatus(        int _userId,         com.github.badoualy.telegram.tl.api.TLAbsUserStatus _status) {
         this.userId = _userId;
-        this.expires = _expires;
+        this.status = _status;
 
     }
 
@@ -35,7 +37,7 @@ public class TLContactStatus extends TLObject {
 
     protected int userId;
 
-    protected int expires;
+    protected com.github.badoualy.telegram.tl.api.TLAbsUserStatus status;
 
 
     public int getUserId() {
@@ -46,12 +48,12 @@ public class TLContactStatus extends TLObject {
         this.userId = value;
     }
 
-    public int getExpires() {
-        return expires;
+    public com.github.badoualy.telegram.tl.api.TLAbsUserStatus getStatus() {
+        return status;
     }
 
-    public void setExpires(int value) {
-        this.expires = value;
+    public void setStatus(com.github.badoualy.telegram.tl.api.TLAbsUserStatus value) {
+        this.status = value;
     }
 
 
@@ -59,7 +61,7 @@ public class TLContactStatus extends TLObject {
     public void serializeBody(OutputStream stream) throws IOException {
 
         writeInt(this.userId, stream);
-        writeInt(this.expires, stream);
+        writeTLObject(this.status, stream);
     }
 
 
@@ -67,13 +69,13 @@ public class TLContactStatus extends TLObject {
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
 
         this.userId = readInt(stream);
-        this.expires = readInt(stream);
+        this.status = (com.github.badoualy.telegram.tl.api.TLAbsUserStatus)readTLObject(stream, context);
     }
 
 
     @Override
     public String toString() {
-        return "contactStatus#aa77b873";
+        return "contactStatus#d3680c61";
     }
 
 }

@@ -24,7 +24,7 @@ interface TelegramClient : TelegramApi {
     override fun authSendCode(phoneNumber: String?, smsType: Int, apiId: Int, apiHash: String?, langCode: String?): TLAbsSentCode
 
     @Throws(RpcErrorException::class, IOException::class)
-    override fun <T : TLObject?> invokeWithLayer18(query: TLMethod<T>?): T
+    override fun <T : TLObject?> invokeWithLayer(layer: Int, query: TLMethod<T>?): T
 
     /** Convenience method wrapping the argument with TelegramApp values and casting result with good type */
     @Suppress("UNCHECKED_CAST")
@@ -86,7 +86,7 @@ interface TelegramReactiveClient : TelegramReactiveApi {
     @Deprecated("Use authSendCode for more convenience", ReplaceWith("authSendCode(phoneNumber, smsType)"))
     override fun authSendCode(phoneNumber: String?, smsType: Int, apiId: Int, apiHash: String?, langCode: String?): Observable<TLAbsSentCode>
 
-    override fun <T : TLObject?> invokeWithLayer18(query: TLMethod<T>?): Observable<T>
+    override fun <T : TLObject?> invokeWithLayer(layer: Int, query: TLMethod<T>?): Observable<T>
 
     /** Convenience method wrapping the argument with TelegramApp values and casting result with good type */
     @Suppress("UNCHECKED_CAST")

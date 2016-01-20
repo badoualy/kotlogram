@@ -1,94 +1,7 @@
 
 package com.github.badoualy.telegram.tl.api;
 
-import com.github.badoualy.telegram.tl.api.requests.TLRequestAccountCheckUsername;
-import com.github.badoualy.telegram.tl.api.requests.TLRequestAccountGetNotifySettings;
-import com.github.badoualy.telegram.tl.api.requests.TLRequestAccountGetWallPapers;
-import com.github.badoualy.telegram.tl.api.requests.TLRequestAccountRegisterDevice;
-import com.github.badoualy.telegram.tl.api.requests.TLRequestAccountResetNotifySettings;
-import com.github.badoualy.telegram.tl.api.requests.TLRequestAccountUnregisterDevice;
-import com.github.badoualy.telegram.tl.api.requests.TLRequestAccountUpdateNotifySettings;
-import com.github.badoualy.telegram.tl.api.requests.TLRequestAccountUpdateProfile;
-import com.github.badoualy.telegram.tl.api.requests.TLRequestAccountUpdateStatus;
-import com.github.badoualy.telegram.tl.api.requests.TLRequestAccountUpdateUsername;
-import com.github.badoualy.telegram.tl.api.requests.TLRequestAuthBindTempAuthKey;
-import com.github.badoualy.telegram.tl.api.requests.TLRequestAuthCheckPhone;
-import com.github.badoualy.telegram.tl.api.requests.TLRequestAuthExportAuthorization;
-import com.github.badoualy.telegram.tl.api.requests.TLRequestAuthImportAuthorization;
-import com.github.badoualy.telegram.tl.api.requests.TLRequestAuthLogOut;
-import com.github.badoualy.telegram.tl.api.requests.TLRequestAuthResetAuthorizations;
-import com.github.badoualy.telegram.tl.api.requests.TLRequestAuthSendCall;
-import com.github.badoualy.telegram.tl.api.requests.TLRequestAuthSendCode;
-import com.github.badoualy.telegram.tl.api.requests.TLRequestAuthSendInvites;
-import com.github.badoualy.telegram.tl.api.requests.TLRequestAuthSendSms;
-import com.github.badoualy.telegram.tl.api.requests.TLRequestAuthSignIn;
-import com.github.badoualy.telegram.tl.api.requests.TLRequestAuthSignUp;
-import com.github.badoualy.telegram.tl.api.requests.TLRequestContactsBlock;
-import com.github.badoualy.telegram.tl.api.requests.TLRequestContactsDeleteContact;
-import com.github.badoualy.telegram.tl.api.requests.TLRequestContactsDeleteContacts;
-import com.github.badoualy.telegram.tl.api.requests.TLRequestContactsExportCard;
-import com.github.badoualy.telegram.tl.api.requests.TLRequestContactsGetBlocked;
-import com.github.badoualy.telegram.tl.api.requests.TLRequestContactsGetContacts;
-import com.github.badoualy.telegram.tl.api.requests.TLRequestContactsGetStatuses;
-import com.github.badoualy.telegram.tl.api.requests.TLRequestContactsGetSuggested;
-import com.github.badoualy.telegram.tl.api.requests.TLRequestContactsImportCard;
-import com.github.badoualy.telegram.tl.api.requests.TLRequestContactsImportContacts;
-import com.github.badoualy.telegram.tl.api.requests.TLRequestContactsSearch;
-import com.github.badoualy.telegram.tl.api.requests.TLRequestContactsUnblock;
-import com.github.badoualy.telegram.tl.api.requests.TLRequestHelpGetAppUpdate;
-import com.github.badoualy.telegram.tl.api.requests.TLRequestHelpGetConfig;
-import com.github.badoualy.telegram.tl.api.requests.TLRequestHelpGetInviteText;
-import com.github.badoualy.telegram.tl.api.requests.TLRequestHelpGetNearestDc;
-import com.github.badoualy.telegram.tl.api.requests.TLRequestHelpGetSupport;
-import com.github.badoualy.telegram.tl.api.requests.TLRequestHelpSaveAppLog;
-import com.github.badoualy.telegram.tl.api.requests.TLRequestInitConnection;
-import com.github.badoualy.telegram.tl.api.requests.TLRequestInvokeAfterMsg;
-import com.github.badoualy.telegram.tl.api.requests.TLRequestInvokeAfterMsgs;
-import com.github.badoualy.telegram.tl.api.requests.TLRequestInvokeWithLayer18;
-import com.github.badoualy.telegram.tl.api.requests.TLRequestMessagesAcceptEncryption;
-import com.github.badoualy.telegram.tl.api.requests.TLRequestMessagesAddChatUser;
-import com.github.badoualy.telegram.tl.api.requests.TLRequestMessagesCreateChat;
-import com.github.badoualy.telegram.tl.api.requests.TLRequestMessagesDeleteChatUser;
-import com.github.badoualy.telegram.tl.api.requests.TLRequestMessagesDeleteHistory;
-import com.github.badoualy.telegram.tl.api.requests.TLRequestMessagesDeleteMessages;
-import com.github.badoualy.telegram.tl.api.requests.TLRequestMessagesDiscardEncryption;
-import com.github.badoualy.telegram.tl.api.requests.TLRequestMessagesEditChatPhoto;
-import com.github.badoualy.telegram.tl.api.requests.TLRequestMessagesEditChatTitle;
-import com.github.badoualy.telegram.tl.api.requests.TLRequestMessagesForwardMessage;
-import com.github.badoualy.telegram.tl.api.requests.TLRequestMessagesForwardMessages;
-import com.github.badoualy.telegram.tl.api.requests.TLRequestMessagesGetChats;
-import com.github.badoualy.telegram.tl.api.requests.TLRequestMessagesGetDhConfig;
-import com.github.badoualy.telegram.tl.api.requests.TLRequestMessagesGetDialogs;
-import com.github.badoualy.telegram.tl.api.requests.TLRequestMessagesGetFullChat;
-import com.github.badoualy.telegram.tl.api.requests.TLRequestMessagesGetHistory;
-import com.github.badoualy.telegram.tl.api.requests.TLRequestMessagesGetMessages;
-import com.github.badoualy.telegram.tl.api.requests.TLRequestMessagesReadEncryptedHistory;
-import com.github.badoualy.telegram.tl.api.requests.TLRequestMessagesReadHistory;
-import com.github.badoualy.telegram.tl.api.requests.TLRequestMessagesReadMessageContents;
-import com.github.badoualy.telegram.tl.api.requests.TLRequestMessagesReceivedMessages;
-import com.github.badoualy.telegram.tl.api.requests.TLRequestMessagesReceivedQueue;
-import com.github.badoualy.telegram.tl.api.requests.TLRequestMessagesReportSpam;
-import com.github.badoualy.telegram.tl.api.requests.TLRequestMessagesRequestEncryption;
-import com.github.badoualy.telegram.tl.api.requests.TLRequestMessagesSearch;
-import com.github.badoualy.telegram.tl.api.requests.TLRequestMessagesSendBroadcast;
-import com.github.badoualy.telegram.tl.api.requests.TLRequestMessagesSendEncrypted;
-import com.github.badoualy.telegram.tl.api.requests.TLRequestMessagesSendEncryptedFile;
-import com.github.badoualy.telegram.tl.api.requests.TLRequestMessagesSendEncryptedService;
-import com.github.badoualy.telegram.tl.api.requests.TLRequestMessagesSendMedia;
-import com.github.badoualy.telegram.tl.api.requests.TLRequestMessagesSendMessage;
-import com.github.badoualy.telegram.tl.api.requests.TLRequestMessagesSetEncryptedTyping;
-import com.github.badoualy.telegram.tl.api.requests.TLRequestMessagesSetTyping;
-import com.github.badoualy.telegram.tl.api.requests.TLRequestPhotosDeletePhotos;
-import com.github.badoualy.telegram.tl.api.requests.TLRequestPhotosGetUserPhotos;
-import com.github.badoualy.telegram.tl.api.requests.TLRequestPhotosUpdateProfilePhoto;
-import com.github.badoualy.telegram.tl.api.requests.TLRequestPhotosUploadProfilePhoto;
-import com.github.badoualy.telegram.tl.api.requests.TLRequestUpdatesGetDifference;
-import com.github.badoualy.telegram.tl.api.requests.TLRequestUpdatesGetState;
-import com.github.badoualy.telegram.tl.api.requests.TLRequestUploadGetFile;
-import com.github.badoualy.telegram.tl.api.requests.TLRequestUploadSaveBigFilePart;
-import com.github.badoualy.telegram.tl.api.requests.TLRequestUploadSaveFilePart;
-import com.github.badoualy.telegram.tl.api.requests.TLRequestUsersGetFullUser;
-import com.github.badoualy.telegram.tl.api.requests.TLRequestUsersGetUsers;
+import com.github.badoualy.telegram.tl.api.requests.*;
 import com.github.badoualy.telegram.tl.core.TLBool;
 import com.github.badoualy.telegram.tl.core.TLBytes;
 import com.github.badoualy.telegram.tl.core.TLMethod;
@@ -207,6 +120,11 @@ public abstract class TelegramReactiveApiWrapper implements TelegramReactiveApi 
     @Override
     public Observable<com.github.badoualy.telegram.tl.core.TLVector<com.github.badoualy.telegram.tl.api.TLAbsWallPaper>> accountGetWallPapers() throws IOException {
         return executeRpcQuery(new TLRequestAccountGetWallPapers());
+    }
+
+    @Override
+    public Observable<TLBool> accountReportPeer(com.github.badoualy.telegram.tl.api.TLAbsInputPeer peer, com.github.badoualy.telegram.tl.api.TLAbsReportReason reason) throws IOException {
+        return executeRpcQuery(new TLRequestAccountReportPeer(peer, reason));
     }
 
     @Override
@@ -540,8 +458,63 @@ public abstract class TelegramReactiveApiWrapper implements TelegramReactiveApi 
     }
 
     @Override
-    public <T extends TLObject> Observable<T> invokeWithLayer18(TLMethod<T> query) throws IOException {
-        return executeRpcQuery(new TLRequestInvokeWithLayer18(query));
+    public Observable<com.github.badoualy.telegram.tl.api.account.TLPrivacyRules> accountGetPrivacy(com.github.badoualy.telegram.tl.api.TLInputPrivacyKey key) throws IOException {
+        return executeRpcQuery(new TLRequestAccountGetPrivacy(key));
+    }
+
+    @Override
+    public Observable<com.github.badoualy.telegram.tl.api.account.TLPrivacyRules> accountSetPrivacy(com.github.badoualy.telegram.tl.api.TLInputPrivacyKey key, com.github.badoualy.telegram.tl.core.TLVector<com.github.badoualy.telegram.tl.api.TLAbsInputPrivacyRule> rules) throws IOException {
+        return executeRpcQuery(new TLRequestAccountSetPrivacy(key, rules));
+    }
+
+    @Override
+    public Observable<TLBool> accountDeleteAccount(String reason) throws IOException {
+        return executeRpcQuery(new TLRequestAccountDeleteAccount(reason));
+    }
+
+    @Override
+    public Observable<com.github.badoualy.telegram.tl.api.TLAccountDaysTTL> accountGetAccountTTL() throws IOException {
+        return executeRpcQuery(new TLRequestAccountGetAccountTTL());
+    }
+
+    @Override
+    public Observable<TLBool> accountSetAccountTTL(com.github.badoualy.telegram.tl.api.TLAccountDaysTTL ttl) throws IOException {
+        return executeRpcQuery(new TLRequestAccountSetAccountTTL(ttl));
+    }
+
+    @Override
+    public <T extends TLObject> Observable<T> invokeWithLayer(int layer, TLMethod<T> query) throws IOException {
+        return executeRpcQuery(new TLRequestInvokeWithLayer(layer, query));
+    }
+
+    @Override
+    public Observable<com.github.badoualy.telegram.tl.api.TLAbsUser> contactsResolveUsername(String username) throws IOException {
+        return executeRpcQuery(new TLRequestContactsResolveUsername(username));
+    }
+
+    @Override
+    public Observable<com.github.badoualy.telegram.tl.api.account.TLSentChangePhoneCode> accountSendChangePhoneCode(String phoneNumber) throws IOException {
+        return executeRpcQuery(new TLRequestAccountSendChangePhoneCode(phoneNumber));
+    }
+
+    @Override
+    public Observable<com.github.badoualy.telegram.tl.api.TLAbsUser> accountChangePhone(String phoneNumber, String phoneCodeHash, String phoneCode) throws IOException {
+        return executeRpcQuery(new TLRequestAccountChangePhone(phoneNumber, phoneCodeHash, phoneCode));
+    }
+
+    @Override
+    public Observable<com.github.badoualy.telegram.tl.api.messages.TLAbsStickers> messagesGetStickers(String emoticon, String hash) throws IOException {
+        return executeRpcQuery(new TLRequestMessagesGetStickers(emoticon, hash));
+    }
+
+    @Override
+    public Observable<com.github.badoualy.telegram.tl.api.messages.TLAbsAllStickers> messagesGetAllStickers(String hash) throws IOException {
+        return executeRpcQuery(new TLRequestMessagesGetAllStickers(hash));
+    }
+
+    @Override
+    public Observable<TLBool> accountUpdateDeviceLocked(int period) throws IOException {
+        return executeRpcQuery(new TLRequestAccountUpdateDeviceLocked(period));
     }
 
 }
