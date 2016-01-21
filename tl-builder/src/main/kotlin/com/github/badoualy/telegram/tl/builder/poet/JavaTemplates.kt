@@ -1,4 +1,4 @@
-package com.github.badoualy.telegram.tl.builder
+package com.github.badoualy.telegram.tl.builder.poet
 
 var JavaImports = """
 import com.github.badoualy.telegram.tl.core.*;
@@ -311,6 +311,14 @@ var JavaSerializeObject = """
 var JavaSerializeFunctional = """
         writeTLMethod(this.{int}, stream);"""
 
+var JavaSerializeFlag = JavaSerializeInt
+
+var JavaSerializeConditional = """
+        if ((this.flags & {int}) != 0)"""
+
+var JavaSerializeFlagCompile = """
+        flags = {int} ? (flags | {mask}) : (flags &~ {mask});"""
+
 var JavaDeserializeObject = """
         this.{int} = ({type})readTLObject(stream, context);"""
 
@@ -331,3 +339,14 @@ var JavaDeserializeStringVector = """
 
 var JavaDeserializeLongVector = """
         this.{int} = readTLLongVector(stream, context);"""
+
+var JavaDeserializeFlag = JavaDeserializeInt
+
+var JavaDeserializeConditionalBoolTrue = """
+        this.{int} = (this.flags & {mask}) != 0;"""
+
+var JavaDeserializeConditionalBoolFalse = """
+        this.{int} = (this.flags & {mask}) == 0;"""
+
+var JavaDeserializeConditional = """
+        if ((this.flags & {int}) != 0)"""

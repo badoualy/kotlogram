@@ -18,17 +18,18 @@ import static com.github.badoualy.telegram.tl.StreamUtils.writeTLVector;
 
 
 public class TLInputMediaUploadedDocument extends TLAbsInputMedia {
-    public static final int CLASS_ID = 0xffe76b78;
+    public static final int CLASS_ID = 0x1d89306d;
 
     public TLInputMediaUploadedDocument() {
 
     }
 
 
-    public TLInputMediaUploadedDocument(        com.github.badoualy.telegram.tl.api.TLAbsInputFile _file,         String _mimeType,         com.github.badoualy.telegram.tl.core.TLVector<com.github.badoualy.telegram.tl.api.TLAbsDocumentAttribute> _attributes) {
+    public TLInputMediaUploadedDocument(        com.github.badoualy.telegram.tl.api.TLAbsInputFile _file,         String _mimeType,         com.github.badoualy.telegram.tl.core.TLVector<com.github.badoualy.telegram.tl.api.TLAbsDocumentAttribute> _attributes,         String _caption) {
         this.file = _file;
         this.mimeType = _mimeType;
         this.attributes = _attributes;
+        this.caption = _caption;
 
     }
 
@@ -43,6 +44,8 @@ public class TLInputMediaUploadedDocument extends TLAbsInputMedia {
     protected String mimeType;
 
     protected com.github.badoualy.telegram.tl.core.TLVector<com.github.badoualy.telegram.tl.api.TLAbsDocumentAttribute> attributes;
+
+    protected String caption;
 
 
     public com.github.badoualy.telegram.tl.api.TLAbsInputFile getFile() {
@@ -69,6 +72,14 @@ public class TLInputMediaUploadedDocument extends TLAbsInputMedia {
         this.attributes = value;
     }
 
+    public String getCaption() {
+        return caption;
+    }
+
+    public void setCaption(String value) {
+        this.caption = value;
+    }
+
 
     @Override
     public void serializeBody(OutputStream stream) throws IOException {
@@ -76,6 +87,7 @@ public class TLInputMediaUploadedDocument extends TLAbsInputMedia {
         writeTLObject(this.file, stream);
         writeTLString(this.mimeType, stream);
         writeTLVector(this.attributes, stream);
+        writeTLString(this.caption, stream);
     }
 
 
@@ -85,13 +97,14 @@ public class TLInputMediaUploadedDocument extends TLAbsInputMedia {
         this.file = (com.github.badoualy.telegram.tl.api.TLAbsInputFile)readTLObject(stream, context);
         this.mimeType = readTLString(stream);
         this.attributes = readTLVector(stream, context);
+        this.caption = readTLString(stream);
     }
 
 
 
     @Override
     public String toString() {
-        return "inputMediaUploadedDocument#ffe76b78";
+        return "inputMediaUploadedDocument#1d89306d";
     }
 
 }

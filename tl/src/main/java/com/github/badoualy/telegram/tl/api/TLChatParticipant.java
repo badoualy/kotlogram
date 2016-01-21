@@ -1,8 +1,8 @@
 
 package com.github.badoualy.telegram.tl.api;
 
+
 import com.github.badoualy.telegram.tl.TLContext;
-import com.github.badoualy.telegram.tl.core.TLObject;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -12,8 +12,8 @@ import static com.github.badoualy.telegram.tl.StreamUtils.readInt;
 import static com.github.badoualy.telegram.tl.StreamUtils.writeInt;
 
 
-public class TLChatParticipant extends TLObject {
 
+public class TLChatParticipant extends TLAbsChatParticipant {
     public static final int CLASS_ID = 0xc8d7493e;
 
     public TLChatParticipant() {
@@ -34,20 +34,10 @@ public class TLChatParticipant extends TLObject {
     }
 
 
-    protected int userId;
-
     protected int inviterId;
 
     protected int date;
 
-
-    public int getUserId() {
-        return userId;
-    }
-
-    public void setUserId(int value) {
-        this.userId = value;
-    }
 
     public int getInviterId() {
         return inviterId;
@@ -82,6 +72,7 @@ public class TLChatParticipant extends TLObject {
         this.inviterId = readInt(stream);
         this.date = readInt(stream);
     }
+
 
 
     @Override

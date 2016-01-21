@@ -16,16 +16,17 @@ import static com.github.badoualy.telegram.tl.StreamUtils.writeTLVector;
 
 
 public class TLUpdateDeleteMessages extends TLAbsUpdate {
-    public static final int CLASS_ID = 0xa92bfe26;
+    public static final int CLASS_ID = 0xa20db0e5;
 
     public TLUpdateDeleteMessages() {
 
     }
 
 
-    public TLUpdateDeleteMessages(        com.github.badoualy.telegram.tl.core.TLIntVector _messages,         int _pts) {
+    public TLUpdateDeleteMessages(        com.github.badoualy.telegram.tl.core.TLIntVector _messages,         int _pts,         int _ptsCount) {
         this.messages = _messages;
         this.pts = _pts;
+        this.ptsCount = _ptsCount;
 
     }
 
@@ -38,6 +39,8 @@ public class TLUpdateDeleteMessages extends TLAbsUpdate {
     protected com.github.badoualy.telegram.tl.core.TLIntVector messages;
 
     protected int pts;
+
+    protected int ptsCount;
 
 
     public com.github.badoualy.telegram.tl.core.TLIntVector getMessages() {
@@ -56,12 +59,21 @@ public class TLUpdateDeleteMessages extends TLAbsUpdate {
         this.pts = value;
     }
 
+    public int getPtsCount() {
+        return ptsCount;
+    }
+
+    public void setPtsCount(int value) {
+        this.ptsCount = value;
+    }
+
 
     @Override
     public void serializeBody(OutputStream stream) throws IOException {
 
         writeTLVector(this.messages, stream);
         writeInt(this.pts, stream);
+        writeInt(this.ptsCount, stream);
     }
 
 
@@ -70,13 +82,14 @@ public class TLUpdateDeleteMessages extends TLAbsUpdate {
 
         this.messages = readTLIntVector(stream, context);
         this.pts = readInt(stream);
+        this.ptsCount = readInt(stream);
     }
 
 
 
     @Override
     public String toString() {
-        return "updateDeleteMessages#a92bfe26";
+        return "updateDeleteMessages#a20db0e5";
     }
 
 }

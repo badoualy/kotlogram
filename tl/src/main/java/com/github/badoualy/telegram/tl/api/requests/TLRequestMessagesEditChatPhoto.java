@@ -15,9 +15,9 @@ import static com.github.badoualy.telegram.tl.StreamUtils.writeInt;
 import static com.github.badoualy.telegram.tl.StreamUtils.writeTLObject;
 
 
-public class TLRequestMessagesEditChatPhoto extends TLMethod<com.github.badoualy.telegram.tl.api.messages.TLAbsStatedMessage> {
+public class TLRequestMessagesEditChatPhoto extends TLMethod<com.github.badoualy.telegram.tl.api.TLAbsUpdates> {
 
-    public static final int CLASS_ID = 0xd881821d;
+    public static final int CLASS_ID = 0xca4c79d8;
 
     public int getClassId() {
         return CLASS_ID;
@@ -32,17 +32,17 @@ public class TLRequestMessagesEditChatPhoto extends TLMethod<com.github.badoualy
 
 
 
-    public com.github.badoualy.telegram.tl.api.messages.TLAbsStatedMessage deserializeResponse(InputStream stream, TLContext context) throws IOException {
+    public com.github.badoualy.telegram.tl.api.TLAbsUpdates deserializeResponse(InputStream stream, TLContext context) throws IOException {
 
         TLObject res = readTLObject(stream, context);
         if (res == null) {
             throw new IOException("Unable to parse response");
         }
-        if (res instanceof com.github.badoualy.telegram.tl.api.messages.TLAbsStatedMessage) {
-            return (com.github.badoualy.telegram.tl.api.messages.TLAbsStatedMessage)res;
+        if (res instanceof com.github.badoualy.telegram.tl.api.TLAbsUpdates) {
+            return (com.github.badoualy.telegram.tl.api.TLAbsUpdates)res;
         }
         else {
-            throw new IOException("Incorrect response type. Expected com.github.badoualy.telegram.tl.api.messages.TLAbsStatedMessage, got: " + res.getClass().getCanonicalName());
+            throw new IOException("Incorrect response type. Expected com.github.badoualy.telegram.tl.api.TLAbsUpdates, got: " + res.getClass().getCanonicalName());
         }
 
     }
@@ -90,7 +90,7 @@ public class TLRequestMessagesEditChatPhoto extends TLMethod<com.github.badoualy
 
     @Override
     public String toString() {
-        return "messages.editChatPhoto#d881821d";
+        return "messages.editChatPhoto#ca4c79d8";
     }
 
 }

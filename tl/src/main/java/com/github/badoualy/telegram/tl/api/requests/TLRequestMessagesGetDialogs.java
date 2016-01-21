@@ -12,20 +12,22 @@ import java.io.OutputStream;
 import static com.github.badoualy.telegram.tl.StreamUtils.readInt;
 import static com.github.badoualy.telegram.tl.StreamUtils.readTLObject;
 import static com.github.badoualy.telegram.tl.StreamUtils.writeInt;
+import static com.github.badoualy.telegram.tl.StreamUtils.writeTLObject;
 
 
 public class TLRequestMessagesGetDialogs extends TLMethod<com.github.badoualy.telegram.tl.api.messages.TLAbsDialogs> {
 
-    public static final int CLASS_ID = 0xeccf1df6;
+    public static final int CLASS_ID = 0x6b47f94d;
 
     public int getClassId() {
         return CLASS_ID;
     }
 
 
-    public TLRequestMessagesGetDialogs(        int _offset,         int _maxId,         int _limit) {
-        this.offset = _offset;
-        this.maxId = _maxId;
+    public TLRequestMessagesGetDialogs(        int _offsetDate,         int _offsetId,         com.github.badoualy.telegram.tl.api.TLAbsInputPeer _offsetPeer,         int _limit) {
+        this.offsetDate = _offsetDate;
+        this.offsetId = _offsetId;
+        this.offsetPeer = _offsetPeer;
         this.limit = _limit;
 
     }
@@ -49,27 +51,37 @@ public class TLRequestMessagesGetDialogs extends TLMethod<com.github.badoualy.te
         
 
 
-    protected int offset;
+    protected int offsetDate;
 
-    protected int maxId;
+    protected int offsetId;
+
+    protected com.github.badoualy.telegram.tl.api.TLAbsInputPeer offsetPeer;
 
     protected int limit;
 
 
-    public int getOffset() {
-        return offset;
+    public int getOffsetDate() {
+        return offsetDate;
     }
 
-    public void setOffset(int value) {
-        this.offset = value;
+    public void setOffsetDate(int value) {
+        this.offsetDate = value;
     }
 
-    public int getMaxId() {
-        return maxId;
+    public int getOffsetId() {
+        return offsetId;
     }
 
-    public void setMaxId(int value) {
-        this.maxId = value;
+    public void setOffsetId(int value) {
+        this.offsetId = value;
+    }
+
+    public com.github.badoualy.telegram.tl.api.TLAbsInputPeer getOffsetPeer() {
+        return offsetPeer;
+    }
+
+    public void setOffsetPeer(com.github.badoualy.telegram.tl.api.TLAbsInputPeer value) {
+        this.offsetPeer = value;
     }
 
     public int getLimit() {
@@ -84,8 +96,9 @@ public class TLRequestMessagesGetDialogs extends TLMethod<com.github.badoualy.te
     @Override
     public void serializeBody(OutputStream stream) throws IOException {
 
-        writeInt(this.offset, stream);
-        writeInt(this.maxId, stream);
+        writeInt(this.offsetDate, stream);
+        writeInt(this.offsetId, stream);
+        writeTLObject(this.offsetPeer, stream);
         writeInt(this.limit, stream);
     }
 
@@ -93,8 +106,9 @@ public class TLRequestMessagesGetDialogs extends TLMethod<com.github.badoualy.te
     @Override
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
 
-        this.offset = readInt(stream);
-        this.maxId = readInt(stream);
+        this.offsetDate = readInt(stream);
+        this.offsetId = readInt(stream);
+        this.offsetPeer = (com.github.badoualy.telegram.tl.api.TLAbsInputPeer)readTLObject(stream, context);
         this.limit = readInt(stream);
     }
 
@@ -102,7 +116,7 @@ public class TLRequestMessagesGetDialogs extends TLMethod<com.github.badoualy.te
 
     @Override
     public String toString() {
-        return "messages.getDialogs#eccf1df6";
+        return "messages.getDialogs#6b47f94d";
     }
 
 }

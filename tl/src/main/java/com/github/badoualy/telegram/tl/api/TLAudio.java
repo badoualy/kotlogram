@@ -18,17 +18,16 @@ import static com.github.badoualy.telegram.tl.StreamUtils.writeTLString;
 
 
 public class TLAudio extends TLAbsAudio {
-    public static final int CLASS_ID = 0xc7ac6496;
+    public static final int CLASS_ID = 0xf9e35055;
 
     public TLAudio() {
 
     }
 
 
-    public TLAudio(        long _id,         long _accessHash,         int _userId,         int _date,         int _duration,         String _mimeType,         int _size,         int _dcId) {
+    public TLAudio(        long _id,         long _accessHash,         int _date,         int _duration,         String _mimeType,         int _size,         int _dcId) {
         this.id = _id;
         this.accessHash = _accessHash;
-        this.userId = _userId;
         this.date = _date;
         this.duration = _duration;
         this.mimeType = _mimeType;
@@ -44,8 +43,6 @@ public class TLAudio extends TLAbsAudio {
 
 
     protected long accessHash;
-
-    protected int userId;
 
     protected int date;
 
@@ -64,14 +61,6 @@ public class TLAudio extends TLAbsAudio {
 
     public void setAccessHash(long value) {
         this.accessHash = value;
-    }
-
-    public int getUserId() {
-        return userId;
-    }
-
-    public void setUserId(int value) {
-        this.userId = value;
     }
 
     public int getDate() {
@@ -120,7 +109,6 @@ public class TLAudio extends TLAbsAudio {
 
         writeLong(this.id, stream);
         writeLong(this.accessHash, stream);
-        writeInt(this.userId, stream);
         writeInt(this.date, stream);
         writeInt(this.duration, stream);
         writeTLString(this.mimeType, stream);
@@ -134,7 +122,6 @@ public class TLAudio extends TLAbsAudio {
 
         this.id = readLong(stream);
         this.accessHash = readLong(stream);
-        this.userId = readInt(stream);
         this.date = readInt(stream);
         this.duration = readInt(stream);
         this.mimeType = readTLString(stream);
@@ -146,7 +133,7 @@ public class TLAudio extends TLAbsAudio {
 
     @Override
     public String toString() {
-        return "audio#c7ac6496";
+        return "audio#f9e35055";
     }
 
 }

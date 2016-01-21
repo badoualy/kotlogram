@@ -9,20 +9,23 @@ import java.io.InputStream;
 import java.io.OutputStream;
 
 import static com.github.badoualy.telegram.tl.StreamUtils.readTLObject;
+import static com.github.badoualy.telegram.tl.StreamUtils.readTLString;
 import static com.github.badoualy.telegram.tl.StreamUtils.writeTLObject;
+import static com.github.badoualy.telegram.tl.StreamUtils.writeTLString;
 
 
 
 public class TLInputMediaDocument extends TLAbsInputMedia {
-    public static final int CLASS_ID = 0xd184e841;
+    public static final int CLASS_ID = 0x1a77f29c;
 
     public TLInputMediaDocument() {
 
     }
 
 
-    public TLInputMediaDocument(        com.github.badoualy.telegram.tl.api.TLAbsInputDocument _id) {
+    public TLInputMediaDocument(        com.github.badoualy.telegram.tl.api.TLAbsInputDocument _id,         String _caption) {
         this.id = _id;
+        this.caption = _caption;
 
     }
 
@@ -34,6 +37,8 @@ public class TLInputMediaDocument extends TLAbsInputMedia {
 
     protected com.github.badoualy.telegram.tl.api.TLAbsInputDocument id;
 
+    protected String caption;
+
 
     public com.github.badoualy.telegram.tl.api.TLAbsInputDocument getId() {
         return id;
@@ -43,11 +48,20 @@ public class TLInputMediaDocument extends TLAbsInputMedia {
         this.id = value;
     }
 
+    public String getCaption() {
+        return caption;
+    }
+
+    public void setCaption(String value) {
+        this.caption = value;
+    }
+
 
     @Override
     public void serializeBody(OutputStream stream) throws IOException {
 
         writeTLObject(this.id, stream);
+        writeTLString(this.caption, stream);
     }
 
 
@@ -55,13 +69,14 @@ public class TLInputMediaDocument extends TLAbsInputMedia {
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
 
         this.id = (com.github.badoualy.telegram.tl.api.TLAbsInputDocument)readTLObject(stream, context);
+        this.caption = readTLString(stream);
     }
 
 
 
     @Override
     public String toString() {
-        return "inputMediaDocument#d184e841";
+        return "inputMediaDocument#1a77f29c";
     }
 
 }

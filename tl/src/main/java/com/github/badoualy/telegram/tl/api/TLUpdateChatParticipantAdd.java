@@ -14,17 +14,18 @@ import static com.github.badoualy.telegram.tl.StreamUtils.writeInt;
 
 
 public class TLUpdateChatParticipantAdd extends TLAbsUpdate {
-    public static final int CLASS_ID = 0x3a0eeb22;
+    public static final int CLASS_ID = 0xea4b0e5c;
 
     public TLUpdateChatParticipantAdd() {
 
     }
 
 
-    public TLUpdateChatParticipantAdd(        int _chatId,         int _userId,         int _inviterId,         int _version) {
+    public TLUpdateChatParticipantAdd(        int _chatId,         int _userId,         int _inviterId,         int _date,         int _version) {
         this.chatId = _chatId;
         this.userId = _userId;
         this.inviterId = _inviterId;
+        this.date = _date;
         this.version = _version;
 
     }
@@ -40,6 +41,8 @@ public class TLUpdateChatParticipantAdd extends TLAbsUpdate {
     protected int userId;
 
     protected int inviterId;
+
+    protected int date;
 
     protected int version;
 
@@ -68,6 +71,14 @@ public class TLUpdateChatParticipantAdd extends TLAbsUpdate {
         this.inviterId = value;
     }
 
+    public int getDate() {
+        return date;
+    }
+
+    public void setDate(int value) {
+        this.date = value;
+    }
+
     public int getVersion() {
         return version;
     }
@@ -83,6 +94,7 @@ public class TLUpdateChatParticipantAdd extends TLAbsUpdate {
         writeInt(this.chatId, stream);
         writeInt(this.userId, stream);
         writeInt(this.inviterId, stream);
+        writeInt(this.date, stream);
         writeInt(this.version, stream);
     }
 
@@ -93,6 +105,7 @@ public class TLUpdateChatParticipantAdd extends TLAbsUpdate {
         this.chatId = readInt(stream);
         this.userId = readInt(stream);
         this.inviterId = readInt(stream);
+        this.date = readInt(stream);
         this.version = readInt(stream);
     }
 
@@ -100,7 +113,7 @@ public class TLUpdateChatParticipantAdd extends TLAbsUpdate {
 
     @Override
     public String toString() {
-        return "updateChatParticipantAdd#3a0eeb22";
+        return "updateChatParticipantAdd#ea4b0e5c";
     }
 
 }

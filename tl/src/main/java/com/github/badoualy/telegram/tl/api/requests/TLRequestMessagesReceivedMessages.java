@@ -9,13 +9,13 @@ import java.io.InputStream;
 import java.io.OutputStream;
 
 import static com.github.badoualy.telegram.tl.StreamUtils.readInt;
-import static com.github.badoualy.telegram.tl.StreamUtils.readTLIntVector;
+import static com.github.badoualy.telegram.tl.StreamUtils.readTLVector;
 import static com.github.badoualy.telegram.tl.StreamUtils.writeInt;
 
 
-public class TLRequestMessagesReceivedMessages extends TLMethod<com.github.badoualy.telegram.tl.core.TLIntVector> {
+public class TLRequestMessagesReceivedMessages extends TLMethod<com.github.badoualy.telegram.tl.core.TLVector<com.github.badoualy.telegram.tl.api.TLReceivedNotifyMessage>> {
 
-    public static final int CLASS_ID = 0x28abcb68;
+    public static final int CLASS_ID = 0x5a954c0;
 
     public int getClassId() {
         return CLASS_ID;
@@ -29,9 +29,9 @@ public class TLRequestMessagesReceivedMessages extends TLMethod<com.github.badou
 
 
 
-    public com.github.badoualy.telegram.tl.core.TLIntVector deserializeResponse(InputStream stream, TLContext context) throws IOException {
+    public com.github.badoualy.telegram.tl.core.TLVector<com.github.badoualy.telegram.tl.api.TLReceivedNotifyMessage> deserializeResponse(InputStream stream, TLContext context) throws IOException {
 
-        return readTLIntVector(stream, context);
+        return readTLVector(stream, context);
 
     }
         
@@ -66,7 +66,7 @@ public class TLRequestMessagesReceivedMessages extends TLMethod<com.github.badou
 
     @Override
     public String toString() {
-        return "messages.receivedMessages#28abcb68";
+        return "messages.receivedMessages#5a954c0";
     }
 
 }

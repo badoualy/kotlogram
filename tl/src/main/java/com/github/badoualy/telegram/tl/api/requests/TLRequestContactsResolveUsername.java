@@ -14,9 +14,9 @@ import static com.github.badoualy.telegram.tl.StreamUtils.readTLString;
 import static com.github.badoualy.telegram.tl.StreamUtils.writeTLString;
 
 
-public class TLRequestContactsResolveUsername extends TLMethod<com.github.badoualy.telegram.tl.api.TLAbsUser> {
+public class TLRequestContactsResolveUsername extends TLMethod<com.github.badoualy.telegram.tl.api.contacts.TLResolvedPeer> {
 
-    public static final int CLASS_ID = 0xbf0131c;
+    public static final int CLASS_ID = 0xf93ccba3;
 
     public int getClassId() {
         return CLASS_ID;
@@ -30,17 +30,17 @@ public class TLRequestContactsResolveUsername extends TLMethod<com.github.badoua
 
 
 
-    public com.github.badoualy.telegram.tl.api.TLAbsUser deserializeResponse(InputStream stream, TLContext context) throws IOException {
+    public com.github.badoualy.telegram.tl.api.contacts.TLResolvedPeer deserializeResponse(InputStream stream, TLContext context) throws IOException {
 
         TLObject res = readTLObject(stream, context);
         if (res == null) {
             throw new IOException("Unable to parse response");
         }
-        if (res instanceof com.github.badoualy.telegram.tl.api.TLAbsUser) {
-            return (com.github.badoualy.telegram.tl.api.TLAbsUser)res;
+        if (res instanceof com.github.badoualy.telegram.tl.api.contacts.TLResolvedPeer) {
+            return (com.github.badoualy.telegram.tl.api.contacts.TLResolvedPeer)res;
         }
         else {
-            throw new IOException("Incorrect response type. Expected com.github.badoualy.telegram.tl.api.TLAbsUser, got: " + res.getClass().getCanonicalName());
+            throw new IOException("Incorrect response type. Expected com.github.badoualy.telegram.tl.api.contacts.TLResolvedPeer, got: " + res.getClass().getCanonicalName());
         }
 
     }
@@ -76,7 +76,7 @@ public class TLRequestContactsResolveUsername extends TLMethod<com.github.badoua
 
     @Override
     public String toString() {
-        return "contacts.resolveUsername#bf0131c";
+        return "contacts.resolveUsername#f93ccba3";
     }
 
 }

@@ -17,9 +17,9 @@ import static com.github.badoualy.telegram.tl.StreamUtils.writeLong;
 import static com.github.badoualy.telegram.tl.StreamUtils.writeTLObject;
 
 
-public class TLRequestMessagesForwardMessage extends TLMethod<com.github.badoualy.telegram.tl.api.messages.TLAbsStatedMessage> {
+public class TLRequestMessagesForwardMessage extends TLMethod<com.github.badoualy.telegram.tl.api.TLAbsUpdates> {
 
-    public static final int CLASS_ID = 0x3f3f4f2;
+    public static final int CLASS_ID = 0x33963bf9;
 
     public int getClassId() {
         return CLASS_ID;
@@ -35,17 +35,17 @@ public class TLRequestMessagesForwardMessage extends TLMethod<com.github.badoual
 
 
 
-    public com.github.badoualy.telegram.tl.api.messages.TLAbsStatedMessage deserializeResponse(InputStream stream, TLContext context) throws IOException {
+    public com.github.badoualy.telegram.tl.api.TLAbsUpdates deserializeResponse(InputStream stream, TLContext context) throws IOException {
 
         TLObject res = readTLObject(stream, context);
         if (res == null) {
             throw new IOException("Unable to parse response");
         }
-        if (res instanceof com.github.badoualy.telegram.tl.api.messages.TLAbsStatedMessage) {
-            return (com.github.badoualy.telegram.tl.api.messages.TLAbsStatedMessage)res;
+        if (res instanceof com.github.badoualy.telegram.tl.api.TLAbsUpdates) {
+            return (com.github.badoualy.telegram.tl.api.TLAbsUpdates)res;
         }
         else {
-            throw new IOException("Incorrect response type. Expected com.github.badoualy.telegram.tl.api.messages.TLAbsStatedMessage, got: " + res.getClass().getCanonicalName());
+            throw new IOException("Incorrect response type. Expected com.github.badoualy.telegram.tl.api.TLAbsUpdates, got: " + res.getClass().getCanonicalName());
         }
 
     }
@@ -105,7 +105,7 @@ public class TLRequestMessagesForwardMessage extends TLMethod<com.github.badoual
 
     @Override
     public String toString() {
-        return "messages.forwardMessage#3f3f4f2";
+        return "messages.forwardMessage#33963bf9";
     }
 
 }

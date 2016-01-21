@@ -20,19 +20,17 @@ import static com.github.badoualy.telegram.tl.StreamUtils.writeTLString;
 
 
 public class TLVideo extends TLAbsVideo {
-    public static final int CLASS_ID = 0x388fa391;
+    public static final int CLASS_ID = 0xf72887d3;
 
     public TLVideo() {
 
     }
 
 
-    public TLVideo(        long _id,         long _accessHash,         int _userId,         int _date,         String _caption,         int _duration,         String _mimeType,         int _size,         com.github.badoualy.telegram.tl.api.TLAbsPhotoSize _thumb,         int _dcId,         int _w,         int _h) {
+    public TLVideo(        long _id,         long _accessHash,         int _date,         int _duration,         String _mimeType,         int _size,         com.github.badoualy.telegram.tl.api.TLAbsPhotoSize _thumb,         int _dcId,         int _w,         int _h) {
         this.id = _id;
         this.accessHash = _accessHash;
-        this.userId = _userId;
         this.date = _date;
-        this.caption = _caption;
         this.duration = _duration;
         this.mimeType = _mimeType;
         this.size = _size;
@@ -51,11 +49,7 @@ public class TLVideo extends TLAbsVideo {
 
     protected long accessHash;
 
-    protected int userId;
-
     protected int date;
-
-    protected String caption;
 
     protected int duration;
 
@@ -80,28 +74,12 @@ public class TLVideo extends TLAbsVideo {
         this.accessHash = value;
     }
 
-    public int getUserId() {
-        return userId;
-    }
-
-    public void setUserId(int value) {
-        this.userId = value;
-    }
-
     public int getDate() {
         return date;
     }
 
     public void setDate(int value) {
         this.date = value;
-    }
-
-    public String getCaption() {
-        return caption;
-    }
-
-    public void setCaption(String value) {
-        this.caption = value;
     }
 
     public int getDuration() {
@@ -166,9 +144,7 @@ public class TLVideo extends TLAbsVideo {
 
         writeLong(this.id, stream);
         writeLong(this.accessHash, stream);
-        writeInt(this.userId, stream);
         writeInt(this.date, stream);
-        writeTLString(this.caption, stream);
         writeInt(this.duration, stream);
         writeTLString(this.mimeType, stream);
         writeInt(this.size, stream);
@@ -184,9 +160,7 @@ public class TLVideo extends TLAbsVideo {
 
         this.id = readLong(stream);
         this.accessHash = readLong(stream);
-        this.userId = readInt(stream);
         this.date = readInt(stream);
-        this.caption = readTLString(stream);
         this.duration = readInt(stream);
         this.mimeType = readTLString(stream);
         this.size = readInt(stream);
@@ -200,7 +174,7 @@ public class TLVideo extends TLAbsVideo {
 
     @Override
     public String toString() {
-        return "video#388fa391";
+        return "video#f72887d3";
     }
 
 }

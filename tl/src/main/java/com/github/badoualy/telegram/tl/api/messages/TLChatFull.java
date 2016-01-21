@@ -23,7 +23,7 @@ public class TLChatFull extends TLObject {
     }
 
 
-    public TLChatFull(        com.github.badoualy.telegram.tl.api.TLChatFull _fullChat,         com.github.badoualy.telegram.tl.core.TLVector<com.github.badoualy.telegram.tl.api.TLAbsChat> _chats,         com.github.badoualy.telegram.tl.core.TLVector<com.github.badoualy.telegram.tl.api.TLAbsUser> _users) {
+    public TLChatFull(        com.github.badoualy.telegram.tl.api.TLAbsChatFull _fullChat,         com.github.badoualy.telegram.tl.core.TLVector<com.github.badoualy.telegram.tl.api.TLAbsChat> _chats,         com.github.badoualy.telegram.tl.core.TLVector<com.github.badoualy.telegram.tl.api.TLAbsUser> _users) {
         this.fullChat = _fullChat;
         this.chats = _chats;
         this.users = _users;
@@ -36,18 +36,18 @@ public class TLChatFull extends TLObject {
     }
 
 
-    protected com.github.badoualy.telegram.tl.api.TLChatFull fullChat;
+    protected com.github.badoualy.telegram.tl.api.TLAbsChatFull fullChat;
 
     protected com.github.badoualy.telegram.tl.core.TLVector<com.github.badoualy.telegram.tl.api.TLAbsChat> chats;
 
     protected com.github.badoualy.telegram.tl.core.TLVector<com.github.badoualy.telegram.tl.api.TLAbsUser> users;
 
 
-    public com.github.badoualy.telegram.tl.api.TLChatFull getFullChat() {
+    public com.github.badoualy.telegram.tl.api.TLAbsChatFull getFullChat() {
         return fullChat;
     }
 
-    public void setFullChat(com.github.badoualy.telegram.tl.api.TLChatFull value) {
+    public void setFullChat(com.github.badoualy.telegram.tl.api.TLAbsChatFull value) {
         this.fullChat = value;
     }
 
@@ -80,7 +80,7 @@ public class TLChatFull extends TLObject {
     @Override
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
 
-        this.fullChat = (com.github.badoualy.telegram.tl.api.TLChatFull)readTLObject(stream, context);
+        this.fullChat = (com.github.badoualy.telegram.tl.api.TLAbsChatFull)readTLObject(stream, context);
         this.chats = readTLVector(stream, context);
         this.users = readTLVector(stream, context);
     }

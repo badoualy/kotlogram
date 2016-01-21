@@ -1,5 +1,7 @@
-package com.github.badoualy.telegram.tl.builder
+package com.github.badoualy.telegram.tl.builder.poet
 
+import com.github.badoualy.telegram.tl.builder.*
+import com.github.badoualy.telegram.tl.builder.parser.*
 import java.util.*
 
 class JavaModel(var types: HashMap<String, JavaTypeObject>, var methods: List<JavaRpcMethod>)
@@ -7,7 +9,7 @@ class JavaModel(var types: HashMap<String, JavaTypeObject>, var methods: List<Ja
 class JavaTypeObject(var tlType: TLCombinedTypeDef) {
     public val javaPackage: String = mapJavaPackage(tlType)
     public val javaTypeName: String = mapJavaTypeName(tlType)
-    public val constructors: List<JavaTypeConstructor> = tlType.constructors.map { x -> JavaTypeConstructor(x, this) };
+    public val constructors: List<JavaTypeConstructor> = tlType.constructors.map { c -> JavaTypeConstructor(c, this) };
 
     public val commonParameters: List<JavaParameter>
 
@@ -47,10 +49,11 @@ class JavaTypeConstructor(var tlConstructor: TLConstructorDef, javaType: JavaTyp
 
 abstract class JavaTypeReference(var tlReference: TLTypeDef, var javaName: String)
 
-class JavaTypeTlReference(tlReference: TLTypeDef, var javaReference: JavaTypeObject) :
-        JavaTypeReference(tlReference, javaReference.javaPackage + "." + javaReference.javaTypeName)
+class JavaTypeTlReference(tlReference: TLTypeDef, var javaReference: JavaTypeObject) : JavaTypeReference(tlReference, javaReference.javaPackage + "." + javaReference.javaTypeName)
 
 class JavaTypeFunctionalReference(tlReference: TLTypeDef) : JavaTypeReference(tlReference, "TLMethod")
+
+class JavaTypeFlagReference(tlReference: TLTypeDef) : JavaTypeReference(tlReference, "int")
 
 class JavaTypeAnyReference(tlReference: TLTypeDef) : JavaTypeReference(tlReference, "TLObject")
 
@@ -81,6 +84,8 @@ class JavaTypeBuiltInReference(tlReference: TLBuiltInTypeDef) : JavaTypeReferenc
     "string" -> "String"
     "bytes" -> "TLBytes"
     "Bool" -> "boolean"
+    "true" -> "TLBoolTrue"
+    "false" -> "TLBoolFalse"
     else -> throw RuntimeException("Unsupported built in reference: " + tlReference.name)
 })
 

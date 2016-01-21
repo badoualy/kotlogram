@@ -10,29 +10,26 @@ import java.io.OutputStream;
 
 import static com.github.badoualy.telegram.tl.StreamUtils.readTLBool;
 import static com.github.badoualy.telegram.tl.StreamUtils.readTLObject;
-import static com.github.badoualy.telegram.tl.StreamUtils.readTLString;
 import static com.github.badoualy.telegram.tl.StreamUtils.writeTLBool;
 import static com.github.badoualy.telegram.tl.StreamUtils.writeTLObject;
-import static com.github.badoualy.telegram.tl.StreamUtils.writeTLString;
 
 
 public class TLUserFull extends TLObject {
 
-    public static final int CLASS_ID = 0x771095da;
+    public static final int CLASS_ID = 0x5a89ac5b;
 
     public TLUserFull() {
 
     }
 
 
-    public TLUserFull(        com.github.badoualy.telegram.tl.api.TLAbsUser _user,         com.github.badoualy.telegram.tl.api.contacts.TLLink _link,         com.github.badoualy.telegram.tl.api.TLAbsPhoto _profilePhoto,         com.github.badoualy.telegram.tl.api.TLAbsPeerNotifySettings _notifySettings,         boolean _blocked,         String _realFirstName,         String _realLastName) {
+    public TLUserFull(        com.github.badoualy.telegram.tl.api.TLAbsUser _user,         com.github.badoualy.telegram.tl.api.contacts.TLLink _link,         com.github.badoualy.telegram.tl.api.TLAbsPhoto _profilePhoto,         com.github.badoualy.telegram.tl.api.TLAbsPeerNotifySettings _notifySettings,         boolean _blocked,         com.github.badoualy.telegram.tl.api.TLAbsBotInfo _botInfo) {
         this.user = _user;
         this.link = _link;
         this.profilePhoto = _profilePhoto;
         this.notifySettings = _notifySettings;
         this.blocked = _blocked;
-        this.realFirstName = _realFirstName;
-        this.realLastName = _realLastName;
+        this.botInfo = _botInfo;
 
     }
 
@@ -52,9 +49,7 @@ public class TLUserFull extends TLObject {
 
     protected boolean blocked;
 
-    protected String realFirstName;
-
-    protected String realLastName;
+    protected com.github.badoualy.telegram.tl.api.TLAbsBotInfo botInfo;
 
 
     public com.github.badoualy.telegram.tl.api.TLAbsUser getUser() {
@@ -97,20 +92,12 @@ public class TLUserFull extends TLObject {
         this.blocked = value;
     }
 
-    public String getRealFirstName() {
-        return realFirstName;
+    public com.github.badoualy.telegram.tl.api.TLAbsBotInfo getBotInfo() {
+        return botInfo;
     }
 
-    public void setRealFirstName(String value) {
-        this.realFirstName = value;
-    }
-
-    public String getRealLastName() {
-        return realLastName;
-    }
-
-    public void setRealLastName(String value) {
-        this.realLastName = value;
+    public void setBotInfo(com.github.badoualy.telegram.tl.api.TLAbsBotInfo value) {
+        this.botInfo = value;
     }
 
 
@@ -122,8 +109,7 @@ public class TLUserFull extends TLObject {
         writeTLObject(this.profilePhoto, stream);
         writeTLObject(this.notifySettings, stream);
         writeTLBool(this.blocked, stream);
-        writeTLString(this.realFirstName, stream);
-        writeTLString(this.realLastName, stream);
+        writeTLObject(this.botInfo, stream);
     }
 
 
@@ -135,14 +121,13 @@ public class TLUserFull extends TLObject {
         this.profilePhoto = (com.github.badoualy.telegram.tl.api.TLAbsPhoto)readTLObject(stream, context);
         this.notifySettings = (com.github.badoualy.telegram.tl.api.TLAbsPeerNotifySettings)readTLObject(stream, context);
         this.blocked = readTLBool(stream);
-        this.realFirstName = readTLString(stream);
-        this.realLastName = readTLString(stream);
+        this.botInfo = (com.github.badoualy.telegram.tl.api.TLAbsBotInfo)readTLObject(stream, context);
     }
 
 
     @Override
     public String toString() {
-        return "userFull#771095da";
+        return "userFull#5a89ac5b";
     }
 
 }

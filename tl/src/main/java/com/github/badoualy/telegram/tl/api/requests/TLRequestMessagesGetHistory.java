@@ -17,18 +17,20 @@ import static com.github.badoualy.telegram.tl.StreamUtils.writeTLObject;
 
 public class TLRequestMessagesGetHistory extends TLMethod<com.github.badoualy.telegram.tl.api.messages.TLAbsMessages> {
 
-    public static final int CLASS_ID = 0x92a1df2f;
+    public static final int CLASS_ID = 0x8a8ec2da;
 
     public int getClassId() {
         return CLASS_ID;
     }
 
 
-    public TLRequestMessagesGetHistory(        com.github.badoualy.telegram.tl.api.TLAbsInputPeer _peer,         int _offset,         int _maxId,         int _limit) {
+    public TLRequestMessagesGetHistory(        com.github.badoualy.telegram.tl.api.TLAbsInputPeer _peer,         int _offsetId,         int _addOffset,         int _limit,         int _maxId,         int _minId) {
         this.peer = _peer;
-        this.offset = _offset;
-        this.maxId = _maxId;
+        this.offsetId = _offsetId;
+        this.addOffset = _addOffset;
         this.limit = _limit;
+        this.maxId = _maxId;
+        this.minId = _minId;
 
     }
 
@@ -53,11 +55,15 @@ public class TLRequestMessagesGetHistory extends TLMethod<com.github.badoualy.te
 
     protected com.github.badoualy.telegram.tl.api.TLAbsInputPeer peer;
 
-    protected int offset;
+    protected int offsetId;
+
+    protected int addOffset;
+
+    protected int limit;
 
     protected int maxId;
 
-    protected int limit;
+    protected int minId;
 
 
     public com.github.badoualy.telegram.tl.api.TLAbsInputPeer getPeer() {
@@ -68,20 +74,20 @@ public class TLRequestMessagesGetHistory extends TLMethod<com.github.badoualy.te
         this.peer = value;
     }
 
-    public int getOffset() {
-        return offset;
+    public int getOffsetId() {
+        return offsetId;
     }
 
-    public void setOffset(int value) {
-        this.offset = value;
+    public void setOffsetId(int value) {
+        this.offsetId = value;
     }
 
-    public int getMaxId() {
-        return maxId;
+    public int getAddOffset() {
+        return addOffset;
     }
 
-    public void setMaxId(int value) {
-        this.maxId = value;
+    public void setAddOffset(int value) {
+        this.addOffset = value;
     }
 
     public int getLimit() {
@@ -92,14 +98,32 @@ public class TLRequestMessagesGetHistory extends TLMethod<com.github.badoualy.te
         this.limit = value;
     }
 
+    public int getMaxId() {
+        return maxId;
+    }
+
+    public void setMaxId(int value) {
+        this.maxId = value;
+    }
+
+    public int getMinId() {
+        return minId;
+    }
+
+    public void setMinId(int value) {
+        this.minId = value;
+    }
+
 
     @Override
     public void serializeBody(OutputStream stream) throws IOException {
 
         writeTLObject(this.peer, stream);
-        writeInt(this.offset, stream);
-        writeInt(this.maxId, stream);
+        writeInt(this.offsetId, stream);
+        writeInt(this.addOffset, stream);
         writeInt(this.limit, stream);
+        writeInt(this.maxId, stream);
+        writeInt(this.minId, stream);
     }
 
 
@@ -107,16 +131,18 @@ public class TLRequestMessagesGetHistory extends TLMethod<com.github.badoualy.te
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
 
         this.peer = (com.github.badoualy.telegram.tl.api.TLAbsInputPeer)readTLObject(stream, context);
-        this.offset = readInt(stream);
-        this.maxId = readInt(stream);
+        this.offsetId = readInt(stream);
+        this.addOffset = readInt(stream);
         this.limit = readInt(stream);
+        this.maxId = readInt(stream);
+        this.minId = readInt(stream);
     }
 
 
 
     @Override
     public String toString() {
-        return "messages.getHistory#92a1df2f";
+        return "messages.getHistory#8a8ec2da";
     }
 
 }

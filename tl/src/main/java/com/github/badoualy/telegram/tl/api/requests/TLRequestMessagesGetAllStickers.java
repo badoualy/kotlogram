@@ -9,21 +9,21 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 
+import static com.github.badoualy.telegram.tl.StreamUtils.readInt;
 import static com.github.badoualy.telegram.tl.StreamUtils.readTLObject;
-import static com.github.badoualy.telegram.tl.StreamUtils.readTLString;
-import static com.github.badoualy.telegram.tl.StreamUtils.writeTLString;
+import static com.github.badoualy.telegram.tl.StreamUtils.writeInt;
 
 
 public class TLRequestMessagesGetAllStickers extends TLMethod<com.github.badoualy.telegram.tl.api.messages.TLAbsAllStickers> {
 
-    public static final int CLASS_ID = 0xaa3bc868;
+    public static final int CLASS_ID = 0x1c9618b1;
 
     public int getClassId() {
         return CLASS_ID;
     }
 
 
-    public TLRequestMessagesGetAllStickers(        String _hash) {
+    public TLRequestMessagesGetAllStickers(        int _hash) {
         this.hash = _hash;
 
     }
@@ -47,14 +47,14 @@ public class TLRequestMessagesGetAllStickers extends TLMethod<com.github.badoual
         
 
 
-    protected String hash;
+    protected int hash;
 
 
-    public String getHash() {
+    public int getHash() {
         return hash;
     }
 
-    public void setHash(String value) {
+    public void setHash(int value) {
         this.hash = value;
     }
 
@@ -62,21 +62,21 @@ public class TLRequestMessagesGetAllStickers extends TLMethod<com.github.badoual
     @Override
     public void serializeBody(OutputStream stream) throws IOException {
 
-        writeTLString(this.hash, stream);
+        writeInt(this.hash, stream);
     }
 
 
     @Override
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
 
-        this.hash = readTLString(stream);
+        this.hash = readInt(stream);
     }
 
 
 
     @Override
     public String toString() {
-        return "messages.getAllStickers#aa3bc868";
+        return "messages.getAllStickers#1c9618b1";
     }
 
 }

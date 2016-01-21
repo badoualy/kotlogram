@@ -1,4 +1,10 @@
-package com.github.badoualy.telegram.tl.builder
+package com.github.badoualy.telegram.tl.builder.poet
+
+import com.github.badoualy.telegram.tl.builder.*
+import com.github.badoualy.telegram.tl.builder.parser.TLCombinedTypeDef
+import com.github.badoualy.telegram.tl.builder.parser.TLConstructorDef
+import com.github.badoualy.telegram.tl.builder.parser.TLMethodDef
+import com.github.badoualy.telegram.tl.builder.parser.TLParameterDef
 
 var JavaCorePackage = "com.github.badoualy.telegram.tl.core"
 var JavaPackage = "com.github.badoualy.telegram.tl.api"
@@ -37,10 +43,10 @@ fun mapJavaChildName(constructor: TLConstructorDef): String {
     return JavaClassPrefix + constructor.name.skipNamespace().uCamelCase()
 }
 
-fun mapVariableBaseName(parameter: TLParameterDef): String {
-    return if (parameter.name == "long") {
-        "lon"
-    } else {
-        parameter.name.lCamelCase()
-    }
+fun mapVariableBaseName(parameter: TLParameterDef) = when (parameter.name) {
+    "long" -> "lon"
+    "private" -> "privat"
+    "public" -> "publi"
+    "final" -> "fina"
+    else -> parameter.name.lCamelCase()
 }

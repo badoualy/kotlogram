@@ -8,7 +8,7 @@ import com.github.badoualy.telegram.tl.core.TLObject;
 
 public abstract class TLAbsDialogs extends TLObject {
 
-    protected com.github.badoualy.telegram.tl.core.TLVector<com.github.badoualy.telegram.tl.api.TLDialog> dialogs;
+    protected com.github.badoualy.telegram.tl.core.TLVector<com.github.badoualy.telegram.tl.api.TLAbsDialog> dialogs;
 
     protected com.github.badoualy.telegram.tl.core.TLVector<com.github.badoualy.telegram.tl.api.TLAbsMessage> messages;
 
@@ -17,11 +17,11 @@ public abstract class TLAbsDialogs extends TLObject {
     protected com.github.badoualy.telegram.tl.core.TLVector<com.github.badoualy.telegram.tl.api.TLAbsUser> users;
 
 
-    public com.github.badoualy.telegram.tl.core.TLVector<com.github.badoualy.telegram.tl.api.TLDialog> getDialogs() {
+    public com.github.badoualy.telegram.tl.core.TLVector<com.github.badoualy.telegram.tl.api.TLAbsDialog> getDialogs() {
         return dialogs;
     }
 
-    public void setDialogs(com.github.badoualy.telegram.tl.core.TLVector<com.github.badoualy.telegram.tl.api.TLDialog> value) {
+    public void setDialogs(com.github.badoualy.telegram.tl.core.TLVector<com.github.badoualy.telegram.tl.api.TLAbsDialog> value) {
         this.dialogs = value;
     }
 

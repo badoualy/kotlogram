@@ -13,20 +13,23 @@ import static com.github.badoualy.telegram.tl.StreamUtils.readInt;
 import static com.github.badoualy.telegram.tl.StreamUtils.readTLObject;
 import static com.github.badoualy.telegram.tl.StreamUtils.readTLString;
 import static com.github.badoualy.telegram.tl.StreamUtils.writeInt;
+import static com.github.badoualy.telegram.tl.StreamUtils.writeTLBool;
 import static com.github.badoualy.telegram.tl.StreamUtils.writeTLObject;
 import static com.github.badoualy.telegram.tl.StreamUtils.writeTLString;
 
 
 public class TLRequestMessagesSearch extends TLMethod<com.github.badoualy.telegram.tl.api.messages.TLAbsMessages> {
 
-    public static final int CLASS_ID = 0x7e9f2ab;
+    public static final int CLASS_ID = 0xd4569248;
 
     public int getClassId() {
         return CLASS_ID;
     }
 
 
-    public TLRequestMessagesSearch(        com.github.badoualy.telegram.tl.api.TLAbsInputPeer _peer,         String _q,         com.github.badoualy.telegram.tl.api.TLAbsMessagesFilter _filter,         int _minDate,         int _maxDate,         int _offset,         int _maxId,         int _limit) {
+    public TLRequestMessagesSearch(        int _flags,         boolean _importantOnly,         com.github.badoualy.telegram.tl.api.TLAbsInputPeer _peer,         String _q,         com.github.badoualy.telegram.tl.api.TLAbsMessagesFilter _filter,         int _minDate,         int _maxDate,         int _offset,         int _maxId,         int _limit) {
+        this.flags = _flags;
+        this.importantOnly = _importantOnly;
         this.peer = _peer;
         this.q = _q;
         this.filter = _filter;
@@ -57,6 +60,10 @@ public class TLRequestMessagesSearch extends TLMethod<com.github.badoualy.telegr
         
 
 
+    protected int flags;
+
+    protected boolean importantOnly;
+
     protected com.github.badoualy.telegram.tl.api.TLAbsInputPeer peer;
 
     protected String q;
@@ -73,6 +80,22 @@ public class TLRequestMessagesSearch extends TLMethod<com.github.badoualy.telegr
 
     protected int limit;
 
+
+    public int getFlags() {
+        return flags;
+    }
+
+    public void setFlags(int value) {
+        this.flags = value;
+    }
+
+    public boolean getImportantOnly() {
+        return importantOnly;
+    }
+
+    public void setImportantOnly(boolean value) {
+        this.importantOnly = value;
+    }
 
     public com.github.badoualy.telegram.tl.api.TLAbsInputPeer getPeer() {
         return peer;
@@ -142,6 +165,10 @@ public class TLRequestMessagesSearch extends TLMethod<com.github.badoualy.telegr
     @Override
     public void serializeBody(OutputStream stream) throws IOException {
 
+        flags = importantOnly ? (flags | 1) : (flags &~ 1);
+        writeInt(this.flags, stream);
+        if ((this.flags & 1) != 0)
+            writeTLBool(this.importantOnly, stream);
         writeTLObject(this.peer, stream);
         writeTLString(this.q, stream);
         writeTLObject(this.filter, stream);
@@ -156,6 +183,8 @@ public class TLRequestMessagesSearch extends TLMethod<com.github.badoualy.telegr
     @Override
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
 
+        this.flags = readInt(stream);
+        this.importantOnly = (this.flags & 1) != 0;
         this.peer = (com.github.badoualy.telegram.tl.api.TLAbsInputPeer)readTLObject(stream, context);
         this.q = readTLString(stream);
         this.filter = (com.github.badoualy.telegram.tl.api.TLAbsMessagesFilter)readTLObject(stream, context);
@@ -170,7 +199,7 @@ public class TLRequestMessagesSearch extends TLMethod<com.github.badoualy.telegr
 
     @Override
     public String toString() {
-        return "messages.search#7e9f2ab";
+        return "messages.search#d4569248";
     }
 
 }

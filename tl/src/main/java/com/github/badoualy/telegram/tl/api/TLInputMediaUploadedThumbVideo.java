@@ -18,20 +18,21 @@ import static com.github.badoualy.telegram.tl.StreamUtils.writeTLString;
 
 
 public class TLInputMediaUploadedThumbVideo extends TLAbsInputMedia {
-    public static final int CLASS_ID = 0x9912dabf;
+    public static final int CLASS_ID = 0x7780ddf9;
 
     public TLInputMediaUploadedThumbVideo() {
 
     }
 
 
-    public TLInputMediaUploadedThumbVideo(        com.github.badoualy.telegram.tl.api.TLAbsInputFile _file,         com.github.badoualy.telegram.tl.api.TLAbsInputFile _thumb,         int _duration,         int _w,         int _h,         String _mimeType) {
+    public TLInputMediaUploadedThumbVideo(        com.github.badoualy.telegram.tl.api.TLAbsInputFile _file,         com.github.badoualy.telegram.tl.api.TLAbsInputFile _thumb,         int _duration,         int _w,         int _h,         String _mimeType,         String _caption) {
         this.file = _file;
         this.thumb = _thumb;
         this.duration = _duration;
         this.w = _w;
         this.h = _h;
         this.mimeType = _mimeType;
+        this.caption = _caption;
 
     }
 
@@ -52,6 +53,8 @@ public class TLInputMediaUploadedThumbVideo extends TLAbsInputMedia {
     protected int h;
 
     protected String mimeType;
+
+    protected String caption;
 
 
     public com.github.badoualy.telegram.tl.api.TLAbsInputFile getFile() {
@@ -102,6 +105,14 @@ public class TLInputMediaUploadedThumbVideo extends TLAbsInputMedia {
         this.mimeType = value;
     }
 
+    public String getCaption() {
+        return caption;
+    }
+
+    public void setCaption(String value) {
+        this.caption = value;
+    }
+
 
     @Override
     public void serializeBody(OutputStream stream) throws IOException {
@@ -112,6 +123,7 @@ public class TLInputMediaUploadedThumbVideo extends TLAbsInputMedia {
         writeInt(this.w, stream);
         writeInt(this.h, stream);
         writeTLString(this.mimeType, stream);
+        writeTLString(this.caption, stream);
     }
 
 
@@ -124,13 +136,14 @@ public class TLInputMediaUploadedThumbVideo extends TLAbsInputMedia {
         this.w = readInt(stream);
         this.h = readInt(stream);
         this.mimeType = readTLString(stream);
+        this.caption = readTLString(stream);
     }
 
 
 
     @Override
     public String toString() {
-        return "inputMediaUploadedThumbVideo#9912dabf";
+        return "inputMediaUploadedThumbVideo#7780ddf9";
     }
 
 }

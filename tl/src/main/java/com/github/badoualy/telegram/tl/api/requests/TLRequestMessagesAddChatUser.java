@@ -15,9 +15,9 @@ import static com.github.badoualy.telegram.tl.StreamUtils.writeInt;
 import static com.github.badoualy.telegram.tl.StreamUtils.writeTLObject;
 
 
-public class TLRequestMessagesAddChatUser extends TLMethod<com.github.badoualy.telegram.tl.api.messages.TLAbsStatedMessage> {
+public class TLRequestMessagesAddChatUser extends TLMethod<com.github.badoualy.telegram.tl.api.TLAbsUpdates> {
 
-    public static final int CLASS_ID = 0x2ee9ee9e;
+    public static final int CLASS_ID = 0xf9a0aa09;
 
     public int getClassId() {
         return CLASS_ID;
@@ -33,17 +33,17 @@ public class TLRequestMessagesAddChatUser extends TLMethod<com.github.badoualy.t
 
 
 
-    public com.github.badoualy.telegram.tl.api.messages.TLAbsStatedMessage deserializeResponse(InputStream stream, TLContext context) throws IOException {
+    public com.github.badoualy.telegram.tl.api.TLAbsUpdates deserializeResponse(InputStream stream, TLContext context) throws IOException {
 
         TLObject res = readTLObject(stream, context);
         if (res == null) {
             throw new IOException("Unable to parse response");
         }
-        if (res instanceof com.github.badoualy.telegram.tl.api.messages.TLAbsStatedMessage) {
-            return (com.github.badoualy.telegram.tl.api.messages.TLAbsStatedMessage)res;
+        if (res instanceof com.github.badoualy.telegram.tl.api.TLAbsUpdates) {
+            return (com.github.badoualy.telegram.tl.api.TLAbsUpdates)res;
         }
         else {
-            throw new IOException("Incorrect response type. Expected com.github.badoualy.telegram.tl.api.messages.TLAbsStatedMessage, got: " + res.getClass().getCanonicalName());
+            throw new IOException("Incorrect response type. Expected com.github.badoualy.telegram.tl.api.TLAbsUpdates, got: " + res.getClass().getCanonicalName());
         }
 
     }
@@ -103,7 +103,7 @@ public class TLRequestMessagesAddChatUser extends TLMethod<com.github.badoualy.t
 
     @Override
     public String toString() {
-        return "messages.addChatUser#2ee9ee9e";
+        return "messages.addChatUser#f9a0aa09";
     }
 
 }

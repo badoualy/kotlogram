@@ -14,16 +14,16 @@ import static com.github.badoualy.telegram.tl.StreamUtils.writeInt;
 
 public class TLAffectedHistory extends TLObject {
 
-    public static final int CLASS_ID = 0xb7de36f2;
+    public static final int CLASS_ID = 0xb45c69d1;
 
     public TLAffectedHistory() {
 
     }
 
 
-    public TLAffectedHistory(        int _pts,         int _seq,         int _offset) {
+    public TLAffectedHistory(        int _pts,         int _ptsCount,         int _offset) {
         this.pts = _pts;
-        this.seq = _seq;
+        this.ptsCount = _ptsCount;
         this.offset = _offset;
 
     }
@@ -36,7 +36,7 @@ public class TLAffectedHistory extends TLObject {
 
     protected int pts;
 
-    protected int seq;
+    protected int ptsCount;
 
     protected int offset;
 
@@ -49,12 +49,12 @@ public class TLAffectedHistory extends TLObject {
         this.pts = value;
     }
 
-    public int getSeq() {
-        return seq;
+    public int getPtsCount() {
+        return ptsCount;
     }
 
-    public void setSeq(int value) {
-        this.seq = value;
+    public void setPtsCount(int value) {
+        this.ptsCount = value;
     }
 
     public int getOffset() {
@@ -70,7 +70,7 @@ public class TLAffectedHistory extends TLObject {
     public void serializeBody(OutputStream stream) throws IOException {
 
         writeInt(this.pts, stream);
-        writeInt(this.seq, stream);
+        writeInt(this.ptsCount, stream);
         writeInt(this.offset, stream);
     }
 
@@ -79,14 +79,14 @@ public class TLAffectedHistory extends TLObject {
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
 
         this.pts = readInt(stream);
-        this.seq = readInt(stream);
+        this.ptsCount = readInt(stream);
         this.offset = readInt(stream);
     }
 
 
     @Override
     public String toString() {
-        return "messages.affectedHistory#b7de36f2";
+        return "messages.affectedHistory#b45c69d1";
     }
 
 }

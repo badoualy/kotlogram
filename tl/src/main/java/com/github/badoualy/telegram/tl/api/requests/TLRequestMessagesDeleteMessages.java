@@ -3,18 +3,20 @@ package com.github.badoualy.telegram.tl.api.requests;
 
 import com.github.badoualy.telegram.tl.TLContext;
 import com.github.badoualy.telegram.tl.core.TLMethod;
+import com.github.badoualy.telegram.tl.core.TLObject;
 
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 
 import static com.github.badoualy.telegram.tl.StreamUtils.readTLIntVector;
+import static com.github.badoualy.telegram.tl.StreamUtils.readTLObject;
 import static com.github.badoualy.telegram.tl.StreamUtils.writeTLVector;
 
 
-public class TLRequestMessagesDeleteMessages extends TLMethod<com.github.badoualy.telegram.tl.core.TLIntVector> {
+public class TLRequestMessagesDeleteMessages extends TLMethod<com.github.badoualy.telegram.tl.api.messages.TLAffectedMessages> {
 
-    public static final int CLASS_ID = 0x14f2dd0a;
+    public static final int CLASS_ID = 0xa5f18925;
 
     public int getClassId() {
         return CLASS_ID;
@@ -28,9 +30,18 @@ public class TLRequestMessagesDeleteMessages extends TLMethod<com.github.badoual
 
 
 
-    public com.github.badoualy.telegram.tl.core.TLIntVector deserializeResponse(InputStream stream, TLContext context) throws IOException {
+    public com.github.badoualy.telegram.tl.api.messages.TLAffectedMessages deserializeResponse(InputStream stream, TLContext context) throws IOException {
 
-        return readTLIntVector(stream, context);
+        TLObject res = readTLObject(stream, context);
+        if (res == null) {
+            throw new IOException("Unable to parse response");
+        }
+        if (res instanceof com.github.badoualy.telegram.tl.api.messages.TLAffectedMessages) {
+            return (com.github.badoualy.telegram.tl.api.messages.TLAffectedMessages)res;
+        }
+        else {
+            throw new IOException("Incorrect response type. Expected com.github.badoualy.telegram.tl.api.messages.TLAffectedMessages, got: " + res.getClass().getCanonicalName());
+        }
 
     }
         
@@ -65,7 +76,7 @@ public class TLRequestMessagesDeleteMessages extends TLMethod<com.github.badoual
 
     @Override
     public String toString() {
-        return "messages.deleteMessages#14f2dd0a";
+        return "messages.deleteMessages#a5f18925";
     }
 
 }

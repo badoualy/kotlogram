@@ -16,17 +16,16 @@ import static com.github.badoualy.telegram.tl.StreamUtils.writeTLString;
 
 
 public class TLChatForbidden extends TLAbsChat {
-    public static final int CLASS_ID = 0xfb0ccc41;
+    public static final int CLASS_ID = 0x7328bdb;
 
     public TLChatForbidden() {
 
     }
 
 
-    public TLChatForbidden(        int _id,         String _title,         int _date) {
+    public TLChatForbidden(        int _id,         String _title) {
         this.id = _id;
         this.title = _title;
-        this.date = _date;
 
     }
 
@@ -38,8 +37,6 @@ public class TLChatForbidden extends TLAbsChat {
 
     protected String title;
 
-    protected int date;
-
 
     public String getTitle() {
         return title;
@@ -49,21 +46,12 @@ public class TLChatForbidden extends TLAbsChat {
         this.title = value;
     }
 
-    public int getDate() {
-        return date;
-    }
-
-    public void setDate(int value) {
-        this.date = value;
-    }
-
 
     @Override
     public void serializeBody(OutputStream stream) throws IOException {
 
         writeInt(this.id, stream);
         writeTLString(this.title, stream);
-        writeInt(this.date, stream);
     }
 
 
@@ -72,14 +60,13 @@ public class TLChatForbidden extends TLAbsChat {
 
         this.id = readInt(stream);
         this.title = readTLString(stream);
-        this.date = readInt(stream);
     }
 
 
 
     @Override
     public String toString() {
-        return "chatForbidden#fb0ccc41";
+        return "chatForbidden#7328bdb";
     }
 
 }

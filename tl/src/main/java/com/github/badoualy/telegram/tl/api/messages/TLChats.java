@@ -14,16 +14,15 @@ import static com.github.badoualy.telegram.tl.StreamUtils.writeTLVector;
 
 public class TLChats extends TLObject {
 
-    public static final int CLASS_ID = 0x8150cbd8;
+    public static final int CLASS_ID = 0x64ff9fd5;
 
     public TLChats() {
 
     }
 
 
-    public TLChats(        com.github.badoualy.telegram.tl.core.TLVector<com.github.badoualy.telegram.tl.api.TLAbsChat> _chats,         com.github.badoualy.telegram.tl.core.TLVector<com.github.badoualy.telegram.tl.api.TLAbsUser> _users) {
+    public TLChats(        com.github.badoualy.telegram.tl.core.TLVector<com.github.badoualy.telegram.tl.api.TLAbsChat> _chats) {
         this.chats = _chats;
-        this.users = _users;
 
     }
 
@@ -35,8 +34,6 @@ public class TLChats extends TLObject {
 
     protected com.github.badoualy.telegram.tl.core.TLVector<com.github.badoualy.telegram.tl.api.TLAbsChat> chats;
 
-    protected com.github.badoualy.telegram.tl.core.TLVector<com.github.badoualy.telegram.tl.api.TLAbsUser> users;
-
 
     public com.github.badoualy.telegram.tl.core.TLVector<com.github.badoualy.telegram.tl.api.TLAbsChat> getChats() {
         return chats;
@@ -46,20 +43,11 @@ public class TLChats extends TLObject {
         this.chats = value;
     }
 
-    public com.github.badoualy.telegram.tl.core.TLVector<com.github.badoualy.telegram.tl.api.TLAbsUser> getUsers() {
-        return users;
-    }
-
-    public void setUsers(com.github.badoualy.telegram.tl.core.TLVector<com.github.badoualy.telegram.tl.api.TLAbsUser> value) {
-        this.users = value;
-    }
-
 
     @Override
     public void serializeBody(OutputStream stream) throws IOException {
 
         writeTLVector(this.chats, stream);
-        writeTLVector(this.users, stream);
     }
 
 
@@ -67,13 +55,12 @@ public class TLChats extends TLObject {
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
 
         this.chats = readTLVector(stream, context);
-        this.users = readTLVector(stream, context);
     }
 
 
     @Override
     public String toString() {
-        return "messages.chats#8150cbd8";
+        return "messages.chats#64ff9fd5";
     }
 
 }

@@ -9,20 +9,23 @@ import java.io.InputStream;
 import java.io.OutputStream;
 
 import static com.github.badoualy.telegram.tl.StreamUtils.readTLObject;
+import static com.github.badoualy.telegram.tl.StreamUtils.readTLString;
 import static com.github.badoualy.telegram.tl.StreamUtils.writeTLObject;
+import static com.github.badoualy.telegram.tl.StreamUtils.writeTLString;
 
 
 
 public class TLInputMediaUploadedPhoto extends TLAbsInputMedia {
-    public static final int CLASS_ID = 0x2dc53a7d;
+    public static final int CLASS_ID = 0xf7aff1c0;
 
     public TLInputMediaUploadedPhoto() {
 
     }
 
 
-    public TLInputMediaUploadedPhoto(        com.github.badoualy.telegram.tl.api.TLAbsInputFile _file) {
+    public TLInputMediaUploadedPhoto(        com.github.badoualy.telegram.tl.api.TLAbsInputFile _file,         String _caption) {
         this.file = _file;
+        this.caption = _caption;
 
     }
 
@@ -34,6 +37,8 @@ public class TLInputMediaUploadedPhoto extends TLAbsInputMedia {
 
     protected com.github.badoualy.telegram.tl.api.TLAbsInputFile file;
 
+    protected String caption;
+
 
     public com.github.badoualy.telegram.tl.api.TLAbsInputFile getFile() {
         return file;
@@ -43,11 +48,20 @@ public class TLInputMediaUploadedPhoto extends TLAbsInputMedia {
         this.file = value;
     }
 
+    public String getCaption() {
+        return caption;
+    }
+
+    public void setCaption(String value) {
+        this.caption = value;
+    }
+
 
     @Override
     public void serializeBody(OutputStream stream) throws IOException {
 
         writeTLObject(this.file, stream);
+        writeTLString(this.caption, stream);
     }
 
 
@@ -55,13 +69,14 @@ public class TLInputMediaUploadedPhoto extends TLAbsInputMedia {
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
 
         this.file = (com.github.badoualy.telegram.tl.api.TLAbsInputFile)readTLObject(stream, context);
+        this.caption = readTLString(stream);
     }
 
 
 
     @Override
     public String toString() {
-        return "inputMediaUploadedPhoto#2dc53a7d";
+        return "inputMediaUploadedPhoto#f7aff1c0";
     }
 
 }

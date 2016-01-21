@@ -136,7 +136,7 @@ internal class TelegramClientDelegateImpl(override val application: TelegramApp,
     fun handleUpdate(update: TLAbsUpdate): Unit? = when (update) {
         is TLUpdateNewMessage -> updateCallback?.onNewMessage(update)
         is TLUpdateMessageID -> Unit
-        is TLUpdateReadMessages -> Unit
+        //is TLUpdateReadMessages -> Unit
         is TLUpdateDeleteMessages -> Unit
     //is TLUpdateRestoreMessages -> Unit
         is TLUpdateUserTyping -> Unit

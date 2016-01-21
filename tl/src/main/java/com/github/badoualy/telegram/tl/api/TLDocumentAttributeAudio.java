@@ -9,20 +9,24 @@ import java.io.InputStream;
 import java.io.OutputStream;
 
 import static com.github.badoualy.telegram.tl.StreamUtils.readInt;
+import static com.github.badoualy.telegram.tl.StreamUtils.readTLString;
 import static com.github.badoualy.telegram.tl.StreamUtils.writeInt;
+import static com.github.badoualy.telegram.tl.StreamUtils.writeTLString;
 
 
 
 public class TLDocumentAttributeAudio extends TLAbsDocumentAttribute {
-    public static final int CLASS_ID = 0x51448e5;
+    public static final int CLASS_ID = 0xded218e0;
 
     public TLDocumentAttributeAudio() {
 
     }
 
 
-    public TLDocumentAttributeAudio(        int _duration) {
+    public TLDocumentAttributeAudio(        int _duration,         String _title,         String _performer) {
         this.duration = _duration;
+        this.title = _title;
+        this.performer = _performer;
 
     }
 
@@ -34,6 +38,10 @@ public class TLDocumentAttributeAudio extends TLAbsDocumentAttribute {
 
     protected int duration;
 
+    protected String title;
+
+    protected String performer;
+
 
     public int getDuration() {
         return duration;
@@ -43,11 +51,29 @@ public class TLDocumentAttributeAudio extends TLAbsDocumentAttribute {
         this.duration = value;
     }
 
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String value) {
+        this.title = value;
+    }
+
+    public String getPerformer() {
+        return performer;
+    }
+
+    public void setPerformer(String value) {
+        this.performer = value;
+    }
+
 
     @Override
     public void serializeBody(OutputStream stream) throws IOException {
 
         writeInt(this.duration, stream);
+        writeTLString(this.title, stream);
+        writeTLString(this.performer, stream);
     }
 
 
@@ -55,13 +81,15 @@ public class TLDocumentAttributeAudio extends TLAbsDocumentAttribute {
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
 
         this.duration = readInt(stream);
+        this.title = readTLString(stream);
+        this.performer = readTLString(stream);
     }
 
 
 
     @Override
     public String toString() {
-        return "documentAttributeAudio#51448e5";
+        return "documentAttributeAudio#ded218e0";
     }
 
 }

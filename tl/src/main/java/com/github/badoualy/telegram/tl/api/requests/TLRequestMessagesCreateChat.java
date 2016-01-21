@@ -16,9 +16,9 @@ import static com.github.badoualy.telegram.tl.StreamUtils.writeTLString;
 import static com.github.badoualy.telegram.tl.StreamUtils.writeTLVector;
 
 
-public class TLRequestMessagesCreateChat extends TLMethod<com.github.badoualy.telegram.tl.api.messages.TLAbsStatedMessage> {
+public class TLRequestMessagesCreateChat extends TLMethod<com.github.badoualy.telegram.tl.api.TLAbsUpdates> {
 
-    public static final int CLASS_ID = 0x419d9aee;
+    public static final int CLASS_ID = 0x9cb126e;
 
     public int getClassId() {
         return CLASS_ID;
@@ -33,17 +33,17 @@ public class TLRequestMessagesCreateChat extends TLMethod<com.github.badoualy.te
 
 
 
-    public com.github.badoualy.telegram.tl.api.messages.TLAbsStatedMessage deserializeResponse(InputStream stream, TLContext context) throws IOException {
+    public com.github.badoualy.telegram.tl.api.TLAbsUpdates deserializeResponse(InputStream stream, TLContext context) throws IOException {
 
         TLObject res = readTLObject(stream, context);
         if (res == null) {
             throw new IOException("Unable to parse response");
         }
-        if (res instanceof com.github.badoualy.telegram.tl.api.messages.TLAbsStatedMessage) {
-            return (com.github.badoualy.telegram.tl.api.messages.TLAbsStatedMessage)res;
+        if (res instanceof com.github.badoualy.telegram.tl.api.TLAbsUpdates) {
+            return (com.github.badoualy.telegram.tl.api.TLAbsUpdates)res;
         }
         else {
-            throw new IOException("Incorrect response type. Expected com.github.badoualy.telegram.tl.api.messages.TLAbsStatedMessage, got: " + res.getClass().getCanonicalName());
+            throw new IOException("Incorrect response type. Expected com.github.badoualy.telegram.tl.api.TLAbsUpdates, got: " + res.getClass().getCanonicalName());
         }
 
     }
@@ -91,7 +91,7 @@ public class TLRequestMessagesCreateChat extends TLMethod<com.github.badoualy.te
 
     @Override
     public String toString() {
-        return "messages.createChat#419d9aee";
+        return "messages.createChat#9cb126e";
     }
 
 }

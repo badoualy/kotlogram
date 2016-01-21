@@ -16,16 +16,15 @@ import static com.github.badoualy.telegram.tl.StreamUtils.writeTLVector;
 
 
 public class TLChatParticipants extends TLAbsChatParticipants {
-    public static final int CLASS_ID = 0x7841b415;
+    public static final int CLASS_ID = 0x3f460fed;
 
     public TLChatParticipants() {
 
     }
 
 
-    public TLChatParticipants(        int _chatId,         int _adminId,         com.github.badoualy.telegram.tl.core.TLVector<com.github.badoualy.telegram.tl.api.TLChatParticipant> _participants,         int _version) {
+    public TLChatParticipants(        int _chatId,         com.github.badoualy.telegram.tl.core.TLVector<com.github.badoualy.telegram.tl.api.TLAbsChatParticipant> _participants,         int _version) {
         this.chatId = _chatId;
-        this.adminId = _adminId;
         this.participants = _participants;
         this.version = _version;
 
@@ -37,26 +36,16 @@ public class TLChatParticipants extends TLAbsChatParticipants {
     }
 
 
-    protected int adminId;
-
-    protected com.github.badoualy.telegram.tl.core.TLVector<com.github.badoualy.telegram.tl.api.TLChatParticipant> participants;
+    protected com.github.badoualy.telegram.tl.core.TLVector<com.github.badoualy.telegram.tl.api.TLAbsChatParticipant> participants;
 
     protected int version;
 
 
-    public int getAdminId() {
-        return adminId;
-    }
-
-    public void setAdminId(int value) {
-        this.adminId = value;
-    }
-
-    public com.github.badoualy.telegram.tl.core.TLVector<com.github.badoualy.telegram.tl.api.TLChatParticipant> getParticipants() {
+    public com.github.badoualy.telegram.tl.core.TLVector<com.github.badoualy.telegram.tl.api.TLAbsChatParticipant> getParticipants() {
         return participants;
     }
 
-    public void setParticipants(com.github.badoualy.telegram.tl.core.TLVector<com.github.badoualy.telegram.tl.api.TLChatParticipant> value) {
+    public void setParticipants(com.github.badoualy.telegram.tl.core.TLVector<com.github.badoualy.telegram.tl.api.TLAbsChatParticipant> value) {
         this.participants = value;
     }
 
@@ -73,7 +62,6 @@ public class TLChatParticipants extends TLAbsChatParticipants {
     public void serializeBody(OutputStream stream) throws IOException {
 
         writeInt(this.chatId, stream);
-        writeInt(this.adminId, stream);
         writeTLVector(this.participants, stream);
         writeInt(this.version, stream);
     }
@@ -83,7 +71,6 @@ public class TLChatParticipants extends TLAbsChatParticipants {
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
 
         this.chatId = readInt(stream);
-        this.adminId = readInt(stream);
         this.participants = readTLVector(stream, context);
         this.version = readInt(stream);
     }
@@ -92,7 +79,7 @@ public class TLChatParticipants extends TLAbsChatParticipants {
 
     @Override
     public String toString() {
-        return "chatParticipants#7841b415";
+        return "chatParticipants#3f460fed";
     }
 
 }

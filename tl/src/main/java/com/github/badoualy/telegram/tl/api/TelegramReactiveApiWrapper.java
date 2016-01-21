@@ -198,37 +198,37 @@ public abstract class TelegramReactiveApiWrapper implements TelegramReactiveApi 
     }
 
     @Override
-    public Observable<com.github.badoualy.telegram.tl.api.messages.TLAbsDialogs> messagesGetDialogs(int offset, int maxId, int limit) throws IOException {
-        return executeRpcQuery(new TLRequestMessagesGetDialogs(offset, maxId, limit));
+    public Observable<com.github.badoualy.telegram.tl.api.messages.TLAbsDialogs> messagesGetDialogs(int offsetDate, int offsetId, com.github.badoualy.telegram.tl.api.TLAbsInputPeer offsetPeer, int limit) throws IOException {
+        return executeRpcQuery(new TLRequestMessagesGetDialogs(offsetDate, offsetId, offsetPeer, limit));
     }
 
     @Override
-    public Observable<com.github.badoualy.telegram.tl.api.messages.TLAbsMessages> messagesGetHistory(com.github.badoualy.telegram.tl.api.TLAbsInputPeer peer, int offset, int maxId, int limit) throws IOException {
-        return executeRpcQuery(new TLRequestMessagesGetHistory(peer, offset, maxId, limit));
+    public Observable<com.github.badoualy.telegram.tl.api.messages.TLAbsMessages> messagesGetHistory(com.github.badoualy.telegram.tl.api.TLAbsInputPeer peer, int offsetId, int addOffset, int limit, int maxId, int minId) throws IOException {
+        return executeRpcQuery(new TLRequestMessagesGetHistory(peer, offsetId, addOffset, limit, maxId, minId));
     }
 
     @Override
-    public Observable<com.github.badoualy.telegram.tl.api.messages.TLAbsMessages> messagesSearch(com.github.badoualy.telegram.tl.api.TLAbsInputPeer peer, String q, com.github.badoualy.telegram.tl.api.TLAbsMessagesFilter filter, int minDate, int maxDate, int offset, int maxId, int limit) throws IOException {
-        return executeRpcQuery(new TLRequestMessagesSearch(peer, q, filter, minDate, maxDate, offset, maxId, limit));
+    public Observable<com.github.badoualy.telegram.tl.api.messages.TLAbsMessages> messagesSearch(int flags, boolean importantOnly, com.github.badoualy.telegram.tl.api.TLAbsInputPeer peer, String q, com.github.badoualy.telegram.tl.api.TLAbsMessagesFilter filter, int minDate, int maxDate, int offset, int maxId, int limit) throws IOException {
+        return executeRpcQuery(new TLRequestMessagesSearch(flags, importantOnly, peer, q, filter, minDate, maxDate, offset, maxId, limit));
     }
 
     @Override
-    public Observable<com.github.badoualy.telegram.tl.api.messages.TLAffectedHistory> messagesReadHistory(com.github.badoualy.telegram.tl.api.TLAbsInputPeer peer, int maxId, int offset, boolean readContents) throws IOException {
-        return executeRpcQuery(new TLRequestMessagesReadHistory(peer, maxId, offset, readContents));
+    public Observable<com.github.badoualy.telegram.tl.api.messages.TLAffectedMessages> messagesReadHistory(com.github.badoualy.telegram.tl.api.TLAbsInputPeer peer, int maxId) throws IOException {
+        return executeRpcQuery(new TLRequestMessagesReadHistory(peer, maxId));
     }
 
     @Override
-    public Observable<com.github.badoualy.telegram.tl.api.messages.TLAffectedHistory> messagesDeleteHistory(com.github.badoualy.telegram.tl.api.TLAbsInputPeer peer, int offset) throws IOException {
-        return executeRpcQuery(new TLRequestMessagesDeleteHistory(peer, offset));
+    public Observable<com.github.badoualy.telegram.tl.api.messages.TLAffectedHistory> messagesDeleteHistory(com.github.badoualy.telegram.tl.api.TLAbsInputPeer peer, int maxId) throws IOException {
+        return executeRpcQuery(new TLRequestMessagesDeleteHistory(peer, maxId));
     }
 
     @Override
-    public Observable<com.github.badoualy.telegram.tl.core.TLIntVector> messagesDeleteMessages(com.github.badoualy.telegram.tl.core.TLIntVector id) throws IOException {
+    public Observable<com.github.badoualy.telegram.tl.api.messages.TLAffectedMessages> messagesDeleteMessages(com.github.badoualy.telegram.tl.core.TLIntVector id) throws IOException {
         return executeRpcQuery(new TLRequestMessagesDeleteMessages(id));
     }
 
     @Override
-    public Observable<com.github.badoualy.telegram.tl.core.TLIntVector> messagesReceivedMessages(int maxId) throws IOException {
+    public Observable<com.github.badoualy.telegram.tl.core.TLVector<com.github.badoualy.telegram.tl.api.TLReceivedNotifyMessage>> messagesReceivedMessages(int maxId) throws IOException {
         return executeRpcQuery(new TLRequestMessagesReceivedMessages(maxId));
     }
 
@@ -238,18 +238,18 @@ public abstract class TelegramReactiveApiWrapper implements TelegramReactiveApi 
     }
 
     @Override
-    public Observable<com.github.badoualy.telegram.tl.api.messages.TLAbsSentMessage> messagesSendMessage(com.github.badoualy.telegram.tl.api.TLAbsInputPeer peer, String message, long randomId) throws IOException {
-        return executeRpcQuery(new TLRequestMessagesSendMessage(peer, message, randomId));
+    public Observable<com.github.badoualy.telegram.tl.api.TLAbsUpdates> messagesSendMessage(int flags, boolean noWebpage, boolean broadcast, com.github.badoualy.telegram.tl.api.TLAbsInputPeer peer, int replyToMsgId, String message, long randomId, com.github.badoualy.telegram.tl.api.TLAbsReplyMarkup replyMarkup, com.github.badoualy.telegram.tl.core.TLVector<com.github.badoualy.telegram.tl.api.TLAbsMessageEntity> entities) throws IOException {
+        return executeRpcQuery(new TLRequestMessagesSendMessage(flags, noWebpage, broadcast, peer, replyToMsgId, message, randomId, replyMarkup, entities));
     }
 
     @Override
-    public Observable<com.github.badoualy.telegram.tl.api.messages.TLAbsStatedMessage> messagesSendMedia(com.github.badoualy.telegram.tl.api.TLAbsInputPeer peer, com.github.badoualy.telegram.tl.api.TLAbsInputMedia media, long randomId) throws IOException {
-        return executeRpcQuery(new TLRequestMessagesSendMedia(peer, media, randomId));
+    public Observable<com.github.badoualy.telegram.tl.api.TLAbsUpdates> messagesSendMedia(int flags, boolean broadcast, com.github.badoualy.telegram.tl.api.TLAbsInputPeer peer, int replyToMsgId, com.github.badoualy.telegram.tl.api.TLAbsInputMedia media, long randomId, com.github.badoualy.telegram.tl.api.TLAbsReplyMarkup replyMarkup) throws IOException {
+        return executeRpcQuery(new TLRequestMessagesSendMedia(flags, broadcast, peer, replyToMsgId, media, randomId, replyMarkup));
     }
 
     @Override
-    public Observable<com.github.badoualy.telegram.tl.api.messages.TLAbsStatedMessages> messagesForwardMessages(com.github.badoualy.telegram.tl.api.TLAbsInputPeer peer, com.github.badoualy.telegram.tl.core.TLIntVector id) throws IOException {
-        return executeRpcQuery(new TLRequestMessagesForwardMessages(peer, id));
+    public Observable<com.github.badoualy.telegram.tl.api.TLAbsUpdates> messagesForwardMessages(int flags, boolean broadcast, com.github.badoualy.telegram.tl.api.TLAbsInputPeer fromPeer, com.github.badoualy.telegram.tl.core.TLIntVector id, com.github.badoualy.telegram.tl.core.TLLongVector randomId, com.github.badoualy.telegram.tl.api.TLAbsInputPeer toPeer) throws IOException {
+        return executeRpcQuery(new TLRequestMessagesForwardMessages(flags, broadcast, fromPeer, id, randomId, toPeer));
     }
 
     @Override
@@ -268,27 +268,27 @@ public abstract class TelegramReactiveApiWrapper implements TelegramReactiveApi 
     }
 
     @Override
-    public Observable<com.github.badoualy.telegram.tl.api.messages.TLAbsStatedMessage> messagesEditChatTitle(int chatId, String title) throws IOException {
+    public Observable<com.github.badoualy.telegram.tl.api.TLAbsUpdates> messagesEditChatTitle(int chatId, String title) throws IOException {
         return executeRpcQuery(new TLRequestMessagesEditChatTitle(chatId, title));
     }
 
     @Override
-    public Observable<com.github.badoualy.telegram.tl.api.messages.TLAbsStatedMessage> messagesEditChatPhoto(int chatId, com.github.badoualy.telegram.tl.api.TLAbsInputChatPhoto photo) throws IOException {
+    public Observable<com.github.badoualy.telegram.tl.api.TLAbsUpdates> messagesEditChatPhoto(int chatId, com.github.badoualy.telegram.tl.api.TLAbsInputChatPhoto photo) throws IOException {
         return executeRpcQuery(new TLRequestMessagesEditChatPhoto(chatId, photo));
     }
 
     @Override
-    public Observable<com.github.badoualy.telegram.tl.api.messages.TLAbsStatedMessage> messagesAddChatUser(int chatId, com.github.badoualy.telegram.tl.api.TLAbsInputUser userId, int fwdLimit) throws IOException {
+    public Observable<com.github.badoualy.telegram.tl.api.TLAbsUpdates> messagesAddChatUser(int chatId, com.github.badoualy.telegram.tl.api.TLAbsInputUser userId, int fwdLimit) throws IOException {
         return executeRpcQuery(new TLRequestMessagesAddChatUser(chatId, userId, fwdLimit));
     }
 
     @Override
-    public Observable<com.github.badoualy.telegram.tl.api.messages.TLAbsStatedMessage> messagesDeleteChatUser(int chatId, com.github.badoualy.telegram.tl.api.TLAbsInputUser userId) throws IOException {
+    public Observable<com.github.badoualy.telegram.tl.api.TLAbsUpdates> messagesDeleteChatUser(int chatId, com.github.badoualy.telegram.tl.api.TLAbsInputUser userId) throws IOException {
         return executeRpcQuery(new TLRequestMessagesDeleteChatUser(chatId, userId));
     }
 
     @Override
-    public Observable<com.github.badoualy.telegram.tl.api.messages.TLAbsStatedMessage> messagesCreateChat(com.github.badoualy.telegram.tl.core.TLVector<com.github.badoualy.telegram.tl.api.TLAbsInputUser> users, String title) throws IOException {
+    public Observable<com.github.badoualy.telegram.tl.api.TLAbsUpdates> messagesCreateChat(com.github.badoualy.telegram.tl.core.TLVector<com.github.badoualy.telegram.tl.api.TLAbsInputUser> users, String title) throws IOException {
         return executeRpcQuery(new TLRequestMessagesCreateChat(users, title));
     }
 
@@ -353,18 +353,18 @@ public abstract class TelegramReactiveApiWrapper implements TelegramReactiveApi 
     }
 
     @Override
-    public Observable<com.github.badoualy.telegram.tl.api.photos.TLAbsPhotos> photosGetUserPhotos(com.github.badoualy.telegram.tl.api.TLAbsInputUser userId, int offset, int maxId, int limit) throws IOException {
+    public Observable<com.github.badoualy.telegram.tl.api.photos.TLAbsPhotos> photosGetUserPhotos(com.github.badoualy.telegram.tl.api.TLAbsInputUser userId, int offset, long maxId, int limit) throws IOException {
         return executeRpcQuery(new TLRequestPhotosGetUserPhotos(userId, offset, maxId, limit));
     }
 
     @Override
-    public Observable<com.github.badoualy.telegram.tl.api.messages.TLAbsStatedMessage> messagesForwardMessage(com.github.badoualy.telegram.tl.api.TLAbsInputPeer peer, int id, long randomId) throws IOException {
+    public Observable<com.github.badoualy.telegram.tl.api.TLAbsUpdates> messagesForwardMessage(com.github.badoualy.telegram.tl.api.TLAbsInputPeer peer, int id, long randomId) throws IOException {
         return executeRpcQuery(new TLRequestMessagesForwardMessage(peer, id, randomId));
     }
 
     @Override
-    public Observable<com.github.badoualy.telegram.tl.api.messages.TLAbsStatedMessages> messagesSendBroadcast(com.github.badoualy.telegram.tl.core.TLVector<com.github.badoualy.telegram.tl.api.TLAbsInputUser> contacts, String message, com.github.badoualy.telegram.tl.api.TLAbsInputMedia media) throws IOException {
-        return executeRpcQuery(new TLRequestMessagesSendBroadcast(contacts, message, media));
+    public Observable<com.github.badoualy.telegram.tl.api.TLAbsUpdates> messagesSendBroadcast(com.github.badoualy.telegram.tl.core.TLVector<com.github.badoualy.telegram.tl.api.TLAbsInputUser> contacts, com.github.badoualy.telegram.tl.core.TLLongVector randomId, String message, com.github.badoualy.telegram.tl.api.TLAbsInputMedia media) throws IOException {
+        return executeRpcQuery(new TLRequestMessagesSendBroadcast(contacts, randomId, message, media));
     }
 
     @Override
@@ -438,7 +438,7 @@ public abstract class TelegramReactiveApiWrapper implements TelegramReactiveApi 
     }
 
     @Override
-    public Observable<com.github.badoualy.telegram.tl.core.TLIntVector> messagesReadMessageContents(com.github.badoualy.telegram.tl.core.TLIntVector id) throws IOException {
+    public Observable<com.github.badoualy.telegram.tl.api.messages.TLAffectedMessages> messagesReadMessageContents(com.github.badoualy.telegram.tl.core.TLIntVector id) throws IOException {
         return executeRpcQuery(new TLRequestMessagesReadMessageContents(id));
     }
 
@@ -488,7 +488,7 @@ public abstract class TelegramReactiveApiWrapper implements TelegramReactiveApi 
     }
 
     @Override
-    public Observable<com.github.badoualy.telegram.tl.api.TLAbsUser> contactsResolveUsername(String username) throws IOException {
+    public Observable<com.github.badoualy.telegram.tl.api.contacts.TLResolvedPeer> contactsResolveUsername(String username) throws IOException {
         return executeRpcQuery(new TLRequestContactsResolveUsername(username));
     }
 
@@ -508,13 +508,308 @@ public abstract class TelegramReactiveApiWrapper implements TelegramReactiveApi 
     }
 
     @Override
-    public Observable<com.github.badoualy.telegram.tl.api.messages.TLAbsAllStickers> messagesGetAllStickers(String hash) throws IOException {
+    public Observable<com.github.badoualy.telegram.tl.api.messages.TLAbsAllStickers> messagesGetAllStickers(int hash) throws IOException {
         return executeRpcQuery(new TLRequestMessagesGetAllStickers(hash));
     }
 
     @Override
     public Observable<TLBool> accountUpdateDeviceLocked(int period) throws IOException {
         return executeRpcQuery(new TLRequestAccountUpdateDeviceLocked(period));
+    }
+
+    @Override
+    public Observable<com.github.badoualy.telegram.tl.api.auth.TLAuthorization> authImportBotAuthorization(int flags, int apiId, String apiHash, String botAuthToken) throws IOException {
+        return executeRpcQuery(new TLRequestAuthImportBotAuthorization(flags, apiId, apiHash, botAuthToken));
+    }
+
+    @Override
+    public Observable<com.github.badoualy.telegram.tl.api.TLAbsMessageMedia> messagesGetWebPagePreview(String message) throws IOException {
+        return executeRpcQuery(new TLRequestMessagesGetWebPagePreview(message));
+    }
+
+    @Override
+    public Observable<com.github.badoualy.telegram.tl.api.account.TLAuthorizations> accountGetAuthorizations() throws IOException {
+        return executeRpcQuery(new TLRequestAccountGetAuthorizations());
+    }
+
+    @Override
+    public Observable<TLBool> accountResetAuthorization(long hash) throws IOException {
+        return executeRpcQuery(new TLRequestAccountResetAuthorization(hash));
+    }
+
+    @Override
+    public Observable<com.github.badoualy.telegram.tl.api.account.TLAbsPassword> accountGetPassword() throws IOException {
+        return executeRpcQuery(new TLRequestAccountGetPassword());
+    }
+
+    @Override
+    public Observable<com.github.badoualy.telegram.tl.api.account.TLPasswordSettings> accountGetPasswordSettings(TLBytes currentPasswordHash) throws IOException {
+        return executeRpcQuery(new TLRequestAccountGetPasswordSettings(currentPasswordHash));
+    }
+
+    @Override
+    public Observable<TLBool> accountUpdatePasswordSettings(TLBytes currentPasswordHash, com.github.badoualy.telegram.tl.api.account.TLPasswordInputSettings newSettings) throws IOException {
+        return executeRpcQuery(new TLRequestAccountUpdatePasswordSettings(currentPasswordHash, newSettings));
+    }
+
+    @Override
+    public Observable<com.github.badoualy.telegram.tl.api.auth.TLAuthorization> authCheckPassword(TLBytes passwordHash) throws IOException {
+        return executeRpcQuery(new TLRequestAuthCheckPassword(passwordHash));
+    }
+
+    @Override
+    public Observable<com.github.badoualy.telegram.tl.api.auth.TLPasswordRecovery> authRequestPasswordRecovery() throws IOException {
+        return executeRpcQuery(new TLRequestAuthRequestPasswordRecovery());
+    }
+
+    @Override
+    public Observable<com.github.badoualy.telegram.tl.api.auth.TLAuthorization> authRecoverPassword(String code) throws IOException {
+        return executeRpcQuery(new TLRequestAuthRecoverPassword(code));
+    }
+
+    @Override
+    public Observable<TLObject> invokeWithoutUpdates(TLMethod query) throws IOException {
+        return executeRpcQuery(new TLRequestInvokeWithoutUpdates(query));
+    }
+
+    @Override
+    public Observable<com.github.badoualy.telegram.tl.api.TLAbsExportedChatInvite> messagesExportChatInvite(int chatId) throws IOException {
+        return executeRpcQuery(new TLRequestMessagesExportChatInvite(chatId));
+    }
+
+    @Override
+    public Observable<com.github.badoualy.telegram.tl.api.TLAbsChatInvite> messagesCheckChatInvite(String hash) throws IOException {
+        return executeRpcQuery(new TLRequestMessagesCheckChatInvite(hash));
+    }
+
+    @Override
+    public Observable<com.github.badoualy.telegram.tl.api.TLAbsUpdates> messagesImportChatInvite(String hash) throws IOException {
+        return executeRpcQuery(new TLRequestMessagesImportChatInvite(hash));
+    }
+
+    @Override
+    public Observable<com.github.badoualy.telegram.tl.api.messages.TLStickerSet> messagesGetStickerSet(com.github.badoualy.telegram.tl.api.TLAbsInputStickerSet stickerset) throws IOException {
+        return executeRpcQuery(new TLRequestMessagesGetStickerSet(stickerset));
+    }
+
+    @Override
+    public Observable<TLBool> messagesInstallStickerSet(com.github.badoualy.telegram.tl.api.TLAbsInputStickerSet stickerset, boolean disabled) throws IOException {
+        return executeRpcQuery(new TLRequestMessagesInstallStickerSet(stickerset, disabled));
+    }
+
+    @Override
+    public Observable<TLBool> messagesUninstallStickerSet(com.github.badoualy.telegram.tl.api.TLAbsInputStickerSet stickerset) throws IOException {
+        return executeRpcQuery(new TLRequestMessagesUninstallStickerSet(stickerset));
+    }
+
+    @Override
+    public Observable<com.github.badoualy.telegram.tl.api.TLAbsUpdates> messagesStartBot(com.github.badoualy.telegram.tl.api.TLAbsInputUser bot, com.github.badoualy.telegram.tl.api.TLAbsInputPeer peer, long randomId, String startParam) throws IOException {
+        return executeRpcQuery(new TLRequestMessagesStartBot(bot, peer, randomId, startParam));
+    }
+
+    @Override
+    public Observable<com.github.badoualy.telegram.tl.api.help.TLAbsAppChangelog> helpGetAppChangelog(String deviceModel, String systemVersion, String appVersion, String langCode) throws IOException {
+        return executeRpcQuery(new TLRequestHelpGetAppChangelog(deviceModel, systemVersion, appVersion, langCode));
+    }
+
+    @Override
+    public Observable<com.github.badoualy.telegram.tl.core.TLIntVector> messagesGetMessagesViews(com.github.badoualy.telegram.tl.api.TLAbsInputPeer peer, com.github.badoualy.telegram.tl.core.TLIntVector id, boolean increment) throws IOException {
+        return executeRpcQuery(new TLRequestMessagesGetMessagesViews(peer, id, increment));
+    }
+
+    @Override
+    public Observable<com.github.badoualy.telegram.tl.api.messages.TLAbsDialogs> channelsGetDialogs(int offset, int limit) throws IOException {
+        return executeRpcQuery(new TLRequestChannelsGetDialogs(offset, limit));
+    }
+
+    @Override
+    public Observable<com.github.badoualy.telegram.tl.api.messages.TLAbsMessages> channelsGetImportantHistory(com.github.badoualy.telegram.tl.api.TLAbsInputChannel channel, int offsetId, int addOffset, int limit, int maxId, int minId) throws IOException {
+        return executeRpcQuery(new TLRequestChannelsGetImportantHistory(channel, offsetId, addOffset, limit, maxId, minId));
+    }
+
+    @Override
+    public Observable<TLBool> channelsReadHistory(com.github.badoualy.telegram.tl.api.TLAbsInputChannel channel, int maxId) throws IOException {
+        return executeRpcQuery(new TLRequestChannelsReadHistory(channel, maxId));
+    }
+
+    @Override
+    public Observable<com.github.badoualy.telegram.tl.api.messages.TLAffectedMessages> channelsDeleteMessages(com.github.badoualy.telegram.tl.api.TLAbsInputChannel channel, com.github.badoualy.telegram.tl.core.TLIntVector id) throws IOException {
+        return executeRpcQuery(new TLRequestChannelsDeleteMessages(channel, id));
+    }
+
+    @Override
+    public Observable<com.github.badoualy.telegram.tl.api.messages.TLAffectedHistory> channelsDeleteUserHistory(com.github.badoualy.telegram.tl.api.TLAbsInputChannel channel, com.github.badoualy.telegram.tl.api.TLAbsInputUser userId) throws IOException {
+        return executeRpcQuery(new TLRequestChannelsDeleteUserHistory(channel, userId));
+    }
+
+    @Override
+    public Observable<TLBool> channelsReportSpam(com.github.badoualy.telegram.tl.api.TLAbsInputChannel channel, com.github.badoualy.telegram.tl.api.TLAbsInputUser userId, com.github.badoualy.telegram.tl.core.TLIntVector id) throws IOException {
+        return executeRpcQuery(new TLRequestChannelsReportSpam(channel, userId, id));
+    }
+
+    @Override
+    public Observable<com.github.badoualy.telegram.tl.api.messages.TLAbsMessages> channelsGetMessages(com.github.badoualy.telegram.tl.api.TLAbsInputChannel channel, com.github.badoualy.telegram.tl.core.TLIntVector id) throws IOException {
+        return executeRpcQuery(new TLRequestChannelsGetMessages(channel, id));
+    }
+
+    @Override
+    public Observable<com.github.badoualy.telegram.tl.api.channels.TLChannelParticipants> channelsGetParticipants(com.github.badoualy.telegram.tl.api.TLAbsInputChannel channel, com.github.badoualy.telegram.tl.api.TLAbsChannelParticipantsFilter filter, int offset, int limit) throws IOException {
+        return executeRpcQuery(new TLRequestChannelsGetParticipants(channel, filter, offset, limit));
+    }
+
+    @Override
+    public Observable<com.github.badoualy.telegram.tl.api.channels.TLChannelParticipant> channelsGetParticipant(com.github.badoualy.telegram.tl.api.TLAbsInputChannel channel, com.github.badoualy.telegram.tl.api.TLAbsInputUser userId) throws IOException {
+        return executeRpcQuery(new TLRequestChannelsGetParticipant(channel, userId));
+    }
+
+    @Override
+    public Observable<com.github.badoualy.telegram.tl.api.messages.TLChats> channelsGetChannels(com.github.badoualy.telegram.tl.core.TLVector<com.github.badoualy.telegram.tl.api.TLAbsInputChannel> id) throws IOException {
+        return executeRpcQuery(new TLRequestChannelsGetChannels(id));
+    }
+
+    @Override
+    public Observable<com.github.badoualy.telegram.tl.api.messages.TLChatFull> channelsGetFullChannel(com.github.badoualy.telegram.tl.api.TLAbsInputChannel channel) throws IOException {
+        return executeRpcQuery(new TLRequestChannelsGetFullChannel(channel));
+    }
+
+    @Override
+    public Observable<com.github.badoualy.telegram.tl.api.TLAbsUpdates> channelsCreateChannel(int flags, boolean broadcast, boolean megagroup, String title, String about) throws IOException {
+        return executeRpcQuery(new TLRequestChannelsCreateChannel(flags, broadcast, megagroup, title, about));
+    }
+
+    @Override
+    public Observable<TLBool> channelsEditAbout(com.github.badoualy.telegram.tl.api.TLAbsInputChannel channel, String about) throws IOException {
+        return executeRpcQuery(new TLRequestChannelsEditAbout(channel, about));
+    }
+
+    @Override
+    public Observable<com.github.badoualy.telegram.tl.api.TLAbsUpdates> channelsEditAdmin(com.github.badoualy.telegram.tl.api.TLAbsInputChannel channel, com.github.badoualy.telegram.tl.api.TLAbsInputUser userId, com.github.badoualy.telegram.tl.api.TLAbsChannelParticipantRole role) throws IOException {
+        return executeRpcQuery(new TLRequestChannelsEditAdmin(channel, userId, role));
+    }
+
+    @Override
+    public Observable<com.github.badoualy.telegram.tl.api.TLAbsUpdates> channelsEditTitle(com.github.badoualy.telegram.tl.api.TLAbsInputChannel channel, String title) throws IOException {
+        return executeRpcQuery(new TLRequestChannelsEditTitle(channel, title));
+    }
+
+    @Override
+    public Observable<com.github.badoualy.telegram.tl.api.TLAbsUpdates> channelsEditPhoto(com.github.badoualy.telegram.tl.api.TLAbsInputChannel channel, com.github.badoualy.telegram.tl.api.TLAbsInputChatPhoto photo) throws IOException {
+        return executeRpcQuery(new TLRequestChannelsEditPhoto(channel, photo));
+    }
+
+    @Override
+    public Observable<com.github.badoualy.telegram.tl.api.TLAbsUpdates> channelsToggleComments(com.github.badoualy.telegram.tl.api.TLAbsInputChannel channel, boolean enabled) throws IOException {
+        return executeRpcQuery(new TLRequestChannelsToggleComments(channel, enabled));
+    }
+
+    @Override
+    public Observable<TLBool> channelsCheckUsername(com.github.badoualy.telegram.tl.api.TLAbsInputChannel channel, String username) throws IOException {
+        return executeRpcQuery(new TLRequestChannelsCheckUsername(channel, username));
+    }
+
+    @Override
+    public Observable<TLBool> channelsUpdateUsername(com.github.badoualy.telegram.tl.api.TLAbsInputChannel channel, String username) throws IOException {
+        return executeRpcQuery(new TLRequestChannelsUpdateUsername(channel, username));
+    }
+
+    @Override
+    public Observable<com.github.badoualy.telegram.tl.api.TLAbsUpdates> channelsJoinChannel(com.github.badoualy.telegram.tl.api.TLAbsInputChannel channel) throws IOException {
+        return executeRpcQuery(new TLRequestChannelsJoinChannel(channel));
+    }
+
+    @Override
+    public Observable<com.github.badoualy.telegram.tl.api.TLAbsUpdates> channelsLeaveChannel(com.github.badoualy.telegram.tl.api.TLAbsInputChannel channel) throws IOException {
+        return executeRpcQuery(new TLRequestChannelsLeaveChannel(channel));
+    }
+
+    @Override
+    public Observable<com.github.badoualy.telegram.tl.api.TLAbsUpdates> channelsInviteToChannel(com.github.badoualy.telegram.tl.api.TLAbsInputChannel channel, com.github.badoualy.telegram.tl.core.TLVector<com.github.badoualy.telegram.tl.api.TLAbsInputUser> users) throws IOException {
+        return executeRpcQuery(new TLRequestChannelsInviteToChannel(channel, users));
+    }
+
+    @Override
+    public Observable<com.github.badoualy.telegram.tl.api.TLAbsUpdates> channelsKickFromChannel(com.github.badoualy.telegram.tl.api.TLAbsInputChannel channel, com.github.badoualy.telegram.tl.api.TLAbsInputUser userId, boolean kicked) throws IOException {
+        return executeRpcQuery(new TLRequestChannelsKickFromChannel(channel, userId, kicked));
+    }
+
+    @Override
+    public Observable<com.github.badoualy.telegram.tl.api.TLAbsExportedChatInvite> channelsExportInvite(com.github.badoualy.telegram.tl.api.TLAbsInputChannel channel) throws IOException {
+        return executeRpcQuery(new TLRequestChannelsExportInvite(channel));
+    }
+
+    @Override
+    public Observable<com.github.badoualy.telegram.tl.api.TLAbsUpdates> channelsDeleteChannel(com.github.badoualy.telegram.tl.api.TLAbsInputChannel channel) throws IOException {
+        return executeRpcQuery(new TLRequestChannelsDeleteChannel(channel));
+    }
+
+    @Override
+    public Observable<com.github.badoualy.telegram.tl.api.updates.TLAbsChannelDifference> updatesGetChannelDifference(com.github.badoualy.telegram.tl.api.TLAbsInputChannel channel, com.github.badoualy.telegram.tl.api.TLAbsChannelMessagesFilter filter, int pts, int limit) throws IOException {
+        return executeRpcQuery(new TLRequestUpdatesGetChannelDifference(channel, filter, pts, limit));
+    }
+
+    @Override
+    public Observable<com.github.badoualy.telegram.tl.api.TLAbsUpdates> messagesToggleChatAdmins(int chatId, boolean enabled) throws IOException {
+        return executeRpcQuery(new TLRequestMessagesToggleChatAdmins(chatId, enabled));
+    }
+
+    @Override
+    public Observable<TLBool> messagesEditChatAdmin(int chatId, com.github.badoualy.telegram.tl.api.TLAbsInputUser userId, boolean isAdmin) throws IOException {
+        return executeRpcQuery(new TLRequestMessagesEditChatAdmin(chatId, userId, isAdmin));
+    }
+
+    @Override
+    public Observable<com.github.badoualy.telegram.tl.api.TLAbsUpdates> messagesMigrateChat(int chatId) throws IOException {
+        return executeRpcQuery(new TLRequestMessagesMigrateChat(chatId));
+    }
+
+    @Override
+    public Observable<com.github.badoualy.telegram.tl.api.messages.TLAbsMessages> messagesSearchGlobal(String q, int offsetDate, com.github.badoualy.telegram.tl.api.TLAbsInputPeer offsetPeer, int offsetId, int limit) throws IOException {
+        return executeRpcQuery(new TLRequestMessagesSearchGlobal(q, offsetDate, offsetPeer, offsetId, limit));
+    }
+
+    @Override
+    public Observable<com.github.badoualy.telegram.tl.api.help.TLTermsOfService> helpGetTermsOfService(String langCode) throws IOException {
+        return executeRpcQuery(new TLRequestHelpGetTermsOfService(langCode));
+    }
+
+    @Override
+    public Observable<TLBool> messagesReorderStickerSets(com.github.badoualy.telegram.tl.core.TLLongVector order) throws IOException {
+        return executeRpcQuery(new TLRequestMessagesReorderStickerSets(order));
+    }
+
+    @Override
+    public Observable<com.github.badoualy.telegram.tl.api.TLAbsDocument> messagesGetDocumentByHash(TLBytes sha256, int size, String mimeType) throws IOException {
+        return executeRpcQuery(new TLRequestMessagesGetDocumentByHash(sha256, size, mimeType));
+    }
+
+    @Override
+    public Observable<com.github.badoualy.telegram.tl.api.messages.TLFoundGifs> messagesSearchGifs(String q, int offset) throws IOException {
+        return executeRpcQuery(new TLRequestMessagesSearchGifs(q, offset));
+    }
+
+    @Override
+    public Observable<com.github.badoualy.telegram.tl.api.messages.TLAbsSavedGifs> messagesGetSavedGifs(int hash) throws IOException {
+        return executeRpcQuery(new TLRequestMessagesGetSavedGifs(hash));
+    }
+
+    @Override
+    public Observable<TLBool> messagesSaveGif(com.github.badoualy.telegram.tl.api.TLAbsInputDocument id, boolean unsave) throws IOException {
+        return executeRpcQuery(new TLRequestMessagesSaveGif(id, unsave));
+    }
+
+    @Override
+    public Observable<com.github.badoualy.telegram.tl.api.messages.TLBotResults> messagesGetInlineBotResults(com.github.badoualy.telegram.tl.api.TLAbsInputUser bot, String query, String offset) throws IOException {
+        return executeRpcQuery(new TLRequestMessagesGetInlineBotResults(bot, query, offset));
+    }
+
+    @Override
+    public Observable<TLBool> messagesSetInlineBotResults(int flags, boolean gallery, boolean privat, long queryId, com.github.badoualy.telegram.tl.core.TLVector<com.github.badoualy.telegram.tl.api.TLInputBotInlineResult> results, int cacheTime, String nextOffset) throws IOException {
+        return executeRpcQuery(new TLRequestMessagesSetInlineBotResults(flags, gallery, privat, queryId, results, cacheTime, nextOffset));
+    }
+
+    @Override
+    public Observable<com.github.badoualy.telegram.tl.api.TLAbsUpdates> messagesSendInlineBotResult(int flags, boolean broadcast, com.github.badoualy.telegram.tl.api.TLAbsInputPeer peer, int replyToMsgId, long randomId, long queryId, String id) throws IOException {
+        return executeRpcQuery(new TLRequestMessagesSendInlineBotResult(flags, broadcast, peer, replyToMsgId, randomId, queryId, id));
     }
 
 }

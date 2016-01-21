@@ -16,16 +16,17 @@ import static com.github.badoualy.telegram.tl.StreamUtils.writeTLObject;
 
 
 public class TLUpdateNewMessage extends TLAbsUpdate {
-    public static final int CLASS_ID = 0x13abdb3;
+    public static final int CLASS_ID = 0x1f2b0afd;
 
     public TLUpdateNewMessage() {
 
     }
 
 
-    public TLUpdateNewMessage(        com.github.badoualy.telegram.tl.api.TLAbsMessage _message,         int _pts) {
+    public TLUpdateNewMessage(        com.github.badoualy.telegram.tl.api.TLAbsMessage _message,         int _pts,         int _ptsCount) {
         this.message = _message;
         this.pts = _pts;
+        this.ptsCount = _ptsCount;
 
     }
 
@@ -38,6 +39,8 @@ public class TLUpdateNewMessage extends TLAbsUpdate {
     protected com.github.badoualy.telegram.tl.api.TLAbsMessage message;
 
     protected int pts;
+
+    protected int ptsCount;
 
 
     public com.github.badoualy.telegram.tl.api.TLAbsMessage getMessage() {
@@ -56,12 +59,21 @@ public class TLUpdateNewMessage extends TLAbsUpdate {
         this.pts = value;
     }
 
+    public int getPtsCount() {
+        return ptsCount;
+    }
+
+    public void setPtsCount(int value) {
+        this.ptsCount = value;
+    }
+
 
     @Override
     public void serializeBody(OutputStream stream) throws IOException {
 
         writeTLObject(this.message, stream);
         writeInt(this.pts, stream);
+        writeInt(this.ptsCount, stream);
     }
 
 
@@ -70,13 +82,14 @@ public class TLUpdateNewMessage extends TLAbsUpdate {
 
         this.message = (com.github.badoualy.telegram.tl.api.TLAbsMessage)readTLObject(stream, context);
         this.pts = readInt(stream);
+        this.ptsCount = readInt(stream);
     }
 
 
 
     @Override
     public String toString() {
-        return "updateNewMessage#13abdb3";
+        return "updateNewMessage#1f2b0afd";
     }
 
 }

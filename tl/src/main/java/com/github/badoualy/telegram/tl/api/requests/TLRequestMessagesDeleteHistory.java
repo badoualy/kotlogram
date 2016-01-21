@@ -17,16 +17,16 @@ import static com.github.badoualy.telegram.tl.StreamUtils.writeTLObject;
 
 public class TLRequestMessagesDeleteHistory extends TLMethod<com.github.badoualy.telegram.tl.api.messages.TLAffectedHistory> {
 
-    public static final int CLASS_ID = 0xf4f8fb61;
+    public static final int CLASS_ID = 0xb7c13bd9;
 
     public int getClassId() {
         return CLASS_ID;
     }
 
 
-    public TLRequestMessagesDeleteHistory(        com.github.badoualy.telegram.tl.api.TLAbsInputPeer _peer,         int _offset) {
+    public TLRequestMessagesDeleteHistory(        com.github.badoualy.telegram.tl.api.TLAbsInputPeer _peer,         int _maxId) {
         this.peer = _peer;
-        this.offset = _offset;
+        this.maxId = _maxId;
 
     }
 
@@ -51,7 +51,7 @@ public class TLRequestMessagesDeleteHistory extends TLMethod<com.github.badoualy
 
     protected com.github.badoualy.telegram.tl.api.TLAbsInputPeer peer;
 
-    protected int offset;
+    protected int maxId;
 
 
     public com.github.badoualy.telegram.tl.api.TLAbsInputPeer getPeer() {
@@ -62,12 +62,12 @@ public class TLRequestMessagesDeleteHistory extends TLMethod<com.github.badoualy
         this.peer = value;
     }
 
-    public int getOffset() {
-        return offset;
+    public int getMaxId() {
+        return maxId;
     }
 
-    public void setOffset(int value) {
-        this.offset = value;
+    public void setMaxId(int value) {
+        this.maxId = value;
     }
 
 
@@ -75,7 +75,7 @@ public class TLRequestMessagesDeleteHistory extends TLMethod<com.github.badoualy
     public void serializeBody(OutputStream stream) throws IOException {
 
         writeTLObject(this.peer, stream);
-        writeInt(this.offset, stream);
+        writeInt(this.maxId, stream);
     }
 
 
@@ -83,14 +83,14 @@ public class TLRequestMessagesDeleteHistory extends TLMethod<com.github.badoualy
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
 
         this.peer = (com.github.badoualy.telegram.tl.api.TLAbsInputPeer)readTLObject(stream, context);
-        this.offset = readInt(stream);
+        this.maxId = readInt(stream);
     }
 
 
 
     @Override
     public String toString() {
-        return "messages.deleteHistory#f4f8fb61";
+        return "messages.deleteHistory#b7c13bd9";
     }
 
 }

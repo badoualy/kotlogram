@@ -1,4 +1,4 @@
-package com.github.badoualy.telegram.tl.builder
+package com.github.badoualy.telegram.tl.builder.poet
 
 import java.io.BufferedReader
 import java.io.File

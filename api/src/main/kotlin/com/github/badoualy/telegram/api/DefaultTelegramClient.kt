@@ -40,7 +40,7 @@ internal class DefaultTelegramClient internal constructor(application: TelegramA
                             return executeRpcQuery(method)
                         }
                     }
-                    throw exception.cause as IOException
+                    throw exception.cause as RpcErrorException
                 }
                 is IOException -> throw exception.cause as IOException
                 else -> throw exception

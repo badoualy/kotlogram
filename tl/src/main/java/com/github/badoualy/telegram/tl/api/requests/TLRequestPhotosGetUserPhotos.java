@@ -10,21 +10,23 @@ import java.io.InputStream;
 import java.io.OutputStream;
 
 import static com.github.badoualy.telegram.tl.StreamUtils.readInt;
+import static com.github.badoualy.telegram.tl.StreamUtils.readLong;
 import static com.github.badoualy.telegram.tl.StreamUtils.readTLObject;
 import static com.github.badoualy.telegram.tl.StreamUtils.writeInt;
+import static com.github.badoualy.telegram.tl.StreamUtils.writeLong;
 import static com.github.badoualy.telegram.tl.StreamUtils.writeTLObject;
 
 
 public class TLRequestPhotosGetUserPhotos extends TLMethod<com.github.badoualy.telegram.tl.api.photos.TLAbsPhotos> {
 
-    public static final int CLASS_ID = 0xb7ee553c;
+    public static final int CLASS_ID = 0x91cd32a8;
 
     public int getClassId() {
         return CLASS_ID;
     }
 
 
-    public TLRequestPhotosGetUserPhotos(        com.github.badoualy.telegram.tl.api.TLAbsInputUser _userId,         int _offset,         int _maxId,         int _limit) {
+    public TLRequestPhotosGetUserPhotos(        com.github.badoualy.telegram.tl.api.TLAbsInputUser _userId,         int _offset,         long _maxId,         int _limit) {
         this.userId = _userId;
         this.offset = _offset;
         this.maxId = _maxId;
@@ -55,7 +57,7 @@ public class TLRequestPhotosGetUserPhotos extends TLMethod<com.github.badoualy.t
 
     protected int offset;
 
-    protected int maxId;
+    protected long maxId;
 
     protected int limit;
 
@@ -76,11 +78,11 @@ public class TLRequestPhotosGetUserPhotos extends TLMethod<com.github.badoualy.t
         this.offset = value;
     }
 
-    public int getMaxId() {
+    public long getMaxId() {
         return maxId;
     }
 
-    public void setMaxId(int value) {
+    public void setMaxId(long value) {
         this.maxId = value;
     }
 
@@ -98,7 +100,7 @@ public class TLRequestPhotosGetUserPhotos extends TLMethod<com.github.badoualy.t
 
         writeTLObject(this.userId, stream);
         writeInt(this.offset, stream);
-        writeInt(this.maxId, stream);
+        writeLong(this.maxId, stream);
         writeInt(this.limit, stream);
     }
 
@@ -108,7 +110,7 @@ public class TLRequestPhotosGetUserPhotos extends TLMethod<com.github.badoualy.t
 
         this.userId = (com.github.badoualy.telegram.tl.api.TLAbsInputUser)readTLObject(stream, context);
         this.offset = readInt(stream);
-        this.maxId = readInt(stream);
+        this.maxId = readLong(stream);
         this.limit = readInt(stream);
     }
 
@@ -116,7 +118,7 @@ public class TLRequestPhotosGetUserPhotos extends TLMethod<com.github.badoualy.t
 
     @Override
     public String toString() {
-        return "photos.getUserPhotos#b7ee553c";
+        return "photos.getUserPhotos#91cd32a8";
     }
 
 }

@@ -16,14 +16,14 @@ import static com.github.badoualy.telegram.tl.StreamUtils.writeTLObject;
 
 
 public class TLUpdateContactLink extends TLAbsUpdate {
-    public static final int CLASS_ID = 0x51a48a9a;
+    public static final int CLASS_ID = 0x9d2e67c5;
 
     public TLUpdateContactLink() {
 
     }
 
 
-    public TLUpdateContactLink(        int _userId,         com.github.badoualy.telegram.tl.api.contacts.TLAbsMyLink _myLink,         com.github.badoualy.telegram.tl.api.contacts.TLAbsForeignLink _foreignLink) {
+    public TLUpdateContactLink(        int _userId,         com.github.badoualy.telegram.tl.api.TLAbsContactLink _myLink,         com.github.badoualy.telegram.tl.api.TLAbsContactLink _foreignLink) {
         this.userId = _userId;
         this.myLink = _myLink;
         this.foreignLink = _foreignLink;
@@ -38,9 +38,9 @@ public class TLUpdateContactLink extends TLAbsUpdate {
 
     protected int userId;
 
-    protected com.github.badoualy.telegram.tl.api.contacts.TLAbsMyLink myLink;
+    protected com.github.badoualy.telegram.tl.api.TLAbsContactLink myLink;
 
-    protected com.github.badoualy.telegram.tl.api.contacts.TLAbsForeignLink foreignLink;
+    protected com.github.badoualy.telegram.tl.api.TLAbsContactLink foreignLink;
 
 
     public int getUserId() {
@@ -51,19 +51,19 @@ public class TLUpdateContactLink extends TLAbsUpdate {
         this.userId = value;
     }
 
-    public com.github.badoualy.telegram.tl.api.contacts.TLAbsMyLink getMyLink() {
+    public com.github.badoualy.telegram.tl.api.TLAbsContactLink getMyLink() {
         return myLink;
     }
 
-    public void setMyLink(com.github.badoualy.telegram.tl.api.contacts.TLAbsMyLink value) {
+    public void setMyLink(com.github.badoualy.telegram.tl.api.TLAbsContactLink value) {
         this.myLink = value;
     }
 
-    public com.github.badoualy.telegram.tl.api.contacts.TLAbsForeignLink getForeignLink() {
+    public com.github.badoualy.telegram.tl.api.TLAbsContactLink getForeignLink() {
         return foreignLink;
     }
 
-    public void setForeignLink(com.github.badoualy.telegram.tl.api.contacts.TLAbsForeignLink value) {
+    public void setForeignLink(com.github.badoualy.telegram.tl.api.TLAbsContactLink value) {
         this.foreignLink = value;
     }
 
@@ -81,15 +81,15 @@ public class TLUpdateContactLink extends TLAbsUpdate {
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
 
         this.userId = readInt(stream);
-        this.myLink = (com.github.badoualy.telegram.tl.api.contacts.TLAbsMyLink)readTLObject(stream, context);
-        this.foreignLink = (com.github.badoualy.telegram.tl.api.contacts.TLAbsForeignLink)readTLObject(stream, context);
+        this.myLink = (com.github.badoualy.telegram.tl.api.TLAbsContactLink)readTLObject(stream, context);
+        this.foreignLink = (com.github.badoualy.telegram.tl.api.TLAbsContactLink)readTLObject(stream, context);
     }
 
 
 
     @Override
     public String toString() {
-        return "updateContactLink#51a48a9a";
+        return "updateContactLink#9d2e67c5";
     }
 
 }
