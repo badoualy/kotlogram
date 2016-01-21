@@ -1,5 +1,6 @@
 package com.github.badoualy.telegram.mtproto.transport
 
+import com.github.badoualy.telegram.mtproto.util.Log
 import com.github.badoualy.telegram.tl.StreamUtils.*
 import java.io.ByteArrayOutputStream
 import java.io.IOException
@@ -11,6 +12,8 @@ import java.net.Socket
 class MTProtoTcpConnection
 @Throws(IOException::class)
 @JvmOverloads constructor(ip: String, port: Int, abridgedProtocol: Boolean = true) : MTProtoConnection {
+
+    private val TAG = javaClass.simpleName
 
     private val socket: Socket
     private val outStream: OutputStream
@@ -28,7 +31,7 @@ class MTProtoTcpConnection
         if (abridgedProtocol)
             outStream.write(239) // @see https://core.telegram.org/mtproto/samples-auth_key
 
-        println("Connected to $ip:$port")
+        Log.d(TAG, "Connected to $ip:$port")
     }
 
     @Throws(IOException::class)
@@ -78,5 +81,8 @@ class MTProtoTcpConnection
     }
 
     @Throws(IOException::class)
-    override fun close() = socket.close()
+    override fun close() {
+        Log.d(TAG, "Closing connection")
+        socket.close()
+    }
 }
