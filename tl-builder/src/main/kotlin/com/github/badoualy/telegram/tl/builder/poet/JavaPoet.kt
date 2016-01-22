@@ -51,6 +51,73 @@ object JavaPoet {
         println("Generated $totalClass classes")
     }
 
+    private fun writeConstructors() {
+        val constructors = tlDefinition.constructors.sorted()
+        println("${constructors.size} constructors")
+
+        // Compute abstraction classes (multiple constructors for 1 type)
+        val typeOccurrences = HashMap<TLType, Int>(tlDefinition.types.size)
+        constructors.map { c -> c.tlType }.forEach { t -> typeOccurrences.put(t, typeOccurrences.getOrDefault(t, 0) + 1) }
+        val nonAbstractedConstructors = constructors.filter { c -> typeOccurrences[c.tlType]!! == 1 } // No need for abstraction
+        val abstractedConstructors = constructors.filter { c -> typeOccurrences[c.tlType]!! > 1 } // Need abstraction
+        val abstractConstructors = ArrayList<TLAbstractConstructor>() // Fake constructor created by us
+
+        contextConstructors.addAll(nonAbstractedConstructors)
+        contextConstructors.addAll(abstractedConstructors)
+
+        // Build AbstractConstructor
+        // Check common parameters
+        for (abstractType in abstractedConstructors.map { c -> c.tlType }.distinct()) {
+            val typeConstructors = abstractedConstructors.filter { c -> c.tlType == abstractType }
+            val commonParameters = typeConstructors.map { c -> c.parameters }.reduce { l1, l2 -> l1.intersect(l2).toArrayList() }
+            abstractConstructors.add(TLAbstractConstructor(abstractType.name, commonParameters, abstractType))
+            commonParameters.forEach { p -> p.inherited = true }
+        }
+
+        // Some logging
+        totalClass += nonAbstractedConstructors.size
+        totalClass += abstractedConstructors.size
+        totalClass += abstractConstructors.size
+        println("${abstractConstructors.size} abstract classes")
+        println("${nonAbstractedConstructors.size} \"direct\" classes")
+        println("${abstractedConstructors.size} child classes")
+        println("Total ${constructors.size + abstractConstructors.size} constructors related classes")
+
+        // Build all classname first to be able to retrieve them when referenced in other classes
+        nonAbstractedConstructors.forEach { constructor ->
+            val clazzName = ClassName.get(packageName(constructor.name), className(constructor.name))
+            typeClassNameMap.put(constructor.tlType, clazzName)
+            constructorClassNameMap.put(constructor, clazzName)
+        }
+        abstractConstructors.forEach { constructor -> typeClassNameMap.put(constructor.tlType, ClassName.get(packageName(constructor.name), className(constructor.name, abstract = true))) }
+        abstractedConstructors.forEach { constructor -> constructorClassNameMap.put(constructor, ClassName.get(packageName(constructor.name), className(constructor.name))) }
+
+        // Build classes
+        nonAbstractedConstructors.forEach { constructor -> writeClassToFile(JavaPoet.packageName(constructor.name), generateConstructorClass(constructor)) }
+        abstractConstructors.forEach { constructor -> writeClassToFile(JavaPoet.packageName(constructor.name), generateAbstractConstructorClass(constructor)) }
+        abstractedConstructors.forEach { constructor -> writeClassToFile(JavaPoet.packageName(constructor.name), generateConstructorClass(constructor, typeClassNameMap[constructor.tlType]!!)) }
+    }
+
+    private fun writeMethods() {
+        val methods = tlDefinition.methods.sorted()
+        totalClass += methods.size
+        println("${methods.size} methods related classes")
+
+        apiWrappedClazz.addMethod(MethodSpec.methodBuilder("executeRpcQuery")
+                .addException(IOException::class.java)
+                .addModifiers(Modifier.PUBLIC, Modifier.ABSTRACT)
+                .addTypeVariable(TypeVariableName.get("T", TYPE_TL_OBJECT))
+                .returns(TypeVariableName.get("T"))
+                .addParameter(ParameterizedTypeName.get(TYPE_TL_METHOD, TypeVariableName.get("T")), "method")
+                .build())
+
+        methods.forEach { method -> writeClassToFile(PACKAGE_TL_API_REQUEST, generateMethodClass(method)) }
+
+        writeClassToFile(PACKAGE_TL_API, apiClazz.build())
+        writeClassToFile(PACKAGE_TL_API, apiWrappedClazz.build())
+        totalClass += 2
+    }
+
     private fun writeContext() {
         val contextClazz = TypeSpec.classBuilder(TL_API_CONTEXT)
                 .addModifiers(Modifier.PUBLIC)
@@ -73,123 +140,14 @@ object JavaPoet {
                 .build())
 
         val methodBuilder = MethodSpec.methodBuilder("init").addModifiers(Modifier.PUBLIC).addAnnotation(Override::class.java)
-
         for (constructor in contextConstructors.sorted()) {
             val clazzName = constructorClassNameMap[constructor]!!
             methodBuilder.addStatement("registerClass(0x" + hex(constructor.id) + ", \$T.class" + ")", clazzName)
         }
-
         contextClazz.addMethod(methodBuilder.build())
 
         writeClassToFile(PACKAGE_TL_API, contextClazz.build())
         totalClass++
-    }
-
-    private fun writeConstructors() {
-        val constructors = tlDefinition.constructors.sorted()
-        println("${constructors.size} constructors")
-
-        // Compute abstraction classes (multiple constructors for 1 type)
-        val typeOccurrences = HashMap<TLType, Int>(tlDefinition.types.size)
-        constructors.map { c -> c.tlType }.forEach { t -> typeOccurrences.put(t, typeOccurrences.getOrDefault(t, 0) + 1) }
-        val nonAbstractedConstructors = constructors.filter { c -> typeOccurrences[c.tlType]!! == 1 } // No need for abstraction
-        val abstractedConstructors = constructors.filter { c -> typeOccurrences[c.tlType]!! > 1 } // Need abstraction
-        val abstractConstructors = ArrayList<TLAbstractConstructor>() // Fake constructor created by us
-
-        contextConstructors.addAll(nonAbstractedConstructors)
-        contextConstructors.addAll(abstractedConstructors)
-
-        // Build AbstractConstructor
-        // Check common parameter, switch them in super-class
-        for (abstractType in abstractedConstructors.map { c -> c.tlType }.distinct()) {
-            val typeConstructors = abstractedConstructors.filter { c -> c.tlType == abstractType }
-            val commonParameters = typeConstructors.map { c -> c.parameters }.reduce { l1, l2 -> l1.intersect(l2).toArrayList() }
-            abstractConstructors.add(TLAbstractConstructor(abstractType.name, commonParameters, abstractType))
-            commonParameters.forEach { p -> p.inherited = true }
-        }
-
-        totalClass += nonAbstractedConstructors.size
-        totalClass += abstractedConstructors.size
-        totalClass += abstractConstructors.size
-        println("${abstractConstructors.size} abstract classes")
-        println("${nonAbstractedConstructors.size} \"direct\" classes")
-        println("${abstractedConstructors.size} child classes")
-        println("Total ${constructors.size + abstractConstructors.size} constructors related classes")
-
-        // Build all classname first
-        nonAbstractedConstructors.forEach { constructor ->
-            val clazzName = ClassName.get(packageName(constructor.name), className(constructor.name))
-            typeClassNameMap.put(constructor.tlType, clazzName)
-            constructorClassNameMap.put(constructor, clazzName)
-        }
-        abstractConstructors.forEach { constructor ->
-            typeClassNameMap.put(constructor.tlType, ClassName.get(packageName(constructor.name), className(constructor.name, abstract = true)))
-        }
-        abstractedConstructors.forEach { constructor ->
-            val clazzName = ClassName.get(packageName(constructor.name), className(constructor.name))
-            constructorClassNameMap.put(constructor, clazzName)
-        }
-
-        // Build classes
-        nonAbstractedConstructors.forEach { constructor ->
-            val packageName = packageName(constructor.name)
-            val clazz = generateConstructorClass(constructor)
-            writeClassToFile(packageName, clazz)
-        }
-        abstractConstructors.forEach { constructor ->
-            val packageName = packageName(constructor.name)
-            val clazz = generateAbstractConstructorClass(constructor)
-            writeClassToFile(packageName, clazz)
-        }
-        abstractedConstructors.forEach { constructor ->
-            val packageName = packageName(constructor.name)
-            val clazz = generateConstructorClass(constructor, typeClassNameMap[constructor.tlType]!!)
-            writeClassToFile(packageName, clazz)
-        }
-    }
-
-    private fun writeMethods() {
-        val methods = tlDefinition.methods.sorted()
-        totalClass += methods.size
-        println("${methods.size} methods related classes")
-
-        apiWrappedClazz.addMethod(MethodSpec.methodBuilder("executeRpcQuery")
-                .addException(IOException::class.java)
-                .addModifiers(Modifier.PUBLIC, Modifier.ABSTRACT)
-                .addTypeVariable(TypeVariableName.get("T", TYPE_TL_OBJECT))
-                .returns(TypeVariableName.get("T"))
-                .addParameter(ParameterizedTypeName.get(TYPE_TL_METHOD, TypeVariableName.get("T")), "method")
-                .build())
-
-        methods.forEach { method ->
-            val packageName = PACKAGE_TL_API_REQUEST
-            val clazz = generateMethodClass(method)
-            writeClassToFile(packageName, clazz)
-        }
-
-        totalClass += 2
-        writeClassToFile(PACKAGE_TL_API, apiClazz.build())
-        writeClassToFile(PACKAGE_TL_API, apiWrappedClazz.build())
-    }
-
-    private fun writeClassToFile(packageName: String, clazz: TypeSpec) {
-        JavaFile.builder(packageName, clazz)
-                .addStaticImport(TYPE_STREAM_UTILS, "*")
-                .indent("    ")
-                .build().writeTo(File(OUTPUT))
-    }
-
-    private fun className(typeName: String, abstract: Boolean = false, request: Boolean = false) = when {
-        abstract -> "TLAbs${typeName.split('.').last().uFirstLetter()}"
-        request -> "TLRequest${typeName.uCamelCase()}"
-        else -> "TL${typeName.split('.').last().uFirstLetter()}"
-    }
-
-    private fun packageName(typeName: String): String {
-        var suffix = ""
-        val subPackage = typeName.split('.').dropLast(1).joinToString(".")
-        if (subPackage.isNotBlank()) suffix += ".$subPackage"
-        return PACKAGE_TL_API + suffix
     }
 
     private fun generateAbstractConstructorClass(constructor: TLAbstractConstructor): TypeSpec {
@@ -449,4 +407,23 @@ object JavaPoet {
                 .build()
     }
 
+    private fun writeClassToFile(packageName: String, clazz: TypeSpec) {
+        JavaFile.builder(packageName, clazz)
+                .addStaticImport(TYPE_STREAM_UTILS, "*")
+                .indent("    ")
+                .build().writeTo(File(OUTPUT))
+    }
+
+    private fun className(typeName: String, abstract: Boolean = false, request: Boolean = false) = when {
+        abstract -> "TLAbs${typeName.split('.').last().uFirstLetter()}"
+        request -> "TLRequest${typeName.uCamelCase()}"
+        else -> "TL${typeName.split('.').last().uFirstLetter()}"
+    }
+
+    private fun packageName(typeName: String): String {
+        var suffix = ""
+        val subPackage = typeName.split('.').dropLast(1).joinToString(".")
+        if (subPackage.isNotBlank()) suffix += ".$subPackage"
+        return PACKAGE_TL_API + suffix
+    }
 }

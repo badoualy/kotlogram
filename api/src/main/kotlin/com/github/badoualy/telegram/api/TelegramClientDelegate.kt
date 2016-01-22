@@ -72,7 +72,7 @@ internal class TelegramClientDelegateImpl(override val application: TelegramApp,
             // Call to initConnection to setup information about this app for the user to see in "active sessions"
             // Also will indicate to Telegram which layer to use through InvokeWithLayer
             val nearestDc = mtProtoHandler!!
-                    .executeMethod(TLRequestInvokeWithLayer(23, TLRequestInitConnection(application.apiId, application.deviceModel, application.systemVersion, application.appVersion, application.langCode, TLRequestHelpGetNearestDc())))
+                    .executeMethod(TLRequestInvokeWithLayer(45, TLRequestInitConnection(application.apiId, application.deviceModel, application.systemVersion, application.appVersion, application.langCode, TLRequestHelpGetNearestDc())))
                     .toBlocking().first()
             if (checkNearestDc)
                 checkNearestDc(nearestDc)

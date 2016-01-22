@@ -7,28 +7,32 @@ import com.github.badoualy.telegram.api.TelegramClient;
 import com.github.badoualy.telegram.mtproto.DataCenter;
 import com.github.badoualy.telegram.mtproto.auth.AuthKey;
 import com.github.badoualy.telegram.mtproto.exception.RpcErrorException;
-import com.github.badoualy.telegram.mtproto.tl.MTRpcError;
-import com.github.badoualy.telegram.tl.api.TLAbsMessage;
-import com.github.badoualy.telegram.tl.api.TLAbsUserProfilePhoto;
 import com.github.badoualy.telegram.tl.api.TLFileLocation;
 import com.github.badoualy.telegram.tl.api.TLInputFileLocation;
+import com.github.badoualy.telegram.tl.api.TLUser;
 import com.github.badoualy.telegram.tl.api.TLUserProfilePhoto;
-import com.github.badoualy.telegram.tl.api.TLUserSelf;
 import com.github.badoualy.telegram.tl.api.auth.TLAbsSentCode;
 import com.github.badoualy.telegram.tl.api.auth.TLAuthorization;
-import com.github.badoualy.telegram.tl.api.messages.TLAbsDialogs;
 import com.github.badoualy.telegram.tl.api.upload.TLFile;
 
 import org.apache.commons.io.FileUtils;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Scanner;
 
-import static com.github.badoualy.telegram.C.*;
+import static com.github.badoualy.telegram.C.API_HASH;
+import static com.github.badoualy.telegram.C.API_ID;
+import static com.github.badoualy.telegram.C.APP_VERSION;
+import static com.github.badoualy.telegram.C.AUTH_KEY_FILE;
+import static com.github.badoualy.telegram.C.LANG_CODE;
+import static com.github.badoualy.telegram.C.MODEL;
+import static com.github.badoualy.telegram.C.NEAREST_DC_FILE;
+import static com.github.badoualy.telegram.C.PHONE_NUMBER;
+import static com.github.badoualy.telegram.C.PHOTO_FILE;
+import static com.github.badoualy.telegram.C.SYSTEM_VERSION;
 
 public class KotlogramSample {
 
@@ -45,7 +49,7 @@ public class KotlogramSample {
             System.out.println("Authentication code: ");
             String code = new Scanner(System.in).nextLine();
             TLAuthorization authorization = client.authSignIn(PHONE_NUMBER, sentCode.getPhoneCodeHash(), code);
-            TLUserSelf self = (TLUserSelf) authorization.getUser();
+            TLUser self = (TLUser) authorization.getUser();
             System.out.println("You are now signed in as " + self.getFirstName() + " " + self.getLastName());
             // Start making cool stuff!
 

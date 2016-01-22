@@ -4,6 +4,7 @@ import com.fasterxml.jackson.databind.JsonNode
 import com.github.badoualy.telegram.tl.builder.parser.BuiltInTypes
 import com.github.badoualy.telegram.tl.builder.parser.IgnoredTypes
 import com.github.badoualy.telegram.tl.builder.parser.SupportedGenericTypes
+import com.github.badoualy.telegram.tl.builder.poet.JavaPoet
 import java.util.*
 
 private val genericRegex = Regex("([a-zA-Z]+)<([a-zA-Z]+)>") // Vector<SomeKindOfType>
@@ -53,27 +54,27 @@ fun buildFromJson(root: JsonNode): TLDefinition {
         val type = method["type"].textValue()
         var tlType = createType(type, types, false)
 
-        var constructorParameters = ArrayList<TLParameter>()
+        var methodParameters = ArrayList<TLParameter>()
         for (p in method["params"]) {
             var pName = p["name"]!!.textValue().toString()
             var pType = p["type"]!!.textValue().toString()
             val pTlType = createType(pType, types)
 
-            constructorParameters.add(TLParameter(pName, pTlType))
+            methodParameters.add(TLParameter(pName, pTlType))
         }
 
-        methods.add(TLMethod(name, id, constructorParameters, tlType))
+        methods.add(TLMethod(name, id, methodParameters, tlType))
     }
 
     return TLDefinition(types, constructors, methods)
 }
 
-fun createConstructorType(typeName: String): TLTypeRaw = when {
+private fun createConstructorType(typeName: String): TLTypeRaw = when {
     typeName.matches(rawRegex) -> TLTypeRaw(typeName)
     else -> throw RuntimeException("Unsupported type $typeName for constructor/method}")
 }
 
-fun createType(typeName: String, types: Map<String, TLTypeRaw>, isParameter: Boolean = true): TLType = when {
+private fun createType(typeName: String, types: Map<String, TLTypeRaw>, isParameter: Boolean = true): TLType = when {
     !isParameter && typeName == "X" -> TLTypeAny()
     isParameter && typeName == "!X" -> TLTypeFunctional()
     isParameter && typeName == "#" -> TLTypeFlag()
