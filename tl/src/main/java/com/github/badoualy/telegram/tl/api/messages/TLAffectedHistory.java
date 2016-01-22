@@ -1,38 +1,22 @@
-
 package com.github.badoualy.telegram.tl.api.messages;
+
+import static com.github.badoualy.telegram.tl.StreamUtils.*;
 
 import com.github.badoualy.telegram.tl.TLContext;
 import com.github.badoualy.telegram.tl.core.TLObject;
-
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.lang.Override;
+import java.lang.String;
+import java.lang.SuppressWarnings;
 
-import static com.github.badoualy.telegram.tl.StreamUtils.readInt;
-import static com.github.badoualy.telegram.tl.StreamUtils.writeInt;
-
-
+/**
+ * @author Yannick Badoual yann.badoual@gmail.com
+ * @see <a href="http://github.com/badoualy/kotlogram">http://github.com/badoualy/kotlogram</a>
+ */
 public class TLAffectedHistory extends TLObject {
-
     public static final int CLASS_ID = 0xb45c69d1;
-
-    public TLAffectedHistory() {
-
-    }
-
-
-    public TLAffectedHistory(        int _pts,         int _ptsCount,         int _offset) {
-        this.pts = _pts;
-        this.ptsCount = _ptsCount;
-        this.offset = _offset;
-
-    }
-
-
-    public int getClassId() {
-        return CLASS_ID;
-    }
-
 
     protected int pts;
 
@@ -40,53 +24,61 @@ public class TLAffectedHistory extends TLObject {
 
     protected int offset;
 
-
-    public int getPts() {
-        return pts;
+    public TLAffectedHistory() {
     }
 
-    public void setPts(int value) {
-        this.pts = value;
+    public TLAffectedHistory(int pts, int ptsCount, int offset) {
+        this.pts = pts;
+        this.ptsCount = ptsCount;
+        this.offset = offset;
     }
-
-    public int getPtsCount() {
-        return ptsCount;
-    }
-
-    public void setPtsCount(int value) {
-        this.ptsCount = value;
-    }
-
-    public int getOffset() {
-        return offset;
-    }
-
-    public void setOffset(int value) {
-        this.offset = value;
-    }
-
 
     @Override
     public void serializeBody(OutputStream stream) throws IOException {
-
-        writeInt(this.pts, stream);
-        writeInt(this.ptsCount, stream);
-        writeInt(this.offset, stream);
+        writeInt(pts, stream);
+        writeInt(ptsCount, stream);
+        writeInt(offset, stream);
     }
-
 
     @Override
+    @SuppressWarnings("unchecked")
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
-
-        this.pts = readInt(stream);
-        this.ptsCount = readInt(stream);
-        this.offset = readInt(stream);
+        pts = readInt(stream);
+        ptsCount = readInt(stream);
+        offset = readInt(stream);
     }
-
 
     @Override
     public String toString() {
         return "messages.affectedHistory#b45c69d1";
     }
 
+    @Override
+    public int getClassId() {
+        return CLASS_ID;
+    }
+
+    public int getPts() {
+        return pts;
+    }
+
+    public void setPts(int pts) {
+        this.pts = pts;
+    }
+
+    public int getPtsCount() {
+        return ptsCount;
+    }
+
+    public void setPtsCount(int ptsCount) {
+        this.ptsCount = ptsCount;
+    }
+
+    public int getOffset() {
+        return offset;
+    }
+
+    public void setOffset(int offset) {
+        this.offset = offset;
+    }
 }

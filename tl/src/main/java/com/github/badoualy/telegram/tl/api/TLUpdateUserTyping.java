@@ -1,82 +1,70 @@
-
 package com.github.badoualy.telegram.tl.api;
 
+import static com.github.badoualy.telegram.tl.StreamUtils.*;
 
 import com.github.badoualy.telegram.tl.TLContext;
-
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.lang.Override;
+import java.lang.String;
+import java.lang.SuppressWarnings;
 
-import static com.github.badoualy.telegram.tl.StreamUtils.readInt;
-import static com.github.badoualy.telegram.tl.StreamUtils.readTLObject;
-import static com.github.badoualy.telegram.tl.StreamUtils.writeInt;
-import static com.github.badoualy.telegram.tl.StreamUtils.writeTLObject;
-
-
-
+/**
+ * @author Yannick Badoual yann.badoual@gmail.com
+ * @see <a href="http://github.com/badoualy/kotlogram">http://github.com/badoualy/kotlogram</a>
+ */
 public class TLUpdateUserTyping extends TLAbsUpdate {
     public static final int CLASS_ID = 0x5c486927;
 
-    public TLUpdateUserTyping() {
-
-    }
-
-
-    public TLUpdateUserTyping(        int _userId,         com.github.badoualy.telegram.tl.api.TLAbsSendMessageAction _action) {
-        this.userId = _userId;
-        this.action = _action;
-
-    }
-
-
-    public int getClassId() {
-        return CLASS_ID;
-    }
-
-
     protected int userId;
 
-    protected com.github.badoualy.telegram.tl.api.TLAbsSendMessageAction action;
+    protected TLAbsSendMessageAction action;
 
-
-    public int getUserId() {
-        return userId;
+    public TLUpdateUserTyping() {
     }
 
-    public void setUserId(int value) {
-        this.userId = value;
+    public TLUpdateUserTyping(int userId, TLAbsSendMessageAction action) {
+        this.userId = userId;
+        this.action = action;
     }
-
-    public com.github.badoualy.telegram.tl.api.TLAbsSendMessageAction getAction() {
-        return action;
-    }
-
-    public void setAction(com.github.badoualy.telegram.tl.api.TLAbsSendMessageAction value) {
-        this.action = value;
-    }
-
 
     @Override
     public void serializeBody(OutputStream stream) throws IOException {
-
-        writeInt(this.userId, stream);
-        writeTLObject(this.action, stream);
+        writeInt(userId, stream);
+        writeTLObject(action, stream);
     }
-
 
     @Override
+    @SuppressWarnings("unchecked")
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
-
-        this.userId = readInt(stream);
-        this.action = (com.github.badoualy.telegram.tl.api.TLAbsSendMessageAction)readTLObject(stream, context);
+        userId = readInt(stream);
+        action = (com.github.badoualy.telegram.tl.api.TLAbsSendMessageAction) readTLObject(stream, context);
     }
-
-
 
     @Override
     public String toString() {
         return "updateUserTyping#5c486927";
     }
 
+    @Override
+    public int getClassId() {
+        return CLASS_ID;
+    }
+
+    public int getUserId() {
+        return userId;
+    }
+
+    public void setUserId(int userId) {
+        this.userId = userId;
+    }
+
+    public TLAbsSendMessageAction getAction() {
+        return action;
+    }
+
+    public void setAction(TLAbsSendMessageAction action) {
+        this.action = action;
+    }
 }

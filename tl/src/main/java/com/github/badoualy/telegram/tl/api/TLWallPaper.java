@@ -1,80 +1,91 @@
-
 package com.github.badoualy.telegram.tl.api;
 
+import static com.github.badoualy.telegram.tl.StreamUtils.*;
 
 import com.github.badoualy.telegram.tl.TLContext;
-
+import com.github.badoualy.telegram.tl.core.TLVector;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.lang.Override;
+import java.lang.String;
+import java.lang.SuppressWarnings;
 
-import static com.github.badoualy.telegram.tl.StreamUtils.readInt;
-import static com.github.badoualy.telegram.tl.StreamUtils.readTLString;
-import static com.github.badoualy.telegram.tl.StreamUtils.readTLVector;
-import static com.github.badoualy.telegram.tl.StreamUtils.writeInt;
-import static com.github.badoualy.telegram.tl.StreamUtils.writeTLString;
-import static com.github.badoualy.telegram.tl.StreamUtils.writeTLVector;
-
-
-
+/**
+ * @author Yannick Badoual yann.badoual@gmail.com
+ * @see <a href="http://github.com/badoualy/kotlogram">http://github.com/badoualy/kotlogram</a>
+ */
 public class TLWallPaper extends TLAbsWallPaper {
     public static final int CLASS_ID = 0xccb03657;
 
+    protected TLVector<TLAbsPhotoSize> sizes;
+
     public TLWallPaper() {
-
     }
 
-
-    public TLWallPaper(        int _id,         String _title,         com.github.badoualy.telegram.tl.core.TLVector<com.github.badoualy.telegram.tl.api.TLAbsPhotoSize> _sizes,         int _color) {
-        this.id = _id;
-        this.title = _title;
-        this.sizes = _sizes;
-        this.color = _color;
-
+    public TLWallPaper(int id, String title, TLVector<TLAbsPhotoSize> sizes, int color) {
+        this.id = id;
+        this.title = title;
+        this.sizes = sizes;
+        this.color = color;
     }
-
-
-    public int getClassId() {
-        return CLASS_ID;
-    }
-
-
-    protected com.github.badoualy.telegram.tl.core.TLVector<com.github.badoualy.telegram.tl.api.TLAbsPhotoSize> sizes;
-
-
-    public com.github.badoualy.telegram.tl.core.TLVector<com.github.badoualy.telegram.tl.api.TLAbsPhotoSize> getSizes() {
-        return sizes;
-    }
-
-    public void setSizes(com.github.badoualy.telegram.tl.core.TLVector<com.github.badoualy.telegram.tl.api.TLAbsPhotoSize> value) {
-        this.sizes = value;
-    }
-
 
     @Override
     public void serializeBody(OutputStream stream) throws IOException {
-
-        writeInt(this.id, stream);
-        writeTLString(this.title, stream);
-        writeTLVector(this.sizes, stream);
-        writeInt(this.color, stream);
+        writeInt(id, stream);
+        writeTLString(title, stream);
+        writeTLVector(sizes, stream);
+        writeInt(color, stream);
     }
-
 
     @Override
+    @SuppressWarnings("unchecked")
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
-
-        this.id = readInt(stream);
-        this.title = readTLString(stream);
-        this.sizes = readTLVector(stream, context);
-        this.color = readInt(stream);
+        id = readInt(stream);
+        title = readTLString(stream);
+        sizes = readTLVector(stream, context);
+        color = readInt(stream);
     }
-
-
 
     @Override
     public String toString() {
         return "wallPaper#ccb03657";
     }
 
+    @Override
+    public int getClassId() {
+        return CLASS_ID;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public TLVector<TLAbsPhotoSize> getSizes() {
+        return sizes;
+    }
+
+    public void setSizes(TLVector<TLAbsPhotoSize> sizes) {
+        this.sizes = sizes;
+    }
+
+    public int getColor() {
+        return color;
+    }
+
+    public void setColor(int color) {
+        this.color = color;
+    }
 }

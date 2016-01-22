@@ -1,44 +1,21 @@
-
 package com.github.badoualy.telegram.tl.api;
 
+import static com.github.badoualy.telegram.tl.StreamUtils.*;
 
 import com.github.badoualy.telegram.tl.TLContext;
-
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.lang.Override;
+import java.lang.String;
+import java.lang.SuppressWarnings;
 
-import static com.github.badoualy.telegram.tl.StreamUtils.readInt;
-import static com.github.badoualy.telegram.tl.StreamUtils.readTLString;
-import static com.github.badoualy.telegram.tl.StreamUtils.writeInt;
-import static com.github.badoualy.telegram.tl.StreamUtils.writeTLBool;
-import static com.github.badoualy.telegram.tl.StreamUtils.writeTLString;
-
-
-
+/**
+ * @author Yannick Badoual yann.badoual@gmail.com
+ * @see <a href="http://github.com/badoualy/kotlogram">http://github.com/badoualy/kotlogram</a>
+ */
 public class TLChatInvite extends TLAbsChatInvite {
     public static final int CLASS_ID = 0x93e99b60;
-
-    public TLChatInvite() {
-
-    }
-
-
-    public TLChatInvite(        int _flags,         boolean _channel,         boolean _broadcast,         boolean _publi,         boolean _megagroup,         String _title) {
-        this.flags = _flags;
-        this.channel = _channel;
-        this.broadcast = _broadcast;
-        this.publi = _publi;
-        this.megagroup = _megagroup;
-        this.title = _title;
-
-    }
-
-
-    public int getClassId() {
-        return CLASS_ID;
-    }
-
 
     protected int flags;
 
@@ -46,98 +23,100 @@ public class TLChatInvite extends TLAbsChatInvite {
 
     protected boolean broadcast;
 
-    protected boolean publi;
+    protected boolean _public;
 
     protected boolean megagroup;
 
     protected String title;
 
-
-    public int getFlags() {
-        return flags;
+    public TLChatInvite() {
     }
 
-    public void setFlags(int value) {
-        this.flags = value;
+    public TLChatInvite(int flags, boolean channel, boolean broadcast, boolean _public, boolean megagroup, String title) {
+        this.flags = flags;
+        this.channel = channel;
+        this.broadcast = broadcast;
+        this._public = _public;
+        this.megagroup = megagroup;
+        this.title = title;
     }
-
-    public boolean getChannel() {
-        return channel;
-    }
-
-    public void setChannel(boolean value) {
-        this.channel = value;
-    }
-
-    public boolean getBroadcast() {
-        return broadcast;
-    }
-
-    public void setBroadcast(boolean value) {
-        this.broadcast = value;
-    }
-
-    public boolean getPubli() {
-        return publi;
-    }
-
-    public void setPubli(boolean value) {
-        this.publi = value;
-    }
-
-    public boolean getMegagroup() {
-        return megagroup;
-    }
-
-    public void setMegagroup(boolean value) {
-        this.megagroup = value;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String value) {
-        this.title = value;
-    }
-
 
     @Override
     public void serializeBody(OutputStream stream) throws IOException {
-
-        flags = channel ? (flags | 1) : (flags &~ 1);
-        flags = broadcast ? (flags | 2) : (flags &~ 2);
-        flags = publi ? (flags | 4) : (flags &~ 4);
-        flags = megagroup ? (flags | 8) : (flags &~ 8);
-        writeInt(this.flags, stream);
-        if ((this.flags & 1) != 0)
-            writeTLBool(this.channel, stream);
-        if ((this.flags & 2) != 0)
-            writeTLBool(this.broadcast, stream);
-        if ((this.flags & 4) != 0)
-            writeTLBool(this.publi, stream);
-        if ((this.flags & 8) != 0)
-            writeTLBool(this.megagroup, stream);
-        writeTLString(this.title, stream);
+        writeInt(flags, stream);
+        if ((flags & 1) != 0) writeTLBool(channel, stream);
+        if ((flags & 2) != 0) writeTLBool(broadcast, stream);
+        if ((flags & 4) != 0) writeTLBool(_public, stream);
+        if ((flags & 8) != 0) writeTLBool(megagroup, stream);
+        writeTLString(title, stream);
     }
-
 
     @Override
+    @SuppressWarnings("unchecked")
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
-
-        this.flags = readInt(stream);
-        this.channel = (this.flags & 1) != 0;
-        this.broadcast = (this.flags & 2) != 0;
-        this.publi = (this.flags & 4) != 0;
-        this.megagroup = (this.flags & 8) != 0;
-        this.title = readTLString(stream);
+        flags = readInt(stream);
+        channel = (flags & 1) != 0;
+        broadcast = (flags & 2) != 0;
+        _public = (flags & 4) != 0;
+        megagroup = (flags & 8) != 0;
+        title = readTLString(stream);
     }
-
-
 
     @Override
     public String toString() {
         return "chatInvite#93e99b60";
     }
 
+    @Override
+    public int getClassId() {
+        return CLASS_ID;
+    }
+
+    public int getFlags() {
+        return flags;
+    }
+
+    public void setFlags(int flags) {
+        this.flags = flags;
+    }
+
+    public boolean getChannel() {
+        return channel;
+    }
+
+    public void setChannel(boolean channel) {
+        this.channel = channel;
+    }
+
+    public boolean getBroadcast() {
+        return broadcast;
+    }
+
+    public void setBroadcast(boolean broadcast) {
+        this.broadcast = broadcast;
+    }
+
+    public boolean getPublic() {
+        return _public;
+    }
+
+    public void setPublic(boolean _public) {
+        this._public = _public;
+    }
+
+    public boolean getMegagroup() {
+        return megagroup;
+    }
+
+    public void setMegagroup(boolean megagroup) {
+        this.megagroup = megagroup;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
 }

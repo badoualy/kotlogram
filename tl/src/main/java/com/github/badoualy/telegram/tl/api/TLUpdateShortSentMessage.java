@@ -1,49 +1,22 @@
-
 package com.github.badoualy.telegram.tl.api;
 
+import static com.github.badoualy.telegram.tl.StreamUtils.*;
 
 import com.github.badoualy.telegram.tl.TLContext;
-
+import com.github.badoualy.telegram.tl.core.TLVector;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.lang.Override;
+import java.lang.String;
+import java.lang.SuppressWarnings;
 
-import static com.github.badoualy.telegram.tl.StreamUtils.readInt;
-import static com.github.badoualy.telegram.tl.StreamUtils.readTLObject;
-import static com.github.badoualy.telegram.tl.StreamUtils.readTLVector;
-import static com.github.badoualy.telegram.tl.StreamUtils.writeInt;
-import static com.github.badoualy.telegram.tl.StreamUtils.writeTLBool;
-import static com.github.badoualy.telegram.tl.StreamUtils.writeTLObject;
-import static com.github.badoualy.telegram.tl.StreamUtils.writeTLVector;
-
-
-
+/**
+ * @author Yannick Badoual yann.badoual@gmail.com
+ * @see <a href="http://github.com/badoualy/kotlogram">http://github.com/badoualy/kotlogram</a>
+ */
 public class TLUpdateShortSentMessage extends TLAbsUpdates {
     public static final int CLASS_ID = 0x11f1331c;
-
-    public TLUpdateShortSentMessage() {
-
-    }
-
-
-    public TLUpdateShortSentMessage(        int _flags,         boolean _unread,         boolean _out,         int _id,         int _pts,         int _ptsCount,         int _date,         com.github.badoualy.telegram.tl.api.TLAbsMessageMedia _media,         com.github.badoualy.telegram.tl.core.TLVector<com.github.badoualy.telegram.tl.api.TLAbsMessageEntity> _entities) {
-        this.flags = _flags;
-        this.unread = _unread;
-        this.out = _out;
-        this.id = _id;
-        this.pts = _pts;
-        this.ptsCount = _ptsCount;
-        this.date = _date;
-        this.media = _media;
-        this.entities = _entities;
-
-    }
-
-
-    public int getClassId() {
-        return CLASS_ID;
-    }
-
 
     protected int flags;
 
@@ -59,126 +32,131 @@ public class TLUpdateShortSentMessage extends TLAbsUpdates {
 
     protected int date;
 
-    protected com.github.badoualy.telegram.tl.api.TLAbsMessageMedia media;
+    protected TLAbsMessageMedia media;
 
-    protected com.github.badoualy.telegram.tl.core.TLVector<com.github.badoualy.telegram.tl.api.TLAbsMessageEntity> entities;
+    protected TLVector<TLAbsMessageEntity> entities;
 
-
-    public int getFlags() {
-        return flags;
+    public TLUpdateShortSentMessage() {
     }
 
-    public void setFlags(int value) {
-        this.flags = value;
+    public TLUpdateShortSentMessage(int flags, boolean unread, boolean out, int id, int pts, int ptsCount, int date, TLAbsMessageMedia media, TLVector<TLAbsMessageEntity> entities) {
+        this.flags = flags;
+        this.unread = unread;
+        this.out = out;
+        this.id = id;
+        this.pts = pts;
+        this.ptsCount = ptsCount;
+        this.date = date;
+        this.media = media;
+        this.entities = entities;
     }
-
-    public boolean getUnread() {
-        return unread;
-    }
-
-    public void setUnread(boolean value) {
-        this.unread = value;
-    }
-
-    public boolean getOut() {
-        return out;
-    }
-
-    public void setOut(boolean value) {
-        this.out = value;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int value) {
-        this.id = value;
-    }
-
-    public int getPts() {
-        return pts;
-    }
-
-    public void setPts(int value) {
-        this.pts = value;
-    }
-
-    public int getPtsCount() {
-        return ptsCount;
-    }
-
-    public void setPtsCount(int value) {
-        this.ptsCount = value;
-    }
-
-    public int getDate() {
-        return date;
-    }
-
-    public void setDate(int value) {
-        this.date = value;
-    }
-
-    public com.github.badoualy.telegram.tl.api.TLAbsMessageMedia getMedia() {
-        return media;
-    }
-
-    public void setMedia(com.github.badoualy.telegram.tl.api.TLAbsMessageMedia value) {
-        this.media = value;
-    }
-
-    public com.github.badoualy.telegram.tl.core.TLVector<com.github.badoualy.telegram.tl.api.TLAbsMessageEntity> getEntities() {
-        return entities;
-    }
-
-    public void setEntities(com.github.badoualy.telegram.tl.core.TLVector<com.github.badoualy.telegram.tl.api.TLAbsMessageEntity> value) {
-        this.entities = value;
-    }
-
 
     @Override
     public void serializeBody(OutputStream stream) throws IOException {
-
-        flags = unread ? (flags | 1) : (flags &~ 1);
-        flags = out ? (flags | 2) : (flags &~ 2);
-        writeInt(this.flags, stream);
-        if ((this.flags & 1) != 0)
-            writeTLBool(this.unread, stream);
-        if ((this.flags & 2) != 0)
-            writeTLBool(this.out, stream);
-        writeInt(this.id, stream);
-        writeInt(this.pts, stream);
-        writeInt(this.ptsCount, stream);
-        writeInt(this.date, stream);
-        if ((this.flags & 512) != 0)
-            writeTLObject(this.media, stream);
-        if ((this.flags & 128) != 0)
-            writeTLVector(this.entities, stream);
+        writeInt(flags, stream);
+        if ((flags & 1) != 0) writeTLBool(unread, stream);
+        if ((flags & 2) != 0) writeTLBool(out, stream);
+        writeInt(id, stream);
+        writeInt(pts, stream);
+        writeInt(ptsCount, stream);
+        writeInt(date, stream);
+        if ((flags & 512) != 0) writeTLObject(media, stream);
+        if ((flags & 128) != 0) writeTLVector(entities, stream);
     }
-
 
     @Override
+    @SuppressWarnings("unchecked")
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
-
-        this.flags = readInt(stream);
-        this.unread = (this.flags & 1) != 0;
-        this.out = (this.flags & 2) != 0;
-        this.id = readInt(stream);
-        this.pts = readInt(stream);
-        this.ptsCount = readInt(stream);
-        this.date = readInt(stream);
-        if ((this.flags & 512) != 0)
-            this.media = (com.github.badoualy.telegram.tl.api.TLAbsMessageMedia)readTLObject(stream, context);
-        if ((this.flags & 128) != 0)
-            this.entities = readTLVector(stream, context);
+        flags = readInt(stream);
+        unread = (flags & 1) != 0;
+        out = (flags & 2) != 0;
+        id = readInt(stream);
+        pts = readInt(stream);
+        ptsCount = readInt(stream);
+        date = readInt(stream);
+        if ((flags & 512) != 0) media = (com.github.badoualy.telegram.tl.api.TLAbsMessageMedia) readTLObject(stream, context);
+        if ((flags & 128) != 0) entities = readTLVector(stream, context);
     }
-
-
 
     @Override
     public String toString() {
         return "updateShortSentMessage#11f1331c";
     }
 
+    @Override
+    public int getClassId() {
+        return CLASS_ID;
+    }
+
+    public int getFlags() {
+        return flags;
+    }
+
+    public void setFlags(int flags) {
+        this.flags = flags;
+    }
+
+    public boolean getUnread() {
+        return unread;
+    }
+
+    public void setUnread(boolean unread) {
+        this.unread = unread;
+    }
+
+    public boolean getOut() {
+        return out;
+    }
+
+    public void setOut(boolean out) {
+        this.out = out;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public int getPts() {
+        return pts;
+    }
+
+    public void setPts(int pts) {
+        this.pts = pts;
+    }
+
+    public int getPtsCount() {
+        return ptsCount;
+    }
+
+    public void setPtsCount(int ptsCount) {
+        this.ptsCount = ptsCount;
+    }
+
+    public int getDate() {
+        return date;
+    }
+
+    public void setDate(int date) {
+        this.date = date;
+    }
+
+    public TLAbsMessageMedia getMedia() {
+        return media;
+    }
+
+    public void setMedia(TLAbsMessageMedia media) {
+        this.media = media;
+    }
+
+    public TLVector<TLAbsMessageEntity> getEntities() {
+        return entities;
+    }
+
+    public void setEntities(TLVector<TLAbsMessageEntity> entities) {
+        this.entities = entities;
+    }
 }

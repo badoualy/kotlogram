@@ -8,7 +8,7 @@ import com.github.badoualy.telegram.mtproto.time.TimeOverlord
 import com.github.badoualy.telegram.mtproto.tl.MTMessage
 import com.github.badoualy.telegram.mtproto.tl.auth.BindAuthKeyInner
 import com.github.badoualy.telegram.mtproto.util.Log
-import com.github.badoualy.telegram.tl.api.requests.TLRequestAuthBindTempAuthKey
+import com.github.badoualy.telegram.tl.api.request.TLRequestAuthBindTempAuthKey
 import com.github.badoualy.telegram.tl.core.TLBytes
 import java.io.IOException
 import java.math.BigInteger

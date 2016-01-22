@@ -1,81 +1,74 @@
-
 package com.github.badoualy.telegram.tl.api.channels;
 
-import com.github.badoualy.telegram.tl.TLContext;
-import com.github.badoualy.telegram.tl.core.TLObject;
+import static com.github.badoualy.telegram.tl.StreamUtils.*;
 
+import com.github.badoualy.telegram.tl.TLContext;
+import com.github.badoualy.telegram.tl.api.TLAbsChannelParticipant;
+import com.github.badoualy.telegram.tl.api.TLAbsUser;
+import com.github.badoualy.telegram.tl.core.TLObject;
+import com.github.badoualy.telegram.tl.core.TLVector;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.lang.Override;
+import java.lang.String;
+import java.lang.SuppressWarnings;
 
-import static com.github.badoualy.telegram.tl.StreamUtils.readTLObject;
-import static com.github.badoualy.telegram.tl.StreamUtils.readTLVector;
-import static com.github.badoualy.telegram.tl.StreamUtils.writeTLObject;
-import static com.github.badoualy.telegram.tl.StreamUtils.writeTLVector;
-
-
+/**
+ * @author Yannick Badoual yann.badoual@gmail.com
+ * @see <a href="http://github.com/badoualy/kotlogram">http://github.com/badoualy/kotlogram</a>
+ */
 public class TLChannelParticipant extends TLObject {
-
     public static final int CLASS_ID = 0xd0d9b163;
 
+    protected TLAbsChannelParticipant participant;
+
+    protected TLVector<TLAbsUser> users;
+
     public TLChannelParticipant() {
-
     }
 
-
-    public TLChannelParticipant(        com.github.badoualy.telegram.tl.api.TLAbsChannelParticipant _participant,         com.github.badoualy.telegram.tl.core.TLVector<com.github.badoualy.telegram.tl.api.TLAbsUser> _users) {
-        this.participant = _participant;
-        this.users = _users;
-
+    public TLChannelParticipant(TLAbsChannelParticipant participant, TLVector<TLAbsUser> users) {
+        this.participant = participant;
+        this.users = users;
     }
-
-
-    public int getClassId() {
-        return CLASS_ID;
-    }
-
-
-    protected com.github.badoualy.telegram.tl.api.TLAbsChannelParticipant participant;
-
-    protected com.github.badoualy.telegram.tl.core.TLVector<com.github.badoualy.telegram.tl.api.TLAbsUser> users;
-
-
-    public com.github.badoualy.telegram.tl.api.TLAbsChannelParticipant getParticipant() {
-        return participant;
-    }
-
-    public void setParticipant(com.github.badoualy.telegram.tl.api.TLAbsChannelParticipant value) {
-        this.participant = value;
-    }
-
-    public com.github.badoualy.telegram.tl.core.TLVector<com.github.badoualy.telegram.tl.api.TLAbsUser> getUsers() {
-        return users;
-    }
-
-    public void setUsers(com.github.badoualy.telegram.tl.core.TLVector<com.github.badoualy.telegram.tl.api.TLAbsUser> value) {
-        this.users = value;
-    }
-
 
     @Override
     public void serializeBody(OutputStream stream) throws IOException {
-
-        writeTLObject(this.participant, stream);
-        writeTLVector(this.users, stream);
+        writeTLObject(participant, stream);
+        writeTLVector(users, stream);
     }
-
 
     @Override
+    @SuppressWarnings("unchecked")
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
-
-        this.participant = (com.github.badoualy.telegram.tl.api.TLAbsChannelParticipant)readTLObject(stream, context);
-        this.users = readTLVector(stream, context);
+        participant = (com.github.badoualy.telegram.tl.api.TLAbsChannelParticipant) readTLObject(stream, context);
+        users = readTLVector(stream, context);
     }
-
 
     @Override
     public String toString() {
         return "channels.channelParticipant#d0d9b163";
     }
 
+    @Override
+    public int getClassId() {
+        return CLASS_ID;
+    }
+
+    public TLAbsChannelParticipant getParticipant() {
+        return participant;
+    }
+
+    public void setParticipant(TLAbsChannelParticipant participant) {
+        this.participant = participant;
+    }
+
+    public TLVector<TLAbsUser> getUsers() {
+        return users;
+    }
+
+    public void setUsers(TLVector<TLAbsUser> users) {
+        this.users = users;
+    }
 }

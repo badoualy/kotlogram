@@ -1,81 +1,108 @@
 package com.github.badoualy.telegram.tl.builder.parser
 
 import com.fasterxml.jackson.databind.JsonNode
-import com.github.badoualy.telegram.tl.builder.config.IgnoredTypes
+import com.github.badoualy.telegram.tl.builder.parser.BuiltInTypes
+import com.github.badoualy.telegram.tl.builder.parser.IgnoredTypes
+import com.github.badoualy.telegram.tl.builder.parser.SupportedGenericTypes
 import java.util.*
 
 private val genericRegex = Regex("([a-zA-Z]+)<([a-zA-Z]+)>") // Vector<SomeKindOfType>
 private val flagRegex = Regex("([a-zA-Z]+).(\\d+)\\?([a-zA-Z<>]+)") // flags.0?true
-
-fun createTypeFromName(typeName: String): Pair<TLType, FlagInfo?> = when (typeName) {
-    "X" -> Pair(TLTypeAny(), null)
-    "!X" -> Pair(TLTypeFunctional("X"), null)
-    "#" -> Pair(TLTypeFlag(), null)
-    else -> {
-        if (typeName.matches(flagRegex)) {
-            val groups = flagRegex.matchEntire(typeName)?.groups
-            var maskName = groups?.get(1)?.value ?: throw RuntimeException("Unknown error with type $typeName")
-            var value = groups?.get(2)?.value?.toInt() ?: throw RuntimeException("Unknown error with type $typeName")
-            var type = groups?.get(3)?.value ?: throw RuntimeException("Unknown error with type $typeName")
-            var realType = type
-
-            if (type == "true" || type == "false")
-                type = "Bool"
-
-            Pair(createTypeFromName(type).first, FlagInfo(Math.pow(2.toDouble(), value.toDouble()).toInt(), maskName, realType))
-        } else if (typeName.matches(genericRegex)) {
-            val groups = genericRegex.matchEntire(typeName)?.groups
-            var tlName = groups?.get(1)?.value ?: throw RuntimeException("Unknown error with type $typeName")
-            var genericName = groups?.get(2)?.value ?: throw RuntimeException("Unknown error with type $typeName")
-
-            Pair(TLTypeGeneric(tlName, arrayOf(createTypeFromName(genericName).first)), null)
-        } else {
-            Pair(TLTypeRaw(typeName), null)
-        }
-    }
-}
+private val rawRegex = Regex("[a-zA-Z].+")
 
 fun buildFromJson(root: JsonNode): TLDefinition {
-    var sourceConstructors = ArrayList<TLConstructor>()
-    var sourceMethods = ArrayList<TLMethod>()
+    println("Reading TL-Schema...")
+    val constructorsNode = root["constructors"].filterNot { c -> IgnoredTypes.contains(c["type"].textValue()) }
+    val methodsNode = root["methods"]
 
-    // Build constructors : type classes
-    var constructors = root.get("constructors").filterNot { c -> IgnoredTypes.contains(c.get("type")!!.textValue()) }
-    for (constructor in constructors) {
-        var name = constructor.get("predicate")!!.textValue()!!
-        var id = constructor.get("id")!!.textValue()!!.toInt()
-        var tlType = createTypeFromName(constructor.get("type")!!.textValue()).first
+    var types = HashMap<String, TLTypeRaw>()
+    var constructors = ArrayList<TLConstructor>()
+    var methods = ArrayList<TLMethod>()
+
+    // First add all constructor types: "Abstract classes"
+    constructorsNode
+            .map { c -> c["type"].textValue() }
+            .map { t -> createConstructorType(t) }
+            .forEach { tl -> types.put(tl.name, tl) }
+
+    // Build constructors: type classes
+    println("Reading constructors...")
+    for (constructor in constructorsNode) {
+        var name = constructor["predicate"].textValue()
+        var id = constructor["id"].textValue().toInt()
+        val type = constructor["type"].textValue()
+        var tlType = types[type]!!
+
         var constructorParameters = ArrayList<TLParameter>()
+        for (p in constructor["params"]) {
+            var pName = p["name"]!!.textValue().toString()
+            var pType = p["type"]!!.textValue().toString()
+            val pTlType = createType(pType, types)
 
-        var paramsNode = constructor.get("params")
-        for (p in paramsNode!!.iterator()) {
-            var paramName = p.get("name")!!.textValue().toString()
-            var paramType = p.get("type")!!.textValue().toString()
-            val paramTypeFromName = createTypeFromName(paramType)
-            constructorParameters.add(TLParameter(paramName, paramTypeFromName.first, paramTypeFromName.second))
+            constructorParameters.add(TLParameter(pName, pTlType))
         }
 
-        sourceConstructors.add(TLConstructor(name, id, constructorParameters, tlType))
+        constructors.add(TLConstructor(name, id, constructorParameters, tlType))
     }
 
-    // Build methods remote-call classes
-    var methods = root.get("methods")
-    for (method in methods) {
-        var name = method.get("method")!!.textValue()!!
-        var id = method.get("id")!!.textValue()!!.toInt()
-        var tlType = createTypeFromName(method.get("type")!!.textValue()).first
-        var constructorParameters = ArrayList<TLParameter>()
+    // Build constructors: type classes
+    println("Reading methods...")
+    for (method in methodsNode) {
+        var name = method.get("method").textValue()
+        var id = method["id"].textValue().toInt()
+        val type = method["type"].textValue()
+        var tlType = createType(type, types, false)
 
-        var paramsNode = method.get("params")
-        for (p in paramsNode!!.iterator()) {
-            var paramName = p.get("name")!!.textValue()
-            var paramType = p.get("type")!!.textValue()
-            val paramTypeFromName = createTypeFromName(paramType)
-            constructorParameters.add(TLParameter(paramName, paramTypeFromName.first, paramTypeFromName.second))
+        var constructorParameters = ArrayList<TLParameter>()
+        for (p in method["params"]) {
+            var pName = p["name"]!!.textValue().toString()
+            var pType = p["type"]!!.textValue().toString()
+            val pTlType = createType(pType, types)
+
+            constructorParameters.add(TLParameter(pName, pTlType))
         }
 
-        sourceMethods.add(TLMethod(name, id, constructorParameters, tlType))
+        methods.add(TLMethod(name, id, constructorParameters, tlType))
     }
 
-    return TLDefinition(sourceConstructors, sourceMethods)
+    return TLDefinition(types, constructors, methods)
+}
+
+fun createConstructorType(typeName: String): TLTypeRaw = when {
+    typeName.matches(rawRegex) -> TLTypeRaw(typeName)
+    else -> throw RuntimeException("Unsupported type $typeName for constructor/method}")
+}
+
+fun createType(typeName: String, types: Map<String, TLTypeRaw>, isParameter: Boolean = true): TLType = when {
+    !isParameter && typeName == "X" -> TLTypeAny()
+    isParameter && typeName == "!X" -> TLTypeFunctional()
+    isParameter && typeName == "#" -> TLTypeFlag()
+    isParameter && typeName.matches(flagRegex) -> {
+        val groups = flagRegex.matchEntire(typeName)?.groups
+        val maskName = groups?.get(1)?.value ?: throw RuntimeException("Unknown error with type $typeName")
+        val value = groups?.get(2)?.value?.toInt() ?: throw RuntimeException("Unknown error with type $typeName")
+        var realType = groups?.get(3)?.value ?: throw RuntimeException("Unknown error with type $typeName")
+        if (!maskName.equals("flags")) throw RuntimeException("Unsupported flag name, expected `flags`")
+
+        if (realType == "true" || realType == "false")
+            realType = "Bool"
+
+        TLTypeConditional(value, createType(realType, types))
+    }
+    typeName.matches(genericRegex) -> {
+        val groups = genericRegex.matchEntire(typeName)?.groups
+        val tlName: String = groups?.get(1)?.value ?: throw RuntimeException("Unknown error with type $typeName")
+        val genericName: String = groups?.get(2)?.value ?: throw RuntimeException("Unknown error with type $typeName")
+        if (!SupportedGenericTypes.contains(tlName)) throw RuntimeException("Unsupported generic type $tlName")
+
+        TLTypeGeneric(tlName, arrayOf(createType(genericName, types)))
+    }
+    typeName.matches(rawRegex) -> {
+        if (BuiltInTypes.contains(typeName))
+            TLTypeRaw(typeName)
+        else if (types.containsKey(typeName))
+            types[typeName]!!
+        else throw RuntimeException("Unknown type " + typeName)
+    }
+    else -> throw RuntimeException("Unsupported type $typeName for ${if (isParameter) "parameter" else "method"}")
 }

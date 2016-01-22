@@ -1,80 +1,70 @@
-
 package com.github.badoualy.telegram.tl.api;
 
+import static com.github.badoualy.telegram.tl.StreamUtils.*;
 
 import com.github.badoualy.telegram.tl.TLContext;
-
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.lang.Override;
+import java.lang.String;
+import java.lang.SuppressWarnings;
 
-import static com.github.badoualy.telegram.tl.StreamUtils.readTLObject;
-import static com.github.badoualy.telegram.tl.StreamUtils.writeTLObject;
-
-
-
+/**
+ * @author Yannick Badoual yann.badoual@gmail.com
+ * @see <a href="http://github.com/badoualy/kotlogram">http://github.com/badoualy/kotlogram</a>
+ */
 public class TLUpdateNotifySettings extends TLAbsUpdate {
     public static final int CLASS_ID = 0xbec268ef;
 
+    protected TLAbsNotifyPeer peer;
+
+    protected TLAbsPeerNotifySettings notifySettings;
+
     public TLUpdateNotifySettings() {
-
     }
 
-
-    public TLUpdateNotifySettings(        com.github.badoualy.telegram.tl.api.TLAbsNotifyPeer _peer,         com.github.badoualy.telegram.tl.api.TLAbsPeerNotifySettings _notifySettings) {
-        this.peer = _peer;
-        this.notifySettings = _notifySettings;
-
+    public TLUpdateNotifySettings(TLAbsNotifyPeer peer, TLAbsPeerNotifySettings notifySettings) {
+        this.peer = peer;
+        this.notifySettings = notifySettings;
     }
-
-
-    public int getClassId() {
-        return CLASS_ID;
-    }
-
-
-    protected com.github.badoualy.telegram.tl.api.TLAbsNotifyPeer peer;
-
-    protected com.github.badoualy.telegram.tl.api.TLAbsPeerNotifySettings notifySettings;
-
-
-    public com.github.badoualy.telegram.tl.api.TLAbsNotifyPeer getPeer() {
-        return peer;
-    }
-
-    public void setPeer(com.github.badoualy.telegram.tl.api.TLAbsNotifyPeer value) {
-        this.peer = value;
-    }
-
-    public com.github.badoualy.telegram.tl.api.TLAbsPeerNotifySettings getNotifySettings() {
-        return notifySettings;
-    }
-
-    public void setNotifySettings(com.github.badoualy.telegram.tl.api.TLAbsPeerNotifySettings value) {
-        this.notifySettings = value;
-    }
-
 
     @Override
     public void serializeBody(OutputStream stream) throws IOException {
-
-        writeTLObject(this.peer, stream);
-        writeTLObject(this.notifySettings, stream);
+        writeTLObject(peer, stream);
+        writeTLObject(notifySettings, stream);
     }
-
 
     @Override
+    @SuppressWarnings("unchecked")
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
-
-        this.peer = (com.github.badoualy.telegram.tl.api.TLAbsNotifyPeer)readTLObject(stream, context);
-        this.notifySettings = (com.github.badoualy.telegram.tl.api.TLAbsPeerNotifySettings)readTLObject(stream, context);
+        peer = (com.github.badoualy.telegram.tl.api.TLAbsNotifyPeer) readTLObject(stream, context);
+        notifySettings = (com.github.badoualy.telegram.tl.api.TLAbsPeerNotifySettings) readTLObject(stream, context);
     }
-
-
 
     @Override
     public String toString() {
         return "updateNotifySettings#bec268ef";
     }
 
+    @Override
+    public int getClassId() {
+        return CLASS_ID;
+    }
+
+    public TLAbsNotifyPeer getPeer() {
+        return peer;
+    }
+
+    public void setPeer(TLAbsNotifyPeer peer) {
+        this.peer = peer;
+    }
+
+    public TLAbsPeerNotifySettings getNotifySettings() {
+        return notifySettings;
+    }
+
+    public void setNotifySettings(TLAbsPeerNotifySettings notifySettings) {
+        this.notifySettings = notifySettings;
+    }
 }

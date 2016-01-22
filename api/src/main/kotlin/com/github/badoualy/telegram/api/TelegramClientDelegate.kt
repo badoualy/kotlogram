@@ -3,16 +3,15 @@ package com.github.badoualy.telegram.api
 import com.github.badoualy.telegram.mtproto.ApiCallback
 import com.github.badoualy.telegram.mtproto.DataCenter
 import com.github.badoualy.telegram.mtproto.MTProtoHandler
-import com.github.badoualy.telegram.api.UpdateCallback
 import com.github.badoualy.telegram.mtproto.auth.AuthKey
 import com.github.badoualy.telegram.mtproto.auth.AuthKeyCreation
 import com.github.badoualy.telegram.mtproto.auth.AuthResult
 import com.github.badoualy.telegram.mtproto.exception.RpcErrorException
 import com.github.badoualy.telegram.mtproto.util.Log
 import com.github.badoualy.telegram.tl.api.*
-import com.github.badoualy.telegram.tl.api.requests.TLRequestHelpGetNearestDc
-import com.github.badoualy.telegram.tl.api.requests.TLRequestInitConnection
-import com.github.badoualy.telegram.tl.api.requests.TLRequestInvokeWithLayer
+import com.github.badoualy.telegram.tl.api.request.TLRequestHelpGetNearestDc
+import com.github.badoualy.telegram.tl.api.request.TLRequestInitConnection
+import com.github.badoualy.telegram.tl.api.request.TLRequestInvokeWithLayer
 import java.io.IOException
 
 internal interface TelegramClientDelegate {

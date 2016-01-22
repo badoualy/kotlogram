@@ -1,54 +1,27 @@
-
 package com.github.badoualy.telegram.tl.api;
 
+import static com.github.badoualy.telegram.tl.StreamUtils.*;
 
 import com.github.badoualy.telegram.tl.TLContext;
-
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.lang.Override;
+import java.lang.String;
+import java.lang.SuppressWarnings;
 
-import static com.github.badoualy.telegram.tl.StreamUtils.readInt;
-import static com.github.badoualy.telegram.tl.StreamUtils.readTLObject;
-import static com.github.badoualy.telegram.tl.StreamUtils.readTLString;
-import static com.github.badoualy.telegram.tl.StreamUtils.writeInt;
-import static com.github.badoualy.telegram.tl.StreamUtils.writeTLObject;
-import static com.github.badoualy.telegram.tl.StreamUtils.writeTLString;
-
-
-
+/**
+ * @author Yannick Badoual yann.badoual@gmail.com
+ * @see <a href="http://github.com/badoualy/kotlogram">http://github.com/badoualy/kotlogram</a>
+ */
 public class TLBotInlineResult extends TLAbsBotInlineResult {
     public static final int CLASS_ID = 0x9bebaeb9;
 
-    public TLBotInlineResult() {
-
-    }
-
-
-    public TLBotInlineResult(        int _flags,         String _id,         String _type,         String _title,         String _description,         String _url,         String _thumbUrl,         String _contentUrl,         String _contentType,         int _w,         int _h,         int _duration,         com.github.badoualy.telegram.tl.api.TLAbsBotInlineMessage _sendMessage) {
-        this.flags = _flags;
-        this.id = _id;
-        this.type = _type;
-        this.title = _title;
-        this.description = _description;
-        this.url = _url;
-        this.thumbUrl = _thumbUrl;
-        this.contentUrl = _contentUrl;
-        this.contentType = _contentType;
-        this.w = _w;
-        this.h = _h;
-        this.duration = _duration;
-        this.sendMessage = _sendMessage;
-
-    }
-
-
-    public int getClassId() {
-        return CLASS_ID;
-    }
-
-
     protected int flags;
+
+    protected String id;
+
+    protected String type;
 
     protected String title;
 
@@ -68,148 +41,173 @@ public class TLBotInlineResult extends TLAbsBotInlineResult {
 
     protected int duration;
 
+    protected TLAbsBotInlineMessage sendMessage;
 
-    public int getFlags() {
-        return flags;
+    public TLBotInlineResult() {
     }
 
-    public void setFlags(int value) {
-        this.flags = value;
+    public TLBotInlineResult(int flags, String id, String type, String title, String description, String url, String thumbUrl, String contentUrl, String contentType, int w, int h, int duration, TLAbsBotInlineMessage sendMessage) {
+        this.flags = flags;
+        this.id = id;
+        this.type = type;
+        this.title = title;
+        this.description = description;
+        this.url = url;
+        this.thumbUrl = thumbUrl;
+        this.contentUrl = contentUrl;
+        this.contentType = contentType;
+        this.w = w;
+        this.h = h;
+        this.duration = duration;
+        this.sendMessage = sendMessage;
     }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String value) {
-        this.title = value;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String value) {
-        this.description = value;
-    }
-
-    public String getUrl() {
-        return url;
-    }
-
-    public void setUrl(String value) {
-        this.url = value;
-    }
-
-    public String getThumbUrl() {
-        return thumbUrl;
-    }
-
-    public void setThumbUrl(String value) {
-        this.thumbUrl = value;
-    }
-
-    public String getContentUrl() {
-        return contentUrl;
-    }
-
-    public void setContentUrl(String value) {
-        this.contentUrl = value;
-    }
-
-    public String getContentType() {
-        return contentType;
-    }
-
-    public void setContentType(String value) {
-        this.contentType = value;
-    }
-
-    public int getW() {
-        return w;
-    }
-
-    public void setW(int value) {
-        this.w = value;
-    }
-
-    public int getH() {
-        return h;
-    }
-
-    public void setH(int value) {
-        this.h = value;
-    }
-
-    public int getDuration() {
-        return duration;
-    }
-
-    public void setDuration(int value) {
-        this.duration = value;
-    }
-
 
     @Override
     public void serializeBody(OutputStream stream) throws IOException {
-
-        writeInt(this.flags, stream);
-        writeTLString(this.id, stream);
-        writeTLString(this.type, stream);
-        if ((this.flags & 2) != 0)
-            writeTLString(this.title, stream);
-        if ((this.flags & 4) != 0)
-            writeTLString(this.description, stream);
-        if ((this.flags & 8) != 0)
-            writeTLString(this.url, stream);
-        if ((this.flags & 16) != 0)
-            writeTLString(this.thumbUrl, stream);
-        if ((this.flags & 32) != 0)
-            writeTLString(this.contentUrl, stream);
-        if ((this.flags & 32) != 0)
-            writeTLString(this.contentType, stream);
-        if ((this.flags & 64) != 0)
-            writeInt(this.w, stream);
-        if ((this.flags & 64) != 0)
-            writeInt(this.h, stream);
-        if ((this.flags & 128) != 0)
-            writeInt(this.duration, stream);
-        writeTLObject(this.sendMessage, stream);
+        writeInt(flags, stream);
+        writeTLString(id, stream);
+        writeTLString(type, stream);
+        if ((flags & 2) != 0) writeTLString(title, stream);
+        if ((flags & 4) != 0) writeTLString(description, stream);
+        if ((flags & 8) != 0) writeTLString(url, stream);
+        if ((flags & 16) != 0) writeTLString(thumbUrl, stream);
+        if ((flags & 32) != 0) writeTLString(contentUrl, stream);
+        if ((flags & 32) != 0) writeTLString(contentType, stream);
+        if ((flags & 64) != 0) writeInt(w, stream);
+        if ((flags & 64) != 0) writeInt(h, stream);
+        if ((flags & 128) != 0) writeInt(duration, stream);
+        writeTLObject(sendMessage, stream);
     }
-
 
     @Override
+    @SuppressWarnings("unchecked")
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
-
-        this.flags = readInt(stream);
-        this.id = readTLString(stream);
-        this.type = readTLString(stream);
-        if ((this.flags & 2) != 0)
-            this.title = readTLString(stream);
-        if ((this.flags & 4) != 0)
-            this.description = readTLString(stream);
-        if ((this.flags & 8) != 0)
-            this.url = readTLString(stream);
-        if ((this.flags & 16) != 0)
-            this.thumbUrl = readTLString(stream);
-        if ((this.flags & 32) != 0)
-            this.contentUrl = readTLString(stream);
-        if ((this.flags & 32) != 0)
-            this.contentType = readTLString(stream);
-        if ((this.flags & 64) != 0)
-            this.w = readInt(stream);
-        if ((this.flags & 64) != 0)
-            this.h = readInt(stream);
-        if ((this.flags & 128) != 0)
-            this.duration = readInt(stream);
-        this.sendMessage = (com.github.badoualy.telegram.tl.api.TLAbsBotInlineMessage)readTLObject(stream, context);
+        flags = readInt(stream);
+        id = readTLString(stream);
+        type = readTLString(stream);
+        if ((flags & 2) != 0) title = readTLString(stream);
+        if ((flags & 4) != 0) description = readTLString(stream);
+        if ((flags & 8) != 0) url = readTLString(stream);
+        if ((flags & 16) != 0) thumbUrl = readTLString(stream);
+        if ((flags & 32) != 0) contentUrl = readTLString(stream);
+        if ((flags & 32) != 0) contentType = readTLString(stream);
+        if ((flags & 64) != 0) w = readInt(stream);
+        if ((flags & 64) != 0) h = readInt(stream);
+        if ((flags & 128) != 0) duration = readInt(stream);
+        sendMessage = (com.github.badoualy.telegram.tl.api.TLAbsBotInlineMessage) readTLObject(stream, context);
     }
-
-
 
     @Override
     public String toString() {
         return "botInlineResult#9bebaeb9";
     }
 
+    @Override
+    public int getClassId() {
+        return CLASS_ID;
+    }
+
+    public int getFlags() {
+        return flags;
+    }
+
+    public void setFlags(int flags) {
+        this.flags = flags;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
+    }
+
+    public String getThumbUrl() {
+        return thumbUrl;
+    }
+
+    public void setThumbUrl(String thumbUrl) {
+        this.thumbUrl = thumbUrl;
+    }
+
+    public String getContentUrl() {
+        return contentUrl;
+    }
+
+    public void setContentUrl(String contentUrl) {
+        this.contentUrl = contentUrl;
+    }
+
+    public String getContentType() {
+        return contentType;
+    }
+
+    public void setContentType(String contentType) {
+        this.contentType = contentType;
+    }
+
+    public int getW() {
+        return w;
+    }
+
+    public void setW(int w) {
+        this.w = w;
+    }
+
+    public int getH() {
+        return h;
+    }
+
+    public void setH(int h) {
+        this.h = h;
+    }
+
+    public int getDuration() {
+        return duration;
+    }
+
+    public void setDuration(int duration) {
+        this.duration = duration;
+    }
+
+    public TLAbsBotInlineMessage getSendMessage() {
+        return sendMessage;
+    }
+
+    public void setSendMessage(TLAbsBotInlineMessage sendMessage) {
+        this.sendMessage = sendMessage;
+    }
 }

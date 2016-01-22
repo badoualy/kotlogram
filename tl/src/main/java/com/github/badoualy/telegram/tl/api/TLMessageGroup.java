@@ -1,39 +1,22 @@
-
 package com.github.badoualy.telegram.tl.api;
+
+import static com.github.badoualy.telegram.tl.StreamUtils.*;
 
 import com.github.badoualy.telegram.tl.TLContext;
 import com.github.badoualy.telegram.tl.core.TLObject;
-
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.lang.Override;
+import java.lang.String;
+import java.lang.SuppressWarnings;
 
-import static com.github.badoualy.telegram.tl.StreamUtils.readInt;
-import static com.github.badoualy.telegram.tl.StreamUtils.writeInt;
-
-
+/**
+ * @author Yannick Badoual yann.badoual@gmail.com
+ * @see <a href="http://github.com/badoualy/kotlogram">http://github.com/badoualy/kotlogram</a>
+ */
 public class TLMessageGroup extends TLObject {
-
     public static final int CLASS_ID = 0xe8346f53;
-
-    public TLMessageGroup() {
-
-    }
-
-
-    public TLMessageGroup(        int _minId,         int _maxId,         int _count,         int _date) {
-        this.minId = _minId;
-        this.maxId = _maxId;
-        this.count = _count;
-        this.date = _date;
-
-    }
-
-
-    public int getClassId() {
-        return CLASS_ID;
-    }
-
 
     protected int minId;
 
@@ -43,63 +26,72 @@ public class TLMessageGroup extends TLObject {
 
     protected int date;
 
-
-    public int getMinId() {
-        return minId;
+    public TLMessageGroup() {
     }
 
-    public void setMinId(int value) {
-        this.minId = value;
+    public TLMessageGroup(int minId, int maxId, int count, int date) {
+        this.minId = minId;
+        this.maxId = maxId;
+        this.count = count;
+        this.date = date;
     }
-
-    public int getMaxId() {
-        return maxId;
-    }
-
-    public void setMaxId(int value) {
-        this.maxId = value;
-    }
-
-    public int getCount() {
-        return count;
-    }
-
-    public void setCount(int value) {
-        this.count = value;
-    }
-
-    public int getDate() {
-        return date;
-    }
-
-    public void setDate(int value) {
-        this.date = value;
-    }
-
 
     @Override
     public void serializeBody(OutputStream stream) throws IOException {
-
-        writeInt(this.minId, stream);
-        writeInt(this.maxId, stream);
-        writeInt(this.count, stream);
-        writeInt(this.date, stream);
+        writeInt(minId, stream);
+        writeInt(maxId, stream);
+        writeInt(count, stream);
+        writeInt(date, stream);
     }
-
 
     @Override
+    @SuppressWarnings("unchecked")
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
-
-        this.minId = readInt(stream);
-        this.maxId = readInt(stream);
-        this.count = readInt(stream);
-        this.date = readInt(stream);
+        minId = readInt(stream);
+        maxId = readInt(stream);
+        count = readInt(stream);
+        date = readInt(stream);
     }
-
 
     @Override
     public String toString() {
         return "messageGroup#e8346f53";
     }
 
+    @Override
+    public int getClassId() {
+        return CLASS_ID;
+    }
+
+    public int getMinId() {
+        return minId;
+    }
+
+    public void setMinId(int minId) {
+        this.minId = minId;
+    }
+
+    public int getMaxId() {
+        return maxId;
+    }
+
+    public void setMaxId(int maxId) {
+        this.maxId = maxId;
+    }
+
+    public int getCount() {
+        return count;
+    }
+
+    public void setCount(int count) {
+        this.count = count;
+    }
+
+    public int getDate() {
+        return date;
+    }
+
+    public void setDate(int date) {
+        this.date = date;
+    }
 }

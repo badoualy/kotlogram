@@ -1,58 +1,23 @@
-
 package com.github.badoualy.telegram.tl.api;
+
+import static com.github.badoualy.telegram.tl.StreamUtils.*;
 
 import com.github.badoualy.telegram.tl.TLContext;
 import com.github.badoualy.telegram.tl.core.TLObject;
-
+import com.github.badoualy.telegram.tl.core.TLVector;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.lang.Override;
+import java.lang.String;
+import java.lang.SuppressWarnings;
 
-import static com.github.badoualy.telegram.tl.StreamUtils.readInt;
-import static com.github.badoualy.telegram.tl.StreamUtils.readTLBool;
-import static com.github.badoualy.telegram.tl.StreamUtils.readTLVector;
-import static com.github.badoualy.telegram.tl.StreamUtils.writeInt;
-import static com.github.badoualy.telegram.tl.StreamUtils.writeTLBool;
-import static com.github.badoualy.telegram.tl.StreamUtils.writeTLVector;
-
-
+/**
+ * @author Yannick Badoual yann.badoual@gmail.com
+ * @see <a href="http://github.com/badoualy/kotlogram">http://github.com/badoualy/kotlogram</a>
+ */
 public class TLConfig extends TLObject {
-
     public static final int CLASS_ID = 0x6bbc5f8;
-
-    public TLConfig() {
-
-    }
-
-
-    public TLConfig(        int _date,         int _expires,         boolean _testMode,         int _thisDc,         com.github.badoualy.telegram.tl.core.TLVector<com.github.badoualy.telegram.tl.api.TLDcOption> _dcOptions,         int _chatSizeMax,         int _megagroupSizeMax,         int _forwardedCountMax,         int _onlineUpdatePeriodMs,         int _offlineBlurTimeoutMs,         int _offlineIdleTimeoutMs,         int _onlineCloudTimeoutMs,         int _notifyCloudDelayMs,         int _notifyDefaultDelayMs,         int _chatBigSize,         int _pushChatPeriodMs,         int _pushChatLimit,         int _savedGifsLimit,         com.github.badoualy.telegram.tl.core.TLVector<com.github.badoualy.telegram.tl.api.TLDisabledFeature> _disabledFeatures) {
-        this.date = _date;
-        this.expires = _expires;
-        this.testMode = _testMode;
-        this.thisDc = _thisDc;
-        this.dcOptions = _dcOptions;
-        this.chatSizeMax = _chatSizeMax;
-        this.megagroupSizeMax = _megagroupSizeMax;
-        this.forwardedCountMax = _forwardedCountMax;
-        this.onlineUpdatePeriodMs = _onlineUpdatePeriodMs;
-        this.offlineBlurTimeoutMs = _offlineBlurTimeoutMs;
-        this.offlineIdleTimeoutMs = _offlineIdleTimeoutMs;
-        this.onlineCloudTimeoutMs = _onlineCloudTimeoutMs;
-        this.notifyCloudDelayMs = _notifyCloudDelayMs;
-        this.notifyDefaultDelayMs = _notifyDefaultDelayMs;
-        this.chatBigSize = _chatBigSize;
-        this.pushChatPeriodMs = _pushChatPeriodMs;
-        this.pushChatLimit = _pushChatLimit;
-        this.savedGifsLimit = _savedGifsLimit;
-        this.disabledFeatures = _disabledFeatures;
-
-    }
-
-
-    public int getClassId() {
-        return CLASS_ID;
-    }
-
 
     protected int date;
 
@@ -62,7 +27,7 @@ public class TLConfig extends TLObject {
 
     protected int thisDc;
 
-    protected com.github.badoualy.telegram.tl.core.TLVector<com.github.badoualy.telegram.tl.api.TLDcOption> dcOptions;
+    protected TLVector<TLDcOption> dcOptions;
 
     protected int chatSizeMax;
 
@@ -90,215 +55,239 @@ public class TLConfig extends TLObject {
 
     protected int savedGifsLimit;
 
-    protected com.github.badoualy.telegram.tl.core.TLVector<com.github.badoualy.telegram.tl.api.TLDisabledFeature> disabledFeatures;
+    protected TLVector<TLDisabledFeature> disabledFeatures;
 
-
-    public int getDate() {
-        return date;
+    public TLConfig() {
     }
 
-    public void setDate(int value) {
-        this.date = value;
+    public TLConfig(int date, int expires, boolean testMode, int thisDc, TLVector<TLDcOption> dcOptions, int chatSizeMax, int megagroupSizeMax, int forwardedCountMax, int onlineUpdatePeriodMs, int offlineBlurTimeoutMs, int offlineIdleTimeoutMs, int onlineCloudTimeoutMs, int notifyCloudDelayMs, int notifyDefaultDelayMs, int chatBigSize, int pushChatPeriodMs, int pushChatLimit, int savedGifsLimit, TLVector<TLDisabledFeature> disabledFeatures) {
+        this.date = date;
+        this.expires = expires;
+        this.testMode = testMode;
+        this.thisDc = thisDc;
+        this.dcOptions = dcOptions;
+        this.chatSizeMax = chatSizeMax;
+        this.megagroupSizeMax = megagroupSizeMax;
+        this.forwardedCountMax = forwardedCountMax;
+        this.onlineUpdatePeriodMs = onlineUpdatePeriodMs;
+        this.offlineBlurTimeoutMs = offlineBlurTimeoutMs;
+        this.offlineIdleTimeoutMs = offlineIdleTimeoutMs;
+        this.onlineCloudTimeoutMs = onlineCloudTimeoutMs;
+        this.notifyCloudDelayMs = notifyCloudDelayMs;
+        this.notifyDefaultDelayMs = notifyDefaultDelayMs;
+        this.chatBigSize = chatBigSize;
+        this.pushChatPeriodMs = pushChatPeriodMs;
+        this.pushChatLimit = pushChatLimit;
+        this.savedGifsLimit = savedGifsLimit;
+        this.disabledFeatures = disabledFeatures;
     }
-
-    public int getExpires() {
-        return expires;
-    }
-
-    public void setExpires(int value) {
-        this.expires = value;
-    }
-
-    public boolean getTestMode() {
-        return testMode;
-    }
-
-    public void setTestMode(boolean value) {
-        this.testMode = value;
-    }
-
-    public int getThisDc() {
-        return thisDc;
-    }
-
-    public void setThisDc(int value) {
-        this.thisDc = value;
-    }
-
-    public com.github.badoualy.telegram.tl.core.TLVector<com.github.badoualy.telegram.tl.api.TLDcOption> getDcOptions() {
-        return dcOptions;
-    }
-
-    public void setDcOptions(com.github.badoualy.telegram.tl.core.TLVector<com.github.badoualy.telegram.tl.api.TLDcOption> value) {
-        this.dcOptions = value;
-    }
-
-    public int getChatSizeMax() {
-        return chatSizeMax;
-    }
-
-    public void setChatSizeMax(int value) {
-        this.chatSizeMax = value;
-    }
-
-    public int getMegagroupSizeMax() {
-        return megagroupSizeMax;
-    }
-
-    public void setMegagroupSizeMax(int value) {
-        this.megagroupSizeMax = value;
-    }
-
-    public int getForwardedCountMax() {
-        return forwardedCountMax;
-    }
-
-    public void setForwardedCountMax(int value) {
-        this.forwardedCountMax = value;
-    }
-
-    public int getOnlineUpdatePeriodMs() {
-        return onlineUpdatePeriodMs;
-    }
-
-    public void setOnlineUpdatePeriodMs(int value) {
-        this.onlineUpdatePeriodMs = value;
-    }
-
-    public int getOfflineBlurTimeoutMs() {
-        return offlineBlurTimeoutMs;
-    }
-
-    public void setOfflineBlurTimeoutMs(int value) {
-        this.offlineBlurTimeoutMs = value;
-    }
-
-    public int getOfflineIdleTimeoutMs() {
-        return offlineIdleTimeoutMs;
-    }
-
-    public void setOfflineIdleTimeoutMs(int value) {
-        this.offlineIdleTimeoutMs = value;
-    }
-
-    public int getOnlineCloudTimeoutMs() {
-        return onlineCloudTimeoutMs;
-    }
-
-    public void setOnlineCloudTimeoutMs(int value) {
-        this.onlineCloudTimeoutMs = value;
-    }
-
-    public int getNotifyCloudDelayMs() {
-        return notifyCloudDelayMs;
-    }
-
-    public void setNotifyCloudDelayMs(int value) {
-        this.notifyCloudDelayMs = value;
-    }
-
-    public int getNotifyDefaultDelayMs() {
-        return notifyDefaultDelayMs;
-    }
-
-    public void setNotifyDefaultDelayMs(int value) {
-        this.notifyDefaultDelayMs = value;
-    }
-
-    public int getChatBigSize() {
-        return chatBigSize;
-    }
-
-    public void setChatBigSize(int value) {
-        this.chatBigSize = value;
-    }
-
-    public int getPushChatPeriodMs() {
-        return pushChatPeriodMs;
-    }
-
-    public void setPushChatPeriodMs(int value) {
-        this.pushChatPeriodMs = value;
-    }
-
-    public int getPushChatLimit() {
-        return pushChatLimit;
-    }
-
-    public void setPushChatLimit(int value) {
-        this.pushChatLimit = value;
-    }
-
-    public int getSavedGifsLimit() {
-        return savedGifsLimit;
-    }
-
-    public void setSavedGifsLimit(int value) {
-        this.savedGifsLimit = value;
-    }
-
-    public com.github.badoualy.telegram.tl.core.TLVector<com.github.badoualy.telegram.tl.api.TLDisabledFeature> getDisabledFeatures() {
-        return disabledFeatures;
-    }
-
-    public void setDisabledFeatures(com.github.badoualy.telegram.tl.core.TLVector<com.github.badoualy.telegram.tl.api.TLDisabledFeature> value) {
-        this.disabledFeatures = value;
-    }
-
 
     @Override
     public void serializeBody(OutputStream stream) throws IOException {
-
-        writeInt(this.date, stream);
-        writeInt(this.expires, stream);
-        writeTLBool(this.testMode, stream);
-        writeInt(this.thisDc, stream);
-        writeTLVector(this.dcOptions, stream);
-        writeInt(this.chatSizeMax, stream);
-        writeInt(this.megagroupSizeMax, stream);
-        writeInt(this.forwardedCountMax, stream);
-        writeInt(this.onlineUpdatePeriodMs, stream);
-        writeInt(this.offlineBlurTimeoutMs, stream);
-        writeInt(this.offlineIdleTimeoutMs, stream);
-        writeInt(this.onlineCloudTimeoutMs, stream);
-        writeInt(this.notifyCloudDelayMs, stream);
-        writeInt(this.notifyDefaultDelayMs, stream);
-        writeInt(this.chatBigSize, stream);
-        writeInt(this.pushChatPeriodMs, stream);
-        writeInt(this.pushChatLimit, stream);
-        writeInt(this.savedGifsLimit, stream);
-        writeTLVector(this.disabledFeatures, stream);
+        writeInt(date, stream);
+        writeInt(expires, stream);
+        writeTLBool(testMode, stream);
+        writeInt(thisDc, stream);
+        writeTLVector(dcOptions, stream);
+        writeInt(chatSizeMax, stream);
+        writeInt(megagroupSizeMax, stream);
+        writeInt(forwardedCountMax, stream);
+        writeInt(onlineUpdatePeriodMs, stream);
+        writeInt(offlineBlurTimeoutMs, stream);
+        writeInt(offlineIdleTimeoutMs, stream);
+        writeInt(onlineCloudTimeoutMs, stream);
+        writeInt(notifyCloudDelayMs, stream);
+        writeInt(notifyDefaultDelayMs, stream);
+        writeInt(chatBigSize, stream);
+        writeInt(pushChatPeriodMs, stream);
+        writeInt(pushChatLimit, stream);
+        writeInt(savedGifsLimit, stream);
+        writeTLVector(disabledFeatures, stream);
     }
-
 
     @Override
+    @SuppressWarnings("unchecked")
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
-
-        this.date = readInt(stream);
-        this.expires = readInt(stream);
-        this.testMode = readTLBool(stream);
-        this.thisDc = readInt(stream);
-        this.dcOptions = readTLVector(stream, context);
-        this.chatSizeMax = readInt(stream);
-        this.megagroupSizeMax = readInt(stream);
-        this.forwardedCountMax = readInt(stream);
-        this.onlineUpdatePeriodMs = readInt(stream);
-        this.offlineBlurTimeoutMs = readInt(stream);
-        this.offlineIdleTimeoutMs = readInt(stream);
-        this.onlineCloudTimeoutMs = readInt(stream);
-        this.notifyCloudDelayMs = readInt(stream);
-        this.notifyDefaultDelayMs = readInt(stream);
-        this.chatBigSize = readInt(stream);
-        this.pushChatPeriodMs = readInt(stream);
-        this.pushChatLimit = readInt(stream);
-        this.savedGifsLimit = readInt(stream);
-        this.disabledFeatures = readTLVector(stream, context);
+        date = readInt(stream);
+        expires = readInt(stream);
+        testMode = readTLBool(stream);
+        thisDc = readInt(stream);
+        dcOptions = readTLVector(stream, context);
+        chatSizeMax = readInt(stream);
+        megagroupSizeMax = readInt(stream);
+        forwardedCountMax = readInt(stream);
+        onlineUpdatePeriodMs = readInt(stream);
+        offlineBlurTimeoutMs = readInt(stream);
+        offlineIdleTimeoutMs = readInt(stream);
+        onlineCloudTimeoutMs = readInt(stream);
+        notifyCloudDelayMs = readInt(stream);
+        notifyDefaultDelayMs = readInt(stream);
+        chatBigSize = readInt(stream);
+        pushChatPeriodMs = readInt(stream);
+        pushChatLimit = readInt(stream);
+        savedGifsLimit = readInt(stream);
+        disabledFeatures = readTLVector(stream, context);
     }
-
 
     @Override
     public String toString() {
         return "config#6bbc5f8";
     }
 
+    @Override
+    public int getClassId() {
+        return CLASS_ID;
+    }
+
+    public int getDate() {
+        return date;
+    }
+
+    public void setDate(int date) {
+        this.date = date;
+    }
+
+    public int getExpires() {
+        return expires;
+    }
+
+    public void setExpires(int expires) {
+        this.expires = expires;
+    }
+
+    public boolean getTestMode() {
+        return testMode;
+    }
+
+    public void setTestMode(boolean testMode) {
+        this.testMode = testMode;
+    }
+
+    public int getThisDc() {
+        return thisDc;
+    }
+
+    public void setThisDc(int thisDc) {
+        this.thisDc = thisDc;
+    }
+
+    public TLVector<TLDcOption> getDcOptions() {
+        return dcOptions;
+    }
+
+    public void setDcOptions(TLVector<TLDcOption> dcOptions) {
+        this.dcOptions = dcOptions;
+    }
+
+    public int getChatSizeMax() {
+        return chatSizeMax;
+    }
+
+    public void setChatSizeMax(int chatSizeMax) {
+        this.chatSizeMax = chatSizeMax;
+    }
+
+    public int getMegagroupSizeMax() {
+        return megagroupSizeMax;
+    }
+
+    public void setMegagroupSizeMax(int megagroupSizeMax) {
+        this.megagroupSizeMax = megagroupSizeMax;
+    }
+
+    public int getForwardedCountMax() {
+        return forwardedCountMax;
+    }
+
+    public void setForwardedCountMax(int forwardedCountMax) {
+        this.forwardedCountMax = forwardedCountMax;
+    }
+
+    public int getOnlineUpdatePeriodMs() {
+        return onlineUpdatePeriodMs;
+    }
+
+    public void setOnlineUpdatePeriodMs(int onlineUpdatePeriodMs) {
+        this.onlineUpdatePeriodMs = onlineUpdatePeriodMs;
+    }
+
+    public int getOfflineBlurTimeoutMs() {
+        return offlineBlurTimeoutMs;
+    }
+
+    public void setOfflineBlurTimeoutMs(int offlineBlurTimeoutMs) {
+        this.offlineBlurTimeoutMs = offlineBlurTimeoutMs;
+    }
+
+    public int getOfflineIdleTimeoutMs() {
+        return offlineIdleTimeoutMs;
+    }
+
+    public void setOfflineIdleTimeoutMs(int offlineIdleTimeoutMs) {
+        this.offlineIdleTimeoutMs = offlineIdleTimeoutMs;
+    }
+
+    public int getOnlineCloudTimeoutMs() {
+        return onlineCloudTimeoutMs;
+    }
+
+    public void setOnlineCloudTimeoutMs(int onlineCloudTimeoutMs) {
+        this.onlineCloudTimeoutMs = onlineCloudTimeoutMs;
+    }
+
+    public int getNotifyCloudDelayMs() {
+        return notifyCloudDelayMs;
+    }
+
+    public void setNotifyCloudDelayMs(int notifyCloudDelayMs) {
+        this.notifyCloudDelayMs = notifyCloudDelayMs;
+    }
+
+    public int getNotifyDefaultDelayMs() {
+        return notifyDefaultDelayMs;
+    }
+
+    public void setNotifyDefaultDelayMs(int notifyDefaultDelayMs) {
+        this.notifyDefaultDelayMs = notifyDefaultDelayMs;
+    }
+
+    public int getChatBigSize() {
+        return chatBigSize;
+    }
+
+    public void setChatBigSize(int chatBigSize) {
+        this.chatBigSize = chatBigSize;
+    }
+
+    public int getPushChatPeriodMs() {
+        return pushChatPeriodMs;
+    }
+
+    public void setPushChatPeriodMs(int pushChatPeriodMs) {
+        this.pushChatPeriodMs = pushChatPeriodMs;
+    }
+
+    public int getPushChatLimit() {
+        return pushChatLimit;
+    }
+
+    public void setPushChatLimit(int pushChatLimit) {
+        this.pushChatLimit = pushChatLimit;
+    }
+
+    public int getSavedGifsLimit() {
+        return savedGifsLimit;
+    }
+
+    public void setSavedGifsLimit(int savedGifsLimit) {
+        this.savedGifsLimit = savedGifsLimit;
+    }
+
+    public TLVector<TLDisabledFeature> getDisabledFeatures() {
+        return disabledFeatures;
+    }
+
+    public void setDisabledFeatures(TLVector<TLDisabledFeature> disabledFeatures) {
+        this.disabledFeatures = disabledFeatures;
+    }
 }

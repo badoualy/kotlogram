@@ -1,44 +1,23 @@
-
 package com.github.badoualy.telegram.tl.api;
 
+import static com.github.badoualy.telegram.tl.StreamUtils.*;
 
 import com.github.badoualy.telegram.tl.TLContext;
-
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.lang.Override;
+import java.lang.String;
+import java.lang.SuppressWarnings;
 
-import static com.github.badoualy.telegram.tl.StreamUtils.readTLObject;
-import static com.github.badoualy.telegram.tl.StreamUtils.readTLString;
-import static com.github.badoualy.telegram.tl.StreamUtils.writeTLObject;
-import static com.github.badoualy.telegram.tl.StreamUtils.writeTLString;
-
-
-
+/**
+ * @author Yannick Badoual yann.badoual@gmail.com
+ * @see <a href="http://github.com/badoualy/kotlogram">http://github.com/badoualy/kotlogram</a>
+ */
 public class TLInputMediaVenue extends TLAbsInputMedia {
     public static final int CLASS_ID = 0x2827a81a;
 
-    public TLInputMediaVenue() {
-
-    }
-
-
-    public TLInputMediaVenue(        com.github.badoualy.telegram.tl.api.TLAbsInputGeoPoint _geoPoint,         String _title,         String _address,         String _provider,         String _venueId) {
-        this.geoPoint = _geoPoint;
-        this.title = _title;
-        this.address = _address;
-        this.provider = _provider;
-        this.venueId = _venueId;
-
-    }
-
-
-    public int getClassId() {
-        return CLASS_ID;
-    }
-
-
-    protected com.github.badoualy.telegram.tl.api.TLAbsInputGeoPoint geoPoint;
+    protected TLAbsInputGeoPoint geoPoint;
 
     protected String title;
 
@@ -48,74 +27,83 @@ public class TLInputMediaVenue extends TLAbsInputMedia {
 
     protected String venueId;
 
-
-    public com.github.badoualy.telegram.tl.api.TLAbsInputGeoPoint getGeoPoint() {
-        return geoPoint;
+    public TLInputMediaVenue() {
     }
 
-    public void setGeoPoint(com.github.badoualy.telegram.tl.api.TLAbsInputGeoPoint value) {
-        this.geoPoint = value;
+    public TLInputMediaVenue(TLAbsInputGeoPoint geoPoint, String title, String address, String provider, String venueId) {
+        this.geoPoint = geoPoint;
+        this.title = title;
+        this.address = address;
+        this.provider = provider;
+        this.venueId = venueId;
     }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String value) {
-        this.title = value;
-    }
-
-    public String getAddress() {
-        return address;
-    }
-
-    public void setAddress(String value) {
-        this.address = value;
-    }
-
-    public String getProvider() {
-        return provider;
-    }
-
-    public void setProvider(String value) {
-        this.provider = value;
-    }
-
-    public String getVenueId() {
-        return venueId;
-    }
-
-    public void setVenueId(String value) {
-        this.venueId = value;
-    }
-
 
     @Override
     public void serializeBody(OutputStream stream) throws IOException {
-
-        writeTLObject(this.geoPoint, stream);
-        writeTLString(this.title, stream);
-        writeTLString(this.address, stream);
-        writeTLString(this.provider, stream);
-        writeTLString(this.venueId, stream);
+        writeTLObject(geoPoint, stream);
+        writeTLString(title, stream);
+        writeTLString(address, stream);
+        writeTLString(provider, stream);
+        writeTLString(venueId, stream);
     }
-
 
     @Override
+    @SuppressWarnings("unchecked")
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
-
-        this.geoPoint = (com.github.badoualy.telegram.tl.api.TLAbsInputGeoPoint)readTLObject(stream, context);
-        this.title = readTLString(stream);
-        this.address = readTLString(stream);
-        this.provider = readTLString(stream);
-        this.venueId = readTLString(stream);
+        geoPoint = (com.github.badoualy.telegram.tl.api.TLAbsInputGeoPoint) readTLObject(stream, context);
+        title = readTLString(stream);
+        address = readTLString(stream);
+        provider = readTLString(stream);
+        venueId = readTLString(stream);
     }
-
-
 
     @Override
     public String toString() {
         return "inputMediaVenue#2827a81a";
     }
 
+    @Override
+    public int getClassId() {
+        return CLASS_ID;
+    }
+
+    public TLAbsInputGeoPoint getGeoPoint() {
+        return geoPoint;
+    }
+
+    public void setGeoPoint(TLAbsInputGeoPoint geoPoint) {
+        this.geoPoint = geoPoint;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public String getProvider() {
+        return provider;
+    }
+
+    public void setProvider(String provider) {
+        this.provider = provider;
+    }
+
+    public String getVenueId() {
+        return venueId;
+    }
+
+    public void setVenueId(String venueId) {
+        this.venueId = venueId;
+    }
 }

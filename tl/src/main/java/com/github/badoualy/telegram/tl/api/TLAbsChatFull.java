@@ -1,62 +1,65 @@
-
 package com.github.badoualy.telegram.tl.api;
 
+import static com.github.badoualy.telegram.tl.StreamUtils.*;
 
 import com.github.badoualy.telegram.tl.core.TLObject;
+import com.github.badoualy.telegram.tl.core.TLVector;
 
-
-
+/**
+ * @author Yannick Badoual yann.badoual@gmail.com
+ * @see <a href="http://github.com/badoualy/kotlogram">http://github.com/badoualy/kotlogram</a>
+ */
 public abstract class TLAbsChatFull extends TLObject {
-
     protected int id;
 
-    protected com.github.badoualy.telegram.tl.api.TLAbsPhoto chatPhoto;
+    protected TLAbsPhoto chatPhoto;
 
-    protected com.github.badoualy.telegram.tl.api.TLAbsPeerNotifySettings notifySettings;
+    protected TLAbsPeerNotifySettings notifySettings;
 
-    protected com.github.badoualy.telegram.tl.api.TLAbsExportedChatInvite exportedInvite;
+    protected TLAbsExportedChatInvite exportedInvite;
 
-    protected com.github.badoualy.telegram.tl.core.TLVector<com.github.badoualy.telegram.tl.api.TLAbsBotInfo> botInfo;
+    protected TLVector<TLAbsBotInfo> botInfo;
 
+    public TLAbsChatFull() {
+    }
 
     public int getId() {
         return id;
     }
 
-    public void setId(int value) {
-        this.id = value;
+    public void setId(int id) {
+        this.id = id;
     }
 
-    public com.github.badoualy.telegram.tl.api.TLAbsPhoto getChatPhoto() {
+    public TLAbsPhoto getChatPhoto() {
         return chatPhoto;
     }
 
-    public void setChatPhoto(com.github.badoualy.telegram.tl.api.TLAbsPhoto value) {
-        this.chatPhoto = value;
+    public void setChatPhoto(TLAbsPhoto chatPhoto) {
+        this.chatPhoto = chatPhoto;
     }
 
-    public com.github.badoualy.telegram.tl.api.TLAbsPeerNotifySettings getNotifySettings() {
+    public TLAbsPeerNotifySettings getNotifySettings() {
         return notifySettings;
     }
 
-    public void setNotifySettings(com.github.badoualy.telegram.tl.api.TLAbsPeerNotifySettings value) {
-        this.notifySettings = value;
+    public void setNotifySettings(TLAbsPeerNotifySettings notifySettings) {
+        this.notifySettings = notifySettings;
     }
 
-    public com.github.badoualy.telegram.tl.api.TLAbsExportedChatInvite getExportedInvite() {
+    public TLAbsExportedChatInvite getExportedInvite() {
         return exportedInvite;
     }
 
-    public void setExportedInvite(com.github.badoualy.telegram.tl.api.TLAbsExportedChatInvite value) {
-        this.exportedInvite = value;
+    public void setExportedInvite(TLAbsExportedChatInvite exportedInvite) {
+        this.exportedInvite = exportedInvite;
     }
 
-    public com.github.badoualy.telegram.tl.core.TLVector<com.github.badoualy.telegram.tl.api.TLAbsBotInfo> getBotInfo() {
+    public TLVector<TLAbsBotInfo> getBotInfo() {
         return botInfo;
     }
 
-    public void setBotInfo(com.github.badoualy.telegram.tl.core.TLVector<com.github.badoualy.telegram.tl.api.TLAbsBotInfo> value) {
-        this.botInfo = value;
+    public void setBotInfo(TLVector<TLAbsBotInfo> botInfo) {
+        this.botInfo = botInfo;
     }
-
 }

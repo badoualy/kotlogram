@@ -1,43 +1,21 @@
-
 package com.github.badoualy.telegram.tl.api;
 
+import static com.github.badoualy.telegram.tl.StreamUtils.*;
 
 import com.github.badoualy.telegram.tl.TLContext;
-
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.lang.Override;
+import java.lang.String;
+import java.lang.SuppressWarnings;
 
-import static com.github.badoualy.telegram.tl.StreamUtils.readInt;
-import static com.github.badoualy.telegram.tl.StreamUtils.readTLString;
-import static com.github.badoualy.telegram.tl.StreamUtils.writeInt;
-import static com.github.badoualy.telegram.tl.StreamUtils.writeTLString;
-
-
-
+/**
+ * @author Yannick Badoual yann.badoual@gmail.com
+ * @see <a href="http://github.com/badoualy/kotlogram">http://github.com/badoualy/kotlogram</a>
+ */
 public class TLFoundGif extends TLAbsFoundGif {
     public static final int CLASS_ID = 0x162ecc1f;
-
-    public TLFoundGif() {
-
-    }
-
-
-    public TLFoundGif(        String _url,         String _thumbUrl,         String _contentUrl,         String _contentType,         int _w,         int _h) {
-        this.url = _url;
-        this.thumbUrl = _thumbUrl;
-        this.contentUrl = _contentUrl;
-        this.contentType = _contentType;
-        this.w = _w;
-        this.h = _h;
-
-    }
-
-
-    public int getClassId() {
-        return CLASS_ID;
-    }
-
 
     protected String thumbUrl;
 
@@ -49,76 +27,94 @@ public class TLFoundGif extends TLAbsFoundGif {
 
     protected int h;
 
-
-    public String getThumbUrl() {
-        return thumbUrl;
+    public TLFoundGif() {
     }
 
-    public void setThumbUrl(String value) {
-        this.thumbUrl = value;
+    public TLFoundGif(String url, String thumbUrl, String contentUrl, String contentType, int w, int h) {
+        this.url = url;
+        this.thumbUrl = thumbUrl;
+        this.contentUrl = contentUrl;
+        this.contentType = contentType;
+        this.w = w;
+        this.h = h;
     }
-
-    public String getContentUrl() {
-        return contentUrl;
-    }
-
-    public void setContentUrl(String value) {
-        this.contentUrl = value;
-    }
-
-    public String getContentType() {
-        return contentType;
-    }
-
-    public void setContentType(String value) {
-        this.contentType = value;
-    }
-
-    public int getW() {
-        return w;
-    }
-
-    public void setW(int value) {
-        this.w = value;
-    }
-
-    public int getH() {
-        return h;
-    }
-
-    public void setH(int value) {
-        this.h = value;
-    }
-
 
     @Override
     public void serializeBody(OutputStream stream) throws IOException {
-
-        writeTLString(this.url, stream);
-        writeTLString(this.thumbUrl, stream);
-        writeTLString(this.contentUrl, stream);
-        writeTLString(this.contentType, stream);
-        writeInt(this.w, stream);
-        writeInt(this.h, stream);
+        writeTLString(url, stream);
+        writeTLString(thumbUrl, stream);
+        writeTLString(contentUrl, stream);
+        writeTLString(contentType, stream);
+        writeInt(w, stream);
+        writeInt(h, stream);
     }
-
 
     @Override
+    @SuppressWarnings("unchecked")
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
-
-        this.url = readTLString(stream);
-        this.thumbUrl = readTLString(stream);
-        this.contentUrl = readTLString(stream);
-        this.contentType = readTLString(stream);
-        this.w = readInt(stream);
-        this.h = readInt(stream);
+        url = readTLString(stream);
+        thumbUrl = readTLString(stream);
+        contentUrl = readTLString(stream);
+        contentType = readTLString(stream);
+        w = readInt(stream);
+        h = readInt(stream);
     }
-
-
 
     @Override
     public String toString() {
         return "foundGif#162ecc1f";
     }
 
+    @Override
+    public int getClassId() {
+        return CLASS_ID;
+    }
+
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
+    }
+
+    public String getThumbUrl() {
+        return thumbUrl;
+    }
+
+    public void setThumbUrl(String thumbUrl) {
+        this.thumbUrl = thumbUrl;
+    }
+
+    public String getContentUrl() {
+        return contentUrl;
+    }
+
+    public void setContentUrl(String contentUrl) {
+        this.contentUrl = contentUrl;
+    }
+
+    public String getContentType() {
+        return contentType;
+    }
+
+    public void setContentType(String contentType) {
+        this.contentType = contentType;
+    }
+
+    public int getW() {
+        return w;
+    }
+
+    public void setW(int w) {
+        this.w = w;
+    }
+
+    public int getH() {
+        return h;
+    }
+
+    public void setH(int h) {
+        this.h = h;
+    }
 }

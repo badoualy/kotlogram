@@ -1,33 +1,36 @@
-
 package com.github.badoualy.telegram.tl.api.account;
 
+import static com.github.badoualy.telegram.tl.StreamUtils.*;
 
 import com.github.badoualy.telegram.tl.core.TLBytes;
 import com.github.badoualy.telegram.tl.core.TLObject;
+import java.lang.String;
 
-
-
+/**
+ * @author Yannick Badoual yann.badoual@gmail.com
+ * @see <a href="http://github.com/badoualy/kotlogram">http://github.com/badoualy/kotlogram</a>
+ */
 public abstract class TLAbsPassword extends TLObject {
-
     protected TLBytes newSalt;
 
     protected String emailUnconfirmedPattern;
 
+    public TLAbsPassword() {
+    }
 
     public TLBytes getNewSalt() {
         return newSalt;
     }
 
-    public void setNewSalt(TLBytes value) {
-        this.newSalt = value;
+    public void setNewSalt(TLBytes newSalt) {
+        this.newSalt = newSalt;
     }
 
     public String getEmailUnconfirmedPattern() {
         return emailUnconfirmedPattern;
     }
 
-    public void setEmailUnconfirmedPattern(String value) {
-        this.emailUnconfirmedPattern = value;
+    public void setEmailUnconfirmedPattern(String emailUnconfirmedPattern) {
+        this.emailUnconfirmedPattern = emailUnconfirmedPattern;
     }
-
 }

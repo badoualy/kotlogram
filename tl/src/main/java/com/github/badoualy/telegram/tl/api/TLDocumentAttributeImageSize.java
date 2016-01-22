@@ -1,80 +1,70 @@
-
 package com.github.badoualy.telegram.tl.api;
 
+import static com.github.badoualy.telegram.tl.StreamUtils.*;
 
 import com.github.badoualy.telegram.tl.TLContext;
-
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.lang.Override;
+import java.lang.String;
+import java.lang.SuppressWarnings;
 
-import static com.github.badoualy.telegram.tl.StreamUtils.readInt;
-import static com.github.badoualy.telegram.tl.StreamUtils.writeInt;
-
-
-
+/**
+ * @author Yannick Badoual yann.badoual@gmail.com
+ * @see <a href="http://github.com/badoualy/kotlogram">http://github.com/badoualy/kotlogram</a>
+ */
 public class TLDocumentAttributeImageSize extends TLAbsDocumentAttribute {
     public static final int CLASS_ID = 0x6c37c15c;
-
-    public TLDocumentAttributeImageSize() {
-
-    }
-
-
-    public TLDocumentAttributeImageSize(        int _w,         int _h) {
-        this.w = _w;
-        this.h = _h;
-
-    }
-
-
-    public int getClassId() {
-        return CLASS_ID;
-    }
-
 
     protected int w;
 
     protected int h;
 
-
-    public int getW() {
-        return w;
+    public TLDocumentAttributeImageSize() {
     }
 
-    public void setW(int value) {
-        this.w = value;
+    public TLDocumentAttributeImageSize(int w, int h) {
+        this.w = w;
+        this.h = h;
     }
-
-    public int getH() {
-        return h;
-    }
-
-    public void setH(int value) {
-        this.h = value;
-    }
-
 
     @Override
     public void serializeBody(OutputStream stream) throws IOException {
-
-        writeInt(this.w, stream);
-        writeInt(this.h, stream);
+        writeInt(w, stream);
+        writeInt(h, stream);
     }
-
 
     @Override
+    @SuppressWarnings("unchecked")
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
-
-        this.w = readInt(stream);
-        this.h = readInt(stream);
+        w = readInt(stream);
+        h = readInt(stream);
     }
-
-
 
     @Override
     public String toString() {
         return "documentAttributeImageSize#6c37c15c";
     }
 
+    @Override
+    public int getClassId() {
+        return CLASS_ID;
+    }
+
+    public int getW() {
+        return w;
+    }
+
+    public void setW(int w) {
+        this.w = w;
+    }
+
+    public int getH() {
+        return h;
+    }
+
+    public void setH(int h) {
+        this.h = h;
+    }
 }

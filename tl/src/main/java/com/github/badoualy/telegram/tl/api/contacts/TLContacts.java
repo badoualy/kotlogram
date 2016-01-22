@@ -1,80 +1,73 @@
-
 package com.github.badoualy.telegram.tl.api.contacts;
 
+import static com.github.badoualy.telegram.tl.StreamUtils.*;
 
 import com.github.badoualy.telegram.tl.TLContext;
-
+import com.github.badoualy.telegram.tl.api.TLAbsUser;
+import com.github.badoualy.telegram.tl.api.TLContact;
+import com.github.badoualy.telegram.tl.core.TLVector;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.lang.Override;
+import java.lang.String;
+import java.lang.SuppressWarnings;
 
-import static com.github.badoualy.telegram.tl.StreamUtils.readTLVector;
-import static com.github.badoualy.telegram.tl.StreamUtils.writeTLVector;
-
-
-
+/**
+ * @author Yannick Badoual yann.badoual@gmail.com
+ * @see <a href="http://github.com/badoualy/kotlogram">http://github.com/badoualy/kotlogram</a>
+ */
 public class TLContacts extends TLAbsContacts {
     public static final int CLASS_ID = 0x6f8b8cb2;
 
+    protected TLVector<TLContact> contacts;
+
+    protected TLVector<TLAbsUser> users;
+
     public TLContacts() {
-
     }
 
-
-    public TLContacts(        com.github.badoualy.telegram.tl.core.TLVector<com.github.badoualy.telegram.tl.api.TLContact> _contacts,         com.github.badoualy.telegram.tl.core.TLVector<com.github.badoualy.telegram.tl.api.TLAbsUser> _users) {
-        this.contacts = _contacts;
-        this.users = _users;
-
+    public TLContacts(TLVector<TLContact> contacts, TLVector<TLAbsUser> users) {
+        this.contacts = contacts;
+        this.users = users;
     }
-
-
-    public int getClassId() {
-        return CLASS_ID;
-    }
-
-
-    protected com.github.badoualy.telegram.tl.core.TLVector<com.github.badoualy.telegram.tl.api.TLContact> contacts;
-
-    protected com.github.badoualy.telegram.tl.core.TLVector<com.github.badoualy.telegram.tl.api.TLAbsUser> users;
-
-
-    public com.github.badoualy.telegram.tl.core.TLVector<com.github.badoualy.telegram.tl.api.TLContact> getContacts() {
-        return contacts;
-    }
-
-    public void setContacts(com.github.badoualy.telegram.tl.core.TLVector<com.github.badoualy.telegram.tl.api.TLContact> value) {
-        this.contacts = value;
-    }
-
-    public com.github.badoualy.telegram.tl.core.TLVector<com.github.badoualy.telegram.tl.api.TLAbsUser> getUsers() {
-        return users;
-    }
-
-    public void setUsers(com.github.badoualy.telegram.tl.core.TLVector<com.github.badoualy.telegram.tl.api.TLAbsUser> value) {
-        this.users = value;
-    }
-
 
     @Override
     public void serializeBody(OutputStream stream) throws IOException {
-
-        writeTLVector(this.contacts, stream);
-        writeTLVector(this.users, stream);
+        writeTLVector(contacts, stream);
+        writeTLVector(users, stream);
     }
-
 
     @Override
+    @SuppressWarnings("unchecked")
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
-
-        this.contacts = readTLVector(stream, context);
-        this.users = readTLVector(stream, context);
+        contacts = readTLVector(stream, context);
+        users = readTLVector(stream, context);
     }
-
-
 
     @Override
     public String toString() {
         return "contacts.contacts#6f8b8cb2";
     }
 
+    @Override
+    public int getClassId() {
+        return CLASS_ID;
+    }
+
+    public TLVector<TLContact> getContacts() {
+        return contacts;
+    }
+
+    public void setContacts(TLVector<TLContact> contacts) {
+        this.contacts = contacts;
+    }
+
+    public TLVector<TLAbsUser> getUsers() {
+        return users;
+    }
+
+    public void setUsers(TLVector<TLAbsUser> users) {
+        this.users = users;
+    }
 }

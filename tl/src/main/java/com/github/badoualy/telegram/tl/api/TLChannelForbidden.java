@@ -1,87 +1,83 @@
-
 package com.github.badoualy.telegram.tl.api;
 
+import static com.github.badoualy.telegram.tl.StreamUtils.*;
 
 import com.github.badoualy.telegram.tl.TLContext;
-
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.lang.Override;
+import java.lang.String;
+import java.lang.SuppressWarnings;
 
-import static com.github.badoualy.telegram.tl.StreamUtils.readInt;
-import static com.github.badoualy.telegram.tl.StreamUtils.readLong;
-import static com.github.badoualy.telegram.tl.StreamUtils.readTLString;
-import static com.github.badoualy.telegram.tl.StreamUtils.writeInt;
-import static com.github.badoualy.telegram.tl.StreamUtils.writeLong;
-import static com.github.badoualy.telegram.tl.StreamUtils.writeTLString;
-
-
-
+/**
+ * @author Yannick Badoual yann.badoual@gmail.com
+ * @see <a href="http://github.com/badoualy/kotlogram">http://github.com/badoualy/kotlogram</a>
+ */
 public class TLChannelForbidden extends TLAbsChat {
     public static final int CLASS_ID = 0x2d85832c;
 
-    public TLChannelForbidden() {
-
-    }
-
-
-    public TLChannelForbidden(        int _id,         long _accessHash,         String _title) {
-        this.id = _id;
-        this.accessHash = _accessHash;
-        this.title = _title;
-
-    }
-
-
-    public int getClassId() {
-        return CLASS_ID;
-    }
-
+    protected int id;
 
     protected long accessHash;
 
     protected String title;
 
-
-    public long getAccessHash() {
-        return accessHash;
+    public TLChannelForbidden() {
     }
 
-    public void setAccessHash(long value) {
-        this.accessHash = value;
+    public TLChannelForbidden(int id, long accessHash, String title) {
+        this.id = id;
+        this.accessHash = accessHash;
+        this.title = title;
     }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String value) {
-        this.title = value;
-    }
-
 
     @Override
     public void serializeBody(OutputStream stream) throws IOException {
-
-        writeInt(this.id, stream);
-        writeLong(this.accessHash, stream);
-        writeTLString(this.title, stream);
+        writeInt(id, stream);
+        writeLong(accessHash, stream);
+        writeTLString(title, stream);
     }
-
 
     @Override
+    @SuppressWarnings("unchecked")
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
-
-        this.id = readInt(stream);
-        this.accessHash = readLong(stream);
-        this.title = readTLString(stream);
+        id = readInt(stream);
+        accessHash = readLong(stream);
+        title = readTLString(stream);
     }
-
-
 
     @Override
     public String toString() {
         return "channelForbidden#2d85832c";
     }
 
+    @Override
+    public int getClassId() {
+        return CLASS_ID;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public long getAccessHash() {
+        return accessHash;
+    }
+
+    public void setAccessHash(long accessHash) {
+        this.accessHash = accessHash;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
 }

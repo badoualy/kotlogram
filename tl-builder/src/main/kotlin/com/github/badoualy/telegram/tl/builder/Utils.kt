@@ -15,22 +15,6 @@ fun String.lCamelCase(): String {
     return words.drop(1).fold(words[0].lFirstLetter(), { r, t -> r + t.uFirstLetter() });
 }
 
-fun String.getNamespace(): String {
-    return if (this.contains(".")) {
-        this.substring(0, this.indexOf("."))
-    } else {
-        ""
-    }
-}
-
-fun String.skipNamespace(): String {
-    return if (this.contains(".")) {
-        this.substring(this.indexOf(".") + 1)
-    } else {
-        this
-    }
-}
-
 fun String.uCamelCase(): String {
     var words = divideByWords(this)
     return words.fold("", { r, t -> r + t.uFirstLetter() });
@@ -76,4 +60,9 @@ private fun divideByWords(value: String): List<String> {
         }
     }
     return words
+}
+
+fun String.javaEscape(): String = when (this) {
+    "private", "public", "long", "assert", "final" -> "_$this"
+    else -> this
 }

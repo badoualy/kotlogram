@@ -38,11 +38,8 @@ interface TelegramClient : TelegramApi {
     @Throws(RpcErrorException::class, IOException::class)
     fun getUserPhoto(user: TLAbsUser, big: Boolean = true): TLFile? {
         val userPhoto = when (user) {
-            is TLUserSelf -> user.photo
-            is TLUserContact -> user.photo
-            is TLUserRequest -> user.photo
-            is TLUserForeign -> user.photo
-            is TLUserEmpty, is TLUserDeleted -> null
+            is TLUser -> user.photo
+            is TLUserEmpty -> null
             else -> null
         } ?: return null
 
@@ -72,26 +69,4 @@ interface TelegramClient : TelegramApi {
         val inputLocation = TLInputFileLocation(photoLocation.volumeId, photoLocation.localId, photoLocation.secret)
         return uploadGetFile(inputLocation, 0, 0)
     }
-}
-
-interface TelegramReactiveClient : TelegramReactiveApi {
-
-    fun close()
-
-    fun <T : TLObject> executeRpcQuery(method: TLMethod<T>): Observable<T>
-
-    /** Convenience method wrapping the argument with TelegramApp values */
-    fun authSendCode(phoneNumber: String, smsType: Int): Observable<TLAbsSentCode>
-
-    @Deprecated("Use authSendCode for more convenience", ReplaceWith("authSendCode(phoneNumber, smsType)"))
-    override fun authSendCode(phoneNumber: String?, smsType: Int, apiId: Int, apiHash: String?, langCode: String?): Observable<TLAbsSentCode>
-
-    override fun <T : TLObject?> invokeWithLayer(layer: Int, query: TLMethod<T>?): Observable<T>
-
-    /** Convenience method wrapping the argument with TelegramApp values and casting result with good type */
-    @Suppress("UNCHECKED_CAST")
-    fun <T : TLObject> initConnection(query: TLMethod<T>): Observable<T>
-
-    @Deprecated("Use initConnection for more convenience", ReplaceWith("initConnection(query)"))
-    override fun <T : TLObject?> initConnection(apiId: Int, deviceModel: String?, systemVersion: String?, appVersion: String?, langCode: String?, query: TLMethod<T>?): Observable<T>
 }

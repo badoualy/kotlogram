@@ -1,67 +1,58 @@
-
 package com.github.badoualy.telegram.tl.api;
 
+import static com.github.badoualy.telegram.tl.StreamUtils.*;
 
 import com.github.badoualy.telegram.tl.TLContext;
-
+import com.github.badoualy.telegram.tl.core.TLVector;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.lang.Override;
+import java.lang.String;
+import java.lang.SuppressWarnings;
 
-import static com.github.badoualy.telegram.tl.StreamUtils.readTLVector;
-import static com.github.badoualy.telegram.tl.StreamUtils.writeTLVector;
-
-
-
+/**
+ * @author Yannick Badoual yann.badoual@gmail.com
+ * @see <a href="http://github.com/badoualy/kotlogram">http://github.com/badoualy/kotlogram</a>
+ */
 public class TLInputPrivacyValueAllowUsers extends TLAbsInputPrivacyRule {
     public static final int CLASS_ID = 0x131cc67f;
 
+    protected TLVector<TLAbsInputUser> users;
+
     public TLInputPrivacyValueAllowUsers() {
-
     }
 
-
-    public TLInputPrivacyValueAllowUsers(        com.github.badoualy.telegram.tl.core.TLVector<com.github.badoualy.telegram.tl.api.TLAbsInputUser> _users) {
-        this.users = _users;
-
+    public TLInputPrivacyValueAllowUsers(TLVector<TLAbsInputUser> users) {
+        this.users = users;
     }
-
-
-    public int getClassId() {
-        return CLASS_ID;
-    }
-
-
-    protected com.github.badoualy.telegram.tl.core.TLVector<com.github.badoualy.telegram.tl.api.TLAbsInputUser> users;
-
-
-    public com.github.badoualy.telegram.tl.core.TLVector<com.github.badoualy.telegram.tl.api.TLAbsInputUser> getUsers() {
-        return users;
-    }
-
-    public void setUsers(com.github.badoualy.telegram.tl.core.TLVector<com.github.badoualy.telegram.tl.api.TLAbsInputUser> value) {
-        this.users = value;
-    }
-
 
     @Override
     public void serializeBody(OutputStream stream) throws IOException {
-
-        writeTLVector(this.users, stream);
+        writeTLVector(users, stream);
     }
-
 
     @Override
+    @SuppressWarnings("unchecked")
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
-
-        this.users = readTLVector(stream, context);
+        users = readTLVector(stream, context);
     }
-
-
 
     @Override
     public String toString() {
         return "inputPrivacyValueAllowUsers#131cc67f";
     }
 
+    @Override
+    public int getClassId() {
+        return CLASS_ID;
+    }
+
+    public TLVector<TLAbsInputUser> getUsers() {
+        return users;
+    }
+
+    public void setUsers(TLVector<TLAbsInputUser> users) {
+        this.users = users;
+    }
 }

@@ -1,38 +1,21 @@
-
 package com.github.badoualy.telegram.tl.api;
 
+import static com.github.badoualy.telegram.tl.StreamUtils.*;
 
 import com.github.badoualy.telegram.tl.TLContext;
-
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.lang.Override;
+import java.lang.String;
+import java.lang.SuppressWarnings;
 
-import static com.github.badoualy.telegram.tl.StreamUtils.readDouble;
-import static com.github.badoualy.telegram.tl.StreamUtils.writeDouble;
-
-
-
+/**
+ * @author Yannick Badoual yann.badoual@gmail.com
+ * @see <a href="http://github.com/badoualy/kotlogram">http://github.com/badoualy/kotlogram</a>
+ */
 public class TLInputPhotoCrop extends TLAbsInputPhotoCrop {
     public static final int CLASS_ID = 0xd9915325;
-
-    public TLInputPhotoCrop() {
-
-    }
-
-
-    public TLInputPhotoCrop(        double _cropLeft,         double _cropTop,         double _cropWidth) {
-        this.cropLeft = _cropLeft;
-        this.cropTop = _cropTop;
-        this.cropWidth = _cropWidth;
-
-    }
-
-
-    public int getClassId() {
-        return CLASS_ID;
-    }
-
 
     protected double cropLeft;
 
@@ -40,54 +23,61 @@ public class TLInputPhotoCrop extends TLAbsInputPhotoCrop {
 
     protected double cropWidth;
 
-
-    public double getCropLeft() {
-        return cropLeft;
+    public TLInputPhotoCrop() {
     }
 
-    public void setCropLeft(double value) {
-        this.cropLeft = value;
+    public TLInputPhotoCrop(double cropLeft, double cropTop, double cropWidth) {
+        this.cropLeft = cropLeft;
+        this.cropTop = cropTop;
+        this.cropWidth = cropWidth;
     }
-
-    public double getCropTop() {
-        return cropTop;
-    }
-
-    public void setCropTop(double value) {
-        this.cropTop = value;
-    }
-
-    public double getCropWidth() {
-        return cropWidth;
-    }
-
-    public void setCropWidth(double value) {
-        this.cropWidth = value;
-    }
-
 
     @Override
     public void serializeBody(OutputStream stream) throws IOException {
-
-        writeDouble(this.cropLeft, stream);
-        writeDouble(this.cropTop, stream);
-        writeDouble(this.cropWidth, stream);
+        writeDouble(cropLeft, stream);
+        writeDouble(cropTop, stream);
+        writeDouble(cropWidth, stream);
     }
-
 
     @Override
+    @SuppressWarnings("unchecked")
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
-
-        this.cropLeft = readDouble(stream);
-        this.cropTop = readDouble(stream);
-        this.cropWidth = readDouble(stream);
+        cropLeft = readDouble(stream);
+        cropTop = readDouble(stream);
+        cropWidth = readDouble(stream);
     }
-
-
 
     @Override
     public String toString() {
         return "inputPhotoCrop#d9915325";
     }
 
+    @Override
+    public int getClassId() {
+        return CLASS_ID;
+    }
+
+    public double getCropLeft() {
+        return cropLeft;
+    }
+
+    public void setCropLeft(double cropLeft) {
+        this.cropLeft = cropLeft;
+    }
+
+    public double getCropTop() {
+        return cropTop;
+    }
+
+    public void setCropTop(double cropTop) {
+        this.cropTop = cropTop;
+    }
+
+    public double getCropWidth() {
+        return cropWidth;
+    }
+
+    public void setCropWidth(double cropWidth) {
+        this.cropWidth = cropWidth;
+    }
 }

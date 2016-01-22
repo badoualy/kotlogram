@@ -1,82 +1,70 @@
-
 package com.github.badoualy.telegram.tl.api;
 
+import static com.github.badoualy.telegram.tl.StreamUtils.*;
 
 import com.github.badoualy.telegram.tl.TLContext;
-
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.lang.Override;
+import java.lang.String;
+import java.lang.SuppressWarnings;
 
-import static com.github.badoualy.telegram.tl.StreamUtils.readInt;
-import static com.github.badoualy.telegram.tl.StreamUtils.readLong;
-import static com.github.badoualy.telegram.tl.StreamUtils.writeInt;
-import static com.github.badoualy.telegram.tl.StreamUtils.writeLong;
-
-
-
+/**
+ * @author Yannick Badoual yann.badoual@gmail.com
+ * @see <a href="http://github.com/badoualy/kotlogram">http://github.com/badoualy/kotlogram</a>
+ */
 public class TLInputPeerUser extends TLAbsInputPeer {
     public static final int CLASS_ID = 0x7b8e7de6;
-
-    public TLInputPeerUser() {
-
-    }
-
-
-    public TLInputPeerUser(        int _userId,         long _accessHash) {
-        this.userId = _userId;
-        this.accessHash = _accessHash;
-
-    }
-
-
-    public int getClassId() {
-        return CLASS_ID;
-    }
-
 
     protected int userId;
 
     protected long accessHash;
 
-
-    public int getUserId() {
-        return userId;
+    public TLInputPeerUser() {
     }
 
-    public void setUserId(int value) {
-        this.userId = value;
+    public TLInputPeerUser(int userId, long accessHash) {
+        this.userId = userId;
+        this.accessHash = accessHash;
     }
-
-    public long getAccessHash() {
-        return accessHash;
-    }
-
-    public void setAccessHash(long value) {
-        this.accessHash = value;
-    }
-
 
     @Override
     public void serializeBody(OutputStream stream) throws IOException {
-
-        writeInt(this.userId, stream);
-        writeLong(this.accessHash, stream);
+        writeInt(userId, stream);
+        writeLong(accessHash, stream);
     }
-
 
     @Override
+    @SuppressWarnings("unchecked")
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
-
-        this.userId = readInt(stream);
-        this.accessHash = readLong(stream);
+        userId = readInt(stream);
+        accessHash = readLong(stream);
     }
-
-
 
     @Override
     public String toString() {
         return "inputPeerUser#7b8e7de6";
     }
 
+    @Override
+    public int getClassId() {
+        return CLASS_ID;
+    }
+
+    public int getUserId() {
+        return userId;
+    }
+
+    public void setUserId(int userId) {
+        this.userId = userId;
+    }
+
+    public long getAccessHash() {
+        return accessHash;
+    }
+
+    public void setAccessHash(long accessHash) {
+        this.accessHash = accessHash;
+    }
 }

@@ -1,81 +1,71 @@
-
 package com.github.badoualy.telegram.tl.api;
+
+import static com.github.badoualy.telegram.tl.StreamUtils.*;
 
 import com.github.badoualy.telegram.tl.TLContext;
 import com.github.badoualy.telegram.tl.core.TLObject;
-
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.lang.Override;
+import java.lang.String;
+import java.lang.SuppressWarnings;
 
-import static com.github.badoualy.telegram.tl.StreamUtils.readInt;
-import static com.github.badoualy.telegram.tl.StreamUtils.readTLObject;
-import static com.github.badoualy.telegram.tl.StreamUtils.writeInt;
-import static com.github.badoualy.telegram.tl.StreamUtils.writeTLObject;
-
-
+/**
+ * @author Yannick Badoual yann.badoual@gmail.com
+ * @see <a href="http://github.com/badoualy/kotlogram">http://github.com/badoualy/kotlogram</a>
+ */
 public class TLContactStatus extends TLObject {
-
     public static final int CLASS_ID = 0xd3680c61;
-
-    public TLContactStatus() {
-
-    }
-
-
-    public TLContactStatus(        int _userId,         com.github.badoualy.telegram.tl.api.TLAbsUserStatus _status) {
-        this.userId = _userId;
-        this.status = _status;
-
-    }
-
-
-    public int getClassId() {
-        return CLASS_ID;
-    }
-
 
     protected int userId;
 
-    protected com.github.badoualy.telegram.tl.api.TLAbsUserStatus status;
+    protected TLAbsUserStatus status;
 
-
-    public int getUserId() {
-        return userId;
+    public TLContactStatus() {
     }
 
-    public void setUserId(int value) {
-        this.userId = value;
+    public TLContactStatus(int userId, TLAbsUserStatus status) {
+        this.userId = userId;
+        this.status = status;
     }
-
-    public com.github.badoualy.telegram.tl.api.TLAbsUserStatus getStatus() {
-        return status;
-    }
-
-    public void setStatus(com.github.badoualy.telegram.tl.api.TLAbsUserStatus value) {
-        this.status = value;
-    }
-
 
     @Override
     public void serializeBody(OutputStream stream) throws IOException {
-
-        writeInt(this.userId, stream);
-        writeTLObject(this.status, stream);
+        writeInt(userId, stream);
+        writeTLObject(status, stream);
     }
-
 
     @Override
+    @SuppressWarnings("unchecked")
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
-
-        this.userId = readInt(stream);
-        this.status = (com.github.badoualy.telegram.tl.api.TLAbsUserStatus)readTLObject(stream, context);
+        userId = readInt(stream);
+        status = (com.github.badoualy.telegram.tl.api.TLAbsUserStatus) readTLObject(stream, context);
     }
-
 
     @Override
     public String toString() {
         return "contactStatus#d3680c61";
     }
 
+    @Override
+    public int getClassId() {
+        return CLASS_ID;
+    }
+
+    public int getUserId() {
+        return userId;
+    }
+
+    public void setUserId(int userId) {
+        this.userId = userId;
+    }
+
+    public TLAbsUserStatus getStatus() {
+        return status;
+    }
+
+    public void setStatus(TLAbsUserStatus status) {
+        this.status = status;
+    }
 }

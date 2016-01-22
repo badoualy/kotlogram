@@ -1,50 +1,33 @@
-
 package com.github.badoualy.telegram.tl.api.updates;
 
+import static com.github.badoualy.telegram.tl.StreamUtils.*;
 
 import com.github.badoualy.telegram.tl.TLContext;
-
+import com.github.badoualy.telegram.tl.api.TLAbsChat;
+import com.github.badoualy.telegram.tl.api.TLAbsMessage;
+import com.github.badoualy.telegram.tl.api.TLAbsUser;
+import com.github.badoualy.telegram.tl.core.TLVector;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.lang.Override;
+import java.lang.String;
+import java.lang.SuppressWarnings;
 
-import static com.github.badoualy.telegram.tl.StreamUtils.readInt;
-import static com.github.badoualy.telegram.tl.StreamUtils.readTLVector;
-import static com.github.badoualy.telegram.tl.StreamUtils.writeInt;
-import static com.github.badoualy.telegram.tl.StreamUtils.writeTLBool;
-import static com.github.badoualy.telegram.tl.StreamUtils.writeTLVector;
-
-
-
+/**
+ * @author Yannick Badoual yann.badoual@gmail.com
+ * @see <a href="http://github.com/badoualy/kotlogram">http://github.com/badoualy/kotlogram</a>
+ */
 public class TLChannelDifferenceTooLong extends TLAbsChannelDifference {
     public static final int CLASS_ID = 0x5e167646;
 
-    public TLChannelDifferenceTooLong() {
+    protected int flags;
 
-    }
+    protected boolean _final;
 
+    protected int pts;
 
-    public TLChannelDifferenceTooLong(        int _flags,         boolean _fina,         int _pts,         int _timeout,         int _topMessage,         int _topImportantMessage,         int _readInboxMaxId,         int _unreadCount,         int _unreadImportantCount,         com.github.badoualy.telegram.tl.core.TLVector<com.github.badoualy.telegram.tl.api.TLAbsMessage> _messages,         com.github.badoualy.telegram.tl.core.TLVector<com.github.badoualy.telegram.tl.api.TLAbsChat> _chats,         com.github.badoualy.telegram.tl.core.TLVector<com.github.badoualy.telegram.tl.api.TLAbsUser> _users) {
-        this.flags = _flags;
-        this.fina = _fina;
-        this.pts = _pts;
-        this.timeout = _timeout;
-        this.topMessage = _topMessage;
-        this.topImportantMessage = _topImportantMessage;
-        this.readInboxMaxId = _readInboxMaxId;
-        this.unreadCount = _unreadCount;
-        this.unreadImportantCount = _unreadImportantCount;
-        this.messages = _messages;
-        this.chats = _chats;
-        this.users = _users;
-
-    }
-
-
-    public int getClassId() {
-        return CLASS_ID;
-    }
-
+    protected int timeout;
 
     protected int topMessage;
 
@@ -56,122 +39,166 @@ public class TLChannelDifferenceTooLong extends TLAbsChannelDifference {
 
     protected int unreadImportantCount;
 
-    protected com.github.badoualy.telegram.tl.core.TLVector<com.github.badoualy.telegram.tl.api.TLAbsMessage> messages;
+    protected TLVector<TLAbsMessage> messages;
 
-    protected com.github.badoualy.telegram.tl.core.TLVector<com.github.badoualy.telegram.tl.api.TLAbsChat> chats;
+    protected TLVector<TLAbsChat> chats;
 
-    protected com.github.badoualy.telegram.tl.core.TLVector<com.github.badoualy.telegram.tl.api.TLAbsUser> users;
+    protected TLVector<TLAbsUser> users;
 
-
-    public int getTopMessage() {
-        return topMessage;
+    public TLChannelDifferenceTooLong() {
     }
 
-    public void setTopMessage(int value) {
-        this.topMessage = value;
+    public TLChannelDifferenceTooLong(int flags, boolean _final, int pts, int timeout, int topMessage, int topImportantMessage, int readInboxMaxId, int unreadCount, int unreadImportantCount, TLVector<TLAbsMessage> messages, TLVector<TLAbsChat> chats, TLVector<TLAbsUser> users) {
+        this.flags = flags;
+        this._final = _final;
+        this.pts = pts;
+        this.timeout = timeout;
+        this.topMessage = topMessage;
+        this.topImportantMessage = topImportantMessage;
+        this.readInboxMaxId = readInboxMaxId;
+        this.unreadCount = unreadCount;
+        this.unreadImportantCount = unreadImportantCount;
+        this.messages = messages;
+        this.chats = chats;
+        this.users = users;
     }
-
-    public int getTopImportantMessage() {
-        return topImportantMessage;
-    }
-
-    public void setTopImportantMessage(int value) {
-        this.topImportantMessage = value;
-    }
-
-    public int getReadInboxMaxId() {
-        return readInboxMaxId;
-    }
-
-    public void setReadInboxMaxId(int value) {
-        this.readInboxMaxId = value;
-    }
-
-    public int getUnreadCount() {
-        return unreadCount;
-    }
-
-    public void setUnreadCount(int value) {
-        this.unreadCount = value;
-    }
-
-    public int getUnreadImportantCount() {
-        return unreadImportantCount;
-    }
-
-    public void setUnreadImportantCount(int value) {
-        this.unreadImportantCount = value;
-    }
-
-    public com.github.badoualy.telegram.tl.core.TLVector<com.github.badoualy.telegram.tl.api.TLAbsMessage> getMessages() {
-        return messages;
-    }
-
-    public void setMessages(com.github.badoualy.telegram.tl.core.TLVector<com.github.badoualy.telegram.tl.api.TLAbsMessage> value) {
-        this.messages = value;
-    }
-
-    public com.github.badoualy.telegram.tl.core.TLVector<com.github.badoualy.telegram.tl.api.TLAbsChat> getChats() {
-        return chats;
-    }
-
-    public void setChats(com.github.badoualy.telegram.tl.core.TLVector<com.github.badoualy.telegram.tl.api.TLAbsChat> value) {
-        this.chats = value;
-    }
-
-    public com.github.badoualy.telegram.tl.core.TLVector<com.github.badoualy.telegram.tl.api.TLAbsUser> getUsers() {
-        return users;
-    }
-
-    public void setUsers(com.github.badoualy.telegram.tl.core.TLVector<com.github.badoualy.telegram.tl.api.TLAbsUser> value) {
-        this.users = value;
-    }
-
 
     @Override
     public void serializeBody(OutputStream stream) throws IOException {
-
-        flags = fina ? (flags | 1) : (flags &~ 1);
-        writeInt(this.flags, stream);
-        if ((this.flags & 1) != 0)
-            writeTLBool(this.fina, stream);
-        writeInt(this.pts, stream);
-        if ((this.flags & 2) != 0)
-            writeInt(this.timeout, stream);
-        writeInt(this.topMessage, stream);
-        writeInt(this.topImportantMessage, stream);
-        writeInt(this.readInboxMaxId, stream);
-        writeInt(this.unreadCount, stream);
-        writeInt(this.unreadImportantCount, stream);
-        writeTLVector(this.messages, stream);
-        writeTLVector(this.chats, stream);
-        writeTLVector(this.users, stream);
+        writeInt(flags, stream);
+        if ((flags & 1) != 0) writeTLBool(_final, stream);
+        writeInt(pts, stream);
+        if ((flags & 2) != 0) writeInt(timeout, stream);
+        writeInt(topMessage, stream);
+        writeInt(topImportantMessage, stream);
+        writeInt(readInboxMaxId, stream);
+        writeInt(unreadCount, stream);
+        writeInt(unreadImportantCount, stream);
+        writeTLVector(messages, stream);
+        writeTLVector(chats, stream);
+        writeTLVector(users, stream);
     }
-
 
     @Override
+    @SuppressWarnings("unchecked")
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
-
-        this.flags = readInt(stream);
-        this.fina = (this.flags & 1) != 0;
-        this.pts = readInt(stream);
-        if ((this.flags & 2) != 0)
-            this.timeout = readInt(stream);
-        this.topMessage = readInt(stream);
-        this.topImportantMessage = readInt(stream);
-        this.readInboxMaxId = readInt(stream);
-        this.unreadCount = readInt(stream);
-        this.unreadImportantCount = readInt(stream);
-        this.messages = readTLVector(stream, context);
-        this.chats = readTLVector(stream, context);
-        this.users = readTLVector(stream, context);
+        flags = readInt(stream);
+        _final = (flags & 1) != 0;
+        pts = readInt(stream);
+        if ((flags & 2) != 0) timeout = readInt(stream);
+        topMessage = readInt(stream);
+        topImportantMessage = readInt(stream);
+        readInboxMaxId = readInt(stream);
+        unreadCount = readInt(stream);
+        unreadImportantCount = readInt(stream);
+        messages = readTLVector(stream, context);
+        chats = readTLVector(stream, context);
+        users = readTLVector(stream, context);
     }
-
-
 
     @Override
     public String toString() {
         return "updates.channelDifferenceTooLong#5e167646";
     }
 
+    @Override
+    public int getClassId() {
+        return CLASS_ID;
+    }
+
+    public int getFlags() {
+        return flags;
+    }
+
+    public void setFlags(int flags) {
+        this.flags = flags;
+    }
+
+    public boolean getFinal() {
+        return _final;
+    }
+
+    public void setFinal(boolean _final) {
+        this._final = _final;
+    }
+
+    public int getPts() {
+        return pts;
+    }
+
+    public void setPts(int pts) {
+        this.pts = pts;
+    }
+
+    public int getTimeout() {
+        return timeout;
+    }
+
+    public void setTimeout(int timeout) {
+        this.timeout = timeout;
+    }
+
+    public int getTopMessage() {
+        return topMessage;
+    }
+
+    public void setTopMessage(int topMessage) {
+        this.topMessage = topMessage;
+    }
+
+    public int getTopImportantMessage() {
+        return topImportantMessage;
+    }
+
+    public void setTopImportantMessage(int topImportantMessage) {
+        this.topImportantMessage = topImportantMessage;
+    }
+
+    public int getReadInboxMaxId() {
+        return readInboxMaxId;
+    }
+
+    public void setReadInboxMaxId(int readInboxMaxId) {
+        this.readInboxMaxId = readInboxMaxId;
+    }
+
+    public int getUnreadCount() {
+        return unreadCount;
+    }
+
+    public void setUnreadCount(int unreadCount) {
+        this.unreadCount = unreadCount;
+    }
+
+    public int getUnreadImportantCount() {
+        return unreadImportantCount;
+    }
+
+    public void setUnreadImportantCount(int unreadImportantCount) {
+        this.unreadImportantCount = unreadImportantCount;
+    }
+
+    public TLVector<TLAbsMessage> getMessages() {
+        return messages;
+    }
+
+    public void setMessages(TLVector<TLAbsMessage> messages) {
+        this.messages = messages;
+    }
+
+    public TLVector<TLAbsChat> getChats() {
+        return chats;
+    }
+
+    public void setChats(TLVector<TLAbsChat> chats) {
+        this.chats = chats;
+    }
+
+    public TLVector<TLAbsUser> getUsers() {
+        return users;
+    }
+
+    public void setUsers(TLVector<TLAbsUser> users) {
+        this.users = users;
+    }
 }

@@ -1,66 +1,58 @@
-
 package com.github.badoualy.telegram.tl.api.auth;
+
+import static com.github.badoualy.telegram.tl.StreamUtils.*;
 
 import com.github.badoualy.telegram.tl.TLContext;
 import com.github.badoualy.telegram.tl.core.TLObject;
-
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.lang.Override;
+import java.lang.String;
+import java.lang.SuppressWarnings;
 
-import static com.github.badoualy.telegram.tl.StreamUtils.readTLString;
-import static com.github.badoualy.telegram.tl.StreamUtils.writeTLString;
-
-
+/**
+ * @author Yannick Badoual yann.badoual@gmail.com
+ * @see <a href="http://github.com/badoualy/kotlogram">http://github.com/badoualy/kotlogram</a>
+ */
 public class TLPasswordRecovery extends TLObject {
-
     public static final int CLASS_ID = 0x137948a5;
-
-    public TLPasswordRecovery() {
-
-    }
-
-
-    public TLPasswordRecovery(        String _emailPattern) {
-        this.emailPattern = _emailPattern;
-
-    }
-
-
-    public int getClassId() {
-        return CLASS_ID;
-    }
-
 
     protected String emailPattern;
 
-
-    public String getEmailPattern() {
-        return emailPattern;
+    public TLPasswordRecovery() {
     }
 
-    public void setEmailPattern(String value) {
-        this.emailPattern = value;
+    public TLPasswordRecovery(String emailPattern) {
+        this.emailPattern = emailPattern;
     }
-
 
     @Override
     public void serializeBody(OutputStream stream) throws IOException {
-
-        writeTLString(this.emailPattern, stream);
+        writeTLString(emailPattern, stream);
     }
-
 
     @Override
+    @SuppressWarnings("unchecked")
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
-
-        this.emailPattern = readTLString(stream);
+        emailPattern = readTLString(stream);
     }
-
 
     @Override
     public String toString() {
         return "auth.passwordRecovery#137948a5";
     }
 
+    @Override
+    public int getClassId() {
+        return CLASS_ID;
+    }
+
+    public String getEmailPattern() {
+        return emailPattern;
+    }
+
+    public void setEmailPattern(String emailPattern) {
+        this.emailPattern = emailPattern;
+    }
 }

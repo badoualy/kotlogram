@@ -1,43 +1,23 @@
-
 package com.github.badoualy.telegram.tl.api;
 
+import static com.github.badoualy.telegram.tl.StreamUtils.*;
 
 import com.github.badoualy.telegram.tl.TLContext;
-
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.lang.Override;
+import java.lang.String;
+import java.lang.SuppressWarnings;
 
-import static com.github.badoualy.telegram.tl.StreamUtils.readInt;
-import static com.github.badoualy.telegram.tl.StreamUtils.readTLObject;
-import static com.github.badoualy.telegram.tl.StreamUtils.writeInt;
-import static com.github.badoualy.telegram.tl.StreamUtils.writeTLObject;
-
-
-
+/**
+ * @author Yannick Badoual yann.badoual@gmail.com
+ * @see <a href="http://github.com/badoualy/kotlogram">http://github.com/badoualy/kotlogram</a>
+ */
 public class TLUpdateReadHistoryInbox extends TLAbsUpdate {
     public static final int CLASS_ID = 0x9961fd5c;
 
-    public TLUpdateReadHistoryInbox() {
-
-    }
-
-
-    public TLUpdateReadHistoryInbox(        com.github.badoualy.telegram.tl.api.TLAbsPeer _peer,         int _maxId,         int _pts,         int _ptsCount) {
-        this.peer = _peer;
-        this.maxId = _maxId;
-        this.pts = _pts;
-        this.ptsCount = _ptsCount;
-
-    }
-
-
-    public int getClassId() {
-        return CLASS_ID;
-    }
-
-
-    protected com.github.badoualy.telegram.tl.api.TLAbsPeer peer;
+    protected TLAbsPeer peer;
 
     protected int maxId;
 
@@ -45,64 +25,72 @@ public class TLUpdateReadHistoryInbox extends TLAbsUpdate {
 
     protected int ptsCount;
 
-
-    public com.github.badoualy.telegram.tl.api.TLAbsPeer getPeer() {
-        return peer;
+    public TLUpdateReadHistoryInbox() {
     }
 
-    public void setPeer(com.github.badoualy.telegram.tl.api.TLAbsPeer value) {
-        this.peer = value;
+    public TLUpdateReadHistoryInbox(TLAbsPeer peer, int maxId, int pts, int ptsCount) {
+        this.peer = peer;
+        this.maxId = maxId;
+        this.pts = pts;
+        this.ptsCount = ptsCount;
     }
-
-    public int getMaxId() {
-        return maxId;
-    }
-
-    public void setMaxId(int value) {
-        this.maxId = value;
-    }
-
-    public int getPts() {
-        return pts;
-    }
-
-    public void setPts(int value) {
-        this.pts = value;
-    }
-
-    public int getPtsCount() {
-        return ptsCount;
-    }
-
-    public void setPtsCount(int value) {
-        this.ptsCount = value;
-    }
-
 
     @Override
     public void serializeBody(OutputStream stream) throws IOException {
-
-        writeTLObject(this.peer, stream);
-        writeInt(this.maxId, stream);
-        writeInt(this.pts, stream);
-        writeInt(this.ptsCount, stream);
+        writeTLObject(peer, stream);
+        writeInt(maxId, stream);
+        writeInt(pts, stream);
+        writeInt(ptsCount, stream);
     }
-
 
     @Override
+    @SuppressWarnings("unchecked")
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
-
-        this.peer = (com.github.badoualy.telegram.tl.api.TLAbsPeer)readTLObject(stream, context);
-        this.maxId = readInt(stream);
-        this.pts = readInt(stream);
-        this.ptsCount = readInt(stream);
+        peer = (com.github.badoualy.telegram.tl.api.TLAbsPeer) readTLObject(stream, context);
+        maxId = readInt(stream);
+        pts = readInt(stream);
+        ptsCount = readInt(stream);
     }
-
-
 
     @Override
     public String toString() {
         return "updateReadHistoryInbox#9961fd5c";
     }
 
+    @Override
+    public int getClassId() {
+        return CLASS_ID;
+    }
+
+    public TLAbsPeer getPeer() {
+        return peer;
+    }
+
+    public void setPeer(TLAbsPeer peer) {
+        this.peer = peer;
+    }
+
+    public int getMaxId() {
+        return maxId;
+    }
+
+    public void setMaxId(int maxId) {
+        this.maxId = maxId;
+    }
+
+    public int getPts() {
+        return pts;
+    }
+
+    public void setPts(int pts) {
+        this.pts = pts;
+    }
+
+    public int getPtsCount() {
+        return ptsCount;
+    }
+
+    public void setPtsCount(int ptsCount) {
+        this.ptsCount = ptsCount;
+    }
 }

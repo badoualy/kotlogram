@@ -1,63 +1,70 @@
-
 package com.github.badoualy.telegram.tl.api;
 
+import static com.github.badoualy.telegram.tl.StreamUtils.*;
 
 import com.github.badoualy.telegram.tl.TLContext;
-
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.lang.Override;
+import java.lang.String;
+import java.lang.SuppressWarnings;
 
-import static com.github.badoualy.telegram.tl.StreamUtils.readInt;
-import static com.github.badoualy.telegram.tl.StreamUtils.writeInt;
-import static com.github.badoualy.telegram.tl.StreamUtils.writeTLBool;
-
-
-
+/**
+ * @author Yannick Badoual yann.badoual@gmail.com
+ * @see <a href="http://github.com/badoualy/kotlogram">http://github.com/badoualy/kotlogram</a>
+ */
 public class TLReplyKeyboardHide extends TLAbsReplyMarkup {
     public static final int CLASS_ID = 0xa03e5b85;
 
+    protected int flags;
+
+    protected boolean selective;
+
     public TLReplyKeyboardHide() {
-
     }
 
-
-    public TLReplyKeyboardHide(        int _flags,         boolean _selective) {
-        this.flags = _flags;
-        this.selective = _selective;
-
+    public TLReplyKeyboardHide(int flags, boolean selective) {
+        this.flags = flags;
+        this.selective = selective;
     }
-
-
-    public int getClassId() {
-        return CLASS_ID;
-    }
-
-
-
 
     @Override
     public void serializeBody(OutputStream stream) throws IOException {
-
-        flags = selective ? (flags | 4) : (flags &~ 4);
-        writeInt(this.flags, stream);
-        if ((this.flags & 4) != 0)
-            writeTLBool(this.selective, stream);
+        writeInt(flags, stream);
+        if ((flags & 4) != 0) writeTLBool(selective, stream);
     }
-
 
     @Override
+    @SuppressWarnings("unchecked")
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
-
-        this.flags = readInt(stream);
-        this.selective = (this.flags & 4) != 0;
+        flags = readInt(stream);
+        selective = (flags & 4) != 0;
     }
-
-
 
     @Override
     public String toString() {
         return "replyKeyboardHide#a03e5b85";
     }
 
+    @Override
+    public int getClassId() {
+        return CLASS_ID;
+    }
+
+    public int getFlags() {
+        return flags;
+    }
+
+    public void setFlags(int flags) {
+        this.flags = flags;
+    }
+
+    public boolean getSelective() {
+        return selective;
+    }
+
+    public void setSelective(boolean selective) {
+        this.selective = selective;
+    }
 }

@@ -32,7 +32,6 @@ import static com.github.badoualy.telegram.C.*;
 
 public class KotlogramSample {
 
-
     public static void main(String[] args) throws InterruptedException {
         TelegramApp app = new TelegramApp(API_ID, API_HASH, MODEL, SYSTEM_VERSION, APP_VERSION, LANG_CODE);
 

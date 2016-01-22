@@ -1,43 +1,21 @@
-
 package com.github.badoualy.telegram.tl.api;
 
+import static com.github.badoualy.telegram.tl.StreamUtils.*;
 
 import com.github.badoualy.telegram.tl.TLContext;
-
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.lang.Override;
+import java.lang.String;
+import java.lang.SuppressWarnings;
 
-import static com.github.badoualy.telegram.tl.StreamUtils.readInt;
-import static com.github.badoualy.telegram.tl.StreamUtils.readLong;
-import static com.github.badoualy.telegram.tl.StreamUtils.readTLString;
-import static com.github.badoualy.telegram.tl.StreamUtils.writeInt;
-import static com.github.badoualy.telegram.tl.StreamUtils.writeLong;
-import static com.github.badoualy.telegram.tl.StreamUtils.writeTLString;
-
-
-
+/**
+ * @author Yannick Badoual yann.badoual@gmail.com
+ * @see <a href="http://github.com/badoualy/kotlogram">http://github.com/badoualy/kotlogram</a>
+ */
 public class TLUpdateNewAuthorization extends TLAbsUpdate {
     public static final int CLASS_ID = 0x8f06529a;
-
-    public TLUpdateNewAuthorization() {
-
-    }
-
-
-    public TLUpdateNewAuthorization(        long _authKeyId,         int _date,         String _device,         String _location) {
-        this.authKeyId = _authKeyId;
-        this.date = _date;
-        this.device = _device;
-        this.location = _location;
-
-    }
-
-
-    public int getClassId() {
-        return CLASS_ID;
-    }
-
 
     protected long authKeyId;
 
@@ -47,64 +25,72 @@ public class TLUpdateNewAuthorization extends TLAbsUpdate {
 
     protected String location;
 
-
-    public long getAuthKeyId() {
-        return authKeyId;
+    public TLUpdateNewAuthorization() {
     }
 
-    public void setAuthKeyId(long value) {
-        this.authKeyId = value;
+    public TLUpdateNewAuthorization(long authKeyId, int date, String device, String location) {
+        this.authKeyId = authKeyId;
+        this.date = date;
+        this.device = device;
+        this.location = location;
     }
-
-    public int getDate() {
-        return date;
-    }
-
-    public void setDate(int value) {
-        this.date = value;
-    }
-
-    public String getDevice() {
-        return device;
-    }
-
-    public void setDevice(String value) {
-        this.device = value;
-    }
-
-    public String getLocation() {
-        return location;
-    }
-
-    public void setLocation(String value) {
-        this.location = value;
-    }
-
 
     @Override
     public void serializeBody(OutputStream stream) throws IOException {
-
-        writeLong(this.authKeyId, stream);
-        writeInt(this.date, stream);
-        writeTLString(this.device, stream);
-        writeTLString(this.location, stream);
+        writeLong(authKeyId, stream);
+        writeInt(date, stream);
+        writeTLString(device, stream);
+        writeTLString(location, stream);
     }
-
 
     @Override
+    @SuppressWarnings("unchecked")
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
-
-        this.authKeyId = readLong(stream);
-        this.date = readInt(stream);
-        this.device = readTLString(stream);
-        this.location = readTLString(stream);
+        authKeyId = readLong(stream);
+        date = readInt(stream);
+        device = readTLString(stream);
+        location = readTLString(stream);
     }
-
-
 
     @Override
     public String toString() {
         return "updateNewAuthorization#8f06529a";
     }
 
+    @Override
+    public int getClassId() {
+        return CLASS_ID;
+    }
+
+    public long getAuthKeyId() {
+        return authKeyId;
+    }
+
+    public void setAuthKeyId(long authKeyId) {
+        this.authKeyId = authKeyId;
+    }
+
+    public int getDate() {
+        return date;
+    }
+
+    public void setDate(int date) {
+        this.date = date;
+    }
+
+    public String getDevice() {
+        return device;
+    }
+
+    public void setDevice(String device) {
+        this.device = device;
+    }
+
+    public String getLocation() {
+        return location;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
+    }
 }

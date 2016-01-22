@@ -1,82 +1,72 @@
-
 package com.github.badoualy.telegram.tl.api.messages;
 
+import static com.github.badoualy.telegram.tl.StreamUtils.*;
 
 import com.github.badoualy.telegram.tl.TLContext;
-
+import com.github.badoualy.telegram.tl.api.TLStickerSet;
+import com.github.badoualy.telegram.tl.core.TLVector;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.lang.Override;
+import java.lang.String;
+import java.lang.SuppressWarnings;
 
-import static com.github.badoualy.telegram.tl.StreamUtils.readInt;
-import static com.github.badoualy.telegram.tl.StreamUtils.readTLVector;
-import static com.github.badoualy.telegram.tl.StreamUtils.writeInt;
-import static com.github.badoualy.telegram.tl.StreamUtils.writeTLVector;
-
-
-
+/**
+ * @author Yannick Badoual yann.badoual@gmail.com
+ * @see <a href="http://github.com/badoualy/kotlogram">http://github.com/badoualy/kotlogram</a>
+ */
 public class TLAllStickers extends TLAbsAllStickers {
     public static final int CLASS_ID = 0xedfd405f;
 
-    public TLAllStickers() {
-
-    }
-
-
-    public TLAllStickers(        int _hash,         com.github.badoualy.telegram.tl.core.TLVector<com.github.badoualy.telegram.tl.api.TLStickerSet> _sets) {
-        this.hash = _hash;
-        this.sets = _sets;
-
-    }
-
-
-    public int getClassId() {
-        return CLASS_ID;
-    }
-
-
     protected int hash;
 
-    protected com.github.badoualy.telegram.tl.core.TLVector<com.github.badoualy.telegram.tl.api.TLStickerSet> sets;
+    protected TLVector<TLStickerSet> sets;
 
-
-    public int getHash() {
-        return hash;
+    public TLAllStickers() {
     }
 
-    public void setHash(int value) {
-        this.hash = value;
+    public TLAllStickers(int hash, TLVector<TLStickerSet> sets) {
+        this.hash = hash;
+        this.sets = sets;
     }
-
-    public com.github.badoualy.telegram.tl.core.TLVector<com.github.badoualy.telegram.tl.api.TLStickerSet> getSets() {
-        return sets;
-    }
-
-    public void setSets(com.github.badoualy.telegram.tl.core.TLVector<com.github.badoualy.telegram.tl.api.TLStickerSet> value) {
-        this.sets = value;
-    }
-
 
     @Override
     public void serializeBody(OutputStream stream) throws IOException {
-
-        writeInt(this.hash, stream);
-        writeTLVector(this.sets, stream);
+        writeInt(hash, stream);
+        writeTLVector(sets, stream);
     }
-
 
     @Override
+    @SuppressWarnings("unchecked")
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
-
-        this.hash = readInt(stream);
-        this.sets = readTLVector(stream, context);
+        hash = readInt(stream);
+        sets = readTLVector(stream, context);
     }
-
-
 
     @Override
     public String toString() {
         return "messages.allStickers#edfd405f";
     }
 
+    @Override
+    public int getClassId() {
+        return CLASS_ID;
+    }
+
+    public int getHash() {
+        return hash;
+    }
+
+    public void setHash(int hash) {
+        this.hash = hash;
+    }
+
+    public TLVector<TLStickerSet> getSets() {
+        return sets;
+    }
+
+    public void setSets(TLVector<TLStickerSet> sets) {
+        this.sets = sets;
+    }
 }

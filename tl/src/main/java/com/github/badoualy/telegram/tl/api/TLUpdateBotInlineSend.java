@@ -1,40 +1,21 @@
-
 package com.github.badoualy.telegram.tl.api;
 
+import static com.github.badoualy.telegram.tl.StreamUtils.*;
 
 import com.github.badoualy.telegram.tl.TLContext;
-
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.lang.Override;
+import java.lang.String;
+import java.lang.SuppressWarnings;
 
-import static com.github.badoualy.telegram.tl.StreamUtils.readInt;
-import static com.github.badoualy.telegram.tl.StreamUtils.readTLString;
-import static com.github.badoualy.telegram.tl.StreamUtils.writeInt;
-import static com.github.badoualy.telegram.tl.StreamUtils.writeTLString;
-
-
-
+/**
+ * @author Yannick Badoual yann.badoual@gmail.com
+ * @see <a href="http://github.com/badoualy/kotlogram">http://github.com/badoualy/kotlogram</a>
+ */
 public class TLUpdateBotInlineSend extends TLAbsUpdate {
     public static final int CLASS_ID = 0xf69e113;
-
-    public TLUpdateBotInlineSend() {
-
-    }
-
-
-    public TLUpdateBotInlineSend(        int _userId,         String _query,         String _id) {
-        this.userId = _userId;
-        this.query = _query;
-        this.id = _id;
-
-    }
-
-
-    public int getClassId() {
-        return CLASS_ID;
-    }
-
 
     protected int userId;
 
@@ -42,54 +23,61 @@ public class TLUpdateBotInlineSend extends TLAbsUpdate {
 
     protected String id;
 
-
-    public int getUserId() {
-        return userId;
+    public TLUpdateBotInlineSend() {
     }
 
-    public void setUserId(int value) {
-        this.userId = value;
+    public TLUpdateBotInlineSend(int userId, String query, String id) {
+        this.userId = userId;
+        this.query = query;
+        this.id = id;
     }
-
-    public String getQuery() {
-        return query;
-    }
-
-    public void setQuery(String value) {
-        this.query = value;
-    }
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String value) {
-        this.id = value;
-    }
-
 
     @Override
     public void serializeBody(OutputStream stream) throws IOException {
-
-        writeInt(this.userId, stream);
-        writeTLString(this.query, stream);
-        writeTLString(this.id, stream);
+        writeInt(userId, stream);
+        writeTLString(query, stream);
+        writeTLString(id, stream);
     }
-
 
     @Override
+    @SuppressWarnings("unchecked")
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
-
-        this.userId = readInt(stream);
-        this.query = readTLString(stream);
-        this.id = readTLString(stream);
+        userId = readInt(stream);
+        query = readTLString(stream);
+        id = readTLString(stream);
     }
-
-
 
     @Override
     public String toString() {
         return "updateBotInlineSend#f69e113";
     }
 
+    @Override
+    public int getClassId() {
+        return CLASS_ID;
+    }
+
+    public int getUserId() {
+        return userId;
+    }
+
+    public void setUserId(int userId) {
+        this.userId = userId;
+    }
+
+    public String getQuery() {
+        return query;
+    }
+
+    public void setQuery(String query) {
+        this.query = query;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
 }

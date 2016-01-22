@@ -1,66 +1,60 @@
-
 package com.github.badoualy.telegram.tl.api.account;
 
-import com.github.badoualy.telegram.tl.TLContext;
-import com.github.badoualy.telegram.tl.core.TLObject;
+import static com.github.badoualy.telegram.tl.StreamUtils.*;
 
+import com.github.badoualy.telegram.tl.TLContext;
+import com.github.badoualy.telegram.tl.api.TLAuthorization;
+import com.github.badoualy.telegram.tl.core.TLObject;
+import com.github.badoualy.telegram.tl.core.TLVector;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.lang.Override;
+import java.lang.String;
+import java.lang.SuppressWarnings;
 
-import static com.github.badoualy.telegram.tl.StreamUtils.readTLVector;
-import static com.github.badoualy.telegram.tl.StreamUtils.writeTLVector;
-
-
+/**
+ * @author Yannick Badoual yann.badoual@gmail.com
+ * @see <a href="http://github.com/badoualy/kotlogram">http://github.com/badoualy/kotlogram</a>
+ */
 public class TLAuthorizations extends TLObject {
-
     public static final int CLASS_ID = 0x1250abde;
 
+    protected TLVector<TLAuthorization> authorizations;
+
     public TLAuthorizations() {
-
     }
 
-
-    public TLAuthorizations(        com.github.badoualy.telegram.tl.core.TLVector<com.github.badoualy.telegram.tl.api.TLAuthorization> _authorizations) {
-        this.authorizations = _authorizations;
-
+    public TLAuthorizations(TLVector<TLAuthorization> authorizations) {
+        this.authorizations = authorizations;
     }
-
-
-    public int getClassId() {
-        return CLASS_ID;
-    }
-
-
-    protected com.github.badoualy.telegram.tl.core.TLVector<com.github.badoualy.telegram.tl.api.TLAuthorization> authorizations;
-
-
-    public com.github.badoualy.telegram.tl.core.TLVector<com.github.badoualy.telegram.tl.api.TLAuthorization> getAuthorizations() {
-        return authorizations;
-    }
-
-    public void setAuthorizations(com.github.badoualy.telegram.tl.core.TLVector<com.github.badoualy.telegram.tl.api.TLAuthorization> value) {
-        this.authorizations = value;
-    }
-
 
     @Override
     public void serializeBody(OutputStream stream) throws IOException {
-
-        writeTLVector(this.authorizations, stream);
+        writeTLVector(authorizations, stream);
     }
-
 
     @Override
+    @SuppressWarnings("unchecked")
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
-
-        this.authorizations = readTLVector(stream, context);
+        authorizations = readTLVector(stream, context);
     }
-
 
     @Override
     public String toString() {
         return "account.authorizations#1250abde";
     }
 
+    @Override
+    public int getClassId() {
+        return CLASS_ID;
+    }
+
+    public TLVector<TLAuthorization> getAuthorizations() {
+        return authorizations;
+    }
+
+    public void setAuthorizations(TLVector<TLAuthorization> authorizations) {
+        this.authorizations = authorizations;
+    }
 }

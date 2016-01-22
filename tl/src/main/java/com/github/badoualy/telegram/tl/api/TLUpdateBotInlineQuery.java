@@ -1,43 +1,21 @@
-
 package com.github.badoualy.telegram.tl.api;
 
+import static com.github.badoualy.telegram.tl.StreamUtils.*;
 
 import com.github.badoualy.telegram.tl.TLContext;
-
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.lang.Override;
+import java.lang.String;
+import java.lang.SuppressWarnings;
 
-import static com.github.badoualy.telegram.tl.StreamUtils.readInt;
-import static com.github.badoualy.telegram.tl.StreamUtils.readLong;
-import static com.github.badoualy.telegram.tl.StreamUtils.readTLString;
-import static com.github.badoualy.telegram.tl.StreamUtils.writeInt;
-import static com.github.badoualy.telegram.tl.StreamUtils.writeLong;
-import static com.github.badoualy.telegram.tl.StreamUtils.writeTLString;
-
-
-
+/**
+ * @author Yannick Badoual yann.badoual@gmail.com
+ * @see <a href="http://github.com/badoualy/kotlogram">http://github.com/badoualy/kotlogram</a>
+ */
 public class TLUpdateBotInlineQuery extends TLAbsUpdate {
     public static final int CLASS_ID = 0xc01eea08;
-
-    public TLUpdateBotInlineQuery() {
-
-    }
-
-
-    public TLUpdateBotInlineQuery(        long _queryId,         int _userId,         String _query,         String _offset) {
-        this.queryId = _queryId;
-        this.userId = _userId;
-        this.query = _query;
-        this.offset = _offset;
-
-    }
-
-
-    public int getClassId() {
-        return CLASS_ID;
-    }
-
 
     protected long queryId;
 
@@ -47,64 +25,72 @@ public class TLUpdateBotInlineQuery extends TLAbsUpdate {
 
     protected String offset;
 
-
-    public long getQueryId() {
-        return queryId;
+    public TLUpdateBotInlineQuery() {
     }
 
-    public void setQueryId(long value) {
-        this.queryId = value;
+    public TLUpdateBotInlineQuery(long queryId, int userId, String query, String offset) {
+        this.queryId = queryId;
+        this.userId = userId;
+        this.query = query;
+        this.offset = offset;
     }
-
-    public int getUserId() {
-        return userId;
-    }
-
-    public void setUserId(int value) {
-        this.userId = value;
-    }
-
-    public String getQuery() {
-        return query;
-    }
-
-    public void setQuery(String value) {
-        this.query = value;
-    }
-
-    public String getOffset() {
-        return offset;
-    }
-
-    public void setOffset(String value) {
-        this.offset = value;
-    }
-
 
     @Override
     public void serializeBody(OutputStream stream) throws IOException {
-
-        writeLong(this.queryId, stream);
-        writeInt(this.userId, stream);
-        writeTLString(this.query, stream);
-        writeTLString(this.offset, stream);
+        writeLong(queryId, stream);
+        writeInt(userId, stream);
+        writeTLString(query, stream);
+        writeTLString(offset, stream);
     }
-
 
     @Override
+    @SuppressWarnings("unchecked")
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
-
-        this.queryId = readLong(stream);
-        this.userId = readInt(stream);
-        this.query = readTLString(stream);
-        this.offset = readTLString(stream);
+        queryId = readLong(stream);
+        userId = readInt(stream);
+        query = readTLString(stream);
+        offset = readTLString(stream);
     }
-
-
 
     @Override
     public String toString() {
         return "updateBotInlineQuery#c01eea08";
     }
 
+    @Override
+    public int getClassId() {
+        return CLASS_ID;
+    }
+
+    public long getQueryId() {
+        return queryId;
+    }
+
+    public void setQueryId(long queryId) {
+        this.queryId = queryId;
+    }
+
+    public int getUserId() {
+        return userId;
+    }
+
+    public void setUserId(int userId) {
+        this.userId = userId;
+    }
+
+    public String getQuery() {
+        return query;
+    }
+
+    public void setQuery(String query) {
+        this.query = query;
+    }
+
+    public String getOffset() {
+        return offset;
+    }
+
+    public void setOffset(String offset) {
+        this.offset = offset;
+    }
 }

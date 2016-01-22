@@ -1,50 +1,22 @@
-
 package com.github.badoualy.telegram.tl.api;
+
+import static com.github.badoualy.telegram.tl.StreamUtils.*;
 
 import com.github.badoualy.telegram.tl.TLContext;
 import com.github.badoualy.telegram.tl.core.TLObject;
-
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.lang.Override;
+import java.lang.String;
+import java.lang.SuppressWarnings;
 
-import static com.github.badoualy.telegram.tl.StreamUtils.readInt;
-import static com.github.badoualy.telegram.tl.StreamUtils.readLong;
-import static com.github.badoualy.telegram.tl.StreamUtils.readTLString;
-import static com.github.badoualy.telegram.tl.StreamUtils.writeInt;
-import static com.github.badoualy.telegram.tl.StreamUtils.writeLong;
-import static com.github.badoualy.telegram.tl.StreamUtils.writeTLBool;
-import static com.github.badoualy.telegram.tl.StreamUtils.writeTLString;
-
-
+/**
+ * @author Yannick Badoual yann.badoual@gmail.com
+ * @see <a href="http://github.com/badoualy/kotlogram">http://github.com/badoualy/kotlogram</a>
+ */
 public class TLStickerSet extends TLObject {
-
     public static final int CLASS_ID = 0xcd303b41;
-
-    public TLStickerSet() {
-
-    }
-
-
-    public TLStickerSet(        int _flags,         boolean _installed,         boolean _disabled,         boolean _official,         long _id,         long _accessHash,         String _title,         String _shortName,         int _count,         int _hash) {
-        this.flags = _flags;
-        this.installed = _installed;
-        this.disabled = _disabled;
-        this.official = _official;
-        this.id = _id;
-        this.accessHash = _accessHash;
-        this.title = _title;
-        this.shortName = _shortName;
-        this.count = _count;
-        this.hash = _hash;
-
-    }
-
-
-    public int getClassId() {
-        return CLASS_ID;
-    }
-
 
     protected int flags;
 
@@ -66,129 +38,138 @@ public class TLStickerSet extends TLObject {
 
     protected int hash;
 
-
-    public int getFlags() {
-        return flags;
+    public TLStickerSet() {
     }
 
-    public void setFlags(int value) {
-        this.flags = value;
+    public TLStickerSet(int flags, boolean installed, boolean disabled, boolean official, long id, long accessHash, String title, String shortName, int count, int hash) {
+        this.flags = flags;
+        this.installed = installed;
+        this.disabled = disabled;
+        this.official = official;
+        this.id = id;
+        this.accessHash = accessHash;
+        this.title = title;
+        this.shortName = shortName;
+        this.count = count;
+        this.hash = hash;
     }
-
-    public boolean getInstalled() {
-        return installed;
-    }
-
-    public void setInstalled(boolean value) {
-        this.installed = value;
-    }
-
-    public boolean getDisabled() {
-        return disabled;
-    }
-
-    public void setDisabled(boolean value) {
-        this.disabled = value;
-    }
-
-    public boolean getOfficial() {
-        return official;
-    }
-
-    public void setOfficial(boolean value) {
-        this.official = value;
-    }
-
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long value) {
-        this.id = value;
-    }
-
-    public long getAccessHash() {
-        return accessHash;
-    }
-
-    public void setAccessHash(long value) {
-        this.accessHash = value;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String value) {
-        this.title = value;
-    }
-
-    public String getShortName() {
-        return shortName;
-    }
-
-    public void setShortName(String value) {
-        this.shortName = value;
-    }
-
-    public int getCount() {
-        return count;
-    }
-
-    public void setCount(int value) {
-        this.count = value;
-    }
-
-    public int getHash() {
-        return hash;
-    }
-
-    public void setHash(int value) {
-        this.hash = value;
-    }
-
 
     @Override
     public void serializeBody(OutputStream stream) throws IOException {
-
-        flags = installed ? (flags | 1) : (flags &~ 1);
-        flags = disabled ? (flags | 2) : (flags &~ 2);
-        flags = official ? (flags | 4) : (flags &~ 4);
-        writeInt(this.flags, stream);
-        if ((this.flags & 1) != 0)
-            writeTLBool(this.installed, stream);
-        if ((this.flags & 2) != 0)
-            writeTLBool(this.disabled, stream);
-        if ((this.flags & 4) != 0)
-            writeTLBool(this.official, stream);
-        writeLong(this.id, stream);
-        writeLong(this.accessHash, stream);
-        writeTLString(this.title, stream);
-        writeTLString(this.shortName, stream);
-        writeInt(this.count, stream);
-        writeInt(this.hash, stream);
+        writeInt(flags, stream);
+        if ((flags & 1) != 0) writeTLBool(installed, stream);
+        if ((flags & 2) != 0) writeTLBool(disabled, stream);
+        if ((flags & 4) != 0) writeTLBool(official, stream);
+        writeLong(id, stream);
+        writeLong(accessHash, stream);
+        writeTLString(title, stream);
+        writeTLString(shortName, stream);
+        writeInt(count, stream);
+        writeInt(hash, stream);
     }
-
 
     @Override
+    @SuppressWarnings("unchecked")
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
-
-        this.flags = readInt(stream);
-        this.installed = (this.flags & 1) != 0;
-        this.disabled = (this.flags & 2) != 0;
-        this.official = (this.flags & 4) != 0;
-        this.id = readLong(stream);
-        this.accessHash = readLong(stream);
-        this.title = readTLString(stream);
-        this.shortName = readTLString(stream);
-        this.count = readInt(stream);
-        this.hash = readInt(stream);
+        flags = readInt(stream);
+        installed = (flags & 1) != 0;
+        disabled = (flags & 2) != 0;
+        official = (flags & 4) != 0;
+        id = readLong(stream);
+        accessHash = readLong(stream);
+        title = readTLString(stream);
+        shortName = readTLString(stream);
+        count = readInt(stream);
+        hash = readInt(stream);
     }
-
 
     @Override
     public String toString() {
         return "stickerSet#cd303b41";
     }
 
+    @Override
+    public int getClassId() {
+        return CLASS_ID;
+    }
+
+    public int getFlags() {
+        return flags;
+    }
+
+    public void setFlags(int flags) {
+        this.flags = flags;
+    }
+
+    public boolean getInstalled() {
+        return installed;
+    }
+
+    public void setInstalled(boolean installed) {
+        this.installed = installed;
+    }
+
+    public boolean getDisabled() {
+        return disabled;
+    }
+
+    public void setDisabled(boolean disabled) {
+        this.disabled = disabled;
+    }
+
+    public boolean getOfficial() {
+        return official;
+    }
+
+    public void setOfficial(boolean official) {
+        this.official = official;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public long getAccessHash() {
+        return accessHash;
+    }
+
+    public void setAccessHash(long accessHash) {
+        this.accessHash = accessHash;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public String getShortName() {
+        return shortName;
+    }
+
+    public void setShortName(String shortName) {
+        this.shortName = shortName;
+    }
+
+    public int getCount() {
+        return count;
+    }
+
+    public void setCount(int count) {
+        this.count = count;
+    }
+
+    public int getHash() {
+        return hash;
+    }
+
+    public void setHash(int hash) {
+        this.hash = hash;
+    }
 }

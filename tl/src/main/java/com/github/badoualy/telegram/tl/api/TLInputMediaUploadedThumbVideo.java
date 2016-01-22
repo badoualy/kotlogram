@@ -1,50 +1,25 @@
-
 package com.github.badoualy.telegram.tl.api;
 
+import static com.github.badoualy.telegram.tl.StreamUtils.*;
 
 import com.github.badoualy.telegram.tl.TLContext;
-
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.lang.Override;
+import java.lang.String;
+import java.lang.SuppressWarnings;
 
-import static com.github.badoualy.telegram.tl.StreamUtils.readInt;
-import static com.github.badoualy.telegram.tl.StreamUtils.readTLObject;
-import static com.github.badoualy.telegram.tl.StreamUtils.readTLString;
-import static com.github.badoualy.telegram.tl.StreamUtils.writeInt;
-import static com.github.badoualy.telegram.tl.StreamUtils.writeTLObject;
-import static com.github.badoualy.telegram.tl.StreamUtils.writeTLString;
-
-
-
+/**
+ * @author Yannick Badoual yann.badoual@gmail.com
+ * @see <a href="http://github.com/badoualy/kotlogram">http://github.com/badoualy/kotlogram</a>
+ */
 public class TLInputMediaUploadedThumbVideo extends TLAbsInputMedia {
     public static final int CLASS_ID = 0x7780ddf9;
 
-    public TLInputMediaUploadedThumbVideo() {
+    protected TLAbsInputFile file;
 
-    }
-
-
-    public TLInputMediaUploadedThumbVideo(        com.github.badoualy.telegram.tl.api.TLAbsInputFile _file,         com.github.badoualy.telegram.tl.api.TLAbsInputFile _thumb,         int _duration,         int _w,         int _h,         String _mimeType,         String _caption) {
-        this.file = _file;
-        this.thumb = _thumb;
-        this.duration = _duration;
-        this.w = _w;
-        this.h = _h;
-        this.mimeType = _mimeType;
-        this.caption = _caption;
-
-    }
-
-
-    public int getClassId() {
-        return CLASS_ID;
-    }
-
-
-    protected com.github.badoualy.telegram.tl.api.TLAbsInputFile file;
-
-    protected com.github.badoualy.telegram.tl.api.TLAbsInputFile thumb;
+    protected TLAbsInputFile thumb;
 
     protected int duration;
 
@@ -56,94 +31,105 @@ public class TLInputMediaUploadedThumbVideo extends TLAbsInputMedia {
 
     protected String caption;
 
-
-    public com.github.badoualy.telegram.tl.api.TLAbsInputFile getFile() {
-        return file;
+    public TLInputMediaUploadedThumbVideo() {
     }
 
-    public void setFile(com.github.badoualy.telegram.tl.api.TLAbsInputFile value) {
-        this.file = value;
+    public TLInputMediaUploadedThumbVideo(TLAbsInputFile file, TLAbsInputFile thumb, int duration, int w, int h, String mimeType, String caption) {
+        this.file = file;
+        this.thumb = thumb;
+        this.duration = duration;
+        this.w = w;
+        this.h = h;
+        this.mimeType = mimeType;
+        this.caption = caption;
     }
-
-    public com.github.badoualy.telegram.tl.api.TLAbsInputFile getThumb() {
-        return thumb;
-    }
-
-    public void setThumb(com.github.badoualy.telegram.tl.api.TLAbsInputFile value) {
-        this.thumb = value;
-    }
-
-    public int getDuration() {
-        return duration;
-    }
-
-    public void setDuration(int value) {
-        this.duration = value;
-    }
-
-    public int getW() {
-        return w;
-    }
-
-    public void setW(int value) {
-        this.w = value;
-    }
-
-    public int getH() {
-        return h;
-    }
-
-    public void setH(int value) {
-        this.h = value;
-    }
-
-    public String getMimeType() {
-        return mimeType;
-    }
-
-    public void setMimeType(String value) {
-        this.mimeType = value;
-    }
-
-    public String getCaption() {
-        return caption;
-    }
-
-    public void setCaption(String value) {
-        this.caption = value;
-    }
-
 
     @Override
     public void serializeBody(OutputStream stream) throws IOException {
-
-        writeTLObject(this.file, stream);
-        writeTLObject(this.thumb, stream);
-        writeInt(this.duration, stream);
-        writeInt(this.w, stream);
-        writeInt(this.h, stream);
-        writeTLString(this.mimeType, stream);
-        writeTLString(this.caption, stream);
+        writeTLObject(file, stream);
+        writeTLObject(thumb, stream);
+        writeInt(duration, stream);
+        writeInt(w, stream);
+        writeInt(h, stream);
+        writeTLString(mimeType, stream);
+        writeTLString(caption, stream);
     }
-
 
     @Override
+    @SuppressWarnings("unchecked")
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
-
-        this.file = (com.github.badoualy.telegram.tl.api.TLAbsInputFile)readTLObject(stream, context);
-        this.thumb = (com.github.badoualy.telegram.tl.api.TLAbsInputFile)readTLObject(stream, context);
-        this.duration = readInt(stream);
-        this.w = readInt(stream);
-        this.h = readInt(stream);
-        this.mimeType = readTLString(stream);
-        this.caption = readTLString(stream);
+        file = (com.github.badoualy.telegram.tl.api.TLAbsInputFile) readTLObject(stream, context);
+        thumb = (com.github.badoualy.telegram.tl.api.TLAbsInputFile) readTLObject(stream, context);
+        duration = readInt(stream);
+        w = readInt(stream);
+        h = readInt(stream);
+        mimeType = readTLString(stream);
+        caption = readTLString(stream);
     }
-
-
 
     @Override
     public String toString() {
         return "inputMediaUploadedThumbVideo#7780ddf9";
     }
 
+    @Override
+    public int getClassId() {
+        return CLASS_ID;
+    }
+
+    public TLAbsInputFile getFile() {
+        return file;
+    }
+
+    public void setFile(TLAbsInputFile file) {
+        this.file = file;
+    }
+
+    public TLAbsInputFile getThumb() {
+        return thumb;
+    }
+
+    public void setThumb(TLAbsInputFile thumb) {
+        this.thumb = thumb;
+    }
+
+    public int getDuration() {
+        return duration;
+    }
+
+    public void setDuration(int duration) {
+        this.duration = duration;
+    }
+
+    public int getW() {
+        return w;
+    }
+
+    public void setW(int w) {
+        this.w = w;
+    }
+
+    public int getH() {
+        return h;
+    }
+
+    public void setH(int h) {
+        this.h = h;
+    }
+
+    public String getMimeType() {
+        return mimeType;
+    }
+
+    public void setMimeType(String mimeType) {
+        this.mimeType = mimeType;
+    }
+
+    public String getCaption() {
+        return caption;
+    }
+
+    public void setCaption(String caption) {
+        this.caption = caption;
+    }
 }

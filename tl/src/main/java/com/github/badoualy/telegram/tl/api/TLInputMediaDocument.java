@@ -1,82 +1,70 @@
-
 package com.github.badoualy.telegram.tl.api;
 
+import static com.github.badoualy.telegram.tl.StreamUtils.*;
 
 import com.github.badoualy.telegram.tl.TLContext;
-
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.lang.Override;
+import java.lang.String;
+import java.lang.SuppressWarnings;
 
-import static com.github.badoualy.telegram.tl.StreamUtils.readTLObject;
-import static com.github.badoualy.telegram.tl.StreamUtils.readTLString;
-import static com.github.badoualy.telegram.tl.StreamUtils.writeTLObject;
-import static com.github.badoualy.telegram.tl.StreamUtils.writeTLString;
-
-
-
+/**
+ * @author Yannick Badoual yann.badoual@gmail.com
+ * @see <a href="http://github.com/badoualy/kotlogram">http://github.com/badoualy/kotlogram</a>
+ */
 public class TLInputMediaDocument extends TLAbsInputMedia {
     public static final int CLASS_ID = 0x1a77f29c;
 
-    public TLInputMediaDocument() {
-
-    }
-
-
-    public TLInputMediaDocument(        com.github.badoualy.telegram.tl.api.TLAbsInputDocument _id,         String _caption) {
-        this.id = _id;
-        this.caption = _caption;
-
-    }
-
-
-    public int getClassId() {
-        return CLASS_ID;
-    }
-
-
-    protected com.github.badoualy.telegram.tl.api.TLAbsInputDocument id;
+    protected TLAbsInputDocument id;
 
     protected String caption;
 
-
-    public com.github.badoualy.telegram.tl.api.TLAbsInputDocument getId() {
-        return id;
+    public TLInputMediaDocument() {
     }
 
-    public void setId(com.github.badoualy.telegram.tl.api.TLAbsInputDocument value) {
-        this.id = value;
+    public TLInputMediaDocument(TLAbsInputDocument id, String caption) {
+        this.id = id;
+        this.caption = caption;
     }
-
-    public String getCaption() {
-        return caption;
-    }
-
-    public void setCaption(String value) {
-        this.caption = value;
-    }
-
 
     @Override
     public void serializeBody(OutputStream stream) throws IOException {
-
-        writeTLObject(this.id, stream);
-        writeTLString(this.caption, stream);
+        writeTLObject(id, stream);
+        writeTLString(caption, stream);
     }
-
 
     @Override
+    @SuppressWarnings("unchecked")
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
-
-        this.id = (com.github.badoualy.telegram.tl.api.TLAbsInputDocument)readTLObject(stream, context);
-        this.caption = readTLString(stream);
+        id = (com.github.badoualy.telegram.tl.api.TLAbsInputDocument) readTLObject(stream, context);
+        caption = readTLString(stream);
     }
-
-
 
     @Override
     public String toString() {
         return "inputMediaDocument#1a77f29c";
     }
 
+    @Override
+    public int getClassId() {
+        return CLASS_ID;
+    }
+
+    public TLAbsInputDocument getId() {
+        return id;
+    }
+
+    public void setId(TLAbsInputDocument id) {
+        this.id = id;
+    }
+
+    public String getCaption() {
+        return caption;
+    }
+
+    public void setCaption(String caption) {
+        this.caption = caption;
+    }
 }

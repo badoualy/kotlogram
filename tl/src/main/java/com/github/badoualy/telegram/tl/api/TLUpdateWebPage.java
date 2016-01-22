@@ -1,95 +1,83 @@
-
 package com.github.badoualy.telegram.tl.api;
 
+import static com.github.badoualy.telegram.tl.StreamUtils.*;
 
 import com.github.badoualy.telegram.tl.TLContext;
-
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.lang.Override;
+import java.lang.String;
+import java.lang.SuppressWarnings;
 
-import static com.github.badoualy.telegram.tl.StreamUtils.readInt;
-import static com.github.badoualy.telegram.tl.StreamUtils.readTLObject;
-import static com.github.badoualy.telegram.tl.StreamUtils.writeInt;
-import static com.github.badoualy.telegram.tl.StreamUtils.writeTLObject;
-
-
-
+/**
+ * @author Yannick Badoual yann.badoual@gmail.com
+ * @see <a href="http://github.com/badoualy/kotlogram">http://github.com/badoualy/kotlogram</a>
+ */
 public class TLUpdateWebPage extends TLAbsUpdate {
     public static final int CLASS_ID = 0x7f891213;
 
-    public TLUpdateWebPage() {
-
-    }
-
-
-    public TLUpdateWebPage(        com.github.badoualy.telegram.tl.api.TLAbsWebPage _webpage,         int _pts,         int _ptsCount) {
-        this.webpage = _webpage;
-        this.pts = _pts;
-        this.ptsCount = _ptsCount;
-
-    }
-
-
-    public int getClassId() {
-        return CLASS_ID;
-    }
-
-
-    protected com.github.badoualy.telegram.tl.api.TLAbsWebPage webpage;
+    protected TLAbsWebPage webpage;
 
     protected int pts;
 
     protected int ptsCount;
 
-
-    public com.github.badoualy.telegram.tl.api.TLAbsWebPage getWebpage() {
-        return webpage;
+    public TLUpdateWebPage() {
     }
 
-    public void setWebpage(com.github.badoualy.telegram.tl.api.TLAbsWebPage value) {
-        this.webpage = value;
+    public TLUpdateWebPage(TLAbsWebPage webpage, int pts, int ptsCount) {
+        this.webpage = webpage;
+        this.pts = pts;
+        this.ptsCount = ptsCount;
     }
-
-    public int getPts() {
-        return pts;
-    }
-
-    public void setPts(int value) {
-        this.pts = value;
-    }
-
-    public int getPtsCount() {
-        return ptsCount;
-    }
-
-    public void setPtsCount(int value) {
-        this.ptsCount = value;
-    }
-
 
     @Override
     public void serializeBody(OutputStream stream) throws IOException {
-
-        writeTLObject(this.webpage, stream);
-        writeInt(this.pts, stream);
-        writeInt(this.ptsCount, stream);
+        writeTLObject(webpage, stream);
+        writeInt(pts, stream);
+        writeInt(ptsCount, stream);
     }
-
 
     @Override
+    @SuppressWarnings("unchecked")
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
-
-        this.webpage = (com.github.badoualy.telegram.tl.api.TLAbsWebPage)readTLObject(stream, context);
-        this.pts = readInt(stream);
-        this.ptsCount = readInt(stream);
+        webpage = (com.github.badoualy.telegram.tl.api.TLAbsWebPage) readTLObject(stream, context);
+        pts = readInt(stream);
+        ptsCount = readInt(stream);
     }
-
-
 
     @Override
     public String toString() {
         return "updateWebPage#7f891213";
     }
 
+    @Override
+    public int getClassId() {
+        return CLASS_ID;
+    }
+
+    public TLAbsWebPage getWebpage() {
+        return webpage;
+    }
+
+    public void setWebpage(TLAbsWebPage webpage) {
+        this.webpage = webpage;
+    }
+
+    public int getPts() {
+        return pts;
+    }
+
+    public void setPts(int pts) {
+        this.pts = pts;
+    }
+
+    public int getPtsCount() {
+        return ptsCount;
+    }
+
+    public void setPtsCount(int ptsCount) {
+        this.ptsCount = ptsCount;
+    }
 }

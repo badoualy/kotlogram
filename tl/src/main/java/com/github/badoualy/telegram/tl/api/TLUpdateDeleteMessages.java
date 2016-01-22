@@ -1,95 +1,85 @@
-
 package com.github.badoualy.telegram.tl.api;
 
+import static com.github.badoualy.telegram.tl.StreamUtils.*;
 
 import com.github.badoualy.telegram.tl.TLContext;
-
+import com.github.badoualy.telegram.tl.core.TLVector;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.lang.Integer;
+import java.lang.Override;
+import java.lang.String;
+import java.lang.SuppressWarnings;
 
-import static com.github.badoualy.telegram.tl.StreamUtils.readInt;
-import static com.github.badoualy.telegram.tl.StreamUtils.readTLIntVector;
-import static com.github.badoualy.telegram.tl.StreamUtils.writeInt;
-import static com.github.badoualy.telegram.tl.StreamUtils.writeTLVector;
-
-
-
+/**
+ * @author Yannick Badoual yann.badoual@gmail.com
+ * @see <a href="http://github.com/badoualy/kotlogram">http://github.com/badoualy/kotlogram</a>
+ */
 public class TLUpdateDeleteMessages extends TLAbsUpdate {
     public static final int CLASS_ID = 0xa20db0e5;
 
-    public TLUpdateDeleteMessages() {
-
-    }
-
-
-    public TLUpdateDeleteMessages(        com.github.badoualy.telegram.tl.core.TLIntVector _messages,         int _pts,         int _ptsCount) {
-        this.messages = _messages;
-        this.pts = _pts;
-        this.ptsCount = _ptsCount;
-
-    }
-
-
-    public int getClassId() {
-        return CLASS_ID;
-    }
-
-
-    protected com.github.badoualy.telegram.tl.core.TLIntVector messages;
+    protected TLVector<Integer> messages;
 
     protected int pts;
 
     protected int ptsCount;
 
-
-    public com.github.badoualy.telegram.tl.core.TLIntVector getMessages() {
-        return messages;
+    public TLUpdateDeleteMessages() {
     }
 
-    public void setMessages(com.github.badoualy.telegram.tl.core.TLIntVector value) {
-        this.messages = value;
+    public TLUpdateDeleteMessages(TLVector<Integer> messages, int pts, int ptsCount) {
+        this.messages = messages;
+        this.pts = pts;
+        this.ptsCount = ptsCount;
     }
-
-    public int getPts() {
-        return pts;
-    }
-
-    public void setPts(int value) {
-        this.pts = value;
-    }
-
-    public int getPtsCount() {
-        return ptsCount;
-    }
-
-    public void setPtsCount(int value) {
-        this.ptsCount = value;
-    }
-
 
     @Override
     public void serializeBody(OutputStream stream) throws IOException {
-
-        writeTLVector(this.messages, stream);
-        writeInt(this.pts, stream);
-        writeInt(this.ptsCount, stream);
+        writeTLVector(messages, stream);
+        writeInt(pts, stream);
+        writeInt(ptsCount, stream);
     }
-
 
     @Override
+    @SuppressWarnings("unchecked")
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
-
-        this.messages = readTLIntVector(stream, context);
-        this.pts = readInt(stream);
-        this.ptsCount = readInt(stream);
+        messages = readTLVector(stream, context);
+        pts = readInt(stream);
+        ptsCount = readInt(stream);
     }
-
-
 
     @Override
     public String toString() {
         return "updateDeleteMessages#a20db0e5";
     }
 
+    @Override
+    public int getClassId() {
+        return CLASS_ID;
+    }
+
+    public TLVector<Integer> getMessages() {
+        return messages;
+    }
+
+    public void setMessages(TLVector<Integer> messages) {
+        this.messages = messages;
+    }
+
+    public int getPts() {
+        return pts;
+    }
+
+    public void setPts(int pts) {
+        this.pts = pts;
+    }
+
+    public int getPtsCount() {
+        return ptsCount;
+    }
+
+    public void setPtsCount(int ptsCount) {
+        this.ptsCount = ptsCount;
+    }
 }

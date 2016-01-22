@@ -1,110 +1,148 @@
-
 package com.github.badoualy.telegram.tl.api;
 
+import static com.github.badoualy.telegram.tl.StreamUtils.*;
 
 import com.github.badoualy.telegram.tl.TLContext;
-
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.lang.Override;
+import java.lang.String;
+import java.lang.SuppressWarnings;
 
-import static com.github.badoualy.telegram.tl.StreamUtils.readInt;
-import static com.github.badoualy.telegram.tl.StreamUtils.readTLObject;
-import static com.github.badoualy.telegram.tl.StreamUtils.writeInt;
-import static com.github.badoualy.telegram.tl.StreamUtils.writeTLObject;
-
-
-
+/**
+ * @author Yannick Badoual yann.badoual@gmail.com
+ * @see <a href="http://github.com/badoualy/kotlogram">http://github.com/badoualy/kotlogram</a>
+ */
 public class TLDialogChannel extends TLAbsDialog {
     public static final int CLASS_ID = 0x5b8496b2;
 
-    public TLDialogChannel() {
+    protected TLAbsPeer peer;
 
-    }
-
-
-    public TLDialogChannel(        com.github.badoualy.telegram.tl.api.TLAbsPeer _peer,         int _topMessage,         int _topImportantMessage,         int _readInboxMaxId,         int _unreadCount,         int _unreadImportantCount,         com.github.badoualy.telegram.tl.api.TLAbsPeerNotifySettings _notifySettings,         int _pts) {
-        this.peer = _peer;
-        this.topMessage = _topMessage;
-        this.topImportantMessage = _topImportantMessage;
-        this.readInboxMaxId = _readInboxMaxId;
-        this.unreadCount = _unreadCount;
-        this.unreadImportantCount = _unreadImportantCount;
-        this.notifySettings = _notifySettings;
-        this.pts = _pts;
-
-    }
-
-
-    public int getClassId() {
-        return CLASS_ID;
-    }
-
+    protected int topMessage;
 
     protected int topImportantMessage;
 
+    protected int readInboxMaxId;
+
+    protected int unreadCount;
+
     protected int unreadImportantCount;
+
+    protected TLAbsPeerNotifySettings notifySettings;
 
     protected int pts;
 
-
-    public int getTopImportantMessage() {
-        return topImportantMessage;
+    public TLDialogChannel() {
     }
 
-    public void setTopImportantMessage(int value) {
-        this.topImportantMessage = value;
+    public TLDialogChannel(TLAbsPeer peer, int topMessage, int topImportantMessage, int readInboxMaxId, int unreadCount, int unreadImportantCount, TLAbsPeerNotifySettings notifySettings, int pts) {
+        this.peer = peer;
+        this.topMessage = topMessage;
+        this.topImportantMessage = topImportantMessage;
+        this.readInboxMaxId = readInboxMaxId;
+        this.unreadCount = unreadCount;
+        this.unreadImportantCount = unreadImportantCount;
+        this.notifySettings = notifySettings;
+        this.pts = pts;
     }
-
-    public int getUnreadImportantCount() {
-        return unreadImportantCount;
-    }
-
-    public void setUnreadImportantCount(int value) {
-        this.unreadImportantCount = value;
-    }
-
-    public int getPts() {
-        return pts;
-    }
-
-    public void setPts(int value) {
-        this.pts = value;
-    }
-
 
     @Override
     public void serializeBody(OutputStream stream) throws IOException {
-
-        writeTLObject(this.peer, stream);
-        writeInt(this.topMessage, stream);
-        writeInt(this.topImportantMessage, stream);
-        writeInt(this.readInboxMaxId, stream);
-        writeInt(this.unreadCount, stream);
-        writeInt(this.unreadImportantCount, stream);
-        writeTLObject(this.notifySettings, stream);
-        writeInt(this.pts, stream);
+        writeTLObject(peer, stream);
+        writeInt(topMessage, stream);
+        writeInt(topImportantMessage, stream);
+        writeInt(readInboxMaxId, stream);
+        writeInt(unreadCount, stream);
+        writeInt(unreadImportantCount, stream);
+        writeTLObject(notifySettings, stream);
+        writeInt(pts, stream);
     }
-
 
     @Override
+    @SuppressWarnings("unchecked")
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
-
-        this.peer = (com.github.badoualy.telegram.tl.api.TLAbsPeer)readTLObject(stream, context);
-        this.topMessage = readInt(stream);
-        this.topImportantMessage = readInt(stream);
-        this.readInboxMaxId = readInt(stream);
-        this.unreadCount = readInt(stream);
-        this.unreadImportantCount = readInt(stream);
-        this.notifySettings = (com.github.badoualy.telegram.tl.api.TLAbsPeerNotifySettings)readTLObject(stream, context);
-        this.pts = readInt(stream);
+        peer = (com.github.badoualy.telegram.tl.api.TLAbsPeer) readTLObject(stream, context);
+        topMessage = readInt(stream);
+        topImportantMessage = readInt(stream);
+        readInboxMaxId = readInt(stream);
+        unreadCount = readInt(stream);
+        unreadImportantCount = readInt(stream);
+        notifySettings = (com.github.badoualy.telegram.tl.api.TLAbsPeerNotifySettings) readTLObject(stream, context);
+        pts = readInt(stream);
     }
-
-
 
     @Override
     public String toString() {
         return "dialogChannel#5b8496b2";
     }
 
+    @Override
+    public int getClassId() {
+        return CLASS_ID;
+    }
+
+    public TLAbsPeer getPeer() {
+        return peer;
+    }
+
+    public void setPeer(TLAbsPeer peer) {
+        this.peer = peer;
+    }
+
+    public int getTopMessage() {
+        return topMessage;
+    }
+
+    public void setTopMessage(int topMessage) {
+        this.topMessage = topMessage;
+    }
+
+    public int getTopImportantMessage() {
+        return topImportantMessage;
+    }
+
+    public void setTopImportantMessage(int topImportantMessage) {
+        this.topImportantMessage = topImportantMessage;
+    }
+
+    public int getReadInboxMaxId() {
+        return readInboxMaxId;
+    }
+
+    public void setReadInboxMaxId(int readInboxMaxId) {
+        this.readInboxMaxId = readInboxMaxId;
+    }
+
+    public int getUnreadCount() {
+        return unreadCount;
+    }
+
+    public void setUnreadCount(int unreadCount) {
+        this.unreadCount = unreadCount;
+    }
+
+    public int getUnreadImportantCount() {
+        return unreadImportantCount;
+    }
+
+    public void setUnreadImportantCount(int unreadImportantCount) {
+        this.unreadImportantCount = unreadImportantCount;
+    }
+
+    public TLAbsPeerNotifySettings getNotifySettings() {
+        return notifySettings;
+    }
+
+    public void setNotifySettings(TLAbsPeerNotifySettings notifySettings) {
+        this.notifySettings = notifySettings;
+    }
+
+    public int getPts() {
+        return pts;
+    }
+
+    public void setPts(int pts) {
+        this.pts = pts;
+    }
 }

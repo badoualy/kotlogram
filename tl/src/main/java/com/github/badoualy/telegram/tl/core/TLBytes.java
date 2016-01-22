@@ -1,8 +1,5 @@
 package com.github.badoualy.telegram.tl.core;
 
-/**
- * Created by ex3ndr on 10.02.14.
- */
 public class TLBytes {
     private byte[] data;
     private int offset;

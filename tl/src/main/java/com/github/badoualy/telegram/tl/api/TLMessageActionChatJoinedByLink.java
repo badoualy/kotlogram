@@ -1,67 +1,57 @@
-
 package com.github.badoualy.telegram.tl.api;
 
+import static com.github.badoualy.telegram.tl.StreamUtils.*;
 
 import com.github.badoualy.telegram.tl.TLContext;
-
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.lang.Override;
+import java.lang.String;
+import java.lang.SuppressWarnings;
 
-import static com.github.badoualy.telegram.tl.StreamUtils.readInt;
-import static com.github.badoualy.telegram.tl.StreamUtils.writeInt;
-
-
-
+/**
+ * @author Yannick Badoual yann.badoual@gmail.com
+ * @see <a href="http://github.com/badoualy/kotlogram">http://github.com/badoualy/kotlogram</a>
+ */
 public class TLMessageActionChatJoinedByLink extends TLAbsMessageAction {
     public static final int CLASS_ID = 0xf89cf5e8;
 
-    public TLMessageActionChatJoinedByLink() {
-
-    }
-
-
-    public TLMessageActionChatJoinedByLink(        int _inviterId) {
-        this.inviterId = _inviterId;
-
-    }
-
-
-    public int getClassId() {
-        return CLASS_ID;
-    }
-
-
     protected int inviterId;
 
-
-    public int getInviterId() {
-        return inviterId;
+    public TLMessageActionChatJoinedByLink() {
     }
 
-    public void setInviterId(int value) {
-        this.inviterId = value;
+    public TLMessageActionChatJoinedByLink(int inviterId) {
+        this.inviterId = inviterId;
     }
-
 
     @Override
     public void serializeBody(OutputStream stream) throws IOException {
-
-        writeInt(this.inviterId, stream);
+        writeInt(inviterId, stream);
     }
-
 
     @Override
+    @SuppressWarnings("unchecked")
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
-
-        this.inviterId = readInt(stream);
+        inviterId = readInt(stream);
     }
-
-
 
     @Override
     public String toString() {
         return "messageActionChatJoinedByLink#f89cf5e8";
     }
 
+    @Override
+    public int getClassId() {
+        return CLASS_ID;
+    }
+
+    public int getInviterId() {
+        return inviterId;
+    }
+
+    public void setInviterId(int inviterId) {
+        this.inviterId = inviterId;
+    }
 }

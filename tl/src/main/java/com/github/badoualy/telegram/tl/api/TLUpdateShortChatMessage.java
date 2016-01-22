@@ -1,59 +1,22 @@
-
 package com.github.badoualy.telegram.tl.api;
 
+import static com.github.badoualy.telegram.tl.StreamUtils.*;
 
 import com.github.badoualy.telegram.tl.TLContext;
-
+import com.github.badoualy.telegram.tl.core.TLVector;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.lang.Override;
+import java.lang.String;
+import java.lang.SuppressWarnings;
 
-import static com.github.badoualy.telegram.tl.StreamUtils.readInt;
-import static com.github.badoualy.telegram.tl.StreamUtils.readTLObject;
-import static com.github.badoualy.telegram.tl.StreamUtils.readTLString;
-import static com.github.badoualy.telegram.tl.StreamUtils.readTLVector;
-import static com.github.badoualy.telegram.tl.StreamUtils.writeInt;
-import static com.github.badoualy.telegram.tl.StreamUtils.writeTLBool;
-import static com.github.badoualy.telegram.tl.StreamUtils.writeTLObject;
-import static com.github.badoualy.telegram.tl.StreamUtils.writeTLString;
-import static com.github.badoualy.telegram.tl.StreamUtils.writeTLVector;
-
-
-
+/**
+ * @author Yannick Badoual yann.badoual@gmail.com
+ * @see <a href="http://github.com/badoualy/kotlogram">http://github.com/badoualy/kotlogram</a>
+ */
 public class TLUpdateShortChatMessage extends TLAbsUpdates {
     public static final int CLASS_ID = 0x248afa62;
-
-    public TLUpdateShortChatMessage() {
-
-    }
-
-
-    public TLUpdateShortChatMessage(        int _flags,         boolean _unread,         boolean _out,         boolean _mentioned,         boolean _mediaUnread,         int _id,         int _fromId,         int _chatId,         String _message,         int _pts,         int _ptsCount,         int _date,         com.github.badoualy.telegram.tl.api.TLAbsPeer _fwdFromId,         int _fwdDate,         int _viaBotId,         int _replyToMsgId,         com.github.badoualy.telegram.tl.core.TLVector<com.github.badoualy.telegram.tl.api.TLAbsMessageEntity> _entities) {
-        this.flags = _flags;
-        this.unread = _unread;
-        this.out = _out;
-        this.mentioned = _mentioned;
-        this.mediaUnread = _mediaUnread;
-        this.id = _id;
-        this.fromId = _fromId;
-        this.chatId = _chatId;
-        this.message = _message;
-        this.pts = _pts;
-        this.ptsCount = _ptsCount;
-        this.date = _date;
-        this.fwdFromId = _fwdFromId;
-        this.fwdDate = _fwdDate;
-        this.viaBotId = _viaBotId;
-        this.replyToMsgId = _replyToMsgId;
-        this.entities = _entities;
-
-    }
-
-
-    public int getClassId() {
-        return CLASS_ID;
-    }
-
 
     protected int flags;
 
@@ -79,7 +42,7 @@ public class TLUpdateShortChatMessage extends TLAbsUpdates {
 
     protected int date;
 
-    protected com.github.badoualy.telegram.tl.api.TLAbsPeer fwdFromId;
+    protected TLAbsPeer fwdFromId;
 
     protected int fwdDate;
 
@@ -87,214 +50,217 @@ public class TLUpdateShortChatMessage extends TLAbsUpdates {
 
     protected int replyToMsgId;
 
-    protected com.github.badoualy.telegram.tl.core.TLVector<com.github.badoualy.telegram.tl.api.TLAbsMessageEntity> entities;
+    protected TLVector<TLAbsMessageEntity> entities;
 
-
-    public int getFlags() {
-        return flags;
+    public TLUpdateShortChatMessage() {
     }
 
-    public void setFlags(int value) {
-        this.flags = value;
+    public TLUpdateShortChatMessage(int flags, boolean unread, boolean out, boolean mentioned, boolean mediaUnread, int id, int fromId, int chatId, String message, int pts, int ptsCount, int date, TLAbsPeer fwdFromId, int fwdDate, int viaBotId, int replyToMsgId, TLVector<TLAbsMessageEntity> entities) {
+        this.flags = flags;
+        this.unread = unread;
+        this.out = out;
+        this.mentioned = mentioned;
+        this.mediaUnread = mediaUnread;
+        this.id = id;
+        this.fromId = fromId;
+        this.chatId = chatId;
+        this.message = message;
+        this.pts = pts;
+        this.ptsCount = ptsCount;
+        this.date = date;
+        this.fwdFromId = fwdFromId;
+        this.fwdDate = fwdDate;
+        this.viaBotId = viaBotId;
+        this.replyToMsgId = replyToMsgId;
+        this.entities = entities;
     }
-
-    public boolean getUnread() {
-        return unread;
-    }
-
-    public void setUnread(boolean value) {
-        this.unread = value;
-    }
-
-    public boolean getOut() {
-        return out;
-    }
-
-    public void setOut(boolean value) {
-        this.out = value;
-    }
-
-    public boolean getMentioned() {
-        return mentioned;
-    }
-
-    public void setMentioned(boolean value) {
-        this.mentioned = value;
-    }
-
-    public boolean getMediaUnread() {
-        return mediaUnread;
-    }
-
-    public void setMediaUnread(boolean value) {
-        this.mediaUnread = value;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int value) {
-        this.id = value;
-    }
-
-    public int getFromId() {
-        return fromId;
-    }
-
-    public void setFromId(int value) {
-        this.fromId = value;
-    }
-
-    public int getChatId() {
-        return chatId;
-    }
-
-    public void setChatId(int value) {
-        this.chatId = value;
-    }
-
-    public String getMessage() {
-        return message;
-    }
-
-    public void setMessage(String value) {
-        this.message = value;
-    }
-
-    public int getPts() {
-        return pts;
-    }
-
-    public void setPts(int value) {
-        this.pts = value;
-    }
-
-    public int getPtsCount() {
-        return ptsCount;
-    }
-
-    public void setPtsCount(int value) {
-        this.ptsCount = value;
-    }
-
-    public int getDate() {
-        return date;
-    }
-
-    public void setDate(int value) {
-        this.date = value;
-    }
-
-    public com.github.badoualy.telegram.tl.api.TLAbsPeer getFwdFromId() {
-        return fwdFromId;
-    }
-
-    public void setFwdFromId(com.github.badoualy.telegram.tl.api.TLAbsPeer value) {
-        this.fwdFromId = value;
-    }
-
-    public int getFwdDate() {
-        return fwdDate;
-    }
-
-    public void setFwdDate(int value) {
-        this.fwdDate = value;
-    }
-
-    public int getViaBotId() {
-        return viaBotId;
-    }
-
-    public void setViaBotId(int value) {
-        this.viaBotId = value;
-    }
-
-    public int getReplyToMsgId() {
-        return replyToMsgId;
-    }
-
-    public void setReplyToMsgId(int value) {
-        this.replyToMsgId = value;
-    }
-
-    public com.github.badoualy.telegram.tl.core.TLVector<com.github.badoualy.telegram.tl.api.TLAbsMessageEntity> getEntities() {
-        return entities;
-    }
-
-    public void setEntities(com.github.badoualy.telegram.tl.core.TLVector<com.github.badoualy.telegram.tl.api.TLAbsMessageEntity> value) {
-        this.entities = value;
-    }
-
 
     @Override
     public void serializeBody(OutputStream stream) throws IOException {
-
-        flags = unread ? (flags | 1) : (flags &~ 1);
-        flags = out ? (flags | 2) : (flags &~ 2);
-        flags = mentioned ? (flags | 16) : (flags &~ 16);
-        flags = mediaUnread ? (flags | 32) : (flags &~ 32);
-        writeInt(this.flags, stream);
-        if ((this.flags & 1) != 0)
-            writeTLBool(this.unread, stream);
-        if ((this.flags & 2) != 0)
-            writeTLBool(this.out, stream);
-        if ((this.flags & 16) != 0)
-            writeTLBool(this.mentioned, stream);
-        if ((this.flags & 32) != 0)
-            writeTLBool(this.mediaUnread, stream);
-        writeInt(this.id, stream);
-        writeInt(this.fromId, stream);
-        writeInt(this.chatId, stream);
-        writeTLString(this.message, stream);
-        writeInt(this.pts, stream);
-        writeInt(this.ptsCount, stream);
-        writeInt(this.date, stream);
-        if ((this.flags & 4) != 0)
-            writeTLObject(this.fwdFromId, stream);
-        if ((this.flags & 4) != 0)
-            writeInt(this.fwdDate, stream);
-        if ((this.flags & 2048) != 0)
-            writeInt(this.viaBotId, stream);
-        if ((this.flags & 8) != 0)
-            writeInt(this.replyToMsgId, stream);
-        if ((this.flags & 128) != 0)
-            writeTLVector(this.entities, stream);
+        writeInt(flags, stream);
+        if ((flags & 1) != 0) writeTLBool(unread, stream);
+        if ((flags & 2) != 0) writeTLBool(out, stream);
+        if ((flags & 16) != 0) writeTLBool(mentioned, stream);
+        if ((flags & 32) != 0) writeTLBool(mediaUnread, stream);
+        writeInt(id, stream);
+        writeInt(fromId, stream);
+        writeInt(chatId, stream);
+        writeTLString(message, stream);
+        writeInt(pts, stream);
+        writeInt(ptsCount, stream);
+        writeInt(date, stream);
+        if ((flags & 4) != 0) writeTLObject(fwdFromId, stream);
+        if ((flags & 4) != 0) writeInt(fwdDate, stream);
+        if ((flags & 2048) != 0) writeInt(viaBotId, stream);
+        if ((flags & 8) != 0) writeInt(replyToMsgId, stream);
+        if ((flags & 128) != 0) writeTLVector(entities, stream);
     }
-
 
     @Override
+    @SuppressWarnings("unchecked")
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
-
-        this.flags = readInt(stream);
-        this.unread = (this.flags & 1) != 0;
-        this.out = (this.flags & 2) != 0;
-        this.mentioned = (this.flags & 16) != 0;
-        this.mediaUnread = (this.flags & 32) != 0;
-        this.id = readInt(stream);
-        this.fromId = readInt(stream);
-        this.chatId = readInt(stream);
-        this.message = readTLString(stream);
-        this.pts = readInt(stream);
-        this.ptsCount = readInt(stream);
-        this.date = readInt(stream);
-        if ((this.flags & 4) != 0)
-            this.fwdFromId = (com.github.badoualy.telegram.tl.api.TLAbsPeer)readTLObject(stream, context);
-        if ((this.flags & 4) != 0)
-            this.fwdDate = readInt(stream);
-        if ((this.flags & 2048) != 0)
-            this.viaBotId = readInt(stream);
-        if ((this.flags & 8) != 0)
-            this.replyToMsgId = readInt(stream);
-        if ((this.flags & 128) != 0)
-            this.entities = readTLVector(stream, context);
+        flags = readInt(stream);
+        unread = (flags & 1) != 0;
+        out = (flags & 2) != 0;
+        mentioned = (flags & 16) != 0;
+        mediaUnread = (flags & 32) != 0;
+        id = readInt(stream);
+        fromId = readInt(stream);
+        chatId = readInt(stream);
+        message = readTLString(stream);
+        pts = readInt(stream);
+        ptsCount = readInt(stream);
+        date = readInt(stream);
+        if ((flags & 4) != 0) fwdFromId = (com.github.badoualy.telegram.tl.api.TLAbsPeer) readTLObject(stream, context);
+        if ((flags & 4) != 0) fwdDate = readInt(stream);
+        if ((flags & 2048) != 0) viaBotId = readInt(stream);
+        if ((flags & 8) != 0) replyToMsgId = readInt(stream);
+        if ((flags & 128) != 0) entities = readTLVector(stream, context);
     }
-
-
 
     @Override
     public String toString() {
         return "updateShortChatMessage#248afa62";
     }
 
+    @Override
+    public int getClassId() {
+        return CLASS_ID;
+    }
+
+    public int getFlags() {
+        return flags;
+    }
+
+    public void setFlags(int flags) {
+        this.flags = flags;
+    }
+
+    public boolean getUnread() {
+        return unread;
+    }
+
+    public void setUnread(boolean unread) {
+        this.unread = unread;
+    }
+
+    public boolean getOut() {
+        return out;
+    }
+
+    public void setOut(boolean out) {
+        this.out = out;
+    }
+
+    public boolean getMentioned() {
+        return mentioned;
+    }
+
+    public void setMentioned(boolean mentioned) {
+        this.mentioned = mentioned;
+    }
+
+    public boolean getMediaUnread() {
+        return mediaUnread;
+    }
+
+    public void setMediaUnread(boolean mediaUnread) {
+        this.mediaUnread = mediaUnread;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public int getFromId() {
+        return fromId;
+    }
+
+    public void setFromId(int fromId) {
+        this.fromId = fromId;
+    }
+
+    public int getChatId() {
+        return chatId;
+    }
+
+    public void setChatId(int chatId) {
+        this.chatId = chatId;
+    }
+
+    public String getMessage() {
+        return message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
+    }
+
+    public int getPts() {
+        return pts;
+    }
+
+    public void setPts(int pts) {
+        this.pts = pts;
+    }
+
+    public int getPtsCount() {
+        return ptsCount;
+    }
+
+    public void setPtsCount(int ptsCount) {
+        this.ptsCount = ptsCount;
+    }
+
+    public int getDate() {
+        return date;
+    }
+
+    public void setDate(int date) {
+        this.date = date;
+    }
+
+    public TLAbsPeer getFwdFromId() {
+        return fwdFromId;
+    }
+
+    public void setFwdFromId(TLAbsPeer fwdFromId) {
+        this.fwdFromId = fwdFromId;
+    }
+
+    public int getFwdDate() {
+        return fwdDate;
+    }
+
+    public void setFwdDate(int fwdDate) {
+        this.fwdDate = fwdDate;
+    }
+
+    public int getViaBotId() {
+        return viaBotId;
+    }
+
+    public void setViaBotId(int viaBotId) {
+        this.viaBotId = viaBotId;
+    }
+
+    public int getReplyToMsgId() {
+        return replyToMsgId;
+    }
+
+    public void setReplyToMsgId(int replyToMsgId) {
+        this.replyToMsgId = replyToMsgId;
+    }
+
+    public TLVector<TLAbsMessageEntity> getEntities() {
+        return entities;
+    }
+
+    public void setEntities(TLVector<TLAbsMessageEntity> entities) {
+        this.entities = entities;
+    }
 }

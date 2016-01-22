@@ -1,63 +1,21 @@
-
 package com.github.badoualy.telegram.tl.api;
 
+import static com.github.badoualy.telegram.tl.StreamUtils.*;
 
 import com.github.badoualy.telegram.tl.TLContext;
-
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.lang.Override;
+import java.lang.String;
+import java.lang.SuppressWarnings;
 
-import static com.github.badoualy.telegram.tl.StreamUtils.readInt;
-import static com.github.badoualy.telegram.tl.StreamUtils.readLong;
-import static com.github.badoualy.telegram.tl.StreamUtils.readTLObject;
-import static com.github.badoualy.telegram.tl.StreamUtils.readTLString;
-import static com.github.badoualy.telegram.tl.StreamUtils.writeInt;
-import static com.github.badoualy.telegram.tl.StreamUtils.writeLong;
-import static com.github.badoualy.telegram.tl.StreamUtils.writeTLBool;
-import static com.github.badoualy.telegram.tl.StreamUtils.writeTLObject;
-import static com.github.badoualy.telegram.tl.StreamUtils.writeTLString;
-
-
-
+/**
+ * @author Yannick Badoual yann.badoual@gmail.com
+ * @see <a href="http://github.com/badoualy/kotlogram">http://github.com/badoualy/kotlogram</a>
+ */
 public class TLUser extends TLAbsUser {
     public static final int CLASS_ID = 0xd10d979a;
-
-    public TLUser() {
-
-    }
-
-
-    public TLUser(        int _flags,         boolean _self,         boolean _contact,         boolean _mutualContact,         boolean _deleted,         boolean _bot,         boolean _botChatHistory,         boolean _botNochats,         boolean _verified,         boolean _restricted,         int _id,         long _accessHash,         String _firstName,         String _lastName,         String _username,         String _phone,         com.github.badoualy.telegram.tl.api.TLAbsUserProfilePhoto _photo,         com.github.badoualy.telegram.tl.api.TLAbsUserStatus _status,         int _botInfoVersion,         String _restrictionReason,         String _botInlinePlaceholder) {
-        this.flags = _flags;
-        this.self = _self;
-        this.contact = _contact;
-        this.mutualContact = _mutualContact;
-        this.deleted = _deleted;
-        this.bot = _bot;
-        this.botChatHistory = _botChatHistory;
-        this.botNochats = _botNochats;
-        this.verified = _verified;
-        this.restricted = _restricted;
-        this.id = _id;
-        this.accessHash = _accessHash;
-        this.firstName = _firstName;
-        this.lastName = _lastName;
-        this.username = _username;
-        this.phone = _phone;
-        this.photo = _photo;
-        this.status = _status;
-        this.botInfoVersion = _botInfoVersion;
-        this.restrictionReason = _restrictionReason;
-        this.botInlinePlaceholder = _botInlinePlaceholder;
-
-    }
-
-
-    public int getClassId() {
-        return CLASS_ID;
-    }
-
 
     protected int flags;
 
@@ -89,9 +47,9 @@ public class TLUser extends TLAbsUser {
 
     protected String phone;
 
-    protected com.github.badoualy.telegram.tl.api.TLAbsUserProfilePhoto photo;
+    protected TLAbsUserProfilePhoto photo;
 
-    protected com.github.badoualy.telegram.tl.api.TLAbsUserStatus status;
+    protected TLAbsUserStatus status;
 
     protected int botInfoVersion;
 
@@ -99,264 +57,259 @@ public class TLUser extends TLAbsUser {
 
     protected String botInlinePlaceholder;
 
-
-    public int getFlags() {
-        return flags;
+    public TLUser() {
     }
 
-    public void setFlags(int value) {
-        this.flags = value;
+    public TLUser(int flags, boolean self, boolean contact, boolean mutualContact, boolean deleted, boolean bot, boolean botChatHistory, boolean botNochats, boolean verified, boolean restricted, int id, long accessHash, String firstName, String lastName, String username, String phone, TLAbsUserProfilePhoto photo, TLAbsUserStatus status, int botInfoVersion, String restrictionReason, String botInlinePlaceholder) {
+        this.flags = flags;
+        this.self = self;
+        this.contact = contact;
+        this.mutualContact = mutualContact;
+        this.deleted = deleted;
+        this.bot = bot;
+        this.botChatHistory = botChatHistory;
+        this.botNochats = botNochats;
+        this.verified = verified;
+        this.restricted = restricted;
+        this.id = id;
+        this.accessHash = accessHash;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.username = username;
+        this.phone = phone;
+        this.photo = photo;
+        this.status = status;
+        this.botInfoVersion = botInfoVersion;
+        this.restrictionReason = restrictionReason;
+        this.botInlinePlaceholder = botInlinePlaceholder;
     }
-
-    public boolean getSelf() {
-        return self;
-    }
-
-    public void setSelf(boolean value) {
-        this.self = value;
-    }
-
-    public boolean getContact() {
-        return contact;
-    }
-
-    public void setContact(boolean value) {
-        this.contact = value;
-    }
-
-    public boolean getMutualContact() {
-        return mutualContact;
-    }
-
-    public void setMutualContact(boolean value) {
-        this.mutualContact = value;
-    }
-
-    public boolean getDeleted() {
-        return deleted;
-    }
-
-    public void setDeleted(boolean value) {
-        this.deleted = value;
-    }
-
-    public boolean getBot() {
-        return bot;
-    }
-
-    public void setBot(boolean value) {
-        this.bot = value;
-    }
-
-    public boolean getBotChatHistory() {
-        return botChatHistory;
-    }
-
-    public void setBotChatHistory(boolean value) {
-        this.botChatHistory = value;
-    }
-
-    public boolean getBotNochats() {
-        return botNochats;
-    }
-
-    public void setBotNochats(boolean value) {
-        this.botNochats = value;
-    }
-
-    public boolean getVerified() {
-        return verified;
-    }
-
-    public void setVerified(boolean value) {
-        this.verified = value;
-    }
-
-    public boolean getRestricted() {
-        return restricted;
-    }
-
-    public void setRestricted(boolean value) {
-        this.restricted = value;
-    }
-
-    public long getAccessHash() {
-        return accessHash;
-    }
-
-    public void setAccessHash(long value) {
-        this.accessHash = value;
-    }
-
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public void setFirstName(String value) {
-        this.firstName = value;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String value) {
-        this.lastName = value;
-    }
-
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String value) {
-        this.username = value;
-    }
-
-    public String getPhone() {
-        return phone;
-    }
-
-    public void setPhone(String value) {
-        this.phone = value;
-    }
-
-    public com.github.badoualy.telegram.tl.api.TLAbsUserProfilePhoto getPhoto() {
-        return photo;
-    }
-
-    public void setPhoto(com.github.badoualy.telegram.tl.api.TLAbsUserProfilePhoto value) {
-        this.photo = value;
-    }
-
-    public com.github.badoualy.telegram.tl.api.TLAbsUserStatus getStatus() {
-        return status;
-    }
-
-    public void setStatus(com.github.badoualy.telegram.tl.api.TLAbsUserStatus value) {
-        this.status = value;
-    }
-
-    public int getBotInfoVersion() {
-        return botInfoVersion;
-    }
-
-    public void setBotInfoVersion(int value) {
-        this.botInfoVersion = value;
-    }
-
-    public String getRestrictionReason() {
-        return restrictionReason;
-    }
-
-    public void setRestrictionReason(String value) {
-        this.restrictionReason = value;
-    }
-
-    public String getBotInlinePlaceholder() {
-        return botInlinePlaceholder;
-    }
-
-    public void setBotInlinePlaceholder(String value) {
-        this.botInlinePlaceholder = value;
-    }
-
 
     @Override
     public void serializeBody(OutputStream stream) throws IOException {
-
-        flags = self ? (flags | 1024) : (flags &~ 1024);
-        flags = contact ? (flags | 2048) : (flags &~ 2048);
-        flags = mutualContact ? (flags | 4096) : (flags &~ 4096);
-        flags = deleted ? (flags | 8192) : (flags &~ 8192);
-        flags = bot ? (flags | 16384) : (flags &~ 16384);
-        flags = botChatHistory ? (flags | 32768) : (flags &~ 32768);
-        flags = botNochats ? (flags | 65536) : (flags &~ 65536);
-        flags = verified ? (flags | 131072) : (flags &~ 131072);
-        flags = restricted ? (flags | 262144) : (flags &~ 262144);
-        writeInt(this.flags, stream);
-        if ((this.flags & 1024) != 0)
-            writeTLBool(this.self, stream);
-        if ((this.flags & 2048) != 0)
-            writeTLBool(this.contact, stream);
-        if ((this.flags & 4096) != 0)
-            writeTLBool(this.mutualContact, stream);
-        if ((this.flags & 8192) != 0)
-            writeTLBool(this.deleted, stream);
-        if ((this.flags & 16384) != 0)
-            writeTLBool(this.bot, stream);
-        if ((this.flags & 32768) != 0)
-            writeTLBool(this.botChatHistory, stream);
-        if ((this.flags & 65536) != 0)
-            writeTLBool(this.botNochats, stream);
-        if ((this.flags & 131072) != 0)
-            writeTLBool(this.verified, stream);
-        if ((this.flags & 262144) != 0)
-            writeTLBool(this.restricted, stream);
-        writeInt(this.id, stream);
-        if ((this.flags & 1) != 0)
-            writeLong(this.accessHash, stream);
-        if ((this.flags & 2) != 0)
-            writeTLString(this.firstName, stream);
-        if ((this.flags & 4) != 0)
-            writeTLString(this.lastName, stream);
-        if ((this.flags & 8) != 0)
-            writeTLString(this.username, stream);
-        if ((this.flags & 16) != 0)
-            writeTLString(this.phone, stream);
-        if ((this.flags & 32) != 0)
-            writeTLObject(this.photo, stream);
-        if ((this.flags & 64) != 0)
-            writeTLObject(this.status, stream);
-        if ((this.flags & 16384) != 0)
-            writeInt(this.botInfoVersion, stream);
-        if ((this.flags & 262144) != 0)
-            writeTLString(this.restrictionReason, stream);
-        if ((this.flags & 524288) != 0)
-            writeTLString(this.botInlinePlaceholder, stream);
+        writeInt(flags, stream);
+        if ((flags & 1024) != 0) writeTLBool(self, stream);
+        if ((flags & 2048) != 0) writeTLBool(contact, stream);
+        if ((flags & 4096) != 0) writeTLBool(mutualContact, stream);
+        if ((flags & 8192) != 0) writeTLBool(deleted, stream);
+        if ((flags & 16384) != 0) writeTLBool(bot, stream);
+        if ((flags & 32768) != 0) writeTLBool(botChatHistory, stream);
+        if ((flags & 65536) != 0) writeTLBool(botNochats, stream);
+        if ((flags & 131072) != 0) writeTLBool(verified, stream);
+        if ((flags & 262144) != 0) writeTLBool(restricted, stream);
+        writeInt(id, stream);
+        if ((flags & 1) != 0) writeLong(accessHash, stream);
+        if ((flags & 2) != 0) writeTLString(firstName, stream);
+        if ((flags & 4) != 0) writeTLString(lastName, stream);
+        if ((flags & 8) != 0) writeTLString(username, stream);
+        if ((flags & 16) != 0) writeTLString(phone, stream);
+        if ((flags & 32) != 0) writeTLObject(photo, stream);
+        if ((flags & 64) != 0) writeTLObject(status, stream);
+        if ((flags & 16384) != 0) writeInt(botInfoVersion, stream);
+        if ((flags & 262144) != 0) writeTLString(restrictionReason, stream);
+        if ((flags & 524288) != 0) writeTLString(botInlinePlaceholder, stream);
     }
-
 
     @Override
+    @SuppressWarnings("unchecked")
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
-
-        this.flags = readInt(stream);
-        this.self = (this.flags & 1024) != 0;
-        this.contact = (this.flags & 2048) != 0;
-        this.mutualContact = (this.flags & 4096) != 0;
-        this.deleted = (this.flags & 8192) != 0;
-        this.bot = (this.flags & 16384) != 0;
-        this.botChatHistory = (this.flags & 32768) != 0;
-        this.botNochats = (this.flags & 65536) != 0;
-        this.verified = (this.flags & 131072) != 0;
-        this.restricted = (this.flags & 262144) != 0;
-        this.id = readInt(stream);
-        if ((this.flags & 1) != 0)
-            this.accessHash = readLong(stream);
-        if ((this.flags & 2) != 0)
-            this.firstName = readTLString(stream);
-        if ((this.flags & 4) != 0)
-            this.lastName = readTLString(stream);
-        if ((this.flags & 8) != 0)
-            this.username = readTLString(stream);
-        if ((this.flags & 16) != 0)
-            this.phone = readTLString(stream);
-        if ((this.flags & 32) != 0)
-            this.photo = (com.github.badoualy.telegram.tl.api.TLAbsUserProfilePhoto)readTLObject(stream, context);
-        if ((this.flags & 64) != 0)
-            this.status = (com.github.badoualy.telegram.tl.api.TLAbsUserStatus)readTLObject(stream, context);
-        if ((this.flags & 16384) != 0)
-            this.botInfoVersion = readInt(stream);
-        if ((this.flags & 262144) != 0)
-            this.restrictionReason = readTLString(stream);
-        if ((this.flags & 524288) != 0)
-            this.botInlinePlaceholder = readTLString(stream);
+        flags = readInt(stream);
+        self = (flags & 1024) != 0;
+        contact = (flags & 2048) != 0;
+        mutualContact = (flags & 4096) != 0;
+        deleted = (flags & 8192) != 0;
+        bot = (flags & 16384) != 0;
+        botChatHistory = (flags & 32768) != 0;
+        botNochats = (flags & 65536) != 0;
+        verified = (flags & 131072) != 0;
+        restricted = (flags & 262144) != 0;
+        id = readInt(stream);
+        if ((flags & 1) != 0) accessHash = readLong(stream);
+        if ((flags & 2) != 0) firstName = readTLString(stream);
+        if ((flags & 4) != 0) lastName = readTLString(stream);
+        if ((flags & 8) != 0) username = readTLString(stream);
+        if ((flags & 16) != 0) phone = readTLString(stream);
+        if ((flags & 32) != 0) photo = (com.github.badoualy.telegram.tl.api.TLAbsUserProfilePhoto) readTLObject(stream, context);
+        if ((flags & 64) != 0) status = (com.github.badoualy.telegram.tl.api.TLAbsUserStatus) readTLObject(stream, context);
+        if ((flags & 16384) != 0) botInfoVersion = readInt(stream);
+        if ((flags & 262144) != 0) restrictionReason = readTLString(stream);
+        if ((flags & 524288) != 0) botInlinePlaceholder = readTLString(stream);
     }
-
-
 
     @Override
     public String toString() {
         return "user#d10d979a";
     }
 
+    @Override
+    public int getClassId() {
+        return CLASS_ID;
+    }
+
+    public int getFlags() {
+        return flags;
+    }
+
+    public void setFlags(int flags) {
+        this.flags = flags;
+    }
+
+    public boolean getSelf() {
+        return self;
+    }
+
+    public void setSelf(boolean self) {
+        this.self = self;
+    }
+
+    public boolean getContact() {
+        return contact;
+    }
+
+    public void setContact(boolean contact) {
+        this.contact = contact;
+    }
+
+    public boolean getMutualContact() {
+        return mutualContact;
+    }
+
+    public void setMutualContact(boolean mutualContact) {
+        this.mutualContact = mutualContact;
+    }
+
+    public boolean getDeleted() {
+        return deleted;
+    }
+
+    public void setDeleted(boolean deleted) {
+        this.deleted = deleted;
+    }
+
+    public boolean getBot() {
+        return bot;
+    }
+
+    public void setBot(boolean bot) {
+        this.bot = bot;
+    }
+
+    public boolean getBotChatHistory() {
+        return botChatHistory;
+    }
+
+    public void setBotChatHistory(boolean botChatHistory) {
+        this.botChatHistory = botChatHistory;
+    }
+
+    public boolean getBotNochats() {
+        return botNochats;
+    }
+
+    public void setBotNochats(boolean botNochats) {
+        this.botNochats = botNochats;
+    }
+
+    public boolean getVerified() {
+        return verified;
+    }
+
+    public void setVerified(boolean verified) {
+        this.verified = verified;
+    }
+
+    public boolean getRestricted() {
+        return restricted;
+    }
+
+    public void setRestricted(boolean restricted) {
+        this.restricted = restricted;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public long getAccessHash() {
+        return accessHash;
+    }
+
+    public void setAccessHash(long accessHash) {
+        this.accessHash = accessHash;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public TLAbsUserProfilePhoto getPhoto() {
+        return photo;
+    }
+
+    public void setPhoto(TLAbsUserProfilePhoto photo) {
+        this.photo = photo;
+    }
+
+    public TLAbsUserStatus getStatus() {
+        return status;
+    }
+
+    public void setStatus(TLAbsUserStatus status) {
+        this.status = status;
+    }
+
+    public int getBotInfoVersion() {
+        return botInfoVersion;
+    }
+
+    public void setBotInfoVersion(int botInfoVersion) {
+        this.botInfoVersion = botInfoVersion;
+    }
+
+    public String getRestrictionReason() {
+        return restrictionReason;
+    }
+
+    public void setRestrictionReason(String restrictionReason) {
+        this.restrictionReason = restrictionReason;
+    }
+
+    public String getBotInlinePlaceholder() {
+        return botInlinePlaceholder;
+    }
+
+    public void setBotInlinePlaceholder(String botInlinePlaceholder) {
+        this.botInlinePlaceholder = botInlinePlaceholder;
+    }
 }

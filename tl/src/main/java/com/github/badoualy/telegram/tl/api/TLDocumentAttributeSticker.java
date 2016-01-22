@@ -1,82 +1,70 @@
-
 package com.github.badoualy.telegram.tl.api;
 
+import static com.github.badoualy.telegram.tl.StreamUtils.*;
 
 import com.github.badoualy.telegram.tl.TLContext;
-
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.lang.Override;
+import java.lang.String;
+import java.lang.SuppressWarnings;
 
-import static com.github.badoualy.telegram.tl.StreamUtils.readTLObject;
-import static com.github.badoualy.telegram.tl.StreamUtils.readTLString;
-import static com.github.badoualy.telegram.tl.StreamUtils.writeTLObject;
-import static com.github.badoualy.telegram.tl.StreamUtils.writeTLString;
-
-
-
+/**
+ * @author Yannick Badoual yann.badoual@gmail.com
+ * @see <a href="http://github.com/badoualy/kotlogram">http://github.com/badoualy/kotlogram</a>
+ */
 public class TLDocumentAttributeSticker extends TLAbsDocumentAttribute {
     public static final int CLASS_ID = 0x3a556302;
 
-    public TLDocumentAttributeSticker() {
-
-    }
-
-
-    public TLDocumentAttributeSticker(        String _alt,         com.github.badoualy.telegram.tl.api.TLAbsInputStickerSet _stickerset) {
-        this.alt = _alt;
-        this.stickerset = _stickerset;
-
-    }
-
-
-    public int getClassId() {
-        return CLASS_ID;
-    }
-
-
     protected String alt;
 
-    protected com.github.badoualy.telegram.tl.api.TLAbsInputStickerSet stickerset;
+    protected TLAbsInputStickerSet stickerset;
 
-
-    public String getAlt() {
-        return alt;
+    public TLDocumentAttributeSticker() {
     }
 
-    public void setAlt(String value) {
-        this.alt = value;
+    public TLDocumentAttributeSticker(String alt, TLAbsInputStickerSet stickerset) {
+        this.alt = alt;
+        this.stickerset = stickerset;
     }
-
-    public com.github.badoualy.telegram.tl.api.TLAbsInputStickerSet getStickerset() {
-        return stickerset;
-    }
-
-    public void setStickerset(com.github.badoualy.telegram.tl.api.TLAbsInputStickerSet value) {
-        this.stickerset = value;
-    }
-
 
     @Override
     public void serializeBody(OutputStream stream) throws IOException {
-
-        writeTLString(this.alt, stream);
-        writeTLObject(this.stickerset, stream);
+        writeTLString(alt, stream);
+        writeTLObject(stickerset, stream);
     }
-
 
     @Override
+    @SuppressWarnings("unchecked")
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
-
-        this.alt = readTLString(stream);
-        this.stickerset = (com.github.badoualy.telegram.tl.api.TLAbsInputStickerSet)readTLObject(stream, context);
+        alt = readTLString(stream);
+        stickerset = (com.github.badoualy.telegram.tl.api.TLAbsInputStickerSet) readTLObject(stream, context);
     }
-
-
 
     @Override
     public String toString() {
         return "documentAttributeSticker#3a556302";
     }
 
+    @Override
+    public int getClassId() {
+        return CLASS_ID;
+    }
+
+    public String getAlt() {
+        return alt;
+    }
+
+    public void setAlt(String alt) {
+        this.alt = alt;
+    }
+
+    public TLAbsInputStickerSet getStickerset() {
+        return stickerset;
+    }
+
+    public void setStickerset(TLAbsInputStickerSet stickerset) {
+        this.stickerset = stickerset;
+    }
 }

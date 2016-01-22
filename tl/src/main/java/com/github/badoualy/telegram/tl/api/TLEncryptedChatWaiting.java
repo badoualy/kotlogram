@@ -1,42 +1,23 @@
-
 package com.github.badoualy.telegram.tl.api;
 
+import static com.github.badoualy.telegram.tl.StreamUtils.*;
 
 import com.github.badoualy.telegram.tl.TLContext;
-
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.lang.Override;
+import java.lang.String;
+import java.lang.SuppressWarnings;
 
-import static com.github.badoualy.telegram.tl.StreamUtils.readInt;
-import static com.github.badoualy.telegram.tl.StreamUtils.readLong;
-import static com.github.badoualy.telegram.tl.StreamUtils.writeInt;
-import static com.github.badoualy.telegram.tl.StreamUtils.writeLong;
-
-
-
+/**
+ * @author Yannick Badoual yann.badoual@gmail.com
+ * @see <a href="http://github.com/badoualy/kotlogram">http://github.com/badoualy/kotlogram</a>
+ */
 public class TLEncryptedChatWaiting extends TLAbsEncryptedChat {
     public static final int CLASS_ID = 0x3bf703dc;
 
-    public TLEncryptedChatWaiting() {
-
-    }
-
-
-    public TLEncryptedChatWaiting(        int _id,         long _accessHash,         int _date,         int _adminId,         int _participantId) {
-        this.id = _id;
-        this.accessHash = _accessHash;
-        this.date = _date;
-        this.adminId = _adminId;
-        this.participantId = _participantId;
-
-    }
-
-
-    public int getClassId() {
-        return CLASS_ID;
-    }
-
+    protected int id;
 
     protected long accessHash;
 
@@ -46,66 +27,83 @@ public class TLEncryptedChatWaiting extends TLAbsEncryptedChat {
 
     protected int participantId;
 
-
-    public long getAccessHash() {
-        return accessHash;
+    public TLEncryptedChatWaiting() {
     }
 
-    public void setAccessHash(long value) {
-        this.accessHash = value;
+    public TLEncryptedChatWaiting(int id, long accessHash, int date, int adminId, int participantId) {
+        this.id = id;
+        this.accessHash = accessHash;
+        this.date = date;
+        this.adminId = adminId;
+        this.participantId = participantId;
     }
-
-    public int getDate() {
-        return date;
-    }
-
-    public void setDate(int value) {
-        this.date = value;
-    }
-
-    public int getAdminId() {
-        return adminId;
-    }
-
-    public void setAdminId(int value) {
-        this.adminId = value;
-    }
-
-    public int getParticipantId() {
-        return participantId;
-    }
-
-    public void setParticipantId(int value) {
-        this.participantId = value;
-    }
-
 
     @Override
     public void serializeBody(OutputStream stream) throws IOException {
-
-        writeInt(this.id, stream);
-        writeLong(this.accessHash, stream);
-        writeInt(this.date, stream);
-        writeInt(this.adminId, stream);
-        writeInt(this.participantId, stream);
+        writeInt(id, stream);
+        writeLong(accessHash, stream);
+        writeInt(date, stream);
+        writeInt(adminId, stream);
+        writeInt(participantId, stream);
     }
-
 
     @Override
+    @SuppressWarnings("unchecked")
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
-
-        this.id = readInt(stream);
-        this.accessHash = readLong(stream);
-        this.date = readInt(stream);
-        this.adminId = readInt(stream);
-        this.participantId = readInt(stream);
+        id = readInt(stream);
+        accessHash = readLong(stream);
+        date = readInt(stream);
+        adminId = readInt(stream);
+        participantId = readInt(stream);
     }
-
-
 
     @Override
     public String toString() {
         return "encryptedChatWaiting#3bf703dc";
     }
 
+    @Override
+    public int getClassId() {
+        return CLASS_ID;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public long getAccessHash() {
+        return accessHash;
+    }
+
+    public void setAccessHash(long accessHash) {
+        this.accessHash = accessHash;
+    }
+
+    public int getDate() {
+        return date;
+    }
+
+    public void setDate(int date) {
+        this.date = date;
+    }
+
+    public int getAdminId() {
+        return adminId;
+    }
+
+    public void setAdminId(int adminId) {
+        this.adminId = adminId;
+    }
+
+    public int getParticipantId() {
+        return participantId;
+    }
+
+    public void setParticipantId(int participantId) {
+        this.participantId = participantId;
+    }
 }

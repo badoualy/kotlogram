@@ -1,94 +1,87 @@
-
 package com.github.badoualy.telegram.tl.api.channels;
 
-import com.github.badoualy.telegram.tl.TLContext;
-import com.github.badoualy.telegram.tl.core.TLObject;
+import static com.github.badoualy.telegram.tl.StreamUtils.*;
 
+import com.github.badoualy.telegram.tl.TLContext;
+import com.github.badoualy.telegram.tl.api.TLAbsChannelParticipant;
+import com.github.badoualy.telegram.tl.api.TLAbsUser;
+import com.github.badoualy.telegram.tl.core.TLObject;
+import com.github.badoualy.telegram.tl.core.TLVector;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.lang.Override;
+import java.lang.String;
+import java.lang.SuppressWarnings;
 
-import static com.github.badoualy.telegram.tl.StreamUtils.readInt;
-import static com.github.badoualy.telegram.tl.StreamUtils.readTLVector;
-import static com.github.badoualy.telegram.tl.StreamUtils.writeInt;
-import static com.github.badoualy.telegram.tl.StreamUtils.writeTLVector;
-
-
+/**
+ * @author Yannick Badoual yann.badoual@gmail.com
+ * @see <a href="http://github.com/badoualy/kotlogram">http://github.com/badoualy/kotlogram</a>
+ */
 public class TLChannelParticipants extends TLObject {
-
     public static final int CLASS_ID = 0xf56ee2a8;
-
-    public TLChannelParticipants() {
-
-    }
-
-
-    public TLChannelParticipants(        int _count,         com.github.badoualy.telegram.tl.core.TLVector<com.github.badoualy.telegram.tl.api.TLAbsChannelParticipant> _participants,         com.github.badoualy.telegram.tl.core.TLVector<com.github.badoualy.telegram.tl.api.TLAbsUser> _users) {
-        this.count = _count;
-        this.participants = _participants;
-        this.users = _users;
-
-    }
-
-
-    public int getClassId() {
-        return CLASS_ID;
-    }
-
 
     protected int count;
 
-    protected com.github.badoualy.telegram.tl.core.TLVector<com.github.badoualy.telegram.tl.api.TLAbsChannelParticipant> participants;
+    protected TLVector<TLAbsChannelParticipant> participants;
 
-    protected com.github.badoualy.telegram.tl.core.TLVector<com.github.badoualy.telegram.tl.api.TLAbsUser> users;
+    protected TLVector<TLAbsUser> users;
 
-
-    public int getCount() {
-        return count;
+    public TLChannelParticipants() {
     }
 
-    public void setCount(int value) {
-        this.count = value;
+    public TLChannelParticipants(int count, TLVector<TLAbsChannelParticipant> participants, TLVector<TLAbsUser> users) {
+        this.count = count;
+        this.participants = participants;
+        this.users = users;
     }
-
-    public com.github.badoualy.telegram.tl.core.TLVector<com.github.badoualy.telegram.tl.api.TLAbsChannelParticipant> getParticipants() {
-        return participants;
-    }
-
-    public void setParticipants(com.github.badoualy.telegram.tl.core.TLVector<com.github.badoualy.telegram.tl.api.TLAbsChannelParticipant> value) {
-        this.participants = value;
-    }
-
-    public com.github.badoualy.telegram.tl.core.TLVector<com.github.badoualy.telegram.tl.api.TLAbsUser> getUsers() {
-        return users;
-    }
-
-    public void setUsers(com.github.badoualy.telegram.tl.core.TLVector<com.github.badoualy.telegram.tl.api.TLAbsUser> value) {
-        this.users = value;
-    }
-
 
     @Override
     public void serializeBody(OutputStream stream) throws IOException {
-
-        writeInt(this.count, stream);
-        writeTLVector(this.participants, stream);
-        writeTLVector(this.users, stream);
+        writeInt(count, stream);
+        writeTLVector(participants, stream);
+        writeTLVector(users, stream);
     }
-
 
     @Override
+    @SuppressWarnings("unchecked")
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
-
-        this.count = readInt(stream);
-        this.participants = readTLVector(stream, context);
-        this.users = readTLVector(stream, context);
+        count = readInt(stream);
+        participants = readTLVector(stream, context);
+        users = readTLVector(stream, context);
     }
-
 
     @Override
     public String toString() {
         return "channels.channelParticipants#f56ee2a8";
     }
 
+    @Override
+    public int getClassId() {
+        return CLASS_ID;
+    }
+
+    public int getCount() {
+        return count;
+    }
+
+    public void setCount(int count) {
+        this.count = count;
+    }
+
+    public TLVector<TLAbsChannelParticipant> getParticipants() {
+        return participants;
+    }
+
+    public void setParticipants(TLVector<TLAbsChannelParticipant> participants) {
+        this.participants = participants;
+    }
+
+    public TLVector<TLAbsUser> getUsers() {
+        return users;
+    }
+
+    public void setUsers(TLVector<TLAbsUser> users) {
+        this.users = users;
+    }
 }

@@ -1,44 +1,26 @@
-
 package com.github.badoualy.telegram.tl.api.messages;
 
+import static com.github.badoualy.telegram.tl.StreamUtils.*;
 
 import com.github.badoualy.telegram.tl.TLContext;
-
+import com.github.badoualy.telegram.tl.api.TLAbsChat;
+import com.github.badoualy.telegram.tl.api.TLAbsMessage;
+import com.github.badoualy.telegram.tl.api.TLAbsUser;
+import com.github.badoualy.telegram.tl.api.TLMessageGroup;
+import com.github.badoualy.telegram.tl.core.TLVector;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.lang.Override;
+import java.lang.String;
+import java.lang.SuppressWarnings;
 
-import static com.github.badoualy.telegram.tl.StreamUtils.readInt;
-import static com.github.badoualy.telegram.tl.StreamUtils.readTLVector;
-import static com.github.badoualy.telegram.tl.StreamUtils.writeInt;
-import static com.github.badoualy.telegram.tl.StreamUtils.writeTLVector;
-
-
-
+/**
+ * @author Yannick Badoual yann.badoual@gmail.com
+ * @see <a href="http://github.com/badoualy/kotlogram">http://github.com/badoualy/kotlogram</a>
+ */
 public class TLChannelMessages extends TLAbsMessages {
     public static final int CLASS_ID = 0xbc0f17bc;
-
-    public TLChannelMessages() {
-
-    }
-
-
-    public TLChannelMessages(        int _flags,         int _pts,         int _count,         com.github.badoualy.telegram.tl.core.TLVector<com.github.badoualy.telegram.tl.api.TLAbsMessage> _messages,         com.github.badoualy.telegram.tl.core.TLVector<com.github.badoualy.telegram.tl.api.TLMessageGroup> _collapsed,         com.github.badoualy.telegram.tl.core.TLVector<com.github.badoualy.telegram.tl.api.TLAbsChat> _chats,         com.github.badoualy.telegram.tl.core.TLVector<com.github.badoualy.telegram.tl.api.TLAbsUser> _users) {
-        this.flags = _flags;
-        this.pts = _pts;
-        this.count = _count;
-        this.messages = _messages;
-        this.collapsed = _collapsed;
-        this.chats = _chats;
-        this.users = _users;
-
-    }
-
-
-    public int getClassId() {
-        return CLASS_ID;
-    }
-
 
     protected int flags;
 
@@ -46,74 +28,107 @@ public class TLChannelMessages extends TLAbsMessages {
 
     protected int count;
 
-    protected com.github.badoualy.telegram.tl.core.TLVector<com.github.badoualy.telegram.tl.api.TLMessageGroup> collapsed;
+    protected TLVector<TLMessageGroup> collapsed;
 
-
-    public int getFlags() {
-        return flags;
+    public TLChannelMessages() {
     }
 
-    public void setFlags(int value) {
-        this.flags = value;
+    public TLChannelMessages(int flags, int pts, int count, TLVector<TLAbsMessage> messages, TLVector<TLMessageGroup> collapsed, TLVector<TLAbsChat> chats, TLVector<TLAbsUser> users) {
+        this.flags = flags;
+        this.pts = pts;
+        this.count = count;
+        this.messages = messages;
+        this.collapsed = collapsed;
+        this.chats = chats;
+        this.users = users;
     }
-
-    public int getPts() {
-        return pts;
-    }
-
-    public void setPts(int value) {
-        this.pts = value;
-    }
-
-    public int getCount() {
-        return count;
-    }
-
-    public void setCount(int value) {
-        this.count = value;
-    }
-
-    public com.github.badoualy.telegram.tl.core.TLVector<com.github.badoualy.telegram.tl.api.TLMessageGroup> getCollapsed() {
-        return collapsed;
-    }
-
-    public void setCollapsed(com.github.badoualy.telegram.tl.core.TLVector<com.github.badoualy.telegram.tl.api.TLMessageGroup> value) {
-        this.collapsed = value;
-    }
-
 
     @Override
     public void serializeBody(OutputStream stream) throws IOException {
-
-        writeInt(this.flags, stream);
-        writeInt(this.pts, stream);
-        writeInt(this.count, stream);
-        writeTLVector(this.messages, stream);
-        if ((this.flags & 1) != 0)
-            writeTLVector(this.collapsed, stream);
-        writeTLVector(this.chats, stream);
-        writeTLVector(this.users, stream);
+        writeInt(flags, stream);
+        writeInt(pts, stream);
+        writeInt(count, stream);
+        writeTLVector(messages, stream);
+        if ((flags & 1) != 0) writeTLVector(collapsed, stream);
+        writeTLVector(chats, stream);
+        writeTLVector(users, stream);
     }
-
 
     @Override
+    @SuppressWarnings("unchecked")
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
-
-        this.flags = readInt(stream);
-        this.pts = readInt(stream);
-        this.count = readInt(stream);
-        this.messages = readTLVector(stream, context);
-        if ((this.flags & 1) != 0)
-            this.collapsed = readTLVector(stream, context);
-        this.chats = readTLVector(stream, context);
-        this.users = readTLVector(stream, context);
+        flags = readInt(stream);
+        pts = readInt(stream);
+        count = readInt(stream);
+        messages = readTLVector(stream, context);
+        if ((flags & 1) != 0) collapsed = readTLVector(stream, context);
+        chats = readTLVector(stream, context);
+        users = readTLVector(stream, context);
     }
-
-
 
     @Override
     public String toString() {
         return "messages.channelMessages#bc0f17bc";
     }
 
+    @Override
+    public int getClassId() {
+        return CLASS_ID;
+    }
+
+    public int getFlags() {
+        return flags;
+    }
+
+    public void setFlags(int flags) {
+        this.flags = flags;
+    }
+
+    public int getPts() {
+        return pts;
+    }
+
+    public void setPts(int pts) {
+        this.pts = pts;
+    }
+
+    public int getCount() {
+        return count;
+    }
+
+    public void setCount(int count) {
+        this.count = count;
+    }
+
+    public TLVector<TLAbsMessage> getMessages() {
+        return messages;
+    }
+
+    public void setMessages(TLVector<TLAbsMessage> messages) {
+        this.messages = messages;
+    }
+
+    public TLVector<TLMessageGroup> getCollapsed() {
+        return collapsed;
+    }
+
+    public void setCollapsed(TLVector<TLMessageGroup> collapsed) {
+        this.collapsed = collapsed;
+    }
+
+    public TLVector<TLAbsChat> getChats() {
+        return chats;
+    }
+
+    public void setChats(TLVector<TLAbsChat> chats) {
+        this.chats = chats;
+    }
+
+    public TLVector<TLAbsUser> getUsers() {
+        return users;
+    }
+
+    public void setUsers(TLVector<TLAbsUser> users) {
+        this.users = users;
+    }
 }

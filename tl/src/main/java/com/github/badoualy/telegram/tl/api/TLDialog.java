@@ -1,71 +1,99 @@
-
 package com.github.badoualy.telegram.tl.api;
 
+import static com.github.badoualy.telegram.tl.StreamUtils.*;
 
 import com.github.badoualy.telegram.tl.TLContext;
-
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.lang.Override;
+import java.lang.String;
+import java.lang.SuppressWarnings;
 
-import static com.github.badoualy.telegram.tl.StreamUtils.readInt;
-import static com.github.badoualy.telegram.tl.StreamUtils.readTLObject;
-import static com.github.badoualy.telegram.tl.StreamUtils.writeInt;
-import static com.github.badoualy.telegram.tl.StreamUtils.writeTLObject;
-
-
-
+/**
+ * @author Yannick Badoual yann.badoual@gmail.com
+ * @see <a href="http://github.com/badoualy/kotlogram">http://github.com/badoualy/kotlogram</a>
+ */
 public class TLDialog extends TLAbsDialog {
     public static final int CLASS_ID = 0xc1dd804a;
 
     public TLDialog() {
-
     }
 
-
-    public TLDialog(        com.github.badoualy.telegram.tl.api.TLAbsPeer _peer,         int _topMessage,         int _readInboxMaxId,         int _unreadCount,         com.github.badoualy.telegram.tl.api.TLAbsPeerNotifySettings _notifySettings) {
-        this.peer = _peer;
-        this.topMessage = _topMessage;
-        this.readInboxMaxId = _readInboxMaxId;
-        this.unreadCount = _unreadCount;
-        this.notifySettings = _notifySettings;
-
+    public TLDialog(TLAbsPeer peer, int topMessage, int readInboxMaxId, int unreadCount, TLAbsPeerNotifySettings notifySettings) {
+        this.peer = peer;
+        this.topMessage = topMessage;
+        this.readInboxMaxId = readInboxMaxId;
+        this.unreadCount = unreadCount;
+        this.notifySettings = notifySettings;
     }
-
-
-    public int getClassId() {
-        return CLASS_ID;
-    }
-
-
-
 
     @Override
     public void serializeBody(OutputStream stream) throws IOException {
-
-        writeTLObject(this.peer, stream);
-        writeInt(this.topMessage, stream);
-        writeInt(this.readInboxMaxId, stream);
-        writeInt(this.unreadCount, stream);
-        writeTLObject(this.notifySettings, stream);
+        writeTLObject(peer, stream);
+        writeInt(topMessage, stream);
+        writeInt(readInboxMaxId, stream);
+        writeInt(unreadCount, stream);
+        writeTLObject(notifySettings, stream);
     }
-
 
     @Override
+    @SuppressWarnings("unchecked")
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
-
-        this.peer = (com.github.badoualy.telegram.tl.api.TLAbsPeer)readTLObject(stream, context);
-        this.topMessage = readInt(stream);
-        this.readInboxMaxId = readInt(stream);
-        this.unreadCount = readInt(stream);
-        this.notifySettings = (com.github.badoualy.telegram.tl.api.TLAbsPeerNotifySettings)readTLObject(stream, context);
+        peer = (com.github.badoualy.telegram.tl.api.TLAbsPeer) readTLObject(stream, context);
+        topMessage = readInt(stream);
+        readInboxMaxId = readInt(stream);
+        unreadCount = readInt(stream);
+        notifySettings = (com.github.badoualy.telegram.tl.api.TLAbsPeerNotifySettings) readTLObject(stream, context);
     }
-
-
 
     @Override
     public String toString() {
         return "dialog#c1dd804a";
     }
 
+    @Override
+    public int getClassId() {
+        return CLASS_ID;
+    }
+
+    public TLAbsPeer getPeer() {
+        return peer;
+    }
+
+    public void setPeer(TLAbsPeer peer) {
+        this.peer = peer;
+    }
+
+    public int getTopMessage() {
+        return topMessage;
+    }
+
+    public void setTopMessage(int topMessage) {
+        this.topMessage = topMessage;
+    }
+
+    public int getReadInboxMaxId() {
+        return readInboxMaxId;
+    }
+
+    public void setReadInboxMaxId(int readInboxMaxId) {
+        this.readInboxMaxId = readInboxMaxId;
+    }
+
+    public int getUnreadCount() {
+        return unreadCount;
+    }
+
+    public void setUnreadCount(int unreadCount) {
+        this.unreadCount = unreadCount;
+    }
+
+    public TLAbsPeerNotifySettings getNotifySettings() {
+        return notifySettings;
+    }
+
+    public void setNotifySettings(TLAbsPeerNotifySettings notifySettings) {
+        this.notifySettings = notifySettings;
+    }
 }

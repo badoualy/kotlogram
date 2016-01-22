@@ -1,95 +1,83 @@
-
 package com.github.badoualy.telegram.tl.api;
 
+import static com.github.badoualy.telegram.tl.StreamUtils.*;
 
 import com.github.badoualy.telegram.tl.TLContext;
-
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.lang.Override;
+import java.lang.String;
+import java.lang.SuppressWarnings;
 
-import static com.github.badoualy.telegram.tl.StreamUtils.readInt;
-import static com.github.badoualy.telegram.tl.StreamUtils.readTLObject;
-import static com.github.badoualy.telegram.tl.StreamUtils.writeInt;
-import static com.github.badoualy.telegram.tl.StreamUtils.writeTLObject;
-
-
-
+/**
+ * @author Yannick Badoual yann.badoual@gmail.com
+ * @see <a href="http://github.com/badoualy/kotlogram">http://github.com/badoualy/kotlogram</a>
+ */
 public class TLUpdateNewMessage extends TLAbsUpdate {
     public static final int CLASS_ID = 0x1f2b0afd;
 
-    public TLUpdateNewMessage() {
-
-    }
-
-
-    public TLUpdateNewMessage(        com.github.badoualy.telegram.tl.api.TLAbsMessage _message,         int _pts,         int _ptsCount) {
-        this.message = _message;
-        this.pts = _pts;
-        this.ptsCount = _ptsCount;
-
-    }
-
-
-    public int getClassId() {
-        return CLASS_ID;
-    }
-
-
-    protected com.github.badoualy.telegram.tl.api.TLAbsMessage message;
+    protected TLAbsMessage message;
 
     protected int pts;
 
     protected int ptsCount;
 
-
-    public com.github.badoualy.telegram.tl.api.TLAbsMessage getMessage() {
-        return message;
+    public TLUpdateNewMessage() {
     }
 
-    public void setMessage(com.github.badoualy.telegram.tl.api.TLAbsMessage value) {
-        this.message = value;
+    public TLUpdateNewMessage(TLAbsMessage message, int pts, int ptsCount) {
+        this.message = message;
+        this.pts = pts;
+        this.ptsCount = ptsCount;
     }
-
-    public int getPts() {
-        return pts;
-    }
-
-    public void setPts(int value) {
-        this.pts = value;
-    }
-
-    public int getPtsCount() {
-        return ptsCount;
-    }
-
-    public void setPtsCount(int value) {
-        this.ptsCount = value;
-    }
-
 
     @Override
     public void serializeBody(OutputStream stream) throws IOException {
-
-        writeTLObject(this.message, stream);
-        writeInt(this.pts, stream);
-        writeInt(this.ptsCount, stream);
+        writeTLObject(message, stream);
+        writeInt(pts, stream);
+        writeInt(ptsCount, stream);
     }
-
 
     @Override
+    @SuppressWarnings("unchecked")
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
-
-        this.message = (com.github.badoualy.telegram.tl.api.TLAbsMessage)readTLObject(stream, context);
-        this.pts = readInt(stream);
-        this.ptsCount = readInt(stream);
+        message = (com.github.badoualy.telegram.tl.api.TLAbsMessage) readTLObject(stream, context);
+        pts = readInt(stream);
+        ptsCount = readInt(stream);
     }
-
-
 
     @Override
     public String toString() {
         return "updateNewMessage#1f2b0afd";
     }
 
+    @Override
+    public int getClassId() {
+        return CLASS_ID;
+    }
+
+    public TLAbsMessage getMessage() {
+        return message;
+    }
+
+    public void setMessage(TLAbsMessage message) {
+        this.message = message;
+    }
+
+    public int getPts() {
+        return pts;
+    }
+
+    public void setPts(int pts) {
+        this.pts = pts;
+    }
+
+    public int getPtsCount() {
+        return ptsCount;
+    }
+
+    public void setPtsCount(int ptsCount) {
+        this.ptsCount = ptsCount;
+    }
 }

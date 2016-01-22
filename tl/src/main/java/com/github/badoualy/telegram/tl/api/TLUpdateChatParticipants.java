@@ -1,67 +1,57 @@
-
 package com.github.badoualy.telegram.tl.api;
 
+import static com.github.badoualy.telegram.tl.StreamUtils.*;
 
 import com.github.badoualy.telegram.tl.TLContext;
-
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.lang.Override;
+import java.lang.String;
+import java.lang.SuppressWarnings;
 
-import static com.github.badoualy.telegram.tl.StreamUtils.readTLObject;
-import static com.github.badoualy.telegram.tl.StreamUtils.writeTLObject;
-
-
-
+/**
+ * @author Yannick Badoual yann.badoual@gmail.com
+ * @see <a href="http://github.com/badoualy/kotlogram">http://github.com/badoualy/kotlogram</a>
+ */
 public class TLUpdateChatParticipants extends TLAbsUpdate {
     public static final int CLASS_ID = 0x7761198;
 
+    protected TLAbsChatParticipants participants;
+
     public TLUpdateChatParticipants() {
-
     }
 
-
-    public TLUpdateChatParticipants(        com.github.badoualy.telegram.tl.api.TLAbsChatParticipants _participants) {
-        this.participants = _participants;
-
+    public TLUpdateChatParticipants(TLAbsChatParticipants participants) {
+        this.participants = participants;
     }
-
-
-    public int getClassId() {
-        return CLASS_ID;
-    }
-
-
-    protected com.github.badoualy.telegram.tl.api.TLAbsChatParticipants participants;
-
-
-    public com.github.badoualy.telegram.tl.api.TLAbsChatParticipants getParticipants() {
-        return participants;
-    }
-
-    public void setParticipants(com.github.badoualy.telegram.tl.api.TLAbsChatParticipants value) {
-        this.participants = value;
-    }
-
 
     @Override
     public void serializeBody(OutputStream stream) throws IOException {
-
-        writeTLObject(this.participants, stream);
+        writeTLObject(participants, stream);
     }
-
 
     @Override
+    @SuppressWarnings("unchecked")
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
-
-        this.participants = (com.github.badoualy.telegram.tl.api.TLAbsChatParticipants)readTLObject(stream, context);
+        participants = (com.github.badoualy.telegram.tl.api.TLAbsChatParticipants) readTLObject(stream, context);
     }
-
-
 
     @Override
     public String toString() {
         return "updateChatParticipants#7761198";
     }
 
+    @Override
+    public int getClassId() {
+        return CLASS_ID;
+    }
+
+    public TLAbsChatParticipants getParticipants() {
+        return participants;
+    }
+
+    public void setParticipants(TLAbsChatParticipants participants) {
+        this.participants = participants;
+    }
 }

@@ -1,66 +1,58 @@
-
 package com.github.badoualy.telegram.tl.api.account;
+
+import static com.github.badoualy.telegram.tl.StreamUtils.*;
 
 import com.github.badoualy.telegram.tl.TLContext;
 import com.github.badoualy.telegram.tl.core.TLObject;
-
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.lang.Override;
+import java.lang.String;
+import java.lang.SuppressWarnings;
 
-import static com.github.badoualy.telegram.tl.StreamUtils.readTLString;
-import static com.github.badoualy.telegram.tl.StreamUtils.writeTLString;
-
-
+/**
+ * @author Yannick Badoual yann.badoual@gmail.com
+ * @see <a href="http://github.com/badoualy/kotlogram">http://github.com/badoualy/kotlogram</a>
+ */
 public class TLPasswordSettings extends TLObject {
-
     public static final int CLASS_ID = 0xb7b72ab3;
-
-    public TLPasswordSettings() {
-
-    }
-
-
-    public TLPasswordSettings(        String _email) {
-        this.email = _email;
-
-    }
-
-
-    public int getClassId() {
-        return CLASS_ID;
-    }
-
 
     protected String email;
 
-
-    public String getEmail() {
-        return email;
+    public TLPasswordSettings() {
     }
 
-    public void setEmail(String value) {
-        this.email = value;
+    public TLPasswordSettings(String email) {
+        this.email = email;
     }
-
 
     @Override
     public void serializeBody(OutputStream stream) throws IOException {
-
-        writeTLString(this.email, stream);
+        writeTLString(email, stream);
     }
-
 
     @Override
+    @SuppressWarnings("unchecked")
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
-
-        this.email = readTLString(stream);
+        email = readTLString(stream);
     }
-
 
     @Override
     public String toString() {
         return "account.passwordSettings#b7b72ab3";
     }
 
+    @Override
+    public int getClassId() {
+        return CLASS_ID;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
 }

@@ -1,87 +1,83 @@
-
 package com.github.badoualy.telegram.tl.api;
 
+import static com.github.badoualy.telegram.tl.StreamUtils.*;
 
 import com.github.badoualy.telegram.tl.TLContext;
-
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.lang.Override;
+import java.lang.String;
+import java.lang.SuppressWarnings;
 
-import static com.github.badoualy.telegram.tl.StreamUtils.readInt;
-import static com.github.badoualy.telegram.tl.StreamUtils.readTLObject;
-import static com.github.badoualy.telegram.tl.StreamUtils.writeInt;
-import static com.github.badoualy.telegram.tl.StreamUtils.writeTLObject;
-
-
-
+/**
+ * @author Yannick Badoual yann.badoual@gmail.com
+ * @see <a href="http://github.com/badoualy/kotlogram">http://github.com/badoualy/kotlogram</a>
+ */
 public class TLChatParticipantsForbidden extends TLAbsChatParticipants {
     public static final int CLASS_ID = 0xfc900c2b;
 
-    public TLChatParticipantsForbidden() {
-
-    }
-
-
-    public TLChatParticipantsForbidden(        int _flags,         int _chatId,         com.github.badoualy.telegram.tl.api.TLAbsChatParticipant _selfParticipant) {
-        this.flags = _flags;
-        this.chatId = _chatId;
-        this.selfParticipant = _selfParticipant;
-
-    }
-
-
-    public int getClassId() {
-        return CLASS_ID;
-    }
-
-
     protected int flags;
 
-    protected com.github.badoualy.telegram.tl.api.TLAbsChatParticipant selfParticipant;
+    protected int chatId;
 
+    protected TLAbsChatParticipant selfParticipant;
 
-    public int getFlags() {
-        return flags;
+    public TLChatParticipantsForbidden() {
     }
 
-    public void setFlags(int value) {
-        this.flags = value;
+    public TLChatParticipantsForbidden(int flags, int chatId, TLAbsChatParticipant selfParticipant) {
+        this.flags = flags;
+        this.chatId = chatId;
+        this.selfParticipant = selfParticipant;
     }
-
-    public com.github.badoualy.telegram.tl.api.TLAbsChatParticipant getSelfParticipant() {
-        return selfParticipant;
-    }
-
-    public void setSelfParticipant(com.github.badoualy.telegram.tl.api.TLAbsChatParticipant value) {
-        this.selfParticipant = value;
-    }
-
 
     @Override
     public void serializeBody(OutputStream stream) throws IOException {
-
-        writeInt(this.flags, stream);
-        writeInt(this.chatId, stream);
-        if ((this.flags & 1) != 0)
-            writeTLObject(this.selfParticipant, stream);
+        writeInt(flags, stream);
+        writeInt(chatId, stream);
+        if ((flags & 1) != 0) writeTLObject(selfParticipant, stream);
     }
-
 
     @Override
+    @SuppressWarnings("unchecked")
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
-
-        this.flags = readInt(stream);
-        this.chatId = readInt(stream);
-        if ((this.flags & 1) != 0)
-            this.selfParticipant = (com.github.badoualy.telegram.tl.api.TLAbsChatParticipant)readTLObject(stream, context);
+        flags = readInt(stream);
+        chatId = readInt(stream);
+        if ((flags & 1) != 0) selfParticipant = (com.github.badoualy.telegram.tl.api.TLAbsChatParticipant) readTLObject(stream, context);
     }
-
-
 
     @Override
     public String toString() {
         return "chatParticipantsForbidden#fc900c2b";
     }
 
+    @Override
+    public int getClassId() {
+        return CLASS_ID;
+    }
+
+    public int getFlags() {
+        return flags;
+    }
+
+    public void setFlags(int flags) {
+        this.flags = flags;
+    }
+
+    public int getChatId() {
+        return chatId;
+    }
+
+    public void setChatId(int chatId) {
+        this.chatId = chatId;
+    }
+
+    public TLAbsChatParticipant getSelfParticipant() {
+        return selfParticipant;
+    }
+
+    public void setSelfParticipant(TLAbsChatParticipant selfParticipant) {
+        this.selfParticipant = selfParticipant;
+    }
 }

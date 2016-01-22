@@ -1,57 +1,21 @@
-
 package com.github.badoualy.telegram.tl.api;
 
+import static com.github.badoualy.telegram.tl.StreamUtils.*;
 
 import com.github.badoualy.telegram.tl.TLContext;
-
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.lang.Override;
+import java.lang.String;
+import java.lang.SuppressWarnings;
 
-import static com.github.badoualy.telegram.tl.StreamUtils.readInt;
-import static com.github.badoualy.telegram.tl.StreamUtils.readLong;
-import static com.github.badoualy.telegram.tl.StreamUtils.readTLObject;
-import static com.github.badoualy.telegram.tl.StreamUtils.readTLString;
-import static com.github.badoualy.telegram.tl.StreamUtils.writeInt;
-import static com.github.badoualy.telegram.tl.StreamUtils.writeLong;
-import static com.github.badoualy.telegram.tl.StreamUtils.writeTLObject;
-import static com.github.badoualy.telegram.tl.StreamUtils.writeTLString;
-
-
-
+/**
+ * @author Yannick Badoual yann.badoual@gmail.com
+ * @see <a href="http://github.com/badoualy/kotlogram">http://github.com/badoualy/kotlogram</a>
+ */
 public class TLWebPage extends TLAbsWebPage {
     public static final int CLASS_ID = 0xca820ed7;
-
-    public TLWebPage() {
-
-    }
-
-
-    public TLWebPage(        int _flags,         long _id,         String _url,         String _displayUrl,         String _type,         String _siteName,         String _title,         String _description,         com.github.badoualy.telegram.tl.api.TLAbsPhoto _photo,         String _embedUrl,         String _embedType,         int _embedWidth,         int _embedHeight,         int _duration,         String _author,         com.github.badoualy.telegram.tl.api.TLAbsDocument _document) {
-        this.flags = _flags;
-        this.id = _id;
-        this.url = _url;
-        this.displayUrl = _displayUrl;
-        this.type = _type;
-        this.siteName = _siteName;
-        this.title = _title;
-        this.description = _description;
-        this.photo = _photo;
-        this.embedUrl = _embedUrl;
-        this.embedType = _embedType;
-        this.embedWidth = _embedWidth;
-        this.embedHeight = _embedHeight;
-        this.duration = _duration;
-        this.author = _author;
-        this.document = _document;
-
-    }
-
-
-    public int getClassId() {
-        return CLASS_ID;
-    }
-
 
     protected int flags;
 
@@ -67,7 +31,7 @@ public class TLWebPage extends TLAbsWebPage {
 
     protected String description;
 
-    protected com.github.badoualy.telegram.tl.api.TLAbsPhoto photo;
+    protected TLAbsPhoto photo;
 
     protected String embedUrl;
 
@@ -81,202 +45,206 @@ public class TLWebPage extends TLAbsWebPage {
 
     protected String author;
 
-    protected com.github.badoualy.telegram.tl.api.TLAbsDocument document;
+    protected TLAbsDocument document;
 
-
-    public int getFlags() {
-        return flags;
+    public TLWebPage() {
     }
 
-    public void setFlags(int value) {
-        this.flags = value;
+    public TLWebPage(int flags, long id, String url, String displayUrl, String type, String siteName, String title, String description, TLAbsPhoto photo, String embedUrl, String embedType, int embedWidth, int embedHeight, int duration, String author, TLAbsDocument document) {
+        this.flags = flags;
+        this.id = id;
+        this.url = url;
+        this.displayUrl = displayUrl;
+        this.type = type;
+        this.siteName = siteName;
+        this.title = title;
+        this.description = description;
+        this.photo = photo;
+        this.embedUrl = embedUrl;
+        this.embedType = embedType;
+        this.embedWidth = embedWidth;
+        this.embedHeight = embedHeight;
+        this.duration = duration;
+        this.author = author;
+        this.document = document;
     }
-
-    public String getUrl() {
-        return url;
-    }
-
-    public void setUrl(String value) {
-        this.url = value;
-    }
-
-    public String getDisplayUrl() {
-        return displayUrl;
-    }
-
-    public void setDisplayUrl(String value) {
-        this.displayUrl = value;
-    }
-
-    public String getType() {
-        return type;
-    }
-
-    public void setType(String value) {
-        this.type = value;
-    }
-
-    public String getSiteName() {
-        return siteName;
-    }
-
-    public void setSiteName(String value) {
-        this.siteName = value;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String value) {
-        this.title = value;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String value) {
-        this.description = value;
-    }
-
-    public com.github.badoualy.telegram.tl.api.TLAbsPhoto getPhoto() {
-        return photo;
-    }
-
-    public void setPhoto(com.github.badoualy.telegram.tl.api.TLAbsPhoto value) {
-        this.photo = value;
-    }
-
-    public String getEmbedUrl() {
-        return embedUrl;
-    }
-
-    public void setEmbedUrl(String value) {
-        this.embedUrl = value;
-    }
-
-    public String getEmbedType() {
-        return embedType;
-    }
-
-    public void setEmbedType(String value) {
-        this.embedType = value;
-    }
-
-    public int getEmbedWidth() {
-        return embedWidth;
-    }
-
-    public void setEmbedWidth(int value) {
-        this.embedWidth = value;
-    }
-
-    public int getEmbedHeight() {
-        return embedHeight;
-    }
-
-    public void setEmbedHeight(int value) {
-        this.embedHeight = value;
-    }
-
-    public int getDuration() {
-        return duration;
-    }
-
-    public void setDuration(int value) {
-        this.duration = value;
-    }
-
-    public String getAuthor() {
-        return author;
-    }
-
-    public void setAuthor(String value) {
-        this.author = value;
-    }
-
-    public com.github.badoualy.telegram.tl.api.TLAbsDocument getDocument() {
-        return document;
-    }
-
-    public void setDocument(com.github.badoualy.telegram.tl.api.TLAbsDocument value) {
-        this.document = value;
-    }
-
 
     @Override
     public void serializeBody(OutputStream stream) throws IOException {
-
-        writeInt(this.flags, stream);
-        writeLong(this.id, stream);
-        writeTLString(this.url, stream);
-        writeTLString(this.displayUrl, stream);
-        if ((this.flags & 1) != 0)
-            writeTLString(this.type, stream);
-        if ((this.flags & 2) != 0)
-            writeTLString(this.siteName, stream);
-        if ((this.flags & 4) != 0)
-            writeTLString(this.title, stream);
-        if ((this.flags & 8) != 0)
-            writeTLString(this.description, stream);
-        if ((this.flags & 16) != 0)
-            writeTLObject(this.photo, stream);
-        if ((this.flags & 32) != 0)
-            writeTLString(this.embedUrl, stream);
-        if ((this.flags & 32) != 0)
-            writeTLString(this.embedType, stream);
-        if ((this.flags & 64) != 0)
-            writeInt(this.embedWidth, stream);
-        if ((this.flags & 64) != 0)
-            writeInt(this.embedHeight, stream);
-        if ((this.flags & 128) != 0)
-            writeInt(this.duration, stream);
-        if ((this.flags & 256) != 0)
-            writeTLString(this.author, stream);
-        if ((this.flags & 512) != 0)
-            writeTLObject(this.document, stream);
+        writeInt(flags, stream);
+        writeLong(id, stream);
+        writeTLString(url, stream);
+        writeTLString(displayUrl, stream);
+        if ((flags & 1) != 0) writeTLString(type, stream);
+        if ((flags & 2) != 0) writeTLString(siteName, stream);
+        if ((flags & 4) != 0) writeTLString(title, stream);
+        if ((flags & 8) != 0) writeTLString(description, stream);
+        if ((flags & 16) != 0) writeTLObject(photo, stream);
+        if ((flags & 32) != 0) writeTLString(embedUrl, stream);
+        if ((flags & 32) != 0) writeTLString(embedType, stream);
+        if ((flags & 64) != 0) writeInt(embedWidth, stream);
+        if ((flags & 64) != 0) writeInt(embedHeight, stream);
+        if ((flags & 128) != 0) writeInt(duration, stream);
+        if ((flags & 256) != 0) writeTLString(author, stream);
+        if ((flags & 512) != 0) writeTLObject(document, stream);
     }
-
 
     @Override
+    @SuppressWarnings("unchecked")
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
-
-        this.flags = readInt(stream);
-        this.id = readLong(stream);
-        this.url = readTLString(stream);
-        this.displayUrl = readTLString(stream);
-        if ((this.flags & 1) != 0)
-            this.type = readTLString(stream);
-        if ((this.flags & 2) != 0)
-            this.siteName = readTLString(stream);
-        if ((this.flags & 4) != 0)
-            this.title = readTLString(stream);
-        if ((this.flags & 8) != 0)
-            this.description = readTLString(stream);
-        if ((this.flags & 16) != 0)
-            this.photo = (com.github.badoualy.telegram.tl.api.TLAbsPhoto)readTLObject(stream, context);
-        if ((this.flags & 32) != 0)
-            this.embedUrl = readTLString(stream);
-        if ((this.flags & 32) != 0)
-            this.embedType = readTLString(stream);
-        if ((this.flags & 64) != 0)
-            this.embedWidth = readInt(stream);
-        if ((this.flags & 64) != 0)
-            this.embedHeight = readInt(stream);
-        if ((this.flags & 128) != 0)
-            this.duration = readInt(stream);
-        if ((this.flags & 256) != 0)
-            this.author = readTLString(stream);
-        if ((this.flags & 512) != 0)
-            this.document = (com.github.badoualy.telegram.tl.api.TLAbsDocument)readTLObject(stream, context);
+        flags = readInt(stream);
+        id = readLong(stream);
+        url = readTLString(stream);
+        displayUrl = readTLString(stream);
+        if ((flags & 1) != 0) type = readTLString(stream);
+        if ((flags & 2) != 0) siteName = readTLString(stream);
+        if ((flags & 4) != 0) title = readTLString(stream);
+        if ((flags & 8) != 0) description = readTLString(stream);
+        if ((flags & 16) != 0) photo = (com.github.badoualy.telegram.tl.api.TLAbsPhoto) readTLObject(stream, context);
+        if ((flags & 32) != 0) embedUrl = readTLString(stream);
+        if ((flags & 32) != 0) embedType = readTLString(stream);
+        if ((flags & 64) != 0) embedWidth = readInt(stream);
+        if ((flags & 64) != 0) embedHeight = readInt(stream);
+        if ((flags & 128) != 0) duration = readInt(stream);
+        if ((flags & 256) != 0) author = readTLString(stream);
+        if ((flags & 512) != 0) document = (com.github.badoualy.telegram.tl.api.TLAbsDocument) readTLObject(stream, context);
     }
-
-
 
     @Override
     public String toString() {
         return "webPage#ca820ed7";
     }
 
+    @Override
+    public int getClassId() {
+        return CLASS_ID;
+    }
+
+    public int getFlags() {
+        return flags;
+    }
+
+    public void setFlags(int flags) {
+        this.flags = flags;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
+    }
+
+    public String getDisplayUrl() {
+        return displayUrl;
+    }
+
+    public void setDisplayUrl(String displayUrl) {
+        this.displayUrl = displayUrl;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public String getSiteName() {
+        return siteName;
+    }
+
+    public void setSiteName(String siteName) {
+        this.siteName = siteName;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public TLAbsPhoto getPhoto() {
+        return photo;
+    }
+
+    public void setPhoto(TLAbsPhoto photo) {
+        this.photo = photo;
+    }
+
+    public String getEmbedUrl() {
+        return embedUrl;
+    }
+
+    public void setEmbedUrl(String embedUrl) {
+        this.embedUrl = embedUrl;
+    }
+
+    public String getEmbedType() {
+        return embedType;
+    }
+
+    public void setEmbedType(String embedType) {
+        this.embedType = embedType;
+    }
+
+    public int getEmbedWidth() {
+        return embedWidth;
+    }
+
+    public void setEmbedWidth(int embedWidth) {
+        this.embedWidth = embedWidth;
+    }
+
+    public int getEmbedHeight() {
+        return embedHeight;
+    }
+
+    public void setEmbedHeight(int embedHeight) {
+        this.embedHeight = embedHeight;
+    }
+
+    public int getDuration() {
+        return duration;
+    }
+
+    public void setDuration(int duration) {
+        this.duration = duration;
+    }
+
+    public String getAuthor() {
+        return author;
+    }
+
+    public void setAuthor(String author) {
+        this.author = author;
+    }
+
+    public TLAbsDocument getDocument() {
+        return document;
+    }
+
+    public void setDocument(TLAbsDocument document) {
+        this.document = document;
+    }
 }

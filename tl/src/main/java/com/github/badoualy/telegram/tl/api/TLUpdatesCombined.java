@@ -1,49 +1,28 @@
-
 package com.github.badoualy.telegram.tl.api;
 
+import static com.github.badoualy.telegram.tl.StreamUtils.*;
 
 import com.github.badoualy.telegram.tl.TLContext;
-
+import com.github.badoualy.telegram.tl.core.TLVector;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.lang.Override;
+import java.lang.String;
+import java.lang.SuppressWarnings;
 
-import static com.github.badoualy.telegram.tl.StreamUtils.readInt;
-import static com.github.badoualy.telegram.tl.StreamUtils.readTLVector;
-import static com.github.badoualy.telegram.tl.StreamUtils.writeInt;
-import static com.github.badoualy.telegram.tl.StreamUtils.writeTLVector;
-
-
-
+/**
+ * @author Yannick Badoual yann.badoual@gmail.com
+ * @see <a href="http://github.com/badoualy/kotlogram">http://github.com/badoualy/kotlogram</a>
+ */
 public class TLUpdatesCombined extends TLAbsUpdates {
     public static final int CLASS_ID = 0x725b04c3;
 
-    public TLUpdatesCombined() {
+    protected TLVector<TLAbsUpdate> updates;
 
-    }
+    protected TLVector<TLAbsUser> users;
 
-
-    public TLUpdatesCombined(        com.github.badoualy.telegram.tl.core.TLVector<com.github.badoualy.telegram.tl.api.TLAbsUpdate> _updates,         com.github.badoualy.telegram.tl.core.TLVector<com.github.badoualy.telegram.tl.api.TLAbsUser> _users,         com.github.badoualy.telegram.tl.core.TLVector<com.github.badoualy.telegram.tl.api.TLAbsChat> _chats,         int _date,         int _seqStart,         int _seq) {
-        this.updates = _updates;
-        this.users = _users;
-        this.chats = _chats;
-        this.date = _date;
-        this.seqStart = _seqStart;
-        this.seq = _seq;
-
-    }
-
-
-    public int getClassId() {
-        return CLASS_ID;
-    }
-
-
-    protected com.github.badoualy.telegram.tl.core.TLVector<com.github.badoualy.telegram.tl.api.TLAbsUpdate> updates;
-
-    protected com.github.badoualy.telegram.tl.core.TLVector<com.github.badoualy.telegram.tl.api.TLAbsUser> users;
-
-    protected com.github.badoualy.telegram.tl.core.TLVector<com.github.badoualy.telegram.tl.api.TLAbsChat> chats;
+    protected TLVector<TLAbsChat> chats;
 
     protected int date;
 
@@ -51,84 +30,94 @@ public class TLUpdatesCombined extends TLAbsUpdates {
 
     protected int seq;
 
-
-    public com.github.badoualy.telegram.tl.core.TLVector<com.github.badoualy.telegram.tl.api.TLAbsUpdate> getUpdates() {
-        return updates;
+    public TLUpdatesCombined() {
     }
 
-    public void setUpdates(com.github.badoualy.telegram.tl.core.TLVector<com.github.badoualy.telegram.tl.api.TLAbsUpdate> value) {
-        this.updates = value;
+    public TLUpdatesCombined(TLVector<TLAbsUpdate> updates, TLVector<TLAbsUser> users, TLVector<TLAbsChat> chats, int date, int seqStart, int seq) {
+        this.updates = updates;
+        this.users = users;
+        this.chats = chats;
+        this.date = date;
+        this.seqStart = seqStart;
+        this.seq = seq;
     }
-
-    public com.github.badoualy.telegram.tl.core.TLVector<com.github.badoualy.telegram.tl.api.TLAbsUser> getUsers() {
-        return users;
-    }
-
-    public void setUsers(com.github.badoualy.telegram.tl.core.TLVector<com.github.badoualy.telegram.tl.api.TLAbsUser> value) {
-        this.users = value;
-    }
-
-    public com.github.badoualy.telegram.tl.core.TLVector<com.github.badoualy.telegram.tl.api.TLAbsChat> getChats() {
-        return chats;
-    }
-
-    public void setChats(com.github.badoualy.telegram.tl.core.TLVector<com.github.badoualy.telegram.tl.api.TLAbsChat> value) {
-        this.chats = value;
-    }
-
-    public int getDate() {
-        return date;
-    }
-
-    public void setDate(int value) {
-        this.date = value;
-    }
-
-    public int getSeqStart() {
-        return seqStart;
-    }
-
-    public void setSeqStart(int value) {
-        this.seqStart = value;
-    }
-
-    public int getSeq() {
-        return seq;
-    }
-
-    public void setSeq(int value) {
-        this.seq = value;
-    }
-
 
     @Override
     public void serializeBody(OutputStream stream) throws IOException {
-
-        writeTLVector(this.updates, stream);
-        writeTLVector(this.users, stream);
-        writeTLVector(this.chats, stream);
-        writeInt(this.date, stream);
-        writeInt(this.seqStart, stream);
-        writeInt(this.seq, stream);
+        writeTLVector(updates, stream);
+        writeTLVector(users, stream);
+        writeTLVector(chats, stream);
+        writeInt(date, stream);
+        writeInt(seqStart, stream);
+        writeInt(seq, stream);
     }
-
 
     @Override
+    @SuppressWarnings("unchecked")
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
-
-        this.updates = readTLVector(stream, context);
-        this.users = readTLVector(stream, context);
-        this.chats = readTLVector(stream, context);
-        this.date = readInt(stream);
-        this.seqStart = readInt(stream);
-        this.seq = readInt(stream);
+        updates = readTLVector(stream, context);
+        users = readTLVector(stream, context);
+        chats = readTLVector(stream, context);
+        date = readInt(stream);
+        seqStart = readInt(stream);
+        seq = readInt(stream);
     }
-
-
 
     @Override
     public String toString() {
         return "updatesCombined#725b04c3";
     }
 
+    @Override
+    public int getClassId() {
+        return CLASS_ID;
+    }
+
+    public TLVector<TLAbsUpdate> getUpdates() {
+        return updates;
+    }
+
+    public void setUpdates(TLVector<TLAbsUpdate> updates) {
+        this.updates = updates;
+    }
+
+    public TLVector<TLAbsUser> getUsers() {
+        return users;
+    }
+
+    public void setUsers(TLVector<TLAbsUser> users) {
+        this.users = users;
+    }
+
+    public TLVector<TLAbsChat> getChats() {
+        return chats;
+    }
+
+    public void setChats(TLVector<TLAbsChat> chats) {
+        this.chats = chats;
+    }
+
+    public int getDate() {
+        return date;
+    }
+
+    public void setDate(int date) {
+        this.date = date;
+    }
+
+    public int getSeqStart() {
+        return seqStart;
+    }
+
+    public void setSeqStart(int seqStart) {
+        this.seqStart = seqStart;
+    }
+
+    public int getSeq() {
+        return seq;
+    }
+
+    public void setSeq(int seq) {
+        this.seq = seq;
+    }
 }

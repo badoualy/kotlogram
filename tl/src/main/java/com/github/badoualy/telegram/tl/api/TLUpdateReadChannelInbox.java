@@ -1,80 +1,70 @@
-
 package com.github.badoualy.telegram.tl.api;
 
+import static com.github.badoualy.telegram.tl.StreamUtils.*;
 
 import com.github.badoualy.telegram.tl.TLContext;
-
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.lang.Override;
+import java.lang.String;
+import java.lang.SuppressWarnings;
 
-import static com.github.badoualy.telegram.tl.StreamUtils.readInt;
-import static com.github.badoualy.telegram.tl.StreamUtils.writeInt;
-
-
-
+/**
+ * @author Yannick Badoual yann.badoual@gmail.com
+ * @see <a href="http://github.com/badoualy/kotlogram">http://github.com/badoualy/kotlogram</a>
+ */
 public class TLUpdateReadChannelInbox extends TLAbsUpdate {
     public static final int CLASS_ID = 0x4214f37f;
-
-    public TLUpdateReadChannelInbox() {
-
-    }
-
-
-    public TLUpdateReadChannelInbox(        int _channelId,         int _maxId) {
-        this.channelId = _channelId;
-        this.maxId = _maxId;
-
-    }
-
-
-    public int getClassId() {
-        return CLASS_ID;
-    }
-
 
     protected int channelId;
 
     protected int maxId;
 
-
-    public int getChannelId() {
-        return channelId;
+    public TLUpdateReadChannelInbox() {
     }
 
-    public void setChannelId(int value) {
-        this.channelId = value;
+    public TLUpdateReadChannelInbox(int channelId, int maxId) {
+        this.channelId = channelId;
+        this.maxId = maxId;
     }
-
-    public int getMaxId() {
-        return maxId;
-    }
-
-    public void setMaxId(int value) {
-        this.maxId = value;
-    }
-
 
     @Override
     public void serializeBody(OutputStream stream) throws IOException {
-
-        writeInt(this.channelId, stream);
-        writeInt(this.maxId, stream);
+        writeInt(channelId, stream);
+        writeInt(maxId, stream);
     }
-
 
     @Override
+    @SuppressWarnings("unchecked")
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
-
-        this.channelId = readInt(stream);
-        this.maxId = readInt(stream);
+        channelId = readInt(stream);
+        maxId = readInt(stream);
     }
-
-
 
     @Override
     public String toString() {
         return "updateReadChannelInbox#4214f37f";
     }
 
+    @Override
+    public int getClassId() {
+        return CLASS_ID;
+    }
+
+    public int getChannelId() {
+        return channelId;
+    }
+
+    public void setChannelId(int channelId) {
+        this.channelId = channelId;
+    }
+
+    public int getMaxId() {
+        return maxId;
+    }
+
+    public void setMaxId(int maxId) {
+        this.maxId = maxId;
+    }
 }
