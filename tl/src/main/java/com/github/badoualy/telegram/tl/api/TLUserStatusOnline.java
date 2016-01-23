@@ -1,6 +1,4 @@
-
 package com.github.badoualy.telegram.tl.api;
-
 
 import com.github.badoualy.telegram.tl.TLContext;
 
@@ -11,57 +9,48 @@ import java.io.OutputStream;
 import static com.github.badoualy.telegram.tl.StreamUtils.readInt;
 import static com.github.badoualy.telegram.tl.StreamUtils.writeInt;
 
-
-
+/**
+ * @author Yannick Badoual yann.badoual@gmail.com
+ * @see <a href="http://github.com/badoualy/kotlogram">http://github.com/badoualy/kotlogram</a>
+ */
 public class TLUserStatusOnline extends TLAbsUserStatus {
     public static final int CLASS_ID = 0xedb93949;
 
-    public TLUserStatusOnline() {
-
-    }
-
-
-    public TLUserStatusOnline(        int _expires) {
-        this.expires = _expires;
-
-    }
-
-
-    public int getClassId() {
-        return CLASS_ID;
-    }
-
-
     protected int expires;
 
-
-    public int getExpires() {
-        return expires;
+    public TLUserStatusOnline() {
     }
 
-    public void setExpires(int value) {
-        this.expires = value;
+    public TLUserStatusOnline(int expires) {
+        this.expires = expires;
     }
-
 
     @Override
     public void serializeBody(OutputStream stream) throws IOException {
-
-        writeInt(this.expires, stream);
+        writeInt(expires, stream);
     }
-
 
     @Override
+    @SuppressWarnings("unchecked")
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
-
-        this.expires = readInt(stream);
+        expires = readInt(stream);
     }
-
-
 
     @Override
     public String toString() {
         return "userStatusOnline#edb93949";
     }
 
+    @Override
+    public int getClassId() {
+        return CLASS_ID;
+    }
+
+    public int getExpires() {
+        return expires;
+    }
+
+    public void setExpires(int expires) {
+        this.expires = expires;
+    }
 }

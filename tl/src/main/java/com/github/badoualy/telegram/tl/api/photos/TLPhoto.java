@@ -1,8 +1,10 @@
-
 package com.github.badoualy.telegram.tl.api.photos;
 
 import com.github.badoualy.telegram.tl.TLContext;
+import com.github.badoualy.telegram.tl.api.TLAbsPhoto;
+import com.github.badoualy.telegram.tl.api.TLAbsUser;
 import com.github.badoualy.telegram.tl.core.TLObject;
+import com.github.badoualy.telegram.tl.core.TLVector;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -13,69 +15,61 @@ import static com.github.badoualy.telegram.tl.StreamUtils.readTLVector;
 import static com.github.badoualy.telegram.tl.StreamUtils.writeTLObject;
 import static com.github.badoualy.telegram.tl.StreamUtils.writeTLVector;
 
-
+/**
+ * @author Yannick Badoual yann.badoual@gmail.com
+ * @see <a href="http://github.com/badoualy/kotlogram">http://github.com/badoualy/kotlogram</a>
+ */
 public class TLPhoto extends TLObject {
-
     public static final int CLASS_ID = 0x20212ca8;
 
+    protected TLAbsPhoto photo;
+
+    protected TLVector<TLAbsUser> users;
+
     public TLPhoto() {
-
     }
 
-
-    public TLPhoto(        com.github.badoualy.telegram.tl.api.TLAbsPhoto _photo,         com.github.badoualy.telegram.tl.core.TLVector<com.github.badoualy.telegram.tl.api.TLAbsUser> _users) {
-        this.photo = _photo;
-        this.users = _users;
-
+    public TLPhoto(TLAbsPhoto photo, TLVector<TLAbsUser> users) {
+        this.photo = photo;
+        this.users = users;
     }
-
-
-    public int getClassId() {
-        return CLASS_ID;
-    }
-
-
-    protected com.github.badoualy.telegram.tl.api.TLAbsPhoto photo;
-
-    protected com.github.badoualy.telegram.tl.core.TLVector<com.github.badoualy.telegram.tl.api.TLAbsUser> users;
-
-
-    public com.github.badoualy.telegram.tl.api.TLAbsPhoto getPhoto() {
-        return photo;
-    }
-
-    public void setPhoto(com.github.badoualy.telegram.tl.api.TLAbsPhoto value) {
-        this.photo = value;
-    }
-
-    public com.github.badoualy.telegram.tl.core.TLVector<com.github.badoualy.telegram.tl.api.TLAbsUser> getUsers() {
-        return users;
-    }
-
-    public void setUsers(com.github.badoualy.telegram.tl.core.TLVector<com.github.badoualy.telegram.tl.api.TLAbsUser> value) {
-        this.users = value;
-    }
-
 
     @Override
     public void serializeBody(OutputStream stream) throws IOException {
-
-        writeTLObject(this.photo, stream);
-        writeTLVector(this.users, stream);
+        writeTLObject(photo, stream);
+        writeTLVector(users, stream);
     }
-
 
     @Override
+    @SuppressWarnings("unchecked")
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
-
-        this.photo = (com.github.badoualy.telegram.tl.api.TLAbsPhoto)readTLObject(stream, context);
-        this.users = readTLVector(stream, context);
+        photo = (com.github.badoualy.telegram.tl.api.TLAbsPhoto) readTLObject(stream, context);
+        users = readTLVector(stream, context);
     }
-
 
     @Override
     public String toString() {
         return "photos.photo#20212ca8";
     }
 
+    @Override
+    public int getClassId() {
+        return CLASS_ID;
+    }
+
+    public TLAbsPhoto getPhoto() {
+        return photo;
+    }
+
+    public void setPhoto(TLAbsPhoto photo) {
+        this.photo = photo;
+    }
+
+    public TLVector<TLAbsUser> getUsers() {
+        return users;
+    }
+
+    public void setUsers(TLVector<TLAbsUser> users) {
+        this.users = users;
+    }
 }

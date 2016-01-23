@@ -1,6 +1,4 @@
-
 package com.github.badoualy.telegram.tl.api;
-
 
 import com.github.badoualy.telegram.tl.TLContext;
 
@@ -13,83 +11,74 @@ import static com.github.badoualy.telegram.tl.StreamUtils.readTLObject;
 import static com.github.badoualy.telegram.tl.StreamUtils.writeLong;
 import static com.github.badoualy.telegram.tl.StreamUtils.writeTLObject;
 
-
-
+/**
+ * @author Yannick Badoual yann.badoual@gmail.com
+ * @see <a href="http://github.com/badoualy/kotlogram">http://github.com/badoualy/kotlogram</a>
+ */
 public class TLUserProfilePhoto extends TLAbsUserProfilePhoto {
     public static final int CLASS_ID = 0xd559d8c8;
 
-    public TLUserProfilePhoto() {
-
-    }
-
-
-    public TLUserProfilePhoto(        long _photoId,         com.github.badoualy.telegram.tl.api.TLAbsFileLocation _photoSmall,         com.github.badoualy.telegram.tl.api.TLAbsFileLocation _photoBig) {
-        this.photoId = _photoId;
-        this.photoSmall = _photoSmall;
-        this.photoBig = _photoBig;
-
-    }
-
-
-    public int getClassId() {
-        return CLASS_ID;
-    }
-
-
     protected long photoId;
 
-    protected com.github.badoualy.telegram.tl.api.TLAbsFileLocation photoSmall;
+    protected TLAbsFileLocation photoSmall;
 
-    protected com.github.badoualy.telegram.tl.api.TLAbsFileLocation photoBig;
+    protected TLAbsFileLocation photoBig;
 
-
-    public long getPhotoId() {
-        return photoId;
+    public TLUserProfilePhoto() {
     }
 
-    public void setPhotoId(long value) {
-        this.photoId = value;
+    public TLUserProfilePhoto(long photoId, TLAbsFileLocation photoSmall, TLAbsFileLocation photoBig) {
+        this.photoId = photoId;
+        this.photoSmall = photoSmall;
+        this.photoBig = photoBig;
     }
-
-    public com.github.badoualy.telegram.tl.api.TLAbsFileLocation getPhotoSmall() {
-        return photoSmall;
-    }
-
-    public void setPhotoSmall(com.github.badoualy.telegram.tl.api.TLAbsFileLocation value) {
-        this.photoSmall = value;
-    }
-
-    public com.github.badoualy.telegram.tl.api.TLAbsFileLocation getPhotoBig() {
-        return photoBig;
-    }
-
-    public void setPhotoBig(com.github.badoualy.telegram.tl.api.TLAbsFileLocation value) {
-        this.photoBig = value;
-    }
-
 
     @Override
     public void serializeBody(OutputStream stream) throws IOException {
-
-        writeLong(this.photoId, stream);
-        writeTLObject(this.photoSmall, stream);
-        writeTLObject(this.photoBig, stream);
+        writeLong(photoId, stream);
+        writeTLObject(photoSmall, stream);
+        writeTLObject(photoBig, stream);
     }
-
 
     @Override
+    @SuppressWarnings("unchecked")
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
-
-        this.photoId = readLong(stream);
-        this.photoSmall = (com.github.badoualy.telegram.tl.api.TLAbsFileLocation)readTLObject(stream, context);
-        this.photoBig = (com.github.badoualy.telegram.tl.api.TLAbsFileLocation)readTLObject(stream, context);
+        photoId = readLong(stream);
+        photoSmall = (com.github.badoualy.telegram.tl.api.TLAbsFileLocation) readTLObject(stream, context);
+        photoBig = (com.github.badoualy.telegram.tl.api.TLAbsFileLocation) readTLObject(stream, context);
     }
-
-
 
     @Override
     public String toString() {
         return "userProfilePhoto#d559d8c8";
     }
 
+    @Override
+    public int getClassId() {
+        return CLASS_ID;
+    }
+
+    public long getPhotoId() {
+        return photoId;
+    }
+
+    public void setPhotoId(long photoId) {
+        this.photoId = photoId;
+    }
+
+    public TLAbsFileLocation getPhotoSmall() {
+        return photoSmall;
+    }
+
+    public void setPhotoSmall(TLAbsFileLocation photoSmall) {
+        this.photoSmall = photoSmall;
+    }
+
+    public TLAbsFileLocation getPhotoBig() {
+        return photoBig;
+    }
+
+    public void setPhotoBig(TLAbsFileLocation photoBig) {
+        this.photoBig = photoBig;
+    }
 }

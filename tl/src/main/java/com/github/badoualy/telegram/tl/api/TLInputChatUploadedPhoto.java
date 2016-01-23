@@ -1,6 +1,4 @@
-
 package com.github.badoualy.telegram.tl.api;
-
 
 import com.github.badoualy.telegram.tl.TLContext;
 
@@ -11,70 +9,61 @@ import java.io.OutputStream;
 import static com.github.badoualy.telegram.tl.StreamUtils.readTLObject;
 import static com.github.badoualy.telegram.tl.StreamUtils.writeTLObject;
 
-
-
+/**
+ * @author Yannick Badoual yann.badoual@gmail.com
+ * @see <a href="http://github.com/badoualy/kotlogram">http://github.com/badoualy/kotlogram</a>
+ */
 public class TLInputChatUploadedPhoto extends TLAbsInputChatPhoto {
     public static final int CLASS_ID = 0x94254732;
 
+    protected TLAbsInputFile file;
+
+    protected TLAbsInputPhotoCrop crop;
+
     public TLInputChatUploadedPhoto() {
-
     }
 
-
-    public TLInputChatUploadedPhoto(        com.github.badoualy.telegram.tl.api.TLAbsInputFile _file,         com.github.badoualy.telegram.tl.api.TLAbsInputPhotoCrop _crop) {
-        this.file = _file;
-        this.crop = _crop;
-
+    public TLInputChatUploadedPhoto(TLAbsInputFile file, TLAbsInputPhotoCrop crop) {
+        this.file = file;
+        this.crop = crop;
     }
-
-
-    public int getClassId() {
-        return CLASS_ID;
-    }
-
-
-    protected com.github.badoualy.telegram.tl.api.TLAbsInputFile file;
-
-    protected com.github.badoualy.telegram.tl.api.TLAbsInputPhotoCrop crop;
-
-
-    public com.github.badoualy.telegram.tl.api.TLAbsInputFile getFile() {
-        return file;
-    }
-
-    public void setFile(com.github.badoualy.telegram.tl.api.TLAbsInputFile value) {
-        this.file = value;
-    }
-
-    public com.github.badoualy.telegram.tl.api.TLAbsInputPhotoCrop getCrop() {
-        return crop;
-    }
-
-    public void setCrop(com.github.badoualy.telegram.tl.api.TLAbsInputPhotoCrop value) {
-        this.crop = value;
-    }
-
 
     @Override
     public void serializeBody(OutputStream stream) throws IOException {
-
-        writeTLObject(this.file, stream);
-        writeTLObject(this.crop, stream);
+        writeTLObject(file, stream);
+        writeTLObject(crop, stream);
     }
-
 
     @Override
+    @SuppressWarnings("unchecked")
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
-
-        this.file = (com.github.badoualy.telegram.tl.api.TLAbsInputFile)readTLObject(stream, context);
-        this.crop = (com.github.badoualy.telegram.tl.api.TLAbsInputPhotoCrop)readTLObject(stream, context);
+        file = (com.github.badoualy.telegram.tl.api.TLAbsInputFile) readTLObject(stream, context);
+        crop = (com.github.badoualy.telegram.tl.api.TLAbsInputPhotoCrop) readTLObject(stream, context);
     }
-
-
 
     @Override
     public String toString() {
         return "inputChatUploadedPhoto#94254732";
     }
 
+    @Override
+    public int getClassId() {
+        return CLASS_ID;
+    }
+
+    public TLAbsInputFile getFile() {
+        return file;
+    }
+
+    public void setFile(TLAbsInputFile file) {
+        this.file = file;
+    }
+
+    public TLAbsInputPhotoCrop getCrop() {
+        return crop;
+    }
+
+    public void setCrop(TLAbsInputPhotoCrop crop) {
+        this.crop = crop;
+    }
 }

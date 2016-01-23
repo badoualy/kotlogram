@@ -1,6 +1,4 @@
-
 package com.github.badoualy.telegram.tl.api;
-
 
 import com.github.badoualy.telegram.tl.TLContext;
 
@@ -13,29 +11,12 @@ import static com.github.badoualy.telegram.tl.StreamUtils.readTLString;
 import static com.github.badoualy.telegram.tl.StreamUtils.writeInt;
 import static com.github.badoualy.telegram.tl.StreamUtils.writeTLString;
 
-
-
+/**
+ * @author Yannick Badoual yann.badoual@gmail.com
+ * @see <a href="http://github.com/badoualy/kotlogram">http://github.com/badoualy/kotlogram</a>
+ */
 public class TLMessageMediaContact extends TLAbsMessageMedia {
     public static final int CLASS_ID = 0x5e7d2f39;
-
-    public TLMessageMediaContact() {
-
-    }
-
-
-    public TLMessageMediaContact(        String _phoneNumber,         String _firstName,         String _lastName,         int _userId) {
-        this.phoneNumber = _phoneNumber;
-        this.firstName = _firstName;
-        this.lastName = _lastName;
-        this.userId = _userId;
-
-    }
-
-
-    public int getClassId() {
-        return CLASS_ID;
-    }
-
 
     protected String phoneNumber;
 
@@ -45,64 +26,72 @@ public class TLMessageMediaContact extends TLAbsMessageMedia {
 
     protected int userId;
 
-
-    public String getPhoneNumber() {
-        return phoneNumber;
+    public TLMessageMediaContact() {
     }
 
-    public void setPhoneNumber(String value) {
-        this.phoneNumber = value;
+    public TLMessageMediaContact(String phoneNumber, String firstName, String lastName, int userId) {
+        this.phoneNumber = phoneNumber;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.userId = userId;
     }
-
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public void setFirstName(String value) {
-        this.firstName = value;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String value) {
-        this.lastName = value;
-    }
-
-    public int getUserId() {
-        return userId;
-    }
-
-    public void setUserId(int value) {
-        this.userId = value;
-    }
-
 
     @Override
     public void serializeBody(OutputStream stream) throws IOException {
-
-        writeTLString(this.phoneNumber, stream);
-        writeTLString(this.firstName, stream);
-        writeTLString(this.lastName, stream);
-        writeInt(this.userId, stream);
+        writeTLString(phoneNumber, stream);
+        writeTLString(firstName, stream);
+        writeTLString(lastName, stream);
+        writeInt(userId, stream);
     }
-
 
     @Override
+    @SuppressWarnings("unchecked")
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
-
-        this.phoneNumber = readTLString(stream);
-        this.firstName = readTLString(stream);
-        this.lastName = readTLString(stream);
-        this.userId = readInt(stream);
+        phoneNumber = readTLString(stream);
+        firstName = readTLString(stream);
+        lastName = readTLString(stream);
+        userId = readInt(stream);
     }
-
-
 
     @Override
     public String toString() {
         return "messageMediaContact#5e7d2f39";
     }
 
+    @Override
+    public int getClassId() {
+        return CLASS_ID;
+    }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public int getUserId() {
+        return userId;
+    }
+
+    public void setUserId(int userId) {
+        this.userId = userId;
+    }
 }

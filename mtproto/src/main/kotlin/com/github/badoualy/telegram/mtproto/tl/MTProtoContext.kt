@@ -2,7 +2,7 @@ package com.github.badoualy.telegram.mtproto.tl
 
 import com.github.badoualy.telegram.tl.TLContext
 
-object MTProtoContext : TLContext() {
+object MTProtoContext : TLContext(15) {
 
     override fun init() {
         registerClass(MTMessagesContainer.CLASS_ID, MTMessagesContainer::class.java)

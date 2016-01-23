@@ -3,16 +3,15 @@ package com.github.badoualy.telegram.api
 import com.github.badoualy.telegram.mtproto.ApiCallback
 import com.github.badoualy.telegram.mtproto.DataCenter
 import com.github.badoualy.telegram.mtproto.MTProtoHandler
-import com.github.badoualy.telegram.api.UpdateCallback
 import com.github.badoualy.telegram.mtproto.auth.AuthKey
 import com.github.badoualy.telegram.mtproto.auth.AuthKeyCreation
 import com.github.badoualy.telegram.mtproto.auth.AuthResult
 import com.github.badoualy.telegram.mtproto.exception.RpcErrorException
 import com.github.badoualy.telegram.mtproto.util.Log
 import com.github.badoualy.telegram.tl.api.*
-import com.github.badoualy.telegram.tl.api.requests.TLRequestHelpGetNearestDc
-import com.github.badoualy.telegram.tl.api.requests.TLRequestInitConnection
-import com.github.badoualy.telegram.tl.api.requests.TLRequestInvokeWithLayer18
+import com.github.badoualy.telegram.tl.api.request.TLRequestHelpGetNearestDc
+import com.github.badoualy.telegram.tl.api.request.TLRequestInitConnection
+import com.github.badoualy.telegram.tl.api.request.TLRequestInvokeWithLayer
 import java.io.IOException
 
 internal interface TelegramClientDelegate {
@@ -66,14 +65,14 @@ internal class TelegramClientDelegateImpl(override val application: TelegramApp,
     }
 
     private fun init(checkNearestDc: Boolean = true) {
-        mtProtoHandler = if (generateAuthKey) MTProtoHandler(generateAuthKey(), apiStorage.loadServerSalt(), this) else MTProtoHandler(dataCenter!!, authKey!!, apiStorage.loadServerSalt(), this)
+        mtProtoHandler = if (generateAuthKey) MTProtoHandler(generateAuthKey(), this) else MTProtoHandler(dataCenter!!, authKey!!, apiStorage.loadServerSalt(), this)
         mtProtoHandler!!.startWatchdog()
 
         try {
             // Call to initConnection to setup information about this app for the user to see in "active sessions"
             // Also will indicate to Telegram which layer to use through InvokeWithLayer
             val nearestDc = mtProtoHandler!!
-                    .executeMethod(TLRequestInvokeWithLayer18(TLRequestInitConnection(application.apiId, application.deviceModel, application.systemVersion, application.appVersion, application.langCode, TLRequestHelpGetNearestDc())))
+                    .executeMethod(TLRequestInvokeWithLayer(45, TLRequestInitConnection(application.apiId, application.deviceModel, application.systemVersion, application.appVersion, application.langCode, TLRequestHelpGetNearestDc())))
                     .toBlocking().first()
             if (checkNearestDc)
                 checkNearestDc(nearestDc)
@@ -136,7 +135,7 @@ internal class TelegramClientDelegateImpl(override val application: TelegramApp,
     fun handleUpdate(update: TLAbsUpdate): Unit? = when (update) {
         is TLUpdateNewMessage -> updateCallback?.onNewMessage(update)
         is TLUpdateMessageID -> Unit
-        is TLUpdateReadMessages -> Unit
+        //is TLUpdateReadMessages -> Unit
         is TLUpdateDeleteMessages -> Unit
     //is TLUpdateRestoreMessages -> Unit
         is TLUpdateUserTyping -> Unit

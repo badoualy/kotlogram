@@ -1,8 +1,7 @@
-
 package com.github.badoualy.telegram.tl.api;
 
-
 import com.github.badoualy.telegram.tl.TLContext;
+import com.github.badoualy.telegram.tl.core.TLVector;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -10,99 +9,105 @@ import java.io.OutputStream;
 
 import static com.github.badoualy.telegram.tl.StreamUtils.readTLObject;
 import static com.github.badoualy.telegram.tl.StreamUtils.readTLString;
+import static com.github.badoualy.telegram.tl.StreamUtils.readTLVector;
 import static com.github.badoualy.telegram.tl.StreamUtils.writeTLObject;
 import static com.github.badoualy.telegram.tl.StreamUtils.writeTLString;
+import static com.github.badoualy.telegram.tl.StreamUtils.writeTLVector;
 
-
-
+/**
+ * @author Yannick Badoual yann.badoual@gmail.com
+ * @see <a href="http://github.com/badoualy/kotlogram">http://github.com/badoualy/kotlogram</a>
+ */
 public class TLInputMediaUploadedThumbDocument extends TLAbsInputMedia {
-    public static final int CLASS_ID = 0x3e46de5d;
+    public static final int CLASS_ID = 0xad613491;
+
+    protected TLAbsInputFile file;
+
+    protected TLAbsInputFile thumb;
+
+    protected String mimeType;
+
+    protected TLVector<TLAbsDocumentAttribute> attributes;
+
+    protected String caption;
 
     public TLInputMediaUploadedThumbDocument() {
-
     }
 
-
-    public TLInputMediaUploadedThumbDocument(        com.github.badoualy.telegram.tl.api.TLAbsInputFile _file,         com.github.badoualy.telegram.tl.api.TLAbsInputFile _thumb,         String _fileName,         String _mimeType) {
-        this.file = _file;
-        this.thumb = _thumb;
-        this.fileName = _fileName;
-        this.mimeType = _mimeType;
-
+    public TLInputMediaUploadedThumbDocument(TLAbsInputFile file, TLAbsInputFile thumb, String mimeType, TLVector<TLAbsDocumentAttribute> attributes, String caption) {
+        this.file = file;
+        this.thumb = thumb;
+        this.mimeType = mimeType;
+        this.attributes = attributes;
+        this.caption = caption;
     }
 
+    @Override
+    public void serializeBody(OutputStream stream) throws IOException {
+        writeTLObject(file, stream);
+        writeTLObject(thumb, stream);
+        writeTLString(mimeType, stream);
+        writeTLVector(attributes, stream);
+        writeTLString(caption, stream);
+    }
 
+    @Override
+    @SuppressWarnings("unchecked")
+    public void deserializeBody(InputStream stream, TLContext context) throws IOException {
+        file = (com.github.badoualy.telegram.tl.api.TLAbsInputFile) readTLObject(stream, context);
+        thumb = (com.github.badoualy.telegram.tl.api.TLAbsInputFile) readTLObject(stream, context);
+        mimeType = readTLString(stream);
+        attributes = readTLVector(stream, context);
+        caption = readTLString(stream);
+    }
+
+    @Override
+    public String toString() {
+        return "inputMediaUploadedThumbDocument#ad613491";
+    }
+
+    @Override
     public int getClassId() {
         return CLASS_ID;
     }
 
-
-    protected com.github.badoualy.telegram.tl.api.TLAbsInputFile file;
-
-    protected com.github.badoualy.telegram.tl.api.TLAbsInputFile thumb;
-
-    protected String fileName;
-
-    protected String mimeType;
-
-
-    public com.github.badoualy.telegram.tl.api.TLAbsInputFile getFile() {
+    public TLAbsInputFile getFile() {
         return file;
     }
 
-    public void setFile(com.github.badoualy.telegram.tl.api.TLAbsInputFile value) {
-        this.file = value;
+    public void setFile(TLAbsInputFile file) {
+        this.file = file;
     }
 
-    public com.github.badoualy.telegram.tl.api.TLAbsInputFile getThumb() {
+    public TLAbsInputFile getThumb() {
         return thumb;
     }
 
-    public void setThumb(com.github.badoualy.telegram.tl.api.TLAbsInputFile value) {
-        this.thumb = value;
-    }
-
-    public String getFileName() {
-        return fileName;
-    }
-
-    public void setFileName(String value) {
-        this.fileName = value;
+    public void setThumb(TLAbsInputFile thumb) {
+        this.thumb = thumb;
     }
 
     public String getMimeType() {
         return mimeType;
     }
 
-    public void setMimeType(String value) {
-        this.mimeType = value;
+    public void setMimeType(String mimeType) {
+        this.mimeType = mimeType;
     }
 
-
-    @Override
-    public void serializeBody(OutputStream stream) throws IOException {
-
-        writeTLObject(this.file, stream);
-        writeTLObject(this.thumb, stream);
-        writeTLString(this.fileName, stream);
-        writeTLString(this.mimeType, stream);
+    public TLVector<TLAbsDocumentAttribute> getAttributes() {
+        return attributes;
     }
 
-
-    @Override
-    public void deserializeBody(InputStream stream, TLContext context) throws IOException {
-
-        this.file = (com.github.badoualy.telegram.tl.api.TLAbsInputFile)readTLObject(stream, context);
-        this.thumb = (com.github.badoualy.telegram.tl.api.TLAbsInputFile)readTLObject(stream, context);
-        this.fileName = readTLString(stream);
-        this.mimeType = readTLString(stream);
+    public void setAttributes(TLVector<TLAbsDocumentAttribute> attributes) {
+        this.attributes = attributes;
     }
 
-
-
-    @Override
-    public String toString() {
-        return "inputMediaUploadedThumbDocument#3e46de5d";
+    public String getCaption() {
+        return caption;
     }
 
+    public void setCaption(String caption) {
+        this.caption = caption;
+    }
 }

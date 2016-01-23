@@ -1,6 +1,4 @@
-
 package com.github.badoualy.telegram.tl.api.auth;
-
 
 import com.github.badoualy.telegram.tl.TLContext;
 
@@ -15,56 +13,87 @@ import static com.github.badoualy.telegram.tl.StreamUtils.writeInt;
 import static com.github.badoualy.telegram.tl.StreamUtils.writeTLBool;
 import static com.github.badoualy.telegram.tl.StreamUtils.writeTLString;
 
-
-
+/**
+ * @author Yannick Badoual yann.badoual@gmail.com
+ * @see <a href="http://github.com/badoualy/kotlogram">http://github.com/badoualy/kotlogram</a>
+ */
 public class TLSentCode extends TLAbsSentCode {
     public static final int CLASS_ID = 0xefed51d9;
 
+    protected boolean phoneRegistered;
+
+    protected String phoneCodeHash;
+
+    protected int sendCallTimeout;
+
+    protected boolean isPassword;
+
     public TLSentCode() {
-
     }
 
-
-    public TLSentCode(        boolean _phoneRegistered,         String _phoneCodeHash,         int _sendCallTimeout,         boolean _isPassword) {
-        this.phoneRegistered = _phoneRegistered;
-        this.phoneCodeHash = _phoneCodeHash;
-        this.sendCallTimeout = _sendCallTimeout;
-        this.isPassword = _isPassword;
-
+    public TLSentCode(boolean phoneRegistered, String phoneCodeHash, int sendCallTimeout, boolean isPassword) {
+        this.phoneRegistered = phoneRegistered;
+        this.phoneCodeHash = phoneCodeHash;
+        this.sendCallTimeout = sendCallTimeout;
+        this.isPassword = isPassword;
     }
-
-
-    public int getClassId() {
-        return CLASS_ID;
-    }
-
-
-
 
     @Override
     public void serializeBody(OutputStream stream) throws IOException {
-
-        writeTLBool(this.phoneRegistered, stream);
-        writeTLString(this.phoneCodeHash, stream);
-        writeInt(this.sendCallTimeout, stream);
-        writeTLBool(this.isPassword, stream);
+        writeTLBool(phoneRegistered, stream);
+        writeTLString(phoneCodeHash, stream);
+        writeInt(sendCallTimeout, stream);
+        writeTLBool(isPassword, stream);
     }
-
 
     @Override
+    @SuppressWarnings("unchecked")
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
-
-        this.phoneRegistered = readTLBool(stream);
-        this.phoneCodeHash = readTLString(stream);
-        this.sendCallTimeout = readInt(stream);
-        this.isPassword = readTLBool(stream);
+        phoneRegistered = readTLBool(stream);
+        phoneCodeHash = readTLString(stream);
+        sendCallTimeout = readInt(stream);
+        isPassword = readTLBool(stream);
     }
-
-
 
     @Override
     public String toString() {
         return "auth.sentCode#efed51d9";
     }
 
+    @Override
+    public int getClassId() {
+        return CLASS_ID;
+    }
+
+    public boolean getPhoneRegistered() {
+        return phoneRegistered;
+    }
+
+    public void setPhoneRegistered(boolean phoneRegistered) {
+        this.phoneRegistered = phoneRegistered;
+    }
+
+    public String getPhoneCodeHash() {
+        return phoneCodeHash;
+    }
+
+    public void setPhoneCodeHash(String phoneCodeHash) {
+        this.phoneCodeHash = phoneCodeHash;
+    }
+
+    public int getSendCallTimeout() {
+        return sendCallTimeout;
+    }
+
+    public void setSendCallTimeout(int sendCallTimeout) {
+        this.sendCallTimeout = sendCallTimeout;
+    }
+
+    public boolean getIsPassword() {
+        return isPassword;
+    }
+
+    public void setIsPassword(boolean isPassword) {
+        this.isPassword = isPassword;
+    }
 }

@@ -1,6 +1,4 @@
-
 package com.github.badoualy.telegram.tl.api;
-
 
 import com.github.badoualy.telegram.tl.TLContext;
 
@@ -13,70 +11,61 @@ import static com.github.badoualy.telegram.tl.StreamUtils.readTLObject;
 import static com.github.badoualy.telegram.tl.StreamUtils.writeInt;
 import static com.github.badoualy.telegram.tl.StreamUtils.writeTLObject;
 
-
-
+/**
+ * @author Yannick Badoual yann.badoual@gmail.com
+ * @see <a href="http://github.com/badoualy/kotlogram">http://github.com/badoualy/kotlogram</a>
+ */
 public class TLUpdateNewEncryptedMessage extends TLAbsUpdate {
     public static final int CLASS_ID = 0x12bcbd9a;
 
-    public TLUpdateNewEncryptedMessage() {
-
-    }
-
-
-    public TLUpdateNewEncryptedMessage(        com.github.badoualy.telegram.tl.api.TLAbsEncryptedMessage _message,         int _qts) {
-        this.message = _message;
-        this.qts = _qts;
-
-    }
-
-
-    public int getClassId() {
-        return CLASS_ID;
-    }
-
-
-    protected com.github.badoualy.telegram.tl.api.TLAbsEncryptedMessage message;
+    protected TLAbsEncryptedMessage message;
 
     protected int qts;
 
-
-    public com.github.badoualy.telegram.tl.api.TLAbsEncryptedMessage getMessage() {
-        return message;
+    public TLUpdateNewEncryptedMessage() {
     }
 
-    public void setMessage(com.github.badoualy.telegram.tl.api.TLAbsEncryptedMessage value) {
-        this.message = value;
+    public TLUpdateNewEncryptedMessage(TLAbsEncryptedMessage message, int qts) {
+        this.message = message;
+        this.qts = qts;
     }
-
-    public int getQts() {
-        return qts;
-    }
-
-    public void setQts(int value) {
-        this.qts = value;
-    }
-
 
     @Override
     public void serializeBody(OutputStream stream) throws IOException {
-
-        writeTLObject(this.message, stream);
-        writeInt(this.qts, stream);
+        writeTLObject(message, stream);
+        writeInt(qts, stream);
     }
-
 
     @Override
+    @SuppressWarnings("unchecked")
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
-
-        this.message = (com.github.badoualy.telegram.tl.api.TLAbsEncryptedMessage)readTLObject(stream, context);
-        this.qts = readInt(stream);
+        message = (com.github.badoualy.telegram.tl.api.TLAbsEncryptedMessage) readTLObject(stream, context);
+        qts = readInt(stream);
     }
-
-
 
     @Override
     public String toString() {
         return "updateNewEncryptedMessage#12bcbd9a";
     }
 
+    @Override
+    public int getClassId() {
+        return CLASS_ID;
+    }
+
+    public TLAbsEncryptedMessage getMessage() {
+        return message;
+    }
+
+    public void setMessage(TLAbsEncryptedMessage message) {
+        this.message = message;
+    }
+
+    public int getQts() {
+        return qts;
+    }
+
+    public void setQts(int qts) {
+        this.qts = qts;
+    }
 }

@@ -1,4 +1,3 @@
-
 package com.github.badoualy.telegram.tl.api;
 
 import com.github.badoualy.telegram.tl.TLContext;
@@ -13,69 +12,61 @@ import static com.github.badoualy.telegram.tl.StreamUtils.readLong;
 import static com.github.badoualy.telegram.tl.StreamUtils.writeInt;
 import static com.github.badoualy.telegram.tl.StreamUtils.writeLong;
 
-
+/**
+ * @author Yannick Badoual yann.badoual@gmail.com
+ * @see <a href="http://github.com/badoualy/kotlogram">http://github.com/badoualy/kotlogram</a>
+ */
 public class TLInputEncryptedChat extends TLObject {
-
     public static final int CLASS_ID = 0xf141b5e1;
-
-    public TLInputEncryptedChat() {
-
-    }
-
-
-    public TLInputEncryptedChat(        int _chatId,         long _accessHash) {
-        this.chatId = _chatId;
-        this.accessHash = _accessHash;
-
-    }
-
-
-    public int getClassId() {
-        return CLASS_ID;
-    }
-
 
     protected int chatId;
 
     protected long accessHash;
 
-
-    public int getChatId() {
-        return chatId;
+    public TLInputEncryptedChat() {
     }
 
-    public void setChatId(int value) {
-        this.chatId = value;
+    public TLInputEncryptedChat(int chatId, long accessHash) {
+        this.chatId = chatId;
+        this.accessHash = accessHash;
     }
-
-    public long getAccessHash() {
-        return accessHash;
-    }
-
-    public void setAccessHash(long value) {
-        this.accessHash = value;
-    }
-
 
     @Override
     public void serializeBody(OutputStream stream) throws IOException {
-
-        writeInt(this.chatId, stream);
-        writeLong(this.accessHash, stream);
+        writeInt(chatId, stream);
+        writeLong(accessHash, stream);
     }
-
 
     @Override
+    @SuppressWarnings("unchecked")
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
-
-        this.chatId = readInt(stream);
-        this.accessHash = readLong(stream);
+        chatId = readInt(stream);
+        accessHash = readLong(stream);
     }
-
 
     @Override
     public String toString() {
         return "inputEncryptedChat#f141b5e1";
     }
 
+    @Override
+    public int getClassId() {
+        return CLASS_ID;
+    }
+
+    public int getChatId() {
+        return chatId;
+    }
+
+    public void setChatId(int chatId) {
+        this.chatId = chatId;
+    }
+
+    public long getAccessHash() {
+        return accessHash;
+    }
+
+    public void setAccessHash(long accessHash) {
+        this.accessHash = accessHash;
+    }
 }

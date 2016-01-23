@@ -1,67 +1,57 @@
-
 package com.github.badoualy.telegram.tl.api;
 
-
 import com.github.badoualy.telegram.tl.TLContext;
+import com.github.badoualy.telegram.tl.core.TLVector;
 
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 
-import static com.github.badoualy.telegram.tl.StreamUtils.readInt;
-import static com.github.badoualy.telegram.tl.StreamUtils.writeInt;
+import static com.github.badoualy.telegram.tl.StreamUtils.readTLVector;
+import static com.github.badoualy.telegram.tl.StreamUtils.writeTLVector;
 
-
-
+/**
+ * @author Yannick Badoual yann.badoual@gmail.com
+ * @see <a href="http://github.com/badoualy/kotlogram">http://github.com/badoualy/kotlogram</a>
+ */
 public class TLMessageActionChatAddUser extends TLAbsMessageAction {
-    public static final int CLASS_ID = 0x5e3cfc4b;
+    public static final int CLASS_ID = 0x488a7337;
+
+    protected TLVector<Integer> users;
 
     public TLMessageActionChatAddUser() {
-
     }
 
-
-    public TLMessageActionChatAddUser(        int _userId) {
-        this.userId = _userId;
-
+    public TLMessageActionChatAddUser(TLVector<Integer> users) {
+        this.users = users;
     }
 
+    @Override
+    public void serializeBody(OutputStream stream) throws IOException {
+        writeTLVector(users, stream);
+    }
 
+    @Override
+    @SuppressWarnings("unchecked")
+    public void deserializeBody(InputStream stream, TLContext context) throws IOException {
+        users = readTLVector(stream, context);
+    }
+
+    @Override
+    public String toString() {
+        return "messageActionChatAddUser#488a7337";
+    }
+
+    @Override
     public int getClassId() {
         return CLASS_ID;
     }
 
-
-    protected int userId;
-
-
-    public int getUserId() {
-        return userId;
+    public TLVector<Integer> getUsers() {
+        return users;
     }
 
-    public void setUserId(int value) {
-        this.userId = value;
+    public void setUsers(TLVector<Integer> users) {
+        this.users = users;
     }
-
-
-    @Override
-    public void serializeBody(OutputStream stream) throws IOException {
-
-        writeInt(this.userId, stream);
-    }
-
-
-    @Override
-    public void deserializeBody(InputStream stream, TLContext context) throws IOException {
-
-        this.userId = readInt(stream);
-    }
-
-
-
-    @Override
-    public String toString() {
-        return "messageActionChatAddUser#5e3cfc4b";
-    }
-
 }

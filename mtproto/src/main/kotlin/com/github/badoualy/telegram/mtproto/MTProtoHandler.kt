@@ -60,18 +60,16 @@ class MTProtoHandler {
 
     private val apiCallback: ApiCallback?
 
-    @JvmOverloads
-    constructor(authResult: AuthResult, salt: Long? = 0, apiCallback: ApiCallback?) {
+    constructor(authResult: AuthResult, apiCallback: ApiCallback?) {
         connection = authResult.connection
         authKey = authResult.authKey
-        this.salt = salt ?: 0
+        this.salt = authResult.serverSalt
         this.apiCallback = apiCallback
 
         init()
     }
 
-    @JvmOverloads
-    constructor(dataCenter: DataCenter, authKey: AuthKey, salt: Long? = 0, apiCallback: ApiCallback?) {
+    constructor(dataCenter: DataCenter, authKey: AuthKey, salt: Long?, apiCallback: ApiCallback?) {
         connection = MTProtoTcpConnection(dataCenter.ip, dataCenter.port)
         this.authKey = authKey
         this.salt = salt ?: 0

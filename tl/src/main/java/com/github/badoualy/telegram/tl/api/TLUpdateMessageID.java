@@ -1,6 +1,4 @@
-
 package com.github.badoualy.telegram.tl.api;
-
 
 import com.github.badoualy.telegram.tl.TLContext;
 
@@ -13,70 +11,61 @@ import static com.github.badoualy.telegram.tl.StreamUtils.readLong;
 import static com.github.badoualy.telegram.tl.StreamUtils.writeInt;
 import static com.github.badoualy.telegram.tl.StreamUtils.writeLong;
 
-
-
+/**
+ * @author Yannick Badoual yann.badoual@gmail.com
+ * @see <a href="http://github.com/badoualy/kotlogram">http://github.com/badoualy/kotlogram</a>
+ */
 public class TLUpdateMessageID extends TLAbsUpdate {
     public static final int CLASS_ID = 0x4e90bfd6;
-
-    public TLUpdateMessageID() {
-
-    }
-
-
-    public TLUpdateMessageID(        int _id,         long _randomId) {
-        this.id = _id;
-        this.randomId = _randomId;
-
-    }
-
-
-    public int getClassId() {
-        return CLASS_ID;
-    }
-
 
     protected int id;
 
     protected long randomId;
 
-
-    public int getId() {
-        return id;
+    public TLUpdateMessageID() {
     }
 
-    public void setId(int value) {
-        this.id = value;
+    public TLUpdateMessageID(int id, long randomId) {
+        this.id = id;
+        this.randomId = randomId;
     }
-
-    public long getRandomId() {
-        return randomId;
-    }
-
-    public void setRandomId(long value) {
-        this.randomId = value;
-    }
-
 
     @Override
     public void serializeBody(OutputStream stream) throws IOException {
-
-        writeInt(this.id, stream);
-        writeLong(this.randomId, stream);
+        writeInt(id, stream);
+        writeLong(randomId, stream);
     }
-
 
     @Override
+    @SuppressWarnings("unchecked")
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
-
-        this.id = readInt(stream);
-        this.randomId = readLong(stream);
+        id = readInt(stream);
+        randomId = readLong(stream);
     }
-
-
 
     @Override
     public String toString() {
         return "updateMessageID#4e90bfd6";
     }
 
+    @Override
+    public int getClassId() {
+        return CLASS_ID;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public long getRandomId() {
+        return randomId;
+    }
+
+    public void setRandomId(long randomId) {
+        this.randomId = randomId;
+    }
 }

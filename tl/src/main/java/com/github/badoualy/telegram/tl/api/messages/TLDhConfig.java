@@ -1,6 +1,4 @@
-
 package com.github.badoualy.telegram.tl.api.messages;
-
 
 import com.github.badoualy.telegram.tl.TLContext;
 import com.github.badoualy.telegram.tl.core.TLBytes;
@@ -14,29 +12,12 @@ import static com.github.badoualy.telegram.tl.StreamUtils.readTLBytes;
 import static com.github.badoualy.telegram.tl.StreamUtils.writeInt;
 import static com.github.badoualy.telegram.tl.StreamUtils.writeTLBytes;
 
-
-
+/**
+ * @author Yannick Badoual yann.badoual@gmail.com
+ * @see <a href="http://github.com/badoualy/kotlogram">http://github.com/badoualy/kotlogram</a>
+ */
 public class TLDhConfig extends TLAbsDhConfig {
     public static final int CLASS_ID = 0x2c221edd;
-
-    public TLDhConfig() {
-
-    }
-
-
-    public TLDhConfig(        int _g,         TLBytes _p,         int _version,         TLBytes _random) {
-        this.g = _g;
-        this.p = _p;
-        this.version = _version;
-        this.random = _random;
-
-    }
-
-
-    public int getClassId() {
-        return CLASS_ID;
-    }
-
 
     protected int g;
 
@@ -44,56 +25,72 @@ public class TLDhConfig extends TLAbsDhConfig {
 
     protected int version;
 
-
-    public int getG() {
-        return g;
+    public TLDhConfig() {
     }
 
-    public void setG(int value) {
-        this.g = value;
+    public TLDhConfig(int g, TLBytes p, int version, TLBytes random) {
+        this.g = g;
+        this.p = p;
+        this.version = version;
+        this.random = random;
     }
-
-    public TLBytes getP() {
-        return p;
-    }
-
-    public void setP(TLBytes value) {
-        this.p = value;
-    }
-
-    public int getVersion() {
-        return version;
-    }
-
-    public void setVersion(int value) {
-        this.version = value;
-    }
-
 
     @Override
     public void serializeBody(OutputStream stream) throws IOException {
-
-        writeInt(this.g, stream);
-        writeTLBytes(this.p, stream);
-        writeInt(this.version, stream);
-        writeTLBytes(this.random, stream);
+        writeInt(g, stream);
+        writeTLBytes(p, stream);
+        writeInt(version, stream);
+        writeTLBytes(random, stream);
     }
-
 
     @Override
+    @SuppressWarnings("unchecked")
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
-
-        this.g = readInt(stream);
-        this.p = readTLBytes(stream, context);
-        this.version = readInt(stream);
-        this.random = readTLBytes(stream, context);
+        g = readInt(stream);
+        p = readTLBytes(stream, context);
+        version = readInt(stream);
+        random = readTLBytes(stream, context);
     }
-
-
 
     @Override
     public String toString() {
         return "messages.dhConfig#2c221edd";
     }
 
+    @Override
+    public int getClassId() {
+        return CLASS_ID;
+    }
+
+    public int getG() {
+        return g;
+    }
+
+    public void setG(int g) {
+        this.g = g;
+    }
+
+    public TLBytes getP() {
+        return p;
+    }
+
+    public void setP(TLBytes p) {
+        this.p = p;
+    }
+
+    public int getVersion() {
+        return version;
+    }
+
+    public void setVersion(int version) {
+        this.version = version;
+    }
+
+    public TLBytes getRandom() {
+        return random;
+    }
+
+    public void setRandom(TLBytes random) {
+        this.random = random;
+    }
 }

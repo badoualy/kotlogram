@@ -1,4 +1,3 @@
-
 package com.github.badoualy.telegram.tl.api;
 
 import com.github.badoualy.telegram.tl.TLContext;
@@ -15,29 +14,12 @@ import static com.github.badoualy.telegram.tl.StreamUtils.writeDouble;
 import static com.github.badoualy.telegram.tl.StreamUtils.writeLong;
 import static com.github.badoualy.telegram.tl.StreamUtils.writeTLString;
 
-
+/**
+ * @author Yannick Badoual yann.badoual@gmail.com
+ * @see <a href="http://github.com/badoualy/kotlogram">http://github.com/badoualy/kotlogram</a>
+ */
 public class TLInputAppEvent extends TLObject {
-
     public static final int CLASS_ID = 0x770656a8;
-
-    public TLInputAppEvent() {
-
-    }
-
-
-    public TLInputAppEvent(        double _time,         String _type,         long _peer,         String _data) {
-        this.time = _time;
-        this.type = _type;
-        this.peer = _peer;
-        this.data = _data;
-
-    }
-
-
-    public int getClassId() {
-        return CLASS_ID;
-    }
-
 
     protected double time;
 
@@ -47,63 +29,72 @@ public class TLInputAppEvent extends TLObject {
 
     protected String data;
 
-
-    public double getTime() {
-        return time;
+    public TLInputAppEvent() {
     }
 
-    public void setTime(double value) {
-        this.time = value;
+    public TLInputAppEvent(double time, String type, long peer, String data) {
+        this.time = time;
+        this.type = type;
+        this.peer = peer;
+        this.data = data;
     }
-
-    public String getType() {
-        return type;
-    }
-
-    public void setType(String value) {
-        this.type = value;
-    }
-
-    public long getPeer() {
-        return peer;
-    }
-
-    public void setPeer(long value) {
-        this.peer = value;
-    }
-
-    public String getData() {
-        return data;
-    }
-
-    public void setData(String value) {
-        this.data = value;
-    }
-
 
     @Override
     public void serializeBody(OutputStream stream) throws IOException {
-
-        writeDouble(this.time, stream);
-        writeTLString(this.type, stream);
-        writeLong(this.peer, stream);
-        writeTLString(this.data, stream);
+        writeDouble(time, stream);
+        writeTLString(type, stream);
+        writeLong(peer, stream);
+        writeTLString(data, stream);
     }
-
 
     @Override
+    @SuppressWarnings("unchecked")
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
-
-        this.time = readDouble(stream);
-        this.type = readTLString(stream);
-        this.peer = readLong(stream);
-        this.data = readTLString(stream);
+        time = readDouble(stream);
+        type = readTLString(stream);
+        peer = readLong(stream);
+        data = readTLString(stream);
     }
-
 
     @Override
     public String toString() {
         return "inputAppEvent#770656a8";
     }
 
+    @Override
+    public int getClassId() {
+        return CLASS_ID;
+    }
+
+    public double getTime() {
+        return time;
+    }
+
+    public void setTime(double time) {
+        this.time = time;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public long getPeer() {
+        return peer;
+    }
+
+    public void setPeer(long peer) {
+        this.peer = peer;
+    }
+
+    public String getData() {
+        return data;
+    }
+
+    public void setData(String data) {
+        this.data = data;
+    }
 }

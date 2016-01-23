@@ -1,4 +1,3 @@
-
 package com.github.badoualy.telegram.tl.api.help;
 
 import com.github.badoualy.telegram.tl.TLContext;
@@ -11,56 +10,48 @@ import java.io.OutputStream;
 import static com.github.badoualy.telegram.tl.StreamUtils.readTLString;
 import static com.github.badoualy.telegram.tl.StreamUtils.writeTLString;
 
-
+/**
+ * @author Yannick Badoual yann.badoual@gmail.com
+ * @see <a href="http://github.com/badoualy/kotlogram">http://github.com/badoualy/kotlogram</a>
+ */
 public class TLInviteText extends TLObject {
-
     public static final int CLASS_ID = 0x18cb9f78;
-
-    public TLInviteText() {
-
-    }
-
-
-    public TLInviteText(        String _message) {
-        this.message = _message;
-
-    }
-
-
-    public int getClassId() {
-        return CLASS_ID;
-    }
-
 
     protected String message;
 
-
-    public String getMessage() {
-        return message;
+    public TLInviteText() {
     }
 
-    public void setMessage(String value) {
-        this.message = value;
+    public TLInviteText(String message) {
+        this.message = message;
     }
-
 
     @Override
     public void serializeBody(OutputStream stream) throws IOException {
-
-        writeTLString(this.message, stream);
+        writeTLString(message, stream);
     }
-
 
     @Override
+    @SuppressWarnings("unchecked")
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
-
-        this.message = readTLString(stream);
+        message = readTLString(stream);
     }
-
 
     @Override
     public String toString() {
         return "help.inviteText#18cb9f78";
     }
 
+    @Override
+    public int getClassId() {
+        return CLASS_ID;
+    }
+
+    public String getMessage() {
+        return message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
+    }
 }

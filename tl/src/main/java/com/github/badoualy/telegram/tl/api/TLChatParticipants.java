@@ -1,8 +1,7 @@
-
 package com.github.badoualy.telegram.tl.api;
 
-
 import com.github.badoualy.telegram.tl.TLContext;
+import com.github.badoualy.telegram.tl.core.TLVector;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -13,86 +12,72 @@ import static com.github.badoualy.telegram.tl.StreamUtils.readTLVector;
 import static com.github.badoualy.telegram.tl.StreamUtils.writeInt;
 import static com.github.badoualy.telegram.tl.StreamUtils.writeTLVector;
 
-
-
+/**
+ * @author Yannick Badoual yann.badoual@gmail.com
+ * @see <a href="http://github.com/badoualy/kotlogram">http://github.com/badoualy/kotlogram</a>
+ */
 public class TLChatParticipants extends TLAbsChatParticipants {
-    public static final int CLASS_ID = 0x7841b415;
+    public static final int CLASS_ID = 0x3f460fed;
+
+    protected TLVector<TLAbsChatParticipant> participants;
+
+    protected int version;
 
     public TLChatParticipants() {
-
     }
 
-
-    public TLChatParticipants(        int _chatId,         int _adminId,         com.github.badoualy.telegram.tl.core.TLVector<com.github.badoualy.telegram.tl.api.TLChatParticipant> _participants,         int _version) {
-        this.chatId = _chatId;
-        this.adminId = _adminId;
-        this.participants = _participants;
-        this.version = _version;
-
+    public TLChatParticipants(int chatId, TLVector<TLAbsChatParticipant> participants, int version) {
+        this.chatId = chatId;
+        this.participants = participants;
+        this.version = version;
     }
 
+    @Override
+    public void serializeBody(OutputStream stream) throws IOException {
+        writeInt(chatId, stream);
+        writeTLVector(participants, stream);
+        writeInt(version, stream);
+    }
 
+    @Override
+    @SuppressWarnings("unchecked")
+    public void deserializeBody(InputStream stream, TLContext context) throws IOException {
+        chatId = readInt(stream);
+        participants = readTLVector(stream, context);
+        version = readInt(stream);
+    }
+
+    @Override
+    public String toString() {
+        return "chatParticipants#3f460fed";
+    }
+
+    @Override
     public int getClassId() {
         return CLASS_ID;
     }
 
-
-    protected int adminId;
-
-    protected com.github.badoualy.telegram.tl.core.TLVector<com.github.badoualy.telegram.tl.api.TLChatParticipant> participants;
-
-    protected int version;
-
-
-    public int getAdminId() {
-        return adminId;
+    public int getChatId() {
+        return chatId;
     }
 
-    public void setAdminId(int value) {
-        this.adminId = value;
+    public void setChatId(int chatId) {
+        this.chatId = chatId;
     }
 
-    public com.github.badoualy.telegram.tl.core.TLVector<com.github.badoualy.telegram.tl.api.TLChatParticipant> getParticipants() {
+    public TLVector<TLAbsChatParticipant> getParticipants() {
         return participants;
     }
 
-    public void setParticipants(com.github.badoualy.telegram.tl.core.TLVector<com.github.badoualy.telegram.tl.api.TLChatParticipant> value) {
-        this.participants = value;
+    public void setParticipants(TLVector<TLAbsChatParticipant> participants) {
+        this.participants = participants;
     }
 
     public int getVersion() {
         return version;
     }
 
-    public void setVersion(int value) {
-        this.version = value;
+    public void setVersion(int version) {
+        this.version = version;
     }
-
-
-    @Override
-    public void serializeBody(OutputStream stream) throws IOException {
-
-        writeInt(this.chatId, stream);
-        writeInt(this.adminId, stream);
-        writeTLVector(this.participants, stream);
-        writeInt(this.version, stream);
-    }
-
-
-    @Override
-    public void deserializeBody(InputStream stream, TLContext context) throws IOException {
-
-        this.chatId = readInt(stream);
-        this.adminId = readInt(stream);
-        this.participants = readTLVector(stream, context);
-        this.version = readInt(stream);
-    }
-
-
-
-    @Override
-    public String toString() {
-        return "chatParticipants#7841b415";
-    }
-
 }

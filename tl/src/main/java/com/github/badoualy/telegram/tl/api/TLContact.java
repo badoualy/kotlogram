@@ -1,4 +1,3 @@
-
 package com.github.badoualy.telegram.tl.api;
 
 import com.github.badoualy.telegram.tl.TLContext;
@@ -13,69 +12,61 @@ import static com.github.badoualy.telegram.tl.StreamUtils.readTLBool;
 import static com.github.badoualy.telegram.tl.StreamUtils.writeInt;
 import static com.github.badoualy.telegram.tl.StreamUtils.writeTLBool;
 
-
+/**
+ * @author Yannick Badoual yann.badoual@gmail.com
+ * @see <a href="http://github.com/badoualy/kotlogram">http://github.com/badoualy/kotlogram</a>
+ */
 public class TLContact extends TLObject {
-
     public static final int CLASS_ID = 0xf911c994;
-
-    public TLContact() {
-
-    }
-
-
-    public TLContact(        int _userId,         boolean _mutual) {
-        this.userId = _userId;
-        this.mutual = _mutual;
-
-    }
-
-
-    public int getClassId() {
-        return CLASS_ID;
-    }
-
 
     protected int userId;
 
     protected boolean mutual;
 
-
-    public int getUserId() {
-        return userId;
+    public TLContact() {
     }
 
-    public void setUserId(int value) {
-        this.userId = value;
+    public TLContact(int userId, boolean mutual) {
+        this.userId = userId;
+        this.mutual = mutual;
     }
-
-    public boolean getMutual() {
-        return mutual;
-    }
-
-    public void setMutual(boolean value) {
-        this.mutual = value;
-    }
-
 
     @Override
     public void serializeBody(OutputStream stream) throws IOException {
-
-        writeInt(this.userId, stream);
-        writeTLBool(this.mutual, stream);
+        writeInt(userId, stream);
+        writeTLBool(mutual, stream);
     }
-
 
     @Override
+    @SuppressWarnings("unchecked")
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
-
-        this.userId = readInt(stream);
-        this.mutual = readTLBool(stream);
+        userId = readInt(stream);
+        mutual = readTLBool(stream);
     }
-
 
     @Override
     public String toString() {
         return "contact#f911c994";
     }
 
+    @Override
+    public int getClassId() {
+        return CLASS_ID;
+    }
+
+    public int getUserId() {
+        return userId;
+    }
+
+    public void setUserId(int userId) {
+        this.userId = userId;
+    }
+
+    public boolean getMutual() {
+        return mutual;
+    }
+
+    public void setMutual(boolean mutual) {
+        this.mutual = mutual;
+    }
 }

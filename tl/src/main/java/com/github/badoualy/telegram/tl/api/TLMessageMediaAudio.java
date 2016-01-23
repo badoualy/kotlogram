@@ -1,6 +1,4 @@
-
 package com.github.badoualy.telegram.tl.api;
-
 
 import com.github.badoualy.telegram.tl.TLContext;
 
@@ -11,57 +9,48 @@ import java.io.OutputStream;
 import static com.github.badoualy.telegram.tl.StreamUtils.readTLObject;
 import static com.github.badoualy.telegram.tl.StreamUtils.writeTLObject;
 
-
-
+/**
+ * @author Yannick Badoual yann.badoual@gmail.com
+ * @see <a href="http://github.com/badoualy/kotlogram">http://github.com/badoualy/kotlogram</a>
+ */
 public class TLMessageMediaAudio extends TLAbsMessageMedia {
     public static final int CLASS_ID = 0xc6b68300;
 
+    protected TLAbsAudio audio;
+
     public TLMessageMediaAudio() {
-
     }
 
-
-    public TLMessageMediaAudio(        com.github.badoualy.telegram.tl.api.TLAbsAudio _audio) {
-        this.audio = _audio;
-
+    public TLMessageMediaAudio(TLAbsAudio audio) {
+        this.audio = audio;
     }
-
-
-    public int getClassId() {
-        return CLASS_ID;
-    }
-
-
-    protected com.github.badoualy.telegram.tl.api.TLAbsAudio audio;
-
-
-    public com.github.badoualy.telegram.tl.api.TLAbsAudio getAudio() {
-        return audio;
-    }
-
-    public void setAudio(com.github.badoualy.telegram.tl.api.TLAbsAudio value) {
-        this.audio = value;
-    }
-
 
     @Override
     public void serializeBody(OutputStream stream) throws IOException {
-
-        writeTLObject(this.audio, stream);
+        writeTLObject(audio, stream);
     }
-
 
     @Override
+    @SuppressWarnings("unchecked")
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
-
-        this.audio = (com.github.badoualy.telegram.tl.api.TLAbsAudio)readTLObject(stream, context);
+        audio = (com.github.badoualy.telegram.tl.api.TLAbsAudio) readTLObject(stream, context);
     }
-
-
 
     @Override
     public String toString() {
         return "messageMediaAudio#c6b68300";
     }
 
+    @Override
+    public int getClassId() {
+        return CLASS_ID;
+    }
+
+    public TLAbsAudio getAudio() {
+        return audio;
+    }
+
+    public void setAudio(TLAbsAudio audio) {
+        this.audio = audio;
+    }
 }

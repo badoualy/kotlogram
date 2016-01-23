@@ -1,6 +1,4 @@
-
 package com.github.badoualy.telegram.tl.api;
-
 
 import com.github.badoualy.telegram.tl.TLContext;
 
@@ -13,70 +11,61 @@ import static com.github.badoualy.telegram.tl.StreamUtils.readTLObject;
 import static com.github.badoualy.telegram.tl.StreamUtils.writeInt;
 import static com.github.badoualy.telegram.tl.StreamUtils.writeTLObject;
 
-
-
+/**
+ * @author Yannick Badoual yann.badoual@gmail.com
+ * @see <a href="http://github.com/badoualy/kotlogram">http://github.com/badoualy/kotlogram</a>
+ */
 public class TLUpdateUserStatus extends TLAbsUpdate {
     public static final int CLASS_ID = 0x1bfbd823;
 
-    public TLUpdateUserStatus() {
-
-    }
-
-
-    public TLUpdateUserStatus(        int _userId,         com.github.badoualy.telegram.tl.api.TLAbsUserStatus _status) {
-        this.userId = _userId;
-        this.status = _status;
-
-    }
-
-
-    public int getClassId() {
-        return CLASS_ID;
-    }
-
-
     protected int userId;
 
-    protected com.github.badoualy.telegram.tl.api.TLAbsUserStatus status;
+    protected TLAbsUserStatus status;
 
-
-    public int getUserId() {
-        return userId;
+    public TLUpdateUserStatus() {
     }
 
-    public void setUserId(int value) {
-        this.userId = value;
+    public TLUpdateUserStatus(int userId, TLAbsUserStatus status) {
+        this.userId = userId;
+        this.status = status;
     }
-
-    public com.github.badoualy.telegram.tl.api.TLAbsUserStatus getStatus() {
-        return status;
-    }
-
-    public void setStatus(com.github.badoualy.telegram.tl.api.TLAbsUserStatus value) {
-        this.status = value;
-    }
-
 
     @Override
     public void serializeBody(OutputStream stream) throws IOException {
-
-        writeInt(this.userId, stream);
-        writeTLObject(this.status, stream);
+        writeInt(userId, stream);
+        writeTLObject(status, stream);
     }
-
 
     @Override
+    @SuppressWarnings("unchecked")
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
-
-        this.userId = readInt(stream);
-        this.status = (com.github.badoualy.telegram.tl.api.TLAbsUserStatus)readTLObject(stream, context);
+        userId = readInt(stream);
+        status = (com.github.badoualy.telegram.tl.api.TLAbsUserStatus) readTLObject(stream, context);
     }
-
-
 
     @Override
     public String toString() {
         return "updateUserStatus#1bfbd823";
     }
 
+    @Override
+    public int getClassId() {
+        return CLASS_ID;
+    }
+
+    public int getUserId() {
+        return userId;
+    }
+
+    public void setUserId(int userId) {
+        this.userId = userId;
+    }
+
+    public TLAbsUserStatus getStatus() {
+        return status;
+    }
+
+    public void setStatus(TLAbsUserStatus status) {
+        this.status = status;
+    }
 }

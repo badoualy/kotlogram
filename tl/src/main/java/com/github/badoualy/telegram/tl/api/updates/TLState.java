@@ -1,4 +1,3 @@
-
 package com.github.badoualy.telegram.tl.api.updates;
 
 import com.github.badoualy.telegram.tl.TLContext;
@@ -11,30 +10,12 @@ import java.io.OutputStream;
 import static com.github.badoualy.telegram.tl.StreamUtils.readInt;
 import static com.github.badoualy.telegram.tl.StreamUtils.writeInt;
 
-
+/**
+ * @author Yannick Badoual yann.badoual@gmail.com
+ * @see <a href="http://github.com/badoualy/kotlogram">http://github.com/badoualy/kotlogram</a>
+ */
 public class TLState extends TLObject {
-
     public static final int CLASS_ID = 0xa56c2a3e;
-
-    public TLState() {
-
-    }
-
-
-    public TLState(        int _pts,         int _qts,         int _date,         int _seq,         int _unreadCount) {
-        this.pts = _pts;
-        this.qts = _qts;
-        this.date = _date;
-        this.seq = _seq;
-        this.unreadCount = _unreadCount;
-
-    }
-
-
-    public int getClassId() {
-        return CLASS_ID;
-    }
-
 
     protected int pts;
 
@@ -46,73 +27,83 @@ public class TLState extends TLObject {
 
     protected int unreadCount;
 
-
-    public int getPts() {
-        return pts;
+    public TLState() {
     }
 
-    public void setPts(int value) {
-        this.pts = value;
+    public TLState(int pts, int qts, int date, int seq, int unreadCount) {
+        this.pts = pts;
+        this.qts = qts;
+        this.date = date;
+        this.seq = seq;
+        this.unreadCount = unreadCount;
     }
-
-    public int getQts() {
-        return qts;
-    }
-
-    public void setQts(int value) {
-        this.qts = value;
-    }
-
-    public int getDate() {
-        return date;
-    }
-
-    public void setDate(int value) {
-        this.date = value;
-    }
-
-    public int getSeq() {
-        return seq;
-    }
-
-    public void setSeq(int value) {
-        this.seq = value;
-    }
-
-    public int getUnreadCount() {
-        return unreadCount;
-    }
-
-    public void setUnreadCount(int value) {
-        this.unreadCount = value;
-    }
-
 
     @Override
     public void serializeBody(OutputStream stream) throws IOException {
-
-        writeInt(this.pts, stream);
-        writeInt(this.qts, stream);
-        writeInt(this.date, stream);
-        writeInt(this.seq, stream);
-        writeInt(this.unreadCount, stream);
+        writeInt(pts, stream);
+        writeInt(qts, stream);
+        writeInt(date, stream);
+        writeInt(seq, stream);
+        writeInt(unreadCount, stream);
     }
-
 
     @Override
+    @SuppressWarnings("unchecked")
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
-
-        this.pts = readInt(stream);
-        this.qts = readInt(stream);
-        this.date = readInt(stream);
-        this.seq = readInt(stream);
-        this.unreadCount = readInt(stream);
+        pts = readInt(stream);
+        qts = readInt(stream);
+        date = readInt(stream);
+        seq = readInt(stream);
+        unreadCount = readInt(stream);
     }
-
 
     @Override
     public String toString() {
         return "updates.state#a56c2a3e";
     }
 
+    @Override
+    public int getClassId() {
+        return CLASS_ID;
+    }
+
+    public int getPts() {
+        return pts;
+    }
+
+    public void setPts(int pts) {
+        this.pts = pts;
+    }
+
+    public int getQts() {
+        return qts;
+    }
+
+    public void setQts(int qts) {
+        this.qts = qts;
+    }
+
+    public int getDate() {
+        return date;
+    }
+
+    public void setDate(int date) {
+        this.date = date;
+    }
+
+    public int getSeq() {
+        return seq;
+    }
+
+    public void setSeq(int seq) {
+        this.seq = seq;
+    }
+
+    public int getUnreadCount() {
+        return unreadCount;
+    }
+
+    public void setUnreadCount(int unreadCount) {
+        this.unreadCount = unreadCount;
+    }
 }

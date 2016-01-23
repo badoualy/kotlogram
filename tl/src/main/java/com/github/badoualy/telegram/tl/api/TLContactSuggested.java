@@ -1,4 +1,3 @@
-
 package com.github.badoualy.telegram.tl.api;
 
 import com.github.badoualy.telegram.tl.TLContext;
@@ -11,69 +10,61 @@ import java.io.OutputStream;
 import static com.github.badoualy.telegram.tl.StreamUtils.readInt;
 import static com.github.badoualy.telegram.tl.StreamUtils.writeInt;
 
-
+/**
+ * @author Yannick Badoual yann.badoual@gmail.com
+ * @see <a href="http://github.com/badoualy/kotlogram">http://github.com/badoualy/kotlogram</a>
+ */
 public class TLContactSuggested extends TLObject {
-
     public static final int CLASS_ID = 0x3de191a1;
-
-    public TLContactSuggested() {
-
-    }
-
-
-    public TLContactSuggested(        int _userId,         int _mutualContacts) {
-        this.userId = _userId;
-        this.mutualContacts = _mutualContacts;
-
-    }
-
-
-    public int getClassId() {
-        return CLASS_ID;
-    }
-
 
     protected int userId;
 
     protected int mutualContacts;
 
-
-    public int getUserId() {
-        return userId;
+    public TLContactSuggested() {
     }
 
-    public void setUserId(int value) {
-        this.userId = value;
+    public TLContactSuggested(int userId, int mutualContacts) {
+        this.userId = userId;
+        this.mutualContacts = mutualContacts;
     }
-
-    public int getMutualContacts() {
-        return mutualContacts;
-    }
-
-    public void setMutualContacts(int value) {
-        this.mutualContacts = value;
-    }
-
 
     @Override
     public void serializeBody(OutputStream stream) throws IOException {
-
-        writeInt(this.userId, stream);
-        writeInt(this.mutualContacts, stream);
+        writeInt(userId, stream);
+        writeInt(mutualContacts, stream);
     }
-
 
     @Override
+    @SuppressWarnings("unchecked")
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
-
-        this.userId = readInt(stream);
-        this.mutualContacts = readInt(stream);
+        userId = readInt(stream);
+        mutualContacts = readInt(stream);
     }
-
 
     @Override
     public String toString() {
         return "contactSuggested#3de191a1";
     }
 
+    @Override
+    public int getClassId() {
+        return CLASS_ID;
+    }
+
+    public int getUserId() {
+        return userId;
+    }
+
+    public void setUserId(int userId) {
+        this.userId = userId;
+    }
+
+    public int getMutualContacts() {
+        return mutualContacts;
+    }
+
+    public void setMutualContacts(int mutualContacts) {
+        this.mutualContacts = mutualContacts;
+    }
 }

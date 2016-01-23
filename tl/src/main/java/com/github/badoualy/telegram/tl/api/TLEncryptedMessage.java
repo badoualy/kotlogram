@@ -1,6 +1,4 @@
-
 package com.github.badoualy.telegram.tl.api;
-
 
 import com.github.badoualy.telegram.tl.TLContext;
 import com.github.badoualy.telegram.tl.core.TLBytes;
@@ -18,69 +16,92 @@ import static com.github.badoualy.telegram.tl.StreamUtils.writeLong;
 import static com.github.badoualy.telegram.tl.StreamUtils.writeTLBytes;
 import static com.github.badoualy.telegram.tl.StreamUtils.writeTLObject;
 
-
-
+/**
+ * @author Yannick Badoual yann.badoual@gmail.com
+ * @see <a href="http://github.com/badoualy/kotlogram">http://github.com/badoualy/kotlogram</a>
+ */
 public class TLEncryptedMessage extends TLAbsEncryptedMessage {
     public static final int CLASS_ID = 0xed18c118;
 
+    protected TLAbsEncryptedFile file;
+
     public TLEncryptedMessage() {
-
     }
 
-
-    public TLEncryptedMessage(        long _randomId,         int _chatId,         int _date,         TLBytes _bytes,         com.github.badoualy.telegram.tl.api.TLAbsEncryptedFile _file) {
-        this.randomId = _randomId;
-        this.chatId = _chatId;
-        this.date = _date;
-        this.bytes = _bytes;
-        this.file = _file;
-
+    public TLEncryptedMessage(long randomId, int chatId, int date, TLBytes bytes, TLAbsEncryptedFile file) {
+        this.randomId = randomId;
+        this.chatId = chatId;
+        this.date = date;
+        this.bytes = bytes;
+        this.file = file;
     }
-
-
-    public int getClassId() {
-        return CLASS_ID;
-    }
-
-
-    protected com.github.badoualy.telegram.tl.api.TLAbsEncryptedFile file;
-
-
-    public com.github.badoualy.telegram.tl.api.TLAbsEncryptedFile getFile() {
-        return file;
-    }
-
-    public void setFile(com.github.badoualy.telegram.tl.api.TLAbsEncryptedFile value) {
-        this.file = value;
-    }
-
 
     @Override
     public void serializeBody(OutputStream stream) throws IOException {
-
-        writeLong(this.randomId, stream);
-        writeInt(this.chatId, stream);
-        writeInt(this.date, stream);
-        writeTLBytes(this.bytes, stream);
-        writeTLObject(this.file, stream);
+        writeLong(randomId, stream);
+        writeInt(chatId, stream);
+        writeInt(date, stream);
+        writeTLBytes(bytes, stream);
+        writeTLObject(file, stream);
     }
-
 
     @Override
+    @SuppressWarnings("unchecked")
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
-
-        this.randomId = readLong(stream);
-        this.chatId = readInt(stream);
-        this.date = readInt(stream);
-        this.bytes = readTLBytes(stream, context);
-        this.file = (com.github.badoualy.telegram.tl.api.TLAbsEncryptedFile)readTLObject(stream, context);
+        randomId = readLong(stream);
+        chatId = readInt(stream);
+        date = readInt(stream);
+        bytes = readTLBytes(stream, context);
+        file = (com.github.badoualy.telegram.tl.api.TLAbsEncryptedFile) readTLObject(stream, context);
     }
-
-
 
     @Override
     public String toString() {
         return "encryptedMessage#ed18c118";
     }
 
+    @Override
+    public int getClassId() {
+        return CLASS_ID;
+    }
+
+    public long getRandomId() {
+        return randomId;
+    }
+
+    public void setRandomId(long randomId) {
+        this.randomId = randomId;
+    }
+
+    public int getChatId() {
+        return chatId;
+    }
+
+    public void setChatId(int chatId) {
+        this.chatId = chatId;
+    }
+
+    public int getDate() {
+        return date;
+    }
+
+    public void setDate(int date) {
+        this.date = date;
+    }
+
+    public TLBytes getBytes() {
+        return bytes;
+    }
+
+    public void setBytes(TLBytes bytes) {
+        this.bytes = bytes;
+    }
+
+    public TLAbsEncryptedFile getFile() {
+        return file;
+    }
+
+    public void setFile(TLAbsEncryptedFile file) {
+        this.file = file;
+    }
 }

@@ -29,9 +29,15 @@ import java.util.zip.GZIPInputStream;
  */
 public abstract class TLContext {
 
-    private final HashMap<Integer, Class> registeredClasses = new HashMap<Integer, Class>();
+    private HashMap<Integer, Class> registeredClasses;
 
     public TLContext() {
+        registeredClasses = new HashMap<Integer, Class>();
+        init();
+    }
+
+    public TLContext(int size) {
+        registeredClasses = new HashMap<Integer, Class>(size);
         init();
     }
 

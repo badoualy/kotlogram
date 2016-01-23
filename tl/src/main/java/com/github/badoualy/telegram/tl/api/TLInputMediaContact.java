@@ -1,6 +1,4 @@
-
 package com.github.badoualy.telegram.tl.api;
-
 
 import com.github.badoualy.telegram.tl.TLContext;
 
@@ -11,28 +9,12 @@ import java.io.OutputStream;
 import static com.github.badoualy.telegram.tl.StreamUtils.readTLString;
 import static com.github.badoualy.telegram.tl.StreamUtils.writeTLString;
 
-
-
+/**
+ * @author Yannick Badoual yann.badoual@gmail.com
+ * @see <a href="http://github.com/badoualy/kotlogram">http://github.com/badoualy/kotlogram</a>
+ */
 public class TLInputMediaContact extends TLAbsInputMedia {
     public static final int CLASS_ID = 0xa6e45987;
-
-    public TLInputMediaContact() {
-
-    }
-
-
-    public TLInputMediaContact(        String _phoneNumber,         String _firstName,         String _lastName) {
-        this.phoneNumber = _phoneNumber;
-        this.firstName = _firstName;
-        this.lastName = _lastName;
-
-    }
-
-
-    public int getClassId() {
-        return CLASS_ID;
-    }
-
 
     protected String phoneNumber;
 
@@ -40,54 +22,61 @@ public class TLInputMediaContact extends TLAbsInputMedia {
 
     protected String lastName;
 
-
-    public String getPhoneNumber() {
-        return phoneNumber;
+    public TLInputMediaContact() {
     }
 
-    public void setPhoneNumber(String value) {
-        this.phoneNumber = value;
+    public TLInputMediaContact(String phoneNumber, String firstName, String lastName) {
+        this.phoneNumber = phoneNumber;
+        this.firstName = firstName;
+        this.lastName = lastName;
     }
-
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public void setFirstName(String value) {
-        this.firstName = value;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String value) {
-        this.lastName = value;
-    }
-
 
     @Override
     public void serializeBody(OutputStream stream) throws IOException {
-
-        writeTLString(this.phoneNumber, stream);
-        writeTLString(this.firstName, stream);
-        writeTLString(this.lastName, stream);
+        writeTLString(phoneNumber, stream);
+        writeTLString(firstName, stream);
+        writeTLString(lastName, stream);
     }
-
 
     @Override
+    @SuppressWarnings("unchecked")
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
-
-        this.phoneNumber = readTLString(stream);
-        this.firstName = readTLString(stream);
-        this.lastName = readTLString(stream);
+        phoneNumber = readTLString(stream);
+        firstName = readTLString(stream);
+        lastName = readTLString(stream);
     }
-
-
 
     @Override
     public String toString() {
         return "inputMediaContact#a6e45987";
     }
 
+    @Override
+    public int getClassId() {
+        return CLASS_ID;
+    }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
 }

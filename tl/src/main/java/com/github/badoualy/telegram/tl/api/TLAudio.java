@@ -1,6 +1,4 @@
-
 package com.github.badoualy.telegram.tl.api;
-
 
 import com.github.badoualy.telegram.tl.TLContext;
 
@@ -15,37 +13,14 @@ import static com.github.badoualy.telegram.tl.StreamUtils.writeInt;
 import static com.github.badoualy.telegram.tl.StreamUtils.writeLong;
 import static com.github.badoualy.telegram.tl.StreamUtils.writeTLString;
 
-
-
+/**
+ * @author Yannick Badoual yann.badoual@gmail.com
+ * @see <a href="http://github.com/badoualy/kotlogram">http://github.com/badoualy/kotlogram</a>
+ */
 public class TLAudio extends TLAbsAudio {
-    public static final int CLASS_ID = 0xc7ac6496;
-
-    public TLAudio() {
-
-    }
-
-
-    public TLAudio(        long _id,         long _accessHash,         int _userId,         int _date,         int _duration,         String _mimeType,         int _size,         int _dcId) {
-        this.id = _id;
-        this.accessHash = _accessHash;
-        this.userId = _userId;
-        this.date = _date;
-        this.duration = _duration;
-        this.mimeType = _mimeType;
-        this.size = _size;
-        this.dcId = _dcId;
-
-    }
-
-
-    public int getClassId() {
-        return CLASS_ID;
-    }
-
+    public static final int CLASS_ID = 0xf9e35055;
 
     protected long accessHash;
-
-    protected int userId;
 
     protected int date;
 
@@ -57,96 +32,105 @@ public class TLAudio extends TLAbsAudio {
 
     protected int dcId;
 
+    public TLAudio() {
+    }
+
+    public TLAudio(long id, long accessHash, int date, int duration, String mimeType, int size, int dcId) {
+        this.id = id;
+        this.accessHash = accessHash;
+        this.date = date;
+        this.duration = duration;
+        this.mimeType = mimeType;
+        this.size = size;
+        this.dcId = dcId;
+    }
+
+    @Override
+    public void serializeBody(OutputStream stream) throws IOException {
+        writeLong(id, stream);
+        writeLong(accessHash, stream);
+        writeInt(date, stream);
+        writeInt(duration, stream);
+        writeTLString(mimeType, stream);
+        writeInt(size, stream);
+        writeInt(dcId, stream);
+    }
+
+    @Override
+    @SuppressWarnings("unchecked")
+    public void deserializeBody(InputStream stream, TLContext context) throws IOException {
+        id = readLong(stream);
+        accessHash = readLong(stream);
+        date = readInt(stream);
+        duration = readInt(stream);
+        mimeType = readTLString(stream);
+        size = readInt(stream);
+        dcId = readInt(stream);
+    }
+
+    @Override
+    public String toString() {
+        return "audio#f9e35055";
+    }
+
+    @Override
+    public int getClassId() {
+        return CLASS_ID;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
 
     public long getAccessHash() {
         return accessHash;
     }
 
-    public void setAccessHash(long value) {
-        this.accessHash = value;
-    }
-
-    public int getUserId() {
-        return userId;
-    }
-
-    public void setUserId(int value) {
-        this.userId = value;
+    public void setAccessHash(long accessHash) {
+        this.accessHash = accessHash;
     }
 
     public int getDate() {
         return date;
     }
 
-    public void setDate(int value) {
-        this.date = value;
+    public void setDate(int date) {
+        this.date = date;
     }
 
     public int getDuration() {
         return duration;
     }
 
-    public void setDuration(int value) {
-        this.duration = value;
+    public void setDuration(int duration) {
+        this.duration = duration;
     }
 
     public String getMimeType() {
         return mimeType;
     }
 
-    public void setMimeType(String value) {
-        this.mimeType = value;
+    public void setMimeType(String mimeType) {
+        this.mimeType = mimeType;
     }
 
     public int getSize() {
         return size;
     }
 
-    public void setSize(int value) {
-        this.size = value;
+    public void setSize(int size) {
+        this.size = size;
     }
 
     public int getDcId() {
         return dcId;
     }
 
-    public void setDcId(int value) {
-        this.dcId = value;
+    public void setDcId(int dcId) {
+        this.dcId = dcId;
     }
-
-
-    @Override
-    public void serializeBody(OutputStream stream) throws IOException {
-
-        writeLong(this.id, stream);
-        writeLong(this.accessHash, stream);
-        writeInt(this.userId, stream);
-        writeInt(this.date, stream);
-        writeInt(this.duration, stream);
-        writeTLString(this.mimeType, stream);
-        writeInt(this.size, stream);
-        writeInt(this.dcId, stream);
-    }
-
-
-    @Override
-    public void deserializeBody(InputStream stream, TLContext context) throws IOException {
-
-        this.id = readLong(stream);
-        this.accessHash = readLong(stream);
-        this.userId = readInt(stream);
-        this.date = readInt(stream);
-        this.duration = readInt(stream);
-        this.mimeType = readTLString(stream);
-        this.size = readInt(stream);
-        this.dcId = readInt(stream);
-    }
-
-
-
-    @Override
-    public String toString() {
-        return "audio#c7ac6496";
-    }
-
 }

@@ -1,6 +1,4 @@
-
 package com.github.badoualy.telegram.tl.api;
-
 
 import com.github.badoualy.telegram.tl.TLContext;
 
@@ -11,57 +9,48 @@ import java.io.OutputStream;
 import static com.github.badoualy.telegram.tl.StreamUtils.readTLObject;
 import static com.github.badoualy.telegram.tl.StreamUtils.writeTLObject;
 
-
-
+/**
+ * @author Yannick Badoual yann.badoual@gmail.com
+ * @see <a href="http://github.com/badoualy/kotlogram">http://github.com/badoualy/kotlogram</a>
+ */
 public class TLMessageMediaGeo extends TLAbsMessageMedia {
     public static final int CLASS_ID = 0x56e0d474;
 
+    protected TLAbsGeoPoint geo;
+
     public TLMessageMediaGeo() {
-
     }
 
-
-    public TLMessageMediaGeo(        com.github.badoualy.telegram.tl.api.TLAbsGeoPoint _geo) {
-        this.geo = _geo;
-
+    public TLMessageMediaGeo(TLAbsGeoPoint geo) {
+        this.geo = geo;
     }
-
-
-    public int getClassId() {
-        return CLASS_ID;
-    }
-
-
-    protected com.github.badoualy.telegram.tl.api.TLAbsGeoPoint geo;
-
-
-    public com.github.badoualy.telegram.tl.api.TLAbsGeoPoint getGeo() {
-        return geo;
-    }
-
-    public void setGeo(com.github.badoualy.telegram.tl.api.TLAbsGeoPoint value) {
-        this.geo = value;
-    }
-
 
     @Override
     public void serializeBody(OutputStream stream) throws IOException {
-
-        writeTLObject(this.geo, stream);
+        writeTLObject(geo, stream);
     }
-
 
     @Override
+    @SuppressWarnings("unchecked")
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
-
-        this.geo = (com.github.badoualy.telegram.tl.api.TLAbsGeoPoint)readTLObject(stream, context);
+        geo = (com.github.badoualy.telegram.tl.api.TLAbsGeoPoint) readTLObject(stream, context);
     }
-
-
 
     @Override
     public String toString() {
         return "messageMediaGeo#56e0d474";
     }
 
+    @Override
+    public int getClassId() {
+        return CLASS_ID;
+    }
+
+    public TLAbsGeoPoint getGeo() {
+        return geo;
+    }
+
+    public void setGeo(TLAbsGeoPoint geo) {
+        this.geo = geo;
+    }
 }

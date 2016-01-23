@@ -1,6 +1,4 @@
-
 package com.github.badoualy.telegram.tl.api;
-
 
 import com.github.badoualy.telegram.tl.TLContext;
 
@@ -11,70 +9,61 @@ import java.io.OutputStream;
 import static com.github.badoualy.telegram.tl.StreamUtils.readDouble;
 import static com.github.badoualy.telegram.tl.StreamUtils.writeDouble;
 
-
-
+/**
+ * @author Yannick Badoual yann.badoual@gmail.com
+ * @see <a href="http://github.com/badoualy/kotlogram">http://github.com/badoualy/kotlogram</a>
+ */
 public class TLInputGeoPoint extends TLAbsInputGeoPoint {
     public static final int CLASS_ID = 0xf3b7acc9;
 
-    public TLInputGeoPoint() {
-
-    }
-
-
-    public TLInputGeoPoint(        double _lat,         double _lon) {
-        this.lat = _lat;
-        this.lon = _lon;
-
-    }
-
-
-    public int getClassId() {
-        return CLASS_ID;
-    }
-
-
     protected double lat;
 
-    protected double lon;
+    protected double _long;
 
-
-    public double getLat() {
-        return lat;
+    public TLInputGeoPoint() {
     }
 
-    public void setLat(double value) {
-        this.lat = value;
+    public TLInputGeoPoint(double lat, double _long) {
+        this.lat = lat;
+        this._long = _long;
     }
-
-    public double getLon() {
-        return lon;
-    }
-
-    public void setLon(double value) {
-        this.lon = value;
-    }
-
 
     @Override
     public void serializeBody(OutputStream stream) throws IOException {
-
-        writeDouble(this.lat, stream);
-        writeDouble(this.lon, stream);
+        writeDouble(lat, stream);
+        writeDouble(_long, stream);
     }
-
 
     @Override
+    @SuppressWarnings("unchecked")
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
-
-        this.lat = readDouble(stream);
-        this.lon = readDouble(stream);
+        lat = readDouble(stream);
+        _long = readDouble(stream);
     }
-
-
 
     @Override
     public String toString() {
         return "inputGeoPoint#f3b7acc9";
     }
 
+    @Override
+    public int getClassId() {
+        return CLASS_ID;
+    }
+
+    public double getLat() {
+        return lat;
+    }
+
+    public void setLat(double lat) {
+        this.lat = lat;
+    }
+
+    public double getLong() {
+        return _long;
+    }
+
+    public void setLong(double _long) {
+        this._long = _long;
+    }
 }

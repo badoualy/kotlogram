@@ -1,4 +1,3 @@
-
 package com.github.badoualy.telegram.tl.api.auth;
 
 import com.github.badoualy.telegram.tl.TLContext;
@@ -14,69 +13,61 @@ import static com.github.badoualy.telegram.tl.StreamUtils.readTLBytes;
 import static com.github.badoualy.telegram.tl.StreamUtils.writeInt;
 import static com.github.badoualy.telegram.tl.StreamUtils.writeTLBytes;
 
-
+/**
+ * @author Yannick Badoual yann.badoual@gmail.com
+ * @see <a href="http://github.com/badoualy/kotlogram">http://github.com/badoualy/kotlogram</a>
+ */
 public class TLExportedAuthorization extends TLObject {
-
     public static final int CLASS_ID = 0xdf969c2d;
-
-    public TLExportedAuthorization() {
-
-    }
-
-
-    public TLExportedAuthorization(        int _id,         TLBytes _bytes) {
-        this.id = _id;
-        this.bytes = _bytes;
-
-    }
-
-
-    public int getClassId() {
-        return CLASS_ID;
-    }
-
 
     protected int id;
 
     protected TLBytes bytes;
 
-
-    public int getId() {
-        return id;
+    public TLExportedAuthorization() {
     }
 
-    public void setId(int value) {
-        this.id = value;
+    public TLExportedAuthorization(int id, TLBytes bytes) {
+        this.id = id;
+        this.bytes = bytes;
     }
-
-    public TLBytes getBytes() {
-        return bytes;
-    }
-
-    public void setBytes(TLBytes value) {
-        this.bytes = value;
-    }
-
 
     @Override
     public void serializeBody(OutputStream stream) throws IOException {
-
-        writeInt(this.id, stream);
-        writeTLBytes(this.bytes, stream);
+        writeInt(id, stream);
+        writeTLBytes(bytes, stream);
     }
-
 
     @Override
+    @SuppressWarnings("unchecked")
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
-
-        this.id = readInt(stream);
-        this.bytes = readTLBytes(stream, context);
+        id = readInt(stream);
+        bytes = readTLBytes(stream, context);
     }
-
 
     @Override
     public String toString() {
         return "auth.exportedAuthorization#df969c2d";
     }
 
+    @Override
+    public int getClassId() {
+        return CLASS_ID;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public TLBytes getBytes() {
+        return bytes;
+    }
+
+    public void setBytes(TLBytes bytes) {
+        this.bytes = bytes;
+    }
 }

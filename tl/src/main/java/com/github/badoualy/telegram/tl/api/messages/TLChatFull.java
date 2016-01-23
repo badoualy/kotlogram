@@ -1,8 +1,11 @@
-
 package com.github.badoualy.telegram.tl.api.messages;
 
 import com.github.badoualy.telegram.tl.TLContext;
+import com.github.badoualy.telegram.tl.api.TLAbsChat;
+import com.github.badoualy.telegram.tl.api.TLAbsChatFull;
+import com.github.badoualy.telegram.tl.api.TLAbsUser;
 import com.github.badoualy.telegram.tl.core.TLObject;
+import com.github.badoualy.telegram.tl.core.TLVector;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -13,82 +16,74 @@ import static com.github.badoualy.telegram.tl.StreamUtils.readTLVector;
 import static com.github.badoualy.telegram.tl.StreamUtils.writeTLObject;
 import static com.github.badoualy.telegram.tl.StreamUtils.writeTLVector;
 
-
+/**
+ * @author Yannick Badoual yann.badoual@gmail.com
+ * @see <a href="http://github.com/badoualy/kotlogram">http://github.com/badoualy/kotlogram</a>
+ */
 public class TLChatFull extends TLObject {
-
     public static final int CLASS_ID = 0xe5d7d19c;
 
+    protected TLAbsChatFull fullChat;
+
+    protected TLVector<TLAbsChat> chats;
+
+    protected TLVector<TLAbsUser> users;
+
     public TLChatFull() {
-
     }
 
-
-    public TLChatFull(        com.github.badoualy.telegram.tl.api.TLChatFull _fullChat,         com.github.badoualy.telegram.tl.core.TLVector<com.github.badoualy.telegram.tl.api.TLAbsChat> _chats,         com.github.badoualy.telegram.tl.core.TLVector<com.github.badoualy.telegram.tl.api.TLAbsUser> _users) {
-        this.fullChat = _fullChat;
-        this.chats = _chats;
-        this.users = _users;
-
+    public TLChatFull(TLAbsChatFull fullChat, TLVector<TLAbsChat> chats, TLVector<TLAbsUser> users) {
+        this.fullChat = fullChat;
+        this.chats = chats;
+        this.users = users;
     }
-
-
-    public int getClassId() {
-        return CLASS_ID;
-    }
-
-
-    protected com.github.badoualy.telegram.tl.api.TLChatFull fullChat;
-
-    protected com.github.badoualy.telegram.tl.core.TLVector<com.github.badoualy.telegram.tl.api.TLAbsChat> chats;
-
-    protected com.github.badoualy.telegram.tl.core.TLVector<com.github.badoualy.telegram.tl.api.TLAbsUser> users;
-
-
-    public com.github.badoualy.telegram.tl.api.TLChatFull getFullChat() {
-        return fullChat;
-    }
-
-    public void setFullChat(com.github.badoualy.telegram.tl.api.TLChatFull value) {
-        this.fullChat = value;
-    }
-
-    public com.github.badoualy.telegram.tl.core.TLVector<com.github.badoualy.telegram.tl.api.TLAbsChat> getChats() {
-        return chats;
-    }
-
-    public void setChats(com.github.badoualy.telegram.tl.core.TLVector<com.github.badoualy.telegram.tl.api.TLAbsChat> value) {
-        this.chats = value;
-    }
-
-    public com.github.badoualy.telegram.tl.core.TLVector<com.github.badoualy.telegram.tl.api.TLAbsUser> getUsers() {
-        return users;
-    }
-
-    public void setUsers(com.github.badoualy.telegram.tl.core.TLVector<com.github.badoualy.telegram.tl.api.TLAbsUser> value) {
-        this.users = value;
-    }
-
 
     @Override
     public void serializeBody(OutputStream stream) throws IOException {
-
-        writeTLObject(this.fullChat, stream);
-        writeTLVector(this.chats, stream);
-        writeTLVector(this.users, stream);
+        writeTLObject(fullChat, stream);
+        writeTLVector(chats, stream);
+        writeTLVector(users, stream);
     }
-
 
     @Override
+    @SuppressWarnings("unchecked")
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
-
-        this.fullChat = (com.github.badoualy.telegram.tl.api.TLChatFull)readTLObject(stream, context);
-        this.chats = readTLVector(stream, context);
-        this.users = readTLVector(stream, context);
+        fullChat = (com.github.badoualy.telegram.tl.api.TLAbsChatFull) readTLObject(stream, context);
+        chats = readTLVector(stream, context);
+        users = readTLVector(stream, context);
     }
-
 
     @Override
     public String toString() {
         return "messages.chatFull#e5d7d19c";
     }
 
+    @Override
+    public int getClassId() {
+        return CLASS_ID;
+    }
+
+    public TLAbsChatFull getFullChat() {
+        return fullChat;
+    }
+
+    public void setFullChat(TLAbsChatFull fullChat) {
+        this.fullChat = fullChat;
+    }
+
+    public TLVector<TLAbsChat> getChats() {
+        return chats;
+    }
+
+    public void setChats(TLVector<TLAbsChat> chats) {
+        this.chats = chats;
+    }
+
+    public TLVector<TLAbsUser> getUsers() {
+        return users;
+    }
+
+    public void setUsers(TLVector<TLAbsUser> users) {
+        this.users = users;
+    }
 }

@@ -1,8 +1,7 @@
-
 package com.github.badoualy.telegram.tl.api;
 
 import com.github.badoualy.telegram.tl.TLContext;
-import com.github.badoualy.telegram.tl.core.TLObject;
+import com.github.badoualy.telegram.tl.core.TLVector;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -10,98 +9,118 @@ import java.io.OutputStream;
 
 import static com.github.badoualy.telegram.tl.StreamUtils.readInt;
 import static com.github.badoualy.telegram.tl.StreamUtils.readTLObject;
+import static com.github.badoualy.telegram.tl.StreamUtils.readTLVector;
 import static com.github.badoualy.telegram.tl.StreamUtils.writeInt;
 import static com.github.badoualy.telegram.tl.StreamUtils.writeTLObject;
+import static com.github.badoualy.telegram.tl.StreamUtils.writeTLVector;
 
-
-public class TLChatFull extends TLObject {
-
-    public static final int CLASS_ID = 0x630e61be;
-
-    public TLChatFull() {
-
-    }
-
-
-    public TLChatFull(        int _id,         com.github.badoualy.telegram.tl.api.TLAbsChatParticipants _participants,         com.github.badoualy.telegram.tl.api.TLAbsPhoto _chatPhoto,         com.github.badoualy.telegram.tl.api.TLAbsPeerNotifySettings _notifySettings) {
-        this.id = _id;
-        this.participants = _participants;
-        this.chatPhoto = _chatPhoto;
-        this.notifySettings = _notifySettings;
-
-    }
-
-
-    public int getClassId() {
-        return CLASS_ID;
-    }
-
+/**
+ * @author Yannick Badoual yann.badoual@gmail.com
+ * @see <a href="http://github.com/badoualy/kotlogram">http://github.com/badoualy/kotlogram</a>
+ */
+public class TLChatFull extends TLAbsChatFull {
+    public static final int CLASS_ID = 0x2e02a614;
 
     protected int id;
 
-    protected com.github.badoualy.telegram.tl.api.TLAbsChatParticipants participants;
+    protected TLAbsChatParticipants participants;
 
-    protected com.github.badoualy.telegram.tl.api.TLAbsPhoto chatPhoto;
+    protected TLAbsPhoto chatPhoto;
 
-    protected com.github.badoualy.telegram.tl.api.TLAbsPeerNotifySettings notifySettings;
+    protected TLAbsPeerNotifySettings notifySettings;
 
+    protected TLAbsExportedChatInvite exportedInvite;
+
+    protected TLVector<TLAbsBotInfo> botInfo;
+
+    public TLChatFull() {
+    }
+
+    public TLChatFull(int id, TLAbsChatParticipants participants, TLAbsPhoto chatPhoto, TLAbsPeerNotifySettings notifySettings, TLAbsExportedChatInvite exportedInvite, TLVector<TLAbsBotInfo> botInfo) {
+        this.id = id;
+        this.participants = participants;
+        this.chatPhoto = chatPhoto;
+        this.notifySettings = notifySettings;
+        this.exportedInvite = exportedInvite;
+        this.botInfo = botInfo;
+    }
+
+    @Override
+    public void serializeBody(OutputStream stream) throws IOException {
+        writeInt(id, stream);
+        writeTLObject(participants, stream);
+        writeTLObject(chatPhoto, stream);
+        writeTLObject(notifySettings, stream);
+        writeTLObject(exportedInvite, stream);
+        writeTLVector(botInfo, stream);
+    }
+
+    @Override
+    @SuppressWarnings("unchecked")
+    public void deserializeBody(InputStream stream, TLContext context) throws IOException {
+        id = readInt(stream);
+        participants = (com.github.badoualy.telegram.tl.api.TLAbsChatParticipants) readTLObject(stream, context);
+        chatPhoto = (com.github.badoualy.telegram.tl.api.TLAbsPhoto) readTLObject(stream, context);
+        notifySettings = (com.github.badoualy.telegram.tl.api.TLAbsPeerNotifySettings) readTLObject(stream, context);
+        exportedInvite = (com.github.badoualy.telegram.tl.api.TLAbsExportedChatInvite) readTLObject(stream, context);
+        botInfo = readTLVector(stream, context);
+    }
+
+    @Override
+    public String toString() {
+        return "chatFull#2e02a614";
+    }
+
+    @Override
+    public int getClassId() {
+        return CLASS_ID;
+    }
 
     public int getId() {
         return id;
     }
 
-    public void setId(int value) {
-        this.id = value;
+    public void setId(int id) {
+        this.id = id;
     }
 
-    public com.github.badoualy.telegram.tl.api.TLAbsChatParticipants getParticipants() {
+    public TLAbsChatParticipants getParticipants() {
         return participants;
     }
 
-    public void setParticipants(com.github.badoualy.telegram.tl.api.TLAbsChatParticipants value) {
-        this.participants = value;
+    public void setParticipants(TLAbsChatParticipants participants) {
+        this.participants = participants;
     }
 
-    public com.github.badoualy.telegram.tl.api.TLAbsPhoto getChatPhoto() {
+    public TLAbsPhoto getChatPhoto() {
         return chatPhoto;
     }
 
-    public void setChatPhoto(com.github.badoualy.telegram.tl.api.TLAbsPhoto value) {
-        this.chatPhoto = value;
+    public void setChatPhoto(TLAbsPhoto chatPhoto) {
+        this.chatPhoto = chatPhoto;
     }
 
-    public com.github.badoualy.telegram.tl.api.TLAbsPeerNotifySettings getNotifySettings() {
+    public TLAbsPeerNotifySettings getNotifySettings() {
         return notifySettings;
     }
 
-    public void setNotifySettings(com.github.badoualy.telegram.tl.api.TLAbsPeerNotifySettings value) {
-        this.notifySettings = value;
+    public void setNotifySettings(TLAbsPeerNotifySettings notifySettings) {
+        this.notifySettings = notifySettings;
     }
 
-
-    @Override
-    public void serializeBody(OutputStream stream) throws IOException {
-
-        writeInt(this.id, stream);
-        writeTLObject(this.participants, stream);
-        writeTLObject(this.chatPhoto, stream);
-        writeTLObject(this.notifySettings, stream);
+    public TLAbsExportedChatInvite getExportedInvite() {
+        return exportedInvite;
     }
 
-
-    @Override
-    public void deserializeBody(InputStream stream, TLContext context) throws IOException {
-
-        this.id = readInt(stream);
-        this.participants = (com.github.badoualy.telegram.tl.api.TLAbsChatParticipants)readTLObject(stream, context);
-        this.chatPhoto = (com.github.badoualy.telegram.tl.api.TLAbsPhoto)readTLObject(stream, context);
-        this.notifySettings = (com.github.badoualy.telegram.tl.api.TLAbsPeerNotifySettings)readTLObject(stream, context);
+    public void setExportedInvite(TLAbsExportedChatInvite exportedInvite) {
+        this.exportedInvite = exportedInvite;
     }
 
-
-    @Override
-    public String toString() {
-        return "chatFull#630e61be";
+    public TLVector<TLAbsBotInfo> getBotInfo() {
+        return botInfo;
     }
 
+    public void setBotInfo(TLVector<TLAbsBotInfo> botInfo) {
+        this.botInfo = botInfo;
+    }
 }

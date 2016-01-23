@@ -1,8 +1,7 @@
-
 package com.github.badoualy.telegram.tl.api;
 
-
 import com.github.badoualy.telegram.tl.TLContext;
+import com.github.badoualy.telegram.tl.core.TLVector;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -12,156 +11,144 @@ import static com.github.badoualy.telegram.tl.StreamUtils.readInt;
 import static com.github.badoualy.telegram.tl.StreamUtils.readLong;
 import static com.github.badoualy.telegram.tl.StreamUtils.readTLObject;
 import static com.github.badoualy.telegram.tl.StreamUtils.readTLString;
+import static com.github.badoualy.telegram.tl.StreamUtils.readTLVector;
 import static com.github.badoualy.telegram.tl.StreamUtils.writeInt;
 import static com.github.badoualy.telegram.tl.StreamUtils.writeLong;
 import static com.github.badoualy.telegram.tl.StreamUtils.writeTLObject;
 import static com.github.badoualy.telegram.tl.StreamUtils.writeTLString;
+import static com.github.badoualy.telegram.tl.StreamUtils.writeTLVector;
 
-
-
+/**
+ * @author Yannick Badoual yann.badoual@gmail.com
+ * @see <a href="http://github.com/badoualy/kotlogram">http://github.com/badoualy/kotlogram</a>
+ */
 public class TLDocument extends TLAbsDocument {
-    public static final int CLASS_ID = 0x9efc6326;
-
-    public TLDocument() {
-
-    }
-
-
-    public TLDocument(        long _id,         long _accessHash,         int _userId,         int _date,         String _fileName,         String _mimeType,         int _size,         com.github.badoualy.telegram.tl.api.TLAbsPhotoSize _thumb,         int _dcId) {
-        this.id = _id;
-        this.accessHash = _accessHash;
-        this.userId = _userId;
-        this.date = _date;
-        this.fileName = _fileName;
-        this.mimeType = _mimeType;
-        this.size = _size;
-        this.thumb = _thumb;
-        this.dcId = _dcId;
-
-    }
-
-
-    public int getClassId() {
-        return CLASS_ID;
-    }
-
+    public static final int CLASS_ID = 0xf9a39f4f;
 
     protected long accessHash;
 
-    protected int userId;
-
     protected int date;
-
-    protected String fileName;
 
     protected String mimeType;
 
     protected int size;
 
-    protected com.github.badoualy.telegram.tl.api.TLAbsPhotoSize thumb;
+    protected TLAbsPhotoSize thumb;
 
     protected int dcId;
 
+    protected TLVector<TLAbsDocumentAttribute> attributes;
+
+    public TLDocument() {
+    }
+
+    public TLDocument(long id, long accessHash, int date, String mimeType, int size, TLAbsPhotoSize thumb, int dcId, TLVector<TLAbsDocumentAttribute> attributes) {
+        this.id = id;
+        this.accessHash = accessHash;
+        this.date = date;
+        this.mimeType = mimeType;
+        this.size = size;
+        this.thumb = thumb;
+        this.dcId = dcId;
+        this.attributes = attributes;
+    }
+
+    @Override
+    public void serializeBody(OutputStream stream) throws IOException {
+        writeLong(id, stream);
+        writeLong(accessHash, stream);
+        writeInt(date, stream);
+        writeTLString(mimeType, stream);
+        writeInt(size, stream);
+        writeTLObject(thumb, stream);
+        writeInt(dcId, stream);
+        writeTLVector(attributes, stream);
+    }
+
+    @Override
+    @SuppressWarnings("unchecked")
+    public void deserializeBody(InputStream stream, TLContext context) throws IOException {
+        id = readLong(stream);
+        accessHash = readLong(stream);
+        date = readInt(stream);
+        mimeType = readTLString(stream);
+        size = readInt(stream);
+        thumb = (com.github.badoualy.telegram.tl.api.TLAbsPhotoSize) readTLObject(stream, context);
+        dcId = readInt(stream);
+        attributes = readTLVector(stream, context);
+    }
+
+    @Override
+    public String toString() {
+        return "document#f9a39f4f";
+    }
+
+    @Override
+    public int getClassId() {
+        return CLASS_ID;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
 
     public long getAccessHash() {
         return accessHash;
     }
 
-    public void setAccessHash(long value) {
-        this.accessHash = value;
-    }
-
-    public int getUserId() {
-        return userId;
-    }
-
-    public void setUserId(int value) {
-        this.userId = value;
+    public void setAccessHash(long accessHash) {
+        this.accessHash = accessHash;
     }
 
     public int getDate() {
         return date;
     }
 
-    public void setDate(int value) {
-        this.date = value;
-    }
-
-    public String getFileName() {
-        return fileName;
-    }
-
-    public void setFileName(String value) {
-        this.fileName = value;
+    public void setDate(int date) {
+        this.date = date;
     }
 
     public String getMimeType() {
         return mimeType;
     }
 
-    public void setMimeType(String value) {
-        this.mimeType = value;
+    public void setMimeType(String mimeType) {
+        this.mimeType = mimeType;
     }
 
     public int getSize() {
         return size;
     }
 
-    public void setSize(int value) {
-        this.size = value;
+    public void setSize(int size) {
+        this.size = size;
     }
 
-    public com.github.badoualy.telegram.tl.api.TLAbsPhotoSize getThumb() {
+    public TLAbsPhotoSize getThumb() {
         return thumb;
     }
 
-    public void setThumb(com.github.badoualy.telegram.tl.api.TLAbsPhotoSize value) {
-        this.thumb = value;
+    public void setThumb(TLAbsPhotoSize thumb) {
+        this.thumb = thumb;
     }
 
     public int getDcId() {
         return dcId;
     }
 
-    public void setDcId(int value) {
-        this.dcId = value;
+    public void setDcId(int dcId) {
+        this.dcId = dcId;
     }
 
-
-    @Override
-    public void serializeBody(OutputStream stream) throws IOException {
-
-        writeLong(this.id, stream);
-        writeLong(this.accessHash, stream);
-        writeInt(this.userId, stream);
-        writeInt(this.date, stream);
-        writeTLString(this.fileName, stream);
-        writeTLString(this.mimeType, stream);
-        writeInt(this.size, stream);
-        writeTLObject(this.thumb, stream);
-        writeInt(this.dcId, stream);
+    public TLVector<TLAbsDocumentAttribute> getAttributes() {
+        return attributes;
     }
 
-
-    @Override
-    public void deserializeBody(InputStream stream, TLContext context) throws IOException {
-
-        this.id = readLong(stream);
-        this.accessHash = readLong(stream);
-        this.userId = readInt(stream);
-        this.date = readInt(stream);
-        this.fileName = readTLString(stream);
-        this.mimeType = readTLString(stream);
-        this.size = readInt(stream);
-        this.thumb = (com.github.badoualy.telegram.tl.api.TLAbsPhotoSize)readTLObject(stream, context);
-        this.dcId = readInt(stream);
+    public void setAttributes(TLVector<TLAbsDocumentAttribute> attributes) {
+        this.attributes = attributes;
     }
-
-
-
-    @Override
-    public String toString() {
-        return "document#9efc6326";
-    }
-
 }

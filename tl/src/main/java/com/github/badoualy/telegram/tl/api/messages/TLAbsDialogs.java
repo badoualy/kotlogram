@@ -1,52 +1,57 @@
-
 package com.github.badoualy.telegram.tl.api.messages;
 
-
+import com.github.badoualy.telegram.tl.api.TLAbsChat;
+import com.github.badoualy.telegram.tl.api.TLAbsDialog;
+import com.github.badoualy.telegram.tl.api.TLAbsMessage;
+import com.github.badoualy.telegram.tl.api.TLAbsUser;
 import com.github.badoualy.telegram.tl.core.TLObject;
+import com.github.badoualy.telegram.tl.core.TLVector;
 
-
-
+/**
+ * @author Yannick Badoual yann.badoual@gmail.com
+ * @see <a href="http://github.com/badoualy/kotlogram">http://github.com/badoualy/kotlogram</a>
+ */
 public abstract class TLAbsDialogs extends TLObject {
+    protected TLVector<TLAbsDialog> dialogs;
 
-    protected com.github.badoualy.telegram.tl.core.TLVector<com.github.badoualy.telegram.tl.api.TLDialog> dialogs;
+    protected TLVector<TLAbsMessage> messages;
 
-    protected com.github.badoualy.telegram.tl.core.TLVector<com.github.badoualy.telegram.tl.api.TLAbsMessage> messages;
+    protected TLVector<TLAbsChat> chats;
 
-    protected com.github.badoualy.telegram.tl.core.TLVector<com.github.badoualy.telegram.tl.api.TLAbsChat> chats;
+    protected TLVector<TLAbsUser> users;
 
-    protected com.github.badoualy.telegram.tl.core.TLVector<com.github.badoualy.telegram.tl.api.TLAbsUser> users;
+    public TLAbsDialogs() {
+    }
 
-
-    public com.github.badoualy.telegram.tl.core.TLVector<com.github.badoualy.telegram.tl.api.TLDialog> getDialogs() {
+    public TLVector<TLAbsDialog> getDialogs() {
         return dialogs;
     }
 
-    public void setDialogs(com.github.badoualy.telegram.tl.core.TLVector<com.github.badoualy.telegram.tl.api.TLDialog> value) {
-        this.dialogs = value;
+    public void setDialogs(TLVector<TLAbsDialog> dialogs) {
+        this.dialogs = dialogs;
     }
 
-    public com.github.badoualy.telegram.tl.core.TLVector<com.github.badoualy.telegram.tl.api.TLAbsMessage> getMessages() {
+    public TLVector<TLAbsMessage> getMessages() {
         return messages;
     }
 
-    public void setMessages(com.github.badoualy.telegram.tl.core.TLVector<com.github.badoualy.telegram.tl.api.TLAbsMessage> value) {
-        this.messages = value;
+    public void setMessages(TLVector<TLAbsMessage> messages) {
+        this.messages = messages;
     }
 
-    public com.github.badoualy.telegram.tl.core.TLVector<com.github.badoualy.telegram.tl.api.TLAbsChat> getChats() {
+    public TLVector<TLAbsChat> getChats() {
         return chats;
     }
 
-    public void setChats(com.github.badoualy.telegram.tl.core.TLVector<com.github.badoualy.telegram.tl.api.TLAbsChat> value) {
-        this.chats = value;
+    public void setChats(TLVector<TLAbsChat> chats) {
+        this.chats = chats;
     }
 
-    public com.github.badoualy.telegram.tl.core.TLVector<com.github.badoualy.telegram.tl.api.TLAbsUser> getUsers() {
+    public TLVector<TLAbsUser> getUsers() {
         return users;
     }
 
-    public void setUsers(com.github.badoualy.telegram.tl.core.TLVector<com.github.badoualy.telegram.tl.api.TLAbsUser> value) {
-        this.users = value;
+    public void setUsers(TLVector<TLAbsUser> users) {
+        this.users = users;
     }
-
 }

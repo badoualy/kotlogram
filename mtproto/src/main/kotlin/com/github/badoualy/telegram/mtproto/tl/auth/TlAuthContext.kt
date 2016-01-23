@@ -2,7 +2,7 @@ package com.github.badoualy.telegram.mtproto.tl.auth
 
 import com.github.badoualy.telegram.tl.TLContext
 
-object TlAuthContext : TLContext() {
+object TlAuthContext : TLContext(15) {
 
     override fun init() {
         registerClass(ReqPQ.CLASS_ID, ReqPQ::class.java)

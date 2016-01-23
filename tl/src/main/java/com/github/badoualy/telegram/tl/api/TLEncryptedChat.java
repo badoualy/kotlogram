@@ -1,6 +1,4 @@
-
 package com.github.badoualy.telegram.tl.api;
-
 
 import com.github.badoualy.telegram.tl.TLContext;
 import com.github.badoualy.telegram.tl.core.TLBytes;
@@ -16,32 +14,12 @@ import static com.github.badoualy.telegram.tl.StreamUtils.writeInt;
 import static com.github.badoualy.telegram.tl.StreamUtils.writeLong;
 import static com.github.badoualy.telegram.tl.StreamUtils.writeTLBytes;
 
-
-
+/**
+ * @author Yannick Badoual yann.badoual@gmail.com
+ * @see <a href="http://github.com/badoualy/kotlogram">http://github.com/badoualy/kotlogram</a>
+ */
 public class TLEncryptedChat extends TLAbsEncryptedChat {
     public static final int CLASS_ID = 0xfa56ce36;
-
-    public TLEncryptedChat() {
-
-    }
-
-
-    public TLEncryptedChat(        int _id,         long _accessHash,         int _date,         int _adminId,         int _participantId,         TLBytes _gAOrB,         long _keyFingerprint) {
-        this.id = _id;
-        this.accessHash = _accessHash;
-        this.date = _date;
-        this.adminId = _adminId;
-        this.participantId = _participantId;
-        this.gAOrB = _gAOrB;
-        this.keyFingerprint = _keyFingerprint;
-
-    }
-
-
-    public int getClassId() {
-        return CLASS_ID;
-    }
-
 
     protected long accessHash;
 
@@ -55,86 +33,105 @@ public class TLEncryptedChat extends TLAbsEncryptedChat {
 
     protected long keyFingerprint;
 
-
-    public long getAccessHash() {
-        return accessHash;
+    public TLEncryptedChat() {
     }
 
-    public void setAccessHash(long value) {
-        this.accessHash = value;
+    public TLEncryptedChat(int id, long accessHash, int date, int adminId, int participantId, TLBytes gAOrB, long keyFingerprint) {
+        this.id = id;
+        this.accessHash = accessHash;
+        this.date = date;
+        this.adminId = adminId;
+        this.participantId = participantId;
+        this.gAOrB = gAOrB;
+        this.keyFingerprint = keyFingerprint;
     }
-
-    public int getDate() {
-        return date;
-    }
-
-    public void setDate(int value) {
-        this.date = value;
-    }
-
-    public int getAdminId() {
-        return adminId;
-    }
-
-    public void setAdminId(int value) {
-        this.adminId = value;
-    }
-
-    public int getParticipantId() {
-        return participantId;
-    }
-
-    public void setParticipantId(int value) {
-        this.participantId = value;
-    }
-
-    public TLBytes getGAOrB() {
-        return gAOrB;
-    }
-
-    public void setGAOrB(TLBytes value) {
-        this.gAOrB = value;
-    }
-
-    public long getKeyFingerprint() {
-        return keyFingerprint;
-    }
-
-    public void setKeyFingerprint(long value) {
-        this.keyFingerprint = value;
-    }
-
 
     @Override
     public void serializeBody(OutputStream stream) throws IOException {
-
-        writeInt(this.id, stream);
-        writeLong(this.accessHash, stream);
-        writeInt(this.date, stream);
-        writeInt(this.adminId, stream);
-        writeInt(this.participantId, stream);
-        writeTLBytes(this.gAOrB, stream);
-        writeLong(this.keyFingerprint, stream);
+        writeInt(id, stream);
+        writeLong(accessHash, stream);
+        writeInt(date, stream);
+        writeInt(adminId, stream);
+        writeInt(participantId, stream);
+        writeTLBytes(gAOrB, stream);
+        writeLong(keyFingerprint, stream);
     }
-
 
     @Override
+    @SuppressWarnings("unchecked")
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
-
-        this.id = readInt(stream);
-        this.accessHash = readLong(stream);
-        this.date = readInt(stream);
-        this.adminId = readInt(stream);
-        this.participantId = readInt(stream);
-        this.gAOrB = readTLBytes(stream, context);
-        this.keyFingerprint = readLong(stream);
+        id = readInt(stream);
+        accessHash = readLong(stream);
+        date = readInt(stream);
+        adminId = readInt(stream);
+        participantId = readInt(stream);
+        gAOrB = readTLBytes(stream, context);
+        keyFingerprint = readLong(stream);
     }
-
-
 
     @Override
     public String toString() {
         return "encryptedChat#fa56ce36";
     }
 
+    @Override
+    public int getClassId() {
+        return CLASS_ID;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public long getAccessHash() {
+        return accessHash;
+    }
+
+    public void setAccessHash(long accessHash) {
+        this.accessHash = accessHash;
+    }
+
+    public int getDate() {
+        return date;
+    }
+
+    public void setDate(int date) {
+        this.date = date;
+    }
+
+    public int getAdminId() {
+        return adminId;
+    }
+
+    public void setAdminId(int adminId) {
+        this.adminId = adminId;
+    }
+
+    public int getParticipantId() {
+        return participantId;
+    }
+
+    public void setParticipantId(int participantId) {
+        this.participantId = participantId;
+    }
+
+    public TLBytes getGAOrB() {
+        return gAOrB;
+    }
+
+    public void setGAOrB(TLBytes gAOrB) {
+        this.gAOrB = gAOrB;
+    }
+
+    public long getKeyFingerprint() {
+        return keyFingerprint;
+    }
+
+    public void setKeyFingerprint(long keyFingerprint) {
+        this.keyFingerprint = keyFingerprint;
+    }
 }

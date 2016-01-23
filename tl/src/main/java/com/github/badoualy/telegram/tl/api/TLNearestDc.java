@@ -1,4 +1,3 @@
-
 package com.github.badoualy.telegram.tl.api;
 
 import com.github.badoualy.telegram.tl.TLContext;
@@ -13,28 +12,12 @@ import static com.github.badoualy.telegram.tl.StreamUtils.readTLString;
 import static com.github.badoualy.telegram.tl.StreamUtils.writeInt;
 import static com.github.badoualy.telegram.tl.StreamUtils.writeTLString;
 
-
+/**
+ * @author Yannick Badoual yann.badoual@gmail.com
+ * @see <a href="http://github.com/badoualy/kotlogram">http://github.com/badoualy/kotlogram</a>
+ */
 public class TLNearestDc extends TLObject {
-
     public static final int CLASS_ID = 0x8e1a1775;
-
-    public TLNearestDc() {
-
-    }
-
-
-    public TLNearestDc(        String _country,         int _thisDc,         int _nearestDc) {
-        this.country = _country;
-        this.thisDc = _thisDc;
-        this.nearestDc = _nearestDc;
-
-    }
-
-
-    public int getClassId() {
-        return CLASS_ID;
-    }
-
 
     protected String country;
 
@@ -42,53 +25,61 @@ public class TLNearestDc extends TLObject {
 
     protected int nearestDc;
 
-
-    public String getCountry() {
-        return country;
+    public TLNearestDc() {
     }
 
-    public void setCountry(String value) {
-        this.country = value;
+    public TLNearestDc(String country, int thisDc, int nearestDc) {
+        this.country = country;
+        this.thisDc = thisDc;
+        this.nearestDc = nearestDc;
     }
-
-    public int getThisDc() {
-        return thisDc;
-    }
-
-    public void setThisDc(int value) {
-        this.thisDc = value;
-    }
-
-    public int getNearestDc() {
-        return nearestDc;
-    }
-
-    public void setNearestDc(int value) {
-        this.nearestDc = value;
-    }
-
 
     @Override
     public void serializeBody(OutputStream stream) throws IOException {
-
-        writeTLString(this.country, stream);
-        writeInt(this.thisDc, stream);
-        writeInt(this.nearestDc, stream);
+        writeTLString(country, stream);
+        writeInt(thisDc, stream);
+        writeInt(nearestDc, stream);
     }
-
 
     @Override
+    @SuppressWarnings("unchecked")
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
-
-        this.country = readTLString(stream);
-        this.thisDc = readInt(stream);
-        this.nearestDc = readInt(stream);
+        country = readTLString(stream);
+        thisDc = readInt(stream);
+        nearestDc = readInt(stream);
     }
-
 
     @Override
     public String toString() {
         return "nearestDc#8e1a1775";
     }
 
+    @Override
+    public int getClassId() {
+        return CLASS_ID;
+    }
+
+    public String getCountry() {
+        return country;
+    }
+
+    public void setCountry(String country) {
+        this.country = country;
+    }
+
+    public int getThisDc() {
+        return thisDc;
+    }
+
+    public void setThisDc(int thisDc) {
+        this.thisDc = thisDc;
+    }
+
+    public int getNearestDc() {
+        return nearestDc;
+    }
+
+    public void setNearestDc(int nearestDc) {
+        this.nearestDc = nearestDc;
+    }
 }

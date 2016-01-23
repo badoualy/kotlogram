@@ -1,6 +1,4 @@
-
 package com.github.badoualy.telegram.tl.api;
-
 
 import com.github.badoualy.telegram.tl.TLContext;
 
@@ -15,29 +13,12 @@ import static com.github.badoualy.telegram.tl.StreamUtils.writeInt;
 import static com.github.badoualy.telegram.tl.StreamUtils.writeTLBool;
 import static com.github.badoualy.telegram.tl.StreamUtils.writeTLString;
 
-
-
+/**
+ * @author Yannick Badoual yann.badoual@gmail.com
+ * @see <a href="http://github.com/badoualy/kotlogram">http://github.com/badoualy/kotlogram</a>
+ */
 public class TLPeerNotifySettings extends TLAbsPeerNotifySettings {
     public static final int CLASS_ID = 0x8d5e11ee;
-
-    public TLPeerNotifySettings() {
-
-    }
-
-
-    public TLPeerNotifySettings(        int _muteUntil,         String _sound,         boolean _showPreviews,         int _eventsMask) {
-        this.muteUntil = _muteUntil;
-        this.sound = _sound;
-        this.showPreviews = _showPreviews;
-        this.eventsMask = _eventsMask;
-
-    }
-
-
-    public int getClassId() {
-        return CLASS_ID;
-    }
-
 
     protected int muteUntil;
 
@@ -47,64 +28,72 @@ public class TLPeerNotifySettings extends TLAbsPeerNotifySettings {
 
     protected int eventsMask;
 
-
-    public int getMuteUntil() {
-        return muteUntil;
+    public TLPeerNotifySettings() {
     }
 
-    public void setMuteUntil(int value) {
-        this.muteUntil = value;
+    public TLPeerNotifySettings(int muteUntil, String sound, boolean showPreviews, int eventsMask) {
+        this.muteUntil = muteUntil;
+        this.sound = sound;
+        this.showPreviews = showPreviews;
+        this.eventsMask = eventsMask;
     }
-
-    public String getSound() {
-        return sound;
-    }
-
-    public void setSound(String value) {
-        this.sound = value;
-    }
-
-    public boolean getShowPreviews() {
-        return showPreviews;
-    }
-
-    public void setShowPreviews(boolean value) {
-        this.showPreviews = value;
-    }
-
-    public int getEventsMask() {
-        return eventsMask;
-    }
-
-    public void setEventsMask(int value) {
-        this.eventsMask = value;
-    }
-
 
     @Override
     public void serializeBody(OutputStream stream) throws IOException {
-
-        writeInt(this.muteUntil, stream);
-        writeTLString(this.sound, stream);
-        writeTLBool(this.showPreviews, stream);
-        writeInt(this.eventsMask, stream);
+        writeInt(muteUntil, stream);
+        writeTLString(sound, stream);
+        writeTLBool(showPreviews, stream);
+        writeInt(eventsMask, stream);
     }
-
 
     @Override
+    @SuppressWarnings("unchecked")
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
-
-        this.muteUntil = readInt(stream);
-        this.sound = readTLString(stream);
-        this.showPreviews = readTLBool(stream);
-        this.eventsMask = readInt(stream);
+        muteUntil = readInt(stream);
+        sound = readTLString(stream);
+        showPreviews = readTLBool(stream);
+        eventsMask = readInt(stream);
     }
-
-
 
     @Override
     public String toString() {
         return "peerNotifySettings#8d5e11ee";
     }
 
+    @Override
+    public int getClassId() {
+        return CLASS_ID;
+    }
+
+    public int getMuteUntil() {
+        return muteUntil;
+    }
+
+    public void setMuteUntil(int muteUntil) {
+        this.muteUntil = muteUntil;
+    }
+
+    public String getSound() {
+        return sound;
+    }
+
+    public void setSound(String sound) {
+        this.sound = sound;
+    }
+
+    public boolean getShowPreviews() {
+        return showPreviews;
+    }
+
+    public void setShowPreviews(boolean showPreviews) {
+        this.showPreviews = showPreviews;
+    }
+
+    public int getEventsMask() {
+        return eventsMask;
+    }
+
+    public void setEventsMask(int eventsMask) {
+        this.eventsMask = eventsMask;
+    }
 }

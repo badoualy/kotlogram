@@ -1,6 +1,4 @@
-
 package com.github.badoualy.telegram.tl.api.updates;
-
 
 import com.github.badoualy.telegram.tl.TLContext;
 
@@ -11,70 +9,61 @@ import java.io.OutputStream;
 import static com.github.badoualy.telegram.tl.StreamUtils.readInt;
 import static com.github.badoualy.telegram.tl.StreamUtils.writeInt;
 
-
-
+/**
+ * @author Yannick Badoual yann.badoual@gmail.com
+ * @see <a href="http://github.com/badoualy/kotlogram">http://github.com/badoualy/kotlogram</a>
+ */
 public class TLDifferenceEmpty extends TLAbsDifference {
     public static final int CLASS_ID = 0x5d75a138;
-
-    public TLDifferenceEmpty() {
-
-    }
-
-
-    public TLDifferenceEmpty(        int _date,         int _seq) {
-        this.date = _date;
-        this.seq = _seq;
-
-    }
-
-
-    public int getClassId() {
-        return CLASS_ID;
-    }
-
 
     protected int date;
 
     protected int seq;
 
-
-    public int getDate() {
-        return date;
+    public TLDifferenceEmpty() {
     }
 
-    public void setDate(int value) {
-        this.date = value;
+    public TLDifferenceEmpty(int date, int seq) {
+        this.date = date;
+        this.seq = seq;
     }
-
-    public int getSeq() {
-        return seq;
-    }
-
-    public void setSeq(int value) {
-        this.seq = value;
-    }
-
 
     @Override
     public void serializeBody(OutputStream stream) throws IOException {
-
-        writeInt(this.date, stream);
-        writeInt(this.seq, stream);
+        writeInt(date, stream);
+        writeInt(seq, stream);
     }
-
 
     @Override
+    @SuppressWarnings("unchecked")
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
-
-        this.date = readInt(stream);
-        this.seq = readInt(stream);
+        date = readInt(stream);
+        seq = readInt(stream);
     }
-
-
 
     @Override
     public String toString() {
         return "updates.differenceEmpty#5d75a138";
     }
 
+    @Override
+    public int getClassId() {
+        return CLASS_ID;
+    }
+
+    public int getDate() {
+        return date;
+    }
+
+    public void setDate(int date) {
+        this.date = date;
+    }
+
+    public int getSeq() {
+        return seq;
+    }
+
+    public void setSeq(int seq) {
+        this.seq = seq;
+    }
 }
