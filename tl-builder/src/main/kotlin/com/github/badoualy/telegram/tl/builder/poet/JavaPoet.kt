@@ -262,6 +262,23 @@ object JavaPoet {
                 .addParameter(InputStream::class.java, "stream")
                 .addParameter(TYPE_TL_CONTEXT, "context")
 
+        // Compute flag for serialization
+        val condParameters = parameters.filter { p -> p.tlType is TLTypeConditional }
+        if (condParameters.isNotEmpty()) {
+            serializeMethod.addStatement("flags = 0")
+            for (parameter in condParameters) {
+                val tlType = parameter.tlType as TLTypeConditional
+                val realType = tlType.realType
+                val fieldType = getType(realType)
+                val fieldName = parameter.name.lCamelCase().javaEscape()
+
+                if (fieldType == TypeName.BOOLEAN)
+                    serializeMethod.addStatement("flags = $fieldName ? (flags | ${tlType.pow2Value()}) : (flags &~ ${tlType.pow2Value()})")
+            }
+
+            serializeMethod.addCode("\n")
+        }
+
         // Parameters
         val accessors = ArrayList<MethodSpec>()
         for (parameter in parameters) {

@@ -1,7 +1,5 @@
 package com.github.badoualy.telegram.tl.api;
 
-import static com.github.badoualy.telegram.tl.StreamUtils.*;
-
 import com.github.badoualy.telegram.tl.api.account.TLAbsPassword;
 import com.github.badoualy.telegram.tl.api.account.TLAuthorizations;
 import com.github.badoualy.telegram.tl.api.account.TLPasswordInputSettings;
@@ -52,17 +50,14 @@ import com.github.badoualy.telegram.tl.core.TLBytes;
 import com.github.badoualy.telegram.tl.core.TLMethod;
 import com.github.badoualy.telegram.tl.core.TLObject;
 import com.github.badoualy.telegram.tl.core.TLVector;
+
 import java.io.IOException;
-import java.lang.Integer;
-import java.lang.Long;
-import java.lang.String;
-import java.lang.SuppressWarnings;
 
 /**
  * @author Yannick Badoual yann.badoual@gmail.com
  * @see <a href="http://github.com/badoualy/kotlogram">http://github.com/badoualy/kotlogram</a>
  */
-@SuppressWarnings("unused")
+@SuppressWarnings({"unused", "unchecked", "RedundantCast"})
 public interface TelegramApi {
     TLAbsUser accountChangePhone(String phoneNumber, String phoneCodeHash, String phoneCode) throws IOException;
 

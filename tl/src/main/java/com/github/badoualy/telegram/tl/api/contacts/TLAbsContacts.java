@@ -1,7 +1,5 @@
 package com.github.badoualy.telegram.tl.api.contacts;
 
-import static com.github.badoualy.telegram.tl.StreamUtils.*;
-
 import com.github.badoualy.telegram.tl.core.TLObject;
 
 /**

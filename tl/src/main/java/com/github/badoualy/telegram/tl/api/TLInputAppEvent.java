@@ -1,15 +1,18 @@
 package com.github.badoualy.telegram.tl.api;
 
-import static com.github.badoualy.telegram.tl.StreamUtils.*;
-
 import com.github.badoualy.telegram.tl.TLContext;
 import com.github.badoualy.telegram.tl.core.TLObject;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
-import java.lang.Override;
-import java.lang.String;
-import java.lang.SuppressWarnings;
+
+import static com.github.badoualy.telegram.tl.StreamUtils.readDouble;
+import static com.github.badoualy.telegram.tl.StreamUtils.readLong;
+import static com.github.badoualy.telegram.tl.StreamUtils.readTLString;
+import static com.github.badoualy.telegram.tl.StreamUtils.writeDouble;
+import static com.github.badoualy.telegram.tl.StreamUtils.writeLong;
+import static com.github.badoualy.telegram.tl.StreamUtils.writeTLString;
 
 /**
  * @author Yannick Badoual yann.badoual@gmail.com

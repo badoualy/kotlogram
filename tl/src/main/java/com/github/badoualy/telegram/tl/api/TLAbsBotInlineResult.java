@@ -1,9 +1,6 @@
 package com.github.badoualy.telegram.tl.api;
 
-import static com.github.badoualy.telegram.tl.StreamUtils.*;
-
 import com.github.badoualy.telegram.tl.core.TLObject;
-import java.lang.String;
 
 /**
  * @author Yannick Badoual yann.badoual@gmail.com

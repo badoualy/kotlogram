@@ -1,7 +1,5 @@
 package com.github.badoualy.telegram.tl.api.photos;
 
-import static com.github.badoualy.telegram.tl.StreamUtils.*;
-
 import com.github.badoualy.telegram.tl.api.TLAbsPhoto;
 import com.github.badoualy.telegram.tl.api.TLAbsUser;
 import com.github.badoualy.telegram.tl.core.TLObject;

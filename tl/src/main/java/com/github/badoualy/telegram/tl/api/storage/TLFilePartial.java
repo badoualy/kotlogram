@@ -1,10 +1,5 @@
 package com.github.badoualy.telegram.tl.api.storage;
 
-import static com.github.badoualy.telegram.tl.StreamUtils.*;
-
-import java.lang.Override;
-import java.lang.String;
-
 /**
  * @author Yannick Badoual yann.badoual@gmail.com
  * @see <a href="http://github.com/badoualy/kotlogram">http://github.com/badoualy/kotlogram</a>

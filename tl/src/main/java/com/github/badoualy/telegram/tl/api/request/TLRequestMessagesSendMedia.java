@@ -1,7 +1,5 @@
 package com.github.badoualy.telegram.tl.api.request;
 
-import static com.github.badoualy.telegram.tl.StreamUtils.*;
-
 import com.github.badoualy.telegram.tl.TLContext;
 import com.github.badoualy.telegram.tl.api.TLAbsInputMedia;
 import com.github.badoualy.telegram.tl.api.TLAbsInputPeer;
@@ -9,12 +7,18 @@ import com.github.badoualy.telegram.tl.api.TLAbsReplyMarkup;
 import com.github.badoualy.telegram.tl.api.TLAbsUpdates;
 import com.github.badoualy.telegram.tl.core.TLMethod;
 import com.github.badoualy.telegram.tl.core.TLObject;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
-import java.lang.Override;
-import java.lang.String;
-import java.lang.SuppressWarnings;
+
+import static com.github.badoualy.telegram.tl.StreamUtils.readInt;
+import static com.github.badoualy.telegram.tl.StreamUtils.readLong;
+import static com.github.badoualy.telegram.tl.StreamUtils.readTLObject;
+import static com.github.badoualy.telegram.tl.StreamUtils.writeInt;
+import static com.github.badoualy.telegram.tl.StreamUtils.writeLong;
+import static com.github.badoualy.telegram.tl.StreamUtils.writeTLBool;
+import static com.github.badoualy.telegram.tl.StreamUtils.writeTLObject;
 
 /**
  * @author Yannick Badoual yann.badoual@gmail.com
@@ -65,6 +69,9 @@ public class TLRequestMessagesSendMedia extends TLMethod<TLAbsUpdates> {
 
     @Override
     public void serializeBody(OutputStream stream) throws IOException {
+        flags = 0;
+        flags = broadcast ? (flags | 16) : (flags &~ 16);
+
         writeInt(flags, stream);
         if ((flags & 16) != 0) writeTLBool(broadcast, stream);
         writeTLObject(peer, stream);

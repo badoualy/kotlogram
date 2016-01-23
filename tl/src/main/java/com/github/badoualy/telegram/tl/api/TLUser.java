@@ -1,14 +1,20 @@
 package com.github.badoualy.telegram.tl.api;
 
-import static com.github.badoualy.telegram.tl.StreamUtils.*;
-
 import com.github.badoualy.telegram.tl.TLContext;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
-import java.lang.Override;
-import java.lang.String;
-import java.lang.SuppressWarnings;
+
+import static com.github.badoualy.telegram.tl.StreamUtils.readInt;
+import static com.github.badoualy.telegram.tl.StreamUtils.readLong;
+import static com.github.badoualy.telegram.tl.StreamUtils.readTLObject;
+import static com.github.badoualy.telegram.tl.StreamUtils.readTLString;
+import static com.github.badoualy.telegram.tl.StreamUtils.writeInt;
+import static com.github.badoualy.telegram.tl.StreamUtils.writeLong;
+import static com.github.badoualy.telegram.tl.StreamUtils.writeTLBool;
+import static com.github.badoualy.telegram.tl.StreamUtils.writeTLObject;
+import static com.github.badoualy.telegram.tl.StreamUtils.writeTLString;
 
 /**
  * @author Yannick Badoual yann.badoual@gmail.com
@@ -86,6 +92,17 @@ public class TLUser extends TLAbsUser {
 
     @Override
     public void serializeBody(OutputStream stream) throws IOException {
+        flags = 0;
+        flags = self ? (flags | 1024) : (flags &~ 1024);
+        flags = contact ? (flags | 2048) : (flags &~ 2048);
+        flags = mutualContact ? (flags | 4096) : (flags &~ 4096);
+        flags = deleted ? (flags | 8192) : (flags &~ 8192);
+        flags = bot ? (flags | 16384) : (flags &~ 16384);
+        flags = botChatHistory ? (flags | 32768) : (flags &~ 32768);
+        flags = botNochats ? (flags | 65536) : (flags &~ 65536);
+        flags = verified ? (flags | 131072) : (flags &~ 131072);
+        flags = restricted ? (flags | 262144) : (flags &~ 262144);
+
         writeInt(flags, stream);
         if ((flags & 1024) != 0) writeTLBool(self, stream);
         if ((flags & 2048) != 0) writeTLBool(contact, stream);

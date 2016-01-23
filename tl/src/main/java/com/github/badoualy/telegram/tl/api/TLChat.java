@@ -1,14 +1,18 @@
 package com.github.badoualy.telegram.tl.api;
 
-import static com.github.badoualy.telegram.tl.StreamUtils.*;
-
 import com.github.badoualy.telegram.tl.TLContext;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
-import java.lang.Override;
-import java.lang.String;
-import java.lang.SuppressWarnings;
+
+import static com.github.badoualy.telegram.tl.StreamUtils.readInt;
+import static com.github.badoualy.telegram.tl.StreamUtils.readTLObject;
+import static com.github.badoualy.telegram.tl.StreamUtils.readTLString;
+import static com.github.badoualy.telegram.tl.StreamUtils.writeInt;
+import static com.github.badoualy.telegram.tl.StreamUtils.writeTLBool;
+import static com.github.badoualy.telegram.tl.StreamUtils.writeTLObject;
+import static com.github.badoualy.telegram.tl.StreamUtils.writeTLString;
 
 /**
  * @author Yannick Badoual yann.badoual@gmail.com
@@ -67,6 +71,14 @@ public class TLChat extends TLAbsChat {
 
     @Override
     public void serializeBody(OutputStream stream) throws IOException {
+        flags = 0;
+        flags = creator ? (flags | 1) : (flags &~ 1);
+        flags = kicked ? (flags | 2) : (flags &~ 2);
+        flags = left ? (flags | 4) : (flags &~ 4);
+        flags = adminsEnabled ? (flags | 8) : (flags &~ 8);
+        flags = admin ? (flags | 16) : (flags &~ 16);
+        flags = deactivated ? (flags | 32) : (flags &~ 32);
+
         writeInt(flags, stream);
         if ((flags & 1) != 0) writeTLBool(creator, stream);
         if ((flags & 2) != 0) writeTLBool(kicked, stream);

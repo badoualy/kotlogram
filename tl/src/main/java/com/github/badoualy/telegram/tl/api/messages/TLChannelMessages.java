@@ -1,19 +1,20 @@
 package com.github.badoualy.telegram.tl.api.messages;
 
-import static com.github.badoualy.telegram.tl.StreamUtils.*;
-
 import com.github.badoualy.telegram.tl.TLContext;
 import com.github.badoualy.telegram.tl.api.TLAbsChat;
 import com.github.badoualy.telegram.tl.api.TLAbsMessage;
 import com.github.badoualy.telegram.tl.api.TLAbsUser;
 import com.github.badoualy.telegram.tl.api.TLMessageGroup;
 import com.github.badoualy.telegram.tl.core.TLVector;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
-import java.lang.Override;
-import java.lang.String;
-import java.lang.SuppressWarnings;
+
+import static com.github.badoualy.telegram.tl.StreamUtils.readInt;
+import static com.github.badoualy.telegram.tl.StreamUtils.readTLVector;
+import static com.github.badoualy.telegram.tl.StreamUtils.writeInt;
+import static com.github.badoualy.telegram.tl.StreamUtils.writeTLVector;
 
 /**
  * @author Yannick Badoual yann.badoual@gmail.com
@@ -45,6 +46,8 @@ public class TLChannelMessages extends TLAbsMessages {
 
     @Override
     public void serializeBody(OutputStream stream) throws IOException {
+        flags = 0;
+
         writeInt(flags, stream);
         writeInt(pts, stream);
         writeInt(count, stream);

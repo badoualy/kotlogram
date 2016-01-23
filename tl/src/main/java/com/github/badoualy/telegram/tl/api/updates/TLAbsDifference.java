@@ -1,7 +1,5 @@
 package com.github.badoualy.telegram.tl.api.updates;
 
-import static com.github.badoualy.telegram.tl.StreamUtils.*;
-
 import com.github.badoualy.telegram.tl.core.TLObject;
 
 /**

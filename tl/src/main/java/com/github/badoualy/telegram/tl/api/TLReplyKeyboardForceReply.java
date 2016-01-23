@@ -1,14 +1,14 @@
 package com.github.badoualy.telegram.tl.api;
 
-import static com.github.badoualy.telegram.tl.StreamUtils.*;
-
 import com.github.badoualy.telegram.tl.TLContext;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
-import java.lang.Override;
-import java.lang.String;
-import java.lang.SuppressWarnings;
+
+import static com.github.badoualy.telegram.tl.StreamUtils.readInt;
+import static com.github.badoualy.telegram.tl.StreamUtils.writeInt;
+import static com.github.badoualy.telegram.tl.StreamUtils.writeTLBool;
 
 /**
  * @author Yannick Badoual yann.badoual@gmail.com
@@ -30,6 +30,10 @@ public class TLReplyKeyboardForceReply extends TLAbsReplyMarkup {
 
     @Override
     public void serializeBody(OutputStream stream) throws IOException {
+        flags = 0;
+        flags = singleUse ? (flags | 2) : (flags &~ 2);
+        flags = selective ? (flags | 4) : (flags &~ 4);
+
         writeInt(flags, stream);
         if ((flags & 2) != 0) writeTLBool(singleUse, stream);
         if ((flags & 4) != 0) writeTLBool(selective, stream);

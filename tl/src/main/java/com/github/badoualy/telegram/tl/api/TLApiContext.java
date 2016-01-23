@@ -1,7 +1,5 @@
 package com.github.badoualy.telegram.tl.api;
 
-import static com.github.badoualy.telegram.tl.StreamUtils.*;
-
 import com.github.badoualy.telegram.tl.TLContext;
 import com.github.badoualy.telegram.tl.api.account.TLAuthorizations;
 import com.github.badoualy.telegram.tl.api.account.TLNoPassword;
@@ -72,8 +70,6 @@ import com.github.badoualy.telegram.tl.api.updates.TLDifferenceEmpty;
 import com.github.badoualy.telegram.tl.api.updates.TLDifferenceSlice;
 import com.github.badoualy.telegram.tl.api.updates.TLState;
 import com.github.badoualy.telegram.tl.api.upload.TLFile;
-import java.lang.Override;
-import java.lang.SuppressWarnings;
 
 /**
  * @author Yannick Badoual yann.badoual@gmail.com

@@ -40,7 +40,6 @@ class TLTypeFlag() : TLType() {
 }
 
 class TLTypeConditional(val value: Int, val realType: TLType) : TLType() {
-
     fun pow2Value() = Math.pow(2.toDouble(), value.toDouble()).toInt()
 
     override fun toString() = "flag.$value?${realType.toString()}"
@@ -73,7 +72,6 @@ class TLMethod(val name: String, val id: Int, val parameters: List<TLParameter>,
 
 // A parameter
 class TLParameter(val name: String, val tlType: TLType) : Comparable<TLParameter> {
-
     var inherited = false
 
     override fun toString() = "$name: $tlType"

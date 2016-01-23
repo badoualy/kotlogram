@@ -1,14 +1,14 @@
 package com.github.badoualy.telegram.tl.api.updates;
 
-import static com.github.badoualy.telegram.tl.StreamUtils.*;
-
 import com.github.badoualy.telegram.tl.TLContext;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
-import java.lang.Override;
-import java.lang.String;
-import java.lang.SuppressWarnings;
+
+import static com.github.badoualy.telegram.tl.StreamUtils.readInt;
+import static com.github.badoualy.telegram.tl.StreamUtils.writeInt;
+import static com.github.badoualy.telegram.tl.StreamUtils.writeTLBool;
 
 /**
  * @author Yannick Badoual yann.badoual@gmail.com
@@ -37,6 +37,9 @@ public class TLChannelDifferenceEmpty extends TLAbsChannelDifference {
 
     @Override
     public void serializeBody(OutputStream stream) throws IOException {
+        flags = 0;
+        flags = _final ? (flags | 1) : (flags &~ 1);
+
         writeInt(flags, stream);
         if ((flags & 1) != 0) writeTLBool(_final, stream);
         writeInt(pts, stream);
