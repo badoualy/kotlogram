@@ -32,7 +32,7 @@ repositories {
 
 Then add the library dependency:
 ```gradle
-compile 'com.github.badoualy:kotlogram:0.0.3'
+compile 'com.github.badoualy:kotlogram:0.0.4'
 ```
 
 
@@ -50,11 +50,11 @@ try {
     System.out.println("Authentication code: ");
     String code = new Scanner(System.in).nextLine();
     TLAuthorization authorization = client.authSignIn(PHONE_NUMBER, sentCode.getPhoneCodeHash(), code);
-    TLUserSelf self = (TLUserSelf) authorization.getUser();
+    TLUser self = (TLUser) authorization.getUser();
     System.out.println("You are now signed in as " + self.getFirstName() + " " + self.getLastName());
 
     // Start making cool stuff!
-    TLAbsDialogs dialogs = client.messagesGetDialogs(0, 0, 0);
+    TLAbsDialogs dialogs = client.messagesGetDialogs(0, 0, new TLInputPeerEmpty(), 0);
     // Do something with recent chats :)
 } catch (RpcErrorException e) {
     // Error with the request, invalid argument, etc
