@@ -18,13 +18,7 @@ import static com.github.badoualy.telegram.tl.StreamUtils.writeTLString;
 public class TLWallPaperSolid extends TLAbsWallPaper {
     public static final int CLASS_ID = 0x63117f24;
 
-    protected int id;
-
-    protected String title;
-
     protected int bgColor;
-
-    protected int color;
 
     public TLWallPaperSolid() {
     }

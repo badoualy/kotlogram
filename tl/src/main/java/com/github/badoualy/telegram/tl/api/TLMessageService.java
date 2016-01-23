@@ -29,8 +29,6 @@ public class TLMessageService extends TLAbsMessage {
 
     protected boolean mediaUnread;
 
-    protected int id;
-
     protected int fromId;
 
     protected TLAbsPeer toId;

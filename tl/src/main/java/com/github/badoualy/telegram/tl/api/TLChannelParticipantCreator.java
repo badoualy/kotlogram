@@ -16,8 +16,6 @@ import static com.github.badoualy.telegram.tl.StreamUtils.writeInt;
 public class TLChannelParticipantCreator extends TLAbsChannelParticipant {
     public static final int CLASS_ID = 0xe3e2e1f9;
 
-    protected int userId;
-
     public TLChannelParticipantCreator() {
     }
 

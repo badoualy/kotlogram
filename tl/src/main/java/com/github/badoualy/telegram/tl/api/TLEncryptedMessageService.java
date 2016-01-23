@@ -21,14 +21,6 @@ import static com.github.badoualy.telegram.tl.StreamUtils.writeTLBytes;
 public class TLEncryptedMessageService extends TLAbsEncryptedMessage {
     public static final int CLASS_ID = 0x23734b06;
 
-    protected long randomId;
-
-    protected int chatId;
-
-    protected int date;
-
-    protected TLBytes bytes;
-
     public TLEncryptedMessageService() {
     }
 

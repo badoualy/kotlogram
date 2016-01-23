@@ -23,10 +23,6 @@ public class TLBlockedSlice extends TLAbsBlocked {
 
     protected int count;
 
-    protected TLVector<TLContactBlocked> blocked;
-
-    protected TLVector<TLAbsUser> users;
-
     public TLBlockedSlice() {
     }
 

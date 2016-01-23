@@ -18,8 +18,6 @@ import static com.github.badoualy.telegram.tl.StreamUtils.writeTLString;
 public class TLFoundGifCached extends TLAbsFoundGif {
     public static final int CLASS_ID = 0x9c750409;
 
-    protected String url;
-
     protected TLAbsPhoto photo;
 
     protected TLAbsDocument document;

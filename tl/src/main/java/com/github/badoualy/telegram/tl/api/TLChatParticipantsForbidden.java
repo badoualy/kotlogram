@@ -20,8 +20,6 @@ public class TLChatParticipantsForbidden extends TLAbsChatParticipants {
 
     protected int flags;
 
-    protected int chatId;
-
     protected TLAbsChatParticipant selfParticipant;
 
     public TLChatParticipantsForbidden() {

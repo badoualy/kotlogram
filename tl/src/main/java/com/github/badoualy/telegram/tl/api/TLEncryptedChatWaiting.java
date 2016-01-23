@@ -18,8 +18,6 @@ import static com.github.badoualy.telegram.tl.StreamUtils.writeLong;
 public class TLEncryptedChatWaiting extends TLAbsEncryptedChat {
     public static final int CLASS_ID = 0x3bf703dc;
 
-    protected int id;
-
     protected long accessHash;
 
     protected int date;

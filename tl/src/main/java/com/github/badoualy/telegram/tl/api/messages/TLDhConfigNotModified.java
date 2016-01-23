@@ -17,8 +17,6 @@ import static com.github.badoualy.telegram.tl.StreamUtils.writeTLBytes;
 public class TLDhConfigNotModified extends TLAbsDhConfig {
     public static final int CLASS_ID = 0xc0e24635;
 
-    protected TLBytes random;
-
     public TLDhConfigNotModified() {
     }
 

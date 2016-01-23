@@ -16,8 +16,6 @@ import static com.github.badoualy.telegram.tl.StreamUtils.writeInt;
 public class TLSentEncryptedMessage extends TLAbsSentEncryptedMessage {
     public static final int CLASS_ID = 0x560f8935;
 
-    protected int date;
-
     public TLSentEncryptedMessage() {
     }
 

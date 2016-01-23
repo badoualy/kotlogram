@@ -21,17 +21,7 @@ import static com.github.badoualy.telegram.tl.StreamUtils.writeTLVector;
 public class TLChatFull extends TLAbsChatFull {
     public static final int CLASS_ID = 0x2e02a614;
 
-    protected int id;
-
     protected TLAbsChatParticipants participants;
-
-    protected TLAbsPhoto chatPhoto;
-
-    protected TLAbsPeerNotifySettings notifySettings;
-
-    protected TLAbsExportedChatInvite exportedInvite;
-
-    protected TLVector<TLAbsBotInfo> botInfo;
 
     public TLChatFull() {
     }

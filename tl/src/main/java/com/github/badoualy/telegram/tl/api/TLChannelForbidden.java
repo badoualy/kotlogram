@@ -20,8 +20,6 @@ import static com.github.badoualy.telegram.tl.StreamUtils.writeTLString;
 public class TLChannelForbidden extends TLAbsChat {
     public static final int CLASS_ID = 0x2d85832c;
 
-    protected int id;
-
     protected long accessHash;
 
     protected String title;

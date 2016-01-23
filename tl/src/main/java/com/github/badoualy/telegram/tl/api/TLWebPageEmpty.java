@@ -16,8 +16,6 @@ import static com.github.badoualy.telegram.tl.StreamUtils.writeLong;
 public class TLWebPageEmpty extends TLAbsWebPage {
     public static final int CLASS_ID = 0xeb1477e8;
 
-    protected long id;
-
     public TLWebPageEmpty() {
     }
 

@@ -24,12 +24,6 @@ public class TLMessagesSlice extends TLAbsMessages {
 
     protected int count;
 
-    protected TLVector<TLAbsMessage> messages;
-
-    protected TLVector<TLAbsChat> chats;
-
-    protected TLVector<TLAbsUser> users;
-
     public TLMessagesSlice() {
     }
 

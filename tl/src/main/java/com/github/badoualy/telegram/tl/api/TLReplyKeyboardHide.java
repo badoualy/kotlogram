@@ -17,10 +17,6 @@ import static com.github.badoualy.telegram.tl.StreamUtils.writeTLBool;
 public class TLReplyKeyboardHide extends TLAbsReplyMarkup {
     public static final int CLASS_ID = 0xa03e5b85;
 
-    protected int flags;
-
-    protected boolean selective;
-
     public TLReplyKeyboardHide() {
     }
 

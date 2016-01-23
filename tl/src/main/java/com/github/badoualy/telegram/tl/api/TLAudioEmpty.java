@@ -16,8 +16,6 @@ import static com.github.badoualy.telegram.tl.StreamUtils.writeLong;
 public class TLAudioEmpty extends TLAbsAudio {
     public static final int CLASS_ID = 0x586988d8;
 
-    protected long id;
-
     public TLAudioEmpty() {
     }
 

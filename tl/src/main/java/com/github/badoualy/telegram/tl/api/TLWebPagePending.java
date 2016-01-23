@@ -18,8 +18,6 @@ import static com.github.badoualy.telegram.tl.StreamUtils.writeLong;
 public class TLWebPagePending extends TLAbsWebPage {
     public static final int CLASS_ID = 0xc586da1c;
 
-    protected long id;
-
     protected int date;
 
     public TLWebPagePending() {

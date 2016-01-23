@@ -20,12 +20,6 @@ import static com.github.badoualy.telegram.tl.StreamUtils.writeTLString;
 public class TLInputFileBig extends TLAbsInputFile {
     public static final int CLASS_ID = 0xfa4f0bb5;
 
-    protected long id;
-
-    protected int parts;
-
-    protected String name;
-
     public TLInputFileBig() {
     }
 

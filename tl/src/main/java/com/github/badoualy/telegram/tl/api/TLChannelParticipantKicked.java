@@ -16,8 +16,6 @@ import static com.github.badoualy.telegram.tl.StreamUtils.writeInt;
 public class TLChannelParticipantKicked extends TLAbsChannelParticipant {
     public static final int CLASS_ID = 0x8cc5e69a;
 
-    protected int userId;
-
     protected int kickedBy;
 
     protected int date;

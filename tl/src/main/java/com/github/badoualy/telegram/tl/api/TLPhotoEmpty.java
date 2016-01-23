@@ -16,8 +16,6 @@ import static com.github.badoualy.telegram.tl.StreamUtils.writeLong;
 public class TLPhotoEmpty extends TLAbsPhoto {
     public static final int CLASS_ID = 0x2331b22d;
 
-    protected long id;
-
     public TLPhotoEmpty() {
     }
 

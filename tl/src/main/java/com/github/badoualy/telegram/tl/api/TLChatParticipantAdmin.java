@@ -16,8 +16,6 @@ import static com.github.badoualy.telegram.tl.StreamUtils.writeInt;
 public class TLChatParticipantAdmin extends TLAbsChatParticipant {
     public static final int CLASS_ID = 0xe2d6e436;
 
-    protected int userId;
-
     protected int inviterId;
 
     protected int date;

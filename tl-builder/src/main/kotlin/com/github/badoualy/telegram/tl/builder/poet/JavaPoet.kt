@@ -72,6 +72,9 @@ object JavaPoet {
             val commonParameters = typeConstructors.map { c -> c.parameters }.reduce { l1, l2 -> l1.intersect(l2).toArrayList() }
             abstractConstructors.add(TLAbstractConstructor(abstractType.name, commonParameters, abstractType))
             commonParameters.forEach { p -> p.inherited = true }
+
+            // Update each types parameters: reference are not the same
+            typeConstructors.flatMap { c -> c.parameters }.filter { p -> commonParameters.contains(p) }.forEach { p -> p.inherited = true }
         }
 
         // Some logging

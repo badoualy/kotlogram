@@ -23,13 +23,9 @@ public class TLPassword extends TLAbsPassword {
 
     protected TLBytes currentSalt;
 
-    protected TLBytes newSalt;
-
     protected String hint;
 
     protected boolean hasRecovery;
-
-    protected String emailUnconfirmedPattern;
 
     public TLPassword() {
     }

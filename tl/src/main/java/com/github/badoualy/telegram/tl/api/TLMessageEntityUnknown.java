@@ -16,10 +16,6 @@ import static com.github.badoualy.telegram.tl.StreamUtils.writeInt;
 public class TLMessageEntityUnknown extends TLAbsMessageEntity {
     public static final int CLASS_ID = 0xbb92ba95;
 
-    protected int offset;
-
-    protected int length;
-
     public TLMessageEntityUnknown() {
     }
 

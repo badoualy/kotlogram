@@ -18,19 +18,9 @@ import static com.github.badoualy.telegram.tl.StreamUtils.writeTLObject;
 public class TLDialogChannel extends TLAbsDialog {
     public static final int CLASS_ID = 0x5b8496b2;
 
-    protected TLAbsPeer peer;
-
-    protected int topMessage;
-
     protected int topImportantMessage;
 
-    protected int readInboxMaxId;
-
-    protected int unreadCount;
-
     protected int unreadImportantCount;
-
-    protected TLAbsPeerNotifySettings notifySettings;
 
     protected int pts;
 

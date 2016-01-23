@@ -16,8 +16,6 @@ import static com.github.badoualy.telegram.tl.StreamUtils.writeInt;
 public class TLEncryptedChatDiscarded extends TLAbsEncryptedChat {
     public static final int CLASS_ID = 0x13d6dd27;
 
-    protected int id;
-
     public TLEncryptedChatDiscarded() {
     }
 

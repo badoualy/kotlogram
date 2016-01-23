@@ -17,14 +17,6 @@ import static com.github.badoualy.telegram.tl.StreamUtils.writeTLBool;
 public class TLChannelDifferenceEmpty extends TLAbsChannelDifference {
     public static final int CLASS_ID = 0x3e11affb;
 
-    protected int flags;
-
-    protected boolean _final;
-
-    protected int pts;
-
-    protected int timeout;
-
     public TLChannelDifferenceEmpty() {
     }
 

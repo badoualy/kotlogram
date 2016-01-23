@@ -21,8 +21,6 @@ import static com.github.badoualy.telegram.tl.StreamUtils.writeTLBytes;
 public class TLEncryptedChatRequested extends TLAbsEncryptedChat {
     public static final int CLASS_ID = 0xc878527e;
 
-    protected int id;
-
     protected long accessHash;
 
     protected int date;

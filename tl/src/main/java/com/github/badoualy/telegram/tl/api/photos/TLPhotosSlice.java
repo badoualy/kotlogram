@@ -23,10 +23,6 @@ public class TLPhotosSlice extends TLAbsPhotos {
 
     protected int count;
 
-    protected TLVector<TLAbsPhoto> photos;
-
-    protected TLVector<TLAbsUser> users;
-
     public TLPhotosSlice() {
     }
 

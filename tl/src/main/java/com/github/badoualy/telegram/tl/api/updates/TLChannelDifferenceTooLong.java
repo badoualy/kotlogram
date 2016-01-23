@@ -23,14 +23,6 @@ import static com.github.badoualy.telegram.tl.StreamUtils.writeTLVector;
 public class TLChannelDifferenceTooLong extends TLAbsChannelDifference {
     public static final int CLASS_ID = 0x5e167646;
 
-    protected int flags;
-
-    protected boolean _final;
-
-    protected int pts;
-
-    protected int timeout;
-
     protected int topMessage;
 
     protected int topImportantMessage;

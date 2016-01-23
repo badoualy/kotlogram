@@ -18,8 +18,6 @@ import static com.github.badoualy.telegram.tl.StreamUtils.writeTLString;
 public class TLChatForbidden extends TLAbsChat {
     public static final int CLASS_ID = 0x7328bdb;
 
-    protected int id;
-
     protected String title;
 
     public TLChatForbidden() {

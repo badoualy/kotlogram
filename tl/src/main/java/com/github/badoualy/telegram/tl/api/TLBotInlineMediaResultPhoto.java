@@ -18,13 +18,7 @@ import static com.github.badoualy.telegram.tl.StreamUtils.writeTLString;
 public class TLBotInlineMediaResultPhoto extends TLAbsBotInlineResult {
     public static final int CLASS_ID = 0xc5528587;
 
-    protected String id;
-
-    protected String type;
-
     protected TLAbsPhoto photo;
-
-    protected TLAbsBotInlineMessage sendMessage;
 
     public TLBotInlineMediaResultPhoto() {
     }

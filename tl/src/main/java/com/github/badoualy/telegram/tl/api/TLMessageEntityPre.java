@@ -18,10 +18,6 @@ import static com.github.badoualy.telegram.tl.StreamUtils.writeTLString;
 public class TLMessageEntityPre extends TLAbsMessageEntity {
     public static final int CLASS_ID = 0x73924be0;
 
-    protected int offset;
-
-    protected int length;
-
     protected String language;
 
     public TLMessageEntityPre() {

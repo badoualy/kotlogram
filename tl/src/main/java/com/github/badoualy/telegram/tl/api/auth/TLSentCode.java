@@ -20,14 +20,6 @@ import static com.github.badoualy.telegram.tl.StreamUtils.writeTLString;
 public class TLSentCode extends TLAbsSentCode {
     public static final int CLASS_ID = 0xefed51d9;
 
-    protected boolean phoneRegistered;
-
-    protected String phoneCodeHash;
-
-    protected int sendCallTimeout;
-
-    protected boolean isPassword;
-
     public TLSentCode() {
     }
 

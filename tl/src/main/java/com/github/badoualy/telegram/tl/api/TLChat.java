@@ -35,8 +35,6 @@ public class TLChat extends TLAbsChat {
 
     protected boolean deactivated;
 
-    protected int id;
-
     protected String title;
 
     protected TLAbsChatPhoto photo;

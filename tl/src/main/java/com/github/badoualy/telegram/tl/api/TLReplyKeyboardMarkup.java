@@ -20,13 +20,9 @@ import static com.github.badoualy.telegram.tl.StreamUtils.writeTLVector;
 public class TLReplyKeyboardMarkup extends TLAbsReplyMarkup {
     public static final int CLASS_ID = 0x3502758c;
 
-    protected int flags;
-
     protected boolean resize;
 
     protected boolean singleUse;
-
-    protected boolean selective;
 
     protected TLVector<TLKeyboardButtonRow> rows;
 

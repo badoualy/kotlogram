@@ -16,8 +16,6 @@ import static com.github.badoualy.telegram.tl.StreamUtils.writeTLString;
 public class TLPhotoSizeEmpty extends TLAbsPhotoSize {
     public static final int CLASS_ID = 0xe17e23c;
 
-    protected String type;
-
     public TLPhotoSizeEmpty() {
     }
 

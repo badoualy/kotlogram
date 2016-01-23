@@ -25,14 +25,6 @@ public class TLDialogsSlice extends TLAbsDialogs {
 
     protected int count;
 
-    protected TLVector<TLAbsDialog> dialogs;
-
-    protected TLVector<TLAbsMessage> messages;
-
-    protected TLVector<TLAbsChat> chats;
-
-    protected TLVector<TLAbsUser> users;
-
     public TLDialogsSlice() {
     }
 

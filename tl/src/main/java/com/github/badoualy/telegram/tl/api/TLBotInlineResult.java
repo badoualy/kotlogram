@@ -22,10 +22,6 @@ public class TLBotInlineResult extends TLAbsBotInlineResult {
 
     protected int flags;
 
-    protected String id;
-
-    protected String type;
-
     protected String title;
 
     protected String description;
@@ -43,8 +39,6 @@ public class TLBotInlineResult extends TLAbsBotInlineResult {
     protected int h;
 
     protected int duration;
-
-    protected TLAbsBotInlineMessage sendMessage;
 
     public TLBotInlineResult() {
     }
