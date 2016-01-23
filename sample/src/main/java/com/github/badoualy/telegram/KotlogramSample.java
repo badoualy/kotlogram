@@ -7,21 +7,36 @@ import com.github.badoualy.telegram.api.TelegramClient;
 import com.github.badoualy.telegram.mtproto.DataCenter;
 import com.github.badoualy.telegram.mtproto.auth.AuthKey;
 import com.github.badoualy.telegram.mtproto.exception.RpcErrorException;
+import com.github.badoualy.telegram.tl.api.TLAbsMessage;
+import com.github.badoualy.telegram.tl.api.TLDocument;
 import com.github.badoualy.telegram.tl.api.TLFileLocation;
+import com.github.badoualy.telegram.tl.api.TLInputDocument;
+import com.github.badoualy.telegram.tl.api.TLInputDocumentFileLocation;
 import com.github.badoualy.telegram.tl.api.TLInputFileLocation;
+import com.github.badoualy.telegram.tl.api.TLInputPeerEmpty;
+import com.github.badoualy.telegram.tl.api.TLMessage;
+import com.github.badoualy.telegram.tl.api.TLMessageMediaDocument;
+import com.github.badoualy.telegram.tl.api.TLMessageMediaEmpty;
+import com.github.badoualy.telegram.tl.api.TLMessageService;
 import com.github.badoualy.telegram.tl.api.TLUser;
 import com.github.badoualy.telegram.tl.api.TLUserProfilePhoto;
 import com.github.badoualy.telegram.tl.api.auth.TLAbsSentCode;
 import com.github.badoualy.telegram.tl.api.auth.TLAuthorization;
+import com.github.badoualy.telegram.tl.api.messages.TLAbsDialogs;
 import com.github.badoualy.telegram.tl.api.upload.TLFile;
 
 import org.apache.commons.io.FileUtils;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+import java.io.ByteArrayOutputStream;
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.nio.ByteBuffer;
 import java.util.Scanner;
+
+import javax.activation.MimeType;
 
 import static com.github.badoualy.telegram.C.API_HASH;
 import static com.github.badoualy.telegram.C.API_ID;
@@ -45,27 +60,57 @@ public class KotlogramSample {
 
         // You can start making requests
         try {
-            TLAbsSentCode sentCode = client.authSendCode(PHONE_NUMBER, 5);
-            System.out.println("Authentication code: ");
-            String code = new Scanner(System.in).nextLine();
-            TLAuthorization authorization = client.authSignIn(PHONE_NUMBER, sentCode.getPhoneCodeHash(), code);
-            TLUser self = (TLUser) authorization.getUser();
-            System.out.println("You are now signed in as " + self.getFirstName() + " " + self.getLastName());
-            // Start making cool stuff!
+//            TLAbsSentCode sentCode = client.authSendCode(PHONE_NUMBER, 5);
+//            System.out.println("Authentication code: ");
+//            String code = new Scanner(System.in).nextLine();
+//            TLAuthorization authorization = client.authSignIn(PHONE_NUMBER, sentCode.getPhoneCodeHash(), code);
+//            TLUser self = (TLUser) authorization.getUser();
+//            System.out.println("You are now signed in as " + self.getFirstName() + " " + self.getLastName());
+//            // Start making cool stuff!
 
             // Get user profile picture
-            TLFileLocation photoLocation = (TLFileLocation) ((TLUserProfilePhoto) self.getPhoto()).getPhotoBig();
-            TLInputFileLocation inputLocation = new TLInputFileLocation(photoLocation.getVolumeId(),
-                                                                              photoLocation.getLocalId(),
-                                                                              photoLocation.getSecret());
-            TLFile photo = client.uploadGetFile(inputLocation, 0, 0);
-            FileUtils.writeByteArrayToFile(PHOTO_FILE, photo.getBytes().getData());
+//            TLFileLocation photoLocation = (TLFileLocation) ((TLUserProfilePhoto) self.getPhoto()).getPhotoBig();
+//            TLInputFileLocation inputLocation = new TLInputFileLocation(photoLocation.getVolumeId(),
+//                                                                              photoLocation.getLocalId(),
+//                                                                              photoLocation.getSecret());
+//            TLFile photo = client.uploadGetFile(inputLocation, 0, 0);
+//            FileUtils.writeByteArrayToFile(PHOTO_FILE, photo.getBytes().getData());
 
-            // TLAbsDialogs dialogs = client.messagesGetDialogs(0, 0, 0);
+            TLAbsDialogs dialogs = client.messagesGetDialogs(0, 0, new TLInputPeerEmpty(), 0);
             // Do something with recent chats :)
-        } catch (RpcErrorException e) {
-            // Error with the request, invalid argument, etc
-            e.printStackTrace();
+
+//            dialogs.getMessages().stream()
+//                   .forEach(m -> {
+//                       System.out.println("------");
+//                       if (m instanceof TLMessage) {
+//                           TLMessage message = (TLMessage) m;
+//                           System.out.println(message.getMessage());
+//                           if (message.getMedia() != null && message.getMedia() instanceof TLMessageMediaDocument) {
+//                               TLMessageMediaDocument media = (TLMessageMediaDocument) message.getMedia();
+//                               TLDocument document = (TLDocument) media.getDocument();
+//                               TLInputDocumentFileLocation input = new TLInputDocumentFileLocation(document.getId(),
+//                                                                                                   document.getAccessHash());
+//
+//                               //image/webp
+//                               //application/vnd.android.package-archive
+//                               System.out.println("Getting " + document.getMimeType());
+//                               String ext = document.getMimeType().contains("android") ? ".apk" : ".webp";
+//                               try {
+//                                   ByteArrayOutputStream baos = new ByteArrayOutputStream();
+//                                   int read = 0;
+//                                   while (read < document.getSize()) {
+//                                       TLFile tlFile = client.uploadGetFile(input, read, document.getSize());
+//                                       read += tlFile.getBytes().getLength();
+//                                       baos.write(tlFile.getBytes().getData());
+//                                   }
+//                                   FileUtils.writeByteArrayToFile(new File("./" + document.getId() + ext), baos.toByteArray());
+//                               } catch (IOException e) {
+//                                   e.printStackTrace();
+//                               }
+//                           }
+//                       }
+//                       System.out.println("------");
+//                   });
         } catch (IOException e) {
             // Network error
             e.printStackTrace();

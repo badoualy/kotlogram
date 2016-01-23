@@ -65,7 +65,7 @@ internal class TelegramClientDelegateImpl(override val application: TelegramApp,
     }
 
     private fun init(checkNearestDc: Boolean = true) {
-        mtProtoHandler = if (generateAuthKey) MTProtoHandler(generateAuthKey(), apiStorage.loadServerSalt(), this) else MTProtoHandler(dataCenter!!, authKey!!, apiStorage.loadServerSalt(), this)
+        mtProtoHandler = if (generateAuthKey) MTProtoHandler(generateAuthKey(), this) else MTProtoHandler(dataCenter!!, authKey!!, apiStorage.loadServerSalt(), this)
         mtProtoHandler!!.startWatchdog()
 
         try {
