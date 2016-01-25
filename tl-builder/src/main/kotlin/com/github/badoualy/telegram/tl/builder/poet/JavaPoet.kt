@@ -129,7 +129,7 @@ object JavaPoet {
                 .addAnnotation(AnnotationSpec.builder(SuppressWarnings::class.java).addMember("value", "\"unused\"").build())
                 .superclass(TYPE_TL_CONTEXT)
 
-        contextClazz.addMethod(MethodSpec.constructorBuilder().addModifiers(Modifier.PUBLIC).addStatement("super(\$L)", contextConstructors.size).build())
+        contextClazz.addMethod(MethodSpec.constructorBuilder().addModifiers(Modifier.PUBLIC).addStatement("super(\$L)", contextConstructors.size + 1).build())
 
         contextClazz.addField(TYPE_TL_API_CONTEXT, "instance", Modifier.PRIVATE, Modifier.STATIC)
 
@@ -143,9 +143,10 @@ object JavaPoet {
                 .build())
 
         val methodBuilder = MethodSpec.methodBuilder("init").addModifiers(Modifier.PUBLIC).addAnnotation(Override::class.java)
+        methodBuilder.addStatement("registerClass(\$T.CLASS_ID, \$T.class" + ")", TYPE_TL_VECTOR, TYPE_TL_VECTOR)
         for (constructor in contextConstructors.sorted()) {
             val clazzName = constructorClassNameMap[constructor]!!
-            methodBuilder.addStatement("registerClass(0x" + hex(constructor.id) + ", \$T.class" + ")", clazzName)
+            methodBuilder.addStatement("registerClass(\$T.CLASS_ID, \$T.class" + ")", clazzName, clazzName)
         }
         contextClazz.addMethod(methodBuilder.build())
 
