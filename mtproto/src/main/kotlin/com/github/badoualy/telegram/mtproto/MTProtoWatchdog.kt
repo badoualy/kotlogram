@@ -34,13 +34,10 @@ class MTProtoWatchdog(private val connection: MTProtoConnection) {
                 return@observable
             }
         }
-
-        if (s.isUnsubscribed)
-            Log.d(TAG, "Subscribed unsubscribed, stopping watchdog")
     }
 
     fun stop() {
-        if (!subscriber!!.isUnsubscribed)
-            subscriber!!.unsubscribe()
+        Log.d(TAG, "Stopping watchdog...")
+        subscriber?.unsubscribe()
     }
 }
