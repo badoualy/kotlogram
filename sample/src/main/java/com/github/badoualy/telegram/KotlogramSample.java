@@ -7,13 +7,19 @@ import com.github.badoualy.telegram.api.TelegramClient;
 import com.github.badoualy.telegram.mtproto.DataCenter;
 import com.github.badoualy.telegram.mtproto.auth.AuthKey;
 import com.github.badoualy.telegram.mtproto.exception.RpcErrorException;
+import com.github.badoualy.telegram.tl.api.TLAbsFileLocation;
+import com.github.badoualy.telegram.tl.api.TLAbsInputUser;
 import com.github.badoualy.telegram.tl.api.TLAbsMessage;
+import com.github.badoualy.telegram.tl.api.TLAbsUser;
+import com.github.badoualy.telegram.tl.api.TLAbsUserProfilePhoto;
+import com.github.badoualy.telegram.tl.api.TLChat;
 import com.github.badoualy.telegram.tl.api.TLDocument;
 import com.github.badoualy.telegram.tl.api.TLFileLocation;
 import com.github.badoualy.telegram.tl.api.TLInputDocument;
 import com.github.badoualy.telegram.tl.api.TLInputDocumentFileLocation;
 import com.github.badoualy.telegram.tl.api.TLInputFileLocation;
 import com.github.badoualy.telegram.tl.api.TLInputPeerEmpty;
+import com.github.badoualy.telegram.tl.api.TLInputUser;
 import com.github.badoualy.telegram.tl.api.TLMessage;
 import com.github.badoualy.telegram.tl.api.TLMessageMediaDocument;
 import com.github.badoualy.telegram.tl.api.TLMessageMediaEmpty;
@@ -24,6 +30,7 @@ import com.github.badoualy.telegram.tl.api.auth.TLAbsSentCode;
 import com.github.badoualy.telegram.tl.api.auth.TLAuthorization;
 import com.github.badoualy.telegram.tl.api.messages.TLAbsDialogs;
 import com.github.badoualy.telegram.tl.api.upload.TLFile;
+import com.github.badoualy.telegram.tl.core.TLVector;
 
 import org.apache.commons.io.FileUtils;
 import org.jetbrains.annotations.NotNull;
@@ -67,50 +74,55 @@ public class KotlogramSample {
 //            TLUser self = (TLUser) authorization.getUser();
 //            System.out.println("You are now signed in as " + self.getFirstName() + " " + self.getLastName());
 //            // Start making cool stuff!
-
-            // Get user profile picture
+//
+//            //Get user profile picture
 //            TLFileLocation photoLocation = (TLFileLocation) ((TLUserProfilePhoto) self.getPhoto()).getPhotoBig();
 //            TLInputFileLocation inputLocation = new TLInputFileLocation(photoLocation.getVolumeId(),
-//                                                                              photoLocation.getLocalId(),
-//                                                                              photoLocation.getSecret());
+//                                                                        photoLocation.getLocalId(),
+//                                                                        photoLocation.getSecret());
 //            TLFile photo = client.uploadGetFile(inputLocation, 0, 0);
 //            FileUtils.writeByteArrayToFile(PHOTO_FILE, photo.getBytes().getData());
 
             TLAbsDialogs dialogs = client.messagesGetDialogs(0, 0, new TLInputPeerEmpty(), 0);
             // Do something with recent chats :)
+            dialogs.getUsers().stream().forEach(u -> {
+                if (u instanceof TLUser) {
+                    TLUser user = (TLUser) u;
+                    if (!user.getFirstName().equalsIgnoreCase("Telegram"))
+                        return;
+                    System.out.println(user);
+                    try {
+                        TLFile file = client.getUserPhoto(user, true);
+                        if (file != null)
+                            FileUtils.writeByteArrayToFile(new File("./sample/" + user.getId() + ".jpg"), file.getBytes().getData());
+                    } catch (RpcErrorException e) {
+                        e.printStackTrace();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
 
-//            dialogs.getMessages().stream()
-//                   .forEach(m -> {
-//                       System.out.println("------");
-//                       if (m instanceof TLMessage) {
-//                           TLMessage message = (TLMessage) m;
-//                           System.out.println(message.getMessage());
-//                           if (message.getMedia() != null && message.getMedia() instanceof TLMessageMediaDocument) {
-//                               TLMessageMediaDocument media = (TLMessageMediaDocument) message.getMedia();
-//                               TLDocument document = (TLDocument) media.getDocument();
-//                               TLInputDocumentFileLocation input = new TLInputDocumentFileLocation(document.getId(),
-//                                                                                                   document.getAccessHash());
+                    System.out.println("-----");
+                }
+            });
+
+//            dialogs.getChats().stream().forEach(c -> {
+//                if (c instanceof TLChat) {
+//                    TLChat chat = (TLChat) c;
+//                    System.out.println("Chat " + chat.getTitle());
 //
-//                               //image/webp
-//                               //application/vnd.android.package-archive
-//                               System.out.println("Getting " + document.getMimeType());
-//                               String ext = document.getMimeType().contains("android") ? ".apk" : ".webp";
-//                               try {
-//                                   ByteArrayOutputStream baos = new ByteArrayOutputStream();
-//                                   int read = 0;
-//                                   while (read < document.getSize()) {
-//                                       TLFile tlFile = client.uploadGetFile(input, read, document.getSize());
-//                                       read += tlFile.getBytes().getLength();
-//                                       baos.write(tlFile.getBytes().getData());
-//                                   }
-//                                   FileUtils.writeByteArrayToFile(new File("./" + document.getId() + ext), baos.toByteArray());
-//                               } catch (IOException e) {
-//                                   e.printStackTrace();
-//                               }
-//                           }
-//                       }
-//                       System.out.println("------");
-//                   });
+//                    try {
+//                        TLFile file = client.getChatPhoto(chat, true);
+//                        if (file != null)
+//                            FileUtils.writeByteArrayToFile(new File("./sample/" + chat.getId() + ".jpg"), file.getBytes().getData());
+//                    } catch (RpcErrorException e) {
+//                        e.printStackTrace();
+//                    } catch (IOException e) {
+//                        e.printStackTrace();
+//                    }
+//
+//                    System.out.println("-----");
+//                }
+//            });
         } catch (IOException e) {
             // Network error
             e.printStackTrace();
@@ -118,6 +130,41 @@ public class KotlogramSample {
 
         client.close(); // Important, do not forget this, or your process won't finish
         System.err.println("------------------------- GOOD BYE");
+    }
+
+    private static void downloadFiles(TelegramClient client, TLAbsDialogs dialogs) {
+        dialogs.getMessages().stream()
+               .forEach(m -> {
+                   System.out.println("------");
+                   if (m instanceof TLMessage) {
+                       TLMessage message = (TLMessage) m;
+                       System.out.println(message.getMessage());
+                       if (message.getMedia() != null && message.getMedia() instanceof TLMessageMediaDocument) {
+                           TLMessageMediaDocument media = (TLMessageMediaDocument) message.getMedia();
+                           TLDocument document = (TLDocument) media.getDocument();
+                           TLInputDocumentFileLocation input = new TLInputDocumentFileLocation(document.getId(),
+                                                                                               document.getAccessHash());
+
+                           //image/webp
+                           //application/vnd.android.package-archive
+                           System.out.println("Getting " + document.getMimeType());
+                           String ext = document.getMimeType().contains("android") ? ".apk" : ".webp";
+                           try {
+                               ByteArrayOutputStream baos = new ByteArrayOutputStream();
+                               int read = 0;
+                               while (read < document.getSize()) {
+                                   TLFile tlFile = client.uploadGetFile(input, read, document.getSize());
+                                   read += tlFile.getBytes().getLength();
+                                   baos.write(tlFile.getBytes().getData());
+                               }
+                               FileUtils.writeByteArrayToFile(new File("./" + document.getId() + ext), baos.toByteArray());
+                           } catch (IOException e) {
+                               e.printStackTrace();
+                           }
+                       }
+                   }
+                   System.out.println("------");
+               });
     }
 
     private static class ApiStorage implements TelegramApiStorage {

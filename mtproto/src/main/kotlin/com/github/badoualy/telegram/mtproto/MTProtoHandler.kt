@@ -96,16 +96,11 @@ class MTProtoHandler {
                 .subscribe()
     }
 
-    /** Stop listening to watching for incoming messages */
-    fun stopWatchdog() {
-        watchdog!!.stop()
-    }
-
     /** Properly close the connection to Telegram's server after sending ACK for messages if any to send */
     fun close() {
         timer.cancel()
         onBufferTimeout(bufferId)
-        stopWatchdog()
+        watchdog?.stop()
         try {
             connection!!.close()
         } catch (e: IOException) {

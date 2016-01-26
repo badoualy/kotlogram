@@ -12,6 +12,8 @@ import com.github.badoualy.telegram.tl.api.*
 import com.github.badoualy.telegram.tl.api.request.TLRequestHelpGetNearestDc
 import com.github.badoualy.telegram.tl.api.request.TLRequestInitConnection
 import com.github.badoualy.telegram.tl.api.request.TLRequestInvokeWithLayer
+import com.github.badoualy.telegram.tl.core.TLMethod
+import com.github.badoualy.telegram.tl.core.TLObject
 import java.io.IOException
 
 internal interface TelegramClientDelegate {
@@ -21,10 +23,12 @@ internal interface TelegramClientDelegate {
     var authKey: AuthKey?
     var dataCenter: DataCenter?
 
-    val apiStorage: TelegramApiStorage?
+    val apiStorage: TelegramApiStorage
     val preferredDataCenter: DataCenter
 
     var updateCallback: UpdateCallback?
+
+    fun <T : TLObject> initConnection(mtProtoHandler: MTProtoHandler, method: TLMethod<T>): T
 
     /**
      * Disconnect from current data center and connect to the new one
@@ -71,9 +75,7 @@ internal class TelegramClientDelegateImpl(override val application: TelegramApp,
         try {
             // Call to initConnection to setup information about this app for the user to see in "active sessions"
             // Also will indicate to Telegram which layer to use through InvokeWithLayer
-            val nearestDc = mtProtoHandler!!
-                    .executeMethod(TLRequestInvokeWithLayer(45, TLRequestInitConnection(application.apiId, application.deviceModel, application.systemVersion, application.appVersion, application.langCode, TLRequestHelpGetNearestDc())))
-                    .toBlocking().first()
+            val nearestDc = initConnection(mtProtoHandler!!, TLRequestHelpGetNearestDc())
             if (checkNearestDc)
                 checkNearestDc(nearestDc)
         } catch(e: Exception) {
@@ -107,6 +109,10 @@ internal class TelegramClientDelegateImpl(override val application: TelegramApp,
         }
     }
 
+    override fun <T : TLObject> initConnection(mtProtoHandler: MTProtoHandler, method: TLMethod<T>) = mtProtoHandler
+            .executeMethod(TLRequestInvokeWithLayer(Kotlogram.API_LAYER, TLRequestInitConnection(application.apiId, application.deviceModel, application.systemVersion, application.appVersion, application.langCode, method)))
+            .toBlocking().first()
+
     override fun migrate(dcId: Int) {
         Log.d(TAG, "Migrating to DC$dcId")
         mtProtoHandler?.close()
@@ -135,7 +141,7 @@ internal class TelegramClientDelegateImpl(override val application: TelegramApp,
     fun handleUpdate(update: TLAbsUpdate): Unit? = when (update) {
         is TLUpdateNewMessage -> updateCallback?.onNewMessage(update)
         is TLUpdateMessageID -> Unit
-        //is TLUpdateReadMessages -> Unit
+    //is TLUpdateReadMessages -> Unit
         is TLUpdateDeleteMessages -> Unit
     //is TLUpdateRestoreMessages -> Unit
         is TLUpdateUserTyping -> Unit
