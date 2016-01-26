@@ -110,4 +110,19 @@ public class TLBotInfo extends TLAbsBotInfo {
     public void setCommands(TLVector<TLBotCommand> commands) {
         this.commands = commands;
     }
+
+    @Override
+    public final boolean isEmpty() {
+        return false;
+    }
+
+    @Override
+    public final boolean isNotEmpty() {
+        return true;
+    }
+
+    @Override
+    public final TLBotInfo getAsBotInfo() {
+        return this;
+    }
 }

@@ -51,4 +51,14 @@ public class TLUserEmpty extends TLAbsUser {
     public void setId(int id) {
         this.id = id;
     }
+
+    @Override
+    public final boolean isEmpty() {
+        return true;
+    }
+
+    @Override
+    public final boolean isNotEmpty() {
+        return false;
+    }
 }

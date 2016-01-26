@@ -9,4 +9,12 @@ import com.github.badoualy.telegram.tl.core.TLObject;
 public abstract class TLAbsBotInfo extends TLObject {
     public TLAbsBotInfo() {
     }
+
+    public abstract boolean isEmpty();
+
+    public abstract boolean isNotEmpty();
+
+    public TLBotInfo getAsBotInfo() {
+        return null;
+    }
 }

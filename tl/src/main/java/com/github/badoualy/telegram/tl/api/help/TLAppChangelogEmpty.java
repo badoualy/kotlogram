@@ -19,4 +19,14 @@ public class TLAppChangelogEmpty extends TLAbsAppChangelog {
     public int getClassId() {
         return CLASS_ID;
     }
+
+    @Override
+    public final boolean isEmpty() {
+        return true;
+    }
+
+    @Override
+    public final boolean isNotEmpty() {
+        return false;
+    }
 }

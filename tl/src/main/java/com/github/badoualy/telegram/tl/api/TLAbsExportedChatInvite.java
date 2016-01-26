@@ -9,4 +9,12 @@ import com.github.badoualy.telegram.tl.core.TLObject;
 public abstract class TLAbsExportedChatInvite extends TLObject {
     public TLAbsExportedChatInvite() {
     }
+
+    public abstract boolean isEmpty();
+
+    public abstract boolean isNotEmpty();
+
+    public TLChatInviteExported getAsExportedChatInvite() {
+        return null;
+    }
 }

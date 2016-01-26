@@ -19,4 +19,19 @@ public class TLInputPeerNotifyEventsAll extends TLAbsInputPeerNotifyEvents {
     public int getClassId() {
         return CLASS_ID;
     }
+
+    @Override
+    public final boolean isEmpty() {
+        return false;
+    }
+
+    @Override
+    public final boolean isNotEmpty() {
+        return true;
+    }
+
+    @Override
+    public final TLInputPeerNotifyEventsAll getAsInputPeerNotifyEventsAll() {
+        return this;
+    }
 }

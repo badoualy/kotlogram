@@ -133,4 +133,19 @@ public class TLAudio extends TLAbsAudio {
     public void setDcId(int dcId) {
         this.dcId = dcId;
     }
+
+    @Override
+    public final boolean isEmpty() {
+        return false;
+    }
+
+    @Override
+    public final boolean isNotEmpty() {
+        return true;
+    }
+
+    @Override
+    public final TLAudio getAsAudio() {
+        return this;
+    }
 }

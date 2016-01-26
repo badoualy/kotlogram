@@ -66,4 +66,19 @@ public class TLGeoPoint extends TLAbsGeoPoint {
     public void setLat(double lat) {
         this.lat = lat;
     }
+
+    @Override
+    public final boolean isEmpty() {
+        return false;
+    }
+
+    @Override
+    public final boolean isNotEmpty() {
+        return true;
+    }
+
+    @Override
+    public final TLGeoPoint getAsGeoPoint() {
+        return this;
+    }
 }

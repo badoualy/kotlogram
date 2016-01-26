@@ -19,4 +19,12 @@ public abstract class TLAbsAudio extends TLObject {
     public void setId(long id) {
         this.id = id;
     }
+
+    public abstract boolean isEmpty();
+
+    public abstract boolean isNotEmpty();
+
+    public TLAudio getAsAudio() {
+        return null;
+    }
 }

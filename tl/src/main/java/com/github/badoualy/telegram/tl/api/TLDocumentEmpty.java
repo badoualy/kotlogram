@@ -51,4 +51,14 @@ public class TLDocumentEmpty extends TLAbsDocument {
     public void setId(long id) {
         this.id = id;
     }
+
+    @Override
+    public final boolean isEmpty() {
+        return true;
+    }
+
+    @Override
+    public final boolean isNotEmpty() {
+        return false;
+    }
 }

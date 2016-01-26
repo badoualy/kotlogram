@@ -66,4 +66,19 @@ public class TLInputDocument extends TLAbsInputDocument {
     public void setAccessHash(long accessHash) {
         this.accessHash = accessHash;
     }
+
+    @Override
+    public final boolean isEmpty() {
+        return false;
+    }
+
+    @Override
+    public final boolean isNotEmpty() {
+        return true;
+    }
+
+    @Override
+    public final TLInputDocument getAsInputDocument() {
+        return this;
+    }
 }

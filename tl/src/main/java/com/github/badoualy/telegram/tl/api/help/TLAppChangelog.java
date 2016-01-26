@@ -53,4 +53,19 @@ public class TLAppChangelog extends TLAbsAppChangelog {
     public void setText(String text) {
         this.text = text;
     }
+
+    @Override
+    public final boolean isEmpty() {
+        return false;
+    }
+
+    @Override
+    public final boolean isNotEmpty() {
+        return true;
+    }
+
+    @Override
+    public final TLAppChangelog getAsHelp.appChangelog() {
+        return this;
+    }
 }

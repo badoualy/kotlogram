@@ -66,4 +66,19 @@ public class TLInputVideo extends TLAbsInputVideo {
     public void setAccessHash(long accessHash) {
         this.accessHash = accessHash;
     }
+
+    @Override
+    public final boolean isEmpty() {
+        return false;
+    }
+
+    @Override
+    public final boolean isNotEmpty() {
+        return true;
+    }
+
+    @Override
+    public final TLInputVideo getAsInputVideo() {
+        return this;
+    }
 }

@@ -174,4 +174,19 @@ public class TLVideo extends TLAbsVideo {
     public void setH(int h) {
         this.h = h;
     }
+
+    @Override
+    public final boolean isEmpty() {
+        return false;
+    }
+
+    @Override
+    public final boolean isNotEmpty() {
+        return true;
+    }
+
+    @Override
+    public final TLVideo getAsVideo() {
+        return this;
+    }
 }

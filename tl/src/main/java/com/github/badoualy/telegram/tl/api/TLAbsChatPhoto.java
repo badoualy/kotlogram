@@ -9,4 +9,12 @@ import com.github.badoualy.telegram.tl.core.TLObject;
 public abstract class TLAbsChatPhoto extends TLObject {
     public TLAbsChatPhoto() {
     }
+
+    public abstract boolean isEmpty();
+
+    public abstract boolean isNotEmpty();
+
+    public TLChatPhoto getAsChatPhoto() {
+        return null;
+    }
 }

@@ -19,4 +19,12 @@ public abstract class TLAbsUser extends TLObject {
     public void setId(int id) {
         this.id = id;
     }
+
+    public abstract boolean isEmpty();
+
+    public abstract boolean isNotEmpty();
+
+    public TLUser getAsUser() {
+        return null;
+    }
 }

@@ -66,4 +66,19 @@ public class TLInputGeoPoint extends TLAbsInputGeoPoint {
     public void setLong(double _long) {
         this._long = _long;
     }
+
+    @Override
+    public final boolean isEmpty() {
+        return false;
+    }
+
+    @Override
+    public final boolean isNotEmpty() {
+        return true;
+    }
+
+    @Override
+    public final TLInputGeoPoint getAsInputGeoPoint() {
+        return this;
+    }
 }

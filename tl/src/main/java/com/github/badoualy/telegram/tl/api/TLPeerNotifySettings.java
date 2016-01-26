@@ -96,4 +96,19 @@ public class TLPeerNotifySettings extends TLAbsPeerNotifySettings {
     public void setEventsMask(int eventsMask) {
         this.eventsMask = eventsMask;
     }
+
+    @Override
+    public final boolean isEmpty() {
+        return false;
+    }
+
+    @Override
+    public final boolean isNotEmpty() {
+        return true;
+    }
+
+    @Override
+    public final TLPeerNotifySettings getAsPeerNotifySettings() {
+        return this;
+    }
 }

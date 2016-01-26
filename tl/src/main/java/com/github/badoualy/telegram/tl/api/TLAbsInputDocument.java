@@ -9,4 +9,20 @@ import com.github.badoualy.telegram.tl.core.TLObject;
 public abstract class TLAbsInputDocument extends TLObject {
     public TLAbsInputDocument() {
     }
+
+    public abstract boolean isEmpty();
+
+    public abstract boolean isNotEmpty();
+
+    public TLInputDocument getAsInputDocument() {
+        return null;
+    }
+
+    public static TLInputDocumentEmpty newEmpty() {
+        return new TLInputDocumentEmpty();
+    }
+
+    public static TLInputDocument newNotEmpty() {
+        return new TLInputDocument();
+    }
 }

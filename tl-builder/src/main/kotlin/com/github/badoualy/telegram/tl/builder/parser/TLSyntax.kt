@@ -55,7 +55,7 @@ class TLConstructor(val name: String, val id: Int, val parameters: ArrayList<TLP
     override fun hashCode() = toString().hashCode()
 }
 
-class TLAbstractConstructor(val name: String, val parameters: List<TLParameter>, val tlType: TLTypeRaw) : Comparable<TLAbstractConstructor>{
+class TLAbstractConstructor(val name: String, val parameters: List<TLParameter>, val tlType: TLTypeRaw, val abstractEmptyConstructor: Boolean) : Comparable<TLAbstractConstructor>{
     override fun toString() = "$name -> ${tlType.toString()}"
     override fun compareTo(other: TLAbstractConstructor) = name.compareTo(other.name)
     override fun equals(other: Any?) = other is TLConstructor && other.name == name

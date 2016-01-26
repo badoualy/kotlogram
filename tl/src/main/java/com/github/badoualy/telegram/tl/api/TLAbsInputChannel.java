@@ -9,4 +9,20 @@ import com.github.badoualy.telegram.tl.core.TLObject;
 public abstract class TLAbsInputChannel extends TLObject {
     public TLAbsInputChannel() {
     }
+
+    public abstract boolean isEmpty();
+
+    public abstract boolean isNotEmpty();
+
+    public TLInputChannel getAsInputChannel() {
+        return null;
+    }
+
+    public static TLInputChannelEmpty newEmpty() {
+        return new TLInputChannelEmpty();
+    }
+
+    public static TLInputChannel newNotEmpty() {
+        return new TLInputChannel();
+    }
 }

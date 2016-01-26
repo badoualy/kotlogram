@@ -9,4 +9,20 @@ import com.github.badoualy.telegram.tl.core.TLObject;
 public abstract class TLAbsInputPeerNotifyEvents extends TLObject {
     public TLAbsInputPeerNotifyEvents() {
     }
+
+    public abstract boolean isEmpty();
+
+    public abstract boolean isNotEmpty();
+
+    public TLInputPeerNotifyEventsAll getAsInputPeerNotifyEvents() {
+        return null;
+    }
+
+    public static TLInputPeerNotifyEventsEmpty newEmpty() {
+        return new TLInputPeerNotifyEventsEmpty();
+    }
+
+    public static TLInputPeerNotifyEventsAll newNotEmpty() {
+        return new TLInputPeerNotifyEventsAll();
+    }
 }

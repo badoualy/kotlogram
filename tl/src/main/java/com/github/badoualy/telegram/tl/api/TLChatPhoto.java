@@ -66,4 +66,19 @@ public class TLChatPhoto extends TLAbsChatPhoto {
     public void setPhotoBig(TLAbsFileLocation photoBig) {
         this.photoBig = photoBig;
     }
+
+    @Override
+    public final boolean isEmpty() {
+        return false;
+    }
+
+    @Override
+    public final boolean isNotEmpty() {
+        return true;
+    }
+
+    @Override
+    public final TLChatPhoto getAsChatPhoto() {
+        return this;
+    }
 }

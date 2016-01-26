@@ -16,7 +16,10 @@ object JavaPoet {
 
     val typeClassNameMap = HashMap<TLType, ClassName>() // Map a type to it's ClassName to reference inside code
     val constructorClassNameMap = HashMap<TLConstructor, ClassName>() // Map a constructor to it's className to use when building context
+
+    val emptyConstructorAbstractedMap = HashMap<TLConstructor, Boolean>() // Map a constructor to true if it's abstracted for an "Empty" constructor only
     val contextConstructors = ArrayList<TLConstructor>() // List of constructors to register in context
+
     var totalClass = 0
 
     val apiClazz = TypeSpec.interfaceBuilder(TELEGRAM_API_INTERFACE)
@@ -69,8 +72,14 @@ object JavaPoet {
         // Check common parameters
         for (abstractType in abstractedConstructors.map { c -> c.tlType }.distinct()) {
             val typeConstructors = abstractedConstructors.filter { c -> c.tlType == abstractType }
+            // We have to build an abstraction for an empty constructor, ie: TLAbsUser, TLUser, TLUserEmpty
+            val abstractEmptyConstructor = typeConstructors.size == 2 && typeConstructors.map { c -> c.name.endsWith("empty", true) }.contains(true)
+            if (abstractEmptyConstructor)
+                typeConstructors.forEach { c -> emptyConstructorAbstractedMap.put(c, true) }
+            val nonEmptyConstructor = if (!abstractEmptyConstructor) null else typeConstructors.find { c -> !c.name.endsWith("empty", true) }
+
             val commonParameters = typeConstructors.map { c -> c.parameters }.reduce { l1, l2 -> l1.intersect(l2).toArrayList() }
-            abstractConstructors.add(TLAbstractConstructor(abstractType.name, commonParameters, abstractType))
+            abstractConstructors.add(TLAbstractConstructor(abstractType.name, commonParameters, abstractType, abstractEmptyConstructor))
             commonParameters.forEach { p -> p.inherited = true }
 
             // Update each types parameters: reference are not the same
@@ -164,6 +173,42 @@ object JavaPoet {
 
         generateClassCommon(clazz, constructor.name, null, constructor.parameters)
 
+        if (constructor.abstractEmptyConstructor) {
+            val constructors = contextConstructors.filter { c -> c.tlType == constructor.tlType }
+            val nonEmptyConstructor = constructors.find { c -> !c.name.endsWith("empty", true) }
+            val emptyConstructor = constructors.find { c -> c.name.endsWith("empty", true) }
+
+            clazz.addMethod(MethodSpec.methodBuilder("isEmpty")
+                    .addModifiers(Modifier.PUBLIC, Modifier.ABSTRACT)
+                    .returns(TypeName.BOOLEAN)
+                    .build())
+
+            clazz.addMethod(MethodSpec.methodBuilder("isNotEmpty")
+                    .addModifiers(Modifier.PUBLIC, Modifier.ABSTRACT)
+                    .returns(TypeName.BOOLEAN)
+                    .build())
+
+            clazz.addMethod(MethodSpec.methodBuilder("getAs" + constructor.name.uFirstLetter())
+                    .addModifiers(Modifier.PUBLIC)
+                    .returns(constructorClassNameMap[nonEmptyConstructor])
+                    .addStatement("return null")
+                    .build())
+
+            if (constructor.name.startsWith("input", true)) {
+                clazz.addMethod(MethodSpec.methodBuilder("newEmpty")
+                        .addModifiers(Modifier.PUBLIC, Modifier.STATIC)
+                        .returns(constructorClassNameMap[emptyConstructor])
+                        .addStatement("return new \$T()", constructorClassNameMap[emptyConstructor])
+                        .build())
+
+                clazz.addMethod(MethodSpec.methodBuilder("newNotEmpty")
+                        .addModifiers(Modifier.PUBLIC, Modifier.STATIC)
+                        .returns(constructorClassNameMap[nonEmptyConstructor])
+                        .addStatement("return new \$T()", constructorClassNameMap[nonEmptyConstructor])
+                        .build())
+            }
+        }
+
         return clazz.build()
     }
 
@@ -175,6 +220,31 @@ object JavaPoet {
                 .superclass(superclass)
 
         generateClassCommon(clazz, constructor.name, constructor.id, constructor.parameters)
+
+        if (emptyConstructorAbstractedMap.getOrDefault(constructor, false)) {
+            clazz.addMethod(MethodSpec.methodBuilder("isEmpty")
+                    .addModifiers(Modifier.PUBLIC, Modifier.FINAL)
+                    .addAnnotation(Override::class.java)
+                    .returns(TypeName.BOOLEAN)
+                    .addStatement("return \$L", constructor.name.endsWith("empty", true))
+                    .build())
+
+            clazz.addMethod(MethodSpec.methodBuilder("isNotEmpty")
+                    .addModifiers(Modifier.PUBLIC, Modifier.FINAL)
+                    .addAnnotation(Override::class.java)
+                    .returns(TypeName.BOOLEAN)
+                    .addStatement("return \$L", !constructor.name.endsWith("empty", true))
+                    .build())
+
+            if (!constructor.name.endsWith("empty", true)) {
+                clazz.addMethod(MethodSpec.methodBuilder("getAs" + constructor.name.uFirstLetter())
+                        .addModifiers(Modifier.PUBLIC, Modifier.FINAL)
+                        .addAnnotation(Override::class.java)
+                        .returns(constructorClassNameMap[constructor])
+                        .addStatement("return this")
+                        .build())
+            }
+        }
 
         return clazz.build()
     }

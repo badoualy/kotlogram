@@ -95,4 +95,19 @@ public class TLPhoto extends TLAbsPhoto {
     public void setSizes(TLVector<TLAbsPhotoSize> sizes) {
         this.sizes = sizes;
     }
+
+    @Override
+    public final boolean isEmpty() {
+        return false;
+    }
+
+    @Override
+    public final boolean isNotEmpty() {
+        return true;
+    }
+
+    @Override
+    public final TLPhoto getAsPhoto() {
+        return this;
+    }
 }

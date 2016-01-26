@@ -107,4 +107,19 @@ public class TLEncryptedFile extends TLAbsEncryptedFile {
     public void setKeyFingerprint(int keyFingerprint) {
         this.keyFingerprint = keyFingerprint;
     }
+
+    @Override
+    public final boolean isEmpty() {
+        return false;
+    }
+
+    @Override
+    public final boolean isNotEmpty() {
+        return true;
+    }
+
+    @Override
+    public final TLEncryptedFile getAsEncryptedFile() {
+        return this;
+    }
 }

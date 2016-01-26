@@ -19,4 +19,12 @@ public abstract class TLAbsVideo extends TLObject {
     public void setId(long id) {
         this.id = id;
     }
+
+    public abstract boolean isEmpty();
+
+    public abstract boolean isNotEmpty();
+
+    public TLVideo getAsVideo() {
+        return null;
+    }
 }

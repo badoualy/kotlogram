@@ -9,4 +9,12 @@ import com.github.badoualy.telegram.tl.core.TLObject;
 public abstract class TLAbsAppChangelog extends TLObject {
     public TLAbsAppChangelog() {
     }
+
+    public abstract boolean isEmpty();
+
+    public abstract boolean isNotEmpty();
+
+    public TLAppChangelog getAsHelp.AppChangelog() {
+        return null;
+    }
 }

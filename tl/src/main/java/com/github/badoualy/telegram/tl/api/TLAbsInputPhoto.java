@@ -9,4 +9,20 @@ import com.github.badoualy.telegram.tl.core.TLObject;
 public abstract class TLAbsInputPhoto extends TLObject {
     public TLAbsInputPhoto() {
     }
+
+    public abstract boolean isEmpty();
+
+    public abstract boolean isNotEmpty();
+
+    public TLInputPhoto getAsInputPhoto() {
+        return null;
+    }
+
+    public static TLInputPhotoEmpty newEmpty() {
+        return new TLInputPhotoEmpty();
+    }
+
+    public static TLInputPhoto newNotEmpty() {
+        return new TLInputPhoto();
+    }
 }

@@ -53,4 +53,19 @@ public class TLChatInviteExported extends TLAbsExportedChatInvite {
     public void setLink(String link) {
         this.link = link;
     }
+
+    @Override
+    public final boolean isEmpty() {
+        return false;
+    }
+
+    @Override
+    public final boolean isNotEmpty() {
+        return true;
+    }
+
+    @Override
+    public final TLChatInviteExported getAsChatInviteExported() {
+        return this;
+    }
 }

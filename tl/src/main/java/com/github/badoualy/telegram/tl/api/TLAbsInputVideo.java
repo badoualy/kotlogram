@@ -9,4 +9,20 @@ import com.github.badoualy.telegram.tl.core.TLObject;
 public abstract class TLAbsInputVideo extends TLObject {
     public TLAbsInputVideo() {
     }
+
+    public abstract boolean isEmpty();
+
+    public abstract boolean isNotEmpty();
+
+    public TLInputVideo getAsInputVideo() {
+        return null;
+    }
+
+    public static TLInputVideoEmpty newEmpty() {
+        return new TLInputVideoEmpty();
+    }
+
+    public static TLInputVideo newNotEmpty() {
+        return new TLInputVideo();
+    }
 }

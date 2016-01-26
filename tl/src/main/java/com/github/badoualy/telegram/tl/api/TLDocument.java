@@ -151,4 +151,19 @@ public class TLDocument extends TLAbsDocument {
     public void setAttributes(TLVector<TLAbsDocumentAttribute> attributes) {
         this.attributes = attributes;
     }
+
+    @Override
+    public final boolean isEmpty() {
+        return false;
+    }
+
+    @Override
+    public final boolean isNotEmpty() {
+        return true;
+    }
+
+    @Override
+    public final TLDocument getAsDocument() {
+        return this;
+    }
 }

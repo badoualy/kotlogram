@@ -9,4 +9,12 @@ import com.github.badoualy.telegram.tl.core.TLObject;
 public abstract class TLAbsUserProfilePhoto extends TLObject {
     public TLAbsUserProfilePhoto() {
     }
+
+    public abstract boolean isEmpty();
+
+    public abstract boolean isNotEmpty();
+
+    public TLUserProfilePhoto getAsUserProfilePhoto() {
+        return null;
+    }
 }

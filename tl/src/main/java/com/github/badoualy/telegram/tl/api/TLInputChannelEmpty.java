@@ -19,4 +19,14 @@ public class TLInputChannelEmpty extends TLAbsInputChannel {
     public int getClassId() {
         return CLASS_ID;
     }
+
+    @Override
+    public final boolean isEmpty() {
+        return true;
+    }
+
+    @Override
+    public final boolean isNotEmpty() {
+        return false;
+    }
 }

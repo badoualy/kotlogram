@@ -9,4 +9,12 @@ import com.github.badoualy.telegram.tl.core.TLObject;
 public abstract class TLAbsEncryptedFile extends TLObject {
     public TLAbsEncryptedFile() {
     }
+
+    public abstract boolean isEmpty();
+
+    public abstract boolean isNotEmpty();
+
+    public TLEncryptedFile getAsEncryptedFile() {
+        return null;
+    }
 }

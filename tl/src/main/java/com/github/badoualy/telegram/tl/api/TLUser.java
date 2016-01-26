@@ -329,4 +329,19 @@ public class TLUser extends TLAbsUser {
     public void setBotInlinePlaceholder(String botInlinePlaceholder) {
         this.botInlinePlaceholder = botInlinePlaceholder;
     }
+
+    @Override
+    public final boolean isEmpty() {
+        return false;
+    }
+
+    @Override
+    public final boolean isNotEmpty() {
+        return true;
+    }
+
+    @Override
+    public final TLUser getAsUser() {
+        return this;
+    }
 }

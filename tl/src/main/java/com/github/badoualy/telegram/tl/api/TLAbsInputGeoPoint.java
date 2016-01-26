@@ -9,4 +9,20 @@ import com.github.badoualy.telegram.tl.core.TLObject;
 public abstract class TLAbsInputGeoPoint extends TLObject {
     public TLAbsInputGeoPoint() {
     }
+
+    public abstract boolean isEmpty();
+
+    public abstract boolean isNotEmpty();
+
+    public TLInputGeoPoint getAsInputGeoPoint() {
+        return null;
+    }
+
+    public static TLInputGeoPointEmpty newEmpty() {
+        return new TLInputGeoPointEmpty();
+    }
+
+    public static TLInputGeoPoint newNotEmpty() {
+        return new TLInputGeoPoint();
+    }
 }
