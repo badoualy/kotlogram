@@ -2,8 +2,6 @@ package com.github.badoualy.telegram.tl.builder.poet
 
 import com.squareup.javapoet.ClassName
 
-val OUTPUT = "./tl/src/main/java"
-
 val PACKAGE_TL = "com.github.badoualy.telegram.tl"
 val PACKAGE_TL_CORE = "$PACKAGE_TL.core"
 val PACKAGE_TL_API = "$PACKAGE_TL.api"

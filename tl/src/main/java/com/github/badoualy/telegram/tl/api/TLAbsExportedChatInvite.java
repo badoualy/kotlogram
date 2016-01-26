@@ -14,7 +14,7 @@ public abstract class TLAbsExportedChatInvite extends TLObject {
 
     public abstract boolean isNotEmpty();
 
-    public TLChatInviteExported getAsExportedChatInvite() {
+    public TLChatInviteExported getAsChatInviteExported() {
         return null;
     }
 }

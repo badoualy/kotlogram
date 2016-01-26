@@ -65,7 +65,7 @@ public class TLAppChangelog extends TLAbsAppChangelog {
     }
 
     @Override
-    public final TLAppChangelog getAsHelp.appChangelog() {
+    public final TLAppChangelog getAsAppChangelog() {
         return this;
     }
 }

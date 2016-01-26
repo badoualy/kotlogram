@@ -14,7 +14,7 @@ public abstract class TLAbsInputPeerNotifyEvents extends TLObject {
 
     public abstract boolean isNotEmpty();
 
-    public TLInputPeerNotifyEventsAll getAsInputPeerNotifyEvents() {
+    public TLInputPeerNotifyEventsAll getAsInputPeerNotifyEventsAll() {
         return null;
     }
 

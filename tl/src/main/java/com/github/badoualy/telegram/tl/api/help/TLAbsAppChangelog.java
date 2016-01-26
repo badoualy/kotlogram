@@ -14,7 +14,7 @@ public abstract class TLAbsAppChangelog extends TLObject {
 
     public abstract boolean isNotEmpty();
 
-    public TLAppChangelog getAsHelp.AppChangelog() {
+    public TLAppChangelog getAsAppChangelog() {
         return null;
     }
 }

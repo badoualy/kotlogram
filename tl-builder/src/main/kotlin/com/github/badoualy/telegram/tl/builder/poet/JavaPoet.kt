@@ -175,8 +175,8 @@ object JavaPoet {
 
         if (constructor.abstractEmptyConstructor) {
             val constructors = contextConstructors.filter { c -> c.tlType == constructor.tlType }
-            val nonEmptyConstructor = constructors.find { c -> !c.name.endsWith("empty", true) }
-            val emptyConstructor = constructors.find { c -> c.name.endsWith("empty", true) }
+            val nonEmptyConstructor = constructors.find { c -> !c.name.endsWith("empty", true) }!!
+            val emptyConstructor = constructors.find { c -> c.name.endsWith("empty", true) }!!
 
             clazz.addMethod(MethodSpec.methodBuilder("isEmpty")
                     .addModifiers(Modifier.PUBLIC, Modifier.ABSTRACT)
@@ -188,7 +188,7 @@ object JavaPoet {
                     .returns(TypeName.BOOLEAN)
                     .build())
 
-            clazz.addMethod(MethodSpec.methodBuilder("getAs" + constructor.name.uFirstLetter())
+            clazz.addMethod(MethodSpec.methodBuilder("getAs" + nonEmptyConstructor.name.split(".").last().uCamelCase())
                     .addModifiers(Modifier.PUBLIC)
                     .returns(constructorClassNameMap[nonEmptyConstructor])
                     .addStatement("return null")
@@ -237,7 +237,7 @@ object JavaPoet {
                     .build())
 
             if (!constructor.name.endsWith("empty", true)) {
-                clazz.addMethod(MethodSpec.methodBuilder("getAs" + constructor.name.uFirstLetter())
+                clazz.addMethod(MethodSpec.methodBuilder("getAs" + constructor.name.split(".").last().uCamelCase())
                         .addModifiers(Modifier.PUBLIC, Modifier.FINAL)
                         .addAnnotation(Override::class.java)
                         .returns(constructorClassNameMap[constructor])
@@ -275,15 +275,12 @@ object JavaPoet {
             deserializeResponseMethod.addStatement("final \$T response = readTLObject(stream, context)", TYPE_TL_OBJECT)
                     .beginControlFlow("if (response == null)")
                     .addStatement("throw new \$T(\"Unable to parse response\")", IOException::class.java)
-                    .endControlFlow();
-
-            if (method.tlType is TLTypeGeneric)
-                deserializeResponseMethod.beginControlFlow("if (!(response instanceof \$T))", TYPE_TL_VECTOR)
-            else
-                deserializeResponseMethod.beginControlFlow("if (!(response instanceof \$T))", responseType)
-
-            deserializeResponseMethod.addStatement("throw new \$T(\"Incorrect response type, expected getClass().getCanonicalName(), found response.getClass().getCanonicalName()\")", IOException::class.java)
                     .endControlFlow()
+
+                    .beginControlFlow("if (!(response instanceof \$T))", if (responseType is ParameterizedTypeName) responseType.rawType else responseType)
+                    .addStatement("throw new \$T(\"Incorrect response type, expected getClass().getCanonicalName(), found response.getClass().getCanonicalName()\")", IOException::class.java)
+                    .endControlFlow()
+
                     .addStatement("return (\$T) response", responseType)
         }
         clazz.addMethod(deserializeResponseMethod.build())
