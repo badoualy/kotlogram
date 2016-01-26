@@ -11,10 +11,6 @@ object Kotlogram {
     fun getDefaultClient(application: TelegramApp, apiStorage: TelegramApiStorage, preferredDataCenter: DataCenter = PROD_DC4)
             : TelegramClient = DefaultTelegramClient(application, apiStorage, preferredDataCenter)
 
-    //    @JvmOverloads @JvmStatic
-    //    fun getDefaultReactiveClient(application: TelegramApp, apiStorage: TelegramApiStorage, preferredDataCenter: DataCenter = PROD_DC4)
-    //            : TelegramReactiveClient = DefaultTelegramReactiveClient(application, apiStorage, preferredDataCenter)
-
     @JvmStatic
     fun setDebugLogEnabled(enabled: Boolean) {
         Log.enabled = enabled
