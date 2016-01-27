@@ -85,4 +85,6 @@ class MTProtoTcpConnection
         Log.d(TAG, "Closing connection")
         socket.close()
     }
+
+    override fun isOpened() = !socket.isClosed && socket.isConnected
 }

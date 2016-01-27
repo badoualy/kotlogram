@@ -88,9 +88,8 @@ class MTProtoHandler {
 
     fun startWatchdog() {
         watchdog!!.start()
-                .onBackpressureBuffer()
-                .observeOn(Schedulers.newThread())
-                .subscribeOn(Schedulers.computation())
+                .observeOn(Schedulers.computation())
+                .subscribeOn(Schedulers.newThread())
                 .doOnError({ t -> t.printStackTrace() })
                 .doOnNext({ data -> onMessageReceived(data) })
                 .subscribe()
@@ -452,6 +451,7 @@ class MTProtoHandler {
                 }
 
         val classId = StreamUtils.readInt(result.content)
+        Log.d(TAG, "Response is a " + classId)
         if (mtProtoContext.isSupportedObject(classId)) {
             val resultContent = mtProtoContext.deserializeMessage(result.content)
             if (resultContent is MTRpcError) {

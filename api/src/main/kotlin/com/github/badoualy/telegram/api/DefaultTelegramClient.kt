@@ -6,7 +6,9 @@ import com.github.badoualy.telegram.mtproto.MTProtoHandler
 import com.github.badoualy.telegram.mtproto.auth.AuthKey
 import com.github.badoualy.telegram.mtproto.auth.AuthKeyCreation
 import com.github.badoualy.telegram.mtproto.auth.AuthResult
+import com.github.badoualy.telegram.mtproto.exception.MTProtoException
 import com.github.badoualy.telegram.mtproto.exception.RpcErrorException
+import com.github.badoualy.telegram.mtproto.exception.SecurityException
 import com.github.badoualy.telegram.mtproto.util.Log
 import com.github.badoualy.telegram.tl.api.*
 import com.github.badoualy.telegram.tl.api.request.TLRequestAuthImportAuthorization
@@ -16,6 +18,7 @@ import com.github.badoualy.telegram.tl.api.request.TLRequestInvokeWithLayer
 import com.github.badoualy.telegram.tl.core.TLMethod
 import com.github.badoualy.telegram.tl.core.TLObject
 import java.io.IOException
+import java.util.concurrent.TimeoutException
 
 internal class DefaultTelegramClient internal constructor(val application: TelegramApp, val apiStorage: TelegramApiStorage,
                                                           val preferredDataCenter: DataCenter) : TelegramApiWrapper(), TelegramClient, ApiCallback {
@@ -43,24 +46,26 @@ internal class DefaultTelegramClient internal constructor(val application: Teleg
         }
 
         // No need to check DC if we have an authKey in storage
-        init(checkNearestDc = generateAuthKey)
+        init(checkNearestDc = generateAuthKey, initConnection = generateAuthKey)
     }
 
-    private fun init(checkNearestDc: Boolean = true) {
+    private fun init(checkNearestDc: Boolean = true, initConnection: Boolean = true) {
         mtProtoHandler = if (generateAuthKey) MTProtoHandler(generateAuthKey(), this) else MTProtoHandler(dataCenter!!, authKey!!, apiStorage.loadServerSalt(), this)
         mtProtoHandler!!.startWatchdog()
 
-        try {
-            // Call to initConnection to setup information about this app for the user to see in "active sessions"
-            // Also will indicate to Telegram which layer to use through InvokeWithLayer
-            val nearestDc = initConnection(mtProtoHandler!!, TLRequestHelpGetNearestDc())
-            if (checkNearestDc)
-                ensureNearestDc(nearestDc)
-        } catch(e: Exception) {
-            mtProtoHandler?.close()
-            if (e is RpcErrorException && e.error.errorCode == -404)
-                throw RuntimeException("Your authorization key seems to be invalid (error " + e.error.errorCode + ")")
-            throw RuntimeException("An unknown error has occurred", e)
+        if (generateAuthKey) {
+            try {
+                // Call to initConnection to setup information about this app for the user to see in "active sessions"
+                // Also will indicate to Telegram which layer to use through InvokeWithLayer
+                val nearestDc = initConnection(mtProtoHandler!!, TLRequestHelpGetNearestDc())
+                if (checkNearestDc)
+                    ensureNearestDc(nearestDc)
+            } catch(e: Exception) {
+                mtProtoHandler?.close()
+                if (e is RpcErrorException && e.error.errorCode == -404)
+                    throw SecurityException("Your authorization key is invalid (error " + e.error.errorCode + ")")
+                throw RuntimeException(e)
+            }
         }
     }
 
@@ -72,9 +77,19 @@ internal class DefaultTelegramClient internal constructor(val application: Teleg
         return authResult
     }
 
-    private fun <T : TLObject> initConnection(mtProtoHandler: MTProtoHandler, method: TLMethod<T>) = mtProtoHandler
-            .executeMethod(TLRequestInvokeWithLayer(Kotlogram.API_LAYER, TLRequestInitConnection(application.apiId, application.deviceModel, application.systemVersion, application.appVersion, application.langCode, method)))
-            .toBlocking().first()
+    private fun <T : TLObject> initConnection(mtProtoHandler: MTProtoHandler, method: TLMethod<T>): T {
+        val result =
+                try {
+                    mtProtoHandler
+                            .executeMethod(TLRequestInvokeWithLayer(Kotlogram.API_LAYER, TLRequestInitConnection(application.apiId, application.deviceModel, application.systemVersion, application.appVersion, application.langCode, method)))
+                            .toBlocking().first()
+                } catch (e: RuntimeException) {
+                    if (e.cause is TimeoutException)
+                        throw IOException("Request timed out")
+                    throw e
+                }
+        return result
+    }
 
     @Throws(IOException::class)
     private fun ensureNearestDc(nearestDc: TLNearestDc) {
@@ -109,7 +124,7 @@ internal class DefaultTelegramClient internal constructor(val application: Teleg
                             migrate(error.message.removePrefix("PHONE_MIGRATE_").toInt())
                             return executeRpcQuery(method)
                         } else if (error.message.startsWith("FILE_MIGRATE_")) {
-                            val migratedHandler = getMigratedMTProtoHandler(error.message.removePrefix("FILE_MIGRATE_").toInt())
+                            val migratedHandler = getExportedMTProtoHandler(error.message.removePrefix("FILE_MIGRATE_").toInt())
                             try {
                                 val result = migratedHandler.executeMethod(method).toBlocking().first()
                                 migratedHandler.close()
@@ -146,7 +161,7 @@ internal class DefaultTelegramClient internal constructor(val application: Teleg
     }
 
     @Throws(IOException::class)
-    private fun getMigratedMTProtoHandler(dcId: Int): MTProtoHandler {
+    private fun getExportedMTProtoHandler(dcId: Int): MTProtoHandler {
         Log.d(TAG, "Creating handler on DC$dcId")
         val dc = Kotlogram.PROD_DCS[dcId - 1]
         val exportedAuthorization = authExportAuthorization(dcId)

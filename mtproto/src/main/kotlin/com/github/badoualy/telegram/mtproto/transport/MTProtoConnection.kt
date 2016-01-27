@@ -15,5 +15,6 @@ interface MTProtoConnection {
 
     @Throws(IOException::class)
     fun close()
-    
+
+    fun isOpened(): Boolean
 }
