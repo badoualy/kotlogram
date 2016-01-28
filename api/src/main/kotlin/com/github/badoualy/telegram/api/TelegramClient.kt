@@ -11,6 +11,9 @@ import java.io.IOException
 
 interface TelegramClient : TelegramApi {
 
+    /** Changes the request timeout with the supplied value (in ms) */
+    fun setTimeout(timeout: Long)
+
     /** Close connection to Telegram and stop everything */
     fun close()
 

@@ -30,7 +30,7 @@ import java.util.concurrent.TimeUnit
 class MTProtoHandler {
 
     private val TAG = "MTProtoHandler"
-    private val DEFAULT_TIMEOUT = 15000L
+    private val DEFAULT_TIMEOUT = 6500L
     private val ACK_BUFFER_SIZE = 15
     private val ACK_BUFFER_TIMEOUT: Long = 60 * 1000
 
@@ -108,6 +108,8 @@ class MTProtoHandler {
         }
         watchdogExecutor?.shutdownNow()
     }
+
+    fun <T : TLObject> executeMethodSync(method: TLMethod<T>, timeout: Long = DEFAULT_TIMEOUT) = executeMethod(method, timeout).toBlocking().first()
 
     /**
      * Execute the given method, generates a message id, serialize the method, encrypt it then send it

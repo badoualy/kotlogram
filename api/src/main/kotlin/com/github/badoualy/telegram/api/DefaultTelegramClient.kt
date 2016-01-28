@@ -22,13 +22,15 @@ import java.util.concurrent.TimeoutException
 internal class DefaultTelegramClient internal constructor(val application: TelegramApp, val apiStorage: TelegramApiStorage,
                                                           val preferredDataCenter: DataCenter) : TelegramApiWrapper(), TelegramClient, ApiCallback {
 
+    private val TAG = "TelegramClient"
+
     var mtProtoHandler: MTProtoHandler? = null
     var authKey: AuthKey? = null
     var dataCenter: DataCenter? = null
 
-    private var generateAuthKey: Boolean
+    var timeoutDuration: Long = 6500L
 
-    private val TAG = "TelegramClient"
+    private var generateAuthKey: Boolean
 
     init {
         authKey = apiStorage.loadAuthKey()
@@ -45,10 +47,10 @@ internal class DefaultTelegramClient internal constructor(val application: Teleg
         }
 
         // No need to check DC if we have an authKey in storage
-        init(checkNearestDc = generateAuthKey, initConnection = generateAuthKey)
+        init(checkNearestDc = generateAuthKey)
     }
 
-    private fun init(checkNearestDc: Boolean = true, initConnection: Boolean = true) {
+    private fun init(checkNearestDc: Boolean = true) {
         mtProtoHandler = if (generateAuthKey) MTProtoHandler(generateAuthKey(), this) else MTProtoHandler(dataCenter!!, authKey!!, apiStorage.loadServerSalt(), this)
         mtProtoHandler!!.startWatchdog()
 
@@ -79,9 +81,7 @@ internal class DefaultTelegramClient internal constructor(val application: Teleg
     private fun <T : TLObject> initConnection(mtProtoHandler: MTProtoHandler, method: TLMethod<T>): T {
         val result =
                 try {
-                    mtProtoHandler
-                            .executeMethod(TLRequestInvokeWithLayer(Kotlogram.API_LAYER, TLRequestInitConnection(application.apiId, application.deviceModel, application.systemVersion, application.appVersion, application.langCode, method)))
-                            .toBlocking().first()
+                    mtProtoHandler.executeMethodSync(TLRequestInvokeWithLayer(Kotlogram.API_LAYER, TLRequestInitConnection(application.apiId, application.deviceModel, application.systemVersion, application.appVersion, application.langCode, method)))
                 } catch (e: RuntimeException) {
                     if (e.cause is TimeoutException)
                         throw IOException("Request timed out")
@@ -105,19 +105,23 @@ internal class DefaultTelegramClient internal constructor(val application: Teleg
         }
     }
 
+    override fun setTimeout(timeout: Long) {
+        this.timeoutDuration = timeout
+    }
+
     override fun close() = close(true)
 
     override fun close(cleanUp: Boolean) {
         mtProtoHandler?.close() ?: Unit
         if (cleanUp)
-        Kotlogram.cleanUp()
+            Kotlogram.cleanUp()
     }
 
     @Throws(IOException::class)
     override fun <T : TLObject> executeRpcQuery(method: TLMethod<T>): T {
         // BlockingObservable.first() will throw a RuntimeException if onError() is called by observable
         try {
-            return mtProtoHandler!!.executeMethod(method).toBlocking().first()
+            return mtProtoHandler!!.executeMethodSync(method, timeoutDuration)
         } catch(exception: RuntimeException) {
             when (exception.cause) {
                 is RpcErrorException -> {
@@ -131,7 +135,7 @@ internal class DefaultTelegramClient internal constructor(val application: Teleg
                         } else if (error.message.startsWith("FILE_MIGRATE_")) {
                             val migratedHandler = getExportedMTProtoHandler(error.message.removePrefix("FILE_MIGRATE_").toInt())
                             try {
-                                val result = migratedHandler.executeMethod(method).toBlocking().first()
+                                val result = migratedHandler.executeMethodSync(method, timeoutDuration)
                                 migratedHandler.close()
                                 return result
                             } catch (e: IOException) {
