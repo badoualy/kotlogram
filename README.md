@@ -13,7 +13,6 @@ Beta
 The project is still in beta, a lot is yet to be done. It comes with absolutely no warranty!
 Main tasks left:
 - Implement [Perfect Forward Secrecy](https://core.telegram.org/api/pfs).
-- Use the method to get more salts and save them in storage. Currently the first request will be sent with a bad salt, and resent when a good salt is received.
 - Improve error handling for the requests, and the exceptions in the mtproto module.
 - Implement tests
 
