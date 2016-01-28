@@ -11,7 +11,11 @@ import java.io.IOException
 
 interface TelegramClient : TelegramApi {
 
+    /** Close connection to Telegram and stop everything */
     fun close()
+
+    /** Close connection, and clean the threads if cleanUp is true */
+    fun close(cleanUp: Boolean)
 
     @Throws(RpcErrorException::class, IOException::class)
     fun <T : TLObject> executeRpcQuery(method: TLMethod<T>): T

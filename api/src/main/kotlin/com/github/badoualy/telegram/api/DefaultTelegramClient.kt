@@ -6,7 +6,6 @@ import com.github.badoualy.telegram.mtproto.MTProtoHandler
 import com.github.badoualy.telegram.mtproto.auth.AuthKey
 import com.github.badoualy.telegram.mtproto.auth.AuthKeyCreation
 import com.github.badoualy.telegram.mtproto.auth.AuthResult
-import com.github.badoualy.telegram.mtproto.exception.MTProtoException
 import com.github.badoualy.telegram.mtproto.exception.RpcErrorException
 import com.github.badoualy.telegram.mtproto.exception.SecurityException
 import com.github.badoualy.telegram.mtproto.util.Log
@@ -106,7 +105,13 @@ internal class DefaultTelegramClient internal constructor(val application: Teleg
         }
     }
 
-    override fun close() = mtProtoHandler?.close() ?: Unit
+    override fun close() = close(true)
+
+    override fun close(cleanUp: Boolean) {
+        mtProtoHandler?.close() ?: Unit
+        if (cleanUp)
+        Kotlogram.cleanUp()
+    }
 
     @Throws(IOException::class)
     override fun <T : TLObject> executeRpcQuery(method: TLMethod<T>): T {
@@ -152,7 +157,7 @@ internal class DefaultTelegramClient internal constructor(val application: Teleg
         Log.d(TAG, "Migrating to DC$dcId")
         mtProtoHandler?.close()
         authKey = null
-        dataCenter = Kotlogram.PROD_DCS[dcId - 1]
+        dataCenter = Kotlogram.getDcById(dcId)
         apiStorage.deleteAuthKey()
         apiStorage.deleteDc()
         generateAuthKey = true
@@ -163,7 +168,7 @@ internal class DefaultTelegramClient internal constructor(val application: Teleg
     @Throws(IOException::class)
     private fun getExportedMTProtoHandler(dcId: Int): MTProtoHandler {
         Log.d(TAG, "Creating handler on DC$dcId")
-        val dc = Kotlogram.PROD_DCS[dcId - 1]
+        val dc = Kotlogram.getDcById(dcId)
         val exportedAuthorization = authExportAuthorization(dcId)
         val authResult = AuthKeyCreation.createAuthKey(dc) ?: throw IOException("Couldn't create authorization key on DC$dcId")
         val mtProtoHandler = MTProtoHandler(authResult, null)

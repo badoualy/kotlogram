@@ -5,6 +5,7 @@ import com.github.badoualy.telegram.mtproto.auth.AuthResult
 import com.github.badoualy.telegram.mtproto.exception.RpcErrorException
 import com.github.badoualy.telegram.mtproto.secure.MTProtoMessageEncryption
 import com.github.badoualy.telegram.mtproto.secure.RandomUtils
+import com.github.badoualy.telegram.mtproto.thread.MTProtoTimer
 import com.github.badoualy.telegram.mtproto.time.TimeOverlord
 import com.github.badoualy.telegram.mtproto.tl.*
 import com.github.badoualy.telegram.mtproto.transport.MTProtoConnection
@@ -14,7 +15,6 @@ import com.github.badoualy.telegram.tl.DeserializeException
 import com.github.badoualy.telegram.tl.StreamUtils
 import com.github.badoualy.telegram.tl.api.TLAbsUpdates
 import com.github.badoualy.telegram.tl.api.TLApiContext
-import com.github.badoualy.telegram.tl.api.TLUpdateShort
 import com.github.badoualy.telegram.tl.core.TLMethod
 import com.github.badoualy.telegram.tl.core.TLObject
 import org.apache.commons.lang3.StringUtils
@@ -24,8 +24,8 @@ import rx.lang.kotlin.observable
 import rx.schedulers.Schedulers
 import java.io.IOException
 import java.util.*
+import java.util.concurrent.Executors
 import java.util.concurrent.TimeUnit
-import kotlin.concurrent.schedule
 
 class MTProtoHandler {
 
@@ -54,11 +54,12 @@ class MTProtoHandler {
     private var crMessageSent = 0 // Number of content related message sent
     private var lastMessageId: Long = 0
 
-    private val timer = Timer()
-    private var timerTask: TimerTask? = null
+    private var bufferTimeoutTask: TimerTask? = null
     private var bufferId = 0
 
     private val apiCallback: ApiCallback?
+
+    private val watchdogExecutor = Executors.newSingleThreadExecutor()
 
     constructor(authResult: AuthResult, apiCallback: ApiCallback?) {
         connection = authResult.connection
@@ -89,7 +90,7 @@ class MTProtoHandler {
     fun startWatchdog() {
         watchdog!!.start()
                 .observeOn(Schedulers.computation())
-                .subscribeOn(Schedulers.newThread())
+                .subscribeOn(Schedulers.from(watchdogExecutor))
                 .doOnError({ t -> t.printStackTrace() })
                 .doOnNext({ data -> onMessageReceived(data) })
                 .subscribe()
@@ -97,7 +98,7 @@ class MTProtoHandler {
 
     /** Properly close the connection to Telegram's server after sending ACK for messages if any to send */
     fun close() {
-        timer.cancel()
+        bufferTimeoutTask?.cancel()
         onBufferTimeout(bufferId)
         watchdog?.stop()
         try {
@@ -105,6 +106,7 @@ class MTProtoHandler {
         } catch (e: IOException) {
             e.printStackTrace()
         }
+        watchdogExecutor?.shutdownNow()
     }
 
     /**
@@ -180,14 +182,15 @@ class MTProtoHandler {
 
         if (startTimer) {
             try {
-                timerTask = timer.schedule(ACK_BUFFER_TIMEOUT, { onBufferTimeout(id) })
+                bufferTimeoutTask = MTProtoTimer.schedule(ACK_BUFFER_TIMEOUT, { onBufferTimeout(id) })
             } catch(e: IllegalStateException) {
                 // TODO: remove Timer use
                 // Timer already cancelled.
             }
         }
         if (flush) {
-            timerTask?.cancel()
+            bufferTimeoutTask?.cancel()
+            bufferTimeoutTask = null
             sendMessagesAck(list!!.toLongArray())
         }
     }
@@ -206,7 +209,6 @@ class MTProtoHandler {
             messageToAckList = ArrayList<Long>(ACK_BUFFER_SIZE)
             bufferId++
         }
-
 
         sendMessagesAck(list!!.toLongArray())
     }
@@ -258,7 +260,8 @@ class MTProtoHandler {
             if (messageToAckList.isNotEmpty()) {
                 messageToAckList = ArrayList<Long>(ACK_BUFFER_SIZE)
                 bufferId++
-                timerTask?.cancel()
+                bufferTimeoutTask?.cancel()
+                bufferTimeoutTask = null
             }
         }
 
@@ -463,5 +466,13 @@ class MTProtoHandler {
         }
 
         subscriber?.onCompleted()
+    }
+
+    companion object {
+        /** Cleanup all the threads and common resources associated to this instance */
+        @JvmStatic
+        fun cleanUp() {
+            MTProtoTimer.shutdown()
+        }
     }
 }
