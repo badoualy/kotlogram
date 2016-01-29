@@ -28,7 +28,7 @@ internal class DefaultTelegramClient internal constructor(val application: Teleg
     var authKey: AuthKey? = null
     var dataCenter: DataCenter? = null
 
-    var timeoutDuration: Long = 6500L
+    var timeoutDuration: Long = 5000L
 
     private var generateAuthKey: Boolean
 
@@ -81,7 +81,7 @@ internal class DefaultTelegramClient internal constructor(val application: Teleg
     private fun <T : TLObject> initConnection(mtProtoHandler: MTProtoHandler, method: TLMethod<T>): T {
         val result =
                 try {
-                    mtProtoHandler.executeMethodSync(TLRequestInvokeWithLayer(Kotlogram.API_LAYER, TLRequestInitConnection(application.apiId, application.deviceModel, application.systemVersion, application.appVersion, application.langCode, method)))
+                    mtProtoHandler.executeMethodSync(TLRequestInvokeWithLayer(Kotlogram.API_LAYER, TLRequestInitConnection(application.apiId, application.deviceModel, application.systemVersion, application.appVersion, application.langCode, method)), timeoutDuration)
                 } catch (e: RuntimeException) {
                     if (e.cause is TimeoutException)
                         throw IOException("Request timed out")
@@ -146,6 +146,14 @@ internal class DefaultTelegramClient internal constructor(val application: Teleg
                     throw exception.cause as RpcErrorException
                 }
                 is IOException -> throw exception.cause as IOException
+                is TimeoutException -> {
+                    // Experimental, try to resend request ...
+                    System.err.println("Attempting MtProtoHandler reset after failure")
+                    mtProtoHandler!!.resetConnection()
+                    val result = mtProtoHandler!!.executeMethodSync(method, timeoutDuration)
+                    System.err.println("Reset worked...")
+                    return result
+                }
                 else -> throw exception
             }
         }

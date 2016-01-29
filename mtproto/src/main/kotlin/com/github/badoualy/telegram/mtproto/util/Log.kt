@@ -18,7 +18,6 @@ class Log {
             if (enabled) println(tag + "! " + message)
         }
 
-
         @JvmStatic
         @JvmOverloads
         fun e(tag: String, message: String, tabCount: Int = 0) {

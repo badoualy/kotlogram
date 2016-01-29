@@ -30,7 +30,6 @@ import java.util.concurrent.TimeUnit
 class MTProtoHandler {
 
     private val TAG = "MTProtoHandler"
-    private val DEFAULT_TIMEOUT = 6500L
     private val ACK_BUFFER_SIZE = 15
     private val ACK_BUFFER_TIMEOUT: Long = 60 * 1000
 
@@ -96,6 +95,21 @@ class MTProtoHandler {
                 .subscribe()
     }
 
+    /** Close the connection and re-open another one with a new session id */
+    fun resetConnection() {
+        Log.e(TAG, "Reset connection...")
+        try {
+            watchdog?.stop()
+            connection!!.close()
+        } catch (e: IOException) {
+            e.printStackTrace()
+        }
+
+        connection = MTProtoTcpConnection(connection!!.getIp().toString(), connection!!.getPort())
+        init()
+        startWatchdog()
+    }
+
     /** Properly close the connection to Telegram's server after sending ACK for messages if any to send */
     fun close() {
         bufferTimeoutTask?.cancel()
@@ -109,7 +123,7 @@ class MTProtoHandler {
         watchdogExecutor?.shutdownNow()
     }
 
-    fun <T : TLObject> executeMethodSync(method: TLMethod<T>, timeout: Long = DEFAULT_TIMEOUT) = executeMethod(method, timeout).toBlocking().first()
+    fun <T : TLObject> executeMethodSync(method: TLMethod<T>, timeout: Long) = executeMethod(method, timeout).toBlocking().first()
 
     /**
      * Execute the given method, generates a message id, serialize the method, encrypt it then send it
@@ -120,8 +134,7 @@ class MTProtoHandler {
      * @throws IOException
      */
     @Throws(IOException::class)
-    @JvmOverloads
-    fun <T : TLObject> executeMethod(method: TLMethod<T>, timeout: Long = DEFAULT_TIMEOUT): Observable<T> {
+    fun <T : TLObject> executeMethod(method: TLMethod<T>, timeout: Long): Observable<T> {
         val observable = observable<T> { subscriber ->
             Log.d(TAG, "executeMethod ${method.toString()}")
             try {

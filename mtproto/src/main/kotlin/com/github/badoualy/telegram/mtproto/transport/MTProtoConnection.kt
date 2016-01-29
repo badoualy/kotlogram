@@ -1,6 +1,7 @@
 package com.github.badoualy.telegram.mtproto.transport
 
 import java.io.IOException
+import java.net.InetAddress
 
 interface MTProtoConnection {
 
@@ -17,4 +18,8 @@ interface MTProtoConnection {
     fun close()
 
     fun isOpened(): Boolean
+
+    fun getPort(): Int
+
+    fun getIp(): String?
 }

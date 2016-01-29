@@ -87,4 +87,8 @@ class MTProtoTcpConnection
     }
 
     override fun isOpened() = !socket.isClosed && socket.isConnected
+
+    override fun getPort() = socket.port
+
+    override fun getIp() = socket.inetAddress.hostAddress
 }
