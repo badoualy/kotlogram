@@ -138,7 +138,7 @@ object JavaPoet {
                 .addAnnotation(AnnotationSpec.builder(SuppressWarnings::class.java).addMember("value", "\"unused\"").build())
                 .superclass(TYPE_TL_CONTEXT)
 
-        contextClazz.addMethod(MethodSpec.constructorBuilder().addModifiers(Modifier.PUBLIC).addStatement("super(\$L)", contextConstructors.size + 1).build())
+        contextClazz.addMethod(MethodSpec.constructorBuilder().addModifiers(Modifier.PUBLIC).addStatement("super(\$L)", contextConstructors.size).build())
 
         contextClazz.addField(TYPE_TL_API_CONTEXT, "instance", Modifier.PRIVATE, Modifier.STATIC)
 
@@ -152,10 +152,9 @@ object JavaPoet {
                 .build())
 
         val methodBuilder = MethodSpec.methodBuilder("init").addModifiers(Modifier.PUBLIC).addAnnotation(Override::class.java)
-        methodBuilder.addStatement("registerClass(\$T.CLASS_ID, \$T.class" + ")", TYPE_TL_VECTOR, TYPE_TL_VECTOR)
         for (constructor in contextConstructors.sorted()) {
             val clazzName = constructorClassNameMap[constructor]!!
-            methodBuilder.addStatement("registerClass(\$T.CLASS_ID, \$T.class" + ")", clazzName, clazzName)
+            methodBuilder.addStatement("registerClass(\$T.CONSTRUCTOR_ID, \$T.class" + ")", clazzName, clazzName)
         }
         contextClazz.addMethod(methodBuilder.build())
 
@@ -308,8 +307,8 @@ object JavaPoet {
 
     private fun generateClassCommon(clazz: TypeSpec.Builder, name: String, id: Int?, parameters: List<TLParameter>) {
         if (id != null) {
-            // CLASS_ID field
-            clazz.addField(FieldSpec.builder(TypeName.INT, "CLASS_ID", Modifier.PUBLIC, Modifier.STATIC, Modifier.FINAL)
+            // CONSTRUCTOR_ID field
+            clazz.addField(FieldSpec.builder(TypeName.INT, "CONSTRUCTOR_ID", Modifier.PUBLIC, Modifier.STATIC, Modifier.FINAL)
                     .initializer("0x${hex(id)}").build())
         }
 
@@ -394,12 +393,12 @@ object JavaPoet {
                     .addStatement("""return "$name#${hex(id)}"""")
                     .build())
 
-            // getClassId
-            clazz.addMethod(MethodSpec.methodBuilder("getClassId")
+            // getConstructorId
+            clazz.addMethod(MethodSpec.methodBuilder("getConstructorId")
                     .addAnnotation(Override::class.java)
                     .addModifiers(Modifier.PUBLIC)
                     .returns(TypeName.INT)
-                    .addStatement("return CLASS_ID")
+                    .addStatement("return CONSTRUCTOR_ID")
                     .build())
         }
         clazz.addMethods(accessors)
@@ -410,7 +409,14 @@ object JavaPoet {
         is TLTypeAny -> TypeVariableName.get("T")
         is TLTypeFlag -> TypeName.INT
         is TLTypeConditional -> getType(type.realType)
-        is TLTypeGeneric -> ParameterizedTypeName.get(TYPE_TL_VECTOR, getType(type.generics.first()).box())
+        is TLTypeGeneric -> {
+            when ((type.generics.first() as TLTypeRaw).name) {
+                "int" -> TYPE_TL_INT_VECTOR
+                "long" -> TYPE_TL_LONG_VECTOR
+                "string" -> TYPE_TL_STRING_VECTOR
+                else -> ParameterizedTypeName.get(TYPE_TL_VECTOR, getType(type.generics.first(), true).box())
+            }
+        }
         is TLTypeRaw -> {
             val name = type.name
             when (name) {
@@ -458,7 +464,15 @@ object JavaPoet {
             else
                 "if ((flags & ${fieldTlType.pow2Value()}) != 0) ${deserializeParameter(fieldName, realType, fieldType)}"
         }
-        is TLTypeGeneric -> "$fieldName = readTLVector(stream, context)"
+        is TLTypeGeneric -> {
+            when ((fieldTlType.generics.first() as TLTypeRaw).name){
+                "int" -> "$fieldName = readTLIntVector(stream, context)"
+                "long" -> "$fieldName = readTLLongVector(stream, context)"
+                "string" -> "$fieldName = readTLStringVector(stream, context)"
+                else -> "$fieldName = readTLVector(stream, context)"
+            }
+
+        }
         is TLTypeRaw -> {
             val name = fieldTlType.name
             when (name) {

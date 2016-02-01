@@ -9,6 +9,7 @@ import com.github.badoualy.telegram.tl.core.TLMethod;
 import com.github.badoualy.telegram.tl.core.TLObject;
 import com.github.badoualy.telegram.tl.core.TLStringVector;
 import com.github.badoualy.telegram.tl.core.TLVector;
+import com.github.badoualy.telegram.tl.exception.DeserializationException;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -117,9 +118,9 @@ public class StreamUtils {
      */
     public static void writeTLBool(boolean v, OutputStream stream) throws IOException {
         if (v) {
-            writeInt(TLBoolTrue.CLASS_ID, stream);
+            writeInt(TLBoolTrue.CONSTRUCTOR_ID, stream);
         } else {
-            writeInt(TLBoolFalse.CLASS_ID, stream);
+            writeInt(TLBoolFalse.CONSTRUCTOR_ID, stream);
         }
     }
 
@@ -519,12 +520,12 @@ public class StreamUtils {
      */
     public static boolean readTLBool(InputStream stream) throws IOException {
         int v = readInt(stream);
-        if (v == TLBoolTrue.CLASS_ID) {
+        if (v == TLBoolTrue.CONSTRUCTOR_ID) {
             return true;
-        } else if (v == TLBoolFalse.CLASS_ID) {
+        } else if (v == TLBoolFalse.CONSTRUCTOR_ID) {
             return false;
         } else
-            throw new DeserializeException("Not bool value: " + Integer.toHexString(v));
+            throw new DeserializationException("Not bool value: " + Integer.toHexString(v));
     }
 
     /**

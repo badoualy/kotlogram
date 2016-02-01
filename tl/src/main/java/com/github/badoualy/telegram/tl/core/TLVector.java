@@ -7,17 +7,19 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
 import java.util.ListIterator;
+import java.util.Spliterator;
+import java.util.function.Consumer;
+import java.util.function.Predicate;
+import java.util.function.UnaryOperator;
+import java.util.stream.Stream;
 
 import static com.github.badoualy.telegram.tl.StreamUtils.readInt;
-import static com.github.badoualy.telegram.tl.StreamUtils.readLong;
-import static com.github.badoualy.telegram.tl.StreamUtils.readTLString;
 import static com.github.badoualy.telegram.tl.StreamUtils.writeInt;
-import static com.github.badoualy.telegram.tl.StreamUtils.writeLong;
 import static com.github.badoualy.telegram.tl.StreamUtils.writeTLObject;
-import static com.github.badoualy.telegram.tl.StreamUtils.writeTLString;
 
 /**
  * Basic vector type in TL language
@@ -25,75 +27,76 @@ import static com.github.badoualy.telegram.tl.StreamUtils.writeTLString;
  * vector of integer, strings or long.
  *
  * @param <T> type of elements in vector
- * @author Korshakov Stepan me@ex3ndr.com
+ * @author Yannick Badoual yann.badoual@gmail.com
+ * @see <a href="http://github.com/badoualy/kotlogram">http://github.com/badoualy/kotlogram</a>
  */
+@SuppressWarnings("NullableProblems")
 public class TLVector<T> extends TLObject implements List<T> {
 
-    public static final int CLASS_ID = 0x1cb5c415;
+    public static final int CONSTRUCTOR_ID = 0x1cb5c415;
 
-    private Class destClass = TLObject.class;
-    private ArrayList<T> items = new ArrayList<T>();
+    protected final Class itemClazz;
+    protected final ArrayList<T> items = new ArrayList<>();
 
-    @Override
-    public int getClassId() {
-        return CLASS_ID;
+    public TLVector() {
+        itemClazz = TLObject.class;
     }
 
-    public Class getDestClass() {
-        return destClass;
-    }
-
-    public void setDestClass(Class destClass) {
-        if (destClass == null) {
-            throw new RuntimeException("DestClass could not be null");
-        } else if (destClass != Integer.class && destClass != Long.class && destClass != String.class && !TLObject.class.isAssignableFrom(destClass)) {
-            throw new RuntimeException("Unsupported DestClass");
-        }
-        this.destClass = destClass;
+    public TLVector(Class<T> destClass) {
+        if (destClass != null) {
+            if (destClass != Integer.class && destClass != Long.class && destClass != String.class
+                    && !TLObject.class.isAssignableFrom(destClass)) {
+                throw new RuntimeException("Unsupported vector type: " + destClass.getSimpleName());
+            }
+            itemClazz = destClass;
+        } else
+            itemClazz = TLObject.class;
     }
 
     @Override
-    public void serializeBody(OutputStream stream) throws IOException {
+    public String toString() {
+        return "vector#1cb5c415";
+    }
+
+    @Override
+    public int getConstructorId() {
+        return CONSTRUCTOR_ID;
+    }
+
+    @Override
+    public final void serializeBody(OutputStream stream) throws IOException {
         writeInt(items.size(), stream);
-        if (destClass == Integer.class) {
-            for (T i : items) {
-                writeInt((Integer) i, stream);
-            }
-        } else if (destClass == Long.class) {
-            for (T i : items) {
-                writeLong((Long) i, stream);
-            }
-        } else if (destClass == String.class) {
-            for (T i : items) {
-                writeTLString((String) i, stream);
-            }
-        } else {
-            for (T i : items) {
-                writeTLObject((TLObject) i, stream);
-            }
-        }
+        for (T i : items)
+            serializeItem(i, stream);
     }
 
+    protected void serializeItem(T item, OutputStream stream) throws IOException {
+        writeTLObject((TLObject) item, stream);
+    }
+
+    @SuppressWarnings("unchecked")
     @Override
-    public void deserializeBody(InputStream stream, TLContext context) throws IOException {
-        if (destClass == null) {
-            throw new IOException("DestClass not set");
-        }
+    public final void deserializeBody(InputStream stream, TLContext context) throws IOException {
         int count = readInt(stream);
-        for (int i = 0; i < count; i++) {
-            if (destClass == Integer.class) {
-                items.add((T) (Integer) readInt(stream));
-            } else if (destClass == Long.class) {
-                items.add((T) (Long) readLong(stream));
-            } else if (destClass == String.class) {
-                items.add((T) readTLString(stream));
-            } else {
-                items.add((T) context.deserializeMessage(stream));
-            }
-        }
+        for (int i = 0; i < count; i++)
+            items.add(deserializeItem(stream, context));
     }
 
-    // List implementations
+    @SuppressWarnings("unchecked")
+    protected T deserializeItem(InputStream stream, TLContext context) throws IOException {
+        return (T) context.deserializeMessage(stream);
+    }
+
+    ////////////////////////////////////////////////////////////
+    ///////////////////////// DELEGATE /////////////////////////
+    ////////////////////////////////////////////////////////////
+    public void trimToSize() {
+        items.trimToSize();
+    }
+
+    public void ensureCapacity(int minCapacity) {
+        items.ensureCapacity(minCapacity);
+    }
 
     @Override
     public int size() {
@@ -111,81 +114,6 @@ public class TLVector<T> extends TLObject implements List<T> {
     }
 
     @Override
-    public Iterator<T> iterator() {
-        return items.iterator();
-    }
-
-    @Override
-    public Object[] toArray() {
-        return items.toArray();
-    }
-
-    @Override
-    public <T1> T1[] toArray(T1[] t1s) {
-        return items.toArray(t1s);
-    }
-
-    @Override
-    public boolean add(T t) {
-        return items.add(t);
-    }
-
-    @Override
-    public boolean remove(Object o) {
-        return items.remove(o);
-    }
-
-    @Override
-    public boolean containsAll(Collection<?> objects) {
-        return items.containsAll(objects);
-    }
-
-    @Override
-    public boolean addAll(Collection<? extends T> ts) {
-        return items.addAll(ts);
-    }
-
-    @Override
-    public boolean addAll(int i, Collection<? extends T> ts) {
-        return items.addAll(i, ts);
-    }
-
-    @Override
-    public boolean removeAll(Collection<?> objects) {
-        return items.removeAll(objects);
-    }
-
-    @Override
-    public boolean retainAll(Collection<?> objects) {
-        return items.retainAll(objects);
-    }
-
-    @Override
-    public void clear() {
-        items.clear();
-    }
-
-    @Override
-    public T get(int i) {
-        return items.get(i);
-    }
-
-    @Override
-    public T set(int i, T t) {
-        return items.set(i, t);
-    }
-
-    @Override
-    public void add(int i, T t) {
-        items.add(i, t);
-    }
-
-    @Override
-    public T remove(int i) {
-        return items.remove(i);
-    }
-
-    @Override
     public int indexOf(Object o) {
         return items.indexOf(o);
     }
@@ -195,23 +123,147 @@ public class TLVector<T> extends TLObject implements List<T> {
         return items.lastIndexOf(o);
     }
 
+    @SuppressWarnings("CloneDoesntCallSuperClone")
+    @Override
+    public Object clone() {
+        TLVector<T> vector = new TLVector<>();
+        vector.addAll(new ArrayList<>(items));
+        return vector;
+    }
+
+    @Override
+    public Object[] toArray() {
+        return items.toArray();
+    }
+
+    @SuppressWarnings("SuspiciousToArrayCall")
+    @Override
+    public <T1> T1[] toArray(T1[] a) {
+        return items.toArray(a);
+    }
+
+    @Override
+    public T get(int index) {
+        return items.get(index);
+    }
+
+    @Override
+    public T set(int index, T element) {
+        return items.set(index, element);
+    }
+
+    @Override
+    public boolean add(T t) {
+        return items.add(t);
+    }
+
+    @Override
+    public void add(int index, T element) {
+        items.add(index, element);
+    }
+
+    @Override
+    public T remove(int index) {
+        return items.remove(index);
+    }
+
+    @Override
+    public boolean remove(Object o) {
+        return items.remove(o);
+    }
+
+    @Override
+    public void clear() {
+        items.clear();
+    }
+
+    @Override
+    public boolean addAll(Collection<? extends T> c) {
+        return items.addAll(c);
+    }
+
+    @Override
+    public boolean addAll(int index, Collection<? extends T> c) {
+        return items.addAll(index, c);
+    }
+
+    @Override
+    public boolean removeAll(Collection<?> c) {
+        return items.removeAll(c);
+    }
+
+    @Override
+    public boolean retainAll(Collection<?> c) {
+        return items.retainAll(c);
+    }
+
+    @Override
+    public ListIterator<T> listIterator(int index) {
+        return items.listIterator(index);
+    }
+
     @Override
     public ListIterator<T> listIterator() {
         return items.listIterator();
     }
 
     @Override
-    public ListIterator<T> listIterator(int i) {
-        return items.listIterator(i);
+    public Iterator<T> iterator() {
+        return items.iterator();
     }
 
     @Override
-    public List<T> subList(int i, int i2) {
-        return items.subList(i, i2);
+    public List<T> subList(int fromIndex, int toIndex) {
+        return items.subList(fromIndex, toIndex);
     }
 
     @Override
-    public String toString() {
-        return "vector#1cb5c415";
+    public void forEach(Consumer<? super T> action) {
+        items.forEach(action);
+    }
+
+    @Override
+    public Spliterator<T> spliterator() {
+        return items.spliterator();
+    }
+
+    @Override
+    public boolean removeIf(Predicate<? super T> filter) {
+        return items.removeIf(filter);
+    }
+
+    @Override
+    public void replaceAll(UnaryOperator<T> operator) {
+        items.replaceAll(operator);
+    }
+
+    @Override
+    public void sort(Comparator<? super T> c) {
+        items.sort(c);
+    }
+
+    @Override
+    public int hashCode() {
+        return items.hashCode();
+    }
+
+    @Override
+    public Stream<T> stream() {
+        return items.stream();
+    }
+
+    @Override
+    public Stream<T> parallelStream() {
+        return items.parallelStream();
+    }
+
+    @Override
+    public boolean containsAll(Collection<?> c) {
+        return items.containsAll(c);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        return !(o == null || !(o instanceof TLVector)) && itemClazz.equals(((TLVector) o).itemClazz) && items.equals(((TLVector) o).items);
     }
 }

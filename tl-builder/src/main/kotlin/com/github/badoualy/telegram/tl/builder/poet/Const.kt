@@ -26,10 +26,10 @@ val TYPE_TL_BYTES = ClassName.get(PACKAGE_TL_CORE, "TLBytes")
 val TYPE_TL_GZIP_OBJECT = ClassName.get(PACKAGE_TL_CORE, "TLGzipObject")
 val TYPE_TL_INT_VECTOR = ClassName.get(PACKAGE_TL_CORE, "TLIntVector")
 val TYPE_TL_LONG_VECTOR = ClassName.get(PACKAGE_TL_CORE, "TLLongVector")
-val TYPE_TL_METHOD = ClassName.get(PACKAGE_TL_CORE, "TLMethod")
-val TYPE_TL_OBJECT = ClassName.get(PACKAGE_TL_CORE, "TLObject")
 val TYPE_TL_STRING_VECTOR = ClassName.get(PACKAGE_TL_CORE, "TLStringVector")
 val TYPE_TL_VECTOR = ClassName.get(PACKAGE_TL_CORE, "TLVector")
+val TYPE_TL_METHOD = ClassName.get(PACKAGE_TL_CORE, "TLMethod")
+val TYPE_TL_OBJECT = ClassName.get(PACKAGE_TL_CORE, "TLObject")
 
 val JAVADOC_AUTHOR = "@author Yannick Badoual yann.badoual@gmail.com\n"
 val JAVADOC_SEE = "@see <a href=\"http://github.com/badoualy/kotlogram\">http://github.com/badoualy/kotlogram</a>\n"

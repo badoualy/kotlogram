@@ -1,6 +1,11 @@
 package com.github.badoualy.telegram.tl.core;
 
+/**
+ * @author Yannick Badoual yann.badoual@gmail.com
+ * @see <a href="http://github.com/badoualy/kotlogram">http://github.com/badoualy/kotlogram</a>
+ */
 public class TLBytes {
+
     private byte[] data;
     private int offset;
     private int len;
@@ -27,14 +32,5 @@ public class TLBytes {
 
     public int getLength() {
         return len;
-    }
-
-    public byte[] cleanData() {
-        if (offset == 0 && len == data.length) {
-            return data;
-        }
-        byte[] result = new byte[len];
-        System.arraycopy(data, offset, result, 0, len);
-        return result;
     }
 }
