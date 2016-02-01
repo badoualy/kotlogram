@@ -13,10 +13,10 @@ import static com.github.badoualy.telegram.tl.StreamUtils.readInt;
 import static com.github.badoualy.telegram.tl.StreamUtils.writeInt;
 
 /**
- * Basic class for all tl-objects. Contains methods for serializing and deserializing object.<br/>
- * Each tl-object has its own class id to identify object class for deserialization.<br/>
- * This number might be unique and often equals to crc32 of tl-record of tl-constructor.<br/>
- * See more at <a href="https://core.telegram.org/mtproto/TL">https://core.telegram.org/mtproto/TL</a><br/>
+ * Basic class for all tl-objects. Contains methods for serializing and deserializing object.
+ * Each tl-object has its own class id to identify object class for deserialization.
+ * This number might be unique and often equals to crc32 of tl-record of tl-constructor.
+ * See more at <a href="https://core.telegram.org/mtproto/TL">https://core.telegram.org/mtproto/TL</a>
  *
  * @author Yannick Badoual yann.badoual@gmail.com
  * @see <a href="http://github.com/badoualy/kotlogram">http://github.com/badoualy/kotlogram</a>
