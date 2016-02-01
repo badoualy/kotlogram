@@ -12,8 +12,8 @@ import static com.github.badoualy.telegram.tl.StreamUtils.readTLObject;
 import static com.github.badoualy.telegram.tl.StreamUtils.readTLString;
 import static com.github.badoualy.telegram.tl.StreamUtils.writeInt;
 import static com.github.badoualy.telegram.tl.StreamUtils.writeLong;
+import static com.github.badoualy.telegram.tl.StreamUtils.writeString;
 import static com.github.badoualy.telegram.tl.StreamUtils.writeTLObject;
-import static com.github.badoualy.telegram.tl.StreamUtils.writeTLString;
 
 /**
  * @author Yannick Badoual yann.badoual@gmail.com
@@ -62,7 +62,7 @@ public class TLVideo extends TLAbsVideo {
         writeLong(accessHash, stream);
         writeInt(date, stream);
         writeInt(duration, stream);
-        writeTLString(mimeType, stream);
+        writeString(mimeType, stream);
         writeInt(size, stream);
         writeTLObject(thumb, stream);
         writeInt(dcId, stream);

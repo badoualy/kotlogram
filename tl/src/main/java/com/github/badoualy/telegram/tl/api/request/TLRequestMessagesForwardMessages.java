@@ -16,8 +16,8 @@ import static com.github.badoualy.telegram.tl.StreamUtils.readInt;
 import static com.github.badoualy.telegram.tl.StreamUtils.readTLIntVector;
 import static com.github.badoualy.telegram.tl.StreamUtils.readTLLongVector;
 import static com.github.badoualy.telegram.tl.StreamUtils.readTLObject;
+import static com.github.badoualy.telegram.tl.StreamUtils.writeBoolean;
 import static com.github.badoualy.telegram.tl.StreamUtils.writeInt;
-import static com.github.badoualy.telegram.tl.StreamUtils.writeTLBool;
 import static com.github.badoualy.telegram.tl.StreamUtils.writeTLObject;
 import static com.github.badoualy.telegram.tl.StreamUtils.writeTLVector;
 
@@ -71,7 +71,7 @@ public class TLRequestMessagesForwardMessages extends TLMethod<TLAbsUpdates> {
         flags = broadcast ? (flags | 16) : (flags &~ 16);
 
         writeInt(flags, stream);
-        if ((flags & 16) != 0) writeTLBool(broadcast, stream);
+        if ((flags & 16) != 0) writeBoolean(broadcast, stream);
         writeTLObject(fromPeer, stream);
         writeTLVector(id, stream);
         writeTLVector(randomId, stream);

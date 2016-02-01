@@ -18,7 +18,7 @@ class BindAuthKeyInner @JvmOverloads constructor(var nonce: Long = 0,
                                                                  BigInteger(tempSessionId).longValueExact(), expiresAt)
 
     override fun getConstructorId(): Int {
-        return CLASS_ID
+        return CONSTRUCTOR_ID
     }
 
     @Throws(IOException::class)
@@ -42,6 +42,6 @@ class BindAuthKeyInner @JvmOverloads constructor(var nonce: Long = 0,
 
     companion object {
         @JvmStatic @JvmField
-        val CLASS_ID = 1973679973
+        val CONSTRUCTOR_ID = 1973679973
     }
 }

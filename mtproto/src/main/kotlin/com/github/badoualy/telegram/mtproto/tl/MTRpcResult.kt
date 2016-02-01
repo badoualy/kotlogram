@@ -10,7 +10,7 @@ import java.io.OutputStream
 class MTRpcResult @JvmOverloads constructor(var messageId: Long = 0, var content: ByteArray = ByteArray(0), var contentLen: Int = 0) : TLObject() {
 
     override fun getConstructorId(): Int {
-        return CLASS_ID
+        return CONSTRUCTOR_ID
     }
 
     @Throws(IOException::class)
@@ -33,6 +33,6 @@ class MTRpcResult @JvmOverloads constructor(var messageId: Long = 0, var content
 
     companion object {
         @JvmStatic @JvmField
-        val CLASS_ID = -212046591
+        val CONSTRUCTOR_ID = -212046591
     }
 }

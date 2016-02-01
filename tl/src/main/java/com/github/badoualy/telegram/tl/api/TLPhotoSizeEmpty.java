@@ -7,7 +7,7 @@ import java.io.InputStream;
 import java.io.OutputStream;
 
 import static com.github.badoualy.telegram.tl.StreamUtils.readTLString;
-import static com.github.badoualy.telegram.tl.StreamUtils.writeTLString;
+import static com.github.badoualy.telegram.tl.StreamUtils.writeString;
 
 /**
  * @author Yannick Badoual yann.badoual@gmail.com
@@ -25,7 +25,7 @@ public class TLPhotoSizeEmpty extends TLAbsPhotoSize {
 
     @Override
     public void serializeBody(OutputStream stream) throws IOException {
-        writeTLString(type, stream);
+        writeString(type, stream);
     }
 
     @Override

@@ -11,7 +11,7 @@ class ServerDhFailure @JvmOverloads constructor(var nonce: ByteArray = ByteArray
                                                 var newNonceHash: ByteArray = ByteArray(0)) : ServerDhParams() {
 
     override fun getConstructorId(): Int {
-        return CLASS_ID
+        return CONSTRUCTOR_ID
     }
 
     @Throws(IOException::class)
@@ -34,6 +34,6 @@ class ServerDhFailure @JvmOverloads constructor(var nonce: ByteArray = ByteArray
 
     companion object {
         @JvmStatic @JvmField
-        val CLASS_ID = 2043348061
+        val CONSTRUCTOR_ID = 2043348061
     }
 }

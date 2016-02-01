@@ -15,8 +15,8 @@ import static com.github.badoualy.telegram.tl.StreamUtils.readLong;
 import static com.github.badoualy.telegram.tl.StreamUtils.readTLObject;
 import static com.github.badoualy.telegram.tl.StreamUtils.readTLString;
 import static com.github.badoualy.telegram.tl.StreamUtils.writeLong;
+import static com.github.badoualy.telegram.tl.StreamUtils.writeString;
 import static com.github.badoualy.telegram.tl.StreamUtils.writeTLObject;
-import static com.github.badoualy.telegram.tl.StreamUtils.writeTLString;
 
 /**
  * @author Yannick Badoual yann.badoual@gmail.com
@@ -61,7 +61,7 @@ public class TLRequestMessagesStartBot extends TLMethod<TLAbsUpdates> {
         writeTLObject(bot, stream);
         writeTLObject(peer, stream);
         writeLong(randomId, stream);
-        writeTLString(startParam, stream);
+        writeString(startParam, stream);
     }
 
     @Override

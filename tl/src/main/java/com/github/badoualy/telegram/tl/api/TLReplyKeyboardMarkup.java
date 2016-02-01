@@ -9,8 +9,8 @@ import java.io.OutputStream;
 
 import static com.github.badoualy.telegram.tl.StreamUtils.readInt;
 import static com.github.badoualy.telegram.tl.StreamUtils.readTLVector;
+import static com.github.badoualy.telegram.tl.StreamUtils.writeBoolean;
 import static com.github.badoualy.telegram.tl.StreamUtils.writeInt;
-import static com.github.badoualy.telegram.tl.StreamUtils.writeTLBool;
 import static com.github.badoualy.telegram.tl.StreamUtils.writeTLVector;
 
 /**
@@ -45,9 +45,9 @@ public class TLReplyKeyboardMarkup extends TLAbsReplyMarkup {
         flags = selective ? (flags | 4) : (flags &~ 4);
 
         writeInt(flags, stream);
-        if ((flags & 1) != 0) writeTLBool(resize, stream);
-        if ((flags & 2) != 0) writeTLBool(singleUse, stream);
-        if ((flags & 4) != 0) writeTLBool(selective, stream);
+        if ((flags & 1) != 0) writeBoolean(resize, stream);
+        if ((flags & 2) != 0) writeBoolean(singleUse, stream);
+        if ((flags & 4) != 0) writeBoolean(selective, stream);
         writeTLVector(rows, stream);
     }
 

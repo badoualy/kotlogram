@@ -13,7 +13,7 @@ import java.io.OutputStream;
 import static com.github.badoualy.telegram.tl.StreamUtils.readTLObject;
 import static com.github.badoualy.telegram.tl.StreamUtils.readTLString;
 import static com.github.badoualy.telegram.tl.StreamUtils.readTLStringVector;
-import static com.github.badoualy.telegram.tl.StreamUtils.writeTLString;
+import static com.github.badoualy.telegram.tl.StreamUtils.writeString;
 import static com.github.badoualy.telegram.tl.StreamUtils.writeTLVector;
 
 /**
@@ -51,7 +51,7 @@ public class TLRequestAuthSendInvites extends TLMethod<TLBool> {
     @Override
     public void serializeBody(OutputStream stream) throws IOException {
         writeTLVector(phoneNumbers, stream);
-        writeTLString(message, stream);
+        writeString(message, stream);
     }
 
     @Override

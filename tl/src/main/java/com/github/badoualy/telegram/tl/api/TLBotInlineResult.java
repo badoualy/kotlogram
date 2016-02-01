@@ -10,8 +10,8 @@ import static com.github.badoualy.telegram.tl.StreamUtils.readInt;
 import static com.github.badoualy.telegram.tl.StreamUtils.readTLObject;
 import static com.github.badoualy.telegram.tl.StreamUtils.readTLString;
 import static com.github.badoualy.telegram.tl.StreamUtils.writeInt;
+import static com.github.badoualy.telegram.tl.StreamUtils.writeString;
 import static com.github.badoualy.telegram.tl.StreamUtils.writeTLObject;
-import static com.github.badoualy.telegram.tl.StreamUtils.writeTLString;
 
 /**
  * @author Yannick Badoual yann.badoual@gmail.com
@@ -64,14 +64,14 @@ public class TLBotInlineResult extends TLAbsBotInlineResult {
         flags = 0;
 
         writeInt(flags, stream);
-        writeTLString(id, stream);
-        writeTLString(type, stream);
-        if ((flags & 2) != 0) writeTLString(title, stream);
-        if ((flags & 4) != 0) writeTLString(description, stream);
-        if ((flags & 8) != 0) writeTLString(url, stream);
-        if ((flags & 16) != 0) writeTLString(thumbUrl, stream);
-        if ((flags & 32) != 0) writeTLString(contentUrl, stream);
-        if ((flags & 32) != 0) writeTLString(contentType, stream);
+        writeString(id, stream);
+        writeString(type, stream);
+        if ((flags & 2) != 0) writeString(title, stream);
+        if ((flags & 4) != 0) writeString(description, stream);
+        if ((flags & 8) != 0) writeString(url, stream);
+        if ((flags & 16) != 0) writeString(thumbUrl, stream);
+        if ((flags & 32) != 0) writeString(contentUrl, stream);
+        if ((flags & 32) != 0) writeString(contentType, stream);
         if ((flags & 64) != 0) writeInt(w, stream);
         if ((flags & 64) != 0) writeInt(h, stream);
         if ((flags & 128) != 0) writeInt(duration, stream);

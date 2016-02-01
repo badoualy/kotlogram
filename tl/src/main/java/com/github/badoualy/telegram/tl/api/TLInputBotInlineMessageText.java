@@ -10,9 +10,9 @@ import java.io.OutputStream;
 import static com.github.badoualy.telegram.tl.StreamUtils.readInt;
 import static com.github.badoualy.telegram.tl.StreamUtils.readTLString;
 import static com.github.badoualy.telegram.tl.StreamUtils.readTLVector;
+import static com.github.badoualy.telegram.tl.StreamUtils.writeBoolean;
 import static com.github.badoualy.telegram.tl.StreamUtils.writeInt;
-import static com.github.badoualy.telegram.tl.StreamUtils.writeTLBool;
-import static com.github.badoualy.telegram.tl.StreamUtils.writeTLString;
+import static com.github.badoualy.telegram.tl.StreamUtils.writeString;
 import static com.github.badoualy.telegram.tl.StreamUtils.writeTLVector;
 
 /**
@@ -46,8 +46,8 @@ public class TLInputBotInlineMessageText extends TLAbsInputBotInlineMessage {
         flags = noWebpage ? (flags | 1) : (flags &~ 1);
 
         writeInt(flags, stream);
-        if ((flags & 1) != 0) writeTLBool(noWebpage, stream);
-        writeTLString(message, stream);
+        if ((flags & 1) != 0) writeBoolean(noWebpage, stream);
+        writeString(message, stream);
         if ((flags & 2) != 0) writeTLVector(entities, stream);
     }
 

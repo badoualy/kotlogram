@@ -11,7 +11,7 @@ import static com.github.badoualy.telegram.tl.StreamUtils.readLong;
 import static com.github.badoualy.telegram.tl.StreamUtils.readTLString;
 import static com.github.badoualy.telegram.tl.StreamUtils.writeInt;
 import static com.github.badoualy.telegram.tl.StreamUtils.writeLong;
-import static com.github.badoualy.telegram.tl.StreamUtils.writeTLString;
+import static com.github.badoualy.telegram.tl.StreamUtils.writeString;
 
 /**
  * @author Yannick Badoual yann.badoual@gmail.com
@@ -42,7 +42,7 @@ public class TLInputEncryptedFileUploaded extends TLAbsInputEncryptedFile {
     public void serializeBody(OutputStream stream) throws IOException {
         writeLong(id, stream);
         writeInt(parts, stream);
-        writeTLString(md5Checksum, stream);
+        writeString(md5Checksum, stream);
         writeInt(keyFingerprint, stream);
     }
 

@@ -13,7 +13,7 @@ import static com.github.badoualy.telegram.tl.StreamUtils.readInt;
 import static com.github.badoualy.telegram.tl.StreamUtils.readTLObject;
 import static com.github.badoualy.telegram.tl.StreamUtils.readTLString;
 import static com.github.badoualy.telegram.tl.StreamUtils.writeInt;
-import static com.github.badoualy.telegram.tl.StreamUtils.writeTLString;
+import static com.github.badoualy.telegram.tl.StreamUtils.writeString;
 
 /**
  * @author Yannick Badoual yann.badoual@gmail.com
@@ -49,7 +49,7 @@ public class TLRequestContactsSearch extends TLMethod<TLFound> {
 
     @Override
     public void serializeBody(OutputStream stream) throws IOException {
-        writeTLString(q, stream);
+        writeString(q, stream);
         writeInt(limit, stream);
     }
 

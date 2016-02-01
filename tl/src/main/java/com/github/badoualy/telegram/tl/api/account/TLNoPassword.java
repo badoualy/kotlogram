@@ -9,8 +9,8 @@ import java.io.OutputStream;
 
 import static com.github.badoualy.telegram.tl.StreamUtils.readTLBytes;
 import static com.github.badoualy.telegram.tl.StreamUtils.readTLString;
+import static com.github.badoualy.telegram.tl.StreamUtils.writeString;
 import static com.github.badoualy.telegram.tl.StreamUtils.writeTLBytes;
-import static com.github.badoualy.telegram.tl.StreamUtils.writeTLString;
 
 /**
  * @author Yannick Badoual yann.badoual@gmail.com
@@ -30,7 +30,7 @@ public class TLNoPassword extends TLAbsPassword {
     @Override
     public void serializeBody(OutputStream stream) throws IOException {
         writeTLBytes(newSalt, stream);
-        writeTLString(emailUnconfirmedPattern, stream);
+        writeString(emailUnconfirmedPattern, stream);
     }
 
     @Override

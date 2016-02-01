@@ -11,10 +11,10 @@ import static com.github.badoualy.telegram.tl.StreamUtils.readInt;
 import static com.github.badoualy.telegram.tl.StreamUtils.readTLObject;
 import static com.github.badoualy.telegram.tl.StreamUtils.readTLString;
 import static com.github.badoualy.telegram.tl.StreamUtils.readTLVector;
+import static com.github.badoualy.telegram.tl.StreamUtils.writeBoolean;
 import static com.github.badoualy.telegram.tl.StreamUtils.writeInt;
-import static com.github.badoualy.telegram.tl.StreamUtils.writeTLBool;
+import static com.github.badoualy.telegram.tl.StreamUtils.writeString;
 import static com.github.badoualy.telegram.tl.StreamUtils.writeTLObject;
-import static com.github.badoualy.telegram.tl.StreamUtils.writeTLString;
 import static com.github.badoualy.telegram.tl.StreamUtils.writeTLVector;
 
 /**
@@ -74,9 +74,9 @@ public class TLChannelFull extends TLAbsChatFull {
         flags = canViewParticipants ? (flags | 8) : (flags &~ 8);
 
         writeInt(flags, stream);
-        if ((flags & 8) != 0) writeTLBool(canViewParticipants, stream);
+        if ((flags & 8) != 0) writeBoolean(canViewParticipants, stream);
         writeInt(id, stream);
-        writeTLString(about, stream);
+        writeString(about, stream);
         if ((flags & 1) != 0) writeInt(participantsCount, stream);
         if ((flags & 2) != 0) writeInt(adminsCount, stream);
         if ((flags & 4) != 0) writeInt(kickedCount, stream);

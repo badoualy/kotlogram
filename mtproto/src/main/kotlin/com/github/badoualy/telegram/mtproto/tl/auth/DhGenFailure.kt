@@ -4,7 +4,7 @@ class DhGenFailure @JvmOverloads constructor(nonce: ByteArray = ByteArray(0), se
                                              newNonceHash: ByteArray = ByteArray(0)) : DhGenResult(nonce, serverNonce, newNonceHash) {
 
     override fun getConstructorId(): Int {
-        return CLASS_ID
+        return CONSTRUCTOR_ID
     }
 
     override fun toString(): String {
@@ -13,6 +13,6 @@ class DhGenFailure @JvmOverloads constructor(nonce: ByteArray = ByteArray(0), se
 
     companion object {
         @JvmStatic @JvmField
-        val CLASS_ID = -1499615742
+        val CONSTRUCTOR_ID = -1499615742
     }
 }

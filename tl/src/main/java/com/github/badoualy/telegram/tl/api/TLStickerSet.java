@@ -10,10 +10,10 @@ import java.io.OutputStream;
 import static com.github.badoualy.telegram.tl.StreamUtils.readInt;
 import static com.github.badoualy.telegram.tl.StreamUtils.readLong;
 import static com.github.badoualy.telegram.tl.StreamUtils.readTLString;
+import static com.github.badoualy.telegram.tl.StreamUtils.writeBoolean;
 import static com.github.badoualy.telegram.tl.StreamUtils.writeInt;
 import static com.github.badoualy.telegram.tl.StreamUtils.writeLong;
-import static com.github.badoualy.telegram.tl.StreamUtils.writeTLBool;
-import static com.github.badoualy.telegram.tl.StreamUtils.writeTLString;
+import static com.github.badoualy.telegram.tl.StreamUtils.writeString;
 
 /**
  * @author Yannick Badoual yann.badoual@gmail.com
@@ -66,13 +66,13 @@ public class TLStickerSet extends TLObject {
         flags = official ? (flags | 4) : (flags &~ 4);
 
         writeInt(flags, stream);
-        if ((flags & 1) != 0) writeTLBool(installed, stream);
-        if ((flags & 2) != 0) writeTLBool(disabled, stream);
-        if ((flags & 4) != 0) writeTLBool(official, stream);
+        if ((flags & 1) != 0) writeBoolean(installed, stream);
+        if ((flags & 2) != 0) writeBoolean(disabled, stream);
+        if ((flags & 4) != 0) writeBoolean(official, stream);
         writeLong(id, stream);
         writeLong(accessHash, stream);
-        writeTLString(title, stream);
-        writeTLString(shortName, stream);
+        writeString(title, stream);
+        writeString(shortName, stream);
         writeInt(count, stream);
         writeInt(hash, stream);
     }

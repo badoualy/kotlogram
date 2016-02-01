@@ -445,9 +445,9 @@ object JavaPoet {
                 "long" -> "writeLong($fieldName, stream)"
                 "double" -> "writeDouble($fieldName, stream)"
                 "float" -> "writeFloat($fieldName, stream)"
-                "string" -> "writeTLString($fieldName, stream)"
+                "string" -> "writeString($fieldName, stream)"
                 "bytes" -> "writeTLBytes($fieldName, stream)"
-                "Bool" -> "writeTLBool($fieldName, stream)"
+                "Bool" -> "writeBoolean($fieldName, stream)"
                 else -> "writeTLObject($fieldName, stream)"
             }
         }

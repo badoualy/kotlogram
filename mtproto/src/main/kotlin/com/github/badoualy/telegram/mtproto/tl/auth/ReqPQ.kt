@@ -1,10 +1,10 @@
 package com.github.badoualy.telegram.mtproto.tl.auth
 
-import com.github.badoualy.telegram.tl.exception.DeserializationException
 import com.github.badoualy.telegram.tl.StreamUtils.readBytes
 import com.github.badoualy.telegram.tl.StreamUtils.writeByteArray
 import com.github.badoualy.telegram.tl.TLContext
 import com.github.badoualy.telegram.tl.core.TLMethod
+import com.github.badoualy.telegram.tl.exception.DeserializationException
 import java.io.IOException
 import java.io.InputStream
 import java.io.OutputStream
@@ -36,7 +36,7 @@ class ReqPQ constructor(nonce: ByteArray? = null) : TLMethod<ResPQ>() {
     }
 
     override fun getConstructorId(): Int {
-        return CLASS_ID
+        return CONSTRUCTOR_ID
     }
 
     @Throws(IOException::class)
@@ -55,6 +55,6 @@ class ReqPQ constructor(nonce: ByteArray? = null) : TLMethod<ResPQ>() {
 
     companion object {
         @JvmStatic @JvmField
-        val CLASS_ID = 1615239032
+        val CONSTRUCTOR_ID = 1615239032
     }
 }

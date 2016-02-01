@@ -14,7 +14,7 @@ class ResPQ @JvmOverloads constructor(var nonce: ByteArray = ByteArray(0),
                                       var fingerprints: TLLongVector = TLLongVector()) : TLObject() {
 
     override fun getConstructorId(): Int {
-        return CLASS_ID
+        return CONSTRUCTOR_ID
     }
 
     @Throws(IOException::class)
@@ -39,6 +39,6 @@ class ResPQ @JvmOverloads constructor(var nonce: ByteArray = ByteArray(0),
 
     companion object {
         @JvmStatic @JvmField
-        val CLASS_ID = 85337187
+        val CONSTRUCTOR_ID = 85337187
     }
 }

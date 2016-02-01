@@ -10,7 +10,7 @@ import java.io.OutputStream
 class MTPingDelayDisconnect @JvmOverloads constructor(var pingId: Long = 0, var disconnectDelay: Int = 0) : TLObject() {
 
     override fun getConstructorId(): Int {
-        return CLASS_ID
+        return CONSTRUCTOR_ID
     }
 
     @Throws(IOException::class)
@@ -31,6 +31,6 @@ class MTPingDelayDisconnect @JvmOverloads constructor(var pingId: Long = 0, var 
 
     companion object {
         @JvmStatic @JvmField
-        val CLASS_ID = -213746804
+        val CONSTRUCTOR_ID = -213746804
     }
 }

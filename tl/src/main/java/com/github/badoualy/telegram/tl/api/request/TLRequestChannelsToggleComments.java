@@ -12,7 +12,7 @@ import java.io.OutputStream;
 
 import static com.github.badoualy.telegram.tl.StreamUtils.readTLBool;
 import static com.github.badoualy.telegram.tl.StreamUtils.readTLObject;
-import static com.github.badoualy.telegram.tl.StreamUtils.writeTLBool;
+import static com.github.badoualy.telegram.tl.StreamUtils.writeBoolean;
 import static com.github.badoualy.telegram.tl.StreamUtils.writeTLObject;
 
 /**
@@ -50,7 +50,7 @@ public class TLRequestChannelsToggleComments extends TLMethod<TLAbsUpdates> {
     @Override
     public void serializeBody(OutputStream stream) throws IOException {
         writeTLObject(channel, stream);
-        writeTLBool(enabled, stream);
+        writeBoolean(enabled, stream);
     }
 
     @Override

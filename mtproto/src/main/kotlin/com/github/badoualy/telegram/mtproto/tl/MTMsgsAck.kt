@@ -20,7 +20,7 @@ class MTMsgsAck @JvmOverloads constructor(var messages: TLLongVector = TLLongVec
     }
 
     override fun getConstructorId(): Int {
-        return CLASS_ID
+        return CONSTRUCTOR_ID
     }
 
     @Throws(IOException::class)
@@ -39,6 +39,6 @@ class MTMsgsAck @JvmOverloads constructor(var messages: TLLongVector = TLLongVec
 
     companion object {
         @JvmStatic @JvmField
-        val CLASS_ID = 1658238041
+        val CONSTRUCTOR_ID = 1658238041
     }
 }

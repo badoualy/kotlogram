@@ -23,13 +23,13 @@ class MTRpcError @JvmOverloads constructor(var errorCode: Int = 0, var message: 
         }
 
     override fun getConstructorId(): Int {
-        return CLASS_ID
+        return CONSTRUCTOR_ID
     }
 
     @Throws(IOException::class)
     override fun serializeBody(stream: OutputStream) {
         writeInt(errorCode, stream)
-        writeTLString(message, stream)
+        writeString(message, stream)
     }
 
     @Throws(IOException::class)
@@ -46,6 +46,6 @@ class MTRpcError @JvmOverloads constructor(var errorCode: Int = 0, var message: 
         private val REGEXP_PATTERN = Pattern.compile("[A-Z_0-9]+")
 
         @JvmStatic @JvmField
-        val CLASS_ID = 558156313
+        val CONSTRUCTOR_ID = 558156313
     }
 }

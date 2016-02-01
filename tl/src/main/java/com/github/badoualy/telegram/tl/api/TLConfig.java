@@ -11,8 +11,8 @@ import java.io.OutputStream;
 import static com.github.badoualy.telegram.tl.StreamUtils.readInt;
 import static com.github.badoualy.telegram.tl.StreamUtils.readTLBool;
 import static com.github.badoualy.telegram.tl.StreamUtils.readTLVector;
+import static com.github.badoualy.telegram.tl.StreamUtils.writeBoolean;
 import static com.github.badoualy.telegram.tl.StreamUtils.writeInt;
-import static com.github.badoualy.telegram.tl.StreamUtils.writeTLBool;
 import static com.github.badoualy.telegram.tl.StreamUtils.writeTLVector;
 
 /**
@@ -89,7 +89,7 @@ public class TLConfig extends TLObject {
     public void serializeBody(OutputStream stream) throws IOException {
         writeInt(date, stream);
         writeInt(expires, stream);
-        writeTLBool(testMode, stream);
+        writeBoolean(testMode, stream);
         writeInt(thisDc, stream);
         writeTLVector(dcOptions, stream);
         writeInt(chatSizeMax, stream);

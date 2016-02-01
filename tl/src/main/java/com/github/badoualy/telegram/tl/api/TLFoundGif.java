@@ -9,7 +9,7 @@ import java.io.OutputStream;
 import static com.github.badoualy.telegram.tl.StreamUtils.readInt;
 import static com.github.badoualy.telegram.tl.StreamUtils.readTLString;
 import static com.github.badoualy.telegram.tl.StreamUtils.writeInt;
-import static com.github.badoualy.telegram.tl.StreamUtils.writeTLString;
+import static com.github.badoualy.telegram.tl.StreamUtils.writeString;
 
 /**
  * @author Yannick Badoual yann.badoual@gmail.com
@@ -42,10 +42,10 @@ public class TLFoundGif extends TLAbsFoundGif {
 
     @Override
     public void serializeBody(OutputStream stream) throws IOException {
-        writeTLString(url, stream);
-        writeTLString(thumbUrl, stream);
-        writeTLString(contentUrl, stream);
-        writeTLString(contentType, stream);
+        writeString(url, stream);
+        writeString(thumbUrl, stream);
+        writeString(contentUrl, stream);
+        writeString(contentType, stream);
         writeInt(w, stream);
         writeInt(h, stream);
     }

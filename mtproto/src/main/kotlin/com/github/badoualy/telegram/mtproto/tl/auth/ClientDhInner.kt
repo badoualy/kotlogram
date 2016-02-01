@@ -11,7 +11,7 @@ class ClientDhInner @JvmOverloads constructor(var nonce: ByteArray = ByteArray(0
                                               var retryId: Long = 0, var gb: ByteArray = ByteArray(0)) : TLObject() {
 
     override fun getConstructorId(): Int {
-        return CLASS_ID
+        return CONSTRUCTOR_ID
     }
 
     @Throws(IOException::class)
@@ -32,6 +32,6 @@ class ClientDhInner @JvmOverloads constructor(var nonce: ByteArray = ByteArray(0
 
     companion object {
         @JvmStatic @JvmField
-        val CLASS_ID = 1715713620
+        val CONSTRUCTOR_ID = 1715713620
     }
 }

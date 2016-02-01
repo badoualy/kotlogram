@@ -7,8 +7,8 @@ import java.io.InputStream;
 import java.io.OutputStream;
 
 import static com.github.badoualy.telegram.tl.StreamUtils.readInt;
+import static com.github.badoualy.telegram.tl.StreamUtils.writeBoolean;
 import static com.github.badoualy.telegram.tl.StreamUtils.writeInt;
-import static com.github.badoualy.telegram.tl.StreamUtils.writeTLBool;
 
 /**
  * @author Yannick Badoual yann.badoual@gmail.com
@@ -35,8 +35,8 @@ public class TLReplyKeyboardForceReply extends TLAbsReplyMarkup {
         flags = selective ? (flags | 4) : (flags &~ 4);
 
         writeInt(flags, stream);
-        if ((flags & 2) != 0) writeTLBool(singleUse, stream);
-        if ((flags & 4) != 0) writeTLBool(selective, stream);
+        if ((flags & 2) != 0) writeBoolean(singleUse, stream);
+        if ((flags & 4) != 0) writeBoolean(selective, stream);
     }
 
     @Override

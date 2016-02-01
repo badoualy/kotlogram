@@ -11,7 +11,7 @@ import java.io.OutputStream;
 
 import static com.github.badoualy.telegram.tl.StreamUtils.readTLObject;
 import static com.github.badoualy.telegram.tl.StreamUtils.readTLString;
-import static com.github.badoualy.telegram.tl.StreamUtils.writeTLString;
+import static com.github.badoualy.telegram.tl.StreamUtils.writeString;
 
 /**
  * @author Yannick Badoual yann.badoual@gmail.com
@@ -47,8 +47,8 @@ public class TLRequestMessagesGetStickers extends TLMethod<TLAbsStickers> {
 
     @Override
     public void serializeBody(OutputStream stream) throws IOException {
-        writeTLString(emoticon, stream);
-        writeTLString(hash, stream);
+        writeString(emoticon, stream);
+        writeString(hash, stream);
     }
 
     @Override

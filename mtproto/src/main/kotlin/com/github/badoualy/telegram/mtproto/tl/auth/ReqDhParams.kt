@@ -1,9 +1,9 @@
 package com.github.badoualy.telegram.mtproto.tl.auth
 
-import com.github.badoualy.telegram.tl.exception.DeserializationException
 import com.github.badoualy.telegram.tl.StreamUtils.*
 import com.github.badoualy.telegram.tl.TLContext
 import com.github.badoualy.telegram.tl.core.TLMethod
+import com.github.badoualy.telegram.tl.exception.DeserializationException
 import java.io.IOException
 import java.io.InputStream
 import java.io.OutputStream
@@ -14,7 +14,7 @@ class ReqDhParams @JvmOverloads constructor(var nonce: ByteArray = ByteArray(0),
                                             var encryptedData: ByteArray = ByteArray(0)) : TLMethod<ServerDhParams> () {
 
     override fun getConstructorId(): Int {
-        return CLASS_ID
+        return CONSTRUCTOR_ID
     }
 
     @Throws(IOException::class)
@@ -54,6 +54,6 @@ class ReqDhParams @JvmOverloads constructor(var nonce: ByteArray = ByteArray(0),
 
     companion object {
         @JvmStatic @JvmField
-        val CLASS_ID = -686627650
+        val CONSTRUCTOR_ID = -686627650
     }
 }

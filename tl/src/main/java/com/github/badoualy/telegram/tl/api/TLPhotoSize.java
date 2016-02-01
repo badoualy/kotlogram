@@ -10,8 +10,8 @@ import static com.github.badoualy.telegram.tl.StreamUtils.readInt;
 import static com.github.badoualy.telegram.tl.StreamUtils.readTLObject;
 import static com.github.badoualy.telegram.tl.StreamUtils.readTLString;
 import static com.github.badoualy.telegram.tl.StreamUtils.writeInt;
+import static com.github.badoualy.telegram.tl.StreamUtils.writeString;
 import static com.github.badoualy.telegram.tl.StreamUtils.writeTLObject;
-import static com.github.badoualy.telegram.tl.StreamUtils.writeTLString;
 
 /**
  * @author Yannick Badoual yann.badoual@gmail.com
@@ -41,7 +41,7 @@ public class TLPhotoSize extends TLAbsPhotoSize {
 
     @Override
     public void serializeBody(OutputStream stream) throws IOException {
-        writeTLString(type, stream);
+        writeString(type, stream);
         writeTLObject(location, stream);
         writeInt(w, stream);
         writeInt(h, stream);

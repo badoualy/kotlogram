@@ -7,8 +7,8 @@ import java.io.InputStream;
 import java.io.OutputStream;
 
 import static com.github.badoualy.telegram.tl.StreamUtils.readInt;
+import static com.github.badoualy.telegram.tl.StreamUtils.writeBoolean;
 import static com.github.badoualy.telegram.tl.StreamUtils.writeInt;
-import static com.github.badoualy.telegram.tl.StreamUtils.writeTLBool;
 
 /**
  * @author Yannick Badoual yann.badoual@gmail.com
@@ -33,7 +33,7 @@ public class TLChannelDifferenceEmpty extends TLAbsChannelDifference {
         flags = _final ? (flags | 1) : (flags &~ 1);
 
         writeInt(flags, stream);
-        if ((flags & 1) != 0) writeTLBool(_final, stream);
+        if ((flags & 1) != 0) writeBoolean(_final, stream);
         writeInt(pts, stream);
         if ((flags & 2) != 0) writeInt(timeout, stream);
     }

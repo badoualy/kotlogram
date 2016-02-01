@@ -14,7 +14,7 @@ import java.io.OutputStream;
 import static com.github.badoualy.telegram.tl.StreamUtils.readTLBool;
 import static com.github.badoualy.telegram.tl.StreamUtils.readTLObject;
 import static com.github.badoualy.telegram.tl.StreamUtils.readTLVector;
-import static com.github.badoualy.telegram.tl.StreamUtils.writeTLBool;
+import static com.github.badoualy.telegram.tl.StreamUtils.writeBoolean;
 import static com.github.badoualy.telegram.tl.StreamUtils.writeTLVector;
 
 /**
@@ -52,7 +52,7 @@ public class TLRequestContactsImportContacts extends TLMethod<TLImportedContacts
     @Override
     public void serializeBody(OutputStream stream) throws IOException {
         writeTLVector(contacts, stream);
-        writeTLBool(replace, stream);
+        writeBoolean(replace, stream);
     }
 
     @Override

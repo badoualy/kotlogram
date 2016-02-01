@@ -8,7 +8,7 @@ import java.io.InputStream;
 import java.io.OutputStream;
 
 import static com.github.badoualy.telegram.tl.StreamUtils.readTLBool;
-import static com.github.badoualy.telegram.tl.StreamUtils.writeTLBool;
+import static com.github.badoualy.telegram.tl.StreamUtils.writeBoolean;
 
 /**
  * @author Yannick Badoual yann.badoual@gmail.com
@@ -28,7 +28,7 @@ public class TLCheckedPhone extends TLObject {
 
     @Override
     public void serializeBody(OutputStream stream) throws IOException {
-        writeTLBool(phoneRegistered, stream);
+        writeBoolean(phoneRegistered, stream);
     }
 
     @Override

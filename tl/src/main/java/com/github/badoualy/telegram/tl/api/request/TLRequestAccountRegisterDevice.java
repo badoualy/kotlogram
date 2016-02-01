@@ -13,9 +13,9 @@ import static com.github.badoualy.telegram.tl.StreamUtils.readInt;
 import static com.github.badoualy.telegram.tl.StreamUtils.readTLBool;
 import static com.github.badoualy.telegram.tl.StreamUtils.readTLObject;
 import static com.github.badoualy.telegram.tl.StreamUtils.readTLString;
+import static com.github.badoualy.telegram.tl.StreamUtils.writeBoolean;
 import static com.github.badoualy.telegram.tl.StreamUtils.writeInt;
-import static com.github.badoualy.telegram.tl.StreamUtils.writeTLBool;
-import static com.github.badoualy.telegram.tl.StreamUtils.writeTLString;
+import static com.github.badoualy.telegram.tl.StreamUtils.writeString;
 
 /**
  * @author Yannick Badoual yann.badoual@gmail.com
@@ -67,12 +67,12 @@ public class TLRequestAccountRegisterDevice extends TLMethod<TLBool> {
     @Override
     public void serializeBody(OutputStream stream) throws IOException {
         writeInt(tokenType, stream);
-        writeTLString(token, stream);
-        writeTLString(deviceModel, stream);
-        writeTLString(systemVersion, stream);
-        writeTLString(appVersion, stream);
-        writeTLBool(appSandbox, stream);
-        writeTLString(langCode, stream);
+        writeString(token, stream);
+        writeString(deviceModel, stream);
+        writeString(systemVersion, stream);
+        writeString(appVersion, stream);
+        writeBoolean(appSandbox, stream);
+        writeString(langCode, stream);
     }
 
     @Override

@@ -10,7 +10,7 @@ import java.io.OutputStream;
 
 import static com.github.badoualy.telegram.tl.StreamUtils.readTLBool;
 import static com.github.badoualy.telegram.tl.StreamUtils.readTLObject;
-import static com.github.badoualy.telegram.tl.StreamUtils.writeTLBool;
+import static com.github.badoualy.telegram.tl.StreamUtils.writeBoolean;
 import static com.github.badoualy.telegram.tl.StreamUtils.writeTLObject;
 
 /**
@@ -50,7 +50,7 @@ public class TLUserFull extends TLObject {
         writeTLObject(link, stream);
         writeTLObject(profilePhoto, stream);
         writeTLObject(notifySettings, stream);
-        writeTLBool(blocked, stream);
+        writeBoolean(blocked, stream);
         writeTLObject(botInfo, stream);
     }
 

@@ -13,7 +13,7 @@ import java.io.OutputStream;
 import static com.github.badoualy.telegram.tl.StreamUtils.readTLBool;
 import static com.github.badoualy.telegram.tl.StreamUtils.readTLIntVector;
 import static com.github.badoualy.telegram.tl.StreamUtils.readTLObject;
-import static com.github.badoualy.telegram.tl.StreamUtils.writeTLBool;
+import static com.github.badoualy.telegram.tl.StreamUtils.writeBoolean;
 import static com.github.badoualy.telegram.tl.StreamUtils.writeTLObject;
 import static com.github.badoualy.telegram.tl.StreamUtils.writeTLVector;
 
@@ -56,7 +56,7 @@ public class TLRequestMessagesGetMessagesViews extends TLMethod<TLIntVector> {
     public void serializeBody(OutputStream stream) throws IOException {
         writeTLObject(peer, stream);
         writeTLVector(id, stream);
-        writeTLBool(increment, stream);
+        writeBoolean(increment, stream);
     }
 
     @Override

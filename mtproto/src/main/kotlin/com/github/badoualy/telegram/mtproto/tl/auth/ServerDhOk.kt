@@ -11,7 +11,7 @@ class ServerDhOk @JvmOverloads constructor(var nonce: ByteArray = ByteArray(0),
                                            var encryptedAnswer: ByteArray = ByteArray(0)) : ServerDhParams() {
 
     override fun getConstructorId(): Int {
-        return CLASS_ID
+        return CONSTRUCTOR_ID
     }
 
     @Throws(IOException::class)
@@ -34,6 +34,6 @@ class ServerDhOk @JvmOverloads constructor(var nonce: ByteArray = ByteArray(0),
 
     companion object {
         @JvmStatic @JvmField
-        val CLASS_ID = -790100132
+        val CONSTRUCTOR_ID = -790100132
     }
 }

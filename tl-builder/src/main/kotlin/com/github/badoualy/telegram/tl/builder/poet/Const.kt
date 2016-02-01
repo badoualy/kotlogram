@@ -6,6 +6,7 @@ val PACKAGE_TL = "com.github.badoualy.telegram.tl"
 val PACKAGE_TL_CORE = "$PACKAGE_TL.core"
 val PACKAGE_TL_API = "$PACKAGE_TL.api"
 val PACKAGE_TL_API_REQUEST = PACKAGE_TL_API + ".request"
+val PACKAGE_TL_EXCEPTION = "$PACKAGE_TL.exception"
 
 val TELEGRAM_API_INTERFACE = "TelegramApi"
 val TELEGRAM_API_WRAPPER = "TelegramApiWrapper"
@@ -17,11 +18,9 @@ val TYPE_TL_API_CONTEXT = ClassName.get(PACKAGE_TL_API, TL_API_CONTEXT)
 
 val TYPE_STREAM_UTILS = ClassName.get(PACKAGE_TL, "StreamUtils")
 val TYPE_TL_CONTEXT = ClassName.get(PACKAGE_TL, "TLContext")
-val TYPE_DESERIALIZE_EXCEPTION = ClassName.get(PACKAGE_TL, "DeserializeException")
+val TYPE_DESERIALIZE_EXCEPTION = ClassName.get(PACKAGE_TL_EXCEPTION, "DeserializeException")
 
 val TYPE_TL_BOOL = ClassName.get(PACKAGE_TL_CORE, "TLBool")
-val TYPE_TL_BOOL_FALSE = ClassName.get(PACKAGE_TL_CORE, "TLBoolFalse")
-val TYPE_TL_BOOL_TRUE = ClassName.get(PACKAGE_TL_CORE, "TLBoolTrue")
 val TYPE_TL_BYTES = ClassName.get(PACKAGE_TL_CORE, "TLBytes")
 val TYPE_TL_GZIP_OBJECT = ClassName.get(PACKAGE_TL_CORE, "TLGzipObject")
 val TYPE_TL_INT_VECTOR = ClassName.get(PACKAGE_TL_CORE, "TLIntVector")

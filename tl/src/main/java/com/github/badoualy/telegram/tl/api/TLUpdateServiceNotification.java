@@ -9,9 +9,9 @@ import java.io.OutputStream;
 import static com.github.badoualy.telegram.tl.StreamUtils.readTLBool;
 import static com.github.badoualy.telegram.tl.StreamUtils.readTLObject;
 import static com.github.badoualy.telegram.tl.StreamUtils.readTLString;
-import static com.github.badoualy.telegram.tl.StreamUtils.writeTLBool;
+import static com.github.badoualy.telegram.tl.StreamUtils.writeBoolean;
+import static com.github.badoualy.telegram.tl.StreamUtils.writeString;
 import static com.github.badoualy.telegram.tl.StreamUtils.writeTLObject;
-import static com.github.badoualy.telegram.tl.StreamUtils.writeTLString;
 
 /**
  * @author Yannick Badoual yann.badoual@gmail.com
@@ -40,10 +40,10 @@ public class TLUpdateServiceNotification extends TLAbsUpdate {
 
     @Override
     public void serializeBody(OutputStream stream) throws IOException {
-        writeTLString(type, stream);
-        writeTLString(message, stream);
+        writeString(type, stream);
+        writeString(message, stream);
         writeTLObject(media, stream);
-        writeTLBool(popup, stream);
+        writeBoolean(popup, stream);
     }
 
     @Override

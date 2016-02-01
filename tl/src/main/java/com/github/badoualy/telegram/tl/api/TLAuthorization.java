@@ -12,7 +12,7 @@ import static com.github.badoualy.telegram.tl.StreamUtils.readLong;
 import static com.github.badoualy.telegram.tl.StreamUtils.readTLString;
 import static com.github.badoualy.telegram.tl.StreamUtils.writeInt;
 import static com.github.badoualy.telegram.tl.StreamUtils.writeLong;
-import static com.github.badoualy.telegram.tl.StreamUtils.writeTLString;
+import static com.github.badoualy.telegram.tl.StreamUtils.writeString;
 
 /**
  * @author Yannick Badoual yann.badoual@gmail.com
@@ -70,17 +70,17 @@ public class TLAuthorization extends TLObject {
     public void serializeBody(OutputStream stream) throws IOException {
         writeLong(hash, stream);
         writeInt(flags, stream);
-        writeTLString(deviceModel, stream);
-        writeTLString(platform, stream);
-        writeTLString(systemVersion, stream);
+        writeString(deviceModel, stream);
+        writeString(platform, stream);
+        writeString(systemVersion, stream);
         writeInt(apiId, stream);
-        writeTLString(appName, stream);
-        writeTLString(appVersion, stream);
+        writeString(appName, stream);
+        writeString(appVersion, stream);
         writeInt(dateCreated, stream);
         writeInt(dateActive, stream);
-        writeTLString(ip, stream);
-        writeTLString(country, stream);
-        writeTLString(region, stream);
+        writeString(ip, stream);
+        writeString(country, stream);
+        writeString(region, stream);
     }
 
     @Override

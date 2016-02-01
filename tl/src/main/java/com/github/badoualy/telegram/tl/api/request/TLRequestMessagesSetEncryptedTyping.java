@@ -12,7 +12,7 @@ import java.io.OutputStream;
 
 import static com.github.badoualy.telegram.tl.StreamUtils.readTLBool;
 import static com.github.badoualy.telegram.tl.StreamUtils.readTLObject;
-import static com.github.badoualy.telegram.tl.StreamUtils.writeTLBool;
+import static com.github.badoualy.telegram.tl.StreamUtils.writeBoolean;
 import static com.github.badoualy.telegram.tl.StreamUtils.writeTLObject;
 
 /**
@@ -50,7 +50,7 @@ public class TLRequestMessagesSetEncryptedTyping extends TLMethod<TLBool> {
     @Override
     public void serializeBody(OutputStream stream) throws IOException {
         writeTLObject(peer, stream);
-        writeTLBool(typing, stream);
+        writeBoolean(typing, stream);
     }
 
     @Override

@@ -11,7 +11,7 @@ import java.io.OutputStream;
 
 import static com.github.badoualy.telegram.tl.StreamUtils.readTLBool;
 import static com.github.badoualy.telegram.tl.StreamUtils.readTLObject;
-import static com.github.badoualy.telegram.tl.StreamUtils.writeTLBool;
+import static com.github.badoualy.telegram.tl.StreamUtils.writeBoolean;
 
 /**
  * @author Yannick Badoual yann.badoual@gmail.com
@@ -44,7 +44,7 @@ public class TLRequestAccountUpdateStatus extends TLMethod<TLBool> {
 
     @Override
     public void serializeBody(OutputStream stream) throws IOException {
-        writeTLBool(offline, stream);
+        writeBoolean(offline, stream);
     }
 
     @Override

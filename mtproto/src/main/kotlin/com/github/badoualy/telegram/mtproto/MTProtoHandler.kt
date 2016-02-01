@@ -11,12 +11,12 @@ import com.github.badoualy.telegram.mtproto.tl.*
 import com.github.badoualy.telegram.mtproto.transport.MTProtoConnection
 import com.github.badoualy.telegram.mtproto.transport.MTProtoTcpConnection
 import com.github.badoualy.telegram.mtproto.util.Log
-import com.github.badoualy.telegram.tl.exception.DeserializationException
 import com.github.badoualy.telegram.tl.StreamUtils
 import com.github.badoualy.telegram.tl.api.TLAbsUpdates
 import com.github.badoualy.telegram.tl.api.TLApiContext
 import com.github.badoualy.telegram.tl.core.TLMethod
 import com.github.badoualy.telegram.tl.core.TLObject
+import com.github.badoualy.telegram.tl.exception.DeserializationException
 import org.apache.commons.lang3.StringUtils
 import rx.Observable
 import rx.Subscriber
@@ -333,7 +333,7 @@ class MTProtoHandler {
             val classId = StreamUtils.readInt(message.payload)
 
             when (classId) {
-                MTMessagesContainer.CLASS_ID -> {
+                MTMessagesContainer.CONSTRUCTOR_ID -> {
                     Log.d(TAG, "Message is a container")
                     val container = mtProtoContext.deserializeMessage(message.payload) as MTMessagesContainer
                     Log.d(TAG, "Container has ${container.messages.size} items")

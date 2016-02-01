@@ -10,11 +10,11 @@ import static com.github.badoualy.telegram.tl.StreamUtils.readInt;
 import static com.github.badoualy.telegram.tl.StreamUtils.readLong;
 import static com.github.badoualy.telegram.tl.StreamUtils.readTLObject;
 import static com.github.badoualy.telegram.tl.StreamUtils.readTLString;
+import static com.github.badoualy.telegram.tl.StreamUtils.writeBoolean;
 import static com.github.badoualy.telegram.tl.StreamUtils.writeInt;
 import static com.github.badoualy.telegram.tl.StreamUtils.writeLong;
-import static com.github.badoualy.telegram.tl.StreamUtils.writeTLBool;
+import static com.github.badoualy.telegram.tl.StreamUtils.writeString;
 import static com.github.badoualy.telegram.tl.StreamUtils.writeTLObject;
-import static com.github.badoualy.telegram.tl.StreamUtils.writeTLString;
 
 /**
  * @author Yannick Badoual yann.badoual@gmail.com
@@ -104,26 +104,26 @@ public class TLUser extends TLAbsUser {
         flags = restricted ? (flags | 262144) : (flags &~ 262144);
 
         writeInt(flags, stream);
-        if ((flags & 1024) != 0) writeTLBool(self, stream);
-        if ((flags & 2048) != 0) writeTLBool(contact, stream);
-        if ((flags & 4096) != 0) writeTLBool(mutualContact, stream);
-        if ((flags & 8192) != 0) writeTLBool(deleted, stream);
-        if ((flags & 16384) != 0) writeTLBool(bot, stream);
-        if ((flags & 32768) != 0) writeTLBool(botChatHistory, stream);
-        if ((flags & 65536) != 0) writeTLBool(botNochats, stream);
-        if ((flags & 131072) != 0) writeTLBool(verified, stream);
-        if ((flags & 262144) != 0) writeTLBool(restricted, stream);
+        if ((flags & 1024) != 0) writeBoolean(self, stream);
+        if ((flags & 2048) != 0) writeBoolean(contact, stream);
+        if ((flags & 4096) != 0) writeBoolean(mutualContact, stream);
+        if ((flags & 8192) != 0) writeBoolean(deleted, stream);
+        if ((flags & 16384) != 0) writeBoolean(bot, stream);
+        if ((flags & 32768) != 0) writeBoolean(botChatHistory, stream);
+        if ((flags & 65536) != 0) writeBoolean(botNochats, stream);
+        if ((flags & 131072) != 0) writeBoolean(verified, stream);
+        if ((flags & 262144) != 0) writeBoolean(restricted, stream);
         writeInt(id, stream);
         if ((flags & 1) != 0) writeLong(accessHash, stream);
-        if ((flags & 2) != 0) writeTLString(firstName, stream);
-        if ((flags & 4) != 0) writeTLString(lastName, stream);
-        if ((flags & 8) != 0) writeTLString(username, stream);
-        if ((flags & 16) != 0) writeTLString(phone, stream);
+        if ((flags & 2) != 0) writeString(firstName, stream);
+        if ((flags & 4) != 0) writeString(lastName, stream);
+        if ((flags & 8) != 0) writeString(username, stream);
+        if ((flags & 16) != 0) writeString(phone, stream);
         if ((flags & 32) != 0) writeTLObject(photo, stream);
         if ((flags & 64) != 0) writeTLObject(status, stream);
         if ((flags & 16384) != 0) writeInt(botInfoVersion, stream);
-        if ((flags & 262144) != 0) writeTLString(restrictionReason, stream);
-        if ((flags & 524288) != 0) writeTLString(botInlinePlaceholder, stream);
+        if ((flags & 262144) != 0) writeString(restrictionReason, stream);
+        if ((flags & 524288) != 0) writeString(botInlinePlaceholder, stream);
     }
 
     @Override

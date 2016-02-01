@@ -12,8 +12,8 @@ import static com.github.badoualy.telegram.tl.StreamUtils.readInt;
 import static com.github.badoualy.telegram.tl.StreamUtils.readTLMethod;
 import static com.github.badoualy.telegram.tl.StreamUtils.readTLString;
 import static com.github.badoualy.telegram.tl.StreamUtils.writeInt;
+import static com.github.badoualy.telegram.tl.StreamUtils.writeString;
 import static com.github.badoualy.telegram.tl.StreamUtils.writeTLMethod;
-import static com.github.badoualy.telegram.tl.StreamUtils.writeTLString;
 
 /**
  * @author Yannick Badoual yann.badoual@gmail.com
@@ -55,10 +55,10 @@ public class TLRequestInitConnection<T extends TLObject> extends TLMethod<T> {
     @Override
     public void serializeBody(OutputStream stream) throws IOException {
         writeInt(apiId, stream);
-        writeTLString(deviceModel, stream);
-        writeTLString(systemVersion, stream);
-        writeTLString(appVersion, stream);
-        writeTLString(langCode, stream);
+        writeString(deviceModel, stream);
+        writeString(systemVersion, stream);
+        writeString(appVersion, stream);
+        writeString(langCode, stream);
         writeTLMethod(query, stream);
     }
 

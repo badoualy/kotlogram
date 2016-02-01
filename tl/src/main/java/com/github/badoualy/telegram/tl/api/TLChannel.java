@@ -10,11 +10,11 @@ import static com.github.badoualy.telegram.tl.StreamUtils.readInt;
 import static com.github.badoualy.telegram.tl.StreamUtils.readLong;
 import static com.github.badoualy.telegram.tl.StreamUtils.readTLObject;
 import static com.github.badoualy.telegram.tl.StreamUtils.readTLString;
+import static com.github.badoualy.telegram.tl.StreamUtils.writeBoolean;
 import static com.github.badoualy.telegram.tl.StreamUtils.writeInt;
 import static com.github.badoualy.telegram.tl.StreamUtils.writeLong;
-import static com.github.badoualy.telegram.tl.StreamUtils.writeTLBool;
+import static com.github.badoualy.telegram.tl.StreamUtils.writeString;
 import static com.github.badoualy.telegram.tl.StreamUtils.writeTLObject;
-import static com.github.badoualy.telegram.tl.StreamUtils.writeTLString;
 
 /**
  * @author Yannick Badoual yann.badoual@gmail.com
@@ -95,23 +95,23 @@ public class TLChannel extends TLAbsChat {
         flags = restricted ? (flags | 512) : (flags &~ 512);
 
         writeInt(flags, stream);
-        if ((flags & 1) != 0) writeTLBool(creator, stream);
-        if ((flags & 2) != 0) writeTLBool(kicked, stream);
-        if ((flags & 4) != 0) writeTLBool(left, stream);
-        if ((flags & 8) != 0) writeTLBool(editor, stream);
-        if ((flags & 16) != 0) writeTLBool(moderator, stream);
-        if ((flags & 32) != 0) writeTLBool(broadcast, stream);
-        if ((flags & 128) != 0) writeTLBool(verified, stream);
-        if ((flags & 256) != 0) writeTLBool(megagroup, stream);
-        if ((flags & 512) != 0) writeTLBool(restricted, stream);
+        if ((flags & 1) != 0) writeBoolean(creator, stream);
+        if ((flags & 2) != 0) writeBoolean(kicked, stream);
+        if ((flags & 4) != 0) writeBoolean(left, stream);
+        if ((flags & 8) != 0) writeBoolean(editor, stream);
+        if ((flags & 16) != 0) writeBoolean(moderator, stream);
+        if ((flags & 32) != 0) writeBoolean(broadcast, stream);
+        if ((flags & 128) != 0) writeBoolean(verified, stream);
+        if ((flags & 256) != 0) writeBoolean(megagroup, stream);
+        if ((flags & 512) != 0) writeBoolean(restricted, stream);
         writeInt(id, stream);
         writeLong(accessHash, stream);
-        writeTLString(title, stream);
-        if ((flags & 64) != 0) writeTLString(username, stream);
+        writeString(title, stream);
+        if ((flags & 64) != 0) writeString(username, stream);
         writeTLObject(photo, stream);
         writeInt(date, stream);
         writeInt(version, stream);
-        if ((flags & 512) != 0) writeTLString(restrictionReason, stream);
+        if ((flags & 512) != 0) writeString(restrictionReason, stream);
     }
 
     @Override

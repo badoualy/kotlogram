@@ -10,8 +10,8 @@ import java.io.OutputStream;
 import static com.github.badoualy.telegram.tl.StreamUtils.readTLObject;
 import static com.github.badoualy.telegram.tl.StreamUtils.readTLString;
 import static com.github.badoualy.telegram.tl.StreamUtils.readTLVector;
+import static com.github.badoualy.telegram.tl.StreamUtils.writeString;
 import static com.github.badoualy.telegram.tl.StreamUtils.writeTLObject;
-import static com.github.badoualy.telegram.tl.StreamUtils.writeTLString;
 import static com.github.badoualy.telegram.tl.StreamUtils.writeTLVector;
 
 /**
@@ -46,9 +46,9 @@ public class TLInputMediaUploadedThumbDocument extends TLAbsInputMedia {
     public void serializeBody(OutputStream stream) throws IOException {
         writeTLObject(file, stream);
         writeTLObject(thumb, stream);
-        writeTLString(mimeType, stream);
+        writeString(mimeType, stream);
         writeTLVector(attributes, stream);
-        writeTLString(caption, stream);
+        writeString(caption, stream);
     }
 
     @Override

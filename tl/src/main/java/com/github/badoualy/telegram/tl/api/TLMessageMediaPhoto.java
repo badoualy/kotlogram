@@ -8,8 +8,8 @@ import java.io.OutputStream;
 
 import static com.github.badoualy.telegram.tl.StreamUtils.readTLObject;
 import static com.github.badoualy.telegram.tl.StreamUtils.readTLString;
+import static com.github.badoualy.telegram.tl.StreamUtils.writeString;
 import static com.github.badoualy.telegram.tl.StreamUtils.writeTLObject;
-import static com.github.badoualy.telegram.tl.StreamUtils.writeTLString;
 
 /**
  * @author Yannick Badoual yann.badoual@gmail.com
@@ -33,7 +33,7 @@ public class TLMessageMediaPhoto extends TLAbsMessageMedia {
     @Override
     public void serializeBody(OutputStream stream) throws IOException {
         writeTLObject(photo, stream);
-        writeTLString(caption, stream);
+        writeString(caption, stream);
     }
 
     @Override

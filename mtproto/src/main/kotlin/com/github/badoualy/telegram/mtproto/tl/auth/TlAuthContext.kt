@@ -5,16 +5,16 @@ import com.github.badoualy.telegram.tl.TLContext
 object TlAuthContext : TLContext(15) {
 
     override fun init() {
-        registerClass(ReqPQ.CLASS_ID, ReqPQ::class.java)
-        registerClass(ResPQ.CLASS_ID, ResPQ::class.java)
-        registerClass(ReqDhParams.CLASS_ID, ReqDhParams::class.java)
-        registerClass(ServerDhOk.CLASS_ID, ServerDhOk::class.java)
-        registerClass(ServerDhFailure.CLASS_ID, ServerDhFailure::class.java)
-        registerClass(ServerDhInner.CLASS_ID, ServerDhInner::class.java)
-        registerClass(DhGenOk.CLASS_ID, DhGenOk::class.java)
-        registerClass(DhGenFailure.CLASS_ID, DhGenFailure::class.java)
-        registerClass(DhGenRetry.CLASS_ID, DhGenRetry::class.java)
-        registerClass(ReqSetDhClientParams.CLASS_ID, ReqSetDhClientParams::class.java)
-        registerClass(ClientDhInner.CLASS_ID, ClientDhInner::class.java)
+        registerClass(ReqPQ.CONSTRUCTOR_ID, ReqPQ::class.java)
+        registerClass(ResPQ.CONSTRUCTOR_ID, ResPQ::class.java)
+        registerClass(ReqDhParams.CONSTRUCTOR_ID, ReqDhParams::class.java)
+        registerClass(ServerDhOk.CONSTRUCTOR_ID, ServerDhOk::class.java)
+        registerClass(ServerDhFailure.CONSTRUCTOR_ID, ServerDhFailure::class.java)
+        registerClass(ServerDhInner.CONSTRUCTOR_ID, ServerDhInner::class.java)
+        registerClass(DhGenOk.CONSTRUCTOR_ID, DhGenOk::class.java)
+        registerClass(DhGenFailure.CONSTRUCTOR_ID, DhGenFailure::class.java)
+        registerClass(DhGenRetry.CONSTRUCTOR_ID, DhGenRetry::class.java)
+        registerClass(ReqSetDhClientParams.CONSTRUCTOR_ID, ReqSetDhClientParams::class.java)
+        registerClass(ClientDhInner.CONSTRUCTOR_ID, ClientDhInner::class.java)
     }
 }

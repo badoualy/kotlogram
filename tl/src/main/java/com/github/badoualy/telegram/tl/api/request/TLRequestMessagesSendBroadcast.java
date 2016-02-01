@@ -17,8 +17,8 @@ import static com.github.badoualy.telegram.tl.StreamUtils.readTLLongVector;
 import static com.github.badoualy.telegram.tl.StreamUtils.readTLObject;
 import static com.github.badoualy.telegram.tl.StreamUtils.readTLString;
 import static com.github.badoualy.telegram.tl.StreamUtils.readTLVector;
+import static com.github.badoualy.telegram.tl.StreamUtils.writeString;
 import static com.github.badoualy.telegram.tl.StreamUtils.writeTLObject;
-import static com.github.badoualy.telegram.tl.StreamUtils.writeTLString;
 import static com.github.badoualy.telegram.tl.StreamUtils.writeTLVector;
 
 /**
@@ -63,7 +63,7 @@ public class TLRequestMessagesSendBroadcast extends TLMethod<TLAbsUpdates> {
     public void serializeBody(OutputStream stream) throws IOException {
         writeTLVector(contacts, stream);
         writeTLVector(randomId, stream);
-        writeTLString(message, stream);
+        writeString(message, stream);
         writeTLObject(media, stream);
     }
 

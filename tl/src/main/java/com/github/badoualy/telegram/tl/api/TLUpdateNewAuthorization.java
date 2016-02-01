@@ -11,7 +11,7 @@ import static com.github.badoualy.telegram.tl.StreamUtils.readLong;
 import static com.github.badoualy.telegram.tl.StreamUtils.readTLString;
 import static com.github.badoualy.telegram.tl.StreamUtils.writeInt;
 import static com.github.badoualy.telegram.tl.StreamUtils.writeLong;
-import static com.github.badoualy.telegram.tl.StreamUtils.writeTLString;
+import static com.github.badoualy.telegram.tl.StreamUtils.writeString;
 
 /**
  * @author Yannick Badoual yann.badoual@gmail.com
@@ -42,8 +42,8 @@ public class TLUpdateNewAuthorization extends TLAbsUpdate {
     public void serializeBody(OutputStream stream) throws IOException {
         writeLong(authKeyId, stream);
         writeInt(date, stream);
-        writeTLString(device, stream);
-        writeTLString(location, stream);
+        writeString(device, stream);
+        writeString(location, stream);
     }
 
     @Override

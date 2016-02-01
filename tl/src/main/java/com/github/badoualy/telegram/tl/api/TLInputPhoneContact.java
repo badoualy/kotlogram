@@ -10,7 +10,7 @@ import java.io.OutputStream;
 import static com.github.badoualy.telegram.tl.StreamUtils.readLong;
 import static com.github.badoualy.telegram.tl.StreamUtils.readTLString;
 import static com.github.badoualy.telegram.tl.StreamUtils.writeLong;
-import static com.github.badoualy.telegram.tl.StreamUtils.writeTLString;
+import static com.github.badoualy.telegram.tl.StreamUtils.writeString;
 
 /**
  * @author Yannick Badoual yann.badoual@gmail.com
@@ -40,9 +40,9 @@ public class TLInputPhoneContact extends TLObject {
     @Override
     public void serializeBody(OutputStream stream) throws IOException {
         writeLong(clientId, stream);
-        writeTLString(phone, stream);
-        writeTLString(firstName, stream);
-        writeTLString(lastName, stream);
+        writeString(phone, stream);
+        writeString(firstName, stream);
+        writeString(lastName, stream);
     }
 
     @Override

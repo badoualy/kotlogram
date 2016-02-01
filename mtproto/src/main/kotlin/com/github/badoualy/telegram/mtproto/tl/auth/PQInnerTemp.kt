@@ -13,7 +13,7 @@ class PQInnerTemp @JvmOverloads constructor(pq: ByteArray = ByteArray(0),
                                             newNonce: ByteArray = ByteArray(0), var expiresIn: Int = 0) : PQInner(pq, p, q, nonce, serverNonce, newNonce) {
 
     override fun getConstructorId(): Int {
-        return CLASS_ID
+        return CONSTRUCTOR_ID
     }
 
     @Throws(IOException::class)
@@ -30,6 +30,6 @@ class PQInnerTemp @JvmOverloads constructor(pq: ByteArray = ByteArray(0),
 
     companion object {
         @JvmStatic @JvmField
-        val CLASS_ID = 1013613780
+        val CONSTRUCTOR_ID = 1013613780
     }
 }

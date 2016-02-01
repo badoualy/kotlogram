@@ -12,7 +12,7 @@ import static com.github.badoualy.telegram.tl.StreamUtils.readLong;
 import static com.github.badoualy.telegram.tl.StreamUtils.readTLString;
 import static com.github.badoualy.telegram.tl.StreamUtils.writeDouble;
 import static com.github.badoualy.telegram.tl.StreamUtils.writeLong;
-import static com.github.badoualy.telegram.tl.StreamUtils.writeTLString;
+import static com.github.badoualy.telegram.tl.StreamUtils.writeString;
 
 /**
  * @author Yannick Badoual yann.badoual@gmail.com
@@ -42,9 +42,9 @@ public class TLInputAppEvent extends TLObject {
     @Override
     public void serializeBody(OutputStream stream) throws IOException {
         writeDouble(time, stream);
-        writeTLString(type, stream);
+        writeString(type, stream);
         writeLong(peer, stream);
-        writeTLString(data, stream);
+        writeString(data, stream);
     }
 
     @Override

@@ -9,7 +9,7 @@ import java.io.OutputStream;
 import static com.github.badoualy.telegram.tl.StreamUtils.readInt;
 import static com.github.badoualy.telegram.tl.StreamUtils.readTLString;
 import static com.github.badoualy.telegram.tl.StreamUtils.writeInt;
-import static com.github.badoualy.telegram.tl.StreamUtils.writeTLString;
+import static com.github.badoualy.telegram.tl.StreamUtils.writeString;
 
 /**
  * @author Yannick Badoual yann.badoual@gmail.com
@@ -33,7 +33,7 @@ public class TLMessageEntityPre extends TLAbsMessageEntity {
     public void serializeBody(OutputStream stream) throws IOException {
         writeInt(offset, stream);
         writeInt(length, stream);
-        writeTLString(language, stream);
+        writeString(language, stream);
     }
 
     @Override

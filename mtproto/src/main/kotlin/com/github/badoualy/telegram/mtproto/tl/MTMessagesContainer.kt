@@ -22,7 +22,7 @@ class MTMessagesContainer : TLObject {
     }
 
     override fun getConstructorId(): Int {
-        return CLASS_ID
+        return CONSTRUCTOR_ID
     }
 
     @Throws(IOException::class)
@@ -50,6 +50,6 @@ class MTMessagesContainer : TLObject {
 
     companion object {
         @JvmStatic @JvmField
-        val CLASS_ID = 1945237724
+        val CONSTRUCTOR_ID = 1945237724
     }
 }

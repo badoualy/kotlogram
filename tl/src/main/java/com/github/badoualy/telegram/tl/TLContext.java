@@ -1,8 +1,6 @@
 package com.github.badoualy.telegram.tl;
 
-import com.github.badoualy.telegram.tl.core.TLBoolFalse;
-import com.github.badoualy.telegram.tl.core.TLBoolTrue;
-import com.github.badoualy.telegram.tl.core.TLBytes;
+import com.github.badoualy.telegram.tl.core.TLBool;
 import com.github.badoualy.telegram.tl.core.TLGzipObject;
 import com.github.badoualy.telegram.tl.core.TLIntVector;
 import com.github.badoualy.telegram.tl.core.TLLongVector;
@@ -74,10 +72,10 @@ public abstract class TLContext {
     public TLObject deserializeMessage(int constructorId, InputStream stream) throws IOException {
         if (constructorId == TLGzipObject.CONSTRUCTOR_ID)
             return deserializeMessage(unzipStream(stream));
-        if (constructorId == TLBoolTrue.CONSTRUCTOR_ID)
-            return new TLBoolTrue();
-        if (constructorId == TLBoolFalse.CONSTRUCTOR_ID)
-            return new TLBoolFalse();
+        if (constructorId == TLBool.TRUE_CONSTRUCTOR_ID)
+            return TLBool.TRUE;
+        if (constructorId == TLBool.FALSE_CONSTRUCTOR_ID)
+            return TLBool.FALSE;
         if (constructorId == TLVector.CONSTRUCTOR_ID) {
             /* Vector should be demobilized via the appropriate method, a vector was not expected,
              we must assume it's not any of vector<int>, vector<long>, vector<string> */
@@ -133,14 +131,10 @@ public abstract class TLContext {
         throw new InvalidConstructorIdException(constructorId, TLVector.CONSTRUCTOR_ID);
     }
 
-    public InputStream unzipStream(InputStream stream) throws IOException {
+    private InputStream unzipStream(InputStream stream) throws IOException {
         TLGzipObject obj = new TLGzipObject();
         obj.deserializeBody(stream, this);
         ByteArrayInputStream packedDataStream = new ByteArrayInputStream(obj.getPackedData());
         return new BufferedInputStream(new GZIPInputStream(packedDataStream));
-    }
-
-    public TLBytes allocateBytes(int size) {
-        return new TLBytes(new byte[size], 0, size);
     }
 }

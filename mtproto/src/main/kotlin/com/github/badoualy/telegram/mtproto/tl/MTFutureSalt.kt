@@ -10,7 +10,7 @@ import java.io.OutputStream
 class MTFutureSalt @JvmOverloads constructor(var validSince: Int = 0, var validUntil: Int = 0, var salt: Long = 0) : TLObject() {
 
     override fun getConstructorId(): Int {
-        return CLASS_ID
+        return CONSTRUCTOR_ID
     }
 
     @Throws(IOException::class)
@@ -33,6 +33,6 @@ class MTFutureSalt @JvmOverloads constructor(var validSince: Int = 0, var validU
 
     companion object {
         @JvmStatic @JvmField
-        val CLASS_ID = 0x0949d9dc
+        val CONSTRUCTOR_ID = 0x0949d9dc
     }
 }

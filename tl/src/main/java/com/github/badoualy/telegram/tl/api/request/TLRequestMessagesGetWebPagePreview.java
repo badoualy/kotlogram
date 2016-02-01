@@ -11,7 +11,7 @@ import java.io.OutputStream;
 
 import static com.github.badoualy.telegram.tl.StreamUtils.readTLObject;
 import static com.github.badoualy.telegram.tl.StreamUtils.readTLString;
-import static com.github.badoualy.telegram.tl.StreamUtils.writeTLString;
+import static com.github.badoualy.telegram.tl.StreamUtils.writeString;
 
 /**
  * @author Yannick Badoual yann.badoual@gmail.com
@@ -44,7 +44,7 @@ public class TLRequestMessagesGetWebPagePreview extends TLMethod<TLAbsMessageMed
 
     @Override
     public void serializeBody(OutputStream stream) throws IOException {
-        writeTLString(message, stream);
+        writeString(message, stream);
     }
 
     @Override

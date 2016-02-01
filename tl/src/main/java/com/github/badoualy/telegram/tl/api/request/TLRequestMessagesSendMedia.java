@@ -15,9 +15,9 @@ import java.io.OutputStream;
 import static com.github.badoualy.telegram.tl.StreamUtils.readInt;
 import static com.github.badoualy.telegram.tl.StreamUtils.readLong;
 import static com.github.badoualy.telegram.tl.StreamUtils.readTLObject;
+import static com.github.badoualy.telegram.tl.StreamUtils.writeBoolean;
 import static com.github.badoualy.telegram.tl.StreamUtils.writeInt;
 import static com.github.badoualy.telegram.tl.StreamUtils.writeLong;
-import static com.github.badoualy.telegram.tl.StreamUtils.writeTLBool;
 import static com.github.badoualy.telegram.tl.StreamUtils.writeTLObject;
 
 /**
@@ -73,7 +73,7 @@ public class TLRequestMessagesSendMedia extends TLMethod<TLAbsUpdates> {
         flags = broadcast ? (flags | 16) : (flags &~ 16);
 
         writeInt(flags, stream);
-        if ((flags & 16) != 0) writeTLBool(broadcast, stream);
+        if ((flags & 16) != 0) writeBoolean(broadcast, stream);
         writeTLObject(peer, stream);
         if ((flags & 1) != 0) writeInt(replyToMsgId, stream);
         writeTLObject(media, stream);

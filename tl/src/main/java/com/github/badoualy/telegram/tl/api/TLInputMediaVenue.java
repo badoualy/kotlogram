@@ -8,8 +8,8 @@ import java.io.OutputStream;
 
 import static com.github.badoualy.telegram.tl.StreamUtils.readTLObject;
 import static com.github.badoualy.telegram.tl.StreamUtils.readTLString;
+import static com.github.badoualy.telegram.tl.StreamUtils.writeString;
 import static com.github.badoualy.telegram.tl.StreamUtils.writeTLObject;
-import static com.github.badoualy.telegram.tl.StreamUtils.writeTLString;
 
 /**
  * @author Yannick Badoual yann.badoual@gmail.com
@@ -42,10 +42,10 @@ public class TLInputMediaVenue extends TLAbsInputMedia {
     @Override
     public void serializeBody(OutputStream stream) throws IOException {
         writeTLObject(geoPoint, stream);
-        writeTLString(title, stream);
-        writeTLString(address, stream);
-        writeTLString(provider, stream);
-        writeTLString(venueId, stream);
+        writeString(title, stream);
+        writeString(address, stream);
+        writeString(provider, stream);
+        writeString(venueId, stream);
     }
 
     @Override

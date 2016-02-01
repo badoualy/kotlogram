@@ -8,9 +8,9 @@ import java.io.OutputStream;
 
 import static com.github.badoualy.telegram.tl.StreamUtils.readInt;
 import static com.github.badoualy.telegram.tl.StreamUtils.readTLString;
+import static com.github.badoualy.telegram.tl.StreamUtils.writeBoolean;
 import static com.github.badoualy.telegram.tl.StreamUtils.writeInt;
-import static com.github.badoualy.telegram.tl.StreamUtils.writeTLBool;
-import static com.github.badoualy.telegram.tl.StreamUtils.writeTLString;
+import static com.github.badoualy.telegram.tl.StreamUtils.writeString;
 
 /**
  * @author Yannick Badoual yann.badoual@gmail.com
@@ -52,11 +52,11 @@ public class TLChatInvite extends TLAbsChatInvite {
         flags = megagroup ? (flags | 8) : (flags &~ 8);
 
         writeInt(flags, stream);
-        if ((flags & 1) != 0) writeTLBool(channel, stream);
-        if ((flags & 2) != 0) writeTLBool(broadcast, stream);
-        if ((flags & 4) != 0) writeTLBool(_public, stream);
-        if ((flags & 8) != 0) writeTLBool(megagroup, stream);
-        writeTLString(title, stream);
+        if ((flags & 1) != 0) writeBoolean(channel, stream);
+        if ((flags & 2) != 0) writeBoolean(broadcast, stream);
+        if ((flags & 4) != 0) writeBoolean(_public, stream);
+        if ((flags & 8) != 0) writeBoolean(megagroup, stream);
+        writeString(title, stream);
     }
 
     @Override

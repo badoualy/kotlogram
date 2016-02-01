@@ -11,7 +11,7 @@ import java.io.OutputStream
 class MTInvokeAfter(var dependMsgId: Long = 0, var request: ByteArray = ByteArray(0)) : TLObject() {
 
     override fun getConstructorId(): Int {
-        return CLASS_ID
+        return CONSTRUCTOR_ID
     }
 
     @Throws(IOException::class)
@@ -27,6 +27,6 @@ class MTInvokeAfter(var dependMsgId: Long = 0, var request: ByteArray = ByteArra
 
     companion object {
         @JvmStatic @JvmField
-        val CLASS_ID = -878758099
+        val CONSTRUCTOR_ID = -878758099
     }
 }

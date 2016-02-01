@@ -11,10 +11,10 @@ import static com.github.badoualy.telegram.tl.StreamUtils.readInt;
 import static com.github.badoualy.telegram.tl.StreamUtils.readTLObject;
 import static com.github.badoualy.telegram.tl.StreamUtils.readTLString;
 import static com.github.badoualy.telegram.tl.StreamUtils.readTLVector;
+import static com.github.badoualy.telegram.tl.StreamUtils.writeBoolean;
 import static com.github.badoualy.telegram.tl.StreamUtils.writeInt;
-import static com.github.badoualy.telegram.tl.StreamUtils.writeTLBool;
+import static com.github.badoualy.telegram.tl.StreamUtils.writeString;
 import static com.github.badoualy.telegram.tl.StreamUtils.writeTLObject;
-import static com.github.badoualy.telegram.tl.StreamUtils.writeTLString;
 import static com.github.badoualy.telegram.tl.StreamUtils.writeTLVector;
 
 /**
@@ -87,13 +87,13 @@ public class TLUpdateShortMessage extends TLAbsUpdates {
         flags = mediaUnread ? (flags | 32) : (flags &~ 32);
 
         writeInt(flags, stream);
-        if ((flags & 1) != 0) writeTLBool(unread, stream);
-        if ((flags & 2) != 0) writeTLBool(out, stream);
-        if ((flags & 16) != 0) writeTLBool(mentioned, stream);
-        if ((flags & 32) != 0) writeTLBool(mediaUnread, stream);
+        if ((flags & 1) != 0) writeBoolean(unread, stream);
+        if ((flags & 2) != 0) writeBoolean(out, stream);
+        if ((flags & 16) != 0) writeBoolean(mentioned, stream);
+        if ((flags & 32) != 0) writeBoolean(mediaUnread, stream);
         writeInt(id, stream);
         writeInt(userId, stream);
-        writeTLString(message, stream);
+        writeString(message, stream);
         writeInt(pts, stream);
         writeInt(ptsCount, stream);
         writeInt(date, stream);

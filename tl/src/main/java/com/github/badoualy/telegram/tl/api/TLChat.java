@@ -9,10 +9,10 @@ import java.io.OutputStream;
 import static com.github.badoualy.telegram.tl.StreamUtils.readInt;
 import static com.github.badoualy.telegram.tl.StreamUtils.readTLObject;
 import static com.github.badoualy.telegram.tl.StreamUtils.readTLString;
+import static com.github.badoualy.telegram.tl.StreamUtils.writeBoolean;
 import static com.github.badoualy.telegram.tl.StreamUtils.writeInt;
-import static com.github.badoualy.telegram.tl.StreamUtils.writeTLBool;
+import static com.github.badoualy.telegram.tl.StreamUtils.writeString;
 import static com.github.badoualy.telegram.tl.StreamUtils.writeTLObject;
-import static com.github.badoualy.telegram.tl.StreamUtils.writeTLString;
 
 /**
  * @author Yannick Badoual yann.badoual@gmail.com
@@ -78,14 +78,14 @@ public class TLChat extends TLAbsChat {
         flags = deactivated ? (flags | 32) : (flags &~ 32);
 
         writeInt(flags, stream);
-        if ((flags & 1) != 0) writeTLBool(creator, stream);
-        if ((flags & 2) != 0) writeTLBool(kicked, stream);
-        if ((flags & 4) != 0) writeTLBool(left, stream);
-        if ((flags & 8) != 0) writeTLBool(adminsEnabled, stream);
-        if ((flags & 16) != 0) writeTLBool(admin, stream);
-        if ((flags & 32) != 0) writeTLBool(deactivated, stream);
+        if ((flags & 1) != 0) writeBoolean(creator, stream);
+        if ((flags & 2) != 0) writeBoolean(kicked, stream);
+        if ((flags & 4) != 0) writeBoolean(left, stream);
+        if ((flags & 8) != 0) writeBoolean(adminsEnabled, stream);
+        if ((flags & 16) != 0) writeBoolean(admin, stream);
+        if ((flags & 32) != 0) writeBoolean(deactivated, stream);
         writeInt(id, stream);
-        writeTLString(title, stream);
+        writeString(title, stream);
         writeTLObject(photo, stream);
         writeInt(participantsCount, stream);
         writeInt(date, stream);

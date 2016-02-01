@@ -12,8 +12,8 @@ import java.io.OutputStream;
 import static com.github.badoualy.telegram.tl.StreamUtils.readInt;
 import static com.github.badoualy.telegram.tl.StreamUtils.readTLBool;
 import static com.github.badoualy.telegram.tl.StreamUtils.readTLObject;
+import static com.github.badoualy.telegram.tl.StreamUtils.writeBoolean;
 import static com.github.badoualy.telegram.tl.StreamUtils.writeInt;
-import static com.github.badoualy.telegram.tl.StreamUtils.writeTLBool;
 
 /**
  * @author Yannick Badoual yann.badoual@gmail.com
@@ -50,7 +50,7 @@ public class TLRequestMessagesToggleChatAdmins extends TLMethod<TLAbsUpdates> {
     @Override
     public void serializeBody(OutputStream stream) throws IOException {
         writeInt(chatId, stream);
-        writeTLBool(enabled, stream);
+        writeBoolean(enabled, stream);
     }
 
     @Override

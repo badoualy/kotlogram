@@ -7,7 +7,7 @@ import java.io.InputStream;
 import java.io.OutputStream;
 
 import static com.github.badoualy.telegram.tl.StreamUtils.readTLString;
-import static com.github.badoualy.telegram.tl.StreamUtils.writeTLString;
+import static com.github.badoualy.telegram.tl.StreamUtils.writeString;
 
 /**
  * @author Yannick Badoual yann.badoual@gmail.com
@@ -30,8 +30,8 @@ public class TLInputMediaGifExternal extends TLAbsInputMedia {
 
     @Override
     public void serializeBody(OutputStream stream) throws IOException {
-        writeTLString(url, stream);
-        writeTLString(q, stream);
+        writeString(url, stream);
+        writeString(q, stream);
     }
 
     @Override

@@ -13,7 +13,7 @@ open class PQInner @JvmOverloads constructor(var pq: ByteArray = ByteArray(0),
                                              var newNonce: ByteArray = ByteArray(0)) : TLObject() {
 
     override fun getConstructorId(): Int {
-        return CLASS_ID
+        return CONSTRUCTOR_ID
     }
 
     @Throws(IOException::class)
@@ -38,6 +38,6 @@ open class PQInner @JvmOverloads constructor(var pq: ByteArray = ByteArray(0),
 
     companion object {
         @JvmStatic @JvmField
-        val CLASS_ID = -2083955988
+        val CONSTRUCTOR_ID = -2083955988
     }
 }

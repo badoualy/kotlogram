@@ -59,9 +59,9 @@ public abstract class TLObject implements Serializable {
      * @throws IOException
      */
     public void deserialize(InputStream stream, TLContext context) throws IOException {
-        int classId = readInt(stream);
-        if (classId != getConstructorId())
-            throw new InvalidConstructorIdException(classId, getConstructorId());
+        int constructorId = readInt(stream);
+        if (constructorId != getConstructorId())
+            throw new InvalidConstructorIdException(constructorId, getConstructorId());
         deserializeBody(stream, context);
     }
 

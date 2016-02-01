@@ -13,8 +13,8 @@ import java.io.OutputStream;
 import static com.github.badoualy.telegram.tl.StreamUtils.readInt;
 import static com.github.badoualy.telegram.tl.StreamUtils.readTLBool;
 import static com.github.badoualy.telegram.tl.StreamUtils.readTLObject;
+import static com.github.badoualy.telegram.tl.StreamUtils.writeBoolean;
 import static com.github.badoualy.telegram.tl.StreamUtils.writeInt;
-import static com.github.badoualy.telegram.tl.StreamUtils.writeTLBool;
 import static com.github.badoualy.telegram.tl.StreamUtils.writeTLObject;
 
 /**
@@ -56,7 +56,7 @@ public class TLRequestMessagesEditChatAdmin extends TLMethod<TLBool> {
     public void serializeBody(OutputStream stream) throws IOException {
         writeInt(chatId, stream);
         writeTLObject(userId, stream);
-        writeTLBool(isAdmin, stream);
+        writeBoolean(isAdmin, stream);
     }
 
     @Override

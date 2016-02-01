@@ -13,7 +13,7 @@ import static com.github.badoualy.telegram.tl.StreamUtils.readInt;
 import static com.github.badoualy.telegram.tl.StreamUtils.readTLObject;
 import static com.github.badoualy.telegram.tl.StreamUtils.readTLString;
 import static com.github.badoualy.telegram.tl.StreamUtils.writeInt;
-import static com.github.badoualy.telegram.tl.StreamUtils.writeTLString;
+import static com.github.badoualy.telegram.tl.StreamUtils.writeString;
 
 /**
  * @author Yannick Badoual yann.badoual@gmail.com
@@ -57,8 +57,8 @@ public class TLRequestAuthImportBotAuthorization extends TLMethod<TLAuthorizatio
     public void serializeBody(OutputStream stream) throws IOException {
         writeInt(flags, stream);
         writeInt(apiId, stream);
-        writeTLString(apiHash, stream);
-        writeTLString(botAuthToken, stream);
+        writeString(apiHash, stream);
+        writeString(botAuthToken, stream);
     }
 
     @Override

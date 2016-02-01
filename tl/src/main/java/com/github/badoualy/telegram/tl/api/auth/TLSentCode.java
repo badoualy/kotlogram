@@ -9,9 +9,9 @@ import java.io.OutputStream;
 import static com.github.badoualy.telegram.tl.StreamUtils.readInt;
 import static com.github.badoualy.telegram.tl.StreamUtils.readTLBool;
 import static com.github.badoualy.telegram.tl.StreamUtils.readTLString;
+import static com.github.badoualy.telegram.tl.StreamUtils.writeBoolean;
 import static com.github.badoualy.telegram.tl.StreamUtils.writeInt;
-import static com.github.badoualy.telegram.tl.StreamUtils.writeTLBool;
-import static com.github.badoualy.telegram.tl.StreamUtils.writeTLString;
+import static com.github.badoualy.telegram.tl.StreamUtils.writeString;
 
 /**
  * @author Yannick Badoual yann.badoual@gmail.com
@@ -32,10 +32,10 @@ public class TLSentCode extends TLAbsSentCode {
 
     @Override
     public void serializeBody(OutputStream stream) throws IOException {
-        writeTLBool(phoneRegistered, stream);
-        writeTLString(phoneCodeHash, stream);
+        writeBoolean(phoneRegistered, stream);
+        writeString(phoneCodeHash, stream);
         writeInt(sendCallTimeout, stream);
-        writeTLBool(isPassword, stream);
+        writeBoolean(isPassword, stream);
     }
 
     @Override

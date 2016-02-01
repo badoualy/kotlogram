@@ -9,8 +9,8 @@ import java.io.OutputStream;
 import static com.github.badoualy.telegram.tl.StreamUtils.readInt;
 import static com.github.badoualy.telegram.tl.StreamUtils.readTLBool;
 import static com.github.badoualy.telegram.tl.StreamUtils.readTLObject;
+import static com.github.badoualy.telegram.tl.StreamUtils.writeBoolean;
 import static com.github.badoualy.telegram.tl.StreamUtils.writeInt;
-import static com.github.badoualy.telegram.tl.StreamUtils.writeTLBool;
 import static com.github.badoualy.telegram.tl.StreamUtils.writeTLObject;
 
 /**
@@ -43,7 +43,7 @@ public class TLUpdateUserPhoto extends TLAbsUpdate {
         writeInt(userId, stream);
         writeInt(date, stream);
         writeTLObject(photo, stream);
-        writeTLBool(previous, stream);
+        writeBoolean(previous, stream);
     }
 
     @Override

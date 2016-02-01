@@ -10,7 +10,7 @@ import java.io.OutputStream;
 
 import static com.github.badoualy.telegram.tl.StreamUtils.readTLLongVector;
 import static com.github.badoualy.telegram.tl.StreamUtils.readTLString;
-import static com.github.badoualy.telegram.tl.StreamUtils.writeTLString;
+import static com.github.badoualy.telegram.tl.StreamUtils.writeString;
 import static com.github.badoualy.telegram.tl.StreamUtils.writeTLVector;
 
 /**
@@ -34,7 +34,7 @@ public class TLStickerPack extends TLObject {
 
     @Override
     public void serializeBody(OutputStream stream) throws IOException {
-        writeTLString(emoticon, stream);
+        writeString(emoticon, stream);
         writeTLVector(documents, stream);
     }
 
