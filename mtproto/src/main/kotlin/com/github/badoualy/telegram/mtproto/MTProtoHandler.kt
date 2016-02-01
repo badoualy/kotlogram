@@ -123,6 +123,7 @@ class MTProtoHandler {
         watchdogExecutor?.shutdownNow()
     }
 
+    @Throws(IOException::class)
     fun <T : TLObject> executeMethodSync(method: TLMethod<T>, timeout: Long) = executeMethod(method, timeout).toBlocking().first()
 
     /**

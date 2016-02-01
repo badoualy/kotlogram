@@ -6,10 +6,11 @@ import com.github.badoualy.telegram.tl.api.auth.TLAbsSentCode
 import com.github.badoualy.telegram.tl.api.upload.TLFile
 import com.github.badoualy.telegram.tl.core.TLMethod
 import com.github.badoualy.telegram.tl.core.TLObject
-import rx.Observable
 import java.io.IOException
 
 interface TelegramClient : TelegramApi {
+
+    fun setDebugListener(listener: DebugListener?)
 
     /** Changes the request timeout with the supplied value (in ms) */
     fun setTimeout(timeout: Long)
