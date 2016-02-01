@@ -9,7 +9,7 @@ import java.io.OutputStream
 
 class MTFutureSalt @JvmOverloads constructor(var validSince: Int = 0, var validUntil: Int = 0, var salt: Long = 0) : TLObject() {
 
-    override fun getClassId(): Int {
+    override fun getConstructorId(): Int {
         return CLASS_ID
     }
 

@@ -16,7 +16,7 @@ import static com.github.badoualy.telegram.tl.StreamUtils.writeTLVector;
  * @see <a href="http://github.com/badoualy/kotlogram">http://github.com/badoualy/kotlogram</a>
  */
 public class TLKeyboardButtonRow extends TLObject {
-    public static final int CLASS_ID = 0x77608b83;
+    public static final int CONSTRUCTOR_ID = 0x77608b83;
 
     protected TLVector<TLKeyboardButton> buttons;
 
@@ -44,8 +44,8 @@ public class TLKeyboardButtonRow extends TLObject {
     }
 
     @Override
-    public int getClassId() {
-        return CLASS_ID;
+    public int getConstructorId() {
+        return CONSTRUCTOR_ID;
     }
 
     public TLVector<TLKeyboardButton> getButtons() {

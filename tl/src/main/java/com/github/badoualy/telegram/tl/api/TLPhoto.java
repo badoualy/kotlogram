@@ -19,7 +19,7 @@ import static com.github.badoualy.telegram.tl.StreamUtils.writeTLVector;
  * @see <a href="http://github.com/badoualy/kotlogram">http://github.com/badoualy/kotlogram</a>
  */
 public class TLPhoto extends TLAbsPhoto {
-    public static final int CLASS_ID = 0xcded42fe;
+    public static final int CONSTRUCTOR_ID = 0xcded42fe;
 
     protected long accessHash;
 
@@ -60,8 +60,8 @@ public class TLPhoto extends TLAbsPhoto {
     }
 
     @Override
-    public int getClassId() {
-        return CLASS_ID;
+    public int getConstructorId() {
+        return CONSTRUCTOR_ID;
     }
 
     public long getId() {

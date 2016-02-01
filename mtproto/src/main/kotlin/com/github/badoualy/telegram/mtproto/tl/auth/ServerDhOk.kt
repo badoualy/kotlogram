@@ -10,7 +10,7 @@ class ServerDhOk @JvmOverloads constructor(var nonce: ByteArray = ByteArray(0),
                                            var serverNonce: ByteArray = ByteArray(0),
                                            var encryptedAnswer: ByteArray = ByteArray(0)) : ServerDhParams() {
 
-    override fun getClassId(): Int {
+    override fun getConstructorId(): Int {
         return CLASS_ID
     }
 

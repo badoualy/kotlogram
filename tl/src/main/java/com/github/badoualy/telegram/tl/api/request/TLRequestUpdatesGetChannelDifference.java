@@ -21,7 +21,7 @@ import static com.github.badoualy.telegram.tl.StreamUtils.writeTLObject;
  * @see <a href="http://github.com/badoualy/kotlogram">http://github.com/badoualy/kotlogram</a>
  */
 public class TLRequestUpdatesGetChannelDifference extends TLMethod<TLAbsChannelDifference> {
-    public static final int CLASS_ID = 0xbb32d7c0;
+    public static final int CONSTRUCTOR_ID = 0xbb32d7c0;
 
     protected TLAbsInputChannel channel;
 
@@ -77,8 +77,8 @@ public class TLRequestUpdatesGetChannelDifference extends TLMethod<TLAbsChannelD
     }
 
     @Override
-    public int getClassId() {
-        return CLASS_ID;
+    public int getConstructorId() {
+        return CONSTRUCTOR_ID;
     }
 
     public TLAbsInputChannel getChannel() {

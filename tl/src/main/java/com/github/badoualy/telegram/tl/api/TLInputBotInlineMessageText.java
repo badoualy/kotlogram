@@ -20,7 +20,7 @@ import static com.github.badoualy.telegram.tl.StreamUtils.writeTLVector;
  * @see <a href="http://github.com/badoualy/kotlogram">http://github.com/badoualy/kotlogram</a>
  */
 public class TLInputBotInlineMessageText extends TLAbsInputBotInlineMessage {
-    public static final int CLASS_ID = 0xadf0df71;
+    public static final int CONSTRUCTOR_ID = 0xadf0df71;
 
     protected int flags;
 
@@ -66,8 +66,8 @@ public class TLInputBotInlineMessageText extends TLAbsInputBotInlineMessage {
     }
 
     @Override
-    public int getClassId() {
-        return CLASS_ID;
+    public int getConstructorId() {
+        return CONSTRUCTOR_ID;
     }
 
     public int getFlags() {

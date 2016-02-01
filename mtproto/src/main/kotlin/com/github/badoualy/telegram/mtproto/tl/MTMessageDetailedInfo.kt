@@ -9,7 +9,7 @@ import java.io.OutputStream
 
 class MTMessageDetailedInfo @JvmOverloads constructor(var msgId: Long = 0, var answerMsgId: Long = 0, var bytes: Int = 0, var state: Int = 0) : TLObject() {
 
-    override fun getClassId(): Int {
+    override fun getConstructorId(): Int {
         return CLASS_ID
     }
 

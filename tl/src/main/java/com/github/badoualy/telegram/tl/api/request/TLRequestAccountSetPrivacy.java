@@ -22,7 +22,7 @@ import static com.github.badoualy.telegram.tl.StreamUtils.writeTLVector;
  * @see <a href="http://github.com/badoualy/kotlogram">http://github.com/badoualy/kotlogram</a>
  */
 public class TLRequestAccountSetPrivacy extends TLMethod<TLPrivacyRules> {
-    public static final int CLASS_ID = 0xc9f81ce8;
+    public static final int CONSTRUCTOR_ID = 0xc9f81ce8;
 
     protected TLInputPrivacyKeyStatusTimestamp key;
 
@@ -68,8 +68,8 @@ public class TLRequestAccountSetPrivacy extends TLMethod<TLPrivacyRules> {
     }
 
     @Override
-    public int getClassId() {
-        return CLASS_ID;
+    public int getConstructorId() {
+        return CONSTRUCTOR_ID;
     }
 
     public TLInputPrivacyKeyStatusTimestamp getKey() {

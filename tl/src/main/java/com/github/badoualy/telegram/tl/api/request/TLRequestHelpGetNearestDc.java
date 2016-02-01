@@ -15,7 +15,7 @@ import static com.github.badoualy.telegram.tl.StreamUtils.readTLObject;
  * @see <a href="http://github.com/badoualy/kotlogram">http://github.com/badoualy/kotlogram</a>
  */
 public class TLRequestHelpGetNearestDc extends TLMethod<TLNearestDc> {
-    public static final int CLASS_ID = 0x1fb33026;
+    public static final int CONSTRUCTOR_ID = 0x1fb33026;
 
     public TLRequestHelpGetNearestDc() {
     }
@@ -39,7 +39,7 @@ public class TLRequestHelpGetNearestDc extends TLMethod<TLNearestDc> {
     }
 
     @Override
-    public int getClassId() {
-        return CLASS_ID;
+    public int getConstructorId() {
+        return CONSTRUCTOR_ID;
     }
 }

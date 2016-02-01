@@ -16,7 +16,7 @@ import static com.github.badoualy.telegram.tl.StreamUtils.writeLong;
  * @see <a href="http://github.com/badoualy/kotlogram">http://github.com/badoualy/kotlogram</a>
  */
 public class TLInputChannel extends TLAbsInputChannel {
-    public static final int CLASS_ID = 0xafeb712e;
+    public static final int CONSTRUCTOR_ID = 0xafeb712e;
 
     protected int channelId;
 
@@ -49,8 +49,8 @@ public class TLInputChannel extends TLAbsInputChannel {
     }
 
     @Override
-    public int getClassId() {
-        return CLASS_ID;
+    public int getConstructorId() {
+        return CONSTRUCTOR_ID;
     }
 
     public int getChannelId() {

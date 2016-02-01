@@ -18,7 +18,7 @@ import static com.github.badoualy.telegram.tl.StreamUtils.writeTLString;
  * @see <a href="http://github.com/badoualy/kotlogram">http://github.com/badoualy/kotlogram</a>
  */
 public class TLRequestAuthSignIn extends TLMethod<TLAuthorization> {
-    public static final int CLASS_ID = 0xbcd51581;
+    public static final int CONSTRUCTOR_ID = 0xbcd51581;
 
     protected String phoneNumber;
 
@@ -69,8 +69,8 @@ public class TLRequestAuthSignIn extends TLMethod<TLAuthorization> {
     }
 
     @Override
-    public int getClassId() {
-        return CLASS_ID;
+    public int getConstructorId() {
+        return CONSTRUCTOR_ID;
     }
 
     public String getPhoneNumber() {

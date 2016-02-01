@@ -18,7 +18,7 @@ import static com.github.badoualy.telegram.tl.StreamUtils.writeInt;
  * @see <a href="http://github.com/badoualy/kotlogram">http://github.com/badoualy/kotlogram</a>
  */
 public class TLRequestMessagesGetAllStickers extends TLMethod<TLAbsAllStickers> {
-    public static final int CLASS_ID = 0x1c9618b1;
+    public static final int CONSTRUCTOR_ID = 0x1c9618b1;
 
     protected int hash;
 
@@ -59,8 +59,8 @@ public class TLRequestMessagesGetAllStickers extends TLMethod<TLAbsAllStickers> 
     }
 
     @Override
-    public int getClassId() {
-        return CLASS_ID;
+    public int getConstructorId() {
+        return CONSTRUCTOR_ID;
     }
 
     public int getHash() {

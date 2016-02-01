@@ -18,7 +18,7 @@ import static com.github.badoualy.telegram.tl.StreamUtils.writeTLObject;
  * @see <a href="http://github.com/badoualy/kotlogram">http://github.com/badoualy/kotlogram</a>
  */
 public class TLRequestChannelsDeleteChannel extends TLMethod<TLAbsUpdates> {
-    public static final int CLASS_ID = 0xc0111fe3;
+    public static final int CONSTRUCTOR_ID = 0xc0111fe3;
 
     protected TLAbsInputChannel channel;
 
@@ -59,8 +59,8 @@ public class TLRequestChannelsDeleteChannel extends TLMethod<TLAbsUpdates> {
     }
 
     @Override
-    public int getClassId() {
-        return CLASS_ID;
+    public int getConstructorId() {
+        return CONSTRUCTOR_ID;
     }
 
     public TLAbsInputChannel getChannel() {

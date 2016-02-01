@@ -8,7 +8,7 @@ import java.io.OutputStream
 
 class MTBadServerSalt @JvmOverloads constructor(badMsgId: Long = 0, badMsqSeqno: Int = 0, errorCode: Int = 0, var newSalt: Long = 0) : MTBadMessage(badMsgId, badMsqSeqno, errorCode) {
 
-    override fun getClassId(): Int {
+    override fun getConstructorId(): Int {
         return CLASS_ID
     }
 

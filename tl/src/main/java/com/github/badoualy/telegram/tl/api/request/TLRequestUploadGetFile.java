@@ -20,7 +20,7 @@ import static com.github.badoualy.telegram.tl.StreamUtils.writeTLObject;
  * @see <a href="http://github.com/badoualy/kotlogram">http://github.com/badoualy/kotlogram</a>
  */
 public class TLRequestUploadGetFile extends TLMethod<TLFile> {
-    public static final int CLASS_ID = 0xe3a6cfb5;
+    public static final int CONSTRUCTOR_ID = 0xe3a6cfb5;
 
     protected TLAbsInputFileLocation location;
 
@@ -71,8 +71,8 @@ public class TLRequestUploadGetFile extends TLMethod<TLFile> {
     }
 
     @Override
-    public int getClassId() {
-        return CLASS_ID;
+    public int getConstructorId() {
+        return CONSTRUCTOR_ID;
     }
 
     public TLAbsInputFileLocation getLocation() {

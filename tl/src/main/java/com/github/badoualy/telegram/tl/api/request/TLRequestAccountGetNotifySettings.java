@@ -18,7 +18,7 @@ import static com.github.badoualy.telegram.tl.StreamUtils.writeTLObject;
  * @see <a href="http://github.com/badoualy/kotlogram">http://github.com/badoualy/kotlogram</a>
  */
 public class TLRequestAccountGetNotifySettings extends TLMethod<TLAbsPeerNotifySettings> {
-    public static final int CLASS_ID = 0x12b3ad31;
+    public static final int CONSTRUCTOR_ID = 0x12b3ad31;
 
     protected TLAbsInputNotifyPeer peer;
 
@@ -59,8 +59,8 @@ public class TLRequestAccountGetNotifySettings extends TLMethod<TLAbsPeerNotifyS
     }
 
     @Override
-    public int getClassId() {
-        return CLASS_ID;
+    public int getConstructorId() {
+        return CONSTRUCTOR_ID;
     }
 
     public TLAbsInputNotifyPeer getPeer() {

@@ -18,7 +18,7 @@ import static com.github.badoualy.telegram.tl.StreamUtils.writeInt;
  * @see <a href="http://github.com/badoualy/kotlogram">http://github.com/badoualy/kotlogram</a>
  */
 public class TLRequestUpdatesGetDifference extends TLMethod<TLAbsDifference> {
-    public static final int CLASS_ID = 0xa041495;
+    public static final int CONSTRUCTOR_ID = 0xa041495;
 
     protected int pts;
 
@@ -69,8 +69,8 @@ public class TLRequestUpdatesGetDifference extends TLMethod<TLAbsDifference> {
     }
 
     @Override
-    public int getClassId() {
-        return CLASS_ID;
+    public int getConstructorId() {
+        return CONSTRUCTOR_ID;
     }
 
     public int getPts() {

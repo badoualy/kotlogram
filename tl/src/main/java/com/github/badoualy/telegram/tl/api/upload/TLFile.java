@@ -21,7 +21,7 @@ import static com.github.badoualy.telegram.tl.StreamUtils.writeTLObject;
  * @see <a href="http://github.com/badoualy/kotlogram">http://github.com/badoualy/kotlogram</a>
  */
 public class TLFile extends TLObject {
-    public static final int CLASS_ID = 0x96a18d5;
+    public static final int CONSTRUCTOR_ID = 0x96a18d5;
 
     protected TLAbsFileType type;
 
@@ -59,8 +59,8 @@ public class TLFile extends TLObject {
     }
 
     @Override
-    public int getClassId() {
-        return CLASS_ID;
+    public int getConstructorId() {
+        return CONSTRUCTOR_ID;
     }
 
     public TLAbsFileType getType() {

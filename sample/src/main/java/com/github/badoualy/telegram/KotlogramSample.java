@@ -18,6 +18,7 @@ import com.github.badoualy.telegram.tl.api.TLFileLocation;
 import com.github.badoualy.telegram.tl.api.TLInputDocument;
 import com.github.badoualy.telegram.tl.api.TLInputDocumentFileLocation;
 import com.github.badoualy.telegram.tl.api.TLInputFileLocation;
+import com.github.badoualy.telegram.tl.api.TLInputPeerChat;
 import com.github.badoualy.telegram.tl.api.TLInputPeerEmpty;
 import com.github.badoualy.telegram.tl.api.TLInputUser;
 import com.github.badoualy.telegram.tl.api.TLMessage;
@@ -59,6 +60,7 @@ import static com.github.badoualy.telegram.C.SYSTEM_VERSION;
 public class KotlogramSample {
 
     public static void main(String[] args) throws InterruptedException {
+        //Kotlogram.setDebugLogEnabled(true);
         TelegramApp app = new TelegramApp(API_ID, API_HASH, MODEL, SYSTEM_VERSION, APP_VERSION, LANG_CODE);
 
         // This is a synchronous client, that will block until the response arrive (or until timeout)
@@ -85,30 +87,19 @@ public class KotlogramSample {
 
             TLAbsDialogs dialogs = client.messagesGetDialogs(0, 0, new TLInputPeerEmpty(), 0);
             // Do something with recent chats :)
-            dialogs.getUsers().stream().forEach(u -> {
-                if (u instanceof TLUser) {
-                    TLUser user = (TLUser) u;
-                    if (!user.getFirstName().equalsIgnoreCase("Telegram"))
-                        return;
-                    System.out.println(user);
-                    try {
-                        TLFile file = client.getUserPhoto(user, true);
-                        if (file != null)
-                            FileUtils.writeByteArrayToFile(new File("./sample/" + user.getId() + ".jpg"), file.getBytes().getData());
-                    } catch (RpcErrorException e) {
-                        e.printStackTrace();
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
 
-                    System.out.println("-----");
-                }
-            });
+            // Chat Shu & Akai with id 50577681
+
+            // TODO: generic types array covariant
+
+            TLInputPeerChat peer = new TLInputPeerChat();
+            peer.setChatId(50577681);
+            client.messagesGetHistory(peer, 0, 1, 1, 0, 0);
 
 //            dialogs.getChats().stream().forEach(c -> {
 //                if (c instanceof TLChat) {
 //                    TLChat chat = (TLChat) c;
-//                    System.out.println("Chat " + chat.getTitle());
+//                    System.out.println("Chat " + chat.getTitle() + " with id " + chat.getId());
 //
 //                    try {
 //                        TLFile file = client.getChatPhoto(chat, true);

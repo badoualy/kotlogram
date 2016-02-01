@@ -18,7 +18,7 @@ import static com.github.badoualy.telegram.tl.StreamUtils.writeTLString;
  * @see <a href="http://github.com/badoualy/kotlogram">http://github.com/badoualy/kotlogram</a>
  */
 public class TLRequestMessagesCheckChatInvite extends TLMethod<TLAbsChatInvite> {
-    public static final int CLASS_ID = 0x3eadb1bb;
+    public static final int CONSTRUCTOR_ID = 0x3eadb1bb;
 
     protected String hash;
 
@@ -59,8 +59,8 @@ public class TLRequestMessagesCheckChatInvite extends TLMethod<TLAbsChatInvite> 
     }
 
     @Override
-    public int getClassId() {
-        return CLASS_ID;
+    public int getConstructorId() {
+        return CONSTRUCTOR_ID;
     }
 
     public String getHash() {

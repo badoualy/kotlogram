@@ -13,7 +13,7 @@ class ResPQ @JvmOverloads constructor(var nonce: ByteArray = ByteArray(0),
                                       var pq: ByteArray = ByteArray(0),
                                       var fingerprints: TLLongVector = TLLongVector()) : TLObject() {
 
-    override fun getClassId(): Int {
+    override fun getConstructorId(): Int {
         return CLASS_ID
     }
 

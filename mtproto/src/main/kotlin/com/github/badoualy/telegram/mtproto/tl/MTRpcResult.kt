@@ -9,7 +9,7 @@ import java.io.OutputStream
 
 class MTRpcResult @JvmOverloads constructor(var messageId: Long = 0, var content: ByteArray = ByteArray(0), var contentLen: Int = 0) : TLObject() {
 
-    override fun getClassId(): Int {
+    override fun getConstructorId(): Int {
         return CLASS_ID
     }
 

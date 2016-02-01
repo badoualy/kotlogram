@@ -15,7 +15,7 @@ import static com.github.badoualy.telegram.tl.StreamUtils.writeTLBool;
  * @see <a href="http://github.com/badoualy/kotlogram">http://github.com/badoualy/kotlogram</a>
  */
 public class TLReplyKeyboardForceReply extends TLAbsReplyMarkup {
-    public static final int CLASS_ID = 0xf4108aa0;
+    public static final int CONSTRUCTOR_ID = 0xf4108aa0;
 
     protected boolean singleUse;
 
@@ -53,8 +53,8 @@ public class TLReplyKeyboardForceReply extends TLAbsReplyMarkup {
     }
 
     @Override
-    public int getClassId() {
-        return CLASS_ID;
+    public int getConstructorId() {
+        return CONSTRUCTOR_ID;
     }
 
     public int getFlags() {

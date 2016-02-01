@@ -14,7 +14,7 @@ import static com.github.badoualy.telegram.tl.StreamUtils.writeDouble;
  * @see <a href="http://github.com/badoualy/kotlogram">http://github.com/badoualy/kotlogram</a>
  */
 public class TLInputGeoPoint extends TLAbsInputGeoPoint {
-    public static final int CLASS_ID = 0xf3b7acc9;
+    public static final int CONSTRUCTOR_ID = 0xf3b7acc9;
 
     protected double lat;
 
@@ -47,8 +47,8 @@ public class TLInputGeoPoint extends TLAbsInputGeoPoint {
     }
 
     @Override
-    public int getClassId() {
-        return CLASS_ID;
+    public int getConstructorId() {
+        return CONSTRUCTOR_ID;
     }
 
     public double getLat() {

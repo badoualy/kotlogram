@@ -14,7 +14,7 @@ import static com.github.badoualy.telegram.tl.StreamUtils.writeTLString;
  * @see <a href="http://github.com/badoualy/kotlogram">http://github.com/badoualy/kotlogram</a>
  */
 public class TLInputMediaContact extends TLAbsInputMedia {
-    public static final int CLASS_ID = 0xa6e45987;
+    public static final int CONSTRUCTOR_ID = 0xa6e45987;
 
     protected String phoneNumber;
 
@@ -52,8 +52,8 @@ public class TLInputMediaContact extends TLAbsInputMedia {
     }
 
     @Override
-    public int getClassId() {
-        return CLASS_ID;
+    public int getConstructorId() {
+        return CONSTRUCTOR_ID;
     }
 
     public String getPhoneNumber() {

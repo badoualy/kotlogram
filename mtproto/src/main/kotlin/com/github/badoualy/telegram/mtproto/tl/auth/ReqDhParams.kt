@@ -1,6 +1,6 @@
 package com.github.badoualy.telegram.mtproto.tl.auth
 
-import com.github.badoualy.telegram.tl.DeserializeException
+import com.github.badoualy.telegram.tl.exception.DeserializationException
 import com.github.badoualy.telegram.tl.StreamUtils.*
 import com.github.badoualy.telegram.tl.TLContext
 import com.github.badoualy.telegram.tl.core.TLMethod
@@ -13,7 +13,7 @@ class ReqDhParams @JvmOverloads constructor(var nonce: ByteArray = ByteArray(0),
                                             var fingerPrint: Long = 0,
                                             var encryptedData: ByteArray = ByteArray(0)) : TLMethod<ServerDhParams> () {
 
-    override fun getClassId(): Int {
+    override fun getConstructorId(): Int {
         return CLASS_ID
     }
 
@@ -39,10 +39,10 @@ class ReqDhParams @JvmOverloads constructor(var nonce: ByteArray = ByteArray(0),
 
     @Throws(IOException::class)
     override fun deserializeResponse(stream: InputStream, context: TLContext): ServerDhParams {
-        val response = context.deserializeMessage(stream) ?: throw DeserializeException("Unable to deserialize response")
+        val response = context.deserializeMessage(stream) ?: throw DeserializationException("Unable to deserialize response")
 
         if (response !is ServerDhParams) {
-            throw DeserializeException("Response has incorrect type")
+            throw DeserializationException("Response has incorrect type")
         }
 
         return response

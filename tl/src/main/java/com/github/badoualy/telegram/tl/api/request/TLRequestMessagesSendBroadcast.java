@@ -4,6 +4,7 @@ import com.github.badoualy.telegram.tl.TLContext;
 import com.github.badoualy.telegram.tl.api.TLAbsInputMedia;
 import com.github.badoualy.telegram.tl.api.TLAbsInputUser;
 import com.github.badoualy.telegram.tl.api.TLAbsUpdates;
+import com.github.badoualy.telegram.tl.core.TLLongVector;
 import com.github.badoualy.telegram.tl.core.TLMethod;
 import com.github.badoualy.telegram.tl.core.TLObject;
 import com.github.badoualy.telegram.tl.core.TLVector;
@@ -12,6 +13,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 
+import static com.github.badoualy.telegram.tl.StreamUtils.readTLLongVector;
 import static com.github.badoualy.telegram.tl.StreamUtils.readTLObject;
 import static com.github.badoualy.telegram.tl.StreamUtils.readTLString;
 import static com.github.badoualy.telegram.tl.StreamUtils.readTLVector;
@@ -24,11 +26,11 @@ import static com.github.badoualy.telegram.tl.StreamUtils.writeTLVector;
  * @see <a href="http://github.com/badoualy/kotlogram">http://github.com/badoualy/kotlogram</a>
  */
 public class TLRequestMessagesSendBroadcast extends TLMethod<TLAbsUpdates> {
-    public static final int CLASS_ID = 0xbf73f4da;
+    public static final int CONSTRUCTOR_ID = 0xbf73f4da;
 
     protected TLVector<TLAbsInputUser> contacts;
 
-    protected TLVector<Long> randomId;
+    protected TLLongVector randomId;
 
     protected String message;
 
@@ -37,7 +39,7 @@ public class TLRequestMessagesSendBroadcast extends TLMethod<TLAbsUpdates> {
     public TLRequestMessagesSendBroadcast() {
     }
 
-    public TLRequestMessagesSendBroadcast(TLVector<TLAbsInputUser> contacts, TLVector<Long> randomId, String message, TLAbsInputMedia media) {
+    public TLRequestMessagesSendBroadcast(TLVector<TLAbsInputUser> contacts, TLLongVector randomId, String message, TLAbsInputMedia media) {
         this.contacts = contacts;
         this.randomId = randomId;
         this.message = message;
@@ -69,7 +71,7 @@ public class TLRequestMessagesSendBroadcast extends TLMethod<TLAbsUpdates> {
     @SuppressWarnings("unchecked")
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
         contacts = readTLVector(stream, context);
-        randomId = readTLVector(stream, context);
+        randomId = readTLLongVector(stream, context);
         message = readTLString(stream);
         media = (com.github.badoualy.telegram.tl.api.TLAbsInputMedia) readTLObject(stream, context);
     }
@@ -80,8 +82,8 @@ public class TLRequestMessagesSendBroadcast extends TLMethod<TLAbsUpdates> {
     }
 
     @Override
-    public int getClassId() {
-        return CLASS_ID;
+    public int getConstructorId() {
+        return CONSTRUCTOR_ID;
     }
 
     public TLVector<TLAbsInputUser> getContacts() {
@@ -92,11 +94,11 @@ public class TLRequestMessagesSendBroadcast extends TLMethod<TLAbsUpdates> {
         this.contacts = contacts;
     }
 
-    public TLVector<Long> getRandomId() {
+    public TLLongVector getRandomId() {
         return randomId;
     }
 
-    public void setRandomId(TLVector<Long> randomId) {
+    public void setRandomId(TLLongVector randomId) {
         this.randomId = randomId;
     }
 

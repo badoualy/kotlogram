@@ -2,16 +2,16 @@ package com.github.badoualy.telegram.tl.api.request;
 
 import com.github.badoualy.telegram.tl.TLContext;
 import com.github.badoualy.telegram.tl.api.TLAbsUser;
+import com.github.badoualy.telegram.tl.core.TLIntVector;
 import com.github.badoualy.telegram.tl.core.TLMethod;
 import com.github.badoualy.telegram.tl.core.TLObject;
-import com.github.badoualy.telegram.tl.core.TLVector;
 
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 
+import static com.github.badoualy.telegram.tl.StreamUtils.readTLIntVector;
 import static com.github.badoualy.telegram.tl.StreamUtils.readTLObject;
-import static com.github.badoualy.telegram.tl.StreamUtils.readTLVector;
 import static com.github.badoualy.telegram.tl.StreamUtils.writeTLVector;
 
 /**
@@ -19,14 +19,14 @@ import static com.github.badoualy.telegram.tl.StreamUtils.writeTLVector;
  * @see <a href="http://github.com/badoualy/kotlogram">http://github.com/badoualy/kotlogram</a>
  */
 public class TLRequestContactsImportCard extends TLMethod<TLAbsUser> {
-    public static final int CLASS_ID = 0x4fe196fe;
+    public static final int CONSTRUCTOR_ID = 0x4fe196fe;
 
-    protected TLVector<Integer> exportCard;
+    protected TLIntVector exportCard;
 
     public TLRequestContactsImportCard() {
     }
 
-    public TLRequestContactsImportCard(TLVector<Integer> exportCard) {
+    public TLRequestContactsImportCard(TLIntVector exportCard) {
         this.exportCard = exportCard;
     }
 
@@ -51,7 +51,7 @@ public class TLRequestContactsImportCard extends TLMethod<TLAbsUser> {
     @Override
     @SuppressWarnings("unchecked")
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
-        exportCard = readTLVector(stream, context);
+        exportCard = readTLIntVector(stream, context);
     }
 
     @Override
@@ -60,15 +60,15 @@ public class TLRequestContactsImportCard extends TLMethod<TLAbsUser> {
     }
 
     @Override
-    public int getClassId() {
-        return CLASS_ID;
+    public int getConstructorId() {
+        return CONSTRUCTOR_ID;
     }
 
-    public TLVector<Integer> getExportCard() {
+    public TLIntVector getExportCard() {
         return exportCard;
     }
 
-    public void setExportCard(TLVector<Integer> exportCard) {
+    public void setExportCard(TLIntVector exportCard) {
         this.exportCard = exportCard;
     }
 }

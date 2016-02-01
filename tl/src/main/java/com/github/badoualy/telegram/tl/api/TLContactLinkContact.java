@@ -5,7 +5,7 @@ package com.github.badoualy.telegram.tl.api;
  * @see <a href="http://github.com/badoualy/kotlogram">http://github.com/badoualy/kotlogram</a>
  */
 public class TLContactLinkContact extends TLAbsContactLink {
-    public static final int CLASS_ID = 0xd502c2d0;
+    public static final int CONSTRUCTOR_ID = 0xd502c2d0;
 
     public TLContactLinkContact() {
     }
@@ -16,7 +16,7 @@ public class TLContactLinkContact extends TLAbsContactLink {
     }
 
     @Override
-    public int getClassId() {
-        return CLASS_ID;
+    public int getConstructorId() {
+        return CONSTRUCTOR_ID;
     }
 }

@@ -15,7 +15,7 @@ import static com.github.badoualy.telegram.tl.StreamUtils.readTLObject;
  * @see <a href="http://github.com/badoualy/kotlogram">http://github.com/badoualy/kotlogram</a>
  */
 public class TLRequestAccountGetPassword extends TLMethod<TLAbsPassword> {
-    public static final int CLASS_ID = 0x548a30f5;
+    public static final int CONSTRUCTOR_ID = 0x548a30f5;
 
     public TLRequestAccountGetPassword() {
     }
@@ -39,7 +39,7 @@ public class TLRequestAccountGetPassword extends TLMethod<TLAbsPassword> {
     }
 
     @Override
-    public int getClassId() {
-        return CLASS_ID;
+    public int getConstructorId() {
+        return CONSTRUCTOR_ID;
     }
 }

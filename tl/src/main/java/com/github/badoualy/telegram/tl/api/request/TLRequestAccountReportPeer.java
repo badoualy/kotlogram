@@ -19,7 +19,7 @@ import static com.github.badoualy.telegram.tl.StreamUtils.writeTLObject;
  * @see <a href="http://github.com/badoualy/kotlogram">http://github.com/badoualy/kotlogram</a>
  */
 public class TLRequestAccountReportPeer extends TLMethod<TLBool> {
-    public static final int CLASS_ID = 0xae189d5f;
+    public static final int CONSTRUCTOR_ID = 0xae189d5f;
 
     protected TLAbsInputPeer peer;
 
@@ -65,8 +65,8 @@ public class TLRequestAccountReportPeer extends TLMethod<TLBool> {
     }
 
     @Override
-    public int getClassId() {
-        return CLASS_ID;
+    public int getConstructorId() {
+        return CONSTRUCTOR_ID;
     }
 
     public TLAbsInputPeer getPeer() {

@@ -16,7 +16,7 @@ import static com.github.badoualy.telegram.tl.StreamUtils.writeTLMethod;
  * @see <a href="http://github.com/badoualy/kotlogram">http://github.com/badoualy/kotlogram</a>
  */
 public class TLRequestInvokeWithoutUpdates<T extends TLObject> extends TLMethod<T> {
-    public static final int CLASS_ID = 0xbf9459b7;
+    public static final int CONSTRUCTOR_ID = 0xbf9459b7;
 
     protected TLMethod<T> query;
 
@@ -50,8 +50,8 @@ public class TLRequestInvokeWithoutUpdates<T extends TLObject> extends TLMethod<
     }
 
     @Override
-    public int getClassId() {
-        return CLASS_ID;
+    public int getConstructorId() {
+        return CONSTRUCTOR_ID;
     }
 
     public TLMethod<T> getQuery() {

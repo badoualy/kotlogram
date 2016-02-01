@@ -10,7 +10,7 @@ import java.io.OutputStream
 
 class MTInvokeAfter(var dependMsgId: Long = 0, var request: ByteArray = ByteArray(0)) : TLObject() {
 
-    override fun getClassId(): Int {
+    override fun getConstructorId(): Int {
         return CLASS_ID
     }
 

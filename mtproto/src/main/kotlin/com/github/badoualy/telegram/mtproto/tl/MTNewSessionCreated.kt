@@ -10,7 +10,7 @@ import java.io.OutputStream
 
 class MTNewSessionCreated @JvmOverloads constructor(var firstMsgId: Long = 0, var uniqId: Long = 0, var serverSalt: Long = 0) : TLObject() {
 
-    override fun getClassId(): Int {
+    override fun getConstructorId(): Int {
         return CLASS_ID
     }
 

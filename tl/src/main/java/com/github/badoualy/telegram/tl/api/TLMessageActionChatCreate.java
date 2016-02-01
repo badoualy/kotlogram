@@ -1,14 +1,14 @@
 package com.github.badoualy.telegram.tl.api;
 
 import com.github.badoualy.telegram.tl.TLContext;
-import com.github.badoualy.telegram.tl.core.TLVector;
+import com.github.badoualy.telegram.tl.core.TLIntVector;
 
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 
+import static com.github.badoualy.telegram.tl.StreamUtils.readTLIntVector;
 import static com.github.badoualy.telegram.tl.StreamUtils.readTLString;
-import static com.github.badoualy.telegram.tl.StreamUtils.readTLVector;
 import static com.github.badoualy.telegram.tl.StreamUtils.writeTLString;
 import static com.github.badoualy.telegram.tl.StreamUtils.writeTLVector;
 
@@ -17,16 +17,16 @@ import static com.github.badoualy.telegram.tl.StreamUtils.writeTLVector;
  * @see <a href="http://github.com/badoualy/kotlogram">http://github.com/badoualy/kotlogram</a>
  */
 public class TLMessageActionChatCreate extends TLAbsMessageAction {
-    public static final int CLASS_ID = 0xa6638b9a;
+    public static final int CONSTRUCTOR_ID = 0xa6638b9a;
 
     protected String title;
 
-    protected TLVector<Integer> users;
+    protected TLIntVector users;
 
     public TLMessageActionChatCreate() {
     }
 
-    public TLMessageActionChatCreate(String title, TLVector<Integer> users) {
+    public TLMessageActionChatCreate(String title, TLIntVector users) {
         this.title = title;
         this.users = users;
     }
@@ -41,7 +41,7 @@ public class TLMessageActionChatCreate extends TLAbsMessageAction {
     @SuppressWarnings("unchecked")
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
         title = readTLString(stream);
-        users = readTLVector(stream, context);
+        users = readTLIntVector(stream, context);
     }
 
     @Override
@@ -50,8 +50,8 @@ public class TLMessageActionChatCreate extends TLAbsMessageAction {
     }
 
     @Override
-    public int getClassId() {
-        return CLASS_ID;
+    public int getConstructorId() {
+        return CONSTRUCTOR_ID;
     }
 
     public String getTitle() {
@@ -62,11 +62,11 @@ public class TLMessageActionChatCreate extends TLAbsMessageAction {
         this.title = title;
     }
 
-    public TLVector<Integer> getUsers() {
+    public TLIntVector getUsers() {
         return users;
     }
 
-    public void setUsers(TLVector<Integer> users) {
+    public void setUsers(TLIntVector users) {
         this.users = users;
     }
 }

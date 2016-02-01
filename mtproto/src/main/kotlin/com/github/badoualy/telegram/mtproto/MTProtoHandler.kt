@@ -11,7 +11,7 @@ import com.github.badoualy.telegram.mtproto.tl.*
 import com.github.badoualy.telegram.mtproto.transport.MTProtoConnection
 import com.github.badoualy.telegram.mtproto.transport.MTProtoTcpConnection
 import com.github.badoualy.telegram.mtproto.util.Log
-import com.github.badoualy.telegram.tl.DeserializeException
+import com.github.badoualy.telegram.tl.exception.DeserializationException
 import com.github.badoualy.telegram.tl.StreamUtils
 import com.github.badoualy.telegram.tl.api.TLAbsUpdates
 import com.github.badoualy.telegram.tl.api.TLApiContext
@@ -356,7 +356,7 @@ class MTProtoHandler {
         }
     }
 
-    @Throws(DeserializeException::class, IOException::class)
+    @Throws(DeserializationException::class, IOException::class)
     private fun deserializeMessageContent(message: MTMessage): TLObject {
         // Default container, handle content
         val classId = StreamUtils.readInt(message.payload)

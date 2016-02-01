@@ -14,7 +14,7 @@ import static com.github.badoualy.telegram.tl.StreamUtils.writeTLObject;
  * @see <a href="http://github.com/badoualy/kotlogram">http://github.com/badoualy/kotlogram</a>
  */
 public class TLChatInviteAlready extends TLAbsChatInvite {
-    public static final int CLASS_ID = 0x5a686d7c;
+    public static final int CONSTRUCTOR_ID = 0x5a686d7c;
 
     protected TLAbsChat chat;
 
@@ -42,8 +42,8 @@ public class TLChatInviteAlready extends TLAbsChatInvite {
     }
 
     @Override
-    public int getClassId() {
-        return CLASS_ID;
+    public int getConstructorId() {
+        return CONSTRUCTOR_ID;
     }
 
     public TLAbsChat getChat() {

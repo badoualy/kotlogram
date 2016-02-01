@@ -19,7 +19,7 @@ class MTNeedResendMessage @JvmOverloads constructor(var messages: TLLongVector =
         messages.addAll(msgIds)
     }
 
-    override fun getClassId(): Int {
+    override fun getConstructorId(): Int {
         return CLASS_ID
     }
 

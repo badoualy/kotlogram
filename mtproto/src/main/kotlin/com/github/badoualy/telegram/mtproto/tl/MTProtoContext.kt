@@ -23,8 +23,8 @@ object MTProtoContext : TLContext(15) {
         registerClass(MTFutureSalt.CLASS_ID, MTFutureSalt::class.java)
 
         // For test
-        //registerClass(MTPing.CLASS_ID, MTPing.class);
-        //registerClass(MTPingDelayDisconnect.CLASS_ID, MTPingDelayDisconnect.class);
-        //registerClass(MTPong.CLASS_ID, MTPong.class);
+        //registerClass(MTPing.CONSTRUCTOR_ID, MTPing.class);
+        //registerClass(MTPingDelayDisconnect.CONSTRUCTOR_ID, MTPingDelayDisconnect.class);
+        //registerClass(MTPong.CONSTRUCTOR_ID, MTPong.class);
     }
 }

@@ -20,7 +20,7 @@ import static com.github.badoualy.telegram.tl.StreamUtils.writeTLObject;
  * @see <a href="http://github.com/badoualy/kotlogram">http://github.com/badoualy/kotlogram</a>
  */
 public class TLRequestMessagesDeleteChatUser extends TLMethod<TLAbsUpdates> {
-    public static final int CLASS_ID = 0xe0611f16;
+    public static final int CONSTRUCTOR_ID = 0xe0611f16;
 
     protected int chatId;
 
@@ -66,8 +66,8 @@ public class TLRequestMessagesDeleteChatUser extends TLMethod<TLAbsUpdates> {
     }
 
     @Override
-    public int getClassId() {
-        return CLASS_ID;
+    public int getConstructorId() {
+        return CONSTRUCTOR_ID;
     }
 
     public int getChatId() {

@@ -14,7 +14,7 @@ import static com.github.badoualy.telegram.tl.StreamUtils.writeInt;
  * @see <a href="http://github.com/badoualy/kotlogram">http://github.com/badoualy/kotlogram</a>
  */
 public class TLMessageEntityBold extends TLAbsMessageEntity {
-    public static final int CLASS_ID = 0xbd610bc9;
+    public static final int CONSTRUCTOR_ID = 0xbd610bc9;
 
     public TLMessageEntityBold() {
     }
@@ -43,8 +43,8 @@ public class TLMessageEntityBold extends TLAbsMessageEntity {
     }
 
     @Override
-    public int getClassId() {
-        return CLASS_ID;
+    public int getConstructorId() {
+        return CONSTRUCTOR_ID;
     }
 
     public int getOffset() {

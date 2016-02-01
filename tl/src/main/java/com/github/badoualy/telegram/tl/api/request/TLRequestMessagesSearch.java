@@ -24,7 +24,7 @@ import static com.github.badoualy.telegram.tl.StreamUtils.writeTLString;
  * @see <a href="http://github.com/badoualy/kotlogram">http://github.com/badoualy/kotlogram</a>
  */
 public class TLRequestMessagesSearch extends TLMethod<TLAbsMessages> {
-    public static final int CLASS_ID = 0xd4569248;
+    public static final int CONSTRUCTOR_ID = 0xd4569248;
 
     protected int flags;
 
@@ -113,8 +113,8 @@ public class TLRequestMessagesSearch extends TLMethod<TLAbsMessages> {
     }
 
     @Override
-    public int getClassId() {
-        return CLASS_ID;
+    public int getConstructorId() {
+        return CONSTRUCTOR_ID;
     }
 
     public int getFlags() {

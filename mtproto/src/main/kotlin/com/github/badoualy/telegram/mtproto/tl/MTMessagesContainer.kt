@@ -21,7 +21,7 @@ class MTMessagesContainer : TLObject {
 
     }
 
-    override fun getClassId(): Int {
+    override fun getConstructorId(): Int {
         return CLASS_ID
     }
 

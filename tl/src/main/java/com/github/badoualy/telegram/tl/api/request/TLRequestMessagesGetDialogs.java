@@ -20,7 +20,7 @@ import static com.github.badoualy.telegram.tl.StreamUtils.writeTLObject;
  * @see <a href="http://github.com/badoualy/kotlogram">http://github.com/badoualy/kotlogram</a>
  */
 public class TLRequestMessagesGetDialogs extends TLMethod<TLAbsDialogs> {
-    public static final int CLASS_ID = 0x6b47f94d;
+    public static final int CONSTRUCTOR_ID = 0x6b47f94d;
 
     protected int offsetDate;
 
@@ -76,8 +76,8 @@ public class TLRequestMessagesGetDialogs extends TLMethod<TLAbsDialogs> {
     }
 
     @Override
-    public int getClassId() {
-        return CLASS_ID;
+    public int getConstructorId() {
+        return CONSTRUCTOR_ID;
     }
 
     public int getOffsetDate() {

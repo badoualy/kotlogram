@@ -12,7 +12,7 @@ open class PQInner @JvmOverloads constructor(var pq: ByteArray = ByteArray(0),
                                              var nonce: ByteArray = ByteArray(0), var serverNonce: ByteArray = ByteArray(0),
                                              var newNonce: ByteArray = ByteArray(0)) : TLObject() {
 
-    override fun getClassId(): Int {
+    override fun getConstructorId(): Int {
         return CLASS_ID
     }
 

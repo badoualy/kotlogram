@@ -4,7 +4,7 @@ import com.github.badoualy.telegram.tl.TLContext;
 import com.github.badoualy.telegram.tl.core.TLBool;
 import com.github.badoualy.telegram.tl.core.TLMethod;
 import com.github.badoualy.telegram.tl.core.TLObject;
-import com.github.badoualy.telegram.tl.core.TLVector;
+import com.github.badoualy.telegram.tl.core.TLStringVector;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -12,7 +12,7 @@ import java.io.OutputStream;
 
 import static com.github.badoualy.telegram.tl.StreamUtils.readTLObject;
 import static com.github.badoualy.telegram.tl.StreamUtils.readTLString;
-import static com.github.badoualy.telegram.tl.StreamUtils.readTLVector;
+import static com.github.badoualy.telegram.tl.StreamUtils.readTLStringVector;
 import static com.github.badoualy.telegram.tl.StreamUtils.writeTLString;
 import static com.github.badoualy.telegram.tl.StreamUtils.writeTLVector;
 
@@ -21,16 +21,16 @@ import static com.github.badoualy.telegram.tl.StreamUtils.writeTLVector;
  * @see <a href="http://github.com/badoualy/kotlogram">http://github.com/badoualy/kotlogram</a>
  */
 public class TLRequestAuthSendInvites extends TLMethod<TLBool> {
-    public static final int CLASS_ID = 0x771c1d97;
+    public static final int CONSTRUCTOR_ID = 0x771c1d97;
 
-    protected TLVector<String> phoneNumbers;
+    protected TLStringVector phoneNumbers;
 
     protected String message;
 
     public TLRequestAuthSendInvites() {
     }
 
-    public TLRequestAuthSendInvites(TLVector<String> phoneNumbers, String message) {
+    public TLRequestAuthSendInvites(TLStringVector phoneNumbers, String message) {
         this.phoneNumbers = phoneNumbers;
         this.message = message;
     }
@@ -57,7 +57,7 @@ public class TLRequestAuthSendInvites extends TLMethod<TLBool> {
     @Override
     @SuppressWarnings("unchecked")
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
-        phoneNumbers = readTLVector(stream, context);
+        phoneNumbers = readTLStringVector(stream, context);
         message = readTLString(stream);
     }
 
@@ -67,15 +67,15 @@ public class TLRequestAuthSendInvites extends TLMethod<TLBool> {
     }
 
     @Override
-    public int getClassId() {
-        return CLASS_ID;
+    public int getConstructorId() {
+        return CONSTRUCTOR_ID;
     }
 
-    public TLVector<String> getPhoneNumbers() {
+    public TLStringVector getPhoneNumbers() {
         return phoneNumbers;
     }
 
-    public void setPhoneNumbers(TLVector<String> phoneNumbers) {
+    public void setPhoneNumbers(TLStringVector phoneNumbers) {
         this.phoneNumbers = phoneNumbers;
     }
 

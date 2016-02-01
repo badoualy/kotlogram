@@ -14,7 +14,7 @@ import static com.github.badoualy.telegram.tl.StreamUtils.writeTLString;
  * @see <a href="http://github.com/badoualy/kotlogram">http://github.com/badoualy/kotlogram</a>
  */
 public class TLMessageActionChatEditTitle extends TLAbsMessageAction {
-    public static final int CLASS_ID = 0xb5a1ce5a;
+    public static final int CONSTRUCTOR_ID = 0xb5a1ce5a;
 
     protected String title;
 
@@ -42,8 +42,8 @@ public class TLMessageActionChatEditTitle extends TLAbsMessageAction {
     }
 
     @Override
-    public int getClassId() {
-        return CLASS_ID;
+    public int getConstructorId() {
+        return CONSTRUCTOR_ID;
     }
 
     public String getTitle() {

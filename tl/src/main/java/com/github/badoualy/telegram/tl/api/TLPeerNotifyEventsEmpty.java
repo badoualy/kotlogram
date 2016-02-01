@@ -5,7 +5,7 @@ package com.github.badoualy.telegram.tl.api;
  * @see <a href="http://github.com/badoualy/kotlogram">http://github.com/badoualy/kotlogram</a>
  */
 public class TLPeerNotifyEventsEmpty extends TLAbsPeerNotifyEvents {
-    public static final int CLASS_ID = 0xadd53cb3;
+    public static final int CONSTRUCTOR_ID = 0xadd53cb3;
 
     public TLPeerNotifyEventsEmpty() {
     }
@@ -16,8 +16,8 @@ public class TLPeerNotifyEventsEmpty extends TLAbsPeerNotifyEvents {
     }
 
     @Override
-    public int getClassId() {
-        return CLASS_ID;
+    public int getConstructorId() {
+        return CONSTRUCTOR_ID;
     }
 
     @Override

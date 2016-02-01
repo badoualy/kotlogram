@@ -10,7 +10,7 @@ import java.io.OutputStream
 
 class MTGetFutureSalts @JvmOverloads constructor(var num: Int = 0) : TLObject() {
 
-    override fun getClassId(): Int {
+    override fun getConstructorId(): Int {
         return CLASS_ID
     }
 

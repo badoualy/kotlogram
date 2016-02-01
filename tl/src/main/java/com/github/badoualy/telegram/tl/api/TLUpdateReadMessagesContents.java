@@ -1,14 +1,14 @@
 package com.github.badoualy.telegram.tl.api;
 
 import com.github.badoualy.telegram.tl.TLContext;
-import com.github.badoualy.telegram.tl.core.TLVector;
+import com.github.badoualy.telegram.tl.core.TLIntVector;
 
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 
 import static com.github.badoualy.telegram.tl.StreamUtils.readInt;
-import static com.github.badoualy.telegram.tl.StreamUtils.readTLVector;
+import static com.github.badoualy.telegram.tl.StreamUtils.readTLIntVector;
 import static com.github.badoualy.telegram.tl.StreamUtils.writeInt;
 import static com.github.badoualy.telegram.tl.StreamUtils.writeTLVector;
 
@@ -17,9 +17,9 @@ import static com.github.badoualy.telegram.tl.StreamUtils.writeTLVector;
  * @see <a href="http://github.com/badoualy/kotlogram">http://github.com/badoualy/kotlogram</a>
  */
 public class TLUpdateReadMessagesContents extends TLAbsUpdate {
-    public static final int CLASS_ID = 0x68c13933;
+    public static final int CONSTRUCTOR_ID = 0x68c13933;
 
-    protected TLVector<Integer> messages;
+    protected TLIntVector messages;
 
     protected int pts;
 
@@ -28,7 +28,7 @@ public class TLUpdateReadMessagesContents extends TLAbsUpdate {
     public TLUpdateReadMessagesContents() {
     }
 
-    public TLUpdateReadMessagesContents(TLVector<Integer> messages, int pts, int ptsCount) {
+    public TLUpdateReadMessagesContents(TLIntVector messages, int pts, int ptsCount) {
         this.messages = messages;
         this.pts = pts;
         this.ptsCount = ptsCount;
@@ -44,7 +44,7 @@ public class TLUpdateReadMessagesContents extends TLAbsUpdate {
     @Override
     @SuppressWarnings("unchecked")
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
-        messages = readTLVector(stream, context);
+        messages = readTLIntVector(stream, context);
         pts = readInt(stream);
         ptsCount = readInt(stream);
     }
@@ -55,15 +55,15 @@ public class TLUpdateReadMessagesContents extends TLAbsUpdate {
     }
 
     @Override
-    public int getClassId() {
-        return CLASS_ID;
+    public int getConstructorId() {
+        return CONSTRUCTOR_ID;
     }
 
-    public TLVector<Integer> getMessages() {
+    public TLIntVector getMessages() {
         return messages;
     }
 
-    public void setMessages(TLVector<Integer> messages) {
+    public void setMessages(TLIntVector messages) {
         this.messages = messages;
     }
 

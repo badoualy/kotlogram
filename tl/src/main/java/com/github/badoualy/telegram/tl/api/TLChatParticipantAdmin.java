@@ -14,7 +14,7 @@ import static com.github.badoualy.telegram.tl.StreamUtils.writeInt;
  * @see <a href="http://github.com/badoualy/kotlogram">http://github.com/badoualy/kotlogram</a>
  */
 public class TLChatParticipantAdmin extends TLAbsChatParticipant {
-    public static final int CLASS_ID = 0xe2d6e436;
+    public static final int CONSTRUCTOR_ID = 0xe2d6e436;
 
     protected int inviterId;
 
@@ -50,8 +50,8 @@ public class TLChatParticipantAdmin extends TLAbsChatParticipant {
     }
 
     @Override
-    public int getClassId() {
-        return CLASS_ID;
+    public int getConstructorId() {
+        return CONSTRUCTOR_ID;
     }
 
     public int getUserId() {

@@ -14,7 +14,7 @@ import static com.github.badoualy.telegram.tl.StreamUtils.writeTLObject;
  * @see <a href="http://github.com/badoualy/kotlogram">http://github.com/badoualy/kotlogram</a>
  */
 public class TLMessageActionChatEditPhoto extends TLAbsMessageAction {
-    public static final int CLASS_ID = 0x7fcb13a8;
+    public static final int CONSTRUCTOR_ID = 0x7fcb13a8;
 
     protected TLAbsPhoto photo;
 
@@ -42,8 +42,8 @@ public class TLMessageActionChatEditPhoto extends TLAbsMessageAction {
     }
 
     @Override
-    public int getClassId() {
-        return CLASS_ID;
+    public int getConstructorId() {
+        return CONSTRUCTOR_ID;
     }
 
     public TLAbsPhoto getPhoto() {

@@ -5,7 +5,7 @@ package com.github.badoualy.telegram.tl.api;
  * @see <a href="http://github.com/badoualy/kotlogram">http://github.com/badoualy/kotlogram</a>
  */
 public class TLMessageActionEmpty extends TLAbsMessageAction {
-    public static final int CLASS_ID = 0xb6aef7b0;
+    public static final int CONSTRUCTOR_ID = 0xb6aef7b0;
 
     public TLMessageActionEmpty() {
     }
@@ -16,7 +16,7 @@ public class TLMessageActionEmpty extends TLAbsMessageAction {
     }
 
     @Override
-    public int getClassId() {
-        return CLASS_ID;
+    public int getConstructorId() {
+        return CONSTRUCTOR_ID;
     }
 }

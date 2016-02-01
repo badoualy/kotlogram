@@ -16,7 +16,7 @@ import static com.github.badoualy.telegram.tl.StreamUtils.writeTLObject;
  * @see <a href="http://github.com/badoualy/kotlogram">http://github.com/badoualy/kotlogram</a>
  */
 public class TLUserProfilePhoto extends TLAbsUserProfilePhoto {
-    public static final int CLASS_ID = 0xd559d8c8;
+    public static final int CONSTRUCTOR_ID = 0xd559d8c8;
 
     protected long photoId;
 
@@ -54,8 +54,8 @@ public class TLUserProfilePhoto extends TLAbsUserProfilePhoto {
     }
 
     @Override
-    public int getClassId() {
-        return CLASS_ID;
+    public int getConstructorId() {
+        return CONSTRUCTOR_ID;
     }
 
     public long getPhotoId() {

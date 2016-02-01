@@ -16,7 +16,7 @@ import static com.github.badoualy.telegram.tl.StreamUtils.writeTLObject;
  * @see <a href="http://github.com/badoualy/kotlogram">http://github.com/badoualy/kotlogram</a>
  */
 public class TLDialogChannel extends TLAbsDialog {
-    public static final int CLASS_ID = 0x5b8496b2;
+    public static final int CONSTRUCTOR_ID = 0x5b8496b2;
 
     protected int topImportantMessage;
 
@@ -69,8 +69,8 @@ public class TLDialogChannel extends TLAbsDialog {
     }
 
     @Override
-    public int getClassId() {
-        return CLASS_ID;
+    public int getConstructorId() {
+        return CONSTRUCTOR_ID;
     }
 
     public TLAbsPeer getPeer() {

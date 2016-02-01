@@ -23,7 +23,7 @@ import static com.github.badoualy.telegram.tl.StreamUtils.writeTLBytes;
  * @see <a href="http://github.com/badoualy/kotlogram">http://github.com/badoualy/kotlogram</a>
  */
 public class TLRequestAuthBindTempAuthKey extends TLMethod<TLBool> {
-    public static final int CLASS_ID = 0xcdd42a05;
+    public static final int CONSTRUCTOR_ID = 0xcdd42a05;
 
     protected long permAuthKeyId;
 
@@ -79,8 +79,8 @@ public class TLRequestAuthBindTempAuthKey extends TLMethod<TLBool> {
     }
 
     @Override
-    public int getClassId() {
-        return CLASS_ID;
+    public int getConstructorId() {
+        return CONSTRUCTOR_ID;
     }
 
     public long getPermAuthKeyId() {

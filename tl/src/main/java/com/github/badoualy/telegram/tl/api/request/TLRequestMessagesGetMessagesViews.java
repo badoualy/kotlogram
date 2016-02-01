@@ -2,17 +2,17 @@ package com.github.badoualy.telegram.tl.api.request;
 
 import com.github.badoualy.telegram.tl.TLContext;
 import com.github.badoualy.telegram.tl.api.TLAbsInputPeer;
+import com.github.badoualy.telegram.tl.core.TLIntVector;
 import com.github.badoualy.telegram.tl.core.TLMethod;
 import com.github.badoualy.telegram.tl.core.TLObject;
-import com.github.badoualy.telegram.tl.core.TLVector;
 
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 
 import static com.github.badoualy.telegram.tl.StreamUtils.readTLBool;
+import static com.github.badoualy.telegram.tl.StreamUtils.readTLIntVector;
 import static com.github.badoualy.telegram.tl.StreamUtils.readTLObject;
-import static com.github.badoualy.telegram.tl.StreamUtils.readTLVector;
 import static com.github.badoualy.telegram.tl.StreamUtils.writeTLBool;
 import static com.github.badoualy.telegram.tl.StreamUtils.writeTLObject;
 import static com.github.badoualy.telegram.tl.StreamUtils.writeTLVector;
@@ -21,19 +21,19 @@ import static com.github.badoualy.telegram.tl.StreamUtils.writeTLVector;
  * @author Yannick Badoual yann.badoual@gmail.com
  * @see <a href="http://github.com/badoualy/kotlogram">http://github.com/badoualy/kotlogram</a>
  */
-public class TLRequestMessagesGetMessagesViews extends TLMethod<TLVector<Integer>> {
-    public static final int CLASS_ID = 0xc4c8a55d;
+public class TLRequestMessagesGetMessagesViews extends TLMethod<TLIntVector> {
+    public static final int CONSTRUCTOR_ID = 0xc4c8a55d;
 
     protected TLAbsInputPeer peer;
 
-    protected TLVector<Integer> id;
+    protected TLIntVector id;
 
     protected boolean increment;
 
     public TLRequestMessagesGetMessagesViews() {
     }
 
-    public TLRequestMessagesGetMessagesViews(TLAbsInputPeer peer, TLVector<Integer> id, boolean increment) {
+    public TLRequestMessagesGetMessagesViews(TLAbsInputPeer peer, TLIntVector id, boolean increment) {
         this.peer = peer;
         this.id = id;
         this.increment = increment;
@@ -41,15 +41,15 @@ public class TLRequestMessagesGetMessagesViews extends TLMethod<TLVector<Integer
 
     @Override
     @SuppressWarnings("unchecked")
-    public TLVector<Integer> deserializeResponse(InputStream stream, TLContext context) throws IOException {
+    public TLIntVector deserializeResponse(InputStream stream, TLContext context) throws IOException {
         final TLObject response = readTLObject(stream, context);
         if (response == null) {
             throw new IOException("Unable to parse response");
         }
-        if (!(response instanceof TLVector)) {
+        if (!(response instanceof TLIntVector)) {
             throw new IOException("Incorrect response type, expected getClass().getCanonicalName(), found response.getClass().getCanonicalName()");
         }
-        return (TLVector<Integer>) response;
+        return (TLIntVector) response;
     }
 
     @Override
@@ -63,7 +63,7 @@ public class TLRequestMessagesGetMessagesViews extends TLMethod<TLVector<Integer
     @SuppressWarnings("unchecked")
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
         peer = (com.github.badoualy.telegram.tl.api.TLAbsInputPeer) readTLObject(stream, context);
-        id = readTLVector(stream, context);
+        id = readTLIntVector(stream, context);
         increment = readTLBool(stream);
     }
 
@@ -73,8 +73,8 @@ public class TLRequestMessagesGetMessagesViews extends TLMethod<TLVector<Integer
     }
 
     @Override
-    public int getClassId() {
-        return CLASS_ID;
+    public int getConstructorId() {
+        return CONSTRUCTOR_ID;
     }
 
     public TLAbsInputPeer getPeer() {
@@ -85,11 +85,11 @@ public class TLRequestMessagesGetMessagesViews extends TLMethod<TLVector<Integer
         this.peer = peer;
     }
 
-    public TLVector<Integer> getId() {
+    public TLIntVector getId() {
         return id;
     }
 
-    public void setId(TLVector<Integer> id) {
+    public void setId(TLIntVector id) {
         this.id = id;
     }
 

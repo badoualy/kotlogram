@@ -11,7 +11,7 @@ class ServerDhInner @JvmOverloads constructor(var nonce: ByteArray = ByteArray(0
                                               var g: Int = 0, var dhPrime: ByteArray = ByteArray(0),
                                               var g_a: ByteArray = ByteArray(0), var serverTime: Int = 0) : TLObject() {
 
-    override fun getClassId(): Int {
+    override fun getConstructorId(): Int {
         return CLASS_ID
     }
 

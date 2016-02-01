@@ -3,17 +3,19 @@ package com.github.badoualy.telegram.tl.api.request;
 import com.github.badoualy.telegram.tl.TLContext;
 import com.github.badoualy.telegram.tl.api.TLAbsInputPeer;
 import com.github.badoualy.telegram.tl.api.TLAbsUpdates;
+import com.github.badoualy.telegram.tl.core.TLIntVector;
+import com.github.badoualy.telegram.tl.core.TLLongVector;
 import com.github.badoualy.telegram.tl.core.TLMethod;
 import com.github.badoualy.telegram.tl.core.TLObject;
-import com.github.badoualy.telegram.tl.core.TLVector;
 
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 
 import static com.github.badoualy.telegram.tl.StreamUtils.readInt;
+import static com.github.badoualy.telegram.tl.StreamUtils.readTLIntVector;
+import static com.github.badoualy.telegram.tl.StreamUtils.readTLLongVector;
 import static com.github.badoualy.telegram.tl.StreamUtils.readTLObject;
-import static com.github.badoualy.telegram.tl.StreamUtils.readTLVector;
 import static com.github.badoualy.telegram.tl.StreamUtils.writeInt;
 import static com.github.badoualy.telegram.tl.StreamUtils.writeTLBool;
 import static com.github.badoualy.telegram.tl.StreamUtils.writeTLObject;
@@ -24,7 +26,7 @@ import static com.github.badoualy.telegram.tl.StreamUtils.writeTLVector;
  * @see <a href="http://github.com/badoualy/kotlogram">http://github.com/badoualy/kotlogram</a>
  */
 public class TLRequestMessagesForwardMessages extends TLMethod<TLAbsUpdates> {
-    public static final int CLASS_ID = 0x708e0195;
+    public static final int CONSTRUCTOR_ID = 0x708e0195;
 
     protected int flags;
 
@@ -32,16 +34,16 @@ public class TLRequestMessagesForwardMessages extends TLMethod<TLAbsUpdates> {
 
     protected TLAbsInputPeer fromPeer;
 
-    protected TLVector<Integer> id;
+    protected TLIntVector id;
 
-    protected TLVector<Long> randomId;
+    protected TLLongVector randomId;
 
     protected TLAbsInputPeer toPeer;
 
     public TLRequestMessagesForwardMessages() {
     }
 
-    public TLRequestMessagesForwardMessages(int flags, boolean broadcast, TLAbsInputPeer fromPeer, TLVector<Integer> id, TLVector<Long> randomId, TLAbsInputPeer toPeer) {
+    public TLRequestMessagesForwardMessages(int flags, boolean broadcast, TLAbsInputPeer fromPeer, TLIntVector id, TLLongVector randomId, TLAbsInputPeer toPeer) {
         this.flags = flags;
         this.broadcast = broadcast;
         this.fromPeer = fromPeer;
@@ -82,8 +84,8 @@ public class TLRequestMessagesForwardMessages extends TLMethod<TLAbsUpdates> {
         flags = readInt(stream);
         broadcast = (flags & 16) != 0;
         fromPeer = (com.github.badoualy.telegram.tl.api.TLAbsInputPeer) readTLObject(stream, context);
-        id = readTLVector(stream, context);
-        randomId = readTLVector(stream, context);
+        id = readTLIntVector(stream, context);
+        randomId = readTLLongVector(stream, context);
         toPeer = (com.github.badoualy.telegram.tl.api.TLAbsInputPeer) readTLObject(stream, context);
     }
 
@@ -93,8 +95,8 @@ public class TLRequestMessagesForwardMessages extends TLMethod<TLAbsUpdates> {
     }
 
     @Override
-    public int getClassId() {
-        return CLASS_ID;
+    public int getConstructorId() {
+        return CONSTRUCTOR_ID;
     }
 
     public int getFlags() {
@@ -121,19 +123,19 @@ public class TLRequestMessagesForwardMessages extends TLMethod<TLAbsUpdates> {
         this.fromPeer = fromPeer;
     }
 
-    public TLVector<Integer> getId() {
+    public TLIntVector getId() {
         return id;
     }
 
-    public void setId(TLVector<Integer> id) {
+    public void setId(TLIntVector id) {
         this.id = id;
     }
 
-    public TLVector<Long> getRandomId() {
+    public TLLongVector getRandomId() {
         return randomId;
     }
 
-    public void setRandomId(TLVector<Long> randomId) {
+    public void setRandomId(TLLongVector randomId) {
         this.randomId = randomId;
     }
 

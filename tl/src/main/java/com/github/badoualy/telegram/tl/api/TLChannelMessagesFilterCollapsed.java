@@ -5,7 +5,7 @@ package com.github.badoualy.telegram.tl.api;
  * @see <a href="http://github.com/badoualy/kotlogram">http://github.com/badoualy/kotlogram</a>
  */
 public class TLChannelMessagesFilterCollapsed extends TLAbsChannelMessagesFilter {
-    public static final int CLASS_ID = 0xfa01232e;
+    public static final int CONSTRUCTOR_ID = 0xfa01232e;
 
     public TLChannelMessagesFilterCollapsed() {
     }
@@ -16,7 +16,7 @@ public class TLChannelMessagesFilterCollapsed extends TLAbsChannelMessagesFilter
     }
 
     @Override
-    public int getClassId() {
-        return CLASS_ID;
+    public int getConstructorId() {
+        return CONSTRUCTOR_ID;
     }
 }

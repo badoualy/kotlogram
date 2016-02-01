@@ -22,7 +22,7 @@ class MTRpcError @JvmOverloads constructor(var errorCode: Int = 0, var message: 
             return "DEFAULT"
         }
 
-    override fun getClassId(): Int {
+    override fun getConstructorId(): Int {
         return CLASS_ID
     }
 

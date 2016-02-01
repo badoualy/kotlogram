@@ -3,6 +3,7 @@ package com.github.badoualy.telegram.tl.api.contacts;
 import com.github.badoualy.telegram.tl.TLContext;
 import com.github.badoualy.telegram.tl.api.TLAbsUser;
 import com.github.badoualy.telegram.tl.api.TLImportedContact;
+import com.github.badoualy.telegram.tl.core.TLLongVector;
 import com.github.badoualy.telegram.tl.core.TLObject;
 import com.github.badoualy.telegram.tl.core.TLVector;
 
@@ -10,6 +11,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 
+import static com.github.badoualy.telegram.tl.StreamUtils.readTLLongVector;
 import static com.github.badoualy.telegram.tl.StreamUtils.readTLVector;
 import static com.github.badoualy.telegram.tl.StreamUtils.writeTLVector;
 
@@ -18,18 +20,18 @@ import static com.github.badoualy.telegram.tl.StreamUtils.writeTLVector;
  * @see <a href="http://github.com/badoualy/kotlogram">http://github.com/badoualy/kotlogram</a>
  */
 public class TLImportedContacts extends TLObject {
-    public static final int CLASS_ID = 0xad524315;
+    public static final int CONSTRUCTOR_ID = 0xad524315;
 
     protected TLVector<TLImportedContact> imported;
 
-    protected TLVector<Long> retryContacts;
+    protected TLLongVector retryContacts;
 
     protected TLVector<TLAbsUser> users;
 
     public TLImportedContacts() {
     }
 
-    public TLImportedContacts(TLVector<TLImportedContact> imported, TLVector<Long> retryContacts, TLVector<TLAbsUser> users) {
+    public TLImportedContacts(TLVector<TLImportedContact> imported, TLLongVector retryContacts, TLVector<TLAbsUser> users) {
         this.imported = imported;
         this.retryContacts = retryContacts;
         this.users = users;
@@ -46,7 +48,7 @@ public class TLImportedContacts extends TLObject {
     @SuppressWarnings("unchecked")
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
         imported = readTLVector(stream, context);
-        retryContacts = readTLVector(stream, context);
+        retryContacts = readTLLongVector(stream, context);
         users = readTLVector(stream, context);
     }
 
@@ -56,8 +58,8 @@ public class TLImportedContacts extends TLObject {
     }
 
     @Override
-    public int getClassId() {
-        return CLASS_ID;
+    public int getConstructorId() {
+        return CONSTRUCTOR_ID;
     }
 
     public TLVector<TLImportedContact> getImported() {
@@ -68,11 +70,11 @@ public class TLImportedContacts extends TLObject {
         this.imported = imported;
     }
 
-    public TLVector<Long> getRetryContacts() {
+    public TLLongVector getRetryContacts() {
         return retryContacts;
     }
 
-    public void setRetryContacts(TLVector<Long> retryContacts) {
+    public void setRetryContacts(TLLongVector retryContacts) {
         this.retryContacts = retryContacts;
     }
 

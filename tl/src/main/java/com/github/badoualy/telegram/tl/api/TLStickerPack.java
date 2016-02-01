@@ -1,15 +1,15 @@
 package com.github.badoualy.telegram.tl.api;
 
 import com.github.badoualy.telegram.tl.TLContext;
+import com.github.badoualy.telegram.tl.core.TLLongVector;
 import com.github.badoualy.telegram.tl.core.TLObject;
-import com.github.badoualy.telegram.tl.core.TLVector;
 
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 
+import static com.github.badoualy.telegram.tl.StreamUtils.readTLLongVector;
 import static com.github.badoualy.telegram.tl.StreamUtils.readTLString;
-import static com.github.badoualy.telegram.tl.StreamUtils.readTLVector;
 import static com.github.badoualy.telegram.tl.StreamUtils.writeTLString;
 import static com.github.badoualy.telegram.tl.StreamUtils.writeTLVector;
 
@@ -18,16 +18,16 @@ import static com.github.badoualy.telegram.tl.StreamUtils.writeTLVector;
  * @see <a href="http://github.com/badoualy/kotlogram">http://github.com/badoualy/kotlogram</a>
  */
 public class TLStickerPack extends TLObject {
-    public static final int CLASS_ID = 0x12b299d4;
+    public static final int CONSTRUCTOR_ID = 0x12b299d4;
 
     protected String emoticon;
 
-    protected TLVector<Long> documents;
+    protected TLLongVector documents;
 
     public TLStickerPack() {
     }
 
-    public TLStickerPack(String emoticon, TLVector<Long> documents) {
+    public TLStickerPack(String emoticon, TLLongVector documents) {
         this.emoticon = emoticon;
         this.documents = documents;
     }
@@ -42,7 +42,7 @@ public class TLStickerPack extends TLObject {
     @SuppressWarnings("unchecked")
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
         emoticon = readTLString(stream);
-        documents = readTLVector(stream, context);
+        documents = readTLLongVector(stream, context);
     }
 
     @Override
@@ -51,8 +51,8 @@ public class TLStickerPack extends TLObject {
     }
 
     @Override
-    public int getClassId() {
-        return CLASS_ID;
+    public int getConstructorId() {
+        return CONSTRUCTOR_ID;
     }
 
     public String getEmoticon() {
@@ -63,11 +63,11 @@ public class TLStickerPack extends TLObject {
         this.emoticon = emoticon;
     }
 
-    public TLVector<Long> getDocuments() {
+    public TLLongVector getDocuments() {
         return documents;
     }
 
-    public void setDocuments(TLVector<Long> documents) {
+    public void setDocuments(TLLongVector documents) {
         this.documents = documents;
     }
 }

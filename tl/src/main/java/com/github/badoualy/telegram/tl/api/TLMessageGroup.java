@@ -15,7 +15,7 @@ import static com.github.badoualy.telegram.tl.StreamUtils.writeInt;
  * @see <a href="http://github.com/badoualy/kotlogram">http://github.com/badoualy/kotlogram</a>
  */
 public class TLMessageGroup extends TLObject {
-    public static final int CLASS_ID = 0xe8346f53;
+    public static final int CONSTRUCTOR_ID = 0xe8346f53;
 
     protected int minId;
 
@@ -58,8 +58,8 @@ public class TLMessageGroup extends TLObject {
     }
 
     @Override
-    public int getClassId() {
-        return CLASS_ID;
+    public int getConstructorId() {
+        return CONSTRUCTOR_ID;
     }
 
     public int getMinId() {

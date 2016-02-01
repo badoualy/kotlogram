@@ -10,7 +10,7 @@ import java.io.OutputStream
 
 class MTPong @JvmOverloads constructor(var messageId: Long = 0, var pingId: Long = 0) : TLObject() {
 
-    override fun getClassId(): Int {
+    override fun getConstructorId(): Int {
         return CLASS_ID
     }
 

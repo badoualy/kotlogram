@@ -18,7 +18,7 @@ import static com.github.badoualy.telegram.tl.StreamUtils.writeTLBool;
  * @see <a href="http://github.com/badoualy/kotlogram">http://github.com/badoualy/kotlogram</a>
  */
 public class TLRequestAccountUpdateStatus extends TLMethod<TLBool> {
-    public static final int CLASS_ID = 0x6628562c;
+    public static final int CONSTRUCTOR_ID = 0x6628562c;
 
     protected boolean offline;
 
@@ -59,8 +59,8 @@ public class TLRequestAccountUpdateStatus extends TLMethod<TLBool> {
     }
 
     @Override
-    public int getClassId() {
-        return CLASS_ID;
+    public int getConstructorId() {
+        return CONSTRUCTOR_ID;
     }
 
     public boolean getOffline() {

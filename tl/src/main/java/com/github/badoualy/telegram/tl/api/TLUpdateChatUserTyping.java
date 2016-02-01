@@ -16,7 +16,7 @@ import static com.github.badoualy.telegram.tl.StreamUtils.writeTLObject;
  * @see <a href="http://github.com/badoualy/kotlogram">http://github.com/badoualy/kotlogram</a>
  */
 public class TLUpdateChatUserTyping extends TLAbsUpdate {
-    public static final int CLASS_ID = 0x9a65ea1f;
+    public static final int CONSTRUCTOR_ID = 0x9a65ea1f;
 
     protected int chatId;
 
@@ -54,8 +54,8 @@ public class TLUpdateChatUserTyping extends TLAbsUpdate {
     }
 
     @Override
-    public int getClassId() {
-        return CLASS_ID;
+    public int getConstructorId() {
+        return CONSTRUCTOR_ID;
     }
 
     public int getChatId() {

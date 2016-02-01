@@ -5,7 +5,7 @@ package com.github.badoualy.telegram.tl.api.storage;
  * @see <a href="http://github.com/badoualy/kotlogram">http://github.com/badoualy/kotlogram</a>
  */
 public class TLFileWebp extends TLAbsFileType {
-    public static final int CLASS_ID = 0x1081464c;
+    public static final int CONSTRUCTOR_ID = 0x1081464c;
 
     public TLFileWebp() {
     }
@@ -16,7 +16,7 @@ public class TLFileWebp extends TLAbsFileType {
     }
 
     @Override
-    public int getClassId() {
-        return CLASS_ID;
+    public int getConstructorId() {
+        return CONSTRUCTOR_ID;
     }
 }

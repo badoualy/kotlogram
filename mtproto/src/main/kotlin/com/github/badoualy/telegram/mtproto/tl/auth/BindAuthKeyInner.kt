@@ -17,7 +17,7 @@ class BindAuthKeyInner @JvmOverloads constructor(var nonce: Long = 0,
                                                                  tempAuthKeyId, permAuthKeyId,
                                                                  BigInteger(tempSessionId).longValueExact(), expiresAt)
 
-    override fun getClassId(): Int {
+    override fun getConstructorId(): Int {
         return CLASS_ID
     }
 

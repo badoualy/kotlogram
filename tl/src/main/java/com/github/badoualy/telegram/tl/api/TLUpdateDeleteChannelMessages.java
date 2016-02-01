@@ -1,14 +1,14 @@
 package com.github.badoualy.telegram.tl.api;
 
 import com.github.badoualy.telegram.tl.TLContext;
-import com.github.badoualy.telegram.tl.core.TLVector;
+import com.github.badoualy.telegram.tl.core.TLIntVector;
 
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 
 import static com.github.badoualy.telegram.tl.StreamUtils.readInt;
-import static com.github.badoualy.telegram.tl.StreamUtils.readTLVector;
+import static com.github.badoualy.telegram.tl.StreamUtils.readTLIntVector;
 import static com.github.badoualy.telegram.tl.StreamUtils.writeInt;
 import static com.github.badoualy.telegram.tl.StreamUtils.writeTLVector;
 
@@ -17,11 +17,11 @@ import static com.github.badoualy.telegram.tl.StreamUtils.writeTLVector;
  * @see <a href="http://github.com/badoualy/kotlogram">http://github.com/badoualy/kotlogram</a>
  */
 public class TLUpdateDeleteChannelMessages extends TLAbsUpdate {
-    public static final int CLASS_ID = 0xc37521c9;
+    public static final int CONSTRUCTOR_ID = 0xc37521c9;
 
     protected int channelId;
 
-    protected TLVector<Integer> messages;
+    protected TLIntVector messages;
 
     protected int pts;
 
@@ -30,7 +30,7 @@ public class TLUpdateDeleteChannelMessages extends TLAbsUpdate {
     public TLUpdateDeleteChannelMessages() {
     }
 
-    public TLUpdateDeleteChannelMessages(int channelId, TLVector<Integer> messages, int pts, int ptsCount) {
+    public TLUpdateDeleteChannelMessages(int channelId, TLIntVector messages, int pts, int ptsCount) {
         this.channelId = channelId;
         this.messages = messages;
         this.pts = pts;
@@ -49,7 +49,7 @@ public class TLUpdateDeleteChannelMessages extends TLAbsUpdate {
     @SuppressWarnings("unchecked")
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
         channelId = readInt(stream);
-        messages = readTLVector(stream, context);
+        messages = readTLIntVector(stream, context);
         pts = readInt(stream);
         ptsCount = readInt(stream);
     }
@@ -60,8 +60,8 @@ public class TLUpdateDeleteChannelMessages extends TLAbsUpdate {
     }
 
     @Override
-    public int getClassId() {
-        return CLASS_ID;
+    public int getConstructorId() {
+        return CONSTRUCTOR_ID;
     }
 
     public int getChannelId() {
@@ -72,11 +72,11 @@ public class TLUpdateDeleteChannelMessages extends TLAbsUpdate {
         this.channelId = channelId;
     }
 
-    public TLVector<Integer> getMessages() {
+    public TLIntVector getMessages() {
         return messages;
     }
 
-    public void setMessages(TLVector<Integer> messages) {
+    public void setMessages(TLIntVector messages) {
         this.messages = messages;
     }
 

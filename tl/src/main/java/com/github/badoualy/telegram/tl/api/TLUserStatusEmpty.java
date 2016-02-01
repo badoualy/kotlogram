@@ -5,7 +5,7 @@ package com.github.badoualy.telegram.tl.api;
  * @see <a href="http://github.com/badoualy/kotlogram">http://github.com/badoualy/kotlogram</a>
  */
 public class TLUserStatusEmpty extends TLAbsUserStatus {
-    public static final int CLASS_ID = 0x9d05049;
+    public static final int CONSTRUCTOR_ID = 0x9d05049;
 
     public TLUserStatusEmpty() {
     }
@@ -16,7 +16,7 @@ public class TLUserStatusEmpty extends TLAbsUserStatus {
     }
 
     @Override
-    public int getClassId() {
-        return CLASS_ID;
+    public int getConstructorId() {
+        return CONSTRUCTOR_ID;
     }
 }

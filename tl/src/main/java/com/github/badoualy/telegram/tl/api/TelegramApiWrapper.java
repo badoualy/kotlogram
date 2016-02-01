@@ -48,8 +48,11 @@ import com.github.badoualy.telegram.tl.api.updates.TLState;
 import com.github.badoualy.telegram.tl.api.upload.TLFile;
 import com.github.badoualy.telegram.tl.core.TLBool;
 import com.github.badoualy.telegram.tl.core.TLBytes;
+import com.github.badoualy.telegram.tl.core.TLIntVector;
+import com.github.badoualy.telegram.tl.core.TLLongVector;
 import com.github.badoualy.telegram.tl.core.TLMethod;
 import com.github.badoualy.telegram.tl.core.TLObject;
+import com.github.badoualy.telegram.tl.core.TLStringVector;
 import com.github.badoualy.telegram.tl.core.TLVector;
 
 import java.io.IOException;
@@ -243,7 +246,7 @@ public abstract class TelegramApiWrapper implements TelegramApi {
     }
 
     @Override
-    public TLBool authSendInvites(TLVector<String> phoneNumbers, String message) throws IOException {
+    public TLBool authSendInvites(TLStringVector phoneNumbers, String message) throws IOException {
         return (TLBool) executeRpcQuery(new TLRequestAuthSendInvites(phoneNumbers, message));
     }
 
@@ -278,7 +281,7 @@ public abstract class TelegramApiWrapper implements TelegramApi {
     }
 
     @Override
-    public TLAffectedMessages channelsDeleteMessages(TLAbsInputChannel channel, TLVector<Integer> id) throws IOException {
+    public TLAffectedMessages channelsDeleteMessages(TLAbsInputChannel channel, TLIntVector id) throws IOException {
         return (TLAffectedMessages) executeRpcQuery(new TLRequestChannelsDeleteMessages(channel, id));
     }
 
@@ -333,7 +336,7 @@ public abstract class TelegramApiWrapper implements TelegramApi {
     }
 
     @Override
-    public TLAbsMessages channelsGetMessages(TLAbsInputChannel channel, TLVector<Integer> id) throws IOException {
+    public TLAbsMessages channelsGetMessages(TLAbsInputChannel channel, TLIntVector id) throws IOException {
         return (TLAbsMessages) executeRpcQuery(new TLRequestChannelsGetMessages(channel, id));
     }
 
@@ -373,7 +376,7 @@ public abstract class TelegramApiWrapper implements TelegramApi {
     }
 
     @Override
-    public TLBool channelsReportSpam(TLAbsInputChannel channel, TLAbsInputUser userId, TLVector<Integer> id) throws IOException {
+    public TLBool channelsReportSpam(TLAbsInputChannel channel, TLAbsInputUser userId, TLIntVector id) throws IOException {
         return (TLBool) executeRpcQuery(new TLRequestChannelsReportSpam(channel, userId, id));
     }
 
@@ -403,8 +406,8 @@ public abstract class TelegramApiWrapper implements TelegramApi {
     }
 
     @Override
-    public TLVector<Integer> contactsExportCard() throws IOException {
-        return (TLVector<Integer>) executeRpcQuery(new TLRequestContactsExportCard());
+    public TLIntVector contactsExportCard() throws IOException {
+        return (TLIntVector) executeRpcQuery(new TLRequestContactsExportCard());
     }
 
     @Override
@@ -428,7 +431,7 @@ public abstract class TelegramApiWrapper implements TelegramApi {
     }
 
     @Override
-    public TLAbsUser contactsImportCard(TLVector<Integer> exportCard) throws IOException {
+    public TLAbsUser contactsImportCard(TLIntVector exportCard) throws IOException {
         return (TLAbsUser) executeRpcQuery(new TLRequestContactsImportCard(exportCard));
     }
 
@@ -503,7 +506,7 @@ public abstract class TelegramApiWrapper implements TelegramApi {
     }
 
     @Override
-    public <T extends TLObject> T invokeAfterMsgs(TLVector<Long> msgIds, TLMethod<T> query) throws IOException {
+    public <T extends TLObject> T invokeAfterMsgs(TLLongVector msgIds, TLMethod<T> query) throws IOException {
         return (T) executeRpcQuery(new TLRequestInvokeAfterMsgs(msgIds, query));
     }
 
@@ -548,7 +551,7 @@ public abstract class TelegramApiWrapper implements TelegramApi {
     }
 
     @Override
-    public TLAffectedMessages messagesDeleteMessages(TLVector<Integer> id) throws IOException {
+    public TLAffectedMessages messagesDeleteMessages(TLIntVector id) throws IOException {
         return (TLAffectedMessages) executeRpcQuery(new TLRequestMessagesDeleteMessages(id));
     }
 
@@ -583,7 +586,7 @@ public abstract class TelegramApiWrapper implements TelegramApi {
     }
 
     @Override
-    public TLAbsUpdates messagesForwardMessages(int flags, boolean broadcast, TLAbsInputPeer fromPeer, TLVector<Integer> id, TLVector<Long> randomId, TLAbsInputPeer toPeer) throws IOException {
+    public TLAbsUpdates messagesForwardMessages(int flags, boolean broadcast, TLAbsInputPeer fromPeer, TLIntVector id, TLLongVector randomId, TLAbsInputPeer toPeer) throws IOException {
         return (TLAbsUpdates) executeRpcQuery(new TLRequestMessagesForwardMessages(flags, broadcast, fromPeer, id, randomId, toPeer));
     }
 
@@ -593,7 +596,7 @@ public abstract class TelegramApiWrapper implements TelegramApi {
     }
 
     @Override
-    public TLChats messagesGetChats(TLVector<Integer> id) throws IOException {
+    public TLChats messagesGetChats(TLIntVector id) throws IOException {
         return (TLChats) executeRpcQuery(new TLRequestMessagesGetChats(id));
     }
 
@@ -628,13 +631,13 @@ public abstract class TelegramApiWrapper implements TelegramApi {
     }
 
     @Override
-    public TLAbsMessages messagesGetMessages(TLVector<Integer> id) throws IOException {
+    public TLAbsMessages messagesGetMessages(TLIntVector id) throws IOException {
         return (TLAbsMessages) executeRpcQuery(new TLRequestMessagesGetMessages(id));
     }
 
     @Override
-    public TLVector<Integer> messagesGetMessagesViews(TLAbsInputPeer peer, TLVector<Integer> id, boolean increment) throws IOException {
-        return (TLVector<Integer>) executeRpcQuery(new TLRequestMessagesGetMessagesViews(peer, id, increment));
+    public TLIntVector messagesGetMessagesViews(TLAbsInputPeer peer, TLIntVector id, boolean increment) throws IOException {
+        return (TLIntVector) executeRpcQuery(new TLRequestMessagesGetMessagesViews(peer, id, increment));
     }
 
     @Override
@@ -683,7 +686,7 @@ public abstract class TelegramApiWrapper implements TelegramApi {
     }
 
     @Override
-    public TLAffectedMessages messagesReadMessageContents(TLVector<Integer> id) throws IOException {
+    public TLAffectedMessages messagesReadMessageContents(TLIntVector id) throws IOException {
         return (TLAffectedMessages) executeRpcQuery(new TLRequestMessagesReadMessageContents(id));
     }
 
@@ -693,12 +696,12 @@ public abstract class TelegramApiWrapper implements TelegramApi {
     }
 
     @Override
-    public TLVector<Long> messagesReceivedQueue(int maxQts) throws IOException {
-        return (TLVector<Long>) executeRpcQuery(new TLRequestMessagesReceivedQueue(maxQts));
+    public TLLongVector messagesReceivedQueue(int maxQts) throws IOException {
+        return (TLLongVector) executeRpcQuery(new TLRequestMessagesReceivedQueue(maxQts));
     }
 
     @Override
-    public TLBool messagesReorderStickerSets(TLVector<Long> order) throws IOException {
+    public TLBool messagesReorderStickerSets(TLLongVector order) throws IOException {
         return (TLBool) executeRpcQuery(new TLRequestMessagesReorderStickerSets(order));
     }
 
@@ -733,7 +736,7 @@ public abstract class TelegramApiWrapper implements TelegramApi {
     }
 
     @Override
-    public TLAbsUpdates messagesSendBroadcast(TLVector<TLAbsInputUser> contacts, TLVector<Long> randomId, String message, TLAbsInputMedia media) throws IOException {
+    public TLAbsUpdates messagesSendBroadcast(TLVector<TLAbsInputUser> contacts, TLLongVector randomId, String message, TLAbsInputMedia media) throws IOException {
         return (TLAbsUpdates) executeRpcQuery(new TLRequestMessagesSendBroadcast(contacts, randomId, message, media));
     }
 
@@ -798,8 +801,8 @@ public abstract class TelegramApiWrapper implements TelegramApi {
     }
 
     @Override
-    public TLVector<Long> photosDeletePhotos(TLVector<TLAbsInputPhoto> id) throws IOException {
-        return (TLVector<Long>) executeRpcQuery(new TLRequestPhotosDeletePhotos(id));
+    public TLLongVector photosDeletePhotos(TLVector<TLAbsInputPhoto> id) throws IOException {
+        return (TLLongVector) executeRpcQuery(new TLRequestPhotosDeletePhotos(id));
     }
 
     @Override

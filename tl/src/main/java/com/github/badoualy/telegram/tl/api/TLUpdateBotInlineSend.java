@@ -16,7 +16,7 @@ import static com.github.badoualy.telegram.tl.StreamUtils.writeTLString;
  * @see <a href="http://github.com/badoualy/kotlogram">http://github.com/badoualy/kotlogram</a>
  */
 public class TLUpdateBotInlineSend extends TLAbsUpdate {
-    public static final int CLASS_ID = 0xf69e113;
+    public static final int CONSTRUCTOR_ID = 0xf69e113;
 
     protected int userId;
 
@@ -54,8 +54,8 @@ public class TLUpdateBotInlineSend extends TLAbsUpdate {
     }
 
     @Override
-    public int getClassId() {
-        return CLASS_ID;
+    public int getConstructorId() {
+        return CONSTRUCTOR_ID;
     }
 
     public int getUserId() {

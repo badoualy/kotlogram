@@ -1,9 +1,9 @@
 package com.github.badoualy.telegram.tl.api.request;
 
 import com.github.badoualy.telegram.tl.TLContext;
+import com.github.badoualy.telegram.tl.core.TLLongVector;
 import com.github.badoualy.telegram.tl.core.TLMethod;
 import com.github.badoualy.telegram.tl.core.TLObject;
-import com.github.badoualy.telegram.tl.core.TLVector;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -17,8 +17,8 @@ import static com.github.badoualy.telegram.tl.StreamUtils.writeInt;
  * @author Yannick Badoual yann.badoual@gmail.com
  * @see <a href="http://github.com/badoualy/kotlogram">http://github.com/badoualy/kotlogram</a>
  */
-public class TLRequestMessagesReceivedQueue extends TLMethod<TLVector<Long>> {
-    public static final int CLASS_ID = 0x55a5bb66;
+public class TLRequestMessagesReceivedQueue extends TLMethod<TLLongVector> {
+    public static final int CONSTRUCTOR_ID = 0x55a5bb66;
 
     protected int maxQts;
 
@@ -31,15 +31,15 @@ public class TLRequestMessagesReceivedQueue extends TLMethod<TLVector<Long>> {
 
     @Override
     @SuppressWarnings("unchecked")
-    public TLVector<Long> deserializeResponse(InputStream stream, TLContext context) throws IOException {
+    public TLLongVector deserializeResponse(InputStream stream, TLContext context) throws IOException {
         final TLObject response = readTLObject(stream, context);
         if (response == null) {
             throw new IOException("Unable to parse response");
         }
-        if (!(response instanceof TLVector)) {
+        if (!(response instanceof TLLongVector)) {
             throw new IOException("Incorrect response type, expected getClass().getCanonicalName(), found response.getClass().getCanonicalName()");
         }
-        return (TLVector<Long>) response;
+        return (TLLongVector) response;
     }
 
     @Override
@@ -59,8 +59,8 @@ public class TLRequestMessagesReceivedQueue extends TLMethod<TLVector<Long>> {
     }
 
     @Override
-    public int getClassId() {
-        return CLASS_ID;
+    public int getConstructorId() {
+        return CONSTRUCTOR_ID;
     }
 
     public int getMaxQts() {

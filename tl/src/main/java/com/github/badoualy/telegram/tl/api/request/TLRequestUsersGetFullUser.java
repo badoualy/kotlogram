@@ -18,7 +18,7 @@ import static com.github.badoualy.telegram.tl.StreamUtils.writeTLObject;
  * @see <a href="http://github.com/badoualy/kotlogram">http://github.com/badoualy/kotlogram</a>
  */
 public class TLRequestUsersGetFullUser extends TLMethod<TLUserFull> {
-    public static final int CLASS_ID = 0xca30a5b1;
+    public static final int CONSTRUCTOR_ID = 0xca30a5b1;
 
     protected TLAbsInputUser id;
 
@@ -59,8 +59,8 @@ public class TLRequestUsersGetFullUser extends TLMethod<TLUserFull> {
     }
 
     @Override
-    public int getClassId() {
-        return CLASS_ID;
+    public int getConstructorId() {
+        return CONSTRUCTOR_ID;
     }
 
     public TLAbsInputUser getId() {

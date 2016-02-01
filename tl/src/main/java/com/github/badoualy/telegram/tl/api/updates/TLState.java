@@ -15,7 +15,7 @@ import static com.github.badoualy.telegram.tl.StreamUtils.writeInt;
  * @see <a href="http://github.com/badoualy/kotlogram">http://github.com/badoualy/kotlogram</a>
  */
 public class TLState extends TLObject {
-    public static final int CLASS_ID = 0xa56c2a3e;
+    public static final int CONSTRUCTOR_ID = 0xa56c2a3e;
 
     protected int pts;
 
@@ -63,8 +63,8 @@ public class TLState extends TLObject {
     }
 
     @Override
-    public int getClassId() {
-        return CLASS_ID;
+    public int getConstructorId() {
+        return CONSTRUCTOR_ID;
     }
 
     public int getPts() {

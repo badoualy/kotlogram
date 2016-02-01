@@ -5,7 +5,7 @@ package com.github.badoualy.telegram.tl.api;
  * @see <a href="http://github.com/badoualy/kotlogram">http://github.com/badoualy/kotlogram</a>
  */
 public class TLUpdateStickerSets extends TLAbsUpdate {
-    public static final int CLASS_ID = 0x43ae3dec;
+    public static final int CONSTRUCTOR_ID = 0x43ae3dec;
 
     public TLUpdateStickerSets() {
     }
@@ -16,7 +16,7 @@ public class TLUpdateStickerSets extends TLAbsUpdate {
     }
 
     @Override
-    public int getClassId() {
-        return CLASS_ID;
+    public int getConstructorId() {
+        return CONSTRUCTOR_ID;
     }
 }

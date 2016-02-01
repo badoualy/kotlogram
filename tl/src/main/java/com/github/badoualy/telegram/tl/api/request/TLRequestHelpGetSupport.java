@@ -15,7 +15,7 @@ import static com.github.badoualy.telegram.tl.StreamUtils.readTLObject;
  * @see <a href="http://github.com/badoualy/kotlogram">http://github.com/badoualy/kotlogram</a>
  */
 public class TLRequestHelpGetSupport extends TLMethod<TLSupport> {
-    public static final int CLASS_ID = 0x9cdf08cd;
+    public static final int CONSTRUCTOR_ID = 0x9cdf08cd;
 
     public TLRequestHelpGetSupport() {
     }
@@ -39,7 +39,7 @@ public class TLRequestHelpGetSupport extends TLMethod<TLSupport> {
     }
 
     @Override
-    public int getClassId() {
-        return CLASS_ID;
+    public int getConstructorId() {
+        return CONSTRUCTOR_ID;
     }
 }

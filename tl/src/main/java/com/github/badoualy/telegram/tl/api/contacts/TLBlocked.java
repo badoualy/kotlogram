@@ -17,7 +17,7 @@ import static com.github.badoualy.telegram.tl.StreamUtils.writeTLVector;
  * @see <a href="http://github.com/badoualy/kotlogram">http://github.com/badoualy/kotlogram</a>
  */
 public class TLBlocked extends TLAbsBlocked {
-    public static final int CLASS_ID = 0x1c138d15;
+    public static final int CONSTRUCTOR_ID = 0x1c138d15;
 
     public TLBlocked() {
     }
@@ -46,8 +46,8 @@ public class TLBlocked extends TLAbsBlocked {
     }
 
     @Override
-    public int getClassId() {
-        return CLASS_ID;
+    public int getConstructorId() {
+        return CONSTRUCTOR_ID;
     }
 
     public TLVector<TLContactBlocked> getBlocked() {

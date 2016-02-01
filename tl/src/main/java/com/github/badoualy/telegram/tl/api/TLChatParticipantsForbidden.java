@@ -16,7 +16,7 @@ import static com.github.badoualy.telegram.tl.StreamUtils.writeTLObject;
  * @see <a href="http://github.com/badoualy/kotlogram">http://github.com/badoualy/kotlogram</a>
  */
 public class TLChatParticipantsForbidden extends TLAbsChatParticipants {
-    public static final int CLASS_ID = 0xfc900c2b;
+    public static final int CONSTRUCTOR_ID = 0xfc900c2b;
 
     protected int flags;
 
@@ -54,8 +54,8 @@ public class TLChatParticipantsForbidden extends TLAbsChatParticipants {
     }
 
     @Override
-    public int getClassId() {
-        return CLASS_ID;
+    public int getConstructorId() {
+        return CONSTRUCTOR_ID;
     }
 
     public int getFlags() {

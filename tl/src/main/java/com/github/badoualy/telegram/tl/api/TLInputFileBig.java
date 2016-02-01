@@ -18,7 +18,7 @@ import static com.github.badoualy.telegram.tl.StreamUtils.writeTLString;
  * @see <a href="http://github.com/badoualy/kotlogram">http://github.com/badoualy/kotlogram</a>
  */
 public class TLInputFileBig extends TLAbsInputFile {
-    public static final int CLASS_ID = 0xfa4f0bb5;
+    public static final int CONSTRUCTOR_ID = 0xfa4f0bb5;
 
     public TLInputFileBig() {
     }
@@ -50,8 +50,8 @@ public class TLInputFileBig extends TLAbsInputFile {
     }
 
     @Override
-    public int getClassId() {
-        return CLASS_ID;
+    public int getConstructorId() {
+        return CONSTRUCTOR_ID;
     }
 
     public long getId() {

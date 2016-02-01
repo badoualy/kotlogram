@@ -19,7 +19,7 @@ class MTMsgsAck @JvmOverloads constructor(var messages: TLLongVector = TLLongVec
         messages.addAll(msgIds)
     }
 
-    override fun getClassId(): Int {
+    override fun getConstructorId(): Int {
         return CLASS_ID
     }
 

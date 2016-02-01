@@ -5,7 +5,7 @@ package com.github.badoualy.telegram.tl.api;
  * @see <a href="http://github.com/badoualy/kotlogram">http://github.com/badoualy/kotlogram</a>
  */
 public class TLInputVideoEmpty extends TLAbsInputVideo {
-    public static final int CLASS_ID = 0x5508ec75;
+    public static final int CONSTRUCTOR_ID = 0x5508ec75;
 
     public TLInputVideoEmpty() {
     }
@@ -16,8 +16,8 @@ public class TLInputVideoEmpty extends TLAbsInputVideo {
     }
 
     @Override
-    public int getClassId() {
-        return CLASS_ID;
+    public int getConstructorId() {
+        return CONSTRUCTOR_ID;
     }
 
     @Override

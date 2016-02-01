@@ -5,7 +5,7 @@ package com.github.badoualy.telegram.tl.api;
  * @see <a href="http://github.com/badoualy/kotlogram">http://github.com/badoualy/kotlogram</a>
  */
 public class TLChannelRoleEditor extends TLAbsChannelParticipantRole {
-    public static final int CLASS_ID = 0x820bfe8c;
+    public static final int CONSTRUCTOR_ID = 0x820bfe8c;
 
     public TLChannelRoleEditor() {
     }
@@ -16,7 +16,7 @@ public class TLChannelRoleEditor extends TLAbsChannelParticipantRole {
     }
 
     @Override
-    public int getClassId() {
-        return CLASS_ID;
+    public int getConstructorId() {
+        return CONSTRUCTOR_ID;
     }
 }

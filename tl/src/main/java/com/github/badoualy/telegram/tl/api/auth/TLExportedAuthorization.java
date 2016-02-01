@@ -18,7 +18,7 @@ import static com.github.badoualy.telegram.tl.StreamUtils.writeTLBytes;
  * @see <a href="http://github.com/badoualy/kotlogram">http://github.com/badoualy/kotlogram</a>
  */
 public class TLExportedAuthorization extends TLObject {
-    public static final int CLASS_ID = 0xdf969c2d;
+    public static final int CONSTRUCTOR_ID = 0xdf969c2d;
 
     protected int id;
 
@@ -51,8 +51,8 @@ public class TLExportedAuthorization extends TLObject {
     }
 
     @Override
-    public int getClassId() {
-        return CLASS_ID;
+    public int getConstructorId() {
+        return CONSTRUCTOR_ID;
     }
 
     public int getId() {

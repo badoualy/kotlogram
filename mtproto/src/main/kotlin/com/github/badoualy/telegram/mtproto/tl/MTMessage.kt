@@ -9,7 +9,7 @@ import java.io.OutputStream
 
 class MTMessage @JvmOverloads constructor(var messageId: Long = 0, var seqNo: Int = 0, var payload: ByteArray = ByteArray(0), var  payloadLength: Int = payload.size) : TLObject() {
 
-    override fun getClassId(): Int {
+    override fun getConstructorId(): Int {
         return 0
     }
 

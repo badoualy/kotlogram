@@ -18,7 +18,7 @@ import static com.github.badoualy.telegram.tl.StreamUtils.writeTLString;
  * @see <a href="http://github.com/badoualy/kotlogram">http://github.com/badoualy/kotlogram</a>
  */
 public class TLRequestHelpGetInviteText extends TLMethod<TLInviteText> {
-    public static final int CLASS_ID = 0xa4a95186;
+    public static final int CONSTRUCTOR_ID = 0xa4a95186;
 
     protected String langCode;
 
@@ -59,8 +59,8 @@ public class TLRequestHelpGetInviteText extends TLMethod<TLInviteText> {
     }
 
     @Override
-    public int getClassId() {
-        return CLASS_ID;
+    public int getConstructorId() {
+        return CONSTRUCTOR_ID;
     }
 
     public String getLangCode() {

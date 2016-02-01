@@ -23,7 +23,7 @@ import static com.github.badoualy.telegram.tl.StreamUtils.writeTLObject;
  * @see <a href="http://github.com/badoualy/kotlogram">http://github.com/badoualy/kotlogram</a>
  */
 public class TLRequestMessagesRequestEncryption extends TLMethod<TLAbsEncryptedChat> {
-    public static final int CLASS_ID = 0xf64daf43;
+    public static final int CONSTRUCTOR_ID = 0xf64daf43;
 
     protected TLAbsInputUser userId;
 
@@ -74,8 +74,8 @@ public class TLRequestMessagesRequestEncryption extends TLMethod<TLAbsEncryptedC
     }
 
     @Override
-    public int getClassId() {
-        return CLASS_ID;
+    public int getConstructorId() {
+        return CONSTRUCTOR_ID;
     }
 
     public TLAbsInputUser getUserId() {

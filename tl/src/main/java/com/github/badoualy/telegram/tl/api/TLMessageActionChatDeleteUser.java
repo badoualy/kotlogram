@@ -14,7 +14,7 @@ import static com.github.badoualy.telegram.tl.StreamUtils.writeInt;
  * @see <a href="http://github.com/badoualy/kotlogram">http://github.com/badoualy/kotlogram</a>
  */
 public class TLMessageActionChatDeleteUser extends TLAbsMessageAction {
-    public static final int CLASS_ID = 0xb2ae9b0c;
+    public static final int CONSTRUCTOR_ID = 0xb2ae9b0c;
 
     protected int userId;
 
@@ -42,8 +42,8 @@ public class TLMessageActionChatDeleteUser extends TLAbsMessageAction {
     }
 
     @Override
-    public int getClassId() {
-        return CLASS_ID;
+    public int getConstructorId() {
+        return CONSTRUCTOR_ID;
     }
 
     public int getUserId() {
