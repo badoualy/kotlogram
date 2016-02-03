@@ -8,4 +8,5 @@ public interface DebugListener {
 
     fun onTimeoutAfterReset()
 
+    fun onSocketDestroyed()
 }

@@ -114,6 +114,7 @@ internal class DefaultTelegramClient internal constructor(val application: Teleg
     override fun close() = close(true)
 
     override fun close(cleanUp: Boolean) {
+        debugListener?.onSocketDestroyed()
         mtProtoHandler?.close() ?: Unit
         if (cleanUp)
             Kotlogram.cleanUp()
