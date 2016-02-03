@@ -1,37 +1,19 @@
 package com.github.badoualy.telegram;
 
+import com.github.badoualy.telegram.api.DebugListener;
 import com.github.badoualy.telegram.api.Kotlogram;
 import com.github.badoualy.telegram.api.TelegramApiStorage;
 import com.github.badoualy.telegram.api.TelegramApp;
 import com.github.badoualy.telegram.api.TelegramClient;
 import com.github.badoualy.telegram.mtproto.DataCenter;
 import com.github.badoualy.telegram.mtproto.auth.AuthKey;
-import com.github.badoualy.telegram.mtproto.exception.RpcErrorException;
-import com.github.badoualy.telegram.tl.api.TLAbsFileLocation;
-import com.github.badoualy.telegram.tl.api.TLAbsInputUser;
-import com.github.badoualy.telegram.tl.api.TLAbsMessage;
-import com.github.badoualy.telegram.tl.api.TLAbsUser;
-import com.github.badoualy.telegram.tl.api.TLAbsUserProfilePhoto;
-import com.github.badoualy.telegram.tl.api.TLChat;
 import com.github.badoualy.telegram.tl.api.TLDocument;
-import com.github.badoualy.telegram.tl.api.TLFileLocation;
-import com.github.badoualy.telegram.tl.api.TLInputDocument;
 import com.github.badoualy.telegram.tl.api.TLInputDocumentFileLocation;
-import com.github.badoualy.telegram.tl.api.TLInputFileLocation;
-import com.github.badoualy.telegram.tl.api.TLInputPeerChat;
 import com.github.badoualy.telegram.tl.api.TLInputPeerEmpty;
-import com.github.badoualy.telegram.tl.api.TLInputUser;
 import com.github.badoualy.telegram.tl.api.TLMessage;
 import com.github.badoualy.telegram.tl.api.TLMessageMediaDocument;
-import com.github.badoualy.telegram.tl.api.TLMessageMediaEmpty;
-import com.github.badoualy.telegram.tl.api.TLMessageService;
-import com.github.badoualy.telegram.tl.api.TLUser;
-import com.github.badoualy.telegram.tl.api.TLUserProfilePhoto;
-import com.github.badoualy.telegram.tl.api.auth.TLAbsSentCode;
-import com.github.badoualy.telegram.tl.api.auth.TLAuthorization;
 import com.github.badoualy.telegram.tl.api.messages.TLAbsDialogs;
 import com.github.badoualy.telegram.tl.api.upload.TLFile;
-import com.github.badoualy.telegram.tl.core.TLVector;
 
 import org.apache.commons.io.FileUtils;
 import org.jetbrains.annotations.NotNull;
@@ -41,10 +23,6 @@ import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.nio.ByteBuffer;
-import java.util.Scanner;
-
-import javax.activation.MimeType;
 
 import static com.github.badoualy.telegram.C.API_HASH;
 import static com.github.badoualy.telegram.C.API_ID;
@@ -53,8 +31,6 @@ import static com.github.badoualy.telegram.C.AUTH_KEY_FILE;
 import static com.github.badoualy.telegram.C.LANG_CODE;
 import static com.github.badoualy.telegram.C.MODEL;
 import static com.github.badoualy.telegram.C.NEAREST_DC_FILE;
-import static com.github.badoualy.telegram.C.PHONE_NUMBER;
-import static com.github.badoualy.telegram.C.PHOTO_FILE;
 import static com.github.badoualy.telegram.C.SYSTEM_VERSION;
 
 public class KotlogramSample {
@@ -66,6 +42,22 @@ public class KotlogramSample {
         // This is a synchronous client, that will block until the response arrive (or until timeout)
         // A client which return an Observable<T> where T is the response type will be available soon
         TelegramClient client = Kotlogram.getDefaultClient(app, new ApiStorage());
+        client.setDebugListener(new DebugListener() {
+            @Override
+            public void onSocketCreated() {
+                System.out.println("onSocketCreated()");
+            }
+
+            @Override
+            public void onTimeoutBeforeReset() {
+                System.out.println("onTimeoutBeforeReset()");
+            }
+
+            @Override
+            public void onTimeoutAfterReset() {
+                System.out.println("onTimeoutAfterReset");
+            }
+        });
 
         // You can start making requests
         try {
@@ -88,13 +80,7 @@ public class KotlogramSample {
             TLAbsDialogs dialogs = client.messagesGetDialogs(0, 0, new TLInputPeerEmpty(), 0);
             // Do something with recent chats :)
 
-            // Chat Shu & Akai with id 50577681
-
             // TODO: generic types array covariant
-
-            TLInputPeerChat peer = new TLInputPeerChat();
-            peer.setChatId(50577681);
-            client.messagesGetHistory(peer, 0, 1, 1, 0, 0);
 
 //            dialogs.getChats().stream().forEach(c -> {
 //                if (c instanceof TLChat) {

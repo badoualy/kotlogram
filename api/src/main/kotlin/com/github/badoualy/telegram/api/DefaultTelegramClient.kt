@@ -20,7 +20,8 @@ import java.io.IOException
 import java.util.concurrent.TimeoutException
 
 internal class DefaultTelegramClient internal constructor(val application: TelegramApp, val apiStorage: TelegramApiStorage,
-                                                          val preferredDataCenter: DataCenter) : TelegramApiWrapper(), TelegramClient, ApiCallback {
+                                                          val preferredDataCenter: DataCenter,
+                                                          val debugListener: DebugListener?) : TelegramApiWrapper(), TelegramClient, ApiCallback {
 
     private val TAG = "TelegramClient"
 
@@ -31,7 +32,6 @@ internal class DefaultTelegramClient internal constructor(val application: Teleg
     var timeoutDuration: Long = 5000L
 
     private var generateAuthKey: Boolean
-    private var debugListener: DebugListener? = null
 
     init {
         authKey = apiStorage.loadAuthKey()
@@ -53,8 +53,8 @@ internal class DefaultTelegramClient internal constructor(val application: Teleg
 
     private fun init(checkNearestDc: Boolean = true) {
         mtProtoHandler = if (generateAuthKey) MTProtoHandler(generateAuthKey(), this) else MTProtoHandler(dataCenter!!, authKey!!, apiStorage.loadServerSalt(), this)
+        debugListener!!.onSocketCreated()
         mtProtoHandler!!.startWatchdog()
-        debugListener?.onSocketConnected()
 
         if (generateAuthKey) {
             try {
@@ -105,10 +105,6 @@ internal class DefaultTelegramClient internal constructor(val application: Teleg
         } else {
             Log.d(TAG, "Connected to the nearest DC${nearestDc.thisDc}")
         }
-    }
-
-    override fun setDebugListener(listener: DebugListener?) {
-        this.debugListener = listener
     }
 
     override fun setTimeout(timeout: Long) {
@@ -199,7 +195,7 @@ internal class DefaultTelegramClient internal constructor(val application: Teleg
         val authResult = AuthKeyCreation.createAuthKey(dc) ?: throw IOException("Couldn't create authorization key on DC$dcId")
         val mtProtoHandler = MTProtoHandler(authResult, null)
         mtProtoHandler.startWatchdog()
-        debugListener?.onSocketConnected()
+        debugListener?.onSocketCreated()
         initConnection(mtProtoHandler, TLRequestAuthImportAuthorization(exportedAuthorization.id, exportedAuthorization.bytes))
         return mtProtoHandler
     }

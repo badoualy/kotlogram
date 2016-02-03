@@ -10,8 +10,6 @@ import java.io.IOException
 
 interface TelegramClient : TelegramApi {
 
-    fun setDebugListener(listener: DebugListener?)
-
     /** Changes the request timeout with the supplied value (in ms) */
     fun setTimeout(timeout: Long)
 
