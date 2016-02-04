@@ -9,6 +9,7 @@ import com.github.badoualy.telegram.mtproto.auth.AuthKey;
 import com.github.badoualy.telegram.mtproto.exception.RpcErrorException;
 import com.github.badoualy.telegram.tl.api.TLAbsMessage;
 import com.github.badoualy.telegram.tl.api.TLInputPeerEmpty;
+import com.github.badoualy.telegram.tl.api.TLInputPeerUser;
 import com.github.badoualy.telegram.tl.api.TLMessage;
 import com.github.badoualy.telegram.tl.api.TLUser;
 import com.github.badoualy.telegram.tl.api.auth.TLAbsSentCode;
@@ -21,6 +22,7 @@ import org.jetbrains.annotations.Nullable;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.Random;
 import java.util.Scanner;
 
 @SuppressWarnings("ALL")
@@ -60,6 +62,14 @@ public class KotlogramSample {
                     System.out.println("Found a service message or empty message");
                 }
             }
+
+            // Take the first user in the list, and send a message to him
+            // It'll probably be Telegram bot, since he'll send you the code
+            TLUser randomUser = dialogs.getUsers().get(0).getAsUser();
+            TLInputPeerUser inputUser = new TLInputPeerUser(randomUser.getId(), randomUser.getAccessHash());
+            int randomId = new Random(System.currentTimeMillis()).nextInt();
+            client.messagesSendMessage(0, false, false, inputUser, 0, "Kotlogram is awesome!", randomId, null, null);
+            System.out.println("Message sent");
         } catch (RpcErrorException e) {
             e.printStackTrace();
         } catch (IOException e) {

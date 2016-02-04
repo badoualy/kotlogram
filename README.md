@@ -71,6 +71,14 @@ if (message instanceof TLMessage) {
     System.out.println("Found a service message or empty message");
 }
     }
+
+    // Take the first user in the list, and send a message to him
+    // It'll probably be Telegram bot, since he'll send you the code
+    TLUser randomUser = dialogs.getUsers().get(0).getAsUser();
+    TLInputPeerUser inputUser = new TLInputPeerUser(randomUser.getId(), randomUser.getAccessHash());
+    int randomId = new Random(System.currentTimeMillis()).nextInt();
+    client.messagesSendMessage(0, false, false, inputUser, 0, "Kotlogram is awesome!", randomId, null, null);
+    System.out.println("Message sent");
 } catch (RpcErrorException e) {
     e.printStackTrace();
 } catch (IOException e) {
