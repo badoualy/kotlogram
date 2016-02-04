@@ -31,6 +31,7 @@ public class TLChannelDifferenceEmpty extends TLAbsChannelDifference {
     public void serializeBody(OutputStream stream) throws IOException {
         flags = 0;
         flags = _final ? (flags | 1) : (flags &~ 1);
+        flags = timeout != null ? (flags | 2) : (flags &~ 2);
 
         writeInt(flags, stream);
         if ((flags & 1) != 0) writeBoolean(_final, stream);

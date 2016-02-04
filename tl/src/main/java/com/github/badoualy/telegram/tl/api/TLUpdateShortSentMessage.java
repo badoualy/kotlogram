@@ -60,6 +60,8 @@ public class TLUpdateShortSentMessage extends TLAbsUpdates {
         flags = 0;
         flags = unread ? (flags | 1) : (flags &~ 1);
         flags = out ? (flags | 2) : (flags &~ 2);
+        flags = media != null ? (flags | 512) : (flags &~ 512);
+        flags = entities != null ? (flags | 128) : (flags &~ 128);
 
         writeInt(flags, stream);
         if ((flags & 1) != 0) writeBoolean(unread, stream);

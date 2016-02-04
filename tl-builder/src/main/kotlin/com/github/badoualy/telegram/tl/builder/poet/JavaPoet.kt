@@ -344,6 +344,7 @@ object JavaPoet {
 
                 if (fieldType == TypeName.BOOLEAN)
                     serializeMethod.addStatement("flags = $fieldName ? (flags | ${tlType.pow2Value()}) : (flags &~ ${tlType.pow2Value()})")
+                else serializeMethod.addStatement("flags = $fieldName != null ? (flags | ${tlType.pow2Value()}) : (flags &~ ${tlType.pow2Value()})")
             }
 
             serializeMethod.addCode("\n")
@@ -370,8 +371,15 @@ object JavaPoet {
             deserializeMethod.addStatement(deserializeParameter(fieldName, parameter.tlType, fieldType))
 
             // Add api method
-            apiMethod?.addParameter(fieldType, fieldName)
-            apiWrappedMethod?.addParameter(fieldType, fieldName)
+            if (parameter.tlType is TLTypeGeneric && fieldType is ParameterizedTypeName) {
+                val typeArg = WildcardTypeName.subtypeOf(fieldType.typeArguments.first())
+                val newFieldType = ParameterizedTypeName.get(fieldType.rawType, typeArg)
+                apiMethod?.addParameter(newFieldType, fieldName)
+                apiWrappedMethod?.addParameter(newFieldType, fieldName)
+            } else {
+                apiMethod?.addParameter(fieldType, fieldName)
+                apiWrappedMethod?.addParameter(fieldType, fieldName)
+            }
             if (parameter.tlType is TLTypeFunctional) {
                 apiMethod?.addTypeVariable(TypeVariableName.get("T", TYPE_TL_OBJECT))
                 apiWrappedMethod?.addTypeVariable(TypeVariableName.get("T", TYPE_TL_OBJECT))

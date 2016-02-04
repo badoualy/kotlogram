@@ -60,6 +60,7 @@ public class TLMessageService extends TLAbsMessage {
         flags = out ? (flags | 2) : (flags &~ 2);
         flags = mentioned ? (flags | 16) : (flags &~ 16);
         flags = mediaUnread ? (flags | 32) : (flags &~ 32);
+        flags = fromId != null ? (flags | 256) : (flags &~ 256);
 
         writeInt(flags, stream);
         if ((flags & 1) != 0) writeBoolean(unread, stream);

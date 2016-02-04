@@ -85,6 +85,11 @@ public class TLUpdateShortMessage extends TLAbsUpdates {
         flags = out ? (flags | 2) : (flags &~ 2);
         flags = mentioned ? (flags | 16) : (flags &~ 16);
         flags = mediaUnread ? (flags | 32) : (flags &~ 32);
+        flags = fwdFromId != null ? (flags | 4) : (flags &~ 4);
+        flags = fwdDate != null ? (flags | 4) : (flags &~ 4);
+        flags = viaBotId != null ? (flags | 2048) : (flags &~ 2048);
+        flags = replyToMsgId != null ? (flags | 8) : (flags &~ 8);
+        flags = entities != null ? (flags | 128) : (flags &~ 128);
 
         writeInt(flags, stream);
         if ((flags & 1) != 0) writeBoolean(unread, stream);

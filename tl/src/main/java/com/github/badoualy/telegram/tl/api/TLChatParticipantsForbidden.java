@@ -34,6 +34,7 @@ public class TLChatParticipantsForbidden extends TLAbsChatParticipants {
     @Override
     public void serializeBody(OutputStream stream) throws IOException {
         flags = 0;
+        flags = selfParticipant != null ? (flags | 1) : (flags &~ 1);
 
         writeInt(flags, stream);
         writeInt(chatId, stream);

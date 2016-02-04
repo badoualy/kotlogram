@@ -71,6 +71,7 @@ public class TLRequestMessagesSendInlineBotResult extends TLMethod<TLAbsUpdates>
     public void serializeBody(OutputStream stream) throws IOException {
         flags = 0;
         flags = broadcast ? (flags | 16) : (flags &~ 16);
+        flags = replyToMsgId != null ? (flags | 1) : (flags &~ 1);
 
         writeInt(flags, stream);
         if ((flags & 16) != 0) writeBoolean(broadcast, stream);

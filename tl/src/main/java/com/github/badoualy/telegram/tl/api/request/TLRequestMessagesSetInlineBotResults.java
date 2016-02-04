@@ -74,6 +74,7 @@ public class TLRequestMessagesSetInlineBotResults extends TLMethod<TLBool> {
         flags = 0;
         flags = gallery ? (flags | 1) : (flags &~ 1);
         flags = _private ? (flags | 2) : (flags &~ 2);
+        flags = nextOffset != null ? (flags | 4) : (flags &~ 4);
 
         writeInt(flags, stream);
         if ((flags & 1) != 0) writeBoolean(gallery, stream);

@@ -93,6 +93,8 @@ public class TLChannel extends TLAbsChat {
         flags = verified ? (flags | 128) : (flags &~ 128);
         flags = megagroup ? (flags | 256) : (flags &~ 256);
         flags = restricted ? (flags | 512) : (flags &~ 512);
+        flags = username != null ? (flags | 64) : (flags &~ 64);
+        flags = restrictionReason != null ? (flags | 512) : (flags &~ 512);
 
         writeInt(flags, stream);
         if ((flags & 1) != 0) writeBoolean(creator, stream);

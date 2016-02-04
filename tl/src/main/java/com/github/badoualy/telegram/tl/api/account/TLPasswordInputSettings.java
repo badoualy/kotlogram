@@ -46,6 +46,10 @@ public class TLPasswordInputSettings extends TLObject {
     @Override
     public void serializeBody(OutputStream stream) throws IOException {
         flags = 0;
+        flags = newSalt != null ? (flags | 1) : (flags &~ 1);
+        flags = newPasswordHash != null ? (flags | 1) : (flags &~ 1);
+        flags = hint != null ? (flags | 1) : (flags &~ 1);
+        flags = email != null ? (flags | 2) : (flags &~ 2);
 
         writeInt(flags, stream);
         if ((flags & 1) != 0) writeTLBytes(newSalt, stream);

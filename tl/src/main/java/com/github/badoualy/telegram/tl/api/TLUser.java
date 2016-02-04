@@ -102,6 +102,16 @@ public class TLUser extends TLAbsUser {
         flags = botNochats ? (flags | 65536) : (flags &~ 65536);
         flags = verified ? (flags | 131072) : (flags &~ 131072);
         flags = restricted ? (flags | 262144) : (flags &~ 262144);
+        flags = accessHash != null ? (flags | 1) : (flags &~ 1);
+        flags = firstName != null ? (flags | 2) : (flags &~ 2);
+        flags = lastName != null ? (flags | 4) : (flags &~ 4);
+        flags = username != null ? (flags | 8) : (flags &~ 8);
+        flags = phone != null ? (flags | 16) : (flags &~ 16);
+        flags = photo != null ? (flags | 32) : (flags &~ 32);
+        flags = status != null ? (flags | 64) : (flags &~ 64);
+        flags = botInfoVersion != null ? (flags | 16384) : (flags &~ 16384);
+        flags = restrictionReason != null ? (flags | 262144) : (flags &~ 262144);
+        flags = botInlinePlaceholder != null ? (flags | 524288) : (flags &~ 524288);
 
         writeInt(flags, stream);
         if ((flags & 1024) != 0) writeBoolean(self, stream);

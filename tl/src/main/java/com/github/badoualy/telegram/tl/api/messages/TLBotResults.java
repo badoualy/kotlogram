@@ -51,6 +51,7 @@ public class TLBotResults extends TLObject {
     public void serializeBody(OutputStream stream) throws IOException {
         flags = 0;
         flags = gallery ? (flags | 1) : (flags &~ 1);
+        flags = nextOffset != null ? (flags | 2) : (flags &~ 2);
 
         writeInt(flags, stream);
         if ((flags & 1) != 0) writeBoolean(gallery, stream);

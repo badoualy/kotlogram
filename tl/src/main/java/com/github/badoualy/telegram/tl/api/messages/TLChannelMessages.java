@@ -47,6 +47,7 @@ public class TLChannelMessages extends TLAbsMessages {
     @Override
     public void serializeBody(OutputStream stream) throws IOException {
         flags = 0;
+        flags = collapsed != null ? (flags | 1) : (flags &~ 1);
 
         writeInt(flags, stream);
         writeInt(pts, stream);

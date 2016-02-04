@@ -44,6 +44,7 @@ public class TLBotInlineMessageText extends TLAbsBotInlineMessage {
     public void serializeBody(OutputStream stream) throws IOException {
         flags = 0;
         flags = noWebpage ? (flags | 1) : (flags &~ 1);
+        flags = entities != null ? (flags | 2) : (flags &~ 2);
 
         writeInt(flags, stream);
         if ((flags & 1) != 0) writeBoolean(noWebpage, stream);

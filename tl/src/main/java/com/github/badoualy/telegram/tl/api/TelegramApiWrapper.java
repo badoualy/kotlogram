@@ -146,7 +146,7 @@ public abstract class TelegramApiWrapper implements TelegramApi {
     }
 
     @Override
-    public TLPrivacyRules accountSetPrivacy(TLInputPrivacyKeyStatusTimestamp key, TLVector<TLAbsInputPrivacyRule> rules) throws IOException {
+    public TLPrivacyRules accountSetPrivacy(TLInputPrivacyKeyStatusTimestamp key, TLVector<? extends TLAbsInputPrivacyRule> rules) throws IOException {
         return (TLPrivacyRules) executeRpcQuery(new TLRequestAccountSetPrivacy(key, rules));
     }
 
@@ -316,7 +316,7 @@ public abstract class TelegramApiWrapper implements TelegramApi {
     }
 
     @Override
-    public TLChats channelsGetChannels(TLVector<TLAbsInputChannel> id) throws IOException {
+    public TLChats channelsGetChannels(TLVector<? extends TLAbsInputChannel> id) throws IOException {
         return (TLChats) executeRpcQuery(new TLRequestChannelsGetChannels(id));
     }
 
@@ -351,7 +351,7 @@ public abstract class TelegramApiWrapper implements TelegramApi {
     }
 
     @Override
-    public TLAbsUpdates channelsInviteToChannel(TLAbsInputChannel channel, TLVector<TLAbsInputUser> users) throws IOException {
+    public TLAbsUpdates channelsInviteToChannel(TLAbsInputChannel channel, TLVector<? extends TLAbsInputUser> users) throws IOException {
         return (TLAbsUpdates) executeRpcQuery(new TLRequestChannelsInviteToChannel(channel, users));
     }
 
@@ -401,7 +401,7 @@ public abstract class TelegramApiWrapper implements TelegramApi {
     }
 
     @Override
-    public TLBool contactsDeleteContacts(TLVector<TLAbsInputUser> id) throws IOException {
+    public TLBool contactsDeleteContacts(TLVector<? extends TLAbsInputUser> id) throws IOException {
         return (TLBool) executeRpcQuery(new TLRequestContactsDeleteContacts(id));
     }
 
@@ -436,7 +436,7 @@ public abstract class TelegramApiWrapper implements TelegramApi {
     }
 
     @Override
-    public TLImportedContacts contactsImportContacts(TLVector<TLInputPhoneContact> contacts, boolean replace) throws IOException {
+    public TLImportedContacts contactsImportContacts(TLVector<? extends TLInputPhoneContact> contacts, boolean replace) throws IOException {
         return (TLImportedContacts) executeRpcQuery(new TLRequestContactsImportContacts(contacts, replace));
     }
 
@@ -491,7 +491,7 @@ public abstract class TelegramApiWrapper implements TelegramApi {
     }
 
     @Override
-    public TLBool helpSaveAppLog(TLVector<TLInputAppEvent> events) throws IOException {
+    public TLBool helpSaveAppLog(TLVector<? extends TLInputAppEvent> events) throws IOException {
         return (TLBool) executeRpcQuery(new TLRequestHelpSaveAppLog(events));
     }
 
@@ -536,7 +536,7 @@ public abstract class TelegramApiWrapper implements TelegramApi {
     }
 
     @Override
-    public TLAbsUpdates messagesCreateChat(TLVector<TLAbsInputUser> users, String title) throws IOException {
+    public TLAbsUpdates messagesCreateChat(TLVector<? extends TLAbsInputUser> users, String title) throws IOException {
         return (TLAbsUpdates) executeRpcQuery(new TLRequestMessagesCreateChat(users, title));
     }
 
@@ -736,7 +736,7 @@ public abstract class TelegramApiWrapper implements TelegramApi {
     }
 
     @Override
-    public TLAbsUpdates messagesSendBroadcast(TLVector<TLAbsInputUser> contacts, TLLongVector randomId, String message, TLAbsInputMedia media) throws IOException {
+    public TLAbsUpdates messagesSendBroadcast(TLVector<? extends TLAbsInputUser> contacts, TLLongVector randomId, String message, TLAbsInputMedia media) throws IOException {
         return (TLAbsUpdates) executeRpcQuery(new TLRequestMessagesSendBroadcast(contacts, randomId, message, media));
     }
 
@@ -776,7 +776,7 @@ public abstract class TelegramApiWrapper implements TelegramApi {
     }
 
     @Override
-    public TLBool messagesSetInlineBotResults(int flags, boolean gallery, boolean _private, long queryId, TLVector<TLInputBotInlineResult> results, int cacheTime, String nextOffset) throws IOException {
+    public TLBool messagesSetInlineBotResults(int flags, boolean gallery, boolean _private, long queryId, TLVector<? extends TLInputBotInlineResult> results, int cacheTime, String nextOffset) throws IOException {
         return (TLBool) executeRpcQuery(new TLRequestMessagesSetInlineBotResults(flags, gallery, _private, queryId, results, cacheTime, nextOffset));
     }
 
@@ -801,7 +801,7 @@ public abstract class TelegramApiWrapper implements TelegramApi {
     }
 
     @Override
-    public TLLongVector photosDeletePhotos(TLVector<TLAbsInputPhoto> id) throws IOException {
+    public TLLongVector photosDeletePhotos(TLVector<? extends TLAbsInputPhoto> id) throws IOException {
         return (TLLongVector) executeRpcQuery(new TLRequestPhotosDeletePhotos(id));
     }
 
@@ -856,7 +856,7 @@ public abstract class TelegramApiWrapper implements TelegramApi {
     }
 
     @Override
-    public TLVector<TLAbsUser> usersGetUsers(TLVector<TLAbsInputUser> id) throws IOException {
+    public TLVector<TLAbsUser> usersGetUsers(TLVector<? extends TLAbsInputUser> id) throws IOException {
         return (TLVector<TLAbsUser>) executeRpcQuery(new TLRequestUsersGetUsers(id));
     }
 }

@@ -69,6 +69,15 @@ public class TLInputBotInlineResult extends TLObject {
     @Override
     public void serializeBody(OutputStream stream) throws IOException {
         flags = 0;
+        flags = title != null ? (flags | 2) : (flags &~ 2);
+        flags = description != null ? (flags | 4) : (flags &~ 4);
+        flags = url != null ? (flags | 8) : (flags &~ 8);
+        flags = thumbUrl != null ? (flags | 16) : (flags &~ 16);
+        flags = contentUrl != null ? (flags | 32) : (flags &~ 32);
+        flags = contentType != null ? (flags | 32) : (flags &~ 32);
+        flags = w != null ? (flags | 64) : (flags &~ 64);
+        flags = h != null ? (flags | 64) : (flags &~ 64);
+        flags = duration != null ? (flags | 128) : (flags &~ 128);
 
         writeInt(flags, stream);
         writeString(id, stream);

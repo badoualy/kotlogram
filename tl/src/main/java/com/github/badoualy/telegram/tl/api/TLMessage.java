@@ -89,6 +89,15 @@ public class TLMessage extends TLAbsMessage {
         flags = out ? (flags | 2) : (flags &~ 2);
         flags = mentioned ? (flags | 16) : (flags &~ 16);
         flags = mediaUnread ? (flags | 32) : (flags &~ 32);
+        flags = fromId != null ? (flags | 256) : (flags &~ 256);
+        flags = fwdFromId != null ? (flags | 4) : (flags &~ 4);
+        flags = fwdDate != null ? (flags | 4) : (flags &~ 4);
+        flags = viaBotId != null ? (flags | 2048) : (flags &~ 2048);
+        flags = replyToMsgId != null ? (flags | 8) : (flags &~ 8);
+        flags = media != null ? (flags | 512) : (flags &~ 512);
+        flags = replyMarkup != null ? (flags | 64) : (flags &~ 64);
+        flags = entities != null ? (flags | 128) : (flags &~ 128);
+        flags = views != null ? (flags | 1024) : (flags &~ 1024);
 
         writeInt(flags, stream);
         if ((flags & 1) != 0) writeBoolean(unread, stream);

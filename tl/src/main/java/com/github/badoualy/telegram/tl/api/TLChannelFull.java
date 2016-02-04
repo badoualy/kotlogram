@@ -72,6 +72,11 @@ public class TLChannelFull extends TLAbsChatFull {
     public void serializeBody(OutputStream stream) throws IOException {
         flags = 0;
         flags = canViewParticipants ? (flags | 8) : (flags &~ 8);
+        flags = participantsCount != null ? (flags | 1) : (flags &~ 1);
+        flags = adminsCount != null ? (flags | 2) : (flags &~ 2);
+        flags = kickedCount != null ? (flags | 4) : (flags &~ 4);
+        flags = migratedFromChatId != null ? (flags | 16) : (flags &~ 16);
+        flags = migratedFromMaxId != null ? (flags | 16) : (flags &~ 16);
 
         writeInt(flags, stream);
         if ((flags & 8) != 0) writeBoolean(canViewParticipants, stream);

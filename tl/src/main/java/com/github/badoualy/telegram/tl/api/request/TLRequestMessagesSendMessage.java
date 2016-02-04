@@ -83,6 +83,9 @@ public class TLRequestMessagesSendMessage extends TLMethod<TLAbsUpdates> {
         flags = 0;
         flags = noWebpage ? (flags | 2) : (flags &~ 2);
         flags = broadcast ? (flags | 16) : (flags &~ 16);
+        flags = replyToMsgId != null ? (flags | 1) : (flags &~ 1);
+        flags = replyMarkup != null ? (flags | 4) : (flags &~ 4);
+        flags = entities != null ? (flags | 8) : (flags &~ 8);
 
         writeInt(flags, stream);
         if ((flags & 2) != 0) writeBoolean(noWebpage, stream);
