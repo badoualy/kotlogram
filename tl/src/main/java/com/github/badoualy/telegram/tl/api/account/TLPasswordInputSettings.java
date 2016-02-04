@@ -35,8 +35,7 @@ public class TLPasswordInputSettings extends TLObject {
     public TLPasswordInputSettings() {
     }
 
-    public TLPasswordInputSettings(int flags, TLBytes newSalt, TLBytes newPasswordHash, String hint, String email) {
-        this.flags = flags;
+    public TLPasswordInputSettings(TLBytes newSalt, TLBytes newPasswordHash, String hint, String email) {
         this.newSalt = newSalt;
         this.newPasswordHash = newPasswordHash;
         this.hint = hint;
@@ -76,14 +75,6 @@ public class TLPasswordInputSettings extends TLObject {
     @Override
     public int getConstructorId() {
         return CONSTRUCTOR_ID;
-    }
-
-    public int getFlags() {
-        return flags;
-    }
-
-    public void setFlags(int flags) {
-        this.flags = flags;
     }
 
     public TLBytes getNewSalt() {

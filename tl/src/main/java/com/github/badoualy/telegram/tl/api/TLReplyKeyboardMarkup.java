@@ -29,8 +29,7 @@ public class TLReplyKeyboardMarkup extends TLAbsReplyMarkup {
     public TLReplyKeyboardMarkup() {
     }
 
-    public TLReplyKeyboardMarkup(int flags, boolean resize, boolean singleUse, boolean selective, TLVector<? extends TLKeyboardButtonRow> rows) {
-        this.flags = flags;
+    public TLReplyKeyboardMarkup(boolean resize, boolean singleUse, boolean selective, TLVector<? extends TLKeyboardButtonRow> rows) {
         this.resize = resize;
         this.singleUse = singleUse;
         this.selective = selective;
@@ -69,14 +68,6 @@ public class TLReplyKeyboardMarkup extends TLAbsReplyMarkup {
     @Override
     public int getConstructorId() {
         return CONSTRUCTOR_ID;
-    }
-
-    public int getFlags() {
-        return flags;
-    }
-
-    public void setFlags(int flags) {
-        this.flags = flags;
     }
 
     public boolean getResize() {

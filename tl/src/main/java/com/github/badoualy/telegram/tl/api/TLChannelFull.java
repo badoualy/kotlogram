@@ -49,8 +49,7 @@ public class TLChannelFull extends TLAbsChatFull {
     public TLChannelFull() {
     }
 
-    public TLChannelFull(int flags, boolean canViewParticipants, int id, String about, Integer participantsCount, Integer adminsCount, Integer kickedCount, int readInboxMaxId, int unreadCount, int unreadImportantCount, TLAbsPhoto chatPhoto, TLAbsPeerNotifySettings notifySettings, TLAbsExportedChatInvite exportedInvite, TLVector<? extends TLAbsBotInfo> botInfo, Integer migratedFromChatId, Integer migratedFromMaxId) {
-        this.flags = flags;
+    public TLChannelFull(boolean canViewParticipants, int id, String about, Integer participantsCount, Integer adminsCount, Integer kickedCount, int readInboxMaxId, int unreadCount, int unreadImportantCount, TLAbsPhoto chatPhoto, TLAbsPeerNotifySettings notifySettings, TLAbsExportedChatInvite exportedInvite, TLVector<? extends TLAbsBotInfo> botInfo, Integer migratedFromChatId, Integer migratedFromMaxId) {
         this.canViewParticipants = canViewParticipants;
         this.id = id;
         this.about = about;
@@ -125,14 +124,6 @@ public class TLChannelFull extends TLAbsChatFull {
     @Override
     public int getConstructorId() {
         return CONSTRUCTOR_ID;
-    }
-
-    public int getFlags() {
-        return flags;
-    }
-
-    public void setFlags(int flags) {
-        this.flags = flags;
     }
 
     public boolean getCanViewParticipants() {

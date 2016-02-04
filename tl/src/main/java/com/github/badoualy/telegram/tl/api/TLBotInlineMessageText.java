@@ -33,8 +33,7 @@ public class TLBotInlineMessageText extends TLAbsBotInlineMessage {
     public TLBotInlineMessageText() {
     }
 
-    public TLBotInlineMessageText(int flags, boolean noWebpage, String message, TLVector<TLAbsMessageEntity> entities) {
-        this.flags = flags;
+    public TLBotInlineMessageText(boolean noWebpage, String message, TLVector<TLAbsMessageEntity> entities) {
         this.noWebpage = noWebpage;
         this.message = message;
         this.entities = entities;
@@ -69,14 +68,6 @@ public class TLBotInlineMessageText extends TLAbsBotInlineMessage {
     @Override
     public int getConstructorId() {
         return CONSTRUCTOR_ID;
-    }
-
-    public int getFlags() {
-        return flags;
-    }
-
-    public void setFlags(int flags) {
-        this.flags = flags;
     }
 
     public boolean getNoWebpage() {

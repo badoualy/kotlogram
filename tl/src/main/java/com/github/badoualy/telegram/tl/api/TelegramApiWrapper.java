@@ -271,8 +271,8 @@ public abstract class TelegramApiWrapper implements TelegramApi {
     }
 
     @Override
-    public TLAbsUpdates channelsCreateChannel(int flags, boolean broadcast, boolean megagroup, String title, String about) throws IOException {
-        return (TLAbsUpdates) executeRpcQuery(new TLRequestChannelsCreateChannel(flags, broadcast, megagroup, title, about));
+    public TLAbsUpdates channelsCreateChannel(boolean broadcast, boolean megagroup, String title, String about) throws IOException {
+        return (TLAbsUpdates) executeRpcQuery(new TLRequestChannelsCreateChannel(broadcast, megagroup, title, about));
     }
 
     @Override
@@ -586,8 +586,8 @@ public abstract class TelegramApiWrapper implements TelegramApi {
     }
 
     @Override
-    public TLAbsUpdates messagesForwardMessages(int flags, boolean broadcast, TLAbsInputPeer fromPeer, TLIntVector id, TLLongVector randomId, TLAbsInputPeer toPeer) throws IOException {
-        return (TLAbsUpdates) executeRpcQuery(new TLRequestMessagesForwardMessages(flags, broadcast, fromPeer, id, randomId, toPeer));
+    public TLAbsUpdates messagesForwardMessages(boolean broadcast, TLAbsInputPeer fromPeer, TLIntVector id, TLLongVector randomId, TLAbsInputPeer toPeer) throws IOException {
+        return (TLAbsUpdates) executeRpcQuery(new TLRequestMessagesForwardMessages(broadcast, fromPeer, id, randomId, toPeer));
     }
 
     @Override
@@ -721,8 +721,8 @@ public abstract class TelegramApiWrapper implements TelegramApi {
     }
 
     @Override
-    public TLAbsMessages messagesSearch(int flags, boolean importantOnly, TLAbsInputPeer peer, String q, TLAbsMessagesFilter filter, int minDate, int maxDate, int offset, int maxId, int limit) throws IOException {
-        return (TLAbsMessages) executeRpcQuery(new TLRequestMessagesSearch(flags, importantOnly, peer, q, filter, minDate, maxDate, offset, maxId, limit));
+    public TLAbsMessages messagesSearch(boolean importantOnly, TLAbsInputPeer peer, String q, TLAbsMessagesFilter filter, int minDate, int maxDate, int offset, int maxId, int limit) throws IOException {
+        return (TLAbsMessages) executeRpcQuery(new TLRequestMessagesSearch(importantOnly, peer, q, filter, minDate, maxDate, offset, maxId, limit));
     }
 
     @Override
@@ -756,18 +756,18 @@ public abstract class TelegramApiWrapper implements TelegramApi {
     }
 
     @Override
-    public TLAbsUpdates messagesSendInlineBotResult(int flags, boolean broadcast, TLAbsInputPeer peer, Integer replyToMsgId, long randomId, long queryId, String id) throws IOException {
-        return (TLAbsUpdates) executeRpcQuery(new TLRequestMessagesSendInlineBotResult(flags, broadcast, peer, replyToMsgId, randomId, queryId, id));
+    public TLAbsUpdates messagesSendInlineBotResult(boolean broadcast, TLAbsInputPeer peer, Integer replyToMsgId, long randomId, long queryId, String id) throws IOException {
+        return (TLAbsUpdates) executeRpcQuery(new TLRequestMessagesSendInlineBotResult(broadcast, peer, replyToMsgId, randomId, queryId, id));
     }
 
     @Override
-    public TLAbsUpdates messagesSendMedia(int flags, boolean broadcast, TLAbsInputPeer peer, Integer replyToMsgId, TLAbsInputMedia media, long randomId, TLAbsReplyMarkup replyMarkup) throws IOException {
-        return (TLAbsUpdates) executeRpcQuery(new TLRequestMessagesSendMedia(flags, broadcast, peer, replyToMsgId, media, randomId, replyMarkup));
+    public TLAbsUpdates messagesSendMedia(boolean broadcast, TLAbsInputPeer peer, Integer replyToMsgId, TLAbsInputMedia media, long randomId, TLAbsReplyMarkup replyMarkup) throws IOException {
+        return (TLAbsUpdates) executeRpcQuery(new TLRequestMessagesSendMedia(broadcast, peer, replyToMsgId, media, randomId, replyMarkup));
     }
 
     @Override
-    public TLAbsUpdates messagesSendMessage(int flags, boolean noWebpage, boolean broadcast, TLAbsInputPeer peer, Integer replyToMsgId, String message, long randomId, TLAbsReplyMarkup replyMarkup, TLVector<TLAbsMessageEntity> entities) throws IOException {
-        return (TLAbsUpdates) executeRpcQuery(new TLRequestMessagesSendMessage(flags, noWebpage, broadcast, peer, replyToMsgId, message, randomId, replyMarkup, entities));
+    public TLAbsUpdates messagesSendMessage(boolean noWebpage, boolean broadcast, TLAbsInputPeer peer, Integer replyToMsgId, String message, long randomId, TLAbsReplyMarkup replyMarkup, TLVector<TLAbsMessageEntity> entities) throws IOException {
+        return (TLAbsUpdates) executeRpcQuery(new TLRequestMessagesSendMessage(noWebpage, broadcast, peer, replyToMsgId, message, randomId, replyMarkup, entities));
     }
 
     @Override
@@ -776,8 +776,8 @@ public abstract class TelegramApiWrapper implements TelegramApi {
     }
 
     @Override
-    public TLBool messagesSetInlineBotResults(int flags, boolean gallery, boolean _private, long queryId, TLVector<? extends TLInputBotInlineResult> results, int cacheTime, String nextOffset) throws IOException {
-        return (TLBool) executeRpcQuery(new TLRequestMessagesSetInlineBotResults(flags, gallery, _private, queryId, results, cacheTime, nextOffset));
+    public TLBool messagesSetInlineBotResults(boolean gallery, boolean _private, long queryId, TLVector<? extends TLInputBotInlineResult> results, int cacheTime, String nextOffset) throws IOException {
+        return (TLBool) executeRpcQuery(new TLRequestMessagesSetInlineBotResults(gallery, _private, queryId, results, cacheTime, nextOffset));
     }
 
     @Override

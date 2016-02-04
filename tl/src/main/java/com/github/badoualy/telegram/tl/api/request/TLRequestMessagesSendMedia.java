@@ -44,8 +44,7 @@ public class TLRequestMessagesSendMedia extends TLMethod<TLAbsUpdates> {
     public TLRequestMessagesSendMedia() {
     }
 
-    public TLRequestMessagesSendMedia(int flags, boolean broadcast, TLAbsInputPeer peer, Integer replyToMsgId, TLAbsInputMedia media, long randomId, TLAbsReplyMarkup replyMarkup) {
-        this.flags = flags;
+    public TLRequestMessagesSendMedia(boolean broadcast, TLAbsInputPeer peer, Integer replyToMsgId, TLAbsInputMedia media, long randomId, TLAbsReplyMarkup replyMarkup) {
         this.broadcast = broadcast;
         this.peer = peer;
         this.replyToMsgId = replyToMsgId;
@@ -103,14 +102,6 @@ public class TLRequestMessagesSendMedia extends TLMethod<TLAbsUpdates> {
     @Override
     public int getConstructorId() {
         return CONSTRUCTOR_ID;
-    }
-
-    public int getFlags() {
-        return flags;
-    }
-
-    public void setFlags(int flags) {
-        this.flags = flags;
     }
 
     public boolean getBroadcast() {

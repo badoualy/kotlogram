@@ -50,8 +50,7 @@ public class TLChat extends TLAbsChat {
     public TLChat() {
     }
 
-    public TLChat(int flags, boolean creator, boolean kicked, boolean left, boolean adminsEnabled, boolean admin, boolean deactivated, int id, String title, TLAbsChatPhoto photo, int participantsCount, int date, int version, TLAbsInputChannel migratedTo) {
-        this.flags = flags;
+    public TLChat(boolean creator, boolean kicked, boolean left, boolean adminsEnabled, boolean admin, boolean deactivated, int id, String title, TLAbsChatPhoto photo, int participantsCount, int date, int version, TLAbsInputChannel migratedTo) {
         this.creator = creator;
         this.kicked = kicked;
         this.left = left;
@@ -121,14 +120,6 @@ public class TLChat extends TLAbsChat {
     @Override
     public int getConstructorId() {
         return CONSTRUCTOR_ID;
-    }
-
-    public int getFlags() {
-        return flags;
-    }
-
-    public void setFlags(int flags) {
-        this.flags = flags;
     }
 
     public boolean getCreator() {

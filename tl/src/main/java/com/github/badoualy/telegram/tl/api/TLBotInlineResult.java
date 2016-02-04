@@ -43,8 +43,7 @@ public class TLBotInlineResult extends TLAbsBotInlineResult {
     public TLBotInlineResult() {
     }
 
-    public TLBotInlineResult(int flags, String id, String type, String title, String description, String url, String thumbUrl, String contentUrl, String contentType, Integer w, Integer h, Integer duration, TLAbsBotInlineMessage sendMessage) {
-        this.flags = flags;
+    public TLBotInlineResult(String id, String type, String title, String description, String url, String thumbUrl, String contentUrl, String contentType, Integer w, Integer h, Integer duration, TLAbsBotInlineMessage sendMessage) {
         this.id = id;
         this.type = type;
         this.title = title;
@@ -113,14 +112,6 @@ public class TLBotInlineResult extends TLAbsBotInlineResult {
     @Override
     public int getConstructorId() {
         return CONSTRUCTOR_ID;
-    }
-
-    public int getFlags() {
-        return flags;
-    }
-
-    public void setFlags(int flags) {
-        this.flags = flags;
     }
 
     public String getId() {

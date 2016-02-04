@@ -144,7 +144,7 @@ public interface TelegramApi {
 
     TLBool channelsCheckUsername(TLAbsInputChannel channel, String username) throws IOException;
 
-    TLAbsUpdates channelsCreateChannel(int flags, boolean broadcast, boolean megagroup, String title, String about) throws IOException;
+    TLAbsUpdates channelsCreateChannel(boolean broadcast, boolean megagroup, String title, String about) throws IOException;
 
     TLAbsUpdates channelsDeleteChannel(TLAbsInputChannel channel) throws IOException;
 
@@ -270,7 +270,7 @@ public interface TelegramApi {
 
     TLAbsUpdates messagesForwardMessage(TLAbsInputPeer peer, int id, long randomId) throws IOException;
 
-    TLAbsUpdates messagesForwardMessages(int flags, boolean broadcast, TLAbsInputPeer fromPeer, TLIntVector id, TLLongVector randomId, TLAbsInputPeer toPeer) throws IOException;
+    TLAbsUpdates messagesForwardMessages(boolean broadcast, TLAbsInputPeer fromPeer, TLIntVector id, TLLongVector randomId, TLAbsInputPeer toPeer) throws IOException;
 
     TLAbsAllStickers messagesGetAllStickers(int hash) throws IOException;
 
@@ -324,7 +324,7 @@ public interface TelegramApi {
 
     TLBool messagesSaveGif(TLAbsInputDocument id, boolean unsave) throws IOException;
 
-    TLAbsMessages messagesSearch(int flags, boolean importantOnly, TLAbsInputPeer peer, String q, TLAbsMessagesFilter filter, int minDate, int maxDate, int offset, int maxId, int limit) throws IOException;
+    TLAbsMessages messagesSearch(boolean importantOnly, TLAbsInputPeer peer, String q, TLAbsMessagesFilter filter, int minDate, int maxDate, int offset, int maxId, int limit) throws IOException;
 
     TLFoundGifs messagesSearchGifs(String q, int offset) throws IOException;
 
@@ -338,15 +338,15 @@ public interface TelegramApi {
 
     TLAbsSentEncryptedMessage messagesSendEncryptedService(TLInputEncryptedChat peer, long randomId, TLBytes data) throws IOException;
 
-    TLAbsUpdates messagesSendInlineBotResult(int flags, boolean broadcast, TLAbsInputPeer peer, Integer replyToMsgId, long randomId, long queryId, String id) throws IOException;
+    TLAbsUpdates messagesSendInlineBotResult(boolean broadcast, TLAbsInputPeer peer, Integer replyToMsgId, long randomId, long queryId, String id) throws IOException;
 
-    TLAbsUpdates messagesSendMedia(int flags, boolean broadcast, TLAbsInputPeer peer, Integer replyToMsgId, TLAbsInputMedia media, long randomId, TLAbsReplyMarkup replyMarkup) throws IOException;
+    TLAbsUpdates messagesSendMedia(boolean broadcast, TLAbsInputPeer peer, Integer replyToMsgId, TLAbsInputMedia media, long randomId, TLAbsReplyMarkup replyMarkup) throws IOException;
 
-    TLAbsUpdates messagesSendMessage(int flags, boolean noWebpage, boolean broadcast, TLAbsInputPeer peer, Integer replyToMsgId, String message, long randomId, TLAbsReplyMarkup replyMarkup, TLVector<TLAbsMessageEntity> entities) throws IOException;
+    TLAbsUpdates messagesSendMessage(boolean noWebpage, boolean broadcast, TLAbsInputPeer peer, Integer replyToMsgId, String message, long randomId, TLAbsReplyMarkup replyMarkup, TLVector<TLAbsMessageEntity> entities) throws IOException;
 
     TLBool messagesSetEncryptedTyping(TLInputEncryptedChat peer, boolean typing) throws IOException;
 
-    TLBool messagesSetInlineBotResults(int flags, boolean gallery, boolean _private, long queryId, TLVector<? extends TLInputBotInlineResult> results, int cacheTime, String nextOffset) throws IOException;
+    TLBool messagesSetInlineBotResults(boolean gallery, boolean _private, long queryId, TLVector<? extends TLInputBotInlineResult> results, int cacheTime, String nextOffset) throws IOException;
 
     TLBool messagesSetTyping(TLAbsInputPeer peer, TLAbsSendMessageAction action) throws IOException;
 

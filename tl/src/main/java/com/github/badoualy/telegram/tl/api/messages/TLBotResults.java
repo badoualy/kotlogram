@@ -39,8 +39,7 @@ public class TLBotResults extends TLObject {
     public TLBotResults() {
     }
 
-    public TLBotResults(int flags, boolean gallery, long queryId, String nextOffset, TLVector<? extends TLAbsBotInlineResult> results) {
-        this.flags = flags;
+    public TLBotResults(boolean gallery, long queryId, String nextOffset, TLVector<? extends TLAbsBotInlineResult> results) {
         this.gallery = gallery;
         this.queryId = queryId;
         this.nextOffset = nextOffset;
@@ -78,14 +77,6 @@ public class TLBotResults extends TLObject {
     @Override
     public int getConstructorId() {
         return CONSTRUCTOR_ID;
-    }
-
-    public int getFlags() {
-        return flags;
-    }
-
-    public void setFlags(int flags) {
-        this.flags = flags;
     }
 
     public boolean getGallery() {

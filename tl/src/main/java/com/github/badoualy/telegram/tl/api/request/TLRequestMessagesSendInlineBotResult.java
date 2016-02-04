@@ -44,8 +44,7 @@ public class TLRequestMessagesSendInlineBotResult extends TLMethod<TLAbsUpdates>
     public TLRequestMessagesSendInlineBotResult() {
     }
 
-    public TLRequestMessagesSendInlineBotResult(int flags, boolean broadcast, TLAbsInputPeer peer, Integer replyToMsgId, long randomId, long queryId, String id) {
-        this.flags = flags;
+    public TLRequestMessagesSendInlineBotResult(boolean broadcast, TLAbsInputPeer peer, Integer replyToMsgId, long randomId, long queryId, String id) {
         this.broadcast = broadcast;
         this.peer = peer;
         this.replyToMsgId = replyToMsgId;
@@ -102,14 +101,6 @@ public class TLRequestMessagesSendInlineBotResult extends TLMethod<TLAbsUpdates>
     @Override
     public int getConstructorId() {
         return CONSTRUCTOR_ID;
-    }
-
-    public int getFlags() {
-        return flags;
-    }
-
-    public void setFlags(int flags) {
-        this.flags = flags;
     }
 
     public boolean getBroadcast() {

@@ -49,8 +49,7 @@ public class TLRequestMessagesSearch extends TLMethod<TLAbsMessages> {
     public TLRequestMessagesSearch() {
     }
 
-    public TLRequestMessagesSearch(int flags, boolean importantOnly, TLAbsInputPeer peer, String q, TLAbsMessagesFilter filter, int minDate, int maxDate, int offset, int maxId, int limit) {
-        this.flags = flags;
+    public TLRequestMessagesSearch(boolean importantOnly, TLAbsInputPeer peer, String q, TLAbsMessagesFilter filter, int minDate, int maxDate, int offset, int maxId, int limit) {
         this.importantOnly = importantOnly;
         this.peer = peer;
         this.q = q;
@@ -115,14 +114,6 @@ public class TLRequestMessagesSearch extends TLMethod<TLAbsMessages> {
     @Override
     public int getConstructorId() {
         return CONSTRUCTOR_ID;
-    }
-
-    public int getFlags() {
-        return flags;
-    }
-
-    public void setFlags(int flags) {
-        this.flags = flags;
     }
 
     public boolean getImportantOnly() {

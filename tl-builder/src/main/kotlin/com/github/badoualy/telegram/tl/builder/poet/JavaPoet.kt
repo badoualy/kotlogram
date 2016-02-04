@@ -295,7 +295,9 @@ object JavaPoet {
                 .addStatement("return (\$T) executeRpcQuery(new \$T(\$L))",
                         responseType,
                         ClassName.get(PACKAGE_TL_API_REQUEST, clazzName),
-                        if (method.parameters.isNotEmpty()) method.parameters.map { p -> p.name.lCamelCase().javaEscape() }.joinToString(", ") else "")
+                        if (method.parameters.isNotEmpty())
+                            method.parameters.filterNot { p -> p.tlType is TLTypeFlag }.map { p -> p.name.lCamelCase().javaEscape() }.joinToString(", ")
+                        else "")
         generateClassCommon(clazz, method.name, method.id, method.parameters)
         apiClazz.addMethod(apiMethod?.build())
         apiWrappedClazz.addMethod(apiWrappedMethod?.build())
@@ -362,24 +364,27 @@ object JavaPoet {
             if (!parameter.inherited || id == null) // Null-id is superclass
                 clazz.addField(fieldType, fieldName, Modifier.PROTECTED)
 
-            // Add set()/get()
-            accessors.add(generateGetter(parameter.name, fieldName, fieldType))
-            accessors.add(generateSetter(parameter.name, fieldName, fieldType))
-
-            // Add constructor parameter
-            constructorBuilder.addParameter(fieldType, fieldName)
-            constructorBuilder.addStatement("this.$fieldName = $fieldName")
-
             // Add serialize method entry
             serializeMethod.addStatement(serializeParameter(fieldName, parameter.tlType))
             deserializeMethod.addStatement(deserializeParameter(fieldName, parameter.tlType, fieldType))
 
-            // Add api method
-            apiMethod?.addParameter(fieldType, fieldName)
-            apiWrappedMethod?.addParameter(fieldType, fieldName)
-            if (parameter.tlType is TLTypeFunctional) {
-                apiMethod?.addTypeVariable(TypeVariableName.get("T", TYPE_TL_OBJECT))
-                apiWrappedMethod?.addTypeVariable(TypeVariableName.get("T", TYPE_TL_OBJECT))
+            // Don't add if flags, since it'll be computed
+            if (parameter.tlType !is TLTypeFlag) {
+                // Add set()/get()
+                accessors.add(generateGetter(parameter.name, fieldName, fieldType))
+                accessors.add(generateSetter(parameter.name, fieldName, fieldType))
+
+                // Add constructor parameter
+                constructorBuilder.addParameter(fieldType, fieldName)
+                constructorBuilder.addStatement("this.$fieldName = $fieldName")
+
+                // Add api method
+                apiMethod?.addParameter(fieldType, fieldName)
+                apiWrappedMethod?.addParameter(fieldType, fieldName)
+                if (parameter.tlType is TLTypeFunctional) {
+                    apiMethod?.addTypeVariable(TypeVariableName.get("T", TYPE_TL_OBJECT))
+                    apiWrappedMethod?.addTypeVariable(TypeVariableName.get("T", TYPE_TL_OBJECT))
+                }
             }
         }
 

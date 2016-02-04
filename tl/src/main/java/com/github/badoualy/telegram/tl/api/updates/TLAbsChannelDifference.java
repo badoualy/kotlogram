@@ -18,14 +18,6 @@ public abstract class TLAbsChannelDifference extends TLObject {
     public TLAbsChannelDifference() {
     }
 
-    public int getFlags() {
-        return flags;
-    }
-
-    public void setFlags(int flags) {
-        this.flags = flags;
-    }
-
     public boolean getFinal() {
         return _final;
     }

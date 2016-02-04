@@ -14,14 +14,6 @@ public abstract class TLAbsReplyMarkup extends TLObject {
     public TLAbsReplyMarkup() {
     }
 
-    public int getFlags() {
-        return flags;
-    }
-
-    public void setFlags(int flags) {
-        this.flags = flags;
-    }
-
     public boolean getSelective() {
         return selective;
     }

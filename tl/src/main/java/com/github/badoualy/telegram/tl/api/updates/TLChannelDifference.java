@@ -35,8 +35,7 @@ public class TLChannelDifference extends TLAbsChannelDifference {
     public TLChannelDifference() {
     }
 
-    public TLChannelDifference(int flags, boolean _final, int pts, Integer timeout, TLVector<? extends TLAbsMessage> newMessages, TLVector<? extends TLAbsUpdate> otherUpdates, TLVector<? extends TLAbsChat> chats, TLVector<? extends TLAbsUser> users) {
-        this.flags = flags;
+    public TLChannelDifference(boolean _final, int pts, Integer timeout, TLVector<? extends TLAbsMessage> newMessages, TLVector<? extends TLAbsUpdate> otherUpdates, TLVector<? extends TLAbsChat> chats, TLVector<? extends TLAbsUser> users) {
         this._final = _final;
         this.pts = pts;
         this.timeout = timeout;
@@ -83,14 +82,6 @@ public class TLChannelDifference extends TLAbsChannelDifference {
     @Override
     public int getConstructorId() {
         return CONSTRUCTOR_ID;
-    }
-
-    public int getFlags() {
-        return flags;
-    }
-
-    public void setFlags(int flags) {
-        this.flags = flags;
     }
 
     public boolean getFinal() {

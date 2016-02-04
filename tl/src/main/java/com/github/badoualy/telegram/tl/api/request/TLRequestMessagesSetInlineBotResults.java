@@ -46,8 +46,7 @@ public class TLRequestMessagesSetInlineBotResults extends TLMethod<TLBool> {
     public TLRequestMessagesSetInlineBotResults() {
     }
 
-    public TLRequestMessagesSetInlineBotResults(int flags, boolean gallery, boolean _private, long queryId, TLVector<? extends TLInputBotInlineResult> results, int cacheTime, String nextOffset) {
-        this.flags = flags;
+    public TLRequestMessagesSetInlineBotResults(boolean gallery, boolean _private, long queryId, TLVector<? extends TLInputBotInlineResult> results, int cacheTime, String nextOffset) {
         this.gallery = gallery;
         this._private = _private;
         this.queryId = queryId;
@@ -105,14 +104,6 @@ public class TLRequestMessagesSetInlineBotResults extends TLMethod<TLBool> {
     @Override
     public int getConstructorId() {
         return CONSTRUCTOR_ID;
-    }
-
-    public int getFlags() {
-        return flags;
-    }
-
-    public void setFlags(int flags) {
-        this.flags = flags;
     }
 
     public boolean getGallery() {

@@ -40,8 +40,7 @@ public class TLMessageService extends TLAbsMessage {
     public TLMessageService() {
     }
 
-    public TLMessageService(int flags, boolean unread, boolean out, boolean mentioned, boolean mediaUnread, int id, Integer fromId, TLAbsPeer toId, int date, TLAbsMessageAction action) {
-        this.flags = flags;
+    public TLMessageService(boolean unread, boolean out, boolean mentioned, boolean mediaUnread, int id, Integer fromId, TLAbsPeer toId, int date, TLAbsMessageAction action) {
         this.unread = unread;
         this.out = out;
         this.mentioned = mentioned;
@@ -97,14 +96,6 @@ public class TLMessageService extends TLAbsMessage {
     @Override
     public int getConstructorId() {
         return CONSTRUCTOR_ID;
-    }
-
-    public int getFlags() {
-        return flags;
-    }
-
-    public void setFlags(int flags) {
-        this.flags = flags;
     }
 
     public boolean getUnread() {

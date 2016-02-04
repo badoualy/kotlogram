@@ -61,8 +61,7 @@ public class TLUpdateShortChatMessage extends TLAbsUpdates {
     public TLUpdateShortChatMessage() {
     }
 
-    public TLUpdateShortChatMessage(int flags, boolean unread, boolean out, boolean mentioned, boolean mediaUnread, int id, int fromId, int chatId, String message, int pts, int ptsCount, int date, TLAbsPeer fwdFromId, Integer fwdDate, Integer viaBotId, Integer replyToMsgId, TLVector<TLAbsMessageEntity> entities) {
-        this.flags = flags;
+    public TLUpdateShortChatMessage(boolean unread, boolean out, boolean mentioned, boolean mediaUnread, int id, int fromId, int chatId, String message, int pts, int ptsCount, int date, TLAbsPeer fwdFromId, Integer fwdDate, Integer viaBotId, Integer replyToMsgId, TLVector<TLAbsMessageEntity> entities) {
         this.unread = unread;
         this.out = out;
         this.mentioned = mentioned;
@@ -143,14 +142,6 @@ public class TLUpdateShortChatMessage extends TLAbsUpdates {
     @Override
     public int getConstructorId() {
         return CONSTRUCTOR_ID;
-    }
-
-    public int getFlags() {
-        return flags;
-    }
-
-    public void setFlags(int flags) {
-        this.flags = flags;
     }
 
     public boolean getUnread() {

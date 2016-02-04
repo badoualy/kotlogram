@@ -34,8 +34,7 @@ public class TLChatInvite extends TLAbsChatInvite {
     public TLChatInvite() {
     }
 
-    public TLChatInvite(int flags, boolean channel, boolean broadcast, boolean _public, boolean megagroup, String title) {
-        this.flags = flags;
+    public TLChatInvite(boolean channel, boolean broadcast, boolean _public, boolean megagroup, String title) {
         this.channel = channel;
         this.broadcast = broadcast;
         this._public = _public;
@@ -78,14 +77,6 @@ public class TLChatInvite extends TLAbsChatInvite {
     @Override
     public int getConstructorId() {
         return CONSTRUCTOR_ID;
-    }
-
-    public int getFlags() {
-        return flags;
-    }
-
-    public void setFlags(int flags) {
-        this.flags = flags;
     }
 
     public boolean getChannel() {

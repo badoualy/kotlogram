@@ -35,8 +35,7 @@ public class TLDcOption extends TLObject {
     public TLDcOption() {
     }
 
-    public TLDcOption(int flags, boolean ipv6, boolean mediaOnly, int id, String ipAddress, int port) {
-        this.flags = flags;
+    public TLDcOption(boolean ipv6, boolean mediaOnly, int id, String ipAddress, int port) {
         this.ipv6 = ipv6;
         this.mediaOnly = mediaOnly;
         this.id = id;
@@ -77,14 +76,6 @@ public class TLDcOption extends TLObject {
     @Override
     public int getConstructorId() {
         return CONSTRUCTOR_ID;
-    }
-
-    public int getFlags() {
-        return flags;
-    }
-
-    public void setFlags(int flags) {
-        this.flags = flags;
     }
 
     public boolean getIpv6() {

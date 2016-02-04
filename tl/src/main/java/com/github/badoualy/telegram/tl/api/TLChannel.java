@@ -60,8 +60,7 @@ public class TLChannel extends TLAbsChat {
     public TLChannel() {
     }
 
-    public TLChannel(int flags, boolean creator, boolean kicked, boolean left, boolean editor, boolean moderator, boolean broadcast, boolean verified, boolean megagroup, boolean restricted, int id, long accessHash, String title, String username, TLAbsChatPhoto photo, int date, int version, String restrictionReason) {
-        this.flags = flags;
+    public TLChannel(boolean creator, boolean kicked, boolean left, boolean editor, boolean moderator, boolean broadcast, boolean verified, boolean megagroup, boolean restricted, int id, long accessHash, String title, String username, TLAbsChatPhoto photo, int date, int version, String restrictionReason) {
         this.creator = creator;
         this.kicked = kicked;
         this.left = left;
@@ -147,14 +146,6 @@ public class TLChannel extends TLAbsChat {
     @Override
     public int getConstructorId() {
         return CONSTRUCTOR_ID;
-    }
-
-    public int getFlags() {
-        return flags;
-    }
-
-    public void setFlags(int flags) {
-        this.flags = flags;
     }
 
     public boolean getCreator() {

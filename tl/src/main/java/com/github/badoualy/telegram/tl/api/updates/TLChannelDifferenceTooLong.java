@@ -42,8 +42,7 @@ public class TLChannelDifferenceTooLong extends TLAbsChannelDifference {
     public TLChannelDifferenceTooLong() {
     }
 
-    public TLChannelDifferenceTooLong(int flags, boolean _final, int pts, Integer timeout, int topMessage, int topImportantMessage, int readInboxMaxId, int unreadCount, int unreadImportantCount, TLVector<? extends TLAbsMessage> messages, TLVector<? extends TLAbsChat> chats, TLVector<? extends TLAbsUser> users) {
-        this.flags = flags;
+    public TLChannelDifferenceTooLong(boolean _final, int pts, Integer timeout, int topMessage, int topImportantMessage, int readInboxMaxId, int unreadCount, int unreadImportantCount, TLVector<? extends TLAbsMessage> messages, TLVector<? extends TLAbsChat> chats, TLVector<? extends TLAbsUser> users) {
         this._final = _final;
         this.pts = pts;
         this.timeout = timeout;
@@ -102,14 +101,6 @@ public class TLChannelDifferenceTooLong extends TLAbsChannelDifference {
     @Override
     public int getConstructorId() {
         return CONSTRUCTOR_ID;
-    }
-
-    public int getFlags() {
-        return flags;
-    }
-
-    public void setFlags(int flags) {
-        this.flags = flags;
     }
 
     public boolean getFinal() {

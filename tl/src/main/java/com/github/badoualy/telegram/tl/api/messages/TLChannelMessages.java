@@ -34,8 +34,7 @@ public class TLChannelMessages extends TLAbsMessages {
     public TLChannelMessages() {
     }
 
-    public TLChannelMessages(int flags, int pts, int count, TLVector<? extends TLAbsMessage> messages, TLVector<TLMessageGroup> collapsed, TLVector<? extends TLAbsChat> chats, TLVector<? extends TLAbsUser> users) {
-        this.flags = flags;
+    public TLChannelMessages(int pts, int count, TLVector<? extends TLAbsMessage> messages, TLVector<TLMessageGroup> collapsed, TLVector<? extends TLAbsChat> chats, TLVector<? extends TLAbsUser> users) {
         this.pts = pts;
         this.count = count;
         this.messages = messages;
@@ -78,14 +77,6 @@ public class TLChannelMessages extends TLAbsMessages {
     @Override
     public int getConstructorId() {
         return CONSTRUCTOR_ID;
-    }
-
-    public int getFlags() {
-        return flags;
-    }
-
-    public void setFlags(int flags) {
-        this.flags = flags;
     }
 
     public int getPts() {

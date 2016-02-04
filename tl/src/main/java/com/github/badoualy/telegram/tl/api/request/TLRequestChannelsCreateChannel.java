@@ -36,8 +36,7 @@ public class TLRequestChannelsCreateChannel extends TLMethod<TLAbsUpdates> {
     public TLRequestChannelsCreateChannel() {
     }
 
-    public TLRequestChannelsCreateChannel(int flags, boolean broadcast, boolean megagroup, String title, String about) {
-        this.flags = flags;
+    public TLRequestChannelsCreateChannel(boolean broadcast, boolean megagroup, String title, String about) {
         this.broadcast = broadcast;
         this.megagroup = megagroup;
         this.title = title;
@@ -88,14 +87,6 @@ public class TLRequestChannelsCreateChannel extends TLMethod<TLAbsUpdates> {
     @Override
     public int getConstructorId() {
         return CONSTRUCTOR_ID;
-    }
-
-    public int getFlags() {
-        return flags;
-    }
-
-    public void setFlags(int flags) {
-        this.flags = flags;
     }
 
     public boolean getBroadcast() {

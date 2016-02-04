@@ -53,8 +53,7 @@ public class TLRequestMessagesSendMessage extends TLMethod<TLAbsUpdates> {
     public TLRequestMessagesSendMessage() {
     }
 
-    public TLRequestMessagesSendMessage(int flags, boolean noWebpage, boolean broadcast, TLAbsInputPeer peer, Integer replyToMsgId, String message, long randomId, TLAbsReplyMarkup replyMarkup, TLVector<TLAbsMessageEntity> entities) {
-        this.flags = flags;
+    public TLRequestMessagesSendMessage(boolean noWebpage, boolean broadcast, TLAbsInputPeer peer, Integer replyToMsgId, String message, long randomId, TLAbsReplyMarkup replyMarkup, TLVector<TLAbsMessageEntity> entities) {
         this.noWebpage = noWebpage;
         this.broadcast = broadcast;
         this.peer = peer;
@@ -120,14 +119,6 @@ public class TLRequestMessagesSendMessage extends TLMethod<TLAbsUpdates> {
     @Override
     public int getConstructorId() {
         return CONSTRUCTOR_ID;
-    }
-
-    public int getFlags() {
-        return flags;
-    }
-
-    public void setFlags(int flags) {
-        this.flags = flags;
     }
 
     public boolean getNoWebpage() {

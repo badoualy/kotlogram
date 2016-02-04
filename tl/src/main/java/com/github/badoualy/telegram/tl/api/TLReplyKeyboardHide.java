@@ -20,8 +20,7 @@ public class TLReplyKeyboardHide extends TLAbsReplyMarkup {
     public TLReplyKeyboardHide() {
     }
 
-    public TLReplyKeyboardHide(int flags, boolean selective) {
-        this.flags = flags;
+    public TLReplyKeyboardHide(boolean selective) {
         this.selective = selective;
     }
 
@@ -49,14 +48,6 @@ public class TLReplyKeyboardHide extends TLAbsReplyMarkup {
     @Override
     public int getConstructorId() {
         return CONSTRUCTOR_ID;
-    }
-
-    public int getFlags() {
-        return flags;
-    }
-
-    public void setFlags(int flags) {
-        this.flags = flags;
     }
 
     public boolean getSelective() {

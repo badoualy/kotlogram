@@ -31,8 +31,7 @@ public class TLChannelMessagesFilter extends TLAbsChannelMessagesFilter {
     public TLChannelMessagesFilter() {
     }
 
-    public TLChannelMessagesFilter(int flags, boolean importantOnly, boolean excludeNewMessages, TLVector<? extends TLMessageRange> ranges) {
-        this.flags = flags;
+    public TLChannelMessagesFilter(boolean importantOnly, boolean excludeNewMessages, TLVector<? extends TLMessageRange> ranges) {
         this.importantOnly = importantOnly;
         this.excludeNewMessages = excludeNewMessages;
         this.ranges = ranges;
@@ -67,14 +66,6 @@ public class TLChannelMessagesFilter extends TLAbsChannelMessagesFilter {
     @Override
     public int getConstructorId() {
         return CONSTRUCTOR_ID;
-    }
-
-    public int getFlags() {
-        return flags;
-    }
-
-    public void setFlags(int flags) {
-        this.flags = flags;
     }
 
     public boolean getImportantOnly() {

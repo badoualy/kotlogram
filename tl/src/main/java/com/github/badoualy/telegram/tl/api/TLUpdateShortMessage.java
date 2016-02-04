@@ -59,8 +59,7 @@ public class TLUpdateShortMessage extends TLAbsUpdates {
     public TLUpdateShortMessage() {
     }
 
-    public TLUpdateShortMessage(int flags, boolean unread, boolean out, boolean mentioned, boolean mediaUnread, int id, int userId, String message, int pts, int ptsCount, int date, TLAbsPeer fwdFromId, Integer fwdDate, Integer viaBotId, Integer replyToMsgId, TLVector<TLAbsMessageEntity> entities) {
-        this.flags = flags;
+    public TLUpdateShortMessage(boolean unread, boolean out, boolean mentioned, boolean mediaUnread, int id, int userId, String message, int pts, int ptsCount, int date, TLAbsPeer fwdFromId, Integer fwdDate, Integer viaBotId, Integer replyToMsgId, TLVector<TLAbsMessageEntity> entities) {
         this.unread = unread;
         this.out = out;
         this.mentioned = mentioned;
@@ -138,14 +137,6 @@ public class TLUpdateShortMessage extends TLAbsUpdates {
     @Override
     public int getConstructorId() {
         return CONSTRUCTOR_ID;
-    }
-
-    public int getFlags() {
-        return flags;
-    }
-
-    public void setFlags(int flags) {
-        this.flags = flags;
     }
 
     public boolean getUnread() {

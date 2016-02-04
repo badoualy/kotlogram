@@ -68,7 +68,7 @@ public class KotlogramSample {
             TLUser randomUser = dialogs.getUsers().get(0).getAsUser();
             TLInputPeerUser inputUser = new TLInputPeerUser(randomUser.getId(), randomUser.getAccessHash());
             int randomId = new Random(System.currentTimeMillis()).nextInt();
-            client.messagesSendMessage(0, false, false, inputUser, 0, "Kotlogram is awesome!", randomId, null, null);
+            client.messagesSendMessage(false, false, inputUser, 0, "Kotlogram is awesome!", randomId, null, null);
             System.out.println("Message sent");
         } catch (RpcErrorException e) {
             e.printStackTrace();

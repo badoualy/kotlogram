@@ -45,8 +45,7 @@ public class TLStickerSet extends TLObject {
     public TLStickerSet() {
     }
 
-    public TLStickerSet(int flags, boolean installed, boolean disabled, boolean official, long id, long accessHash, String title, String shortName, int count, int hash) {
-        this.flags = flags;
+    public TLStickerSet(boolean installed, boolean disabled, boolean official, long id, long accessHash, String title, String shortName, int count, int hash) {
         this.installed = installed;
         this.disabled = disabled;
         this.official = official;
@@ -100,14 +99,6 @@ public class TLStickerSet extends TLObject {
     @Override
     public int getConstructorId() {
         return CONSTRUCTOR_ID;
-    }
-
-    public int getFlags() {
-        return flags;
-    }
-
-    public void setFlags(int flags) {
-        this.flags = flags;
     }
 
     public boolean getInstalled() {

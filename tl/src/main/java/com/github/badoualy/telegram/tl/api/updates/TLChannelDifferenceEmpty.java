@@ -20,8 +20,7 @@ public class TLChannelDifferenceEmpty extends TLAbsChannelDifference {
     public TLChannelDifferenceEmpty() {
     }
 
-    public TLChannelDifferenceEmpty(int flags, boolean _final, int pts, Integer timeout) {
-        this.flags = flags;
+    public TLChannelDifferenceEmpty(boolean _final, int pts, Integer timeout) {
         this._final = _final;
         this.pts = pts;
         this.timeout = timeout;
@@ -56,14 +55,6 @@ public class TLChannelDifferenceEmpty extends TLAbsChannelDifference {
     @Override
     public int getConstructorId() {
         return CONSTRUCTOR_ID;
-    }
-
-    public int getFlags() {
-        return flags;
-    }
-
-    public void setFlags(int flags) {
-        this.flags = flags;
     }
 
     public boolean getFinal() {

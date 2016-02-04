@@ -55,8 +55,7 @@ public class TLWebPage extends TLAbsWebPage {
     public TLWebPage() {
     }
 
-    public TLWebPage(int flags, long id, String url, String displayUrl, String type, String siteName, String title, String description, TLAbsPhoto photo, String embedUrl, String embedType, Integer embedWidth, Integer embedHeight, Integer duration, String author, TLAbsDocument document) {
-        this.flags = flags;
+    public TLWebPage(long id, String url, String displayUrl, String type, String siteName, String title, String description, TLAbsPhoto photo, String embedUrl, String embedType, Integer embedWidth, Integer embedHeight, Integer duration, String author, TLAbsDocument document) {
         this.id = id;
         this.url = url;
         this.displayUrl = displayUrl;
@@ -137,14 +136,6 @@ public class TLWebPage extends TLAbsWebPage {
     @Override
     public int getConstructorId() {
         return CONSTRUCTOR_ID;
-    }
-
-    public int getFlags() {
-        return flags;
-    }
-
-    public void setFlags(int flags) {
-        this.flags = flags;
     }
 
     public long getId() {

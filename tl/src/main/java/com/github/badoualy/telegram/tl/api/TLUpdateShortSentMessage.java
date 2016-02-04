@@ -43,8 +43,7 @@ public class TLUpdateShortSentMessage extends TLAbsUpdates {
     public TLUpdateShortSentMessage() {
     }
 
-    public TLUpdateShortSentMessage(int flags, boolean unread, boolean out, int id, int pts, int ptsCount, int date, TLAbsMessageMedia media, TLVector<TLAbsMessageEntity> entities) {
-        this.flags = flags;
+    public TLUpdateShortSentMessage(boolean unread, boolean out, int id, int pts, int ptsCount, int date, TLAbsMessageMedia media, TLVector<TLAbsMessageEntity> entities) {
         this.unread = unread;
         this.out = out;
         this.id = id;
@@ -96,14 +95,6 @@ public class TLUpdateShortSentMessage extends TLAbsUpdates {
     @Override
     public int getConstructorId() {
         return CONSTRUCTOR_ID;
-    }
-
-    public int getFlags() {
-        return flags;
-    }
-
-    public void setFlags(int flags) {
-        this.flags = flags;
     }
 
     public boolean getUnread() {

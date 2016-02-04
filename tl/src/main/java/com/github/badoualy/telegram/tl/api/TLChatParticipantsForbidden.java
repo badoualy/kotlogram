@@ -25,8 +25,7 @@ public class TLChatParticipantsForbidden extends TLAbsChatParticipants {
     public TLChatParticipantsForbidden() {
     }
 
-    public TLChatParticipantsForbidden(int flags, int chatId, TLAbsChatParticipant selfParticipant) {
-        this.flags = flags;
+    public TLChatParticipantsForbidden(int chatId, TLAbsChatParticipant selfParticipant) {
         this.chatId = chatId;
         this.selfParticipant = selfParticipant;
     }
@@ -57,14 +56,6 @@ public class TLChatParticipantsForbidden extends TLAbsChatParticipants {
     @Override
     public int getConstructorId() {
         return CONSTRUCTOR_ID;
-    }
-
-    public int getFlags() {
-        return flags;
-    }
-
-    public void setFlags(int flags) {
-        this.flags = flags;
     }
 
     public int getChatId() {

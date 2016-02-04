@@ -50,8 +50,7 @@ public class TLInputBotInlineResult extends TLObject {
     public TLInputBotInlineResult() {
     }
 
-    public TLInputBotInlineResult(int flags, String id, String type, String title, String description, String url, String thumbUrl, String contentUrl, String contentType, Integer w, Integer h, Integer duration, TLAbsInputBotInlineMessage sendMessage) {
-        this.flags = flags;
+    public TLInputBotInlineResult(String id, String type, String title, String description, String url, String thumbUrl, String contentUrl, String contentType, Integer w, Integer h, Integer duration, TLAbsInputBotInlineMessage sendMessage) {
         this.id = id;
         this.type = type;
         this.title = title;
@@ -120,14 +119,6 @@ public class TLInputBotInlineResult extends TLObject {
     @Override
     public int getConstructorId() {
         return CONSTRUCTOR_ID;
-    }
-
-    public int getFlags() {
-        return flags;
-    }
-
-    public void setFlags(int flags) {
-        this.flags = flags;
     }
 
     public String getId() {

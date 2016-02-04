@@ -43,8 +43,7 @@ public class TLRequestMessagesForwardMessages extends TLMethod<TLAbsUpdates> {
     public TLRequestMessagesForwardMessages() {
     }
 
-    public TLRequestMessagesForwardMessages(int flags, boolean broadcast, TLAbsInputPeer fromPeer, TLIntVector id, TLLongVector randomId, TLAbsInputPeer toPeer) {
-        this.flags = flags;
+    public TLRequestMessagesForwardMessages(boolean broadcast, TLAbsInputPeer fromPeer, TLIntVector id, TLLongVector randomId, TLAbsInputPeer toPeer) {
         this.broadcast = broadcast;
         this.fromPeer = fromPeer;
         this.id = id;
@@ -97,14 +96,6 @@ public class TLRequestMessagesForwardMessages extends TLMethod<TLAbsUpdates> {
     @Override
     public int getConstructorId() {
         return CONSTRUCTOR_ID;
-    }
-
-    public int getFlags() {
-        return flags;
-    }
-
-    public void setFlags(int flags) {
-        this.flags = flags;
     }
 
     public boolean getBroadcast() {
