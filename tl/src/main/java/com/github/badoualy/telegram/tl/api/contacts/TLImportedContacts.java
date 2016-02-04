@@ -22,16 +22,16 @@ import static com.github.badoualy.telegram.tl.StreamUtils.writeTLVector;
 public class TLImportedContacts extends TLObject {
     public static final int CONSTRUCTOR_ID = 0xad524315;
 
-    protected TLVector<TLImportedContact> imported;
+    protected TLVector<? extends TLImportedContact> imported;
 
     protected TLLongVector retryContacts;
 
-    protected TLVector<TLAbsUser> users;
+    protected TLVector<? extends TLAbsUser> users;
 
     public TLImportedContacts() {
     }
 
-    public TLImportedContacts(TLVector<TLImportedContact> imported, TLLongVector retryContacts, TLVector<TLAbsUser> users) {
+    public TLImportedContacts(TLVector<? extends TLImportedContact> imported, TLLongVector retryContacts, TLVector<? extends TLAbsUser> users) {
         this.imported = imported;
         this.retryContacts = retryContacts;
         this.users = users;
@@ -62,11 +62,11 @@ public class TLImportedContacts extends TLObject {
         return CONSTRUCTOR_ID;
     }
 
-    public TLVector<TLImportedContact> getImported() {
+    public TLVector<? extends TLImportedContact> getImported() {
         return imported;
     }
 
-    public void setImported(TLVector<TLImportedContact> imported) {
+    public void setImported(TLVector<? extends TLImportedContact> imported) {
         this.imported = imported;
     }
 
@@ -78,11 +78,11 @@ public class TLImportedContacts extends TLObject {
         this.retryContacts = retryContacts;
     }
 
-    public TLVector<TLAbsUser> getUsers() {
+    public TLVector<? extends TLAbsUser> getUsers() {
         return users;
     }
 
-    public void setUsers(TLVector<TLAbsUser> users) {
+    public void setUsers(TLVector<? extends TLAbsUser> users) {
         this.users = users;
     }
 }

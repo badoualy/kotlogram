@@ -17,12 +17,12 @@ import static com.github.badoualy.telegram.tl.StreamUtils.writeTLVector;
 public class TLUpdateDcOptions extends TLAbsUpdate {
     public static final int CONSTRUCTOR_ID = 0x8e5e9873;
 
-    protected TLVector<TLDcOption> dcOptions;
+    protected TLVector<? extends TLDcOption> dcOptions;
 
     public TLUpdateDcOptions() {
     }
 
-    public TLUpdateDcOptions(TLVector<TLDcOption> dcOptions) {
+    public TLUpdateDcOptions(TLVector<? extends TLDcOption> dcOptions) {
         this.dcOptions = dcOptions;
     }
 
@@ -47,11 +47,11 @@ public class TLUpdateDcOptions extends TLAbsUpdate {
         return CONSTRUCTOR_ID;
     }
 
-    public TLVector<TLDcOption> getDcOptions() {
+    public TLVector<? extends TLDcOption> getDcOptions() {
         return dcOptions;
     }
 
-    public void setDcOptions(TLVector<TLDcOption> dcOptions) {
+    public void setDcOptions(TLVector<? extends TLDcOption> dcOptions) {
         this.dcOptions = dcOptions;
     }
 }

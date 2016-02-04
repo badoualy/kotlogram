@@ -1,7 +1,6 @@
 package com.github.badoualy.telegram.mtproto.transport
 
 import java.io.IOException
-import java.net.InetAddress
 
 interface MTProtoConnection {
 

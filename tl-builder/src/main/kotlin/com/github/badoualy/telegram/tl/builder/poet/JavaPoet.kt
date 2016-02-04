@@ -78,7 +78,7 @@ object JavaPoet {
                 typeConstructors.forEach { c -> emptyConstructorAbstractedMap.put(c, true) }
             val nonEmptyConstructor = if (!abstractEmptyConstructor) null else typeConstructors.find { c -> !c.name.endsWith("empty", true) }
 
-            val commonParameters = typeConstructors.map { c -> c.parameters }.reduce { l1, l2 -> l1.intersect(l2).toArrayList() }
+            val commonParameters = typeConstructors.map { c -> c.parameters }.reduce { l1, l2 -> ArrayList(l1.intersect(l2)) }
             abstractConstructors.add(TLAbstractConstructor(abstractType.name, commonParameters, abstractType, abstractEmptyConstructor))
             commonParameters.forEach { p -> p.inherited = true }
 
@@ -353,7 +353,11 @@ object JavaPoet {
         // Parameters
         val accessors = ArrayList<MethodSpec>()
         for (parameter in parameters) {
-            val fieldType = getType(parameter.tlType)
+            var fieldType = getType(parameter.tlType)
+            if (parameter.tlType is TLTypeGeneric && fieldType is ParameterizedTypeName) {
+                val typeArg = WildcardTypeName.subtypeOf(fieldType.typeArguments.first())
+                fieldType = ParameterizedTypeName.get(fieldType.rawType, typeArg)
+            }
             val fieldName = parameter.name.lCamelCase().javaEscape()
             if (!parameter.inherited || id == null) // Null-id is superclass
                 clazz.addField(fieldType, fieldName, Modifier.PROTECTED)
@@ -371,15 +375,8 @@ object JavaPoet {
             deserializeMethod.addStatement(deserializeParameter(fieldName, parameter.tlType, fieldType))
 
             // Add api method
-            if (parameter.tlType is TLTypeGeneric && fieldType is ParameterizedTypeName) {
-                val typeArg = WildcardTypeName.subtypeOf(fieldType.typeArguments.first())
-                val newFieldType = ParameterizedTypeName.get(fieldType.rawType, typeArg)
-                apiMethod?.addParameter(newFieldType, fieldName)
-                apiWrappedMethod?.addParameter(newFieldType, fieldName)
-            } else {
-                apiMethod?.addParameter(fieldType, fieldName)
-                apiWrappedMethod?.addParameter(fieldType, fieldName)
-            }
+            apiMethod?.addParameter(fieldType, fieldName)
+            apiWrappedMethod?.addParameter(fieldType, fieldName)
             if (parameter.tlType is TLTypeFunctional) {
                 apiMethod?.addTypeVariable(TypeVariableName.get("T", TYPE_TL_OBJECT))
                 apiWrappedMethod?.addTypeVariable(TypeVariableName.get("T", TYPE_TL_OBJECT))
@@ -416,7 +413,11 @@ object JavaPoet {
         is TLTypeFunctional -> ParameterizedTypeName.get(TYPE_TL_METHOD, TypeVariableName.get("T")) // ex: InitConnection
         is TLTypeAny -> TypeVariableName.get("T")
         is TLTypeFlag -> TypeName.INT
-        is TLTypeConditional -> getType(type.realType)
+        is TLTypeConditional -> {
+            var realType = getType(type.realType)
+            if (realType == TypeName.BOOLEAN) realType
+            else realType.box()
+        }
         is TLTypeGeneric -> {
             when ((type.generics.first() as TLTypeRaw).name) {
                 "int" -> TYPE_TL_INT_VECTOR
@@ -473,7 +474,7 @@ object JavaPoet {
                 "if ((flags & ${fieldTlType.pow2Value()}) != 0) ${deserializeParameter(fieldName, realType, fieldType)}"
         }
         is TLTypeGeneric -> {
-            when ((fieldTlType.generics.first() as TLTypeRaw).name){
+            when ((fieldTlType.generics.first() as TLTypeRaw).name) {
                 "int" -> "$fieldName = readTLIntVector(stream, context)"
                 "long" -> "$fieldName = readTLLongVector(stream, context)"
                 "string" -> "$fieldName = readTLStringVector(stream, context)"

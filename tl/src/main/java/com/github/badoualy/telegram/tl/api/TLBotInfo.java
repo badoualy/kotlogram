@@ -29,12 +29,12 @@ public class TLBotInfo extends TLAbsBotInfo {
 
     protected String description;
 
-    protected TLVector<TLBotCommand> commands;
+    protected TLVector<? extends TLBotCommand> commands;
 
     public TLBotInfo() {
     }
 
-    public TLBotInfo(int userId, int version, String shareText, String description, TLVector<TLBotCommand> commands) {
+    public TLBotInfo(int userId, int version, String shareText, String description, TLVector<? extends TLBotCommand> commands) {
         this.userId = userId;
         this.version = version;
         this.shareText = shareText;
@@ -103,11 +103,11 @@ public class TLBotInfo extends TLAbsBotInfo {
         this.description = description;
     }
 
-    public TLVector<TLBotCommand> getCommands() {
+    public TLVector<? extends TLBotCommand> getCommands() {
         return commands;
     }
 
-    public void setCommands(TLVector<TLBotCommand> commands) {
+    public void setCommands(TLVector<? extends TLBotCommand> commands) {
         this.commands = commands;
     }
 

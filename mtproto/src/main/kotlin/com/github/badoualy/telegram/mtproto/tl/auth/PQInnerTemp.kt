@@ -29,7 +29,7 @@ class PQInnerTemp @JvmOverloads constructor(pq: ByteArray = ByteArray(0),
     }
 
     companion object {
-        @JvmStatic @JvmField
+        @JvmField
         val CONSTRUCTOR_ID = 1013613780
     }
 }

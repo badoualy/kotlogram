@@ -41,7 +41,7 @@ class BindAuthKeyInner @JvmOverloads constructor(var nonce: Long = 0,
     }
 
     companion object {
-        @JvmStatic @JvmField
+        @JvmField
         val CONSTRUCTOR_ID = 1973679973
     }
 }

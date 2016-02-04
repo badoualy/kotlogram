@@ -26,12 +26,12 @@ public class TLRequestChannelsInviteToChannel extends TLMethod<TLAbsUpdates> {
 
     protected TLAbsInputChannel channel;
 
-    protected TLVector<TLAbsInputUser> users;
+    protected TLVector<? extends TLAbsInputUser> users;
 
     public TLRequestChannelsInviteToChannel() {
     }
 
-    public TLRequestChannelsInviteToChannel(TLAbsInputChannel channel, TLVector<TLAbsInputUser> users) {
+    public TLRequestChannelsInviteToChannel(TLAbsInputChannel channel, TLVector<? extends TLAbsInputUser> users) {
         this.channel = channel;
         this.users = users;
     }
@@ -80,11 +80,11 @@ public class TLRequestChannelsInviteToChannel extends TLMethod<TLAbsUpdates> {
         this.channel = channel;
     }
 
-    public TLVector<TLAbsInputUser> getUsers() {
+    public TLVector<? extends TLAbsInputUser> getUsers() {
         return users;
     }
 
-    public void setUsers(TLVector<TLAbsInputUser> users) {
+    public void setUsers(TLVector<? extends TLAbsInputUser> users) {
         this.users = users;
     }
 }

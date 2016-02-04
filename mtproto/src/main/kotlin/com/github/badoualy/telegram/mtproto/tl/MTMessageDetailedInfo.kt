@@ -34,7 +34,7 @@ class MTMessageDetailedInfo @JvmOverloads constructor(var msgId: Long = 0, var a
     }
 
     companion object {
-        @JvmStatic @JvmField
+        @JvmField
         val CONSTRUCTOR_ID = 661470918
     }
 }

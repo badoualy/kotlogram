@@ -19,14 +19,14 @@ import static com.github.badoualy.telegram.tl.StreamUtils.writeTLVector;
 public class TLContacts extends TLAbsContacts {
     public static final int CONSTRUCTOR_ID = 0x6f8b8cb2;
 
-    protected TLVector<TLContact> contacts;
+    protected TLVector<? extends TLContact> contacts;
 
-    protected TLVector<TLAbsUser> users;
+    protected TLVector<? extends TLAbsUser> users;
 
     public TLContacts() {
     }
 
-    public TLContacts(TLVector<TLContact> contacts, TLVector<TLAbsUser> users) {
+    public TLContacts(TLVector<? extends TLContact> contacts, TLVector<? extends TLAbsUser> users) {
         this.contacts = contacts;
         this.users = users;
     }
@@ -54,19 +54,19 @@ public class TLContacts extends TLAbsContacts {
         return CONSTRUCTOR_ID;
     }
 
-    public TLVector<TLContact> getContacts() {
+    public TLVector<? extends TLContact> getContacts() {
         return contacts;
     }
 
-    public void setContacts(TLVector<TLContact> contacts) {
+    public void setContacts(TLVector<? extends TLContact> contacts) {
         this.contacts = contacts;
     }
 
-    public TLVector<TLAbsUser> getUsers() {
+    public TLVector<? extends TLAbsUser> getUsers() {
         return users;
     }
 
-    public void setUsers(TLVector<TLAbsUser> users) {
+    public void setUsers(TLVector<? extends TLAbsUser> users) {
         this.users = users;
     }
 }

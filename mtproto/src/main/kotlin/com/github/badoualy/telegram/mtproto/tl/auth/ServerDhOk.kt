@@ -33,7 +33,7 @@ class ServerDhOk @JvmOverloads constructor(var nonce: ByteArray = ByteArray(0),
     }
 
     companion object {
-        @JvmStatic @JvmField
+        @JvmField
         val CONSTRUCTOR_ID = -790100132
     }
 }

@@ -19,12 +19,12 @@ import static com.github.badoualy.telegram.tl.StreamUtils.writeTLVector;
 public class TLAuthorizations extends TLObject {
     public static final int CONSTRUCTOR_ID = 0x1250abde;
 
-    protected TLVector<TLAuthorization> authorizations;
+    protected TLVector<? extends TLAuthorization> authorizations;
 
     public TLAuthorizations() {
     }
 
-    public TLAuthorizations(TLVector<TLAuthorization> authorizations) {
+    public TLAuthorizations(TLVector<? extends TLAuthorization> authorizations) {
         this.authorizations = authorizations;
     }
 
@@ -49,11 +49,11 @@ public class TLAuthorizations extends TLObject {
         return CONSTRUCTOR_ID;
     }
 
-    public TLVector<TLAuthorization> getAuthorizations() {
+    public TLVector<? extends TLAuthorization> getAuthorizations() {
         return authorizations;
     }
 
-    public void setAuthorizations(TLVector<TLAuthorization> authorizations) {
+    public void setAuthorizations(TLVector<? extends TLAuthorization> authorizations) {
         this.authorizations = authorizations;
     }
 }

@@ -33,7 +33,7 @@ public class TLRequestMessagesSendMedia extends TLMethod<TLAbsUpdates> {
 
     protected TLAbsInputPeer peer;
 
-    protected int replyToMsgId;
+    protected Integer replyToMsgId;
 
     protected TLAbsInputMedia media;
 
@@ -44,7 +44,7 @@ public class TLRequestMessagesSendMedia extends TLMethod<TLAbsUpdates> {
     public TLRequestMessagesSendMedia() {
     }
 
-    public TLRequestMessagesSendMedia(int flags, boolean broadcast, TLAbsInputPeer peer, int replyToMsgId, TLAbsInputMedia media, long randomId, TLAbsReplyMarkup replyMarkup) {
+    public TLRequestMessagesSendMedia(int flags, boolean broadcast, TLAbsInputPeer peer, Integer replyToMsgId, TLAbsInputMedia media, long randomId, TLAbsReplyMarkup replyMarkup) {
         this.flags = flags;
         this.broadcast = broadcast;
         this.peer = peer;
@@ -129,11 +129,11 @@ public class TLRequestMessagesSendMedia extends TLMethod<TLAbsUpdates> {
         this.peer = peer;
     }
 
-    public int getReplyToMsgId() {
+    public Integer getReplyToMsgId() {
         return replyToMsgId;
     }
 
-    public void setReplyToMsgId(int replyToMsgId) {
+    public void setReplyToMsgId(Integer replyToMsgId) {
         this.replyToMsgId = replyToMsgId;
     }
 

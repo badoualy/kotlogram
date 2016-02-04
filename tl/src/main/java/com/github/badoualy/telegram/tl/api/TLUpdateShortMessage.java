@@ -48,18 +48,18 @@ public class TLUpdateShortMessage extends TLAbsUpdates {
 
     protected TLAbsPeer fwdFromId;
 
-    protected int fwdDate;
+    protected Integer fwdDate;
 
-    protected int viaBotId;
+    protected Integer viaBotId;
 
-    protected int replyToMsgId;
+    protected Integer replyToMsgId;
 
     protected TLVector<TLAbsMessageEntity> entities;
 
     public TLUpdateShortMessage() {
     }
 
-    public TLUpdateShortMessage(int flags, boolean unread, boolean out, boolean mentioned, boolean mediaUnread, int id, int userId, String message, int pts, int ptsCount, int date, TLAbsPeer fwdFromId, int fwdDate, int viaBotId, int replyToMsgId, TLVector<TLAbsMessageEntity> entities) {
+    public TLUpdateShortMessage(int flags, boolean unread, boolean out, boolean mentioned, boolean mediaUnread, int id, int userId, String message, int pts, int ptsCount, int date, TLAbsPeer fwdFromId, Integer fwdDate, Integer viaBotId, Integer replyToMsgId, TLVector<TLAbsMessageEntity> entities) {
         this.flags = flags;
         this.unread = unread;
         this.out = out;
@@ -236,27 +236,27 @@ public class TLUpdateShortMessage extends TLAbsUpdates {
         this.fwdFromId = fwdFromId;
     }
 
-    public int getFwdDate() {
+    public Integer getFwdDate() {
         return fwdDate;
     }
 
-    public void setFwdDate(int fwdDate) {
+    public void setFwdDate(Integer fwdDate) {
         this.fwdDate = fwdDate;
     }
 
-    public int getViaBotId() {
+    public Integer getViaBotId() {
         return viaBotId;
     }
 
-    public void setViaBotId(int viaBotId) {
+    public void setViaBotId(Integer viaBotId) {
         this.viaBotId = viaBotId;
     }
 
-    public int getReplyToMsgId() {
+    public Integer getReplyToMsgId() {
         return replyToMsgId;
     }
 
-    public void setReplyToMsgId(int replyToMsgId) {
+    public void setReplyToMsgId(Integer replyToMsgId) {
         this.replyToMsgId = replyToMsgId;
     }
 

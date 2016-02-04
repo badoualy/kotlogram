@@ -12,7 +12,7 @@ class DhGenOk @JvmOverloads constructor(nonce: ByteArray = ByteArray(0), serverN
     }
 
     companion object {
-        @JvmStatic @JvmField
+        @JvmField
         val CONSTRUCTOR_ID = 1003222836
     }
 }

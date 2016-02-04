@@ -30,11 +30,11 @@ public class TLChannelFull extends TLAbsChatFull {
 
     protected String about;
 
-    protected int participantsCount;
+    protected Integer participantsCount;
 
-    protected int adminsCount;
+    protected Integer adminsCount;
 
-    protected int kickedCount;
+    protected Integer kickedCount;
 
     protected int readInboxMaxId;
 
@@ -42,14 +42,14 @@ public class TLChannelFull extends TLAbsChatFull {
 
     protected int unreadImportantCount;
 
-    protected int migratedFromChatId;
+    protected Integer migratedFromChatId;
 
-    protected int migratedFromMaxId;
+    protected Integer migratedFromMaxId;
 
     public TLChannelFull() {
     }
 
-    public TLChannelFull(int flags, boolean canViewParticipants, int id, String about, int participantsCount, int adminsCount, int kickedCount, int readInboxMaxId, int unreadCount, int unreadImportantCount, TLAbsPhoto chatPhoto, TLAbsPeerNotifySettings notifySettings, TLAbsExportedChatInvite exportedInvite, TLVector<TLAbsBotInfo> botInfo, int migratedFromChatId, int migratedFromMaxId) {
+    public TLChannelFull(int flags, boolean canViewParticipants, int id, String about, Integer participantsCount, Integer adminsCount, Integer kickedCount, int readInboxMaxId, int unreadCount, int unreadImportantCount, TLAbsPhoto chatPhoto, TLAbsPeerNotifySettings notifySettings, TLAbsExportedChatInvite exportedInvite, TLVector<? extends TLAbsBotInfo> botInfo, Integer migratedFromChatId, Integer migratedFromMaxId) {
         this.flags = flags;
         this.canViewParticipants = canViewParticipants;
         this.id = id;
@@ -159,27 +159,27 @@ public class TLChannelFull extends TLAbsChatFull {
         this.about = about;
     }
 
-    public int getParticipantsCount() {
+    public Integer getParticipantsCount() {
         return participantsCount;
     }
 
-    public void setParticipantsCount(int participantsCount) {
+    public void setParticipantsCount(Integer participantsCount) {
         this.participantsCount = participantsCount;
     }
 
-    public int getAdminsCount() {
+    public Integer getAdminsCount() {
         return adminsCount;
     }
 
-    public void setAdminsCount(int adminsCount) {
+    public void setAdminsCount(Integer adminsCount) {
         this.adminsCount = adminsCount;
     }
 
-    public int getKickedCount() {
+    public Integer getKickedCount() {
         return kickedCount;
     }
 
-    public void setKickedCount(int kickedCount) {
+    public void setKickedCount(Integer kickedCount) {
         this.kickedCount = kickedCount;
     }
 
@@ -231,27 +231,27 @@ public class TLChannelFull extends TLAbsChatFull {
         this.exportedInvite = exportedInvite;
     }
 
-    public TLVector<TLAbsBotInfo> getBotInfo() {
+    public TLVector<? extends TLAbsBotInfo> getBotInfo() {
         return botInfo;
     }
 
-    public void setBotInfo(TLVector<TLAbsBotInfo> botInfo) {
+    public void setBotInfo(TLVector<? extends TLAbsBotInfo> botInfo) {
         this.botInfo = botInfo;
     }
 
-    public int getMigratedFromChatId() {
+    public Integer getMigratedFromChatId() {
         return migratedFromChatId;
     }
 
-    public void setMigratedFromChatId(int migratedFromChatId) {
+    public void setMigratedFromChatId(Integer migratedFromChatId) {
         this.migratedFromChatId = migratedFromChatId;
     }
 
-    public int getMigratedFromMaxId() {
+    public Integer getMigratedFromMaxId() {
         return migratedFromMaxId;
     }
 
-    public void setMigratedFromMaxId(int migratedFromMaxId) {
+    public void setMigratedFromMaxId(Integer migratedFromMaxId) {
         this.migratedFromMaxId = migratedFromMaxId;
     }
 }

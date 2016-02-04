@@ -26,7 +26,7 @@ public class TLChatFull extends TLAbsChatFull {
     public TLChatFull() {
     }
 
-    public TLChatFull(int id, TLAbsChatParticipants participants, TLAbsPhoto chatPhoto, TLAbsPeerNotifySettings notifySettings, TLAbsExportedChatInvite exportedInvite, TLVector<TLAbsBotInfo> botInfo) {
+    public TLChatFull(int id, TLAbsChatParticipants participants, TLAbsPhoto chatPhoto, TLAbsPeerNotifySettings notifySettings, TLAbsExportedChatInvite exportedInvite, TLVector<? extends TLAbsBotInfo> botInfo) {
         this.id = id;
         this.participants = participants;
         this.chatPhoto = chatPhoto;
@@ -106,11 +106,11 @@ public class TLChatFull extends TLAbsChatFull {
         this.exportedInvite = exportedInvite;
     }
 
-    public TLVector<TLAbsBotInfo> getBotInfo() {
+    public TLVector<? extends TLAbsBotInfo> getBotInfo() {
         return botInfo;
     }
 
-    public void setBotInfo(TLVector<TLAbsBotInfo> botInfo) {
+    public void setBotInfo(TLVector<? extends TLAbsBotInfo> botInfo) {
         this.botInfo = botInfo;
     }
 }

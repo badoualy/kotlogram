@@ -12,46 +12,46 @@ import com.github.badoualy.telegram.tl.core.TLVector;
  * @see <a href="http://github.com/badoualy/kotlogram">http://github.com/badoualy/kotlogram</a>
  */
 public abstract class TLAbsDialogs extends TLObject {
-    protected TLVector<TLAbsDialog> dialogs;
+    protected TLVector<? extends TLAbsDialog> dialogs;
 
-    protected TLVector<TLAbsMessage> messages;
+    protected TLVector<? extends TLAbsMessage> messages;
 
-    protected TLVector<TLAbsChat> chats;
+    protected TLVector<? extends TLAbsChat> chats;
 
-    protected TLVector<TLAbsUser> users;
+    protected TLVector<? extends TLAbsUser> users;
 
     public TLAbsDialogs() {
     }
 
-    public TLVector<TLAbsDialog> getDialogs() {
+    public TLVector<? extends TLAbsDialog> getDialogs() {
         return dialogs;
     }
 
-    public void setDialogs(TLVector<TLAbsDialog> dialogs) {
+    public void setDialogs(TLVector<? extends TLAbsDialog> dialogs) {
         this.dialogs = dialogs;
     }
 
-    public TLVector<TLAbsMessage> getMessages() {
+    public TLVector<? extends TLAbsMessage> getMessages() {
         return messages;
     }
 
-    public void setMessages(TLVector<TLAbsMessage> messages) {
+    public void setMessages(TLVector<? extends TLAbsMessage> messages) {
         this.messages = messages;
     }
 
-    public TLVector<TLAbsChat> getChats() {
+    public TLVector<? extends TLAbsChat> getChats() {
         return chats;
     }
 
-    public void setChats(TLVector<TLAbsChat> chats) {
+    public void setChats(TLVector<? extends TLAbsChat> chats) {
         this.chats = chats;
     }
 
-    public TLVector<TLAbsUser> getUsers() {
+    public TLVector<? extends TLAbsUser> getUsers() {
         return users;
     }
 
-    public void setUsers(TLVector<TLAbsUser> users) {
+    public void setUsers(TLVector<? extends TLAbsUser> users) {
         this.users = users;
     }
 }

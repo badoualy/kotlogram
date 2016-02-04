@@ -26,7 +26,7 @@ public class TLPhotosSlice extends TLAbsPhotos {
     public TLPhotosSlice() {
     }
 
-    public TLPhotosSlice(int count, TLVector<TLAbsPhoto> photos, TLVector<TLAbsUser> users) {
+    public TLPhotosSlice(int count, TLVector<? extends TLAbsPhoto> photos, TLVector<? extends TLAbsUser> users) {
         this.count = count;
         this.photos = photos;
         this.users = users;
@@ -65,19 +65,19 @@ public class TLPhotosSlice extends TLAbsPhotos {
         this.count = count;
     }
 
-    public TLVector<TLAbsPhoto> getPhotos() {
+    public TLVector<? extends TLAbsPhoto> getPhotos() {
         return photos;
     }
 
-    public void setPhotos(TLVector<TLAbsPhoto> photos) {
+    public void setPhotos(TLVector<? extends TLAbsPhoto> photos) {
         this.photos = photos;
     }
 
-    public TLVector<TLAbsUser> getUsers() {
+    public TLVector<? extends TLAbsUser> getUsers() {
         return users;
     }
 
-    public void setUsers(TLVector<TLAbsUser> users) {
+    public void setUsers(TLVector<? extends TLAbsUser> users) {
         this.users = users;
     }
 }

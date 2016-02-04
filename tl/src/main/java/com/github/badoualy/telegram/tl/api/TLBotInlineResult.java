@@ -34,16 +34,16 @@ public class TLBotInlineResult extends TLAbsBotInlineResult {
 
     protected String contentType;
 
-    protected int w;
+    protected Integer w;
 
-    protected int h;
+    protected Integer h;
 
-    protected int duration;
+    protected Integer duration;
 
     public TLBotInlineResult() {
     }
 
-    public TLBotInlineResult(int flags, String id, String type, String title, String description, String url, String thumbUrl, String contentUrl, String contentType, int w, int h, int duration, TLAbsBotInlineMessage sendMessage) {
+    public TLBotInlineResult(int flags, String id, String type, String title, String description, String url, String thumbUrl, String contentUrl, String contentType, Integer w, Integer h, Integer duration, TLAbsBotInlineMessage sendMessage) {
         this.flags = flags;
         this.id = id;
         this.type = type;
@@ -187,27 +187,27 @@ public class TLBotInlineResult extends TLAbsBotInlineResult {
         this.contentType = contentType;
     }
 
-    public int getW() {
+    public Integer getW() {
         return w;
     }
 
-    public void setW(int w) {
+    public void setW(Integer w) {
         this.w = w;
     }
 
-    public int getH() {
+    public Integer getH() {
         return h;
     }
 
-    public void setH(int h) {
+    public void setH(Integer h) {
         this.h = h;
     }
 
-    public int getDuration() {
+    public Integer getDuration() {
         return duration;
     }
 
-    public void setDuration(int duration) {
+    public void setDuration(Integer duration) {
         this.duration = duration;
     }
 

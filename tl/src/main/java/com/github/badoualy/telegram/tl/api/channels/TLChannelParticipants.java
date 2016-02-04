@@ -24,14 +24,14 @@ public class TLChannelParticipants extends TLObject {
 
     protected int count;
 
-    protected TLVector<TLAbsChannelParticipant> participants;
+    protected TLVector<? extends TLAbsChannelParticipant> participants;
 
-    protected TLVector<TLAbsUser> users;
+    protected TLVector<? extends TLAbsUser> users;
 
     public TLChannelParticipants() {
     }
 
-    public TLChannelParticipants(int count, TLVector<TLAbsChannelParticipant> participants, TLVector<TLAbsUser> users) {
+    public TLChannelParticipants(int count, TLVector<? extends TLAbsChannelParticipant> participants, TLVector<? extends TLAbsUser> users) {
         this.count = count;
         this.participants = participants;
         this.users = users;
@@ -70,19 +70,19 @@ public class TLChannelParticipants extends TLObject {
         this.count = count;
     }
 
-    public TLVector<TLAbsChannelParticipant> getParticipants() {
+    public TLVector<? extends TLAbsChannelParticipant> getParticipants() {
         return participants;
     }
 
-    public void setParticipants(TLVector<TLAbsChannelParticipant> participants) {
+    public void setParticipants(TLVector<? extends TLAbsChannelParticipant> participants) {
         this.participants = participants;
     }
 
-    public TLVector<TLAbsUser> getUsers() {
+    public TLVector<? extends TLAbsUser> getUsers() {
         return users;
     }
 
-    public void setUsers(TLVector<TLAbsUser> users) {
+    public void setUsers(TLVector<? extends TLAbsUser> users) {
         this.users = users;
     }
 }

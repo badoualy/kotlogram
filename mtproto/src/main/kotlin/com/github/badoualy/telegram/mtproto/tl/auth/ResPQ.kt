@@ -38,7 +38,7 @@ class ResPQ @JvmOverloads constructor(var nonce: ByteArray = ByteArray(0),
     }
 
     companion object {
-        @JvmStatic @JvmField
+        @JvmField
         val CONSTRUCTOR_ID = 85337187
     }
 }

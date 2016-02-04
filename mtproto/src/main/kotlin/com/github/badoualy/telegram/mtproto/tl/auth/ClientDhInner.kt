@@ -31,7 +31,7 @@ class ClientDhInner @JvmOverloads constructor(var nonce: ByteArray = ByteArray(0
     }
 
     companion object {
-        @JvmStatic @JvmField
+        @JvmField
         val CONSTRUCTOR_ID = 1715713620
     }
 }

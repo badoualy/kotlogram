@@ -20,14 +20,14 @@ import static com.github.badoualy.telegram.tl.StreamUtils.writeTLVector;
 public class TLPrivacyRules extends TLObject {
     public static final int CONSTRUCTOR_ID = 0x554abb6f;
 
-    protected TLVector<TLAbsPrivacyRule> rules;
+    protected TLVector<? extends TLAbsPrivacyRule> rules;
 
-    protected TLVector<TLAbsUser> users;
+    protected TLVector<? extends TLAbsUser> users;
 
     public TLPrivacyRules() {
     }
 
-    public TLPrivacyRules(TLVector<TLAbsPrivacyRule> rules, TLVector<TLAbsUser> users) {
+    public TLPrivacyRules(TLVector<? extends TLAbsPrivacyRule> rules, TLVector<? extends TLAbsUser> users) {
         this.rules = rules;
         this.users = users;
     }
@@ -55,19 +55,19 @@ public class TLPrivacyRules extends TLObject {
         return CONSTRUCTOR_ID;
     }
 
-    public TLVector<TLAbsPrivacyRule> getRules() {
+    public TLVector<? extends TLAbsPrivacyRule> getRules() {
         return rules;
     }
 
-    public void setRules(TLVector<TLAbsPrivacyRule> rules) {
+    public void setRules(TLVector<? extends TLAbsPrivacyRule> rules) {
         this.rules = rules;
     }
 
-    public TLVector<TLAbsUser> getUsers() {
+    public TLVector<? extends TLAbsUser> getUsers() {
         return users;
     }
 
-    public void setUsers(TLVector<TLAbsUser> users) {
+    public void setUsers(TLVector<? extends TLAbsUser> users) {
         this.users = users;
     }
 }

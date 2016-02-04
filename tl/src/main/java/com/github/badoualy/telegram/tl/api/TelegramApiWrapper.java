@@ -756,17 +756,17 @@ public abstract class TelegramApiWrapper implements TelegramApi {
     }
 
     @Override
-    public TLAbsUpdates messagesSendInlineBotResult(int flags, boolean broadcast, TLAbsInputPeer peer, int replyToMsgId, long randomId, long queryId, String id) throws IOException {
+    public TLAbsUpdates messagesSendInlineBotResult(int flags, boolean broadcast, TLAbsInputPeer peer, Integer replyToMsgId, long randomId, long queryId, String id) throws IOException {
         return (TLAbsUpdates) executeRpcQuery(new TLRequestMessagesSendInlineBotResult(flags, broadcast, peer, replyToMsgId, randomId, queryId, id));
     }
 
     @Override
-    public TLAbsUpdates messagesSendMedia(int flags, boolean broadcast, TLAbsInputPeer peer, int replyToMsgId, TLAbsInputMedia media, long randomId, TLAbsReplyMarkup replyMarkup) throws IOException {
+    public TLAbsUpdates messagesSendMedia(int flags, boolean broadcast, TLAbsInputPeer peer, Integer replyToMsgId, TLAbsInputMedia media, long randomId, TLAbsReplyMarkup replyMarkup) throws IOException {
         return (TLAbsUpdates) executeRpcQuery(new TLRequestMessagesSendMedia(flags, broadcast, peer, replyToMsgId, media, randomId, replyMarkup));
     }
 
     @Override
-    public TLAbsUpdates messagesSendMessage(int flags, boolean noWebpage, boolean broadcast, TLAbsInputPeer peer, int replyToMsgId, String message, long randomId, TLAbsReplyMarkup replyMarkup, TLVector<TLAbsMessageEntity> entities) throws IOException {
+    public TLAbsUpdates messagesSendMessage(int flags, boolean noWebpage, boolean broadcast, TLAbsInputPeer peer, Integer replyToMsgId, String message, long randomId, TLAbsReplyMarkup replyMarkup, TLVector<TLAbsMessageEntity> entities) throws IOException {
         return (TLAbsUpdates) executeRpcQuery(new TLRequestMessagesSendMessage(flags, noWebpage, broadcast, peer, replyToMsgId, message, randomId, replyMarkup, entities));
     }
 

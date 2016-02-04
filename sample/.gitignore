@@ -5,4 +5,5 @@ Main.java
 auth*.key
 C.java
 *.save
-photo.jpg
+*.jpg
+Sample*.java

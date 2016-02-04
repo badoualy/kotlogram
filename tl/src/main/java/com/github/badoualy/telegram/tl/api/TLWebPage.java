@@ -42,11 +42,11 @@ public class TLWebPage extends TLAbsWebPage {
 
     protected String embedType;
 
-    protected int embedWidth;
+    protected Integer embedWidth;
 
-    protected int embedHeight;
+    protected Integer embedHeight;
 
-    protected int duration;
+    protected Integer duration;
 
     protected String author;
 
@@ -55,7 +55,7 @@ public class TLWebPage extends TLAbsWebPage {
     public TLWebPage() {
     }
 
-    public TLWebPage(int flags, long id, String url, String displayUrl, String type, String siteName, String title, String description, TLAbsPhoto photo, String embedUrl, String embedType, int embedWidth, int embedHeight, int duration, String author, TLAbsDocument document) {
+    public TLWebPage(int flags, long id, String url, String displayUrl, String type, String siteName, String title, String description, TLAbsPhoto photo, String embedUrl, String embedType, Integer embedWidth, Integer embedHeight, Integer duration, String author, TLAbsDocument document) {
         this.flags = flags;
         this.id = id;
         this.url = url;
@@ -227,27 +227,27 @@ public class TLWebPage extends TLAbsWebPage {
         this.embedType = embedType;
     }
 
-    public int getEmbedWidth() {
+    public Integer getEmbedWidth() {
         return embedWidth;
     }
 
-    public void setEmbedWidth(int embedWidth) {
+    public void setEmbedWidth(Integer embedWidth) {
         this.embedWidth = embedWidth;
     }
 
-    public int getEmbedHeight() {
+    public Integer getEmbedHeight() {
         return embedHeight;
     }
 
-    public void setEmbedHeight(int embedHeight) {
+    public void setEmbedHeight(Integer embedHeight) {
         this.embedHeight = embedHeight;
     }
 
-    public int getDuration() {
+    public Integer getDuration() {
         return duration;
     }
 
-    public void setDuration(int duration) {
+    public void setDuration(Integer duration) {
         this.duration = duration;
     }
 

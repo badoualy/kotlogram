@@ -32,7 +32,7 @@ class MTNewMessageDetailedInfo @JvmOverloads constructor(var answerMsgId: Long =
     }
 
     companion object {
-        @JvmStatic @JvmField
+        @JvmField
         val CONSTRUCTOR_ID = -2137147681
     }
 }

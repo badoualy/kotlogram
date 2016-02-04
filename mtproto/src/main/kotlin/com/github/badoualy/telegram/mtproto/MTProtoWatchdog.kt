@@ -2,8 +2,8 @@ package com.github.badoualy.telegram.mtproto
 
 import com.github.badoualy.telegram.mtproto.transport.MTProtoConnection
 import com.github.badoualy.telegram.mtproto.util.Log
+import rx.Observable
 import rx.Subscriber
-import rx.lang.kotlin.observable
 import java.io.IOException
 
 /**
@@ -15,7 +15,7 @@ class MTProtoWatchdog(private val connection: MTProtoConnection) {
     private val TAG = "MTProtoWatchdog"
     private var subscriber: Subscriber<in ByteArray>? = null
 
-    fun start() = observable<ByteArray> { s ->
+    fun start() = Observable.create<ByteArray> observable@ { s ->
         Log.d(TAG, "Starting watchdog...")
         subscriber = s
         while (!s.isUnsubscribed) {

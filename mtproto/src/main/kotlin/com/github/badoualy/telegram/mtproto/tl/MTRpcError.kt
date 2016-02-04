@@ -45,7 +45,7 @@ class MTRpcError @JvmOverloads constructor(var errorCode: Int = 0, var message: 
     companion object {
         private val REGEXP_PATTERN = Pattern.compile("[A-Z_0-9]+")
 
-        @JvmStatic @JvmField
+        @JvmField
         val CONSTRUCTOR_ID = 558156313
     }
 }

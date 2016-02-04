@@ -17,12 +17,12 @@ import static com.github.badoualy.telegram.tl.StreamUtils.writeTLVector;
 public class TLInputPrivacyValueAllowUsers extends TLAbsInputPrivacyRule {
     public static final int CONSTRUCTOR_ID = 0x131cc67f;
 
-    protected TLVector<TLAbsInputUser> users;
+    protected TLVector<? extends TLAbsInputUser> users;
 
     public TLInputPrivacyValueAllowUsers() {
     }
 
-    public TLInputPrivacyValueAllowUsers(TLVector<TLAbsInputUser> users) {
+    public TLInputPrivacyValueAllowUsers(TLVector<? extends TLAbsInputUser> users) {
         this.users = users;
     }
 
@@ -47,11 +47,11 @@ public class TLInputPrivacyValueAllowUsers extends TLAbsInputPrivacyRule {
         return CONSTRUCTOR_ID;
     }
 
-    public TLVector<TLAbsInputUser> getUsers() {
+    public TLVector<? extends TLAbsInputUser> getUsers() {
         return users;
     }
 
-    public void setUsers(TLVector<TLAbsInputUser> users) {
+    public void setUsers(TLVector<? extends TLAbsInputUser> users) {
         this.users = users;
     }
 }

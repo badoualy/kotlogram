@@ -26,7 +26,7 @@ class MTInvokeAfter(var dependMsgId: Long = 0, var request: ByteArray = ByteArra
     }
 
     companion object {
-        @JvmStatic @JvmField
+        @JvmField
         val CONSTRUCTOR_ID = -878758099
     }
 }

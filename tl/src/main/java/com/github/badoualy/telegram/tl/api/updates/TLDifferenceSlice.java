@@ -24,22 +24,22 @@ import static com.github.badoualy.telegram.tl.StreamUtils.writeTLVector;
 public class TLDifferenceSlice extends TLAbsDifference {
     public static final int CONSTRUCTOR_ID = 0xa8fb1981;
 
-    protected TLVector<TLAbsMessage> newMessages;
+    protected TLVector<? extends TLAbsMessage> newMessages;
 
-    protected TLVector<TLAbsEncryptedMessage> newEncryptedMessages;
+    protected TLVector<? extends TLAbsEncryptedMessage> newEncryptedMessages;
 
-    protected TLVector<TLAbsUpdate> otherUpdates;
+    protected TLVector<? extends TLAbsUpdate> otherUpdates;
 
-    protected TLVector<TLAbsChat> chats;
+    protected TLVector<? extends TLAbsChat> chats;
 
-    protected TLVector<TLAbsUser> users;
+    protected TLVector<? extends TLAbsUser> users;
 
     protected TLState intermediateState;
 
     public TLDifferenceSlice() {
     }
 
-    public TLDifferenceSlice(TLVector<TLAbsMessage> newMessages, TLVector<TLAbsEncryptedMessage> newEncryptedMessages, TLVector<TLAbsUpdate> otherUpdates, TLVector<TLAbsChat> chats, TLVector<TLAbsUser> users, TLState intermediateState) {
+    public TLDifferenceSlice(TLVector<? extends TLAbsMessage> newMessages, TLVector<? extends TLAbsEncryptedMessage> newEncryptedMessages, TLVector<? extends TLAbsUpdate> otherUpdates, TLVector<? extends TLAbsChat> chats, TLVector<? extends TLAbsUser> users, TLState intermediateState) {
         this.newMessages = newMessages;
         this.newEncryptedMessages = newEncryptedMessages;
         this.otherUpdates = otherUpdates;
@@ -79,43 +79,43 @@ public class TLDifferenceSlice extends TLAbsDifference {
         return CONSTRUCTOR_ID;
     }
 
-    public TLVector<TLAbsMessage> getNewMessages() {
+    public TLVector<? extends TLAbsMessage> getNewMessages() {
         return newMessages;
     }
 
-    public void setNewMessages(TLVector<TLAbsMessage> newMessages) {
+    public void setNewMessages(TLVector<? extends TLAbsMessage> newMessages) {
         this.newMessages = newMessages;
     }
 
-    public TLVector<TLAbsEncryptedMessage> getNewEncryptedMessages() {
+    public TLVector<? extends TLAbsEncryptedMessage> getNewEncryptedMessages() {
         return newEncryptedMessages;
     }
 
-    public void setNewEncryptedMessages(TLVector<TLAbsEncryptedMessage> newEncryptedMessages) {
+    public void setNewEncryptedMessages(TLVector<? extends TLAbsEncryptedMessage> newEncryptedMessages) {
         this.newEncryptedMessages = newEncryptedMessages;
     }
 
-    public TLVector<TLAbsUpdate> getOtherUpdates() {
+    public TLVector<? extends TLAbsUpdate> getOtherUpdates() {
         return otherUpdates;
     }
 
-    public void setOtherUpdates(TLVector<TLAbsUpdate> otherUpdates) {
+    public void setOtherUpdates(TLVector<? extends TLAbsUpdate> otherUpdates) {
         this.otherUpdates = otherUpdates;
     }
 
-    public TLVector<TLAbsChat> getChats() {
+    public TLVector<? extends TLAbsChat> getChats() {
         return chats;
     }
 
-    public void setChats(TLVector<TLAbsChat> chats) {
+    public void setChats(TLVector<? extends TLAbsChat> chats) {
         this.chats = chats;
     }
 
-    public TLVector<TLAbsUser> getUsers() {
+    public TLVector<? extends TLAbsUser> getUsers() {
         return users;
     }
 
-    public void setUsers(TLVector<TLAbsUser> users) {
+    public void setUsers(TLVector<? extends TLAbsUser> users) {
         this.users = users;
     }
 

@@ -34,17 +34,17 @@ public class TLMessage extends TLAbsMessage {
 
     protected boolean mediaUnread;
 
-    protected int fromId;
+    protected Integer fromId;
 
     protected TLAbsPeer toId;
 
     protected TLAbsPeer fwdFromId;
 
-    protected int fwdDate;
+    protected Integer fwdDate;
 
-    protected int viaBotId;
+    protected Integer viaBotId;
 
-    protected int replyToMsgId;
+    protected Integer replyToMsgId;
 
     protected int date;
 
@@ -56,12 +56,12 @@ public class TLMessage extends TLAbsMessage {
 
     protected TLVector<TLAbsMessageEntity> entities;
 
-    protected int views;
+    protected Integer views;
 
     public TLMessage() {
     }
 
-    public TLMessage(int flags, boolean unread, boolean out, boolean mentioned, boolean mediaUnread, int id, int fromId, TLAbsPeer toId, TLAbsPeer fwdFromId, int fwdDate, int viaBotId, int replyToMsgId, int date, String message, TLAbsMessageMedia media, TLAbsReplyMarkup replyMarkup, TLVector<TLAbsMessageEntity> entities, int views) {
+    public TLMessage(int flags, boolean unread, boolean out, boolean mentioned, boolean mediaUnread, int id, Integer fromId, TLAbsPeer toId, TLAbsPeer fwdFromId, Integer fwdDate, Integer viaBotId, Integer replyToMsgId, int date, String message, TLAbsMessageMedia media, TLAbsReplyMarkup replyMarkup, TLVector<TLAbsMessageEntity> entities, Integer views) {
         this.flags = flags;
         this.unread = unread;
         this.out = out;
@@ -200,11 +200,11 @@ public class TLMessage extends TLAbsMessage {
         this.id = id;
     }
 
-    public int getFromId() {
+    public Integer getFromId() {
         return fromId;
     }
 
-    public void setFromId(int fromId) {
+    public void setFromId(Integer fromId) {
         this.fromId = fromId;
     }
 
@@ -224,27 +224,27 @@ public class TLMessage extends TLAbsMessage {
         this.fwdFromId = fwdFromId;
     }
 
-    public int getFwdDate() {
+    public Integer getFwdDate() {
         return fwdDate;
     }
 
-    public void setFwdDate(int fwdDate) {
+    public void setFwdDate(Integer fwdDate) {
         this.fwdDate = fwdDate;
     }
 
-    public int getViaBotId() {
+    public Integer getViaBotId() {
         return viaBotId;
     }
 
-    public void setViaBotId(int viaBotId) {
+    public void setViaBotId(Integer viaBotId) {
         this.viaBotId = viaBotId;
     }
 
-    public int getReplyToMsgId() {
+    public Integer getReplyToMsgId() {
         return replyToMsgId;
     }
 
-    public void setReplyToMsgId(int replyToMsgId) {
+    public void setReplyToMsgId(Integer replyToMsgId) {
         this.replyToMsgId = replyToMsgId;
     }
 
@@ -288,11 +288,11 @@ public class TLMessage extends TLAbsMessage {
         this.entities = entities;
     }
 
-    public int getViews() {
+    public Integer getViews() {
         return views;
     }
 
-    public void setViews(int views) {
+    public void setViews(Integer views) {
         this.views = views;
     }
 }

@@ -20,7 +20,7 @@ public class TLChannelDifferenceEmpty extends TLAbsChannelDifference {
     public TLChannelDifferenceEmpty() {
     }
 
-    public TLChannelDifferenceEmpty(int flags, boolean _final, int pts, int timeout) {
+    public TLChannelDifferenceEmpty(int flags, boolean _final, int pts, Integer timeout) {
         this.flags = flags;
         this._final = _final;
         this.pts = pts;
@@ -82,11 +82,11 @@ public class TLChannelDifferenceEmpty extends TLAbsChannelDifference {
         this.pts = pts;
     }
 
-    public int getTimeout() {
+    public Integer getTimeout() {
         return timeout;
     }
 
-    public void setTimeout(int timeout) {
+    public void setTimeout(Integer timeout) {
         this.timeout = timeout;
     }
 }

@@ -44,7 +44,7 @@ class ReqSetDhClientParams @JvmOverloads constructor(var nonce: ByteArray = Byte
     }
 
     companion object {
-        @JvmStatic @JvmField
+        @JvmField
         val CONSTRUCTOR_ID = -184262881
     }
 }

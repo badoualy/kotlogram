@@ -20,7 +20,6 @@ import com.github.badoualy.telegram.tl.exception.DeserializationException
 import org.apache.commons.lang3.StringUtils
 import rx.Observable
 import rx.Subscriber
-import rx.lang.kotlin.observable
 import rx.schedulers.Schedulers
 import java.io.IOException
 import java.util.*
@@ -136,7 +135,7 @@ class MTProtoHandler {
      */
     @Throws(IOException::class)
     fun <T : TLObject> executeMethod(method: TLMethod<T>, timeout: Long): Observable<T> {
-        val observable = observable<T> { subscriber ->
+        val observable = Observable.create<T> { subscriber ->
             Log.d(TAG, "executeMethod ${method.toString()}")
             try {
                 val extra = getExtraToSend()

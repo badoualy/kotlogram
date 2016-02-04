@@ -53,7 +53,7 @@ internal class DefaultTelegramClient internal constructor(val application: Teleg
 
     private fun init(checkNearestDc: Boolean = true) {
         mtProtoHandler = if (generateAuthKey) MTProtoHandler(generateAuthKey(), this) else MTProtoHandler(dataCenter!!, authKey!!, apiStorage.loadServerSalt(), this)
-        debugListener!!.onSocketCreated()
+        debugListener?.onSocketCreated()
         mtProtoHandler!!.startWatchdog()
 
         if (generateAuthKey) {

@@ -19,14 +19,14 @@ import static com.github.badoualy.telegram.tl.StreamUtils.writeTLVector;
 public class TLChatParticipants extends TLAbsChatParticipants {
     public static final int CONSTRUCTOR_ID = 0x3f460fed;
 
-    protected TLVector<TLAbsChatParticipant> participants;
+    protected TLVector<? extends TLAbsChatParticipant> participants;
 
     protected int version;
 
     public TLChatParticipants() {
     }
 
-    public TLChatParticipants(int chatId, TLVector<TLAbsChatParticipant> participants, int version) {
+    public TLChatParticipants(int chatId, TLVector<? extends TLAbsChatParticipant> participants, int version) {
         this.chatId = chatId;
         this.participants = participants;
         this.version = version;
@@ -65,11 +65,11 @@ public class TLChatParticipants extends TLAbsChatParticipants {
         this.chatId = chatId;
     }
 
-    public TLVector<TLAbsChatParticipant> getParticipants() {
+    public TLVector<? extends TLAbsChatParticipant> getParticipants() {
         return participants;
     }
 
-    public void setParticipants(TLVector<TLAbsChatParticipant> participants) {
+    public void setParticipants(TLVector<? extends TLAbsChatParticipant> participants) {
         this.participants = participants;
     }
 

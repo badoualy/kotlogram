@@ -26,12 +26,12 @@ public class TLRequestAccountSetPrivacy extends TLMethod<TLPrivacyRules> {
 
     protected TLInputPrivacyKeyStatusTimestamp key;
 
-    protected TLVector<TLAbsInputPrivacyRule> rules;
+    protected TLVector<? extends TLAbsInputPrivacyRule> rules;
 
     public TLRequestAccountSetPrivacy() {
     }
 
-    public TLRequestAccountSetPrivacy(TLInputPrivacyKeyStatusTimestamp key, TLVector<TLAbsInputPrivacyRule> rules) {
+    public TLRequestAccountSetPrivacy(TLInputPrivacyKeyStatusTimestamp key, TLVector<? extends TLAbsInputPrivacyRule> rules) {
         this.key = key;
         this.rules = rules;
     }
@@ -80,11 +80,11 @@ public class TLRequestAccountSetPrivacy extends TLMethod<TLPrivacyRules> {
         this.key = key;
     }
 
-    public TLVector<TLAbsInputPrivacyRule> getRules() {
+    public TLVector<? extends TLAbsInputPrivacyRule> getRules() {
         return rules;
     }
 
-    public void setRules(TLVector<TLAbsInputPrivacyRule> rules) {
+    public void setRules(TLVector<? extends TLAbsInputPrivacyRule> rules) {
         this.rules = rules;
     }
 }

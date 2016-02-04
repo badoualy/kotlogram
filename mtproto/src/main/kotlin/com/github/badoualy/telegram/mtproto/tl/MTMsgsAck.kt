@@ -38,7 +38,7 @@ class MTMsgsAck @JvmOverloads constructor(var messages: TLLongVector = TLLongVec
     }
 
     companion object {
-        @JvmStatic @JvmField
+        @JvmField
         val CONSTRUCTOR_ID = 1658238041
     }
 }

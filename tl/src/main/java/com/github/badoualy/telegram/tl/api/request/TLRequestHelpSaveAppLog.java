@@ -22,12 +22,12 @@ import static com.github.badoualy.telegram.tl.StreamUtils.writeTLVector;
 public class TLRequestHelpSaveAppLog extends TLMethod<TLBool> {
     public static final int CONSTRUCTOR_ID = 0x6f02f748;
 
-    protected TLVector<TLInputAppEvent> events;
+    protected TLVector<? extends TLInputAppEvent> events;
 
     public TLRequestHelpSaveAppLog() {
     }
 
-    public TLRequestHelpSaveAppLog(TLVector<TLInputAppEvent> events) {
+    public TLRequestHelpSaveAppLog(TLVector<? extends TLInputAppEvent> events) {
         this.events = events;
     }
 
@@ -65,11 +65,11 @@ public class TLRequestHelpSaveAppLog extends TLMethod<TLBool> {
         return CONSTRUCTOR_ID;
     }
 
-    public TLVector<TLInputAppEvent> getEvents() {
+    public TLVector<? extends TLInputAppEvent> getEvents() {
         return events;
     }
 
-    public void setEvents(TLVector<TLInputAppEvent> events) {
+    public void setEvents(TLVector<? extends TLInputAppEvent> events) {
         this.events = events;
     }
 }

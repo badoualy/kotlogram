@@ -1,156 +1,85 @@
 package com.github.badoualy.telegram;
 
-import com.github.badoualy.telegram.api.DebugListener;
 import com.github.badoualy.telegram.api.Kotlogram;
 import com.github.badoualy.telegram.api.TelegramApiStorage;
 import com.github.badoualy.telegram.api.TelegramApp;
 import com.github.badoualy.telegram.api.TelegramClient;
 import com.github.badoualy.telegram.mtproto.DataCenter;
 import com.github.badoualy.telegram.mtproto.auth.AuthKey;
-import com.github.badoualy.telegram.tl.api.TLDocument;
-import com.github.badoualy.telegram.tl.api.TLInputDocumentFileLocation;
+import com.github.badoualy.telegram.mtproto.exception.RpcErrorException;
+import com.github.badoualy.telegram.tl.api.TLAbsMessage;
 import com.github.badoualy.telegram.tl.api.TLInputPeerEmpty;
 import com.github.badoualy.telegram.tl.api.TLMessage;
-import com.github.badoualy.telegram.tl.api.TLMessageMediaDocument;
+import com.github.badoualy.telegram.tl.api.TLUser;
+import com.github.badoualy.telegram.tl.api.auth.TLAbsSentCode;
+import com.github.badoualy.telegram.tl.api.auth.TLAuthorization;
 import com.github.badoualy.telegram.tl.api.messages.TLAbsDialogs;
-import com.github.badoualy.telegram.tl.api.upload.TLFile;
 
 import org.apache.commons.io.FileUtils;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-import java.io.ByteArrayOutputStream;
-import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.Scanner;
 
-import static com.github.badoualy.telegram.C.API_HASH;
-import static com.github.badoualy.telegram.C.API_ID;
-import static com.github.badoualy.telegram.C.APP_VERSION;
-import static com.github.badoualy.telegram.C.AUTH_KEY_FILE;
-import static com.github.badoualy.telegram.C.LANG_CODE;
-import static com.github.badoualy.telegram.C.MODEL;
-import static com.github.badoualy.telegram.C.NEAREST_DC_FILE;
-import static com.github.badoualy.telegram.C.SYSTEM_VERSION;
-
+@SuppressWarnings("ALL")
 public class KotlogramSample {
 
     public static void main(String[] args) throws InterruptedException {
-        //Kotlogram.setDebugLogEnabled(true);
-        TelegramApp app = new TelegramApp(API_ID, API_HASH, MODEL, SYSTEM_VERSION, APP_VERSION, LANG_CODE);
+        // Activate debug log or not, false by default
+        // Kotlogram.setDebugLogEnabled(true);
+
+        // Replace the following constants with your app's information
+        // This informations are used in initConnection and sendCode rpc methods
+        TelegramApp app = new TelegramApp(C.API_ID, C.API_HASH, C.MODEL, C.SYSTEM_VERSION, C.APP_VERSION, C.LANG_CODE);
 
         // This is a synchronous client, that will block until the response arrive (or until timeout)
         // A client which return an Observable<T> where T is the response type will be available soon
         TelegramClient client = Kotlogram.getDefaultClient(app, new ApiStorage());
-        client.setDebugListener(new DebugListener() {
-            @Override
-            public void onSocketCreated() {
-                System.out.println("onSocketCreated()");
-            }
-
-            @Override
-            public void onTimeoutBeforeReset() {
-                System.out.println("onTimeoutBeforeReset()");
-            }
-
-            @Override
-            public void onTimeoutAfterReset() {
-                System.out.println("onTimeoutAfterReset");
-            }
-        });
 
         // You can start making requests
         try {
-//            TLAbsSentCode sentCode = client.authSendCode(PHONE_NUMBER, 5);
-//            System.out.println("Authentication code: ");
-//            String code = new Scanner(System.in).nextLine();
-//            TLAuthorization authorization = client.authSignIn(PHONE_NUMBER, sentCode.getPhoneCodeHash(), code);
-//            TLUser self = (TLUser) authorization.getUser();
-//            System.out.println("You are now signed in as " + self.getFirstName() + " " + self.getLastName());
-//            // Start making cool stuff!
-//
-//            //Get user profile picture
-//            TLFileLocation photoLocation = (TLFileLocation) ((TLUserProfilePhoto) self.getPhoto()).getPhotoBig();
-//            TLInputFileLocation inputLocation = new TLInputFileLocation(photoLocation.getVolumeId(),
-//                                                                        photoLocation.getLocalId(),
-//                                                                        photoLocation.getSecret());
-//            TLFile photo = client.uploadGetFile(inputLocation, 0, 0);
-//            FileUtils.writeByteArrayToFile(PHOTO_FILE, photo.getBytes().getData());
+            // Send code to account
+            TLAbsSentCode sentCode = client.authSendCode(C.PHONE_NUMBER, 5);
+            System.out.println("Authentication code: ");
+            String code = new Scanner(System.in).nextLine();
 
-            TLAbsDialogs dialogs = client.messagesGetDialogs(0, 0, new TLInputPeerEmpty(), 0);
-            // Do something with recent chats :)
+            // Auth with the received code
+            TLAuthorization authorization = client.authSignIn(C.PHONE_NUMBER, sentCode.getPhoneCodeHash(), code);
+            TLUser self = authorization.getUser().getAsUser();
+            System.out.println("You are now signed in as " + self.getFirstName() + " " + self.getLastName());
 
-            // TODO: generic types array covariant
-
-//            dialogs.getChats().stream().forEach(c -> {
-//                if (c instanceof TLChat) {
-//                    TLChat chat = (TLChat) c;
-//                    System.out.println("Chat " + chat.getTitle() + " with id " + chat.getId());
-//
-//                    try {
-//                        TLFile file = client.getChatPhoto(chat, true);
-//                        if (file != null)
-//                            FileUtils.writeByteArrayToFile(new File("./sample/" + chat.getId() + ".jpg"), file.getBytes().getData());
-//                    } catch (RpcErrorException e) {
-//                        e.printStackTrace();
-//                    } catch (IOException e) {
-//                        e.printStackTrace();
-//                    }
-//
-//                    System.out.println("-----");
-//                }
-//            });
-        } catch (IOException e) {
-            // Network error
+            // Start making cool stuff!
+            // Get a list of 10 most recent conversations
+            TLAbsDialogs dialogs = client.messagesGetDialogs(0, 0, new TLInputPeerEmpty(), 10);
+            for (TLAbsMessage message : dialogs.getMessages()) {
+                if (message instanceof TLMessage) {
+                    System.out.println("Found message " + ((TLMessage) message).getMessage());
+                } else {
+                    System.out.println("Found a service message or empty message");
+                }
+            }
+        } catch (RpcErrorException e) {
             e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            client.close(); // Important, do not forget this, or your process won't finish
         }
-
-        client.close(); // Important, do not forget this, or your process won't finish
-        System.err.println("------------------------- GOOD BYE");
+        System.out.println("------------------------- GOOD BYE");
     }
 
-    private static void downloadFiles(TelegramClient client, TLAbsDialogs dialogs) {
-        dialogs.getMessages().stream()
-               .forEach(m -> {
-                   System.out.println("------");
-                   if (m instanceof TLMessage) {
-                       TLMessage message = (TLMessage) m;
-                       System.out.println(message.getMessage());
-                       if (message.getMedia() != null && message.getMedia() instanceof TLMessageMediaDocument) {
-                           TLMessageMediaDocument media = (TLMessageMediaDocument) message.getMedia();
-                           TLDocument document = (TLDocument) media.getDocument();
-                           TLInputDocumentFileLocation input = new TLInputDocumentFileLocation(document.getId(),
-                                                                                               document.getAccessHash());
-
-                           //image/webp
-                           //application/vnd.android.package-archive
-                           System.out.println("Getting " + document.getMimeType());
-                           String ext = document.getMimeType().contains("android") ? ".apk" : ".webp";
-                           try {
-                               ByteArrayOutputStream baos = new ByteArrayOutputStream();
-                               int read = 0;
-                               while (read < document.getSize()) {
-                                   TLFile tlFile = client.uploadGetFile(input, read, document.getSize());
-                                   read += tlFile.getBytes().getLength();
-                                   baos.write(tlFile.getBytes().getData());
-                               }
-                               FileUtils.writeByteArrayToFile(new File("./" + document.getId() + ext), baos.toByteArray());
-                           } catch (IOException e) {
-                               e.printStackTrace();
-                           }
-                       }
-                   }
-                   System.out.println("------");
-               });
-    }
-
+    /**
+     * Implement ApiStorage to save your connection, to avoid having to use sendCode every time you launch your app
+     */
     private static class ApiStorage implements TelegramApiStorage {
 
 
         @Override
         public void saveAuthKey(@NotNull AuthKey authKey) {
             try {
-                FileUtils.writeByteArrayToFile(AUTH_KEY_FILE, authKey.getKey());
+                FileUtils.writeByteArrayToFile(C.AUTH_KEY_FILE, authKey.getKey());
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -160,7 +89,7 @@ public class KotlogramSample {
         @Override
         public AuthKey loadAuthKey() {
             try {
-                return new AuthKey(FileUtils.readFileToByteArray(AUTH_KEY_FILE));
+                return new AuthKey(FileUtils.readFileToByteArray(C.AUTH_KEY_FILE));
             } catch (IOException e) {
                 if (!(e instanceof FileNotFoundException))
                     e.printStackTrace();
@@ -172,7 +101,7 @@ public class KotlogramSample {
         @Override
         public void saveDc(@NotNull DataCenter dataCenter) {
             try {
-                FileUtils.write(NEAREST_DC_FILE, dataCenter.toString());
+                FileUtils.write(C.NEAREST_DC_FILE, dataCenter.toString());
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -182,7 +111,7 @@ public class KotlogramSample {
         @Override
         public DataCenter loadDc() {
             try {
-                String[] infos = FileUtils.readFileToString(NEAREST_DC_FILE).split(":");
+                String[] infos = FileUtils.readFileToString(C.NEAREST_DC_FILE).split(":");
                 return new DataCenter(infos[0], Integer.parseInt(infos[1]));
             } catch (IOException e) {
                 if (!(e instanceof FileNotFoundException))
@@ -195,7 +124,7 @@ public class KotlogramSample {
         @Override
         public void deleteAuthKey() {
             try {
-                FileUtils.forceDelete(AUTH_KEY_FILE);
+                FileUtils.forceDelete(C.AUTH_KEY_FILE);
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -204,7 +133,7 @@ public class KotlogramSample {
         @Override
         public void deleteDc() {
             try {
-                FileUtils.forceDelete(NEAREST_DC_FILE);
+                FileUtils.forceDelete(C.NEAREST_DC_FILE);
             } catch (IOException e) {
                 e.printStackTrace();
             }

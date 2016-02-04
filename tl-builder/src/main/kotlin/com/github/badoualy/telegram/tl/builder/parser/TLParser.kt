@@ -1,10 +1,6 @@
 package com.github.badoualy.telegram.tl.builder.parser
 
 import com.fasterxml.jackson.databind.JsonNode
-import com.github.badoualy.telegram.tl.builder.parser.BuiltInTypes
-import com.github.badoualy.telegram.tl.builder.parser.IgnoredTypes
-import com.github.badoualy.telegram.tl.builder.parser.SupportedGenericTypes
-import com.github.badoualy.telegram.tl.builder.poet.JavaPoet
 import java.util.*
 
 private val genericRegex = Regex("([a-zA-Z]+)<([a-zA-Z]+)>") // Vector<SomeKindOfType>

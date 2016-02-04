@@ -21,12 +21,12 @@ import static com.github.badoualy.telegram.tl.StreamUtils.writeTLVector;
 public class TLWallPaper extends TLAbsWallPaper {
     public static final int CONSTRUCTOR_ID = 0xccb03657;
 
-    protected TLVector<TLAbsPhotoSize> sizes;
+    protected TLVector<? extends TLAbsPhotoSize> sizes;
 
     public TLWallPaper() {
     }
 
-    public TLWallPaper(int id, String title, TLVector<TLAbsPhotoSize> sizes, int color) {
+    public TLWallPaper(int id, String title, TLVector<? extends TLAbsPhotoSize> sizes, int color) {
         this.id = id;
         this.title = title;
         this.sizes = sizes;
@@ -76,11 +76,11 @@ public class TLWallPaper extends TLAbsWallPaper {
         this.title = title;
     }
 
-    public TLVector<TLAbsPhotoSize> getSizes() {
+    public TLVector<? extends TLAbsPhotoSize> getSizes() {
         return sizes;
     }
 
-    public void setSizes(TLVector<TLAbsPhotoSize> sizes) {
+    public void setSizes(TLVector<? extends TLAbsPhotoSize> sizes) {
         this.sizes = sizes;
     }
 

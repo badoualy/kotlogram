@@ -40,7 +40,7 @@ public class TLRequestMessagesSendMessage extends TLMethod<TLAbsUpdates> {
 
     protected TLAbsInputPeer peer;
 
-    protected int replyToMsgId;
+    protected Integer replyToMsgId;
 
     protected String message;
 
@@ -53,7 +53,7 @@ public class TLRequestMessagesSendMessage extends TLMethod<TLAbsUpdates> {
     public TLRequestMessagesSendMessage() {
     }
 
-    public TLRequestMessagesSendMessage(int flags, boolean noWebpage, boolean broadcast, TLAbsInputPeer peer, int replyToMsgId, String message, long randomId, TLAbsReplyMarkup replyMarkup, TLVector<TLAbsMessageEntity> entities) {
+    public TLRequestMessagesSendMessage(int flags, boolean noWebpage, boolean broadcast, TLAbsInputPeer peer, Integer replyToMsgId, String message, long randomId, TLAbsReplyMarkup replyMarkup, TLVector<TLAbsMessageEntity> entities) {
         this.flags = flags;
         this.noWebpage = noWebpage;
         this.broadcast = broadcast;
@@ -154,11 +154,11 @@ public class TLRequestMessagesSendMessage extends TLMethod<TLAbsUpdates> {
         this.peer = peer;
     }
 
-    public int getReplyToMsgId() {
+    public Integer getReplyToMsgId() {
         return replyToMsgId;
     }
 
-    public void setReplyToMsgId(int replyToMsgId) {
+    public void setReplyToMsgId(Integer replyToMsgId) {
         this.replyToMsgId = replyToMsgId;
     }
 

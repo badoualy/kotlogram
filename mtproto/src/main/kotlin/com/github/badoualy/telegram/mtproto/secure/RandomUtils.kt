@@ -2,7 +2,6 @@ package com.github.badoualy.telegram.mtproto.secure
 
 import java.math.BigInteger
 import java.security.SecureRandom
-import java.util.*
 
 class RandomUtils {
 

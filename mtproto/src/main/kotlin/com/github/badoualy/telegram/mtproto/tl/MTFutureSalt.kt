@@ -32,7 +32,7 @@ class MTFutureSalt @JvmOverloads constructor(var validSince: Int = 0, var validU
     }
 
     companion object {
-        @JvmStatic @JvmField
+        @JvmField
         val CONSTRUCTOR_ID = 0x0949d9dc
     }
 }

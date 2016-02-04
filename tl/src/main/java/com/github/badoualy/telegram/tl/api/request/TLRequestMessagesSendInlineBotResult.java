@@ -33,7 +33,7 @@ public class TLRequestMessagesSendInlineBotResult extends TLMethod<TLAbsUpdates>
 
     protected TLAbsInputPeer peer;
 
-    protected int replyToMsgId;
+    protected Integer replyToMsgId;
 
     protected long randomId;
 
@@ -44,7 +44,7 @@ public class TLRequestMessagesSendInlineBotResult extends TLMethod<TLAbsUpdates>
     public TLRequestMessagesSendInlineBotResult() {
     }
 
-    public TLRequestMessagesSendInlineBotResult(int flags, boolean broadcast, TLAbsInputPeer peer, int replyToMsgId, long randomId, long queryId, String id) {
+    public TLRequestMessagesSendInlineBotResult(int flags, boolean broadcast, TLAbsInputPeer peer, Integer replyToMsgId, long randomId, long queryId, String id) {
         this.flags = flags;
         this.broadcast = broadcast;
         this.peer = peer;
@@ -128,11 +128,11 @@ public class TLRequestMessagesSendInlineBotResult extends TLMethod<TLAbsUpdates>
         this.peer = peer;
     }
 
-    public int getReplyToMsgId() {
+    public Integer getReplyToMsgId() {
         return replyToMsgId;
     }
 
-    public void setReplyToMsgId(int replyToMsgId) {
+    public void setReplyToMsgId(Integer replyToMsgId) {
         this.replyToMsgId = replyToMsgId;
     }
 

@@ -22,12 +22,12 @@ public class TLStickers extends TLAbsStickers {
 
     protected String hash;
 
-    protected TLVector<TLAbsDocument> stickers;
+    protected TLVector<? extends TLAbsDocument> stickers;
 
     public TLStickers() {
     }
 
-    public TLStickers(String hash, TLVector<TLAbsDocument> stickers) {
+    public TLStickers(String hash, TLVector<? extends TLAbsDocument> stickers) {
         this.hash = hash;
         this.stickers = stickers;
     }
@@ -63,11 +63,11 @@ public class TLStickers extends TLAbsStickers {
         this.hash = hash;
     }
 
-    public TLVector<TLAbsDocument> getStickers() {
+    public TLVector<? extends TLAbsDocument> getStickers() {
         return stickers;
     }
 
-    public void setStickers(TLVector<TLAbsDocument> stickers) {
+    public void setStickers(TLVector<? extends TLAbsDocument> stickers) {
         this.stickers = stickers;
     }
 }

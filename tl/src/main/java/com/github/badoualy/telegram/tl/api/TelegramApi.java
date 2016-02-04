@@ -338,11 +338,11 @@ public interface TelegramApi {
 
     TLAbsSentEncryptedMessage messagesSendEncryptedService(TLInputEncryptedChat peer, long randomId, TLBytes data) throws IOException;
 
-    TLAbsUpdates messagesSendInlineBotResult(int flags, boolean broadcast, TLAbsInputPeer peer, int replyToMsgId, long randomId, long queryId, String id) throws IOException;
+    TLAbsUpdates messagesSendInlineBotResult(int flags, boolean broadcast, TLAbsInputPeer peer, Integer replyToMsgId, long randomId, long queryId, String id) throws IOException;
 
-    TLAbsUpdates messagesSendMedia(int flags, boolean broadcast, TLAbsInputPeer peer, int replyToMsgId, TLAbsInputMedia media, long randomId, TLAbsReplyMarkup replyMarkup) throws IOException;
+    TLAbsUpdates messagesSendMedia(int flags, boolean broadcast, TLAbsInputPeer peer, Integer replyToMsgId, TLAbsInputMedia media, long randomId, TLAbsReplyMarkup replyMarkup) throws IOException;
 
-    TLAbsUpdates messagesSendMessage(int flags, boolean noWebpage, boolean broadcast, TLAbsInputPeer peer, int replyToMsgId, String message, long randomId, TLAbsReplyMarkup replyMarkup, TLVector<TLAbsMessageEntity> entities) throws IOException;
+    TLAbsUpdates messagesSendMessage(int flags, boolean noWebpage, boolean broadcast, TLAbsInputPeer peer, Integer replyToMsgId, String message, long randomId, TLAbsReplyMarkup replyMarkup, TLVector<TLAbsMessageEntity> entities) throws IOException;
 
     TLBool messagesSetEncryptedTyping(TLInputEncryptedChat peer, boolean typing) throws IOException;
 

@@ -33,16 +33,16 @@ public class TLChannelDifferenceTooLong extends TLAbsChannelDifference {
 
     protected int unreadImportantCount;
 
-    protected TLVector<TLAbsMessage> messages;
+    protected TLVector<? extends TLAbsMessage> messages;
 
-    protected TLVector<TLAbsChat> chats;
+    protected TLVector<? extends TLAbsChat> chats;
 
-    protected TLVector<TLAbsUser> users;
+    protected TLVector<? extends TLAbsUser> users;
 
     public TLChannelDifferenceTooLong() {
     }
 
-    public TLChannelDifferenceTooLong(int flags, boolean _final, int pts, int timeout, int topMessage, int topImportantMessage, int readInboxMaxId, int unreadCount, int unreadImportantCount, TLVector<TLAbsMessage> messages, TLVector<TLAbsChat> chats, TLVector<TLAbsUser> users) {
+    public TLChannelDifferenceTooLong(int flags, boolean _final, int pts, Integer timeout, int topMessage, int topImportantMessage, int readInboxMaxId, int unreadCount, int unreadImportantCount, TLVector<? extends TLAbsMessage> messages, TLVector<? extends TLAbsChat> chats, TLVector<? extends TLAbsUser> users) {
         this.flags = flags;
         this._final = _final;
         this.pts = pts;
@@ -128,11 +128,11 @@ public class TLChannelDifferenceTooLong extends TLAbsChannelDifference {
         this.pts = pts;
     }
 
-    public int getTimeout() {
+    public Integer getTimeout() {
         return timeout;
     }
 
-    public void setTimeout(int timeout) {
+    public void setTimeout(Integer timeout) {
         this.timeout = timeout;
     }
 
@@ -176,27 +176,27 @@ public class TLChannelDifferenceTooLong extends TLAbsChannelDifference {
         this.unreadImportantCount = unreadImportantCount;
     }
 
-    public TLVector<TLAbsMessage> getMessages() {
+    public TLVector<? extends TLAbsMessage> getMessages() {
         return messages;
     }
 
-    public void setMessages(TLVector<TLAbsMessage> messages) {
+    public void setMessages(TLVector<? extends TLAbsMessage> messages) {
         this.messages = messages;
     }
 
-    public TLVector<TLAbsChat> getChats() {
+    public TLVector<? extends TLAbsChat> getChats() {
         return chats;
     }
 
-    public void setChats(TLVector<TLAbsChat> chats) {
+    public void setChats(TLVector<? extends TLAbsChat> chats) {
         this.chats = chats;
     }
 
-    public TLVector<TLAbsUser> getUsers() {
+    public TLVector<? extends TLAbsUser> getUsers() {
         return users;
     }
 
-    public void setUsers(TLVector<TLAbsUser> users) {
+    public void setUsers(TLVector<? extends TLAbsUser> users) {
         this.users = users;
     }
 }

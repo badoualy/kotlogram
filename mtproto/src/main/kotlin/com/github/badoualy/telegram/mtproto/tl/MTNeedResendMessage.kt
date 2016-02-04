@@ -38,7 +38,7 @@ class MTNeedResendMessage @JvmOverloads constructor(var messages: TLLongVector =
     }
 
     companion object {
-        @JvmStatic @JvmField
+        @JvmField
         val CONSTRUCTOR_ID = 2105940488
     }
 }

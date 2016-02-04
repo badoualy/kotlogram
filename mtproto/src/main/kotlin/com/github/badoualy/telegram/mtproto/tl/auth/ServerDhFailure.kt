@@ -33,7 +33,7 @@ class ServerDhFailure @JvmOverloads constructor(var nonce: ByteArray = ByteArray
     }
 
     companion object {
-        @JvmStatic @JvmField
+        @JvmField
         val CONSTRUCTOR_ID = 2043348061
     }
 }

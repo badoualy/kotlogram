@@ -33,7 +33,7 @@ class MTBadServerSalt @JvmOverloads constructor(badMsgId: Long = 0, badMsqSeqno:
     }
 
     companion object {
-        @JvmStatic @JvmField
+        @JvmField
         val CONSTRUCTOR_ID = -307542917
     }
 }

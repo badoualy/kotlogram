@@ -29,7 +29,7 @@ class MTPing @JvmOverloads constructor(var pingId: Long = 0) : TLObject() {
     }
 
     companion object {
-        @JvmStatic @JvmField
+        @JvmField
         val CONSTRUCTOR_ID = 2059302892
     }
 }

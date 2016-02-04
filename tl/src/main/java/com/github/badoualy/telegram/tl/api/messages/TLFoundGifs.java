@@ -23,12 +23,12 @@ public class TLFoundGifs extends TLObject {
 
     protected int nextOffset;
 
-    protected TLVector<TLAbsFoundGif> results;
+    protected TLVector<? extends TLAbsFoundGif> results;
 
     public TLFoundGifs() {
     }
 
-    public TLFoundGifs(int nextOffset, TLVector<TLAbsFoundGif> results) {
+    public TLFoundGifs(int nextOffset, TLVector<? extends TLAbsFoundGif> results) {
         this.nextOffset = nextOffset;
         this.results = results;
     }
@@ -64,11 +64,11 @@ public class TLFoundGifs extends TLObject {
         this.nextOffset = nextOffset;
     }
 
-    public TLVector<TLAbsFoundGif> getResults() {
+    public TLVector<? extends TLAbsFoundGif> getResults() {
         return results;
     }
 
-    public void setResults(TLVector<TLAbsFoundGif> results) {
+    public void setResults(TLVector<? extends TLAbsFoundGif> results) {
         this.results = results;
     }
 }

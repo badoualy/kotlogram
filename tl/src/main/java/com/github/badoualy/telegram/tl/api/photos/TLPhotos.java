@@ -22,7 +22,7 @@ public class TLPhotos extends TLAbsPhotos {
     public TLPhotos() {
     }
 
-    public TLPhotos(TLVector<TLAbsPhoto> photos, TLVector<TLAbsUser> users) {
+    public TLPhotos(TLVector<? extends TLAbsPhoto> photos, TLVector<? extends TLAbsUser> users) {
         this.photos = photos;
         this.users = users;
     }
@@ -50,19 +50,19 @@ public class TLPhotos extends TLAbsPhotos {
         return CONSTRUCTOR_ID;
     }
 
-    public TLVector<TLAbsPhoto> getPhotos() {
+    public TLVector<? extends TLAbsPhoto> getPhotos() {
         return photos;
     }
 
-    public void setPhotos(TLVector<TLAbsPhoto> photos) {
+    public void setPhotos(TLVector<? extends TLAbsPhoto> photos) {
         this.photos = photos;
     }
 
-    public TLVector<TLAbsUser> getUsers() {
+    public TLVector<? extends TLAbsUser> getUsers() {
         return users;
     }
 
-    public void setUsers(TLVector<TLAbsUser> users) {
+    public void setUsers(TLVector<? extends TLAbsUser> users) {
         this.users = users;
     }
 }

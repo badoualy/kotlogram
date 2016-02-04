@@ -29,7 +29,7 @@ public class TLMessageService extends TLAbsMessage {
 
     protected boolean mediaUnread;
 
-    protected int fromId;
+    protected Integer fromId;
 
     protected TLAbsPeer toId;
 
@@ -40,7 +40,7 @@ public class TLMessageService extends TLAbsMessage {
     public TLMessageService() {
     }
 
-    public TLMessageService(int flags, boolean unread, boolean out, boolean mentioned, boolean mediaUnread, int id, int fromId, TLAbsPeer toId, int date, TLAbsMessageAction action) {
+    public TLMessageService(int flags, boolean unread, boolean out, boolean mentioned, boolean mediaUnread, int id, Integer fromId, TLAbsPeer toId, int date, TLAbsMessageAction action) {
         this.flags = flags;
         this.unread = unread;
         this.out = out;
@@ -147,11 +147,11 @@ public class TLMessageService extends TLAbsMessage {
         this.id = id;
     }
 
-    public int getFromId() {
+    public Integer getFromId() {
         return fromId;
     }
 
-    public void setFromId(int fromId) {
+    public void setFromId(Integer fromId) {
         this.fromId = fromId;
     }
 

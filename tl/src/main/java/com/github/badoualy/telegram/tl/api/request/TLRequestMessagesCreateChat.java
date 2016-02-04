@@ -24,14 +24,14 @@ import static com.github.badoualy.telegram.tl.StreamUtils.writeTLVector;
 public class TLRequestMessagesCreateChat extends TLMethod<TLAbsUpdates> {
     public static final int CONSTRUCTOR_ID = 0x9cb126e;
 
-    protected TLVector<TLAbsInputUser> users;
+    protected TLVector<? extends TLAbsInputUser> users;
 
     protected String title;
 
     public TLRequestMessagesCreateChat() {
     }
 
-    public TLRequestMessagesCreateChat(TLVector<TLAbsInputUser> users, String title) {
+    public TLRequestMessagesCreateChat(TLVector<? extends TLAbsInputUser> users, String title) {
         this.users = users;
         this.title = title;
     }
@@ -72,11 +72,11 @@ public class TLRequestMessagesCreateChat extends TLMethod<TLAbsUpdates> {
         return CONSTRUCTOR_ID;
     }
 
-    public TLVector<TLAbsInputUser> getUsers() {
+    public TLVector<? extends TLAbsInputUser> getUsers() {
         return users;
     }
 
-    public void setUsers(TLVector<TLAbsInputUser> users) {
+    public void setUsers(TLVector<? extends TLAbsInputUser> users) {
         this.users = users;
     }
 

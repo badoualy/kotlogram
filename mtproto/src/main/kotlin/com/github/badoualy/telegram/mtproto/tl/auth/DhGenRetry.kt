@@ -12,7 +12,7 @@ class DhGenRetry @JvmOverloads constructor(nonce: ByteArray = ByteArray(0), serv
     }
 
     companion object {
-        @JvmStatic @JvmField
+        @JvmField
         val CONSTRUCTOR_ID = 1188831161
     }
 }

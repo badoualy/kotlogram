@@ -42,7 +42,7 @@ class MTFutureSalts @JvmOverloads constructor(var requestId: Long = 0, var now: 
     }
 
     companion object {
-        @JvmStatic @JvmField
+        @JvmField
         val CONSTRUCTOR_ID = -1370486635
     }
 }

@@ -19,11 +19,11 @@ import static com.github.badoualy.telegram.tl.StreamUtils.writeTLVector;
 public class TLUpdates extends TLAbsUpdates {
     public static final int CONSTRUCTOR_ID = 0x74ae4240;
 
-    protected TLVector<TLAbsUpdate> updates;
+    protected TLVector<? extends TLAbsUpdate> updates;
 
-    protected TLVector<TLAbsUser> users;
+    protected TLVector<? extends TLAbsUser> users;
 
-    protected TLVector<TLAbsChat> chats;
+    protected TLVector<? extends TLAbsChat> chats;
 
     protected int date;
 
@@ -32,7 +32,7 @@ public class TLUpdates extends TLAbsUpdates {
     public TLUpdates() {
     }
 
-    public TLUpdates(TLVector<TLAbsUpdate> updates, TLVector<TLAbsUser> users, TLVector<TLAbsChat> chats, int date, int seq) {
+    public TLUpdates(TLVector<? extends TLAbsUpdate> updates, TLVector<? extends TLAbsUser> users, TLVector<? extends TLAbsChat> chats, int date, int seq) {
         this.updates = updates;
         this.users = users;
         this.chats = chats;
@@ -69,27 +69,27 @@ public class TLUpdates extends TLAbsUpdates {
         return CONSTRUCTOR_ID;
     }
 
-    public TLVector<TLAbsUpdate> getUpdates() {
+    public TLVector<? extends TLAbsUpdate> getUpdates() {
         return updates;
     }
 
-    public void setUpdates(TLVector<TLAbsUpdate> updates) {
+    public void setUpdates(TLVector<? extends TLAbsUpdate> updates) {
         this.updates = updates;
     }
 
-    public TLVector<TLAbsUser> getUsers() {
+    public TLVector<? extends TLAbsUser> getUsers() {
         return users;
     }
 
-    public void setUsers(TLVector<TLAbsUser> users) {
+    public void setUsers(TLVector<? extends TLAbsUser> users) {
         this.users = users;
     }
 
-    public TLVector<TLAbsChat> getChats() {
+    public TLVector<? extends TLAbsChat> getChats() {
         return chats;
     }
 
-    public void setChats(TLVector<TLAbsChat> chats) {
+    public void setChats(TLVector<? extends TLAbsChat> chats) {
         this.chats = chats;
     }
 

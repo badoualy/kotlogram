@@ -22,12 +22,12 @@ import static com.github.badoualy.telegram.tl.StreamUtils.writeTLVector;
 public class TLRequestUsersGetUsers extends TLMethod<TLVector<TLAbsUser>> {
     public static final int CONSTRUCTOR_ID = 0xd91a548;
 
-    protected TLVector<TLAbsInputUser> id;
+    protected TLVector<? extends TLAbsInputUser> id;
 
     public TLRequestUsersGetUsers() {
     }
 
-    public TLRequestUsersGetUsers(TLVector<TLAbsInputUser> id) {
+    public TLRequestUsersGetUsers(TLVector<? extends TLAbsInputUser> id) {
         this.id = id;
     }
 
@@ -65,11 +65,11 @@ public class TLRequestUsersGetUsers extends TLMethod<TLVector<TLAbsUser>> {
         return CONSTRUCTOR_ID;
     }
 
-    public TLVector<TLAbsInputUser> getId() {
+    public TLVector<? extends TLAbsInputUser> getId() {
         return id;
     }
 
-    public void setId(TLVector<TLAbsInputUser> id) {
+    public void setId(TLVector<? extends TLAbsInputUser> id) {
         this.id = id;
     }
 }

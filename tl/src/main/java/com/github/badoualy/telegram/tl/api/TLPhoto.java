@@ -25,12 +25,12 @@ public class TLPhoto extends TLAbsPhoto {
 
     protected int date;
 
-    protected TLVector<TLAbsPhotoSize> sizes;
+    protected TLVector<? extends TLAbsPhotoSize> sizes;
 
     public TLPhoto() {
     }
 
-    public TLPhoto(long id, long accessHash, int date, TLVector<TLAbsPhotoSize> sizes) {
+    public TLPhoto(long id, long accessHash, int date, TLVector<? extends TLAbsPhotoSize> sizes) {
         this.id = id;
         this.accessHash = accessHash;
         this.date = date;
@@ -88,11 +88,11 @@ public class TLPhoto extends TLAbsPhoto {
         this.date = date;
     }
 
-    public TLVector<TLAbsPhotoSize> getSizes() {
+    public TLVector<? extends TLAbsPhotoSize> getSizes() {
         return sizes;
     }
 
-    public void setSizes(TLVector<TLAbsPhotoSize> sizes) {
+    public void setSizes(TLVector<? extends TLAbsPhotoSize> sizes) {
         this.sizes = sizes;
     }
 

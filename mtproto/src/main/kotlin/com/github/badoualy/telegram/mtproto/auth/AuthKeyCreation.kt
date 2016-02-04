@@ -2,8 +2,8 @@ package com.github.badoualy.telegram.mtproto.auth
 
 
 import com.github.badoualy.telegram.mtproto.DataCenter
-import com.github.badoualy.telegram.mtproto.exception.FingerprintNotFoundException
 import com.github.badoualy.telegram.mtproto.exception.AuthorizationException
+import com.github.badoualy.telegram.mtproto.exception.FingerprintNotFoundException
 import com.github.badoualy.telegram.mtproto.exception.SecurityException
 import com.github.badoualy.telegram.mtproto.secure.CryptoUtils.*
 import com.github.badoualy.telegram.mtproto.secure.Key

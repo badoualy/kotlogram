@@ -25,14 +25,14 @@ public class TLResolvedPeer extends TLObject {
 
     protected TLAbsPeer peer;
 
-    protected TLVector<TLAbsChat> chats;
+    protected TLVector<? extends TLAbsChat> chats;
 
-    protected TLVector<TLAbsUser> users;
+    protected TLVector<? extends TLAbsUser> users;
 
     public TLResolvedPeer() {
     }
 
-    public TLResolvedPeer(TLAbsPeer peer, TLVector<TLAbsChat> chats, TLVector<TLAbsUser> users) {
+    public TLResolvedPeer(TLAbsPeer peer, TLVector<? extends TLAbsChat> chats, TLVector<? extends TLAbsUser> users) {
         this.peer = peer;
         this.chats = chats;
         this.users = users;
@@ -71,19 +71,19 @@ public class TLResolvedPeer extends TLObject {
         this.peer = peer;
     }
 
-    public TLVector<TLAbsChat> getChats() {
+    public TLVector<? extends TLAbsChat> getChats() {
         return chats;
     }
 
-    public void setChats(TLVector<TLAbsChat> chats) {
+    public void setChats(TLVector<? extends TLAbsChat> chats) {
         this.chats = chats;
     }
 
-    public TLVector<TLAbsUser> getUsers() {
+    public TLVector<? extends TLAbsUser> getUsers() {
         return users;
     }
 
-    public void setUsers(TLVector<TLAbsUser> users) {
+    public void setUsers(TLVector<? extends TLAbsUser> users) {
         this.users = users;
     }
 }

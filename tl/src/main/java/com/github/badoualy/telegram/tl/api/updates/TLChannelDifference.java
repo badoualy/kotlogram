@@ -24,18 +24,18 @@ import static com.github.badoualy.telegram.tl.StreamUtils.writeTLVector;
 public class TLChannelDifference extends TLAbsChannelDifference {
     public static final int CONSTRUCTOR_ID = 0x2064674e;
 
-    protected TLVector<TLAbsMessage> newMessages;
+    protected TLVector<? extends TLAbsMessage> newMessages;
 
-    protected TLVector<TLAbsUpdate> otherUpdates;
+    protected TLVector<? extends TLAbsUpdate> otherUpdates;
 
-    protected TLVector<TLAbsChat> chats;
+    protected TLVector<? extends TLAbsChat> chats;
 
-    protected TLVector<TLAbsUser> users;
+    protected TLVector<? extends TLAbsUser> users;
 
     public TLChannelDifference() {
     }
 
-    public TLChannelDifference(int flags, boolean _final, int pts, int timeout, TLVector<TLAbsMessage> newMessages, TLVector<TLAbsUpdate> otherUpdates, TLVector<TLAbsChat> chats, TLVector<TLAbsUser> users) {
+    public TLChannelDifference(int flags, boolean _final, int pts, Integer timeout, TLVector<? extends TLAbsMessage> newMessages, TLVector<? extends TLAbsUpdate> otherUpdates, TLVector<? extends TLAbsChat> chats, TLVector<? extends TLAbsUser> users) {
         this.flags = flags;
         this._final = _final;
         this.pts = pts;
@@ -109,43 +109,43 @@ public class TLChannelDifference extends TLAbsChannelDifference {
         this.pts = pts;
     }
 
-    public int getTimeout() {
+    public Integer getTimeout() {
         return timeout;
     }
 
-    public void setTimeout(int timeout) {
+    public void setTimeout(Integer timeout) {
         this.timeout = timeout;
     }
 
-    public TLVector<TLAbsMessage> getNewMessages() {
+    public TLVector<? extends TLAbsMessage> getNewMessages() {
         return newMessages;
     }
 
-    public void setNewMessages(TLVector<TLAbsMessage> newMessages) {
+    public void setNewMessages(TLVector<? extends TLAbsMessage> newMessages) {
         this.newMessages = newMessages;
     }
 
-    public TLVector<TLAbsUpdate> getOtherUpdates() {
+    public TLVector<? extends TLAbsUpdate> getOtherUpdates() {
         return otherUpdates;
     }
 
-    public void setOtherUpdates(TLVector<TLAbsUpdate> otherUpdates) {
+    public void setOtherUpdates(TLVector<? extends TLAbsUpdate> otherUpdates) {
         this.otherUpdates = otherUpdates;
     }
 
-    public TLVector<TLAbsChat> getChats() {
+    public TLVector<? extends TLAbsChat> getChats() {
         return chats;
     }
 
-    public void setChats(TLVector<TLAbsChat> chats) {
+    public void setChats(TLVector<? extends TLAbsChat> chats) {
         this.chats = chats;
     }
 
-    public TLVector<TLAbsUser> getUsers() {
+    public TLVector<? extends TLAbsUser> getUsers() {
         return users;
     }
 
-    public void setUsers(TLVector<TLAbsUser> users) {
+    public void setUsers(TLVector<? extends TLAbsUser> users) {
         this.users = users;
     }
 }

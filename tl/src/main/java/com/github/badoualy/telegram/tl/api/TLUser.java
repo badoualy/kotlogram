@@ -43,7 +43,7 @@ public class TLUser extends TLAbsUser {
 
     protected boolean restricted;
 
-    protected long accessHash;
+    protected Long accessHash;
 
     protected String firstName;
 
@@ -57,7 +57,7 @@ public class TLUser extends TLAbsUser {
 
     protected TLAbsUserStatus status;
 
-    protected int botInfoVersion;
+    protected Integer botInfoVersion;
 
     protected String restrictionReason;
 
@@ -66,7 +66,7 @@ public class TLUser extends TLAbsUser {
     public TLUser() {
     }
 
-    public TLUser(int flags, boolean self, boolean contact, boolean mutualContact, boolean deleted, boolean bot, boolean botChatHistory, boolean botNochats, boolean verified, boolean restricted, int id, long accessHash, String firstName, String lastName, String username, String phone, TLAbsUserProfilePhoto photo, TLAbsUserStatus status, int botInfoVersion, String restrictionReason, String botInlinePlaceholder) {
+    public TLUser(int flags, boolean self, boolean contact, boolean mutualContact, boolean deleted, boolean bot, boolean botChatHistory, boolean botNochats, boolean verified, boolean restricted, int id, Long accessHash, String firstName, String lastName, String username, String phone, TLAbsUserProfilePhoto photo, TLAbsUserStatus status, Integer botInfoVersion, String restrictionReason, String botInlinePlaceholder) {
         this.flags = flags;
         this.self = self;
         this.contact = contact;
@@ -260,11 +260,11 @@ public class TLUser extends TLAbsUser {
         this.id = id;
     }
 
-    public long getAccessHash() {
+    public Long getAccessHash() {
         return accessHash;
     }
 
-    public void setAccessHash(long accessHash) {
+    public void setAccessHash(Long accessHash) {
         this.accessHash = accessHash;
     }
 
@@ -316,11 +316,11 @@ public class TLUser extends TLAbsUser {
         this.status = status;
     }
 
-    public int getBotInfoVersion() {
+    public Integer getBotInfoVersion() {
         return botInfoVersion;
     }
 
-    public void setBotInfoVersion(int botInfoVersion) {
+    public void setBotInfoVersion(Integer botInfoVersion) {
         this.botInfoVersion = botInfoVersion;
     }
 

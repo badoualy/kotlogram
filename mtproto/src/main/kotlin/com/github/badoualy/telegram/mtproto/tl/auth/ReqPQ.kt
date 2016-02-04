@@ -54,7 +54,7 @@ class ReqPQ constructor(nonce: ByteArray? = null) : TLMethod<ResPQ>() {
     }
 
     companion object {
-        @JvmStatic @JvmField
+        @JvmField
         val CONSTRUCTOR_ID = 1615239032
     }
 }

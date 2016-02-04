@@ -49,7 +49,7 @@ class MTMessagesContainer : TLObject {
     }
 
     companion object {
-        @JvmStatic @JvmField
+        @JvmField
         val CONSTRUCTOR_ID = 1945237724
     }
 }

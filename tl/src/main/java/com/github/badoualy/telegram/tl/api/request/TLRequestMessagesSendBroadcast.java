@@ -28,7 +28,7 @@ import static com.github.badoualy.telegram.tl.StreamUtils.writeTLVector;
 public class TLRequestMessagesSendBroadcast extends TLMethod<TLAbsUpdates> {
     public static final int CONSTRUCTOR_ID = 0xbf73f4da;
 
-    protected TLVector<TLAbsInputUser> contacts;
+    protected TLVector<? extends TLAbsInputUser> contacts;
 
     protected TLLongVector randomId;
 
@@ -39,7 +39,7 @@ public class TLRequestMessagesSendBroadcast extends TLMethod<TLAbsUpdates> {
     public TLRequestMessagesSendBroadcast() {
     }
 
-    public TLRequestMessagesSendBroadcast(TLVector<TLAbsInputUser> contacts, TLLongVector randomId, String message, TLAbsInputMedia media) {
+    public TLRequestMessagesSendBroadcast(TLVector<? extends TLAbsInputUser> contacts, TLLongVector randomId, String message, TLAbsInputMedia media) {
         this.contacts = contacts;
         this.randomId = randomId;
         this.message = message;
@@ -86,11 +86,11 @@ public class TLRequestMessagesSendBroadcast extends TLMethod<TLAbsUpdates> {
         return CONSTRUCTOR_ID;
     }
 
-    public TLVector<TLAbsInputUser> getContacts() {
+    public TLVector<? extends TLAbsInputUser> getContacts() {
         return contacts;
     }
 
-    public void setContacts(TLVector<TLAbsInputUser> contacts) {
+    public void setContacts(TLVector<? extends TLAbsInputUser> contacts) {
         this.contacts = contacts;
     }
 

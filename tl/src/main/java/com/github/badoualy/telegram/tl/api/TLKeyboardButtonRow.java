@@ -18,12 +18,12 @@ import static com.github.badoualy.telegram.tl.StreamUtils.writeTLVector;
 public class TLKeyboardButtonRow extends TLObject {
     public static final int CONSTRUCTOR_ID = 0x77608b83;
 
-    protected TLVector<TLKeyboardButton> buttons;
+    protected TLVector<? extends TLKeyboardButton> buttons;
 
     public TLKeyboardButtonRow() {
     }
 
-    public TLKeyboardButtonRow(TLVector<TLKeyboardButton> buttons) {
+    public TLKeyboardButtonRow(TLVector<? extends TLKeyboardButton> buttons) {
         this.buttons = buttons;
     }
 
@@ -48,11 +48,11 @@ public class TLKeyboardButtonRow extends TLObject {
         return CONSTRUCTOR_ID;
     }
 
-    public TLVector<TLKeyboardButton> getButtons() {
+    public TLVector<? extends TLKeyboardButton> getButtons() {
         return buttons;
     }
 
-    public void setButtons(TLVector<TLKeyboardButton> buttons) {
+    public void setButtons(TLVector<? extends TLKeyboardButton> buttons) {
         this.buttons = buttons;
     }
 }

@@ -32,7 +32,7 @@ class MTRpcResult @JvmOverloads constructor(var messageId: Long = 0, var content
     }
 
     companion object {
-        @JvmStatic @JvmField
+        @JvmField
         val CONSTRUCTOR_ID = -212046591
     }
 }

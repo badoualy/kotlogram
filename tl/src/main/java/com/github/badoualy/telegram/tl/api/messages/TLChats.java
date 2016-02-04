@@ -19,12 +19,12 @@ import static com.github.badoualy.telegram.tl.StreamUtils.writeTLVector;
 public class TLChats extends TLObject {
     public static final int CONSTRUCTOR_ID = 0x64ff9fd5;
 
-    protected TLVector<TLAbsChat> chats;
+    protected TLVector<? extends TLAbsChat> chats;
 
     public TLChats() {
     }
 
-    public TLChats(TLVector<TLAbsChat> chats) {
+    public TLChats(TLVector<? extends TLAbsChat> chats) {
         this.chats = chats;
     }
 
@@ -49,11 +49,11 @@ public class TLChats extends TLObject {
         return CONSTRUCTOR_ID;
     }
 
-    public TLVector<TLAbsChat> getChats() {
+    public TLVector<? extends TLAbsChat> getChats() {
         return chats;
     }
 
-    public void setChats(TLVector<TLAbsChat> chats) {
+    public void setChats(TLVector<? extends TLAbsChat> chats) {
         this.chats = chats;
     }
 }

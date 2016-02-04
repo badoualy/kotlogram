@@ -10,26 +10,26 @@ import com.github.badoualy.telegram.tl.core.TLVector;
  * @see <a href="http://github.com/badoualy/kotlogram">http://github.com/badoualy/kotlogram</a>
  */
 public abstract class TLAbsBlocked extends TLObject {
-    protected TLVector<TLContactBlocked> blocked;
+    protected TLVector<? extends TLContactBlocked> blocked;
 
-    protected TLVector<TLAbsUser> users;
+    protected TLVector<? extends TLAbsUser> users;
 
     public TLAbsBlocked() {
     }
 
-    public TLVector<TLContactBlocked> getBlocked() {
+    public TLVector<? extends TLContactBlocked> getBlocked() {
         return blocked;
     }
 
-    public void setBlocked(TLVector<TLContactBlocked> blocked) {
+    public void setBlocked(TLVector<? extends TLContactBlocked> blocked) {
         this.blocked = blocked;
     }
 
-    public TLVector<TLAbsUser> getUsers() {
+    public TLVector<? extends TLAbsUser> getUsers() {
         return users;
     }
 
-    public void setUsers(TLVector<TLAbsUser> users) {
+    public void setUsers(TLVector<? extends TLAbsUser> users) {
         this.users = users;
     }
 }

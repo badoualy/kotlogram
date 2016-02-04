@@ -22,7 +22,7 @@ public class TLBlocked extends TLAbsBlocked {
     public TLBlocked() {
     }
 
-    public TLBlocked(TLVector<TLContactBlocked> blocked, TLVector<TLAbsUser> users) {
+    public TLBlocked(TLVector<? extends TLContactBlocked> blocked, TLVector<? extends TLAbsUser> users) {
         this.blocked = blocked;
         this.users = users;
     }
@@ -50,19 +50,19 @@ public class TLBlocked extends TLAbsBlocked {
         return CONSTRUCTOR_ID;
     }
 
-    public TLVector<TLContactBlocked> getBlocked() {
+    public TLVector<? extends TLContactBlocked> getBlocked() {
         return blocked;
     }
 
-    public void setBlocked(TLVector<TLContactBlocked> blocked) {
+    public void setBlocked(TLVector<? extends TLContactBlocked> blocked) {
         this.blocked = blocked;
     }
 
-    public TLVector<TLAbsUser> getUsers() {
+    public TLVector<? extends TLAbsUser> getUsers() {
         return users;
     }
 
-    public void setUsers(TLVector<TLAbsUser> users) {
+    public void setUsers(TLVector<? extends TLAbsUser> users) {
         this.users = users;
     }
 }

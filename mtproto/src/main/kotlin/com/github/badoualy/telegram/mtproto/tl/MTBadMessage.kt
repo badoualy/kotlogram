@@ -27,30 +27,30 @@ abstract class MTBadMessage @JvmOverloads constructor(var badMsgId: Long = 0, va
     }
 
     companion object {
-        @JvmStatic @JvmField
+        @JvmField
         val ERROR_MSG_ID_TOO_LOW = 16
-        @JvmStatic @JvmField
+        @JvmField
         val ERROR_MSG_ID_TOO_HIGH = 17
-        @JvmStatic @JvmField
+        @JvmField
         val ERROR_MSG_ID_MODULO = 18
-        @JvmStatic @JvmField
+        @JvmField
         val ERROR_CONTAINER_MSG_ID_INCORRECT = 19
-        @JvmStatic @JvmField
+        @JvmField
         val ERROR_TOO_OLD = 20
 
-        @JvmStatic @JvmField
+        @JvmField
         val ERROR_SEQNO_TOO_LOW = 32
-        @JvmStatic @JvmField
+        @JvmField
         val ERROR_SEQNO_TOO_HIGH = 33
-        @JvmStatic @JvmField
+        @JvmField
         val ERROR_SEQNO_EXPECTED_EVEN = 34
-        @JvmStatic @JvmField
+        @JvmField
         val ERROR_SEQNO_EXPECTED_ODD = 35
 
-        @JvmStatic @JvmField
+        @JvmField
         val ERROR_BAD_SERVER_SALT = 48
 
-        @JvmStatic @JvmField
+        @JvmField
         val ERROR_BAD_CONTAINER = 64
     }
 }

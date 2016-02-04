@@ -37,7 +37,7 @@ public class TLRequestMessagesSetInlineBotResults extends TLMethod<TLBool> {
 
     protected long queryId;
 
-    protected TLVector<TLInputBotInlineResult> results;
+    protected TLVector<? extends TLInputBotInlineResult> results;
 
     protected int cacheTime;
 
@@ -46,7 +46,7 @@ public class TLRequestMessagesSetInlineBotResults extends TLMethod<TLBool> {
     public TLRequestMessagesSetInlineBotResults() {
     }
 
-    public TLRequestMessagesSetInlineBotResults(int flags, boolean gallery, boolean _private, long queryId, TLVector<TLInputBotInlineResult> results, int cacheTime, String nextOffset) {
+    public TLRequestMessagesSetInlineBotResults(int flags, boolean gallery, boolean _private, long queryId, TLVector<? extends TLInputBotInlineResult> results, int cacheTime, String nextOffset) {
         this.flags = flags;
         this.gallery = gallery;
         this._private = _private;
@@ -139,11 +139,11 @@ public class TLRequestMessagesSetInlineBotResults extends TLMethod<TLBool> {
         this.queryId = queryId;
     }
 
-    public TLVector<TLInputBotInlineResult> getResults() {
+    public TLVector<? extends TLInputBotInlineResult> getResults() {
         return results;
     }
 
-    public void setResults(TLVector<TLInputBotInlineResult> results) {
+    public void setResults(TLVector<? extends TLInputBotInlineResult> results) {
         this.results = results;
     }
 

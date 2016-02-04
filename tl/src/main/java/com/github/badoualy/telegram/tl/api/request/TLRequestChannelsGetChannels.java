@@ -22,12 +22,12 @@ import static com.github.badoualy.telegram.tl.StreamUtils.writeTLVector;
 public class TLRequestChannelsGetChannels extends TLMethod<TLChats> {
     public static final int CONSTRUCTOR_ID = 0xa7f6bbb;
 
-    protected TLVector<TLAbsInputChannel> id;
+    protected TLVector<? extends TLAbsInputChannel> id;
 
     public TLRequestChannelsGetChannels() {
     }
 
-    public TLRequestChannelsGetChannels(TLVector<TLAbsInputChannel> id) {
+    public TLRequestChannelsGetChannels(TLVector<? extends TLAbsInputChannel> id) {
         this.id = id;
     }
 
@@ -65,11 +65,11 @@ public class TLRequestChannelsGetChannels extends TLMethod<TLChats> {
         return CONSTRUCTOR_ID;
     }
 
-    public TLVector<TLAbsInputChannel> getId() {
+    public TLVector<? extends TLAbsInputChannel> getId() {
         return id;
     }
 
-    public void setId(TLVector<TLAbsInputChannel> id) {
+    public void setId(TLVector<? extends TLAbsInputChannel> id) {
         this.id = id;
     }
 }

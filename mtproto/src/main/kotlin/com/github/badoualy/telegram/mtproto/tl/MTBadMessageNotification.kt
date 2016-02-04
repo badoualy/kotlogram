@@ -31,7 +31,7 @@ class MTBadMessageNotification @JvmOverloads constructor(badMsgId: Long = 0, bad
     }
 
     companion object {
-        @JvmStatic @JvmField
+        @JvmField
         val CONSTRUCTOR_ID = -1477445615
     }
 }

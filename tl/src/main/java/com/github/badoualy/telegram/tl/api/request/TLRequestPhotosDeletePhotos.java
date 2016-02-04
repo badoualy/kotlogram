@@ -22,12 +22,12 @@ import static com.github.badoualy.telegram.tl.StreamUtils.writeTLVector;
 public class TLRequestPhotosDeletePhotos extends TLMethod<TLLongVector> {
     public static final int CONSTRUCTOR_ID = 0x87cf7f2f;
 
-    protected TLVector<TLAbsInputPhoto> id;
+    protected TLVector<? extends TLAbsInputPhoto> id;
 
     public TLRequestPhotosDeletePhotos() {
     }
 
-    public TLRequestPhotosDeletePhotos(TLVector<TLAbsInputPhoto> id) {
+    public TLRequestPhotosDeletePhotos(TLVector<? extends TLAbsInputPhoto> id) {
         this.id = id;
     }
 
@@ -65,11 +65,11 @@ public class TLRequestPhotosDeletePhotos extends TLMethod<TLLongVector> {
         return CONSTRUCTOR_ID;
     }
 
-    public TLVector<TLAbsInputPhoto> getId() {
+    public TLVector<? extends TLAbsInputPhoto> getId() {
         return id;
     }
 
-    public void setId(TLVector<TLAbsInputPhoto> id) {
+    public void setId(TLVector<? extends TLAbsInputPhoto> id) {
         this.id = id;
     }
 }

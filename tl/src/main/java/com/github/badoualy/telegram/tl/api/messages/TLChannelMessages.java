@@ -34,7 +34,7 @@ public class TLChannelMessages extends TLAbsMessages {
     public TLChannelMessages() {
     }
 
-    public TLChannelMessages(int flags, int pts, int count, TLVector<TLAbsMessage> messages, TLVector<TLMessageGroup> collapsed, TLVector<TLAbsChat> chats, TLVector<TLAbsUser> users) {
+    public TLChannelMessages(int flags, int pts, int count, TLVector<? extends TLAbsMessage> messages, TLVector<TLMessageGroup> collapsed, TLVector<? extends TLAbsChat> chats, TLVector<? extends TLAbsUser> users) {
         this.flags = flags;
         this.pts = pts;
         this.count = count;
@@ -104,11 +104,11 @@ public class TLChannelMessages extends TLAbsMessages {
         this.count = count;
     }
 
-    public TLVector<TLAbsMessage> getMessages() {
+    public TLVector<? extends TLAbsMessage> getMessages() {
         return messages;
     }
 
-    public void setMessages(TLVector<TLAbsMessage> messages) {
+    public void setMessages(TLVector<? extends TLAbsMessage> messages) {
         this.messages = messages;
     }
 
@@ -120,19 +120,19 @@ public class TLChannelMessages extends TLAbsMessages {
         this.collapsed = collapsed;
     }
 
-    public TLVector<TLAbsChat> getChats() {
+    public TLVector<? extends TLAbsChat> getChats() {
         return chats;
     }
 
-    public void setChats(TLVector<TLAbsChat> chats) {
+    public void setChats(TLVector<? extends TLAbsChat> chats) {
         this.chats = chats;
     }
 
-    public TLVector<TLAbsUser> getUsers() {
+    public TLVector<? extends TLAbsUser> getUsers() {
         return users;
     }
 
-    public void setUsers(TLVector<TLAbsUser> users) {
+    public void setUsers(TLVector<? extends TLAbsUser> users) {
         this.users = users;
     }
 }

@@ -10,26 +10,26 @@ import com.github.badoualy.telegram.tl.core.TLVector;
  * @see <a href="http://github.com/badoualy/kotlogram">http://github.com/badoualy/kotlogram</a>
  */
 public abstract class TLAbsPhotos extends TLObject {
-    protected TLVector<TLAbsPhoto> photos;
+    protected TLVector<? extends TLAbsPhoto> photos;
 
-    protected TLVector<TLAbsUser> users;
+    protected TLVector<? extends TLAbsUser> users;
 
     public TLAbsPhotos() {
     }
 
-    public TLVector<TLAbsPhoto> getPhotos() {
+    public TLVector<? extends TLAbsPhoto> getPhotos() {
         return photos;
     }
 
-    public void setPhotos(TLVector<TLAbsPhoto> photos) {
+    public void setPhotos(TLVector<? extends TLAbsPhoto> photos) {
         this.photos = photos;
     }
 
-    public TLVector<TLAbsUser> getUsers() {
+    public TLVector<? extends TLAbsUser> getUsers() {
         return users;
     }
 
-    public void setUsers(TLVector<TLAbsUser> users) {
+    public void setUsers(TLVector<? extends TLAbsUser> users) {
         this.users = users;
     }
 }

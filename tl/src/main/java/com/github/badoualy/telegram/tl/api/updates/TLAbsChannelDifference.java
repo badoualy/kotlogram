@@ -13,7 +13,7 @@ public abstract class TLAbsChannelDifference extends TLObject {
 
     protected int pts;
 
-    protected int timeout;
+    protected Integer timeout;
 
     public TLAbsChannelDifference() {
     }
@@ -42,11 +42,11 @@ public abstract class TLAbsChannelDifference extends TLObject {
         this.pts = pts;
     }
 
-    public int getTimeout() {
+    public Integer getTimeout() {
         return timeout;
     }
 
-    public void setTimeout(int timeout) {
+    public void setTimeout(Integer timeout) {
         this.timeout = timeout;
     }
 }

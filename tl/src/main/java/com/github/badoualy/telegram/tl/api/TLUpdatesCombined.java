@@ -19,11 +19,11 @@ import static com.github.badoualy.telegram.tl.StreamUtils.writeTLVector;
 public class TLUpdatesCombined extends TLAbsUpdates {
     public static final int CONSTRUCTOR_ID = 0x725b04c3;
 
-    protected TLVector<TLAbsUpdate> updates;
+    protected TLVector<? extends TLAbsUpdate> updates;
 
-    protected TLVector<TLAbsUser> users;
+    protected TLVector<? extends TLAbsUser> users;
 
-    protected TLVector<TLAbsChat> chats;
+    protected TLVector<? extends TLAbsChat> chats;
 
     protected int date;
 
@@ -34,7 +34,7 @@ public class TLUpdatesCombined extends TLAbsUpdates {
     public TLUpdatesCombined() {
     }
 
-    public TLUpdatesCombined(TLVector<TLAbsUpdate> updates, TLVector<TLAbsUser> users, TLVector<TLAbsChat> chats, int date, int seqStart, int seq) {
+    public TLUpdatesCombined(TLVector<? extends TLAbsUpdate> updates, TLVector<? extends TLAbsUser> users, TLVector<? extends TLAbsChat> chats, int date, int seqStart, int seq) {
         this.updates = updates;
         this.users = users;
         this.chats = chats;
@@ -74,27 +74,27 @@ public class TLUpdatesCombined extends TLAbsUpdates {
         return CONSTRUCTOR_ID;
     }
 
-    public TLVector<TLAbsUpdate> getUpdates() {
+    public TLVector<? extends TLAbsUpdate> getUpdates() {
         return updates;
     }
 
-    public void setUpdates(TLVector<TLAbsUpdate> updates) {
+    public void setUpdates(TLVector<? extends TLAbsUpdate> updates) {
         this.updates = updates;
     }
 
-    public TLVector<TLAbsUser> getUsers() {
+    public TLVector<? extends TLAbsUser> getUsers() {
         return users;
     }
 
-    public void setUsers(TLVector<TLAbsUser> users) {
+    public void setUsers(TLVector<? extends TLAbsUser> users) {
         this.users = users;
     }
 
-    public TLVector<TLAbsChat> getChats() {
+    public TLVector<? extends TLAbsChat> getChats() {
         return chats;
     }
 
-    public void setChats(TLVector<TLAbsChat> chats) {
+    public void setChats(TLVector<? extends TLAbsChat> chats) {
         this.chats = chats;
     }
 
