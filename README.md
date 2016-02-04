@@ -36,35 +36,49 @@ compile 'com.github.badoualy:kotlogram:0.0.4'
 
 
 #### Example
+You need to implement your own C class holding all the constants, it's not included in the repository since it contains confidential information such as my phone number, api id, ...
 ```java
-TelegramApp app = new TelegramApp(API_ID, API_HASH, MODEL, SYSTEM_VERSION, APP_VERSION, LANG_CODE);
+// Activate debug log or not, false by default
+// Kotlogram.setDebugLogEnabled(true);
+
+// Replace the following constants with your app's information
+// This informations are used in initConnection and sendCode rpc methods
+TelegramApp app = new TelegramApp(C.API_ID, C.API_HASH, C.MODEL, C.SYSTEM_VERSION, C.APP_VERSION, C.LANG_CODE);
 
 // This is a synchronous client, that will block until the response arrive (or until timeout)
-// A client which returns an Observable<T> where T is the response type will be available soon
+// A client which return an Observable<T> where T is the response type will be available soon
 TelegramClient client = Kotlogram.getDefaultClient(app, new ApiStorage());
 
 // You can start making requests
 try {
-    TLAbsSentCode sentCode = client.authSendCode(PHONE_NUMBER, 5);
+    // Send code to account
+    TLAbsSentCode sentCode = client.authSendCode(C.PHONE_NUMBER, 5);
     System.out.println("Authentication code: ");
     String code = new Scanner(System.in).nextLine();
-    TLAuthorization authorization = client.authSignIn(PHONE_NUMBER, sentCode.getPhoneCodeHash(), code);
-    TLUser self = (TLUser) authorization.getUser();
+
+    // Auth with the received code
+    TLAuthorization authorization = client.authSignIn(C.PHONE_NUMBER, sentCode.getPhoneCodeHash(), code);
+    TLUser self = authorization.getUser().getAsUser();
     System.out.println("You are now signed in as " + self.getFirstName() + " " + self.getLastName());
 
     // Start making cool stuff!
-    TLAbsDialogs dialogs = client.messagesGetDialogs(0, 0, new TLInputPeerEmpty(), 0);
-    // Do something with recent chats :)
+    // Get a list of 10 most recent conversations
+    TLAbsDialogs dialogs = client.messagesGetDialogs(0, 0, new TLInputPeerEmpty(), 10);
+    for (TLAbsMessage message : dialogs.getMessages()) {
+if (message instanceof TLMessage) {
+    System.out.println("Found message " + ((TLMessage) message).getMessage());
+} else {
+    System.out.println("Found a service message or empty message");
+}
+    }
 } catch (RpcErrorException e) {
-    // Error with the request, invalid argument, etc
     e.printStackTrace();
 } catch (IOException e) {
-    // Network error
     e.printStackTrace();
+} finally {
+    client.close(); // Important, do not forget this, or your process won't finish
 }
-
-client.close(); // Important, do not forget this, or your process won't finish
-System.err.println("------------------------- GOOD BYE");
+System.out.println("------------------------- GOOD BYE");
 ```
 
 
