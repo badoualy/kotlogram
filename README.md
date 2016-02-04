@@ -2,7 +2,7 @@
 [![Release](https://jitpack.io/v/badoualy/kotlogram.svg)](https://jitpack.io/#badoualy/kotlogram)
 ===========
 > **Easy to use** and **straightforward** Kotlin (and Java) binding of [Telegram API](https://core.telegram.org/api).
-> The project is coded in **Kotlin**, with some classes (mostly legacy classes cloned from ex3nder library, see below for more details)
+> The project is coded in **Kotlin**, with some classes (mostly generated and legacy classes) in Java
 > The Java code will be replaced by Kotlin over time
 
 > **Kotlin, what is that, I don't know this language!** 
@@ -94,7 +94,7 @@ The project is composed by the following modules:
 tl-builder: [Type Language](http://core.telegram.org/mtproto/TL) compiler
 ----------------
 Converts json-representation of [TL Schema](http://core.telegram.org/schema) to Java classes with generated classes for serializing and deserializing api messages and methods to their binary representation (see [Binary Data Serialization](https://core.telegram.org/mtproto/serialize)).
-Used JavaPoet to rewrite it from scratch, original version from ex3nder was way to sloppy and used 3 different model layers for no reason.
+Used JavaPoet to generate the classes.
 #### Usage
 1. Run the main class in tl-builder module with the layer value
 
@@ -132,24 +132,6 @@ api
 ----------------
 High-level API to easily use Telegram's [api methods](https://core.telegram.org/methods) without having to understand the first thing about MTProto or TL Language :)
 An old fashioned Java API (like using [RestFB](https://github.com/restfb/restfb) or a any Rest API binding)
-
-#### Usage
-See [here](#Usage) for usage examples
-
-
-[ex3ndr](https://github.com/ex3ndr)'s work
-----------------
-The different projects of ex3ndr are supposed to supply a library to use Telegram API without having to deal with the MTProto or Type Language, but for several reasons I found it impossible to use, mainly because the project is currently dead, which causes the following issues:
-- The supplied version is based on Telegram API layer 12, current layer is 45. His builder to generate classes from the TL-Schema is not working with the new syntax.
-- The [Type Language compiler](https://github.com/ex3ndr/telegram-tl) use a very old version of Kotlin, which means that if you clone the project, you won't be able to run it as it is. This complicates a lot the work to modify how the schema is compiled into Java classes.
-More over, the generated classes are a mess and very difficult to read when needed.
-- The architecture of the MTProto implementation is really complicated and not very straightforward.
-- The ```AuthUtils``` class to execute the "Creating an Authorization Key" flow doesn't follow the [Perfect Forward Secrecy](https://core.telegram.org/api/pfs): you can only generate a permanent key.
-
-For this reasons, the followings are based on his work:
-- The **tl** module ```core``` package was cloned from (see [telegram-tl-core](https://github.com/ex3ndr/telegram-tl-core)) and modified for my needs.
-- The **mtproto** module low-level classes (crypto/utils classes) are based on his implementation (cloned from his project and modified) (see [telegram-mt](https://github.com/ex3ndr/telegram-mt)).
-
 
 Licence
 ----------------
