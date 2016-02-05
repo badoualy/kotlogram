@@ -39,10 +39,6 @@ public final class StreamUtils {
         stream.write(data, offset, len);
     }
 
-    public static void writeDouble(double v, OutputStream stream) throws IOException {
-        writeLong(Double.doubleToRawLongBits(v), stream);
-    }
-
     /**
      * Write the given int in little endian format as 4 bytes
      */
@@ -66,6 +62,10 @@ public final class StreamUtils {
         writeByte((byte) ((v >> 40) & 0xFF), stream);
         writeByte((byte) ((v >> 48) & 0xFF), stream);
         writeByte((byte) ((v >> 56) & 0xFF), stream);
+    }
+
+    public static void writeDouble(double v, OutputStream stream) throws IOException {
+        writeLong(Double.doubleToRawLongBits(v), stream);
     }
 
     public static void writeBoolean(boolean v, OutputStream stream) throws IOException {

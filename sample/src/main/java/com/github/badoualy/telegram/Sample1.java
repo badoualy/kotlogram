@@ -61,8 +61,16 @@ public class Sample1 {
 //            FileUtils.writeByteArrayToFile(PHOTO_FILE, photo.getBytes().getData());
 
             TLAbsDialogs dialogs = client.messagesGetDialogs(0, 0, new TLInputPeerEmpty(), 0);
-            // Do something with recent chats :)
+            client.messagesGetDialogs(0, 0, new TLInputPeerEmpty(), 0);
+            client.messagesGetDialogs(0, 0, new TLInputPeerEmpty(), 0);
 
+            dialogs.getMessages().stream()
+                   .filter(m -> m instanceof TLMessage)
+                   .forEach(m -> System.out.println(((TLMessage) m).getMessage()));
+
+            //TLAbsDialogs dialogs = client.messagesGetDialogs(0, 0, new TLInputPeerEmpty(), 0);
+            // Do something with recent chats :)
+;
             // TODO: generic types array covariant
 
 //            dialogs.getChats().stream().forEach(c -> {

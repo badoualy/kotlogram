@@ -1,11 +1,7 @@
 package com.github.badoualy.telegram.mtproto.transport
 
 import com.github.badoualy.telegram.mtproto.util.Log
-import com.github.badoualy.telegram.tl.ByteBufferUtils.readByteAsInt
-import com.github.badoualy.telegram.tl.ByteBufferUtils.readInt24
-import com.github.badoualy.telegram.tl.StreamUtils.*
-import com.github.badoualy.telegram.tl.stream.ByteBufferBackedInputStream
-import com.github.badoualy.telegram.tl.stream.ByteBufferBackedOutputStream
+import com.github.badoualy.telegram.tl.ByteBufferUtils.*
 import java.io.IOException
 import java.net.InetSocketAddress
 import java.net.StandardSocketOptions
@@ -43,32 +39,24 @@ class MTProtoTcpConnection
         or 0x7f followed by 3 length bytes (little endian) divided by 4)
          */
 
-        // Prepare buffer
-        var buffer = ByteBuffer.allocateDirect(1)
-        socketChannel.read(buffer)
-        buffer.flip()
+        // Read message length
+        var length = readByteAsInt(readBytes(1))
+        if (length == 0x7f)
+            length = readInt24(readBytes(3, ByteOrder.BIG_ENDIAN))
 
-        var length = readByteAsInt(buffer)
-        if (length == 0x7f) {
-            buffer = ByteBuffer.allocateDirect(3)
-            buffer.order(ByteOrder.LITTLE_ENDIAN)
-            socketChannel.read(buffer)
-            buffer.flip()
+        val buffer = readBytes(length * 4)
 
-            length = readInt24(buffer)
-        }
-
-        length *= 4
-        buffer = ByteBuffer.allocateDirect(length)
-        socketChannel.read(buffer)
-        buffer.flip()
-        return readBytes(length, ByteBufferBackedInputStream(buffer))
+        // TODO: fix to return bytebuffer
+        val bytes = ByteArray(buffer.remaining())
+        buffer.get(bytes, 0, buffer.remaining())
+        return bytes
     }
 
     @Throws(IOException::class)
     override fun writeMessage(request: ByteArray) {
-        val buffer = ByteBuffer.allocateDirect(request.size + 4)
-        val stream = ByteBufferBackedOutputStream(buffer)
+        val length = request.size / 4
+        val headerLength = if (length >= 127) 4 else 1
+        val buffer = ByteBuffer.allocateDirect(request.size + headerLength)
 
         /*
         There is an abridged version of the same protocol: if the client sends 0xef as the first byte
@@ -77,19 +65,16 @@ class MTProtoTcpConnection
         or 0x7f followed by 3 length bytes (little endian) divided by 4) followed by the data themselves (sequence number and CRC32 not added).
         In this case, server responses look the same (the server does not send 0xef as the first byte).
          */
-        if (request.size / 4 >= 127) {
-            val len = request.size / 4
-            writeByte(127, stream)
-            writeByte(len and 255, stream)
-            writeByte((len shr 8) and 255, stream)
-            writeByte((len shr 16) and 255, stream)
+        if (headerLength == 4) {
+            writeByte(127, buffer)
+            writeInt24(length, buffer)
         } else {
-            writeByte(request.size / 4, stream)
+            writeByte(length, buffer)
         }
 
-        writeByteArray(request, stream)
+        buffer.put(request)
         buffer.flip()
-        socketChannel.write(buffer)
+        writeBytes(buffer)
     }
 
     @Throws(IOException::class)
@@ -105,4 +90,26 @@ class MTProtoTcpConnection
     }
 
     override fun isOpened() = socketChannel.isOpen && socketChannel.isConnected
+
+    private fun readBytes(length: Int, order: ByteOrder = ByteOrder.BIG_ENDIAN): ByteBuffer {
+        val buffer = ByteBuffer.allocateDirect(length)
+        buffer.order(order)
+        var totalRead = 0
+
+        while (totalRead < length) {
+            var read = socketChannel.read(buffer)
+            if (read == -1)
+                throw IOException("Reached end-of-stream")
+
+            totalRead += read
+        }
+
+        buffer.flip()
+        return buffer
+    }
+
+    private fun writeBytes(buffer: ByteBuffer) {
+        while (buffer.hasRemaining())
+            socketChannel.write(buffer)
+    }
 }
