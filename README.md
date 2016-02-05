@@ -39,7 +39,7 @@ compile 'com.github.badoualy:kotlogram:0.0.4'
 ```
 
 ### Be warned
-Telegram has yet to update the documentation (currently stopped at layer 18, using layer 45), but I **will not document all the feature myself**. So please, restrain from opening ticket to ask "How can I send a sticker", "How can I create a group". You can either try to look at the old documentation or the source of official applications and figure it out yourself, I won't be doing Telegram's job nor yours. Kotlogram is just here to provide a binding of the API, not a documentation.
+Telegram has yet to update the documentation (currently stopped at layer 18, using layer 45), but I **will not document all the features myself**. So please, restrain from opening ticket to ask "How can I send a sticker", "How can I create a group". You can either try to look at the old documentation or the source of official applications and figure it out yourself, I won't be doing Telegram's job nor yours. Kotlogram is just here to provide a binding of the API, not a documentation.
 
 However, I will supply a simple example on how to use the library itself to call rpc methods.
 
