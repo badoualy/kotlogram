@@ -16,6 +16,10 @@ Main tasks left:
 - Improve error handling for the requests, and the exceptions in the mtproto module.
 - Implement tests
 
+Known Bugs
+----------------
+- createChannel method always seems to fail, the issue is either with the tl-schema (got it from official web app) or with Telegram blocking this feature for non-official apps
+
 Usage
 ----------------
 #### Dependency
@@ -34,6 +38,10 @@ Then add the library dependency:
 compile 'com.github.badoualy:kotlogram:0.0.4'
 ```
 
+### Be warned
+Telegram has yet to update the documentation (currently stopped at layer 18, using layer 45), but I **will not document all the feature myself**. So please, restrain from opening ticket to ask "How can I send a sticker", "How can I create a group". You can either try to look at the old documentation or the source of official applications and figure it out yourself, I won't be doing Telegram's job nor yours. Kotlogram is just here to provide a binding of the API, not a documentation.
+
+However, I will supply a simple example on how to use the library itself to call rpc methods.
 
 #### Example
 You need to implement your own C class holding all the constants, it's not included in the repository since it contains confidential information such as my phone number, api id, ...
@@ -47,6 +55,8 @@ TelegramApp app = new TelegramApp(C.API_ID, C.API_HASH, C.MODEL, C.SYSTEM_VERSIO
 
 // This is a synchronous client, that will block until the response arrive (or until timeout)
 // A client which return an Observable<T> where T is the response type will be available soon
+// TelegramClient interface contains 1 method for each RPC method described in the TL-Schema,
+// and some more convenience methods (like to download a UserPhoto)
 TelegramClient client = Kotlogram.getDefaultClient(app, new ApiStorage());
 
 // You can start making requests
