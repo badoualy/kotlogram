@@ -1,35 +1,37 @@
 package com.github.badoualy.telegram.mtproto.transport
 
 import com.github.badoualy.telegram.mtproto.util.Log
+import com.github.badoualy.telegram.tl.ByteBufferUtils.readByteAsInt
+import com.github.badoualy.telegram.tl.ByteBufferUtils.readInt24
 import com.github.badoualy.telegram.tl.StreamUtils.*
-import java.io.ByteArrayOutputStream
+import com.github.badoualy.telegram.tl.stream.ByteBufferBackedInputStream
+import com.github.badoualy.telegram.tl.stream.ByteBufferBackedOutputStream
 import java.io.IOException
-import java.io.InputStream
-import java.io.OutputStream
 import java.net.InetSocketAddress
-import java.net.Socket
+import java.net.StandardSocketOptions
+import java.nio.ByteBuffer
+import java.nio.ByteOrder
+import java.nio.channels.SocketChannel
 
 class MTProtoTcpConnection
 @Throws(IOException::class)
-@JvmOverloads constructor(ip: String, port: Int, abridgedProtocol: Boolean = true) : MTProtoConnection {
+@JvmOverloads constructor(override val ip: String, override val port: Int, abridgedProtocol: Boolean = true) : MTProtoConnection {
 
-    private val TAG = javaClass.simpleName
+    private val TAG = "MTProtoTcpConnection"
 
-    private val socket: Socket
-    private val outStream: OutputStream
-    private val inStream: InputStream
+    private val socketChannel: SocketChannel
 
     init {
-        socket = Socket()
-        socket.connect(InetSocketAddress(ip, port))
-        socket.keepAlive = true
-        socket.tcpNoDelay = true
+        socketChannel = SocketChannel.open()
+        socketChannel.setOption(StandardSocketOptions.SO_KEEPALIVE, true)
+        socketChannel.setOption(StandardSocketOptions.TCP_NODELAY, true)
+        socketChannel.configureBlocking(true)
+        socketChannel.connect(InetSocketAddress(ip, port))
 
-        outStream = socket.outputStream
-        inStream = socket.inputStream
-
-        if (abridgedProtocol)
-            outStream.write(239) // @see https://core.telegram.org/mtproto/samples-auth_key
+        if (abridgedProtocol) {
+            // @see https://core.telegram.org/mtproto/samples-auth_key
+            socketChannel.write(ByteBuffer.wrap(byteArrayOf(0xef.toByte())))
+        }
 
         Log.d(TAG, "Connected to $ip:$port")
     }
@@ -40,16 +42,33 @@ class MTProtoTcpConnection
         (0x01..0x7e = data length divided by 4;
         or 0x7f followed by 3 length bytes (little endian) divided by 4)
          */
-        var headerLen = readByte(inStream)
-        if (headerLen == 127)
-            headerLen = readByte(inStream) + (readByte(inStream) shl 8) + (readByte(inStream) shl 16)
 
-        return readBytes(headerLen * 4, inStream)
+        // Prepare buffer
+        var buffer = ByteBuffer.allocateDirect(1)
+        socketChannel.read(buffer)
+        buffer.flip()
+
+        var length = readByteAsInt(buffer)
+        if (length == 0x7f) {
+            buffer = ByteBuffer.allocateDirect(3)
+            buffer.order(ByteOrder.LITTLE_ENDIAN)
+            socketChannel.read(buffer)
+            buffer.flip()
+
+            length = readInt24(buffer)
+        }
+
+        length *= 4
+        buffer = ByteBuffer.allocateDirect(length)
+        socketChannel.read(buffer)
+        buffer.flip()
+        return readBytes(length, ByteBufferBackedInputStream(buffer))
     }
 
     @Throws(IOException::class)
     override fun writeMessage(request: ByteArray) {
-        val stream = ByteArrayOutputStream()
+        val buffer = ByteBuffer.allocateDirect(request.size + 4)
+        val stream = ByteBufferBackedOutputStream(buffer)
 
         /*
         There is an abridged version of the same protocol: if the client sends 0xef as the first byte
@@ -69,9 +88,8 @@ class MTProtoTcpConnection
         }
 
         writeByteArray(request, stream)
-        val pkg = stream.toByteArray()
-        outStream.write(pkg, 0, pkg.size)
-        outStream.flush()
+        buffer.flip()
+        socketChannel.write(buffer)
     }
 
     @Throws(IOException::class)
@@ -83,12 +101,8 @@ class MTProtoTcpConnection
     @Throws(IOException::class)
     override fun close() {
         Log.d(TAG, "Closing connection")
-        socket.close()
+        socketChannel.close()
     }
 
-    override fun isOpened() = !socket.isClosed && socket.isConnected
-
-    override fun getPort() = socket.port
-
-    override fun getIp() = socket.inetAddress.hostAddress
+    override fun isOpened() = socketChannel.isOpen && socketChannel.isConnected
 }

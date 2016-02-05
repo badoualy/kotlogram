@@ -4,6 +4,10 @@ import java.io.IOException
 
 interface MTProtoConnection {
 
+    val port: Int
+
+    val ip: String
+
     @Throws(IOException::class)
     fun readMessage(): ByteArray
 
@@ -17,8 +21,4 @@ interface MTProtoConnection {
     fun close()
 
     fun isOpened(): Boolean
-
-    fun getPort(): Int
-
-    fun getIp(): String?
 }

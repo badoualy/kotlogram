@@ -104,7 +104,7 @@ class MTProtoHandler {
             e.printStackTrace()
         }
 
-        connection = MTProtoTcpConnection(connection!!.getIp().toString(), connection!!.getPort())
+        connection = MTProtoTcpConnection(connection!!.ip.toString(), connection!!.port)
         init()
         startWatchdog()
     }
