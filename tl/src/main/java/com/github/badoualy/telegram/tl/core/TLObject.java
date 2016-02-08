@@ -35,7 +35,7 @@ public abstract class TLObject implements Serializable {
      * @throws IOException
      */
     public final byte[] serialize() throws IOException {
-        ByteArrayOutputStream stream = new ByteArrayOutputStream();
+        ByteArrayOutputStream stream = new ByteArrayOutputStream(computeSerializedSize());
         serialize(stream);
         return stream.toByteArray();
     }

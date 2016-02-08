@@ -390,7 +390,13 @@ object JavaPoet {
                 computeSizeMethod.addStatement(computeSizeParameter(fieldName, fieldTlType))
             }
             val deserializeStatement = "$fieldName = ${deserializeParameter(fieldTlType, fieldType)}"
-            deserializeMethod.addStatement(deserializeStatement, if (deserializeStatement.contains("\$T")) fieldType else emptyArray<Any>())
+            val count = deserializeStatement.split("\$T").size - 1
+            if (count == 0)
+                deserializeMethod.addStatement(deserializeStatement)
+            else if (count == 1)
+                deserializeMethod.addStatement(deserializeStatement, fieldType)
+            else if (count == 2)
+                deserializeMethod.addStatement(deserializeStatement, fieldType, fieldType)
 
             // Don't add if flags, since it'll be computed
             if (fieldTlType !is TLTypeFlag) {
@@ -516,11 +522,10 @@ object JavaPoet {
             "bytes" -> "readTLBytes(stream, context)"
             "Bool" -> "readTLBool(stream)"
             else -> {
-                // TODO: ugly way, do better ...
                 val className = (fieldType as ClassName).simpleName()
                 val isAbstract = className.startsWith("TLAbs", true)
                 if (isAbstract) "readTLObject(stream, context, \$T.class, -1)"
-                else "readTLObject(stream, context, \$T.class, $className.CONSTRUCTOR_ID)"
+                else "readTLObject(stream, context, \$T.class, \$T.CONSTRUCTOR_ID)"
             }
         }
         else -> throw RuntimeException("Unsupported type $fieldTlType")

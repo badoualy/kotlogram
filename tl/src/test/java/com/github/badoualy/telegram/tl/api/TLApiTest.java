@@ -15,10 +15,9 @@ import static com.github.badoualy.telegram.tl.api.TestUtils.newInstanceOf;
 @Test
 public class TLApiTest {
 
-
     @BeforeTest
     protected void findClasses() {
-
+        TestUtils.init();
     }
 
     @Test

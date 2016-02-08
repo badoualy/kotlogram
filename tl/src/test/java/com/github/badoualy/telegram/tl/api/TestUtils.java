@@ -28,27 +28,28 @@ import java.util.stream.Collectors;
 
 public class TestUtils {
 
+    private static final String BASE_PACKAGE = "com.github.badoualy.telegram.tl.api";
     public static List<Class<? extends TLObject>> constructorList;
     public static Random random;
     public static Reflections reflections;
 
-    {
+    public static void init() {
         random = new PositiveRandom(System.currentTimeMillis());
 
-        System.out.println("Looking for tl api classes in package " + getClass().getPackage().getName());
+        System.out.println("Looking for tl api classes in package " + BASE_PACKAGE);
         ArrayList<URL> urls = new ArrayList<>();
-        urls.addAll(ClasspathHelper.forPackage("com.github.badoualy.telegram.tl.api"));
-        urls.addAll(ClasspathHelper.forPackage("com.github.badoualy.telegram.tl.api.account"));
-        urls.addAll(ClasspathHelper.forPackage("com.github.badoualy.telegram.tl.api.auth"));
-        urls.addAll(ClasspathHelper.forPackage("com.github.badoualy.telegram.tl.api.channels"));
-        urls.addAll(ClasspathHelper.forPackage("com.github.badoualy.telegram.tl.api.contacts"));
-        urls.addAll(ClasspathHelper.forPackage("com.github.badoualy.telegram.tl.api.help"));
-        urls.addAll(ClasspathHelper.forPackage("com.github.badoualy.telegram.tl.api.messages"));
-        urls.addAll(ClasspathHelper.forPackage("com.github.badoualy.telegram.tl.api.photos"));
-        urls.addAll(ClasspathHelper.forPackage("com.github.badoualy.telegram.tl.api.request"));
-        urls.addAll(ClasspathHelper.forPackage("com.github.badoualy.telegram.tl.api.storage"));
-        urls.addAll(ClasspathHelper.forPackage("com.github.badoualy.telegram.tl.api.updates"));
-        urls.addAll(ClasspathHelper.forPackage("com.github.badoualy.telegram.tl.api.upload"));
+        urls.addAll(ClasspathHelper.forPackage(BASE_PACKAGE));
+        urls.addAll(ClasspathHelper.forPackage(BASE_PACKAGE + ".account"));
+        urls.addAll(ClasspathHelper.forPackage(BASE_PACKAGE + ".auth"));
+        urls.addAll(ClasspathHelper.forPackage(BASE_PACKAGE + ".channels"));
+        urls.addAll(ClasspathHelper.forPackage(BASE_PACKAGE + ".contacts"));
+        urls.addAll(ClasspathHelper.forPackage(BASE_PACKAGE + ".help"));
+        urls.addAll(ClasspathHelper.forPackage(BASE_PACKAGE + ".messages"));
+        urls.addAll(ClasspathHelper.forPackage(BASE_PACKAGE + ".photos"));
+        urls.addAll(ClasspathHelper.forPackage(BASE_PACKAGE + ".request"));
+        urls.addAll(ClasspathHelper.forPackage(BASE_PACKAGE + ".storage"));
+        urls.addAll(ClasspathHelper.forPackage(BASE_PACKAGE + ".updates"));
+        urls.addAll(ClasspathHelper.forPackage(BASE_PACKAGE + ".upload"));
         reflections = new Reflections(urls);
 
         Set<Class<? extends TLObject>> classList = reflections.getSubTypesOf(TLObject.class);
@@ -56,6 +57,11 @@ public class TestUtils {
         constructorList = classList.stream()
                                    .filter(clazz -> (clazz.getModifiers() & Modifier.ABSTRACT) == 0)
                                    .filter(clazz -> !clazz.getPackage().getName().equalsIgnoreCase("com.github.badoualy.telegram.tl.core"))
+                                   .filter(clazz -> !clazz.getSimpleName().equalsIgnoreCase("TLRequestInvokeAfterMsg"))
+                                   .filter(clazz -> !clazz.getSimpleName().equalsIgnoreCase("TLRequestInvokeAfterMsgs"))
+                                   .filter(clazz -> !clazz.getSimpleName().equalsIgnoreCase("TLRequestInitConnection"))
+                                   .filter(clazz -> !clazz.getSimpleName().equalsIgnoreCase("TLRequestInvokeWithoutUpdates"))
+                                   .filter(clazz -> !clazz.getSimpleName().equalsIgnoreCase("TLRequestInvokeWithLayer"))
                                    .sorted((o1, o2) -> o1.getSimpleName().compareTo(o2.getSimpleName()))
                                    .collect(Collectors.toList());
         System.out.println("Found " + constructorList.size() + " non abstract classes");
@@ -146,7 +152,7 @@ public class TestUtils {
         if (is(type, TLVector.class)) {
             ParameterizedType genericType = (ParameterizedType) field.getGenericType();
             Type vectorType = ((WildcardType) genericType.getActualTypeArguments()[0]).getUpperBounds()[0];
-            return (T) getRandomTLVector(Class.forName(vectorType.getTypeName()));
+            return (T) getRandomTLVector((Class<?>) vectorType);
         }
 
         if (TLObject.class.isAssignableFrom(type)) {
