@@ -12,10 +12,8 @@ import java.io.OutputStream;
 import static com.github.badoualy.telegram.tl.StreamUtils.readInt;
 import static com.github.badoualy.telegram.tl.StreamUtils.readTLObject;
 import static com.github.badoualy.telegram.tl.StreamUtils.readTLString;
-import static com.github.badoualy.telegram.tl.StreamUtils.writeBoolean;
 import static com.github.badoualy.telegram.tl.StreamUtils.writeInt;
 import static com.github.badoualy.telegram.tl.StreamUtils.writeString;
-import static com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_BOOLEAN;
 import static com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_CONSTRUCTOR_ID;
 import static com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_INT32;
 import static com.github.badoualy.telegram.tl.TLObjectUtils.computeTLStringSerializedSize;
@@ -71,8 +69,6 @@ public class TLRequestChannelsCreateChannel extends TLMethod<TLAbsUpdates> {
         computeFlags();
 
         writeInt(flags, stream);
-        if ((flags & 1) != 0) writeBoolean(broadcast, stream);
-        if ((flags & 2) != 0) writeBoolean(megagroup, stream);
         writeString(title, stream);
         writeString(about, stream);
     }
@@ -93,8 +89,6 @@ public class TLRequestChannelsCreateChannel extends TLMethod<TLAbsUpdates> {
 
         int size = SIZE_CONSTRUCTOR_ID;
         size += SIZE_INT32;
-        if ((flags & 1) != 0) size += SIZE_BOOLEAN;
-        if ((flags & 2) != 0) size += SIZE_BOOLEAN;
         size += computeTLStringSerializedSize(title);
         size += computeTLStringSerializedSize(about);
         return size;

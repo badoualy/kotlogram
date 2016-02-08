@@ -11,12 +11,10 @@ import static com.github.badoualy.telegram.tl.StreamUtils.readInt;
 import static com.github.badoualy.telegram.tl.StreamUtils.readTLObject;
 import static com.github.badoualy.telegram.tl.StreamUtils.readTLString;
 import static com.github.badoualy.telegram.tl.StreamUtils.readTLVector;
-import static com.github.badoualy.telegram.tl.StreamUtils.writeBoolean;
 import static com.github.badoualy.telegram.tl.StreamUtils.writeInt;
 import static com.github.badoualy.telegram.tl.StreamUtils.writeString;
 import static com.github.badoualy.telegram.tl.StreamUtils.writeTLObject;
 import static com.github.badoualy.telegram.tl.StreamUtils.writeTLVector;
-import static com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_BOOLEAN;
 import static com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_CONSTRUCTOR_ID;
 import static com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_INT32;
 import static com.github.badoualy.telegram.tl.TLObjectUtils.computeTLStringSerializedSize;
@@ -102,10 +100,6 @@ public class TLUpdateShortChatMessage extends TLAbsUpdates {
         computeFlags();
 
         writeInt(flags, stream);
-        if ((flags & 1) != 0) writeBoolean(unread, stream);
-        if ((flags & 2) != 0) writeBoolean(out, stream);
-        if ((flags & 16) != 0) writeBoolean(mentioned, stream);
-        if ((flags & 32) != 0) writeBoolean(mediaUnread, stream);
         writeInt(id, stream);
         writeInt(fromId, stream);
         writeInt(chatId, stream);
@@ -148,10 +142,6 @@ public class TLUpdateShortChatMessage extends TLAbsUpdates {
 
         int size = SIZE_CONSTRUCTOR_ID;
         size += SIZE_INT32;
-        if ((flags & 1) != 0) size += SIZE_BOOLEAN;
-        if ((flags & 2) != 0) size += SIZE_BOOLEAN;
-        if ((flags & 16) != 0) size += SIZE_BOOLEAN;
-        if ((flags & 32) != 0) size += SIZE_BOOLEAN;
         size += SIZE_INT32;
         size += SIZE_INT32;
         size += SIZE_INT32;

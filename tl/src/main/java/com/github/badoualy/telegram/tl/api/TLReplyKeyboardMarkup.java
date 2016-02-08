@@ -9,10 +9,8 @@ import java.io.OutputStream;
 
 import static com.github.badoualy.telegram.tl.StreamUtils.readInt;
 import static com.github.badoualy.telegram.tl.StreamUtils.readTLVector;
-import static com.github.badoualy.telegram.tl.StreamUtils.writeBoolean;
 import static com.github.badoualy.telegram.tl.StreamUtils.writeInt;
 import static com.github.badoualy.telegram.tl.StreamUtils.writeTLVector;
-import static com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_BOOLEAN;
 import static com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_CONSTRUCTOR_ID;
 import static com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_INT32;
 
@@ -51,9 +49,6 @@ public class TLReplyKeyboardMarkup extends TLAbsReplyMarkup {
         computeFlags();
 
         writeInt(flags, stream);
-        if ((flags & 1) != 0) writeBoolean(resize, stream);
-        if ((flags & 2) != 0) writeBoolean(singleUse, stream);
-        if ((flags & 4) != 0) writeBoolean(selective, stream);
         writeTLVector(rows, stream);
     }
 
@@ -73,9 +68,6 @@ public class TLReplyKeyboardMarkup extends TLAbsReplyMarkup {
 
         int size = SIZE_CONSTRUCTOR_ID;
         size += SIZE_INT32;
-        if ((flags & 1) != 0) size += SIZE_BOOLEAN;
-        if ((flags & 2) != 0) size += SIZE_BOOLEAN;
-        if ((flags & 4) != 0) size += SIZE_BOOLEAN;
         size += rows.computeSerializedSize();
         return size;
     }

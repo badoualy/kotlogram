@@ -9,10 +9,8 @@ import java.io.OutputStream;
 
 import static com.github.badoualy.telegram.tl.StreamUtils.readInt;
 import static com.github.badoualy.telegram.tl.StreamUtils.readTLString;
-import static com.github.badoualy.telegram.tl.StreamUtils.writeBoolean;
 import static com.github.badoualy.telegram.tl.StreamUtils.writeInt;
 import static com.github.badoualy.telegram.tl.StreamUtils.writeString;
-import static com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_BOOLEAN;
 import static com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_CONSTRUCTOR_ID;
 import static com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_INT32;
 import static com.github.badoualy.telegram.tl.TLObjectUtils.computeTLStringSerializedSize;
@@ -58,8 +56,6 @@ public class TLDcOption extends TLObject {
         computeFlags();
 
         writeInt(flags, stream);
-        if ((flags & 1) != 0) writeBoolean(ipv6, stream);
-        if ((flags & 2) != 0) writeBoolean(mediaOnly, stream);
         writeInt(id, stream);
         writeString(ipAddress, stream);
         writeInt(port, stream);
@@ -82,8 +78,6 @@ public class TLDcOption extends TLObject {
 
         int size = SIZE_CONSTRUCTOR_ID;
         size += SIZE_INT32;
-        if ((flags & 1) != 0) size += SIZE_BOOLEAN;
-        if ((flags & 2) != 0) size += SIZE_BOOLEAN;
         size += SIZE_INT32;
         size += computeTLStringSerializedSize(ipAddress);
         size += SIZE_INT32;

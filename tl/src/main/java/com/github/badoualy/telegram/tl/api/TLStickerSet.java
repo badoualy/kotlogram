@@ -10,11 +10,9 @@ import java.io.OutputStream;
 import static com.github.badoualy.telegram.tl.StreamUtils.readInt;
 import static com.github.badoualy.telegram.tl.StreamUtils.readLong;
 import static com.github.badoualy.telegram.tl.StreamUtils.readTLString;
-import static com.github.badoualy.telegram.tl.StreamUtils.writeBoolean;
 import static com.github.badoualy.telegram.tl.StreamUtils.writeInt;
 import static com.github.badoualy.telegram.tl.StreamUtils.writeLong;
 import static com.github.badoualy.telegram.tl.StreamUtils.writeString;
-import static com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_BOOLEAN;
 import static com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_CONSTRUCTOR_ID;
 import static com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_INT32;
 import static com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_INT64;
@@ -74,9 +72,6 @@ public class TLStickerSet extends TLObject {
         computeFlags();
 
         writeInt(flags, stream);
-        if ((flags & 1) != 0) writeBoolean(installed, stream);
-        if ((flags & 2) != 0) writeBoolean(disabled, stream);
-        if ((flags & 4) != 0) writeBoolean(official, stream);
         writeLong(id, stream);
         writeLong(accessHash, stream);
         writeString(title, stream);
@@ -106,9 +101,6 @@ public class TLStickerSet extends TLObject {
 
         int size = SIZE_CONSTRUCTOR_ID;
         size += SIZE_INT32;
-        if ((flags & 1) != 0) size += SIZE_BOOLEAN;
-        if ((flags & 2) != 0) size += SIZE_BOOLEAN;
-        if ((flags & 4) != 0) size += SIZE_BOOLEAN;
         size += SIZE_INT64;
         size += SIZE_INT64;
         size += computeTLStringSerializedSize(title);

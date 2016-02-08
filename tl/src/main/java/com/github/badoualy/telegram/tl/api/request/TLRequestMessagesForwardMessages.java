@@ -16,11 +16,9 @@ import static com.github.badoualy.telegram.tl.StreamUtils.readInt;
 import static com.github.badoualy.telegram.tl.StreamUtils.readTLIntVector;
 import static com.github.badoualy.telegram.tl.StreamUtils.readTLLongVector;
 import static com.github.badoualy.telegram.tl.StreamUtils.readTLObject;
-import static com.github.badoualy.telegram.tl.StreamUtils.writeBoolean;
 import static com.github.badoualy.telegram.tl.StreamUtils.writeInt;
 import static com.github.badoualy.telegram.tl.StreamUtils.writeTLObject;
 import static com.github.badoualy.telegram.tl.StreamUtils.writeTLVector;
-import static com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_BOOLEAN;
 import static com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_CONSTRUCTOR_ID;
 import static com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_INT32;
 
@@ -77,7 +75,6 @@ public class TLRequestMessagesForwardMessages extends TLMethod<TLAbsUpdates> {
         computeFlags();
 
         writeInt(flags, stream);
-        if ((flags & 16) != 0) writeBoolean(broadcast, stream);
         writeTLObject(fromPeer, stream);
         writeTLVector(id, stream);
         writeTLVector(randomId, stream);
@@ -101,7 +98,6 @@ public class TLRequestMessagesForwardMessages extends TLMethod<TLAbsUpdates> {
 
         int size = SIZE_CONSTRUCTOR_ID;
         size += SIZE_INT32;
-        if ((flags & 16) != 0) size += SIZE_BOOLEAN;
         size += fromPeer.computeSerializedSize();
         size += id.computeSerializedSize();
         size += randomId.computeSerializedSize();

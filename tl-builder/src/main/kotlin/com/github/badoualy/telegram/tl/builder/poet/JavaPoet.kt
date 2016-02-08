@@ -371,10 +371,11 @@ object JavaPoet {
         // Parameters
         val accessors = ArrayList<MethodSpec>()
         for (parameter in parameters) {
-            var fieldType = getType(parameter.tlType)
+            val fieldTlType = parameter.tlType
+            var fieldType = getType(fieldTlType)
             if (fieldType is ParameterizedTypeName
-                    && (parameter.tlType is TLTypeGeneric
-                    || (parameter.tlType is TLTypeConditional && parameter.tlType.realType is TLTypeGeneric))) {
+                    && (fieldTlType is TLTypeGeneric
+                    || (fieldTlType is TLTypeConditional && fieldTlType.realType is TLTypeGeneric))) {
                 val typeArg = WildcardTypeName.subtypeOf(fieldType.typeArguments.first())
                 fieldType = ParameterizedTypeName.get(fieldType.rawType, typeArg)
             }
@@ -383,13 +384,16 @@ object JavaPoet {
                 clazz.addField(fieldType, fieldName, Modifier.PROTECTED)
 
             // Add serialize method entry
-            serializeMethod.addStatement(serializeParameter(fieldName, parameter.tlType))
-            val deserializeStatement = "$fieldName = ${deserializeParameter(parameter.tlType, fieldType)}"
+            val condBoolean = fieldTlType is TLTypeConditional && fieldTlType.realType is TLTypeRaw && fieldTlType.realType.name == "Bool"
+            if (!condBoolean) {
+                serializeMethod.addStatement(serializeParameter(fieldName, fieldTlType))
+                computeSizeMethod.addStatement(computeSizeParameter(fieldName, fieldTlType))
+            }
+            val deserializeStatement = "$fieldName = ${deserializeParameter(fieldTlType, fieldType)}"
             deserializeMethod.addStatement(deserializeStatement, if (deserializeStatement.contains("\$T")) fieldType else emptyArray<Any>())
-            computeSizeMethod.addStatement(computeSizeParameter(fieldName, parameter.tlType))
 
             // Don't add if flags, since it'll be computed
-            if (parameter.tlType !is TLTypeFlag) {
+            if (fieldTlType !is TLTypeFlag) {
                 // Add set()/get()
                 accessors.add(generateGetter(parameter.name, fieldName, fieldType))
                 accessors.add(generateSetter(parameter.name, fieldName, fieldType))
@@ -401,7 +405,7 @@ object JavaPoet {
                 // Add api method
                 apiMethod?.addParameter(fieldType, fieldName)
                 apiWrappedMethod?.addParameter(fieldType, fieldName)
-                if (parameter.tlType is TLTypeFunctional) {
+                if (fieldTlType is TLTypeFunctional) {
                     apiMethod?.addTypeVariable(TypeVariableName.get("T", TYPE_TL_OBJECT))
                     apiWrappedMethod?.addTypeVariable(TypeVariableName.get("T", TYPE_TL_OBJECT))
                 }

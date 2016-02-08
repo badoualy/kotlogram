@@ -10,12 +10,10 @@ import static com.github.badoualy.telegram.tl.StreamUtils.readInt;
 import static com.github.badoualy.telegram.tl.StreamUtils.readLong;
 import static com.github.badoualy.telegram.tl.StreamUtils.readTLObject;
 import static com.github.badoualy.telegram.tl.StreamUtils.readTLString;
-import static com.github.badoualy.telegram.tl.StreamUtils.writeBoolean;
 import static com.github.badoualy.telegram.tl.StreamUtils.writeInt;
 import static com.github.badoualy.telegram.tl.StreamUtils.writeLong;
 import static com.github.badoualy.telegram.tl.StreamUtils.writeString;
 import static com.github.badoualy.telegram.tl.StreamUtils.writeTLObject;
-import static com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_BOOLEAN;
 import static com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_CONSTRUCTOR_ID;
 import static com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_INT32;
 import static com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_INT64;
@@ -105,15 +103,6 @@ public class TLChannel extends TLAbsChat {
         computeFlags();
 
         writeInt(flags, stream);
-        if ((flags & 1) != 0) writeBoolean(creator, stream);
-        if ((flags & 2) != 0) writeBoolean(kicked, stream);
-        if ((flags & 4) != 0) writeBoolean(left, stream);
-        if ((flags & 8) != 0) writeBoolean(editor, stream);
-        if ((flags & 16) != 0) writeBoolean(moderator, stream);
-        if ((flags & 32) != 0) writeBoolean(broadcast, stream);
-        if ((flags & 128) != 0) writeBoolean(verified, stream);
-        if ((flags & 256) != 0) writeBoolean(megagroup, stream);
-        if ((flags & 512) != 0) writeBoolean(restricted, stream);
         writeInt(id, stream);
         writeLong(accessHash, stream);
         writeString(title, stream);
@@ -153,15 +142,6 @@ public class TLChannel extends TLAbsChat {
 
         int size = SIZE_CONSTRUCTOR_ID;
         size += SIZE_INT32;
-        if ((flags & 1) != 0) size += SIZE_BOOLEAN;
-        if ((flags & 2) != 0) size += SIZE_BOOLEAN;
-        if ((flags & 4) != 0) size += SIZE_BOOLEAN;
-        if ((flags & 8) != 0) size += SIZE_BOOLEAN;
-        if ((flags & 16) != 0) size += SIZE_BOOLEAN;
-        if ((flags & 32) != 0) size += SIZE_BOOLEAN;
-        if ((flags & 128) != 0) size += SIZE_BOOLEAN;
-        if ((flags & 256) != 0) size += SIZE_BOOLEAN;
-        if ((flags & 512) != 0) size += SIZE_BOOLEAN;
         size += SIZE_INT32;
         size += SIZE_INT64;
         size += computeTLStringSerializedSize(title);
