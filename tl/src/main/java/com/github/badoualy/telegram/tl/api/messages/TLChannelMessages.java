@@ -31,12 +31,12 @@ public class TLChannelMessages extends TLAbsMessages {
 
     protected int count;
 
-    protected TLVector<TLMessageGroup> collapsed;
+    protected TLVector<? extends TLMessageGroup> collapsed;
 
     public TLChannelMessages() {
     }
 
-    public TLChannelMessages(int pts, int count, TLVector<? extends TLAbsMessage> messages, TLVector<TLMessageGroup> collapsed, TLVector<? extends TLAbsChat> chats, TLVector<? extends TLAbsUser> users) {
+    public TLChannelMessages(int pts, int count, TLVector<? extends TLAbsMessage> messages, TLVector<? extends TLMessageGroup> collapsed, TLVector<? extends TLAbsChat> chats, TLVector<? extends TLAbsUser> users) {
         this.pts = pts;
         this.count = count;
         this.messages = messages;
@@ -124,11 +124,11 @@ public class TLChannelMessages extends TLAbsMessages {
         this.messages = messages;
     }
 
-    public TLVector<TLMessageGroup> getCollapsed() {
+    public TLVector<? extends TLMessageGroup> getCollapsed() {
         return collapsed;
     }
 
-    public void setCollapsed(TLVector<TLMessageGroup> collapsed) {
+    public void setCollapsed(TLVector<? extends TLMessageGroup> collapsed) {
         this.collapsed = collapsed;
     }
 

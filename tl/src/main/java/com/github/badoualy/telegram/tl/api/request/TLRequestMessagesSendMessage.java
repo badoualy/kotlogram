@@ -53,12 +53,12 @@ public class TLRequestMessagesSendMessage extends TLMethod<TLAbsUpdates> {
 
     protected TLAbsReplyMarkup replyMarkup;
 
-    protected TLVector<TLAbsMessageEntity> entities;
+    protected TLVector<? extends TLAbsMessageEntity> entities;
 
     public TLRequestMessagesSendMessage() {
     }
 
-    public TLRequestMessagesSendMessage(boolean noWebpage, boolean broadcast, TLAbsInputPeer peer, Integer replyToMsgId, String message, long randomId, TLAbsReplyMarkup replyMarkup, TLVector<TLAbsMessageEntity> entities) {
+    public TLRequestMessagesSendMessage(boolean noWebpage, boolean broadcast, TLAbsInputPeer peer, Integer replyToMsgId, String message, long randomId, TLAbsReplyMarkup replyMarkup, TLVector<? extends TLAbsMessageEntity> entities) {
         this.noWebpage = noWebpage;
         this.broadcast = broadcast;
         this.peer = peer;
@@ -203,11 +203,11 @@ public class TLRequestMessagesSendMessage extends TLMethod<TLAbsUpdates> {
         this.replyMarkup = replyMarkup;
     }
 
-    public TLVector<TLAbsMessageEntity> getEntities() {
+    public TLVector<? extends TLAbsMessageEntity> getEntities() {
         return entities;
     }
 
-    public void setEntities(TLVector<TLAbsMessageEntity> entities) {
+    public void setEntities(TLVector<? extends TLAbsMessageEntity> entities) {
         this.entities = entities;
     }
 }

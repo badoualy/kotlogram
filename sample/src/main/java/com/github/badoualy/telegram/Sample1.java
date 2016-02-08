@@ -7,16 +7,20 @@ import com.github.badoualy.telegram.api.TelegramClient;
 import com.github.badoualy.telegram.mtproto.DataCenter;
 import com.github.badoualy.telegram.mtproto.auth.AuthKey;
 import com.github.badoualy.telegram.tl.api.TLAbsInputPeer;
+import com.github.badoualy.telegram.tl.api.TLAbsInputUser;
+import com.github.badoualy.telegram.tl.api.TLAbsUser;
 import com.github.badoualy.telegram.tl.api.TLDocument;
 import com.github.badoualy.telegram.tl.api.TLInputDocumentFileLocation;
 import com.github.badoualy.telegram.tl.api.TLInputPeerEmpty;
 import com.github.badoualy.telegram.tl.api.TLInputPeerUser;
+import com.github.badoualy.telegram.tl.api.TLInputUser;
 import com.github.badoualy.telegram.tl.api.TLMessage;
 import com.github.badoualy.telegram.tl.api.TLMessageMediaDocument;
 import com.github.badoualy.telegram.tl.api.TLUser;
 import com.github.badoualy.telegram.tl.api.messages.TLAbsDialogs;
 import com.github.badoualy.telegram.tl.api.messages.TLAbsMessages;
 import com.github.badoualy.telegram.tl.api.upload.TLFile;
+import com.github.badoualy.telegram.tl.core.TLVector;
 
 import org.apache.commons.io.FileUtils;
 import org.jetbrains.annotations.NotNull;
@@ -71,6 +75,10 @@ public class Sample1 {
             TLUser user = (TLUser) dialogs.getUsers().get(0);
             TLAbsInputPeer inputUser = new TLInputPeerUser(user.getId(), user.getAccessHash());
             TLAbsMessages history = client.messagesGetHistory(inputUser, 0, 0, 100, 0, 0);
+
+            TLVector<TLAbsInputUser> input = new TLVector<>();
+            input.add(new TLInputUser(user.getId(), user.getAccessHash()));
+            TLVector<TLAbsUser> users = client.usersGetUsers(input);
 
             history.getMessages().stream()
                    .filter(m -> m instanceof TLMessage)

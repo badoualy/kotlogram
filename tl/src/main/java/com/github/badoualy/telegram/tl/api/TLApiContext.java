@@ -80,7 +80,7 @@ public class TLApiContext extends TLContext {
     private static TLApiContext instance;
 
     public TLApiContext() {
-        super(393);
+        super(392);
     }
 
     public static TLApiContext getInstance() {
@@ -408,7 +408,6 @@ public class TLApiContext extends TLContext {
         registerClass(TLFilePng.CONSTRUCTOR_ID, TLFilePng.class);
         registerClass(TLFileUnknown.CONSTRUCTOR_ID, TLFileUnknown.class);
         registerClass(TLFileWebp.CONSTRUCTOR_ID, TLFileWebp.class);
-        registerClass(TLTrue.CONSTRUCTOR_ID, TLTrue.class);
         registerClass(TLUpdateBotInlineQuery.CONSTRUCTOR_ID, TLUpdateBotInlineQuery.class);
         registerClass(TLUpdateBotInlineSend.CONSTRUCTOR_ID, TLUpdateBotInlineSend.class);
         registerClass(TLUpdateChannel.CONSTRUCTOR_ID, TLUpdateChannel.class);

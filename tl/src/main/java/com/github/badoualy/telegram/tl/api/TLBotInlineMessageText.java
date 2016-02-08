@@ -32,12 +32,12 @@ public class TLBotInlineMessageText extends TLAbsBotInlineMessage {
 
     protected String message;
 
-    protected TLVector<TLAbsMessageEntity> entities;
+    protected TLVector<? extends TLAbsMessageEntity> entities;
 
     public TLBotInlineMessageText() {
     }
 
-    public TLBotInlineMessageText(boolean noWebpage, String message, TLVector<TLAbsMessageEntity> entities) {
+    public TLBotInlineMessageText(boolean noWebpage, String message, TLVector<? extends TLAbsMessageEntity> entities) {
         this.noWebpage = noWebpage;
         this.message = message;
         this.entities = entities;
@@ -106,11 +106,11 @@ public class TLBotInlineMessageText extends TLAbsBotInlineMessage {
         this.message = message;
     }
 
-    public TLVector<TLAbsMessageEntity> getEntities() {
+    public TLVector<? extends TLAbsMessageEntity> getEntities() {
         return entities;
     }
 
-    public void setEntities(TLVector<TLAbsMessageEntity> entities) {
+    public void setEntities(TLVector<? extends TLAbsMessageEntity> entities) {
         this.entities = entities;
     }
 }

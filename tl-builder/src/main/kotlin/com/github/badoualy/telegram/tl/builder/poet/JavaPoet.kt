@@ -372,7 +372,9 @@ object JavaPoet {
         val accessors = ArrayList<MethodSpec>()
         for (parameter in parameters) {
             var fieldType = getType(parameter.tlType)
-            if (parameter.tlType is TLTypeGeneric && fieldType is ParameterizedTypeName) {
+            if (fieldType is ParameterizedTypeName
+                    && (parameter.tlType is TLTypeGeneric
+                    || (parameter.tlType is TLTypeConditional && parameter.tlType.realType is TLTypeGeneric))) {
                 val typeArg = WildcardTypeName.subtypeOf(fieldType.typeArguments.first())
                 fieldType = ParameterizedTypeName.get(fieldType.rawType, typeArg)
             }

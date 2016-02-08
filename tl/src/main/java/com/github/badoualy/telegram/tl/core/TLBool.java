@@ -14,8 +14,8 @@ import static com.github.badoualy.telegram.tl.StreamUtils.readInt;
  */
 public abstract class TLBool extends TLObject {
 
-    public static final TLBoolTrue TRUE = new TLBoolTrue();
-    public static final TLBoolFalse FALSE = new TLBoolFalse();
+    public static final TLBool TRUE = new TLBoolTrue();
+    public static final TLBool FALSE = new TLBoolFalse();
 
     public static final int TRUE_CONSTRUCTOR_ID = TLBoolTrue.CONSTRUCTOR_ID;
     public static final int FALSE_CONSTRUCTOR_ID = TLBoolFalse.CONSTRUCTOR_ID;

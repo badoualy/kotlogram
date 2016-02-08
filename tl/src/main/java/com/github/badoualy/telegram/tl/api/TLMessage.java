@@ -58,14 +58,14 @@ public class TLMessage extends TLAbsMessage {
 
     protected TLAbsReplyMarkup replyMarkup;
 
-    protected TLVector<TLAbsMessageEntity> entities;
+    protected TLVector<? extends TLAbsMessageEntity> entities;
 
     protected Integer views;
 
     public TLMessage() {
     }
 
-    public TLMessage(boolean unread, boolean out, boolean mentioned, boolean mediaUnread, int id, Integer fromId, TLAbsPeer toId, TLAbsPeer fwdFromId, Integer fwdDate, Integer viaBotId, Integer replyToMsgId, int date, String message, TLAbsMessageMedia media, TLAbsReplyMarkup replyMarkup, TLVector<TLAbsMessageEntity> entities, Integer views) {
+    public TLMessage(boolean unread, boolean out, boolean mentioned, boolean mediaUnread, int id, Integer fromId, TLAbsPeer toId, TLAbsPeer fwdFromId, Integer fwdDate, Integer viaBotId, Integer replyToMsgId, int date, String message, TLAbsMessageMedia media, TLAbsReplyMarkup replyMarkup, TLVector<? extends TLAbsMessageEntity> entities, Integer views) {
         this.unread = unread;
         this.out = out;
         this.mentioned = mentioned;
@@ -305,11 +305,11 @@ public class TLMessage extends TLAbsMessage {
         this.replyMarkup = replyMarkup;
     }
 
-    public TLVector<TLAbsMessageEntity> getEntities() {
+    public TLVector<? extends TLAbsMessageEntity> getEntities() {
         return entities;
     }
 
-    public void setEntities(TLVector<TLAbsMessageEntity> entities) {
+    public void setEntities(TLVector<? extends TLAbsMessageEntity> entities) {
         this.entities = entities;
     }
 

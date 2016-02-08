@@ -1,6 +1,6 @@
 package com.github.badoualy.telegram.api
 
-public interface DebugListener {
+interface DebugListener {
 
     fun onSocketCreated()
 

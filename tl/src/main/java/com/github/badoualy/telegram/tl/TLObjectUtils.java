@@ -17,7 +17,7 @@ public final class TLObjectUtils {
     public static int SIZE_DOUBLE = 8;
 
     public static int computeTLBytesSerializedSize(int length) {
-        int size = length + length >= 254 ? 4 : 1;
+        int size = length + (length >= 254 ? 4 : 1);
         int offset = size % 4;
         if (offset != 0)
             size += 4 - offset; // Padding
