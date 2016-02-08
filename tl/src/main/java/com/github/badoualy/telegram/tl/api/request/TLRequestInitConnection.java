@@ -14,6 +14,9 @@ import static com.github.badoualy.telegram.tl.StreamUtils.readTLString;
 import static com.github.badoualy.telegram.tl.StreamUtils.writeInt;
 import static com.github.badoualy.telegram.tl.StreamUtils.writeString;
 import static com.github.badoualy.telegram.tl.StreamUtils.writeTLMethod;
+import static com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_CONSTRUCTOR_ID;
+import static com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_INT32;
+import static com.github.badoualy.telegram.tl.TLObjectUtils.computeTLStringSerializedSize;
 
 /**
  * @author Yannick Badoual yann.badoual@gmail.com
@@ -71,6 +74,18 @@ public class TLRequestInitConnection<T extends TLObject> extends TLMethod<T> {
         appVersion = readTLString(stream);
         langCode = readTLString(stream);
         query = readTLMethod(stream, context);
+    }
+
+    @Override
+    public int computeSerializedSize() {
+        int size = SIZE_CONSTRUCTOR_ID;
+        size += SIZE_INT32;
+        size += computeTLStringSerializedSize(deviceModel);
+        size += computeTLStringSerializedSize(systemVersion);
+        size += computeTLStringSerializedSize(appVersion);
+        size += computeTLStringSerializedSize(langCode);
+        size += query.computeSerializedSize();
+        return size;
     }
 
     @Override

@@ -16,6 +16,7 @@ import static com.github.badoualy.telegram.tl.StreamUtils.readTLObject;
 import static com.github.badoualy.telegram.tl.StreamUtils.readTLVector;
 import static com.github.badoualy.telegram.tl.StreamUtils.writeTLObject;
 import static com.github.badoualy.telegram.tl.StreamUtils.writeTLVector;
+import static com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_CONSTRUCTOR_ID;
 
 /**
  * @author Yannick Badoual yann.badoual@gmail.com
@@ -58,8 +59,16 @@ public class TLRequestAccountSetPrivacy extends TLMethod<TLPrivacyRules> {
     @Override
     @SuppressWarnings("unchecked")
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
-        key = (com.github.badoualy.telegram.tl.api.TLInputPrivacyKeyStatusTimestamp) readTLObject(stream, context);
+        key = (TLInputPrivacyKeyStatusTimestamp) readTLObject(stream, context);
         rules = readTLVector(stream, context);
+    }
+
+    @Override
+    public int computeSerializedSize() {
+        int size = SIZE_CONSTRUCTOR_ID;
+        size += key.computeSerializedSize();
+        size += rules.computeSerializedSize();
+        return size;
     }
 
     @Override

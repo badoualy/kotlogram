@@ -19,6 +19,11 @@ import static com.github.badoualy.telegram.tl.StreamUtils.writeInt;
 import static com.github.badoualy.telegram.tl.StreamUtils.writeLong;
 import static com.github.badoualy.telegram.tl.StreamUtils.writeString;
 import static com.github.badoualy.telegram.tl.StreamUtils.writeTLObject;
+import static com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_BOOLEAN;
+import static com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_CONSTRUCTOR_ID;
+import static com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_INT32;
+import static com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_INT64;
+import static com.github.badoualy.telegram.tl.TLObjectUtils.computeTLStringSerializedSize;
 
 /**
  * @author Yannick Badoual yann.badoual@gmail.com
@@ -66,11 +71,15 @@ public class TLRequestMessagesSendInlineBotResult extends TLMethod<TLAbsUpdates>
         return (TLAbsUpdates) response;
     }
 
-    @Override
-    public void serializeBody(OutputStream stream) throws IOException {
+    private void computeFlags() {
         flags = 0;
         flags = broadcast ? (flags | 16) : (flags &~ 16);
         flags = replyToMsgId != null ? (flags | 1) : (flags &~ 1);
+    }
+
+    @Override
+    public void serializeBody(OutputStream stream) throws IOException {
+        computeFlags();
 
         writeInt(flags, stream);
         if ((flags & 16) != 0) writeBoolean(broadcast, stream);
@@ -86,11 +95,26 @@ public class TLRequestMessagesSendInlineBotResult extends TLMethod<TLAbsUpdates>
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
         flags = readInt(stream);
         broadcast = (flags & 16) != 0;
-        peer = (com.github.badoualy.telegram.tl.api.TLAbsInputPeer) readTLObject(stream, context);
-        if ((flags & 1) != 0) replyToMsgId = readInt(stream);
+        peer = (TLAbsInputPeer) readTLObject(stream, context);
+        replyToMsgId = (flags & 1) != 0 ? readInt(stream) : null;
         randomId = readLong(stream);
         queryId = readLong(stream);
         id = readTLString(stream);
+    }
+
+    @Override
+    public int computeSerializedSize() {
+        computeFlags();
+
+        int size = SIZE_CONSTRUCTOR_ID;
+        size += SIZE_INT32;
+        if ((flags & 16) != 0) size += SIZE_BOOLEAN;
+        size += peer.computeSerializedSize();
+        if ((flags & 1) != 0) size += SIZE_INT32;
+        size += SIZE_INT64;
+        size += SIZE_INT64;
+        size += computeTLStringSerializedSize(id);
+        return size;
     }
 
     @Override

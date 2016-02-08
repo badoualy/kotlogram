@@ -14,6 +14,9 @@ import static com.github.badoualy.telegram.tl.StreamUtils.readTLObject;
 import static com.github.badoualy.telegram.tl.StreamUtils.readTLString;
 import static com.github.badoualy.telegram.tl.StreamUtils.writeInt;
 import static com.github.badoualy.telegram.tl.StreamUtils.writeString;
+import static com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_CONSTRUCTOR_ID;
+import static com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_INT32;
+import static com.github.badoualy.telegram.tl.TLObjectUtils.computeTLStringSerializedSize;
 
 /**
  * @author Yannick Badoual yann.badoual@gmail.com
@@ -58,6 +61,14 @@ public class TLRequestAccountUnregisterDevice extends TLMethod<TLBool> {
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
         tokenType = readInt(stream);
         token = readTLString(stream);
+    }
+
+    @Override
+    public int computeSerializedSize() {
+        int size = SIZE_CONSTRUCTOR_ID;
+        size += SIZE_INT32;
+        size += computeTLStringSerializedSize(token);
+        return size;
     }
 
     @Override

@@ -14,6 +14,11 @@ import static com.github.badoualy.telegram.tl.StreamUtils.writeBoolean;
 import static com.github.badoualy.telegram.tl.StreamUtils.writeInt;
 import static com.github.badoualy.telegram.tl.StreamUtils.writeLong;
 import static com.github.badoualy.telegram.tl.StreamUtils.writeString;
+import static com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_BOOLEAN;
+import static com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_CONSTRUCTOR_ID;
+import static com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_INT32;
+import static com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_INT64;
+import static com.github.badoualy.telegram.tl.TLObjectUtils.computeTLStringSerializedSize;
 
 /**
  * @author Yannick Badoual yann.badoual@gmail.com
@@ -57,12 +62,16 @@ public class TLStickerSet extends TLObject {
         this.hash = hash;
     }
 
-    @Override
-    public void serializeBody(OutputStream stream) throws IOException {
+    private void computeFlags() {
         flags = 0;
         flags = installed ? (flags | 1) : (flags &~ 1);
         flags = disabled ? (flags | 2) : (flags &~ 2);
         flags = official ? (flags | 4) : (flags &~ 4);
+    }
+
+    @Override
+    public void serializeBody(OutputStream stream) throws IOException {
+        computeFlags();
 
         writeInt(flags, stream);
         if ((flags & 1) != 0) writeBoolean(installed, stream);
@@ -89,6 +98,24 @@ public class TLStickerSet extends TLObject {
         shortName = readTLString(stream);
         count = readInt(stream);
         hash = readInt(stream);
+    }
+
+    @Override
+    public int computeSerializedSize() {
+        computeFlags();
+
+        int size = SIZE_CONSTRUCTOR_ID;
+        size += SIZE_INT32;
+        if ((flags & 1) != 0) size += SIZE_BOOLEAN;
+        if ((flags & 2) != 0) size += SIZE_BOOLEAN;
+        if ((flags & 4) != 0) size += SIZE_BOOLEAN;
+        size += SIZE_INT64;
+        size += SIZE_INT64;
+        size += computeTLStringSerializedSize(title);
+        size += computeTLStringSerializedSize(shortName);
+        size += SIZE_INT32;
+        size += SIZE_INT32;
+        return size;
     }
 
     @Override

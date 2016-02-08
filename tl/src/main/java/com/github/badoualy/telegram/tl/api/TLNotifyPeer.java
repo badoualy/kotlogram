@@ -8,6 +8,7 @@ import java.io.OutputStream;
 
 import static com.github.badoualy.telegram.tl.StreamUtils.readTLObject;
 import static com.github.badoualy.telegram.tl.StreamUtils.writeTLObject;
+import static com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_CONSTRUCTOR_ID;
 
 /**
  * @author Yannick Badoual yann.badoual@gmail.com
@@ -33,7 +34,14 @@ public class TLNotifyPeer extends TLAbsNotifyPeer {
     @Override
     @SuppressWarnings("unchecked")
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
-        peer = (com.github.badoualy.telegram.tl.api.TLAbsPeer) readTLObject(stream, context);
+        peer = (TLAbsPeer) readTLObject(stream, context);
+    }
+
+    @Override
+    public int computeSerializedSize() {
+        int size = SIZE_CONSTRUCTOR_ID;
+        size += peer.computeSerializedSize();
+        return size;
     }
 
     @Override

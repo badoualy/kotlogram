@@ -17,6 +17,9 @@ import static com.github.badoualy.telegram.tl.StreamUtils.readTLString;
 import static com.github.badoualy.telegram.tl.StreamUtils.writeLong;
 import static com.github.badoualy.telegram.tl.StreamUtils.writeString;
 import static com.github.badoualy.telegram.tl.StreamUtils.writeTLObject;
+import static com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_CONSTRUCTOR_ID;
+import static com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_INT64;
+import static com.github.badoualy.telegram.tl.TLObjectUtils.computeTLStringSerializedSize;
 
 /**
  * @author Yannick Badoual yann.badoual@gmail.com
@@ -67,10 +70,20 @@ public class TLRequestMessagesStartBot extends TLMethod<TLAbsUpdates> {
     @Override
     @SuppressWarnings("unchecked")
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
-        bot = (com.github.badoualy.telegram.tl.api.TLAbsInputUser) readTLObject(stream, context);
-        peer = (com.github.badoualy.telegram.tl.api.TLAbsInputPeer) readTLObject(stream, context);
+        bot = (TLAbsInputUser) readTLObject(stream, context);
+        peer = (TLAbsInputPeer) readTLObject(stream, context);
         randomId = readLong(stream);
         startParam = readTLString(stream);
+    }
+
+    @Override
+    public int computeSerializedSize() {
+        int size = SIZE_CONSTRUCTOR_ID;
+        size += bot.computeSerializedSize();
+        size += peer.computeSerializedSize();
+        size += SIZE_INT64;
+        size += computeTLStringSerializedSize(startParam);
+        return size;
     }
 
     @Override

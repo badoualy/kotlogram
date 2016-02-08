@@ -8,6 +8,8 @@ import java.io.OutputStream;
 
 import static com.github.badoualy.telegram.tl.StreamUtils.readInt;
 import static com.github.badoualy.telegram.tl.StreamUtils.writeInt;
+import static com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_CONSTRUCTOR_ID;
+import static com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_INT32;
 
 /**
  * @author Yannick Badoual yann.badoual@gmail.com
@@ -27,6 +29,11 @@ public class TLIntVector extends TLVector<Integer> {
     @Override
     protected Integer deserializeItem(InputStream stream, TLContext context) throws IOException {
         return readInt(stream);
+    }
+
+    @Override
+    public int computeSerializedSize() {
+        return SIZE_CONSTRUCTOR_ID + SIZE_INT32 + SIZE_INT32 * size();
     }
 
     @Override

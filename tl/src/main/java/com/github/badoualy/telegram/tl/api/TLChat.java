@@ -13,6 +13,10 @@ import static com.github.badoualy.telegram.tl.StreamUtils.writeBoolean;
 import static com.github.badoualy.telegram.tl.StreamUtils.writeInt;
 import static com.github.badoualy.telegram.tl.StreamUtils.writeString;
 import static com.github.badoualy.telegram.tl.StreamUtils.writeTLObject;
+import static com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_BOOLEAN;
+import static com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_CONSTRUCTOR_ID;
+import static com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_INT32;
+import static com.github.badoualy.telegram.tl.TLObjectUtils.computeTLStringSerializedSize;
 
 /**
  * @author Yannick Badoual yann.badoual@gmail.com
@@ -66,8 +70,7 @@ public class TLChat extends TLAbsChat {
         this.migratedTo = migratedTo;
     }
 
-    @Override
-    public void serializeBody(OutputStream stream) throws IOException {
+    private void computeFlags() {
         flags = 0;
         flags = creator ? (flags | 1) : (flags &~ 1);
         flags = kicked ? (flags | 2) : (flags &~ 2);
@@ -76,6 +79,11 @@ public class TLChat extends TLAbsChat {
         flags = admin ? (flags | 16) : (flags &~ 16);
         flags = deactivated ? (flags | 32) : (flags &~ 32);
         flags = migratedTo != null ? (flags | 64) : (flags &~ 64);
+    }
+
+    @Override
+    public void serializeBody(OutputStream stream) throws IOException {
+        computeFlags();
 
         writeInt(flags, stream);
         if ((flags & 1) != 0) writeBoolean(creator, stream);
@@ -105,11 +113,33 @@ public class TLChat extends TLAbsChat {
         deactivated = (flags & 32) != 0;
         id = readInt(stream);
         title = readTLString(stream);
-        photo = (com.github.badoualy.telegram.tl.api.TLAbsChatPhoto) readTLObject(stream, context);
+        photo = (TLAbsChatPhoto) readTLObject(stream, context);
         participantsCount = readInt(stream);
         date = readInt(stream);
         version = readInt(stream);
-        if ((flags & 64) != 0) migratedTo = (com.github.badoualy.telegram.tl.api.TLAbsInputChannel) readTLObject(stream, context);
+        migratedTo = (flags & 64) != 0 ? (TLAbsInputChannel) readTLObject(stream, context) : null;
+    }
+
+    @Override
+    public int computeSerializedSize() {
+        computeFlags();
+
+        int size = SIZE_CONSTRUCTOR_ID;
+        size += SIZE_INT32;
+        if ((flags & 1) != 0) size += SIZE_BOOLEAN;
+        if ((flags & 2) != 0) size += SIZE_BOOLEAN;
+        if ((flags & 4) != 0) size += SIZE_BOOLEAN;
+        if ((flags & 8) != 0) size += SIZE_BOOLEAN;
+        if ((flags & 16) != 0) size += SIZE_BOOLEAN;
+        if ((flags & 32) != 0) size += SIZE_BOOLEAN;
+        size += SIZE_INT32;
+        size += computeTLStringSerializedSize(title);
+        size += photo.computeSerializedSize();
+        size += SIZE_INT32;
+        size += SIZE_INT32;
+        size += SIZE_INT32;
+        if ((flags & 64) != 0) size += migratedTo.computeSerializedSize();
+        return size;
     }
 
     @Override

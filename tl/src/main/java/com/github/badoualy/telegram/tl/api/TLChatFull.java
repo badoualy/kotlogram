@@ -13,6 +13,8 @@ import static com.github.badoualy.telegram.tl.StreamUtils.readTLVector;
 import static com.github.badoualy.telegram.tl.StreamUtils.writeInt;
 import static com.github.badoualy.telegram.tl.StreamUtils.writeTLObject;
 import static com.github.badoualy.telegram.tl.StreamUtils.writeTLVector;
+import static com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_CONSTRUCTOR_ID;
+import static com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_INT32;
 
 /**
  * @author Yannick Badoual yann.badoual@gmail.com
@@ -49,11 +51,23 @@ public class TLChatFull extends TLAbsChatFull {
     @SuppressWarnings("unchecked")
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
         id = readInt(stream);
-        participants = (com.github.badoualy.telegram.tl.api.TLAbsChatParticipants) readTLObject(stream, context);
-        chatPhoto = (com.github.badoualy.telegram.tl.api.TLAbsPhoto) readTLObject(stream, context);
-        notifySettings = (com.github.badoualy.telegram.tl.api.TLAbsPeerNotifySettings) readTLObject(stream, context);
-        exportedInvite = (com.github.badoualy.telegram.tl.api.TLAbsExportedChatInvite) readTLObject(stream, context);
+        participants = (TLAbsChatParticipants) readTLObject(stream, context);
+        chatPhoto = (TLAbsPhoto) readTLObject(stream, context);
+        notifySettings = (TLAbsPeerNotifySettings) readTLObject(stream, context);
+        exportedInvite = (TLAbsExportedChatInvite) readTLObject(stream, context);
         botInfo = readTLVector(stream, context);
+    }
+
+    @Override
+    public int computeSerializedSize() {
+        int size = SIZE_CONSTRUCTOR_ID;
+        size += SIZE_INT32;
+        size += participants.computeSerializedSize();
+        size += chatPhoto.computeSerializedSize();
+        size += notifySettings.computeSerializedSize();
+        size += exportedInvite.computeSerializedSize();
+        size += botInfo.computeSerializedSize();
+        return size;
     }
 
     @Override

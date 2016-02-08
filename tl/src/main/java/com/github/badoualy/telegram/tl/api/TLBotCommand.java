@@ -9,6 +9,8 @@ import java.io.OutputStream;
 
 import static com.github.badoualy.telegram.tl.StreamUtils.readTLString;
 import static com.github.badoualy.telegram.tl.StreamUtils.writeString;
+import static com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_CONSTRUCTOR_ID;
+import static com.github.badoualy.telegram.tl.TLObjectUtils.computeTLStringSerializedSize;
 
 /**
  * @author Yannick Badoual yann.badoual@gmail.com
@@ -40,6 +42,14 @@ public class TLBotCommand extends TLObject {
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
         command = readTLString(stream);
         description = readTLString(stream);
+    }
+
+    @Override
+    public int computeSerializedSize() {
+        int size = SIZE_CONSTRUCTOR_ID;
+        size += computeTLStringSerializedSize(command);
+        size += computeTLStringSerializedSize(description);
+        return size;
     }
 
     @Override

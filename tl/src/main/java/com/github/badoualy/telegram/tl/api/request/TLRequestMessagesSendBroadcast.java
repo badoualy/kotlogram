@@ -20,6 +20,8 @@ import static com.github.badoualy.telegram.tl.StreamUtils.readTLVector;
 import static com.github.badoualy.telegram.tl.StreamUtils.writeString;
 import static com.github.badoualy.telegram.tl.StreamUtils.writeTLObject;
 import static com.github.badoualy.telegram.tl.StreamUtils.writeTLVector;
+import static com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_CONSTRUCTOR_ID;
+import static com.github.badoualy.telegram.tl.TLObjectUtils.computeTLStringSerializedSize;
 
 /**
  * @author Yannick Badoual yann.badoual@gmail.com
@@ -73,7 +75,17 @@ public class TLRequestMessagesSendBroadcast extends TLMethod<TLAbsUpdates> {
         contacts = readTLVector(stream, context);
         randomId = readTLLongVector(stream, context);
         message = readTLString(stream);
-        media = (com.github.badoualy.telegram.tl.api.TLAbsInputMedia) readTLObject(stream, context);
+        media = (TLAbsInputMedia) readTLObject(stream, context);
+    }
+
+    @Override
+    public int computeSerializedSize() {
+        int size = SIZE_CONSTRUCTOR_ID;
+        size += contacts.computeSerializedSize();
+        size += randomId.computeSerializedSize();
+        size += computeTLStringSerializedSize(message);
+        size += media.computeSerializedSize();
+        return size;
     }
 
     @Override

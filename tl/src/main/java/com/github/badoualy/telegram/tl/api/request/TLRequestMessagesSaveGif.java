@@ -14,6 +14,8 @@ import static com.github.badoualy.telegram.tl.StreamUtils.readTLBool;
 import static com.github.badoualy.telegram.tl.StreamUtils.readTLObject;
 import static com.github.badoualy.telegram.tl.StreamUtils.writeBoolean;
 import static com.github.badoualy.telegram.tl.StreamUtils.writeTLObject;
+import static com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_BOOLEAN;
+import static com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_CONSTRUCTOR_ID;
 
 /**
  * @author Yannick Badoual yann.badoual@gmail.com
@@ -56,8 +58,16 @@ public class TLRequestMessagesSaveGif extends TLMethod<TLBool> {
     @Override
     @SuppressWarnings("unchecked")
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
-        id = (com.github.badoualy.telegram.tl.api.TLAbsInputDocument) readTLObject(stream, context);
+        id = (TLAbsInputDocument) readTLObject(stream, context);
         unsave = readTLBool(stream);
+    }
+
+    @Override
+    public int computeSerializedSize() {
+        int size = SIZE_CONSTRUCTOR_ID;
+        size += id.computeSerializedSize();
+        size += SIZE_BOOLEAN;
+        return size;
     }
 
     @Override

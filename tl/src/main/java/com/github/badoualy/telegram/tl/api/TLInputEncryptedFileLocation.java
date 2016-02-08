@@ -8,6 +8,8 @@ import java.io.OutputStream;
 
 import static com.github.badoualy.telegram.tl.StreamUtils.readLong;
 import static com.github.badoualy.telegram.tl.StreamUtils.writeLong;
+import static com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_CONSTRUCTOR_ID;
+import static com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_INT64;
 
 /**
  * @author Yannick Badoual yann.badoual@gmail.com
@@ -39,6 +41,14 @@ public class TLInputEncryptedFileLocation extends TLAbsInputFileLocation {
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
         id = readLong(stream);
         accessHash = readLong(stream);
+    }
+
+    @Override
+    public int computeSerializedSize() {
+        int size = SIZE_CONSTRUCTOR_ID;
+        size += SIZE_INT64;
+        size += SIZE_INT64;
+        return size;
     }
 
     @Override

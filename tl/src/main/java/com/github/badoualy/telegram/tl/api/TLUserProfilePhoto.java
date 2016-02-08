@@ -10,6 +10,8 @@ import static com.github.badoualy.telegram.tl.StreamUtils.readLong;
 import static com.github.badoualy.telegram.tl.StreamUtils.readTLObject;
 import static com.github.badoualy.telegram.tl.StreamUtils.writeLong;
 import static com.github.badoualy.telegram.tl.StreamUtils.writeTLObject;
+import static com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_CONSTRUCTOR_ID;
+import static com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_INT64;
 
 /**
  * @author Yannick Badoual yann.badoual@gmail.com
@@ -44,8 +46,17 @@ public class TLUserProfilePhoto extends TLAbsUserProfilePhoto {
     @SuppressWarnings("unchecked")
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
         photoId = readLong(stream);
-        photoSmall = (com.github.badoualy.telegram.tl.api.TLAbsFileLocation) readTLObject(stream, context);
-        photoBig = (com.github.badoualy.telegram.tl.api.TLAbsFileLocation) readTLObject(stream, context);
+        photoSmall = (TLAbsFileLocation) readTLObject(stream, context);
+        photoBig = (TLAbsFileLocation) readTLObject(stream, context);
+    }
+
+    @Override
+    public int computeSerializedSize() {
+        int size = SIZE_CONSTRUCTOR_ID;
+        size += SIZE_INT64;
+        size += photoSmall.computeSerializedSize();
+        size += photoBig.computeSerializedSize();
+        return size;
     }
 
     @Override

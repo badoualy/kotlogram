@@ -16,6 +16,8 @@ class MTProtoTcpConnection
     private val TAG = "MTProtoTcpConnection"
 
     private val socketChannel: SocketChannel
+    private val msgHeaderBuffer = ByteBuffer.allocate(1)
+    private val msgLengthBuffer = ByteBuffer.allocate(3)
 
     init {
         socketChannel = SocketChannel.open()
@@ -40,9 +42,9 @@ class MTProtoTcpConnection
          */
 
         // Read message length
-        var length = readByteAsInt(readBytes(1))
+        var length = readByteAsInt(readBytes(1, msgHeaderBuffer))
         if (length == 0x7f)
-            length = readInt24(readBytes(3, ByteOrder.BIG_ENDIAN))
+            length = readInt24(readBytes(3, msgLengthBuffer))
 
         val buffer = readBytes(length * 4)
 
@@ -56,7 +58,8 @@ class MTProtoTcpConnection
     override fun writeMessage(request: ByteArray) {
         val length = request.size / 4
         val headerLength = if (length >= 127) 4 else 1
-        val buffer = ByteBuffer.allocateDirect(request.size + headerLength)
+        val totalLength = request.size + headerLength
+        val buffer = if (totalLength < 512) ByteBuffer.allocate(totalLength) else ByteBuffer.allocateDirect(totalLength)
 
         /*
         There is an abridged version of the same protocol: if the client sends 0xef as the first byte
@@ -91,11 +94,12 @@ class MTProtoTcpConnection
 
     override fun isOpened() = socketChannel.isOpen && socketChannel.isConnected
 
-    private fun readBytes(length: Int, order: ByteOrder = ByteOrder.BIG_ENDIAN): ByteBuffer {
-        val buffer = ByteBuffer.allocateDirect(length)
+    private fun readBytes(length: Int, recycledBuffer: ByteBuffer? = null, order: ByteOrder = ByteOrder.BIG_ENDIAN): ByteBuffer {
+        recycledBuffer?.clear()
+        val buffer = recycledBuffer ?: if (length < 512) ByteBuffer.allocate(length) else ByteBuffer.allocateDirect(length)
         buffer.order(order)
-        var totalRead = 0
 
+        var totalRead = 0
         while (totalRead < length) {
             var read = socketChannel.read(buffer)
             if (read == -1)

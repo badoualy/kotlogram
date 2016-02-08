@@ -8,6 +8,8 @@ import java.io.OutputStream;
 
 import static com.github.badoualy.telegram.tl.StreamUtils.readDouble;
 import static com.github.badoualy.telegram.tl.StreamUtils.writeDouble;
+import static com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_CONSTRUCTOR_ID;
+import static com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_DOUBLE;
 
 /**
  * @author Yannick Badoual yann.badoual@gmail.com
@@ -39,6 +41,14 @@ public class TLGeoPoint extends TLAbsGeoPoint {
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
         _long = readDouble(stream);
         lat = readDouble(stream);
+    }
+
+    @Override
+    public int computeSerializedSize() {
+        int size = SIZE_CONSTRUCTOR_ID;
+        size += SIZE_DOUBLE;
+        size += SIZE_DOUBLE;
+        return size;
     }
 
     @Override

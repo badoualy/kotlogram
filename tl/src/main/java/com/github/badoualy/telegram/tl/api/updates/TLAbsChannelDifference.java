@@ -18,6 +18,12 @@ public abstract class TLAbsChannelDifference extends TLObject {
     public TLAbsChannelDifference() {
     }
 
+    private void computeFlags() {
+        flags = 0;
+        flags = _final ? (flags | 1) : (flags &~ 1);
+        flags = timeout != null ? (flags | 2) : (flags &~ 2);
+    }
+
     public boolean getFinal() {
         return _final;
     }

@@ -17,6 +17,10 @@ import static com.github.badoualy.telegram.tl.StreamUtils.readTLString;
 import static com.github.badoualy.telegram.tl.StreamUtils.writeInt;
 import static com.github.badoualy.telegram.tl.StreamUtils.writeString;
 import static com.github.badoualy.telegram.tl.StreamUtils.writeTLBytes;
+import static com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_CONSTRUCTOR_ID;
+import static com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_INT32;
+import static com.github.badoualy.telegram.tl.TLObjectUtils.computeTLBytesSerializedSize;
+import static com.github.badoualy.telegram.tl.TLObjectUtils.computeTLStringSerializedSize;
 
 /**
  * @author Yannick Badoual yann.badoual@gmail.com
@@ -66,6 +70,15 @@ public class TLRequestMessagesGetDocumentByHash extends TLMethod<TLAbsDocument> 
         sha256 = readTLBytes(stream, context);
         size = readInt(stream);
         mimeType = readTLString(stream);
+    }
+
+    @Override
+    public int computeSerializedSize() {
+        int size = SIZE_CONSTRUCTOR_ID;
+        size += computeTLBytesSerializedSize(sha256);
+        size += SIZE_INT32;
+        size += computeTLStringSerializedSize(mimeType);
+        return size;
     }
 
     @Override

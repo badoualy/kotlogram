@@ -16,6 +16,10 @@ import static com.github.badoualy.telegram.tl.StreamUtils.writeInt;
 import static com.github.badoualy.telegram.tl.StreamUtils.writeString;
 import static com.github.badoualy.telegram.tl.StreamUtils.writeTLObject;
 import static com.github.badoualy.telegram.tl.StreamUtils.writeTLVector;
+import static com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_BOOLEAN;
+import static com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_CONSTRUCTOR_ID;
+import static com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_INT32;
+import static com.github.badoualy.telegram.tl.TLObjectUtils.computeTLStringSerializedSize;
 
 /**
  * @author Yannick Badoual yann.badoual@gmail.com
@@ -67,8 +71,7 @@ public class TLChannelFull extends TLAbsChatFull {
         this.migratedFromMaxId = migratedFromMaxId;
     }
 
-    @Override
-    public void serializeBody(OutputStream stream) throws IOException {
+    private void computeFlags() {
         flags = 0;
         flags = canViewParticipants ? (flags | 8) : (flags &~ 8);
         flags = participantsCount != null ? (flags | 1) : (flags &~ 1);
@@ -76,6 +79,11 @@ public class TLChannelFull extends TLAbsChatFull {
         flags = kickedCount != null ? (flags | 4) : (flags &~ 4);
         flags = migratedFromChatId != null ? (flags | 16) : (flags &~ 16);
         flags = migratedFromMaxId != null ? (flags | 16) : (flags &~ 16);
+    }
+
+    @Override
+    public void serializeBody(OutputStream stream) throws IOException {
+        computeFlags();
 
         writeInt(flags, stream);
         if ((flags & 8) != 0) writeBoolean(canViewParticipants, stream);
@@ -102,18 +110,42 @@ public class TLChannelFull extends TLAbsChatFull {
         canViewParticipants = (flags & 8) != 0;
         id = readInt(stream);
         about = readTLString(stream);
-        if ((flags & 1) != 0) participantsCount = readInt(stream);
-        if ((flags & 2) != 0) adminsCount = readInt(stream);
-        if ((flags & 4) != 0) kickedCount = readInt(stream);
+        participantsCount = (flags & 1) != 0 ? readInt(stream) : null;
+        adminsCount = (flags & 2) != 0 ? readInt(stream) : null;
+        kickedCount = (flags & 4) != 0 ? readInt(stream) : null;
         readInboxMaxId = readInt(stream);
         unreadCount = readInt(stream);
         unreadImportantCount = readInt(stream);
-        chatPhoto = (com.github.badoualy.telegram.tl.api.TLAbsPhoto) readTLObject(stream, context);
-        notifySettings = (com.github.badoualy.telegram.tl.api.TLAbsPeerNotifySettings) readTLObject(stream, context);
-        exportedInvite = (com.github.badoualy.telegram.tl.api.TLAbsExportedChatInvite) readTLObject(stream, context);
+        chatPhoto = (TLAbsPhoto) readTLObject(stream, context);
+        notifySettings = (TLAbsPeerNotifySettings) readTLObject(stream, context);
+        exportedInvite = (TLAbsExportedChatInvite) readTLObject(stream, context);
         botInfo = readTLVector(stream, context);
-        if ((flags & 16) != 0) migratedFromChatId = readInt(stream);
-        if ((flags & 16) != 0) migratedFromMaxId = readInt(stream);
+        migratedFromChatId = (flags & 16) != 0 ? readInt(stream) : null;
+        migratedFromMaxId = (flags & 16) != 0 ? readInt(stream) : null;
+    }
+
+    @Override
+    public int computeSerializedSize() {
+        computeFlags();
+
+        int size = SIZE_CONSTRUCTOR_ID;
+        size += SIZE_INT32;
+        if ((flags & 8) != 0) size += SIZE_BOOLEAN;
+        size += SIZE_INT32;
+        size += computeTLStringSerializedSize(about);
+        if ((flags & 1) != 0) size += SIZE_INT32;
+        if ((flags & 2) != 0) size += SIZE_INT32;
+        if ((flags & 4) != 0) size += SIZE_INT32;
+        size += SIZE_INT32;
+        size += SIZE_INT32;
+        size += SIZE_INT32;
+        size += chatPhoto.computeSerializedSize();
+        size += notifySettings.computeSerializedSize();
+        size += exportedInvite.computeSerializedSize();
+        size += botInfo.computeSerializedSize();
+        if ((flags & 16) != 0) size += SIZE_INT32;
+        if ((flags & 16) != 0) size += SIZE_INT32;
+        return size;
     }
 
     @Override

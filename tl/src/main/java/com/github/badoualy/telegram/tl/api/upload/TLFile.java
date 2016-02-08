@@ -15,6 +15,9 @@ import static com.github.badoualy.telegram.tl.StreamUtils.readTLObject;
 import static com.github.badoualy.telegram.tl.StreamUtils.writeInt;
 import static com.github.badoualy.telegram.tl.StreamUtils.writeTLBytes;
 import static com.github.badoualy.telegram.tl.StreamUtils.writeTLObject;
+import static com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_CONSTRUCTOR_ID;
+import static com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_INT32;
+import static com.github.badoualy.telegram.tl.TLObjectUtils.computeTLBytesSerializedSize;
 
 /**
  * @author Yannick Badoual yann.badoual@gmail.com
@@ -48,9 +51,18 @@ public class TLFile extends TLObject {
     @Override
     @SuppressWarnings("unchecked")
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
-        type = (com.github.badoualy.telegram.tl.api.storage.TLAbsFileType) readTLObject(stream, context);
+        type = (TLAbsFileType) readTLObject(stream, context);
         mtime = readInt(stream);
         bytes = readTLBytes(stream, context);
+    }
+
+    @Override
+    public int computeSerializedSize() {
+        int size = SIZE_CONSTRUCTOR_ID;
+        size += type.computeSerializedSize();
+        size += SIZE_INT32;
+        size += computeTLBytesSerializedSize(bytes);
+        return size;
     }
 
     @Override

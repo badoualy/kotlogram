@@ -16,6 +16,9 @@ import static com.github.badoualy.telegram.tl.StreamUtils.readTLString;
 import static com.github.badoualy.telegram.tl.StreamUtils.writeInt;
 import static com.github.badoualy.telegram.tl.StreamUtils.writeString;
 import static com.github.badoualy.telegram.tl.StreamUtils.writeTLObject;
+import static com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_CONSTRUCTOR_ID;
+import static com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_INT32;
+import static com.github.badoualy.telegram.tl.TLObjectUtils.computeTLStringSerializedSize;
 
 /**
  * @author Yannick Badoual yann.badoual@gmail.com
@@ -72,9 +75,20 @@ public class TLRequestMessagesSearchGlobal extends TLMethod<TLAbsMessages> {
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
         q = readTLString(stream);
         offsetDate = readInt(stream);
-        offsetPeer = (com.github.badoualy.telegram.tl.api.TLAbsInputPeer) readTLObject(stream, context);
+        offsetPeer = (TLAbsInputPeer) readTLObject(stream, context);
         offsetId = readInt(stream);
         limit = readInt(stream);
+    }
+
+    @Override
+    public int computeSerializedSize() {
+        int size = SIZE_CONSTRUCTOR_ID;
+        size += computeTLStringSerializedSize(q);
+        size += SIZE_INT32;
+        size += offsetPeer.computeSerializedSize();
+        size += SIZE_INT32;
+        size += SIZE_INT32;
+        return size;
     }
 
     @Override

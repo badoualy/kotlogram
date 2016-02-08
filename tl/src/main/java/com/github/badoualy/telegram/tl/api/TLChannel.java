@@ -15,6 +15,11 @@ import static com.github.badoualy.telegram.tl.StreamUtils.writeInt;
 import static com.github.badoualy.telegram.tl.StreamUtils.writeLong;
 import static com.github.badoualy.telegram.tl.StreamUtils.writeString;
 import static com.github.badoualy.telegram.tl.StreamUtils.writeTLObject;
+import static com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_BOOLEAN;
+import static com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_CONSTRUCTOR_ID;
+import static com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_INT32;
+import static com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_INT64;
+import static com.github.badoualy.telegram.tl.TLObjectUtils.computeTLStringSerializedSize;
 
 /**
  * @author Yannick Badoual yann.badoual@gmail.com
@@ -80,8 +85,7 @@ public class TLChannel extends TLAbsChat {
         this.restrictionReason = restrictionReason;
     }
 
-    @Override
-    public void serializeBody(OutputStream stream) throws IOException {
+    private void computeFlags() {
         flags = 0;
         flags = creator ? (flags | 1) : (flags &~ 1);
         flags = kicked ? (flags | 2) : (flags &~ 2);
@@ -94,6 +98,11 @@ public class TLChannel extends TLAbsChat {
         flags = restricted ? (flags | 512) : (flags &~ 512);
         flags = username != null ? (flags | 64) : (flags &~ 64);
         flags = restrictionReason != null ? (flags | 512) : (flags &~ 512);
+    }
+
+    @Override
+    public void serializeBody(OutputStream stream) throws IOException {
+        computeFlags();
 
         writeInt(flags, stream);
         if ((flags & 1) != 0) writeBoolean(creator, stream);
@@ -131,11 +140,37 @@ public class TLChannel extends TLAbsChat {
         id = readInt(stream);
         accessHash = readLong(stream);
         title = readTLString(stream);
-        if ((flags & 64) != 0) username = readTLString(stream);
-        photo = (com.github.badoualy.telegram.tl.api.TLAbsChatPhoto) readTLObject(stream, context);
+        username = (flags & 64) != 0 ? readTLString(stream) : null;
+        photo = (TLAbsChatPhoto) readTLObject(stream, context);
         date = readInt(stream);
         version = readInt(stream);
-        if ((flags & 512) != 0) restrictionReason = readTLString(stream);
+        restrictionReason = (flags & 512) != 0 ? readTLString(stream) : null;
+    }
+
+    @Override
+    public int computeSerializedSize() {
+        computeFlags();
+
+        int size = SIZE_CONSTRUCTOR_ID;
+        size += SIZE_INT32;
+        if ((flags & 1) != 0) size += SIZE_BOOLEAN;
+        if ((flags & 2) != 0) size += SIZE_BOOLEAN;
+        if ((flags & 4) != 0) size += SIZE_BOOLEAN;
+        if ((flags & 8) != 0) size += SIZE_BOOLEAN;
+        if ((flags & 16) != 0) size += SIZE_BOOLEAN;
+        if ((flags & 32) != 0) size += SIZE_BOOLEAN;
+        if ((flags & 128) != 0) size += SIZE_BOOLEAN;
+        if ((flags & 256) != 0) size += SIZE_BOOLEAN;
+        if ((flags & 512) != 0) size += SIZE_BOOLEAN;
+        size += SIZE_INT32;
+        size += SIZE_INT64;
+        size += computeTLStringSerializedSize(title);
+        if ((flags & 64) != 0) size += computeTLStringSerializedSize(username);
+        size += photo.computeSerializedSize();
+        size += SIZE_INT32;
+        size += SIZE_INT32;
+        if ((flags & 512) != 0) size += computeTLStringSerializedSize(restrictionReason);
+        return size;
     }
 
     @Override

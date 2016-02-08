@@ -10,6 +10,9 @@ import static com.github.badoualy.telegram.tl.StreamUtils.readInt;
 import static com.github.badoualy.telegram.tl.StreamUtils.readLong;
 import static com.github.badoualy.telegram.tl.StreamUtils.writeInt;
 import static com.github.badoualy.telegram.tl.StreamUtils.writeLong;
+import static com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_CONSTRUCTOR_ID;
+import static com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_INT32;
+import static com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_INT64;
 
 /**
  * @author Yannick Badoual yann.badoual@gmail.com
@@ -54,6 +57,17 @@ public class TLEncryptedChatWaiting extends TLAbsEncryptedChat {
         date = readInt(stream);
         adminId = readInt(stream);
         participantId = readInt(stream);
+    }
+
+    @Override
+    public int computeSerializedSize() {
+        int size = SIZE_CONSTRUCTOR_ID;
+        size += SIZE_INT32;
+        size += SIZE_INT64;
+        size += SIZE_INT32;
+        size += SIZE_INT32;
+        size += SIZE_INT32;
+        return size;
     }
 
     @Override

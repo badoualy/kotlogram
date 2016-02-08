@@ -15,6 +15,11 @@ import static com.github.badoualy.telegram.tl.StreamUtils.writeInt;
 import static com.github.badoualy.telegram.tl.StreamUtils.writeLong;
 import static com.github.badoualy.telegram.tl.StreamUtils.writeString;
 import static com.github.badoualy.telegram.tl.StreamUtils.writeTLObject;
+import static com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_BOOLEAN;
+import static com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_CONSTRUCTOR_ID;
+import static com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_INT32;
+import static com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_INT64;
+import static com.github.badoualy.telegram.tl.TLObjectUtils.computeTLStringSerializedSize;
 
 /**
  * @author Yannick Badoual yann.badoual@gmail.com
@@ -89,8 +94,7 @@ public class TLUser extends TLAbsUser {
         this.botInlinePlaceholder = botInlinePlaceholder;
     }
 
-    @Override
-    public void serializeBody(OutputStream stream) throws IOException {
+    private void computeFlags() {
         flags = 0;
         flags = self ? (flags | 1024) : (flags &~ 1024);
         flags = contact ? (flags | 2048) : (flags &~ 2048);
@@ -111,6 +115,11 @@ public class TLUser extends TLAbsUser {
         flags = botInfoVersion != null ? (flags | 16384) : (flags &~ 16384);
         flags = restrictionReason != null ? (flags | 262144) : (flags &~ 262144);
         flags = botInlinePlaceholder != null ? (flags | 524288) : (flags &~ 524288);
+    }
+
+    @Override
+    public void serializeBody(OutputStream stream) throws IOException {
+        computeFlags();
 
         writeInt(flags, stream);
         if ((flags & 1024) != 0) writeBoolean(self, stream);
@@ -149,16 +158,45 @@ public class TLUser extends TLAbsUser {
         verified = (flags & 131072) != 0;
         restricted = (flags & 262144) != 0;
         id = readInt(stream);
-        if ((flags & 1) != 0) accessHash = readLong(stream);
-        if ((flags & 2) != 0) firstName = readTLString(stream);
-        if ((flags & 4) != 0) lastName = readTLString(stream);
-        if ((flags & 8) != 0) username = readTLString(stream);
-        if ((flags & 16) != 0) phone = readTLString(stream);
-        if ((flags & 32) != 0) photo = (com.github.badoualy.telegram.tl.api.TLAbsUserProfilePhoto) readTLObject(stream, context);
-        if ((flags & 64) != 0) status = (com.github.badoualy.telegram.tl.api.TLAbsUserStatus) readTLObject(stream, context);
-        if ((flags & 16384) != 0) botInfoVersion = readInt(stream);
-        if ((flags & 262144) != 0) restrictionReason = readTLString(stream);
-        if ((flags & 524288) != 0) botInlinePlaceholder = readTLString(stream);
+        accessHash = (flags & 1) != 0 ? readLong(stream) : null;
+        firstName = (flags & 2) != 0 ? readTLString(stream) : null;
+        lastName = (flags & 4) != 0 ? readTLString(stream) : null;
+        username = (flags & 8) != 0 ? readTLString(stream) : null;
+        phone = (flags & 16) != 0 ? readTLString(stream) : null;
+        photo = (flags & 32) != 0 ? (TLAbsUserProfilePhoto) readTLObject(stream, context) : null;
+        status = (flags & 64) != 0 ? (TLAbsUserStatus) readTLObject(stream, context) : null;
+        botInfoVersion = (flags & 16384) != 0 ? readInt(stream) : null;
+        restrictionReason = (flags & 262144) != 0 ? readTLString(stream) : null;
+        botInlinePlaceholder = (flags & 524288) != 0 ? readTLString(stream) : null;
+    }
+
+    @Override
+    public int computeSerializedSize() {
+        computeFlags();
+
+        int size = SIZE_CONSTRUCTOR_ID;
+        size += SIZE_INT32;
+        if ((flags & 1024) != 0) size += SIZE_BOOLEAN;
+        if ((flags & 2048) != 0) size += SIZE_BOOLEAN;
+        if ((flags & 4096) != 0) size += SIZE_BOOLEAN;
+        if ((flags & 8192) != 0) size += SIZE_BOOLEAN;
+        if ((flags & 16384) != 0) size += SIZE_BOOLEAN;
+        if ((flags & 32768) != 0) size += SIZE_BOOLEAN;
+        if ((flags & 65536) != 0) size += SIZE_BOOLEAN;
+        if ((flags & 131072) != 0) size += SIZE_BOOLEAN;
+        if ((flags & 262144) != 0) size += SIZE_BOOLEAN;
+        size += SIZE_INT32;
+        if ((flags & 1) != 0) size += SIZE_INT64;
+        if ((flags & 2) != 0) size += computeTLStringSerializedSize(firstName);
+        if ((flags & 4) != 0) size += computeTLStringSerializedSize(lastName);
+        if ((flags & 8) != 0) size += computeTLStringSerializedSize(username);
+        if ((flags & 16) != 0) size += computeTLStringSerializedSize(phone);
+        if ((flags & 32) != 0) size += photo.computeSerializedSize();
+        if ((flags & 64) != 0) size += status.computeSerializedSize();
+        if ((flags & 16384) != 0) size += SIZE_INT32;
+        if ((flags & 262144) != 0) size += computeTLStringSerializedSize(restrictionReason);
+        if ((flags & 524288) != 0) size += computeTLStringSerializedSize(botInlinePlaceholder);
+        return size;
     }
 
     @Override

@@ -12,6 +12,7 @@ import java.io.OutputStream;
 
 import static com.github.badoualy.telegram.tl.StreamUtils.readTLVector;
 import static com.github.badoualy.telegram.tl.StreamUtils.writeTLVector;
+import static com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_CONSTRUCTOR_ID;
 
 /**
  * @author Yannick Badoual yann.badoual@gmail.com
@@ -43,6 +44,14 @@ public class TLPrivacyRules extends TLObject {
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
         rules = readTLVector(stream, context);
         users = readTLVector(stream, context);
+    }
+
+    @Override
+    public int computeSerializedSize() {
+        int size = SIZE_CONSTRUCTOR_ID;
+        size += rules.computeSerializedSize();
+        size += users.computeSerializedSize();
+        return size;
     }
 
     @Override

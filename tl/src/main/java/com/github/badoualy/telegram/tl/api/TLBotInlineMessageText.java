@@ -14,6 +14,10 @@ import static com.github.badoualy.telegram.tl.StreamUtils.writeBoolean;
 import static com.github.badoualy.telegram.tl.StreamUtils.writeInt;
 import static com.github.badoualy.telegram.tl.StreamUtils.writeString;
 import static com.github.badoualy.telegram.tl.StreamUtils.writeTLVector;
+import static com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_BOOLEAN;
+import static com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_CONSTRUCTOR_ID;
+import static com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_INT32;
+import static com.github.badoualy.telegram.tl.TLObjectUtils.computeTLStringSerializedSize;
 
 /**
  * @author Yannick Badoual yann.badoual@gmail.com
@@ -39,11 +43,15 @@ public class TLBotInlineMessageText extends TLAbsBotInlineMessage {
         this.entities = entities;
     }
 
-    @Override
-    public void serializeBody(OutputStream stream) throws IOException {
+    private void computeFlags() {
         flags = 0;
         flags = noWebpage ? (flags | 1) : (flags &~ 1);
         flags = entities != null ? (flags | 2) : (flags &~ 2);
+    }
+
+    @Override
+    public void serializeBody(OutputStream stream) throws IOException {
+        computeFlags();
 
         writeInt(flags, stream);
         if ((flags & 1) != 0) writeBoolean(noWebpage, stream);
@@ -57,7 +65,19 @@ public class TLBotInlineMessageText extends TLAbsBotInlineMessage {
         flags = readInt(stream);
         noWebpage = (flags & 1) != 0;
         message = readTLString(stream);
-        if ((flags & 2) != 0) entities = readTLVector(stream, context);
+        entities = (flags & 2) != 0 ? readTLVector(stream, context) : null;
+    }
+
+    @Override
+    public int computeSerializedSize() {
+        computeFlags();
+
+        int size = SIZE_CONSTRUCTOR_ID;
+        size += SIZE_INT32;
+        if ((flags & 1) != 0) size += SIZE_BOOLEAN;
+        size += computeTLStringSerializedSize(message);
+        if ((flags & 2) != 0) size += entities.computeSerializedSize();
+        return size;
     }
 
     @Override

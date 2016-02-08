@@ -20,6 +20,9 @@ import static com.github.badoualy.telegram.tl.StreamUtils.writeBoolean;
 import static com.github.badoualy.telegram.tl.StreamUtils.writeInt;
 import static com.github.badoualy.telegram.tl.StreamUtils.writeTLObject;
 import static com.github.badoualy.telegram.tl.StreamUtils.writeTLVector;
+import static com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_BOOLEAN;
+import static com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_CONSTRUCTOR_ID;
+import static com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_INT32;
 
 /**
  * @author Yannick Badoual yann.badoual@gmail.com
@@ -64,10 +67,14 @@ public class TLRequestMessagesForwardMessages extends TLMethod<TLAbsUpdates> {
         return (TLAbsUpdates) response;
     }
 
-    @Override
-    public void serializeBody(OutputStream stream) throws IOException {
+    private void computeFlags() {
         flags = 0;
         flags = broadcast ? (flags | 16) : (flags &~ 16);
+    }
+
+    @Override
+    public void serializeBody(OutputStream stream) throws IOException {
+        computeFlags();
 
         writeInt(flags, stream);
         if ((flags & 16) != 0) writeBoolean(broadcast, stream);
@@ -82,10 +89,24 @@ public class TLRequestMessagesForwardMessages extends TLMethod<TLAbsUpdates> {
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
         flags = readInt(stream);
         broadcast = (flags & 16) != 0;
-        fromPeer = (com.github.badoualy.telegram.tl.api.TLAbsInputPeer) readTLObject(stream, context);
+        fromPeer = (TLAbsInputPeer) readTLObject(stream, context);
         id = readTLIntVector(stream, context);
         randomId = readTLLongVector(stream, context);
-        toPeer = (com.github.badoualy.telegram.tl.api.TLAbsInputPeer) readTLObject(stream, context);
+        toPeer = (TLAbsInputPeer) readTLObject(stream, context);
+    }
+
+    @Override
+    public int computeSerializedSize() {
+        computeFlags();
+
+        int size = SIZE_CONSTRUCTOR_ID;
+        size += SIZE_INT32;
+        if ((flags & 16) != 0) size += SIZE_BOOLEAN;
+        size += fromPeer.computeSerializedSize();
+        size += id.computeSerializedSize();
+        size += randomId.computeSerializedSize();
+        size += toPeer.computeSerializedSize();
+        return size;
     }
 
     @Override

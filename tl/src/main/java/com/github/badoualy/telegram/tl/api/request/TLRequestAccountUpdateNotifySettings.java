@@ -13,6 +13,7 @@ import java.io.OutputStream;
 
 import static com.github.badoualy.telegram.tl.StreamUtils.readTLObject;
 import static com.github.badoualy.telegram.tl.StreamUtils.writeTLObject;
+import static com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_CONSTRUCTOR_ID;
 
 /**
  * @author Yannick Badoual yann.badoual@gmail.com
@@ -55,8 +56,16 @@ public class TLRequestAccountUpdateNotifySettings extends TLMethod<TLBool> {
     @Override
     @SuppressWarnings("unchecked")
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
-        peer = (com.github.badoualy.telegram.tl.api.TLAbsInputNotifyPeer) readTLObject(stream, context);
-        settings = (com.github.badoualy.telegram.tl.api.TLInputPeerNotifySettings) readTLObject(stream, context);
+        peer = (TLAbsInputNotifyPeer) readTLObject(stream, context);
+        settings = (TLInputPeerNotifySettings) readTLObject(stream, context);
+    }
+
+    @Override
+    public int computeSerializedSize() {
+        int size = SIZE_CONSTRUCTOR_ID;
+        size += peer.computeSerializedSize();
+        size += settings.computeSerializedSize();
+        return size;
     }
 
     @Override

@@ -11,6 +11,9 @@ import static com.github.badoualy.telegram.tl.StreamUtils.readTLObject;
 import static com.github.badoualy.telegram.tl.StreamUtils.writeBoolean;
 import static com.github.badoualy.telegram.tl.StreamUtils.writeInt;
 import static com.github.badoualy.telegram.tl.StreamUtils.writeTLObject;
+import static com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_BOOLEAN;
+import static com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_CONSTRUCTOR_ID;
+import static com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_INT32;
 
 /**
  * @author Yannick Badoual yann.badoual@gmail.com
@@ -52,14 +55,18 @@ public class TLMessageService extends TLAbsMessage {
         this.action = action;
     }
 
-    @Override
-    public void serializeBody(OutputStream stream) throws IOException {
+    private void computeFlags() {
         flags = 0;
         flags = unread ? (flags | 1) : (flags &~ 1);
         flags = out ? (flags | 2) : (flags &~ 2);
         flags = mentioned ? (flags | 16) : (flags &~ 16);
         flags = mediaUnread ? (flags | 32) : (flags &~ 32);
         flags = fromId != null ? (flags | 256) : (flags &~ 256);
+    }
+
+    @Override
+    public void serializeBody(OutputStream stream) throws IOException {
+        computeFlags();
 
         writeInt(flags, stream);
         if ((flags & 1) != 0) writeBoolean(unread, stream);
@@ -82,10 +89,28 @@ public class TLMessageService extends TLAbsMessage {
         mentioned = (flags & 16) != 0;
         mediaUnread = (flags & 32) != 0;
         id = readInt(stream);
-        if ((flags & 256) != 0) fromId = readInt(stream);
-        toId = (com.github.badoualy.telegram.tl.api.TLAbsPeer) readTLObject(stream, context);
+        fromId = (flags & 256) != 0 ? readInt(stream) : null;
+        toId = (TLAbsPeer) readTLObject(stream, context);
         date = readInt(stream);
-        action = (com.github.badoualy.telegram.tl.api.TLAbsMessageAction) readTLObject(stream, context);
+        action = (TLAbsMessageAction) readTLObject(stream, context);
+    }
+
+    @Override
+    public int computeSerializedSize() {
+        computeFlags();
+
+        int size = SIZE_CONSTRUCTOR_ID;
+        size += SIZE_INT32;
+        if ((flags & 1) != 0) size += SIZE_BOOLEAN;
+        if ((flags & 2) != 0) size += SIZE_BOOLEAN;
+        if ((flags & 16) != 0) size += SIZE_BOOLEAN;
+        if ((flags & 32) != 0) size += SIZE_BOOLEAN;
+        size += SIZE_INT32;
+        if ((flags & 256) != 0) size += SIZE_INT32;
+        size += toId.computeSerializedSize();
+        size += SIZE_INT32;
+        size += action.computeSerializedSize();
+        return size;
     }
 
     @Override

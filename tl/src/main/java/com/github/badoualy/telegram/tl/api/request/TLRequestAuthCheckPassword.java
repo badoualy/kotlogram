@@ -13,6 +13,8 @@ import java.io.OutputStream;
 import static com.github.badoualy.telegram.tl.StreamUtils.readTLBytes;
 import static com.github.badoualy.telegram.tl.StreamUtils.readTLObject;
 import static com.github.badoualy.telegram.tl.StreamUtils.writeTLBytes;
+import static com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_CONSTRUCTOR_ID;
+import static com.github.badoualy.telegram.tl.TLObjectUtils.computeTLBytesSerializedSize;
 
 /**
  * @author Yannick Badoual yann.badoual@gmail.com
@@ -52,6 +54,13 @@ public class TLRequestAuthCheckPassword extends TLMethod<TLAuthorization> {
     @SuppressWarnings("unchecked")
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
         passwordHash = readTLBytes(stream, context);
+    }
+
+    @Override
+    public int computeSerializedSize() {
+        int size = SIZE_CONSTRUCTOR_ID;
+        size += computeTLBytesSerializedSize(passwordHash);
+        return size;
     }
 
     @Override

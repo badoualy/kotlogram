@@ -21,6 +21,11 @@ import static com.github.badoualy.telegram.tl.StreamUtils.writeInt;
 import static com.github.badoualy.telegram.tl.StreamUtils.writeLong;
 import static com.github.badoualy.telegram.tl.StreamUtils.writeString;
 import static com.github.badoualy.telegram.tl.StreamUtils.writeTLVector;
+import static com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_BOOLEAN;
+import static com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_CONSTRUCTOR_ID;
+import static com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_INT32;
+import static com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_INT64;
+import static com.github.badoualy.telegram.tl.TLObjectUtils.computeTLStringSerializedSize;
 
 /**
  * @author Yannick Badoual yann.badoual@gmail.com
@@ -68,12 +73,16 @@ public class TLRequestMessagesSetInlineBotResults extends TLMethod<TLBool> {
         return (TLBool) response;
     }
 
-    @Override
-    public void serializeBody(OutputStream stream) throws IOException {
+    private void computeFlags() {
         flags = 0;
         flags = gallery ? (flags | 1) : (flags &~ 1);
         flags = _private ? (flags | 2) : (flags &~ 2);
         flags = nextOffset != null ? (flags | 4) : (flags &~ 4);
+    }
+
+    @Override
+    public void serializeBody(OutputStream stream) throws IOException {
+        computeFlags();
 
         writeInt(flags, stream);
         if ((flags & 1) != 0) writeBoolean(gallery, stream);
@@ -93,7 +102,22 @@ public class TLRequestMessagesSetInlineBotResults extends TLMethod<TLBool> {
         queryId = readLong(stream);
         results = readTLVector(stream, context);
         cacheTime = readInt(stream);
-        if ((flags & 4) != 0) nextOffset = readTLString(stream);
+        nextOffset = (flags & 4) != 0 ? readTLString(stream) : null;
+    }
+
+    @Override
+    public int computeSerializedSize() {
+        computeFlags();
+
+        int size = SIZE_CONSTRUCTOR_ID;
+        size += SIZE_INT32;
+        if ((flags & 1) != 0) size += SIZE_BOOLEAN;
+        if ((flags & 2) != 0) size += SIZE_BOOLEAN;
+        size += SIZE_INT64;
+        size += results.computeSerializedSize();
+        size += SIZE_INT32;
+        if ((flags & 4) != 0) size += computeTLStringSerializedSize(nextOffset);
+        return size;
     }
 
     @Override

@@ -334,10 +334,19 @@ object JavaPoet {
                 .addParameter(InputStream::class.java, "stream")
                 .addParameter(TYPE_TL_CONTEXT, "context")
 
+        // Compute serializedSize
+        val computeSizeMethod = MethodSpec.methodBuilder("computeSerializedSize")
+                .addModifiers(Modifier.PUBLIC)
+                .addAnnotation(Override::class.java)
+                .returns(TypeName.INT)
+
         // Compute flag for serialization
         val condParameters = parameters.filter { p -> p.tlType is TLTypeConditional }
         if (condParameters.isNotEmpty()) {
-            serializeMethod.addStatement("flags = 0")
+            val computeFlagsMethod = MethodSpec.methodBuilder("computeFlags")
+                    .addModifiers(Modifier.PRIVATE)
+
+            computeFlagsMethod.addStatement("flags = 0")
             for (parameter in condParameters) {
                 val tlType = parameter.tlType as TLTypeConditional
                 val realType = tlType.realType
@@ -345,12 +354,19 @@ object JavaPoet {
                 val fieldName = parameter.name.lCamelCase().javaEscape()
 
                 if (fieldType == TypeName.BOOLEAN)
-                    serializeMethod.addStatement("flags = $fieldName ? (flags | ${tlType.pow2Value()}) : (flags &~ ${tlType.pow2Value()})")
-                else serializeMethod.addStatement("flags = $fieldName != null ? (flags | ${tlType.pow2Value()}) : (flags &~ ${tlType.pow2Value()})")
+                    computeFlagsMethod.addStatement("flags = $fieldName ? (flags | ${tlType.pow2Value()}) : (flags &~ ${tlType.pow2Value()})")
+                else computeFlagsMethod.addStatement("flags = $fieldName != null ? (flags | ${tlType.pow2Value()}) : (flags &~ ${tlType.pow2Value()})")
             }
+            clazz.addMethod(computeFlagsMethod.build());
 
+            serializeMethod.addStatement("computeFlags()");
             serializeMethod.addCode("\n")
+
+            computeSizeMethod.addStatement("computeFlags()");
+            computeSizeMethod.addCode("\n")
         }
+
+        computeSizeMethod.addStatement("int size = SIZE_CONSTRUCTOR_ID");
 
         // Parameters
         val accessors = ArrayList<MethodSpec>()
@@ -366,7 +382,9 @@ object JavaPoet {
 
             // Add serialize method entry
             serializeMethod.addStatement(serializeParameter(fieldName, parameter.tlType))
-            deserializeMethod.addStatement(deserializeParameter(fieldName, parameter.tlType, fieldType))
+            val deserializeStatement = "$fieldName = ${deserializeParameter(parameter.tlType, fieldType)}"
+            deserializeMethod.addStatement(deserializeStatement, if (deserializeStatement.contains("\$T")) fieldType else emptyArray<Any>())
+            computeSizeMethod.addStatement(computeSizeParameter(fieldName, parameter.tlType))
 
             // Don't add if flags, since it'll be computed
             if (parameter.tlType !is TLTypeFlag) {
@@ -388,11 +406,14 @@ object JavaPoet {
             }
         }
 
+        computeSizeMethod.addStatement("return size")
+
         if (id != null) {
             if (parameters.isNotEmpty()) {
                 clazz.addMethod(constructorBuilder.build())
                 clazz.addMethod(serializeMethod.build())
                 clazz.addMethod(deserializeMethod.build())
+                clazz.addMethod(computeSizeMethod.build())
             }
 
             // toString()
@@ -452,56 +473,63 @@ object JavaPoet {
         is TLTypeFlag -> "writeInt($fieldName, stream)"
         is TLTypeConditional -> "if ((flags & ${fieldTlType.pow2Value()}) != 0) ${serializeParameter(fieldName, fieldTlType.realType)}"
         is TLTypeGeneric -> "writeTLVector($fieldName, stream)"
-        is TLTypeRaw -> {
-            val name = fieldTlType.name
-            when (name) {
-                "int" -> "writeInt($fieldName, stream)"
-                "long" -> "writeLong($fieldName, stream)"
-                "double" -> "writeDouble($fieldName, stream)"
-                "float" -> "writeFloat($fieldName, stream)"
-                "string" -> "writeString($fieldName, stream)"
-                "bytes" -> "writeTLBytes($fieldName, stream)"
-                "Bool" -> "writeBoolean($fieldName, stream)"
-                else -> "writeTLObject($fieldName, stream)"
-            }
+        is TLTypeRaw -> when (fieldTlType.name) {
+            "int" -> "writeInt($fieldName, stream)"
+            "long" -> "writeLong($fieldName, stream)"
+            "double" -> "writeDouble($fieldName, stream)"
+            "float" -> "writeFloat($fieldName, stream)"
+            "string" -> "writeString($fieldName, stream)"
+            "bytes" -> "writeTLBytes($fieldName, stream)"
+            "Bool" -> "writeBoolean($fieldName, stream)"
+            else -> "writeTLObject($fieldName, stream)"
         }
         else -> throw RuntimeException("Unsupported type $fieldTlType")
     }
 
-    private fun deserializeParameter(fieldName: String, fieldTlType: TLType, fieldType: TypeName): String = when (fieldTlType) {
-        is TLTypeFunctional -> "$fieldName = readTLMethod(stream, context)"
-        is TLTypeFlag -> "$fieldName = readInt(stream)"
+    private fun deserializeParameter(fieldTlType: TLType, fieldType: TypeName): String = when (fieldTlType) {
+        is TLTypeFunctional -> "readTLMethod(stream, context)"
+        is TLTypeFlag -> "readInt(stream)"
         is TLTypeConditional -> {
+            val prefix = "(flags & ${fieldTlType.pow2Value()}) != 0"
             val realType = fieldTlType.realType
-            if (realType is TLTypeRaw && arrayOf("Bool", "true").contains(realType.name))
-                "$fieldName = (flags & ${fieldTlType.pow2Value()}) != 0"
-            else
-                "if ((flags & ${fieldTlType.pow2Value()}) != 0) ${deserializeParameter(fieldName, realType, fieldType)}"
+            if (realType is TLTypeRaw && arrayOf("Bool", "true").contains(realType.name)) prefix
+            else "$prefix ? ${deserializeParameter(realType, fieldType)} : null"
         }
-        is TLTypeGeneric -> {
-            when ((fieldTlType.generics.first() as TLTypeRaw).name) {
-                "int" -> "$fieldName = readTLIntVector(stream, context)"
-                "long" -> "$fieldName = readTLLongVector(stream, context)"
-                "string" -> "$fieldName = readTLStringVector(stream, context)"
-                else -> "$fieldName = readTLVector(stream, context)"
-            }
+        is TLTypeGeneric -> when ((fieldTlType.generics.first() as TLTypeRaw).name) {
+            "int" -> "readTLIntVector(stream, context)"
+            "long" -> "readTLLongVector(stream, context)"
+            "string" -> "readTLStringVector(stream, context)"
+            else -> "readTLVector(stream, context)"
+        }
+        is TLTypeRaw -> when (fieldTlType.name) {
+            "int" -> "readInt(stream)"
+            "long" -> "readLong(stream)"
+            "double" -> "readDouble(stream)"
+            "float" -> "readFloat(stream)"
+            "string" -> "readTLString(stream)"
+            "bytes" -> "readTLBytes(stream, context)"
+            "Bool" -> "readTLBool(stream)"
+            else -> "(\$T) readTLObject(stream, context)" // TODO: add Class<T> parameter to readObject for better performances, won't have to use HashMap from context
+        }
+        else -> throw RuntimeException("Unsupported type $fieldTlType")
+    }
 
-        }
+    private fun computeSizeParameter(fieldName: String, fieldTlType: TLType): String = when (fieldTlType) {
+        is TLTypeFunctional -> "size += $fieldName.computeSerializedSize()"
+        is TLTypeFlag -> "size += SIZE_INT32"
+        is TLTypeConditional -> "if ((flags & ${fieldTlType.pow2Value()}) != 0) ${computeSizeParameter(fieldName, fieldTlType.realType)}"
+        is TLTypeGeneric -> "size += $fieldName.computeSerializedSize()"
         is TLTypeRaw -> {
             val name = fieldTlType.name
             when (name) {
-                "int" -> "$fieldName = readInt(stream)"
-                "long" -> "$fieldName = readLong(stream)"
-                "double" -> "$fieldName = readDouble(stream)"
-                "float" -> "$fieldName = readFloat(stream)"
-                "string" -> "$fieldName = readTLString(stream)"
-                "bytes" -> "$fieldName = readTLBytes(stream, context)"
-                "Bool" -> "$fieldName = readTLBool(stream)"
-                else -> {
-                    // TODO
-                    val fieldClassName = fieldType as ClassName
-                    "$fieldName = (${"${(fieldClassName).packageName()}.${fieldClassName.simpleName()}"}) readTLObject(stream, context)"
-                }
+                "int" -> "size += SIZE_INT32"
+                "long" -> "size += SIZE_INT64"
+                "double" -> "size += SIZE_DOUBLE"
+                "float" -> "size += SIZE_DOUBLE"
+                "string" -> "size += computeTLStringSerializedSize($fieldName)"
+                "bytes" -> "size += computeTLBytesSerializedSize($fieldName)"
+                "Bool" -> "size += SIZE_BOOLEAN"
+                else -> "size += $fieldName.computeSerializedSize()"
             }
         }
         else -> throw RuntimeException("Unsupported type $fieldTlType")
@@ -526,6 +554,7 @@ object JavaPoet {
     private fun writeClassToFile(packageName: String, clazz: TypeSpec) {
         JavaFile.builder(packageName, clazz)
                 .addStaticImport(TYPE_STREAM_UTILS, "*")
+                .addStaticImport(TYPE_TLOBJECT_UTILS, "*")
                 .indent("    ")
                 .build().writeTo(File(OUTPUT))
     }

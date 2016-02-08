@@ -15,6 +15,8 @@ import static com.github.badoualy.telegram.tl.StreamUtils.readTLBytes;
 import static com.github.badoualy.telegram.tl.StreamUtils.readTLObject;
 import static com.github.badoualy.telegram.tl.StreamUtils.writeTLBytes;
 import static com.github.badoualy.telegram.tl.StreamUtils.writeTLObject;
+import static com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_CONSTRUCTOR_ID;
+import static com.github.badoualy.telegram.tl.TLObjectUtils.computeTLBytesSerializedSize;
 
 /**
  * @author Yannick Badoual yann.badoual@gmail.com
@@ -58,7 +60,15 @@ public class TLRequestAccountUpdatePasswordSettings extends TLMethod<TLBool> {
     @SuppressWarnings("unchecked")
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
         currentPasswordHash = readTLBytes(stream, context);
-        newSettings = (com.github.badoualy.telegram.tl.api.account.TLPasswordInputSettings) readTLObject(stream, context);
+        newSettings = (TLPasswordInputSettings) readTLObject(stream, context);
+    }
+
+    @Override
+    public int computeSerializedSize() {
+        int size = SIZE_CONSTRUCTOR_ID;
+        size += computeTLBytesSerializedSize(currentPasswordHash);
+        size += newSettings.computeSerializedSize();
+        return size;
     }
 
     @Override

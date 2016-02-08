@@ -8,6 +8,7 @@ import java.io.OutputStream;
 
 import static com.github.badoualy.telegram.tl.StreamUtils.readTLObject;
 import static com.github.badoualy.telegram.tl.StreamUtils.writeTLObject;
+import static com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_CONSTRUCTOR_ID;
 
 /**
  * @author Yannick Badoual yann.badoual@gmail.com
@@ -37,8 +38,16 @@ public class TLInputChatUploadedPhoto extends TLAbsInputChatPhoto {
     @Override
     @SuppressWarnings("unchecked")
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
-        file = (com.github.badoualy.telegram.tl.api.TLAbsInputFile) readTLObject(stream, context);
-        crop = (com.github.badoualy.telegram.tl.api.TLAbsInputPhotoCrop) readTLObject(stream, context);
+        file = (TLAbsInputFile) readTLObject(stream, context);
+        crop = (TLAbsInputPhotoCrop) readTLObject(stream, context);
+    }
+
+    @Override
+    public int computeSerializedSize() {
+        int size = SIZE_CONSTRUCTOR_ID;
+        size += file.computeSerializedSize();
+        size += crop.computeSerializedSize();
+        return size;
     }
 
     @Override

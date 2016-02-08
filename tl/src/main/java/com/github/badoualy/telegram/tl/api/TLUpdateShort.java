@@ -10,6 +10,8 @@ import static com.github.badoualy.telegram.tl.StreamUtils.readInt;
 import static com.github.badoualy.telegram.tl.StreamUtils.readTLObject;
 import static com.github.badoualy.telegram.tl.StreamUtils.writeInt;
 import static com.github.badoualy.telegram.tl.StreamUtils.writeTLObject;
+import static com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_CONSTRUCTOR_ID;
+import static com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_INT32;
 
 /**
  * @author Yannick Badoual yann.badoual@gmail.com
@@ -39,8 +41,16 @@ public class TLUpdateShort extends TLAbsUpdates {
     @Override
     @SuppressWarnings("unchecked")
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
-        update = (com.github.badoualy.telegram.tl.api.TLAbsUpdate) readTLObject(stream, context);
+        update = (TLAbsUpdate) readTLObject(stream, context);
         date = readInt(stream);
+    }
+
+    @Override
+    public int computeSerializedSize() {
+        int size = SIZE_CONSTRUCTOR_ID;
+        size += update.computeSerializedSize();
+        size += SIZE_INT32;
+        return size;
     }
 
     @Override

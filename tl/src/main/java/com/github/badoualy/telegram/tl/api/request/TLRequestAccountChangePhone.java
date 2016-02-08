@@ -12,6 +12,8 @@ import java.io.OutputStream;
 import static com.github.badoualy.telegram.tl.StreamUtils.readTLObject;
 import static com.github.badoualy.telegram.tl.StreamUtils.readTLString;
 import static com.github.badoualy.telegram.tl.StreamUtils.writeString;
+import static com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_CONSTRUCTOR_ID;
+import static com.github.badoualy.telegram.tl.TLObjectUtils.computeTLStringSerializedSize;
 
 /**
  * @author Yannick Badoual yann.badoual@gmail.com
@@ -61,6 +63,15 @@ public class TLRequestAccountChangePhone extends TLMethod<TLAbsUser> {
         phoneNumber = readTLString(stream);
         phoneCodeHash = readTLString(stream);
         phoneCode = readTLString(stream);
+    }
+
+    @Override
+    public int computeSerializedSize() {
+        int size = SIZE_CONSTRUCTOR_ID;
+        size += computeTLStringSerializedSize(phoneNumber);
+        size += computeTLStringSerializedSize(phoneCodeHash);
+        size += computeTLStringSerializedSize(phoneCode);
+        return size;
     }
 
     @Override

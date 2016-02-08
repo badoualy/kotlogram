@@ -16,6 +16,10 @@ import static com.github.badoualy.telegram.tl.StreamUtils.writeInt;
 import static com.github.badoualy.telegram.tl.StreamUtils.writeString;
 import static com.github.badoualy.telegram.tl.StreamUtils.writeTLObject;
 import static com.github.badoualy.telegram.tl.StreamUtils.writeTLVector;
+import static com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_BOOLEAN;
+import static com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_CONSTRUCTOR_ID;
+import static com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_INT32;
+import static com.github.badoualy.telegram.tl.TLObjectUtils.computeTLStringSerializedSize;
 
 /**
  * @author Yannick Badoual yann.badoual@gmail.com
@@ -80,8 +84,7 @@ public class TLUpdateShortChatMessage extends TLAbsUpdates {
         this.entities = entities;
     }
 
-    @Override
-    public void serializeBody(OutputStream stream) throws IOException {
+    private void computeFlags() {
         flags = 0;
         flags = unread ? (flags | 1) : (flags &~ 1);
         flags = out ? (flags | 2) : (flags &~ 2);
@@ -92,6 +95,11 @@ public class TLUpdateShortChatMessage extends TLAbsUpdates {
         flags = viaBotId != null ? (flags | 2048) : (flags &~ 2048);
         flags = replyToMsgId != null ? (flags | 8) : (flags &~ 8);
         flags = entities != null ? (flags | 128) : (flags &~ 128);
+    }
+
+    @Override
+    public void serializeBody(OutputStream stream) throws IOException {
+        computeFlags();
 
         writeInt(flags, stream);
         if ((flags & 1) != 0) writeBoolean(unread, stream);
@@ -127,11 +135,36 @@ public class TLUpdateShortChatMessage extends TLAbsUpdates {
         pts = readInt(stream);
         ptsCount = readInt(stream);
         date = readInt(stream);
-        if ((flags & 4) != 0) fwdFromId = (com.github.badoualy.telegram.tl.api.TLAbsPeer) readTLObject(stream, context);
-        if ((flags & 4) != 0) fwdDate = readInt(stream);
-        if ((flags & 2048) != 0) viaBotId = readInt(stream);
-        if ((flags & 8) != 0) replyToMsgId = readInt(stream);
-        if ((flags & 128) != 0) entities = readTLVector(stream, context);
+        fwdFromId = (flags & 4) != 0 ? (TLAbsPeer) readTLObject(stream, context) : null;
+        fwdDate = (flags & 4) != 0 ? readInt(stream) : null;
+        viaBotId = (flags & 2048) != 0 ? readInt(stream) : null;
+        replyToMsgId = (flags & 8) != 0 ? readInt(stream) : null;
+        entities = (flags & 128) != 0 ? readTLVector(stream, context) : null;
+    }
+
+    @Override
+    public int computeSerializedSize() {
+        computeFlags();
+
+        int size = SIZE_CONSTRUCTOR_ID;
+        size += SIZE_INT32;
+        if ((flags & 1) != 0) size += SIZE_BOOLEAN;
+        if ((flags & 2) != 0) size += SIZE_BOOLEAN;
+        if ((flags & 16) != 0) size += SIZE_BOOLEAN;
+        if ((flags & 32) != 0) size += SIZE_BOOLEAN;
+        size += SIZE_INT32;
+        size += SIZE_INT32;
+        size += SIZE_INT32;
+        size += computeTLStringSerializedSize(message);
+        size += SIZE_INT32;
+        size += SIZE_INT32;
+        size += SIZE_INT32;
+        if ((flags & 4) != 0) size += fwdFromId.computeSerializedSize();
+        if ((flags & 4) != 0) size += SIZE_INT32;
+        if ((flags & 2048) != 0) size += SIZE_INT32;
+        if ((flags & 8) != 0) size += SIZE_INT32;
+        if ((flags & 128) != 0) size += entities.computeSerializedSize();
+        return size;
     }
 
     @Override

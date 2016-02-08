@@ -12,6 +12,7 @@ import java.io.OutputStream;
 
 import static com.github.badoualy.telegram.tl.StreamUtils.readTLObject;
 import static com.github.badoualy.telegram.tl.StreamUtils.writeTLObject;
+import static com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_CONSTRUCTOR_ID;
 
 /**
  * @author Yannick Badoual yann.badoual@gmail.com
@@ -50,7 +51,14 @@ public class TLRequestAccountSetAccountTTL extends TLMethod<TLBool> {
     @Override
     @SuppressWarnings("unchecked")
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
-        ttl = (com.github.badoualy.telegram.tl.api.TLAccountDaysTTL) readTLObject(stream, context);
+        ttl = (TLAccountDaysTTL) readTLObject(stream, context);
+    }
+
+    @Override
+    public int computeSerializedSize() {
+        int size = SIZE_CONSTRUCTOR_ID;
+        size += ttl.computeSerializedSize();
+        return size;
     }
 
     @Override

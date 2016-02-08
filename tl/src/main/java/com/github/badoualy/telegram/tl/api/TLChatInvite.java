@@ -11,6 +11,10 @@ import static com.github.badoualy.telegram.tl.StreamUtils.readTLString;
 import static com.github.badoualy.telegram.tl.StreamUtils.writeBoolean;
 import static com.github.badoualy.telegram.tl.StreamUtils.writeInt;
 import static com.github.badoualy.telegram.tl.StreamUtils.writeString;
+import static com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_BOOLEAN;
+import static com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_CONSTRUCTOR_ID;
+import static com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_INT32;
+import static com.github.badoualy.telegram.tl.TLObjectUtils.computeTLStringSerializedSize;
 
 /**
  * @author Yannick Badoual yann.badoual@gmail.com
@@ -42,13 +46,17 @@ public class TLChatInvite extends TLAbsChatInvite {
         this.title = title;
     }
 
-    @Override
-    public void serializeBody(OutputStream stream) throws IOException {
+    private void computeFlags() {
         flags = 0;
         flags = channel ? (flags | 1) : (flags &~ 1);
         flags = broadcast ? (flags | 2) : (flags &~ 2);
         flags = _public ? (flags | 4) : (flags &~ 4);
         flags = megagroup ? (flags | 8) : (flags &~ 8);
+    }
+
+    @Override
+    public void serializeBody(OutputStream stream) throws IOException {
+        computeFlags();
 
         writeInt(flags, stream);
         if ((flags & 1) != 0) writeBoolean(channel, stream);
@@ -67,6 +75,20 @@ public class TLChatInvite extends TLAbsChatInvite {
         _public = (flags & 4) != 0;
         megagroup = (flags & 8) != 0;
         title = readTLString(stream);
+    }
+
+    @Override
+    public int computeSerializedSize() {
+        computeFlags();
+
+        int size = SIZE_CONSTRUCTOR_ID;
+        size += SIZE_INT32;
+        if ((flags & 1) != 0) size += SIZE_BOOLEAN;
+        if ((flags & 2) != 0) size += SIZE_BOOLEAN;
+        if ((flags & 4) != 0) size += SIZE_BOOLEAN;
+        if ((flags & 8) != 0) size += SIZE_BOOLEAN;
+        size += computeTLStringSerializedSize(title);
+        return size;
     }
 
     @Override

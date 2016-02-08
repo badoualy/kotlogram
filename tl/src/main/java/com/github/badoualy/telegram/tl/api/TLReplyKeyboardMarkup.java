@@ -12,6 +12,9 @@ import static com.github.badoualy.telegram.tl.StreamUtils.readTLVector;
 import static com.github.badoualy.telegram.tl.StreamUtils.writeBoolean;
 import static com.github.badoualy.telegram.tl.StreamUtils.writeInt;
 import static com.github.badoualy.telegram.tl.StreamUtils.writeTLVector;
+import static com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_BOOLEAN;
+import static com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_CONSTRUCTOR_ID;
+import static com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_INT32;
 
 /**
  * @author Yannick Badoual yann.badoual@gmail.com
@@ -36,12 +39,16 @@ public class TLReplyKeyboardMarkup extends TLAbsReplyMarkup {
         this.rows = rows;
     }
 
-    @Override
-    public void serializeBody(OutputStream stream) throws IOException {
+    private void computeFlags() {
         flags = 0;
         flags = resize ? (flags | 1) : (flags &~ 1);
         flags = singleUse ? (flags | 2) : (flags &~ 2);
         flags = selective ? (flags | 4) : (flags &~ 4);
+    }
+
+    @Override
+    public void serializeBody(OutputStream stream) throws IOException {
+        computeFlags();
 
         writeInt(flags, stream);
         if ((flags & 1) != 0) writeBoolean(resize, stream);
@@ -58,6 +65,19 @@ public class TLReplyKeyboardMarkup extends TLAbsReplyMarkup {
         singleUse = (flags & 2) != 0;
         selective = (flags & 4) != 0;
         rows = readTLVector(stream, context);
+    }
+
+    @Override
+    public int computeSerializedSize() {
+        computeFlags();
+
+        int size = SIZE_CONSTRUCTOR_ID;
+        size += SIZE_INT32;
+        if ((flags & 1) != 0) size += SIZE_BOOLEAN;
+        if ((flags & 2) != 0) size += SIZE_BOOLEAN;
+        if ((flags & 4) != 0) size += SIZE_BOOLEAN;
+        size += rows.computeSerializedSize();
+        return size;
     }
 
     @Override

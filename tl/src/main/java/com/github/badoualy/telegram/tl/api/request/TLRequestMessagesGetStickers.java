@@ -12,6 +12,8 @@ import java.io.OutputStream;
 import static com.github.badoualy.telegram.tl.StreamUtils.readTLObject;
 import static com.github.badoualy.telegram.tl.StreamUtils.readTLString;
 import static com.github.badoualy.telegram.tl.StreamUtils.writeString;
+import static com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_CONSTRUCTOR_ID;
+import static com.github.badoualy.telegram.tl.TLObjectUtils.computeTLStringSerializedSize;
 
 /**
  * @author Yannick Badoual yann.badoual@gmail.com
@@ -56,6 +58,14 @@ public class TLRequestMessagesGetStickers extends TLMethod<TLAbsStickers> {
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
         emoticon = readTLString(stream);
         hash = readTLString(stream);
+    }
+
+    @Override
+    public int computeSerializedSize() {
+        int size = SIZE_CONSTRUCTOR_ID;
+        size += computeTLStringSerializedSize(emoticon);
+        size += computeTLStringSerializedSize(hash);
+        return size;
     }
 
     @Override

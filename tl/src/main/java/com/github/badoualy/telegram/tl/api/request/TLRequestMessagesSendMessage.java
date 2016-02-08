@@ -24,6 +24,11 @@ import static com.github.badoualy.telegram.tl.StreamUtils.writeLong;
 import static com.github.badoualy.telegram.tl.StreamUtils.writeString;
 import static com.github.badoualy.telegram.tl.StreamUtils.writeTLObject;
 import static com.github.badoualy.telegram.tl.StreamUtils.writeTLVector;
+import static com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_BOOLEAN;
+import static com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_CONSTRUCTOR_ID;
+import static com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_INT32;
+import static com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_INT64;
+import static com.github.badoualy.telegram.tl.TLObjectUtils.computeTLStringSerializedSize;
 
 /**
  * @author Yannick Badoual yann.badoual@gmail.com
@@ -77,14 +82,18 @@ public class TLRequestMessagesSendMessage extends TLMethod<TLAbsUpdates> {
         return (TLAbsUpdates) response;
     }
 
-    @Override
-    public void serializeBody(OutputStream stream) throws IOException {
+    private void computeFlags() {
         flags = 0;
         flags = noWebpage ? (flags | 2) : (flags &~ 2);
         flags = broadcast ? (flags | 16) : (flags &~ 16);
         flags = replyToMsgId != null ? (flags | 1) : (flags &~ 1);
         flags = replyMarkup != null ? (flags | 4) : (flags &~ 4);
         flags = entities != null ? (flags | 8) : (flags &~ 8);
+    }
+
+    @Override
+    public void serializeBody(OutputStream stream) throws IOException {
+        computeFlags();
 
         writeInt(flags, stream);
         if ((flags & 2) != 0) writeBoolean(noWebpage, stream);
@@ -103,12 +112,29 @@ public class TLRequestMessagesSendMessage extends TLMethod<TLAbsUpdates> {
         flags = readInt(stream);
         noWebpage = (flags & 2) != 0;
         broadcast = (flags & 16) != 0;
-        peer = (com.github.badoualy.telegram.tl.api.TLAbsInputPeer) readTLObject(stream, context);
-        if ((flags & 1) != 0) replyToMsgId = readInt(stream);
+        peer = (TLAbsInputPeer) readTLObject(stream, context);
+        replyToMsgId = (flags & 1) != 0 ? readInt(stream) : null;
         message = readTLString(stream);
         randomId = readLong(stream);
-        if ((flags & 4) != 0) replyMarkup = (com.github.badoualy.telegram.tl.api.TLAbsReplyMarkup) readTLObject(stream, context);
-        if ((flags & 8) != 0) entities = readTLVector(stream, context);
+        replyMarkup = (flags & 4) != 0 ? (TLAbsReplyMarkup) readTLObject(stream, context) : null;
+        entities = (flags & 8) != 0 ? readTLVector(stream, context) : null;
+    }
+
+    @Override
+    public int computeSerializedSize() {
+        computeFlags();
+
+        int size = SIZE_CONSTRUCTOR_ID;
+        size += SIZE_INT32;
+        if ((flags & 2) != 0) size += SIZE_BOOLEAN;
+        if ((flags & 16) != 0) size += SIZE_BOOLEAN;
+        size += peer.computeSerializedSize();
+        if ((flags & 1) != 0) size += SIZE_INT32;
+        size += computeTLStringSerializedSize(message);
+        size += SIZE_INT64;
+        if ((flags & 4) != 0) size += replyMarkup.computeSerializedSize();
+        if ((flags & 8) != 0) size += entities.computeSerializedSize();
+        return size;
     }
 
     @Override

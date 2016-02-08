@@ -1,6 +1,7 @@
 package com.github.badoualy.telegram.tl.core;
 
 import com.github.badoualy.telegram.tl.TLContext;
+import com.github.badoualy.telegram.tl.TLObjectUtils;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -8,6 +9,8 @@ import java.io.OutputStream;
 
 import static com.github.badoualy.telegram.tl.StreamUtils.readTLString;
 import static com.github.badoualy.telegram.tl.StreamUtils.writeString;
+import static com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_CONSTRUCTOR_ID;
+import static com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_INT32;
 
 /**
  * @author Yannick Badoual yann.badoual@gmail.com
@@ -28,6 +31,15 @@ public class TLStringVector extends TLVector<String> {
     protected String deserializeItem(InputStream stream, TLContext context) throws IOException {
         return readTLString(stream);
     }
+
+    @Override
+    public int computeSerializedSize() {
+        int size = SIZE_CONSTRUCTOR_ID + SIZE_INT32;
+        for (String item : items)
+            size += TLObjectUtils.computeTLStringSerializedSize(item);
+        return size;
+    }
+
 
     @Override
     public String toString() {

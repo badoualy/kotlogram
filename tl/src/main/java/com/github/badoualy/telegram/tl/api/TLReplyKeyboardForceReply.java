@@ -9,6 +9,9 @@ import java.io.OutputStream;
 import static com.github.badoualy.telegram.tl.StreamUtils.readInt;
 import static com.github.badoualy.telegram.tl.StreamUtils.writeBoolean;
 import static com.github.badoualy.telegram.tl.StreamUtils.writeInt;
+import static com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_BOOLEAN;
+import static com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_CONSTRUCTOR_ID;
+import static com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_INT32;
 
 /**
  * @author Yannick Badoual yann.badoual@gmail.com
@@ -27,11 +30,15 @@ public class TLReplyKeyboardForceReply extends TLAbsReplyMarkup {
         this.selective = selective;
     }
 
-    @Override
-    public void serializeBody(OutputStream stream) throws IOException {
+    private void computeFlags() {
         flags = 0;
         flags = singleUse ? (flags | 2) : (flags &~ 2);
         flags = selective ? (flags | 4) : (flags &~ 4);
+    }
+
+    @Override
+    public void serializeBody(OutputStream stream) throws IOException {
+        computeFlags();
 
         writeInt(flags, stream);
         if ((flags & 2) != 0) writeBoolean(singleUse, stream);
@@ -44,6 +51,17 @@ public class TLReplyKeyboardForceReply extends TLAbsReplyMarkup {
         flags = readInt(stream);
         singleUse = (flags & 2) != 0;
         selective = (flags & 4) != 0;
+    }
+
+    @Override
+    public int computeSerializedSize() {
+        computeFlags();
+
+        int size = SIZE_CONSTRUCTOR_ID;
+        size += SIZE_INT32;
+        if ((flags & 2) != 0) size += SIZE_BOOLEAN;
+        if ((flags & 4) != 0) size += SIZE_BOOLEAN;
+        return size;
     }
 
     @Override

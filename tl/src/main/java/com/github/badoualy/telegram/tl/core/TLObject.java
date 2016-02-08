@@ -29,36 +29,36 @@ public abstract class TLObject implements Serializable {
     public abstract int getConstructorId();
 
     /**
-     * Serializing object to byte array
+     * Serialize object to byte array
      *
      * @return serialized object with header
      * @throws IOException
      */
-    public byte[] serialize() throws IOException {
+    public final byte[] serialize() throws IOException {
         ByteArrayOutputStream stream = new ByteArrayOutputStream();
         serialize(stream);
         return stream.toByteArray();
     }
 
     /**
-     * Serializing object to stream
+     * Serialize object to stream
      *
      * @param stream destination stream
      * @throws IOException
      */
-    public void serialize(OutputStream stream) throws IOException {
+    public final void serialize(OutputStream stream) throws IOException {
         writeInt(getConstructorId(), stream);
         serializeBody(stream);
     }
 
     /**
-     * Deserializing object from stream and current TLContext
+     * Deserialize object from stream and current TLContext
      *
      * @param stream  source stream
      * @param context tl context
      * @throws IOException
      */
-    public void deserialize(InputStream stream, TLContext context) throws IOException {
+    public final void deserialize(InputStream stream, TLContext context) throws IOException {
         int constructorId = readInt(stream);
         if (constructorId != getConstructorId())
             throw new InvalidConstructorIdException(constructorId, getConstructorId());
@@ -84,5 +84,14 @@ public abstract class TLObject implements Serializable {
      */
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
 
+    }
+
+    /**
+     * Compute the size in bytes of the serialized object
+     *
+     * @return size in bytes
+     */
+    public int computeSerializedSize() {
+        return 4; // Constructor is 4-byte (int32)
     }
 }

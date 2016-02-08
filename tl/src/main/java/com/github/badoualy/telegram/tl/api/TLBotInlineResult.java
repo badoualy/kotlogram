@@ -12,6 +12,9 @@ import static com.github.badoualy.telegram.tl.StreamUtils.readTLString;
 import static com.github.badoualy.telegram.tl.StreamUtils.writeInt;
 import static com.github.badoualy.telegram.tl.StreamUtils.writeString;
 import static com.github.badoualy.telegram.tl.StreamUtils.writeTLObject;
+import static com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_CONSTRUCTOR_ID;
+import static com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_INT32;
+import static com.github.badoualy.telegram.tl.TLObjectUtils.computeTLStringSerializedSize;
 
 /**
  * @author Yannick Badoual yann.badoual@gmail.com
@@ -58,8 +61,7 @@ public class TLBotInlineResult extends TLAbsBotInlineResult {
         this.sendMessage = sendMessage;
     }
 
-    @Override
-    public void serializeBody(OutputStream stream) throws IOException {
+    private void computeFlags() {
         flags = 0;
         flags = title != null ? (flags | 2) : (flags &~ 2);
         flags = description != null ? (flags | 4) : (flags &~ 4);
@@ -70,6 +72,11 @@ public class TLBotInlineResult extends TLAbsBotInlineResult {
         flags = w != null ? (flags | 64) : (flags &~ 64);
         flags = h != null ? (flags | 64) : (flags &~ 64);
         flags = duration != null ? (flags | 128) : (flags &~ 128);
+    }
+
+    @Override
+    public void serializeBody(OutputStream stream) throws IOException {
+        computeFlags();
 
         writeInt(flags, stream);
         writeString(id, stream);
@@ -92,16 +99,37 @@ public class TLBotInlineResult extends TLAbsBotInlineResult {
         flags = readInt(stream);
         id = readTLString(stream);
         type = readTLString(stream);
-        if ((flags & 2) != 0) title = readTLString(stream);
-        if ((flags & 4) != 0) description = readTLString(stream);
-        if ((flags & 8) != 0) url = readTLString(stream);
-        if ((flags & 16) != 0) thumbUrl = readTLString(stream);
-        if ((flags & 32) != 0) contentUrl = readTLString(stream);
-        if ((flags & 32) != 0) contentType = readTLString(stream);
-        if ((flags & 64) != 0) w = readInt(stream);
-        if ((flags & 64) != 0) h = readInt(stream);
-        if ((flags & 128) != 0) duration = readInt(stream);
-        sendMessage = (com.github.badoualy.telegram.tl.api.TLAbsBotInlineMessage) readTLObject(stream, context);
+        title = (flags & 2) != 0 ? readTLString(stream) : null;
+        description = (flags & 4) != 0 ? readTLString(stream) : null;
+        url = (flags & 8) != 0 ? readTLString(stream) : null;
+        thumbUrl = (flags & 16) != 0 ? readTLString(stream) : null;
+        contentUrl = (flags & 32) != 0 ? readTLString(stream) : null;
+        contentType = (flags & 32) != 0 ? readTLString(stream) : null;
+        w = (flags & 64) != 0 ? readInt(stream) : null;
+        h = (flags & 64) != 0 ? readInt(stream) : null;
+        duration = (flags & 128) != 0 ? readInt(stream) : null;
+        sendMessage = (TLAbsBotInlineMessage) readTLObject(stream, context);
+    }
+
+    @Override
+    public int computeSerializedSize() {
+        computeFlags();
+
+        int size = SIZE_CONSTRUCTOR_ID;
+        size += SIZE_INT32;
+        size += computeTLStringSerializedSize(id);
+        size += computeTLStringSerializedSize(type);
+        if ((flags & 2) != 0) size += computeTLStringSerializedSize(title);
+        if ((flags & 4) != 0) size += computeTLStringSerializedSize(description);
+        if ((flags & 8) != 0) size += computeTLStringSerializedSize(url);
+        if ((flags & 16) != 0) size += computeTLStringSerializedSize(thumbUrl);
+        if ((flags & 32) != 0) size += computeTLStringSerializedSize(contentUrl);
+        if ((flags & 32) != 0) size += computeTLStringSerializedSize(contentType);
+        if ((flags & 64) != 0) size += SIZE_INT32;
+        if ((flags & 64) != 0) size += SIZE_INT32;
+        if ((flags & 128) != 0) size += SIZE_INT32;
+        size += sendMessage.computeSerializedSize();
+        return size;
     }
 
     @Override

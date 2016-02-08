@@ -12,6 +12,8 @@ import java.io.OutputStream;
 import static com.github.badoualy.telegram.tl.StreamUtils.readTLObject;
 import static com.github.badoualy.telegram.tl.StreamUtils.readTLString;
 import static com.github.badoualy.telegram.tl.StreamUtils.writeString;
+import static com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_CONSTRUCTOR_ID;
+import static com.github.badoualy.telegram.tl.TLObjectUtils.computeTLStringSerializedSize;
 
 /**
  * @author Yannick Badoual yann.badoual@gmail.com
@@ -66,6 +68,16 @@ public class TLRequestHelpGetAppUpdate extends TLMethod<TLAbsAppUpdate> {
         systemVersion = readTLString(stream);
         appVersion = readTLString(stream);
         langCode = readTLString(stream);
+    }
+
+    @Override
+    public int computeSerializedSize() {
+        int size = SIZE_CONSTRUCTOR_ID;
+        size += computeTLStringSerializedSize(deviceModel);
+        size += computeTLStringSerializedSize(systemVersion);
+        size += computeTLStringSerializedSize(appVersion);
+        size += computeTLStringSerializedSize(langCode);
+        return size;
     }
 
     @Override

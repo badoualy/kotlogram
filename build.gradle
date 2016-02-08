@@ -20,6 +20,10 @@ subprojects {
         mavenCentral()
     }
 
+    dependencies {
+        testCompile('org.testng:testng:6.5.1')
+    }
+
     buildscript {
         ext.kotlin_version = '1.0.0-rc-1036'
         repositories {

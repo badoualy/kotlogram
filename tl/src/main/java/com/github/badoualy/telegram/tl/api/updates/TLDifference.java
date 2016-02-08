@@ -16,6 +16,7 @@ import static com.github.badoualy.telegram.tl.StreamUtils.readTLObject;
 import static com.github.badoualy.telegram.tl.StreamUtils.readTLVector;
 import static com.github.badoualy.telegram.tl.StreamUtils.writeTLObject;
 import static com.github.badoualy.telegram.tl.StreamUtils.writeTLVector;
+import static com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_CONSTRUCTOR_ID;
 
 /**
  * @author Yannick Badoual yann.badoual@gmail.com
@@ -66,7 +67,19 @@ public class TLDifference extends TLAbsDifference {
         otherUpdates = readTLVector(stream, context);
         chats = readTLVector(stream, context);
         users = readTLVector(stream, context);
-        state = (com.github.badoualy.telegram.tl.api.updates.TLState) readTLObject(stream, context);
+        state = (TLState) readTLObject(stream, context);
+    }
+
+    @Override
+    public int computeSerializedSize() {
+        int size = SIZE_CONSTRUCTOR_ID;
+        size += newMessages.computeSerializedSize();
+        size += newEncryptedMessages.computeSerializedSize();
+        size += otherUpdates.computeSerializedSize();
+        size += chats.computeSerializedSize();
+        size += users.computeSerializedSize();
+        size += state.computeSerializedSize();
+        return size;
     }
 
     @Override

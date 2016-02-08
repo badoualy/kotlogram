@@ -12,6 +12,8 @@ import static com.github.badoualy.telegram.tl.StreamUtils.readLong;
 import static com.github.badoualy.telegram.tl.StreamUtils.readTLMethod;
 import static com.github.badoualy.telegram.tl.StreamUtils.writeLong;
 import static com.github.badoualy.telegram.tl.StreamUtils.writeTLMethod;
+import static com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_CONSTRUCTOR_ID;
+import static com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_INT64;
 
 /**
  * @author Yannick Badoual yann.badoual@gmail.com
@@ -49,6 +51,14 @@ public class TLRequestInvokeAfterMsg<T extends TLObject> extends TLMethod<T> {
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
         msgId = readLong(stream);
         query = readTLMethod(stream, context);
+    }
+
+    @Override
+    public int computeSerializedSize() {
+        int size = SIZE_CONSTRUCTOR_ID;
+        size += SIZE_INT64;
+        size += query.computeSerializedSize();
+        return size;
     }
 
     @Override

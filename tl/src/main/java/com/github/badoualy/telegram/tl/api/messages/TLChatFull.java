@@ -15,6 +15,7 @@ import static com.github.badoualy.telegram.tl.StreamUtils.readTLObject;
 import static com.github.badoualy.telegram.tl.StreamUtils.readTLVector;
 import static com.github.badoualy.telegram.tl.StreamUtils.writeTLObject;
 import static com.github.badoualy.telegram.tl.StreamUtils.writeTLVector;
+import static com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_CONSTRUCTOR_ID;
 
 /**
  * @author Yannick Badoual yann.badoual@gmail.com
@@ -48,9 +49,18 @@ public class TLChatFull extends TLObject {
     @Override
     @SuppressWarnings("unchecked")
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
-        fullChat = (com.github.badoualy.telegram.tl.api.TLAbsChatFull) readTLObject(stream, context);
+        fullChat = (TLAbsChatFull) readTLObject(stream, context);
         chats = readTLVector(stream, context);
         users = readTLVector(stream, context);
+    }
+
+    @Override
+    public int computeSerializedSize() {
+        int size = SIZE_CONSTRUCTOR_ID;
+        size += fullChat.computeSerializedSize();
+        size += chats.computeSerializedSize();
+        size += users.computeSerializedSize();
+        return size;
     }
 
     @Override

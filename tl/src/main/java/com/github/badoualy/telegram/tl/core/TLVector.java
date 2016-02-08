@@ -20,6 +20,8 @@ import java.util.stream.Stream;
 import static com.github.badoualy.telegram.tl.StreamUtils.readInt;
 import static com.github.badoualy.telegram.tl.StreamUtils.writeInt;
 import static com.github.badoualy.telegram.tl.StreamUtils.writeTLObject;
+import static com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_CONSTRUCTOR_ID;
+import static com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_INT32;
 
 /**
  * Basic vector type in TL language
@@ -85,6 +87,14 @@ public class TLVector<T> extends TLObject implements List<T> {
     @SuppressWarnings("unchecked")
     protected T deserializeItem(InputStream stream, TLContext context) throws IOException {
         return (T) context.deserializeMessage(stream);
+    }
+
+    @Override
+    public int computeSerializedSize() {
+        int size = SIZE_CONSTRUCTOR_ID + SIZE_INT32; // Size
+        for (T item : items)
+            size += ((TLObject) item).computeSerializedSize();
+        return size;
     }
 
     ////////////////////////////////////////////////////////////

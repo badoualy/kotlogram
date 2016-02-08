@@ -19,6 +19,10 @@ import static com.github.badoualy.telegram.tl.StreamUtils.writeBoolean;
 import static com.github.badoualy.telegram.tl.StreamUtils.writeInt;
 import static com.github.badoualy.telegram.tl.StreamUtils.writeLong;
 import static com.github.badoualy.telegram.tl.StreamUtils.writeTLObject;
+import static com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_BOOLEAN;
+import static com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_CONSTRUCTOR_ID;
+import static com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_INT32;
+import static com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_INT64;
 
 /**
  * @author Yannick Badoual yann.badoual@gmail.com
@@ -66,12 +70,16 @@ public class TLRequestMessagesSendMedia extends TLMethod<TLAbsUpdates> {
         return (TLAbsUpdates) response;
     }
 
-    @Override
-    public void serializeBody(OutputStream stream) throws IOException {
+    private void computeFlags() {
         flags = 0;
         flags = broadcast ? (flags | 16) : (flags &~ 16);
         flags = replyToMsgId != null ? (flags | 1) : (flags &~ 1);
         flags = replyMarkup != null ? (flags | 4) : (flags &~ 4);
+    }
+
+    @Override
+    public void serializeBody(OutputStream stream) throws IOException {
+        computeFlags();
 
         writeInt(flags, stream);
         if ((flags & 16) != 0) writeBoolean(broadcast, stream);
@@ -87,11 +95,26 @@ public class TLRequestMessagesSendMedia extends TLMethod<TLAbsUpdates> {
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
         flags = readInt(stream);
         broadcast = (flags & 16) != 0;
-        peer = (com.github.badoualy.telegram.tl.api.TLAbsInputPeer) readTLObject(stream, context);
-        if ((flags & 1) != 0) replyToMsgId = readInt(stream);
-        media = (com.github.badoualy.telegram.tl.api.TLAbsInputMedia) readTLObject(stream, context);
+        peer = (TLAbsInputPeer) readTLObject(stream, context);
+        replyToMsgId = (flags & 1) != 0 ? readInt(stream) : null;
+        media = (TLAbsInputMedia) readTLObject(stream, context);
         randomId = readLong(stream);
-        if ((flags & 4) != 0) replyMarkup = (com.github.badoualy.telegram.tl.api.TLAbsReplyMarkup) readTLObject(stream, context);
+        replyMarkup = (flags & 4) != 0 ? (TLAbsReplyMarkup) readTLObject(stream, context) : null;
+    }
+
+    @Override
+    public int computeSerializedSize() {
+        computeFlags();
+
+        int size = SIZE_CONSTRUCTOR_ID;
+        size += SIZE_INT32;
+        if ((flags & 16) != 0) size += SIZE_BOOLEAN;
+        size += peer.computeSerializedSize();
+        if ((flags & 1) != 0) size += SIZE_INT32;
+        size += media.computeSerializedSize();
+        size += SIZE_INT64;
+        if ((flags & 4) != 0) size += replyMarkup.computeSerializedSize();
+        return size;
     }
 
     @Override

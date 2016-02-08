@@ -13,6 +13,7 @@ import java.io.OutputStream;
 
 import static com.github.badoualy.telegram.tl.StreamUtils.readTLObject;
 import static com.github.badoualy.telegram.tl.StreamUtils.writeTLObject;
+import static com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_CONSTRUCTOR_ID;
 
 /**
  * @author Yannick Badoual yann.badoual@gmail.com
@@ -55,8 +56,16 @@ public class TLRequestChannelsEditPhoto extends TLMethod<TLAbsUpdates> {
     @Override
     @SuppressWarnings("unchecked")
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
-        channel = (com.github.badoualy.telegram.tl.api.TLAbsInputChannel) readTLObject(stream, context);
-        photo = (com.github.badoualy.telegram.tl.api.TLAbsInputChatPhoto) readTLObject(stream, context);
+        channel = (TLAbsInputChannel) readTLObject(stream, context);
+        photo = (TLAbsInputChatPhoto) readTLObject(stream, context);
+    }
+
+    @Override
+    public int computeSerializedSize() {
+        int size = SIZE_CONSTRUCTOR_ID;
+        size += channel.computeSerializedSize();
+        size += photo.computeSerializedSize();
+        return size;
     }
 
     @Override

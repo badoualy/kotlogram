@@ -14,6 +14,11 @@ public abstract class TLAbsReplyMarkup extends TLObject {
     public TLAbsReplyMarkup() {
     }
 
+    private void computeFlags() {
+        flags = 0;
+        flags = selective ? (flags | 4) : (flags &~ 4);
+    }
+
     public boolean getSelective() {
         return selective;
     }

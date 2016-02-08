@@ -10,6 +10,8 @@ import static com.github.badoualy.telegram.tl.StreamUtils.readInt;
 import static com.github.badoualy.telegram.tl.StreamUtils.readTLObject;
 import static com.github.badoualy.telegram.tl.StreamUtils.writeInt;
 import static com.github.badoualy.telegram.tl.StreamUtils.writeTLObject;
+import static com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_CONSTRUCTOR_ID;
+import static com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_INT32;
 
 /**
  * @author Yannick Badoual yann.badoual@gmail.com
@@ -44,8 +46,17 @@ public class TLUpdateContactLink extends TLAbsUpdate {
     @SuppressWarnings("unchecked")
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
         userId = readInt(stream);
-        myLink = (com.github.badoualy.telegram.tl.api.TLAbsContactLink) readTLObject(stream, context);
-        foreignLink = (com.github.badoualy.telegram.tl.api.TLAbsContactLink) readTLObject(stream, context);
+        myLink = (TLAbsContactLink) readTLObject(stream, context);
+        foreignLink = (TLAbsContactLink) readTLObject(stream, context);
+    }
+
+    @Override
+    public int computeSerializedSize() {
+        int size = SIZE_CONSTRUCTOR_ID;
+        size += SIZE_INT32;
+        size += myLink.computeSerializedSize();
+        size += foreignLink.computeSerializedSize();
+        return size;
     }
 
     @Override

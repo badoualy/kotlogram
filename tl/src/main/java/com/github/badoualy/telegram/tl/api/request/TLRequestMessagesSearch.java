@@ -18,6 +18,10 @@ import static com.github.badoualy.telegram.tl.StreamUtils.writeBoolean;
 import static com.github.badoualy.telegram.tl.StreamUtils.writeInt;
 import static com.github.badoualy.telegram.tl.StreamUtils.writeString;
 import static com.github.badoualy.telegram.tl.StreamUtils.writeTLObject;
+import static com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_BOOLEAN;
+import static com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_CONSTRUCTOR_ID;
+import static com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_INT32;
+import static com.github.badoualy.telegram.tl.TLObjectUtils.computeTLStringSerializedSize;
 
 /**
  * @author Yannick Badoual yann.badoual@gmail.com
@@ -74,10 +78,14 @@ public class TLRequestMessagesSearch extends TLMethod<TLAbsMessages> {
         return (TLAbsMessages) response;
     }
 
-    @Override
-    public void serializeBody(OutputStream stream) throws IOException {
+    private void computeFlags() {
         flags = 0;
         flags = importantOnly ? (flags | 1) : (flags &~ 1);
+    }
+
+    @Override
+    public void serializeBody(OutputStream stream) throws IOException {
+        computeFlags();
 
         writeInt(flags, stream);
         if ((flags & 1) != 0) writeBoolean(importantOnly, stream);
@@ -96,14 +104,32 @@ public class TLRequestMessagesSearch extends TLMethod<TLAbsMessages> {
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
         flags = readInt(stream);
         importantOnly = (flags & 1) != 0;
-        peer = (com.github.badoualy.telegram.tl.api.TLAbsInputPeer) readTLObject(stream, context);
+        peer = (TLAbsInputPeer) readTLObject(stream, context);
         q = readTLString(stream);
-        filter = (com.github.badoualy.telegram.tl.api.TLAbsMessagesFilter) readTLObject(stream, context);
+        filter = (TLAbsMessagesFilter) readTLObject(stream, context);
         minDate = readInt(stream);
         maxDate = readInt(stream);
         offset = readInt(stream);
         maxId = readInt(stream);
         limit = readInt(stream);
+    }
+
+    @Override
+    public int computeSerializedSize() {
+        computeFlags();
+
+        int size = SIZE_CONSTRUCTOR_ID;
+        size += SIZE_INT32;
+        if ((flags & 1) != 0) size += SIZE_BOOLEAN;
+        size += peer.computeSerializedSize();
+        size += computeTLStringSerializedSize(q);
+        size += filter.computeSerializedSize();
+        size += SIZE_INT32;
+        size += SIZE_INT32;
+        size += SIZE_INT32;
+        size += SIZE_INT32;
+        size += SIZE_INT32;
+        return size;
     }
 
     @Override

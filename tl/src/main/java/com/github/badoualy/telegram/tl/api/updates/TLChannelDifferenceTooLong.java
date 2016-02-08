@@ -15,6 +15,9 @@ import static com.github.badoualy.telegram.tl.StreamUtils.readTLVector;
 import static com.github.badoualy.telegram.tl.StreamUtils.writeBoolean;
 import static com.github.badoualy.telegram.tl.StreamUtils.writeInt;
 import static com.github.badoualy.telegram.tl.StreamUtils.writeTLVector;
+import static com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_BOOLEAN;
+import static com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_CONSTRUCTOR_ID;
+import static com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_INT32;
 
 /**
  * @author Yannick Badoual yann.badoual@gmail.com
@@ -56,11 +59,15 @@ public class TLChannelDifferenceTooLong extends TLAbsChannelDifference {
         this.users = users;
     }
 
-    @Override
-    public void serializeBody(OutputStream stream) throws IOException {
+    private void computeFlags() {
         flags = 0;
         flags = _final ? (flags | 1) : (flags &~ 1);
         flags = timeout != null ? (flags | 2) : (flags &~ 2);
+    }
+
+    @Override
+    public void serializeBody(OutputStream stream) throws IOException {
+        computeFlags();
 
         writeInt(flags, stream);
         if ((flags & 1) != 0) writeBoolean(_final, stream);
@@ -82,7 +89,7 @@ public class TLChannelDifferenceTooLong extends TLAbsChannelDifference {
         flags = readInt(stream);
         _final = (flags & 1) != 0;
         pts = readInt(stream);
-        if ((flags & 2) != 0) timeout = readInt(stream);
+        timeout = (flags & 2) != 0 ? readInt(stream) : null;
         topMessage = readInt(stream);
         topImportantMessage = readInt(stream);
         readInboxMaxId = readInt(stream);
@@ -91,6 +98,26 @@ public class TLChannelDifferenceTooLong extends TLAbsChannelDifference {
         messages = readTLVector(stream, context);
         chats = readTLVector(stream, context);
         users = readTLVector(stream, context);
+    }
+
+    @Override
+    public int computeSerializedSize() {
+        computeFlags();
+
+        int size = SIZE_CONSTRUCTOR_ID;
+        size += SIZE_INT32;
+        if ((flags & 1) != 0) size += SIZE_BOOLEAN;
+        size += SIZE_INT32;
+        if ((flags & 2) != 0) size += SIZE_INT32;
+        size += SIZE_INT32;
+        size += SIZE_INT32;
+        size += SIZE_INT32;
+        size += SIZE_INT32;
+        size += SIZE_INT32;
+        size += messages.computeSerializedSize();
+        size += chats.computeSerializedSize();
+        size += users.computeSerializedSize();
+        return size;
     }
 
     @Override

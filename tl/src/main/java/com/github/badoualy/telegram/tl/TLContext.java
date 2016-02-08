@@ -106,15 +106,15 @@ public abstract class TLContext {
         return deserializeVector(stream, new TLVector<>());
     }
 
-    public TLIntVector deserializeIntVector(InputStream stream) throws IOException {
+    public final TLIntVector deserializeIntVector(InputStream stream) throws IOException {
         return (TLIntVector) deserializeVector(stream, new TLIntVector());
     }
 
-    public TLLongVector deserializeLongVector(InputStream stream) throws IOException {
+    public final TLLongVector deserializeLongVector(InputStream stream) throws IOException {
         return (TLLongVector) deserializeVector(stream, new TLLongVector());
     }
 
-    public TLStringVector deserializeStringVector(InputStream stream) throws IOException {
+    public final TLStringVector deserializeStringVector(InputStream stream) throws IOException {
         return (TLStringVector) deserializeVector(stream, new TLStringVector());
     }
 

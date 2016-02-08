@@ -14,6 +14,10 @@ import static com.github.badoualy.telegram.tl.StreamUtils.writeInt;
 import static com.github.badoualy.telegram.tl.StreamUtils.writeLong;
 import static com.github.badoualy.telegram.tl.StreamUtils.writeString;
 import static com.github.badoualy.telegram.tl.StreamUtils.writeTLObject;
+import static com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_CONSTRUCTOR_ID;
+import static com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_INT32;
+import static com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_INT64;
+import static com.github.badoualy.telegram.tl.TLObjectUtils.computeTLStringSerializedSize;
 
 /**
  * @author Yannick Badoual yann.badoual@gmail.com
@@ -73,8 +77,7 @@ public class TLWebPage extends TLAbsWebPage {
         this.document = document;
     }
 
-    @Override
-    public void serializeBody(OutputStream stream) throws IOException {
+    private void computeFlags() {
         flags = 0;
         flags = type != null ? (flags | 1) : (flags &~ 1);
         flags = siteName != null ? (flags | 2) : (flags &~ 2);
@@ -88,6 +91,11 @@ public class TLWebPage extends TLAbsWebPage {
         flags = duration != null ? (flags | 128) : (flags &~ 128);
         flags = author != null ? (flags | 256) : (flags &~ 256);
         flags = document != null ? (flags | 512) : (flags &~ 512);
+    }
+
+    @Override
+    public void serializeBody(OutputStream stream) throws IOException {
+        computeFlags();
 
         writeInt(flags, stream);
         writeLong(id, stream);
@@ -114,18 +122,42 @@ public class TLWebPage extends TLAbsWebPage {
         id = readLong(stream);
         url = readTLString(stream);
         displayUrl = readTLString(stream);
-        if ((flags & 1) != 0) type = readTLString(stream);
-        if ((flags & 2) != 0) siteName = readTLString(stream);
-        if ((flags & 4) != 0) title = readTLString(stream);
-        if ((flags & 8) != 0) description = readTLString(stream);
-        if ((flags & 16) != 0) photo = (com.github.badoualy.telegram.tl.api.TLAbsPhoto) readTLObject(stream, context);
-        if ((flags & 32) != 0) embedUrl = readTLString(stream);
-        if ((flags & 32) != 0) embedType = readTLString(stream);
-        if ((flags & 64) != 0) embedWidth = readInt(stream);
-        if ((flags & 64) != 0) embedHeight = readInt(stream);
-        if ((flags & 128) != 0) duration = readInt(stream);
-        if ((flags & 256) != 0) author = readTLString(stream);
-        if ((flags & 512) != 0) document = (com.github.badoualy.telegram.tl.api.TLAbsDocument) readTLObject(stream, context);
+        type = (flags & 1) != 0 ? readTLString(stream) : null;
+        siteName = (flags & 2) != 0 ? readTLString(stream) : null;
+        title = (flags & 4) != 0 ? readTLString(stream) : null;
+        description = (flags & 8) != 0 ? readTLString(stream) : null;
+        photo = (flags & 16) != 0 ? (TLAbsPhoto) readTLObject(stream, context) : null;
+        embedUrl = (flags & 32) != 0 ? readTLString(stream) : null;
+        embedType = (flags & 32) != 0 ? readTLString(stream) : null;
+        embedWidth = (flags & 64) != 0 ? readInt(stream) : null;
+        embedHeight = (flags & 64) != 0 ? readInt(stream) : null;
+        duration = (flags & 128) != 0 ? readInt(stream) : null;
+        author = (flags & 256) != 0 ? readTLString(stream) : null;
+        document = (flags & 512) != 0 ? (TLAbsDocument) readTLObject(stream, context) : null;
+    }
+
+    @Override
+    public int computeSerializedSize() {
+        computeFlags();
+
+        int size = SIZE_CONSTRUCTOR_ID;
+        size += SIZE_INT32;
+        size += SIZE_INT64;
+        size += computeTLStringSerializedSize(url);
+        size += computeTLStringSerializedSize(displayUrl);
+        if ((flags & 1) != 0) size += computeTLStringSerializedSize(type);
+        if ((flags & 2) != 0) size += computeTLStringSerializedSize(siteName);
+        if ((flags & 4) != 0) size += computeTLStringSerializedSize(title);
+        if ((flags & 8) != 0) size += computeTLStringSerializedSize(description);
+        if ((flags & 16) != 0) size += photo.computeSerializedSize();
+        if ((flags & 32) != 0) size += computeTLStringSerializedSize(embedUrl);
+        if ((flags & 32) != 0) size += computeTLStringSerializedSize(embedType);
+        if ((flags & 64) != 0) size += SIZE_INT32;
+        if ((flags & 64) != 0) size += SIZE_INT32;
+        if ((flags & 128) != 0) size += SIZE_INT32;
+        if ((flags & 256) != 0) size += computeTLStringSerializedSize(author);
+        if ((flags & 512) != 0) size += document.computeSerializedSize();
+        return size;
     }
 
     @Override

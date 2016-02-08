@@ -16,6 +16,10 @@ import static com.github.badoualy.telegram.tl.StreamUtils.writeInt;
 import static com.github.badoualy.telegram.tl.StreamUtils.writeString;
 import static com.github.badoualy.telegram.tl.StreamUtils.writeTLObject;
 import static com.github.badoualy.telegram.tl.StreamUtils.writeTLVector;
+import static com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_BOOLEAN;
+import static com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_CONSTRUCTOR_ID;
+import static com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_INT32;
+import static com.github.badoualy.telegram.tl.TLObjectUtils.computeTLStringSerializedSize;
 
 /**
  * @author Yannick Badoual yann.badoual@gmail.com
@@ -81,8 +85,7 @@ public class TLMessage extends TLAbsMessage {
         this.views = views;
     }
 
-    @Override
-    public void serializeBody(OutputStream stream) throws IOException {
+    private void computeFlags() {
         flags = 0;
         flags = unread ? (flags | 1) : (flags &~ 1);
         flags = out ? (flags | 2) : (flags &~ 2);
@@ -97,6 +100,11 @@ public class TLMessage extends TLAbsMessage {
         flags = replyMarkup != null ? (flags | 64) : (flags &~ 64);
         flags = entities != null ? (flags | 128) : (flags &~ 128);
         flags = views != null ? (flags | 1024) : (flags &~ 1024);
+    }
+
+    @Override
+    public void serializeBody(OutputStream stream) throws IOException {
+        computeFlags();
 
         writeInt(flags, stream);
         if ((flags & 1) != 0) writeBoolean(unread, stream);
@@ -127,18 +135,44 @@ public class TLMessage extends TLAbsMessage {
         mentioned = (flags & 16) != 0;
         mediaUnread = (flags & 32) != 0;
         id = readInt(stream);
-        if ((flags & 256) != 0) fromId = readInt(stream);
-        toId = (com.github.badoualy.telegram.tl.api.TLAbsPeer) readTLObject(stream, context);
-        if ((flags & 4) != 0) fwdFromId = (com.github.badoualy.telegram.tl.api.TLAbsPeer) readTLObject(stream, context);
-        if ((flags & 4) != 0) fwdDate = readInt(stream);
-        if ((flags & 2048) != 0) viaBotId = readInt(stream);
-        if ((flags & 8) != 0) replyToMsgId = readInt(stream);
+        fromId = (flags & 256) != 0 ? readInt(stream) : null;
+        toId = (TLAbsPeer) readTLObject(stream, context);
+        fwdFromId = (flags & 4) != 0 ? (TLAbsPeer) readTLObject(stream, context) : null;
+        fwdDate = (flags & 4) != 0 ? readInt(stream) : null;
+        viaBotId = (flags & 2048) != 0 ? readInt(stream) : null;
+        replyToMsgId = (flags & 8) != 0 ? readInt(stream) : null;
         date = readInt(stream);
         message = readTLString(stream);
-        if ((flags & 512) != 0) media = (com.github.badoualy.telegram.tl.api.TLAbsMessageMedia) readTLObject(stream, context);
-        if ((flags & 64) != 0) replyMarkup = (com.github.badoualy.telegram.tl.api.TLAbsReplyMarkup) readTLObject(stream, context);
-        if ((flags & 128) != 0) entities = readTLVector(stream, context);
-        if ((flags & 1024) != 0) views = readInt(stream);
+        media = (flags & 512) != 0 ? (TLAbsMessageMedia) readTLObject(stream, context) : null;
+        replyMarkup = (flags & 64) != 0 ? (TLAbsReplyMarkup) readTLObject(stream, context) : null;
+        entities = (flags & 128) != 0 ? readTLVector(stream, context) : null;
+        views = (flags & 1024) != 0 ? readInt(stream) : null;
+    }
+
+    @Override
+    public int computeSerializedSize() {
+        computeFlags();
+
+        int size = SIZE_CONSTRUCTOR_ID;
+        size += SIZE_INT32;
+        if ((flags & 1) != 0) size += SIZE_BOOLEAN;
+        if ((flags & 2) != 0) size += SIZE_BOOLEAN;
+        if ((flags & 16) != 0) size += SIZE_BOOLEAN;
+        if ((flags & 32) != 0) size += SIZE_BOOLEAN;
+        size += SIZE_INT32;
+        if ((flags & 256) != 0) size += SIZE_INT32;
+        size += toId.computeSerializedSize();
+        if ((flags & 4) != 0) size += fwdFromId.computeSerializedSize();
+        if ((flags & 4) != 0) size += SIZE_INT32;
+        if ((flags & 2048) != 0) size += SIZE_INT32;
+        if ((flags & 8) != 0) size += SIZE_INT32;
+        size += SIZE_INT32;
+        size += computeTLStringSerializedSize(message);
+        if ((flags & 512) != 0) size += media.computeSerializedSize();
+        if ((flags & 64) != 0) size += replyMarkup.computeSerializedSize();
+        if ((flags & 128) != 0) size += entities.computeSerializedSize();
+        if ((flags & 1024) != 0) size += SIZE_INT32;
+        return size;
     }
 
     @Override

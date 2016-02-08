@@ -10,6 +10,8 @@ import static com.github.badoualy.telegram.tl.StreamUtils.readTLObject;
 import static com.github.badoualy.telegram.tl.StreamUtils.readTLString;
 import static com.github.badoualy.telegram.tl.StreamUtils.writeString;
 import static com.github.badoualy.telegram.tl.StreamUtils.writeTLObject;
+import static com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_CONSTRUCTOR_ID;
+import static com.github.badoualy.telegram.tl.TLObjectUtils.computeTLStringSerializedSize;
 
 /**
  * @author Yannick Badoual yann.badoual@gmail.com
@@ -43,8 +45,18 @@ public class TLBotInlineMediaResultDocument extends TLAbsBotInlineResult {
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
         id = readTLString(stream);
         type = readTLString(stream);
-        document = (com.github.badoualy.telegram.tl.api.TLAbsDocument) readTLObject(stream, context);
-        sendMessage = (com.github.badoualy.telegram.tl.api.TLAbsBotInlineMessage) readTLObject(stream, context);
+        document = (TLAbsDocument) readTLObject(stream, context);
+        sendMessage = (TLAbsBotInlineMessage) readTLObject(stream, context);
+    }
+
+    @Override
+    public int computeSerializedSize() {
+        int size = SIZE_CONSTRUCTOR_ID;
+        size += computeTLStringSerializedSize(id);
+        size += computeTLStringSerializedSize(type);
+        size += document.computeSerializedSize();
+        size += sendMessage.computeSerializedSize();
+        return size;
     }
 
     @Override

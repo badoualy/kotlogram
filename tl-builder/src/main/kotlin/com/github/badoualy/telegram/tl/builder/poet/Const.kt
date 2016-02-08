@@ -19,6 +19,8 @@ val TYPE_TL_API_CONTEXT = ClassName.get(PACKAGE_TL_API, TL_API_CONTEXT)
 val TYPE_STREAM_UTILS = ClassName.get(PACKAGE_TL, "StreamUtils")
 val TYPE_TL_CONTEXT = ClassName.get(PACKAGE_TL, "TLContext")
 val TYPE_DESERIALIZE_EXCEPTION = ClassName.get(PACKAGE_TL_EXCEPTION, "DeserializeException")
+val TYPE_TLOBJECT_UTILS = ClassName.get(PACKAGE_TL, "TLObjectUtils")
+
 
 val TYPE_TL_BOOL = ClassName.get(PACKAGE_TL_CORE, "TLBool")
 val TYPE_TL_BYTES = ClassName.get(PACKAGE_TL_CORE, "TLBytes")

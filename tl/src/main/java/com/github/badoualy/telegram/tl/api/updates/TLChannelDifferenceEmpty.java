@@ -9,6 +9,9 @@ import java.io.OutputStream;
 import static com.github.badoualy.telegram.tl.StreamUtils.readInt;
 import static com.github.badoualy.telegram.tl.StreamUtils.writeBoolean;
 import static com.github.badoualy.telegram.tl.StreamUtils.writeInt;
+import static com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_BOOLEAN;
+import static com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_CONSTRUCTOR_ID;
+import static com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_INT32;
 
 /**
  * @author Yannick Badoual yann.badoual@gmail.com
@@ -26,11 +29,15 @@ public class TLChannelDifferenceEmpty extends TLAbsChannelDifference {
         this.timeout = timeout;
     }
 
-    @Override
-    public void serializeBody(OutputStream stream) throws IOException {
+    private void computeFlags() {
         flags = 0;
         flags = _final ? (flags | 1) : (flags &~ 1);
         flags = timeout != null ? (flags | 2) : (flags &~ 2);
+    }
+
+    @Override
+    public void serializeBody(OutputStream stream) throws IOException {
+        computeFlags();
 
         writeInt(flags, stream);
         if ((flags & 1) != 0) writeBoolean(_final, stream);
@@ -44,7 +51,19 @@ public class TLChannelDifferenceEmpty extends TLAbsChannelDifference {
         flags = readInt(stream);
         _final = (flags & 1) != 0;
         pts = readInt(stream);
-        if ((flags & 2) != 0) timeout = readInt(stream);
+        timeout = (flags & 2) != 0 ? readInt(stream) : null;
+    }
+
+    @Override
+    public int computeSerializedSize() {
+        computeFlags();
+
+        int size = SIZE_CONSTRUCTOR_ID;
+        size += SIZE_INT32;
+        if ((flags & 1) != 0) size += SIZE_BOOLEAN;
+        size += SIZE_INT32;
+        if ((flags & 2) != 0) size += SIZE_INT32;
+        return size;
     }
 
     @Override

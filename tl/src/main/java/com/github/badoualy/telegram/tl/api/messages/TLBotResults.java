@@ -18,6 +18,11 @@ import static com.github.badoualy.telegram.tl.StreamUtils.writeInt;
 import static com.github.badoualy.telegram.tl.StreamUtils.writeLong;
 import static com.github.badoualy.telegram.tl.StreamUtils.writeString;
 import static com.github.badoualy.telegram.tl.StreamUtils.writeTLVector;
+import static com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_BOOLEAN;
+import static com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_CONSTRUCTOR_ID;
+import static com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_INT32;
+import static com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_INT64;
+import static com.github.badoualy.telegram.tl.TLObjectUtils.computeTLStringSerializedSize;
 
 /**
  * @author Yannick Badoual yann.badoual@gmail.com
@@ -46,11 +51,15 @@ public class TLBotResults extends TLObject {
         this.results = results;
     }
 
-    @Override
-    public void serializeBody(OutputStream stream) throws IOException {
+    private void computeFlags() {
         flags = 0;
         flags = gallery ? (flags | 1) : (flags &~ 1);
         flags = nextOffset != null ? (flags | 2) : (flags &~ 2);
+    }
+
+    @Override
+    public void serializeBody(OutputStream stream) throws IOException {
+        computeFlags();
 
         writeInt(flags, stream);
         if ((flags & 1) != 0) writeBoolean(gallery, stream);
@@ -65,8 +74,21 @@ public class TLBotResults extends TLObject {
         flags = readInt(stream);
         gallery = (flags & 1) != 0;
         queryId = readLong(stream);
-        if ((flags & 2) != 0) nextOffset = readTLString(stream);
+        nextOffset = (flags & 2) != 0 ? readTLString(stream) : null;
         results = readTLVector(stream, context);
+    }
+
+    @Override
+    public int computeSerializedSize() {
+        computeFlags();
+
+        int size = SIZE_CONSTRUCTOR_ID;
+        size += SIZE_INT32;
+        if ((flags & 1) != 0) size += SIZE_BOOLEAN;
+        size += SIZE_INT64;
+        if ((flags & 2) != 0) size += computeTLStringSerializedSize(nextOffset);
+        size += results.computeSerializedSize();
+        return size;
     }
 
     @Override

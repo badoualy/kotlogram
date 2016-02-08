@@ -8,6 +8,7 @@ import java.io.OutputStream;
 
 import static com.github.badoualy.telegram.tl.StreamUtils.readTLObject;
 import static com.github.badoualy.telegram.tl.StreamUtils.writeTLObject;
+import static com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_CONSTRUCTOR_ID;
 
 /**
  * @author Yannick Badoual yann.badoual@gmail.com
@@ -33,7 +34,14 @@ public class TLInputMediaGeoPoint extends TLAbsInputMedia {
     @Override
     @SuppressWarnings("unchecked")
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
-        geoPoint = (com.github.badoualy.telegram.tl.api.TLAbsInputGeoPoint) readTLObject(stream, context);
+        geoPoint = (TLAbsInputGeoPoint) readTLObject(stream, context);
+    }
+
+    @Override
+    public int computeSerializedSize() {
+        int size = SIZE_CONSTRUCTOR_ID;
+        size += geoPoint.computeSerializedSize();
+        return size;
     }
 
     @Override

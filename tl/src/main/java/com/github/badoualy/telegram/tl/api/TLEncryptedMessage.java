@@ -15,6 +15,10 @@ import static com.github.badoualy.telegram.tl.StreamUtils.writeInt;
 import static com.github.badoualy.telegram.tl.StreamUtils.writeLong;
 import static com.github.badoualy.telegram.tl.StreamUtils.writeTLBytes;
 import static com.github.badoualy.telegram.tl.StreamUtils.writeTLObject;
+import static com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_CONSTRUCTOR_ID;
+import static com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_INT32;
+import static com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_INT64;
+import static com.github.badoualy.telegram.tl.TLObjectUtils.computeTLBytesSerializedSize;
 
 /**
  * @author Yannick Badoual yann.badoual@gmail.com
@@ -52,7 +56,18 @@ public class TLEncryptedMessage extends TLAbsEncryptedMessage {
         chatId = readInt(stream);
         date = readInt(stream);
         bytes = readTLBytes(stream, context);
-        file = (com.github.badoualy.telegram.tl.api.TLAbsEncryptedFile) readTLObject(stream, context);
+        file = (TLAbsEncryptedFile) readTLObject(stream, context);
+    }
+
+    @Override
+    public int computeSerializedSize() {
+        int size = SIZE_CONSTRUCTOR_ID;
+        size += SIZE_INT64;
+        size += SIZE_INT32;
+        size += SIZE_INT32;
+        size += computeTLBytesSerializedSize(bytes);
+        size += file.computeSerializedSize();
+        return size;
     }
 
     @Override
