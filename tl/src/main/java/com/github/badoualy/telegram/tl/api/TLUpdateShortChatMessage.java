@@ -135,7 +135,7 @@ public class TLUpdateShortChatMessage extends TLAbsUpdates {
         pts = readInt(stream);
         ptsCount = readInt(stream);
         date = readInt(stream);
-        fwdFromId = (flags & 4) != 0 ? (TLAbsPeer) readTLObject(stream, context) : null;
+        fwdFromId = (flags & 4) != 0 ? readTLObject(stream, context, TLAbsPeer.class, -1) : null;
         fwdDate = (flags & 4) != 0 ? readInt(stream) : null;
         viaBotId = (flags & 2048) != 0 ? readInt(stream) : null;
         replyToMsgId = (flags & 8) != 0 ? readInt(stream) : null;

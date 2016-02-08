@@ -163,8 +163,8 @@ public class TLUser extends TLAbsUser {
         lastName = (flags & 4) != 0 ? readTLString(stream) : null;
         username = (flags & 8) != 0 ? readTLString(stream) : null;
         phone = (flags & 16) != 0 ? readTLString(stream) : null;
-        photo = (flags & 32) != 0 ? (TLAbsUserProfilePhoto) readTLObject(stream, context) : null;
-        status = (flags & 64) != 0 ? (TLAbsUserStatus) readTLObject(stream, context) : null;
+        photo = (flags & 32) != 0 ? readTLObject(stream, context, TLAbsUserProfilePhoto.class, -1) : null;
+        status = (flags & 64) != 0 ? readTLObject(stream, context, TLAbsUserStatus.class, -1) : null;
         botInfoVersion = (flags & 16384) != 0 ? readInt(stream) : null;
         restrictionReason = (flags & 262144) != 0 ? readTLString(stream) : null;
         botInlinePlaceholder = (flags & 524288) != 0 ? readTLString(stream) : null;

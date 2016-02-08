@@ -509,7 +509,13 @@ object JavaPoet {
             "string" -> "readTLString(stream)"
             "bytes" -> "readTLBytes(stream, context)"
             "Bool" -> "readTLBool(stream)"
-            else -> "(\$T) readTLObject(stream, context)" // TODO: add Class<T> parameter to readObject for better performances, won't have to use HashMap from context
+            else -> {
+                // TODO: ugly way, do better ...
+                val className = (fieldType as ClassName).simpleName()
+                val isAbstract = className.startsWith("TLAbs", true)
+                if (isAbstract) "readTLObject(stream, context, \$T.class, -1)"
+                else "readTLObject(stream, context, \$T.class, $className.CONSTRUCTOR_ID)"
+            }
         }
         else -> throw RuntimeException("Unsupported type $fieldTlType")
     }

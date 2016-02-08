@@ -67,8 +67,8 @@ public class TLRequestChannelsGetParticipants extends TLMethod<TLChannelParticip
     @Override
     @SuppressWarnings("unchecked")
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
-        channel = (TLAbsInputChannel) readTLObject(stream, context);
-        filter = (TLAbsChannelParticipantsFilter) readTLObject(stream, context);
+        channel = readTLObject(stream, context, TLAbsInputChannel.class, -1);
+        filter = readTLObject(stream, context, TLAbsChannelParticipantsFilter.class, -1);
         offset = readInt(stream);
         limit = readInt(stream);
     }

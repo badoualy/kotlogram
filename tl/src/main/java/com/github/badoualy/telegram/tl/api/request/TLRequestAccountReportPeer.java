@@ -56,8 +56,8 @@ public class TLRequestAccountReportPeer extends TLMethod<TLBool> {
     @Override
     @SuppressWarnings("unchecked")
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
-        peer = (TLAbsInputPeer) readTLObject(stream, context);
-        reason = (TLAbsReportReason) readTLObject(stream, context);
+        peer = readTLObject(stream, context, TLAbsInputPeer.class, -1);
+        reason = readTLObject(stream, context, TLAbsReportReason.class, -1);
     }
 
     @Override

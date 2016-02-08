@@ -126,14 +126,14 @@ public class TLWebPage extends TLAbsWebPage {
         siteName = (flags & 2) != 0 ? readTLString(stream) : null;
         title = (flags & 4) != 0 ? readTLString(stream) : null;
         description = (flags & 8) != 0 ? readTLString(stream) : null;
-        photo = (flags & 16) != 0 ? (TLAbsPhoto) readTLObject(stream, context) : null;
+        photo = (flags & 16) != 0 ? readTLObject(stream, context, TLAbsPhoto.class, -1) : null;
         embedUrl = (flags & 32) != 0 ? readTLString(stream) : null;
         embedType = (flags & 32) != 0 ? readTLString(stream) : null;
         embedWidth = (flags & 64) != 0 ? readInt(stream) : null;
         embedHeight = (flags & 64) != 0 ? readInt(stream) : null;
         duration = (flags & 128) != 0 ? readInt(stream) : null;
         author = (flags & 256) != 0 ? readTLString(stream) : null;
-        document = (flags & 512) != 0 ? (TLAbsDocument) readTLObject(stream, context) : null;
+        document = (flags & 512) != 0 ? readTLObject(stream, context, TLAbsDocument.class, -1) : null;
     }
 
     @Override

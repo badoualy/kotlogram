@@ -330,12 +330,10 @@ class MTProtoHandler {
             Log.d(TAG, "Received msg ${message.messageId} with seqNo ${message.seqNo}")
 
             // Check if is a container
-            val classId = StreamUtils.readInt(message.payload)
-
-            when (classId) {
+            when (StreamUtils.readInt(message.payload)) {
                 MTMessagesContainer.CONSTRUCTOR_ID -> {
                     Log.d(TAG, "Message is a container")
-                    val container = mtProtoContext.deserializeMessage(message.payload) as MTMessagesContainer
+                    val container = mtProtoContext.deserializeMessage(message.payload, MTMessagesContainer::class.java, MTMessagesContainer.CONSTRUCTOR_ID)
                     Log.d(TAG, "Container has ${container.messages.size} items")
                     if (container.messages.firstOrNull() { m -> m.messageId >= message.messageId } != null)
                         throw SecurityException("Message contained in container has a same or greater msgId than container, ignoring whole container")
@@ -486,8 +484,6 @@ class MTProtoHandler {
     companion object {
         /** Cleanup all the threads and common resources associated to this instance */
         @JvmStatic
-        fun cleanUp() {
-            MTProtoTimer.shutdown()
-        }
+        fun cleanUp() = MTProtoTimer.shutdown()
     }
 }

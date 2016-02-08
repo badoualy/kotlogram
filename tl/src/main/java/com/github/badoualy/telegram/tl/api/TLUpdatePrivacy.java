@@ -41,7 +41,7 @@ public class TLUpdatePrivacy extends TLAbsUpdate {
     @Override
     @SuppressWarnings("unchecked")
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
-        key = (TLPrivacyKeyStatusTimestamp) readTLObject(stream, context);
+        key = readTLObject(stream, context, TLPrivacyKeyStatusTimestamp.class, TLPrivacyKeyStatusTimestamp.CONSTRUCTOR_ID);
         rules = readTLVector(stream, context);
     }
 

@@ -113,11 +113,11 @@ public class TLChat extends TLAbsChat {
         deactivated = (flags & 32) != 0;
         id = readInt(stream);
         title = readTLString(stream);
-        photo = (TLAbsChatPhoto) readTLObject(stream, context);
+        photo = readTLObject(stream, context, TLAbsChatPhoto.class, -1);
         participantsCount = readInt(stream);
         date = readInt(stream);
         version = readInt(stream);
-        migratedTo = (flags & 64) != 0 ? (TLAbsInputChannel) readTLObject(stream, context) : null;
+        migratedTo = (flags & 64) != 0 ? readTLObject(stream, context, TLAbsInputChannel.class, -1) : null;
     }
 
     @Override

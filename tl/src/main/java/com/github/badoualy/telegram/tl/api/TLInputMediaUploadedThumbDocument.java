@@ -56,8 +56,8 @@ public class TLInputMediaUploadedThumbDocument extends TLAbsInputMedia {
     @Override
     @SuppressWarnings("unchecked")
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
-        file = (TLAbsInputFile) readTLObject(stream, context);
-        thumb = (TLAbsInputFile) readTLObject(stream, context);
+        file = readTLObject(stream, context, TLAbsInputFile.class, -1);
+        thumb = readTLObject(stream, context, TLAbsInputFile.class, -1);
         mimeType = readTLString(stream);
         attributes = readTLVector(stream, context);
         caption = readTLString(stream);

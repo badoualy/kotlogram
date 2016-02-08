@@ -34,7 +34,7 @@ public class TLUpdateChatParticipants extends TLAbsUpdate {
     @Override
     @SuppressWarnings("unchecked")
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
-        participants = (TLAbsChatParticipants) readTLObject(stream, context);
+        participants = readTLObject(stream, context, TLAbsChatParticipants.class, -1);
     }
 
     @Override

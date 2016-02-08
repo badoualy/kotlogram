@@ -54,7 +54,7 @@ public class TLUpdateServiceNotification extends TLAbsUpdate {
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
         type = readTLString(stream);
         message = readTLString(stream);
-        media = (TLAbsMessageMedia) readTLObject(stream, context);
+        media = readTLObject(stream, context, TLAbsMessageMedia.class, -1);
         popup = readTLBool(stream);
     }
 

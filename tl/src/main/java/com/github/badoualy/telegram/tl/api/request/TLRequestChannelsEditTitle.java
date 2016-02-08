@@ -58,7 +58,7 @@ public class TLRequestChannelsEditTitle extends TLMethod<TLAbsUpdates> {
     @Override
     @SuppressWarnings("unchecked")
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
-        channel = (TLAbsInputChannel) readTLObject(stream, context);
+        channel = readTLObject(stream, context, TLAbsInputChannel.class, -1);
         title = readTLString(stream);
     }
 

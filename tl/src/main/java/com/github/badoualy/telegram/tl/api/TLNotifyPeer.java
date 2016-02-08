@@ -34,7 +34,7 @@ public class TLNotifyPeer extends TLAbsNotifyPeer {
     @Override
     @SuppressWarnings("unchecked")
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
-        peer = (TLAbsPeer) readTLObject(stream, context);
+        peer = readTLObject(stream, context, TLAbsPeer.class, -1);
     }
 
     @Override

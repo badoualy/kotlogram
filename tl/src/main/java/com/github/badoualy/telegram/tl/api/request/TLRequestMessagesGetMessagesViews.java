@@ -64,7 +64,7 @@ public class TLRequestMessagesGetMessagesViews extends TLMethod<TLIntVector> {
     @Override
     @SuppressWarnings("unchecked")
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
-        peer = (TLAbsInputPeer) readTLObject(stream, context);
+        peer = readTLObject(stream, context, TLAbsInputPeer.class, -1);
         id = readTLIntVector(stream, context);
         increment = readTLBool(stream);
     }

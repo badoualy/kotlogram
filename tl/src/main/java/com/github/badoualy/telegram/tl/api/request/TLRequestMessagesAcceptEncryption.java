@@ -66,7 +66,7 @@ public class TLRequestMessagesAcceptEncryption extends TLMethod<TLAbsEncryptedCh
     @Override
     @SuppressWarnings("unchecked")
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
-        peer = (TLInputEncryptedChat) readTLObject(stream, context);
+        peer = readTLObject(stream, context, TLInputEncryptedChat.class, TLInputEncryptedChat.CONSTRUCTOR_ID);
         gB = readTLBytes(stream, context);
         keyFingerprint = readLong(stream);
     }

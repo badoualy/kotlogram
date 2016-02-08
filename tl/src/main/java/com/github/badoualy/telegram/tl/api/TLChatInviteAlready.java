@@ -34,7 +34,7 @@ public class TLChatInviteAlready extends TLAbsChatInvite {
     @Override
     @SuppressWarnings("unchecked")
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
-        chat = (TLAbsChat) readTLObject(stream, context);
+        chat = readTLObject(stream, context, TLAbsChat.class, -1);
     }
 
     @Override

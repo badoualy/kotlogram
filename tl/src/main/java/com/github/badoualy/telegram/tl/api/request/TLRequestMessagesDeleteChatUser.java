@@ -59,7 +59,7 @@ public class TLRequestMessagesDeleteChatUser extends TLMethod<TLAbsUpdates> {
     @SuppressWarnings("unchecked")
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
         chatId = readInt(stream);
-        userId = (TLAbsInputUser) readTLObject(stream, context);
+        userId = readTLObject(stream, context, TLAbsInputUser.class, -1);
     }
 
     @Override

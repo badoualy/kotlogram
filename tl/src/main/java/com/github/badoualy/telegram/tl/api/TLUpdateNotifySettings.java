@@ -38,8 +38,8 @@ public class TLUpdateNotifySettings extends TLAbsUpdate {
     @Override
     @SuppressWarnings("unchecked")
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
-        peer = (TLAbsNotifyPeer) readTLObject(stream, context);
-        notifySettings = (TLAbsPeerNotifySettings) readTLObject(stream, context);
+        peer = readTLObject(stream, context, TLAbsNotifyPeer.class, -1);
+        notifySettings = readTLObject(stream, context, TLAbsPeerNotifySettings.class, -1);
     }
 
     @Override

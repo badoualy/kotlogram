@@ -75,7 +75,7 @@ public class TLRequestMessagesSearchGlobal extends TLMethod<TLAbsMessages> {
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
         q = readTLString(stream);
         offsetDate = readInt(stream);
-        offsetPeer = (TLAbsInputPeer) readTLObject(stream, context);
+        offsetPeer = readTLObject(stream, context, TLAbsInputPeer.class, -1);
         offsetId = readInt(stream);
         limit = readInt(stream);
     }

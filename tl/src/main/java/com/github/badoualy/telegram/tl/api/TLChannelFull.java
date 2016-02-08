@@ -116,9 +116,9 @@ public class TLChannelFull extends TLAbsChatFull {
         readInboxMaxId = readInt(stream);
         unreadCount = readInt(stream);
         unreadImportantCount = readInt(stream);
-        chatPhoto = (TLAbsPhoto) readTLObject(stream, context);
-        notifySettings = (TLAbsPeerNotifySettings) readTLObject(stream, context);
-        exportedInvite = (TLAbsExportedChatInvite) readTLObject(stream, context);
+        chatPhoto = readTLObject(stream, context, TLAbsPhoto.class, -1);
+        notifySettings = readTLObject(stream, context, TLAbsPeerNotifySettings.class, -1);
+        exportedInvite = readTLObject(stream, context, TLAbsExportedChatInvite.class, -1);
         botInfo = readTLVector(stream, context);
         migratedFromChatId = (flags & 16) != 0 ? readInt(stream) : null;
         migratedFromMaxId = (flags & 16) != 0 ? readInt(stream) : null;

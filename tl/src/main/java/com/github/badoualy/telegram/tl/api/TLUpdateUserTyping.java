@@ -42,7 +42,7 @@ public class TLUpdateUserTyping extends TLAbsUpdate {
     @SuppressWarnings("unchecked")
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
         userId = readInt(stream);
-        action = (TLAbsSendMessageAction) readTLObject(stream, context);
+        action = readTLObject(stream, context, TLAbsSendMessageAction.class, -1);
     }
 
     @Override

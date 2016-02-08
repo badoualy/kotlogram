@@ -51,7 +51,7 @@ public class TLRequestUsersGetFullUser extends TLMethod<TLUserFull> {
     @Override
     @SuppressWarnings("unchecked")
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
-        id = (TLAbsInputUser) readTLObject(stream, context);
+        id = readTLObject(stream, context, TLAbsInputUser.class, -1);
     }
 
     @Override

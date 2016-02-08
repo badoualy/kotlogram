@@ -59,12 +59,12 @@ public class TLUserFull extends TLObject {
     @Override
     @SuppressWarnings("unchecked")
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
-        user = (TLAbsUser) readTLObject(stream, context);
-        link = (TLLink) readTLObject(stream, context);
-        profilePhoto = (TLAbsPhoto) readTLObject(stream, context);
-        notifySettings = (TLAbsPeerNotifySettings) readTLObject(stream, context);
+        user = readTLObject(stream, context, TLAbsUser.class, -1);
+        link = readTLObject(stream, context, TLLink.class, TLLink.CONSTRUCTOR_ID);
+        profilePhoto = readTLObject(stream, context, TLAbsPhoto.class, -1);
+        notifySettings = readTLObject(stream, context, TLAbsPeerNotifySettings.class, -1);
         blocked = readTLBool(stream);
-        botInfo = (TLAbsBotInfo) readTLObject(stream, context);
+        botInfo = readTLObject(stream, context, TLAbsBotInfo.class, -1);
     }
 
     @Override

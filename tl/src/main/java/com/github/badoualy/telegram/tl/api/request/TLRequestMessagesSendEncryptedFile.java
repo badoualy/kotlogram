@@ -71,10 +71,10 @@ public class TLRequestMessagesSendEncryptedFile extends TLMethod<TLAbsSentEncryp
     @Override
     @SuppressWarnings("unchecked")
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
-        peer = (TLInputEncryptedChat) readTLObject(stream, context);
+        peer = readTLObject(stream, context, TLInputEncryptedChat.class, TLInputEncryptedChat.CONSTRUCTOR_ID);
         randomId = readLong(stream);
         data = readTLBytes(stream, context);
-        file = (TLAbsInputEncryptedFile) readTLObject(stream, context);
+        file = readTLObject(stream, context, TLAbsInputEncryptedFile.class, -1);
     }
 
     @Override

@@ -136,15 +136,15 @@ public class TLMessage extends TLAbsMessage {
         mediaUnread = (flags & 32) != 0;
         id = readInt(stream);
         fromId = (flags & 256) != 0 ? readInt(stream) : null;
-        toId = (TLAbsPeer) readTLObject(stream, context);
-        fwdFromId = (flags & 4) != 0 ? (TLAbsPeer) readTLObject(stream, context) : null;
+        toId = readTLObject(stream, context, TLAbsPeer.class, -1);
+        fwdFromId = (flags & 4) != 0 ? readTLObject(stream, context, TLAbsPeer.class, -1) : null;
         fwdDate = (flags & 4) != 0 ? readInt(stream) : null;
         viaBotId = (flags & 2048) != 0 ? readInt(stream) : null;
         replyToMsgId = (flags & 8) != 0 ? readInt(stream) : null;
         date = readInt(stream);
         message = readTLString(stream);
-        media = (flags & 512) != 0 ? (TLAbsMessageMedia) readTLObject(stream, context) : null;
-        replyMarkup = (flags & 64) != 0 ? (TLAbsReplyMarkup) readTLObject(stream, context) : null;
+        media = (flags & 512) != 0 ? readTLObject(stream, context, TLAbsMessageMedia.class, -1) : null;
+        replyMarkup = (flags & 64) != 0 ? readTLObject(stream, context, TLAbsReplyMarkup.class, -1) : null;
         entities = (flags & 128) != 0 ? readTLVector(stream, context) : null;
         views = (flags & 1024) != 0 ? readInt(stream) : null;
     }

@@ -58,7 +58,7 @@ public class TLRequestMessagesSaveGif extends TLMethod<TLBool> {
     @Override
     @SuppressWarnings("unchecked")
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
-        id = (TLAbsInputDocument) readTLObject(stream, context);
+        id = readTLObject(stream, context, TLAbsInputDocument.class, -1);
         unsave = readTLBool(stream);
     }
 

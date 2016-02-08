@@ -42,7 +42,7 @@ public class TLUpdateUserStatus extends TLAbsUpdate {
     @SuppressWarnings("unchecked")
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
         userId = readInt(stream);
-        status = (TLAbsUserStatus) readTLObject(stream, context);
+        status = readTLObject(stream, context, TLAbsUserStatus.class, -1);
     }
 
     @Override

@@ -196,6 +196,10 @@ public final class StreamUtils {
         return context.deserializeMessage(stream);
     }
 
+    public static <T extends TLObject> T readTLObject(InputStream stream, TLContext context, Class<T> clazz, int constructorId) throws IOException {
+        return context.deserializeMessage(stream, clazz, constructorId);
+    }
+
     public static TLMethod readTLMethod(InputStream stream, TLContext context) throws IOException {
         return (TLMethod) context.deserializeMessage(stream);
     }

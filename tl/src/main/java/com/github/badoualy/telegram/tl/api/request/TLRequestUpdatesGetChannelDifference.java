@@ -67,8 +67,8 @@ public class TLRequestUpdatesGetChannelDifference extends TLMethod<TLAbsChannelD
     @Override
     @SuppressWarnings("unchecked")
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
-        channel = (TLAbsInputChannel) readTLObject(stream, context);
-        filter = (TLAbsChannelMessagesFilter) readTLObject(stream, context);
+        channel = readTLObject(stream, context, TLAbsInputChannel.class, -1);
+        filter = readTLObject(stream, context, TLAbsChannelMessagesFilter.class, -1);
         pts = readInt(stream);
         limit = readInt(stream);
     }

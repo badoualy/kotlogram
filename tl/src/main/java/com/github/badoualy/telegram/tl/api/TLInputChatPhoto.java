@@ -38,8 +38,8 @@ public class TLInputChatPhoto extends TLAbsInputChatPhoto {
     @Override
     @SuppressWarnings("unchecked")
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
-        id = (TLAbsInputPhoto) readTLObject(stream, context);
-        crop = (TLAbsInputPhotoCrop) readTLObject(stream, context);
+        id = readTLObject(stream, context, TLAbsInputPhoto.class, -1);
+        crop = readTLObject(stream, context, TLAbsInputPhotoCrop.class, -1);
     }
 
     @Override

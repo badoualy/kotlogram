@@ -95,11 +95,11 @@ public class TLRequestMessagesSendMedia extends TLMethod<TLAbsUpdates> {
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
         flags = readInt(stream);
         broadcast = (flags & 16) != 0;
-        peer = (TLAbsInputPeer) readTLObject(stream, context);
+        peer = readTLObject(stream, context, TLAbsInputPeer.class, -1);
         replyToMsgId = (flags & 1) != 0 ? readInt(stream) : null;
-        media = (TLAbsInputMedia) readTLObject(stream, context);
+        media = readTLObject(stream, context, TLAbsInputMedia.class, -1);
         randomId = readLong(stream);
-        replyMarkup = (flags & 4) != 0 ? (TLAbsReplyMarkup) readTLObject(stream, context) : null;
+        replyMarkup = (flags & 4) != 0 ? readTLObject(stream, context, TLAbsReplyMarkup.class, -1) : null;
     }
 
     @Override

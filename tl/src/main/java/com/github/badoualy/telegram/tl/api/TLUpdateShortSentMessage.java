@@ -90,7 +90,7 @@ public class TLUpdateShortSentMessage extends TLAbsUpdates {
         pts = readInt(stream);
         ptsCount = readInt(stream);
         date = readInt(stream);
-        media = (flags & 512) != 0 ? (TLAbsMessageMedia) readTLObject(stream, context) : null;
+        media = (flags & 512) != 0 ? readTLObject(stream, context, TLAbsMessageMedia.class, -1) : null;
         entities = (flags & 128) != 0 ? readTLVector(stream, context) : null;
     }
 

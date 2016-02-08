@@ -45,8 +45,8 @@ public class TLBotInlineMediaResultPhoto extends TLAbsBotInlineResult {
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
         id = readTLString(stream);
         type = readTLString(stream);
-        photo = (TLAbsPhoto) readTLObject(stream, context);
-        sendMessage = (TLAbsBotInlineMessage) readTLObject(stream, context);
+        photo = readTLObject(stream, context, TLAbsPhoto.class, -1);
+        sendMessage = readTLObject(stream, context, TLAbsBotInlineMessage.class, -1);
     }
 
     @Override

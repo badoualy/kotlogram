@@ -44,7 +44,7 @@ public class TLSupport extends TLObject {
     @SuppressWarnings("unchecked")
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
         phoneNumber = readTLString(stream);
-        user = (TLAbsUser) readTLObject(stream, context);
+        user = readTLObject(stream, context, TLAbsUser.class, -1);
     }
 
     @Override

@@ -51,7 +51,7 @@ public class TLRequestAccountSetAccountTTL extends TLMethod<TLBool> {
     @Override
     @SuppressWarnings("unchecked")
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
-        ttl = (TLAccountDaysTTL) readTLObject(stream, context);
+        ttl = readTLObject(stream, context, TLAccountDaysTTL.class, TLAccountDaysTTL.CONSTRUCTOR_ID);
     }
 
     @Override

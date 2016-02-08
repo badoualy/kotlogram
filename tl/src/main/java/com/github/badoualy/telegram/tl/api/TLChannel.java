@@ -141,7 +141,7 @@ public class TLChannel extends TLAbsChat {
         accessHash = readLong(stream);
         title = readTLString(stream);
         username = (flags & 64) != 0 ? readTLString(stream) : null;
-        photo = (TLAbsChatPhoto) readTLObject(stream, context);
+        photo = readTLObject(stream, context, TLAbsChatPhoto.class, -1);
         date = readInt(stream);
         version = readInt(stream);
         restrictionReason = (flags & 512) != 0 ? readTLString(stream) : null;

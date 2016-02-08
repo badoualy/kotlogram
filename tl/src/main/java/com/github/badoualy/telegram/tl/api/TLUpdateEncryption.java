@@ -41,7 +41,7 @@ public class TLUpdateEncryption extends TLAbsUpdate {
     @Override
     @SuppressWarnings("unchecked")
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
-        chat = (TLAbsEncryptedChat) readTLObject(stream, context);
+        chat = readTLObject(stream, context, TLAbsEncryptedChat.class, -1);
         date = readInt(stream);
     }
 

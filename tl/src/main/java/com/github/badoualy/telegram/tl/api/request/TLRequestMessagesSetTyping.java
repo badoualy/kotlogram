@@ -56,8 +56,8 @@ public class TLRequestMessagesSetTyping extends TLMethod<TLBool> {
     @Override
     @SuppressWarnings("unchecked")
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
-        peer = (TLAbsInputPeer) readTLObject(stream, context);
-        action = (TLAbsSendMessageAction) readTLObject(stream, context);
+        peer = readTLObject(stream, context, TLAbsInputPeer.class, -1);
+        action = readTLObject(stream, context, TLAbsSendMessageAction.class, -1);
     }
 
     @Override

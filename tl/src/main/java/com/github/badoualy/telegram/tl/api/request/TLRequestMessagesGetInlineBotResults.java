@@ -62,7 +62,7 @@ public class TLRequestMessagesGetInlineBotResults extends TLMethod<TLBotResults>
     @Override
     @SuppressWarnings("unchecked")
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
-        bot = (TLAbsInputUser) readTLObject(stream, context);
+        bot = readTLObject(stream, context, TLAbsInputUser.class, -1);
         query = readTLString(stream);
         offset = readTLString(stream);
     }

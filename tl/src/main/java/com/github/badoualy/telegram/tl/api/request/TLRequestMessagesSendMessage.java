@@ -112,11 +112,11 @@ public class TLRequestMessagesSendMessage extends TLMethod<TLAbsUpdates> {
         flags = readInt(stream);
         noWebpage = (flags & 2) != 0;
         broadcast = (flags & 16) != 0;
-        peer = (TLAbsInputPeer) readTLObject(stream, context);
+        peer = readTLObject(stream, context, TLAbsInputPeer.class, -1);
         replyToMsgId = (flags & 1) != 0 ? readInt(stream) : null;
         message = readTLString(stream);
         randomId = readLong(stream);
-        replyMarkup = (flags & 4) != 0 ? (TLAbsReplyMarkup) readTLObject(stream, context) : null;
+        replyMarkup = (flags & 4) != 0 ? readTLObject(stream, context, TLAbsReplyMarkup.class, -1) : null;
         entities = (flags & 8) != 0 ? readTLVector(stream, context) : null;
     }
 

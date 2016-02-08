@@ -41,7 +41,7 @@ public class TLInputMediaVideo extends TLAbsInputMedia {
     @Override
     @SuppressWarnings("unchecked")
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
-        id = (TLAbsInputVideo) readTLObject(stream, context);
+        id = readTLObject(stream, context, TLAbsInputVideo.class, -1);
         caption = readTLString(stream);
     }
 

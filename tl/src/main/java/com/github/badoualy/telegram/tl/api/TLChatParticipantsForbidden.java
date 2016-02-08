@@ -51,7 +51,7 @@ public class TLChatParticipantsForbidden extends TLAbsChatParticipants {
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
         flags = readInt(stream);
         chatId = readInt(stream);
-        selfParticipant = (flags & 1) != 0 ? (TLAbsChatParticipant) readTLObject(stream, context) : null;
+        selfParticipant = (flags & 1) != 0 ? readTLObject(stream, context, TLAbsChatParticipant.class, -1) : null;
     }
 
     @Override

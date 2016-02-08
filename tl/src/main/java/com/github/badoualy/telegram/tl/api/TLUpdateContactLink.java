@@ -46,8 +46,8 @@ public class TLUpdateContactLink extends TLAbsUpdate {
     @SuppressWarnings("unchecked")
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
         userId = readInt(stream);
-        myLink = (TLAbsContactLink) readTLObject(stream, context);
-        foreignLink = (TLAbsContactLink) readTLObject(stream, context);
+        myLink = readTLObject(stream, context, TLAbsContactLink.class, -1);
+        foreignLink = readTLObject(stream, context, TLAbsContactLink.class, -1);
     }
 
     @Override

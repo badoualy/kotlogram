@@ -34,7 +34,7 @@ public class TLMessageMediaAudio extends TLAbsMessageMedia {
     @Override
     @SuppressWarnings("unchecked")
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
-        audio = (TLAbsAudio) readTLObject(stream, context);
+        audio = readTLObject(stream, context, TLAbsAudio.class, -1);
     }
 
     @Override

@@ -69,7 +69,7 @@ public class TLRequestPhotosGetUserPhotos extends TLMethod<TLAbsPhotos> {
     @Override
     @SuppressWarnings("unchecked")
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
-        userId = (TLAbsInputUser) readTLObject(stream, context);
+        userId = readTLObject(stream, context, TLAbsInputUser.class, -1);
         offset = readInt(stream);
         maxId = readLong(stream);
         limit = readInt(stream);

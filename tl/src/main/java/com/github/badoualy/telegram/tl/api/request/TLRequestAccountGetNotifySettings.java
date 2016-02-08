@@ -51,7 +51,7 @@ public class TLRequestAccountGetNotifySettings extends TLMethod<TLAbsPeerNotifyS
     @Override
     @SuppressWarnings("unchecked")
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
-        peer = (TLAbsInputNotifyPeer) readTLObject(stream, context);
+        peer = readTLObject(stream, context, TLAbsInputNotifyPeer.class, -1);
     }
 
     @Override

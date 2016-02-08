@@ -51,7 +51,7 @@ public class TLRequestMessagesUninstallStickerSet extends TLMethod<TLBool> {
     @Override
     @SuppressWarnings("unchecked")
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
-        stickerset = (TLAbsInputStickerSet) readTLObject(stream, context);
+        stickerset = readTLObject(stream, context, TLAbsInputStickerSet.class, -1);
     }
 
     @Override

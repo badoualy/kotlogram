@@ -34,7 +34,7 @@ public class TLInputMediaAudio extends TLAbsInputMedia {
     @Override
     @SuppressWarnings("unchecked")
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
-        id = (TLAbsInputAudio) readTLObject(stream, context);
+        id = readTLObject(stream, context, TLAbsInputAudio.class, -1);
     }
 
     @Override

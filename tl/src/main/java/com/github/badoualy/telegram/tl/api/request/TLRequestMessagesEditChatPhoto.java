@@ -59,7 +59,7 @@ public class TLRequestMessagesEditChatPhoto extends TLMethod<TLAbsUpdates> {
     @SuppressWarnings("unchecked")
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
         chatId = readInt(stream);
-        photo = (TLAbsInputChatPhoto) readTLObject(stream, context);
+        photo = readTLObject(stream, context, TLAbsInputChatPhoto.class, -1);
     }
 
     @Override

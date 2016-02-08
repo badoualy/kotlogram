@@ -41,7 +41,7 @@ public class TLSentEncryptedFile extends TLAbsSentEncryptedMessage {
     @SuppressWarnings("unchecked")
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
         date = readInt(stream);
-        file = (TLAbsEncryptedFile) readTLObject(stream, context);
+        file = readTLObject(stream, context, TLAbsEncryptedFile.class, -1);
     }
 
     @Override

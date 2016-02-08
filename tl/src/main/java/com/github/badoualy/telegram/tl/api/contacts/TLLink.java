@@ -45,9 +45,9 @@ public class TLLink extends TLObject {
     @Override
     @SuppressWarnings("unchecked")
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
-        myLink = (TLAbsContactLink) readTLObject(stream, context);
-        foreignLink = (TLAbsContactLink) readTLObject(stream, context);
-        user = (TLAbsUser) readTLObject(stream, context);
+        myLink = readTLObject(stream, context, TLAbsContactLink.class, -1);
+        foreignLink = readTLObject(stream, context, TLAbsContactLink.class, -1);
+        user = readTLObject(stream, context, TLAbsUser.class, -1);
     }
 
     @Override

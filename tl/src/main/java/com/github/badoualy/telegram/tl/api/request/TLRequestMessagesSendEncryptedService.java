@@ -66,7 +66,7 @@ public class TLRequestMessagesSendEncryptedService extends TLMethod<TLAbsSentEnc
     @Override
     @SuppressWarnings("unchecked")
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
-        peer = (TLInputEncryptedChat) readTLObject(stream, context);
+        peer = readTLObject(stream, context, TLInputEncryptedChat.class, TLInputEncryptedChat.CONSTRUCTOR_ID);
         randomId = readLong(stream);
         data = readTLBytes(stream, context);
     }

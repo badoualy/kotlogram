@@ -51,7 +51,7 @@ public class TLFile extends TLObject {
     @Override
     @SuppressWarnings("unchecked")
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
-        type = (TLAbsFileType) readTLObject(stream, context);
+        type = readTLObject(stream, context, TLAbsFileType.class, -1);
         mtime = readInt(stream);
         bytes = readTLBytes(stream, context);
     }

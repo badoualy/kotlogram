@@ -49,7 +49,7 @@ public class TLChatFull extends TLObject {
     @Override
     @SuppressWarnings("unchecked")
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
-        fullChat = (TLAbsChatFull) readTLObject(stream, context);
+        fullChat = readTLObject(stream, context, TLAbsChatFull.class, -1);
         chats = readTLVector(stream, context);
         users = readTLVector(stream, context);
     }

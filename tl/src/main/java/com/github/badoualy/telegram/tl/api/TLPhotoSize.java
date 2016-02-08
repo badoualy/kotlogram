@@ -55,7 +55,7 @@ public class TLPhotoSize extends TLAbsPhotoSize {
     @SuppressWarnings("unchecked")
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
         type = readTLString(stream);
-        location = (TLAbsFileLocation) readTLObject(stream, context);
+        location = readTLObject(stream, context, TLAbsFileLocation.class, -1);
         w = readInt(stream);
         h = readInt(stream);
         size = readInt(stream);

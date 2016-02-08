@@ -51,10 +51,10 @@ public class TLChatFull extends TLAbsChatFull {
     @SuppressWarnings("unchecked")
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
         id = readInt(stream);
-        participants = (TLAbsChatParticipants) readTLObject(stream, context);
-        chatPhoto = (TLAbsPhoto) readTLObject(stream, context);
-        notifySettings = (TLAbsPeerNotifySettings) readTLObject(stream, context);
-        exportedInvite = (TLAbsExportedChatInvite) readTLObject(stream, context);
+        participants = readTLObject(stream, context, TLAbsChatParticipants.class, -1);
+        chatPhoto = readTLObject(stream, context, TLAbsPhoto.class, -1);
+        notifySettings = readTLObject(stream, context, TLAbsPeerNotifySettings.class, -1);
+        exportedInvite = readTLObject(stream, context, TLAbsExportedChatInvite.class, -1);
         botInfo = readTLVector(stream, context);
     }
 

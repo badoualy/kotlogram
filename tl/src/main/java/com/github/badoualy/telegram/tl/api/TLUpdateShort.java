@@ -41,7 +41,7 @@ public class TLUpdateShort extends TLAbsUpdates {
     @Override
     @SuppressWarnings("unchecked")
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
-        update = (TLAbsUpdate) readTLObject(stream, context);
+        update = readTLObject(stream, context, TLAbsUpdate.class, -1);
         date = readInt(stream);
     }
 

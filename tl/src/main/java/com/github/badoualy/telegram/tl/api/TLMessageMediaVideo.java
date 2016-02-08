@@ -41,7 +41,7 @@ public class TLMessageMediaVideo extends TLAbsMessageMedia {
     @Override
     @SuppressWarnings("unchecked")
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
-        video = (TLAbsVideo) readTLObject(stream, context);
+        video = readTLObject(stream, context, TLAbsVideo.class, -1);
         caption = readTLString(stream);
     }
 

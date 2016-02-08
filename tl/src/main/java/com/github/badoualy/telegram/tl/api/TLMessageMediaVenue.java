@@ -53,7 +53,7 @@ public class TLMessageMediaVenue extends TLAbsMessageMedia {
     @Override
     @SuppressWarnings("unchecked")
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
-        geo = (TLAbsGeoPoint) readTLObject(stream, context);
+        geo = readTLObject(stream, context, TLAbsGeoPoint.class, -1);
         title = readTLString(stream);
         address = readTLString(stream);
         provider = readTLString(stream);

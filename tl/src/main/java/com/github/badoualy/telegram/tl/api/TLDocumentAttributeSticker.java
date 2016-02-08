@@ -42,7 +42,7 @@ public class TLDocumentAttributeSticker extends TLAbsDocumentAttribute {
     @SuppressWarnings("unchecked")
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
         alt = readTLString(stream);
-        stickerset = (TLAbsInputStickerSet) readTLObject(stream, context);
+        stickerset = readTLObject(stream, context, TLAbsInputStickerSet.class, -1);
     }
 
     @Override

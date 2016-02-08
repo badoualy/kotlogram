@@ -47,7 +47,7 @@ public class TLUpdateChatUserTyping extends TLAbsUpdate {
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
         chatId = readInt(stream);
         userId = readInt(stream);
-        action = (TLAbsSendMessageAction) readTLObject(stream, context);
+        action = readTLObject(stream, context, TLAbsSendMessageAction.class, -1);
     }
 
     @Override

@@ -75,7 +75,7 @@ public class TLRequestMessagesSendBroadcast extends TLMethod<TLAbsUpdates> {
         contacts = readTLVector(stream, context);
         randomId = readTLLongVector(stream, context);
         message = readTLString(stream);
-        media = (TLAbsInputMedia) readTLObject(stream, context);
+        media = readTLObject(stream, context, TLAbsInputMedia.class, -1);
     }
 
     @Override

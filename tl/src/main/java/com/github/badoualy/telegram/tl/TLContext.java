@@ -48,52 +48,75 @@ public abstract class TLContext {
 
     protected abstract void init();
 
-    public boolean isSupportedObject(TLObject object) {
+    public final boolean isSupportedObject(TLObject object) {
         return isSupportedObject(object.getConstructorId());
     }
 
-    public boolean isSupportedObject(int constructorId) {
+    public final boolean isSupportedObject(int constructorId) {
         return registeredClasses.containsKey(constructorId);
     }
 
-    public <T extends TLObject> void registerClass(int constructorId, Class<T> clazz) {
+    public final <T extends TLObject> void registerClass(int constructorId, Class<T> clazz) {
         registeredClasses.put(constructorId, clazz);
     }
 
-    public TLObject deserializeMessage(byte[] data) throws IOException {
-        return deserializeMessage(new ByteArrayInputStream(data));
+    public final TLObject deserializeMessage(byte[] data) throws IOException {
+        return deserializeMessage(data, null, -1);
     }
 
-    public TLObject deserializeMessage(InputStream stream) throws IOException {
-        int constructorId = StreamUtils.readInt(stream);
-        return deserializeMessage(constructorId, stream);
+    public final <T extends TLObject> T deserializeMessage(byte[] data, Class<T> clazz, int constructorId) throws IOException {
+        return deserializeMessage(new ByteArrayInputStream(data), clazz, constructorId);
     }
 
-    public TLObject deserializeMessage(int constructorId, InputStream stream) throws IOException {
+    public final TLObject deserializeMessage(InputStream stream) throws IOException {
+        return deserializeMessage(stream, null, -1);
+    }
+
+    /**
+     * Deserialize a TLObject from the given input stream
+     *
+     * @param stream        inputstream ready to by read
+     * @param clazz         expected TLObject clazz or null
+     * @param constructorId expected constructorId or -1 if unknown
+     * @param <T>           expected TLObject's type
+     * @return the deserialized TLObject
+     * @throws IOException
+     */
+    @SuppressWarnings("unchecked")
+    public final <T extends TLObject> T deserializeMessage(InputStream stream, Class<T> clazz, int constructorId) throws IOException {
+        int realConstructorId = StreamUtils.readInt(stream);
+        if (constructorId != -1 && realConstructorId != constructorId) {
+            throw new InvalidConstructorIdException("Expected constructor #" + Integer.toHexString(constructorId)
+                                                            + ", found #" + Integer.toHexString(realConstructorId));
+        } else if (constructorId == -1) {
+            constructorId = realConstructorId;
+            clazz = null;
+        }
+
         if (constructorId == TLGzipObject.CONSTRUCTOR_ID)
-            return deserializeMessage(unzipStream(stream));
+            return (T) deserializeMessage(unzipStream(stream));
         if (constructorId == TLBool.TRUE_CONSTRUCTOR_ID)
-            return TLBool.TRUE;
+            return (T) TLBool.TRUE;
         if (constructorId == TLBool.FALSE_CONSTRUCTOR_ID)
-            return TLBool.FALSE;
+            return (T) TLBool.FALSE;
         if (constructorId == TLVector.CONSTRUCTOR_ID) {
             /* Vector should be demobilized via the appropriate method, a vector was not expected,
              we must assume it's not any of vector<int>, vector<long>, vector<string> */
             TLVector<Object> vector = new TLVector<>();
             vector.deserializeBody(stream, this);
-            return vector;
+            return (T) vector;
         }
 
         try {
-            Class messageClass = registeredClasses.get(constructorId);
-            if (messageClass != null) {
-                @SuppressWarnings("unchecked")
-                TLObject message = (TLObject) messageClass.getConstructor().newInstance();
-                message.deserializeBody(stream, this);
-                return message;
-            } else {
-                throw new DeserializationException("Unsupported constructor: #" + Integer.toHexString(constructorId));
+            if (clazz == null) {
+                clazz = registeredClasses.get(constructorId);
+                if (clazz == null)
+                    throw new DeserializationException("Unsupported constructor: #" + Integer.toHexString(constructorId));
             }
+
+            T message = clazz.getConstructor().newInstance();
+            message.deserializeBody(stream, this);
+            return message;
         } catch (DeserializationException e) {
             throw e;
         } catch (Exception e) {
@@ -102,7 +125,7 @@ public abstract class TLContext {
         }
     }
 
-    public TLVector deserializeVector(InputStream stream) throws IOException {
+    public final TLVector deserializeVector(InputStream stream) throws IOException {
         return deserializeVector(stream, new TLVector<>());
     }
 

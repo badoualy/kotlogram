@@ -54,7 +54,7 @@ public class TLUpdateUserPhoto extends TLAbsUpdate {
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
         userId = readInt(stream);
         date = readInt(stream);
-        photo = (TLAbsUserProfilePhoto) readTLObject(stream, context);
+        photo = readTLObject(stream, context, TLAbsUserProfilePhoto.class, -1);
         previous = readTLBool(stream);
     }
 

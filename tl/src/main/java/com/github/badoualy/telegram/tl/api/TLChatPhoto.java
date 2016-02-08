@@ -38,8 +38,8 @@ public class TLChatPhoto extends TLAbsChatPhoto {
     @Override
     @SuppressWarnings("unchecked")
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
-        photoSmall = (TLAbsFileLocation) readTLObject(stream, context);
-        photoBig = (TLAbsFileLocation) readTLObject(stream, context);
+        photoSmall = readTLObject(stream, context, TLAbsFileLocation.class, -1);
+        photoBig = readTLObject(stream, context, TLAbsFileLocation.class, -1);
     }
 
     @Override

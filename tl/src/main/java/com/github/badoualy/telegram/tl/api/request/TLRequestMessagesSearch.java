@@ -104,9 +104,9 @@ public class TLRequestMessagesSearch extends TLMethod<TLAbsMessages> {
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
         flags = readInt(stream);
         importantOnly = (flags & 1) != 0;
-        peer = (TLAbsInputPeer) readTLObject(stream, context);
+        peer = readTLObject(stream, context, TLAbsInputPeer.class, -1);
         q = readTLString(stream);
-        filter = (TLAbsMessagesFilter) readTLObject(stream, context);
+        filter = readTLObject(stream, context, TLAbsMessagesFilter.class, -1);
         minDate = readInt(stream);
         maxDate = readInt(stream);
         offset = readInt(stream);

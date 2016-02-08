@@ -68,7 +68,7 @@ public class TLRequestMessagesGetDialogs extends TLMethod<TLAbsDialogs> {
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
         offsetDate = readInt(stream);
         offsetId = readInt(stream);
-        offsetPeer = (TLAbsInputPeer) readTLObject(stream, context);
+        offsetPeer = readTLObject(stream, context, TLAbsInputPeer.class, -1);
         limit = readInt(stream);
     }
 

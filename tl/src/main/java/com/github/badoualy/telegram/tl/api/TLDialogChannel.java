@@ -55,13 +55,13 @@ public class TLDialogChannel extends TLAbsDialog {
     @Override
     @SuppressWarnings("unchecked")
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
-        peer = (TLAbsPeer) readTLObject(stream, context);
+        peer = readTLObject(stream, context, TLAbsPeer.class, -1);
         topMessage = readInt(stream);
         topImportantMessage = readInt(stream);
         readInboxMaxId = readInt(stream);
         unreadCount = readInt(stream);
         unreadImportantCount = readInt(stream);
-        notifySettings = (TLAbsPeerNotifySettings) readTLObject(stream, context);
+        notifySettings = readTLObject(stream, context, TLAbsPeerNotifySettings.class, -1);
         pts = readInt(stream);
     }
 

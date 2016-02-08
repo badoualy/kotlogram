@@ -44,8 +44,8 @@ public class TLFoundGifCached extends TLAbsFoundGif {
     @SuppressWarnings("unchecked")
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
         url = readTLString(stream);
-        photo = (TLAbsPhoto) readTLObject(stream, context);
-        document = (TLAbsDocument) readTLObject(stream, context);
+        photo = readTLObject(stream, context, TLAbsPhoto.class, -1);
+        document = readTLObject(stream, context, TLAbsDocument.class, -1);
     }
 
     @Override

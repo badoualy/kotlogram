@@ -74,7 +74,7 @@ public class TLRequestChannelsGetImportantHistory extends TLMethod<TLAbsMessages
     @Override
     @SuppressWarnings("unchecked")
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
-        channel = (TLAbsInputChannel) readTLObject(stream, context);
+        channel = readTLObject(stream, context, TLAbsInputChannel.class, -1);
         offsetId = readInt(stream);
         addOffset = readInt(stream);
         limit = readInt(stream);

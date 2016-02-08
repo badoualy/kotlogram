@@ -74,7 +74,7 @@ public class TLRequestMessagesGetHistory extends TLMethod<TLAbsMessages> {
     @Override
     @SuppressWarnings("unchecked")
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
-        peer = (TLAbsInputPeer) readTLObject(stream, context);
+        peer = readTLObject(stream, context, TLAbsInputPeer.class, -1);
         offsetId = readInt(stream);
         addOffset = readInt(stream);
         limit = readInt(stream);

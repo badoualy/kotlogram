@@ -95,7 +95,7 @@ public class TLRequestMessagesSendInlineBotResult extends TLMethod<TLAbsUpdates>
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
         flags = readInt(stream);
         broadcast = (flags & 16) != 0;
-        peer = (TLAbsInputPeer) readTLObject(stream, context);
+        peer = readTLObject(stream, context, TLAbsInputPeer.class, -1);
         replyToMsgId = (flags & 1) != 0 ? readInt(stream) : null;
         randomId = readLong(stream);
         queryId = readLong(stream);

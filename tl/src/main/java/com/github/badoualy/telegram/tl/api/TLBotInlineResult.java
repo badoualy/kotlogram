@@ -108,7 +108,7 @@ public class TLBotInlineResult extends TLAbsBotInlineResult {
         w = (flags & 64) != 0 ? readInt(stream) : null;
         h = (flags & 64) != 0 ? readInt(stream) : null;
         duration = (flags & 128) != 0 ? readInt(stream) : null;
-        sendMessage = (TLAbsBotInlineMessage) readTLObject(stream, context);
+        sendMessage = readTLObject(stream, context, TLAbsBotInlineMessage.class, -1);
     }
 
     @Override

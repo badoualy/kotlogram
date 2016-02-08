@@ -34,7 +34,7 @@ public class TLMessageMediaWebPage extends TLAbsMessageMedia {
     @Override
     @SuppressWarnings("unchecked")
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
-        webpage = (TLAbsWebPage) readTLObject(stream, context);
+        webpage = readTLObject(stream, context, TLAbsWebPage.class, -1);
     }
 
     @Override

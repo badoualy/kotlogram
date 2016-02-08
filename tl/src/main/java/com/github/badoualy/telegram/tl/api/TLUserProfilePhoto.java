@@ -46,8 +46,8 @@ public class TLUserProfilePhoto extends TLAbsUserProfilePhoto {
     @SuppressWarnings("unchecked")
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
         photoId = readLong(stream);
-        photoSmall = (TLAbsFileLocation) readTLObject(stream, context);
-        photoBig = (TLAbsFileLocation) readTLObject(stream, context);
+        photoSmall = readTLObject(stream, context, TLAbsFileLocation.class, -1);
+        photoBig = readTLObject(stream, context, TLAbsFileLocation.class, -1);
     }
 
     @Override

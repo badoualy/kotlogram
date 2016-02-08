@@ -90,9 +90,9 @@ public class TLMessageService extends TLAbsMessage {
         mediaUnread = (flags & 32) != 0;
         id = readInt(stream);
         fromId = (flags & 256) != 0 ? readInt(stream) : null;
-        toId = (TLAbsPeer) readTLObject(stream, context);
+        toId = readTLObject(stream, context, TLAbsPeer.class, -1);
         date = readInt(stream);
-        action = (TLAbsMessageAction) readTLObject(stream, context);
+        action = readTLObject(stream, context, TLAbsMessageAction.class, -1);
     }
 
     @Override

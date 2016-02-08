@@ -68,10 +68,10 @@ public class TLRequestPhotosUploadProfilePhoto extends TLMethod<TLPhoto> {
     @Override
     @SuppressWarnings("unchecked")
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
-        file = (TLAbsInputFile) readTLObject(stream, context);
+        file = readTLObject(stream, context, TLAbsInputFile.class, -1);
         caption = readTLString(stream);
-        geoPoint = (TLAbsInputGeoPoint) readTLObject(stream, context);
-        crop = (TLAbsInputPhotoCrop) readTLObject(stream, context);
+        geoPoint = readTLObject(stream, context, TLAbsInputGeoPoint.class, -1);
+        crop = readTLObject(stream, context, TLAbsInputPhotoCrop.class, -1);
     }
 
     @Override

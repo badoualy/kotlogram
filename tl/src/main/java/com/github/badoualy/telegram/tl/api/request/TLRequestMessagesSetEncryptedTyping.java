@@ -58,7 +58,7 @@ public class TLRequestMessagesSetEncryptedTyping extends TLMethod<TLBool> {
     @Override
     @SuppressWarnings("unchecked")
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
-        peer = (TLInputEncryptedChat) readTLObject(stream, context);
+        peer = readTLObject(stream, context, TLInputEncryptedChat.class, TLInputEncryptedChat.CONSTRUCTOR_ID);
         typing = readTLBool(stream);
     }
 

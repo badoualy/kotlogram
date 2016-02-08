@@ -51,7 +51,7 @@ public class TLRequestAccountGetPrivacy extends TLMethod<TLPrivacyRules> {
     @Override
     @SuppressWarnings("unchecked")
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
-        key = (TLInputPrivacyKeyStatusTimestamp) readTLObject(stream, context);
+        key = readTLObject(stream, context, TLInputPrivacyKeyStatusTimestamp.class, TLInputPrivacyKeyStatusTimestamp.CONSTRUCTOR_ID);
     }
 
     @Override

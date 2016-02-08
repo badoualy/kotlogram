@@ -34,7 +34,7 @@ public class TLMessageMediaGeo extends TLAbsMessageMedia {
     @Override
     @SuppressWarnings("unchecked")
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
-        geo = (TLAbsGeoPoint) readTLObject(stream, context);
+        geo = readTLObject(stream, context, TLAbsGeoPoint.class, -1);
     }
 
     @Override

@@ -41,7 +41,7 @@ public class TLMessageMediaDocument extends TLAbsMessageMedia {
     @Override
     @SuppressWarnings("unchecked")
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
-        document = (TLAbsDocument) readTLObject(stream, context);
+        document = readTLObject(stream, context, TLAbsDocument.class, -1);
         caption = readTLString(stream);
     }
 

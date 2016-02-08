@@ -89,10 +89,10 @@ public class TLRequestMessagesForwardMessages extends TLMethod<TLAbsUpdates> {
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
         flags = readInt(stream);
         broadcast = (flags & 16) != 0;
-        fromPeer = (TLAbsInputPeer) readTLObject(stream, context);
+        fromPeer = readTLObject(stream, context, TLAbsInputPeer.class, -1);
         id = readTLIntVector(stream, context);
         randomId = readTLLongVector(stream, context);
-        toPeer = (TLAbsInputPeer) readTLObject(stream, context);
+        toPeer = readTLObject(stream, context, TLAbsInputPeer.class, -1);
     }
 
     @Override

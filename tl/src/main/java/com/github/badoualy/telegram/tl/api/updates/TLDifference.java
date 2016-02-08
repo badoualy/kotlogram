@@ -67,7 +67,7 @@ public class TLDifference extends TLAbsDifference {
         otherUpdates = readTLVector(stream, context);
         chats = readTLVector(stream, context);
         users = readTLVector(stream, context);
-        state = (TLState) readTLObject(stream, context);
+        state = readTLObject(stream, context, TLState.class, TLState.CONSTRUCTOR_ID);
     }
 
     @Override

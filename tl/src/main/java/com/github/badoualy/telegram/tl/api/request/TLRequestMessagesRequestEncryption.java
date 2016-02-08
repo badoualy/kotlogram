@@ -66,7 +66,7 @@ public class TLRequestMessagesRequestEncryption extends TLMethod<TLAbsEncryptedC
     @Override
     @SuppressWarnings("unchecked")
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
-        userId = (TLAbsInputUser) readTLObject(stream, context);
+        userId = readTLObject(stream, context, TLAbsInputUser.class, -1);
         randomId = readInt(stream);
         gA = readTLBytes(stream, context);
     }

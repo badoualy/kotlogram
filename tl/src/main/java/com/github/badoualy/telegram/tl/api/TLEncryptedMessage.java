@@ -56,7 +56,7 @@ public class TLEncryptedMessage extends TLAbsEncryptedMessage {
         chatId = readInt(stream);
         date = readInt(stream);
         bytes = readTLBytes(stream, context);
-        file = (TLAbsEncryptedFile) readTLObject(stream, context);
+        file = readTLObject(stream, context, TLAbsEncryptedFile.class, -1);
     }
 
     @Override

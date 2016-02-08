@@ -35,7 +35,7 @@ public class TLUpdateNewStickerSet extends TLAbsUpdate {
     @Override
     @SuppressWarnings("unchecked")
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
-        stickerset = (TLStickerSet) readTLObject(stream, context);
+        stickerset = readTLObject(stream, context, TLStickerSet.class, TLStickerSet.CONSTRUCTOR_ID);
     }
 
     @Override

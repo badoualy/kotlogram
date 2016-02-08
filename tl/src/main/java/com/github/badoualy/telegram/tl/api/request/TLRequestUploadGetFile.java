@@ -62,7 +62,7 @@ public class TLRequestUploadGetFile extends TLMethod<TLFile> {
     @Override
     @SuppressWarnings("unchecked")
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
-        location = (TLAbsInputFileLocation) readTLObject(stream, context);
+        location = readTLObject(stream, context, TLAbsInputFileLocation.class, -1);
         offset = readInt(stream);
         limit = readInt(stream);
     }

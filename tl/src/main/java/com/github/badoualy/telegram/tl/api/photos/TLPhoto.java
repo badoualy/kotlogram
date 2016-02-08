@@ -44,7 +44,7 @@ public class TLPhoto extends TLObject {
     @Override
     @SuppressWarnings("unchecked")
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
-        photo = (TLAbsPhoto) readTLObject(stream, context);
+        photo = readTLObject(stream, context, TLAbsPhoto.class, -1);
         users = readTLVector(stream, context);
     }
 

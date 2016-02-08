@@ -77,7 +77,7 @@ public class TLDocument extends TLAbsDocument {
         date = readInt(stream);
         mimeType = readTLString(stream);
         size = readInt(stream);
-        thumb = (TLAbsPhotoSize) readTLObject(stream, context);
+        thumb = readTLObject(stream, context, TLAbsPhotoSize.class, -1);
         dcId = readInt(stream);
         attributes = readTLVector(stream, context);
     }

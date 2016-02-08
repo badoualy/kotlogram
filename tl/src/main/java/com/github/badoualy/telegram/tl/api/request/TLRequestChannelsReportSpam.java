@@ -63,8 +63,8 @@ public class TLRequestChannelsReportSpam extends TLMethod<TLBool> {
     @Override
     @SuppressWarnings("unchecked")
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
-        channel = (TLAbsInputChannel) readTLObject(stream, context);
-        userId = (TLAbsInputUser) readTLObject(stream, context);
+        channel = readTLObject(stream, context, TLAbsInputChannel.class, -1);
+        userId = readTLObject(stream, context, TLAbsInputUser.class, -1);
         id = readTLIntVector(stream, context);
     }
 

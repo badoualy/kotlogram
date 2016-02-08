@@ -60,7 +60,7 @@ public class TLRequestAccountUpdatePasswordSettings extends TLMethod<TLBool> {
     @SuppressWarnings("unchecked")
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
         currentPasswordHash = readTLBytes(stream, context);
-        newSettings = (TLPasswordInputSettings) readTLObject(stream, context);
+        newSettings = readTLObject(stream, context, TLPasswordInputSettings.class, TLPasswordInputSettings.CONSTRUCTOR_ID);
     }
 
     @Override

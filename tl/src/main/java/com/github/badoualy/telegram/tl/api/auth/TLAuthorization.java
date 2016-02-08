@@ -36,7 +36,7 @@ public class TLAuthorization extends TLObject {
     @Override
     @SuppressWarnings("unchecked")
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
-        user = (TLAbsUser) readTLObject(stream, context);
+        user = readTLObject(stream, context, TLAbsUser.class, -1);
     }
 
     @Override

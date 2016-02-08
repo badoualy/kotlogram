@@ -44,7 +44,7 @@ public class TLChannelParticipant extends TLObject {
     @Override
     @SuppressWarnings("unchecked")
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
-        participant = (TLAbsChannelParticipant) readTLObject(stream, context);
+        participant = readTLObject(stream, context, TLAbsChannelParticipant.class, -1);
         users = readTLVector(stream, context);
     }
 

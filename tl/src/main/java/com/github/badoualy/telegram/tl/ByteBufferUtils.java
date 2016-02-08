@@ -166,6 +166,10 @@ public final class ByteBufferUtils {
 //        return context.deserializeMessage(buffer);
 //    }
 //
+//    public static <T extends TLObject> T readTLObject(ByteBuffer buffer, TLContext context, Class<T> clazz, int constructorId) throws IOException {
+//        return context.deserializeMessage(buffer, clazz, constructorId);
+//    }
+//
 //    public static TLMethod readTLMethod(ByteBuffer buffer, TLContext context) throws IOException {
 //        return (TLMethod) context.deserializeMessage(buffer);
 //    }

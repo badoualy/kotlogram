@@ -42,7 +42,7 @@ public class TLUpdateChannelGroup extends TLAbsUpdate {
     @SuppressWarnings("unchecked")
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
         channelId = readInt(stream);
-        group = (TLMessageGroup) readTLObject(stream, context);
+        group = readTLObject(stream, context, TLMessageGroup.class, TLMessageGroup.CONSTRUCTOR_ID);
     }
 
     @Override

@@ -49,7 +49,7 @@ public class TLResolvedPeer extends TLObject {
     @Override
     @SuppressWarnings("unchecked")
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
-        peer = (TLAbsPeer) readTLObject(stream, context);
+        peer = readTLObject(stream, context, TLAbsPeer.class, -1);
         chats = readTLVector(stream, context);
         users = readTLVector(stream, context);
     }
