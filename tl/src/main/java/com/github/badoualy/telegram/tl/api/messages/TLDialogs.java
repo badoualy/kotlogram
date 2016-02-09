@@ -25,7 +25,7 @@ public class TLDialogs extends TLAbsDialogs {
     public TLDialogs() {
     }
 
-    public TLDialogs(TLVector<? extends TLAbsDialog> dialogs, TLVector<? extends TLAbsMessage> messages, TLVector<? extends TLAbsChat> chats, TLVector<? extends TLAbsUser> users) {
+    public TLDialogs(TLVector<TLAbsDialog> dialogs, TLVector<TLAbsMessage> messages, TLVector<TLAbsChat> chats, TLVector<TLAbsUser> users) {
         this.dialogs = dialogs;
         this.messages = messages;
         this.chats = chats;
@@ -83,35 +83,35 @@ public class TLDialogs extends TLAbsDialogs {
                 && (users == o.users || (users != null && o.users != null && users.equals(o.users)));
     }
 
-    public TLVector<? extends TLAbsDialog> getDialogs() {
+    public TLVector<TLAbsDialog> getDialogs() {
         return dialogs;
     }
 
-    public void setDialogs(TLVector<? extends TLAbsDialog> dialogs) {
+    public void setDialogs(TLVector<TLAbsDialog> dialogs) {
         this.dialogs = dialogs;
     }
 
-    public TLVector<? extends TLAbsMessage> getMessages() {
+    public TLVector<TLAbsMessage> getMessages() {
         return messages;
     }
 
-    public void setMessages(TLVector<? extends TLAbsMessage> messages) {
+    public void setMessages(TLVector<TLAbsMessage> messages) {
         this.messages = messages;
     }
 
-    public TLVector<? extends TLAbsChat> getChats() {
+    public TLVector<TLAbsChat> getChats() {
         return chats;
     }
 
-    public void setChats(TLVector<? extends TLAbsChat> chats) {
+    public void setChats(TLVector<TLAbsChat> chats) {
         this.chats = chats;
     }
 
-    public TLVector<? extends TLAbsUser> getUsers() {
+    public TLVector<TLAbsUser> getUsers() {
         return users;
     }
 
-    public void setUsers(TLVector<? extends TLAbsUser> users) {
+    public void setUsers(TLVector<TLAbsUser> users) {
         this.users = users;
     }
 }

@@ -18,12 +18,12 @@ import static com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_CONSTRUCTOR_ID;
 public class TLUpdateDcOptions extends TLAbsUpdate {
     public static final int CONSTRUCTOR_ID = 0x8e5e9873;
 
-    protected TLVector<? extends TLDcOption> dcOptions;
+    protected TLVector<TLDcOption> dcOptions;
 
     public TLUpdateDcOptions() {
     }
 
-    public TLUpdateDcOptions(TLVector<? extends TLDcOption> dcOptions) {
+    public TLUpdateDcOptions(TLVector<TLDcOption> dcOptions) {
         this.dcOptions = dcOptions;
     }
 
@@ -66,11 +66,11 @@ public class TLUpdateDcOptions extends TLAbsUpdate {
         return (dcOptions == o.dcOptions || (dcOptions != null && o.dcOptions != null && dcOptions.equals(o.dcOptions)));
     }
 
-    public TLVector<? extends TLDcOption> getDcOptions() {
+    public TLVector<TLDcOption> getDcOptions() {
         return dcOptions;
     }
 
-    public void setDcOptions(TLVector<? extends TLDcOption> dcOptions) {
+    public void setDcOptions(TLVector<TLDcOption> dcOptions) {
         this.dcOptions = dcOptions;
     }
 }

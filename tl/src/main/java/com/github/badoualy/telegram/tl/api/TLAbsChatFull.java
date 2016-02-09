@@ -16,7 +16,7 @@ public abstract class TLAbsChatFull extends TLObject {
 
     protected TLAbsExportedChatInvite exportedInvite;
 
-    protected TLVector<? extends TLAbsBotInfo> botInfo;
+    protected TLVector<TLAbsBotInfo> botInfo;
 
     public TLAbsChatFull() {
     }
@@ -53,11 +53,11 @@ public abstract class TLAbsChatFull extends TLObject {
         this.exportedInvite = exportedInvite;
     }
 
-    public TLVector<? extends TLAbsBotInfo> getBotInfo() {
+    public TLVector<TLAbsBotInfo> getBotInfo() {
         return botInfo;
     }
 
-    public void setBotInfo(TLVector<? extends TLAbsBotInfo> botInfo) {
+    public void setBotInfo(TLVector<TLAbsBotInfo> botInfo) {
         this.botInfo = botInfo;
     }
 }

@@ -18,12 +18,12 @@ import static com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_CONSTRUCTOR_ID;
 public class TLInputPrivacyValueAllowUsers extends TLAbsInputPrivacyRule {
     public static final int CONSTRUCTOR_ID = 0x131cc67f;
 
-    protected TLVector<? extends TLAbsInputUser> users;
+    protected TLVector<TLAbsInputUser> users;
 
     public TLInputPrivacyValueAllowUsers() {
     }
 
-    public TLInputPrivacyValueAllowUsers(TLVector<? extends TLAbsInputUser> users) {
+    public TLInputPrivacyValueAllowUsers(TLVector<TLAbsInputUser> users) {
         this.users = users;
     }
 
@@ -66,11 +66,11 @@ public class TLInputPrivacyValueAllowUsers extends TLAbsInputPrivacyRule {
         return (users == o.users || (users != null && o.users != null && users.equals(o.users)));
     }
 
-    public TLVector<? extends TLAbsInputUser> getUsers() {
+    public TLVector<TLAbsInputUser> getUsers() {
         return users;
     }
 
-    public void setUsers(TLVector<? extends TLAbsInputUser> users) {
+    public void setUsers(TLVector<TLAbsInputUser> users) {
         this.users = users;
     }
 }

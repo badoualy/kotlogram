@@ -41,12 +41,12 @@ public class TLDocument extends TLAbsDocument {
 
     protected int dcId;
 
-    protected TLVector<? extends TLAbsDocumentAttribute> attributes;
+    protected TLVector<TLAbsDocumentAttribute> attributes;
 
     public TLDocument() {
     }
 
-    public TLDocument(long id, long accessHash, int date, String mimeType, int size, TLAbsPhotoSize thumb, int dcId, TLVector<? extends TLAbsDocumentAttribute> attributes) {
+    public TLDocument(long id, long accessHash, int date, String mimeType, int size, TLAbsPhotoSize thumb, int dcId, TLVector<TLAbsDocumentAttribute> attributes) {
         this.id = id;
         this.accessHash = accessHash;
         this.date = date;
@@ -180,11 +180,11 @@ public class TLDocument extends TLAbsDocument {
         this.dcId = dcId;
     }
 
-    public TLVector<? extends TLAbsDocumentAttribute> getAttributes() {
+    public TLVector<TLAbsDocumentAttribute> getAttributes() {
         return attributes;
     }
 
-    public void setAttributes(TLVector<? extends TLAbsDocumentAttribute> attributes) {
+    public void setAttributes(TLVector<TLAbsDocumentAttribute> attributes) {
         this.attributes = attributes;
     }
 

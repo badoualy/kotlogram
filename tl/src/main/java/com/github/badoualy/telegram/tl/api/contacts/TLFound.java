@@ -22,16 +22,16 @@ import static com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_CONSTRUCTOR_ID;
 public class TLFound extends TLObject {
     public static final int CONSTRUCTOR_ID = 0x1aa1f784;
 
-    protected TLVector<? extends TLAbsPeer> results;
+    protected TLVector<TLAbsPeer> results;
 
-    protected TLVector<? extends TLAbsChat> chats;
+    protected TLVector<TLAbsChat> chats;
 
-    protected TLVector<? extends TLAbsUser> users;
+    protected TLVector<TLAbsUser> users;
 
     public TLFound() {
     }
 
-    public TLFound(TLVector<? extends TLAbsPeer> results, TLVector<? extends TLAbsChat> chats, TLVector<? extends TLAbsUser> users) {
+    public TLFound(TLVector<TLAbsPeer> results, TLVector<TLAbsChat> chats, TLVector<TLAbsUser> users) {
         this.results = results;
         this.chats = chats;
         this.users = users;
@@ -84,27 +84,27 @@ public class TLFound extends TLObject {
                 && (users == o.users || (users != null && o.users != null && users.equals(o.users)));
     }
 
-    public TLVector<? extends TLAbsPeer> getResults() {
+    public TLVector<TLAbsPeer> getResults() {
         return results;
     }
 
-    public void setResults(TLVector<? extends TLAbsPeer> results) {
+    public void setResults(TLVector<TLAbsPeer> results) {
         this.results = results;
     }
 
-    public TLVector<? extends TLAbsChat> getChats() {
+    public TLVector<TLAbsChat> getChats() {
         return chats;
     }
 
-    public void setChats(TLVector<? extends TLAbsChat> chats) {
+    public void setChats(TLVector<TLAbsChat> chats) {
         this.chats = chats;
     }
 
-    public TLVector<? extends TLAbsUser> getUsers() {
+    public TLVector<TLAbsUser> getUsers() {
         return users;
     }
 
-    public void setUsers(TLVector<? extends TLAbsUser> users) {
+    public void setUsers(TLVector<TLAbsUser> users) {
         this.users = users;
     }
 }

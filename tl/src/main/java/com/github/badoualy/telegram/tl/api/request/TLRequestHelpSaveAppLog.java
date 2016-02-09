@@ -23,12 +23,12 @@ import static com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_CONSTRUCTOR_ID;
 public class TLRequestHelpSaveAppLog extends TLMethod<TLBool> {
     public static final int CONSTRUCTOR_ID = 0x6f02f748;
 
-    protected TLVector<? extends TLInputAppEvent> events;
+    protected TLVector<TLInputAppEvent> events;
 
     public TLRequestHelpSaveAppLog() {
     }
 
-    public TLRequestHelpSaveAppLog(TLVector<? extends TLInputAppEvent> events) {
+    public TLRequestHelpSaveAppLog(TLVector<TLInputAppEvent> events) {
         this.events = events;
     }
 
@@ -84,11 +84,11 @@ public class TLRequestHelpSaveAppLog extends TLMethod<TLBool> {
         return (events == o.events || (events != null && o.events != null && events.equals(o.events)));
     }
 
-    public TLVector<? extends TLInputAppEvent> getEvents() {
+    public TLVector<TLInputAppEvent> getEvents() {
         return events;
     }
 
-    public void setEvents(TLVector<? extends TLInputAppEvent> events) {
+    public void setEvents(TLVector<TLInputAppEvent> events) {
         this.events = events;
     }
 }

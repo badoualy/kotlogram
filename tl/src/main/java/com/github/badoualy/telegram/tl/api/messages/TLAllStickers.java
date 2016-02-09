@@ -24,12 +24,12 @@ public class TLAllStickers extends TLAbsAllStickers {
 
     protected int hash;
 
-    protected TLVector<? extends TLStickerSet> sets;
+    protected TLVector<TLStickerSet> sets;
 
     public TLAllStickers() {
     }
 
-    public TLAllStickers(int hash, TLVector<? extends TLStickerSet> sets) {
+    public TLAllStickers(int hash, TLVector<TLStickerSet> sets) {
         this.hash = hash;
         this.sets = sets;
     }
@@ -85,11 +85,11 @@ public class TLAllStickers extends TLAbsAllStickers {
         this.hash = hash;
     }
 
-    public TLVector<? extends TLStickerSet> getSets() {
+    public TLVector<TLStickerSet> getSets() {
         return sets;
     }
 
-    public void setSets(TLVector<? extends TLStickerSet> sets) {
+    public void setSets(TLVector<TLStickerSet> sets) {
         this.sets = sets;
     }
 }

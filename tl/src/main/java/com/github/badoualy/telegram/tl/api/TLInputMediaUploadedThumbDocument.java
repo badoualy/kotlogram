@@ -29,14 +29,14 @@ public class TLInputMediaUploadedThumbDocument extends TLAbsInputMedia {
 
     protected String mimeType;
 
-    protected TLVector<? extends TLAbsDocumentAttribute> attributes;
+    protected TLVector<TLAbsDocumentAttribute> attributes;
 
     protected String caption;
 
     public TLInputMediaUploadedThumbDocument() {
     }
 
-    public TLInputMediaUploadedThumbDocument(TLAbsInputFile file, TLAbsInputFile thumb, String mimeType, TLVector<? extends TLAbsDocumentAttribute> attributes, String caption) {
+    public TLInputMediaUploadedThumbDocument(TLAbsInputFile file, TLAbsInputFile thumb, String mimeType, TLVector<TLAbsDocumentAttribute> attributes, String caption) {
         this.file = file;
         this.thumb = thumb;
         this.mimeType = mimeType;
@@ -123,11 +123,11 @@ public class TLInputMediaUploadedThumbDocument extends TLAbsInputMedia {
         this.mimeType = mimeType;
     }
 
-    public TLVector<? extends TLAbsDocumentAttribute> getAttributes() {
+    public TLVector<TLAbsDocumentAttribute> getAttributes() {
         return attributes;
     }
 
-    public void setAttributes(TLVector<? extends TLAbsDocumentAttribute> attributes) {
+    public void setAttributes(TLVector<TLAbsDocumentAttribute> attributes) {
         this.attributes = attributes;
     }
 

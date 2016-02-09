@@ -29,7 +29,7 @@ public class TLMessagesSlice extends TLAbsMessages {
     public TLMessagesSlice() {
     }
 
-    public TLMessagesSlice(int count, TLVector<? extends TLAbsMessage> messages, TLVector<? extends TLAbsChat> chats, TLVector<? extends TLAbsUser> users) {
+    public TLMessagesSlice(int count, TLVector<TLAbsMessage> messages, TLVector<TLAbsChat> chats, TLVector<TLAbsUser> users) {
         this.count = count;
         this.messages = messages;
         this.chats = chats;
@@ -95,27 +95,27 @@ public class TLMessagesSlice extends TLAbsMessages {
         this.count = count;
     }
 
-    public TLVector<? extends TLAbsMessage> getMessages() {
+    public TLVector<TLAbsMessage> getMessages() {
         return messages;
     }
 
-    public void setMessages(TLVector<? extends TLAbsMessage> messages) {
+    public void setMessages(TLVector<TLAbsMessage> messages) {
         this.messages = messages;
     }
 
-    public TLVector<? extends TLAbsChat> getChats() {
+    public TLVector<TLAbsChat> getChats() {
         return chats;
     }
 
-    public void setChats(TLVector<? extends TLAbsChat> chats) {
+    public void setChats(TLVector<TLAbsChat> chats) {
         this.chats = chats;
     }
 
-    public TLVector<? extends TLAbsUser> getUsers() {
+    public TLVector<TLAbsUser> getUsers() {
         return users;
     }
 
-    public void setUsers(TLVector<? extends TLAbsUser> users) {
+    public void setUsers(TLVector<TLAbsUser> users) {
         this.users = users;
     }
 }

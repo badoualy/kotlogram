@@ -23,7 +23,7 @@ public class TLBlocked extends TLAbsBlocked {
     public TLBlocked() {
     }
 
-    public TLBlocked(TLVector<? extends TLContactBlocked> blocked, TLVector<? extends TLAbsUser> users) {
+    public TLBlocked(TLVector<TLContactBlocked> blocked, TLVector<TLAbsUser> users) {
         this.blocked = blocked;
         this.users = users;
     }
@@ -71,19 +71,19 @@ public class TLBlocked extends TLAbsBlocked {
                 && (users == o.users || (users != null && o.users != null && users.equals(o.users)));
     }
 
-    public TLVector<? extends TLContactBlocked> getBlocked() {
+    public TLVector<TLContactBlocked> getBlocked() {
         return blocked;
     }
 
-    public void setBlocked(TLVector<? extends TLContactBlocked> blocked) {
+    public void setBlocked(TLVector<TLContactBlocked> blocked) {
         this.blocked = blocked;
     }
 
-    public TLVector<? extends TLAbsUser> getUsers() {
+    public TLVector<TLAbsUser> getUsers() {
         return users;
     }
 
-    public void setUsers(TLVector<? extends TLAbsUser> users) {
+    public void setUsers(TLVector<TLAbsUser> users) {
         this.users = users;
     }
 }

@@ -27,12 +27,12 @@ public class TLChannelMessagesFilter extends TLAbsChannelMessagesFilter {
 
     protected boolean excludeNewMessages;
 
-    protected TLVector<? extends TLMessageRange> ranges;
+    protected TLVector<TLMessageRange> ranges;
 
     public TLChannelMessagesFilter() {
     }
 
-    public TLChannelMessagesFilter(boolean importantOnly, boolean excludeNewMessages, TLVector<? extends TLMessageRange> ranges) {
+    public TLChannelMessagesFilter(boolean importantOnly, boolean excludeNewMessages, TLVector<TLMessageRange> ranges) {
         this.importantOnly = importantOnly;
         this.excludeNewMessages = excludeNewMessages;
         this.ranges = ranges;
@@ -111,11 +111,11 @@ public class TLChannelMessagesFilter extends TLAbsChannelMessagesFilter {
         this.excludeNewMessages = excludeNewMessages;
     }
 
-    public TLVector<? extends TLMessageRange> getRanges() {
+    public TLVector<TLMessageRange> getRanges() {
         return ranges;
     }
 
-    public void setRanges(TLVector<? extends TLMessageRange> ranges) {
+    public void setRanges(TLVector<TLMessageRange> ranges) {
         this.ranges = ranges;
     }
 }

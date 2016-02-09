@@ -30,7 +30,7 @@ public class TLDialogsSlice extends TLAbsDialogs {
     public TLDialogsSlice() {
     }
 
-    public TLDialogsSlice(int count, TLVector<? extends TLAbsDialog> dialogs, TLVector<? extends TLAbsMessage> messages, TLVector<? extends TLAbsChat> chats, TLVector<? extends TLAbsUser> users) {
+    public TLDialogsSlice(int count, TLVector<TLAbsDialog> dialogs, TLVector<TLAbsMessage> messages, TLVector<TLAbsChat> chats, TLVector<TLAbsUser> users) {
         this.count = count;
         this.dialogs = dialogs;
         this.messages = messages;
@@ -101,35 +101,35 @@ public class TLDialogsSlice extends TLAbsDialogs {
         this.count = count;
     }
 
-    public TLVector<? extends TLAbsDialog> getDialogs() {
+    public TLVector<TLAbsDialog> getDialogs() {
         return dialogs;
     }
 
-    public void setDialogs(TLVector<? extends TLAbsDialog> dialogs) {
+    public void setDialogs(TLVector<TLAbsDialog> dialogs) {
         this.dialogs = dialogs;
     }
 
-    public TLVector<? extends TLAbsMessage> getMessages() {
+    public TLVector<TLAbsMessage> getMessages() {
         return messages;
     }
 
-    public void setMessages(TLVector<? extends TLAbsMessage> messages) {
+    public void setMessages(TLVector<TLAbsMessage> messages) {
         this.messages = messages;
     }
 
-    public TLVector<? extends TLAbsChat> getChats() {
+    public TLVector<TLAbsChat> getChats() {
         return chats;
     }
 
-    public void setChats(TLVector<? extends TLAbsChat> chats) {
+    public void setChats(TLVector<TLAbsChat> chats) {
         this.chats = chats;
     }
 
-    public TLVector<? extends TLAbsUser> getUsers() {
+    public TLVector<TLAbsUser> getUsers() {
         return users;
     }
 
-    public void setUsers(TLVector<? extends TLAbsUser> users) {
+    public void setUsers(TLVector<TLAbsUser> users) {
         this.users = users;
     }
 }

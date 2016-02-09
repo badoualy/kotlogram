@@ -33,7 +33,7 @@ public class TLConfig extends TLObject {
 
     protected int thisDc;
 
-    protected TLVector<? extends TLDcOption> dcOptions;
+    protected TLVector<TLDcOption> dcOptions;
 
     protected int chatSizeMax;
 
@@ -61,12 +61,12 @@ public class TLConfig extends TLObject {
 
     protected int savedGifsLimit;
 
-    protected TLVector<? extends TLDisabledFeature> disabledFeatures;
+    protected TLVector<TLDisabledFeature> disabledFeatures;
 
     public TLConfig() {
     }
 
-    public TLConfig(int date, int expires, boolean testMode, int thisDc, TLVector<? extends TLDcOption> dcOptions, int chatSizeMax, int megagroupSizeMax, int forwardedCountMax, int onlineUpdatePeriodMs, int offlineBlurTimeoutMs, int offlineIdleTimeoutMs, int onlineCloudTimeoutMs, int notifyCloudDelayMs, int notifyDefaultDelayMs, int chatBigSize, int pushChatPeriodMs, int pushChatLimit, int savedGifsLimit, TLVector<? extends TLDisabledFeature> disabledFeatures) {
+    public TLConfig(int date, int expires, boolean testMode, int thisDc, TLVector<TLDcOption> dcOptions, int chatSizeMax, int megagroupSizeMax, int forwardedCountMax, int onlineUpdatePeriodMs, int offlineBlurTimeoutMs, int offlineIdleTimeoutMs, int onlineCloudTimeoutMs, int notifyCloudDelayMs, int notifyDefaultDelayMs, int chatBigSize, int pushChatPeriodMs, int pushChatLimit, int savedGifsLimit, TLVector<TLDisabledFeature> disabledFeatures) {
         this.date = date;
         this.expires = expires;
         this.testMode = testMode;
@@ -231,11 +231,11 @@ public class TLConfig extends TLObject {
         this.thisDc = thisDc;
     }
 
-    public TLVector<? extends TLDcOption> getDcOptions() {
+    public TLVector<TLDcOption> getDcOptions() {
         return dcOptions;
     }
 
-    public void setDcOptions(TLVector<? extends TLDcOption> dcOptions) {
+    public void setDcOptions(TLVector<TLDcOption> dcOptions) {
         this.dcOptions = dcOptions;
     }
 
@@ -343,11 +343,11 @@ public class TLConfig extends TLObject {
         this.savedGifsLimit = savedGifsLimit;
     }
 
-    public TLVector<? extends TLDisabledFeature> getDisabledFeatures() {
+    public TLVector<TLDisabledFeature> getDisabledFeatures() {
         return disabledFeatures;
     }
 
-    public void setDisabledFeatures(TLVector<? extends TLDisabledFeature> disabledFeatures) {
+    public void setDisabledFeatures(TLVector<TLDisabledFeature> disabledFeatures) {
         this.disabledFeatures = disabledFeatures;
     }
 }

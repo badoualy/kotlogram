@@ -9,6 +9,11 @@ dependencies {
         compile project(':api')
     else
         compile 'com.github.badoualy:kotlogram:0a16bcaade'
+
+    compile 'org.apache.commons:commons-lang3:3.4'
+    compile 'com.google.code.gson:gson:2.5'
+    compile 'commons-io:commons-io:2.4'
+    compile 'commons-codec:commons-codec:1.10'
 }
 
 repositories {

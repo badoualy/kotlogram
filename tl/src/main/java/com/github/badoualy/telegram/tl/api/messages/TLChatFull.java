@@ -26,14 +26,14 @@ public class TLChatFull extends TLObject {
 
     protected TLAbsChatFull fullChat;
 
-    protected TLVector<? extends TLAbsChat> chats;
+    protected TLVector<TLAbsChat> chats;
 
-    protected TLVector<? extends TLAbsUser> users;
+    protected TLVector<TLAbsUser> users;
 
     public TLChatFull() {
     }
 
-    public TLChatFull(TLAbsChatFull fullChat, TLVector<? extends TLAbsChat> chats, TLVector<? extends TLAbsUser> users) {
+    public TLChatFull(TLAbsChatFull fullChat, TLVector<TLAbsChat> chats, TLVector<TLAbsUser> users) {
         this.fullChat = fullChat;
         this.chats = chats;
         this.users = users;
@@ -94,19 +94,19 @@ public class TLChatFull extends TLObject {
         this.fullChat = fullChat;
     }
 
-    public TLVector<? extends TLAbsChat> getChats() {
+    public TLVector<TLAbsChat> getChats() {
         return chats;
     }
 
-    public void setChats(TLVector<? extends TLAbsChat> chats) {
+    public void setChats(TLVector<TLAbsChat> chats) {
         this.chats = chats;
     }
 
-    public TLVector<? extends TLAbsUser> getUsers() {
+    public TLVector<TLAbsUser> getUsers() {
         return users;
     }
 
-    public void setUsers(TLVector<? extends TLAbsUser> users) {
+    public void setUsers(TLVector<TLAbsUser> users) {
         this.users = users;
     }
 }

@@ -21,14 +21,14 @@ import static com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_CONSTRUCTOR_ID;
 public class TLSuggested extends TLObject {
     public static final int CONSTRUCTOR_ID = 0x5649dcc5;
 
-    protected TLVector<? extends TLContactSuggested> results;
+    protected TLVector<TLContactSuggested> results;
 
-    protected TLVector<? extends TLAbsUser> users;
+    protected TLVector<TLAbsUser> users;
 
     public TLSuggested() {
     }
 
-    public TLSuggested(TLVector<? extends TLContactSuggested> results, TLVector<? extends TLAbsUser> users) {
+    public TLSuggested(TLVector<TLContactSuggested> results, TLVector<TLAbsUser> users) {
         this.results = results;
         this.users = users;
     }
@@ -76,19 +76,19 @@ public class TLSuggested extends TLObject {
                 && (users == o.users || (users != null && o.users != null && users.equals(o.users)));
     }
 
-    public TLVector<? extends TLContactSuggested> getResults() {
+    public TLVector<TLContactSuggested> getResults() {
         return results;
     }
 
-    public void setResults(TLVector<? extends TLContactSuggested> results) {
+    public void setResults(TLVector<TLContactSuggested> results) {
         this.results = results;
     }
 
-    public TLVector<? extends TLAbsUser> getUsers() {
+    public TLVector<TLAbsUser> getUsers() {
         return users;
     }
 
-    public void setUsers(TLVector<? extends TLAbsUser> users) {
+    public void setUsers(TLVector<TLAbsUser> users) {
         this.users = users;
     }
 }

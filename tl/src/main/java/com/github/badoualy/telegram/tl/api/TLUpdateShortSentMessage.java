@@ -39,12 +39,12 @@ public class TLUpdateShortSentMessage extends TLAbsUpdates {
 
     protected TLAbsMessageMedia media;
 
-    protected TLVector<? extends TLAbsMessageEntity> entities;
+    protected TLVector<TLAbsMessageEntity> entities;
 
     public TLUpdateShortSentMessage() {
     }
 
-    public TLUpdateShortSentMessage(boolean unread, boolean out, int id, int pts, int ptsCount, int date, TLAbsMessageMedia media, TLVector<? extends TLAbsMessageEntity> entities) {
+    public TLUpdateShortSentMessage(boolean unread, boolean out, int id, int pts, int ptsCount, int date, TLAbsMessageMedia media, TLVector<TLAbsMessageEntity> entities) {
         this.unread = unread;
         this.out = out;
         this.id = id;
@@ -190,11 +190,11 @@ public class TLUpdateShortSentMessage extends TLAbsUpdates {
         this.media = media;
     }
 
-    public TLVector<? extends TLAbsMessageEntity> getEntities() {
+    public TLVector<TLAbsMessageEntity> getEntities() {
         return entities;
     }
 
-    public void setEntities(TLVector<? extends TLAbsMessageEntity> entities) {
+    public void setEntities(TLVector<TLAbsMessageEntity> entities) {
         this.entities = entities;
     }
 }

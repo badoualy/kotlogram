@@ -24,12 +24,12 @@ public class TLSavedGifs extends TLAbsSavedGifs {
 
     protected int hash;
 
-    protected TLVector<? extends TLAbsDocument> gifs;
+    protected TLVector<TLAbsDocument> gifs;
 
     public TLSavedGifs() {
     }
 
-    public TLSavedGifs(int hash, TLVector<? extends TLAbsDocument> gifs) {
+    public TLSavedGifs(int hash, TLVector<TLAbsDocument> gifs) {
         this.hash = hash;
         this.gifs = gifs;
     }
@@ -85,11 +85,11 @@ public class TLSavedGifs extends TLAbsSavedGifs {
         this.hash = hash;
     }
 
-    public TLVector<? extends TLAbsDocument> getGifs() {
+    public TLVector<TLAbsDocument> getGifs() {
         return gifs;
     }
 
-    public void setGifs(TLVector<? extends TLAbsDocument> gifs) {
+    public void setGifs(TLVector<TLAbsDocument> gifs) {
         this.gifs = gifs;
     }
 }

@@ -28,7 +28,7 @@ public class TLBlockedSlice extends TLAbsBlocked {
     public TLBlockedSlice() {
     }
 
-    public TLBlockedSlice(int count, TLVector<? extends TLContactBlocked> blocked, TLVector<? extends TLAbsUser> users) {
+    public TLBlockedSlice(int count, TLVector<TLContactBlocked> blocked, TLVector<TLAbsUser> users) {
         this.count = count;
         this.blocked = blocked;
         this.users = users;
@@ -89,19 +89,19 @@ public class TLBlockedSlice extends TLAbsBlocked {
         this.count = count;
     }
 
-    public TLVector<? extends TLContactBlocked> getBlocked() {
+    public TLVector<TLContactBlocked> getBlocked() {
         return blocked;
     }
 
-    public void setBlocked(TLVector<? extends TLContactBlocked> blocked) {
+    public void setBlocked(TLVector<TLContactBlocked> blocked) {
         this.blocked = blocked;
     }
 
-    public TLVector<? extends TLAbsUser> getUsers() {
+    public TLVector<TLAbsUser> getUsers() {
         return users;
     }
 
-    public void setUsers(TLVector<? extends TLAbsUser> users) {
+    public void setUsers(TLVector<TLAbsUser> users) {
         this.users = users;
     }
 }

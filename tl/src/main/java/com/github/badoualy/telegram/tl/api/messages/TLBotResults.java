@@ -37,12 +37,12 @@ public class TLBotResults extends TLObject {
 
     protected String nextOffset;
 
-    protected TLVector<? extends TLAbsBotInlineResult> results;
+    protected TLVector<TLAbsBotInlineResult> results;
 
     public TLBotResults() {
     }
 
-    public TLBotResults(boolean gallery, long queryId, String nextOffset, TLVector<? extends TLAbsBotInlineResult> results) {
+    public TLBotResults(boolean gallery, long queryId, String nextOffset, TLVector<TLAbsBotInlineResult> results) {
         this.gallery = gallery;
         this.queryId = queryId;
         this.nextOffset = nextOffset;
@@ -136,11 +136,11 @@ public class TLBotResults extends TLObject {
         this.nextOffset = nextOffset;
     }
 
-    public TLVector<? extends TLAbsBotInlineResult> getResults() {
+    public TLVector<TLAbsBotInlineResult> getResults() {
         return results;
     }
 
-    public void setResults(TLVector<? extends TLAbsBotInlineResult> results) {
+    public void setResults(TLVector<TLAbsBotInlineResult> results) {
         this.results = results;
     }
 }

@@ -23,12 +23,12 @@ import static com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_CONSTRUCTOR_ID;
 public class TLRequestContactsDeleteContacts extends TLMethod<TLBool> {
     public static final int CONSTRUCTOR_ID = 0x59ab389e;
 
-    protected TLVector<? extends TLAbsInputUser> id;
+    protected TLVector<TLAbsInputUser> id;
 
     public TLRequestContactsDeleteContacts() {
     }
 
-    public TLRequestContactsDeleteContacts(TLVector<? extends TLAbsInputUser> id) {
+    public TLRequestContactsDeleteContacts(TLVector<TLAbsInputUser> id) {
         this.id = id;
     }
 
@@ -84,11 +84,11 @@ public class TLRequestContactsDeleteContacts extends TLMethod<TLBool> {
         return (id == o.id || (id != null && o.id != null && id.equals(o.id)));
     }
 
-    public TLVector<? extends TLAbsInputUser> getId() {
+    public TLVector<TLAbsInputUser> getId() {
         return id;
     }
 
-    public void setId(TLVector<? extends TLAbsInputUser> id) {
+    public void setId(TLVector<TLAbsInputUser> id) {
         this.id = id;
     }
 }

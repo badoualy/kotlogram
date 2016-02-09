@@ -25,12 +25,12 @@ public class TLReplyKeyboardMarkup extends TLAbsReplyMarkup {
 
     protected boolean singleUse;
 
-    protected TLVector<? extends TLKeyboardButtonRow> rows;
+    protected TLVector<TLKeyboardButtonRow> rows;
 
     public TLReplyKeyboardMarkup() {
     }
 
-    public TLReplyKeyboardMarkup(boolean resize, boolean singleUse, boolean selective, TLVector<? extends TLKeyboardButtonRow> rows) {
+    public TLReplyKeyboardMarkup(boolean resize, boolean singleUse, boolean selective, TLVector<TLKeyboardButtonRow> rows) {
         this.resize = resize;
         this.singleUse = singleUse;
         this.selective = selective;
@@ -121,11 +121,11 @@ public class TLReplyKeyboardMarkup extends TLAbsReplyMarkup {
         this.selective = selective;
     }
 
-    public TLVector<? extends TLKeyboardButtonRow> getRows() {
+    public TLVector<TLKeyboardButtonRow> getRows() {
         return rows;
     }
 
-    public void setRows(TLVector<? extends TLKeyboardButtonRow> rows) {
+    public void setRows(TLVector<TLKeyboardButtonRow> rows) {
         this.rows = rows;
     }
 }

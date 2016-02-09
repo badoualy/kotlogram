@@ -25,14 +25,14 @@ public class TLStickerSet extends TLObject {
 
     protected com.github.badoualy.telegram.tl.api.TLStickerSet set;
 
-    protected TLVector<? extends TLStickerPack> packs;
+    protected TLVector<TLStickerPack> packs;
 
-    protected TLVector<? extends TLAbsDocument> documents;
+    protected TLVector<TLAbsDocument> documents;
 
     public TLStickerSet() {
     }
 
-    public TLStickerSet(com.github.badoualy.telegram.tl.api.TLStickerSet set, TLVector<? extends TLStickerPack> packs, TLVector<? extends TLAbsDocument> documents) {
+    public TLStickerSet(com.github.badoualy.telegram.tl.api.TLStickerSet set, TLVector<TLStickerPack> packs, TLVector<TLAbsDocument> documents) {
         this.set = set;
         this.packs = packs;
         this.documents = documents;
@@ -93,19 +93,19 @@ public class TLStickerSet extends TLObject {
         this.set = set;
     }
 
-    public TLVector<? extends TLStickerPack> getPacks() {
+    public TLVector<TLStickerPack> getPacks() {
         return packs;
     }
 
-    public void setPacks(TLVector<? extends TLStickerPack> packs) {
+    public void setPacks(TLVector<TLStickerPack> packs) {
         this.packs = packs;
     }
 
-    public TLVector<? extends TLAbsDocument> getDocuments() {
+    public TLVector<TLAbsDocument> getDocuments() {
         return documents;
     }
 
-    public void setDocuments(TLVector<? extends TLAbsDocument> documents) {
+    public void setDocuments(TLVector<TLAbsDocument> documents) {
         this.documents = documents;
     }
 }

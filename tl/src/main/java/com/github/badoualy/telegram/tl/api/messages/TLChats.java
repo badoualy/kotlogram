@@ -20,12 +20,12 @@ import static com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_CONSTRUCTOR_ID;
 public class TLChats extends TLObject {
     public static final int CONSTRUCTOR_ID = 0x64ff9fd5;
 
-    protected TLVector<? extends TLAbsChat> chats;
+    protected TLVector<TLAbsChat> chats;
 
     public TLChats() {
     }
 
-    public TLChats(TLVector<? extends TLAbsChat> chats) {
+    public TLChats(TLVector<TLAbsChat> chats) {
         this.chats = chats;
     }
 
@@ -68,11 +68,11 @@ public class TLChats extends TLObject {
         return (chats == o.chats || (chats != null && o.chats != null && chats.equals(o.chats)));
     }
 
-    public TLVector<? extends TLAbsChat> getChats() {
+    public TLVector<TLAbsChat> getChats() {
         return chats;
     }
 
-    public void setChats(TLVector<? extends TLAbsChat> chats) {
+    public void setChats(TLVector<TLAbsChat> chats) {
         this.chats = chats;
     }
 }

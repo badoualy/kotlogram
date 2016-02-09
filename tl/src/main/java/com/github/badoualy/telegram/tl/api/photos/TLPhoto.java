@@ -25,12 +25,12 @@ public class TLPhoto extends TLObject {
 
     protected TLAbsPhoto photo;
 
-    protected TLVector<? extends TLAbsUser> users;
+    protected TLVector<TLAbsUser> users;
 
     public TLPhoto() {
     }
 
-    public TLPhoto(TLAbsPhoto photo, TLVector<? extends TLAbsUser> users) {
+    public TLPhoto(TLAbsPhoto photo, TLVector<TLAbsUser> users) {
         this.photo = photo;
         this.users = users;
     }
@@ -86,11 +86,11 @@ public class TLPhoto extends TLObject {
         this.photo = photo;
     }
 
-    public TLVector<? extends TLAbsUser> getUsers() {
+    public TLVector<TLAbsUser> getUsers() {
         return users;
     }
 
-    public void setUsers(TLVector<? extends TLAbsUser> users) {
+    public void setUsers(TLVector<TLAbsUser> users) {
         this.users = users;
     }
 }

@@ -51,7 +51,7 @@ public class TLChannelFull extends TLAbsChatFull {
     public TLChannelFull() {
     }
 
-    public TLChannelFull(boolean canViewParticipants, int id, String about, Integer participantsCount, Integer adminsCount, Integer kickedCount, int readInboxMaxId, int unreadCount, int unreadImportantCount, TLAbsPhoto chatPhoto, TLAbsPeerNotifySettings notifySettings, TLAbsExportedChatInvite exportedInvite, TLVector<? extends TLAbsBotInfo> botInfo, Integer migratedFromChatId, Integer migratedFromMaxId) {
+    public TLChannelFull(boolean canViewParticipants, int id, String about, Integer participantsCount, Integer adminsCount, Integer kickedCount, int readInboxMaxId, int unreadCount, int unreadImportantCount, TLAbsPhoto chatPhoto, TLAbsPeerNotifySettings notifySettings, TLAbsExportedChatInvite exportedInvite, TLVector<TLAbsBotInfo> botInfo, Integer migratedFromChatId, Integer migratedFromMaxId) {
         this.canViewParticipants = canViewParticipants;
         this.id = id;
         this.about = about;
@@ -276,11 +276,11 @@ public class TLChannelFull extends TLAbsChatFull {
         this.exportedInvite = exportedInvite;
     }
 
-    public TLVector<? extends TLAbsBotInfo> getBotInfo() {
+    public TLVector<TLAbsBotInfo> getBotInfo() {
         return botInfo;
     }
 
-    public void setBotInfo(TLVector<? extends TLAbsBotInfo> botInfo) {
+    public void setBotInfo(TLVector<TLAbsBotInfo> botInfo) {
         this.botInfo = botInfo;
     }
 

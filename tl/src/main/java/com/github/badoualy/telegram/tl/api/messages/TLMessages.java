@@ -24,7 +24,7 @@ public class TLMessages extends TLAbsMessages {
     public TLMessages() {
     }
 
-    public TLMessages(TLVector<? extends TLAbsMessage> messages, TLVector<? extends TLAbsChat> chats, TLVector<? extends TLAbsUser> users) {
+    public TLMessages(TLVector<TLAbsMessage> messages, TLVector<TLAbsChat> chats, TLVector<TLAbsUser> users) {
         this.messages = messages;
         this.chats = chats;
         this.users = users;
@@ -77,27 +77,27 @@ public class TLMessages extends TLAbsMessages {
                 && (users == o.users || (users != null && o.users != null && users.equals(o.users)));
     }
 
-    public TLVector<? extends TLAbsMessage> getMessages() {
+    public TLVector<TLAbsMessage> getMessages() {
         return messages;
     }
 
-    public void setMessages(TLVector<? extends TLAbsMessage> messages) {
+    public void setMessages(TLVector<TLAbsMessage> messages) {
         this.messages = messages;
     }
 
-    public TLVector<? extends TLAbsChat> getChats() {
+    public TLVector<TLAbsChat> getChats() {
         return chats;
     }
 
-    public void setChats(TLVector<? extends TLAbsChat> chats) {
+    public void setChats(TLVector<TLAbsChat> chats) {
         this.chats = chats;
     }
 
-    public TLVector<? extends TLAbsUser> getUsers() {
+    public TLVector<TLAbsUser> getUsers() {
         return users;
     }
 
-    public void setUsers(TLVector<? extends TLAbsUser> users) {
+    public void setUsers(TLVector<TLAbsUser> users) {
         this.users = users;
     }
 }

@@ -26,14 +26,14 @@ import static com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_CONSTRUCTOR_ID;
 public class TLRequestContactsImportContacts extends TLMethod<TLImportedContacts> {
     public static final int CONSTRUCTOR_ID = 0xda30b32d;
 
-    protected TLVector<? extends TLInputPhoneContact> contacts;
+    protected TLVector<TLInputPhoneContact> contacts;
 
     protected boolean replace;
 
     public TLRequestContactsImportContacts() {
     }
 
-    public TLRequestContactsImportContacts(TLVector<? extends TLInputPhoneContact> contacts, boolean replace) {
+    public TLRequestContactsImportContacts(TLVector<TLInputPhoneContact> contacts, boolean replace) {
         this.contacts = contacts;
         this.replace = replace;
     }
@@ -94,11 +94,11 @@ public class TLRequestContactsImportContacts extends TLMethod<TLImportedContacts
                 && replace == o.replace;
     }
 
-    public TLVector<? extends TLInputPhoneContact> getContacts() {
+    public TLVector<TLInputPhoneContact> getContacts() {
         return contacts;
     }
 
-    public void setContacts(TLVector<? extends TLInputPhoneContact> contacts) {
+    public void setContacts(TLVector<TLInputPhoneContact> contacts) {
         this.contacts = contacts;
     }
 

@@ -20,12 +20,12 @@ import static com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_CONSTRUCTOR_ID;
 public class TLAuthorizations extends TLObject {
     public static final int CONSTRUCTOR_ID = 0x1250abde;
 
-    protected TLVector<? extends TLAuthorization> authorizations;
+    protected TLVector<TLAuthorization> authorizations;
 
     public TLAuthorizations() {
     }
 
-    public TLAuthorizations(TLVector<? extends TLAuthorization> authorizations) {
+    public TLAuthorizations(TLVector<TLAuthorization> authorizations) {
         this.authorizations = authorizations;
     }
 
@@ -68,11 +68,11 @@ public class TLAuthorizations extends TLObject {
         return (authorizations == o.authorizations || (authorizations != null && o.authorizations != null && authorizations.equals(o.authorizations)));
     }
 
-    public TLVector<? extends TLAuthorization> getAuthorizations() {
+    public TLVector<TLAuthorization> getAuthorizations() {
         return authorizations;
     }
 
-    public void setAuthorizations(TLVector<? extends TLAuthorization> authorizations) {
+    public void setAuthorizations(TLVector<TLAuthorization> authorizations) {
         this.authorizations = authorizations;
     }
 }

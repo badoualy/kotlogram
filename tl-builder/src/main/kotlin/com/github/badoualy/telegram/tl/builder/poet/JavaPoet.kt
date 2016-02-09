@@ -441,7 +441,8 @@ object JavaPoet {
             if (fieldType is ParameterizedTypeName
                     && (fieldTlType is TLTypeGeneric
                     || (fieldTlType is TLTypeConditional && fieldTlType.realType is TLTypeGeneric))) {
-                val typeArg = WildcardTypeName.subtypeOf(fieldType.typeArguments.first())
+                //val typeArg = WildcardTypeName.subtypeOf(fieldType.typeArguments.first()) TODO FIX
+                val typeArg = fieldType.typeArguments.first()
                 fieldType = ParameterizedTypeName.get(fieldType.rawType, typeArg)
             }
             val fieldName = parameter.name.lCamelCase().javaEscape()

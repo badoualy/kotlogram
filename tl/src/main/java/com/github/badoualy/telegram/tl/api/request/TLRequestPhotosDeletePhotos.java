@@ -23,12 +23,12 @@ import static com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_CONSTRUCTOR_ID;
 public class TLRequestPhotosDeletePhotos extends TLMethod<TLLongVector> {
     public static final int CONSTRUCTOR_ID = 0x87cf7f2f;
 
-    protected TLVector<? extends TLAbsInputPhoto> id;
+    protected TLVector<TLAbsInputPhoto> id;
 
     public TLRequestPhotosDeletePhotos() {
     }
 
-    public TLRequestPhotosDeletePhotos(TLVector<? extends TLAbsInputPhoto> id) {
+    public TLRequestPhotosDeletePhotos(TLVector<TLAbsInputPhoto> id) {
         this.id = id;
     }
 
@@ -84,11 +84,11 @@ public class TLRequestPhotosDeletePhotos extends TLMethod<TLLongVector> {
         return (id == o.id || (id != null && o.id != null && id.equals(o.id)));
     }
 
-    public TLVector<? extends TLAbsInputPhoto> getId() {
+    public TLVector<TLAbsInputPhoto> getId() {
         return id;
     }
 
-    public void setId(TLVector<? extends TLAbsInputPhoto> id) {
+    public void setId(TLVector<TLAbsInputPhoto> id) {
         this.id = id;
     }
 }

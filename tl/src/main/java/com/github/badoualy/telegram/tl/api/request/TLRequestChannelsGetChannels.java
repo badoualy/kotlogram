@@ -23,12 +23,12 @@ import static com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_CONSTRUCTOR_ID;
 public class TLRequestChannelsGetChannels extends TLMethod<TLChats> {
     public static final int CONSTRUCTOR_ID = 0xa7f6bbb;
 
-    protected TLVector<? extends TLAbsInputChannel> id;
+    protected TLVector<TLAbsInputChannel> id;
 
     public TLRequestChannelsGetChannels() {
     }
 
-    public TLRequestChannelsGetChannels(TLVector<? extends TLAbsInputChannel> id) {
+    public TLRequestChannelsGetChannels(TLVector<TLAbsInputChannel> id) {
         this.id = id;
     }
 
@@ -84,11 +84,11 @@ public class TLRequestChannelsGetChannels extends TLMethod<TLChats> {
         return (id == o.id || (id != null && o.id != null && id.equals(o.id)));
     }
 
-    public TLVector<? extends TLAbsInputChannel> getId() {
+    public TLVector<TLAbsInputChannel> getId() {
         return id;
     }
 
-    public void setId(TLVector<? extends TLAbsInputChannel> id) {
+    public void setId(TLVector<TLAbsInputChannel> id) {
         this.id = id;
     }
 }

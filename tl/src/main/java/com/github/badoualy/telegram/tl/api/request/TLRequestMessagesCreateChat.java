@@ -26,14 +26,14 @@ import static com.github.badoualy.telegram.tl.TLObjectUtils.computeTLStringSeria
 public class TLRequestMessagesCreateChat extends TLMethod<TLAbsUpdates> {
     public static final int CONSTRUCTOR_ID = 0x9cb126e;
 
-    protected TLVector<? extends TLAbsInputUser> users;
+    protected TLVector<TLAbsInputUser> users;
 
     protected String title;
 
     public TLRequestMessagesCreateChat() {
     }
 
-    public TLRequestMessagesCreateChat(TLVector<? extends TLAbsInputUser> users, String title) {
+    public TLRequestMessagesCreateChat(TLVector<TLAbsInputUser> users, String title) {
         this.users = users;
         this.title = title;
     }
@@ -94,11 +94,11 @@ public class TLRequestMessagesCreateChat extends TLMethod<TLAbsUpdates> {
                 && (title == o.title || (title != null && o.title != null && title.equals(o.title)));
     }
 
-    public TLVector<? extends TLAbsInputUser> getUsers() {
+    public TLVector<TLAbsInputUser> getUsers() {
         return users;
     }
 
-    public void setUsers(TLVector<? extends TLAbsInputUser> users) {
+    public void setUsers(TLVector<TLAbsInputUser> users) {
         this.users = users;
     }
 

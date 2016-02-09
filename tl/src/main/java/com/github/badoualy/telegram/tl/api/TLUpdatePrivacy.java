@@ -22,12 +22,12 @@ public class TLUpdatePrivacy extends TLAbsUpdate {
 
     protected TLPrivacyKeyStatusTimestamp key;
 
-    protected TLVector<? extends TLAbsPrivacyRule> rules;
+    protected TLVector<TLAbsPrivacyRule> rules;
 
     public TLUpdatePrivacy() {
     }
 
-    public TLUpdatePrivacy(TLPrivacyKeyStatusTimestamp key, TLVector<? extends TLAbsPrivacyRule> rules) {
+    public TLUpdatePrivacy(TLPrivacyKeyStatusTimestamp key, TLVector<TLAbsPrivacyRule> rules) {
         this.key = key;
         this.rules = rules;
     }
@@ -83,11 +83,11 @@ public class TLUpdatePrivacy extends TLAbsUpdate {
         this.key = key;
     }
 
-    public TLVector<? extends TLAbsPrivacyRule> getRules() {
+    public TLVector<TLAbsPrivacyRule> getRules() {
         return rules;
     }
 
-    public void setRules(TLVector<? extends TLAbsPrivacyRule> rules) {
+    public void setRules(TLVector<TLAbsPrivacyRule> rules) {
         this.rules = rules;
     }
 }

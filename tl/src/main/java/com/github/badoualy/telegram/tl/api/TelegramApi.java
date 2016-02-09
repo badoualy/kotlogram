@@ -94,7 +94,7 @@ public interface TelegramApi {
 
     TLBool accountSetAccountTTL(TLAccountDaysTTL ttl) throws IOException;
 
-    TLPrivacyRules accountSetPrivacy(TLInputPrivacyKeyStatusTimestamp key, TLVector<? extends TLAbsInputPrivacyRule> rules) throws IOException;
+    TLPrivacyRules accountSetPrivacy(TLInputPrivacyKeyStatusTimestamp key, TLVector<TLAbsInputPrivacyRule> rules) throws IOException;
 
     TLBool accountUnregisterDevice(int tokenType, String token) throws IOException;
 
@@ -162,7 +162,7 @@ public interface TelegramApi {
 
     TLAbsExportedChatInvite channelsExportInvite(TLAbsInputChannel channel) throws IOException;
 
-    TLChats channelsGetChannels(TLVector<? extends TLAbsInputChannel> id) throws IOException;
+    TLChats channelsGetChannels(TLVector<TLAbsInputChannel> id) throws IOException;
 
     TLAbsDialogs channelsGetDialogs(int offset, int limit) throws IOException;
 
@@ -176,7 +176,7 @@ public interface TelegramApi {
 
     TLChannelParticipants channelsGetParticipants(TLAbsInputChannel channel, TLAbsChannelParticipantsFilter filter, int offset, int limit) throws IOException;
 
-    TLAbsUpdates channelsInviteToChannel(TLAbsInputChannel channel, TLVector<? extends TLAbsInputUser> users) throws IOException;
+    TLAbsUpdates channelsInviteToChannel(TLAbsInputChannel channel, TLVector<TLAbsInputUser> users) throws IOException;
 
     TLAbsUpdates channelsJoinChannel(TLAbsInputChannel channel) throws IOException;
 
@@ -196,7 +196,7 @@ public interface TelegramApi {
 
     TLLink contactsDeleteContact(TLAbsInputUser id) throws IOException;
 
-    TLBool contactsDeleteContacts(TLVector<? extends TLAbsInputUser> id) throws IOException;
+    TLBool contactsDeleteContacts(TLVector<TLAbsInputUser> id) throws IOException;
 
     TLIntVector contactsExportCard() throws IOException;
 
@@ -210,7 +210,7 @@ public interface TelegramApi {
 
     TLAbsUser contactsImportCard(TLIntVector exportCard) throws IOException;
 
-    TLImportedContacts contactsImportContacts(TLVector<? extends TLInputPhoneContact> contacts, boolean replace) throws IOException;
+    TLImportedContacts contactsImportContacts(TLVector<TLInputPhoneContact> contacts, boolean replace) throws IOException;
 
     TLResolvedPeer contactsResolveUsername(String username) throws IOException;
 
@@ -232,7 +232,7 @@ public interface TelegramApi {
 
     TLTermsOfService helpGetTermsOfService(String langCode) throws IOException;
 
-    TLBool helpSaveAppLog(TLVector<? extends TLInputAppEvent> events) throws IOException;
+    TLBool helpSaveAppLog(TLVector<TLInputAppEvent> events) throws IOException;
 
     <T extends TLObject> T initConnection(int apiId, String deviceModel, String systemVersion, String appVersion, String langCode, TLMethod<T> query) throws IOException;
 
@@ -250,7 +250,7 @@ public interface TelegramApi {
 
     TLAbsChatInvite messagesCheckChatInvite(String hash) throws IOException;
 
-    TLAbsUpdates messagesCreateChat(TLVector<? extends TLAbsInputUser> users, String title) throws IOException;
+    TLAbsUpdates messagesCreateChat(TLVector<TLAbsInputUser> users, String title) throws IOException;
 
     TLAbsUpdates messagesDeleteChatUser(int chatId, TLAbsInputUser userId) throws IOException;
 
@@ -330,7 +330,7 @@ public interface TelegramApi {
 
     TLAbsMessages messagesSearchGlobal(String q, int offsetDate, TLAbsInputPeer offsetPeer, int offsetId, int limit) throws IOException;
 
-    TLAbsUpdates messagesSendBroadcast(TLVector<? extends TLAbsInputUser> contacts, TLLongVector randomId, String message, TLAbsInputMedia media) throws IOException;
+    TLAbsUpdates messagesSendBroadcast(TLVector<TLAbsInputUser> contacts, TLLongVector randomId, String message, TLAbsInputMedia media) throws IOException;
 
     TLAbsSentEncryptedMessage messagesSendEncrypted(TLInputEncryptedChat peer, long randomId, TLBytes data) throws IOException;
 
@@ -342,11 +342,11 @@ public interface TelegramApi {
 
     TLAbsUpdates messagesSendMedia(boolean broadcast, TLAbsInputPeer peer, Integer replyToMsgId, TLAbsInputMedia media, long randomId, TLAbsReplyMarkup replyMarkup) throws IOException;
 
-    TLAbsUpdates messagesSendMessage(boolean noWebpage, boolean broadcast, TLAbsInputPeer peer, Integer replyToMsgId, String message, long randomId, TLAbsReplyMarkup replyMarkup, TLVector<? extends TLAbsMessageEntity> entities) throws IOException;
+    TLAbsUpdates messagesSendMessage(boolean noWebpage, boolean broadcast, TLAbsInputPeer peer, Integer replyToMsgId, String message, long randomId, TLAbsReplyMarkup replyMarkup, TLVector<TLAbsMessageEntity> entities) throws IOException;
 
     TLBool messagesSetEncryptedTyping(TLInputEncryptedChat peer, boolean typing) throws IOException;
 
-    TLBool messagesSetInlineBotResults(boolean gallery, boolean _private, long queryId, TLVector<? extends TLInputBotInlineResult> results, int cacheTime, String nextOffset) throws IOException;
+    TLBool messagesSetInlineBotResults(boolean gallery, boolean _private, long queryId, TLVector<TLInputBotInlineResult> results, int cacheTime, String nextOffset) throws IOException;
 
     TLBool messagesSetTyping(TLAbsInputPeer peer, TLAbsSendMessageAction action) throws IOException;
 
@@ -356,7 +356,7 @@ public interface TelegramApi {
 
     TLBool messagesUninstallStickerSet(TLAbsInputStickerSet stickerset) throws IOException;
 
-    TLLongVector photosDeletePhotos(TLVector<? extends TLAbsInputPhoto> id) throws IOException;
+    TLLongVector photosDeletePhotos(TLVector<TLAbsInputPhoto> id) throws IOException;
 
     TLAbsPhotos photosGetUserPhotos(TLAbsInputUser userId, int offset, long maxId, int limit) throws IOException;
 
@@ -378,5 +378,5 @@ public interface TelegramApi {
 
     TLUserFull usersGetFullUser(TLAbsInputUser id) throws IOException;
 
-    TLVector<TLAbsUser> usersGetUsers(TLVector<? extends TLAbsInputUser> id) throws IOException;
+    TLVector<TLAbsUser> usersGetUsers(TLVector<TLAbsInputUser> id) throws IOException;
 }
