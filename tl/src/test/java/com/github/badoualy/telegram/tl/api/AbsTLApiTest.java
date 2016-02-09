@@ -20,15 +20,17 @@ import java.lang.reflect.Type;
 import java.lang.reflect.WildcardType;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-public class TestUtils {
+public abstract class AbsTLApiTest {
 
-    private static final String BASE_PACKAGE = "com.github.badoualy.telegram.tl.api";
+    public static final String BASE_PACKAGE = "com.github.badoualy.telegram.tl.api";
+
     public static List<Class<? extends TLObject>> constructorList;
     public static Random random;
     public static Reflections reflections;
@@ -57,21 +59,13 @@ public class TestUtils {
         constructorList = classList.stream()
                                    .filter(clazz -> (clazz.getModifiers() & Modifier.ABSTRACT) == 0)
                                    .filter(clazz -> !clazz.getPackage().getName().equalsIgnoreCase("com.github.badoualy.telegram.tl.core"))
-                                   .filter(clazz -> !clazz.getSimpleName().equalsIgnoreCase("TLRequestInvokeAfterMsg"))
-                                   .filter(clazz -> !clazz.getSimpleName().equalsIgnoreCase("TLRequestInvokeAfterMsgs"))
-                                   .filter(clazz -> !clazz.getSimpleName().equalsIgnoreCase("TLRequestInitConnection"))
-                                   .filter(clazz -> !clazz.getSimpleName().equalsIgnoreCase("TLRequestInvokeWithoutUpdates"))
-                                   .filter(clazz -> !clazz.getSimpleName().equalsIgnoreCase("TLRequestInvokeWithLayer"))
                                    .sorted((o1, o2) -> o1.getSimpleName().compareTo(o2.getSimpleName()))
                                    .collect(Collectors.toList());
         System.out.println("Found " + constructorList.size() + " non abstract classes");
     }
 
-    public static TLObject getRandomTLObject(Class<? extends TLObject> clazz) throws Exception {
-        if (clazz == TLBool.FALSE.getClass()) return TLBool.FALSE;
-        if (clazz == TLBool.TRUE.getClass()) return TLBool.TRUE;
-
-        TLObject object = newInstanceOf(clazz);
+    public <T extends TLObject> T randomize(T object) {
+        Class<? extends TLObject> clazz = object.getClass();
 
         // Get class + superclass fields
         List<Field> fields = new ArrayList<>();
@@ -95,7 +89,7 @@ public class TestUtils {
     }
 
     @SuppressWarnings("unchecked")
-    public static <T extends TLObject> T newInstanceOf(Class<T> clazz) throws Exception {
+    public <T extends TLObject> T newInstanceOf(Class<T> clazz) throws Exception {
         for (Constructor<?> c : clazz.getConstructors()) {
             if (c.getParameterCount() == 0) {
                 c.setAccessible(true);
@@ -106,8 +100,18 @@ public class TestUtils {
         throw new RuntimeException("No constructor found for type " + clazz.getSimpleName());
     }
 
+    public TLObject getRandomTLObject(Class<? extends TLObject> clazz) throws Exception {
+        if (clazz == TLBool.FALSE.getClass()) return TLBool.FALSE;
+        if (clazz == TLBool.TRUE.getClass()) return TLBool.TRUE;
+
+        TLObject object = newInstanceOf(clazz);
+        randomize(object);
+
+        return object;
+    }
+
     @SuppressWarnings("unchecked")
-    public static TLVector getRandomTLVector(Class<?> clazz) throws Exception {
+    public TLVector getRandomTLVector(Class<?> clazz) throws Exception {
         TLVector obj;
         if (is(clazz, Integer.class)) obj = new TLIntVector();
         else if (is(clazz, Long.class)) obj = new TLLongVector();
@@ -122,7 +126,7 @@ public class TestUtils {
     }
 
     @SuppressWarnings("unchecked")
-    public static <T> T getRandom(Class<T> type, Field field) throws Exception {
+    public <T> T getRandom(Class<T> type, Field field) throws Exception {
         // Base types
         if (is(type, int.class, Integer.class))
             return (T) Integer.valueOf(random.nextInt());
@@ -155,12 +159,13 @@ public class TestUtils {
             return (T) getRandomTLVector((Class<?>) vectorType);
         }
 
+        // TLObject
         if (TLObject.class.isAssignableFrom(type)) {
             if ((type.getModifiers() & Modifier.ABSTRACT) != 0) {
                 // Abstract, not a real constructor, get a random one
                 Set<Class<? extends T>> subtypes = reflections.getSubTypesOf(type);
                 int randomIndex = random.nextInt(subtypes.size());
-                return (T) getRandomTLObject((Class<? extends TLObject>) subtypes.toArray()[randomIndex]);
+                type = (Class<T>) subtypes.toArray()[randomIndex];
             }
 
             return (T) getRandomTLObject((Class<? extends TLObject>) type);
@@ -169,15 +174,11 @@ public class TestUtils {
         throw new RuntimeException("Unsupported type " + type.getName());
     }
 
-    public static boolean is(Class<?> type, Class<?>... types) {
-        for (Class<?> clazz : types) {
-            if (type == clazz)
-                return true;
-        }
-
-        return false;
+    public boolean is(Class<?> type, Class<?>... types) {
+        return Arrays.stream(types).anyMatch(clazz -> clazz == type);
     }
 
+    // TODO: improve
     private static class PositiveRandom extends Random {
 
         public PositiveRandom(long seed) {

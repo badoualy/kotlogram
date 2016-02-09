@@ -19,6 +19,7 @@ object JavaPoet {
 
     val emptyConstructorAbstractedMap = HashMap<TLConstructor, Boolean>() // Map a constructor to true if it's abstracted for an "Empty" constructor only
     val contextConstructors = ArrayList<TLConstructor>() // List of constructors to register in context
+    val testContext = ArrayList<ClassName>() // List of types for test context (contextConstructors + methods)
 
     var totalClass = 0
 
@@ -48,7 +49,12 @@ object JavaPoet {
         writeMethods()
 
         println()
+        println("Generating context...")
         writeContext()
+
+        println()
+        println("Generating test context...")
+        writeTestContext()
 
         println()
         println("Generated $totalClass classes")
@@ -125,8 +131,8 @@ object JavaPoet {
 
         methods.forEach { method -> writeClassToFile(PACKAGE_TL_API_REQUEST, generateMethodClass(method)) }
 
-        writeClassToFile(PACKAGE_TL_API, apiClazz.build())
-        writeClassToFile(PACKAGE_TL_API, apiWrappedClazz.build())
+        writeClassToFile(PACKAGE_TL_API, apiClazz.build(), OUTPUT)
+        writeClassToFile(PACKAGE_TL_API, apiWrappedClazz.build(), OUTPUT)
         totalClass += 2
     }
 
@@ -162,6 +168,38 @@ object JavaPoet {
         totalClass++
     }
 
+
+    private fun writeTestContext() {
+        val contextClazz = TypeSpec.classBuilder(TL_API_TEST_CONTEXT)
+                .addModifiers(Modifier.PUBLIC)
+                .addJavadoc(JAVADOC_AUTHOR)
+                .addJavadoc(JAVADOC_SEE)
+                .addAnnotation(AnnotationSpec.builder(SuppressWarnings::class.java).addMember("value", "\"unused\"").build())
+                .superclass(TYPE_TL_CONTEXT)
+
+        contextClazz.addMethod(MethodSpec.constructorBuilder().addModifiers(Modifier.PUBLIC).addStatement("super(\$L)", testContext.size).build())
+
+        contextClazz.addField(TYPE_TL_API_TEST_CONTEXT, "instance", Modifier.PRIVATE, Modifier.STATIC)
+
+        contextClazz.addMethod(MethodSpec.methodBuilder("getInstance")
+                .addModifiers(Modifier.PUBLIC, Modifier.STATIC)
+                .returns(TYPE_TL_API_TEST_CONTEXT)
+                .beginControlFlow("if (instance == null)")
+                .addStatement("instance = new \$T()", TYPE_TL_API_TEST_CONTEXT)
+                .endControlFlow()
+                .addStatement("return instance")
+                .build())
+
+        val methodBuilder = MethodSpec.methodBuilder("init").addModifiers(Modifier.PUBLIC).addAnnotation(Override::class.java)
+        for (clazzType in testContext.sortedBy { t -> t.simpleName() }) {
+            methodBuilder.addStatement("registerClass(\$T.CONSTRUCTOR_ID, \$T.class" + ")", clazzType, clazzType)
+        }
+        contextClazz.addMethod(methodBuilder.build())
+
+        writeClassToFile(PACKAGE_TL_API, contextClazz.build(), OUTPUT_TEST)
+        totalClass++
+    }
+
     private fun generateAbstractConstructorClass(constructor: TLAbstractConstructor): TypeSpec {
         val clazzName = className(constructor.name, abstract = true)
         val clazz = TypeSpec.classBuilder(clazzName)
@@ -170,7 +208,7 @@ object JavaPoet {
                 .addJavadoc(JAVADOC_SEE)
                 .superclass(TYPE_TL_OBJECT)
 
-        generateClassCommon(clazz, constructor.name, null, constructor.parameters)
+        generateClassCommon(clazz, null, constructor.name, null, constructor.parameters)
 
         if (constructor.abstractEmptyConstructor) {
             val constructors = contextConstructors.filter { c -> c.tlType == constructor.tlType }
@@ -217,8 +255,9 @@ object JavaPoet {
                 .addJavadoc(JAVADOC_AUTHOR)
                 .addJavadoc(JAVADOC_SEE)
                 .superclass(superclass)
+        val clazzTypeName = constructorClassNameMap[constructor]!!
 
-        generateClassCommon(clazz, constructor.name, constructor.id, constructor.parameters)
+        generateClassCommon(clazz, clazzTypeName, constructor.name, constructor.id, constructor.parameters)
 
         if (emptyConstructorAbstractedMap.getOrDefault(constructor, false)) {
             clazz.addMethod(MethodSpec.methodBuilder("isEmpty")
@@ -239,7 +278,7 @@ object JavaPoet {
                 clazz.addMethod(MethodSpec.methodBuilder("getAs" + constructor.name.split(".").last().uCamelCase())
                         .addModifiers(Modifier.PUBLIC, Modifier.FINAL)
                         .addAnnotation(Override::class.java)
-                        .returns(constructorClassNameMap[constructor])
+                        .returns(clazzTypeName)
                         .addStatement("return this")
                         .build())
             }
@@ -251,6 +290,7 @@ object JavaPoet {
     private fun generateMethodClass(method: TLMethod): TypeSpec {
         val clazzName = className(method.name, request = true)
         val responseType = getType(method.tlType, true)
+        val clazzTypeName = ClassName.get(PACKAGE_TL_API_REQUEST, clazzName)
         val clazz = TypeSpec.classBuilder(clazzName)
                 .addModifiers(Modifier.PUBLIC)
                 .addJavadoc(JAVADOC_AUTHOR)
@@ -294,11 +334,11 @@ object JavaPoet {
                 .returns(responseType)
                 .addStatement("return (\$T) executeRpcQuery(new \$T(\$L))",
                         responseType,
-                        ClassName.get(PACKAGE_TL_API_REQUEST, clazzName),
+                        clazzTypeName,
                         if (method.parameters.isNotEmpty())
                             method.parameters.filterNot { p -> p.tlType is TLTypeFlag }.map { p -> p.name.lCamelCase().javaEscape() }.joinToString(", ")
                         else "")
-        generateClassCommon(clazz, method.name, method.id, method.parameters)
+        generateClassCommon(clazz, clazzTypeName, method.name, method.id, method.parameters)
         apiClazz.addMethod(apiMethod?.build())
         apiWrappedClazz.addMethod(apiWrappedMethod?.build())
         apiMethod = null
@@ -307,11 +347,14 @@ object JavaPoet {
         return clazz.build()
     }
 
-    private fun generateClassCommon(clazz: TypeSpec.Builder, name: String, id: Int?, parameters: List<TLParameter>) {
+    private fun generateClassCommon(clazz: TypeSpec.Builder, clazzTypeName: ClassName?, name: String, id: Int?, parameters: List<TLParameter>) {
         if (id != null) {
             // CONSTRUCTOR_ID field
             clazz.addField(FieldSpec.builder(TypeName.INT, "CONSTRUCTOR_ID", Modifier.PUBLIC, Modifier.STATIC, Modifier.FINAL)
                     .initializer("0x${hex(id)}").build())
+
+            if (clazzTypeName != null)
+                testContext.add(clazzTypeName)
         }
 
         // Empty constructor
@@ -568,12 +611,12 @@ object JavaPoet {
                 .build()
     }
 
-    private fun writeClassToFile(packageName: String, clazz: TypeSpec) {
+    private fun writeClassToFile(packageName: String, clazz: TypeSpec, output: String = OUTPUT) {
         JavaFile.builder(packageName, clazz)
                 .addStaticImport(TYPE_STREAM_UTILS, "*")
                 .addStaticImport(TYPE_TLOBJECT_UTILS, "*")
                 .indent("    ")
-                .build().writeTo(File(OUTPUT))
+                .build().writeTo(File(output))
     }
 
     private fun className(typeName: String, abstract: Boolean = false, request: Boolean = false) = when {
@@ -587,5 +630,9 @@ object JavaPoet {
         val subPackage = typeName.split('.').dropLast(1).joinToString(".")
         if (subPackage.isNotBlank()) suffix += ".$subPackage"
         return PACKAGE_TL_API + suffix
+    }
+
+    private fun methodName(typeName: String): String {
+        return typeName.uCamelCase();
     }
 }
