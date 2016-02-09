@@ -21,6 +21,7 @@ import java.util.concurrent.TimeoutException
 
 internal class DefaultTelegramClient internal constructor(val application: TelegramApp, val apiStorage: TelegramApiStorage,
                                                           val preferredDataCenter: DataCenter,
+                                                          val updateCallback: UpdateCallback?,
                                                           val debugListener: DebugListener?) : TelegramApiWrapper(), TelegramClient, ApiCallback {
 
     private val TAG = "TelegramClient"
@@ -203,42 +204,64 @@ internal class DefaultTelegramClient internal constructor(val application: Teleg
 
     override fun onUpdates(update: TLAbsUpdates) {
         when (update) {
-            is TLUpdatesTooLong -> Unit
-            is TLUpdateShortMessage -> Unit
-            is TLUpdateShortChatMessage -> Unit
-            is TLUpdateShort -> handleUpdate(update.update)
-            is TLUpdatesCombined -> update.updates.forEach { u -> handleUpdate(u) }
-            is TLUpdates -> update.updates.forEach { u -> handleUpdate(u) }
+            is TLUpdates -> update.updates.forEach { u -> handleUpdate(u, update) } // Multiple messages
+            is TLUpdatesCombined -> update.updates.forEach { u -> handleUpdate(u, update) }
+            is TLUpdateShort -> handleUpdate(update.update, update)
+            is TLUpdateShortChatMessage -> updateCallback?.onShortChatMessage(update) // group new message
+            is TLUpdateShortMessage -> updateCallback?.onShortMessage(update) // 1v1 new message
+            is TLUpdateShortSentMessage -> updateCallback?.onShortSentMessage(update)
+            is TLUpdatesTooLong -> updateCallback?.onUpdateTooLong() // Warn that the client should refresh manually
         }
     }
 
-    fun handleUpdate(update: TLAbsUpdate): Unit? = when (update) {
-        is TLUpdateNewMessage -> Unit
-        is TLUpdateMessageID -> Unit
-    //is TLUpdateReadMessages -> Unit
-        is TLUpdateDeleteMessages -> Unit
-    //is TLUpdateRestoreMessages -> Unit
-        is TLUpdateUserTyping -> Unit
-        is TLUpdateChatUserTyping -> Unit
-        is TLUpdateChatParticipants -> Unit
-        is TLUpdateUserStatus -> Unit
-        is TLUpdateUserName -> Unit
-        is TLUpdateUserPhoto -> Unit
-        is TLUpdateContactRegistered -> Unit
-        is TLUpdateContactLink -> Unit
-    //is TLUpdateActivation -> Unit
-        is TLUpdateNewAuthorization -> Unit
-    //is TLUpdateNewGeoChatMessage -> Unit
-        is TLUpdateNewEncryptedMessage -> Unit
-        is TLUpdateEncryptedChatTyping -> Unit
-        is TLUpdateEncryption -> Unit
-        is TLUpdateEncryptedMessagesRead -> Unit
+    fun handleUpdate(update: TLAbsUpdate, container: TLAbsUpdates) = when (update) {
+        is TLUpdateBotInlineQuery -> Unit
+        is TLUpdateBotInlineSend -> Unit
+
+        is TLUpdateChannel -> Unit
+        is TLUpdateChannelGroup -> Unit
+        is TLUpdateChannelMessageViews -> Unit
+        is TLUpdateChannelTooLong -> Unit
+
+        is TLUpdateChatAdmins -> Unit
         is TLUpdateChatParticipantAdd -> Unit
+        is TLUpdateChatParticipantAdmin -> Unit
         is TLUpdateChatParticipantDelete -> Unit
+        is TLUpdateChatParticipants -> Unit
+        is TLUpdateChatUserTyping -> Unit
+
+        is TLUpdateContactLink -> Unit
+        is TLUpdateContactRegistered -> Unit
+
         is TLUpdateDcOptions -> Unit
-        is TLUpdateUserBlocked -> Unit
+        is TLUpdateDeleteChannelMessages -> Unit
+        is TLUpdateDeleteMessages -> Unit
+        is TLUpdateEncryptedChatTyping -> Unit
+        is TLUpdateEncryptedMessagesRead -> Unit
+        is TLUpdateEncryption -> Unit
+        is TLUpdateMessageID -> Unit
+        is TLUpdateNewAuthorization -> Unit
+        is TLUpdateNewChannelMessage -> updateCallback?.onNewChannelMessage(update, container) // Message in channel
+        is TLUpdateNewEncryptedMessage -> updateCallback?.onNewEncryptedMessage(update, container)
+        is TLUpdateNewMessage -> updateCallback?.onNewMessage(update, container) // Multiple message at once
+        is TLUpdateNewStickerSet -> Unit
         is TLUpdateNotifySettings -> Unit
+        is TLUpdatePrivacy -> Unit
+        is TLUpdateReadChannelInbox -> Unit
+        is TLUpdateReadHistoryInbox -> Unit
+        is TLUpdateReadHistoryOutbox -> Unit
+        is TLUpdateReadMessagesContents -> Unit
+        is TLUpdateSavedGifs -> Unit
         is TLUpdateServiceNotification -> Unit
+        is TLUpdateStickerSets -> Unit
+        is TLUpdateStickerSetsOrder -> Unit
+        is TLUpdateUserBlocked -> Unit
+        is TLUpdateUserName -> Unit
+        is TLUpdateUserPhone -> Unit
+        is TLUpdateUserPhoto -> Unit
+        is TLUpdateUserStatus -> Unit
+        is TLUpdateUserTyping -> Unit
+        is TLUpdateWebPage -> Unit
         else -> Unit
     }
 

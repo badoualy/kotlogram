@@ -82,7 +82,7 @@ object JavaPoet {
             val abstractEmptyConstructor = typeConstructors.size == 2 && typeConstructors.map { c -> c.name.endsWith("empty", true) }.contains(true)
             if (abstractEmptyConstructor)
                 typeConstructors.forEach { c -> emptyConstructorAbstractedMap.put(c, true) }
-            val nonEmptyConstructor = if (!abstractEmptyConstructor) null else typeConstructors.find { c -> !c.name.endsWith("empty", true) }
+            //val nonEmptyConstructor = if (!abstractEmptyConstructor) null else typeConstructors.find { c -> !c.name.endsWith("empty", true) }
 
             val commonParameters = typeConstructors.map { c -> c.parameters }.reduce { l1, l2 -> ArrayList(l1.intersect(l2)) }
             abstractConstructors.add(TLAbstractConstructor(abstractType.name, commonParameters, abstractType, abstractEmptyConstructor))

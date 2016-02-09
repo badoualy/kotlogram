@@ -9,8 +9,10 @@ object Kotlogram {
     internal val API_LAYER = 45
 
     @JvmOverloads @JvmStatic
-    fun getDefaultClient(application: TelegramApp, apiStorage: TelegramApiStorage, preferredDataCenter: DataCenter = PROD_DC4, debugListener: DebugListener? = null)
-            : TelegramClient = DefaultTelegramClient(application, apiStorage, preferredDataCenter, debugListener)
+    fun getDefaultClient(application: TelegramApp, apiStorage: TelegramApiStorage, preferredDataCenter: DataCenter = PROD_DC4,
+                         updateCallback: UpdateCallback? = null,
+                         debugListener: DebugListener? = null)
+            : TelegramClient = DefaultTelegramClient(application, apiStorage, preferredDataCenter, updateCallback, debugListener)
 
     @JvmStatic
     fun setDebugLogEnabled(enabled: Boolean) {
@@ -18,7 +20,10 @@ object Kotlogram {
     }
 
     @JvmStatic
-    fun cleanUp() = MTProtoHandler.cleanUp()
+    fun cleanUp() {
+        TelegramClientPool.cleanUp()
+        MTProtoHandler.cleanUp()
+    }
 
      @JvmField val PROD_DC1 = DataCenter("149.154.175.50", 443)
      @JvmField val PROD_DC2 = DataCenter("149.154.167.51", 443)

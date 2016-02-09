@@ -112,6 +112,7 @@ public class Sample1 {
             e.printStackTrace();
         }
 
+//        TelegramClientPool.put(5, client, 5 * 1000);
         client.close(); // Important, do not forget this, or your process won't finish
         System.err.println("------------------------- GOOD BYE");
     }
