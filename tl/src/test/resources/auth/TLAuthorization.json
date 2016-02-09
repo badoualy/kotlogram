@@ -1,0 +1,27 @@
+{
+  "user": {
+    "flags": 966783,
+    "self": false,
+    "contact": false,
+    "mutualContact": false,
+    "deleted": false,
+    "bot": true,
+    "botChatHistory": true,
+    "botNochats": false,
+    "verified": true,
+    "restricted": true,
+    "accessHash": 0,
+    "firstName": "2XhB4NoSZgRCO2WVRxw",
+    "lastName": "1FNg3",
+    "username": "srROW2FRGor7QPehLolA4h0yo8",
+    "phone": "WKJ2JAxBjFqoTCshs2ZWyP",
+    "photo": {},
+    "status": {
+      "wasOnline": 0
+    },
+    "botInfoVersion": 0,
+    "restrictionReason": "zO1rjz9B1JhVm7",
+    "botInlinePlaceholder": "gvsKoIldp7XKxY",
+    "id": 0
+  }
+}

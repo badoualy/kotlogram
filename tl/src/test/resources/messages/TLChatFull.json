@@ -1,0 +1,101 @@
+{
+  "fullChat": {
+    "participants": {
+      "flags": 1,
+      "selfParticipant": {
+        "userId": 0
+      },
+      "chatId": 0
+    },
+    "id": 0,
+    "chatPhoto": {
+      "accessHash": 0,
+      "date": 0,
+      "sizes": [
+        {
+          "type": "hGtUpvVkRTL8eHJqIarz"
+        },
+        {
+          "type": "BRFdGXK"
+        },
+        {
+          "type": "fgylmcdASU8PdeNr"
+        },
+        {
+          "type": "BqfYc4ttJMSj"
+        },
+        {
+          "type": "UU3dxHucfbulBKLK0dW1X"
+        },
+        {
+          "type": "onH1vEWcJX3GP"
+        },
+        {
+          "type": "drEk7cMtedy8F"
+        },
+        {
+          "type": "UMa1xaCrSuxyIQ"
+        }
+      ],
+      "id": 0
+    },
+    "notifySettings": {
+      "muteUntil": 0,
+      "sound": "cu8VlADbOo1GfclZ9Ij8EYyo",
+      "showPreviews": true,
+      "eventsMask": 0
+    },
+    "exportedInvite": {},
+    "botInfo": [
+      {},
+      {},
+      {},
+      {},
+      {},
+      {}
+    ]
+  },
+  "chats": [
+    {
+      "id": 0
+    },
+    {
+      "id": 0
+    },
+    {
+      "id": 0
+    },
+    {
+      "id": 0
+    },
+    {
+      "id": 0
+    },
+    {
+      "id": 0
+    },
+    {
+      "id": 0
+    }
+  ],
+  "users": [
+    {
+      "id": 0
+    },
+    {
+      "id": 0
+    },
+    {
+      "id": 0
+    },
+    {
+      "id": 0
+    },
+    {
+      "id": 0
+    },
+    {
+      "id": 0
+    }
+  ]
+}

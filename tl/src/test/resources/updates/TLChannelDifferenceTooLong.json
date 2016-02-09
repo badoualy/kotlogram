@@ -1,0 +1,86 @@
+{
+  "topMessage": 0,
+  "topImportantMessage": 0,
+  "readInboxMaxId": 0,
+  "unreadCount": 0,
+  "unreadImportantCount": 0,
+  "messages": [
+    {
+      "id": 0
+    },
+    {
+      "id": 0
+    },
+    {
+      "id": 0
+    },
+    {
+      "id": 0
+    },
+    {
+      "id": 0
+    },
+    {
+      "id": 0
+    },
+    {
+      "id": 0
+    },
+    {
+      "id": 0
+    }
+  ],
+  "chats": [
+    {
+      "id": 0
+    },
+    {
+      "id": 0
+    },
+    {
+      "id": 0
+    },
+    {
+      "id": 0
+    }
+  ],
+  "users": [
+    {
+      "id": 0
+    },
+    {
+      "id": 0
+    },
+    {
+      "id": 0
+    },
+    {
+      "id": 0
+    },
+    {
+      "id": 0
+    },
+    {
+      "id": 0
+    },
+    {
+      "id": 0
+    },
+    {
+      "id": 0
+    },
+    {
+      "id": 0
+    },
+    {
+      "id": 0
+    },
+    {
+      "id": 0
+    }
+  ],
+  "flags": 3,
+  "_final": true,
+  "pts": 0,
+  "timeout": 0
+}

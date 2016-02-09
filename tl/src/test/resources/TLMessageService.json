@@ -1,0 +1,16 @@
+{
+  "flags": 258,
+  "unread": false,
+  "out": true,
+  "mentioned": false,
+  "mediaUnread": false,
+  "fromId": 0,
+  "toId": {
+    "chatId": 0
+  },
+  "date": 0,
+  "action": {
+    "channelId": 0
+  },
+  "id": 0
+}

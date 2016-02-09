@@ -1,0 +1,33 @@
+{
+  "flags": 29,
+  "noWebpage": false,
+  "broadcast": true,
+  "peer": {
+    "chatId": 0
+  },
+  "replyToMsgId": 0,
+  "message": "Dc5Vr",
+  "randomId": 0,
+  "replyMarkup": {
+    "flags": 0,
+    "selective": false
+  },
+  "entities": [
+    {
+      "offset": 0,
+      "length": 0
+    },
+    {
+      "offset": 0,
+      "length": 0
+    },
+    {
+      "offset": 0,
+      "length": 0
+    },
+    {
+      "offset": 0,
+      "length": 0
+    }
+  ]
+}

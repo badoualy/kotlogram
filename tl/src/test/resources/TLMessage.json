@@ -1,0 +1,73 @@
+{
+  "flags": 4077,
+  "unread": true,
+  "out": false,
+  "mentioned": false,
+  "mediaUnread": true,
+  "fromId": 0,
+  "toId": {
+    "channelId": 0
+  },
+  "fwdFromId": {
+    "userId": 0
+  },
+  "fwdDate": 0,
+  "viaBotId": 0,
+  "replyToMsgId": 0,
+  "date": 0,
+  "message": "25ORxDn",
+  "media": {
+    "webpage": {
+      "id": 0
+    }
+  },
+  "replyMarkup": {
+    "singleUse": false,
+    "flags": 4,
+    "selective": true
+  },
+  "entities": [
+    {
+      "offset": 0,
+      "length": 0
+    },
+    {
+      "offset": 0,
+      "length": 0
+    },
+    {
+      "offset": 0,
+      "length": 0
+    },
+    {
+      "offset": 0,
+      "length": 0
+    },
+    {
+      "offset": 0,
+      "length": 0
+    },
+    {
+      "offset": 0,
+      "length": 0
+    },
+    {
+      "offset": 0,
+      "length": 0
+    },
+    {
+      "offset": 0,
+      "length": 0
+    },
+    {
+      "offset": 0,
+      "length": 0
+    },
+    {
+      "offset": 0,
+      "length": 0
+    }
+  ],
+  "views": 0,
+  "id": 0
+}

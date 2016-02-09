@@ -1,0 +1,43 @@
+{
+  "flags": 23,
+  "canViewParticipants": false,
+  "about": "egfjpP4mL317e",
+  "participantsCount": 0,
+  "adminsCount": 0,
+  "kickedCount": 0,
+  "readInboxMaxId": 0,
+  "unreadCount": 0,
+  "unreadImportantCount": 0,
+  "migratedFromChatId": 0,
+  "migratedFromMaxId": 0,
+  "id": 0,
+  "chatPhoto": {
+    "accessHash": 0,
+    "date": 0,
+    "sizes": [
+      {
+        "type": "DtNelZvieS5xTR5DtG0Bo9LgQ80"
+      },
+      {
+        "type": "coWPunX2TI"
+      },
+      {
+        "type": "o70vwOMPPZoAnwMF4a16Eaer"
+      }
+    ],
+    "id": 0
+  },
+  "notifySettings": {
+    "muteUntil": 0,
+    "sound": "bOzUeS",
+    "showPreviews": false,
+    "eventsMask": 0
+  },
+  "exportedInvite": {
+    "link": "vTSqKSudy4S"
+  },
+  "botInfo": [
+    {},
+    {}
+  ]
+}

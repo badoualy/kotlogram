@@ -1,0 +1,15 @@
+{
+  "photoId": 0,
+  "photoSmall": {
+    "dcId": 0,
+    "volumeId": 0,
+    "localId": 0,
+    "secret": 0
+  },
+  "photoBig": {
+    "dcId": 0,
+    "volumeId": 0,
+    "localId": 0,
+    "secret": 0
+  }
+}

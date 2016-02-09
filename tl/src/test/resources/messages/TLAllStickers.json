@@ -1,0 +1,65 @@
+{
+  "hash": 0,
+  "sets": [
+    {
+      "flags": 3,
+      "installed": true,
+      "disabled": true,
+      "official": false,
+      "id": 0,
+      "accessHash": 0,
+      "title": "b3dr9psdpB7ubVsD2s",
+      "shortName": "zJ4KOURqhRybk4",
+      "count": 0,
+      "hash": 0
+    },
+    {
+      "flags": 3,
+      "installed": true,
+      "disabled": true,
+      "official": false,
+      "id": 0,
+      "accessHash": 0,
+      "title": "S8XrB8NyfXtQjQ",
+      "shortName": "9FtdEcRJeEXSgCpvFBrwKnE7",
+      "count": 0,
+      "hash": 0
+    },
+    {
+      "flags": 1,
+      "installed": true,
+      "disabled": false,
+      "official": false,
+      "id": 0,
+      "accessHash": 0,
+      "title": "yddTvl2",
+      "shortName": "iDShokZggQ3pun6gcGrBaAYRSKWpl",
+      "count": 0,
+      "hash": 0
+    },
+    {
+      "flags": 5,
+      "installed": true,
+      "disabled": false,
+      "official": true,
+      "id": 0,
+      "accessHash": 0,
+      "title": "nSbyJSbDGZdwxQDSIKbRai",
+      "shortName": "5GKcrQVHzRwVwi",
+      "count": 0,
+      "hash": 0
+    },
+    {
+      "flags": 2,
+      "installed": false,
+      "disabled": true,
+      "official": false,
+      "id": 0,
+      "accessHash": 0,
+      "title": "k2fR8jF7VuTko7x",
+      "shortName": "u696UpNKk",
+      "count": 0,
+      "hash": 0
+    }
+  ]
+}

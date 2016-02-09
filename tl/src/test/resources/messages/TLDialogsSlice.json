@@ -1,0 +1,102 @@
+{
+  "count": 0,
+  "dialogs": [
+    {
+      "peer": {
+        "chatId": 0
+      },
+      "topMessage": 0,
+      "readInboxMaxId": 0,
+      "unreadCount": 0,
+      "notifySettings": {
+        "muteUntil": 0,
+        "sound": "HemD6emlxuReZ5quSgUmmkJ",
+        "showPreviews": false,
+        "eventsMask": 0
+      }
+    },
+    {
+      "peer": {
+        "chatId": 0
+      },
+      "topMessage": 0,
+      "readInboxMaxId": 0,
+      "unreadCount": 0,
+      "notifySettings": {}
+    },
+    {
+      "peer": {
+        "chatId": 0
+      },
+      "topMessage": 0,
+      "readInboxMaxId": 0,
+      "unreadCount": 0,
+      "notifySettings": {
+        "muteUntil": 0,
+        "sound": "34M9P9SkLgZRdyQ09WBS4LdmBaT",
+        "showPreviews": false,
+        "eventsMask": 0
+      }
+    },
+    {
+      "peer": {
+        "channelId": 0
+      },
+      "topMessage": 0,
+      "readInboxMaxId": 0,
+      "unreadCount": 0,
+      "notifySettings": {}
+    }
+  ],
+  "messages": [
+    {
+      "id": 0
+    },
+    {
+      "id": 0
+    },
+    {
+      "id": 0
+    },
+    {
+      "id": 0
+    },
+    {
+      "id": 0
+    },
+    {
+      "id": 0
+    }
+  ],
+  "chats": [
+    {
+      "id": 0
+    },
+    {
+      "id": 0
+    },
+    {
+      "id": 0
+    },
+    {
+      "id": 0
+    },
+    {
+      "id": 0
+    },
+    {
+      "id": 0
+    }
+  ],
+  "users": [
+    {
+      "id": 0
+    },
+    {
+      "id": 0
+    },
+    {
+      "id": 0
+    }
+  ]
+}

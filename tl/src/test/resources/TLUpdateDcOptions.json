@@ -1,0 +1,28 @@
+{
+  "dcOptions": [
+    {
+      "flags": 3,
+      "ipv6": true,
+      "mediaOnly": true,
+      "id": 0,
+      "ipAddress": "gEyvvp80rXEDqeeBywCqPQ1",
+      "port": 0
+    },
+    {
+      "flags": 1,
+      "ipv6": true,
+      "mediaOnly": false,
+      "id": 0,
+      "ipAddress": "ZjDpHjPDhvhy0gARwBGuawSW",
+      "port": 0
+    },
+    {
+      "flags": 2,
+      "ipv6": false,
+      "mediaOnly": true,
+      "id": 0,
+      "ipAddress": "1HX3rlOaR",
+      "port": 0
+    }
+  ]
+}

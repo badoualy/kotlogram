@@ -1,0 +1,108 @@
+{
+  "user": {
+    "flags": 942207,
+    "self": false,
+    "contact": false,
+    "mutualContact": false,
+    "deleted": true,
+    "bot": true,
+    "botChatHistory": false,
+    "botNochats": false,
+    "verified": true,
+    "restricted": true,
+    "accessHash": 0,
+    "firstName": "jdS0yKTT3MEMxn6sw488b4FdviHXy",
+    "lastName": "go6rQSJeva1W5sbC8Ag",
+    "username": "DpnvNqdm",
+    "phone": "y8tRP",
+    "photo": {
+      "photoId": 0,
+      "photoSmall": {
+        "volumeId": 0,
+        "localId": 0,
+        "secret": 0
+      },
+      "photoBig": {
+        "volumeId": 0,
+        "localId": 0,
+        "secret": 0
+      }
+    },
+    "status": {},
+    "botInfoVersion": 0,
+    "restrictionReason": "7UzWVtsRSIHyAWbist",
+    "botInlinePlaceholder": "LXns3",
+    "id": 0
+  },
+  "link": {
+    "myLink": {},
+    "foreignLink": {},
+    "user": {
+      "id": 0
+    }
+  },
+  "profilePhoto": {
+    "accessHash": 0,
+    "date": 0,
+    "sizes": [
+      {
+        "type": "ojcImKBHP"
+      },
+      {
+        "type": "MIa7AUD"
+      },
+      {
+        "type": "Nn4J4s5Lr2WVJ1FyK8OLeyC4fcQJ"
+      },
+      {
+        "type": "2yfPQZ8KI3"
+      },
+      {
+        "type": "QaMoJ0hr7o8pBI2vBp"
+      },
+      {
+        "type": "lFmhvYIUbUiJ"
+      },
+      {
+        "type": "Mz61j"
+      },
+      {
+        "type": "Zm22g815GALij2jpEs"
+      },
+      {
+        "type": "6uc06pov5VZnwkWsCo9c"
+      },
+      {
+        "type": "f6kCuNIO5n"
+      }
+    ],
+    "id": 0
+  },
+  "notifySettings": {
+    "muteUntil": 0,
+    "sound": "vWI0mxwRXCQ6MWB2QAh4",
+    "showPreviews": false,
+    "eventsMask": 0
+  },
+  "blocked": false,
+  "botInfo": {
+    "userId": 0,
+    "version": 0,
+    "shareText": "ZiYcpbLdrZ",
+    "description": "mIMh7UcUmOJMsoLu",
+    "commands": [
+      {
+        "command": "ncLFjcGpXIDhsiMcptpQqSj7JBI",
+        "description": "pBU8Nc1pdec"
+      },
+      {
+        "command": "4NMLUo2BW93d47r3c32",
+        "description": "9IzEfJXYsxfbM"
+      },
+      {
+        "command": "9AViklhlPbcgzhILR2hdRXRymBuQq",
+        "description": "X9u8aGpIfDyeW8lchOwBe1UG"
+      }
+    ]
+  }
+}

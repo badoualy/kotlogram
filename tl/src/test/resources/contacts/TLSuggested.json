@@ -1,0 +1,26 @@
+{
+  "results": [
+    {
+      "userId": 0,
+      "mutualContacts": 0
+    },
+    {
+      "userId": 0,
+      "mutualContacts": 0
+    }
+  ],
+  "users": [
+    {
+      "id": 0
+    },
+    {
+      "id": 0
+    },
+    {
+      "id": 0
+    },
+    {
+      "id": 0
+    }
+  ]
+}

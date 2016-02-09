@@ -1,0 +1,68 @@
+{
+  "set": {
+    "flags": 3,
+    "installed": true,
+    "disabled": true,
+    "official": false,
+    "id": 0,
+    "accessHash": 0,
+    "title": "4y8dX",
+    "shortName": "eYIBBlsl6DNX3bV6dfZV2SbZDqki",
+    "count": 0,
+    "hash": 0
+  },
+  "packs": [
+    {
+      "emoticon": "xQFbqaspgi",
+      "documents": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "emoticon": "2oPsjwBtPTWReRhRSEGT5GFUHgGW",
+      "documents": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    }
+  ],
+  "documents": [
+    {
+      "id": 0
+    },
+    {
+      "id": 0
+    },
+    {
+      "id": 0
+    },
+    {
+      "id": 0
+    },
+    {
+      "id": 0
+    },
+    {
+      "id": 0
+    },
+    {
+      "id": 0
+    }
+  ]
+}

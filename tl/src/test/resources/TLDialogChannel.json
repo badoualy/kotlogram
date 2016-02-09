@@ -1,0 +1,12 @@
+{
+  "topImportantMessage": 0,
+  "unreadImportantCount": 0,
+  "pts": 0,
+  "peer": {
+    "userId": 0
+  },
+  "topMessage": 0,
+  "readInboxMaxId": 0,
+  "unreadCount": 0,
+  "notifySettings": {}
+}

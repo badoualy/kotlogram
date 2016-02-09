@@ -1,0 +1,41 @@
+{
+  "flags": 2207,
+  "unread": true,
+  "out": true,
+  "mentioned": true,
+  "mediaUnread": false,
+  "id": 0,
+  "userId": 0,
+  "message": "lBYHMedMA0Z",
+  "pts": 0,
+  "ptsCount": 0,
+  "date": 0,
+  "fwdFromId": {
+    "chatId": 0
+  },
+  "fwdDate": 0,
+  "viaBotId": 0,
+  "replyToMsgId": 0,
+  "entities": [
+    {
+      "offset": 0,
+      "length": 0
+    },
+    {
+      "offset": 0,
+      "length": 0
+    },
+    {
+      "offset": 0,
+      "length": 0
+    },
+    {
+      "offset": 0,
+      "length": 0
+    },
+    {
+      "offset": 0,
+      "length": 0
+    }
+  ]
+}

@@ -1,0 +1,35 @@
+{
+  "flags": 877695,
+  "self": true,
+  "contact": false,
+  "mutualContact": false,
+  "deleted": true,
+  "bot": true,
+  "botChatHistory": false,
+  "botNochats": true,
+  "verified": false,
+  "restricted": true,
+  "accessHash": 0,
+  "firstName": "OpxE4KdXCnZyJJIFsJ8",
+  "lastName": "U2nHEkcu3aqZbwUcEYc41",
+  "username": "PoFxUzE",
+  "phone": "HoMaMIPGKafP8BmE8Qcf9",
+  "photo": {
+    "photoId": 0,
+    "photoSmall": {
+      "volumeId": 0,
+      "localId": 0,
+      "secret": 0
+    },
+    "photoBig": {
+      "volumeId": 0,
+      "localId": 0,
+      "secret": 0
+    }
+  },
+  "status": {},
+  "botInfoVersion": 0,
+  "restrictionReason": "25vMT2Bew5CqdoAvXved",
+  "botInlinePlaceholder": "IaMTKFYMOTGoww1rudkXa2R3XUhy",
+  "id": 0
+}

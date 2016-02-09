@@ -1,0 +1,79 @@
+{
+  "date": 0,
+  "expires": 0,
+  "testMode": true,
+  "thisDc": 0,
+  "dcOptions": [
+    {
+      "flags": 3,
+      "ipv6": true,
+      "mediaOnly": true,
+      "id": 0,
+      "ipAddress": "6mp199GfNmI",
+      "port": 0
+    },
+    {
+      "flags": 3,
+      "ipv6": true,
+      "mediaOnly": true,
+      "id": 0,
+      "ipAddress": "qCwdGPF5ScX",
+      "port": 0
+    },
+    {
+      "flags": 0,
+      "ipv6": false,
+      "mediaOnly": false,
+      "id": 0,
+      "ipAddress": "LfmyaniLb",
+      "port": 0
+    }
+  ],
+  "chatSizeMax": 0,
+  "megagroupSizeMax": 0,
+  "forwardedCountMax": 0,
+  "onlineUpdatePeriodMs": 0,
+  "offlineBlurTimeoutMs": 0,
+  "offlineIdleTimeoutMs": 0,
+  "onlineCloudTimeoutMs": 0,
+  "notifyCloudDelayMs": 0,
+  "notifyDefaultDelayMs": 0,
+  "chatBigSize": 0,
+  "pushChatPeriodMs": 0,
+  "pushChatLimit": 0,
+  "savedGifsLimit": 0,
+  "disabledFeatures": [
+    {
+      "feature": "sc1MG4BKy",
+      "description": "3dMfMOY6EynMDRD41"
+    },
+    {
+      "feature": "QNOOrd3H3E6lwYVXAczow",
+      "description": "8ZyYRts3th7h1lXBm4s7p8a0ScL"
+    },
+    {
+      "feature": "gjfORdtzTMxMtO721JOKw7Uk",
+      "description": "33sF6vo19jLlbFi3ZsiO6XDJUyjb4"
+    },
+    {
+      "feature": "XD5OA",
+      "description": "D7gDw7PXR08PwH"
+    },
+    {
+      "feature": "bSI1NQJFaJIScfeTXaLBMx",
+      "description": "aILK6Mh"
+    },
+    {
+      "feature": "4h3BSGeWZqAXNILgeomUSiZMs",
+      "description": "5wGQUatT"
+    },
+    {
+      "feature": "pwW54mbc",
+      "description": "21hH9"
+    },
+    {
+      "feature": "XaurUynSYQMuODL",
+      "description": "1XNKoM1oWdex4SRJPdehpAr"
+    }
+  ]
+}

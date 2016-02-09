@@ -1,0 +1,148 @@
+{
+  "dialogs": [
+    {
+      "peer": {
+        "channelId": 0
+      },
+      "topMessage": 0,
+      "readInboxMaxId": 0,
+      "unreadCount": 0,
+      "notifySettings": {
+        "muteUntil": 0,
+        "sound": "Hp88uzTmS3uyiOo1",
+        "showPreviews": true,
+        "eventsMask": 0
+      }
+    },
+    {
+      "peer": {
+        "chatId": 0
+      },
+      "topMessage": 0,
+      "readInboxMaxId": 0,
+      "unreadCount": 0,
+      "notifySettings": {
+        "muteUntil": 0,
+        "sound": "dWQy9ViaCyGS",
+        "showPreviews": false,
+        "eventsMask": 0
+      }
+    },
+    {
+      "peer": {
+        "userId": 0
+      },
+      "topMessage": 0,
+      "readInboxMaxId": 0,
+      "unreadCount": 0,
+      "notifySettings": {}
+    },
+    {
+      "peer": {
+        "channelId": 0
+      },
+      "topMessage": 0,
+      "readInboxMaxId": 0,
+      "unreadCount": 0,
+      "notifySettings": {}
+    },
+    {
+      "peer": {
+        "userId": 0
+      },
+      "topMessage": 0,
+      "readInboxMaxId": 0,
+      "unreadCount": 0,
+      "notifySettings": {
+        "muteUntil": 0,
+        "sound": "56zlC",
+        "showPreviews": true,
+        "eventsMask": 0
+      }
+    },
+    {
+      "peer": {
+        "chatId": 0
+      },
+      "topMessage": 0,
+      "readInboxMaxId": 0,
+      "unreadCount": 0,
+      "notifySettings": {}
+    },
+    {
+      "peer": {
+        "userId": 0
+      },
+      "topMessage": 0,
+      "readInboxMaxId": 0,
+      "unreadCount": 0,
+      "notifySettings": {
+        "muteUntil": 0,
+        "sound": "uwpHvOElgsWv0NoCBHdV3drGtVN7",
+        "showPreviews": true,
+        "eventsMask": 0
+      }
+    },
+    {
+      "peer": {
+        "userId": 0
+      },
+      "topMessage": 0,
+      "readInboxMaxId": 0,
+      "unreadCount": 0,
+      "notifySettings": {
+        "muteUntil": 0,
+        "sound": "9vP4nl0Xn2E0xkyhVuxX",
+        "showPreviews": true,
+        "eventsMask": 0
+      }
+    },
+    {
+      "peer": {
+        "userId": 0
+      },
+      "topMessage": 0,
+      "readInboxMaxId": 0,
+      "unreadCount": 0,
+      "notifySettings": {
+        "muteUntil": 0,
+        "sound": "6XuvJDWFamNSsFC2ThHDN0S",
+        "showPreviews": false,
+        "eventsMask": 0
+      }
+    }
+  ],
+  "messages": [
+    {
+      "id": 0
+    },
+    {
+      "id": 0
+    }
+  ],
+  "chats": [
+    {
+      "id": 0
+    },
+    {
+      "id": 0
+    }
+  ],
+  "users": [
+    {
+      "id": 0
+    },
+    {
+      "id": 0
+    },
+    {
+      "id": 0
+    },
+    {
+      "id": 0
+    },
+    {
+      "id": 0
+    }
+  ]
+}

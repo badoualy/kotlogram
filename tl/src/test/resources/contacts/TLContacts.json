@@ -1,0 +1,56 @@
+{
+  "contacts": [
+    {
+      "userId": 0,
+      "mutual": false
+    },
+    {
+      "userId": 0,
+      "mutual": true
+    },
+    {
+      "userId": 0,
+      "mutual": false
+    },
+    {
+      "userId": 0,
+      "mutual": true
+    },
+    {
+      "userId": 0,
+      "mutual": true
+    },
+    {
+      "userId": 0,
+      "mutual": false
+    },
+    {
+      "userId": 0,
+      "mutual": true
+    },
+    {
+      "userId": 0,
+      "mutual": false
+    }
+  ],
+  "users": [
+    {
+      "id": 0
+    },
+    {
+      "id": 0
+    },
+    {
+      "id": 0
+    },
+    {
+      "id": 0
+    },
+    {
+      "id": 0
+    },
+    {
+      "id": 0
+    }
+  ]
+}

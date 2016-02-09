@@ -1,0 +1,87 @@
+{
+  "flags": 21,
+  "broadcast": true,
+  "peer": {
+    "channelId": 0,
+    "accessHash": 0
+  },
+  "replyToMsgId": 0,
+  "media": {
+    "geoPoint": {
+      "lat": 0.0,
+      "_long": 0.0
+    }
+  },
+  "randomId": 0,
+  "replyMarkup": {
+    "resize": true,
+    "singleUse": false,
+    "rows": [
+      {
+        "buttons": [
+          {
+            "text": "tABi2yIuB"
+          },
+          {
+            "text": "xFuSKmmAE00Md0wZimrmD0m8oW"
+          },
+          {
+            "text": "hjuOiPIrcvu4BUV6ERR2TkJ5"
+          },
+          {
+            "text": "Iz6HS8"
+          },
+          {
+            "text": "U5z8ZScL1"
+          },
+          {
+            "text": "y0d1XoIA1peDL4H"
+          }
+        ]
+      },
+      {
+        "buttons": [
+          {
+            "text": "iF5KMNf"
+          },
+          {
+            "text": "nnsRdaIb"
+          },
+          {
+            "text": "N7X5qz"
+          },
+          {
+            "text": "OMne6QQEClFDRe8qlu1sijm"
+          }
+        ]
+      },
+      {
+        "buttons": [
+          {
+            "text": "a05nVAs"
+          },
+          {
+            "text": "p4jky3zC1u"
+          },
+          {
+            "text": "gmPRDtxG8gFUhmKpt6"
+          },
+          {
+            "text": "RLJKOTQPXA"
+          },
+          {
+            "text": "aU9Mlx"
+          },
+          {
+            "text": "jhinilqwuiI5w"
+          },
+          {
+            "text": "F7HT71xjVr2tOD4RxtCPCCH"
+          }
+        ]
+      }
+    ],
+    "flags": 1,
+    "selective": false
+  }
+}

@@ -1,0 +1,66 @@
+{
+  "message": {
+    "flags": 4092,
+    "unread": false,
+    "out": false,
+    "mentioned": true,
+    "mediaUnread": true,
+    "fromId": 0,
+    "toId": {
+      "userId": 0
+    },
+    "fwdFromId": {
+      "channelId": 0
+    },
+    "fwdDate": 0,
+    "viaBotId": 0,
+    "replyToMsgId": 0,
+    "date": 0,
+    "message": "hiibAA60xWK31Ji",
+    "media": {
+      "photo": {
+        "id": 0
+      },
+      "caption": "nqKcrkZdO"
+    },
+    "replyMarkup": {
+      "singleUse": false,
+      "flags": 0,
+      "selective": false
+    },
+    "entities": [
+      {
+        "offset": 0,
+        "length": 0
+      },
+      {
+        "offset": 0,
+        "length": 0
+      },
+      {
+        "offset": 0,
+        "length": 0
+      },
+      {
+        "offset": 0,
+        "length": 0
+      },
+      {
+        "offset": 0,
+        "length": 0
+      },
+      {
+        "offset": 0,
+        "length": 0
+      },
+      {
+        "offset": 0,
+        "length": 0
+      }
+    ],
+    "views": 0,
+    "id": 0
+  },
+  "pts": 0,
+  "ptsCount": 0
+}

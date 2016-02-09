@@ -1,0 +1,23 @@
+{
+  "contacts": [
+    {
+      "clientId": 0,
+      "phone": "KU8N9sHMDZyTltegzEgBu",
+      "firstName": "5WVy0qykF",
+      "lastName": "rIdNB3mbs0yn2F482X"
+    },
+    {
+      "clientId": 0,
+      "phone": "uLEs6yWds6hZ6PKQgAwMPvR",
+      "firstName": "RXEWH",
+      "lastName": "Ci6CoczEsayrp"
+    },
+    {
+      "clientId": 0,
+      "phone": "cd45hCqeYaQwskI2A37DGZA7t",
+      "firstName": "kPrd1MRJ0fAQ4XU0kHv9",
+      "lastName": "m1sUbuLFOVa7VQEsi65Yv"
+    }
+  ],
+  "replace": true
+}
