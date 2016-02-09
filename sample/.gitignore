@@ -7,3 +7,4 @@ C.java
 *.save
 *.jpg
 Sample*.java
+/src/main/resources/*
