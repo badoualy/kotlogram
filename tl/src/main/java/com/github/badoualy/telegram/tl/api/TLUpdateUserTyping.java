@@ -63,6 +63,18 @@ public class TLUpdateUserTyping extends TLAbsUpdate {
         return CONSTRUCTOR_ID;
     }
 
+    @Override
+    @SuppressWarnings("PointlessBooleanExpression")
+    public boolean equals(Object object) {
+        if (!(object instanceof TLUpdateUserTyping)) return false;
+        if (object == this) return true;
+
+        TLUpdateUserTyping o = (TLUpdateUserTyping) object;
+
+        return userId == o.userId
+                && (action == o.action || (action != null && o.action != null && action.equals(o.action)));
+    }
+
     public int getUserId() {
         return userId;
     }

@@ -61,6 +61,18 @@ public class TLDifferenceEmpty extends TLAbsDifference {
         return CONSTRUCTOR_ID;
     }
 
+    @Override
+    @SuppressWarnings("PointlessBooleanExpression")
+    public boolean equals(Object object) {
+        if (!(object instanceof TLDifferenceEmpty)) return false;
+        if (object == this) return true;
+
+        TLDifferenceEmpty o = (TLDifferenceEmpty) object;
+
+        return date == o.date
+                && seq == o.seq;
+    }
+
     public int getDate() {
         return date;
     }

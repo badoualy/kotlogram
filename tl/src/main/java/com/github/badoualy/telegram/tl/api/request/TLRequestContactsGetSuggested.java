@@ -72,6 +72,17 @@ public class TLRequestContactsGetSuggested extends TLMethod<TLSuggested> {
         return CONSTRUCTOR_ID;
     }
 
+    @Override
+    @SuppressWarnings("PointlessBooleanExpression")
+    public boolean equals(Object object) {
+        if (!(object instanceof TLRequestContactsGetSuggested)) return false;
+        if (object == this) return true;
+
+        TLRequestContactsGetSuggested o = (TLRequestContactsGetSuggested) object;
+
+        return limit == o.limit;
+    }
+
     public int getLimit() {
         return limit;
     }

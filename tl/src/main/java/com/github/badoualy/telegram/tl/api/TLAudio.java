@@ -95,6 +95,23 @@ public class TLAudio extends TLAbsAudio {
         return CONSTRUCTOR_ID;
     }
 
+    @Override
+    @SuppressWarnings("PointlessBooleanExpression")
+    public boolean equals(Object object) {
+        if (!(object instanceof TLAudio)) return false;
+        if (object == this) return true;
+
+        TLAudio o = (TLAudio) object;
+
+        return id == o.id
+                && accessHash == o.accessHash
+                && date == o.date
+                && duration == o.duration
+                && (mimeType == o.mimeType || (mimeType != null && o.mimeType != null && mimeType.equals(o.mimeType)))
+                && size == o.size
+                && dcId == o.dcId;
+    }
+
     public long getId() {
         return id;
     }

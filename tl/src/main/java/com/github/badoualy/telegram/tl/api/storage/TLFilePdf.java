@@ -19,4 +19,15 @@ public class TLFilePdf extends TLAbsFileType {
     public int getConstructorId() {
         return CONSTRUCTOR_ID;
     }
+
+    @Override
+    @SuppressWarnings("PointlessBooleanExpression")
+    public boolean equals(Object object) {
+        if (!(object instanceof TLFilePdf)) return false;
+        if (object == this) return true;
+
+        TLFilePdf o = (TLFilePdf) object;
+
+        return true;
+    }
 }

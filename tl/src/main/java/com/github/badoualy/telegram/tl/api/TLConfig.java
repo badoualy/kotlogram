@@ -170,6 +170,35 @@ public class TLConfig extends TLObject {
         return CONSTRUCTOR_ID;
     }
 
+    @Override
+    @SuppressWarnings("PointlessBooleanExpression")
+    public boolean equals(Object object) {
+        if (!(object instanceof TLConfig)) return false;
+        if (object == this) return true;
+
+        TLConfig o = (TLConfig) object;
+
+        return date == o.date
+                && expires == o.expires
+                && testMode == o.testMode
+                && thisDc == o.thisDc
+                && (dcOptions == o.dcOptions || (dcOptions != null && o.dcOptions != null && dcOptions.equals(o.dcOptions)))
+                && chatSizeMax == o.chatSizeMax
+                && megagroupSizeMax == o.megagroupSizeMax
+                && forwardedCountMax == o.forwardedCountMax
+                && onlineUpdatePeriodMs == o.onlineUpdatePeriodMs
+                && offlineBlurTimeoutMs == o.offlineBlurTimeoutMs
+                && offlineIdleTimeoutMs == o.offlineIdleTimeoutMs
+                && onlineCloudTimeoutMs == o.onlineCloudTimeoutMs
+                && notifyCloudDelayMs == o.notifyCloudDelayMs
+                && notifyDefaultDelayMs == o.notifyDefaultDelayMs
+                && chatBigSize == o.chatBigSize
+                && pushChatPeriodMs == o.pushChatPeriodMs
+                && pushChatLimit == o.pushChatLimit
+                && savedGifsLimit == o.savedGifsLimit
+                && (disabledFeatures == o.disabledFeatures || (disabledFeatures != null && o.disabledFeatures != null && disabledFeatures.equals(o.disabledFeatures)));
+    }
+
     public int getDate() {
         return date;
     }

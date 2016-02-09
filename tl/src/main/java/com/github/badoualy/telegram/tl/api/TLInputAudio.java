@@ -61,6 +61,18 @@ public class TLInputAudio extends TLAbsInputAudio {
         return CONSTRUCTOR_ID;
     }
 
+    @Override
+    @SuppressWarnings("PointlessBooleanExpression")
+    public boolean equals(Object object) {
+        if (!(object instanceof TLInputAudio)) return false;
+        if (object == this) return true;
+
+        TLInputAudio o = (TLInputAudio) object;
+
+        return id == o.id
+                && accessHash == o.accessHash;
+    }
+
     public long getId() {
         return id;
     }

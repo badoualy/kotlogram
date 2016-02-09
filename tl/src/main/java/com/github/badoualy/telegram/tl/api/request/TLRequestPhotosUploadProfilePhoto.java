@@ -94,6 +94,20 @@ public class TLRequestPhotosUploadProfilePhoto extends TLMethod<TLPhoto> {
         return CONSTRUCTOR_ID;
     }
 
+    @Override
+    @SuppressWarnings("PointlessBooleanExpression")
+    public boolean equals(Object object) {
+        if (!(object instanceof TLRequestPhotosUploadProfilePhoto)) return false;
+        if (object == this) return true;
+
+        TLRequestPhotosUploadProfilePhoto o = (TLRequestPhotosUploadProfilePhoto) object;
+
+        return (file == o.file || (file != null && o.file != null && file.equals(o.file)))
+                && (caption == o.caption || (caption != null && o.caption != null && caption.equals(o.caption)))
+                && (geoPoint == o.geoPoint || (geoPoint != null && o.geoPoint != null && geoPoint.equals(o.geoPoint)))
+                && (crop == o.crop || (crop != null && o.crop != null && crop.equals(o.crop)));
+    }
+
     public TLAbsInputFile getFile() {
         return file;
     }

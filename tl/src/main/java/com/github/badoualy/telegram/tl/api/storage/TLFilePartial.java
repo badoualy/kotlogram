@@ -19,4 +19,15 @@ public class TLFilePartial extends TLAbsFileType {
     public int getConstructorId() {
         return CONSTRUCTOR_ID;
     }
+
+    @Override
+    @SuppressWarnings("PointlessBooleanExpression")
+    public boolean equals(Object object) {
+        if (!(object instanceof TLFilePartial)) return false;
+        if (object == this) return true;
+
+        TLFilePartial o = (TLFilePartial) object;
+
+        return true;
+    }
 }

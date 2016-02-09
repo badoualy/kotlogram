@@ -115,6 +115,26 @@ public class TLVideo extends TLAbsVideo {
         return CONSTRUCTOR_ID;
     }
 
+    @Override
+    @SuppressWarnings("PointlessBooleanExpression")
+    public boolean equals(Object object) {
+        if (!(object instanceof TLVideo)) return false;
+        if (object == this) return true;
+
+        TLVideo o = (TLVideo) object;
+
+        return id == o.id
+                && accessHash == o.accessHash
+                && date == o.date
+                && duration == o.duration
+                && (mimeType == o.mimeType || (mimeType != null && o.mimeType != null && mimeType.equals(o.mimeType)))
+                && size == o.size
+                && (thumb == o.thumb || (thumb != null && o.thumb != null && thumb.equals(o.thumb)))
+                && dcId == o.dcId
+                && w == o.w
+                && h == o.h;
+    }
+
     public long getId() {
         return id;
     }

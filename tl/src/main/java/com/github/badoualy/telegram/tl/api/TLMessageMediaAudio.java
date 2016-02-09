@@ -54,6 +54,17 @@ public class TLMessageMediaAudio extends TLAbsMessageMedia {
         return CONSTRUCTOR_ID;
     }
 
+    @Override
+    @SuppressWarnings("PointlessBooleanExpression")
+    public boolean equals(Object object) {
+        if (!(object instanceof TLMessageMediaAudio)) return false;
+        if (object == this) return true;
+
+        TLMessageMediaAudio o = (TLMessageMediaAudio) object;
+
+        return (audio == o.audio || (audio != null && o.audio != null && audio.equals(o.audio)));
+    }
+
     public TLAbsAudio getAudio() {
         return audio;
     }

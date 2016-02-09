@@ -75,6 +75,20 @@ public class TLUpdateReadHistoryOutbox extends TLAbsUpdate {
         return CONSTRUCTOR_ID;
     }
 
+    @Override
+    @SuppressWarnings("PointlessBooleanExpression")
+    public boolean equals(Object object) {
+        if (!(object instanceof TLUpdateReadHistoryOutbox)) return false;
+        if (object == this) return true;
+
+        TLUpdateReadHistoryOutbox o = (TLUpdateReadHistoryOutbox) object;
+
+        return (peer == o.peer || (peer != null && o.peer != null && peer.equals(o.peer)))
+                && maxId == o.maxId
+                && pts == o.pts
+                && ptsCount == o.ptsCount;
+    }
+
     public TLAbsPeer getPeer() {
         return peer;
     }

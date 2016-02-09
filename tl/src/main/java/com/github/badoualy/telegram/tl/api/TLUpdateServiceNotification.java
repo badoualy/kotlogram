@@ -78,6 +78,20 @@ public class TLUpdateServiceNotification extends TLAbsUpdate {
         return CONSTRUCTOR_ID;
     }
 
+    @Override
+    @SuppressWarnings("PointlessBooleanExpression")
+    public boolean equals(Object object) {
+        if (!(object instanceof TLUpdateServiceNotification)) return false;
+        if (object == this) return true;
+
+        TLUpdateServiceNotification o = (TLUpdateServiceNotification) object;
+
+        return (type == o.type || (type != null && o.type != null && type.equals(o.type)))
+                && (message == o.message || (message != null && o.message != null && message.equals(o.message)))
+                && (media == o.media || (media != null && o.media != null && media.equals(o.media)))
+                && popup == o.popup;
+    }
+
     public String getType() {
         return type;
     }

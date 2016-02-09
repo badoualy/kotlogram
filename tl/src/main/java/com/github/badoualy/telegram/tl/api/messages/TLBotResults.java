@@ -97,6 +97,21 @@ public class TLBotResults extends TLObject {
         return CONSTRUCTOR_ID;
     }
 
+    @Override
+    @SuppressWarnings("PointlessBooleanExpression")
+    public boolean equals(Object object) {
+        if (!(object instanceof TLBotResults)) return false;
+        if (object == this) return true;
+
+        TLBotResults o = (TLBotResults) object;
+
+        return flags == o.flags
+                && gallery == o.gallery
+                && queryId == o.queryId
+                && (nextOffset == o.nextOffset || (nextOffset != null && o.nextOffset != null && nextOffset.equals(o.nextOffset)))
+                && (results == o.results || (results != null && o.results != null && results.equals(o.results)));
+    }
+
     public boolean getGallery() {
         return gallery;
     }

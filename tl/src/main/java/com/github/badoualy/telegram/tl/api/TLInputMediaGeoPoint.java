@@ -54,6 +54,17 @@ public class TLInputMediaGeoPoint extends TLAbsInputMedia {
         return CONSTRUCTOR_ID;
     }
 
+    @Override
+    @SuppressWarnings("PointlessBooleanExpression")
+    public boolean equals(Object object) {
+        if (!(object instanceof TLInputMediaGeoPoint)) return false;
+        if (object == this) return true;
+
+        TLInputMediaGeoPoint o = (TLInputMediaGeoPoint) object;
+
+        return (geoPoint == o.geoPoint || (geoPoint != null && o.geoPoint != null && geoPoint.equals(o.geoPoint)));
+    }
+
     public TLAbsInputGeoPoint getGeoPoint() {
         return geoPoint;
     }

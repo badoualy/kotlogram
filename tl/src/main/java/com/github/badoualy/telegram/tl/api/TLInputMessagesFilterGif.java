@@ -19,4 +19,15 @@ public class TLInputMessagesFilterGif extends TLAbsMessagesFilter {
     public int getConstructorId() {
         return CONSTRUCTOR_ID;
     }
+
+    @Override
+    @SuppressWarnings("PointlessBooleanExpression")
+    public boolean equals(Object object) {
+        if (!(object instanceof TLInputMessagesFilterGif)) return false;
+        if (object == this) return true;
+
+        TLInputMessagesFilterGif o = (TLInputMessagesFilterGif) object;
+
+        return true;
+    }
 }

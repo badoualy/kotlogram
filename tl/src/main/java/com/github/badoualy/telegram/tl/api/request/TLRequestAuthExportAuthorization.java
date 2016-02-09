@@ -72,6 +72,17 @@ public class TLRequestAuthExportAuthorization extends TLMethod<TLExportedAuthori
         return CONSTRUCTOR_ID;
     }
 
+    @Override
+    @SuppressWarnings("PointlessBooleanExpression")
+    public boolean equals(Object object) {
+        if (!(object instanceof TLRequestAuthExportAuthorization)) return false;
+        if (object == this) return true;
+
+        TLRequestAuthExportAuthorization o = (TLRequestAuthExportAuthorization) object;
+
+        return dcId == o.dcId;
+    }
+
     public int getDcId() {
         return dcId;
     }

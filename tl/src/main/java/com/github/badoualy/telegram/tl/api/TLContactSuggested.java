@@ -62,6 +62,18 @@ public class TLContactSuggested extends TLObject {
         return CONSTRUCTOR_ID;
     }
 
+    @Override
+    @SuppressWarnings("PointlessBooleanExpression")
+    public boolean equals(Object object) {
+        if (!(object instanceof TLContactSuggested)) return false;
+        if (object == this) return true;
+
+        TLContactSuggested o = (TLContactSuggested) object;
+
+        return userId == o.userId
+                && mutualContacts == o.mutualContacts;
+    }
+
     public int getUserId() {
         return userId;
     }

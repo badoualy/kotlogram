@@ -80,6 +80,18 @@ public class TLRequestMessagesDeleteChatUser extends TLMethod<TLAbsUpdates> {
         return CONSTRUCTOR_ID;
     }
 
+    @Override
+    @SuppressWarnings("PointlessBooleanExpression")
+    public boolean equals(Object object) {
+        if (!(object instanceof TLRequestMessagesDeleteChatUser)) return false;
+        if (object == this) return true;
+
+        TLRequestMessagesDeleteChatUser o = (TLRequestMessagesDeleteChatUser) object;
+
+        return chatId == o.chatId
+                && (userId == o.userId || (userId != null && o.userId != null && userId.equals(o.userId)));
+    }
+
     public int getChatId() {
         return chatId;
     }

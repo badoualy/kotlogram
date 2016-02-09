@@ -71,6 +71,17 @@ public class TLRequestAccountSetAccountTTL extends TLMethod<TLBool> {
         return CONSTRUCTOR_ID;
     }
 
+    @Override
+    @SuppressWarnings("PointlessBooleanExpression")
+    public boolean equals(Object object) {
+        if (!(object instanceof TLRequestAccountSetAccountTTL)) return false;
+        if (object == this) return true;
+
+        TLRequestAccountSetAccountTTL o = (TLRequestAccountSetAccountTTL) object;
+
+        return (ttl == o.ttl || (ttl != null && o.ttl != null && ttl.equals(o.ttl)));
+    }
+
     public TLAccountDaysTTL getTtl() {
         return ttl;
     }

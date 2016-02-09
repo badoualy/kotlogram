@@ -19,4 +19,15 @@ public class TLContactsNotModified extends TLAbsContacts {
     public int getConstructorId() {
         return CONSTRUCTOR_ID;
     }
+
+    @Override
+    @SuppressWarnings("PointlessBooleanExpression")
+    public boolean equals(Object object) {
+        if (!(object instanceof TLContactsNotModified)) return false;
+        if (object == this) return true;
+
+        TLContactsNotModified o = (TLContactsNotModified) object;
+
+        return true;
+    }
 }

@@ -89,6 +89,24 @@ public class TLDialogChannel extends TLAbsDialog {
         return CONSTRUCTOR_ID;
     }
 
+    @Override
+    @SuppressWarnings("PointlessBooleanExpression")
+    public boolean equals(Object object) {
+        if (!(object instanceof TLDialogChannel)) return false;
+        if (object == this) return true;
+
+        TLDialogChannel o = (TLDialogChannel) object;
+
+        return (peer == o.peer || (peer != null && o.peer != null && peer.equals(o.peer)))
+                && topMessage == o.topMessage
+                && topImportantMessage == o.topImportantMessage
+                && readInboxMaxId == o.readInboxMaxId
+                && unreadCount == o.unreadCount
+                && unreadImportantCount == o.unreadImportantCount
+                && (notifySettings == o.notifySettings || (notifySettings != null && o.notifySettings != null && notifySettings.equals(o.notifySettings)))
+                && pts == o.pts;
+    }
+
     public TLAbsPeer getPeer() {
         return peer;
     }

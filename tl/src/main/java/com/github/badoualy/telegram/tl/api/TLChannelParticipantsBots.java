@@ -19,4 +19,15 @@ public class TLChannelParticipantsBots extends TLAbsChannelParticipantsFilter {
     public int getConstructorId() {
         return CONSTRUCTOR_ID;
     }
+
+    @Override
+    @SuppressWarnings("PointlessBooleanExpression")
+    public boolean equals(Object object) {
+        if (!(object instanceof TLChannelParticipantsBots)) return false;
+        if (object == this) return true;
+
+        TLChannelParticipantsBots o = (TLChannelParticipantsBots) object;
+
+        return true;
+    }
 }

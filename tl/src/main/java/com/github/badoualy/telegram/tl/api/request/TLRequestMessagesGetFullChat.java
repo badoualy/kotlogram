@@ -72,6 +72,17 @@ public class TLRequestMessagesGetFullChat extends TLMethod<TLChatFull> {
         return CONSTRUCTOR_ID;
     }
 
+    @Override
+    @SuppressWarnings("PointlessBooleanExpression")
+    public boolean equals(Object object) {
+        if (!(object instanceof TLRequestMessagesGetFullChat)) return false;
+        if (object == this) return true;
+
+        TLRequestMessagesGetFullChat o = (TLRequestMessagesGetFullChat) object;
+
+        return chatId == o.chatId;
+    }
+
     public int getChatId() {
         return chatId;
     }

@@ -64,6 +64,18 @@ public class TLMessageActionChannelMigrateFrom extends TLAbsMessageAction {
         return CONSTRUCTOR_ID;
     }
 
+    @Override
+    @SuppressWarnings("PointlessBooleanExpression")
+    public boolean equals(Object object) {
+        if (!(object instanceof TLMessageActionChannelMigrateFrom)) return false;
+        if (object == this) return true;
+
+        TLMessageActionChannelMigrateFrom o = (TLMessageActionChannelMigrateFrom) object;
+
+        return (title == o.title || (title != null && o.title != null && title.equals(o.title)))
+                && chatId == o.chatId;
+    }
+
     public String getTitle() {
         return title;
     }

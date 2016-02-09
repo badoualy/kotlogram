@@ -90,6 +90,19 @@ public class TLRequestMessagesSendEncryptedService extends TLMethod<TLAbsSentEnc
         return CONSTRUCTOR_ID;
     }
 
+    @Override
+    @SuppressWarnings("PointlessBooleanExpression")
+    public boolean equals(Object object) {
+        if (!(object instanceof TLRequestMessagesSendEncryptedService)) return false;
+        if (object == this) return true;
+
+        TLRequestMessagesSendEncryptedService o = (TLRequestMessagesSendEncryptedService) object;
+
+        return (peer == o.peer || (peer != null && o.peer != null && peer.equals(o.peer)))
+                && randomId == o.randomId
+                && (data == o.data || (data != null && o.data != null && data.equals(o.data)));
+    }
+
     public TLInputEncryptedChat getPeer() {
         return peer;
     }

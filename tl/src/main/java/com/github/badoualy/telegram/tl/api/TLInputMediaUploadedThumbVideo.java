@@ -96,6 +96,23 @@ public class TLInputMediaUploadedThumbVideo extends TLAbsInputMedia {
         return CONSTRUCTOR_ID;
     }
 
+    @Override
+    @SuppressWarnings("PointlessBooleanExpression")
+    public boolean equals(Object object) {
+        if (!(object instanceof TLInputMediaUploadedThumbVideo)) return false;
+        if (object == this) return true;
+
+        TLInputMediaUploadedThumbVideo o = (TLInputMediaUploadedThumbVideo) object;
+
+        return (file == o.file || (file != null && o.file != null && file.equals(o.file)))
+                && (thumb == o.thumb || (thumb != null && o.thumb != null && thumb.equals(o.thumb)))
+                && duration == o.duration
+                && w == o.w
+                && h == o.h
+                && (mimeType == o.mimeType || (mimeType != null && o.mimeType != null && mimeType.equals(o.mimeType)))
+                && (caption == o.caption || (caption != null && o.caption != null && caption.equals(o.caption)));
+    }
+
     public TLAbsInputFile getFile() {
         return file;
     }

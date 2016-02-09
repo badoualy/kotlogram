@@ -71,6 +71,19 @@ public class TLChannelForbidden extends TLAbsChat {
         return CONSTRUCTOR_ID;
     }
 
+    @Override
+    @SuppressWarnings("PointlessBooleanExpression")
+    public boolean equals(Object object) {
+        if (!(object instanceof TLChannelForbidden)) return false;
+        if (object == this) return true;
+
+        TLChannelForbidden o = (TLChannelForbidden) object;
+
+        return id == o.id
+                && accessHash == o.accessHash
+                && (title == o.title || (title != null && o.title != null && title.equals(o.title)));
+    }
+
     public int getId() {
         return id;
     }

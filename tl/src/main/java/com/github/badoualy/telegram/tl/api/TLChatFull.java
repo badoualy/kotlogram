@@ -80,6 +80,22 @@ public class TLChatFull extends TLAbsChatFull {
         return CONSTRUCTOR_ID;
     }
 
+    @Override
+    @SuppressWarnings("PointlessBooleanExpression")
+    public boolean equals(Object object) {
+        if (!(object instanceof TLChatFull)) return false;
+        if (object == this) return true;
+
+        TLChatFull o = (TLChatFull) object;
+
+        return id == o.id
+                && (participants == o.participants || (participants != null && o.participants != null && participants.equals(o.participants)))
+                && (chatPhoto == o.chatPhoto || (chatPhoto != null && o.chatPhoto != null && chatPhoto.equals(o.chatPhoto)))
+                && (notifySettings == o.notifySettings || (notifySettings != null && o.notifySettings != null && notifySettings.equals(o.notifySettings)))
+                && (exportedInvite == o.exportedInvite || (exportedInvite != null && o.exportedInvite != null && exportedInvite.equals(o.exportedInvite)))
+                && (botInfo == o.botInfo || (botInfo != null && o.botInfo != null && botInfo.equals(o.botInfo)));
+    }
+
     public int getId() {
         return id;
     }

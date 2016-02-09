@@ -61,6 +61,18 @@ public class TLInputVideo extends TLAbsInputVideo {
         return CONSTRUCTOR_ID;
     }
 
+    @Override
+    @SuppressWarnings("PointlessBooleanExpression")
+    public boolean equals(Object object) {
+        if (!(object instanceof TLInputVideo)) return false;
+        if (object == this) return true;
+
+        TLInputVideo o = (TLInputVideo) object;
+
+        return id == o.id
+                && accessHash == o.accessHash;
+    }
+
     public long getId() {
         return id;
     }

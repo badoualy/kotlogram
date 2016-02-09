@@ -65,6 +65,18 @@ public class TLContact extends TLObject {
         return CONSTRUCTOR_ID;
     }
 
+    @Override
+    @SuppressWarnings("PointlessBooleanExpression")
+    public boolean equals(Object object) {
+        if (!(object instanceof TLContact)) return false;
+        if (object == this) return true;
+
+        TLContact o = (TLContact) object;
+
+        return userId == o.userId
+                && mutual == o.mutual;
+    }
+
     public int getUserId() {
         return userId;
     }

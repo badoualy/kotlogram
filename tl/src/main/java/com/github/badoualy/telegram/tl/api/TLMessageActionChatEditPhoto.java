@@ -54,6 +54,17 @@ public class TLMessageActionChatEditPhoto extends TLAbsMessageAction {
         return CONSTRUCTOR_ID;
     }
 
+    @Override
+    @SuppressWarnings("PointlessBooleanExpression")
+    public boolean equals(Object object) {
+        if (!(object instanceof TLMessageActionChatEditPhoto)) return false;
+        if (object == this) return true;
+
+        TLMessageActionChatEditPhoto o = (TLMessageActionChatEditPhoto) object;
+
+        return (photo == o.photo || (photo != null && o.photo != null && photo.equals(o.photo)));
+    }
+
     public TLAbsPhoto getPhoto() {
         return photo;
     }

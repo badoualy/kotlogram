@@ -80,6 +80,20 @@ public class TLInputPeerNotifySettings extends TLObject {
         return CONSTRUCTOR_ID;
     }
 
+    @Override
+    @SuppressWarnings("PointlessBooleanExpression")
+    public boolean equals(Object object) {
+        if (!(object instanceof TLInputPeerNotifySettings)) return false;
+        if (object == this) return true;
+
+        TLInputPeerNotifySettings o = (TLInputPeerNotifySettings) object;
+
+        return muteUntil == o.muteUntil
+                && (sound == o.sound || (sound != null && o.sound != null && sound.equals(o.sound)))
+                && showPreviews == o.showPreviews
+                && eventsMask == o.eventsMask;
+    }
+
     public int getMuteUntil() {
         return muteUntil;
     }

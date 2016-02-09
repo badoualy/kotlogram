@@ -19,4 +19,15 @@ public class TLChannelMessagesFilterCollapsed extends TLAbsChannelMessagesFilter
     public int getConstructorId() {
         return CONSTRUCTOR_ID;
     }
+
+    @Override
+    @SuppressWarnings("PointlessBooleanExpression")
+    public boolean equals(Object object) {
+        if (!(object instanceof TLChannelMessagesFilterCollapsed)) return false;
+        if (object == this) return true;
+
+        TLChannelMessagesFilterCollapsed o = (TLChannelMessagesFilterCollapsed) object;
+
+        return true;
+    }
 }

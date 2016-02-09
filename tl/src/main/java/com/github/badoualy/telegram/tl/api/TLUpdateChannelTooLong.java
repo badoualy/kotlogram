@@ -55,6 +55,17 @@ public class TLUpdateChannelTooLong extends TLAbsUpdate {
         return CONSTRUCTOR_ID;
     }
 
+    @Override
+    @SuppressWarnings("PointlessBooleanExpression")
+    public boolean equals(Object object) {
+        if (!(object instanceof TLUpdateChannelTooLong)) return false;
+        if (object == this) return true;
+
+        TLUpdateChannelTooLong o = (TLUpdateChannelTooLong) object;
+
+        return channelId == o.channelId;
+    }
+
     public int getChannelId() {
         return channelId;
     }

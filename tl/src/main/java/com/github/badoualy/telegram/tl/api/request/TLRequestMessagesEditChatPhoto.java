@@ -80,6 +80,18 @@ public class TLRequestMessagesEditChatPhoto extends TLMethod<TLAbsUpdates> {
         return CONSTRUCTOR_ID;
     }
 
+    @Override
+    @SuppressWarnings("PointlessBooleanExpression")
+    public boolean equals(Object object) {
+        if (!(object instanceof TLRequestMessagesEditChatPhoto)) return false;
+        if (object == this) return true;
+
+        TLRequestMessagesEditChatPhoto o = (TLRequestMessagesEditChatPhoto) object;
+
+        return chatId == o.chatId
+                && (photo == o.photo || (photo != null && o.photo != null && photo.equals(o.photo)));
+    }
+
     public int getChatId() {
         return chatId;
     }

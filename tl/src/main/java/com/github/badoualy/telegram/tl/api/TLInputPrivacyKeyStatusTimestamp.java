@@ -21,4 +21,15 @@ public class TLInputPrivacyKeyStatusTimestamp extends TLObject {
     public int getConstructorId() {
         return CONSTRUCTOR_ID;
     }
+
+    @Override
+    @SuppressWarnings("PointlessBooleanExpression")
+    public boolean equals(Object object) {
+        if (!(object instanceof TLInputPrivacyKeyStatusTimestamp)) return false;
+        if (object == this) return true;
+
+        TLInputPrivacyKeyStatusTimestamp o = (TLInputPrivacyKeyStatusTimestamp) object;
+
+        return true;
+    }
 }

@@ -88,6 +88,19 @@ public class TLRequestMessagesGetMessagesViews extends TLMethod<TLIntVector> {
         return CONSTRUCTOR_ID;
     }
 
+    @Override
+    @SuppressWarnings("PointlessBooleanExpression")
+    public boolean equals(Object object) {
+        if (!(object instanceof TLRequestMessagesGetMessagesViews)) return false;
+        if (object == this) return true;
+
+        TLRequestMessagesGetMessagesViews o = (TLRequestMessagesGetMessagesViews) object;
+
+        return (peer == o.peer || (peer != null && o.peer != null && peer.equals(o.peer)))
+                && (id == o.id || (id != null && o.id != null && id.equals(o.id)))
+                && increment == o.increment;
+    }
+
     public TLAbsInputPeer getPeer() {
         return peer;
     }

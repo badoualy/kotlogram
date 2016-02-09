@@ -81,6 +81,18 @@ public class TLRequestMessagesSearchGifs extends TLMethod<TLFoundGifs> {
         return CONSTRUCTOR_ID;
     }
 
+    @Override
+    @SuppressWarnings("PointlessBooleanExpression")
+    public boolean equals(Object object) {
+        if (!(object instanceof TLRequestMessagesSearchGifs)) return false;
+        if (object == this) return true;
+
+        TLRequestMessagesSearchGifs o = (TLRequestMessagesSearchGifs) object;
+
+        return (q == o.q || (q != null && o.q != null && q.equals(o.q)))
+                && offset == o.offset;
+    }
+
     public String getQ() {
         return q;
     }

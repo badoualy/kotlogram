@@ -104,6 +104,21 @@ public class TLRequestChannelsCreateChannel extends TLMethod<TLAbsUpdates> {
         return CONSTRUCTOR_ID;
     }
 
+    @Override
+    @SuppressWarnings("PointlessBooleanExpression")
+    public boolean equals(Object object) {
+        if (!(object instanceof TLRequestChannelsCreateChannel)) return false;
+        if (object == this) return true;
+
+        TLRequestChannelsCreateChannel o = (TLRequestChannelsCreateChannel) object;
+
+        return flags == o.flags
+                && broadcast == o.broadcast
+                && megagroup == o.megagroup
+                && (title == o.title || (title != null && o.title != null && title.equals(o.title)))
+                && (about == o.about || (about != null && o.about != null && about.equals(o.about)));
+    }
+
     public boolean getBroadcast() {
         return broadcast;
     }

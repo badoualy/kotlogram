@@ -149,6 +149,29 @@ public class TLInputBotInlineResult extends TLObject {
         return CONSTRUCTOR_ID;
     }
 
+    @Override
+    @SuppressWarnings("PointlessBooleanExpression")
+    public boolean equals(Object object) {
+        if (!(object instanceof TLInputBotInlineResult)) return false;
+        if (object == this) return true;
+
+        TLInputBotInlineResult o = (TLInputBotInlineResult) object;
+
+        return flags == o.flags
+                && (id == o.id || (id != null && o.id != null && id.equals(o.id)))
+                && (type == o.type || (type != null && o.type != null && type.equals(o.type)))
+                && (title == o.title || (title != null && o.title != null && title.equals(o.title)))
+                && (description == o.description || (description != null && o.description != null && description.equals(o.description)))
+                && (url == o.url || (url != null && o.url != null && url.equals(o.url)))
+                && (thumbUrl == o.thumbUrl || (thumbUrl != null && o.thumbUrl != null && thumbUrl.equals(o.thumbUrl)))
+                && (contentUrl == o.contentUrl || (contentUrl != null && o.contentUrl != null && contentUrl.equals(o.contentUrl)))
+                && (contentType == o.contentType || (contentType != null && o.contentType != null && contentType.equals(o.contentType)))
+                && (w == o.w || (w != null && o.w != null && w.equals(o.w)))
+                && (h == o.h || (h != null && o.h != null && h.equals(o.h)))
+                && (duration == o.duration || (duration != null && o.duration != null && duration.equals(o.duration)))
+                && (sendMessage == o.sendMessage || (sendMessage != null && o.sendMessage != null && sendMessage.equals(o.sendMessage)));
+    }
+
     public String getId() {
         return id;
     }

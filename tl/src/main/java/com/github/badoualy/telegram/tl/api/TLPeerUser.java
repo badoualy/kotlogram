@@ -55,6 +55,17 @@ public class TLPeerUser extends TLAbsPeer {
         return CONSTRUCTOR_ID;
     }
 
+    @Override
+    @SuppressWarnings("PointlessBooleanExpression")
+    public boolean equals(Object object) {
+        if (!(object instanceof TLPeerUser)) return false;
+        if (object == this) return true;
+
+        TLPeerUser o = (TLPeerUser) object;
+
+        return userId == o.userId;
+    }
+
     public int getUserId() {
         return userId;
     }

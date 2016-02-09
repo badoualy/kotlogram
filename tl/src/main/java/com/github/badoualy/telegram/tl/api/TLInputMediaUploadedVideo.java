@@ -90,6 +90,22 @@ public class TLInputMediaUploadedVideo extends TLAbsInputMedia {
         return CONSTRUCTOR_ID;
     }
 
+    @Override
+    @SuppressWarnings("PointlessBooleanExpression")
+    public boolean equals(Object object) {
+        if (!(object instanceof TLInputMediaUploadedVideo)) return false;
+        if (object == this) return true;
+
+        TLInputMediaUploadedVideo o = (TLInputMediaUploadedVideo) object;
+
+        return (file == o.file || (file != null && o.file != null && file.equals(o.file)))
+                && duration == o.duration
+                && w == o.w
+                && h == o.h
+                && (mimeType == o.mimeType || (mimeType != null && o.mimeType != null && mimeType.equals(o.mimeType)))
+                && (caption == o.caption || (caption != null && o.caption != null && caption.equals(o.caption)));
+    }
+
     public TLAbsInputFile getFile() {
         return file;
     }

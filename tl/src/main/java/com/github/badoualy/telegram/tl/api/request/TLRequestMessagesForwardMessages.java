@@ -115,6 +115,22 @@ public class TLRequestMessagesForwardMessages extends TLMethod<TLAbsUpdates> {
         return CONSTRUCTOR_ID;
     }
 
+    @Override
+    @SuppressWarnings("PointlessBooleanExpression")
+    public boolean equals(Object object) {
+        if (!(object instanceof TLRequestMessagesForwardMessages)) return false;
+        if (object == this) return true;
+
+        TLRequestMessagesForwardMessages o = (TLRequestMessagesForwardMessages) object;
+
+        return flags == o.flags
+                && broadcast == o.broadcast
+                && (fromPeer == o.fromPeer || (fromPeer != null && o.fromPeer != null && fromPeer.equals(o.fromPeer)))
+                && (id == o.id || (id != null && o.id != null && id.equals(o.id)))
+                && (randomId == o.randomId || (randomId != null && o.randomId != null && randomId.equals(o.randomId)))
+                && (toPeer == o.toPeer || (toPeer != null && o.toPeer != null && toPeer.equals(o.toPeer)));
+    }
+
     public boolean getBroadcast() {
         return broadcast;
     }

@@ -21,6 +21,17 @@ public class TLGeoPointEmpty extends TLAbsGeoPoint {
     }
 
     @Override
+    @SuppressWarnings("PointlessBooleanExpression")
+    public boolean equals(Object object) {
+        if (!(object instanceof TLGeoPointEmpty)) return false;
+        if (object == this) return true;
+
+        TLGeoPointEmpty o = (TLGeoPointEmpty) object;
+
+        return true;
+    }
+
+    @Override
     public final boolean isEmpty() {
         return true;
     }

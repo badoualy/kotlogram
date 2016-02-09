@@ -120,6 +120,26 @@ public class TLStickerSet extends TLObject {
         return CONSTRUCTOR_ID;
     }
 
+    @Override
+    @SuppressWarnings("PointlessBooleanExpression")
+    public boolean equals(Object object) {
+        if (!(object instanceof TLStickerSet)) return false;
+        if (object == this) return true;
+
+        TLStickerSet o = (TLStickerSet) object;
+
+        return flags == o.flags
+                && installed == o.installed
+                && disabled == o.disabled
+                && official == o.official
+                && id == o.id
+                && accessHash == o.accessHash
+                && (title == o.title || (title != null && o.title != null && title.equals(o.title)))
+                && (shortName == o.shortName || (shortName != null && o.shortName != null && shortName.equals(o.shortName)))
+                && count == o.count
+                && hash == o.hash;
+    }
+
     public boolean getInstalled() {
         return installed;
     }

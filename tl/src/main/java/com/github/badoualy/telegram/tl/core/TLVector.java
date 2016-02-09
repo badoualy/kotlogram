@@ -273,7 +273,14 @@ public class TLVector<T> extends TLObject implements List<T> {
     }
 
     @Override
-    public boolean equals(Object o) {
-        return !(o == null || !(o instanceof TLVector)) && itemClazz.equals(((TLVector) o).itemClazz) && items.equals(((TLVector) o).items);
+    public boolean equals(Object obj) {
+        if (!(obj instanceof TLVector))
+            return false;
+        if (this == obj)
+            return true;
+
+        TLVector o = (TLVector) obj;
+        return size() == o.size()
+                || items.equals(o.items);
     }
 }

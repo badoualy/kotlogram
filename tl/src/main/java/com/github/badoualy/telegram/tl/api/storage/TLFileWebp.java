@@ -19,4 +19,15 @@ public class TLFileWebp extends TLAbsFileType {
     public int getConstructorId() {
         return CONSTRUCTOR_ID;
     }
+
+    @Override
+    @SuppressWarnings("PointlessBooleanExpression")
+    public boolean equals(Object object) {
+        if (!(object instanceof TLFileWebp)) return false;
+        if (object == this) return true;
+
+        TLFileWebp o = (TLFileWebp) object;
+
+        return true;
+    }
 }

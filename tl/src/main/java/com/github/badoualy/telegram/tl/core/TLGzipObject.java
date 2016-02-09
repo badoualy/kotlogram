@@ -6,6 +6,7 @@ import com.github.badoualy.telegram.tl.TLContext;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.util.Arrays;
 
 import static com.github.badoualy.telegram.tl.TLObjectUtils.computeTLBytesSerializedSize;
 
@@ -51,6 +52,17 @@ public class TLGzipObject extends TLObject {
     @Override
     public int getConstructorId() {
         return CONSTRUCTOR_ID;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (!(obj instanceof TLGzipObject))
+            return false;
+        if (this == obj)
+            return true;
+
+        TLGzipObject o = (TLGzipObject) obj;
+        return Arrays.equals(packedData, o.packedData);
     }
 
     public byte[] getPackedData() {

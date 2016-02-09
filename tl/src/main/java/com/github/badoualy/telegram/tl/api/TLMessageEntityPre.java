@@ -66,6 +66,19 @@ public class TLMessageEntityPre extends TLAbsMessageEntity {
         return CONSTRUCTOR_ID;
     }
 
+    @Override
+    @SuppressWarnings("PointlessBooleanExpression")
+    public boolean equals(Object object) {
+        if (!(object instanceof TLMessageEntityPre)) return false;
+        if (object == this) return true;
+
+        TLMessageEntityPre o = (TLMessageEntityPre) object;
+
+        return offset == o.offset
+                && length == o.length
+                && (language == o.language || (language != null && o.language != null && language.equals(o.language)));
+    }
+
     public int getOffset() {
         return offset;
     }

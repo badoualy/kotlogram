@@ -57,6 +57,18 @@ public class TLMessageEntityCode extends TLAbsMessageEntity {
         return CONSTRUCTOR_ID;
     }
 
+    @Override
+    @SuppressWarnings("PointlessBooleanExpression")
+    public boolean equals(Object object) {
+        if (!(object instanceof TLMessageEntityCode)) return false;
+        if (object == this) return true;
+
+        TLMessageEntityCode o = (TLMessageEntityCode) object;
+
+        return offset == o.offset
+                && length == o.length;
+    }
+
     public int getOffset() {
         return offset;
     }

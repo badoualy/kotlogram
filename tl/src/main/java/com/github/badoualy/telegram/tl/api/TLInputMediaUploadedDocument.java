@@ -78,6 +78,20 @@ public class TLInputMediaUploadedDocument extends TLAbsInputMedia {
         return CONSTRUCTOR_ID;
     }
 
+    @Override
+    @SuppressWarnings("PointlessBooleanExpression")
+    public boolean equals(Object object) {
+        if (!(object instanceof TLInputMediaUploadedDocument)) return false;
+        if (object == this) return true;
+
+        TLInputMediaUploadedDocument o = (TLInputMediaUploadedDocument) object;
+
+        return (file == o.file || (file != null && o.file != null && file.equals(o.file)))
+                && (mimeType == o.mimeType || (mimeType != null && o.mimeType != null && mimeType.equals(o.mimeType)))
+                && (attributes == o.attributes || (attributes != null && o.attributes != null && attributes.equals(o.attributes)))
+                && (caption == o.caption || (caption != null && o.caption != null && caption.equals(o.caption)));
+    }
+
     public TLAbsInputFile getFile() {
         return file;
     }

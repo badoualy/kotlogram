@@ -55,6 +55,17 @@ public class TLPrivacyValueAllowUsers extends TLAbsPrivacyRule {
         return CONSTRUCTOR_ID;
     }
 
+    @Override
+    @SuppressWarnings("PointlessBooleanExpression")
+    public boolean equals(Object object) {
+        if (!(object instanceof TLPrivacyValueAllowUsers)) return false;
+        if (object == this) return true;
+
+        TLPrivacyValueAllowUsers o = (TLPrivacyValueAllowUsers) object;
+
+        return (users == o.users || (users != null && o.users != null && users.equals(o.users)));
+    }
+
     public TLIntVector getUsers() {
         return users;
     }

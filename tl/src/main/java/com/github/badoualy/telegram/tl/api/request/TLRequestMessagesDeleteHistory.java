@@ -80,6 +80,18 @@ public class TLRequestMessagesDeleteHistory extends TLMethod<TLAffectedHistory> 
         return CONSTRUCTOR_ID;
     }
 
+    @Override
+    @SuppressWarnings("PointlessBooleanExpression")
+    public boolean equals(Object object) {
+        if (!(object instanceof TLRequestMessagesDeleteHistory)) return false;
+        if (object == this) return true;
+
+        TLRequestMessagesDeleteHistory o = (TLRequestMessagesDeleteHistory) object;
+
+        return (peer == o.peer || (peer != null && o.peer != null && peer.equals(o.peer)))
+                && maxId == o.maxId;
+    }
+
     public TLAbsInputPeer getPeer() {
         return peer;
     }

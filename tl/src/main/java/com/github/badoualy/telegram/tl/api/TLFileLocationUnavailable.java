@@ -64,6 +64,19 @@ public class TLFileLocationUnavailable extends TLAbsFileLocation {
         return CONSTRUCTOR_ID;
     }
 
+    @Override
+    @SuppressWarnings("PointlessBooleanExpression")
+    public boolean equals(Object object) {
+        if (!(object instanceof TLFileLocationUnavailable)) return false;
+        if (object == this) return true;
+
+        TLFileLocationUnavailable o = (TLFileLocationUnavailable) object;
+
+        return volumeId == o.volumeId
+                && localId == o.localId
+                && secret == o.secret;
+    }
+
     public long getVolumeId() {
         return volumeId;
     }

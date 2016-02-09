@@ -78,6 +78,18 @@ public class TLRequestContactsGetBlocked extends TLMethod<TLAbsBlocked> {
         return CONSTRUCTOR_ID;
     }
 
+    @Override
+    @SuppressWarnings("PointlessBooleanExpression")
+    public boolean equals(Object object) {
+        if (!(object instanceof TLRequestContactsGetBlocked)) return false;
+        if (object == this) return true;
+
+        TLRequestContactsGetBlocked o = (TLRequestContactsGetBlocked) object;
+
+        return offset == o.offset
+                && limit == o.limit;
+    }
+
     public int getOffset() {
         return offset;
     }

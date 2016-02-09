@@ -72,6 +72,17 @@ public class TLRequestMessagesGetSavedGifs extends TLMethod<TLAbsSavedGifs> {
         return CONSTRUCTOR_ID;
     }
 
+    @Override
+    @SuppressWarnings("PointlessBooleanExpression")
+    public boolean equals(Object object) {
+        if (!(object instanceof TLRequestMessagesGetSavedGifs)) return false;
+        if (object == this) return true;
+
+        TLRequestMessagesGetSavedGifs o = (TLRequestMessagesGetSavedGifs) object;
+
+        return hash == o.hash;
+    }
+
     public int getHash() {
         return hash;
     }

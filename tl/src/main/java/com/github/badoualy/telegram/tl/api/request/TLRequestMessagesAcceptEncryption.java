@@ -90,6 +90,19 @@ public class TLRequestMessagesAcceptEncryption extends TLMethod<TLAbsEncryptedCh
         return CONSTRUCTOR_ID;
     }
 
+    @Override
+    @SuppressWarnings("PointlessBooleanExpression")
+    public boolean equals(Object object) {
+        if (!(object instanceof TLRequestMessagesAcceptEncryption)) return false;
+        if (object == this) return true;
+
+        TLRequestMessagesAcceptEncryption o = (TLRequestMessagesAcceptEncryption) object;
+
+        return (peer == o.peer || (peer != null && o.peer != null && peer.equals(o.peer)))
+                && (gB == o.gB || (gB != null && o.gB != null && gB.equals(o.gB)))
+                && keyFingerprint == o.keyFingerprint;
+    }
+
     public TLInputEncryptedChat getPeer() {
         return peer;
     }

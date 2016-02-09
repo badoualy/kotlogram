@@ -90,6 +90,20 @@ public class TLRequestHelpGetAppChangelog extends TLMethod<TLAbsAppChangelog> {
         return CONSTRUCTOR_ID;
     }
 
+    @Override
+    @SuppressWarnings("PointlessBooleanExpression")
+    public boolean equals(Object object) {
+        if (!(object instanceof TLRequestHelpGetAppChangelog)) return false;
+        if (object == this) return true;
+
+        TLRequestHelpGetAppChangelog o = (TLRequestHelpGetAppChangelog) object;
+
+        return (deviceModel == o.deviceModel || (deviceModel != null && o.deviceModel != null && deviceModel.equals(o.deviceModel)))
+                && (systemVersion == o.systemVersion || (systemVersion != null && o.systemVersion != null && systemVersion.equals(o.systemVersion)))
+                && (appVersion == o.appVersion || (appVersion != null && o.appVersion != null && appVersion.equals(o.appVersion)))
+                && (langCode == o.langCode || (langCode != null && o.langCode != null && langCode.equals(o.langCode)));
+    }
+
     public String getDeviceModel() {
         return deviceModel;
     }

@@ -72,6 +72,17 @@ public class TLRequestContactsResolveUsername extends TLMethod<TLResolvedPeer> {
         return CONSTRUCTOR_ID;
     }
 
+    @Override
+    @SuppressWarnings("PointlessBooleanExpression")
+    public boolean equals(Object object) {
+        if (!(object instanceof TLRequestContactsResolveUsername)) return false;
+        if (object == this) return true;
+
+        TLRequestContactsResolveUsername o = (TLRequestContactsResolveUsername) object;
+
+        return (username == o.username || (username != null && o.username != null && username.equals(o.username)));
+    }
+
     public String getUsername() {
         return username;
     }

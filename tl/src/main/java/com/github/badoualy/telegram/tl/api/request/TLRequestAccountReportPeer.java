@@ -78,6 +78,18 @@ public class TLRequestAccountReportPeer extends TLMethod<TLBool> {
         return CONSTRUCTOR_ID;
     }
 
+    @Override
+    @SuppressWarnings("PointlessBooleanExpression")
+    public boolean equals(Object object) {
+        if (!(object instanceof TLRequestAccountReportPeer)) return false;
+        if (object == this) return true;
+
+        TLRequestAccountReportPeer o = (TLRequestAccountReportPeer) object;
+
+        return (peer == o.peer || (peer != null && o.peer != null && peer.equals(o.peer)))
+                && (reason == o.reason || (reason != null && o.reason != null && reason.equals(o.reason)));
+    }
+
     public TLAbsInputPeer getPeer() {
         return peer;
     }

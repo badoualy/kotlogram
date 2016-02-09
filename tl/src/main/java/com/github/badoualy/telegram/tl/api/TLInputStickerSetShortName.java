@@ -55,6 +55,17 @@ public class TLInputStickerSetShortName extends TLAbsInputStickerSet {
         return CONSTRUCTOR_ID;
     }
 
+    @Override
+    @SuppressWarnings("PointlessBooleanExpression")
+    public boolean equals(Object object) {
+        if (!(object instanceof TLInputStickerSetShortName)) return false;
+        if (object == this) return true;
+
+        TLInputStickerSetShortName o = (TLInputStickerSetShortName) object;
+
+        return (shortName == o.shortName || (shortName != null && o.shortName != null && shortName.equals(o.shortName)));
+    }
+
     public String getShortName() {
         return shortName;
     }

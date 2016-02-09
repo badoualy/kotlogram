@@ -98,11 +98,9 @@ public class TLUser extends TLAbsUser {
         flags = contact ? (flags | 2048) : (flags &~ 2048);
         flags = mutualContact ? (flags | 4096) : (flags &~ 4096);
         flags = deleted ? (flags | 8192) : (flags &~ 8192);
-        flags = bot ? (flags | 16384) : (flags &~ 16384);
         flags = botChatHistory ? (flags | 32768) : (flags &~ 32768);
         flags = botNochats ? (flags | 65536) : (flags &~ 65536);
         flags = verified ? (flags | 131072) : (flags &~ 131072);
-        flags = restricted ? (flags | 262144) : (flags &~ 262144);
         flags = accessHash != null ? (flags | 1) : (flags &~ 1);
         flags = firstName != null ? (flags | 2) : (flags &~ 2);
         flags = lastName != null ? (flags | 4) : (flags &~ 4);
@@ -113,6 +111,8 @@ public class TLUser extends TLAbsUser {
         flags = botInfoVersion != null ? (flags | 16384) : (flags &~ 16384);
         flags = restrictionReason != null ? (flags | 262144) : (flags &~ 262144);
         flags = botInlinePlaceholder != null ? (flags | 524288) : (flags &~ 524288);
+        bot = (flags & 16384) != 0;
+        restricted = (flags & 262144) != 0;
     }
 
     @Override
@@ -187,6 +187,37 @@ public class TLUser extends TLAbsUser {
     @Override
     public int getConstructorId() {
         return CONSTRUCTOR_ID;
+    }
+
+    @Override
+    @SuppressWarnings("PointlessBooleanExpression")
+    public boolean equals(Object object) {
+        if (!(object instanceof TLUser)) return false;
+        if (object == this) return true;
+
+        TLUser o = (TLUser) object;
+
+        return flags == o.flags
+                && self == o.self
+                && contact == o.contact
+                && mutualContact == o.mutualContact
+                && deleted == o.deleted
+                && bot == o.bot
+                && botChatHistory == o.botChatHistory
+                && botNochats == o.botNochats
+                && verified == o.verified
+                && restricted == o.restricted
+                && id == o.id
+                && (accessHash == o.accessHash || (accessHash != null && o.accessHash != null && accessHash.equals(o.accessHash)))
+                && (firstName == o.firstName || (firstName != null && o.firstName != null && firstName.equals(o.firstName)))
+                && (lastName == o.lastName || (lastName != null && o.lastName != null && lastName.equals(o.lastName)))
+                && (username == o.username || (username != null && o.username != null && username.equals(o.username)))
+                && (phone == o.phone || (phone != null && o.phone != null && phone.equals(o.phone)))
+                && (photo == o.photo || (photo != null && o.photo != null && photo.equals(o.photo)))
+                && (status == o.status || (status != null && o.status != null && status.equals(o.status)))
+                && (botInfoVersion == o.botInfoVersion || (botInfoVersion != null && o.botInfoVersion != null && botInfoVersion.equals(o.botInfoVersion)))
+                && (restrictionReason == o.restrictionReason || (restrictionReason != null && o.restrictionReason != null && restrictionReason.equals(o.restrictionReason)))
+                && (botInlinePlaceholder == o.botInlinePlaceholder || (botInlinePlaceholder != null && o.botInlinePlaceholder != null && botInlinePlaceholder.equals(o.botInlinePlaceholder)));
     }
 
     public boolean getSelf() {

@@ -66,6 +66,18 @@ public class TLExportedAuthorization extends TLObject {
         return CONSTRUCTOR_ID;
     }
 
+    @Override
+    @SuppressWarnings("PointlessBooleanExpression")
+    public boolean equals(Object object) {
+        if (!(object instanceof TLExportedAuthorization)) return false;
+        if (object == this) return true;
+
+        TLExportedAuthorization o = (TLExportedAuthorization) object;
+
+        return id == o.id
+                && (bytes == o.bytes || (bytes != null && o.bytes != null && bytes.equals(o.bytes)));
+    }
+
     public int getId() {
         return id;
     }

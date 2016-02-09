@@ -77,6 +77,20 @@ public class TLPhoto extends TLAbsPhoto {
         return CONSTRUCTOR_ID;
     }
 
+    @Override
+    @SuppressWarnings("PointlessBooleanExpression")
+    public boolean equals(Object object) {
+        if (!(object instanceof TLPhoto)) return false;
+        if (object == this) return true;
+
+        TLPhoto o = (TLPhoto) object;
+
+        return id == o.id
+                && accessHash == o.accessHash
+                && date == o.date
+                && (sizes == o.sizes || (sizes != null && o.sizes != null && sizes.equals(o.sizes)));
+    }
+
     public long getId() {
         return id;
     }

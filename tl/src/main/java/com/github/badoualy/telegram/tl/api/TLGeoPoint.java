@@ -61,6 +61,18 @@ public class TLGeoPoint extends TLAbsGeoPoint {
         return CONSTRUCTOR_ID;
     }
 
+    @Override
+    @SuppressWarnings("PointlessBooleanExpression")
+    public boolean equals(Object object) {
+        if (!(object instanceof TLGeoPoint)) return false;
+        if (object == this) return true;
+
+        TLGeoPoint o = (TLGeoPoint) object;
+
+        return _long == o._long
+                && lat == o.lat;
+    }
+
     public double getLong() {
         return _long;
     }

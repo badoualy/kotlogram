@@ -66,6 +66,19 @@ public class TLMessageEntityTextUrl extends TLAbsMessageEntity {
         return CONSTRUCTOR_ID;
     }
 
+    @Override
+    @SuppressWarnings("PointlessBooleanExpression")
+    public boolean equals(Object object) {
+        if (!(object instanceof TLMessageEntityTextUrl)) return false;
+        if (object == this) return true;
+
+        TLMessageEntityTextUrl o = (TLMessageEntityTextUrl) object;
+
+        return offset == o.offset
+                && length == o.length
+                && (url == o.url || (url != null && o.url != null && url.equals(o.url)));
+    }
+
     public int getOffset() {
         return offset;
     }

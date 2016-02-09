@@ -80,6 +80,18 @@ public class TLRequestChannelsGetMessages extends TLMethod<TLAbsMessages> {
         return CONSTRUCTOR_ID;
     }
 
+    @Override
+    @SuppressWarnings("PointlessBooleanExpression")
+    public boolean equals(Object object) {
+        if (!(object instanceof TLRequestChannelsGetMessages)) return false;
+        if (object == this) return true;
+
+        TLRequestChannelsGetMessages o = (TLRequestChannelsGetMessages) object;
+
+        return (channel == o.channel || (channel != null && o.channel != null && channel.equals(o.channel)))
+                && (id == o.id || (id != null && o.id != null && id.equals(o.id)));
+    }
+
     public TLAbsInputChannel getChannel() {
         return channel;
     }

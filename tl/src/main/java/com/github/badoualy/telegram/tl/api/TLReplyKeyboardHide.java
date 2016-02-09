@@ -63,6 +63,18 @@ public class TLReplyKeyboardHide extends TLAbsReplyMarkup {
         return CONSTRUCTOR_ID;
     }
 
+    @Override
+    @SuppressWarnings("PointlessBooleanExpression")
+    public boolean equals(Object object) {
+        if (!(object instanceof TLReplyKeyboardHide)) return false;
+        if (object == this) return true;
+
+        TLReplyKeyboardHide o = (TLReplyKeyboardHide) object;
+
+        return flags == o.flags
+                && selective == o.selective;
+    }
+
     public boolean getSelective() {
         return selective;
     }

@@ -93,9 +93,9 @@ public class TLChannel extends TLAbsChat {
         flags = broadcast ? (flags | 32) : (flags &~ 32);
         flags = verified ? (flags | 128) : (flags &~ 128);
         flags = megagroup ? (flags | 256) : (flags &~ 256);
-        flags = restricted ? (flags | 512) : (flags &~ 512);
         flags = username != null ? (flags | 64) : (flags &~ 64);
         flags = restrictionReason != null ? (flags | 512) : (flags &~ 512);
+        restricted = (flags & 512) != 0;
     }
 
     @Override
@@ -161,6 +161,34 @@ public class TLChannel extends TLAbsChat {
     @Override
     public int getConstructorId() {
         return CONSTRUCTOR_ID;
+    }
+
+    @Override
+    @SuppressWarnings("PointlessBooleanExpression")
+    public boolean equals(Object object) {
+        if (!(object instanceof TLChannel)) return false;
+        if (object == this) return true;
+
+        TLChannel o = (TLChannel) object;
+
+        return flags == o.flags
+                && creator == o.creator
+                && kicked == o.kicked
+                && left == o.left
+                && editor == o.editor
+                && moderator == o.moderator
+                && broadcast == o.broadcast
+                && verified == o.verified
+                && megagroup == o.megagroup
+                && restricted == o.restricted
+                && id == o.id
+                && accessHash == o.accessHash
+                && (title == o.title || (title != null && o.title != null && title.equals(o.title)))
+                && (username == o.username || (username != null && o.username != null && username.equals(o.username)))
+                && (photo == o.photo || (photo != null && o.photo != null && photo.equals(o.photo)))
+                && date == o.date
+                && version == o.version
+                && (restrictionReason == o.restrictionReason || (restrictionReason != null && o.restrictionReason != null && restrictionReason.equals(o.restrictionReason)));
     }
 
     public boolean getCreator() {

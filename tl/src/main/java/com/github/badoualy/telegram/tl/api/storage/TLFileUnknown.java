@@ -19,4 +19,15 @@ public class TLFileUnknown extends TLAbsFileType {
     public int getConstructorId() {
         return CONSTRUCTOR_ID;
     }
+
+    @Override
+    @SuppressWarnings("PointlessBooleanExpression")
+    public boolean equals(Object object) {
+        if (!(object instanceof TLFileUnknown)) return false;
+        if (object == this) return true;
+
+        TLFileUnknown o = (TLFileUnknown) object;
+
+        return true;
+    }
 }

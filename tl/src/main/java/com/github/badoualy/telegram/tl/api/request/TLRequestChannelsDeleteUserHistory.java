@@ -78,6 +78,18 @@ public class TLRequestChannelsDeleteUserHistory extends TLMethod<TLAffectedHisto
         return CONSTRUCTOR_ID;
     }
 
+    @Override
+    @SuppressWarnings("PointlessBooleanExpression")
+    public boolean equals(Object object) {
+        if (!(object instanceof TLRequestChannelsDeleteUserHistory)) return false;
+        if (object == this) return true;
+
+        TLRequestChannelsDeleteUserHistory o = (TLRequestChannelsDeleteUserHistory) object;
+
+        return (channel == o.channel || (channel != null && o.channel != null && channel.equals(o.channel)))
+                && (userId == o.userId || (userId != null && o.userId != null && userId.equals(o.userId)));
+    }
+
     public TLAbsInputChannel getChannel() {
         return channel;
     }

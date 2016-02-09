@@ -54,6 +54,17 @@ public class TLChatInviteAlready extends TLAbsChatInvite {
         return CONSTRUCTOR_ID;
     }
 
+    @Override
+    @SuppressWarnings("PointlessBooleanExpression")
+    public boolean equals(Object object) {
+        if (!(object instanceof TLChatInviteAlready)) return false;
+        if (object == this) return true;
+
+        TLChatInviteAlready o = (TLChatInviteAlready) object;
+
+        return (chat == o.chat || (chat != null && o.chat != null && chat.equals(o.chat)));
+    }
+
     public TLAbsChat getChat() {
         return chat;
     }

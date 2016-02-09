@@ -69,6 +69,19 @@ public class TLUserProfilePhoto extends TLAbsUserProfilePhoto {
         return CONSTRUCTOR_ID;
     }
 
+    @Override
+    @SuppressWarnings("PointlessBooleanExpression")
+    public boolean equals(Object object) {
+        if (!(object instanceof TLUserProfilePhoto)) return false;
+        if (object == this) return true;
+
+        TLUserProfilePhoto o = (TLUserProfilePhoto) object;
+
+        return photoId == o.photoId
+                && (photoSmall == o.photoSmall || (photoSmall != null && o.photoSmall != null && photoSmall.equals(o.photoSmall)))
+                && (photoBig == o.photoBig || (photoBig != null && o.photoBig != null && photoBig.equals(o.photoBig)));
+    }
+
     public long getPhotoId() {
         return photoId;
     }

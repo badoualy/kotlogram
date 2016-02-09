@@ -19,4 +19,15 @@ public class TLMessageActionEmpty extends TLAbsMessageAction {
     public int getConstructorId() {
         return CONSTRUCTOR_ID;
     }
+
+    @Override
+    @SuppressWarnings("PointlessBooleanExpression")
+    public boolean equals(Object object) {
+        if (!(object instanceof TLMessageActionEmpty)) return false;
+        if (object == this) return true;
+
+        TLMessageActionEmpty o = (TLMessageActionEmpty) object;
+
+        return true;
+    }
 }

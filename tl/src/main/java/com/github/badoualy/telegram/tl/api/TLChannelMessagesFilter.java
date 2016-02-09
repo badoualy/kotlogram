@@ -81,6 +81,20 @@ public class TLChannelMessagesFilter extends TLAbsChannelMessagesFilter {
         return CONSTRUCTOR_ID;
     }
 
+    @Override
+    @SuppressWarnings("PointlessBooleanExpression")
+    public boolean equals(Object object) {
+        if (!(object instanceof TLChannelMessagesFilter)) return false;
+        if (object == this) return true;
+
+        TLChannelMessagesFilter o = (TLChannelMessagesFilter) object;
+
+        return flags == o.flags
+                && importantOnly == o.importantOnly
+                && excludeNewMessages == o.excludeNewMessages
+                && (ranges == o.ranges || (ranges != null && o.ranges != null && ranges.equals(o.ranges)));
+    }
+
     public boolean getImportantOnly() {
         return importantOnly;
     }

@@ -19,4 +19,15 @@ public class TLFileJpeg extends TLAbsFileType {
     public int getConstructorId() {
         return CONSTRUCTOR_ID;
     }
+
+    @Override
+    @SuppressWarnings("PointlessBooleanExpression")
+    public boolean equals(Object object) {
+        if (!(object instanceof TLFileJpeg)) return false;
+        if (object == this) return true;
+
+        TLFileJpeg o = (TLFileJpeg) object;
+
+        return true;
+    }
 }

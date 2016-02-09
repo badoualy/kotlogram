@@ -80,6 +80,18 @@ public class TLRequestMessagesInstallStickerSet extends TLMethod<TLBool> {
         return CONSTRUCTOR_ID;
     }
 
+    @Override
+    @SuppressWarnings("PointlessBooleanExpression")
+    public boolean equals(Object object) {
+        if (!(object instanceof TLRequestMessagesInstallStickerSet)) return false;
+        if (object == this) return true;
+
+        TLRequestMessagesInstallStickerSet o = (TLRequestMessagesInstallStickerSet) object;
+
+        return (stickerset == o.stickerset || (stickerset != null && o.stickerset != null && stickerset.equals(o.stickerset)))
+                && disabled == o.disabled;
+    }
+
     public TLAbsInputStickerSet getStickerset() {
         return stickerset;
     }

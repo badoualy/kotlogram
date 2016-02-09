@@ -82,6 +82,21 @@ public class TLPhotoSize extends TLAbsPhotoSize {
         return CONSTRUCTOR_ID;
     }
 
+    @Override
+    @SuppressWarnings("PointlessBooleanExpression")
+    public boolean equals(Object object) {
+        if (!(object instanceof TLPhotoSize)) return false;
+        if (object == this) return true;
+
+        TLPhotoSize o = (TLPhotoSize) object;
+
+        return (type == o.type || (type != null && o.type != null && type.equals(o.type)))
+                && (location == o.location || (location != null && o.location != null && location.equals(o.location)))
+                && w == o.w
+                && h == o.h
+                && size == o.size;
+    }
+
     public String getType() {
         return type;
     }

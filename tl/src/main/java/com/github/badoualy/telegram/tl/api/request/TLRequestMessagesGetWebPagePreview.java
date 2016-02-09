@@ -72,6 +72,17 @@ public class TLRequestMessagesGetWebPagePreview extends TLMethod<TLAbsMessageMed
         return CONSTRUCTOR_ID;
     }
 
+    @Override
+    @SuppressWarnings("PointlessBooleanExpression")
+    public boolean equals(Object object) {
+        if (!(object instanceof TLRequestMessagesGetWebPagePreview)) return false;
+        if (object == this) return true;
+
+        TLRequestMessagesGetWebPagePreview o = (TLRequestMessagesGetWebPagePreview) object;
+
+        return (message == o.message || (message != null && o.message != null && message.equals(o.message)));
+    }
+
     public String getMessage() {
         return message;
     }

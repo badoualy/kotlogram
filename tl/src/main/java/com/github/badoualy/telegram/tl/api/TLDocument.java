@@ -106,6 +106,24 @@ public class TLDocument extends TLAbsDocument {
         return CONSTRUCTOR_ID;
     }
 
+    @Override
+    @SuppressWarnings("PointlessBooleanExpression")
+    public boolean equals(Object object) {
+        if (!(object instanceof TLDocument)) return false;
+        if (object == this) return true;
+
+        TLDocument o = (TLDocument) object;
+
+        return id == o.id
+                && accessHash == o.accessHash
+                && date == o.date
+                && (mimeType == o.mimeType || (mimeType != null && o.mimeType != null && mimeType.equals(o.mimeType)))
+                && size == o.size
+                && (thumb == o.thumb || (thumb != null && o.thumb != null && thumb.equals(o.thumb)))
+                && dcId == o.dcId
+                && (attributes == o.attributes || (attributes != null && o.attributes != null && attributes.equals(o.attributes)));
+    }
+
     public long getId() {
         return id;
     }

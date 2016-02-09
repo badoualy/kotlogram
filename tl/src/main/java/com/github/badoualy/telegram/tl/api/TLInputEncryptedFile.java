@@ -61,6 +61,18 @@ public class TLInputEncryptedFile extends TLAbsInputEncryptedFile {
         return CONSTRUCTOR_ID;
     }
 
+    @Override
+    @SuppressWarnings("PointlessBooleanExpression")
+    public boolean equals(Object object) {
+        if (!(object instanceof TLInputEncryptedFile)) return false;
+        if (object == this) return true;
+
+        TLInputEncryptedFile o = (TLInputEncryptedFile) object;
+
+        return id == o.id
+                && accessHash == o.accessHash;
+    }
+
     public long getId() {
         return id;
     }

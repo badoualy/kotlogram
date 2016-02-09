@@ -64,6 +64,18 @@ public class TLSuggested extends TLObject {
         return CONSTRUCTOR_ID;
     }
 
+    @Override
+    @SuppressWarnings("PointlessBooleanExpression")
+    public boolean equals(Object object) {
+        if (!(object instanceof TLSuggested)) return false;
+        if (object == this) return true;
+
+        TLSuggested o = (TLSuggested) object;
+
+        return (results == o.results || (results != null && o.results != null && results.equals(o.results)))
+                && (users == o.users || (users != null && o.users != null && users.equals(o.users)));
+    }
+
     public TLVector<? extends TLContactSuggested> getResults() {
         return results;
     }

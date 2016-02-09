@@ -161,6 +161,32 @@ public class TLUpdateShortMessage extends TLAbsUpdates {
         return CONSTRUCTOR_ID;
     }
 
+    @Override
+    @SuppressWarnings("PointlessBooleanExpression")
+    public boolean equals(Object object) {
+        if (!(object instanceof TLUpdateShortMessage)) return false;
+        if (object == this) return true;
+
+        TLUpdateShortMessage o = (TLUpdateShortMessage) object;
+
+        return flags == o.flags
+                && unread == o.unread
+                && out == o.out
+                && mentioned == o.mentioned
+                && mediaUnread == o.mediaUnread
+                && id == o.id
+                && userId == o.userId
+                && (message == o.message || (message != null && o.message != null && message.equals(o.message)))
+                && pts == o.pts
+                && ptsCount == o.ptsCount
+                && date == o.date
+                && (fwdFromId == o.fwdFromId || (fwdFromId != null && o.fwdFromId != null && fwdFromId.equals(o.fwdFromId)))
+                && (fwdDate == o.fwdDate || (fwdDate != null && o.fwdDate != null && fwdDate.equals(o.fwdDate)))
+                && (viaBotId == o.viaBotId || (viaBotId != null && o.viaBotId != null && viaBotId.equals(o.viaBotId)))
+                && (replyToMsgId == o.replyToMsgId || (replyToMsgId != null && o.replyToMsgId != null && replyToMsgId.equals(o.replyToMsgId)))
+                && (entities == o.entities || (entities != null && o.entities != null && entities.equals(o.entities)));
+    }
+
     public boolean getUnread() {
         return unread;
     }

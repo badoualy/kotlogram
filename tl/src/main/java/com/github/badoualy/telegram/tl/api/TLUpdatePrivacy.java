@@ -63,6 +63,18 @@ public class TLUpdatePrivacy extends TLAbsUpdate {
         return CONSTRUCTOR_ID;
     }
 
+    @Override
+    @SuppressWarnings("PointlessBooleanExpression")
+    public boolean equals(Object object) {
+        if (!(object instanceof TLUpdatePrivacy)) return false;
+        if (object == this) return true;
+
+        TLUpdatePrivacy o = (TLUpdatePrivacy) object;
+
+        return (key == o.key || (key != null && o.key != null && key.equals(o.key)))
+                && (rules == o.rules || (rules != null && o.rules != null && rules.equals(o.rules)));
+    }
+
     public TLPrivacyKeyStatusTimestamp getKey() {
         return key;
     }

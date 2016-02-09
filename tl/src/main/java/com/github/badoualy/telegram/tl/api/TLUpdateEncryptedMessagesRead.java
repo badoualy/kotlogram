@@ -67,6 +67,19 @@ public class TLUpdateEncryptedMessagesRead extends TLAbsUpdate {
         return CONSTRUCTOR_ID;
     }
 
+    @Override
+    @SuppressWarnings("PointlessBooleanExpression")
+    public boolean equals(Object object) {
+        if (!(object instanceof TLUpdateEncryptedMessagesRead)) return false;
+        if (object == this) return true;
+
+        TLUpdateEncryptedMessagesRead o = (TLUpdateEncryptedMessagesRead) object;
+
+        return chatId == o.chatId
+                && maxDate == o.maxDate
+                && date == o.date;
+    }
+
     public int getChatId() {
         return chatId;
     }

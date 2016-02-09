@@ -53,6 +53,17 @@ public class TLUserEmpty extends TLAbsUser {
         return CONSTRUCTOR_ID;
     }
 
+    @Override
+    @SuppressWarnings("PointlessBooleanExpression")
+    public boolean equals(Object object) {
+        if (!(object instanceof TLUserEmpty)) return false;
+        if (object == this) return true;
+
+        TLUserEmpty o = (TLUserEmpty) object;
+
+        return id == o.id;
+    }
+
     public int getId() {
         return id;
     }

@@ -53,6 +53,17 @@ public class TLChatEmpty extends TLAbsChat {
         return CONSTRUCTOR_ID;
     }
 
+    @Override
+    @SuppressWarnings("PointlessBooleanExpression")
+    public boolean equals(Object object) {
+        if (!(object instanceof TLChatEmpty)) return false;
+        if (object == this) return true;
+
+        TLChatEmpty o = (TLChatEmpty) object;
+
+        return id == o.id;
+    }
+
     public int getId() {
         return id;
     }

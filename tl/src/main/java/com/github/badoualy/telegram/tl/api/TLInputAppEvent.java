@@ -80,6 +80,20 @@ public class TLInputAppEvent extends TLObject {
         return CONSTRUCTOR_ID;
     }
 
+    @Override
+    @SuppressWarnings("PointlessBooleanExpression")
+    public boolean equals(Object object) {
+        if (!(object instanceof TLInputAppEvent)) return false;
+        if (object == this) return true;
+
+        TLInputAppEvent o = (TLInputAppEvent) object;
+
+        return time == o.time
+                && (type == o.type || (type != null && o.type != null && type.equals(o.type)))
+                && peer == o.peer
+                && (data == o.data || (data != null && o.data != null && data.equals(o.data)));
+    }
+
     public double getTime() {
         return time;
     }

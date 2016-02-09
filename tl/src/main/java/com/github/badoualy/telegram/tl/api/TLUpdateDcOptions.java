@@ -55,6 +55,17 @@ public class TLUpdateDcOptions extends TLAbsUpdate {
         return CONSTRUCTOR_ID;
     }
 
+    @Override
+    @SuppressWarnings("PointlessBooleanExpression")
+    public boolean equals(Object object) {
+        if (!(object instanceof TLUpdateDcOptions)) return false;
+        if (object == this) return true;
+
+        TLUpdateDcOptions o = (TLUpdateDcOptions) object;
+
+        return (dcOptions == o.dcOptions || (dcOptions != null && o.dcOptions != null && dcOptions.equals(o.dcOptions)));
+    }
+
     public TLVector<? extends TLDcOption> getDcOptions() {
         return dcOptions;
     }

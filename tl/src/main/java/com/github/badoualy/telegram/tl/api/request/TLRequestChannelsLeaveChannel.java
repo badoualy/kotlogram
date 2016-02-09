@@ -71,6 +71,17 @@ public class TLRequestChannelsLeaveChannel extends TLMethod<TLAbsUpdates> {
         return CONSTRUCTOR_ID;
     }
 
+    @Override
+    @SuppressWarnings("PointlessBooleanExpression")
+    public boolean equals(Object object) {
+        if (!(object instanceof TLRequestChannelsLeaveChannel)) return false;
+        if (object == this) return true;
+
+        TLRequestChannelsLeaveChannel o = (TLRequestChannelsLeaveChannel) object;
+
+        return (channel == o.channel || (channel != null && o.channel != null && channel.equals(o.channel)));
+    }
+
     public TLAbsInputChannel getChannel() {
         return channel;
     }

@@ -62,6 +62,18 @@ public class TLBotCommand extends TLObject {
         return CONSTRUCTOR_ID;
     }
 
+    @Override
+    @SuppressWarnings("PointlessBooleanExpression")
+    public boolean equals(Object object) {
+        if (!(object instanceof TLBotCommand)) return false;
+        if (object == this) return true;
+
+        TLBotCommand o = (TLBotCommand) object;
+
+        return (command == o.command || (command != null && o.command != null && command.equals(o.command)))
+                && (description == o.description || (description != null && o.description != null && description.equals(o.description)));
+    }
+
     public String getCommand() {
         return command;
     }

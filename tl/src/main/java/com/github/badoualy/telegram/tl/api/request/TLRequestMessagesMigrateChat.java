@@ -72,6 +72,17 @@ public class TLRequestMessagesMigrateChat extends TLMethod<TLAbsUpdates> {
         return CONSTRUCTOR_ID;
     }
 
+    @Override
+    @SuppressWarnings("PointlessBooleanExpression")
+    public boolean equals(Object object) {
+        if (!(object instanceof TLRequestMessagesMigrateChat)) return false;
+        if (object == this) return true;
+
+        TLRequestMessagesMigrateChat o = (TLRequestMessagesMigrateChat) object;
+
+        return chatId == o.chatId;
+    }
+
     public int getChatId() {
         return chatId;
     }

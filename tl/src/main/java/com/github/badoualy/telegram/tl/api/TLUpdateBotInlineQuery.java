@@ -79,6 +79,20 @@ public class TLUpdateBotInlineQuery extends TLAbsUpdate {
         return CONSTRUCTOR_ID;
     }
 
+    @Override
+    @SuppressWarnings("PointlessBooleanExpression")
+    public boolean equals(Object object) {
+        if (!(object instanceof TLUpdateBotInlineQuery)) return false;
+        if (object == this) return true;
+
+        TLUpdateBotInlineQuery o = (TLUpdateBotInlineQuery) object;
+
+        return queryId == o.queryId
+                && userId == o.userId
+                && (query == o.query || (query != null && o.query != null && query.equals(o.query)))
+                && (offset == o.offset || (offset != null && o.offset != null && offset.equals(o.offset)));
+    }
+
     public long getQueryId() {
         return queryId;
     }

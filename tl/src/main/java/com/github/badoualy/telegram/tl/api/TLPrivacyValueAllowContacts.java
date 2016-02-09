@@ -19,4 +19,15 @@ public class TLPrivacyValueAllowContacts extends TLAbsPrivacyRule {
     public int getConstructorId() {
         return CONSTRUCTOR_ID;
     }
+
+    @Override
+    @SuppressWarnings("PointlessBooleanExpression")
+    public boolean equals(Object object) {
+        if (!(object instanceof TLPrivacyValueAllowContacts)) return false;
+        if (object == this) return true;
+
+        TLPrivacyValueAllowContacts o = (TLPrivacyValueAllowContacts) object;
+
+        return true;
+    }
 }

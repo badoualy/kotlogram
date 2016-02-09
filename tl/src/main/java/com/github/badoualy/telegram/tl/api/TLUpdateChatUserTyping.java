@@ -69,6 +69,19 @@ public class TLUpdateChatUserTyping extends TLAbsUpdate {
         return CONSTRUCTOR_ID;
     }
 
+    @Override
+    @SuppressWarnings("PointlessBooleanExpression")
+    public boolean equals(Object object) {
+        if (!(object instanceof TLUpdateChatUserTyping)) return false;
+        if (object == this) return true;
+
+        TLUpdateChatUserTyping o = (TLUpdateChatUserTyping) object;
+
+        return chatId == o.chatId
+                && userId == o.userId
+                && (action == o.action || (action != null && o.action != null && action.equals(o.action)));
+    }
+
     public int getChatId() {
         return chatId;
     }

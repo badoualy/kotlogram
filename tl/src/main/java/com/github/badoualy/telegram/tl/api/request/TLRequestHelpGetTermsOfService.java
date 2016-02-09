@@ -72,6 +72,17 @@ public class TLRequestHelpGetTermsOfService extends TLMethod<TLTermsOfService> {
         return CONSTRUCTOR_ID;
     }
 
+    @Override
+    @SuppressWarnings("PointlessBooleanExpression")
+    public boolean equals(Object object) {
+        if (!(object instanceof TLRequestHelpGetTermsOfService)) return false;
+        if (object == this) return true;
+
+        TLRequestHelpGetTermsOfService o = (TLRequestHelpGetTermsOfService) object;
+
+        return (langCode == o.langCode || (langCode != null && o.langCode != null && langCode.equals(o.langCode)));
+    }
+
     public String getLangCode() {
         return langCode;
     }

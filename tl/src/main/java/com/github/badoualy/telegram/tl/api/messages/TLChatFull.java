@@ -73,6 +73,19 @@ public class TLChatFull extends TLObject {
         return CONSTRUCTOR_ID;
     }
 
+    @Override
+    @SuppressWarnings("PointlessBooleanExpression")
+    public boolean equals(Object object) {
+        if (!(object instanceof TLChatFull)) return false;
+        if (object == this) return true;
+
+        TLChatFull o = (TLChatFull) object;
+
+        return (fullChat == o.fullChat || (fullChat != null && o.fullChat != null && fullChat.equals(o.fullChat)))
+                && (chats == o.chats || (chats != null && o.chats != null && chats.equals(o.chats)))
+                && (users == o.users || (users != null && o.users != null && users.equals(o.users)));
+    }
+
     public TLAbsChatFull getFullChat() {
         return fullChat;
     }

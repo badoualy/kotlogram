@@ -85,6 +85,21 @@ public class TLBotInfo extends TLAbsBotInfo {
         return CONSTRUCTOR_ID;
     }
 
+    @Override
+    @SuppressWarnings("PointlessBooleanExpression")
+    public boolean equals(Object object) {
+        if (!(object instanceof TLBotInfo)) return false;
+        if (object == this) return true;
+
+        TLBotInfo o = (TLBotInfo) object;
+
+        return userId == o.userId
+                && version == o.version
+                && (shareText == o.shareText || (shareText != null && o.shareText != null && shareText.equals(o.shareText)))
+                && (description == o.description || (description != null && o.description != null && description.equals(o.description)))
+                && (commands == o.commands || (commands != null && o.commands != null && commands.equals(o.commands)));
+    }
+
     public int getUserId() {
         return userId;
     }

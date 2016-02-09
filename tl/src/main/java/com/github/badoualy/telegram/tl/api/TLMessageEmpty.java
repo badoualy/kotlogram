@@ -53,6 +53,17 @@ public class TLMessageEmpty extends TLAbsMessage {
         return CONSTRUCTOR_ID;
     }
 
+    @Override
+    @SuppressWarnings("PointlessBooleanExpression")
+    public boolean equals(Object object) {
+        if (!(object instanceof TLMessageEmpty)) return false;
+        if (object == this) return true;
+
+        TLMessageEmpty o = (TLMessageEmpty) object;
+
+        return id == o.id;
+    }
+
     public int getId() {
         return id;
     }

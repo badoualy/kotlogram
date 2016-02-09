@@ -19,4 +19,15 @@ public class TLChannelRoleEditor extends TLAbsChannelParticipantRole {
     public int getConstructorId() {
         return CONSTRUCTOR_ID;
     }
+
+    @Override
+    @SuppressWarnings("PointlessBooleanExpression")
+    public boolean equals(Object object) {
+        if (!(object instanceof TLChannelRoleEditor)) return false;
+        if (object == this) return true;
+
+        TLChannelRoleEditor o = (TLChannelRoleEditor) object;
+
+        return true;
+    }
 }

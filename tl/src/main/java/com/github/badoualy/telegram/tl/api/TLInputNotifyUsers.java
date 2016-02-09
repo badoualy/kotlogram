@@ -19,4 +19,15 @@ public class TLInputNotifyUsers extends TLAbsInputNotifyPeer {
     public int getConstructorId() {
         return CONSTRUCTOR_ID;
     }
+
+    @Override
+    @SuppressWarnings("PointlessBooleanExpression")
+    public boolean equals(Object object) {
+        if (!(object instanceof TLInputNotifyUsers)) return false;
+        if (object == this) return true;
+
+        TLInputNotifyUsers o = (TLInputNotifyUsers) object;
+
+        return true;
+    }
 }

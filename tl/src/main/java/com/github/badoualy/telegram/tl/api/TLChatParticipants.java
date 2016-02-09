@@ -68,6 +68,19 @@ public class TLChatParticipants extends TLAbsChatParticipants {
         return CONSTRUCTOR_ID;
     }
 
+    @Override
+    @SuppressWarnings("PointlessBooleanExpression")
+    public boolean equals(Object object) {
+        if (!(object instanceof TLChatParticipants)) return false;
+        if (object == this) return true;
+
+        TLChatParticipants o = (TLChatParticipants) object;
+
+        return chatId == o.chatId
+                && (participants == o.participants || (participants != null && o.participants != null && participants.equals(o.participants)))
+                && version == o.version;
+    }
+
     public int getChatId() {
         return chatId;
     }

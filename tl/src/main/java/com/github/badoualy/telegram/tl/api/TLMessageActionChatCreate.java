@@ -64,6 +64,18 @@ public class TLMessageActionChatCreate extends TLAbsMessageAction {
         return CONSTRUCTOR_ID;
     }
 
+    @Override
+    @SuppressWarnings("PointlessBooleanExpression")
+    public boolean equals(Object object) {
+        if (!(object instanceof TLMessageActionChatCreate)) return false;
+        if (object == this) return true;
+
+        TLMessageActionChatCreate o = (TLMessageActionChatCreate) object;
+
+        return (title == o.title || (title != null && o.title != null && title.equals(o.title)))
+                && (users == o.users || (users != null && o.users != null && users.equals(o.users)));
+    }
+
     public String getTitle() {
         return title;
     }

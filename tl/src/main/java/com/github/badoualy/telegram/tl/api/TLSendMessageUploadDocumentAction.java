@@ -55,6 +55,17 @@ public class TLSendMessageUploadDocumentAction extends TLAbsSendMessageAction {
         return CONSTRUCTOR_ID;
     }
 
+    @Override
+    @SuppressWarnings("PointlessBooleanExpression")
+    public boolean equals(Object object) {
+        if (!(object instanceof TLSendMessageUploadDocumentAction)) return false;
+        if (object == this) return true;
+
+        TLSendMessageUploadDocumentAction o = (TLSendMessageUploadDocumentAction) object;
+
+        return progress == o.progress;
+    }
+
     public int getProgress() {
         return progress;
     }

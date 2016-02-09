@@ -91,6 +91,19 @@ public class TLRequestMessagesGetDocumentByHash extends TLMethod<TLAbsDocument> 
         return CONSTRUCTOR_ID;
     }
 
+    @Override
+    @SuppressWarnings("PointlessBooleanExpression")
+    public boolean equals(Object object) {
+        if (!(object instanceof TLRequestMessagesGetDocumentByHash)) return false;
+        if (object == this) return true;
+
+        TLRequestMessagesGetDocumentByHash o = (TLRequestMessagesGetDocumentByHash) object;
+
+        return (sha256 == o.sha256 || (sha256 != null && o.sha256 != null && sha256.equals(o.sha256)))
+                && size == o.size
+                && (mimeType == o.mimeType || (mimeType != null && o.mimeType != null && mimeType.equals(o.mimeType)));
+    }
+
     public TLBytes getSha256() {
         return sha256;
     }

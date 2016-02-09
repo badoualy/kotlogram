@@ -39,7 +39,7 @@ class TLTypeFlag() : TLType() {
     override fun hashCode() = toString().hashCode()
 }
 
-class TLTypeConditional(val value: Int, val realType: TLType) : TLType() {
+class TLTypeConditional(val value: Int, val realType: TLType, var indicator: Boolean = false) : TLType() {
     fun pow2Value() = Math.pow(2.toDouble(), value.toDouble()).toInt()
 
     override fun toString() = "flag.$value?${realType.toString()}"

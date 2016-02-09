@@ -70,6 +70,20 @@ public class TLFileLocation extends TLAbsFileLocation {
         return CONSTRUCTOR_ID;
     }
 
+    @Override
+    @SuppressWarnings("PointlessBooleanExpression")
+    public boolean equals(Object object) {
+        if (!(object instanceof TLFileLocation)) return false;
+        if (object == this) return true;
+
+        TLFileLocation o = (TLFileLocation) object;
+
+        return dcId == o.dcId
+                && volumeId == o.volumeId
+                && localId == o.localId
+                && secret == o.secret;
+    }
+
     public int getDcId() {
         return dcId;
     }

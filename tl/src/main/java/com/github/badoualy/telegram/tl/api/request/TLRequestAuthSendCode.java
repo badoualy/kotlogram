@@ -99,6 +99,21 @@ public class TLRequestAuthSendCode extends TLMethod<TLAbsSentCode> {
         return CONSTRUCTOR_ID;
     }
 
+    @Override
+    @SuppressWarnings("PointlessBooleanExpression")
+    public boolean equals(Object object) {
+        if (!(object instanceof TLRequestAuthSendCode)) return false;
+        if (object == this) return true;
+
+        TLRequestAuthSendCode o = (TLRequestAuthSendCode) object;
+
+        return (phoneNumber == o.phoneNumber || (phoneNumber != null && o.phoneNumber != null && phoneNumber.equals(o.phoneNumber)))
+                && smsType == o.smsType
+                && apiId == o.apiId
+                && (apiHash == o.apiHash || (apiHash != null && o.apiHash != null && apiHash.equals(o.apiHash)))
+                && (langCode == o.langCode || (langCode != null && o.langCode != null && langCode.equals(o.langCode)));
+    }
+
     public String getPhoneNumber() {
         return phoneNumber;
     }

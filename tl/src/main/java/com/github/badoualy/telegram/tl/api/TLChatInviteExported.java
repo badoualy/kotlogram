@@ -55,6 +55,17 @@ public class TLChatInviteExported extends TLAbsExportedChatInvite {
         return CONSTRUCTOR_ID;
     }
 
+    @Override
+    @SuppressWarnings("PointlessBooleanExpression")
+    public boolean equals(Object object) {
+        if (!(object instanceof TLChatInviteExported)) return false;
+        if (object == this) return true;
+
+        TLChatInviteExported o = (TLChatInviteExported) object;
+
+        return (link == o.link || (link != null && o.link != null && link.equals(o.link)));
+    }
+
     public String getLink() {
         return link;
     }

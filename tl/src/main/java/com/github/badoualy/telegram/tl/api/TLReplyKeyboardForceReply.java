@@ -68,6 +68,19 @@ public class TLReplyKeyboardForceReply extends TLAbsReplyMarkup {
         return CONSTRUCTOR_ID;
     }
 
+    @Override
+    @SuppressWarnings("PointlessBooleanExpression")
+    public boolean equals(Object object) {
+        if (!(object instanceof TLReplyKeyboardForceReply)) return false;
+        if (object == this) return true;
+
+        TLReplyKeyboardForceReply o = (TLReplyKeyboardForceReply) object;
+
+        return flags == o.flags
+                && singleUse == o.singleUse
+                && selective == o.selective;
+    }
+
     public boolean getSingleUse() {
         return singleUse;
     }

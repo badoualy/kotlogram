@@ -55,6 +55,17 @@ public class TLDocumentAttributeFilename extends TLAbsDocumentAttribute {
         return CONSTRUCTOR_ID;
     }
 
+    @Override
+    @SuppressWarnings("PointlessBooleanExpression")
+    public boolean equals(Object object) {
+        if (!(object instanceof TLDocumentAttributeFilename)) return false;
+        if (object == this) return true;
+
+        TLDocumentAttributeFilename o = (TLDocumentAttributeFilename) object;
+
+        return (fileName == o.fileName || (fileName != null && o.fileName != null && fileName.equals(o.fileName)));
+    }
+
     public String getFileName() {
         return fileName;
     }

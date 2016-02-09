@@ -21,6 +21,17 @@ public class TLBotInfoEmpty extends TLAbsBotInfo {
     }
 
     @Override
+    @SuppressWarnings("PointlessBooleanExpression")
+    public boolean equals(Object object) {
+        if (!(object instanceof TLBotInfoEmpty)) return false;
+        if (object == this) return true;
+
+        TLBotInfoEmpty o = (TLBotInfoEmpty) object;
+
+        return true;
+    }
+
+    @Override
     public final boolean isEmpty() {
         return true;
     }

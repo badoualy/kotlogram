@@ -65,6 +65,18 @@ public class TLSentChangePhoneCode extends TLObject {
         return CONSTRUCTOR_ID;
     }
 
+    @Override
+    @SuppressWarnings("PointlessBooleanExpression")
+    public boolean equals(Object object) {
+        if (!(object instanceof TLSentChangePhoneCode)) return false;
+        if (object == this) return true;
+
+        TLSentChangePhoneCode o = (TLSentChangePhoneCode) object;
+
+        return (phoneCodeHash == o.phoneCodeHash || (phoneCodeHash != null && o.phoneCodeHash != null && phoneCodeHash.equals(o.phoneCodeHash)))
+                && sendCallTimeout == o.sendCallTimeout;
+    }
+
     public String getPhoneCodeHash() {
         return phoneCodeHash;
     }

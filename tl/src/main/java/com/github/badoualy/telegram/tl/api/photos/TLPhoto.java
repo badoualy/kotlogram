@@ -66,6 +66,18 @@ public class TLPhoto extends TLObject {
         return CONSTRUCTOR_ID;
     }
 
+    @Override
+    @SuppressWarnings("PointlessBooleanExpression")
+    public boolean equals(Object object) {
+        if (!(object instanceof TLPhoto)) return false;
+        if (object == this) return true;
+
+        TLPhoto o = (TLPhoto) object;
+
+        return (photo == o.photo || (photo != null && o.photo != null && photo.equals(o.photo)))
+                && (users == o.users || (users != null && o.users != null && users.equals(o.users)));
+    }
+
     public TLAbsPhoto getPhoto() {
         return photo;
     }

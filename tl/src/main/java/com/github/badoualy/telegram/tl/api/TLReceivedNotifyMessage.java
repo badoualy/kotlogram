@@ -62,6 +62,18 @@ public class TLReceivedNotifyMessage extends TLObject {
         return CONSTRUCTOR_ID;
     }
 
+    @Override
+    @SuppressWarnings("PointlessBooleanExpression")
+    public boolean equals(Object object) {
+        if (!(object instanceof TLReceivedNotifyMessage)) return false;
+        if (object == this) return true;
+
+        TLReceivedNotifyMessage o = (TLReceivedNotifyMessage) object;
+
+        return id == o.id
+                && flags == o.flags;
+    }
+
     public int getId() {
         return id;
     }

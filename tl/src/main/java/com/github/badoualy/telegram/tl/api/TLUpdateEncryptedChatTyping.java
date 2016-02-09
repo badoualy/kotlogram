@@ -55,6 +55,17 @@ public class TLUpdateEncryptedChatTyping extends TLAbsUpdate {
         return CONSTRUCTOR_ID;
     }
 
+    @Override
+    @SuppressWarnings("PointlessBooleanExpression")
+    public boolean equals(Object object) {
+        if (!(object instanceof TLUpdateEncryptedChatTyping)) return false;
+        if (object == this) return true;
+
+        TLUpdateEncryptedChatTyping o = (TLUpdateEncryptedChatTyping) object;
+
+        return chatId == o.chatId;
+    }
+
     public int getChatId() {
         return chatId;
     }

@@ -86,6 +86,22 @@ public class TLFoundGif extends TLAbsFoundGif {
         return CONSTRUCTOR_ID;
     }
 
+    @Override
+    @SuppressWarnings("PointlessBooleanExpression")
+    public boolean equals(Object object) {
+        if (!(object instanceof TLFoundGif)) return false;
+        if (object == this) return true;
+
+        TLFoundGif o = (TLFoundGif) object;
+
+        return (url == o.url || (url != null && o.url != null && url.equals(o.url)))
+                && (thumbUrl == o.thumbUrl || (thumbUrl != null && o.thumbUrl != null && thumbUrl.equals(o.thumbUrl)))
+                && (contentUrl == o.contentUrl || (contentUrl != null && o.contentUrl != null && contentUrl.equals(o.contentUrl)))
+                && (contentType == o.contentType || (contentType != null && o.contentType != null && contentType.equals(o.contentType)))
+                && w == o.w
+                && h == o.h;
+    }
+
     public String getUrl() {
         return url;
     }

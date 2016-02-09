@@ -104,6 +104,22 @@ public class TLRequestChannelsGetImportantHistory extends TLMethod<TLAbsMessages
         return CONSTRUCTOR_ID;
     }
 
+    @Override
+    @SuppressWarnings("PointlessBooleanExpression")
+    public boolean equals(Object object) {
+        if (!(object instanceof TLRequestChannelsGetImportantHistory)) return false;
+        if (object == this) return true;
+
+        TLRequestChannelsGetImportantHistory o = (TLRequestChannelsGetImportantHistory) object;
+
+        return (channel == o.channel || (channel != null && o.channel != null && channel.equals(o.channel)))
+                && offsetId == o.offsetId
+                && addOffset == o.addOffset
+                && limit == o.limit
+                && maxId == o.maxId
+                && minId == o.minId;
+    }
+
     public TLAbsInputChannel getChannel() {
         return channel;
     }

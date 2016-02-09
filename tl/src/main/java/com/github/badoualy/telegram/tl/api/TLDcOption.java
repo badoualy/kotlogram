@@ -94,6 +94,22 @@ public class TLDcOption extends TLObject {
         return CONSTRUCTOR_ID;
     }
 
+    @Override
+    @SuppressWarnings("PointlessBooleanExpression")
+    public boolean equals(Object object) {
+        if (!(object instanceof TLDcOption)) return false;
+        if (object == this) return true;
+
+        TLDcOption o = (TLDcOption) object;
+
+        return flags == o.flags
+                && ipv6 == o.ipv6
+                && mediaOnly == o.mediaOnly
+                && id == o.id
+                && (ipAddress == o.ipAddress || (ipAddress != null && o.ipAddress != null && ipAddress.equals(o.ipAddress)))
+                && port == o.port;
+    }
+
     public boolean getIpv6() {
         return ipv6;
     }

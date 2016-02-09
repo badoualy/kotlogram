@@ -154,6 +154,32 @@ public class TLChannelFull extends TLAbsChatFull {
         return CONSTRUCTOR_ID;
     }
 
+    @Override
+    @SuppressWarnings("PointlessBooleanExpression")
+    public boolean equals(Object object) {
+        if (!(object instanceof TLChannelFull)) return false;
+        if (object == this) return true;
+
+        TLChannelFull o = (TLChannelFull) object;
+
+        return flags == o.flags
+                && canViewParticipants == o.canViewParticipants
+                && id == o.id
+                && (about == o.about || (about != null && o.about != null && about.equals(o.about)))
+                && (participantsCount == o.participantsCount || (participantsCount != null && o.participantsCount != null && participantsCount.equals(o.participantsCount)))
+                && (adminsCount == o.adminsCount || (adminsCount != null && o.adminsCount != null && adminsCount.equals(o.adminsCount)))
+                && (kickedCount == o.kickedCount || (kickedCount != null && o.kickedCount != null && kickedCount.equals(o.kickedCount)))
+                && readInboxMaxId == o.readInboxMaxId
+                && unreadCount == o.unreadCount
+                && unreadImportantCount == o.unreadImportantCount
+                && (chatPhoto == o.chatPhoto || (chatPhoto != null && o.chatPhoto != null && chatPhoto.equals(o.chatPhoto)))
+                && (notifySettings == o.notifySettings || (notifySettings != null && o.notifySettings != null && notifySettings.equals(o.notifySettings)))
+                && (exportedInvite == o.exportedInvite || (exportedInvite != null && o.exportedInvite != null && exportedInvite.equals(o.exportedInvite)))
+                && (botInfo == o.botInfo || (botInfo != null && o.botInfo != null && botInfo.equals(o.botInfo)))
+                && (migratedFromChatId == o.migratedFromChatId || (migratedFromChatId != null && o.migratedFromChatId != null && migratedFromChatId.equals(o.migratedFromChatId)))
+                && (migratedFromMaxId == o.migratedFromMaxId || (migratedFromMaxId != null && o.migratedFromMaxId != null && migratedFromMaxId.equals(o.migratedFromMaxId)));
+    }
+
     public boolean getCanViewParticipants() {
         return canViewParticipants;
     }

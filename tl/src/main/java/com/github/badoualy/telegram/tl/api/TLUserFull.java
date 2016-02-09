@@ -89,6 +89,22 @@ public class TLUserFull extends TLObject {
         return CONSTRUCTOR_ID;
     }
 
+    @Override
+    @SuppressWarnings("PointlessBooleanExpression")
+    public boolean equals(Object object) {
+        if (!(object instanceof TLUserFull)) return false;
+        if (object == this) return true;
+
+        TLUserFull o = (TLUserFull) object;
+
+        return (user == o.user || (user != null && o.user != null && user.equals(o.user)))
+                && (link == o.link || (link != null && o.link != null && link.equals(o.link)))
+                && (profilePhoto == o.profilePhoto || (profilePhoto != null && o.profilePhoto != null && profilePhoto.equals(o.profilePhoto)))
+                && (notifySettings == o.notifySettings || (notifySettings != null && o.notifySettings != null && notifySettings.equals(o.notifySettings)))
+                && blocked == o.blocked
+                && (botInfo == o.botInfo || (botInfo != null && o.botInfo != null && botInfo.equals(o.botInfo)));
+    }
+
     public TLAbsUser getUser() {
         return user;
     }

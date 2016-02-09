@@ -104,6 +104,22 @@ public class TLRequestMessagesGetHistory extends TLMethod<TLAbsMessages> {
         return CONSTRUCTOR_ID;
     }
 
+    @Override
+    @SuppressWarnings("PointlessBooleanExpression")
+    public boolean equals(Object object) {
+        if (!(object instanceof TLRequestMessagesGetHistory)) return false;
+        if (object == this) return true;
+
+        TLRequestMessagesGetHistory o = (TLRequestMessagesGetHistory) object;
+
+        return (peer == o.peer || (peer != null && o.peer != null && peer.equals(o.peer)))
+                && offsetId == o.offsetId
+                && addOffset == o.addOffset
+                && limit == o.limit
+                && maxId == o.maxId
+                && minId == o.minId;
+    }
+
     public TLAbsInputPeer getPeer() {
         return peer;
     }

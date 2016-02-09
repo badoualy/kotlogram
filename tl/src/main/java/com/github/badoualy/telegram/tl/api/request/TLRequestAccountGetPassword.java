@@ -42,4 +42,15 @@ public class TLRequestAccountGetPassword extends TLMethod<TLAbsPassword> {
     public int getConstructorId() {
         return CONSTRUCTOR_ID;
     }
+
+    @Override
+    @SuppressWarnings("PointlessBooleanExpression")
+    public boolean equals(Object object) {
+        if (!(object instanceof TLRequestAccountGetPassword)) return false;
+        if (object == this) return true;
+
+        TLRequestAccountGetPassword o = (TLRequestAccountGetPassword) object;
+
+        return true;
+    }
 }

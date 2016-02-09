@@ -72,6 +72,17 @@ public class TLRequestAccountSendChangePhoneCode extends TLMethod<TLSentChangePh
         return CONSTRUCTOR_ID;
     }
 
+    @Override
+    @SuppressWarnings("PointlessBooleanExpression")
+    public boolean equals(Object object) {
+        if (!(object instanceof TLRequestAccountSendChangePhoneCode)) return false;
+        if (object == this) return true;
+
+        TLRequestAccountSendChangePhoneCode o = (TLRequestAccountSendChangePhoneCode) object;
+
+        return (phoneNumber == o.phoneNumber || (phoneNumber != null && o.phoneNumber != null && phoneNumber.equals(o.phoneNumber)));
+    }
+
     public String getPhoneNumber() {
         return phoneNumber;
     }

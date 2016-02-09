@@ -170,6 +170,32 @@ public class TLWebPage extends TLAbsWebPage {
         return CONSTRUCTOR_ID;
     }
 
+    @Override
+    @SuppressWarnings("PointlessBooleanExpression")
+    public boolean equals(Object object) {
+        if (!(object instanceof TLWebPage)) return false;
+        if (object == this) return true;
+
+        TLWebPage o = (TLWebPage) object;
+
+        return flags == o.flags
+                && id == o.id
+                && (url == o.url || (url != null && o.url != null && url.equals(o.url)))
+                && (displayUrl == o.displayUrl || (displayUrl != null && o.displayUrl != null && displayUrl.equals(o.displayUrl)))
+                && (type == o.type || (type != null && o.type != null && type.equals(o.type)))
+                && (siteName == o.siteName || (siteName != null && o.siteName != null && siteName.equals(o.siteName)))
+                && (title == o.title || (title != null && o.title != null && title.equals(o.title)))
+                && (description == o.description || (description != null && o.description != null && description.equals(o.description)))
+                && (photo == o.photo || (photo != null && o.photo != null && photo.equals(o.photo)))
+                && (embedUrl == o.embedUrl || (embedUrl != null && o.embedUrl != null && embedUrl.equals(o.embedUrl)))
+                && (embedType == o.embedType || (embedType != null && o.embedType != null && embedType.equals(o.embedType)))
+                && (embedWidth == o.embedWidth || (embedWidth != null && o.embedWidth != null && embedWidth.equals(o.embedWidth)))
+                && (embedHeight == o.embedHeight || (embedHeight != null && o.embedHeight != null && embedHeight.equals(o.embedHeight)))
+                && (duration == o.duration || (duration != null && o.duration != null && duration.equals(o.duration)))
+                && (author == o.author || (author != null && o.author != null && author.equals(o.author)))
+                && (document == o.document || (document != null && o.document != null && document.equals(o.document)));
+    }
+
     public long getId() {
         return id;
     }

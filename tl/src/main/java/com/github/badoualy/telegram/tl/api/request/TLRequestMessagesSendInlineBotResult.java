@@ -123,6 +123,23 @@ public class TLRequestMessagesSendInlineBotResult extends TLMethod<TLAbsUpdates>
         return CONSTRUCTOR_ID;
     }
 
+    @Override
+    @SuppressWarnings("PointlessBooleanExpression")
+    public boolean equals(Object object) {
+        if (!(object instanceof TLRequestMessagesSendInlineBotResult)) return false;
+        if (object == this) return true;
+
+        TLRequestMessagesSendInlineBotResult o = (TLRequestMessagesSendInlineBotResult) object;
+
+        return flags == o.flags
+                && broadcast == o.broadcast
+                && (peer == o.peer || (peer != null && o.peer != null && peer.equals(o.peer)))
+                && (replyToMsgId == o.replyToMsgId || (replyToMsgId != null && o.replyToMsgId != null && replyToMsgId.equals(o.replyToMsgId)))
+                && randomId == o.randomId
+                && queryId == o.queryId
+                && (id == o.id || (id != null && o.id != null && id.equals(o.id)));
+    }
+
     public boolean getBroadcast() {
         return broadcast;
     }

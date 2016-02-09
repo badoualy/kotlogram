@@ -54,6 +54,17 @@ public class TLMessageMediaGeo extends TLAbsMessageMedia {
         return CONSTRUCTOR_ID;
     }
 
+    @Override
+    @SuppressWarnings("PointlessBooleanExpression")
+    public boolean equals(Object object) {
+        if (!(object instanceof TLMessageMediaGeo)) return false;
+        if (object == this) return true;
+
+        TLMessageMediaGeo o = (TLMessageMediaGeo) object;
+
+        return (geo == o.geo || (geo != null && o.geo != null && geo.equals(o.geo)));
+    }
+
     public TLAbsGeoPoint getGeo() {
         return geo;
     }

@@ -71,6 +71,20 @@ public class TLSentAppCode extends TLAbsSentCode {
         return CONSTRUCTOR_ID;
     }
 
+    @Override
+    @SuppressWarnings("PointlessBooleanExpression")
+    public boolean equals(Object object) {
+        if (!(object instanceof TLSentAppCode)) return false;
+        if (object == this) return true;
+
+        TLSentAppCode o = (TLSentAppCode) object;
+
+        return phoneRegistered == o.phoneRegistered
+                && (phoneCodeHash == o.phoneCodeHash || (phoneCodeHash != null && o.phoneCodeHash != null && phoneCodeHash.equals(o.phoneCodeHash)))
+                && sendCallTimeout == o.sendCallTimeout
+                && isPassword == o.isPassword;
+    }
+
     public boolean getPhoneRegistered() {
         return phoneRegistered;
     }

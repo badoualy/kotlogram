@@ -62,6 +62,18 @@ public class TLDisabledFeature extends TLObject {
         return CONSTRUCTOR_ID;
     }
 
+    @Override
+    @SuppressWarnings("PointlessBooleanExpression")
+    public boolean equals(Object object) {
+        if (!(object instanceof TLDisabledFeature)) return false;
+        if (object == this) return true;
+
+        TLDisabledFeature o = (TLDisabledFeature) object;
+
+        return (feature == o.feature || (feature != null && o.feature != null && feature.equals(o.feature)))
+                && (description == o.description || (description != null && o.description != null && description.equals(o.description)));
+    }
+
     public String getFeature() {
         return feature;
     }

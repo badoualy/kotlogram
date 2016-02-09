@@ -86,6 +86,19 @@ public class TLRequestMessagesGetInlineBotResults extends TLMethod<TLBotResults>
         return CONSTRUCTOR_ID;
     }
 
+    @Override
+    @SuppressWarnings("PointlessBooleanExpression")
+    public boolean equals(Object object) {
+        if (!(object instanceof TLRequestMessagesGetInlineBotResults)) return false;
+        if (object == this) return true;
+
+        TLRequestMessagesGetInlineBotResults o = (TLRequestMessagesGetInlineBotResults) object;
+
+        return (bot == o.bot || (bot != null && o.bot != null && bot.equals(o.bot)))
+                && (query == o.query || (query != null && o.query != null && query.equals(o.query)))
+                && (offset == o.offset || (offset != null && o.offset != null && offset.equals(o.offset)));
+    }
+
     public TLAbsInputUser getBot() {
         return bot;
     }

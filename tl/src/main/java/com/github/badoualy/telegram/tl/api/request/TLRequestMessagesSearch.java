@@ -138,6 +138,26 @@ public class TLRequestMessagesSearch extends TLMethod<TLAbsMessages> {
         return CONSTRUCTOR_ID;
     }
 
+    @Override
+    @SuppressWarnings("PointlessBooleanExpression")
+    public boolean equals(Object object) {
+        if (!(object instanceof TLRequestMessagesSearch)) return false;
+        if (object == this) return true;
+
+        TLRequestMessagesSearch o = (TLRequestMessagesSearch) object;
+
+        return flags == o.flags
+                && importantOnly == o.importantOnly
+                && (peer == o.peer || (peer != null && o.peer != null && peer.equals(o.peer)))
+                && (q == o.q || (q != null && o.q != null && q.equals(o.q)))
+                && (filter == o.filter || (filter != null && o.filter != null && filter.equals(o.filter)))
+                && minDate == o.minDate
+                && maxDate == o.maxDate
+                && offset == o.offset
+                && maxId == o.maxId
+                && limit == o.limit;
+    }
+
     public boolean getImportantOnly() {
         return importantOnly;
     }

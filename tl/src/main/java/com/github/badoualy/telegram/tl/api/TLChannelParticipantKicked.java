@@ -65,6 +65,19 @@ public class TLChannelParticipantKicked extends TLAbsChannelParticipant {
         return CONSTRUCTOR_ID;
     }
 
+    @Override
+    @SuppressWarnings("PointlessBooleanExpression")
+    public boolean equals(Object object) {
+        if (!(object instanceof TLChannelParticipantKicked)) return false;
+        if (object == this) return true;
+
+        TLChannelParticipantKicked o = (TLChannelParticipantKicked) object;
+
+        return userId == o.userId
+                && kickedBy == o.kickedBy
+                && date == o.date;
+    }
+
     public int getUserId() {
         return userId;
     }

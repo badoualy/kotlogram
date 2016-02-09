@@ -72,6 +72,20 @@ public class TLChannelDifferenceEmpty extends TLAbsChannelDifference {
         return CONSTRUCTOR_ID;
     }
 
+    @Override
+    @SuppressWarnings("PointlessBooleanExpression")
+    public boolean equals(Object object) {
+        if (!(object instanceof TLChannelDifferenceEmpty)) return false;
+        if (object == this) return true;
+
+        TLChannelDifferenceEmpty o = (TLChannelDifferenceEmpty) object;
+
+        return flags == o.flags
+                && _final == o._final
+                && pts == o.pts
+                && (timeout == o.timeout || (timeout != null && o.timeout != null && timeout.equals(o.timeout)));
+    }
+
     public boolean getFinal() {
         return _final;
     }

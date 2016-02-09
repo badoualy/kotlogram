@@ -79,6 +79,20 @@ public class TLPeerNotifySettings extends TLAbsPeerNotifySettings {
         return CONSTRUCTOR_ID;
     }
 
+    @Override
+    @SuppressWarnings("PointlessBooleanExpression")
+    public boolean equals(Object object) {
+        if (!(object instanceof TLPeerNotifySettings)) return false;
+        if (object == this) return true;
+
+        TLPeerNotifySettings o = (TLPeerNotifySettings) object;
+
+        return muteUntil == o.muteUntil
+                && (sound == o.sound || (sound != null && o.sound != null && sound.equals(o.sound)))
+                && showPreviews == o.showPreviews
+                && eventsMask == o.eventsMask;
+    }
+
     public int getMuteUntil() {
         return muteUntil;
     }

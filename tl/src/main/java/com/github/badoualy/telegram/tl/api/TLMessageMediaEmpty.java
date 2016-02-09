@@ -19,4 +19,15 @@ public class TLMessageMediaEmpty extends TLAbsMessageMedia {
     public int getConstructorId() {
         return CONSTRUCTOR_ID;
     }
+
+    @Override
+    @SuppressWarnings("PointlessBooleanExpression")
+    public boolean equals(Object object) {
+        if (!(object instanceof TLMessageMediaEmpty)) return false;
+        if (object == this) return true;
+
+        TLMessageMediaEmpty o = (TLMessageMediaEmpty) object;
+
+        return true;
+    }
 }

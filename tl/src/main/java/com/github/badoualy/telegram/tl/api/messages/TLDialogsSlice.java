@@ -78,6 +78,21 @@ public class TLDialogsSlice extends TLAbsDialogs {
         return CONSTRUCTOR_ID;
     }
 
+    @Override
+    @SuppressWarnings("PointlessBooleanExpression")
+    public boolean equals(Object object) {
+        if (!(object instanceof TLDialogsSlice)) return false;
+        if (object == this) return true;
+
+        TLDialogsSlice o = (TLDialogsSlice) object;
+
+        return count == o.count
+                && (dialogs == o.dialogs || (dialogs != null && o.dialogs != null && dialogs.equals(o.dialogs)))
+                && (messages == o.messages || (messages != null && o.messages != null && messages.equals(o.messages)))
+                && (chats == o.chats || (chats != null && o.chats != null && chats.equals(o.chats)))
+                && (users == o.users || (users != null && o.users != null && users.equals(o.users)));
+    }
+
     public int getCount() {
         return count;
     }

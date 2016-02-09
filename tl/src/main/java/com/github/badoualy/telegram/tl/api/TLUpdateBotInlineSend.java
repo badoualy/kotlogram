@@ -70,6 +70,19 @@ public class TLUpdateBotInlineSend extends TLAbsUpdate {
         return CONSTRUCTOR_ID;
     }
 
+    @Override
+    @SuppressWarnings("PointlessBooleanExpression")
+    public boolean equals(Object object) {
+        if (!(object instanceof TLUpdateBotInlineSend)) return false;
+        if (object == this) return true;
+
+        TLUpdateBotInlineSend o = (TLUpdateBotInlineSend) object;
+
+        return userId == o.userId
+                && (query == o.query || (query != null && o.query != null && query.equals(o.query)))
+                && (id == o.id || (id != null && o.id != null && id.equals(o.id)));
+    }
+
     public int getUserId() {
         return userId;
     }

@@ -208,7 +208,7 @@ object JavaPoet {
                 .addJavadoc(JAVADOC_SEE)
                 .superclass(TYPE_TL_OBJECT)
 
-        generateClassCommon(clazz, null, constructor.name, null, constructor.parameters)
+        generateClassCommon(clazz, ClassName.get("", clazzName), constructor.name, null, constructor.parameters)
 
         if (constructor.abstractEmptyConstructor) {
             val constructors = contextConstructors.filter { c -> c.tlType == constructor.tlType }
@@ -383,6 +383,20 @@ object JavaPoet {
                 .addAnnotation(Override::class.java)
                 .returns(TypeName.INT)
 
+        // Equals
+        val equalsStatements = ArrayList<String>()
+        val equalsMethod = MethodSpec.methodBuilder("equals")
+                .addModifiers(Modifier.PUBLIC)
+                .addAnnotation(Override::class.java)
+                .addAnnotation(AnnotationSpec.builder(SuppressWarnings::class.java).addMember("value", "\$S", "PointlessBooleanExpression").build())
+                .returns(TypeName.BOOLEAN)
+                .addParameter(Any::class.java, "object")
+                .addStatement("if (!(object instanceof \$L)) return false", clazzTypeName?.simpleName())
+                .addStatement("if (object == this) return true")
+                .addCode("\n")
+                .addStatement("\$T o = (\$T) object", clazzTypeName, clazzTypeName)
+                .addCode("\n")
+
         // Compute flag for serialization
         val condParameters = parameters.filter { p -> p.tlType is TLTypeConditional }
         if (condParameters.isNotEmpty()) {
@@ -396,10 +410,18 @@ object JavaPoet {
                 val fieldType = getType(realType)
                 val fieldName = parameter.name.lCamelCase().javaEscape()
 
-                if (fieldType == TypeName.BOOLEAN)
-                    computeFlagsMethod.addStatement("flags = $fieldName ? (flags | ${tlType.pow2Value()}) : (flags &~ ${tlType.pow2Value()})")
-                else computeFlagsMethod.addStatement("flags = $fieldName != null ? (flags | ${tlType.pow2Value()}) : (flags &~ ${tlType.pow2Value()})")
+                if (fieldType == TypeName.BOOLEAN) {
+                    // Check if is an indicator of presence of another field
+                    if (condParameters.count { p -> (p.tlType as TLTypeConditional).value == tlType.value } > 1)
+                        tlType.indicator = true
+                    else computeFlagsMethod.addStatement("flags = $fieldName ? (flags | ${tlType.pow2Value()}) : (flags &~ ${tlType.pow2Value()})")
+                } else computeFlagsMethod.addStatement("flags = $fieldName != null ? (flags | ${tlType.pow2Value()}) : (flags &~ ${tlType.pow2Value()})")
             }
+
+            // Update boolean values
+            condParameters.filter { p -> (p.tlType as TLTypeConditional).indicator }
+                    .forEach { p -> computeFlagsMethod.addStatement(p.name.lCamelCase().javaEscape() + " = " + deserializeParameter(p.tlType, getType(p.tlType))) }
+
             clazz.addMethod(computeFlagsMethod.build());
 
             serializeMethod.addStatement("computeFlags()");
@@ -440,6 +462,8 @@ object JavaPoet {
                 deserializeMethod.addStatement(deserializeStatement, fieldType)
             else if (count == 2)
                 deserializeMethod.addStatement(deserializeStatement, fieldType, fieldType)
+
+            equalsStatements.add(equalsParameter(fieldName, fieldType))
 
             // Don't add if flags, since it'll be computed
             if (fieldTlType !is TLTypeFlag) {
@@ -486,6 +510,10 @@ object JavaPoet {
                     .returns(TypeName.INT)
                     .addStatement("return CONSTRUCTOR_ID")
                     .build())
+
+            if (equalsStatements.isEmpty()) equalsMethod.addStatement("return true")
+            else equalsMethod.addStatement(equalsStatements.joinToString("\n&& ", prefix = "return "))
+            clazz.addMethod(equalsMethod.build())
         }
         clazz.addMethods(accessors)
     }
@@ -593,6 +621,11 @@ object JavaPoet {
             }
         }
         else -> throw RuntimeException("Unsupported type $fieldTlType")
+    }
+
+    private fun equalsParameter(fieldName: String, fieldType: TypeName): String = when (fieldType) {
+        TypeName.INT, TypeName.SHORT, TypeName.LONG, TypeName.FLOAT, TypeName.DOUBLE, TypeName.BOOLEAN, TypeName.CHAR -> "$fieldName == o.$fieldName"
+        else -> "($fieldName == o.$fieldName || ($fieldName != null && o.$fieldName != null && $fieldName.equals(o.$fieldName)))"
     }
 
     private fun generateGetter(realName: String, fieldName: String, fieldType: TypeName): MethodSpec {

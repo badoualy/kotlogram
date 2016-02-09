@@ -72,6 +72,17 @@ public class TLRequestContactsGetContacts extends TLMethod<TLAbsContacts> {
         return CONSTRUCTOR_ID;
     }
 
+    @Override
+    @SuppressWarnings("PointlessBooleanExpression")
+    public boolean equals(Object object) {
+        if (!(object instanceof TLRequestContactsGetContacts)) return false;
+        if (object == this) return true;
+
+        TLRequestContactsGetContacts o = (TLRequestContactsGetContacts) object;
+
+        return (hash == o.hash || (hash != null && o.hash != null && hash.equals(o.hash)));
+    }
+
     public String getHash() {
         return hash;
     }

@@ -73,6 +73,17 @@ public class TLRequestPhotosDeletePhotos extends TLMethod<TLLongVector> {
         return CONSTRUCTOR_ID;
     }
 
+    @Override
+    @SuppressWarnings("PointlessBooleanExpression")
+    public boolean equals(Object object) {
+        if (!(object instanceof TLRequestPhotosDeletePhotos)) return false;
+        if (object == this) return true;
+
+        TLRequestPhotosDeletePhotos o = (TLRequestPhotosDeletePhotos) object;
+
+        return (id == o.id || (id != null && o.id != null && id.equals(o.id)));
+    }
+
     public TLVector<? extends TLAbsInputPhoto> getId() {
         return id;
     }

@@ -93,6 +93,20 @@ public class TLRequestAuthImportBotAuthorization extends TLMethod<TLAuthorizatio
         return CONSTRUCTOR_ID;
     }
 
+    @Override
+    @SuppressWarnings("PointlessBooleanExpression")
+    public boolean equals(Object object) {
+        if (!(object instanceof TLRequestAuthImportBotAuthorization)) return false;
+        if (object == this) return true;
+
+        TLRequestAuthImportBotAuthorization o = (TLRequestAuthImportBotAuthorization) object;
+
+        return flags == o.flags
+                && apiId == o.apiId
+                && (apiHash == o.apiHash || (apiHash != null && o.apiHash != null && apiHash.equals(o.apiHash)))
+                && (botAuthToken == o.botAuthToken || (botAuthToken != null && o.botAuthToken != null && botAuthToken.equals(o.botAuthToken)));
+    }
+
     public int getFlags() {
         return flags;
     }

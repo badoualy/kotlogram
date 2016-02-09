@@ -72,6 +72,17 @@ public class TLRequestAccountUpdateStatus extends TLMethod<TLBool> {
         return CONSTRUCTOR_ID;
     }
 
+    @Override
+    @SuppressWarnings("PointlessBooleanExpression")
+    public boolean equals(Object object) {
+        if (!(object instanceof TLRequestAccountUpdateStatus)) return false;
+        if (object == this) return true;
+
+        TLRequestAccountUpdateStatus o = (TLRequestAccountUpdateStatus) object;
+
+        return offline == o.offline;
+    }
+
     public boolean getOffline() {
         return offline;
     }

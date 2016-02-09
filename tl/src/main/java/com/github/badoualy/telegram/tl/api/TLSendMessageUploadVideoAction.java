@@ -55,6 +55,17 @@ public class TLSendMessageUploadVideoAction extends TLAbsSendMessageAction {
         return CONSTRUCTOR_ID;
     }
 
+    @Override
+    @SuppressWarnings("PointlessBooleanExpression")
+    public boolean equals(Object object) {
+        if (!(object instanceof TLSendMessageUploadVideoAction)) return false;
+        if (object == this) return true;
+
+        TLSendMessageUploadVideoAction o = (TLSendMessageUploadVideoAction) object;
+
+        return progress == o.progress;
+    }
+
     public int getProgress() {
         return progress;
     }

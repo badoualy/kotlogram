@@ -71,6 +71,17 @@ public class TLRequestChannelsDeleteChannel extends TLMethod<TLAbsUpdates> {
         return CONSTRUCTOR_ID;
     }
 
+    @Override
+    @SuppressWarnings("PointlessBooleanExpression")
+    public boolean equals(Object object) {
+        if (!(object instanceof TLRequestChannelsDeleteChannel)) return false;
+        if (object == this) return true;
+
+        TLRequestChannelsDeleteChannel o = (TLRequestChannelsDeleteChannel) object;
+
+        return (channel == o.channel || (channel != null && o.channel != null && channel.equals(o.channel)));
+    }
+
     public TLAbsInputChannel getChannel() {
         return channel;
     }

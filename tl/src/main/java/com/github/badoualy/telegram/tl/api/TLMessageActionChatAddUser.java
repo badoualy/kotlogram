@@ -55,6 +55,17 @@ public class TLMessageActionChatAddUser extends TLAbsMessageAction {
         return CONSTRUCTOR_ID;
     }
 
+    @Override
+    @SuppressWarnings("PointlessBooleanExpression")
+    public boolean equals(Object object) {
+        if (!(object instanceof TLMessageActionChatAddUser)) return false;
+        if (object == this) return true;
+
+        TLMessageActionChatAddUser o = (TLMessageActionChatAddUser) object;
+
+        return (users == o.users || (users != null && o.users != null && users.equals(o.users)));
+    }
+
     public TLIntVector getUsers() {
         return users;
     }

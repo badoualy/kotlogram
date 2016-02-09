@@ -53,6 +53,17 @@ public class TLSentEncryptedMessage extends TLAbsSentEncryptedMessage {
         return CONSTRUCTOR_ID;
     }
 
+    @Override
+    @SuppressWarnings("PointlessBooleanExpression")
+    public boolean equals(Object object) {
+        if (!(object instanceof TLSentEncryptedMessage)) return false;
+        if (object == this) return true;
+
+        TLSentEncryptedMessage o = (TLSentEncryptedMessage) object;
+
+        return date == o.date;
+    }
+
     public int getDate() {
         return date;
     }

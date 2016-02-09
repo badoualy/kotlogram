@@ -1,6 +1,5 @@
 package com.github.badoualy.telegram.tl.api;
 
-import com.github.badoualy.telegram.tl.api.utils.DumpUtils;
 import com.github.badoualy.telegram.tl.core.TLObject;
 
 import org.testng.Assert;
@@ -33,8 +32,9 @@ public final class TLApiTest extends AbsTLApiTest implements ITest {
 
         T deserializedObject = newInstanceOf((Class<T>) clazz);
         deserializedObject.deserialize(new ByteArrayInputStream(bytes), TLApiTestContext.getInstance());
+        Assert.assertEquals(deserializedObject, object);
 
-        DumpUtils.dump(object, bytes);
+        //DumpUtils.dump(object, bytes);
     }
 
     @Override

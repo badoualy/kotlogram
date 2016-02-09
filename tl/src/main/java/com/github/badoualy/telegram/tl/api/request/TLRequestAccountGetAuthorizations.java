@@ -42,4 +42,15 @@ public class TLRequestAccountGetAuthorizations extends TLMethod<TLAuthorizations
     public int getConstructorId() {
         return CONSTRUCTOR_ID;
     }
+
+    @Override
+    @SuppressWarnings("PointlessBooleanExpression")
+    public boolean equals(Object object) {
+        if (!(object instanceof TLRequestAccountGetAuthorizations)) return false;
+        if (object == this) return true;
+
+        TLRequestAccountGetAuthorizations o = (TLRequestAccountGetAuthorizations) object;
+
+        return true;
+    }
 }

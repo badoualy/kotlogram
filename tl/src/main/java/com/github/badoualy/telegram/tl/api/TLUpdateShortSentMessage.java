@@ -115,6 +115,25 @@ public class TLUpdateShortSentMessage extends TLAbsUpdates {
         return CONSTRUCTOR_ID;
     }
 
+    @Override
+    @SuppressWarnings("PointlessBooleanExpression")
+    public boolean equals(Object object) {
+        if (!(object instanceof TLUpdateShortSentMessage)) return false;
+        if (object == this) return true;
+
+        TLUpdateShortSentMessage o = (TLUpdateShortSentMessage) object;
+
+        return flags == o.flags
+                && unread == o.unread
+                && out == o.out
+                && id == o.id
+                && pts == o.pts
+                && ptsCount == o.ptsCount
+                && date == o.date
+                && (media == o.media || (media != null && o.media != null && media.equals(o.media)))
+                && (entities == o.entities || (entities != null && o.entities != null && entities.equals(o.entities)));
+    }
+
     public boolean getUnread() {
         return unread;
     }

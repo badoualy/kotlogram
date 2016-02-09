@@ -80,6 +80,18 @@ public class TLRequestChannelsEditTitle extends TLMethod<TLAbsUpdates> {
         return CONSTRUCTOR_ID;
     }
 
+    @Override
+    @SuppressWarnings("PointlessBooleanExpression")
+    public boolean equals(Object object) {
+        if (!(object instanceof TLRequestChannelsEditTitle)) return false;
+        if (object == this) return true;
+
+        TLRequestChannelsEditTitle o = (TLRequestChannelsEditTitle) object;
+
+        return (channel == o.channel || (channel != null && o.channel != null && channel.equals(o.channel)))
+                && (title == o.title || (title != null && o.title != null && title.equals(o.title)));
+    }
+
     public TLAbsInputChannel getChannel() {
         return channel;
     }

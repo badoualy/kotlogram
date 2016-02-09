@@ -19,4 +19,15 @@ public class TLInputPrivacyValueDisallowAll extends TLAbsInputPrivacyRule {
     public int getConstructorId() {
         return CONSTRUCTOR_ID;
     }
+
+    @Override
+    @SuppressWarnings("PointlessBooleanExpression")
+    public boolean equals(Object object) {
+        if (!(object instanceof TLInputPrivacyValueDisallowAll)) return false;
+        if (object == this) return true;
+
+        TLInputPrivacyValueDisallowAll o = (TLInputPrivacyValueDisallowAll) object;
+
+        return true;
+    }
 }

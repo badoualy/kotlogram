@@ -64,6 +64,18 @@ public class TLInputPeerUser extends TLAbsInputPeer {
         return CONSTRUCTOR_ID;
     }
 
+    @Override
+    @SuppressWarnings("PointlessBooleanExpression")
+    public boolean equals(Object object) {
+        if (!(object instanceof TLInputPeerUser)) return false;
+        if (object == this) return true;
+
+        TLInputPeerUser o = (TLInputPeerUser) object;
+
+        return userId == o.userId
+                && accessHash == o.accessHash;
+    }
+
     public int getUserId() {
         return userId;
     }

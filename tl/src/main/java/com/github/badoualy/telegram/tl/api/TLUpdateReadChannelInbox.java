@@ -61,6 +61,18 @@ public class TLUpdateReadChannelInbox extends TLAbsUpdate {
         return CONSTRUCTOR_ID;
     }
 
+    @Override
+    @SuppressWarnings("PointlessBooleanExpression")
+    public boolean equals(Object object) {
+        if (!(object instanceof TLUpdateReadChannelInbox)) return false;
+        if (object == this) return true;
+
+        TLUpdateReadChannelInbox o = (TLUpdateReadChannelInbox) object;
+
+        return channelId == o.channelId
+                && maxId == o.maxId;
+    }
+
     public int getChannelId() {
         return channelId;
     }

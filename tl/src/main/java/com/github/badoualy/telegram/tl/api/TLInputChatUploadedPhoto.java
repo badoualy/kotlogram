@@ -60,6 +60,18 @@ public class TLInputChatUploadedPhoto extends TLAbsInputChatPhoto {
         return CONSTRUCTOR_ID;
     }
 
+    @Override
+    @SuppressWarnings("PointlessBooleanExpression")
+    public boolean equals(Object object) {
+        if (!(object instanceof TLInputChatUploadedPhoto)) return false;
+        if (object == this) return true;
+
+        TLInputChatUploadedPhoto o = (TLInputChatUploadedPhoto) object;
+
+        return (file == o.file || (file != null && o.file != null && file.equals(o.file)))
+                && (crop == o.crop || (crop != null && o.crop != null && crop.equals(o.crop)));
+    }
+
     public TLAbsInputFile getFile() {
         return file;
     }

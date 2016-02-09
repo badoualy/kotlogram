@@ -70,6 +70,19 @@ public class TLDocumentAttributeAudio extends TLAbsDocumentAttribute {
         return CONSTRUCTOR_ID;
     }
 
+    @Override
+    @SuppressWarnings("PointlessBooleanExpression")
+    public boolean equals(Object object) {
+        if (!(object instanceof TLDocumentAttributeAudio)) return false;
+        if (object == this) return true;
+
+        TLDocumentAttributeAudio o = (TLDocumentAttributeAudio) object;
+
+        return duration == o.duration
+                && (title == o.title || (title != null && o.title != null && title.equals(o.title)))
+                && (performer == o.performer || (performer != null && o.performer != null && performer.equals(o.performer)));
+    }
+
     public int getDuration() {
         return duration;
     }

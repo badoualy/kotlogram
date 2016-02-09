@@ -19,4 +19,15 @@ public class TLSendMessageCancelAction extends TLAbsSendMessageAction {
     public int getConstructorId() {
         return CONSTRUCTOR_ID;
     }
+
+    @Override
+    @SuppressWarnings("PointlessBooleanExpression")
+    public boolean equals(Object object) {
+        if (!(object instanceof TLSendMessageCancelAction)) return false;
+        if (object == this) return true;
+
+        TLSendMessageCancelAction o = (TLSendMessageCancelAction) object;
+
+        return true;
+    }
 }

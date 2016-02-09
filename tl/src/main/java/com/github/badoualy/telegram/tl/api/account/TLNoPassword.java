@@ -61,6 +61,18 @@ public class TLNoPassword extends TLAbsPassword {
         return CONSTRUCTOR_ID;
     }
 
+    @Override
+    @SuppressWarnings("PointlessBooleanExpression")
+    public boolean equals(Object object) {
+        if (!(object instanceof TLNoPassword)) return false;
+        if (object == this) return true;
+
+        TLNoPassword o = (TLNoPassword) object;
+
+        return (newSalt == o.newSalt || (newSalt != null && o.newSalt != null && newSalt.equals(o.newSalt)))
+                && (emailUnconfirmedPattern == o.emailUnconfirmedPattern || (emailUnconfirmedPattern != null && o.emailUnconfirmedPattern != null && emailUnconfirmedPattern.equals(o.emailUnconfirmedPattern)));
+    }
+
     public TLBytes getNewSalt() {
         return newSalt;
     }

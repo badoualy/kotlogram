@@ -141,6 +141,25 @@ public class TLRequestMessagesSendMessage extends TLMethod<TLAbsUpdates> {
         return CONSTRUCTOR_ID;
     }
 
+    @Override
+    @SuppressWarnings("PointlessBooleanExpression")
+    public boolean equals(Object object) {
+        if (!(object instanceof TLRequestMessagesSendMessage)) return false;
+        if (object == this) return true;
+
+        TLRequestMessagesSendMessage o = (TLRequestMessagesSendMessage) object;
+
+        return flags == o.flags
+                && noWebpage == o.noWebpage
+                && broadcast == o.broadcast
+                && (peer == o.peer || (peer != null && o.peer != null && peer.equals(o.peer)))
+                && (replyToMsgId == o.replyToMsgId || (replyToMsgId != null && o.replyToMsgId != null && replyToMsgId.equals(o.replyToMsgId)))
+                && (message == o.message || (message != null && o.message != null && message.equals(o.message)))
+                && randomId == o.randomId
+                && (replyMarkup == o.replyMarkup || (replyMarkup != null && o.replyMarkup != null && replyMarkup.equals(o.replyMarkup)))
+                && (entities == o.entities || (entities != null && o.entities != null && entities.equals(o.entities)));
+    }
+
     public boolean getNoWebpage() {
         return noWebpage;
     }

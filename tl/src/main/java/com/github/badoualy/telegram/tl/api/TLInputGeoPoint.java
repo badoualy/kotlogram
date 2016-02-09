@@ -61,6 +61,18 @@ public class TLInputGeoPoint extends TLAbsInputGeoPoint {
         return CONSTRUCTOR_ID;
     }
 
+    @Override
+    @SuppressWarnings("PointlessBooleanExpression")
+    public boolean equals(Object object) {
+        if (!(object instanceof TLInputGeoPoint)) return false;
+        if (object == this) return true;
+
+        TLInputGeoPoint o = (TLInputGeoPoint) object;
+
+        return lat == o.lat
+                && _long == o._long;
+    }
+
     public double getLat() {
         return lat;
     }

@@ -56,6 +56,17 @@ public class TLPasswordSettings extends TLObject {
         return CONSTRUCTOR_ID;
     }
 
+    @Override
+    @SuppressWarnings("PointlessBooleanExpression")
+    public boolean equals(Object object) {
+        if (!(object instanceof TLPasswordSettings)) return false;
+        if (object == this) return true;
+
+        TLPasswordSettings o = (TLPasswordSettings) object;
+
+        return (email == o.email || (email != null && o.email != null && email.equals(o.email)));
+    }
+
     public String getEmail() {
         return email;
     }

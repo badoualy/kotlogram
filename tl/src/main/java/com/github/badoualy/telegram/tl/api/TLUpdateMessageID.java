@@ -64,6 +64,18 @@ public class TLUpdateMessageID extends TLAbsUpdate {
         return CONSTRUCTOR_ID;
     }
 
+    @Override
+    @SuppressWarnings("PointlessBooleanExpression")
+    public boolean equals(Object object) {
+        if (!(object instanceof TLUpdateMessageID)) return false;
+        if (object == this) return true;
+
+        TLUpdateMessageID o = (TLUpdateMessageID) object;
+
+        return id == o.id
+                && randomId == o.randomId;
+    }
+
     public int getId() {
         return id;
     }

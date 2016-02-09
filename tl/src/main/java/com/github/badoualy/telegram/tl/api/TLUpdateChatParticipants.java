@@ -54,6 +54,17 @@ public class TLUpdateChatParticipants extends TLAbsUpdate {
         return CONSTRUCTOR_ID;
     }
 
+    @Override
+    @SuppressWarnings("PointlessBooleanExpression")
+    public boolean equals(Object object) {
+        if (!(object instanceof TLUpdateChatParticipants)) return false;
+        if (object == this) return true;
+
+        TLUpdateChatParticipants o = (TLUpdateChatParticipants) object;
+
+        return (participants == o.participants || (participants != null && o.participants != null && participants.equals(o.participants)));
+    }
+
     public TLAbsChatParticipants getParticipants() {
         return participants;
     }

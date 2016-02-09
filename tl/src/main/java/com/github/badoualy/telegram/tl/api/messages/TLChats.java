@@ -57,6 +57,17 @@ public class TLChats extends TLObject {
         return CONSTRUCTOR_ID;
     }
 
+    @Override
+    @SuppressWarnings("PointlessBooleanExpression")
+    public boolean equals(Object object) {
+        if (!(object instanceof TLChats)) return false;
+        if (object == this) return true;
+
+        TLChats o = (TLChats) object;
+
+        return (chats == o.chats || (chats != null && o.chats != null && chats.equals(o.chats)));
+    }
+
     public TLVector<? extends TLAbsChat> getChats() {
         return chats;
     }

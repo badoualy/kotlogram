@@ -63,6 +63,18 @@ public class TLMessageMediaVideo extends TLAbsMessageMedia {
         return CONSTRUCTOR_ID;
     }
 
+    @Override
+    @SuppressWarnings("PointlessBooleanExpression")
+    public boolean equals(Object object) {
+        if (!(object instanceof TLMessageMediaVideo)) return false;
+        if (object == this) return true;
+
+        TLMessageMediaVideo o = (TLMessageMediaVideo) object;
+
+        return (video == o.video || (video != null && o.video != null && video.equals(o.video)))
+                && (caption == o.caption || (caption != null && o.caption != null && caption.equals(o.caption)));
+    }
+
     public TLAbsVideo getVideo() {
         return video;
     }

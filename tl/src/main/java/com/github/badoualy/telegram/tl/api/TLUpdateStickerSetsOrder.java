@@ -55,6 +55,17 @@ public class TLUpdateStickerSetsOrder extends TLAbsUpdate {
         return CONSTRUCTOR_ID;
     }
 
+    @Override
+    @SuppressWarnings("PointlessBooleanExpression")
+    public boolean equals(Object object) {
+        if (!(object instanceof TLUpdateStickerSetsOrder)) return false;
+        if (object == this) return true;
+
+        TLUpdateStickerSetsOrder o = (TLUpdateStickerSetsOrder) object;
+
+        return (order == o.order || (order != null && o.order != null && order.equals(o.order)));
+    }
+
     public TLLongVector getOrder() {
         return order;
     }

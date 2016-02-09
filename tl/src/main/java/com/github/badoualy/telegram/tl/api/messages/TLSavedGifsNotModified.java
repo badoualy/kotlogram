@@ -19,4 +19,15 @@ public class TLSavedGifsNotModified extends TLAbsSavedGifs {
     public int getConstructorId() {
         return CONSTRUCTOR_ID;
     }
+
+    @Override
+    @SuppressWarnings("PointlessBooleanExpression")
+    public boolean equals(Object object) {
+        if (!(object instanceof TLSavedGifsNotModified)) return false;
+        if (object == this) return true;
+
+        TLSavedGifsNotModified o = (TLSavedGifsNotModified) object;
+
+        return true;
+    }
 }

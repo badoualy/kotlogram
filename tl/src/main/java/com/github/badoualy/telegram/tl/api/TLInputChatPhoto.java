@@ -60,6 +60,18 @@ public class TLInputChatPhoto extends TLAbsInputChatPhoto {
         return CONSTRUCTOR_ID;
     }
 
+    @Override
+    @SuppressWarnings("PointlessBooleanExpression")
+    public boolean equals(Object object) {
+        if (!(object instanceof TLInputChatPhoto)) return false;
+        if (object == this) return true;
+
+        TLInputChatPhoto o = (TLInputChatPhoto) object;
+
+        return (id == o.id || (id != null && o.id != null && id.equals(o.id)))
+                && (crop == o.crop || (crop != null && o.crop != null && crop.equals(o.crop)));
+    }
+
     public TLAbsInputPhoto getId() {
         return id;
     }

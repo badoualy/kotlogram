@@ -80,6 +80,18 @@ public class TLRequestChannelsToggleComments extends TLMethod<TLAbsUpdates> {
         return CONSTRUCTOR_ID;
     }
 
+    @Override
+    @SuppressWarnings("PointlessBooleanExpression")
+    public boolean equals(Object object) {
+        if (!(object instanceof TLRequestChannelsToggleComments)) return false;
+        if (object == this) return true;
+
+        TLRequestChannelsToggleComments o = (TLRequestChannelsToggleComments) object;
+
+        return (channel == o.channel || (channel != null && o.channel != null && channel.equals(o.channel)))
+                && enabled == o.enabled;
+    }
+
     public TLAbsInputChannel getChannel() {
         return channel;
     }

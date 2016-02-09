@@ -96,6 +96,21 @@ public class TLRequestAuthSignUp extends TLMethod<TLAuthorization> {
         return CONSTRUCTOR_ID;
     }
 
+    @Override
+    @SuppressWarnings("PointlessBooleanExpression")
+    public boolean equals(Object object) {
+        if (!(object instanceof TLRequestAuthSignUp)) return false;
+        if (object == this) return true;
+
+        TLRequestAuthSignUp o = (TLRequestAuthSignUp) object;
+
+        return (phoneNumber == o.phoneNumber || (phoneNumber != null && o.phoneNumber != null && phoneNumber.equals(o.phoneNumber)))
+                && (phoneCodeHash == o.phoneCodeHash || (phoneCodeHash != null && o.phoneCodeHash != null && phoneCodeHash.equals(o.phoneCodeHash)))
+                && (phoneCode == o.phoneCode || (phoneCode != null && o.phoneCode != null && phoneCode.equals(o.phoneCode)))
+                && (firstName == o.firstName || (firstName != null && o.firstName != null && firstName.equals(o.firstName)))
+                && (lastName == o.lastName || (lastName != null && o.lastName != null && lastName.equals(o.lastName)));
+    }
+
     public String getPhoneNumber() {
         return phoneNumber;
     }

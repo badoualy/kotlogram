@@ -63,6 +63,18 @@ public class TLContacts extends TLAbsContacts {
         return CONSTRUCTOR_ID;
     }
 
+    @Override
+    @SuppressWarnings("PointlessBooleanExpression")
+    public boolean equals(Object object) {
+        if (!(object instanceof TLContacts)) return false;
+        if (object == this) return true;
+
+        TLContacts o = (TLContacts) object;
+
+        return (contacts == o.contacts || (contacts != null && o.contacts != null && contacts.equals(o.contacts)))
+                && (users == o.users || (users != null && o.users != null && users.equals(o.users)));
+    }
+
     public TLVector<? extends TLContact> getContacts() {
         return contacts;
     }

@@ -72,6 +72,17 @@ public class TLRequestMessagesExportChatInvite extends TLMethod<TLAbsExportedCha
         return CONSTRUCTOR_ID;
     }
 
+    @Override
+    @SuppressWarnings("PointlessBooleanExpression")
+    public boolean equals(Object object) {
+        if (!(object instanceof TLRequestMessagesExportChatInvite)) return false;
+        if (object == this) return true;
+
+        TLRequestMessagesExportChatInvite o = (TLRequestMessagesExportChatInvite) object;
+
+        return chatId == o.chatId;
+    }
+
     public int getChatId() {
         return chatId;
     }

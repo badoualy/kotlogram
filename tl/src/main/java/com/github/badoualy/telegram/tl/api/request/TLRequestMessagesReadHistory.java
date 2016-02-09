@@ -80,6 +80,18 @@ public class TLRequestMessagesReadHistory extends TLMethod<TLAffectedMessages> {
         return CONSTRUCTOR_ID;
     }
 
+    @Override
+    @SuppressWarnings("PointlessBooleanExpression")
+    public boolean equals(Object object) {
+        if (!(object instanceof TLRequestMessagesReadHistory)) return false;
+        if (object == this) return true;
+
+        TLRequestMessagesReadHistory o = (TLRequestMessagesReadHistory) object;
+
+        return (peer == o.peer || (peer != null && o.peer != null && peer.equals(o.peer)))
+                && maxId == o.maxId;
+    }
+
     public TLAbsInputPeer getPeer() {
         return peer;
     }

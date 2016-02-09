@@ -59,6 +59,18 @@ public class TLBlocked extends TLAbsBlocked {
         return CONSTRUCTOR_ID;
     }
 
+    @Override
+    @SuppressWarnings("PointlessBooleanExpression")
+    public boolean equals(Object object) {
+        if (!(object instanceof TLBlocked)) return false;
+        if (object == this) return true;
+
+        TLBlocked o = (TLBlocked) object;
+
+        return (blocked == o.blocked || (blocked != null && o.blocked != null && blocked.equals(o.blocked)))
+                && (users == o.users || (users != null && o.users != null && users.equals(o.users)));
+    }
+
     public TLVector<? extends TLContactBlocked> getBlocked() {
         return blocked;
     }

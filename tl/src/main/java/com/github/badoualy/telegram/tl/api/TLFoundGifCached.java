@@ -67,6 +67,19 @@ public class TLFoundGifCached extends TLAbsFoundGif {
         return CONSTRUCTOR_ID;
     }
 
+    @Override
+    @SuppressWarnings("PointlessBooleanExpression")
+    public boolean equals(Object object) {
+        if (!(object instanceof TLFoundGifCached)) return false;
+        if (object == this) return true;
+
+        TLFoundGifCached o = (TLFoundGifCached) object;
+
+        return (url == o.url || (url != null && o.url != null && url.equals(o.url)))
+                && (photo == o.photo || (photo != null && o.photo != null && photo.equals(o.photo)))
+                && (document == o.document || (document != null && o.document != null && document.equals(o.document)));
+    }
+
     public String getUrl() {
         return url;
     }

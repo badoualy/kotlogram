@@ -72,6 +72,17 @@ public class TLRequestAccountUpdateUsername extends TLMethod<TLAbsUser> {
         return CONSTRUCTOR_ID;
     }
 
+    @Override
+    @SuppressWarnings("PointlessBooleanExpression")
+    public boolean equals(Object object) {
+        if (!(object instanceof TLRequestAccountUpdateUsername)) return false;
+        if (object == this) return true;
+
+        TLRequestAccountUpdateUsername o = (TLRequestAccountUpdateUsername) object;
+
+        return (username == o.username || (username != null && o.username != null && username.equals(o.username)));
+    }
+
     public String getUsername() {
         return username;
     }

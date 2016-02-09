@@ -19,4 +19,15 @@ public class TLUserStatusLastMonth extends TLAbsUserStatus {
     public int getConstructorId() {
         return CONSTRUCTOR_ID;
     }
+
+    @Override
+    @SuppressWarnings("PointlessBooleanExpression")
+    public boolean equals(Object object) {
+        if (!(object instanceof TLUserStatusLastMonth)) return false;
+        if (object == this) return true;
+
+        TLUserStatusLastMonth o = (TLUserStatusLastMonth) object;
+
+        return true;
+    }
 }

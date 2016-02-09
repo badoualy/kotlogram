@@ -72,6 +72,17 @@ public class TLRequestMessagesDiscardEncryption extends TLMethod<TLBool> {
         return CONSTRUCTOR_ID;
     }
 
+    @Override
+    @SuppressWarnings("PointlessBooleanExpression")
+    public boolean equals(Object object) {
+        if (!(object instanceof TLRequestMessagesDiscardEncryption)) return false;
+        if (object == this) return true;
+
+        TLRequestMessagesDiscardEncryption o = (TLRequestMessagesDiscardEncryption) object;
+
+        return chatId == o.chatId;
+    }
+
     public int getChatId() {
         return chatId;
     }

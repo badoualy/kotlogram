@@ -98,6 +98,21 @@ public class TLPasswordInputSettings extends TLObject {
         return CONSTRUCTOR_ID;
     }
 
+    @Override
+    @SuppressWarnings("PointlessBooleanExpression")
+    public boolean equals(Object object) {
+        if (!(object instanceof TLPasswordInputSettings)) return false;
+        if (object == this) return true;
+
+        TLPasswordInputSettings o = (TLPasswordInputSettings) object;
+
+        return flags == o.flags
+                && (newSalt == o.newSalt || (newSalt != null && o.newSalt != null && newSalt.equals(o.newSalt)))
+                && (newPasswordHash == o.newPasswordHash || (newPasswordHash != null && o.newPasswordHash != null && newPasswordHash.equals(o.newPasswordHash)))
+                && (hint == o.hint || (hint != null && o.hint != null && hint.equals(o.hint)))
+                && (email == o.email || (email != null && o.email != null && email.equals(o.email)));
+    }
+
     public TLBytes getNewSalt() {
         return newSalt;
     }

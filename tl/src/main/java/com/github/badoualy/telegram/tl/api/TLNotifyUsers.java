@@ -19,4 +19,15 @@ public class TLNotifyUsers extends TLAbsNotifyPeer {
     public int getConstructorId() {
         return CONSTRUCTOR_ID;
     }
+
+    @Override
+    @SuppressWarnings("PointlessBooleanExpression")
+    public boolean equals(Object object) {
+        if (!(object instanceof TLNotifyUsers)) return false;
+        if (object == this) return true;
+
+        TLNotifyUsers o = (TLNotifyUsers) object;
+
+        return true;
+    }
 }

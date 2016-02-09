@@ -19,4 +19,15 @@ public class TLUpdatesTooLong extends TLAbsUpdates {
     public int getConstructorId() {
         return CONSTRUCTOR_ID;
     }
+
+    @Override
+    @SuppressWarnings("PointlessBooleanExpression")
+    public boolean equals(Object object) {
+        if (!(object instanceof TLUpdatesTooLong)) return false;
+        if (object == this) return true;
+
+        TLUpdatesTooLong o = (TLUpdatesTooLong) object;
+
+        return true;
+    }
 }

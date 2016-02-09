@@ -54,6 +54,17 @@ public class TLInputMediaAudio extends TLAbsInputMedia {
         return CONSTRUCTOR_ID;
     }
 
+    @Override
+    @SuppressWarnings("PointlessBooleanExpression")
+    public boolean equals(Object object) {
+        if (!(object instanceof TLInputMediaAudio)) return false;
+        if (object == this) return true;
+
+        TLInputMediaAudio o = (TLInputMediaAudio) object;
+
+        return (id == o.id || (id != null && o.id != null && id.equals(o.id)));
+    }
+
     public TLAbsInputAudio getId() {
         return id;
     }

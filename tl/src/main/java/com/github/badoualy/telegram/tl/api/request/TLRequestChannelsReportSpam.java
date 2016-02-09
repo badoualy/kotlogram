@@ -87,6 +87,19 @@ public class TLRequestChannelsReportSpam extends TLMethod<TLBool> {
         return CONSTRUCTOR_ID;
     }
 
+    @Override
+    @SuppressWarnings("PointlessBooleanExpression")
+    public boolean equals(Object object) {
+        if (!(object instanceof TLRequestChannelsReportSpam)) return false;
+        if (object == this) return true;
+
+        TLRequestChannelsReportSpam o = (TLRequestChannelsReportSpam) object;
+
+        return (channel == o.channel || (channel != null && o.channel != null && channel.equals(o.channel)))
+                && (userId == o.userId || (userId != null && o.userId != null && userId.equals(o.userId)))
+                && (id == o.id || (id != null && o.id != null && id.equals(o.id)));
+    }
+
     public TLAbsInputChannel getChannel() {
         return channel;
     }

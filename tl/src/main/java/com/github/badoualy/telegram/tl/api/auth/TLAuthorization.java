@@ -56,6 +56,17 @@ public class TLAuthorization extends TLObject {
         return CONSTRUCTOR_ID;
     }
 
+    @Override
+    @SuppressWarnings("PointlessBooleanExpression")
+    public boolean equals(Object object) {
+        if (!(object instanceof TLAuthorization)) return false;
+        if (object == this) return true;
+
+        TLAuthorization o = (TLAuthorization) object;
+
+        return (user == o.user || (user != null && o.user != null && user.equals(o.user)));
+    }
+
     public TLAbsUser getUser() {
         return user;
     }

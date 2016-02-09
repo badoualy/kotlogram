@@ -25,12 +25,12 @@ public class TLApiDumpTest implements ITest {
         byte[] realSerialized = DumpUtils.load(file);
         String realJson = DumpUtils.loadJson(file);
 
-        // Deserialize and check if identical
+        // Deserialize and check if json is identical
         TLObject tlObject = TLApiTestContext.getInstance().deserializeMessage(realSerialized);
         String json = DumpUtils.toJson(tlObject);
         Assert.assertEquals(json, realJson, file.getName());
 
-        // Re-serialize
+        // Re-serialize and check bytes
         byte[] serialized = tlObject.serialize();
         Assert.assertEquals(serialized, realSerialized, file.getName());
     }

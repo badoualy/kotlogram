@@ -19,4 +19,15 @@ public class TLInputReportReasonSpam extends TLAbsReportReason {
     public int getConstructorId() {
         return CONSTRUCTOR_ID;
     }
+
+    @Override
+    @SuppressWarnings("PointlessBooleanExpression")
+    public boolean equals(Object object) {
+        if (!(object instanceof TLInputReportReasonSpam)) return false;
+        if (object == this) return true;
+
+        TLInputReportReasonSpam o = (TLInputReportReasonSpam) object;
+
+        return true;
+    }
 }

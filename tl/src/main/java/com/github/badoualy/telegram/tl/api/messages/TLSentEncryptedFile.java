@@ -62,6 +62,18 @@ public class TLSentEncryptedFile extends TLAbsSentEncryptedMessage {
         return CONSTRUCTOR_ID;
     }
 
+    @Override
+    @SuppressWarnings("PointlessBooleanExpression")
+    public boolean equals(Object object) {
+        if (!(object instanceof TLSentEncryptedFile)) return false;
+        if (object == this) return true;
+
+        TLSentEncryptedFile o = (TLSentEncryptedFile) object;
+
+        return date == o.date
+                && (file == o.file || (file != null && o.file != null && file.equals(o.file)));
+    }
+
     public int getDate() {
         return date;
     }

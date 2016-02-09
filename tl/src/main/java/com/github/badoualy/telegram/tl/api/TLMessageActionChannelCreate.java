@@ -55,6 +55,17 @@ public class TLMessageActionChannelCreate extends TLAbsMessageAction {
         return CONSTRUCTOR_ID;
     }
 
+    @Override
+    @SuppressWarnings("PointlessBooleanExpression")
+    public boolean equals(Object object) {
+        if (!(object instanceof TLMessageActionChannelCreate)) return false;
+        if (object == this) return true;
+
+        TLMessageActionChannelCreate o = (TLMessageActionChannelCreate) object;
+
+        return (title == o.title || (title != null && o.title != null && title.equals(o.title)));
+    }
+
     public String getTitle() {
         return title;
     }

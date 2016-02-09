@@ -62,6 +62,17 @@ public class TLRequestInvokeWithoutUpdates<T extends TLObject> extends TLMethod<
         return CONSTRUCTOR_ID;
     }
 
+    @Override
+    @SuppressWarnings("PointlessBooleanExpression")
+    public boolean equals(Object object) {
+        if (!(object instanceof TLRequestInvokeWithoutUpdates)) return false;
+        if (object == this) return true;
+
+        TLRequestInvokeWithoutUpdates o = (TLRequestInvokeWithoutUpdates) object;
+
+        return (query == o.query || (query != null && o.query != null && query.equals(o.query)));
+    }
+
     public TLMethod<T> getQuery() {
         return query;
     }

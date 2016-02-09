@@ -69,6 +69,20 @@ public class TLBotInlineMediaResultDocument extends TLAbsBotInlineResult {
         return CONSTRUCTOR_ID;
     }
 
+    @Override
+    @SuppressWarnings("PointlessBooleanExpression")
+    public boolean equals(Object object) {
+        if (!(object instanceof TLBotInlineMediaResultDocument)) return false;
+        if (object == this) return true;
+
+        TLBotInlineMediaResultDocument o = (TLBotInlineMediaResultDocument) object;
+
+        return (id == o.id || (id != null && o.id != null && id.equals(o.id)))
+                && (type == o.type || (type != null && o.type != null && type.equals(o.type)))
+                && (document == o.document || (document != null && o.document != null && document.equals(o.document)))
+                && (sendMessage == o.sendMessage || (sendMessage != null && o.sendMessage != null && sendMessage.equals(o.sendMessage)));
+    }
+
     public String getId() {
         return id;
     }

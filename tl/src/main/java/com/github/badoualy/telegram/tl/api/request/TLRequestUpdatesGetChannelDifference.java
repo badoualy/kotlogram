@@ -93,6 +93,20 @@ public class TLRequestUpdatesGetChannelDifference extends TLMethod<TLAbsChannelD
         return CONSTRUCTOR_ID;
     }
 
+    @Override
+    @SuppressWarnings("PointlessBooleanExpression")
+    public boolean equals(Object object) {
+        if (!(object instanceof TLRequestUpdatesGetChannelDifference)) return false;
+        if (object == this) return true;
+
+        TLRequestUpdatesGetChannelDifference o = (TLRequestUpdatesGetChannelDifference) object;
+
+        return (channel == o.channel || (channel != null && o.channel != null && channel.equals(o.channel)))
+                && (filter == o.filter || (filter != null && o.filter != null && filter.equals(o.filter)))
+                && pts == o.pts
+                && limit == o.limit;
+    }
+
     public TLAbsInputChannel getChannel() {
         return channel;
     }

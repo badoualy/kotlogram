@@ -76,6 +76,20 @@ public class TLUpdateDeleteChannelMessages extends TLAbsUpdate {
         return CONSTRUCTOR_ID;
     }
 
+    @Override
+    @SuppressWarnings("PointlessBooleanExpression")
+    public boolean equals(Object object) {
+        if (!(object instanceof TLUpdateDeleteChannelMessages)) return false;
+        if (object == this) return true;
+
+        TLUpdateDeleteChannelMessages o = (TLUpdateDeleteChannelMessages) object;
+
+        return channelId == o.channelId
+                && (messages == o.messages || (messages != null && o.messages != null && messages.equals(o.messages)))
+                && pts == o.pts
+                && ptsCount == o.ptsCount;
+    }
+
     public int getChannelId() {
         return channelId;
     }

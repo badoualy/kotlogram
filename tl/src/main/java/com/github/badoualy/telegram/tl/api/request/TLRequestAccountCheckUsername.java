@@ -72,6 +72,17 @@ public class TLRequestAccountCheckUsername extends TLMethod<TLBool> {
         return CONSTRUCTOR_ID;
     }
 
+    @Override
+    @SuppressWarnings("PointlessBooleanExpression")
+    public boolean equals(Object object) {
+        if (!(object instanceof TLRequestAccountCheckUsername)) return false;
+        if (object == this) return true;
+
+        TLRequestAccountCheckUsername o = (TLRequestAccountCheckUsername) object;
+
+        return (username == o.username || (username != null && o.username != null && username.equals(o.username)));
+    }
+
     public String getUsername() {
         return username;
     }

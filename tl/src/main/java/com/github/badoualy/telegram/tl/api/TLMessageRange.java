@@ -62,6 +62,18 @@ public class TLMessageRange extends TLObject {
         return CONSTRUCTOR_ID;
     }
 
+    @Override
+    @SuppressWarnings("PointlessBooleanExpression")
+    public boolean equals(Object object) {
+        if (!(object instanceof TLMessageRange)) return false;
+        if (object == this) return true;
+
+        TLMessageRange o = (TLMessageRange) object;
+
+        return minId == o.minId
+                && maxId == o.maxId;
+    }
+
     public int getMinId() {
         return minId;
     }

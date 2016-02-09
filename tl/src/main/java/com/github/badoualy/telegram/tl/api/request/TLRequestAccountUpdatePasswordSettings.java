@@ -81,6 +81,18 @@ public class TLRequestAccountUpdatePasswordSettings extends TLMethod<TLBool> {
         return CONSTRUCTOR_ID;
     }
 
+    @Override
+    @SuppressWarnings("PointlessBooleanExpression")
+    public boolean equals(Object object) {
+        if (!(object instanceof TLRequestAccountUpdatePasswordSettings)) return false;
+        if (object == this) return true;
+
+        TLRequestAccountUpdatePasswordSettings o = (TLRequestAccountUpdatePasswordSettings) object;
+
+        return (currentPasswordHash == o.currentPasswordHash || (currentPasswordHash != null && o.currentPasswordHash != null && currentPasswordHash.equals(o.currentPasswordHash)))
+                && (newSettings == o.newSettings || (newSettings != null && o.newSettings != null && newSettings.equals(o.newSettings)));
+    }
+
     public TLBytes getCurrentPasswordHash() {
         return currentPasswordHash;
     }

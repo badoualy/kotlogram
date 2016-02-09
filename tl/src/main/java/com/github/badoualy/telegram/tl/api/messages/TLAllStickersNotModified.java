@@ -19,4 +19,15 @@ public class TLAllStickersNotModified extends TLAbsAllStickers {
     public int getConstructorId() {
         return CONSTRUCTOR_ID;
     }
+
+    @Override
+    @SuppressWarnings("PointlessBooleanExpression")
+    public boolean equals(Object object) {
+        if (!(object instanceof TLAllStickersNotModified)) return false;
+        if (object == this) return true;
+
+        TLAllStickersNotModified o = (TLAllStickersNotModified) object;
+
+        return true;
+    }
 }

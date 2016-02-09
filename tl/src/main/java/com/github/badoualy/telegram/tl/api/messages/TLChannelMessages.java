@@ -100,6 +100,23 @@ public class TLChannelMessages extends TLAbsMessages {
         return CONSTRUCTOR_ID;
     }
 
+    @Override
+    @SuppressWarnings("PointlessBooleanExpression")
+    public boolean equals(Object object) {
+        if (!(object instanceof TLChannelMessages)) return false;
+        if (object == this) return true;
+
+        TLChannelMessages o = (TLChannelMessages) object;
+
+        return flags == o.flags
+                && pts == o.pts
+                && count == o.count
+                && (messages == o.messages || (messages != null && o.messages != null && messages.equals(o.messages)))
+                && (collapsed == o.collapsed || (collapsed != null && o.collapsed != null && collapsed.equals(o.collapsed)))
+                && (chats == o.chats || (chats != null && o.chats != null && chats.equals(o.chats)))
+                && (users == o.users || (users != null && o.users != null && users.equals(o.users)));
+    }
+
     public int getPts() {
         return pts;
     }

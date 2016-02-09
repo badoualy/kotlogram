@@ -64,6 +64,18 @@ public class TLPrivacyRules extends TLObject {
         return CONSTRUCTOR_ID;
     }
 
+    @Override
+    @SuppressWarnings("PointlessBooleanExpression")
+    public boolean equals(Object object) {
+        if (!(object instanceof TLPrivacyRules)) return false;
+        if (object == this) return true;
+
+        TLPrivacyRules o = (TLPrivacyRules) object;
+
+        return (rules == o.rules || (rules != null && o.rules != null && rules.equals(o.rules)))
+                && (users == o.users || (users != null && o.users != null && users.equals(o.users)));
+    }
+
     public TLVector<? extends TLAbsPrivacyRule> getRules() {
         return rules;
     }

@@ -78,6 +78,18 @@ public class TLRequestMessagesGetDhConfig extends TLMethod<TLAbsDhConfig> {
         return CONSTRUCTOR_ID;
     }
 
+    @Override
+    @SuppressWarnings("PointlessBooleanExpression")
+    public boolean equals(Object object) {
+        if (!(object instanceof TLRequestMessagesGetDhConfig)) return false;
+        if (object == this) return true;
+
+        TLRequestMessagesGetDhConfig o = (TLRequestMessagesGetDhConfig) object;
+
+        return version == o.version
+                && randomLength == o.randomLength;
+    }
+
     public int getVersion() {
         return version;
     }

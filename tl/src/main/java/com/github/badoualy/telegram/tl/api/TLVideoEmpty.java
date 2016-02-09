@@ -53,6 +53,17 @@ public class TLVideoEmpty extends TLAbsVideo {
         return CONSTRUCTOR_ID;
     }
 
+    @Override
+    @SuppressWarnings("PointlessBooleanExpression")
+    public boolean equals(Object object) {
+        if (!(object instanceof TLVideoEmpty)) return false;
+        if (object == this) return true;
+
+        TLVideoEmpty o = (TLVideoEmpty) object;
+
+        return id == o.id;
+    }
+
     public long getId() {
         return id;
     }

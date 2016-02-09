@@ -61,6 +61,18 @@ public class TLUpdateContactRegistered extends TLAbsUpdate {
         return CONSTRUCTOR_ID;
     }
 
+    @Override
+    @SuppressWarnings("PointlessBooleanExpression")
+    public boolean equals(Object object) {
+        if (!(object instanceof TLUpdateContactRegistered)) return false;
+        if (object == this) return true;
+
+        TLUpdateContactRegistered o = (TLUpdateContactRegistered) object;
+
+        return userId == o.userId
+                && date == o.date;
+    }
+
     public int getUserId() {
         return userId;
     }

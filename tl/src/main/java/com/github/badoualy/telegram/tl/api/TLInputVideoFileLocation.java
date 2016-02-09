@@ -61,6 +61,18 @@ public class TLInputVideoFileLocation extends TLAbsInputFileLocation {
         return CONSTRUCTOR_ID;
     }
 
+    @Override
+    @SuppressWarnings("PointlessBooleanExpression")
+    public boolean equals(Object object) {
+        if (!(object instanceof TLInputVideoFileLocation)) return false;
+        if (object == this) return true;
+
+        TLInputVideoFileLocation o = (TLInputVideoFileLocation) object;
+
+        return id == o.id
+                && accessHash == o.accessHash;
+    }
+
     public long getId() {
         return id;
     }

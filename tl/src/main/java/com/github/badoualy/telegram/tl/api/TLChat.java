@@ -138,6 +138,30 @@ public class TLChat extends TLAbsChat {
         return CONSTRUCTOR_ID;
     }
 
+    @Override
+    @SuppressWarnings("PointlessBooleanExpression")
+    public boolean equals(Object object) {
+        if (!(object instanceof TLChat)) return false;
+        if (object == this) return true;
+
+        TLChat o = (TLChat) object;
+
+        return flags == o.flags
+                && creator == o.creator
+                && kicked == o.kicked
+                && left == o.left
+                && adminsEnabled == o.adminsEnabled
+                && admin == o.admin
+                && deactivated == o.deactivated
+                && id == o.id
+                && (title == o.title || (title != null && o.title != null && title.equals(o.title)))
+                && (photo == o.photo || (photo != null && o.photo != null && photo.equals(o.photo)))
+                && participantsCount == o.participantsCount
+                && date == o.date
+                && version == o.version
+                && (migratedTo == o.migratedTo || (migratedTo != null && o.migratedTo != null && migratedTo.equals(o.migratedTo)));
+    }
+
     public boolean getCreator() {
         return creator;
     }

@@ -55,6 +55,17 @@ public class TLMessageActionChatDeleteUser extends TLAbsMessageAction {
         return CONSTRUCTOR_ID;
     }
 
+    @Override
+    @SuppressWarnings("PointlessBooleanExpression")
+    public boolean equals(Object object) {
+        if (!(object instanceof TLMessageActionChatDeleteUser)) return false;
+        if (object == this) return true;
+
+        TLMessageActionChatDeleteUser o = (TLMessageActionChatDeleteUser) object;
+
+        return userId == o.userId;
+    }
+
     public int getUserId() {
         return userId;
     }

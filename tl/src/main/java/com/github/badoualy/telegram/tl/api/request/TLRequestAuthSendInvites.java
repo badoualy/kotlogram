@@ -81,6 +81,18 @@ public class TLRequestAuthSendInvites extends TLMethod<TLBool> {
         return CONSTRUCTOR_ID;
     }
 
+    @Override
+    @SuppressWarnings("PointlessBooleanExpression")
+    public boolean equals(Object object) {
+        if (!(object instanceof TLRequestAuthSendInvites)) return false;
+        if (object == this) return true;
+
+        TLRequestAuthSendInvites o = (TLRequestAuthSendInvites) object;
+
+        return (phoneNumbers == o.phoneNumbers || (phoneNumbers != null && o.phoneNumbers != null && phoneNumbers.equals(o.phoneNumbers)))
+                && (message == o.message || (message != null && o.message != null && message.equals(o.message)));
+    }
+
     public TLStringVector getPhoneNumbers() {
         return phoneNumbers;
     }

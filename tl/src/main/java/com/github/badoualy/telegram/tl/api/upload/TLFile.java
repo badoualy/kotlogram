@@ -75,6 +75,19 @@ public class TLFile extends TLObject {
         return CONSTRUCTOR_ID;
     }
 
+    @Override
+    @SuppressWarnings("PointlessBooleanExpression")
+    public boolean equals(Object object) {
+        if (!(object instanceof TLFile)) return false;
+        if (object == this) return true;
+
+        TLFile o = (TLFile) object;
+
+        return (type == o.type || (type != null && o.type != null && type.equals(o.type)))
+                && mtime == o.mtime
+                && (bytes == o.bytes || (bytes != null && o.bytes != null && bytes.equals(o.bytes)));
+    }
+
     public TLAbsFileType getType() {
         return type;
     }

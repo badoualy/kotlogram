@@ -56,6 +56,17 @@ public class TLKeyboardButton extends TLObject {
         return CONSTRUCTOR_ID;
     }
 
+    @Override
+    @SuppressWarnings("PointlessBooleanExpression")
+    public boolean equals(Object object) {
+        if (!(object instanceof TLKeyboardButton)) return false;
+        if (object == this) return true;
+
+        TLKeyboardButton o = (TLKeyboardButton) object;
+
+        return (text == o.text || (text != null && o.text != null && text.equals(o.text)));
+    }
+
     public String getText() {
         return text;
     }

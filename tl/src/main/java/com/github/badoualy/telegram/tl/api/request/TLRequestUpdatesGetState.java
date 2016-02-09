@@ -42,4 +42,15 @@ public class TLRequestUpdatesGetState extends TLMethod<TLState> {
     public int getConstructorId() {
         return CONSTRUCTOR_ID;
     }
+
+    @Override
+    @SuppressWarnings("PointlessBooleanExpression")
+    public boolean equals(Object object) {
+        if (!(object instanceof TLRequestUpdatesGetState)) return false;
+        if (object == this) return true;
+
+        TLRequestUpdatesGetState o = (TLRequestUpdatesGetState) object;
+
+        return true;
+    }
 }

@@ -68,6 +68,19 @@ public class TLAffectedHistory extends TLObject {
         return CONSTRUCTOR_ID;
     }
 
+    @Override
+    @SuppressWarnings("PointlessBooleanExpression")
+    public boolean equals(Object object) {
+        if (!(object instanceof TLAffectedHistory)) return false;
+        if (object == this) return true;
+
+        TLAffectedHistory o = (TLAffectedHistory) object;
+
+        return pts == o.pts
+                && ptsCount == o.ptsCount
+                && offset == o.offset;
+    }
+
     public int getPts() {
         return pts;
     }

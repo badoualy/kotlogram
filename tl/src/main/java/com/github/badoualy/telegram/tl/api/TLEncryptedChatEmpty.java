@@ -53,6 +53,17 @@ public class TLEncryptedChatEmpty extends TLAbsEncryptedChat {
         return CONSTRUCTOR_ID;
     }
 
+    @Override
+    @SuppressWarnings("PointlessBooleanExpression")
+    public boolean equals(Object object) {
+        if (!(object instanceof TLEncryptedChatEmpty)) return false;
+        if (object == this) return true;
+
+        TLEncryptedChatEmpty o = (TLEncryptedChatEmpty) object;
+
+        return id == o.id;
+    }
+
     public int getId() {
         return id;
     }

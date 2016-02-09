@@ -67,6 +67,19 @@ public class TLUpdateChannelMessageViews extends TLAbsUpdate {
         return CONSTRUCTOR_ID;
     }
 
+    @Override
+    @SuppressWarnings("PointlessBooleanExpression")
+    public boolean equals(Object object) {
+        if (!(object instanceof TLUpdateChannelMessageViews)) return false;
+        if (object == this) return true;
+
+        TLUpdateChannelMessageViews o = (TLUpdateChannelMessageViews) object;
+
+        return channelId == o.channelId
+                && id == o.id
+                && views == o.views;
+    }
+
     public int getChannelId() {
         return channelId;
     }

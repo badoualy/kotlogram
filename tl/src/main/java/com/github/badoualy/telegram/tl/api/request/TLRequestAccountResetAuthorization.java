@@ -72,6 +72,17 @@ public class TLRequestAccountResetAuthorization extends TLMethod<TLBool> {
         return CONSTRUCTOR_ID;
     }
 
+    @Override
+    @SuppressWarnings("PointlessBooleanExpression")
+    public boolean equals(Object object) {
+        if (!(object instanceof TLRequestAccountResetAuthorization)) return false;
+        if (object == this) return true;
+
+        TLRequestAccountResetAuthorization o = (TLRequestAccountResetAuthorization) object;
+
+        return hash == o.hash;
+    }
+
     public long getHash() {
         return hash;
     }

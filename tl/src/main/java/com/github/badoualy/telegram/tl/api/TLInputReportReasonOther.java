@@ -55,6 +55,17 @@ public class TLInputReportReasonOther extends TLAbsReportReason {
         return CONSTRUCTOR_ID;
     }
 
+    @Override
+    @SuppressWarnings("PointlessBooleanExpression")
+    public boolean equals(Object object) {
+        if (!(object instanceof TLInputReportReasonOther)) return false;
+        if (object == this) return true;
+
+        TLInputReportReasonOther o = (TLInputReportReasonOther) object;
+
+        return (text == o.text || (text != null && o.text != null && text.equals(o.text)));
+    }
+
     public String getText() {
         return text;
     }

@@ -21,6 +21,17 @@ public class TLInputAudioEmpty extends TLAbsInputAudio {
     }
 
     @Override
+    @SuppressWarnings("PointlessBooleanExpression")
+    public boolean equals(Object object) {
+        if (!(object instanceof TLInputAudioEmpty)) return false;
+        if (object == this) return true;
+
+        TLInputAudioEmpty o = (TLInputAudioEmpty) object;
+
+        return true;
+    }
+
+    @Override
     public final boolean isEmpty() {
         return true;
     }

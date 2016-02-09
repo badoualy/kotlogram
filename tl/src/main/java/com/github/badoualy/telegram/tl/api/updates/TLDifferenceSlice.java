@@ -92,6 +92,22 @@ public class TLDifferenceSlice extends TLAbsDifference {
         return CONSTRUCTOR_ID;
     }
 
+    @Override
+    @SuppressWarnings("PointlessBooleanExpression")
+    public boolean equals(Object object) {
+        if (!(object instanceof TLDifferenceSlice)) return false;
+        if (object == this) return true;
+
+        TLDifferenceSlice o = (TLDifferenceSlice) object;
+
+        return (newMessages == o.newMessages || (newMessages != null && o.newMessages != null && newMessages.equals(o.newMessages)))
+                && (newEncryptedMessages == o.newEncryptedMessages || (newEncryptedMessages != null && o.newEncryptedMessages != null && newEncryptedMessages.equals(o.newEncryptedMessages)))
+                && (otherUpdates == o.otherUpdates || (otherUpdates != null && o.otherUpdates != null && otherUpdates.equals(o.otherUpdates)))
+                && (chats == o.chats || (chats != null && o.chats != null && chats.equals(o.chats)))
+                && (users == o.users || (users != null && o.users != null && users.equals(o.users)))
+                && (intermediateState == o.intermediateState || (intermediateState != null && o.intermediateState != null && intermediateState.equals(o.intermediateState)));
+    }
+
     public TLVector<? extends TLAbsMessage> getNewMessages() {
         return newMessages;
     }

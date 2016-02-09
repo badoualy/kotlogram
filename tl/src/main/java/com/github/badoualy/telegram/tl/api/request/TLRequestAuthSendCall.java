@@ -78,6 +78,18 @@ public class TLRequestAuthSendCall extends TLMethod<TLBool> {
         return CONSTRUCTOR_ID;
     }
 
+    @Override
+    @SuppressWarnings("PointlessBooleanExpression")
+    public boolean equals(Object object) {
+        if (!(object instanceof TLRequestAuthSendCall)) return false;
+        if (object == this) return true;
+
+        TLRequestAuthSendCall o = (TLRequestAuthSendCall) object;
+
+        return (phoneNumber == o.phoneNumber || (phoneNumber != null && o.phoneNumber != null && phoneNumber.equals(o.phoneNumber)))
+                && (phoneCodeHash == o.phoneCodeHash || (phoneCodeHash != null && o.phoneCodeHash != null && phoneCodeHash.equals(o.phoneCodeHash)));
+    }
+
     public String getPhoneNumber() {
         return phoneNumber;
     }

@@ -62,6 +62,18 @@ public class TLAffectedMessages extends TLObject {
         return CONSTRUCTOR_ID;
     }
 
+    @Override
+    @SuppressWarnings("PointlessBooleanExpression")
+    public boolean equals(Object object) {
+        if (!(object instanceof TLAffectedMessages)) return false;
+        if (object == this) return true;
+
+        TLAffectedMessages o = (TLAffectedMessages) object;
+
+        return pts == o.pts
+                && ptsCount == o.ptsCount;
+    }
+
     public int getPts() {
         return pts;
     }

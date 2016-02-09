@@ -71,6 +71,17 @@ public class TLRequestChannelsExportInvite extends TLMethod<TLAbsExportedChatInv
         return CONSTRUCTOR_ID;
     }
 
+    @Override
+    @SuppressWarnings("PointlessBooleanExpression")
+    public boolean equals(Object object) {
+        if (!(object instanceof TLRequestChannelsExportInvite)) return false;
+        if (object == this) return true;
+
+        TLRequestChannelsExportInvite o = (TLRequestChannelsExportInvite) object;
+
+        return (channel == o.channel || (channel != null && o.channel != null && channel.equals(o.channel)));
+    }
+
     public TLAbsInputChannel getChannel() {
         return channel;
     }

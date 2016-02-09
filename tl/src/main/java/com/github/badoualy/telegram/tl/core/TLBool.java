@@ -40,6 +40,11 @@ public abstract class TLBool extends TLObject {
                                                         + " or " + Integer.toHexString(TLBoolFalse.CONSTRUCTOR_ID));
     }
 
+    @Override
+    public boolean equals(Object obj) {
+        return this == obj; // Singleton, 1 instance
+    }
+
     private static final class TLBoolTrue extends TLBool {
 
         public static final int CONSTRUCTOR_ID = 0x997275b5;

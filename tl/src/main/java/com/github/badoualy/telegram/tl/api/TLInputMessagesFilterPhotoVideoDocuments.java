@@ -19,4 +19,15 @@ public class TLInputMessagesFilterPhotoVideoDocuments extends TLAbsMessagesFilte
     public int getConstructorId() {
         return CONSTRUCTOR_ID;
     }
+
+    @Override
+    @SuppressWarnings("PointlessBooleanExpression")
+    public boolean equals(Object object) {
+        if (!(object instanceof TLInputMessagesFilterPhotoVideoDocuments)) return false;
+        if (object == this) return true;
+
+        TLInputMessagesFilterPhotoVideoDocuments o = (TLInputMessagesFilterPhotoVideoDocuments) object;
+
+        return true;
+    }
 }

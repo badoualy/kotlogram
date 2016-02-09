@@ -72,6 +72,17 @@ public class TLRequestHelpGetInviteText extends TLMethod<TLInviteText> {
         return CONSTRUCTOR_ID;
     }
 
+    @Override
+    @SuppressWarnings("PointlessBooleanExpression")
+    public boolean equals(Object object) {
+        if (!(object instanceof TLRequestHelpGetInviteText)) return false;
+        if (object == this) return true;
+
+        TLRequestHelpGetInviteText o = (TLRequestHelpGetInviteText) object;
+
+        return (langCode == o.langCode || (langCode != null && o.langCode != null && langCode.equals(o.langCode)));
+    }
+
     public String getLangCode() {
         return langCode;
     }

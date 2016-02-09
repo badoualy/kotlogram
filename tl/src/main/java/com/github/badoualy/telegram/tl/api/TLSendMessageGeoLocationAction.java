@@ -19,4 +19,15 @@ public class TLSendMessageGeoLocationAction extends TLAbsSendMessageAction {
     public int getConstructorId() {
         return CONSTRUCTOR_ID;
     }
+
+    @Override
+    @SuppressWarnings("PointlessBooleanExpression")
+    public boolean equals(Object object) {
+        if (!(object instanceof TLSendMessageGeoLocationAction)) return false;
+        if (object == this) return true;
+
+        TLSendMessageGeoLocationAction o = (TLSendMessageGeoLocationAction) object;
+
+        return true;
+    }
 }

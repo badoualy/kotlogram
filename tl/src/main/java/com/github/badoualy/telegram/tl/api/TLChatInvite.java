@@ -91,6 +91,22 @@ public class TLChatInvite extends TLAbsChatInvite {
         return CONSTRUCTOR_ID;
     }
 
+    @Override
+    @SuppressWarnings("PointlessBooleanExpression")
+    public boolean equals(Object object) {
+        if (!(object instanceof TLChatInvite)) return false;
+        if (object == this) return true;
+
+        TLChatInvite o = (TLChatInvite) object;
+
+        return flags == o.flags
+                && channel == o.channel
+                && broadcast == o.broadcast
+                && _public == o._public
+                && megagroup == o.megagroup
+                && (title == o.title || (title != null && o.title != null && title.equals(o.title)));
+    }
+
     public boolean getChannel() {
         return channel;
     }

@@ -19,4 +19,15 @@ public class TLInputMediaEmpty extends TLAbsInputMedia {
     public int getConstructorId() {
         return CONSTRUCTOR_ID;
     }
+
+    @Override
+    @SuppressWarnings("PointlessBooleanExpression")
+    public boolean equals(Object object) {
+        if (!(object instanceof TLInputMediaEmpty)) return false;
+        if (object == this) return true;
+
+        TLInputMediaEmpty o = (TLInputMediaEmpty) object;
+
+        return true;
+    }
 }

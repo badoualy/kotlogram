@@ -71,6 +71,18 @@ public class TLRequestInvokeAfterMsgs<T extends TLObject> extends TLMethod<T> {
         return CONSTRUCTOR_ID;
     }
 
+    @Override
+    @SuppressWarnings("PointlessBooleanExpression")
+    public boolean equals(Object object) {
+        if (!(object instanceof TLRequestInvokeAfterMsgs)) return false;
+        if (object == this) return true;
+
+        TLRequestInvokeAfterMsgs o = (TLRequestInvokeAfterMsgs) object;
+
+        return (msgIds == o.msgIds || (msgIds != null && o.msgIds != null && msgIds.equals(o.msgIds)))
+                && (query == o.query || (query != null && o.query != null && query.equals(o.query)));
+    }
+
     public TLLongVector getMsgIds() {
         return msgIds;
     }

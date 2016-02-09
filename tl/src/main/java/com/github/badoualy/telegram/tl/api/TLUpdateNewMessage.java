@@ -69,6 +69,19 @@ public class TLUpdateNewMessage extends TLAbsUpdate {
         return CONSTRUCTOR_ID;
     }
 
+    @Override
+    @SuppressWarnings("PointlessBooleanExpression")
+    public boolean equals(Object object) {
+        if (!(object instanceof TLUpdateNewMessage)) return false;
+        if (object == this) return true;
+
+        TLUpdateNewMessage o = (TLUpdateNewMessage) object;
+
+        return (message == o.message || (message != null && o.message != null && message.equals(o.message)))
+                && pts == o.pts
+                && ptsCount == o.ptsCount;
+    }
+
     public TLAbsMessage getMessage() {
         return message;
     }

@@ -123,6 +123,23 @@ public class TLRequestMessagesSendMedia extends TLMethod<TLAbsUpdates> {
         return CONSTRUCTOR_ID;
     }
 
+    @Override
+    @SuppressWarnings("PointlessBooleanExpression")
+    public boolean equals(Object object) {
+        if (!(object instanceof TLRequestMessagesSendMedia)) return false;
+        if (object == this) return true;
+
+        TLRequestMessagesSendMedia o = (TLRequestMessagesSendMedia) object;
+
+        return flags == o.flags
+                && broadcast == o.broadcast
+                && (peer == o.peer || (peer != null && o.peer != null && peer.equals(o.peer)))
+                && (replyToMsgId == o.replyToMsgId || (replyToMsgId != null && o.replyToMsgId != null && replyToMsgId.equals(o.replyToMsgId)))
+                && (media == o.media || (media != null && o.media != null && media.equals(o.media)))
+                && randomId == o.randomId
+                && (replyMarkup == o.replyMarkup || (replyMarkup != null && o.replyMarkup != null && replyMarkup.equals(o.replyMarkup)));
+    }
+
     public boolean getBroadcast() {
         return broadcast;
     }

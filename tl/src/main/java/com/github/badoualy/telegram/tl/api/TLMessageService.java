@@ -113,6 +113,26 @@ public class TLMessageService extends TLAbsMessage {
         return CONSTRUCTOR_ID;
     }
 
+    @Override
+    @SuppressWarnings("PointlessBooleanExpression")
+    public boolean equals(Object object) {
+        if (!(object instanceof TLMessageService)) return false;
+        if (object == this) return true;
+
+        TLMessageService o = (TLMessageService) object;
+
+        return flags == o.flags
+                && unread == o.unread
+                && out == o.out
+                && mentioned == o.mentioned
+                && mediaUnread == o.mediaUnread
+                && id == o.id
+                && (fromId == o.fromId || (fromId != null && o.fromId != null && fromId.equals(o.fromId)))
+                && (toId == o.toId || (toId != null && o.toId != null && toId.equals(o.toId)))
+                && date == o.date
+                && (action == o.action || (action != null && o.action != null && action.equals(o.action)));
+    }
+
     public boolean getUnread() {
         return unread;
     }

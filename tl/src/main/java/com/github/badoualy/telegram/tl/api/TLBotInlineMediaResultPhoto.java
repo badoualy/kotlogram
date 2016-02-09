@@ -69,6 +69,20 @@ public class TLBotInlineMediaResultPhoto extends TLAbsBotInlineResult {
         return CONSTRUCTOR_ID;
     }
 
+    @Override
+    @SuppressWarnings("PointlessBooleanExpression")
+    public boolean equals(Object object) {
+        if (!(object instanceof TLBotInlineMediaResultPhoto)) return false;
+        if (object == this) return true;
+
+        TLBotInlineMediaResultPhoto o = (TLBotInlineMediaResultPhoto) object;
+
+        return (id == o.id || (id != null && o.id != null && id.equals(o.id)))
+                && (type == o.type || (type != null && o.type != null && type.equals(o.type)))
+                && (photo == o.photo || (photo != null && o.photo != null && photo.equals(o.photo)))
+                && (sendMessage == o.sendMessage || (sendMessage != null && o.sendMessage != null && sendMessage.equals(o.sendMessage)));
+    }
+
     public String getId() {
         return id;
     }

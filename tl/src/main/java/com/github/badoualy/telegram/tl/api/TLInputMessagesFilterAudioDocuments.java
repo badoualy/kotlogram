@@ -19,4 +19,15 @@ public class TLInputMessagesFilterAudioDocuments extends TLAbsMessagesFilter {
     public int getConstructorId() {
         return CONSTRUCTOR_ID;
     }
+
+    @Override
+    @SuppressWarnings("PointlessBooleanExpression")
+    public boolean equals(Object object) {
+        if (!(object instanceof TLInputMessagesFilterAudioDocuments)) return false;
+        if (object == this) return true;
+
+        TLInputMessagesFilterAudioDocuments o = (TLInputMessagesFilterAudioDocuments) object;
+
+        return true;
+    }
 }

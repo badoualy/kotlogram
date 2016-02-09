@@ -86,6 +86,20 @@ public class TLInputBotInlineMessageText extends TLAbsInputBotInlineMessage {
         return CONSTRUCTOR_ID;
     }
 
+    @Override
+    @SuppressWarnings("PointlessBooleanExpression")
+    public boolean equals(Object object) {
+        if (!(object instanceof TLInputBotInlineMessageText)) return false;
+        if (object == this) return true;
+
+        TLInputBotInlineMessageText o = (TLInputBotInlineMessageText) object;
+
+        return flags == o.flags
+                && noWebpage == o.noWebpage
+                && (message == o.message || (message != null && o.message != null && message.equals(o.message)))
+                && (entities == o.entities || (entities != null && o.entities != null && entities.equals(o.entities)));
+    }
+
     public boolean getNoWebpage() {
         return noWebpage;
     }

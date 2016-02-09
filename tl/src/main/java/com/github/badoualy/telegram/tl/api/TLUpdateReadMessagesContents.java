@@ -70,6 +70,19 @@ public class TLUpdateReadMessagesContents extends TLAbsUpdate {
         return CONSTRUCTOR_ID;
     }
 
+    @Override
+    @SuppressWarnings("PointlessBooleanExpression")
+    public boolean equals(Object object) {
+        if (!(object instanceof TLUpdateReadMessagesContents)) return false;
+        if (object == this) return true;
+
+        TLUpdateReadMessagesContents o = (TLUpdateReadMessagesContents) object;
+
+        return (messages == o.messages || (messages != null && o.messages != null && messages.equals(o.messages)))
+                && pts == o.pts
+                && ptsCount == o.ptsCount;
+    }
+
     public TLIntVector getMessages() {
         return messages;
     }

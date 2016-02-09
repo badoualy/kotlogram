@@ -80,6 +80,21 @@ public class TLEncryptedChatWaiting extends TLAbsEncryptedChat {
         return CONSTRUCTOR_ID;
     }
 
+    @Override
+    @SuppressWarnings("PointlessBooleanExpression")
+    public boolean equals(Object object) {
+        if (!(object instanceof TLEncryptedChatWaiting)) return false;
+        if (object == this) return true;
+
+        TLEncryptedChatWaiting o = (TLEncryptedChatWaiting) object;
+
+        return id == o.id
+                && accessHash == o.accessHash
+                && date == o.date
+                && adminId == o.adminId
+                && participantId == o.participantId;
+    }
+
     public int getId() {
         return id;
     }

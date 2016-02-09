@@ -72,6 +72,19 @@ public class TLStickerSet extends TLObject {
         return CONSTRUCTOR_ID;
     }
 
+    @Override
+    @SuppressWarnings("PointlessBooleanExpression")
+    public boolean equals(Object object) {
+        if (!(object instanceof TLStickerSet)) return false;
+        if (object == this) return true;
+
+        TLStickerSet o = (TLStickerSet) object;
+
+        return (set == o.set || (set != null && o.set != null && set.equals(o.set)))
+                && (packs == o.packs || (packs != null && o.packs != null && packs.equals(o.packs)))
+                && (documents == o.documents || (documents != null && o.documents != null && documents.equals(o.documents)));
+    }
+
     public com.github.badoualy.telegram.tl.api.TLStickerSet getSet() {
         return set;
     }

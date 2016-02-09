@@ -78,6 +78,18 @@ public class TLRequestMessagesSetTyping extends TLMethod<TLBool> {
         return CONSTRUCTOR_ID;
     }
 
+    @Override
+    @SuppressWarnings("PointlessBooleanExpression")
+    public boolean equals(Object object) {
+        if (!(object instanceof TLRequestMessagesSetTyping)) return false;
+        if (object == this) return true;
+
+        TLRequestMessagesSetTyping o = (TLRequestMessagesSetTyping) object;
+
+        return (peer == o.peer || (peer != null && o.peer != null && peer.equals(o.peer)))
+                && (action == o.action || (action != null && o.action != null && action.equals(o.action)));
+    }
+
     public TLAbsInputPeer getPeer() {
         return peer;
     }

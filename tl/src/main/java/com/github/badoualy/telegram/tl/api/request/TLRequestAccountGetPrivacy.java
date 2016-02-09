@@ -71,6 +71,17 @@ public class TLRequestAccountGetPrivacy extends TLMethod<TLPrivacyRules> {
         return CONSTRUCTOR_ID;
     }
 
+    @Override
+    @SuppressWarnings("PointlessBooleanExpression")
+    public boolean equals(Object object) {
+        if (!(object instanceof TLRequestAccountGetPrivacy)) return false;
+        if (object == this) return true;
+
+        TLRequestAccountGetPrivacy o = (TLRequestAccountGetPrivacy) object;
+
+        return (key == o.key || (key != null && o.key != null && key.equals(o.key)));
+    }
+
     public TLInputPrivacyKeyStatusTimestamp getKey() {
         return key;
     }

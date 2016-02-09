@@ -82,6 +82,21 @@ public class TLEncryptedFile extends TLAbsEncryptedFile {
         return CONSTRUCTOR_ID;
     }
 
+    @Override
+    @SuppressWarnings("PointlessBooleanExpression")
+    public boolean equals(Object object) {
+        if (!(object instanceof TLEncryptedFile)) return false;
+        if (object == this) return true;
+
+        TLEncryptedFile o = (TLEncryptedFile) object;
+
+        return id == o.id
+                && accessHash == o.accessHash
+                && size == o.size
+                && dcId == o.dcId
+                && keyFingerprint == o.keyFingerprint;
+    }
+
     public long getId() {
         return id;
     }

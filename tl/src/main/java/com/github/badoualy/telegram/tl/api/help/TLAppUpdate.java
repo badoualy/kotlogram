@@ -79,6 +79,20 @@ public class TLAppUpdate extends TLAbsAppUpdate {
         return CONSTRUCTOR_ID;
     }
 
+    @Override
+    @SuppressWarnings("PointlessBooleanExpression")
+    public boolean equals(Object object) {
+        if (!(object instanceof TLAppUpdate)) return false;
+        if (object == this) return true;
+
+        TLAppUpdate o = (TLAppUpdate) object;
+
+        return id == o.id
+                && critical == o.critical
+                && (url == o.url || (url != null && o.url != null && url.equals(o.url)))
+                && (text == o.text || (text != null && o.text != null && text.equals(o.text)));
+    }
+
     public int getId() {
         return id;
     }

@@ -72,6 +72,17 @@ public class TLRequestAccountDeleteAccount extends TLMethod<TLBool> {
         return CONSTRUCTOR_ID;
     }
 
+    @Override
+    @SuppressWarnings("PointlessBooleanExpression")
+    public boolean equals(Object object) {
+        if (!(object instanceof TLRequestAccountDeleteAccount)) return false;
+        if (object == this) return true;
+
+        TLRequestAccountDeleteAccount o = (TLRequestAccountDeleteAccount) object;
+
+        return (reason == o.reason || (reason != null && o.reason != null && reason.equals(o.reason)));
+    }
+
     public String getReason() {
         return reason;
     }

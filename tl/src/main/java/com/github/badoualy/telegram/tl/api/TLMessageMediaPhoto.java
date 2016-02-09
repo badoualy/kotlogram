@@ -63,6 +63,18 @@ public class TLMessageMediaPhoto extends TLAbsMessageMedia {
         return CONSTRUCTOR_ID;
     }
 
+    @Override
+    @SuppressWarnings("PointlessBooleanExpression")
+    public boolean equals(Object object) {
+        if (!(object instanceof TLMessageMediaPhoto)) return false;
+        if (object == this) return true;
+
+        TLMessageMediaPhoto o = (TLMessageMediaPhoto) object;
+
+        return (photo == o.photo || (photo != null && o.photo != null && photo.equals(o.photo)))
+                && (caption == o.caption || (caption != null && o.caption != null && caption.equals(o.caption)));
+    }
+
     public TLAbsPhoto getPhoto() {
         return photo;
     }

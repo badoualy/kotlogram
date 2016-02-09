@@ -69,6 +69,19 @@ public class TLLink extends TLObject {
         return CONSTRUCTOR_ID;
     }
 
+    @Override
+    @SuppressWarnings("PointlessBooleanExpression")
+    public boolean equals(Object object) {
+        if (!(object instanceof TLLink)) return false;
+        if (object == this) return true;
+
+        TLLink o = (TLLink) object;
+
+        return (myLink == o.myLink || (myLink != null && o.myLink != null && myLink.equals(o.myLink)))
+                && (foreignLink == o.foreignLink || (foreignLink != null && o.foreignLink != null && foreignLink.equals(o.foreignLink)))
+                && (user == o.user || (user != null && o.user != null && user.equals(o.user)));
+    }
+
     public TLAbsContactLink getMyLink() {
         return myLink;
     }

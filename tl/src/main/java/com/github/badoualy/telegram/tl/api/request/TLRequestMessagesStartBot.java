@@ -96,6 +96,20 @@ public class TLRequestMessagesStartBot extends TLMethod<TLAbsUpdates> {
         return CONSTRUCTOR_ID;
     }
 
+    @Override
+    @SuppressWarnings("PointlessBooleanExpression")
+    public boolean equals(Object object) {
+        if (!(object instanceof TLRequestMessagesStartBot)) return false;
+        if (object == this) return true;
+
+        TLRequestMessagesStartBot o = (TLRequestMessagesStartBot) object;
+
+        return (bot == o.bot || (bot != null && o.bot != null && bot.equals(o.bot)))
+                && (peer == o.peer || (peer != null && o.peer != null && peer.equals(o.peer)))
+                && randomId == o.randomId
+                && (startParam == o.startParam || (startParam != null && o.startParam != null && startParam.equals(o.startParam)));
+    }
+
     public TLAbsInputUser getBot() {
         return bot;
     }

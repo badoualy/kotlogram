@@ -74,6 +74,20 @@ public class TLMessageGroup extends TLObject {
         return CONSTRUCTOR_ID;
     }
 
+    @Override
+    @SuppressWarnings("PointlessBooleanExpression")
+    public boolean equals(Object object) {
+        if (!(object instanceof TLMessageGroup)) return false;
+        if (object == this) return true;
+
+        TLMessageGroup o = (TLMessageGroup) object;
+
+        return minId == o.minId
+                && maxId == o.maxId
+                && count == o.count
+                && date == o.date;
+    }
+
     public int getMinId() {
         return minId;
     }

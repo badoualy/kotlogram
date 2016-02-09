@@ -55,6 +55,17 @@ public class TLBotInlineMessageMediaAuto extends TLAbsBotInlineMessage {
         return CONSTRUCTOR_ID;
     }
 
+    @Override
+    @SuppressWarnings("PointlessBooleanExpression")
+    public boolean equals(Object object) {
+        if (!(object instanceof TLBotInlineMessageMediaAuto)) return false;
+        if (object == this) return true;
+
+        TLBotInlineMessageMediaAuto o = (TLBotInlineMessageMediaAuto) object;
+
+        return (caption == o.caption || (caption != null && o.caption != null && caption.equals(o.caption)));
+    }
+
     public String getCaption() {
         return caption;
     }

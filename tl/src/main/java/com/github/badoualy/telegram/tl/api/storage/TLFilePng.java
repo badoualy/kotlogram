@@ -19,4 +19,15 @@ public class TLFilePng extends TLAbsFileType {
     public int getConstructorId() {
         return CONSTRUCTOR_ID;
     }
+
+    @Override
+    @SuppressWarnings("PointlessBooleanExpression")
+    public boolean equals(Object object) {
+        if (!(object instanceof TLFilePng)) return false;
+        if (object == this) return true;
+
+        TLFilePng o = (TLFilePng) object;
+
+        return true;
+    }
 }

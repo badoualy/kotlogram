@@ -71,6 +71,19 @@ public class TLFound extends TLObject {
         return CONSTRUCTOR_ID;
     }
 
+    @Override
+    @SuppressWarnings("PointlessBooleanExpression")
+    public boolean equals(Object object) {
+        if (!(object instanceof TLFound)) return false;
+        if (object == this) return true;
+
+        TLFound o = (TLFound) object;
+
+        return (results == o.results || (results != null && o.results != null && results.equals(o.results)))
+                && (chats == o.chats || (chats != null && o.chats != null && chats.equals(o.chats)))
+                && (users == o.users || (users != null && o.users != null && users.equals(o.users)));
+    }
+
     public TLVector<? extends TLAbsPeer> getResults() {
         return results;
     }

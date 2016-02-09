@@ -71,6 +71,17 @@ public class TLRequestMessagesReportSpam extends TLMethod<TLBool> {
         return CONSTRUCTOR_ID;
     }
 
+    @Override
+    @SuppressWarnings("PointlessBooleanExpression")
+    public boolean equals(Object object) {
+        if (!(object instanceof TLRequestMessagesReportSpam)) return false;
+        if (object == this) return true;
+
+        TLRequestMessagesReportSpam o = (TLRequestMessagesReportSpam) object;
+
+        return (peer == o.peer || (peer != null && o.peer != null && peer.equals(o.peer)));
+    }
+
     public TLAbsInputPeer getPeer() {
         return peer;
     }

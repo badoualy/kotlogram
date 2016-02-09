@@ -78,6 +78,18 @@ public class TLRequestAccountUpdateNotifySettings extends TLMethod<TLBool> {
         return CONSTRUCTOR_ID;
     }
 
+    @Override
+    @SuppressWarnings("PointlessBooleanExpression")
+    public boolean equals(Object object) {
+        if (!(object instanceof TLRequestAccountUpdateNotifySettings)) return false;
+        if (object == this) return true;
+
+        TLRequestAccountUpdateNotifySettings o = (TLRequestAccountUpdateNotifySettings) object;
+
+        return (peer == o.peer || (peer != null && o.peer != null && peer.equals(o.peer)))
+                && (settings == o.settings || (settings != null && o.settings != null && settings.equals(o.settings)));
+    }
+
     public TLAbsInputNotifyPeer getPeer() {
         return peer;
     }

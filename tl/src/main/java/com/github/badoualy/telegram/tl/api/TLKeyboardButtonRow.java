@@ -56,6 +56,17 @@ public class TLKeyboardButtonRow extends TLObject {
         return CONSTRUCTOR_ID;
     }
 
+    @Override
+    @SuppressWarnings("PointlessBooleanExpression")
+    public boolean equals(Object object) {
+        if (!(object instanceof TLKeyboardButtonRow)) return false;
+        if (object == this) return true;
+
+        TLKeyboardButtonRow o = (TLKeyboardButtonRow) object;
+
+        return (buttons == o.buttons || (buttons != null && o.buttons != null && buttons.equals(o.buttons)));
+    }
+
     public TLVector<? extends TLKeyboardButton> getButtons() {
         return buttons;
     }

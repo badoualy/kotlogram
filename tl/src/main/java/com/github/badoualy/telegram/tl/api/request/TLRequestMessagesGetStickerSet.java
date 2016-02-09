@@ -71,6 +71,17 @@ public class TLRequestMessagesGetStickerSet extends TLMethod<TLStickerSet> {
         return CONSTRUCTOR_ID;
     }
 
+    @Override
+    @SuppressWarnings("PointlessBooleanExpression")
+    public boolean equals(Object object) {
+        if (!(object instanceof TLRequestMessagesGetStickerSet)) return false;
+        if (object == this) return true;
+
+        TLRequestMessagesGetStickerSet o = (TLRequestMessagesGetStickerSet) object;
+
+        return (stickerset == o.stickerset || (stickerset != null && o.stickerset != null && stickerset.equals(o.stickerset)));
+    }
+
     public TLAbsInputStickerSet getStickerset() {
         return stickerset;
     }

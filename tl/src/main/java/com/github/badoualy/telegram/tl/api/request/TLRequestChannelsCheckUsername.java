@@ -80,6 +80,18 @@ public class TLRequestChannelsCheckUsername extends TLMethod<TLBool> {
         return CONSTRUCTOR_ID;
     }
 
+    @Override
+    @SuppressWarnings("PointlessBooleanExpression")
+    public boolean equals(Object object) {
+        if (!(object instanceof TLRequestChannelsCheckUsername)) return false;
+        if (object == this) return true;
+
+        TLRequestChannelsCheckUsername o = (TLRequestChannelsCheckUsername) object;
+
+        return (channel == o.channel || (channel != null && o.channel != null && channel.equals(o.channel)))
+                && (username == o.username || (username != null && o.username != null && username.equals(o.username)));
+    }
+
     public TLAbsInputChannel getChannel() {
         return channel;
     }

@@ -73,6 +73,17 @@ public class TLRequestContactsDeleteContacts extends TLMethod<TLBool> {
         return CONSTRUCTOR_ID;
     }
 
+    @Override
+    @SuppressWarnings("PointlessBooleanExpression")
+    public boolean equals(Object object) {
+        if (!(object instanceof TLRequestContactsDeleteContacts)) return false;
+        if (object == this) return true;
+
+        TLRequestContactsDeleteContacts o = (TLRequestContactsDeleteContacts) object;
+
+        return (id == o.id || (id != null && o.id != null && id.equals(o.id)));
+    }
+
     public TLVector<? extends TLAbsInputUser> getId() {
         return id;
     }

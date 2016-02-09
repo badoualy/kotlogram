@@ -64,6 +64,18 @@ public class TLInputPeerChannel extends TLAbsInputPeer {
         return CONSTRUCTOR_ID;
     }
 
+    @Override
+    @SuppressWarnings("PointlessBooleanExpression")
+    public boolean equals(Object object) {
+        if (!(object instanceof TLInputPeerChannel)) return false;
+        if (object == this) return true;
+
+        TLInputPeerChannel o = (TLInputPeerChannel) object;
+
+        return channelId == o.channelId
+                && accessHash == o.accessHash;
+    }
+
     public int getChannelId() {
         return channelId;
     }

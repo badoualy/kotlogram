@@ -73,6 +73,20 @@ public class TLInputFile extends TLAbsInputFile {
         return CONSTRUCTOR_ID;
     }
 
+    @Override
+    @SuppressWarnings("PointlessBooleanExpression")
+    public boolean equals(Object object) {
+        if (!(object instanceof TLInputFile)) return false;
+        if (object == this) return true;
+
+        TLInputFile o = (TLInputFile) object;
+
+        return id == o.id
+                && parts == o.parts
+                && (name == o.name || (name != null && o.name != null && name.equals(o.name)))
+                && (md5Checksum == o.md5Checksum || (md5Checksum != null && o.md5Checksum != null && md5Checksum.equals(o.md5Checksum)));
+    }
+
     public long getId() {
         return id;
     }

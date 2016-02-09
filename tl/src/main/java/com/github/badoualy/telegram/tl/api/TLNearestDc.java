@@ -71,6 +71,19 @@ public class TLNearestDc extends TLObject {
         return CONSTRUCTOR_ID;
     }
 
+    @Override
+    @SuppressWarnings("PointlessBooleanExpression")
+    public boolean equals(Object object) {
+        if (!(object instanceof TLNearestDc)) return false;
+        if (object == this) return true;
+
+        TLNearestDc o = (TLNearestDc) object;
+
+        return (country == o.country || (country != null && o.country != null && country.equals(o.country)))
+                && thisDc == o.thisDc
+                && nearestDc == o.nearestDc;
+    }
+
     public String getCountry() {
         return country;
     }

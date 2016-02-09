@@ -84,6 +84,19 @@ public class TLRequestAuthSignIn extends TLMethod<TLAuthorization> {
         return CONSTRUCTOR_ID;
     }
 
+    @Override
+    @SuppressWarnings("PointlessBooleanExpression")
+    public boolean equals(Object object) {
+        if (!(object instanceof TLRequestAuthSignIn)) return false;
+        if (object == this) return true;
+
+        TLRequestAuthSignIn o = (TLRequestAuthSignIn) object;
+
+        return (phoneNumber == o.phoneNumber || (phoneNumber != null && o.phoneNumber != null && phoneNumber.equals(o.phoneNumber)))
+                && (phoneCodeHash == o.phoneCodeHash || (phoneCodeHash != null && o.phoneCodeHash != null && phoneCodeHash.equals(o.phoneCodeHash)))
+                && (phoneCode == o.phoneCode || (phoneCode != null && o.phoneCode != null && phoneCode.equals(o.phoneCode)));
+    }
+
     public String getPhoneNumber() {
         return phoneNumber;
     }

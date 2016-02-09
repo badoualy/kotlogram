@@ -72,6 +72,17 @@ public class TLRequestMessagesReceivedQueue extends TLMethod<TLLongVector> {
         return CONSTRUCTOR_ID;
     }
 
+    @Override
+    @SuppressWarnings("PointlessBooleanExpression")
+    public boolean equals(Object object) {
+        if (!(object instanceof TLRequestMessagesReceivedQueue)) return false;
+        if (object == this) return true;
+
+        TLRequestMessagesReceivedQueue o = (TLRequestMessagesReceivedQueue) object;
+
+        return maxQts == o.maxQts;
+    }
+
     public int getMaxQts() {
         return maxQts;
     }

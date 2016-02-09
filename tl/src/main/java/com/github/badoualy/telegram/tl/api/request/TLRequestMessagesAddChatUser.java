@@ -86,6 +86,19 @@ public class TLRequestMessagesAddChatUser extends TLMethod<TLAbsUpdates> {
         return CONSTRUCTOR_ID;
     }
 
+    @Override
+    @SuppressWarnings("PointlessBooleanExpression")
+    public boolean equals(Object object) {
+        if (!(object instanceof TLRequestMessagesAddChatUser)) return false;
+        if (object == this) return true;
+
+        TLRequestMessagesAddChatUser o = (TLRequestMessagesAddChatUser) object;
+
+        return chatId == o.chatId
+                && (userId == o.userId || (userId != null && o.userId != null && userId.equals(o.userId)))
+                && fwdLimit == o.fwdLimit;
+    }
+
     public int getChatId() {
         return chatId;
     }

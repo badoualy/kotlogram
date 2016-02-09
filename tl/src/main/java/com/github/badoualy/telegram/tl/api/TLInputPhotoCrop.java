@@ -67,6 +67,19 @@ public class TLInputPhotoCrop extends TLAbsInputPhotoCrop {
         return CONSTRUCTOR_ID;
     }
 
+    @Override
+    @SuppressWarnings("PointlessBooleanExpression")
+    public boolean equals(Object object) {
+        if (!(object instanceof TLInputPhotoCrop)) return false;
+        if (object == this) return true;
+
+        TLInputPhotoCrop o = (TLInputPhotoCrop) object;
+
+        return cropLeft == o.cropLeft
+                && cropTop == o.cropTop
+                && cropWidth == o.cropWidth;
+    }
+
     public double getCropLeft() {
         return cropLeft;
     }

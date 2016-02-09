@@ -98,6 +98,20 @@ public class TLRequestMessagesSendBroadcast extends TLMethod<TLAbsUpdates> {
         return CONSTRUCTOR_ID;
     }
 
+    @Override
+    @SuppressWarnings("PointlessBooleanExpression")
+    public boolean equals(Object object) {
+        if (!(object instanceof TLRequestMessagesSendBroadcast)) return false;
+        if (object == this) return true;
+
+        TLRequestMessagesSendBroadcast o = (TLRequestMessagesSendBroadcast) object;
+
+        return (contacts == o.contacts || (contacts != null && o.contacts != null && contacts.equals(o.contacts)))
+                && (randomId == o.randomId || (randomId != null && o.randomId != null && randomId.equals(o.randomId)))
+                && (message == o.message || (message != null && o.message != null && message.equals(o.message)))
+                && (media == o.media || (media != null && o.media != null && media.equals(o.media)));
+    }
+
     public TLVector<? extends TLAbsInputUser> getContacts() {
         return contacts;
     }

@@ -19,4 +19,15 @@ public class TLSendMessageRecordAudioAction extends TLAbsSendMessageAction {
     public int getConstructorId() {
         return CONSTRUCTOR_ID;
     }
+
+    @Override
+    @SuppressWarnings("PointlessBooleanExpression")
+    public boolean equals(Object object) {
+        if (!(object instanceof TLSendMessageRecordAudioAction)) return false;
+        if (object == this) return true;
+
+        TLSendMessageRecordAudioAction o = (TLSendMessageRecordAudioAction) object;
+
+        return true;
+    }
 }

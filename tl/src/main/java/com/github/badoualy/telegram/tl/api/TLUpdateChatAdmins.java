@@ -70,6 +70,19 @@ public class TLUpdateChatAdmins extends TLAbsUpdate {
         return CONSTRUCTOR_ID;
     }
 
+    @Override
+    @SuppressWarnings("PointlessBooleanExpression")
+    public boolean equals(Object object) {
+        if (!(object instanceof TLUpdateChatAdmins)) return false;
+        if (object == this) return true;
+
+        TLUpdateChatAdmins o = (TLUpdateChatAdmins) object;
+
+        return chatId == o.chatId
+                && enabled == o.enabled
+                && version == o.version;
+    }
+
     public int getChatId() {
         return chatId;
     }

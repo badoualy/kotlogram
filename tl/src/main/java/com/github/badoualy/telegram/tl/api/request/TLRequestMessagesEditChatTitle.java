@@ -81,6 +81,18 @@ public class TLRequestMessagesEditChatTitle extends TLMethod<TLAbsUpdates> {
         return CONSTRUCTOR_ID;
     }
 
+    @Override
+    @SuppressWarnings("PointlessBooleanExpression")
+    public boolean equals(Object object) {
+        if (!(object instanceof TLRequestMessagesEditChatTitle)) return false;
+        if (object == this) return true;
+
+        TLRequestMessagesEditChatTitle o = (TLRequestMessagesEditChatTitle) object;
+
+        return chatId == o.chatId
+                && (title == o.title || (title != null && o.title != null && title.equals(o.title)));
+    }
+
     public int getChatId() {
         return chatId;
     }

@@ -63,6 +63,18 @@ public class TLUpdateChannelGroup extends TLAbsUpdate {
         return CONSTRUCTOR_ID;
     }
 
+    @Override
+    @SuppressWarnings("PointlessBooleanExpression")
+    public boolean equals(Object object) {
+        if (!(object instanceof TLUpdateChannelGroup)) return false;
+        if (object == this) return true;
+
+        TLUpdateChannelGroup o = (TLUpdateChannelGroup) object;
+
+        return channelId == o.channelId
+                && (group == o.group || (group != null && o.group != null && group.equals(o.group)));
+    }
+
     public int getChannelId() {
         return channelId;
     }

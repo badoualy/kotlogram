@@ -82,6 +82,18 @@ public class TLRequestAuthImportAuthorization extends TLMethod<TLAuthorization> 
         return CONSTRUCTOR_ID;
     }
 
+    @Override
+    @SuppressWarnings("PointlessBooleanExpression")
+    public boolean equals(Object object) {
+        if (!(object instanceof TLRequestAuthImportAuthorization)) return false;
+        if (object == this) return true;
+
+        TLRequestAuthImportAuthorization o = (TLRequestAuthImportAuthorization) object;
+
+        return id == o.id
+                && (bytes == o.bytes || (bytes != null && o.bytes != null && bytes.equals(o.bytes)));
+    }
+
     public int getId() {
         return id;
     }

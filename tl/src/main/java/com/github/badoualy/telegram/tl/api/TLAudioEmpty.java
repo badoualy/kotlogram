@@ -53,6 +53,17 @@ public class TLAudioEmpty extends TLAbsAudio {
         return CONSTRUCTOR_ID;
     }
 
+    @Override
+    @SuppressWarnings("PointlessBooleanExpression")
+    public boolean equals(Object object) {
+        if (!(object instanceof TLAudioEmpty)) return false;
+        if (object == this) return true;
+
+        TLAudioEmpty o = (TLAudioEmpty) object;
+
+        return id == o.id;
+    }
+
     public long getId() {
         return id;
     }

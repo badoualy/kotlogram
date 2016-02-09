@@ -72,6 +72,19 @@ public class TLInputMediaUploadedAudio extends TLAbsInputMedia {
         return CONSTRUCTOR_ID;
     }
 
+    @Override
+    @SuppressWarnings("PointlessBooleanExpression")
+    public boolean equals(Object object) {
+        if (!(object instanceof TLInputMediaUploadedAudio)) return false;
+        if (object == this) return true;
+
+        TLInputMediaUploadedAudio o = (TLInputMediaUploadedAudio) object;
+
+        return (file == o.file || (file != null && o.file != null && file.equals(o.file)))
+                && duration == o.duration
+                && (mimeType == o.mimeType || (mimeType != null && o.mimeType != null && mimeType.equals(o.mimeType)));
+    }
+
     public TLAbsInputFile getFile() {
         return file;
     }

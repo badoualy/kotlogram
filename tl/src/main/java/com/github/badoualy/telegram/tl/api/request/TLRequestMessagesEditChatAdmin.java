@@ -89,6 +89,19 @@ public class TLRequestMessagesEditChatAdmin extends TLMethod<TLBool> {
         return CONSTRUCTOR_ID;
     }
 
+    @Override
+    @SuppressWarnings("PointlessBooleanExpression")
+    public boolean equals(Object object) {
+        if (!(object instanceof TLRequestMessagesEditChatAdmin)) return false;
+        if (object == this) return true;
+
+        TLRequestMessagesEditChatAdmin o = (TLRequestMessagesEditChatAdmin) object;
+
+        return chatId == o.chatId
+                && (userId == o.userId || (userId != null && o.userId != null && userId.equals(o.userId)))
+                && isAdmin == o.isAdmin;
+    }
+
     public int getChatId() {
         return chatId;
     }

@@ -21,6 +21,17 @@ public class TLInputPeerNotifyEventsAll extends TLAbsInputPeerNotifyEvents {
     }
 
     @Override
+    @SuppressWarnings("PointlessBooleanExpression")
+    public boolean equals(Object object) {
+        if (!(object instanceof TLInputPeerNotifyEventsAll)) return false;
+        if (object == this) return true;
+
+        TLInputPeerNotifyEventsAll o = (TLInputPeerNotifyEventsAll) object;
+
+        return true;
+    }
+
+    @Override
     public final boolean isEmpty() {
         return false;
     }

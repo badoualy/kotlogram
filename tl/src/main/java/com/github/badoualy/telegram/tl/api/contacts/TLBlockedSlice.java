@@ -68,6 +68,19 @@ public class TLBlockedSlice extends TLAbsBlocked {
         return CONSTRUCTOR_ID;
     }
 
+    @Override
+    @SuppressWarnings("PointlessBooleanExpression")
+    public boolean equals(Object object) {
+        if (!(object instanceof TLBlockedSlice)) return false;
+        if (object == this) return true;
+
+        TLBlockedSlice o = (TLBlockedSlice) object;
+
+        return count == o.count
+                && (blocked == o.blocked || (blocked != null && o.blocked != null && blocked.equals(o.blocked)))
+                && (users == o.users || (users != null && o.users != null && users.equals(o.users)));
+    }
+
     public int getCount() {
         return count;
     }

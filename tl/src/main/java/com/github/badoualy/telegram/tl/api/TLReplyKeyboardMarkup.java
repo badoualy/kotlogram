@@ -82,6 +82,21 @@ public class TLReplyKeyboardMarkup extends TLAbsReplyMarkup {
         return CONSTRUCTOR_ID;
     }
 
+    @Override
+    @SuppressWarnings("PointlessBooleanExpression")
+    public boolean equals(Object object) {
+        if (!(object instanceof TLReplyKeyboardMarkup)) return false;
+        if (object == this) return true;
+
+        TLReplyKeyboardMarkup o = (TLReplyKeyboardMarkup) object;
+
+        return flags == o.flags
+                && resize == o.resize
+                && singleUse == o.singleUse
+                && selective == o.selective
+                && (rows == o.rows || (rows != null && o.rows != null && rows.equals(o.rows)));
+    }
+
     public boolean getResize() {
         return resize;
     }

@@ -124,6 +124,23 @@ public class TLRequestMessagesSetInlineBotResults extends TLMethod<TLBool> {
         return CONSTRUCTOR_ID;
     }
 
+    @Override
+    @SuppressWarnings("PointlessBooleanExpression")
+    public boolean equals(Object object) {
+        if (!(object instanceof TLRequestMessagesSetInlineBotResults)) return false;
+        if (object == this) return true;
+
+        TLRequestMessagesSetInlineBotResults o = (TLRequestMessagesSetInlineBotResults) object;
+
+        return flags == o.flags
+                && gallery == o.gallery
+                && _private == o._private
+                && queryId == o.queryId
+                && (results == o.results || (results != null && o.results != null && results.equals(o.results)))
+                && cacheTime == o.cacheTime
+                && (nextOffset == o.nextOffset || (nextOffset != null && o.nextOffset != null && nextOffset.equals(o.nextOffset)));
+    }
+
     public boolean getGallery() {
         return gallery;
     }

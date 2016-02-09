@@ -60,6 +60,18 @@ public class TLChatPhoto extends TLAbsChatPhoto {
         return CONSTRUCTOR_ID;
     }
 
+    @Override
+    @SuppressWarnings("PointlessBooleanExpression")
+    public boolean equals(Object object) {
+        if (!(object instanceof TLChatPhoto)) return false;
+        if (object == this) return true;
+
+        TLChatPhoto o = (TLChatPhoto) object;
+
+        return (photoSmall == o.photoSmall || (photoSmall != null && o.photoSmall != null && photoSmall.equals(o.photoSmall)))
+                && (photoBig == o.photoBig || (photoBig != null && o.photoBig != null && photoBig.equals(o.photoBig)));
+    }
+
     public TLAbsFileLocation getPhotoSmall() {
         return photoSmall;
     }

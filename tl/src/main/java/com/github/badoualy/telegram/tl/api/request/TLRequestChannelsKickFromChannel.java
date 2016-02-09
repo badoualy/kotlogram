@@ -87,6 +87,19 @@ public class TLRequestChannelsKickFromChannel extends TLMethod<TLAbsUpdates> {
         return CONSTRUCTOR_ID;
     }
 
+    @Override
+    @SuppressWarnings("PointlessBooleanExpression")
+    public boolean equals(Object object) {
+        if (!(object instanceof TLRequestChannelsKickFromChannel)) return false;
+        if (object == this) return true;
+
+        TLRequestChannelsKickFromChannel o = (TLRequestChannelsKickFromChannel) object;
+
+        return (channel == o.channel || (channel != null && o.channel != null && channel.equals(o.channel)))
+                && (userId == o.userId || (userId != null && o.userId != null && userId.equals(o.userId)))
+                && kicked == o.kicked;
+    }
+
     public TLAbsInputChannel getChannel() {
         return channel;
     }

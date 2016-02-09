@@ -19,4 +19,15 @@ public class TLNoAppUpdate extends TLAbsAppUpdate {
     public int getConstructorId() {
         return CONSTRUCTOR_ID;
     }
+
+    @Override
+    @SuppressWarnings("PointlessBooleanExpression")
+    public boolean equals(Object object) {
+        if (!(object instanceof TLNoAppUpdate)) return false;
+        if (object == this) return true;
+
+        TLNoAppUpdate o = (TLNoAppUpdate) object;
+
+        return true;
+    }
 }
