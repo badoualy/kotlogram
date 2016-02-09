@@ -2,55 +2,1287 @@
   "count": 0,
   "messages": [
     {
+      "flags": 4092,
+      "unread": false,
+      "out": false,
+      "mentioned": true,
+      "mediaUnread": true,
+      "fromId": 0,
+      "toId": {
+        "chatId": 0
+      },
+      "fwdFromId": {
+        "chatId": 0
+      },
+      "fwdDate": 0,
+      "viaBotId": 0,
+      "replyToMsgId": 0,
+      "date": 0,
+      "message": "iU43P7t5x2Z9VB2Q9Kmt",
+      "media": {
+        "video": {
+          "accessHash": 0,
+          "date": 0,
+          "duration": 0,
+          "mimeType": "95SA46NG6n16IKa7zaMpv1vz",
+          "size": 0,
+          "thumb": {
+            "location": {
+              "volumeId": 0,
+              "localId": 0,
+              "secret": 0
+            },
+            "w": 0,
+            "h": 0,
+            "bytes": {
+              "data": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              "offset": 0,
+              "len": 51
+            },
+            "type": "I6U1AkDd1cmW0KrwrYhu1V14Qq"
+          },
+          "dcId": 0,
+          "w": 0,
+          "h": 0,
+          "id": 0
+        },
+        "caption": "jhzRwZQ1G"
+      },
+      "replyMarkup": {
+        "flags": 4,
+        "selective": true
+      },
+      "entities": [
+        {
+          "offset": 0,
+          "length": 0
+        },
+        {
+          "offset": 0,
+          "length": 0
+        }
+      ],
+      "views": 0,
       "id": 0
     },
     {
+      "flags": 275,
+      "unread": true,
+      "out": true,
+      "mentioned": true,
+      "mediaUnread": false,
+      "fromId": 0,
+      "toId": {
+        "channelId": 0
+      },
+      "date": 0,
+      "action": {
+        "title": "Qpk4n9sPSCRDITQGdBj6EJKLF"
+      },
       "id": 0
     },
     {
+      "flags": 4094,
+      "unread": false,
+      "out": true,
+      "mentioned": true,
+      "mediaUnread": true,
+      "fromId": 0,
+      "toId": {
+        "userId": 0
+      },
+      "fwdFromId": {
+        "chatId": 0
+      },
+      "fwdDate": 0,
+      "viaBotId": 0,
+      "replyToMsgId": 0,
+      "date": 0,
+      "message": "QRq6k",
+      "media": {
+        "photo": {
+          "accessHash": 0,
+          "date": 0,
+          "sizes": [
+            {
+              "location": {
+                "volumeId": 0,
+                "localId": 0,
+                "secret": 0
+              },
+              "w": 0,
+              "h": 0,
+              "size": 0,
+              "type": "fE83arxeP5mJxv5AiQy6IOKq8"
+            },
+            {
+              "location": {
+                "dcId": 0,
+                "volumeId": 0,
+                "localId": 0,
+                "secret": 0
+              },
+              "w": 0,
+              "h": 0,
+              "size": 0,
+              "type": "5fikM"
+            },
+            {
+              "type": "geNBH7S7fLBtiTU5LsFbqrS"
+            }
+          ],
+          "id": 0
+        },
+        "caption": "2mKU3WOrs0OgipPx3K4asHbKp"
+      },
+      "replyMarkup": {
+        "resize": false,
+        "singleUse": true,
+        "rows": [
+          {
+            "buttons": [
+              {
+                "text": "nLTxCaJGTL"
+              },
+              {
+                "text": "d8Ywzy0hwePnrZYAwjXX5U4RntyzU"
+              },
+              {
+                "text": "YpJC7qQAtznlrwavMB"
+              },
+              {
+                "text": "mwe6xeL9VnDo"
+              },
+              {
+                "text": "tRSkDCAe4uots56nbbRM"
+              },
+              {
+                "text": "nH2KhnjC5W2x"
+              },
+              {
+                "text": "HQbV67h4r"
+              },
+              {
+                "text": "QXsR4pyEDM"
+              },
+              {
+                "text": "LntnOdXUhSoDdln9qm0"
+              },
+              {
+                "text": "cbKGkx05"
+              }
+            ]
+          },
+          {
+            "buttons": [
+              {
+                "text": "YRdya7nIEXmSimRI9aik"
+              },
+              {
+                "text": "fNogbrpsCJ1"
+              }
+            ]
+          }
+        ],
+        "flags": 2,
+        "selective": false
+      },
+      "entities": [
+        {
+          "offset": 0,
+          "length": 0
+        },
+        {
+          "offset": 0,
+          "length": 0
+        },
+        {
+          "offset": 0,
+          "length": 0
+        },
+        {
+          "offset": 0,
+          "length": 0
+        },
+        {
+          "offset": 0,
+          "length": 0
+        },
+        {
+          "offset": 0,
+          "length": 0
+        },
+        {
+          "offset": 0,
+          "length": 0
+        },
+        {
+          "offset": 0,
+          "length": 0
+        }
+      ],
+      "views": 0,
       "id": 0
     },
     {
+      "flags": 4063,
+      "unread": true,
+      "out": true,
+      "mentioned": true,
+      "mediaUnread": false,
+      "fromId": 0,
+      "toId": {
+        "userId": 0
+      },
+      "fwdFromId": {
+        "chatId": 0
+      },
+      "fwdDate": 0,
+      "viaBotId": 0,
+      "replyToMsgId": 0,
+      "date": 0,
+      "message": "j8UcuDW1",
+      "media": {
+        "video": {
+          "accessHash": 0,
+          "date": 0,
+          "duration": 0,
+          "mimeType": "iMqR6",
+          "size": 0,
+          "thumb": {
+            "location": {
+              "dcId": 0,
+              "volumeId": 0,
+              "localId": 0,
+              "secret": 0
+            },
+            "w": 0,
+            "h": 0,
+            "bytes": {
+              "data": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              "offset": 0,
+              "len": 254
+            },
+            "type": "uEmlBmF0wYIbrW"
+          },
+          "dcId": 0,
+          "w": 0,
+          "h": 0,
+          "id": 0
+        },
+        "caption": "mfJLQTm8d2SZ7zhOXt31yNc3yT4w"
+      },
+      "replyMarkup": {
+        "resize": false,
+        "singleUse": false,
+        "rows": [
+          {
+            "buttons": [
+              {
+                "text": "PJcZaXVJ4ZeB2JGbO"
+              },
+              {
+                "text": "RFWyGev2DE25FvVrlwOCNZP6zM"
+              },
+              {
+                "text": "8YcIx6swArqD7j0R"
+              },
+              {
+                "text": "7jwElxww"
+              },
+              {
+                "text": "o7soxGLIkueSWAzvwF96wLo5zK"
+              }
+            ]
+          },
+          {
+            "buttons": [
+              {
+                "text": "0bKjIMzUxMN"
+              },
+              {
+                "text": "EkOMk"
+              },
+              {
+                "text": "JqoRNXbQOtEM"
+              },
+              {
+                "text": "sPto81Yd26"
+              },
+              {
+                "text": "B3tdlxxgDFluCn7IdEm"
+              },
+              {
+                "text": "nc2IDVt5QIf4"
+              }
+            ]
+          },
+          {
+            "buttons": [
+              {
+                "text": "qsH0tbbyaN"
+              },
+              {
+                "text": "Ol6yTOfVxjDe"
+              },
+              {
+                "text": "MdsAVYiOJvRRsNY2AsyAZgy"
+              },
+              {
+                "text": "nrH5RJ"
+              }
+            ]
+          },
+          {
+            "buttons": [
+              {
+                "text": "4s9mc4Gt1JIszkojTW4NZ3wdX"
+              },
+              {
+                "text": "JshfmiB"
+              },
+              {
+                "text": "D5V7p7wnjY1giuiUEywmH9"
+              },
+              {
+                "text": "OfSD3jZi1so"
+              }
+            ]
+          }
+        ],
+        "flags": 4,
+        "selective": true
+      },
+      "entities": [
+        {
+          "url": "4Oal9PVA2ldiVeBQ2KV9QhA57VT9N",
+          "offset": 0,
+          "length": 0
+        },
+        {
+          "offset": 0,
+          "length": 0
+        },
+        {
+          "offset": 0,
+          "length": 0
+        },
+        {
+          "offset": 0,
+          "length": 0
+        },
+        {
+          "offset": 0,
+          "length": 0
+        },
+        {
+          "offset": 0,
+          "length": 0
+        },
+        {
+          "offset": 0,
+          "length": 0
+        },
+        {
+          "url": "gFaGEy8cntpSJm7lyi9V2LAatT",
+          "offset": 0,
+          "length": 0
+        },
+        {
+          "offset": 0,
+          "length": 0
+        }
+      ],
+      "views": 0,
+      "id": 0
+    },
+    {
+      "flags": 4094,
+      "unread": false,
+      "out": true,
+      "mentioned": true,
+      "mediaUnread": true,
+      "fromId": 0,
+      "toId": {
+        "channelId": 0
+      },
+      "fwdFromId": {
+        "chatId": 0
+      },
+      "fwdDate": 0,
+      "viaBotId": 0,
+      "replyToMsgId": 0,
+      "date": 0,
+      "message": "sM8GuTwA7lDP0yjXEFpKkiiyahreQ",
+      "media": {
+        "document": {
+          "accessHash": 0,
+          "date": 0,
+          "mimeType": "WSCsAJyD3tjmtg",
+          "size": 0,
+          "thumb": {
+            "location": {
+              "dcId": 0,
+              "volumeId": 0,
+              "localId": 0,
+              "secret": 0
+            },
+            "w": 0,
+            "h": 0,
+            "size": 0,
+            "type": "18R6aO5qQGjGfzxV19SjeNx7VPmBT"
+          },
+          "dcId": 0,
+          "attributes": [
+            {
+              "fileName": "ptd98bQb"
+            },
+            {
+              "fileName": "CMjRSznOv2kNJ"
+            },
+            {
+              "duration": 0,
+              "w": 0,
+              "h": 0
+            },
+            {
+              "fileName": "D8BuNu275lBfpC834BZcnp0bO5ZH"
+            }
+          ],
+          "id": 0
+        },
+        "caption": "hO4EEUGeab15nKNo8GPERBP7lOm"
+      },
+      "replyMarkup": {
+        "resize": true,
+        "singleUse": false,
+        "rows": [
+          {
+            "buttons": [
+              {
+                "text": "MXqovlRcTeeNdXUccjxe"
+              },
+              {
+                "text": "5N1h0q9DK2u7"
+              },
+              {
+                "text": "rsTbECTKWJ6fVpj"
+              },
+              {
+                "text": "qBwNG"
+              },
+              {
+                "text": "DEdhHsPAIbyR9RiXyTX"
+              },
+              {
+                "text": "d5inJo57jVKbIl2yK"
+              },
+              {
+                "text": "Py4nZ9bn0gwI67a8b1d1boR2"
+              },
+              {
+                "text": "eXeyP29bGroDeIZqp3"
+              },
+              {
+                "text": "U2pIujLyNAJCZ8GVhrg"
+              },
+              {
+                "text": "IiuA4S"
+              },
+              {
+                "text": "bzg3r"
+              }
+            ]
+          },
+          {
+            "buttons": [
+              {
+                "text": "MMCzIaV6MOje"
+              },
+              {
+                "text": "ZaBd4ZUGTjAPMFKApAwAYfXjHM"
+              },
+              {
+                "text": "pS2v3mGI6iiR"
+              },
+              {
+                "text": "1mhM11zKdZMzPT461Drdg"
+              },
+              {
+                "text": "aaUGZSyPSBvEkjO8RmLHUU4"
+              },
+              {
+                "text": "HU1T8506Rl46Q"
+              },
+              {
+                "text": "EHFqNSeTOLp12qU4M3TI"
+              },
+              {
+                "text": "Y1km3sp6k437yjhyUHCTOH"
+              },
+              {
+                "text": "7nWBcIDSnUpj4Yz7A1"
+              },
+              {
+                "text": "cfRomM07iFbK"
+              },
+              {
+                "text": "wdVzXhUFDtmdoEavFCLU4B4z"
+              }
+            ]
+          },
+          {
+            "buttons": [
+              {
+                "text": "0PBkFtC5LV"
+              },
+              {
+                "text": "mrMzaBzW7OpXOLV"
+              }
+            ]
+          },
+          {
+            "buttons": [
+              {
+                "text": "t5olnpHg0NFy"
+              },
+              {
+                "text": "9HQsiVLE0xeRc4nP"
+              },
+              {
+                "text": "Een9ttCS2HE3bjeQrb6YNKxocSpE"
+              },
+              {
+                "text": "ReBq7LMYxnYRK"
+              }
+            ]
+          },
+          {
+            "buttons": [
+              {
+                "text": "DlW5GZvIj3YRuwkCa55SnnJ1s"
+              },
+              {
+                "text": "p3PcwfkqYvynSzRc"
+              },
+              {
+                "text": "L68RHTz9wZqccGLJGD"
+              },
+              {
+                "text": "badqP3uAZvLNrAC1OpAIb"
+              },
+              {
+                "text": "Bv4HTZZWbIIV4o4x4"
+              },
+              {
+                "text": "CsTrbdzzAPgNTf"
+              },
+              {
+                "text": "9QMf16kG8mnIvlB5wx6Id"
+              },
+              {
+                "text": "IF9KUInaBuxqBRdMoECTGlQDp9"
+              },
+              {
+                "text": "NscSKNXEgcMLzvj9"
+              },
+              {
+                "text": "Iphe9gl4WBrR1C3n80VuOj8hb"
+              },
+              {
+                "text": "S7xxdIfoxWehotzmCAZeQ"
+              }
+            ]
+          },
+          {
+            "buttons": [
+              {
+                "text": "2UzA56cEil"
+              },
+              {
+                "text": "ALoKxshxwMi9q"
+              },
+              {
+                "text": "MRwSIGRJSdd4CoEkXT4S"
+              },
+              {
+                "text": "WxsIewy1J4EUdNPjalm"
+              }
+            ]
+          },
+          {
+            "buttons": [
+              {
+                "text": "PGPcy8on"
+              },
+              {
+                "text": "8Meg4K"
+              },
+              {
+                "text": "jbQphFi37kR9Vnlyij"
+              },
+              {
+                "text": "XRhRXBxWHNK8eXoO7n4U3Oz3zd4"
+              },
+              {
+                "text": "R2ZJhFd"
+              },
+              {
+                "text": "XfqbatWltguFy8dz9g"
+              },
+              {
+                "text": "UmHuVkSuCk17Ux9"
+              },
+              {
+                "text": "G7V1HBv73Cyge"
+              },
+              {
+                "text": "JxuZ1v5Fi0WMNfVcb3I078SAaZQ"
+              },
+              {
+                "text": "O2eYjKXkAGsdtv1V0PNDH38b"
+              },
+              {
+                "text": "ZVkhucqpU9aLAoE4TDxc1x"
+              }
+            ]
+          },
+          {
+            "buttons": [
+              {
+                "text": "jyzjEL4FDZ"
+              },
+              {
+                "text": "E9goEqbFG4Dmd3w4NqpAITjNBlZy"
+              },
+              {
+                "text": "9kIG8Wi450mhq"
+              }
+            ]
+          },
+          {
+            "buttons": [
+              {
+                "text": "NdPK3FeOFnQjERhjdreL"
+              },
+              {
+                "text": "r43GSS3LrjyqNI8SItupC"
+              },
+              {
+                "text": "ieL55FAFrIH6Pw"
+              },
+              {
+                "text": "d3TUTbBskbTHdQCugn7bw"
+              },
+              {
+                "text": "emDxM0BrrVP6YLN3t"
+              },
+              {
+                "text": "CzuyhCk"
+              },
+              {
+                "text": "A89P5IJAJ2saf8sjsMbTiSGUZy"
+              },
+              {
+                "text": "ZpNMp152nkKreT3fXp3pQcls"
+              },
+              {
+                "text": "U9lPUiC4G9qmIF3dh51z"
+              },
+              {
+                "text": "z20yEFtt6pQNzEWvhtT6L"
+              },
+              {
+                "text": "WwyH2jYmFS0TyfLvUaEH"
+              }
+            ]
+          },
+          {
+            "buttons": [
+              {
+                "text": "ftUngrimGQT4t7NRR"
+              },
+              {
+                "text": "vw9UHof4S"
+              },
+              {
+                "text": "qqh1I5WSiKD4oS"
+              }
+            ]
+          }
+        ],
+        "flags": 1,
+        "selective": false
+      },
+      "entities": [
+        {
+          "offset": 0,
+          "length": 0
+        },
+        {
+          "offset": 0,
+          "length": 0
+        },
+        {
+          "offset": 0,
+          "length": 0
+        }
+      ],
+      "views": 0,
+      "id": 0
+    },
+    {
+      "flags": 291,
+      "unread": true,
+      "out": true,
+      "mentioned": false,
+      "mediaUnread": true,
+      "fromId": 0,
+      "toId": {
+        "channelId": 0
+      },
+      "date": 0,
+      "action": {
+        "title": "43HjNSc20lYInSMYi4Wut8G",
+        "chatId": 0
+      },
       "id": 0
     }
   ],
   "chats": [
     {
+      "flags": 112,
+      "creator": false,
+      "kicked": false,
+      "left": false,
+      "adminsEnabled": false,
+      "admin": true,
+      "deactivated": true,
+      "title": "aVWaIqnfxTpeQgibZY",
+      "photo": {
+        "photoSmall": {
+          "volumeId": 0,
+          "localId": 0,
+          "secret": 0
+        },
+        "photoBig": {
+          "dcId": 0,
+          "volumeId": 0,
+          "localId": 0,
+          "secret": 0
+        }
+      },
+      "participantsCount": 0,
+      "date": 0,
+      "version": 0,
+      "migratedTo": {
+        "channelId": 0,
+        "accessHash": 0
+      },
       "id": 0
     },
     {
+      "flags": 576,
+      "creator": false,
+      "kicked": false,
+      "left": false,
+      "editor": false,
+      "moderator": false,
+      "broadcast": false,
+      "verified": false,
+      "megagroup": false,
+      "restricted": true,
+      "accessHash": 0,
+      "title": "Qzwc2tx4uWGGFOomxIPh",
+      "username": "aC0eYDwuyACtpJXVZx0FK7w",
+      "photo": {
+        "photoSmall": {
+          "volumeId": 0,
+          "localId": 0,
+          "secret": 0
+        },
+        "photoBig": {
+          "dcId": 0,
+          "volumeId": 0,
+          "localId": 0,
+          "secret": 0
+        }
+      },
+      "date": 0,
+      "version": 0,
+      "restrictionReason": "k1VdjRzZgjkOtAn",
+      "id": 0
+    },
+    {
+      "accessHash": 0,
+      "title": "qigPfvS6pV1SRN1U9s",
+      "id": 0
+    },
+    {
+      "title": "dxZq2v0rvFAF8o374x",
+      "id": 0
+    },
+    {
+      "flags": 741,
+      "creator": true,
+      "kicked": false,
+      "left": true,
+      "editor": false,
+      "moderator": false,
+      "broadcast": true,
+      "verified": true,
+      "megagroup": false,
+      "restricted": true,
+      "accessHash": 0,
+      "title": "TGRTUazQ4JMcbo",
+      "username": "cLHoJBDLH9z07HkxCG",
+      "photo": {
+        "photoSmall": {
+          "volumeId": 0,
+          "localId": 0,
+          "secret": 0
+        },
+        "photoBig": {
+          "volumeId": 0,
+          "localId": 0,
+          "secret": 0
+        }
+      },
+      "date": 0,
+      "version": 0,
+      "restrictionReason": "wQoogG2OHZLUGSHbOvW8uaTuN9Ft",
+      "id": 0
+    },
+    {
+      "id": 0
+    },
+    {
+      "flags": 75,
+      "creator": true,
+      "kicked": true,
+      "left": false,
+      "adminsEnabled": true,
+      "admin": false,
+      "deactivated": false,
+      "title": "rCceZkwepOO8AoAwJx",
+      "photo": {},
+      "participantsCount": 0,
+      "date": 0,
+      "version": 0,
+      "migratedTo": {
+        "channelId": 0,
+        "accessHash": 0
+      },
+      "id": 0
+    },
+    {
+      "flags": 998,
+      "creator": false,
+      "kicked": true,
+      "left": true,
+      "editor": false,
+      "moderator": false,
+      "broadcast": true,
+      "verified": true,
+      "megagroup": true,
+      "restricted": true,
+      "accessHash": 0,
+      "title": "P1YTmKG2LWm",
+      "username": "eN7YFMJTUqvy1MuUIkPcGDGXKkhA",
+      "photo": {},
+      "date": 0,
+      "version": 0,
+      "restrictionReason": "wWMaMMCsFP4Tvimn7KjRX",
+      "id": 0
+    },
+    {
+      "flags": 97,
+      "creator": true,
+      "kicked": false,
+      "left": false,
+      "adminsEnabled": false,
+      "admin": false,
+      "deactivated": true,
+      "title": "lVxv8J1xebdq9avTAfIkXhD",
+      "photo": {},
+      "participantsCount": 0,
+      "date": 0,
+      "version": 0,
+      "migratedTo": {
+        "channelId": 0,
+        "accessHash": 0
+      },
       "id": 0
     }
   ],
   "users": [
     {
+      "flags": 914559,
+      "self": true,
+      "contact": false,
+      "mutualContact": true,
+      "deleted": true,
+      "bot": true,
+      "botChatHistory": true,
+      "botNochats": true,
+      "verified": false,
+      "restricted": true,
+      "accessHash": 0,
+      "firstName": "TP9U1Klud4POun88uNYxv1Oc",
+      "lastName": "M1Q7x1V0z0nnqa",
+      "username": "SIsTLFs",
+      "phone": "HITt0ZTevuG80fypA",
+      "photo": {
+        "photoId": 0,
+        "photoSmall": {
+          "volumeId": 0,
+          "localId": 0,
+          "secret": 0
+        },
+        "photoBig": {
+          "dcId": 0,
+          "volumeId": 0,
+          "localId": 0,
+          "secret": 0
+        }
+      },
+      "status": {},
+      "botInfoVersion": 0,
+      "restrictionReason": "3kIB2X7",
+      "botInlinePlaceholder": "dseNIKPPhQLl1lITqiW",
       "id": 0
     },
     {
       "id": 0
     },
     {
-      "id": 0
-    },
-    {
-      "id": 0
-    },
-    {
-      "id": 0
-    },
-    {
-      "id": 0
-    },
-    {
-      "id": 0
-    },
-    {
-      "id": 0
-    },
-    {
-      "id": 0
-    },
-    {
+      "flags": 940159,
+      "self": false,
+      "contact": true,
+      "mutualContact": true,
+      "deleted": false,
+      "bot": true,
+      "botChatHistory": false,
+      "botNochats": false,
+      "verified": true,
+      "restricted": true,
+      "accessHash": 0,
+      "firstName": "4oeLliHNh6Pk4y",
+      "lastName": "oB5PZLjUYzlVIatvblsaN2XQmORCC",
+      "username": "GIYzsOvMuL9kAh3m",
+      "phone": "9E41VZhWYycwYEfQaWcTGPK",
+      "photo": {},
+      "status": {},
+      "botInfoVersion": 0,
+      "restrictionReason": "icbz4",
+      "botInlinePlaceholder": "DzKhCMcBORu9v",
       "id": 0
     }
   ]

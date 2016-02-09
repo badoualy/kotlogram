@@ -1,39 +1,18 @@
 {
-  "flags": 642,
-  "unread": false,
+  "flags": 643,
+  "unread": true,
   "out": true,
   "id": 0,
   "pts": 0,
   "ptsCount": 0,
   "date": 0,
   "media": {
-    "geo": {},
-    "title": "34b0c2e46",
-    "address": "XvkMUxx71j9OzBm",
-    "provider": "2xxju9Gq6nGpJSzkAK6wrMdNa1SAg",
-    "venueId": "hINx5y3lcUGK2"
+    "phoneNumber": "1m509H2XyXmDyAjy8G",
+    "firstName": "t6zR1CzegHXtuLFjq9EhfjGYhM",
+    "lastName": "nSO9OeTMM3",
+    "userId": 0
   },
   "entities": [
-    {
-      "offset": 0,
-      "length": 0
-    },
-    {
-      "offset": 0,
-      "length": 0
-    },
-    {
-      "offset": 0,
-      "length": 0
-    },
-    {
-      "offset": 0,
-      "length": 0
-    },
-    {
-      "offset": 0,
-      "length": 0
-    },
     {
       "offset": 0,
       "length": 0

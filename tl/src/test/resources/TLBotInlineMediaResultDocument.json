@@ -2,12 +2,12 @@
   "document": {
     "id": 0
   },
-  "id": "gsljbVezebbbJ1K",
-  "type": "uwAS9axg",
+  "id": "Ntqyj5ITkJrsadzUtnOUX2",
+  "type": "RdKpE20ObaVI",
   "sendMessage": {
     "flags": 3,
     "noWebpage": true,
-    "message": "UjI691vvrWqgaKINtntu3oy",
+    "message": "sfKgKM8ktEpfT5VSqIhfpr",
     "entities": [
       {
         "offset": 0,
@@ -18,6 +18,11 @@
         "length": 0
       },
       {
+        "offset": 0,
+        "length": 0
+      },
+      {
+        "url": "k43zwcx",
         "offset": 0,
         "length": 0
       }

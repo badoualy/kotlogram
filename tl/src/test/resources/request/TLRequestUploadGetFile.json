@@ -1,8 +1,7 @@
 {
   "location": {
-    "volumeId": 0,
-    "localId": 0,
-    "secret": 0
+    "id": 0,
+    "accessHash": 0
   },
   "offset": 0,
   "limit": 0

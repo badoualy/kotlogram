@@ -1,5 +1,5 @@
 {
-  "singleUse": true,
-  "flags": 6,
+  "singleUse": false,
+  "flags": 4,
   "selective": true
 }

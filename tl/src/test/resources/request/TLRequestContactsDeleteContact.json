@@ -1,3 +1,6 @@
 {
-  "id": {}
+  "id": {
+    "userId": 0,
+    "accessHash": 0
+  }
 }

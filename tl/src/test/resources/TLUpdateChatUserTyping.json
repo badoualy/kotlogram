@@ -1,5 +1,7 @@
 {
   "chatId": 0,
   "userId": 0,
-  "action": {}
+  "action": {
+    "progress": 0
+  }
 }

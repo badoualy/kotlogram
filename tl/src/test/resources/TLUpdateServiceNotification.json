@@ -1,24 +1,30 @@
 {
-  "type": "DXmMWb5uARBln04TMCkFlq3",
-  "message": "GtywkwK9D4SHBMQMGz6eGVDz",
+  "type": "agX54tZOQhuLM8K6vU7G36zTIT45g",
+  "message": "l31xFxXOiMuEz",
   "media": {
-    "photo": {
+    "video": {
       "accessHash": 0,
       "date": 0,
-      "sizes": [
-        {
-          "type": "xJi0r9qmxGgvUzDwdED4yggN"
+      "duration": 0,
+      "mimeType": "lChok4jlXHK5vomIoDCqCCdP",
+      "size": 0,
+      "thumb": {
+        "location": {
+          "volumeId": 0,
+          "localId": 0,
+          "secret": 0
         },
-        {
-          "type": "gP4VpdljZroDqRIJIJl3MNn"
-        },
-        {
-          "type": "iPQCyrT95rbcdwpDR"
-        }
-      ],
+        "w": 0,
+        "h": 0,
+        "size": 0,
+        "type": "bZpzZ3Uch3MKSYCtvbEOuZKjst"
+      },
+      "dcId": 0,
+      "w": 0,
+      "h": 0,
       "id": 0
     },
-    "caption": "dEdwbD4oVQ01W6Q0wSUpZM4Ylbs4B"
+    "caption": "n2Up4JSP"
   },
   "popup": false
 }

@@ -1,24 +1,25 @@
 {
-  "flags": 2191,
+  "flags": 2221,
   "unread": true,
-  "out": true,
+  "out": false,
   "mentioned": false,
-  "mediaUnread": false,
+  "mediaUnread": true,
   "id": 0,
   "fromId": 0,
   "chatId": 0,
-  "message": "Ja5jochohNVkF7URht0KrEP",
+  "message": "jYonV5I9c1DHs1JEaSQa",
   "pts": 0,
   "ptsCount": 0,
   "date": 0,
   "fwdFromId": {
-    "channelId": 0
+    "chatId": 0
   },
   "fwdDate": 0,
   "viaBotId": 0,
   "replyToMsgId": 0,
   "entities": [
     {
+      "language": "6Ro7rfnnBSmzS8oTR",
       "offset": 0,
       "length": 0
     },
@@ -31,22 +32,7 @@
       "length": 0
     },
     {
-      "offset": 0,
-      "length": 0
-    },
-    {
-      "offset": 0,
-      "length": 0
-    },
-    {
-      "offset": 0,
-      "length": 0
-    },
-    {
-      "offset": 0,
-      "length": 0
-    },
-    {
+      "language": "XBwij2SAcLwrE",
       "offset": 0,
       "length": 0
     },

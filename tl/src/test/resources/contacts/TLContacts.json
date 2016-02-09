@@ -6,10 +6,6 @@
     },
     {
       "userId": 0,
-      "mutual": true
-    },
-    {
-      "userId": 0,
       "mutual": false
     },
     {
@@ -27,29 +23,163 @@
     {
       "userId": 0,
       "mutual": true
-    },
-    {
-      "userId": 0,
-      "mutual": false
     }
   ],
   "users": [
     {
+      "flags": 975999,
+      "self": true,
+      "contact": false,
+      "mutualContact": false,
+      "deleted": true,
+      "bot": true,
+      "botChatHistory": true,
+      "botNochats": false,
+      "verified": true,
+      "restricted": true,
+      "accessHash": 0,
+      "firstName": "siwFnx",
+      "lastName": "iZpJmgKKbmw0SLGexQ4MXX7k",
+      "username": "Giv2Jc4JjAgx3",
+      "phone": "XqsCZds0hP3P3k6BCiD4YLuD",
+      "photo": {
+        "photoId": 0,
+        "photoSmall": {
+          "dcId": 0,
+          "volumeId": 0,
+          "localId": 0,
+          "secret": 0
+        },
+        "photoBig": {
+          "volumeId": 0,
+          "localId": 0,
+          "secret": 0
+        }
+      },
+      "status": {},
+      "botInfoVersion": 0,
+      "restrictionReason": "wYJWNvXQshPTIS1Ql7DpdJ7ThqH",
+      "botInlinePlaceholder": "gh0HEcSPdoIkNtl",
       "id": 0
     },
     {
+      "flags": 872575,
+      "self": false,
+      "contact": false,
+      "mutualContact": true,
+      "deleted": false,
+      "bot": true,
+      "botChatHistory": false,
+      "botNochats": true,
+      "verified": false,
+      "restricted": true,
+      "accessHash": 0,
+      "firstName": "Uigx2Q5Xqe7M",
+      "lastName": "RxUr10DhRdXsHeMXy",
+      "username": "feqRJfHS",
+      "phone": "Lwrkp7cNY8QVWzstXwcxfGUxV",
+      "photo": {},
+      "status": {
+        "expires": 0
+      },
+      "botInfoVersion": 0,
+      "restrictionReason": "UysM91K2WVtPVlPisl5MwtYUnpV",
+      "botInlinePlaceholder": "ZQVqdvJwJGO8lE",
       "id": 0
     },
     {
+      "flags": 905343,
+      "self": false,
+      "contact": false,
+      "mutualContact": true,
+      "deleted": false,
+      "bot": true,
+      "botChatHistory": true,
+      "botNochats": true,
+      "verified": false,
+      "restricted": true,
+      "accessHash": 0,
+      "firstName": "g1glGYloDr6JIkgHYzOeYfiPB",
+      "lastName": "QzXSLP1WfTciwHZ",
+      "username": "17BIInAWUlBluZJjMHqv5FmTAoE",
+      "phone": "tnW81zaZINny7y5z5jBZMhh",
+      "photo": {},
+      "status": {},
+      "botInfoVersion": 0,
+      "restrictionReason": "tMzEZBHca2jYL9N7IkdHGejmeK63",
+      "botInlinePlaceholder": "WkNt5iu",
       "id": 0
     },
     {
+      "flags": 851071,
+      "self": true,
+      "contact": true,
+      "mutualContact": true,
+      "deleted": true,
+      "bot": true,
+      "botChatHistory": true,
+      "botNochats": false,
+      "verified": false,
+      "restricted": true,
+      "accessHash": 0,
+      "firstName": "EfAi9ttj9d1DaqNhwpab",
+      "lastName": "a92Htkx",
+      "username": "JcFEYAfWoCf",
+      "phone": "Ysrtw",
+      "photo": {
+        "photoId": 0,
+        "photoSmall": {
+          "volumeId": 0,
+          "localId": 0,
+          "secret": 0
+        },
+        "photoBig": {
+          "dcId": 0,
+          "volumeId": 0,
+          "localId": 0,
+          "secret": 0
+        }
+      },
+      "status": {},
+      "botInfoVersion": 0,
+      "restrictionReason": "X8aVU7rIIX1FDGdwKHy0V76M3D4Nu",
+      "botInlinePlaceholder": "rWQUdxwD",
       "id": 0
     },
     {
-      "id": 0
-    },
-    {
+      "flags": 810111,
+      "self": true,
+      "contact": true,
+      "mutualContact": true,
+      "deleted": false,
+      "bot": true,
+      "botChatHistory": false,
+      "botNochats": false,
+      "verified": false,
+      "restricted": true,
+      "accessHash": 0,
+      "firstName": "033XSzxwt77spA8GArr2AU",
+      "lastName": "XKSz6xrq7OWu90Zaq",
+      "username": "r1p7391GC5AifGYQwOLMyw",
+      "phone": "CYvGILgnJadPe",
+      "photo": {
+        "photoId": 0,
+        "photoSmall": {
+          "volumeId": 0,
+          "localId": 0,
+          "secret": 0
+        },
+        "photoBig": {
+          "dcId": 0,
+          "volumeId": 0,
+          "localId": 0,
+          "secret": 0
+        }
+      },
+      "status": {},
+      "botInfoVersion": 0,
+      "restrictionReason": "TQolMAoAv1s1JxwiyHNXyUBf0gp3",
+      "botInlinePlaceholder": "4WmGcWWbqjZ5",
       "id": 0
     }
   ]

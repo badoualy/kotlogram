@@ -1,15 +1,14 @@
 {
   "file": {
-    "md5Checksum": "Ksjfo11sZ4quRUjoduO",
+    "md5Checksum": "WNA0iP6",
     "id": 0,
     "parts": 0,
-    "name": "SzpGxQtpb3e9gwu1qLosfka5nL"
+    "name": "NxqwZAQApA"
   },
-  "caption": "3tRQVi6TxSme88c4atGCH",
-  "geoPoint": {},
-  "crop": {
-    "cropLeft": 0.0,
-    "cropTop": 0.0,
-    "cropWidth": 0.0
-  }
+  "caption": "eczYthiOe7ignC",
+  "geoPoint": {
+    "lat": 0.0,
+    "_long": 0.0
+  },
+  "crop": {}
 }

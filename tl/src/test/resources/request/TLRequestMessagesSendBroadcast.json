@@ -2,41 +2,27 @@
   "contacts": [
     {},
     {},
-    {},
-    {},
-    {},
-    {},
-    {},
-    {},
-    {},
-    {}
+    {
+      "userId": 0,
+      "accessHash": 0
+    },
+    {
+      "userId": 0,
+      "accessHash": 0
+    }
   ],
   "randomId": [
     0,
     0,
     0,
     0,
-    0,
-    0,
-    0,
     0
   ],
-  "message": "r3jHmGXzSJzNnCDRY",
+  "message": "D9dLFrix3WfO77FmFhutnj",
   "media": {
-    "file": {
-      "id": 0,
-      "parts": 0,
-      "name": "FiavyEyEKE9L"
-    },
-    "thumb": {
-      "id": 0,
-      "parts": 0,
-      "name": "P0f3OPmRUGf4kV1i3MDVPG1zlbIOe"
-    },
-    "duration": 0,
-    "w": 0,
-    "h": 0,
-    "mimeType": "VS7sUCyfrnsZFggtLna8byHsnXNFs",
-    "caption": "n09emLPEI8WGrM1WJeG"
+    "geoPoint": {
+      "lat": 0.0,
+      "_long": 0.0
+    }
   }
 }

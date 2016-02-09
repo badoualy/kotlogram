@@ -1,11 +1,145 @@
 {
   "participant": {
-    "kickedBy": 0,
+    "inviterId": 0,
     "date": 0,
     "userId": 0
   },
   "users": [
     {
+      "flags": 937087,
+      "self": true,
+      "contact": true,
+      "mutualContact": false,
+      "deleted": false,
+      "bot": true,
+      "botChatHistory": false,
+      "botNochats": false,
+      "verified": true,
+      "restricted": true,
+      "accessHash": 0,
+      "firstName": "HtyR2I5Og",
+      "lastName": "vl8F9u4uOAey50kYQ6",
+      "username": "0FtaqlbbCgJq6MPV",
+      "phone": "eefgazE9UGVUDreTcKi47x",
+      "photo": {},
+      "status": {
+        "expires": 0
+      },
+      "botInfoVersion": 0,
+      "restrictionReason": "mBfV3wMtA5rd6e4M0kP",
+      "botInlinePlaceholder": "YfV4y5zSSRjeSYedfg7jO2QovUJRk",
+      "id": 0
+    },
+    {
+      "flags": 1033343,
+      "self": true,
+      "contact": false,
+      "mutualContact": false,
+      "deleted": false,
+      "bot": true,
+      "botChatHistory": true,
+      "botNochats": true,
+      "verified": true,
+      "restricted": true,
+      "accessHash": 0,
+      "firstName": "ECzYGQDjLg7I",
+      "lastName": "qPOjEGAjs5H2XyDI4XF",
+      "username": "0MmPasVGLLy",
+      "phone": "iDbFhzyFzqtCzBfXAQTZ0Uav",
+      "photo": {
+        "photoId": 0,
+        "photoSmall": {
+          "volumeId": 0,
+          "localId": 0,
+          "secret": 0
+        },
+        "photoBig": {
+          "dcId": 0,
+          "volumeId": 0,
+          "localId": 0,
+          "secret": 0
+        }
+      },
+      "status": {},
+      "botInfoVersion": 0,
+      "restrictionReason": "cciN7TT1vJ49Syg8I9Q9WxS",
+      "botInlinePlaceholder": "6k0aij7gvFq05gccqBTs6",
+      "id": 0
+    },
+    {
+      "flags": 982143,
+      "self": true,
+      "contact": true,
+      "mutualContact": true,
+      "deleted": true,
+      "bot": true,
+      "botChatHistory": true,
+      "botNochats": false,
+      "verified": true,
+      "restricted": true,
+      "accessHash": 0,
+      "firstName": "KgTqQpa1zcqdDphdrfnpiiW",
+      "lastName": "gSYV85lUIMllbtjDRqupctgQffA",
+      "username": "56Ym4FOYVVdEHOAYSHbjcXhna4c8l",
+      "phone": "IpgyAnKScEWMsnSteC5rU8C",
+      "photo": {
+        "photoId": 0,
+        "photoSmall": {
+          "volumeId": 0,
+          "localId": 0,
+          "secret": 0
+        },
+        "photoBig": {
+          "volumeId": 0,
+          "localId": 0,
+          "secret": 0
+        }
+      },
+      "status": {},
+      "botInfoVersion": 0,
+      "restrictionReason": "nEAk6ZIU8jOjx",
+      "botInlinePlaceholder": "PDmwSjB",
+      "id": 0
+    },
+    {
+      "id": 0
+    },
+    {
+      "flags": 847999,
+      "self": false,
+      "contact": false,
+      "mutualContact": true,
+      "deleted": true,
+      "bot": true,
+      "botChatHistory": true,
+      "botNochats": false,
+      "verified": false,
+      "restricted": true,
+      "accessHash": 0,
+      "firstName": "kiSN8",
+      "lastName": "aH8iXgwHFphSepuzZqCZaeEu",
+      "username": "o5WHyzI6",
+      "phone": "3AnCuTQTPsECNMqCc4ebFa",
+      "photo": {
+        "photoId": 0,
+        "photoSmall": {
+          "volumeId": 0,
+          "localId": 0,
+          "secret": 0
+        },
+        "photoBig": {
+          "dcId": 0,
+          "volumeId": 0,
+          "localId": 0,
+          "secret": 0
+        }
+      },
+      "status": {
+        "wasOnline": 0
+      },
+      "botInfoVersion": 0,
+      "restrictionReason": "jh27Tb",
+      "botInlinePlaceholder": "d5uFKWM",
       "id": 0
     },
     {
@@ -15,12 +149,28 @@
       "id": 0
     },
     {
-      "id": 0
-    },
-    {
-      "id": 0
-    },
-    {
+      "flags": 803967,
+      "self": true,
+      "contact": false,
+      "mutualContact": false,
+      "deleted": false,
+      "bot": true,
+      "botChatHistory": false,
+      "botNochats": false,
+      "verified": false,
+      "restricted": true,
+      "accessHash": 0,
+      "firstName": "QrfNb8CGqpiRrYCnGLJYXae9I",
+      "lastName": "6mRKOB",
+      "username": "na7fhcAQM3f",
+      "phone": "8MCcHnl2J4RZ2poRavtokW9ho6K",
+      "photo": {},
+      "status": {
+        "wasOnline": 0
+      },
+      "botInfoVersion": 0,
+      "restrictionReason": "mozcffhqSq1RgHg",
+      "botInlinePlaceholder": "1si5NBLPBvwviXItYUfhRmi2h8Ve",
       "id": 0
     },
     {

@@ -2,22 +2,29 @@
   "count": 0,
   "dialogs": [
     {
+      "topImportantMessage": 0,
+      "unreadImportantCount": 0,
+      "pts": 0,
+      "peer": {
+        "userId": 0
+      },
+      "topMessage": 0,
+      "readInboxMaxId": 0,
+      "unreadCount": 0,
+      "notifySettings": {}
+    },
+    {
       "peer": {
         "chatId": 0
       },
       "topMessage": 0,
       "readInboxMaxId": 0,
       "unreadCount": 0,
-      "notifySettings": {
-        "muteUntil": 0,
-        "sound": "HemD6emlxuReZ5quSgUmmkJ",
-        "showPreviews": false,
-        "eventsMask": 0
-      }
+      "notifySettings": {}
     },
     {
       "peer": {
-        "chatId": 0
+        "channelId": 0
       },
       "topMessage": 0,
       "readInboxMaxId": 0,
@@ -33,8 +40,8 @@
       "unreadCount": 0,
       "notifySettings": {
         "muteUntil": 0,
-        "sound": "34M9P9SkLgZRdyQ09WBS4LdmBaT",
-        "showPreviews": false,
+        "sound": "zVeoikzmPohRu",
+        "showPreviews": true,
         "eventsMask": 0
       }
     },
@@ -50,6 +57,97 @@
   ],
   "messages": [
     {
+      "flags": 256,
+      "unread": false,
+      "out": false,
+      "mentioned": false,
+      "mediaUnread": false,
+      "fromId": 0,
+      "toId": {
+        "chatId": 0
+      },
+      "date": 0,
+      "action": {
+        "title": "aoB3QlWLMucIs8bCZsZ5aErfI"
+      },
+      "id": 0
+    },
+    {
+      "id": 0
+    },
+    {
+      "flags": 4079,
+      "unread": true,
+      "out": true,
+      "mentioned": false,
+      "mediaUnread": true,
+      "fromId": 0,
+      "toId": {
+        "userId": 0
+      },
+      "fwdFromId": {
+        "userId": 0
+      },
+      "fwdDate": 0,
+      "viaBotId": 0,
+      "replyToMsgId": 0,
+      "date": 0,
+      "message": "OlH4ZXWbARPh5LOnU5llDq",
+      "media": {
+        "audio": {
+          "accessHash": 0,
+          "date": 0,
+          "duration": 0,
+          "mimeType": "dh04Ypq2aAMVhxVTODLJtRHXj6W83",
+          "size": 0,
+          "dcId": 0,
+          "id": 0
+        }
+      },
+      "replyMarkup": {
+        "flags": 0,
+        "selective": false
+      },
+      "entities": [
+        {
+          "offset": 0,
+          "length": 0
+        },
+        {
+          "offset": 0,
+          "length": 0
+        },
+        {
+          "offset": 0,
+          "length": 0
+        },
+        {
+          "offset": 0,
+          "length": 0
+        },
+        {
+          "offset": 0,
+          "length": 0
+        },
+        {
+          "offset": 0,
+          "length": 0
+        },
+        {
+          "offset": 0,
+          "length": 0
+        },
+        {
+          "url": "94f1OpmztfpA2",
+          "offset": 0,
+          "length": 0
+        },
+        {
+          "offset": 0,
+          "length": 0
+        }
+      ],
+      "views": 0,
       "id": 0
     },
     {
@@ -59,29 +157,389 @@
       "id": 0
     },
     {
+      "flags": 4076,
+      "unread": false,
+      "out": false,
+      "mentioned": false,
+      "mediaUnread": true,
+      "fromId": 0,
+      "toId": {
+        "userId": 0
+      },
+      "fwdFromId": {
+        "channelId": 0
+      },
+      "fwdDate": 0,
+      "viaBotId": 0,
+      "replyToMsgId": 0,
+      "date": 0,
+      "message": "gFPyZ",
+      "media": {
+        "geo": {},
+        "title": "fkAkNaYaQpO9N1W0gf2NLO",
+        "address": "Kb01gRXp",
+        "provider": "IwUEket8tojOZG",
+        "venueId": "AW1o1"
+      },
+      "replyMarkup": {
+        "singleUse": false,
+        "flags": 0,
+        "selective": false
+      },
+      "entities": [
+        {
+          "offset": 0,
+          "length": 0
+        },
+        {
+          "url": "RVMQKNBMUil3U3MKOBz",
+          "offset": 0,
+          "length": 0
+        },
+        {
+          "offset": 0,
+          "length": 0
+        },
+        {
+          "offset": 0,
+          "length": 0
+        },
+        {
+          "offset": 0,
+          "length": 0
+        },
+        {
+          "offset": 0,
+          "length": 0
+        },
+        {
+          "offset": 0,
+          "length": 0
+        },
+        {
+          "offset": 0,
+          "length": 0
+        },
+        {
+          "offset": 0,
+          "length": 0
+        },
+        {
+          "offset": 0,
+          "length": 0
+        }
+      ],
+      "views": 0,
+      "id": 0
+    },
+    {
+      "flags": 273,
+      "unread": true,
+      "out": false,
+      "mentioned": true,
+      "mediaUnread": false,
+      "fromId": 0,
+      "toId": {
+        "channelId": 0
+      },
+      "date": 0,
+      "action": {
+        "title": "6Rq1GAU",
+        "chatId": 0
+      },
+      "id": 0
+    },
+    {
+      "flags": 307,
+      "unread": true,
+      "out": true,
+      "mentioned": true,
+      "mediaUnread": true,
+      "fromId": 0,
+      "toId": {
+        "channelId": 0
+      },
+      "date": 0,
+      "action": {
+        "inviterId": 0
+      },
       "id": 0
     },
     {
       "id": 0
     },
     {
+      "flags": 4061,
+      "unread": true,
+      "out": false,
+      "mentioned": true,
+      "mediaUnread": false,
+      "fromId": 0,
+      "toId": {
+        "userId": 0
+      },
+      "fwdFromId": {
+        "userId": 0
+      },
+      "fwdDate": 0,
+      "viaBotId": 0,
+      "replyToMsgId": 0,
+      "date": 0,
+      "message": "r0zpeSVh3",
+      "media": {
+        "document": {
+          "accessHash": 0,
+          "date": 0,
+          "mimeType": "cir7KMbP1aeOaPWUpkJOB",
+          "size": 0,
+          "thumb": {
+            "type": "blBhg2hUDHAw21mtu1"
+          },
+          "dcId": 0,
+          "attributes": [
+            {},
+            {
+              "alt": "9cjqUtYaA8YgQweIenYb",
+              "stickerset": {
+                "id": 0,
+                "accessHash": 0
+              }
+            },
+            {},
+            {
+              "duration": 0,
+              "w": 0,
+              "h": 0
+            },
+            {
+              "duration": 0,
+              "title": "HJxyCu",
+              "performer": "dV5cu9cwfJAb0imelC2pJ3HwLCT"
+            },
+            {
+              "alt": "rL02tCS",
+              "stickerset": {}
+            },
+            {
+              "fileName": "q3ZyFXReR3hS6iV40icDk4w"
+            }
+          ],
+          "id": 0
+        },
+        "caption": "hh7y6adT5sJwX"
+      },
+      "replyMarkup": {
+        "resize": false,
+        "singleUse": true,
+        "rows": [
+          {
+            "buttons": [
+              {
+                "text": "zAkuHZHxS51Oqpj6bHLBJh6jjls"
+              },
+              {
+                "text": "FRUlvQ4st"
+              },
+              {
+                "text": "qj2YR3Dmi3nXEKyGKV6oOpLFc"
+              },
+              {
+                "text": "r990kaDxhyJpYG49xM9OUESeYlsG"
+              }
+            ]
+          },
+          {
+            "buttons": [
+              {
+                "text": "CWBkBoWeec"
+              },
+              {
+                "text": "D9nGUstGOeWhLE"
+              },
+              {
+                "text": "OIld6RfZnWupoEbch3C4kbQI"
+              },
+              {
+                "text": "9YTVNTeU6XI0w"
+              },
+              {
+                "text": "Wkwj6XKhv"
+              },
+              {
+                "text": "5bWujH"
+              }
+            ]
+          },
+          {
+            "buttons": [
+              {
+                "text": "P0APczVgZlKaPi6BknLQ08QK5m"
+              },
+              {
+                "text": "Fwa7Fqfuep1LqbNwn41WWod"
+              },
+              {
+                "text": "aCehid"
+              },
+              {
+                "text": "AcnU2VnY4TYy"
+              },
+              {
+                "text": "k3dwM8"
+              },
+              {
+                "text": "tfzBqRfSdLsYfjHRuZ1"
+              }
+            ]
+          },
+          {
+            "buttons": [
+              {
+                "text": "Hrs7KzCP9OGnHS5rqcOENFr96i1"
+              },
+              {
+                "text": "x6d6n3ByehX"
+              },
+              {
+                "text": "9JKV4"
+              }
+            ]
+          },
+          {
+            "buttons": [
+              {
+                "text": "gcHX4cis6sErb6"
+              },
+              {
+                "text": "KHg5b7YMV0Gv"
+              },
+              {
+                "text": "RrKvIHeND4T"
+              },
+              {
+                "text": "8PV7g4L27kslSwa0QQHA6HepMnw"
+              },
+              {
+                "text": "V9z3KEC5N"
+              },
+              {
+                "text": "PasZrcpUXnB87T84BSIarlcvRJ"
+              }
+            ]
+          },
+          {
+            "buttons": [
+              {
+                "text": "SSEuUc39cqCl81A5Cjp3L6S8W"
+              },
+              {
+                "text": "ue3r4VAj8xh3ZxH3tQ1esYu3gS1"
+              },
+              {
+                "text": "ama3Pw43OWFp04IGrcSF1OHlj6"
+              },
+              {
+                "text": "nbtGLvwsbyz38YRQfvWMQa"
+              },
+              {
+                "text": "TVDYkxzD1"
+              }
+            ]
+          },
+          {
+            "buttons": [
+              {
+                "text": "kDFftiz7Ne5jCm0FSlYDE"
+              },
+              {
+                "text": "ncXk2xl0YbeDq1NQ3rJmO7"
+              },
+              {
+                "text": "KbA1pJmxythGnk9LRehn"
+              },
+              {
+                "text": "E8GGzs0D"
+              },
+              {
+                "text": "wZ4XSpzg"
+              },
+              {
+                "text": "eOUSLN8Zff7bA29cMbWaONU2QK"
+              }
+            ]
+          },
+          {
+            "buttons": [
+              {
+                "text": "nU70JaGC"
+              },
+              {
+                "text": "gi1wJEsOaOMozd3aViaZiwB"
+              },
+              {
+                "text": "yJWl0pEE7mrCq0SSZ4ZLa"
+              },
+              {
+                "text": "ocaWUN1QKGy2MYGS432v0f6Sd"
+              }
+            ]
+          }
+        ],
+        "flags": 2,
+        "selective": false
+      },
+      "entities": [
+        {
+          "language": "C3IOitpzwg7dpAQBbAi0nI5GQ3v",
+          "offset": 0,
+          "length": 0
+        },
+        {
+          "offset": 0,
+          "length": 0
+        },
+        {
+          "offset": 0,
+          "length": 0
+        },
+        {
+          "offset": 0,
+          "length": 0
+        },
+        {
+          "offset": 0,
+          "length": 0
+        },
+        {
+          "url": "k2JrfcNpvY554mw7ve",
+          "offset": 0,
+          "length": 0
+        }
+      ],
+      "views": 0,
+      "id": 0
+    },
+    {
+      "flags": 304,
+      "unread": false,
+      "out": false,
+      "mentioned": true,
+      "mediaUnread": true,
+      "fromId": 0,
+      "toId": {
+        "channelId": 0
+      },
+      "date": 0,
+      "action": {
+        "channelId": 0
+      },
       "id": 0
     }
   ],
   "chats": [
     {
-      "id": 0
-    },
-    {
-      "id": 0
-    },
-    {
-      "id": 0
-    },
-    {
-      "id": 0
-    },
-    {
+      "accessHash": 0,
+      "title": "NQGiWgdlQTFS3bXQ6RUiIUE0o",
       "id": 0
     },
     {
@@ -90,12 +548,200 @@
   ],
   "users": [
     {
+      "flags": 974975,
+      "self": false,
+      "contact": false,
+      "mutualContact": false,
+      "deleted": true,
+      "bot": true,
+      "botChatHistory": true,
+      "botNochats": false,
+      "verified": true,
+      "restricted": true,
+      "accessHash": 0,
+      "firstName": "lOYZV15uCD4neJ",
+      "lastName": "M1ZLJYVI",
+      "username": "dqfo8k",
+      "phone": "kIgmMfElJ",
+      "photo": {},
+      "status": {
+        "expires": 0
+      },
+      "botInfoVersion": 0,
+      "restrictionReason": "5awcrHHDhXnD3a8YvmJGvnMS7Od",
+      "botInlinePlaceholder": "BSzfQQY6hiWBEIsa85hVoj",
+      "id": 0
+    },
+    {
+      "flags": 1044607,
+      "self": false,
+      "contact": false,
+      "mutualContact": true,
+      "deleted": true,
+      "bot": true,
+      "botChatHistory": true,
+      "botNochats": true,
+      "verified": true,
+      "restricted": true,
+      "accessHash": 0,
+      "firstName": "nmSXsmtMtaol",
+      "lastName": "MSqlHqoa",
+      "username": "N7EHnXs6qNj",
+      "phone": "MQkErufnzX8KZvDyAayJ2DY",
+      "photo": {
+        "photoId": 0,
+        "photoSmall": {
+          "dcId": 0,
+          "volumeId": 0,
+          "localId": 0,
+          "secret": 0
+        },
+        "photoBig": {
+          "dcId": 0,
+          "volumeId": 0,
+          "localId": 0,
+          "secret": 0
+        }
+      },
+      "status": {
+        "wasOnline": 0
+      },
+      "botInfoVersion": 0,
+      "restrictionReason": "xl2tN1fyVvLLQ6bZafS",
+      "botInlinePlaceholder": "QmFEohmm5jWiUQpXFN79XkPHQm",
+      "id": 0
+    },
+    {
+      "flags": 968831,
+      "self": false,
+      "contact": true,
+      "mutualContact": false,
+      "deleted": false,
+      "bot": true,
+      "botChatHistory": true,
+      "botNochats": false,
+      "verified": true,
+      "restricted": true,
+      "accessHash": 0,
+      "firstName": "Wj9lZK1rnLQzKM",
+      "lastName": "wKPzdDqXsFlFX0vqWJ1t311dNVUkj",
+      "username": "7IoNJM",
+      "phone": "iTpyLwTz8MOwLrc1G",
+      "photo": {},
+      "status": {},
+      "botInfoVersion": 0,
+      "restrictionReason": "5T5sc",
+      "botInlinePlaceholder": "0K4UdHsKr8Q3Kv6yE2SBlGLFg6",
+      "id": 0
+    },
+    {
+      "flags": 1035391,
+      "self": true,
+      "contact": true,
+      "mutualContact": false,
+      "deleted": false,
+      "bot": true,
+      "botChatHistory": true,
+      "botNochats": true,
+      "verified": true,
+      "restricted": true,
+      "accessHash": 0,
+      "firstName": "D0cQp4JpJH4s",
+      "lastName": "T3nlbQRdK2zCGR4wXum3UML5kqC",
+      "username": "SdeA7mqECQoZjNk",
+      "phone": "mQbOkJ4ub2csrX3tra8qA",
+      "photo": {
+        "photoId": 0,
+        "photoSmall": {
+          "volumeId": 0,
+          "localId": 0,
+          "secret": 0
+        },
+        "photoBig": {
+          "dcId": 0,
+          "volumeId": 0,
+          "localId": 0,
+          "secret": 0
+        }
+      },
+      "status": {
+        "wasOnline": 0
+      },
+      "botInfoVersion": 0,
+      "restrictionReason": "y0Vphy1VdJ4mD8KgEnncRZONMHii",
+      "botInlinePlaceholder": "Ozlt75Zg3vFi",
       "id": 0
     },
     {
       "id": 0
     },
     {
+      "id": 0
+    },
+    {
+      "id": 0
+    },
+    {
+      "flags": 803967,
+      "self": true,
+      "contact": false,
+      "mutualContact": false,
+      "deleted": false,
+      "bot": true,
+      "botChatHistory": false,
+      "botNochats": false,
+      "verified": false,
+      "restricted": true,
+      "accessHash": 0,
+      "firstName": "nPbyVWoPx1ncw",
+      "lastName": "IOf5nWm1Pnpuvq",
+      "username": "IAhSWCOivFrV",
+      "phone": "27uaDs9CWRPu9pQ",
+      "photo": {},
+      "status": {},
+      "botInfoVersion": 0,
+      "restrictionReason": "GBlZJYBJOE",
+      "botInlinePlaceholder": "j8VQnLcKD89LKwJEW1bQXT8PfDg",
+      "id": 0
+    },
+    {
+      "id": 0
+    },
+    {
+      "flags": 873599,
+      "self": true,
+      "contact": false,
+      "mutualContact": true,
+      "deleted": false,
+      "bot": true,
+      "botChatHistory": false,
+      "botNochats": true,
+      "verified": false,
+      "restricted": true,
+      "accessHash": 0,
+      "firstName": "6gvXSqGu1hkRGY",
+      "lastName": "rrwloxY",
+      "username": "1VLc0GcTfjWvAOD89",
+      "phone": "wEvf8sOSnr",
+      "photo": {
+        "photoId": 0,
+        "photoSmall": {
+          "dcId": 0,
+          "volumeId": 0,
+          "localId": 0,
+          "secret": 0
+        },
+        "photoBig": {
+          "dcId": 0,
+          "volumeId": 0,
+          "localId": 0,
+          "secret": 0
+        }
+      },
+      "status": {},
+      "botInfoVersion": 0,
+      "restrictionReason": "uqfOtj1ZQtMhQ5NcNXqOT913vouPc",
+      "botInlinePlaceholder": "B2NXsTidBANwIS",
       "id": 0
     }
   ]

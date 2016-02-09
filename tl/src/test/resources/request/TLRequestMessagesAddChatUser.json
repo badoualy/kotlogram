@@ -1,5 +1,8 @@
 {
   "chatId": 0,
-  "userId": {},
+  "userId": {
+    "userId": 0,
+    "accessHash": 0
+  },
   "fwdLimit": 0
 }

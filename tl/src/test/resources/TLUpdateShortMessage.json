@@ -1,12 +1,12 @@
 {
-  "flags": 2207,
-  "unread": true,
+  "flags": 2206,
+  "unread": false,
   "out": true,
   "mentioned": true,
   "mediaUnread": false,
   "id": 0,
   "userId": 0,
-  "message": "lBYHMedMA0Z",
+  "message": "VwfFWufp59cjSYWE",
   "pts": 0,
   "ptsCount": 0,
   "date": 0,
@@ -18,6 +18,28 @@
   "replyToMsgId": 0,
   "entities": [
     {
+      "offset": 0,
+      "length": 0
+    },
+    {
+      "offset": 0,
+      "length": 0
+    },
+    {
+      "offset": 0,
+      "length": 0
+    },
+    {
+      "offset": 0,
+      "length": 0
+    },
+    {
+      "url": "G9sprYcZMngIvW5rIKPs",
+      "offset": 0,
+      "length": 0
+    },
+    {
+      "url": "Bdqja2uSAXAT7F8k4dyT4YD34z0oA",
       "offset": 0,
       "length": 0
     },

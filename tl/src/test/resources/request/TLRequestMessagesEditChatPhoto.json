@@ -1,10 +1,15 @@
 {
   "chatId": 0,
   "photo": {
-    "id": {
+    "file": {
       "id": 0,
-      "accessHash": 0
+      "parts": 0,
+      "name": "ktkJWlBT8zGrKrF7y6Qm"
     },
-    "crop": {}
+    "crop": {
+      "cropLeft": 0.0,
+      "cropTop": 0.0,
+      "cropWidth": 0.0
+    }
   }
 }

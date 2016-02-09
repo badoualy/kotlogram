@@ -1,27 +1,25 @@
 {
   "user": {
-    "flags": 966783,
+    "flags": 901247,
     "self": false,
     "contact": false,
     "mutualContact": false,
     "deleted": false,
     "bot": true,
     "botChatHistory": true,
-    "botNochats": false,
-    "verified": true,
+    "botNochats": true,
+    "verified": false,
     "restricted": true,
     "accessHash": 0,
-    "firstName": "2XhB4NoSZgRCO2WVRxw",
-    "lastName": "1FNg3",
-    "username": "srROW2FRGor7QPehLolA4h0yo8",
-    "phone": "WKJ2JAxBjFqoTCshs2ZWyP",
+    "firstName": "q3O4BWqSRAhT0TAYsD8Jh",
+    "lastName": "UJ1zhSpqoOqHax10bSrmCwBE",
+    "username": "EKbvHEI",
+    "phone": "IsWEA29Q6wVYEdfx8bsvo2lUR",
     "photo": {},
-    "status": {
-      "wasOnline": 0
-    },
+    "status": {},
     "botInfoVersion": 0,
-    "restrictionReason": "zO1rjz9B1JhVm7",
-    "botInlinePlaceholder": "gvsKoIldp7XKxY",
+    "restrictionReason": "FkYqmFZtTG05X0cY",
+    "botInlinePlaceholder": "MCMHACcpdQDR7f45d4KDdrxbMIAQ",
     "id": 0
   }
 }

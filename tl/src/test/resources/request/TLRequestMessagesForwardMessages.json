@@ -2,13 +2,10 @@
   "flags": 16,
   "broadcast": true,
   "fromPeer": {
-    "chatId": 0
+    "userId": 0,
+    "accessHash": 0
   },
   "id": [
-    0,
-    0,
-    0,
-    0,
     0,
     0,
     0,
@@ -20,14 +17,10 @@
     0,
     0,
     0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
     0
   ],
-  "toPeer": {}
+  "toPeer": {
+    "userId": 0,
+    "accessHash": 0
+  }
 }

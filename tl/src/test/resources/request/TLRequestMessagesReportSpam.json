@@ -1,6 +1,3 @@
 {
-  "peer": {
-    "channelId": 0,
-    "accessHash": 0
-  }
+  "peer": {}
 }

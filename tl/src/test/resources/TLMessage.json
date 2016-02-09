@@ -1,29 +1,237 @@
 {
-  "flags": 4077,
+  "flags": 4095,
   "unread": true,
-  "out": false,
-  "mentioned": false,
+  "out": true,
+  "mentioned": true,
   "mediaUnread": true,
   "fromId": 0,
   "toId": {
-    "channelId": 0
+    "userId": 0
   },
   "fwdFromId": {
-    "userId": 0
+    "chatId": 0
   },
   "fwdDate": 0,
   "viaBotId": 0,
   "replyToMsgId": 0,
   "date": 0,
-  "message": "25ORxDn",
+  "message": "20RRVBGtn",
   "media": {
-    "webpage": {
+    "document": {
       "id": 0
-    }
+    },
+    "caption": "PhXXPxLwPBPMEPIHtQ1ZXA"
   },
   "replyMarkup": {
-    "singleUse": false,
-    "flags": 4,
+    "resize": false,
+    "singleUse": true,
+    "rows": [
+      {
+        "buttons": [
+          {
+            "text": "ShkAghe2l8ZVbIX6YZ"
+          },
+          {
+            "text": "xril3oAIRJ6r"
+          },
+          {
+            "text": "VNW7EnNhybrY0eWF2v"
+          },
+          {
+            "text": "SB2bpGpmljbZmXYXIX"
+          },
+          {
+            "text": "5f0OREaTPZ3l8u92q8fK8It3dkcY"
+          }
+        ]
+      },
+      {
+        "buttons": [
+          {
+            "text": "SCrVcXc6euwfA1Mf7vXq"
+          },
+          {
+            "text": "niplfpr2JH"
+          },
+          {
+            "text": "TugowrSNlC89rER"
+          },
+          {
+            "text": "2eqTmjhZ5rowQdlR"
+          },
+          {
+            "text": "qcG8hf2YLF6SLs01SBDz2EHiqVA"
+          },
+          {
+            "text": "rApOM5QrRznxFntjTyL1x"
+          },
+          {
+            "text": "lgqkRhnxC6xRLagxwz"
+          },
+          {
+            "text": "aeyfKCHyJWBz"
+          },
+          {
+            "text": "xr3xzGnR0YKlDwdU9BSLT"
+          },
+          {
+            "text": "YVHju5zPcYC"
+          },
+          {
+            "text": "Ho2R6rdVcMERKW"
+          }
+        ]
+      },
+      {
+        "buttons": [
+          {
+            "text": "uwOEXBGZVUoG3ypWFf7FMjiMy9ZEj"
+          },
+          {
+            "text": "IJlL841u463jw"
+          },
+          {
+            "text": "Nkx2yLEzl"
+          },
+          {
+            "text": "z8Mhpce5"
+          }
+        ]
+      },
+      {
+        "buttons": [
+          {
+            "text": "bj66yyv6W2h6ed8YursCO"
+          },
+          {
+            "text": "jIK9ndA0"
+          }
+        ]
+      },
+      {
+        "buttons": [
+          {
+            "text": "ygN40ERGc1clVqET4w2CcMFJtIImz"
+          },
+          {
+            "text": "vbXuEKDRzg58ge"
+          },
+          {
+            "text": "f1zuJTraalCZT"
+          },
+          {
+            "text": "66SmOf3FH48JctSfYBnij9TYKNCC"
+          },
+          {
+            "text": "foCLm"
+          },
+          {
+            "text": "cWtAiSTKmMKISaOwZw"
+          },
+          {
+            "text": "ML5nAFQRSRyEm8ONdzd8i7OFDVmm"
+          },
+          {
+            "text": "OED4BrTVqGPD4oJHyJMhxsMGAgw"
+          },
+          {
+            "text": "Tl6L2gCOMCeQUZI"
+          },
+          {
+            "text": "n3XQ0"
+          },
+          {
+            "text": "RXmuP22bf"
+          }
+        ]
+      },
+      {
+        "buttons": [
+          {
+            "text": "wahf497CTN"
+          },
+          {
+            "text": "fYoOzBZGueRSwjIClGxKC6K4Dx7IP"
+          },
+          {
+            "text": "raj1SIZivkzERgPMXtzYE"
+          },
+          {
+            "text": "A4vGWjo57YmI"
+          },
+          {
+            "text": "z3cJaBPiSGZs4gh"
+          }
+        ]
+      },
+      {
+        "buttons": [
+          {
+            "text": "YVA8HfQgaWnOSrjCI6ONtE"
+          },
+          {
+            "text": "2NqRZV75LUKsnce5bfXhU9"
+          },
+          {
+            "text": "bT6TLEM4RgQ2yhgI3"
+          },
+          {
+            "text": "uxOzRzcNGEE"
+          },
+          {
+            "text": "1B0S4J4IB3lz6LrUQMHhKaColvd"
+          },
+          {
+            "text": "9fg0f7eymUQTeHMJnMXfZi2CA"
+          }
+        ]
+      },
+      {
+        "buttons": [
+          {
+            "text": "iBzd2LTD2sjYDoIxxkOj"
+          },
+          {
+            "text": "blhPT1TeBShQDkEpIx9"
+          },
+          {
+            "text": "q5FxycHOsM6lUw"
+          },
+          {
+            "text": "MOMzr2K5yjUjs8k"
+          },
+          {
+            "text": "yAY82Bhm"
+          },
+          {
+            "text": "wj72IX"
+          },
+          {
+            "text": "Rc3c8JvOgsnlnYNc8NS8d0vNQ7pQE"
+          },
+          {
+            "text": "0lKo6GiBFCCW25nMfIh"
+          },
+          {
+            "text": "AvxUVeahxqjcXRr8fIlYc0KwYWF0R"
+          }
+        ]
+      },
+      {
+        "buttons": [
+          {
+            "text": "Ypc0sSqgE7aW9Xlg2tUZsoIJg"
+          },
+          {
+            "text": "XKV1dmXlNfH56fmK3jVV484"
+          },
+          {
+            "text": "prjpJNfxaOt0YmJ9tzOqd"
+          }
+        ]
+      }
+    ],
+    "flags": 6,
     "selective": true
   },
   "entities": [
@@ -32,14 +240,7 @@
       "length": 0
     },
     {
-      "offset": 0,
-      "length": 0
-    },
-    {
-      "offset": 0,
-      "length": 0
-    },
-    {
+      "language": "uIPk1ji47bHs36l9OpIqeI",
       "offset": 0,
       "length": 0
     },

@@ -1,18 +1,77 @@
 {
   "rules": [
+    {
+      "users": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
     {},
     {},
+    {
+      "users": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
     {},
     {},
-    {},
-    {},
-    {},
-    {},
-    {},
+    {
+      "users": [
+        0,
+        0
+      ]
+    },
     {}
   ],
   "users": [
     {
+      "flags": 845951,
+      "self": false,
+      "contact": true,
+      "mutualContact": false,
+      "deleted": true,
+      "bot": true,
+      "botChatHistory": true,
+      "botNochats": false,
+      "verified": false,
+      "restricted": true,
+      "accessHash": 0,
+      "firstName": "h6eSLCcOvt7T9hDd",
+      "lastName": "KbpH9HtQ62GXZm",
+      "username": "hKmQg2RTwQ8ZcqzBBkwlZmUSAQLF",
+      "phone": "9A39VlBadLByFqcEvP9sqFLoX",
+      "photo": {
+        "photoId": 0,
+        "photoSmall": {
+          "dcId": 0,
+          "volumeId": 0,
+          "localId": 0,
+          "secret": 0
+        },
+        "photoBig": {
+          "volumeId": 0,
+          "localId": 0,
+          "secret": 0
+        }
+      },
+      "status": {},
+      "botInfoVersion": 0,
+      "restrictionReason": "zkXjfJhJCmDyD0qj",
+      "botInlinePlaceholder": "xVh7Eu3hyX9Clifbq9NAmP",
       "id": 0
     },
     {
@@ -22,12 +81,26 @@
       "id": 0
     },
     {
-      "id": 0
-    },
-    {
-      "id": 0
-    },
-    {
+      "flags": 910463,
+      "self": true,
+      "contact": false,
+      "mutualContact": false,
+      "deleted": true,
+      "bot": true,
+      "botChatHistory": true,
+      "botNochats": true,
+      "verified": false,
+      "restricted": true,
+      "accessHash": 0,
+      "firstName": "O9vkokVwbiaJfsVt0WXadh91xR",
+      "lastName": "brE3HJPMntjHhf881",
+      "username": "Y30kuHBRQHybcsMu",
+      "phone": "C0Lm479QinxP1CfDYlwegD6foWxe",
+      "photo": {},
+      "status": {},
+      "botInfoVersion": 0,
+      "restrictionReason": "bzPHglRzED4ulIR",
+      "botInlinePlaceholder": "eDTdKuHztSJH",
       "id": 0
     },
     {

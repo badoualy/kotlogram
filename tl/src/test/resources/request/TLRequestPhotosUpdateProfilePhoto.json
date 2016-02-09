@@ -1,7 +1,8 @@
 {
-  "id": {
-    "id": 0,
-    "accessHash": 0
-  },
-  "crop": {}
+  "id": {},
+  "crop": {
+    "cropLeft": 0.0,
+    "cropTop": 0.0,
+    "cropWidth": 0.0
+  }
 }

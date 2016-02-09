@@ -5,5 +5,10 @@
   "topMessage": 0,
   "readInboxMaxId": 0,
   "unreadCount": 0,
-  "notifySettings": {}
+  "notifySettings": {
+    "muteUntil": 0,
+    "sound": "w4XPiX8b",
+    "showPreviews": true,
+    "eventsMask": 0
+  }
 }

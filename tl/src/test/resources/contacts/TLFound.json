@@ -1,29 +1,263 @@
 {
   "results": [
-    {},
-    {},
-    {},
-    {},
-    {},
-    {},
-    {},
-    {}
+    {
+      "channelId": 0
+    },
+    {
+      "userId": 0
+    },
+    {
+      "chatId": 0
+    },
+    {
+      "channelId": 0
+    },
+    {
+      "userId": 0
+    },
+    {
+      "chatId": 0
+    },
+    {
+      "channelId": 0
+    },
+    {
+      "userId": 0
+    },
+    {
+      "chatId": 0
+    },
+    {
+      "channelId": 0
+    },
+    {
+      "channelId": 0
+    }
   ],
   "chats": [
     {
+      "title": "Rw4lL1QtX",
       "id": 0
     },
     {
+      "accessHash": 0,
+      "title": "ATHMtqzvHsrXmgQ6Cj1x4e",
       "id": 0
     },
     {
+      "flags": 66,
+      "creator": false,
+      "kicked": true,
+      "left": false,
+      "adminsEnabled": false,
+      "admin": false,
+      "deactivated": false,
+      "title": "WSd7MdjFUS1pUNomG1DHswfEiv6R",
+      "photo": {
+        "photoSmall": {
+          "volumeId": 0,
+          "localId": 0,
+          "secret": 0
+        },
+        "photoBig": {
+          "volumeId": 0,
+          "localId": 0,
+          "secret": 0
+        }
+      },
+      "participantsCount": 0,
+      "date": 0,
+      "version": 0,
+      "migratedTo": {},
       "id": 0
     },
     {
+      "flags": 92,
+      "creator": false,
+      "kicked": false,
+      "left": true,
+      "adminsEnabled": true,
+      "admin": true,
+      "deactivated": false,
+      "title": "b53tpZsyeuO4YcMeNLrYUsRBAhRqS",
+      "photo": {},
+      "participantsCount": 0,
+      "date": 0,
+      "version": 0,
+      "migratedTo": {
+        "channelId": 0,
+        "accessHash": 0
+      },
+      "id": 0
+    },
+    {
+      "flags": 118,
+      "creator": false,
+      "kicked": true,
+      "left": true,
+      "adminsEnabled": false,
+      "admin": true,
+      "deactivated": true,
+      "title": "oAOozq2Pniko",
+      "photo": {},
+      "participantsCount": 0,
+      "date": 0,
+      "version": 0,
+      "migratedTo": {},
+      "id": 0
+    },
+    {
+      "flags": 720,
+      "creator": false,
+      "kicked": false,
+      "left": false,
+      "editor": false,
+      "moderator": true,
+      "broadcast": false,
+      "verified": true,
+      "megagroup": false,
+      "restricted": true,
+      "accessHash": 0,
+      "title": "Fb38RUPK6OAeQgdMcbZAKj",
+      "username": "A0Tc9XJ",
+      "photo": {
+        "photoSmall": {
+          "volumeId": 0,
+          "localId": 0,
+          "secret": 0
+        },
+        "photoBig": {
+          "dcId": 0,
+          "volumeId": 0,
+          "localId": 0,
+          "secret": 0
+        }
+      },
+      "date": 0,
+      "version": 0,
+      "restrictionReason": "QStECIp0rgQva6IrxTPizU0yD",
+      "id": 0
+    },
+    {
+      "title": "PEBTHWRqgPnyvKwRc4dTfd48C",
+      "id": 0
+    },
+    {
+      "flags": 70,
+      "creator": false,
+      "kicked": true,
+      "left": true,
+      "adminsEnabled": false,
+      "admin": false,
+      "deactivated": false,
+      "title": "JO6sTuhuuC7oksOd4nrSLF9w",
+      "photo": {},
+      "participantsCount": 0,
+      "date": 0,
+      "version": 0,
+      "migratedTo": {},
+      "id": 0
+    },
+    {
+      "flags": 67,
+      "creator": true,
+      "kicked": true,
+      "left": false,
+      "adminsEnabled": false,
+      "admin": false,
+      "deactivated": false,
+      "title": "oJN4YGpcAu",
+      "photo": {
+        "photoSmall": {
+          "volumeId": 0,
+          "localId": 0,
+          "secret": 0
+        },
+        "photoBig": {
+          "volumeId": 0,
+          "localId": 0,
+          "secret": 0
+        }
+      },
+      "participantsCount": 0,
+      "date": 0,
+      "version": 0,
+      "migratedTo": {},
+      "id": 0
+    },
+    {
+      "flags": 835,
+      "creator": true,
+      "kicked": true,
+      "left": false,
+      "editor": false,
+      "moderator": false,
+      "broadcast": false,
+      "verified": false,
+      "megagroup": true,
+      "restricted": true,
+      "accessHash": 0,
+      "title": "JPgtkMfTuBFI77KtjCKoOqeFs",
+      "username": "w3y4h8QdJgixgD",
+      "photo": {
+        "photoSmall": {
+          "dcId": 0,
+          "volumeId": 0,
+          "localId": 0,
+          "secret": 0
+        },
+        "photoBig": {
+          "dcId": 0,
+          "volumeId": 0,
+          "localId": 0,
+          "secret": 0
+        }
+      },
+      "date": 0,
+      "version": 0,
+      "restrictionReason": "XLtrEANAC7wNK44p7bw7N5yH",
       "id": 0
     }
   ],
   "users": [
+    {
+      "id": 0
+    },
+    {
+      "flags": 1005695,
+      "self": false,
+      "contact": true,
+      "mutualContact": true,
+      "deleted": false,
+      "bot": true,
+      "botChatHistory": false,
+      "botNochats": true,
+      "verified": true,
+      "restricted": true,
+      "accessHash": 0,
+      "firstName": "mBnav6C4c4oW8",
+      "lastName": "iFyT9e7bcbJi1NGRqLywkFbv6",
+      "username": "FwpE9h9R9xFNnZ",
+      "phone": "sjPGI8IYS8hdXnE",
+      "photo": {
+        "photoId": 0,
+        "photoSmall": {
+          "volumeId": 0,
+          "localId": 0,
+          "secret": 0
+        },
+        "photoBig": {
+          "volumeId": 0,
+          "localId": 0,
+          "secret": 0
+        }
+      },
+      "status": {},
+      "botInfoVersion": 0,
+      "restrictionReason": "6zvhFi",
+      "botInlinePlaceholder": "10cxldfR9",
+      "id": 0
+    },
     {
       "id": 0
     },

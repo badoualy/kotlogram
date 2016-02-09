@@ -1,9 +1,12 @@
 {
   "file": {
-    "md5Checksum": "gx6iO7lby",
     "id": 0,
     "parts": 0,
-    "name": "UVwfw70D0Ye3M7hGWd31ybvS"
+    "name": "GCYPTEL2zZobLNpjXz0KhRkHMF"
   },
-  "crop": {}
+  "crop": {
+    "cropLeft": 0.0,
+    "cropTop": 0.0,
+    "cropWidth": 0.0
+  }
 }

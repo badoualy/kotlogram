@@ -1,36 +1,57 @@
 {
   "peer": {
-    "channelId": 0
+    "chatId": 0
   },
   "chats": [
     {
+      "flags": 73,
+      "creator": true,
+      "kicked": false,
+      "left": false,
+      "adminsEnabled": true,
+      "admin": false,
+      "deactivated": false,
+      "title": "pD7dtaqQMrjhFzbRjRzrOY",
+      "photo": {},
+      "participantsCount": 0,
+      "date": 0,
+      "version": 0,
+      "migratedTo": {
+        "channelId": 0,
+        "accessHash": 0
+      },
       "id": 0
     },
     {
-      "id": 0
-    },
-    {
-      "id": 0
-    },
-    {
-      "id": 0
-    },
-    {
-      "id": 0
-    },
-    {
-      "id": 0
-    },
-    {
-      "id": 0
-    },
-    {
-      "id": 0
-    },
-    {
-      "id": 0
-    },
-    {
+      "flags": 764,
+      "creator": false,
+      "kicked": false,
+      "left": true,
+      "editor": true,
+      "moderator": true,
+      "broadcast": true,
+      "verified": true,
+      "megagroup": false,
+      "restricted": true,
+      "accessHash": 0,
+      "title": "gv2mSPQgK9XjnyJX",
+      "username": "m095NE01NkJrvhfxLbnxFu2sy",
+      "photo": {
+        "photoSmall": {
+          "volumeId": 0,
+          "localId": 0,
+          "secret": 0
+        },
+        "photoBig": {
+          "dcId": 0,
+          "volumeId": 0,
+          "localId": 0,
+          "secret": 0
+        }
+      },
+      "date": 0,
+      "version": 0,
+      "restrictionReason": "d2jmlUrqZ3I8BZix47mZMups",
       "id": 0
     },
     {
@@ -39,9 +60,51 @@
   ],
   "users": [
     {
+      "flags": 844927,
+      "self": true,
+      "contact": false,
+      "mutualContact": false,
+      "deleted": true,
+      "bot": true,
+      "botChatHistory": true,
+      "botNochats": false,
+      "verified": false,
+      "restricted": true,
+      "accessHash": 0,
+      "firstName": "mqrELT30bXH",
+      "lastName": "Ee4BqwJCl6",
+      "username": "PsG3K0BsCkFw6Kwu5sSCs7S1",
+      "phone": "oTZDeje",
+      "photo": {},
+      "status": {
+        "wasOnline": 0
+      },
+      "botInfoVersion": 0,
+      "restrictionReason": "0iqeoUWopNJDEtJGut36W5vK4",
+      "botInlinePlaceholder": "27qiLVI8g7OMHHctzvxVmU2mD5Rg",
       "id": 0
     },
     {
+      "flags": 879743,
+      "self": true,
+      "contact": true,
+      "mutualContact": false,
+      "deleted": true,
+      "bot": true,
+      "botChatHistory": false,
+      "botNochats": true,
+      "verified": false,
+      "restricted": true,
+      "accessHash": 0,
+      "firstName": "Q2I1tlltP271DcSY5K09pxP1R",
+      "lastName": "YqeHFYjFnn1AuoZ9ESxRk7So43BMu",
+      "username": "pgja6d0d4T2S6s4fdLVp",
+      "phone": "IvebZ0dCM",
+      "photo": {},
+      "status": {},
+      "botInfoVersion": 0,
+      "restrictionReason": "ZAtJmczvY1i8MrEIyf",
+      "botInlinePlaceholder": "KS7J9lLonihaUdGjfxyVG747U0R",
       "id": 0
     },
     {

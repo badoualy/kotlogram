@@ -1,40 +1,8 @@
 {
-  "flags": 0,
-  "importantOnly": false,
-  "excludeNewMessages": false,
+  "flags": 3,
+  "importantOnly": true,
+  "excludeNewMessages": true,
   "ranges": [
-    {
-      "minId": 0,
-      "maxId": 0
-    },
-    {
-      "minId": 0,
-      "maxId": 0
-    },
-    {
-      "minId": 0,
-      "maxId": 0
-    },
-    {
-      "minId": 0,
-      "maxId": 0
-    },
-    {
-      "minId": 0,
-      "maxId": 0
-    },
-    {
-      "minId": 0,
-      "maxId": 0
-    },
-    {
-      "minId": 0,
-      "maxId": 0
-    },
-    {
-      "minId": 0,
-      "maxId": 0
-    },
     {
       "minId": 0,
       "maxId": 0

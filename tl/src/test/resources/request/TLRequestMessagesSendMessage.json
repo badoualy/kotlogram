@@ -3,21 +3,46 @@
   "noWebpage": false,
   "broadcast": true,
   "peer": {
-    "chatId": 0
+    "channelId": 0,
+    "accessHash": 0
   },
   "replyToMsgId": 0,
-  "message": "Dc5Vr",
+  "message": "QNgdMobEmYO",
   "randomId": 0,
   "replyMarkup": {
-    "flags": 0,
-    "selective": false
+    "singleUse": true,
+    "flags": 6,
+    "selective": true
   },
   "entities": [
+    {
+      "language": "h9i4sX3TAUtfx9fVIe2sDb5Dw4",
+      "offset": 0,
+      "length": 0
+    },
+    {
+      "language": "LGxXXEHtpmFbzj7vPo3qW20",
+      "offset": 0,
+      "length": 0
+    },
     {
       "offset": 0,
       "length": 0
     },
     {
+      "offset": 0,
+      "length": 0
+    },
+    {
+      "offset": 0,
+      "length": 0
+    },
+    {
+      "offset": 0,
+      "length": 0
+    },
+    {
+      "url": "4ELpRPaZQcpLY8mQzrO",
       "offset": 0,
       "length": 0
     },

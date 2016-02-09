@@ -1,6 +1,6 @@
 {
-  "phoneRegistered": false,
-  "phoneCodeHash": "i61CwyoYwgHUYsQjxZ",
+  "phoneRegistered": true,
+  "phoneCodeHash": "tNuguxzodCu",
   "sendCallTimeout": 0,
-  "isPassword": true
+  "isPassword": false
 }

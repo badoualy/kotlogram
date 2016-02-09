@@ -17,7 +17,6 @@ import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
-import java.lang.reflect.WildcardType;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -155,7 +154,7 @@ public abstract class AbsTLApiTest {
             return (T) getRandomTLVector(String.class);
         if (is(type, TLVector.class)) {
             ParameterizedType genericType = (ParameterizedType) field.getGenericType();
-            Type vectorType = ((WildcardType) genericType.getActualTypeArguments()[0]).getUpperBounds()[0];
+            Type vectorType = genericType.getActualTypeArguments()[0];
             return (T) getRandomTLVector((Class<?>) vectorType);
         }
 

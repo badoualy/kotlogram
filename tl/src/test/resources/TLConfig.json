@@ -5,19 +5,11 @@
   "thisDc": 0,
   "dcOptions": [
     {
-      "flags": 3,
-      "ipv6": true,
-      "mediaOnly": true,
+      "flags": 0,
+      "ipv6": false,
+      "mediaOnly": false,
       "id": 0,
-      "ipAddress": "6mp199GfNmI",
-      "port": 0
-    },
-    {
-      "flags": 3,
-      "ipv6": true,
-      "mediaOnly": true,
-      "id": 0,
-      "ipAddress": "qCwdGPF5ScX",
+      "ipAddress": "i2NtgpB",
       "port": 0
     },
     {
@@ -25,7 +17,23 @@
       "ipv6": false,
       "mediaOnly": false,
       "id": 0,
-      "ipAddress": "LfmyaniLb",
+      "ipAddress": "OnhUGmGHpGptDKHQu2epL5",
+      "port": 0
+    },
+    {
+      "flags": 3,
+      "ipv6": true,
+      "mediaOnly": true,
+      "id": 0,
+      "ipAddress": "ZWmhw45JCYxyr88Vpxg1B9NKV",
+      "port": 0
+    },
+    {
+      "flags": 0,
+      "ipv6": false,
+      "mediaOnly": false,
+      "id": 0,
+      "ipAddress": "bXkdw9Njoiy0J",
       "port": 0
     }
   ],
@@ -44,36 +52,28 @@
   "savedGifsLimit": 0,
   "disabledFeatures": [
     {
-      "feature": "sc1MG4BKy",
-      "description": "3dMfMOY6EynMDRD41"
+      "feature": "5r2eZS0qEuoztifZjnkSU",
+      "description": "cuIeNQVrVoI6WhoTJhoaE5svU68"
     },
     {
-      "feature": "QNOOrd3H3E6lwYVXAczow",
-      "description": "8ZyYRts3th7h1lXBm4s7p8a0ScL"
+      "feature": "Ehf62CcarMog9QnZnwDhH5ZBLcf1",
+      "description": "xb5MOQ0rPpxqOij"
     },
     {
-      "feature": "gjfORdtzTMxMtO721JOKw7Uk",
-      "description": "33sF6vo19jLlbFi3ZsiO6XDJUyjb4"
+      "feature": "twS0tSSkop",
+      "description": "hlEF3L7dRVByLds"
     },
     {
-      "feature": "XD5OA",
-      "description": "D7gDw7PXR08PwH"
+      "feature": "BZxPdcLMAMQJ61a1Y5xj",
+      "description": "U8QEjxAVD7h"
     },
     {
-      "feature": "bSI1NQJFaJIScfeTXaLBMx",
-      "description": "aILK6Mh"
+      "feature": "3tvHqd9krmZmbtzCTcA9WVOv5LcPZ",
+      "description": "Pgrw6vB6SJkltDbCCXBJ7tPak3Hc2"
     },
     {
-      "feature": "4h3BSGeWZqAXNILgeomUSiZMs",
-      "description": "5wGQUatT"
-    },
-    {
-      "feature": "pwW54mbc",
-      "description": "21hH9"
-    },
-    {
-      "feature": "XaurUynSYQMuODL",
-      "description": "1XNKoM1oWdex4SRJPdehpAr"
+      "feature": "atXK8WvATpoBAW0sdJ9of",
+      "description": "BYuRJWOrXWSSFOMv1ShNQ"
     }
   ]
 }

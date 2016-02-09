@@ -1,11 +1,9 @@
 {
-  "bot": {
+  "bot": {},
+  "peer": {
     "userId": 0,
     "accessHash": 0
   },
-  "peer": {
-    "chatId": 0
-  },
   "randomId": 0,
-  "startParam": "oRTbTGoWfMEub3muh"
+  "startParam": "UDu7GqH6J7qWnLkq3"
 }

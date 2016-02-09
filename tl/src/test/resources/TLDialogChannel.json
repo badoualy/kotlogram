@@ -3,7 +3,7 @@
   "unreadImportantCount": 0,
   "pts": 0,
   "peer": {
-    "userId": 0
+    "channelId": 0
   },
   "topMessage": 0,
   "readInboxMaxId": 0,

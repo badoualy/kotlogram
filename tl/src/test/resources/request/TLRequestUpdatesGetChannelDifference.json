@@ -1,52 +1,6 @@
 {
   "channel": {},
-  "filter": {
-    "flags": 0,
-    "importantOnly": false,
-    "excludeNewMessages": false,
-    "ranges": [
-      {
-        "minId": 0,
-        "maxId": 0
-      },
-      {
-        "minId": 0,
-        "maxId": 0
-      },
-      {
-        "minId": 0,
-        "maxId": 0
-      },
-      {
-        "minId": 0,
-        "maxId": 0
-      },
-      {
-        "minId": 0,
-        "maxId": 0
-      },
-      {
-        "minId": 0,
-        "maxId": 0
-      },
-      {
-        "minId": 0,
-        "maxId": 0
-      },
-      {
-        "minId": 0,
-        "maxId": 0
-      },
-      {
-        "minId": 0,
-        "maxId": 0
-      },
-      {
-        "minId": 0,
-        "maxId": 0
-      }
-    ]
-  },
+  "filter": {},
   "pts": 0,
   "limit": 0
 }
