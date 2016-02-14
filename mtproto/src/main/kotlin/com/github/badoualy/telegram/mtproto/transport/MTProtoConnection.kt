@@ -22,7 +22,7 @@ interface MTProtoConnection {
     @Throws(IOException::class)
     fun close()
 
-    fun isOpened(): Boolean
+    fun isOpen(): Boolean
 
     /** New SelectionKey registered on Selector */
     fun register(selector: Selector): SelectionKey

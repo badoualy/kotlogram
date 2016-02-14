@@ -145,10 +145,10 @@ public class Sample1 {
             e.printStackTrace();
         }
 
-        TelegramClientPool.put(5, client, 20 * 1000);
+        TelegramClientPool.put(5, client, 5 * 1000);
         Thread.sleep(40 * 1000);
 //        client.close(); // Important, do not forget this, or your process won't finish
-        System.err.println("------------------------- GOOD BYE");
+        System.err.println("------------------------- Sayonara");
     }
 
     private static void downloadFiles(TelegramClient client, TLAbsDialogs dialogs) {

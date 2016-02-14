@@ -1,7 +1,6 @@
 package com.github.badoualy.telegram.api
 
 import com.github.badoualy.telegram.mtproto.exception.RpcErrorException
-import com.github.badoualy.telegram.mtproto.transport.MTProtoConnection
 import com.github.badoualy.telegram.tl.api.*
 import com.github.badoualy.telegram.tl.api.auth.TLAbsSentCode
 import com.github.badoualy.telegram.tl.api.upload.TLFile
@@ -14,23 +13,11 @@ interface TelegramClient : TelegramApi {
     /** Changes the request timeout with the supplied value (in ms) */
     fun setTimeout(timeout: Long)
 
-    /** Return the current connection to Telegram */
-    fun getConnection(): MTProtoConnection?
-
-    /** Indicates that the client is ready for reading OP */
-    fun notifyReady()
-
     /** Close connection to Telegram and stop everything */
     fun close()
 
     /** Close connection, and clean the threads if cleanUp is true */
     fun close(cleanUp: Boolean)
-
-    /** Start listening for messages from Telegram */
-    fun startListening()
-
-    /** Stop listening for messages from Telegram */
-    fun stopListening()
 
     @Throws(RpcErrorException::class, IOException::class)
     fun <T : TLObject> executeRpcQuery(method: TLMethod<T>): T

@@ -11,7 +11,7 @@ import java.nio.channels.SelectionKey
 import java.nio.channels.Selector
 import java.nio.channels.SocketChannel
 
-class MTProtoTcpConnection
+internal class MTProtoTcpConnection
 @Throws(IOException::class)
 @JvmOverloads constructor(override val ip: String, override val port: Int, abridgedProtocol: Boolean = true) : MTProtoConnection {
 
@@ -110,7 +110,7 @@ class MTProtoTcpConnection
         socketChannel.close()
     }
 
-    override fun isOpened() = socketChannel.isOpen && socketChannel.isConnected
+    override fun isOpen() = socketChannel.isOpen && socketChannel.isConnected
 
     private fun readBytes(length: Int, recycledBuffer: ByteBuffer? = null, order: ByteOrder = ByteOrder.BIG_ENDIAN): ByteBuffer {
         recycledBuffer?.clear()

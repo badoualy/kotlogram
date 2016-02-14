@@ -1,7 +1,7 @@
 package com.github.badoualy.telegram.mtproto.time
 
 
-object TimeOverlord {
+internal object TimeOverlord {
 
     var timeDelta: Long = 0
         private set

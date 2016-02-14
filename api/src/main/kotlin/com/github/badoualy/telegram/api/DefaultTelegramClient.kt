@@ -26,11 +26,11 @@ internal class DefaultTelegramClient internal constructor(val application: Teleg
 
     private val TAG = "TelegramClient"
 
-    var mtProtoHandler: MTProtoHandler? = null
-    var authKey: AuthKey? = null
-    var dataCenter: DataCenter? = null
+    private var mtProtoHandler: MTProtoHandler? = null
+    private var authKey: AuthKey? = null
+    private var dataCenter: DataCenter? = null
 
-    var timeoutDuration: Long = 5000L
+    private var timeoutDuration: Long = 5000L
 
     private var generateAuthKey: Boolean
 
@@ -112,10 +112,6 @@ internal class DefaultTelegramClient internal constructor(val application: Teleg
         this.timeoutDuration = timeout
     }
 
-    override fun getConnection() = mtProtoHandler!!.connection
-
-    override fun notifyReady() = mtProtoHandler!!.readMessage()
-
     override fun close() = close(true)
 
     override fun close(cleanUp: Boolean) {
@@ -124,10 +120,6 @@ internal class DefaultTelegramClient internal constructor(val application: Teleg
         if (cleanUp)
             Kotlogram.cleanUp()
     }
-
-    override fun startListening() = mtProtoHandler?.startWatchdog() ?: Unit
-
-    override fun stopListening() = mtProtoHandler?.stopWatchdog() ?: Unit
 
     override fun <T : TLObject> executeRpcQuery(method: TLMethod<T>) = executeRpcQuery(method, mtProtoHandler!!)
 

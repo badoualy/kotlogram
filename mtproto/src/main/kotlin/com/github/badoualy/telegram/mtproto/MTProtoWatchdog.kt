@@ -5,61 +5,121 @@ import com.github.badoualy.telegram.mtproto.util.Log
 import rx.Observable
 import rx.Subscriber
 import java.io.IOException
+import java.nio.channels.SelectionKey
 import java.nio.channels.Selector
+import java.util.*
+import java.util.concurrent.Executors
 
 /**
  * Permanently listen for messages on given MTProtoConnection and wrap everything in an Observable, each message will be send
  * to the subscriber
  */
-class MTProtoWatchdog(private val connection: MTProtoConnection) {
+internal object MTProtoWatchdog : Runnable {
 
     private val TAG = "MTProtoWatchdog"
-    private var subscriber: Subscriber<in ByteArray>? = null
-    private var closed = false
 
-    fun start() = Observable.create<ByteArray> observable@ { s ->
-        Log.d(TAG, "Starting watchdog...")
-        subscriber = s
-        val selector = Selector.open()
-        connection.register(selector)
+    private val SELECT_TIMEOUT_DELAY = 10 * 1000L // 10 seconds
 
-        while (!s.isUnsubscribed && selector.isOpen) {
-            if (selector.select() == 0) continue // Wait until ready to read
-            if (closed) continue
+    private val selector = Selector.open()
+    private val keyMap = HashMap<SelectionKey, MTProtoConnection>()
 
-            try {
-                val message = connection.readMessage()
-                Log.d(TAG, "New message of length: " + message.size)
+    private val connectionList = ArrayList<MTProtoConnection>()
+    private val subscriberMap = HashMap<MTProtoConnection, Subscriber<in ByteArray>>()
 
-                if (s.isUnsubscribed) {
-                    Log.e(TAG, "Subscribed already unsubscribed, dropping message and stopping watchdog")
-                    continue
+    private val executor = Executors.newSingleThreadExecutor()
+    private val pool = Executors.newCachedThreadPool() // TODO fixed pool?
+
+    private var dirty = false
+    private var running = false
+
+    override fun run() {
+        while (true) {
+            if (dirty) {
+                synchronized(this) {
+                    connectionList
+                            .filterNot { keyMap.containsValue(it) }
+                            .forEach { keyMap.put(it.register(selector), it) }
                 }
-                s.onNext(message)
-            } catch (e: IOException) {
-                // Silent fail if no subscriber
-                if (!closed && !s.isUnsubscribed)
-                    s.onError(e)
-                continue
             }
 
-            selector.selectedKeys().clear()
-        }
+            if (selector.select(SELECT_TIMEOUT_DELAY) > 0) {
+                synchronized(this) {
+                    selector.selectedKeys().forEach { key ->
+                        key.interestOps(0)
+                        val connection = keyMap[key]
+                        if (connection != null) {
+                            pool.execute {
+                                if (!connection.isOpen())
+                                    return@execute
+                                readMessage(connection)
 
-        if (!s.isUnsubscribed) {
-            s.onCompleted()
-            s.unsubscribe()
+                                // Done reading
+                                key.interestOps(SelectionKey.OP_READ)
+                                selector.wakeup()
+                            }
+                        }
+                    }
+                }
+                selector.selectedKeys().clear()
+            }
+
+            // Avoid synchronizing each loop
+            if (connectionList.isEmpty()) {
+                synchronized(this) {
+                    if (connectionList.isEmpty()) {
+                        running = false
+                        Log.d(TAG, "Stopping watchdog...")
+                        return
+                    }
+                }
+            }
         }
-        if (selector.isOpen) selector.close()
-        Log.d(TAG, "Watchdog really stopped")
     }
 
-    fun stop() {
-        Log.d(TAG, "Stopping watchdog...")
-        closed = true
-        subscriber?.onCompleted()
-        subscriber?.unsubscribe()
-        subscriber = null
-        connection.unregister()
+    private fun readMessage(connection: MTProtoConnection) {
+        val subscriber = subscriberMap[connection]
+        if (subscriber == null || subscriber.isUnsubscribed || !connectionList.contains(connection)) {
+            Log.e(TAG, "Subscribed already unsubscribed, cancelling")
+            stop(connection)
+            return
+        }
+
+        try {
+            val message = connection.readMessage()
+            Log.d(TAG, "New message of length: " + message.size)
+            subscriber.onNext(message)
+        } catch (e: IOException) {
+            // Silent fail if no subscriber
+            if (!subscriber.isUnsubscribed)
+                subscriber.onError(e)
+        }
+    }
+
+    fun start(connection: MTProtoConnection) = Observable.create<ByteArray> { s ->
+        connectionList.add(connection)
+        subscriberMap.put(connection, s)
+
+        synchronized(this) {
+            dirty = true
+            if (!running) {
+                running = true
+                executor.execute(this)
+            }
+        }
+    }
+
+    fun stop(connection: MTProtoConnection) {
+        synchronized(this) {
+            connectionList.remove(connection)
+            subscriberMap.remove(connection)?.onCompleted()
+            val key = keyMap.filter { it.value == connection }.keys.firstOrNull()
+            if (key != null) keyMap.remove(key)
+            connection.unregister()
+        }
+    }
+
+    fun cleanUp() {
+        executor.shutdownNow()
+        pool.shutdownNow()
     }
 }
