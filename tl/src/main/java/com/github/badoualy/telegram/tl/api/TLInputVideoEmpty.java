@@ -7,12 +7,14 @@ package com.github.badoualy.telegram.tl.api;
 public class TLInputVideoEmpty extends TLAbsInputVideo {
     public static final int CONSTRUCTOR_ID = 0x5508ec75;
 
+    private final String _constructor = "inputVideoEmpty#5508ec75";
+
     public TLInputVideoEmpty() {
     }
 
     @Override
     public String toString() {
-        return "inputVideoEmpty#5508ec75";
+        return _constructor;
     }
 
     @Override

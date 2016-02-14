@@ -7,12 +7,14 @@ package com.github.badoualy.telegram.tl.api;
 public class TLInputPeerEmpty extends TLAbsInputPeer {
     public static final int CONSTRUCTOR_ID = 0x7f3b18ea;
 
+    private final String _constructor = "inputPeerEmpty#7f3b18ea";
+
     public TLInputPeerEmpty() {
     }
 
     @Override
     public String toString() {
-        return "inputPeerEmpty#7f3b18ea";
+        return _constructor;
     }
 
     @Override

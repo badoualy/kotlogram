@@ -7,12 +7,14 @@ package com.github.badoualy.telegram.tl.api;
 public class TLEncryptedFileEmpty extends TLAbsEncryptedFile {
     public static final int CONSTRUCTOR_ID = 0xc21f497e;
 
+    private final String _constructor = "encryptedFileEmpty#c21f497e";
+
     public TLEncryptedFileEmpty() {
     }
 
     @Override
     public String toString() {
-        return "encryptedFileEmpty#c21f497e";
+        return _constructor;
     }
 
     @Override

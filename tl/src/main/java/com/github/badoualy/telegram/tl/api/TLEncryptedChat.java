@@ -37,6 +37,8 @@ public class TLEncryptedChat extends TLAbsEncryptedChat {
 
     protected long keyFingerprint;
 
+    private final String _constructor = "encryptedChat#fa56ce36";
+
     public TLEncryptedChat() {
     }
 
@@ -88,7 +90,7 @@ public class TLEncryptedChat extends TLAbsEncryptedChat {
 
     @Override
     public String toString() {
-        return "encryptedChat#fa56ce36";
+        return _constructor;
     }
 
     @Override

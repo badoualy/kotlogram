@@ -7,12 +7,14 @@ package com.github.badoualy.telegram.tl.api;
 public class TLInputMessagesFilterGif extends TLAbsMessagesFilter {
     public static final int CONSTRUCTOR_ID = 0xffc86587;
 
+    private final String _constructor = "inputMessagesFilterGif#ffc86587";
+
     public TLInputMessagesFilterGif() {
     }
 
     @Override
     public String toString() {
-        return "inputMessagesFilterGif#ffc86587";
+        return _constructor;
     }
 
     @Override

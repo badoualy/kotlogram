@@ -22,6 +22,8 @@ public class TLAuthorizations extends TLObject {
 
     protected TLVector<TLAuthorization> authorizations;
 
+    private final String _constructor = "account.authorizations#1250abde";
+
     public TLAuthorizations() {
     }
 
@@ -49,7 +51,7 @@ public class TLAuthorizations extends TLObject {
 
     @Override
     public String toString() {
-        return "account.authorizations#1250abde";
+        return _constructor;
     }
 
     @Override

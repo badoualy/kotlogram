@@ -22,6 +22,8 @@ public class TLBotInlineMediaResultPhoto extends TLAbsBotInlineResult {
 
     protected TLAbsPhoto photo;
 
+    private final String _constructor = "botInlineMediaResultPhoto#c5528587";
+
     public TLBotInlineMediaResultPhoto() {
     }
 
@@ -61,7 +63,7 @@ public class TLBotInlineMediaResultPhoto extends TLAbsBotInlineResult {
 
     @Override
     public String toString() {
-        return "botInlineMediaResultPhoto#c5528587";
+        return _constructor;
     }
 
     @Override

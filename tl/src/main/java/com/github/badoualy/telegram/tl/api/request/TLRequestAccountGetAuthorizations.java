@@ -17,6 +17,8 @@ import static com.github.badoualy.telegram.tl.StreamUtils.readTLObject;
 public class TLRequestAccountGetAuthorizations extends TLMethod<TLAuthorizations> {
     public static final int CONSTRUCTOR_ID = 0xe320c158;
 
+    private final String _constructor = "account.getAuthorizations#e320c158";
+
     public TLRequestAccountGetAuthorizations() {
     }
 
@@ -35,7 +37,7 @@ public class TLRequestAccountGetAuthorizations extends TLMethod<TLAuthorizations
 
     @Override
     public String toString() {
-        return "account.getAuthorizations#e320c158";
+        return _constructor;
     }
 
     @Override

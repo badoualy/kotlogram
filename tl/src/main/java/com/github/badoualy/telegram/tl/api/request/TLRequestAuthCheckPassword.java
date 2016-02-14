@@ -25,6 +25,8 @@ public class TLRequestAuthCheckPassword extends TLMethod<TLAuthorization> {
 
     protected TLBytes passwordHash;
 
+    private final String _constructor = "auth.checkPassword#a63011e";
+
     public TLRequestAuthCheckPassword() {
     }
 
@@ -65,7 +67,7 @@ public class TLRequestAuthCheckPassword extends TLMethod<TLAuthorization> {
 
     @Override
     public String toString() {
-        return "auth.checkPassword#a63011e";
+        return _constructor;
     }
 
     @Override

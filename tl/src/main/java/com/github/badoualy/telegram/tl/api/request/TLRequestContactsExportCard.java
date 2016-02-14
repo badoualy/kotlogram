@@ -17,6 +17,8 @@ import static com.github.badoualy.telegram.tl.StreamUtils.readTLObject;
 public class TLRequestContactsExportCard extends TLMethod<TLIntVector> {
     public static final int CONSTRUCTOR_ID = 0x84e53737;
 
+    private final String _constructor = "contacts.exportCard#84e53737";
+
     public TLRequestContactsExportCard() {
     }
 
@@ -35,7 +37,7 @@ public class TLRequestContactsExportCard extends TLMethod<TLIntVector> {
 
     @Override
     public String toString() {
-        return "contacts.exportCard#84e53737";
+        return _constructor;
     }
 
     @Override

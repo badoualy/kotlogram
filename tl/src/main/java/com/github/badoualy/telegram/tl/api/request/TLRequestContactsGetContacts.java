@@ -24,6 +24,8 @@ public class TLRequestContactsGetContacts extends TLMethod<TLAbsContacts> {
 
     protected String hash;
 
+    private final String _constructor = "contacts.getContacts#22c6aa08";
+
     public TLRequestContactsGetContacts() {
     }
 
@@ -64,7 +66,7 @@ public class TLRequestContactsGetContacts extends TLMethod<TLAbsContacts> {
 
     @Override
     public String toString() {
-        return "contacts.getContacts#22c6aa08";
+        return _constructor;
     }
 
     @Override

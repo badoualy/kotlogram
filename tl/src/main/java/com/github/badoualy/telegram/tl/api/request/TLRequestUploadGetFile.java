@@ -30,6 +30,8 @@ public class TLRequestUploadGetFile extends TLMethod<TLFile> {
 
     protected int limit;
 
+    private final String _constructor = "upload.getFile#e3a6cfb5";
+
     public TLRequestUploadGetFile() {
     }
 
@@ -78,7 +80,7 @@ public class TLRequestUploadGetFile extends TLMethod<TLFile> {
 
     @Override
     public String toString() {
-        return "upload.getFile#e3a6cfb5";
+        return _constructor;
     }
 
     @Override

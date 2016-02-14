@@ -29,6 +29,8 @@ public class TLUpdateDeleteChannelMessages extends TLAbsUpdate {
 
     protected int ptsCount;
 
+    private final String _constructor = "updateDeleteChannelMessages#c37521c9";
+
     public TLUpdateDeleteChannelMessages() {
     }
 
@@ -68,7 +70,7 @@ public class TLUpdateDeleteChannelMessages extends TLAbsUpdate {
 
     @Override
     public String toString() {
-        return "updateDeleteChannelMessages#c37521c9";
+        return _constructor;
     }
 
     @Override

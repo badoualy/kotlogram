@@ -30,6 +30,8 @@ public class TLInputPhoneContact extends TLObject {
 
     protected String lastName;
 
+    private final String _constructor = "inputPhoneContact#f392b7f4";
+
     public TLInputPhoneContact() {
     }
 
@@ -69,7 +71,7 @@ public class TLInputPhoneContact extends TLObject {
 
     @Override
     public String toString() {
-        return "inputPhoneContact#f392b7f4";
+        return _constructor;
     }
 
     @Override

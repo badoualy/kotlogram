@@ -20,6 +20,8 @@ public class TLSendMessageUploadAudioAction extends TLAbsSendMessageAction {
 
     protected int progress;
 
+    private final String _constructor = "sendMessageUploadAudioAction#f351d7ab";
+
     public TLSendMessageUploadAudioAction() {
     }
 
@@ -47,7 +49,7 @@ public class TLSendMessageUploadAudioAction extends TLAbsSendMessageAction {
 
     @Override
     public String toString() {
-        return "sendMessageUploadAudioAction#f351d7ab";
+        return _constructor;
     }
 
     @Override

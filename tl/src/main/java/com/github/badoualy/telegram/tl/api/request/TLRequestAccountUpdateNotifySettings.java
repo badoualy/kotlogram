@@ -26,6 +26,8 @@ public class TLRequestAccountUpdateNotifySettings extends TLMethod<TLBool> {
 
     protected TLInputPeerNotifySettings settings;
 
+    private final String _constructor = "account.updateNotifySettings#84be5b93";
+
     public TLRequestAccountUpdateNotifySettings() {
     }
 
@@ -70,7 +72,7 @@ public class TLRequestAccountUpdateNotifySettings extends TLMethod<TLBool> {
 
     @Override
     public String toString() {
-        return "account.updateNotifySettings#84be5b93";
+        return _constructor;
     }
 
     @Override

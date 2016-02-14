@@ -17,6 +17,8 @@ import static com.github.badoualy.telegram.tl.StreamUtils.readTLObject;
 public class TLRequestAuthResetAuthorizations extends TLMethod<TLBool> {
     public static final int CONSTRUCTOR_ID = 0x9fab0d1a;
 
+    private final String _constructor = "auth.resetAuthorizations#9fab0d1a";
+
     public TLRequestAuthResetAuthorizations() {
     }
 
@@ -35,7 +37,7 @@ public class TLRequestAuthResetAuthorizations extends TLMethod<TLBool> {
 
     @Override
     public String toString() {
-        return "auth.resetAuthorizations#9fab0d1a";
+        return _constructor;
     }
 
     @Override

@@ -35,6 +35,8 @@ public class TLRequestMessagesGetDocumentByHash extends TLMethod<TLAbsDocument> 
 
     protected String mimeType;
 
+    private final String _constructor = "messages.getDocumentByHash#338e2464";
+
     public TLRequestMessagesGetDocumentByHash() {
     }
 
@@ -83,7 +85,7 @@ public class TLRequestMessagesGetDocumentByHash extends TLMethod<TLAbsDocument> 
 
     @Override
     public String toString() {
-        return "messages.getDocumentByHash#338e2464";
+        return _constructor;
     }
 
     @Override

@@ -23,6 +23,8 @@ public class TLReceivedNotifyMessage extends TLObject {
 
     protected int flags;
 
+    private final String _constructor = "receivedNotifyMessage#a384b779";
+
     public TLReceivedNotifyMessage() {
     }
 
@@ -54,7 +56,7 @@ public class TLReceivedNotifyMessage extends TLObject {
 
     @Override
     public String toString() {
-        return "receivedNotifyMessage#a384b779";
+        return _constructor;
     }
 
     @Override

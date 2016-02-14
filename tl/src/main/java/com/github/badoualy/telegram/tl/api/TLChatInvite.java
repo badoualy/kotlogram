@@ -33,6 +33,8 @@ public class TLChatInvite extends TLAbsChatInvite {
 
     protected String title;
 
+    private final String _constructor = "chatInvite#93e99b60";
+
     public TLChatInvite() {
     }
 
@@ -83,7 +85,7 @@ public class TLChatInvite extends TLAbsChatInvite {
 
     @Override
     public String toString() {
-        return "chatInvite#93e99b60";
+        return _constructor;
     }
 
     @Override

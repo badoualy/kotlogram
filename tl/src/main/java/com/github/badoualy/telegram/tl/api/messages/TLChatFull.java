@@ -30,6 +30,8 @@ public class TLChatFull extends TLObject {
 
     protected TLVector<TLAbsUser> users;
 
+    private final String _constructor = "messages.chatFull#e5d7d19c";
+
     public TLChatFull() {
     }
 
@@ -65,7 +67,7 @@ public class TLChatFull extends TLObject {
 
     @Override
     public String toString() {
-        return "messages.chatFull#e5d7d19c";
+        return _constructor;
     }
 
     @Override

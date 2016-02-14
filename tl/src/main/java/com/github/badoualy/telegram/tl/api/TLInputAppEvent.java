@@ -33,6 +33,8 @@ public class TLInputAppEvent extends TLObject {
 
     protected String data;
 
+    private final String _constructor = "inputAppEvent#770656a8";
+
     public TLInputAppEvent() {
     }
 
@@ -72,7 +74,7 @@ public class TLInputAppEvent extends TLObject {
 
     @Override
     public String toString() {
-        return "inputAppEvent#770656a8";
+        return _constructor;
     }
 
     @Override

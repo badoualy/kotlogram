@@ -27,6 +27,8 @@ public class TLChannelParticipant extends TLObject {
 
     protected TLVector<TLAbsUser> users;
 
+    private final String _constructor = "channels.channelParticipant#d0d9b163";
+
     public TLChannelParticipant() {
     }
 
@@ -58,7 +60,7 @@ public class TLChannelParticipant extends TLObject {
 
     @Override
     public String toString() {
-        return "channels.channelParticipant#d0d9b163";
+        return _constructor;
     }
 
     @Override

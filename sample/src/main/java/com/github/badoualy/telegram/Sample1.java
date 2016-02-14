@@ -4,23 +4,24 @@ import com.github.badoualy.telegram.api.Kotlogram;
 import com.github.badoualy.telegram.api.TelegramApiStorage;
 import com.github.badoualy.telegram.api.TelegramApp;
 import com.github.badoualy.telegram.api.TelegramClient;
+import com.github.badoualy.telegram.api.TelegramClientPool;
+import com.github.badoualy.telegram.api.UpdateCallback;
 import com.github.badoualy.telegram.mtproto.DataCenter;
 import com.github.badoualy.telegram.mtproto.auth.AuthKey;
-import com.github.badoualy.telegram.tl.api.TLAbsInputPeer;
-import com.github.badoualy.telegram.tl.api.TLAbsInputUser;
-import com.github.badoualy.telegram.tl.api.TLAbsUser;
+import com.github.badoualy.telegram.tl.api.TLAbsUpdates;
 import com.github.badoualy.telegram.tl.api.TLDocument;
 import com.github.badoualy.telegram.tl.api.TLInputDocumentFileLocation;
 import com.github.badoualy.telegram.tl.api.TLInputPeerEmpty;
-import com.github.badoualy.telegram.tl.api.TLInputPeerUser;
-import com.github.badoualy.telegram.tl.api.TLInputUser;
 import com.github.badoualy.telegram.tl.api.TLMessage;
 import com.github.badoualy.telegram.tl.api.TLMessageMediaDocument;
-import com.github.badoualy.telegram.tl.api.TLUser;
+import com.github.badoualy.telegram.tl.api.TLUpdateNewChannelMessage;
+import com.github.badoualy.telegram.tl.api.TLUpdateNewEncryptedMessage;
+import com.github.badoualy.telegram.tl.api.TLUpdateNewMessage;
+import com.github.badoualy.telegram.tl.api.TLUpdateShortChatMessage;
+import com.github.badoualy.telegram.tl.api.TLUpdateShortMessage;
+import com.github.badoualy.telegram.tl.api.TLUpdateShortSentMessage;
 import com.github.badoualy.telegram.tl.api.messages.TLAbsDialogs;
-import com.github.badoualy.telegram.tl.api.messages.TLAbsMessages;
 import com.github.badoualy.telegram.tl.api.upload.TLFile;
-import com.github.badoualy.telegram.tl.core.TLVector;
 
 import org.apache.commons.io.FileUtils;
 import org.jetbrains.annotations.NotNull;
@@ -43,12 +44,46 @@ import static com.github.badoualy.telegram.C.SYSTEM_VERSION;
 public class Sample1 {
 
     public static void main(String[] args) throws InterruptedException {
-        //Kotlogram.setDebugLogEnabled(true);
+        Kotlogram.setDebugLogEnabled(true);
         TelegramApp app = new TelegramApp(API_ID, API_HASH, MODEL, SYSTEM_VERSION, APP_VERSION, LANG_CODE);
 
         // This is a synchronous client, that will block until the response arrive (or until timeout)
         // A client which return an Observable<T> where T is the response type will be available soon
-        TelegramClient client = Kotlogram.getDefaultClient(app, new ApiStorage());
+        TelegramClient client = Kotlogram.getDefaultClient(app, new ApiStorage(), Kotlogram.PROD_DC4, new UpdateCallback() {
+            @Override
+            public void onShortMessage(@NotNull TLUpdateShortMessage message) {
+                System.out.println(message.getMessage());
+            }
+
+            @Override
+            public void onShortChatMessage(@NotNull TLUpdateShortChatMessage message) {
+                System.out.println(message.getMessage());
+            }
+
+            @Override
+            public void onShortSentMessage(@NotNull TLUpdateShortSentMessage message) {
+            }
+
+            @Override
+            public void onUpdateTooLong() {
+
+            }
+
+            @Override
+            public void onNewMessage(@NotNull TLUpdateNewMessage message, @NotNull TLAbsUpdates container) {
+                System.out.println(message.getMessage());
+            }
+
+            @Override
+            public void onNewEncryptedMessage(@NotNull TLUpdateNewEncryptedMessage message, @NotNull TLAbsUpdates container) {
+                System.out.println(message.getMessage());
+            }
+
+            @Override
+            public void onNewChannelMessage(@NotNull TLUpdateNewChannelMessage message, @NotNull TLAbsUpdates container) {
+                System.out.println(message.getMessage());
+            }
+        });
 
         // You can start making requests
         try {
@@ -72,17 +107,15 @@ public class Sample1 {
             client.messagesGetDialogs(0, 0, new TLInputPeerEmpty(), 0);
             client.messagesGetDialogs(0, 0, new TLInputPeerEmpty(), 0);
 
-            TLUser user = (TLUser) dialogs.getUsers().get(0);
-            TLAbsInputPeer inputUser = new TLInputPeerUser(user.getId(), user.getAccessHash());
-            TLAbsMessages history = client.messagesGetHistory(inputUser, 0, 0, 100, 0, 0);
-
-            TLVector<TLAbsInputUser> input = new TLVector<>();
-            input.add(new TLInputUser(user.getId(), user.getAccessHash()));
-            TLVector<TLAbsUser> users = client.usersGetUsers(input);
-
-            history.getMessages().stream()
-                   .filter(m -> m instanceof TLMessage)
-                   .forEach(m -> System.out.println(((TLMessage) m).getMessage()));
+//            TLUser user = (TLUser) dialogs.getUsers().get(1);
+//            TLInputPeerUser inputUser = new TLInputPeerUser(user.getId(), user.getAccessHash());
+//
+//            Random random = new Random(System.currentTimeMillis());
+//            for (int i = 0; i < 100; i++) {
+//                client.messagesSendMessage(true, false, inputUser, null, "" + i, random.nextInt(), null, null);
+//                System.out.println("Sent 1");
+//                Thread.sleep(500);
+//            }
 
             //TLAbsDialogs dialogs = client.messagesGetDialogs(0, 0, new TLInputPeerEmpty(), 0);
             // Do something with recent chats :)
@@ -112,8 +145,9 @@ public class Sample1 {
             e.printStackTrace();
         }
 
-//        TelegramClientPool.put(5, client, 5 * 1000);
-        client.close(); // Important, do not forget this, or your process won't finish
+        TelegramClientPool.put(5, client, 20 * 1000);
+        Thread.sleep(40 * 1000);
+//        client.close(); // Important, do not forget this, or your process won't finish
         System.err.println("------------------------- GOOD BYE");
     }
 

@@ -20,6 +20,8 @@ public class TLUpdateStickerSetsOrder extends TLAbsUpdate {
 
     protected TLLongVector order;
 
+    private final String _constructor = "updateStickerSetsOrder#f0dfb451";
+
     public TLUpdateStickerSetsOrder() {
     }
 
@@ -47,7 +49,7 @@ public class TLUpdateStickerSetsOrder extends TLAbsUpdate {
 
     @Override
     public String toString() {
-        return "updateStickerSetsOrder#f0dfb451";
+        return _constructor;
     }
 
     @Override

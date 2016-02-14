@@ -24,6 +24,8 @@ public class TLRequestMessagesExportChatInvite extends TLMethod<TLAbsExportedCha
 
     protected int chatId;
 
+    private final String _constructor = "messages.exportChatInvite#7d885289";
+
     public TLRequestMessagesExportChatInvite() {
     }
 
@@ -64,7 +66,7 @@ public class TLRequestMessagesExportChatInvite extends TLMethod<TLAbsExportedCha
 
     @Override
     public String toString() {
-        return "messages.exportChatInvite#7d885289";
+        return _constructor;
     }
 
     @Override

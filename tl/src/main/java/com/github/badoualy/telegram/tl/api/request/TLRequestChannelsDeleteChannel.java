@@ -23,6 +23,8 @@ public class TLRequestChannelsDeleteChannel extends TLMethod<TLAbsUpdates> {
 
     protected TLAbsInputChannel channel;
 
+    private final String _constructor = "channels.deleteChannel#c0111fe3";
+
     public TLRequestChannelsDeleteChannel() {
     }
 
@@ -63,7 +65,7 @@ public class TLRequestChannelsDeleteChannel extends TLMethod<TLAbsUpdates> {
 
     @Override
     public String toString() {
-        return "channels.deleteChannel#c0111fe3";
+        return _constructor;
     }
 
     @Override

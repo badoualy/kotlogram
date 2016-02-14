@@ -25,6 +25,8 @@ public class TLRequestContactsDeleteContacts extends TLMethod<TLBool> {
 
     protected TLVector<TLAbsInputUser> id;
 
+    private final String _constructor = "contacts.deleteContacts#59ab389e";
+
     public TLRequestContactsDeleteContacts() {
     }
 
@@ -65,7 +67,7 @@ public class TLRequestContactsDeleteContacts extends TLMethod<TLBool> {
 
     @Override
     public String toString() {
-        return "contacts.deleteContacts#59ab389e";
+        return _constructor;
     }
 
     @Override

@@ -20,6 +20,8 @@ public class TLUserStatusOffline extends TLAbsUserStatus {
 
     protected int wasOnline;
 
+    private final String _constructor = "userStatusOffline#8c703f";
+
     public TLUserStatusOffline() {
     }
 
@@ -47,7 +49,7 @@ public class TLUserStatusOffline extends TLAbsUserStatus {
 
     @Override
     public String toString() {
-        return "userStatusOffline#8c703f";
+        return _constructor;
     }
 
     @Override

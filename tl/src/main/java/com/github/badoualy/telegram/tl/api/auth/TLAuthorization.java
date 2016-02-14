@@ -21,6 +21,8 @@ public class TLAuthorization extends TLObject {
 
     protected TLAbsUser user;
 
+    private final String _constructor = "auth.authorization#ff036af1";
+
     public TLAuthorization() {
     }
 
@@ -48,7 +50,7 @@ public class TLAuthorization extends TLObject {
 
     @Override
     public String toString() {
-        return "auth.authorization#ff036af1";
+        return _constructor;
     }
 
     @Override

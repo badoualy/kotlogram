@@ -24,6 +24,8 @@ public class TLRequestAccountDeleteAccount extends TLMethod<TLBool> {
 
     protected String reason;
 
+    private final String _constructor = "account.deleteAccount#418d4e0b";
+
     public TLRequestAccountDeleteAccount() {
     }
 
@@ -64,7 +66,7 @@ public class TLRequestAccountDeleteAccount extends TLMethod<TLBool> {
 
     @Override
     public String toString() {
-        return "account.deleteAccount#418d4e0b";
+        return _constructor;
     }
 
     @Override

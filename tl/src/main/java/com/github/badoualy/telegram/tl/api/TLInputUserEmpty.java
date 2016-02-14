@@ -7,12 +7,14 @@ package com.github.badoualy.telegram.tl.api;
 public class TLInputUserEmpty extends TLAbsInputUser {
     public static final int CONSTRUCTOR_ID = 0xb98886cf;
 
+    private final String _constructor = "inputUserEmpty#b98886cf";
+
     public TLInputUserEmpty() {
     }
 
     @Override
     public String toString() {
-        return "inputUserEmpty#b98886cf";
+        return _constructor;
     }
 
     @Override

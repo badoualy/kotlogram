@@ -31,6 +31,8 @@ public class TLPassword extends TLAbsPassword {
 
     protected boolean hasRecovery;
 
+    private final String _constructor = "account.password#7c18141c";
+
     public TLPassword() {
     }
 
@@ -74,7 +76,7 @@ public class TLPassword extends TLAbsPassword {
 
     @Override
     public String toString() {
-        return "account.password#7c18141c";
+        return _constructor;
     }
 
     @Override

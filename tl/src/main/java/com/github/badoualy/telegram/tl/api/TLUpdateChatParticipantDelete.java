@@ -24,6 +24,8 @@ public class TLUpdateChatParticipantDelete extends TLAbsUpdate {
 
     protected int version;
 
+    private final String _constructor = "updateChatParticipantDelete#6e5f8c22";
+
     public TLUpdateChatParticipantDelete() {
     }
 
@@ -59,7 +61,7 @@ public class TLUpdateChatParticipantDelete extends TLAbsUpdate {
 
     @Override
     public String toString() {
-        return "updateChatParticipantDelete#6e5f8c22";
+        return _constructor;
     }
 
     @Override

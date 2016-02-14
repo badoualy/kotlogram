@@ -2,9 +2,6 @@ package com.github.badoualy.telegram.mtproto.secure.aes;
 
 import java.io.IOException;
 
-/**
- * Created by ex3ndr on 12.02.14.
- */
 public interface AESImplementation {
     void AES256IGEDecrypt(byte[] src, byte[] dest, int len, byte[] iv, byte[] key);
 

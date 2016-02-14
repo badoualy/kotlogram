@@ -20,6 +20,8 @@ public class TLMessageActionChatEditTitle extends TLAbsMessageAction {
 
     protected String title;
 
+    private final String _constructor = "messageActionChatEditTitle#b5a1ce5a";
+
     public TLMessageActionChatEditTitle() {
     }
 
@@ -47,7 +49,7 @@ public class TLMessageActionChatEditTitle extends TLAbsMessageAction {
 
     @Override
     public String toString() {
-        return "messageActionChatEditTitle#b5a1ce5a";
+        return _constructor;
     }
 
     @Override

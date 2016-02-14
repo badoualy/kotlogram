@@ -25,6 +25,8 @@ public class TLChatFull extends TLAbsChatFull {
 
     protected TLAbsChatParticipants participants;
 
+    private final String _constructor = "chatFull#2e02a614";
+
     public TLChatFull() {
     }
 
@@ -72,7 +74,7 @@ public class TLChatFull extends TLAbsChatFull {
 
     @Override
     public String toString() {
-        return "chatFull#2e02a614";
+        return _constructor;
     }
 
     @Override

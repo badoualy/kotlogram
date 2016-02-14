@@ -25,6 +25,8 @@ public class TLInputUser extends TLAbsInputUser {
 
     protected long accessHash;
 
+    private final String _constructor = "inputUser#d8292816";
+
     public TLInputUser() {
     }
 
@@ -56,7 +58,7 @@ public class TLInputUser extends TLAbsInputUser {
 
     @Override
     public String toString() {
-        return "inputUser#d8292816";
+        return _constructor;
     }
 
     @Override

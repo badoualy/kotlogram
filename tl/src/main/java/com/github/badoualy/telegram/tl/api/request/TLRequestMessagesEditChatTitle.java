@@ -29,6 +29,8 @@ public class TLRequestMessagesEditChatTitle extends TLMethod<TLAbsUpdates> {
 
     protected String title;
 
+    private final String _constructor = "messages.editChatTitle#dc452855";
+
     public TLRequestMessagesEditChatTitle() {
     }
 
@@ -73,7 +75,7 @@ public class TLRequestMessagesEditChatTitle extends TLMethod<TLAbsUpdates> {
 
     @Override
     public String toString() {
-        return "messages.editChatTitle#dc452855";
+        return _constructor;
     }
 
     @Override

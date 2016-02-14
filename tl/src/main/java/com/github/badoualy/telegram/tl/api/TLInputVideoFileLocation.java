@@ -22,6 +22,8 @@ public class TLInputVideoFileLocation extends TLAbsInputFileLocation {
 
     protected long accessHash;
 
+    private final String _constructor = "inputVideoFileLocation#3d0364ec";
+
     public TLInputVideoFileLocation() {
     }
 
@@ -53,7 +55,7 @@ public class TLInputVideoFileLocation extends TLAbsInputFileLocation {
 
     @Override
     public String toString() {
-        return "inputVideoFileLocation#3d0364ec";
+        return _constructor;
     }
 
     @Override

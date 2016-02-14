@@ -30,6 +30,8 @@ public class TLRequestMessagesAddChatUser extends TLMethod<TLAbsUpdates> {
 
     protected int fwdLimit;
 
+    private final String _constructor = "messages.addChatUser#f9a0aa09";
+
     public TLRequestMessagesAddChatUser() {
     }
 
@@ -78,7 +80,7 @@ public class TLRequestMessagesAddChatUser extends TLMethod<TLAbsUpdates> {
 
     @Override
     public String toString() {
-        return "messages.addChatUser#f9a0aa09";
+        return _constructor;
     }
 
     @Override

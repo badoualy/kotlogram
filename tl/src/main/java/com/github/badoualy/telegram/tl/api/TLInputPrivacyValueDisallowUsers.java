@@ -20,6 +20,8 @@ public class TLInputPrivacyValueDisallowUsers extends TLAbsInputPrivacyRule {
 
     protected TLVector<TLAbsInputUser> users;
 
+    private final String _constructor = "inputPrivacyValueDisallowUsers#90110467";
+
     public TLInputPrivacyValueDisallowUsers() {
     }
 
@@ -47,7 +49,7 @@ public class TLInputPrivacyValueDisallowUsers extends TLAbsInputPrivacyRule {
 
     @Override
     public String toString() {
-        return "inputPrivacyValueDisallowUsers#90110467";
+        return _constructor;
     }
 
     @Override

@@ -24,6 +24,8 @@ public class TLUpdateUserStatus extends TLAbsUpdate {
 
     protected TLAbsUserStatus status;
 
+    private final String _constructor = "updateUserStatus#1bfbd823";
+
     public TLUpdateUserStatus() {
     }
 
@@ -55,7 +57,7 @@ public class TLUpdateUserStatus extends TLAbsUpdate {
 
     @Override
     public String toString() {
-        return "updateUserStatus#1bfbd823";
+        return _constructor;
     }
 
     @Override

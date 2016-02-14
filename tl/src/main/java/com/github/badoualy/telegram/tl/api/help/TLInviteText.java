@@ -21,6 +21,8 @@ public class TLInviteText extends TLObject {
 
     protected String message;
 
+    private final String _constructor = "help.inviteText#18cb9f78";
+
     public TLInviteText() {
     }
 
@@ -48,7 +50,7 @@ public class TLInviteText extends TLObject {
 
     @Override
     public String toString() {
-        return "help.inviteText#18cb9f78";
+        return _constructor;
     }
 
     @Override

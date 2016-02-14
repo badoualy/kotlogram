@@ -7,12 +7,14 @@ package com.github.badoualy.telegram.tl.api;
 public class TLGeoPointEmpty extends TLAbsGeoPoint {
     public static final int CONSTRUCTOR_ID = 0x1117dd5f;
 
+    private final String _constructor = "geoPointEmpty#1117dd5f";
+
     public TLGeoPointEmpty() {
     }
 
     @Override
     public String toString() {
-        return "geoPointEmpty#1117dd5f";
+        return _constructor;
     }
 
     @Override

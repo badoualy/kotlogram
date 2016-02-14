@@ -27,6 +27,8 @@ public class TLReplyKeyboardMarkup extends TLAbsReplyMarkup {
 
     protected TLVector<TLKeyboardButtonRow> rows;
 
+    private final String _constructor = "replyKeyboardMarkup#3502758c";
+
     public TLReplyKeyboardMarkup() {
     }
 
@@ -74,7 +76,7 @@ public class TLReplyKeyboardMarkup extends TLAbsReplyMarkup {
 
     @Override
     public String toString() {
-        return "replyKeyboardMarkup#3502758c";
+        return _constructor;
     }
 
     @Override

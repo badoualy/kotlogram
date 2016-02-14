@@ -25,6 +25,8 @@ public class TLUpdateUserPhone extends TLAbsUpdate {
 
     protected String phone;
 
+    private final String _constructor = "updateUserPhone#12b9417b";
+
     public TLUpdateUserPhone() {
     }
 
@@ -56,7 +58,7 @@ public class TLUpdateUserPhone extends TLAbsUpdate {
 
     @Override
     public String toString() {
-        return "updateUserPhone#12b9417b";
+        return _constructor;
     }
 
     @Override

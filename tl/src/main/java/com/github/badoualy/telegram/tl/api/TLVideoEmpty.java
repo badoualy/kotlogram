@@ -18,6 +18,8 @@ import static com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_INT64;
 public class TLVideoEmpty extends TLAbsVideo {
     public static final int CONSTRUCTOR_ID = 0xc10658a8;
 
+    private final String _constructor = "videoEmpty#c10658a8";
+
     public TLVideoEmpty() {
     }
 
@@ -45,7 +47,7 @@ public class TLVideoEmpty extends TLAbsVideo {
 
     @Override
     public String toString() {
-        return "videoEmpty#c10658a8";
+        return _constructor;
     }
 
     @Override

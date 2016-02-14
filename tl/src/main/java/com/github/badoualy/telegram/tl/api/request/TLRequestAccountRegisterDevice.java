@@ -42,6 +42,8 @@ public class TLRequestAccountRegisterDevice extends TLMethod<TLBool> {
 
     protected String langCode;
 
+    private final String _constructor = "account.registerDevice#446c712c";
+
     public TLRequestAccountRegisterDevice() {
     }
 
@@ -106,7 +108,7 @@ public class TLRequestAccountRegisterDevice extends TLMethod<TLBool> {
 
     @Override
     public String toString() {
-        return "account.registerDevice#446c712c";
+        return _constructor;
     }
 
     @Override

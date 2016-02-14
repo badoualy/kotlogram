@@ -27,6 +27,8 @@ public class TLUpdateReadMessagesContents extends TLAbsUpdate {
 
     protected int ptsCount;
 
+    private final String _constructor = "updateReadMessagesContents#68c13933";
+
     public TLUpdateReadMessagesContents() {
     }
 
@@ -62,7 +64,7 @@ public class TLUpdateReadMessagesContents extends TLAbsUpdate {
 
     @Override
     public String toString() {
-        return "updateReadMessagesContents#68c13933";
+        return _constructor;
     }
 
     @Override

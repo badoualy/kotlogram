@@ -24,6 +24,8 @@ public class TLRequestMessagesReadMessageContents extends TLMethod<TLAffectedMes
 
     protected TLIntVector id;
 
+    private final String _constructor = "messages.readMessageContents#36a73f77";
+
     public TLRequestMessagesReadMessageContents() {
     }
 
@@ -64,7 +66,7 @@ public class TLRequestMessagesReadMessageContents extends TLMethod<TLAffectedMes
 
     @Override
     public String toString() {
-        return "messages.readMessageContents#36a73f77";
+        return _constructor;
     }
 
     @Override

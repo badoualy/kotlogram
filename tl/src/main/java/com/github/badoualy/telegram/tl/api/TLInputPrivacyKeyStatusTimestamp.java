@@ -9,12 +9,14 @@ import com.github.badoualy.telegram.tl.core.TLObject;
 public class TLInputPrivacyKeyStatusTimestamp extends TLObject {
     public static final int CONSTRUCTOR_ID = 0x4f96cb18;
 
+    private final String _constructor = "inputPrivacyKeyStatusTimestamp#4f96cb18";
+
     public TLInputPrivacyKeyStatusTimestamp() {
     }
 
     @Override
     public String toString() {
-        return "inputPrivacyKeyStatusTimestamp#4f96cb18";
+        return _constructor;
     }
 
     @Override

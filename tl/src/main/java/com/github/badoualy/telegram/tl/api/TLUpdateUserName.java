@@ -29,6 +29,8 @@ public class TLUpdateUserName extends TLAbsUpdate {
 
     protected String username;
 
+    private final String _constructor = "updateUserName#a7332b73";
+
     public TLUpdateUserName() {
     }
 
@@ -68,7 +70,7 @@ public class TLUpdateUserName extends TLAbsUpdate {
 
     @Override
     public String toString() {
-        return "updateUserName#a7332b73";
+        return _constructor;
     }
 
     @Override

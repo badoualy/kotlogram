@@ -26,6 +26,8 @@ public class TLRequestAuthSendSms extends TLMethod<TLBool> {
 
     protected String phoneCodeHash;
 
+    private final String _constructor = "auth.sendSms#da9f3e8";
+
     public TLRequestAuthSendSms() {
     }
 
@@ -70,7 +72,7 @@ public class TLRequestAuthSendSms extends TLMethod<TLBool> {
 
     @Override
     public String toString() {
-        return "auth.sendSms#da9f3e8";
+        return _constructor;
     }
 
     @Override

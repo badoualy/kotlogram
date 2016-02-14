@@ -24,6 +24,8 @@ import static com.github.badoualy.telegram.tl.TLObjectUtils.computeTLStringSeria
 public class TLInputFileBig extends TLAbsInputFile {
     public static final int CONSTRUCTOR_ID = 0xfa4f0bb5;
 
+    private final String _constructor = "inputFileBig#fa4f0bb5";
+
     public TLInputFileBig() {
     }
 
@@ -59,7 +61,7 @@ public class TLInputFileBig extends TLAbsInputFile {
 
     @Override
     public String toString() {
-        return "inputFileBig#fa4f0bb5";
+        return _constructor;
     }
 
     @Override

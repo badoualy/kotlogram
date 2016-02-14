@@ -24,6 +24,8 @@ public class TLUpdatePrivacy extends TLAbsUpdate {
 
     protected TLVector<TLAbsPrivacyRule> rules;
 
+    private final String _constructor = "updatePrivacy#ee3b272a";
+
     public TLUpdatePrivacy() {
     }
 
@@ -55,7 +57,7 @@ public class TLUpdatePrivacy extends TLAbsUpdate {
 
     @Override
     public String toString() {
-        return "updatePrivacy#ee3b272a";
+        return _constructor;
     }
 
     @Override

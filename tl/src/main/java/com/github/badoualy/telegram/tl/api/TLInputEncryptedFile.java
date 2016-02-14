@@ -22,6 +22,8 @@ public class TLInputEncryptedFile extends TLAbsInputEncryptedFile {
 
     protected long accessHash;
 
+    private final String _constructor = "inputEncryptedFile#5a17b5e5";
+
     public TLInputEncryptedFile() {
     }
 
@@ -53,7 +55,7 @@ public class TLInputEncryptedFile extends TLAbsInputEncryptedFile {
 
     @Override
     public String toString() {
-        return "inputEncryptedFile#5a17b5e5";
+        return _constructor;
     }
 
     @Override

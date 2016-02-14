@@ -26,6 +26,8 @@ public class TLAllStickers extends TLAbsAllStickers {
 
     protected TLVector<TLStickerSet> sets;
 
+    private final String _constructor = "messages.allStickers#edfd405f";
+
     public TLAllStickers() {
     }
 
@@ -57,7 +59,7 @@ public class TLAllStickers extends TLAbsAllStickers {
 
     @Override
     public String toString() {
-        return "messages.allStickers#edfd405f";
+        return _constructor;
     }
 
     @Override

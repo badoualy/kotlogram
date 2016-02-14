@@ -26,6 +26,8 @@ public class TLRequestMessagesGetDhConfig extends TLMethod<TLAbsDhConfig> {
 
     protected int randomLength;
 
+    private final String _constructor = "messages.getDhConfig#26cf8950";
+
     public TLRequestMessagesGetDhConfig() {
     }
 
@@ -70,7 +72,7 @@ public class TLRequestMessagesGetDhConfig extends TLMethod<TLAbsDhConfig> {
 
     @Override
     public String toString() {
-        return "messages.getDhConfig#26cf8950";
+        return _constructor;
     }
 
     @Override

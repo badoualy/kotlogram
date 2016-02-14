@@ -30,6 +30,8 @@ public class TLRequestMessagesCreateChat extends TLMethod<TLAbsUpdates> {
 
     protected String title;
 
+    private final String _constructor = "messages.createChat#9cb126e";
+
     public TLRequestMessagesCreateChat() {
     }
 
@@ -74,7 +76,7 @@ public class TLRequestMessagesCreateChat extends TLMethod<TLAbsUpdates> {
 
     @Override
     public String toString() {
-        return "messages.createChat#9cb126e";
+        return _constructor;
     }
 
     @Override

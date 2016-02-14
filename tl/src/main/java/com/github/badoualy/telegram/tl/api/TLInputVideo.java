@@ -22,6 +22,8 @@ public class TLInputVideo extends TLAbsInputVideo {
 
     protected long accessHash;
 
+    private final String _constructor = "inputVideo#ee579652";
+
     public TLInputVideo() {
     }
 
@@ -53,7 +55,7 @@ public class TLInputVideo extends TLAbsInputVideo {
 
     @Override
     public String toString() {
-        return "inputVideo#ee579652";
+        return _constructor;
     }
 
     @Override

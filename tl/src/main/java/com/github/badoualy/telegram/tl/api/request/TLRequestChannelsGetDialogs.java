@@ -26,6 +26,8 @@ public class TLRequestChannelsGetDialogs extends TLMethod<TLAbsDialogs> {
 
     protected int limit;
 
+    private final String _constructor = "channels.getDialogs#a9d3d249";
+
     public TLRequestChannelsGetDialogs() {
     }
 
@@ -70,7 +72,7 @@ public class TLRequestChannelsGetDialogs extends TLMethod<TLAbsDialogs> {
 
     @Override
     public String toString() {
-        return "channels.getDialogs#a9d3d249";
+        return _constructor;
     }
 
     @Override

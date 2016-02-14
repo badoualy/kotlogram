@@ -35,6 +35,8 @@ public class TLPhotoCachedSize extends TLAbsPhotoSize {
 
     protected TLBytes bytes;
 
+    private final String _constructor = "photoCachedSize#e9a734fa";
+
     public TLPhotoCachedSize() {
     }
 
@@ -78,7 +80,7 @@ public class TLPhotoCachedSize extends TLAbsPhotoSize {
 
     @Override
     public String toString() {
-        return "photoCachedSize#e9a734fa";
+        return _constructor;
     }
 
     @Override

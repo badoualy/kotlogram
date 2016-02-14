@@ -22,6 +22,8 @@ public class TLInputMediaGifExternal extends TLAbsInputMedia {
 
     protected String q;
 
+    private final String _constructor = "inputMediaGifExternal#4843b0fd";
+
     public TLInputMediaGifExternal() {
     }
 
@@ -53,7 +55,7 @@ public class TLInputMediaGifExternal extends TLAbsInputMedia {
 
     @Override
     public String toString() {
-        return "inputMediaGifExternal#4843b0fd";
+        return _constructor;
     }
 
     @Override

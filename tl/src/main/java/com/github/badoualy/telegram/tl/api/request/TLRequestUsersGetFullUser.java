@@ -23,6 +23,8 @@ public class TLRequestUsersGetFullUser extends TLMethod<TLUserFull> {
 
     protected TLAbsInputUser id;
 
+    private final String _constructor = "users.getFullUser#ca30a5b1";
+
     public TLRequestUsersGetFullUser() {
     }
 
@@ -63,7 +65,7 @@ public class TLRequestUsersGetFullUser extends TLMethod<TLUserFull> {
 
     @Override
     public String toString() {
-        return "users.getFullUser#ca30a5b1";
+        return _constructor;
     }
 
     @Override

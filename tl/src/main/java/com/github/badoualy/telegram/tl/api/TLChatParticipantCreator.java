@@ -18,6 +18,8 @@ import static com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_INT32;
 public class TLChatParticipantCreator extends TLAbsChatParticipant {
     public static final int CONSTRUCTOR_ID = 0xda13538a;
 
+    private final String _constructor = "chatParticipantCreator#da13538a";
+
     public TLChatParticipantCreator() {
     }
 
@@ -45,7 +47,7 @@ public class TLChatParticipantCreator extends TLAbsChatParticipant {
 
     @Override
     public String toString() {
-        return "chatParticipantCreator#da13538a";
+        return _constructor;
     }
 
     @Override

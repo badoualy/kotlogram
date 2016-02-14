@@ -26,6 +26,8 @@ public class TLUserProfilePhoto extends TLAbsUserProfilePhoto {
 
     protected TLAbsFileLocation photoBig;
 
+    private final String _constructor = "userProfilePhoto#d559d8c8";
+
     public TLUserProfilePhoto() {
     }
 
@@ -61,7 +63,7 @@ public class TLUserProfilePhoto extends TLAbsUserProfilePhoto {
 
     @Override
     public String toString() {
-        return "userProfilePhoto#d559d8c8";
+        return _constructor;
     }
 
     @Override

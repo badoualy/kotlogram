@@ -22,6 +22,8 @@ public class TLUpdateContactRegistered extends TLAbsUpdate {
 
     protected int date;
 
+    private final String _constructor = "updateContactRegistered#2575bbb9";
+
     public TLUpdateContactRegistered() {
     }
 
@@ -53,7 +55,7 @@ public class TLUpdateContactRegistered extends TLAbsUpdate {
 
     @Override
     public String toString() {
-        return "updateContactRegistered#2575bbb9";
+        return _constructor;
     }
 
     @Override

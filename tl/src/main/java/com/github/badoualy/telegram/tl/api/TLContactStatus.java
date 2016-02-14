@@ -25,6 +25,8 @@ public class TLContactStatus extends TLObject {
 
     protected TLAbsUserStatus status;
 
+    private final String _constructor = "contactStatus#d3680c61";
+
     public TLContactStatus() {
     }
 
@@ -56,7 +58,7 @@ public class TLContactStatus extends TLObject {
 
     @Override
     public String toString() {
-        return "contactStatus#d3680c61";
+        return _constructor;
     }
 
     @Override

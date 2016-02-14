@@ -7,12 +7,14 @@ package com.github.badoualy.telegram.tl.api;
 public class TLUpdatesTooLong extends TLAbsUpdates {
     public static final int CONSTRUCTOR_ID = 0xe317af7e;
 
+    private final String _constructor = "updatesTooLong#e317af7e";
+
     public TLUpdatesTooLong() {
     }
 
     @Override
     public String toString() {
-        return "updatesTooLong#e317af7e";
+        return _constructor;
     }
 
     @Override

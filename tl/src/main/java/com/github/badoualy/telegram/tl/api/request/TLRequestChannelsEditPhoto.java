@@ -26,6 +26,8 @@ public class TLRequestChannelsEditPhoto extends TLMethod<TLAbsUpdates> {
 
     protected TLAbsInputChatPhoto photo;
 
+    private final String _constructor = "channels.editPhoto#f12e57c9";
+
     public TLRequestChannelsEditPhoto() {
     }
 
@@ -70,7 +72,7 @@ public class TLRequestChannelsEditPhoto extends TLMethod<TLAbsUpdates> {
 
     @Override
     public String toString() {
-        return "channels.editPhoto#f12e57c9";
+        return _constructor;
     }
 
     @Override

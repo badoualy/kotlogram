@@ -33,6 +33,8 @@ public class TLRequestUpdatesGetChannelDifference extends TLMethod<TLAbsChannelD
 
     protected int limit;
 
+    private final String _constructor = "updates.getChannelDifference#bb32d7c0";
+
     public TLRequestUpdatesGetChannelDifference() {
     }
 
@@ -85,7 +87,7 @@ public class TLRequestUpdatesGetChannelDifference extends TLMethod<TLAbsChannelD
 
     @Override
     public String toString() {
-        return "updates.getChannelDifference#bb32d7c0";
+        return _constructor;
     }
 
     @Override

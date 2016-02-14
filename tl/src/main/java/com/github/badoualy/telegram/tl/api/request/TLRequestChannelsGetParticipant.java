@@ -26,6 +26,8 @@ public class TLRequestChannelsGetParticipant extends TLMethod<TLChannelParticipa
 
     protected TLAbsInputUser userId;
 
+    private final String _constructor = "channels.getParticipant#546dd7a6";
+
     public TLRequestChannelsGetParticipant() {
     }
 
@@ -70,7 +72,7 @@ public class TLRequestChannelsGetParticipant extends TLMethod<TLChannelParticipa
 
     @Override
     public String toString() {
-        return "channels.getParticipant#546dd7a6";
+        return _constructor;
     }
 
     @Override

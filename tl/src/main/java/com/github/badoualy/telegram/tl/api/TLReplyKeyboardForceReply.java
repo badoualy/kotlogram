@@ -20,6 +20,8 @@ public class TLReplyKeyboardForceReply extends TLAbsReplyMarkup {
 
     protected boolean singleUse;
 
+    private final String _constructor = "replyKeyboardForceReply#f4108aa0";
+
     public TLReplyKeyboardForceReply() {
     }
 
@@ -60,7 +62,7 @@ public class TLReplyKeyboardForceReply extends TLAbsReplyMarkup {
 
     @Override
     public String toString() {
-        return "replyKeyboardForceReply#f4108aa0";
+        return _constructor;
     }
 
     @Override

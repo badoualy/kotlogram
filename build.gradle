@@ -21,7 +21,7 @@ subprojects {
     }
 
     dependencies {
-        testCompile('org.testng:testng:6.5.1')
+        testCompile 'org.testng:testng:6.5.1'
     }
 
     buildscript {

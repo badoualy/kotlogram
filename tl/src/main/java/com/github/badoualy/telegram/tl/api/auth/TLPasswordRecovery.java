@@ -21,6 +21,8 @@ public class TLPasswordRecovery extends TLObject {
 
     protected String emailPattern;
 
+    private final String _constructor = "auth.passwordRecovery#137948a5";
+
     public TLPasswordRecovery() {
     }
 
@@ -48,7 +50,7 @@ public class TLPasswordRecovery extends TLObject {
 
     @Override
     public String toString() {
-        return "auth.passwordRecovery#137948a5";
+        return _constructor;
     }
 
     @Override

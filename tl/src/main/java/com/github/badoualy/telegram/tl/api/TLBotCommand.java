@@ -23,6 +23,8 @@ public class TLBotCommand extends TLObject {
 
     protected String description;
 
+    private final String _constructor = "botCommand#c27ac8c7";
+
     public TLBotCommand() {
     }
 
@@ -54,7 +56,7 @@ public class TLBotCommand extends TLObject {
 
     @Override
     public String toString() {
-        return "botCommand#c27ac8c7";
+        return _constructor;
     }
 
     @Override

@@ -29,6 +29,8 @@ public class TLEncryptedMessage extends TLAbsEncryptedMessage {
 
     protected TLAbsEncryptedFile file;
 
+    private final String _constructor = "encryptedMessage#ed18c118";
+
     public TLEncryptedMessage() {
     }
 
@@ -72,7 +74,7 @@ public class TLEncryptedMessage extends TLAbsEncryptedMessage {
 
     @Override
     public String toString() {
-        return "encryptedMessage#ed18c118";
+        return _constructor;
     }
 
     @Override

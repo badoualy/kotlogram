@@ -22,6 +22,8 @@ public class TLInputStickerSetID extends TLAbsInputStickerSet {
 
     protected long accessHash;
 
+    private final String _constructor = "inputStickerSetID#9de7a269";
+
     public TLInputStickerSetID() {
     }
 
@@ -53,7 +55,7 @@ public class TLInputStickerSetID extends TLAbsInputStickerSet {
 
     @Override
     public String toString() {
-        return "inputStickerSetID#9de7a269";
+        return _constructor;
     }
 
     @Override

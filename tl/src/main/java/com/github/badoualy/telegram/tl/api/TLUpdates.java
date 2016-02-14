@@ -31,6 +31,8 @@ public class TLUpdates extends TLAbsUpdates {
 
     protected int seq;
 
+    private final String _constructor = "updates#74ae4240";
+
     public TLUpdates() {
     }
 
@@ -74,7 +76,7 @@ public class TLUpdates extends TLAbsUpdates {
 
     @Override
     public String toString() {
-        return "updates#74ae4240";
+        return _constructor;
     }
 
     @Override

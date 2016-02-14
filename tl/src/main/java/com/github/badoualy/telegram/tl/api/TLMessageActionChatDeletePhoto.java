@@ -7,12 +7,14 @@ package com.github.badoualy.telegram.tl.api;
 public class TLMessageActionChatDeletePhoto extends TLAbsMessageAction {
     public static final int CONSTRUCTOR_ID = 0x95e3fbef;
 
+    private final String _constructor = "messageActionChatDeletePhoto#95e3fbef";
+
     public TLMessageActionChatDeletePhoto() {
     }
 
     @Override
     public String toString() {
-        return "messageActionChatDeletePhoto#95e3fbef";
+        return _constructor;
     }
 
     @Override

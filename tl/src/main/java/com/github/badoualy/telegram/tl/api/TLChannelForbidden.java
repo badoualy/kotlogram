@@ -28,6 +28,8 @@ public class TLChannelForbidden extends TLAbsChat {
 
     protected String title;
 
+    private final String _constructor = "channelForbidden#2d85832c";
+
     public TLChannelForbidden() {
     }
 
@@ -63,7 +65,7 @@ public class TLChannelForbidden extends TLAbsChat {
 
     @Override
     public String toString() {
-        return "channelForbidden#2d85832c";
+        return _constructor;
     }
 
     @Override

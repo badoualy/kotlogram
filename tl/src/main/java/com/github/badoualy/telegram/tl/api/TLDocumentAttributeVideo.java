@@ -24,6 +24,8 @@ public class TLDocumentAttributeVideo extends TLAbsDocumentAttribute {
 
     protected int h;
 
+    private final String _constructor = "documentAttributeVideo#5910cccb";
+
     public TLDocumentAttributeVideo() {
     }
 
@@ -59,7 +61,7 @@ public class TLDocumentAttributeVideo extends TLAbsDocumentAttribute {
 
     @Override
     public String toString() {
-        return "documentAttributeVideo#5910cccb";
+        return _constructor;
     }
 
     @Override

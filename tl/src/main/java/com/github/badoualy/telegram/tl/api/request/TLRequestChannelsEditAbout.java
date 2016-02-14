@@ -28,6 +28,8 @@ public class TLRequestChannelsEditAbout extends TLMethod<TLBool> {
 
     protected String about;
 
+    private final String _constructor = "channels.editAbout#13e27f1e";
+
     public TLRequestChannelsEditAbout() {
     }
 
@@ -72,7 +74,7 @@ public class TLRequestChannelsEditAbout extends TLMethod<TLBool> {
 
     @Override
     public String toString() {
-        return "channels.editAbout#13e27f1e";
+        return _constructor;
     }
 
     @Override

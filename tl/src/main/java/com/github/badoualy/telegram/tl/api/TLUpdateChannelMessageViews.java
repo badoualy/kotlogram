@@ -24,6 +24,8 @@ public class TLUpdateChannelMessageViews extends TLAbsUpdate {
 
     protected int views;
 
+    private final String _constructor = "updateChannelMessageViews#98a12b4b";
+
     public TLUpdateChannelMessageViews() {
     }
 
@@ -59,7 +61,7 @@ public class TLUpdateChannelMessageViews extends TLAbsUpdate {
 
     @Override
     public String toString() {
-        return "updateChannelMessageViews#98a12b4b";
+        return _constructor;
     }
 
     @Override

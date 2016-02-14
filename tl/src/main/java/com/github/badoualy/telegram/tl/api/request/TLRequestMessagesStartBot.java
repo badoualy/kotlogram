@@ -36,6 +36,8 @@ public class TLRequestMessagesStartBot extends TLMethod<TLAbsUpdates> {
 
     protected String startParam;
 
+    private final String _constructor = "messages.startBot#e6df7378";
+
     public TLRequestMessagesStartBot() {
     }
 
@@ -88,7 +90,7 @@ public class TLRequestMessagesStartBot extends TLMethod<TLAbsUpdates> {
 
     @Override
     public String toString() {
-        return "messages.startBot#e6df7378";
+        return _constructor;
     }
 
     @Override

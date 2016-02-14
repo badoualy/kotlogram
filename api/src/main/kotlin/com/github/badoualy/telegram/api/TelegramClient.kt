@@ -1,6 +1,7 @@
 package com.github.badoualy.telegram.api
 
 import com.github.badoualy.telegram.mtproto.exception.RpcErrorException
+import com.github.badoualy.telegram.mtproto.transport.MTProtoConnection
 import com.github.badoualy.telegram.tl.api.*
 import com.github.badoualy.telegram.tl.api.auth.TLAbsSentCode
 import com.github.badoualy.telegram.tl.api.upload.TLFile
@@ -13,11 +14,23 @@ interface TelegramClient : TelegramApi {
     /** Changes the request timeout with the supplied value (in ms) */
     fun setTimeout(timeout: Long)
 
+    /** Return the current connection to Telegram */
+    fun getConnection(): MTProtoConnection?
+
+    /** Indicates that the client is ready for reading OP */
+    fun notifyReady()
+
     /** Close connection to Telegram and stop everything */
     fun close()
 
     /** Close connection, and clean the threads if cleanUp is true */
     fun close(cleanUp: Boolean)
+
+    /** Start listening for messages from Telegram */
+    fun startListening()
+
+    /** Stop listening for messages from Telegram */
+    fun stopListening()
 
     @Throws(RpcErrorException::class, IOException::class)
     fun <T : TLObject> executeRpcQuery(method: TLMethod<T>): T
@@ -27,7 +40,7 @@ interface TelegramClient : TelegramApi {
     fun authSendCode(phoneNumber: String, smsType: Int): TLAbsSentCode
 
     @Deprecated("Use authSendCode for more convenience", ReplaceWith("authSendCode(phoneNumber, smsType)"))
-    override fun authSendCode(phoneNumber: String?, smsType: Int, apiId: Int, apiHash: String?, langCode: String?): TLAbsSentCode
+    override fun authSendCode(phoneNumber: String, smsType: Int, apiId: Int, apiHash: String, langCode: String): TLAbsSentCode
 
     @Throws(RpcErrorException::class, IOException::class)
     override fun <T : TLObject?> invokeWithLayer(layer: Int, query: TLMethod<T>?): T
@@ -38,7 +51,10 @@ interface TelegramClient : TelegramApi {
     fun <T : TLObject> initConnection(query: TLMethod<T>): T
 
     @Deprecated("Use initConnection for more convenience", ReplaceWith("initConnection(query)"))
-    override fun <T : TLObject?> initConnection(apiId: Int, deviceModel: String?, systemVersion: String?, appVersion: String?, langCode: String?, query: TLMethod<T>?): T
+    override fun <T : TLObject?> initConnection(apiId: Int, deviceModel: String, systemVersion: String, appVersion: String, langCode: String, query: TLMethod<T>): T
+
+    /** Convenience method wrapping the argument for a plain text message */
+    fun messagesSendMessage(peer: TLAbsInputPeer, message: String, randomId: Long): TLAbsUpdates?
 
     /** Convenience method to download an user profile photo */
     @Throws(RpcErrorException::class, IOException::class)

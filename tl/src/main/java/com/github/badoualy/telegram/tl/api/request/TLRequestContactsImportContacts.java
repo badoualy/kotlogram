@@ -30,6 +30,8 @@ public class TLRequestContactsImportContacts extends TLMethod<TLImportedContacts
 
     protected boolean replace;
 
+    private final String _constructor = "contacts.importContacts#da30b32d";
+
     public TLRequestContactsImportContacts() {
     }
 
@@ -74,7 +76,7 @@ public class TLRequestContactsImportContacts extends TLMethod<TLImportedContacts
 
     @Override
     public String toString() {
-        return "contacts.importContacts#da30b32d";
+        return _constructor;
     }
 
     @Override

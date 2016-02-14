@@ -28,6 +28,8 @@ public class TLRequestMessagesSetEncryptedTyping extends TLMethod<TLBool> {
 
     protected boolean typing;
 
+    private final String _constructor = "messages.setEncryptedTyping#791451ed";
+
     public TLRequestMessagesSetEncryptedTyping() {
     }
 
@@ -72,7 +74,7 @@ public class TLRequestMessagesSetEncryptedTyping extends TLMethod<TLBool> {
 
     @Override
     public String toString() {
-        return "messages.setEncryptedTyping#791451ed";
+        return _constructor;
     }
 
     @Override

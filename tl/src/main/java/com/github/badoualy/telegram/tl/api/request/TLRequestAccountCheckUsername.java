@@ -24,6 +24,8 @@ public class TLRequestAccountCheckUsername extends TLMethod<TLBool> {
 
     protected String username;
 
+    private final String _constructor = "account.checkUsername#2714d86c";
+
     public TLRequestAccountCheckUsername() {
     }
 
@@ -64,7 +66,7 @@ public class TLRequestAccountCheckUsername extends TLMethod<TLBool> {
 
     @Override
     public String toString() {
-        return "account.checkUsername#2714d86c";
+        return _constructor;
     }
 
     @Override

@@ -18,6 +18,8 @@ import static com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_INT32;
 public class TLChatEmpty extends TLAbsChat {
     public static final int CONSTRUCTOR_ID = 0x9ba2d800;
 
+    private final String _constructor = "chatEmpty#9ba2d800";
+
     public TLChatEmpty() {
     }
 
@@ -45,7 +47,7 @@ public class TLChatEmpty extends TLAbsChat {
 
     @Override
     public String toString() {
-        return "chatEmpty#9ba2d800";
+        return _constructor;
     }
 
     @Override

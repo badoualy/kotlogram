@@ -28,6 +28,8 @@ public class TLRequestMessagesReadHistory extends TLMethod<TLAffectedMessages> {
 
     protected int maxId;
 
+    private final String _constructor = "messages.readHistory#e306d3a";
+
     public TLRequestMessagesReadHistory() {
     }
 
@@ -72,7 +74,7 @@ public class TLRequestMessagesReadHistory extends TLMethod<TLAffectedMessages> {
 
     @Override
     public String toString() {
-        return "messages.readHistory#e306d3a";
+        return _constructor;
     }
 
     @Override

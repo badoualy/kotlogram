@@ -37,6 +37,8 @@ public class TLRequestInitConnection<T extends TLObject> extends TLMethod<T> {
 
     protected TLMethod<T> query;
 
+    private final String _constructor = "initConnection#69796de9";
+
     public TLRequestInitConnection() {
     }
 
@@ -90,7 +92,7 @@ public class TLRequestInitConnection<T extends TLObject> extends TLMethod<T> {
 
     @Override
     public String toString() {
-        return "initConnection#69796de9";
+        return _constructor;
     }
 
     @Override

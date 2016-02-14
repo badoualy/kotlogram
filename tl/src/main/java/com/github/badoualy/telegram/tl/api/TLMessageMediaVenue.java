@@ -30,6 +30,8 @@ public class TLMessageMediaVenue extends TLAbsMessageMedia {
 
     protected String venueId;
 
+    private final String _constructor = "messageMediaVenue#7912b71f";
+
     public TLMessageMediaVenue() {
     }
 
@@ -73,7 +75,7 @@ public class TLMessageMediaVenue extends TLAbsMessageMedia {
 
     @Override
     public String toString() {
-        return "messageMediaVenue#7912b71f";
+        return _constructor;
     }
 
     @Override

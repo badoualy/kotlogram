@@ -22,6 +22,8 @@ public class TLInputGeoPoint extends TLAbsInputGeoPoint {
 
     protected double _long;
 
+    private final String _constructor = "inputGeoPoint#f3b7acc9";
+
     public TLInputGeoPoint() {
     }
 
@@ -53,7 +55,7 @@ public class TLInputGeoPoint extends TLAbsInputGeoPoint {
 
     @Override
     public String toString() {
-        return "inputGeoPoint#f3b7acc9";
+        return _constructor;
     }
 
     @Override

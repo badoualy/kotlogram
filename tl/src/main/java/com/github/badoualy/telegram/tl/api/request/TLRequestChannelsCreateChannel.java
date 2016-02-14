@@ -35,6 +35,8 @@ public class TLRequestChannelsCreateChannel extends TLMethod<TLAbsUpdates> {
 
     protected String about;
 
+    private final String _constructor = "channels.createChannel#f4893d7f";
+
     public TLRequestChannelsCreateChannel() {
     }
 
@@ -96,7 +98,7 @@ public class TLRequestChannelsCreateChannel extends TLMethod<TLAbsUpdates> {
 
     @Override
     public String toString() {
-        return "channels.createChannel#f4893d7f";
+        return _constructor;
     }
 
     @Override

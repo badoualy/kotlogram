@@ -29,6 +29,8 @@ public class TLRequestMessagesToggleChatAdmins extends TLMethod<TLAbsUpdates> {
 
     protected boolean enabled;
 
+    private final String _constructor = "messages.toggleChatAdmins#ec8bd9e1";
+
     public TLRequestMessagesToggleChatAdmins() {
     }
 
@@ -73,7 +75,7 @@ public class TLRequestMessagesToggleChatAdmins extends TLMethod<TLAbsUpdates> {
 
     @Override
     public String toString() {
-        return "messages.toggleChatAdmins#ec8bd9e1";
+        return _constructor;
     }
 
     @Override

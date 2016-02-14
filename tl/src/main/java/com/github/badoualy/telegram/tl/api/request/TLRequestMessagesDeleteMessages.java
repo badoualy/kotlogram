@@ -24,6 +24,8 @@ public class TLRequestMessagesDeleteMessages extends TLMethod<TLAffectedMessages
 
     protected TLIntVector id;
 
+    private final String _constructor = "messages.deleteMessages#a5f18925";
+
     public TLRequestMessagesDeleteMessages() {
     }
 
@@ -64,7 +66,7 @@ public class TLRequestMessagesDeleteMessages extends TLMethod<TLAffectedMessages
 
     @Override
     public String toString() {
-        return "messages.deleteMessages#a5f18925";
+        return _constructor;
     }
 
     @Override

@@ -7,12 +7,14 @@ package com.github.badoualy.telegram.tl.api;
 public class TLSendMessageChooseContactAction extends TLAbsSendMessageAction {
     public static final int CONSTRUCTOR_ID = 0x628cbc6f;
 
+    private final String _constructor = "sendMessageChooseContactAction#628cbc6f";
+
     public TLSendMessageChooseContactAction() {
     }
 
     @Override
     public String toString() {
-        return "sendMessageChooseContactAction#628cbc6f";
+        return _constructor;
     }
 
     @Override

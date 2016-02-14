@@ -29,6 +29,8 @@ public class TLEncryptedChatWaiting extends TLAbsEncryptedChat {
 
     protected int participantId;
 
+    private final String _constructor = "encryptedChatWaiting#3bf703dc";
+
     public TLEncryptedChatWaiting() {
     }
 
@@ -72,7 +74,7 @@ public class TLEncryptedChatWaiting extends TLAbsEncryptedChat {
 
     @Override
     public String toString() {
-        return "encryptedChatWaiting#3bf703dc";
+        return _constructor;
     }
 
     @Override

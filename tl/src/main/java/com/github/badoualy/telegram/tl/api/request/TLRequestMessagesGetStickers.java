@@ -26,6 +26,8 @@ public class TLRequestMessagesGetStickers extends TLMethod<TLAbsStickers> {
 
     protected String hash;
 
+    private final String _constructor = "messages.getStickers#ae22e045";
+
     public TLRequestMessagesGetStickers() {
     }
 
@@ -70,7 +72,7 @@ public class TLRequestMessagesGetStickers extends TLMethod<TLAbsStickers> {
 
     @Override
     public String toString() {
-        return "messages.getStickers#ae22e045";
+        return _constructor;
     }
 
     @Override

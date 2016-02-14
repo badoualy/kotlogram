@@ -26,6 +26,8 @@ public class TLUpdateWebPage extends TLAbsUpdate {
 
     protected int ptsCount;
 
+    private final String _constructor = "updateWebPage#7f891213";
+
     public TLUpdateWebPage() {
     }
 
@@ -61,7 +63,7 @@ public class TLUpdateWebPage extends TLAbsUpdate {
 
     @Override
     public String toString() {
-        return "updateWebPage#7f891213";
+        return _constructor;
     }
 
     @Override

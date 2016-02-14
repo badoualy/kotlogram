@@ -27,6 +27,8 @@ public class TLUpdateChatAdmins extends TLAbsUpdate {
 
     protected int version;
 
+    private final String _constructor = "updateChatAdmins#6e947941";
+
     public TLUpdateChatAdmins() {
     }
 
@@ -62,7 +64,7 @@ public class TLUpdateChatAdmins extends TLAbsUpdate {
 
     @Override
     public String toString() {
-        return "updateChatAdmins#6e947941";
+        return _constructor;
     }
 
     @Override

@@ -7,12 +7,14 @@ package com.github.badoualy.telegram.tl.api;
 public class TLMessageMediaUnsupported extends TLAbsMessageMedia {
     public static final int CONSTRUCTOR_ID = 0x9f84f49e;
 
+    private final String _constructor = "messageMediaUnsupported#9f84f49e";
+
     public TLMessageMediaUnsupported() {
     }
 
     @Override
     public String toString() {
-        return "messageMediaUnsupported#9f84f49e";
+        return _constructor;
     }
 
     @Override

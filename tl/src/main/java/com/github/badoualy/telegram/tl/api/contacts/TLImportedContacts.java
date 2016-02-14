@@ -29,6 +29,8 @@ public class TLImportedContacts extends TLObject {
 
     protected TLVector<TLAbsUser> users;
 
+    private final String _constructor = "contacts.importedContacts#ad524315";
+
     public TLImportedContacts() {
     }
 
@@ -64,7 +66,7 @@ public class TLImportedContacts extends TLObject {
 
     @Override
     public String toString() {
-        return "contacts.importedContacts#ad524315";
+        return _constructor;
     }
 
     @Override

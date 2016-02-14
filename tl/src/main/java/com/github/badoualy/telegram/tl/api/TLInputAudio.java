@@ -22,6 +22,8 @@ public class TLInputAudio extends TLAbsInputAudio {
 
     protected long accessHash;
 
+    private final String _constructor = "inputAudio#77d440ff";
+
     public TLInputAudio() {
     }
 
@@ -53,7 +55,7 @@ public class TLInputAudio extends TLAbsInputAudio {
 
     @Override
     public String toString() {
-        return "inputAudio#77d440ff";
+        return _constructor;
     }
 
     @Override

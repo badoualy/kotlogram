@@ -21,6 +21,8 @@ public class TLPasswordSettings extends TLObject {
 
     protected String email;
 
+    private final String _constructor = "account.passwordSettings#b7b72ab3";
+
     public TLPasswordSettings() {
     }
 
@@ -48,7 +50,7 @@ public class TLPasswordSettings extends TLObject {
 
     @Override
     public String toString() {
-        return "account.passwordSettings#b7b72ab3";
+        return _constructor;
     }
 
     @Override

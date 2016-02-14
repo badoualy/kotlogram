@@ -20,6 +20,8 @@ public class TLSendMessageUploadDocumentAction extends TLAbsSendMessageAction {
 
     protected int progress;
 
+    private final String _constructor = "sendMessageUploadDocumentAction#aa0cd9e4";
+
     public TLSendMessageUploadDocumentAction() {
     }
 
@@ -47,7 +49,7 @@ public class TLSendMessageUploadDocumentAction extends TLAbsSendMessageAction {
 
     @Override
     public String toString() {
-        return "sendMessageUploadDocumentAction#aa0cd9e4";
+        return _constructor;
     }
 
     @Override

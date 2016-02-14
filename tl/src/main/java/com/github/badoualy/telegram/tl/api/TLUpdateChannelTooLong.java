@@ -20,6 +20,8 @@ public class TLUpdateChannelTooLong extends TLAbsUpdate {
 
     protected int channelId;
 
+    private final String _constructor = "updateChannelTooLong#60946422";
+
     public TLUpdateChannelTooLong() {
     }
 
@@ -47,7 +49,7 @@ public class TLUpdateChannelTooLong extends TLAbsUpdate {
 
     @Override
     public String toString() {
-        return "updateChannelTooLong#60946422";
+        return _constructor;
     }
 
     @Override

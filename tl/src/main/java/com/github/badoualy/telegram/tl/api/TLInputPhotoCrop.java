@@ -24,6 +24,8 @@ public class TLInputPhotoCrop extends TLAbsInputPhotoCrop {
 
     protected double cropWidth;
 
+    private final String _constructor = "inputPhotoCrop#d9915325";
+
     public TLInputPhotoCrop() {
     }
 
@@ -59,7 +61,7 @@ public class TLInputPhotoCrop extends TLAbsInputPhotoCrop {
 
     @Override
     public String toString() {
-        return "inputPhotoCrop#d9915325";
+        return _constructor;
     }
 
     @Override

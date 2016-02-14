@@ -24,6 +24,8 @@ public class TLInputMediaDocument extends TLAbsInputMedia {
 
     protected String caption;
 
+    private final String _constructor = "inputMediaDocument#1a77f29c";
+
     public TLInputMediaDocument() {
     }
 
@@ -55,7 +57,7 @@ public class TLInputMediaDocument extends TLAbsInputMedia {
 
     @Override
     public String toString() {
-        return "inputMediaDocument#1a77f29c";
+        return _constructor;
     }
 
     @Override

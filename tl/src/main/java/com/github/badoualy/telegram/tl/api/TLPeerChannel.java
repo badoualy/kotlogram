@@ -20,6 +20,8 @@ public class TLPeerChannel extends TLAbsPeer {
 
     protected int channelId;
 
+    private final String _constructor = "peerChannel#bddde532";
+
     public TLPeerChannel() {
     }
 
@@ -47,7 +49,7 @@ public class TLPeerChannel extends TLAbsPeer {
 
     @Override
     public String toString() {
-        return "peerChannel#bddde532";
+        return _constructor;
     }
 
     @Override

@@ -19,6 +19,8 @@ public class TLInputMediaAudio extends TLAbsInputMedia {
 
     protected TLAbsInputAudio id;
 
+    private final String _constructor = "inputMediaAudio#89938781";
+
     public TLInputMediaAudio() {
     }
 
@@ -46,7 +48,7 @@ public class TLInputMediaAudio extends TLAbsInputMedia {
 
     @Override
     public String toString() {
-        return "inputMediaAudio#89938781";
+        return _constructor;
     }
 
     @Override

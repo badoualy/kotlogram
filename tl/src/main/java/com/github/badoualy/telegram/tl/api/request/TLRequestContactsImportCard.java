@@ -24,6 +24,8 @@ public class TLRequestContactsImportCard extends TLMethod<TLAbsUser> {
 
     protected TLIntVector exportCard;
 
+    private final String _constructor = "contacts.importCard#4fe196fe";
+
     public TLRequestContactsImportCard() {
     }
 
@@ -64,7 +66,7 @@ public class TLRequestContactsImportCard extends TLMethod<TLAbsUser> {
 
     @Override
     public String toString() {
-        return "contacts.importCard#4fe196fe";
+        return _constructor;
     }
 
     @Override

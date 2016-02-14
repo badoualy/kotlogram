@@ -20,6 +20,8 @@ public class TLAppChangelog extends TLAbsAppChangelog {
 
     protected String text;
 
+    private final String _constructor = "help.appChangelog#4668e6bd";
+
     public TLAppChangelog() {
     }
 
@@ -47,7 +49,7 @@ public class TLAppChangelog extends TLAbsAppChangelog {
 
     @Override
     public String toString() {
-        return "help.appChangelog#4668e6bd";
+        return _constructor;
     }
 
     @Override

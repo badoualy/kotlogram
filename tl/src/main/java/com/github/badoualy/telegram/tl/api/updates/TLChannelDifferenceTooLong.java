@@ -40,6 +40,8 @@ public class TLChannelDifferenceTooLong extends TLAbsChannelDifference {
 
     protected TLVector<TLAbsUser> users;
 
+    private final String _constructor = "updates.channelDifferenceTooLong#5e167646";
+
     public TLChannelDifferenceTooLong() {
     }
 
@@ -118,7 +120,7 @@ public class TLChannelDifferenceTooLong extends TLAbsChannelDifference {
 
     @Override
     public String toString() {
-        return "updates.channelDifferenceTooLong#5e167646";
+        return _constructor;
     }
 
     @Override

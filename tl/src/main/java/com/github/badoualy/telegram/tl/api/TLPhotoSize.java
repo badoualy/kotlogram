@@ -31,6 +31,8 @@ public class TLPhotoSize extends TLAbsPhotoSize {
 
     protected int size;
 
+    private final String _constructor = "photoSize#77bfb61b";
+
     public TLPhotoSize() {
     }
 
@@ -74,7 +76,7 @@ public class TLPhotoSize extends TLAbsPhotoSize {
 
     @Override
     public String toString() {
-        return "photoSize#77bfb61b";
+        return _constructor;
     }
 
     @Override

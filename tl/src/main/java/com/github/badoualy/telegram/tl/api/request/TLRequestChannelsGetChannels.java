@@ -25,6 +25,8 @@ public class TLRequestChannelsGetChannels extends TLMethod<TLChats> {
 
     protected TLVector<TLAbsInputChannel> id;
 
+    private final String _constructor = "channels.getChannels#a7f6bbb";
+
     public TLRequestChannelsGetChannels() {
     }
 
@@ -65,7 +67,7 @@ public class TLRequestChannelsGetChannels extends TLMethod<TLChats> {
 
     @Override
     public String toString() {
-        return "channels.getChannels#a7f6bbb";
+        return _constructor;
     }
 
     @Override

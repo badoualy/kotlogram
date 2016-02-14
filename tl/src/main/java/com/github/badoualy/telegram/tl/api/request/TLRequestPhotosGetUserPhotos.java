@@ -35,6 +35,8 @@ public class TLRequestPhotosGetUserPhotos extends TLMethod<TLAbsPhotos> {
 
     protected int limit;
 
+    private final String _constructor = "photos.getUserPhotos#91cd32a8";
+
     public TLRequestPhotosGetUserPhotos() {
     }
 
@@ -87,7 +89,7 @@ public class TLRequestPhotosGetUserPhotos extends TLMethod<TLAbsPhotos> {
 
     @Override
     public String toString() {
-        return "photos.getUserPhotos#91cd32a8";
+        return _constructor;
     }
 
     @Override

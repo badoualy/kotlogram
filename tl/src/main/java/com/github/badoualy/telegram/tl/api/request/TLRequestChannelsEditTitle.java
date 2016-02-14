@@ -28,6 +28,8 @@ public class TLRequestChannelsEditTitle extends TLMethod<TLAbsUpdates> {
 
     protected String title;
 
+    private final String _constructor = "channels.editTitle#566decd0";
+
     public TLRequestChannelsEditTitle() {
     }
 
@@ -72,7 +74,7 @@ public class TLRequestChannelsEditTitle extends TLMethod<TLAbsUpdates> {
 
     @Override
     public String toString() {
-        return "channels.editTitle#566decd0";
+        return _constructor;
     }
 
     @Override

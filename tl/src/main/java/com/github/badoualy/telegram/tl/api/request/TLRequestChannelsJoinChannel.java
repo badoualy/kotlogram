@@ -23,6 +23,8 @@ public class TLRequestChannelsJoinChannel extends TLMethod<TLAbsUpdates> {
 
     protected TLAbsInputChannel channel;
 
+    private final String _constructor = "channels.joinChannel#24b524c5";
+
     public TLRequestChannelsJoinChannel() {
     }
 
@@ -63,7 +65,7 @@ public class TLRequestChannelsJoinChannel extends TLMethod<TLAbsUpdates> {
 
     @Override
     public String toString() {
-        return "channels.joinChannel#24b524c5";
+        return _constructor;
     }
 
     @Override

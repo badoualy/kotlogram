@@ -22,6 +22,8 @@ public class TLBotInlineMediaResultDocument extends TLAbsBotInlineResult {
 
     protected TLAbsDocument document;
 
+    private final String _constructor = "botInlineMediaResultDocument#f897d33e";
+
     public TLBotInlineMediaResultDocument() {
     }
 
@@ -61,7 +63,7 @@ public class TLBotInlineMediaResultDocument extends TLAbsBotInlineResult {
 
     @Override
     public String toString() {
-        return "botInlineMediaResultDocument#f897d33e";
+        return _constructor;
     }
 
     @Override

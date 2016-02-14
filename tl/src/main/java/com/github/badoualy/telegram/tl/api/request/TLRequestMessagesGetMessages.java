@@ -24,6 +24,8 @@ public class TLRequestMessagesGetMessages extends TLMethod<TLAbsMessages> {
 
     protected TLIntVector id;
 
+    private final String _constructor = "messages.getMessages#4222fa74";
+
     public TLRequestMessagesGetMessages() {
     }
 
@@ -64,7 +66,7 @@ public class TLRequestMessagesGetMessages extends TLMethod<TLAbsMessages> {
 
     @Override
     public String toString() {
-        return "messages.getMessages#4222fa74";
+        return _constructor;
     }
 
     @Override

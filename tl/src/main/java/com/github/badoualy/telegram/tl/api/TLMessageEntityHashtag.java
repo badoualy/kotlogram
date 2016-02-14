@@ -18,6 +18,8 @@ import static com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_INT32;
 public class TLMessageEntityHashtag extends TLAbsMessageEntity {
     public static final int CONSTRUCTOR_ID = 0x6f635b0d;
 
+    private final String _constructor = "messageEntityHashtag#6f635b0d";
+
     public TLMessageEntityHashtag() {
     }
 
@@ -49,7 +51,7 @@ public class TLMessageEntityHashtag extends TLAbsMessageEntity {
 
     @Override
     public String toString() {
-        return "messageEntityHashtag#6f635b0d";
+        return _constructor;
     }
 
     @Override

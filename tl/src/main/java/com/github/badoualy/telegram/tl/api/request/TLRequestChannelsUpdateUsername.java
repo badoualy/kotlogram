@@ -28,6 +28,8 @@ public class TLRequestChannelsUpdateUsername extends TLMethod<TLBool> {
 
     protected String username;
 
+    private final String _constructor = "channels.updateUsername#3514b3de";
+
     public TLRequestChannelsUpdateUsername() {
     }
 
@@ -72,7 +74,7 @@ public class TLRequestChannelsUpdateUsername extends TLMethod<TLBool> {
 
     @Override
     public String toString() {
-        return "channels.updateUsername#3514b3de";
+        return _constructor;
     }
 
     @Override

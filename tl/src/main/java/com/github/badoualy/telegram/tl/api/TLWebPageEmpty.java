@@ -18,6 +18,8 @@ import static com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_INT64;
 public class TLWebPageEmpty extends TLAbsWebPage {
     public static final int CONSTRUCTOR_ID = 0xeb1477e8;
 
+    private final String _constructor = "webPageEmpty#eb1477e8";
+
     public TLWebPageEmpty() {
     }
 
@@ -45,7 +47,7 @@ public class TLWebPageEmpty extends TLAbsWebPage {
 
     @Override
     public String toString() {
-        return "webPageEmpty#eb1477e8";
+        return _constructor;
     }
 
     @Override

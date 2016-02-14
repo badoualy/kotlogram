@@ -20,6 +20,8 @@ public class TLMessageActionChatJoinedByLink extends TLAbsMessageAction {
 
     protected int inviterId;
 
+    private final String _constructor = "messageActionChatJoinedByLink#f89cf5e8";
+
     public TLMessageActionChatJoinedByLink() {
     }
 
@@ -47,7 +49,7 @@ public class TLMessageActionChatJoinedByLink extends TLAbsMessageAction {
 
     @Override
     public String toString() {
-        return "messageActionChatJoinedByLink#f89cf5e8";
+        return _constructor;
     }
 
     @Override

@@ -24,6 +24,8 @@ public class TLRequestAuthExportAuthorization extends TLMethod<TLExportedAuthori
 
     protected int dcId;
 
+    private final String _constructor = "auth.exportAuthorization#e5bfffcd";
+
     public TLRequestAuthExportAuthorization() {
     }
 
@@ -64,7 +66,7 @@ public class TLRequestAuthExportAuthorization extends TLMethod<TLExportedAuthori
 
     @Override
     public String toString() {
-        return "auth.exportAuthorization#e5bfffcd";
+        return _constructor;
     }
 
     @Override

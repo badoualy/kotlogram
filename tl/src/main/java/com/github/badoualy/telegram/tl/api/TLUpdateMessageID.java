@@ -25,6 +25,8 @@ public class TLUpdateMessageID extends TLAbsUpdate {
 
     protected long randomId;
 
+    private final String _constructor = "updateMessageID#4e90bfd6";
+
     public TLUpdateMessageID() {
     }
 
@@ -56,7 +58,7 @@ public class TLUpdateMessageID extends TLAbsUpdate {
 
     @Override
     public String toString() {
-        return "updateMessageID#4e90bfd6";
+        return _constructor;
     }
 
     @Override

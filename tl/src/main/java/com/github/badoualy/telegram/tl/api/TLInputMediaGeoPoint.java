@@ -19,6 +19,8 @@ public class TLInputMediaGeoPoint extends TLAbsInputMedia {
 
     protected TLAbsInputGeoPoint geoPoint;
 
+    private final String _constructor = "inputMediaGeoPoint#f9c44144";
+
     public TLInputMediaGeoPoint() {
     }
 
@@ -46,7 +48,7 @@ public class TLInputMediaGeoPoint extends TLAbsInputMedia {
 
     @Override
     public String toString() {
-        return "inputMediaGeoPoint#f9c44144";
+        return _constructor;
     }
 
     @Override

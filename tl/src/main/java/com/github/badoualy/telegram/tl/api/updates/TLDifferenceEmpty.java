@@ -22,6 +22,8 @@ public class TLDifferenceEmpty extends TLAbsDifference {
 
     protected int seq;
 
+    private final String _constructor = "updates.differenceEmpty#5d75a138";
+
     public TLDifferenceEmpty() {
     }
 
@@ -53,7 +55,7 @@ public class TLDifferenceEmpty extends TLAbsDifference {
 
     @Override
     public String toString() {
-        return "updates.differenceEmpty#5d75a138";
+        return _constructor;
     }
 
     @Override

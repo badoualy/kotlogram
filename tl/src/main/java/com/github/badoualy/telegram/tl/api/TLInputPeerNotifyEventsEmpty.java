@@ -7,12 +7,14 @@ package com.github.badoualy.telegram.tl.api;
 public class TLInputPeerNotifyEventsEmpty extends TLAbsInputPeerNotifyEvents {
     public static final int CONSTRUCTOR_ID = 0xf03064d8;
 
+    private final String _constructor = "inputPeerNotifyEventsEmpty#f03064d8";
+
     public TLInputPeerNotifyEventsEmpty() {
     }
 
     @Override
     public String toString() {
-        return "inputPeerNotifyEventsEmpty#f03064d8";
+        return _constructor;
     }
 
     @Override

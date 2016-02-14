@@ -24,6 +24,8 @@ public class TLContacts extends TLAbsContacts {
 
     protected TLVector<TLAbsUser> users;
 
+    private final String _constructor = "contacts.contacts#6f8b8cb2";
+
     public TLContacts() {
     }
 
@@ -55,7 +57,7 @@ public class TLContacts extends TLAbsContacts {
 
     @Override
     public String toString() {
-        return "contacts.contacts#6f8b8cb2";
+        return _constructor;
     }
 
     @Override

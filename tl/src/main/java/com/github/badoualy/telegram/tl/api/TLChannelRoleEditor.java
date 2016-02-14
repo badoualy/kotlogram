@@ -7,12 +7,14 @@ package com.github.badoualy.telegram.tl.api;
 public class TLChannelRoleEditor extends TLAbsChannelParticipantRole {
     public static final int CONSTRUCTOR_ID = 0x820bfe8c;
 
+    private final String _constructor = "channelRoleEditor#820bfe8c";
+
     public TLChannelRoleEditor() {
     }
 
     @Override
     public String toString() {
-        return "channelRoleEditor#820bfe8c";
+        return _constructor;
     }
 
     @Override

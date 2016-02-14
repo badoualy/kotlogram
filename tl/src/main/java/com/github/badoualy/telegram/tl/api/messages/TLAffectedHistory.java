@@ -25,6 +25,8 @@ public class TLAffectedHistory extends TLObject {
 
     protected int offset;
 
+    private final String _constructor = "messages.affectedHistory#b45c69d1";
+
     public TLAffectedHistory() {
     }
 
@@ -60,7 +62,7 @@ public class TLAffectedHistory extends TLObject {
 
     @Override
     public String toString() {
-        return "messages.affectedHistory#b45c69d1";
+        return _constructor;
     }
 
     @Override

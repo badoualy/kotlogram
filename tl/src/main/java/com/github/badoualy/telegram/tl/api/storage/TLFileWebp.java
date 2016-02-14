@@ -7,12 +7,14 @@ package com.github.badoualy.telegram.tl.api.storage;
 public class TLFileWebp extends TLAbsFileType {
     public static final int CONSTRUCTOR_ID = 0x1081464c;
 
+    private final String _constructor = "storage.fileWebp#1081464c";
+
     public TLFileWebp() {
     }
 
     @Override
     public String toString() {
-        return "storage.fileWebp#1081464c";
+        return _constructor;
     }
 
     @Override

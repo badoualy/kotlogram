@@ -23,6 +23,8 @@ public class TLDisabledFeature extends TLObject {
 
     protected String description;
 
+    private final String _constructor = "disabledFeature#ae636f24";
+
     public TLDisabledFeature() {
     }
 
@@ -54,7 +56,7 @@ public class TLDisabledFeature extends TLObject {
 
     @Override
     public String toString() {
-        return "disabledFeature#ae636f24";
+        return _constructor;
     }
 
     @Override

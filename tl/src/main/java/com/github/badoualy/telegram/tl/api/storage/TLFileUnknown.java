@@ -7,12 +7,14 @@ package com.github.badoualy.telegram.tl.api.storage;
 public class TLFileUnknown extends TLAbsFileType {
     public static final int CONSTRUCTOR_ID = 0xaa963b05;
 
+    private final String _constructor = "storage.fileUnknown#aa963b05";
+
     public TLFileUnknown() {
     }
 
     @Override
     public String toString() {
-        return "storage.fileUnknown#aa963b05";
+        return _constructor;
     }
 
     @Override

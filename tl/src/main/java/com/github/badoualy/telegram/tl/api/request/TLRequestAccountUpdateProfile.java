@@ -26,6 +26,8 @@ public class TLRequestAccountUpdateProfile extends TLMethod<TLAbsUser> {
 
     protected String lastName;
 
+    private final String _constructor = "account.updateProfile#f0888d68";
+
     public TLRequestAccountUpdateProfile() {
     }
 
@@ -70,7 +72,7 @@ public class TLRequestAccountUpdateProfile extends TLMethod<TLAbsUser> {
 
     @Override
     public String toString() {
-        return "account.updateProfile#f0888d68";
+        return _constructor;
     }
 
     @Override

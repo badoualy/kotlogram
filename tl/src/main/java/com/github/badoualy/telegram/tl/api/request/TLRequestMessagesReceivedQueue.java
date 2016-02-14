@@ -24,6 +24,8 @@ public class TLRequestMessagesReceivedQueue extends TLMethod<TLLongVector> {
 
     protected int maxQts;
 
+    private final String _constructor = "messages.receivedQueue#55a5bb66";
+
     public TLRequestMessagesReceivedQueue() {
     }
 
@@ -64,7 +66,7 @@ public class TLRequestMessagesReceivedQueue extends TLMethod<TLLongVector> {
 
     @Override
     public String toString() {
-        return "messages.receivedQueue#55a5bb66";
+        return _constructor;
     }
 
     @Override

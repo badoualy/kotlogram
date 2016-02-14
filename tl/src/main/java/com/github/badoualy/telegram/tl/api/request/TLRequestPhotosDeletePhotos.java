@@ -25,6 +25,8 @@ public class TLRequestPhotosDeletePhotos extends TLMethod<TLLongVector> {
 
     protected TLVector<TLAbsInputPhoto> id;
 
+    private final String _constructor = "photos.deletePhotos#87cf7f2f";
+
     public TLRequestPhotosDeletePhotos() {
     }
 
@@ -65,7 +67,7 @@ public class TLRequestPhotosDeletePhotos extends TLMethod<TLLongVector> {
 
     @Override
     public String toString() {
-        return "photos.deletePhotos#87cf7f2f";
+        return _constructor;
     }
 
     @Override

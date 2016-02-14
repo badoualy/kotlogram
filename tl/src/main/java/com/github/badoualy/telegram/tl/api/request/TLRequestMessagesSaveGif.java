@@ -28,6 +28,8 @@ public class TLRequestMessagesSaveGif extends TLMethod<TLBool> {
 
     protected boolean unsave;
 
+    private final String _constructor = "messages.saveGif#327a30cb";
+
     public TLRequestMessagesSaveGif() {
     }
 
@@ -72,7 +74,7 @@ public class TLRequestMessagesSaveGif extends TLMethod<TLBool> {
 
     @Override
     public String toString() {
-        return "messages.saveGif#327a30cb";
+        return _constructor;
     }
 
     @Override

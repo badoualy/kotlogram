@@ -29,6 +29,8 @@ public class TLRequestChannelsInviteToChannel extends TLMethod<TLAbsUpdates> {
 
     protected TLVector<TLAbsInputUser> users;
 
+    private final String _constructor = "channels.inviteToChannel#199f3a6c";
+
     public TLRequestChannelsInviteToChannel() {
     }
 
@@ -73,7 +75,7 @@ public class TLRequestChannelsInviteToChannel extends TLMethod<TLAbsUpdates> {
 
     @Override
     public String toString() {
-        return "channels.inviteToChannel#199f3a6c";
+        return _constructor;
     }
 
     @Override

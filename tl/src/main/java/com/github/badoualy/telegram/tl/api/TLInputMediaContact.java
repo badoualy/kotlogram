@@ -24,6 +24,8 @@ public class TLInputMediaContact extends TLAbsInputMedia {
 
     protected String lastName;
 
+    private final String _constructor = "inputMediaContact#a6e45987";
+
     public TLInputMediaContact() {
     }
 
@@ -59,7 +61,7 @@ public class TLInputMediaContact extends TLAbsInputMedia {
 
     @Override
     public String toString() {
-        return "inputMediaContact#a6e45987";
+        return _constructor;
     }
 
     @Override

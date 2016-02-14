@@ -7,12 +7,14 @@ package com.github.badoualy.telegram.tl.api;
 public class TLInputMessagesFilterEmpty extends TLAbsMessagesFilter {
     public static final int CONSTRUCTOR_ID = 0x57e2f66c;
 
+    private final String _constructor = "inputMessagesFilterEmpty#57e2f66c";
+
     public TLInputMessagesFilterEmpty() {
     }
 
     @Override
     public String toString() {
-        return "inputMessagesFilterEmpty#57e2f66c";
+        return _constructor;
     }
 
     @Override

@@ -24,6 +24,8 @@ public class TLRequestMessagesMigrateChat extends TLMethod<TLAbsUpdates> {
 
     protected int chatId;
 
+    private final String _constructor = "messages.migrateChat#15a3b8e3";
+
     public TLRequestMessagesMigrateChat() {
     }
 
@@ -64,7 +66,7 @@ public class TLRequestMessagesMigrateChat extends TLMethod<TLAbsUpdates> {
 
     @Override
     public String toString() {
-        return "messages.migrateChat#15a3b8e3";
+        return _constructor;
     }
 
     @Override

@@ -28,6 +28,8 @@ public class TLUpdateReadHistoryOutbox extends TLAbsUpdate {
 
     protected int ptsCount;
 
+    private final String _constructor = "updateReadHistoryOutbox#2f2f21bf";
+
     public TLUpdateReadHistoryOutbox() {
     }
 
@@ -67,7 +69,7 @@ public class TLUpdateReadHistoryOutbox extends TLAbsUpdate {
 
     @Override
     public String toString() {
-        return "updateReadHistoryOutbox#2f2f21bf";
+        return _constructor;
     }
 
     @Override

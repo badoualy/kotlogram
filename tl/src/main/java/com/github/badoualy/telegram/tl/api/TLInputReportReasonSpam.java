@@ -7,12 +7,14 @@ package com.github.badoualy.telegram.tl.api;
 public class TLInputReportReasonSpam extends TLAbsReportReason {
     public static final int CONSTRUCTOR_ID = 0x58dbcab8;
 
+    private final String _constructor = "inputReportReasonSpam#58dbcab8";
+
     public TLInputReportReasonSpam() {
     }
 
     @Override
     public String toString() {
-        return "inputReportReasonSpam#58dbcab8";
+        return _constructor;
     }
 
     @Override

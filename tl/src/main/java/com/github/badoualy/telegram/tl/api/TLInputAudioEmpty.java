@@ -7,12 +7,14 @@ package com.github.badoualy.telegram.tl.api;
 public class TLInputAudioEmpty extends TLAbsInputAudio {
     public static final int CONSTRUCTOR_ID = 0xd95adc84;
 
+    private final String _constructor = "inputAudioEmpty#d95adc84";
+
     public TLInputAudioEmpty() {
     }
 
     @Override
     public String toString() {
-        return "inputAudioEmpty#d95adc84";
+        return _constructor;
     }
 
     @Override

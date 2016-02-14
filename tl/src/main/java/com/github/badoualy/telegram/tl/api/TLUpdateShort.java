@@ -24,6 +24,8 @@ public class TLUpdateShort extends TLAbsUpdates {
 
     protected int date;
 
+    private final String _constructor = "updateShort#78d4dec1";
+
     public TLUpdateShort() {
     }
 
@@ -55,7 +57,7 @@ public class TLUpdateShort extends TLAbsUpdates {
 
     @Override
     public String toString() {
-        return "updateShort#78d4dec1";
+        return _constructor;
     }
 
     @Override

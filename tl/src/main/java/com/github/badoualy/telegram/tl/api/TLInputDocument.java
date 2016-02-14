@@ -22,6 +22,8 @@ public class TLInputDocument extends TLAbsInputDocument {
 
     protected long accessHash;
 
+    private final String _constructor = "inputDocument#18798952";
+
     public TLInputDocument() {
     }
 
@@ -53,7 +55,7 @@ public class TLInputDocument extends TLAbsInputDocument {
 
     @Override
     public String toString() {
-        return "inputDocument#18798952";
+        return _constructor;
     }
 
     @Override

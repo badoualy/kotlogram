@@ -44,6 +44,8 @@ public class TLRequestMessagesSendInlineBotResult extends TLMethod<TLAbsUpdates>
 
     protected String id;
 
+    private final String _constructor = "messages.sendInlineBotResult#b16e06fe";
+
     public TLRequestMessagesSendInlineBotResult() {
     }
 
@@ -115,7 +117,7 @@ public class TLRequestMessagesSendInlineBotResult extends TLMethod<TLAbsUpdates>
 
     @Override
     public String toString() {
-        return "messages.sendInlineBotResult#b16e06fe";
+        return _constructor;
     }
 
     @Override

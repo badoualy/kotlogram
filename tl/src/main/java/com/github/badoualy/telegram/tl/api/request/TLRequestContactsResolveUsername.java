@@ -24,6 +24,8 @@ public class TLRequestContactsResolveUsername extends TLMethod<TLResolvedPeer> {
 
     protected String username;
 
+    private final String _constructor = "contacts.resolveUsername#f93ccba3";
+
     public TLRequestContactsResolveUsername() {
     }
 
@@ -64,7 +66,7 @@ public class TLRequestContactsResolveUsername extends TLMethod<TLResolvedPeer> {
 
     @Override
     public String toString() {
-        return "contacts.resolveUsername#f93ccba3";
+        return _constructor;
     }
 
     @Override

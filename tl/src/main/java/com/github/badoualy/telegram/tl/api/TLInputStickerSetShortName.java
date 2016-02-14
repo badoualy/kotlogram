@@ -20,6 +20,8 @@ public class TLInputStickerSetShortName extends TLAbsInputStickerSet {
 
     protected String shortName;
 
+    private final String _constructor = "inputStickerSetShortName#861cc8a0";
+
     public TLInputStickerSetShortName() {
     }
 
@@ -47,7 +49,7 @@ public class TLInputStickerSetShortName extends TLAbsInputStickerSet {
 
     @Override
     public String toString() {
-        return "inputStickerSetShortName#861cc8a0";
+        return _constructor;
     }
 
     @Override

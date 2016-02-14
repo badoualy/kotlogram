@@ -19,6 +19,8 @@ import static com.github.badoualy.telegram.tl.TLObjectUtils.computeTLBytesSerial
 public class TLDhConfigNotModified extends TLAbsDhConfig {
     public static final int CONSTRUCTOR_ID = 0xc0e24635;
 
+    private final String _constructor = "messages.dhConfigNotModified#c0e24635";
+
     public TLDhConfigNotModified() {
     }
 
@@ -46,7 +48,7 @@ public class TLDhConfigNotModified extends TLAbsDhConfig {
 
     @Override
     public String toString() {
-        return "messages.dhConfigNotModified#c0e24635";
+        return _constructor;
     }
 
     @Override

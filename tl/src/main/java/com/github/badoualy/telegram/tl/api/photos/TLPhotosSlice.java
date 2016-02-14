@@ -25,6 +25,8 @@ public class TLPhotosSlice extends TLAbsPhotos {
 
     protected int count;
 
+    private final String _constructor = "photos.photosSlice#15051f54";
+
     public TLPhotosSlice() {
     }
 
@@ -60,7 +62,7 @@ public class TLPhotosSlice extends TLAbsPhotos {
 
     @Override
     public String toString() {
-        return "photos.photosSlice#15051f54";
+        return _constructor;
     }
 
     @Override

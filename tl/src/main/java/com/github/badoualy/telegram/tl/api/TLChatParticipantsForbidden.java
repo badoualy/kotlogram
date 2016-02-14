@@ -24,6 +24,8 @@ public class TLChatParticipantsForbidden extends TLAbsChatParticipants {
 
     protected TLAbsChatParticipant selfParticipant;
 
+    private final String _constructor = "chatParticipantsForbidden#fc900c2b";
+
     public TLChatParticipantsForbidden() {
     }
 
@@ -67,7 +69,7 @@ public class TLChatParticipantsForbidden extends TLAbsChatParticipants {
 
     @Override
     public String toString() {
-        return "chatParticipantsForbidden#fc900c2b";
+        return _constructor;
     }
 
     @Override

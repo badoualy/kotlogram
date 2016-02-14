@@ -24,6 +24,8 @@ public class TLRequestHelpGetTermsOfService extends TLMethod<TLTermsOfService> {
 
     protected String langCode;
 
+    private final String _constructor = "help.getTermsOfService#37d78f83";
+
     public TLRequestHelpGetTermsOfService() {
     }
 
@@ -64,7 +66,7 @@ public class TLRequestHelpGetTermsOfService extends TLMethod<TLTermsOfService> {
 
     @Override
     public String toString() {
-        return "help.getTermsOfService#37d78f83";
+        return _constructor;
     }
 
     @Override

@@ -27,6 +27,8 @@ public class TLUpdateBotInlineSend extends TLAbsUpdate {
 
     protected String id;
 
+    private final String _constructor = "updateBotInlineSend#f69e113";
+
     public TLUpdateBotInlineSend() {
     }
 
@@ -62,7 +64,7 @@ public class TLUpdateBotInlineSend extends TLAbsUpdate {
 
     @Override
     public String toString() {
-        return "updateBotInlineSend#f69e113";
+        return _constructor;
     }
 
     @Override

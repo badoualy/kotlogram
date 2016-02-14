@@ -22,6 +22,8 @@ public class TLChats extends TLObject {
 
     protected TLVector<TLAbsChat> chats;
 
+    private final String _constructor = "messages.chats#64ff9fd5";
+
     public TLChats() {
     }
 
@@ -49,7 +51,7 @@ public class TLChats extends TLObject {
 
     @Override
     public String toString() {
-        return "messages.chats#64ff9fd5";
+        return _constructor;
     }
 
     @Override

@@ -38,6 +38,8 @@ public class TLMessageService extends TLAbsMessage {
 
     protected TLAbsMessageAction action;
 
+    private final String _constructor = "messageService#c06b9607";
+
     public TLMessageService() {
     }
 
@@ -105,7 +107,7 @@ public class TLMessageService extends TLAbsMessage {
 
     @Override
     public String toString() {
-        return "messageService#c06b9607";
+        return _constructor;
     }
 
     @Override

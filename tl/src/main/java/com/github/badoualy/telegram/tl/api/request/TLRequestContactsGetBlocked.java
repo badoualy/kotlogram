@@ -26,6 +26,8 @@ public class TLRequestContactsGetBlocked extends TLMethod<TLAbsBlocked> {
 
     protected int limit;
 
+    private final String _constructor = "contacts.getBlocked#f57c350f";
+
     public TLRequestContactsGetBlocked() {
     }
 
@@ -70,7 +72,7 @@ public class TLRequestContactsGetBlocked extends TLMethod<TLAbsBlocked> {
 
     @Override
     public String toString() {
-        return "contacts.getBlocked#f57c350f";
+        return _constructor;
     }
 
     @Override

@@ -17,6 +17,8 @@ import static com.github.badoualy.telegram.tl.StreamUtils.readTLObject;
 public class TLRequestUpdatesGetState extends TLMethod<TLState> {
     public static final int CONSTRUCTOR_ID = 0xedd4882a;
 
+    private final String _constructor = "updates.getState#edd4882a";
+
     public TLRequestUpdatesGetState() {
     }
 
@@ -35,7 +37,7 @@ public class TLRequestUpdatesGetState extends TLMethod<TLState> {
 
     @Override
     public String toString() {
-        return "updates.getState#edd4882a";
+        return _constructor;
     }
 
     @Override

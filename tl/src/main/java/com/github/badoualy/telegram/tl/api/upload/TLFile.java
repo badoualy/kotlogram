@@ -32,6 +32,8 @@ public class TLFile extends TLObject {
 
     protected TLBytes bytes;
 
+    private final String _constructor = "upload.file#96a18d5";
+
     public TLFile() {
     }
 
@@ -67,7 +69,7 @@ public class TLFile extends TLObject {
 
     @Override
     public String toString() {
-        return "upload.file#96a18d5";
+        return _constructor;
     }
 
     @Override

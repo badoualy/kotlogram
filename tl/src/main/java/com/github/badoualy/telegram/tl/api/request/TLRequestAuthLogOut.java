@@ -17,6 +17,8 @@ import static com.github.badoualy.telegram.tl.StreamUtils.readTLObject;
 public class TLRequestAuthLogOut extends TLMethod<TLBool> {
     public static final int CONSTRUCTOR_ID = 0x5717da40;
 
+    private final String _constructor = "auth.logOut#5717da40";
+
     public TLRequestAuthLogOut() {
     }
 
@@ -35,7 +37,7 @@ public class TLRequestAuthLogOut extends TLMethod<TLBool> {
 
     @Override
     public String toString() {
-        return "auth.logOut#5717da40";
+        return _constructor;
     }
 
     @Override

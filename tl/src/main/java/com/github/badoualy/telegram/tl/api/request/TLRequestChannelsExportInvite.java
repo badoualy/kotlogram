@@ -23,6 +23,8 @@ public class TLRequestChannelsExportInvite extends TLMethod<TLAbsExportedChatInv
 
     protected TLAbsInputChannel channel;
 
+    private final String _constructor = "channels.exportInvite#c7560885";
+
     public TLRequestChannelsExportInvite() {
     }
 
@@ -63,7 +65,7 @@ public class TLRequestChannelsExportInvite extends TLMethod<TLAbsExportedChatInv
 
     @Override
     public String toString() {
-        return "channels.exportInvite#c7560885";
+        return _constructor;
     }
 
     @Override

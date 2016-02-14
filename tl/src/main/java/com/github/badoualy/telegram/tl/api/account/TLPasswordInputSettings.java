@@ -36,6 +36,8 @@ public class TLPasswordInputSettings extends TLObject {
 
     protected String email;
 
+    private final String _constructor = "account.passwordInputSettings#bcfc532c";
+
     public TLPasswordInputSettings() {
     }
 
@@ -90,7 +92,7 @@ public class TLPasswordInputSettings extends TLObject {
 
     @Override
     public String toString() {
-        return "account.passwordInputSettings#bcfc532c";
+        return _constructor;
     }
 
     @Override

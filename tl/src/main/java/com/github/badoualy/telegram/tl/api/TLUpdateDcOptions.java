@@ -20,6 +20,8 @@ public class TLUpdateDcOptions extends TLAbsUpdate {
 
     protected TLVector<TLDcOption> dcOptions;
 
+    private final String _constructor = "updateDcOptions#8e5e9873";
+
     public TLUpdateDcOptions() {
     }
 
@@ -47,7 +49,7 @@ public class TLUpdateDcOptions extends TLAbsUpdate {
 
     @Override
     public String toString() {
-        return "updateDcOptions#8e5e9873";
+        return _constructor;
     }
 
     @Override

@@ -27,6 +27,8 @@ public class TLFoundGifs extends TLObject {
 
     protected TLVector<TLAbsFoundGif> results;
 
+    private final String _constructor = "messages.foundGifs#450a1c0a";
+
     public TLFoundGifs() {
     }
 
@@ -58,7 +60,7 @@ public class TLFoundGifs extends TLObject {
 
     @Override
     public String toString() {
-        return "messages.foundGifs#450a1c0a";
+        return _constructor;
     }
 
     @Override

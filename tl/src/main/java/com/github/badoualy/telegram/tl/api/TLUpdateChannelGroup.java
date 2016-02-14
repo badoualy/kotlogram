@@ -24,6 +24,8 @@ public class TLUpdateChannelGroup extends TLAbsUpdate {
 
     protected TLMessageGroup group;
 
+    private final String _constructor = "updateChannelGroup#c36c1e3c";
+
     public TLUpdateChannelGroup() {
     }
 
@@ -55,7 +57,7 @@ public class TLUpdateChannelGroup extends TLAbsUpdate {
 
     @Override
     public String toString() {
-        return "updateChannelGroup#c36c1e3c";
+        return _constructor;
     }
 
     @Override

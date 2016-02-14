@@ -26,6 +26,8 @@ public class TLLink extends TLObject {
 
     protected TLAbsUser user;
 
+    private final String _constructor = "contacts.link#3ace484c";
+
     public TLLink() {
     }
 
@@ -61,7 +63,7 @@ public class TLLink extends TLObject {
 
     @Override
     public String toString() {
-        return "contacts.link#3ace484c";
+        return _constructor;
     }
 
     @Override

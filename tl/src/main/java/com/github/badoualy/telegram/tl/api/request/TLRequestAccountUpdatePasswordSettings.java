@@ -29,6 +29,8 @@ public class TLRequestAccountUpdatePasswordSettings extends TLMethod<TLBool> {
 
     protected TLPasswordInputSettings newSettings;
 
+    private final String _constructor = "account.updatePasswordSettings#fa7c4b86";
+
     public TLRequestAccountUpdatePasswordSettings() {
     }
 
@@ -73,7 +75,7 @@ public class TLRequestAccountUpdatePasswordSettings extends TLMethod<TLBool> {
 
     @Override
     public String toString() {
-        return "account.updatePasswordSettings#fa7c4b86";
+        return _constructor;
     }
 
     @Override

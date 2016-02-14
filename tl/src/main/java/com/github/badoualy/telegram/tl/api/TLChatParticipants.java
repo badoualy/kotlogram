@@ -25,6 +25,8 @@ public class TLChatParticipants extends TLAbsChatParticipants {
 
     protected int version;
 
+    private final String _constructor = "chatParticipants#3f460fed";
+
     public TLChatParticipants() {
     }
 
@@ -60,7 +62,7 @@ public class TLChatParticipants extends TLAbsChatParticipants {
 
     @Override
     public String toString() {
-        return "chatParticipants#3f460fed";
+        return _constructor;
     }
 
     @Override

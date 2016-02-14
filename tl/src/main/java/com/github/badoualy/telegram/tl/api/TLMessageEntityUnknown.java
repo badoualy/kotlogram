@@ -18,6 +18,8 @@ import static com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_INT32;
 public class TLMessageEntityUnknown extends TLAbsMessageEntity {
     public static final int CONSTRUCTOR_ID = 0xbb92ba95;
 
+    private final String _constructor = "messageEntityUnknown#bb92ba95";
+
     public TLMessageEntityUnknown() {
     }
 
@@ -49,7 +51,7 @@ public class TLMessageEntityUnknown extends TLAbsMessageEntity {
 
     @Override
     public String toString() {
-        return "messageEntityUnknown#bb92ba95";
+        return _constructor;
     }
 
     @Override

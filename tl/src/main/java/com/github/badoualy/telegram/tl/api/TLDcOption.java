@@ -34,6 +34,8 @@ public class TLDcOption extends TLObject {
 
     protected int port;
 
+    private final String _constructor = "dcOption#5d8c6cc";
+
     public TLDcOption() {
     }
 
@@ -86,7 +88,7 @@ public class TLDcOption extends TLObject {
 
     @Override
     public String toString() {
-        return "dcOption#5d8c6cc";
+        return _constructor;
     }
 
     @Override

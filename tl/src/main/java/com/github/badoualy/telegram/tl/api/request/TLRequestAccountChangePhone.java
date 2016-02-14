@@ -28,6 +28,8 @@ public class TLRequestAccountChangePhone extends TLMethod<TLAbsUser> {
 
     protected String phoneCode;
 
+    private final String _constructor = "account.changePhone#70c32edb";
+
     public TLRequestAccountChangePhone() {
     }
 
@@ -76,7 +78,7 @@ public class TLRequestAccountChangePhone extends TLMethod<TLAbsUser> {
 
     @Override
     public String toString() {
-        return "account.changePhone#70c32edb";
+        return _constructor;
     }
 
     @Override

@@ -25,6 +25,8 @@ public class TLRequestAccountGetPasswordSettings extends TLMethod<TLPasswordSett
 
     protected TLBytes currentPasswordHash;
 
+    private final String _constructor = "account.getPasswordSettings#bc8d11bb";
+
     public TLRequestAccountGetPasswordSettings() {
     }
 
@@ -65,7 +67,7 @@ public class TLRequestAccountGetPasswordSettings extends TLMethod<TLPasswordSett
 
     @Override
     public String toString() {
-        return "account.getPasswordSettings#bc8d11bb";
+        return _constructor;
     }
 
     @Override

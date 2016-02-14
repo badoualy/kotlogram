@@ -6,6 +6,7 @@ import com.github.badoualy.telegram.mtproto.exception.RpcErrorException
 import com.github.badoualy.telegram.mtproto.secure.MTProtoMessageEncryption
 import com.github.badoualy.telegram.mtproto.secure.RandomUtils
 import com.github.badoualy.telegram.mtproto.thread.MTProtoTimer
+import com.github.badoualy.telegram.mtproto.thread.MTThreadPool
 import com.github.badoualy.telegram.mtproto.time.TimeOverlord
 import com.github.badoualy.telegram.mtproto.tl.*
 import com.github.badoualy.telegram.mtproto.transport.MTProtoConnection
@@ -23,7 +24,6 @@ import rx.Subscriber
 import rx.schedulers.Schedulers
 import java.io.IOException
 import java.util.*
-import java.util.concurrent.Executors
 import java.util.concurrent.TimeUnit
 
 class MTProtoHandler {
@@ -32,7 +32,8 @@ class MTProtoHandler {
     private val ACK_BUFFER_SIZE = 15
     private val ACK_BUFFER_TIMEOUT: Long = 60 * 1000
 
-    private var connection: MTProtoConnection? = null
+    var connection: MTProtoConnection? = null
+        private set
     private var watchdog: MTProtoWatchdog? = null
 
     private val mtProtoContext = MTProtoContext
@@ -56,8 +57,6 @@ class MTProtoHandler {
     private var bufferId = 0
 
     private val apiCallback: ApiCallback?
-
-    private val watchdogExecutor = Executors.newSingleThreadExecutor()
 
     constructor(authResult: AuthResult, apiCallback: ApiCallback?) {
         connection = authResult.connection
@@ -88,17 +87,25 @@ class MTProtoHandler {
     fun startWatchdog() {
         watchdog!!.start()
                 .observeOn(Schedulers.computation())
-                .subscribeOn(Schedulers.from(watchdogExecutor))
+                .subscribeOn(Schedulers.from(MTThreadPool.pool))
                 .doOnError({ t -> t.printStackTrace() })
                 .doOnNext({ data -> onMessageReceived(data) })
                 .subscribe()
     }
 
+    fun stopWatchdog() = watchdog?.stop()
+
+    /**
+     * Manually read a message from the connection, use this when Selector#select indicates that
+     * this connection is ready for read OP
+     */
+    fun readMessage() = onMessageReceived(connection!!.readMessage())
+
     /** Close the connection and re-open another one with a new session id */
     fun resetConnection() {
         Log.e(TAG, "Reset connection...")
         try {
-            watchdog?.stop()
+            stopWatchdog()
             connection!!.close()
         } catch (e: IOException) {
             e.printStackTrace()
@@ -113,13 +120,12 @@ class MTProtoHandler {
     fun close() {
         bufferTimeoutTask?.cancel()
         onBufferTimeout(bufferId)
-        watchdog?.stop()
+        stopWatchdog()
         try {
             connection!!.close()
         } catch (e: IOException) {
             e.printStackTrace()
         }
-        watchdogExecutor?.shutdownNow()
     }
 
     @Throws(IOException::class)
@@ -397,7 +403,7 @@ class MTProtoHandler {
                 apiCallback?.onSalt(salt)
 
                 // Resend message with good salt
-                val sentMessage = sentMessageList.filter({ m -> m.messageId == messageContent.badMsgId }).firstOrNull()
+                val sentMessage = sentMessageList.filter { it.messageId == messageContent.badMsgId }.firstOrNull()
                 if (sentMessage != null) {
                     Log.d(TAG, "Re-sending message ${messageContent.badMsgId} with new salt")
                     sendMessage(sentMessage)
@@ -484,6 +490,9 @@ class MTProtoHandler {
     companion object {
         /** Cleanup all the threads and common resources associated to this instance */
         @JvmStatic
-        fun cleanUp() = MTProtoTimer.shutdown()
+        fun cleanUp() {
+            MTThreadPool.pool.shutdownNow()
+            MTProtoTimer.shutdown()
+        }
     }
 }

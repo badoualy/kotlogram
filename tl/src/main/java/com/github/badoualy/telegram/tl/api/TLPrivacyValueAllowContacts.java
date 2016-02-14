@@ -7,12 +7,14 @@ package com.github.badoualy.telegram.tl.api;
 public class TLPrivacyValueAllowContacts extends TLAbsPrivacyRule {
     public static final int CONSTRUCTOR_ID = 0xfffe1bac;
 
+    private final String _constructor = "privacyValueAllowContacts#fffe1bac";
+
     public TLPrivacyValueAllowContacts() {
     }
 
     @Override
     public String toString() {
-        return "privacyValueAllowContacts#fffe1bac";
+        return _constructor;
     }
 
     @Override

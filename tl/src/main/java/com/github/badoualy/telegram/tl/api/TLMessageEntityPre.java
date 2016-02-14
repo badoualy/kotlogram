@@ -23,6 +23,8 @@ public class TLMessageEntityPre extends TLAbsMessageEntity {
 
     protected String language;
 
+    private final String _constructor = "messageEntityPre#73924be0";
+
     public TLMessageEntityPre() {
     }
 
@@ -58,7 +60,7 @@ public class TLMessageEntityPre extends TLAbsMessageEntity {
 
     @Override
     public String toString() {
-        return "messageEntityPre#73924be0";
+        return _constructor;
     }
 
     @Override

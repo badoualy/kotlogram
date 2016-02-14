@@ -7,12 +7,14 @@ package com.github.badoualy.telegram.tl.api;
 public class TLUserStatusLastMonth extends TLAbsUserStatus {
     public static final int CONSTRUCTOR_ID = 0x77ebc742;
 
+    private final String _constructor = "userStatusLastMonth#77ebc742";
+
     public TLUserStatusLastMonth() {
     }
 
     @Override
     public String toString() {
-        return "userStatusLastMonth#77ebc742";
+        return _constructor;
     }
 
     @Override

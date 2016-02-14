@@ -26,6 +26,8 @@ public class TLDialogChannel extends TLAbsDialog {
 
     protected int pts;
 
+    private final String _constructor = "dialogChannel#5b8496b2";
+
     public TLDialogChannel() {
     }
 
@@ -81,7 +83,7 @@ public class TLDialogChannel extends TLAbsDialog {
 
     @Override
     public String toString() {
-        return "dialogChannel#5b8496b2";
+        return _constructor;
     }
 
     @Override

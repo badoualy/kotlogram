@@ -28,6 +28,8 @@ public class TLRequestAuthSignIn extends TLMethod<TLAuthorization> {
 
     protected String phoneCode;
 
+    private final String _constructor = "auth.signIn#bcd51581";
+
     public TLRequestAuthSignIn() {
     }
 
@@ -76,7 +78,7 @@ public class TLRequestAuthSignIn extends TLMethod<TLAuthorization> {
 
     @Override
     public String toString() {
-        return "auth.signIn#bcd51581";
+        return _constructor;
     }
 
     @Override

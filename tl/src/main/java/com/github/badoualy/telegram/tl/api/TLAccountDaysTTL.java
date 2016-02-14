@@ -21,6 +21,8 @@ public class TLAccountDaysTTL extends TLObject {
 
     protected int days;
 
+    private final String _constructor = "accountDaysTTL#b8d0afdf";
+
     public TLAccountDaysTTL() {
     }
 
@@ -48,7 +50,7 @@ public class TLAccountDaysTTL extends TLObject {
 
     @Override
     public String toString() {
-        return "accountDaysTTL#b8d0afdf";
+        return _constructor;
     }
 
     @Override

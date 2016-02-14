@@ -17,6 +17,8 @@ import static com.github.badoualy.telegram.tl.StreamUtils.readTLObject;
 public class TLRequestHelpGetConfig extends TLMethod<TLConfig> {
     public static final int CONSTRUCTOR_ID = 0xc4f9186b;
 
+    private final String _constructor = "help.getConfig#c4f9186b";
+
     public TLRequestHelpGetConfig() {
     }
 
@@ -35,7 +37,7 @@ public class TLRequestHelpGetConfig extends TLMethod<TLConfig> {
 
     @Override
     public String toString() {
-        return "help.getConfig#c4f9186b";
+        return _constructor;
     }
 
     @Override

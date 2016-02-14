@@ -28,6 +28,8 @@ public class TLFound extends TLObject {
 
     protected TLVector<TLAbsUser> users;
 
+    private final String _constructor = "contacts.found#1aa1f784";
+
     public TLFound() {
     }
 
@@ -63,7 +65,7 @@ public class TLFound extends TLObject {
 
     @Override
     public String toString() {
-        return "contacts.found#1aa1f784";
+        return _constructor;
     }
 
     @Override

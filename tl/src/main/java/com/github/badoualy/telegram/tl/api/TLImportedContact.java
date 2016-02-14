@@ -26,6 +26,8 @@ public class TLImportedContact extends TLObject {
 
     protected long clientId;
 
+    private final String _constructor = "importedContact#d0028438";
+
     public TLImportedContact() {
     }
 
@@ -57,7 +59,7 @@ public class TLImportedContact extends TLObject {
 
     @Override
     public String toString() {
-        return "importedContact#d0028438";
+        return _constructor;
     }
 
     @Override

@@ -26,6 +26,8 @@ public class TLStickers extends TLAbsStickers {
 
     protected TLVector<TLAbsDocument> stickers;
 
+    private final String _constructor = "messages.stickers#8a8ecd32";
+
     public TLStickers() {
     }
 
@@ -57,7 +59,7 @@ public class TLStickers extends TLAbsStickers {
 
     @Override
     public String toString() {
-        return "messages.stickers#8a8ecd32";
+        return _constructor;
     }
 
     @Override

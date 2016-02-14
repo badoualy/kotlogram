@@ -24,6 +24,8 @@ public class TLRequestHelpGetInviteText extends TLMethod<TLInviteText> {
 
     protected String langCode;
 
+    private final String _constructor = "help.getInviteText#a4a95186";
+
     public TLRequestHelpGetInviteText() {
     }
 
@@ -64,7 +66,7 @@ public class TLRequestHelpGetInviteText extends TLMethod<TLInviteText> {
 
     @Override
     public String toString() {
-        return "help.getInviteText#a4a95186";
+        return _constructor;
     }
 
     @Override

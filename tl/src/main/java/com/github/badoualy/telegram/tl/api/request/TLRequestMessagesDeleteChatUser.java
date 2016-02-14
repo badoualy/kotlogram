@@ -28,6 +28,8 @@ public class TLRequestMessagesDeleteChatUser extends TLMethod<TLAbsUpdates> {
 
     protected TLAbsInputUser userId;
 
+    private final String _constructor = "messages.deleteChatUser#e0611f16";
+
     public TLRequestMessagesDeleteChatUser() {
     }
 
@@ -72,7 +74,7 @@ public class TLRequestMessagesDeleteChatUser extends TLMethod<TLAbsUpdates> {
 
     @Override
     public String toString() {
-        return "messages.deleteChatUser#e0611f16";
+        return _constructor;
     }
 
     @Override

@@ -74,11 +74,11 @@ try {
     // Get a list of 10 most recent conversations
     TLAbsDialogs dialogs = client.messagesGetDialogs(0, 0, new TLInputPeerEmpty(), 10);
     for (TLAbsMessage message : dialogs.getMessages()) {
-if (message instanceof TLMessage) {
-    System.out.println("Found message " + ((TLMessage) message).getMessage());
-} else {
-    System.out.println("Found a service message or empty message");
-}
+        if (message instanceof TLMessage) {
+            System.out.println("Found message " + ((TLMessage) message).getMessage());
+        } else {
+            System.out.println("Found a service message or empty message");
+        }
     }
 
     // Take the first user in the list, and send a message to him

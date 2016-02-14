@@ -46,6 +46,8 @@ public class TLRequestMessagesSetInlineBotResults extends TLMethod<TLBool> {
 
     protected String nextOffset;
 
+    private final String _constructor = "messages.setInlineBotResults#3f23ec12";
+
     public TLRequestMessagesSetInlineBotResults() {
     }
 
@@ -116,7 +118,7 @@ public class TLRequestMessagesSetInlineBotResults extends TLMethod<TLBool> {
 
     @Override
     public String toString() {
-        return "messages.setInlineBotResults#3f23ec12";
+        return _constructor;
     }
 
     @Override

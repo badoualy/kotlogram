@@ -24,6 +24,8 @@ public class TLMessageMediaDocument extends TLAbsMessageMedia {
 
     protected String caption;
 
+    private final String _constructor = "messageMediaDocument#f3e02ea8";
+
     public TLMessageMediaDocument() {
     }
 
@@ -55,7 +57,7 @@ public class TLMessageMediaDocument extends TLAbsMessageMedia {
 
     @Override
     public String toString() {
-        return "messageMediaDocument#f3e02ea8";
+        return _constructor;
     }
 
     @Override

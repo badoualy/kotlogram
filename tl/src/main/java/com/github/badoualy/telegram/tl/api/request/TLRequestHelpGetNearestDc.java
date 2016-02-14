@@ -17,6 +17,8 @@ import static com.github.badoualy.telegram.tl.StreamUtils.readTLObject;
 public class TLRequestHelpGetNearestDc extends TLMethod<TLNearestDc> {
     public static final int CONSTRUCTOR_ID = 0x1fb33026;
 
+    private final String _constructor = "help.getNearestDc#1fb33026";
+
     public TLRequestHelpGetNearestDc() {
     }
 
@@ -35,7 +37,7 @@ public class TLRequestHelpGetNearestDc extends TLMethod<TLNearestDc> {
 
     @Override
     public String toString() {
-        return "help.getNearestDc#1fb33026";
+        return _constructor;
     }
 
     @Override

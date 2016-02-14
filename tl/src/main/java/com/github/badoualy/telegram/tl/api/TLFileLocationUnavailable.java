@@ -21,6 +21,8 @@ import static com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_INT64;
 public class TLFileLocationUnavailable extends TLAbsFileLocation {
     public static final int CONSTRUCTOR_ID = 0x7c596b46;
 
+    private final String _constructor = "fileLocationUnavailable#7c596b46";
+
     public TLFileLocationUnavailable() {
     }
 
@@ -56,7 +58,7 @@ public class TLFileLocationUnavailable extends TLAbsFileLocation {
 
     @Override
     public String toString() {
-        return "fileLocationUnavailable#7c596b46";
+        return _constructor;
     }
 
     @Override

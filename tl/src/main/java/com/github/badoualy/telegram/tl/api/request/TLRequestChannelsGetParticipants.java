@@ -33,6 +33,8 @@ public class TLRequestChannelsGetParticipants extends TLMethod<TLChannelParticip
 
     protected int limit;
 
+    private final String _constructor = "channels.getParticipants#24d98f92";
+
     public TLRequestChannelsGetParticipants() {
     }
 
@@ -85,7 +87,7 @@ public class TLRequestChannelsGetParticipants extends TLMethod<TLChannelParticip
 
     @Override
     public String toString() {
-        return "channels.getParticipants#24d98f92";
+        return _constructor;
     }
 
     @Override

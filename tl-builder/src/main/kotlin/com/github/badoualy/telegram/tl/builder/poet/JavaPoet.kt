@@ -66,9 +66,9 @@ object JavaPoet {
 
         // Compute abstraction classes (multiple constructors for 1 type)
         val typeOccurrences = HashMap<TLType, Int>(tlDefinition.types.size)
-        constructors.map { c -> c.tlType }.forEach { t -> typeOccurrences.put(t, typeOccurrences.getOrDefault(t, 0) + 1) }
-        val nonAbstractedConstructors = constructors.filter { c -> typeOccurrences[c.tlType]!! == 1 } // No need for abstraction
-        val abstractedConstructors = constructors.filter { c -> typeOccurrences[c.tlType]!! > 1 } // Need abstraction
+        constructors.map { it.tlType }.forEach { typeOccurrences.put(it, typeOccurrences.getOrDefault(it, 0) + 1) }
+        val nonAbstractedConstructors = constructors.filter { typeOccurrences[it.tlType]!! == 1 } // No need for abstraction
+        val abstractedConstructors = constructors.filter { typeOccurrences[it.tlType]!! > 1 } // Need abstraction
         val abstractConstructors = ArrayList<TLAbstractConstructor>() // Fake constructor created by us
 
         contextConstructors.addAll(nonAbstractedConstructors)
@@ -76,20 +76,20 @@ object JavaPoet {
 
         // Build AbstractConstructor
         // Check common parameters
-        for (abstractType in abstractedConstructors.map { c -> c.tlType }.distinct()) {
-            val typeConstructors = abstractedConstructors.filter { c -> c.tlType == abstractType }
+        for (abstractType in abstractedConstructors.map { it.tlType }.distinct()) {
+            val typeConstructors = abstractedConstructors.filter { it.tlType == abstractType }
             // We have to build an abstraction for an empty constructor, ie: TLAbsUser, TLUser, TLUserEmpty
-            val abstractEmptyConstructor = typeConstructors.size == 2 && typeConstructors.map { c -> c.name.endsWith("empty", true) }.contains(true)
+            val abstractEmptyConstructor = typeConstructors.size == 2 && typeConstructors.map { it.name.endsWith("empty", true) }.contains(true)
             if (abstractEmptyConstructor)
-                typeConstructors.forEach { c -> emptyConstructorAbstractedMap.put(c, true) }
+                typeConstructors.forEach { emptyConstructorAbstractedMap.put(it, true) }
             //val nonEmptyConstructor = if (!abstractEmptyConstructor) null else typeConstructors.find { c -> !c.name.endsWith("empty", true) }
 
-            val commonParameters = typeConstructors.map { c -> c.parameters }.reduce { l1, l2 -> ArrayList(l1.intersect(l2)) }
+            val commonParameters = typeConstructors.map { it.parameters }.reduce { l1, l2 -> ArrayList(l1.intersect(l2)) }
             abstractConstructors.add(TLAbstractConstructor(abstractType.name, commonParameters, abstractType, abstractEmptyConstructor))
-            commonParameters.forEach { p -> p.inherited = true }
+            commonParameters.forEach { it.inherited = true }
 
             // Update each types parameters: reference are not the same
-            typeConstructors.flatMap { c -> c.parameters }.filter { p -> commonParameters.contains(p) }.forEach { p -> p.inherited = true }
+            typeConstructors.flatMap { it.parameters }.filter { commonParameters.contains(it) }.forEach { it.inherited = true }
         }
 
         // Some logging
@@ -191,7 +191,7 @@ object JavaPoet {
                 .build())
 
         val methodBuilder = MethodSpec.methodBuilder("init").addModifiers(Modifier.PUBLIC).addAnnotation(Override::class.java)
-        for (clazzType in testContext.sortedBy { t -> t.simpleName() }) {
+        for (clazzType in testContext.sortedBy { it.simpleName() }) {
             methodBuilder.addStatement("registerClass(\$T.CONSTRUCTOR_ID, \$T.class" + ")", clazzType, clazzType)
         }
         contextClazz.addMethod(methodBuilder.build())
@@ -336,7 +336,7 @@ object JavaPoet {
                         responseType,
                         clazzTypeName,
                         if (method.parameters.isNotEmpty())
-                            method.parameters.filterNot { p -> p.tlType is TLTypeFlag }.map { p -> p.name.lCamelCase().javaEscape() }.joinToString(", ")
+                            method.parameters.filterNot { it.tlType is TLTypeFlag }.map { it.name.lCamelCase().javaEscape() }.joinToString(", ")
                         else "")
         generateClassCommon(clazz, clazzTypeName, method.name, method.id, method.parameters)
         apiClazz.addMethod(apiMethod?.build())
@@ -398,7 +398,7 @@ object JavaPoet {
                 .addCode("\n")
 
         // Compute flag for serialization
-        val condParameters = parameters.filter { p -> p.tlType is TLTypeConditional }
+        val condParameters = parameters.filter { it.tlType is TLTypeConditional }
         if (condParameters.isNotEmpty()) {
             val computeFlagsMethod = MethodSpec.methodBuilder("computeFlags")
                     .addModifiers(Modifier.PRIVATE)
@@ -412,14 +412,14 @@ object JavaPoet {
 
                 if (fieldType == TypeName.BOOLEAN) {
                     // Check if is an indicator of presence of another field
-                    if (condParameters.count { p -> (p.tlType as TLTypeConditional).value == tlType.value } > 1)
+                    if (condParameters.count { (it.tlType as TLTypeConditional).value == tlType.value } > 1)
                         tlType.indicator = true
                     else computeFlagsMethod.addStatement("flags = $fieldName ? (flags | ${tlType.pow2Value()}) : (flags &~ ${tlType.pow2Value()})")
                 } else computeFlagsMethod.addStatement("flags = $fieldName != null ? (flags | ${tlType.pow2Value()}) : (flags &~ ${tlType.pow2Value()})")
             }
 
             // Update boolean values
-            condParameters.filter { p -> (p.tlType as TLTypeConditional).indicator }
+            condParameters.filter { (it.tlType as TLTypeConditional).indicator }
                     .forEach { p -> computeFlagsMethod.addStatement(p.name.lCamelCase().javaEscape() + " = " + deserializeParameter(p.tlType, getType(p.tlType))) }
 
             clazz.addMethod(computeFlagsMethod.build());
@@ -451,6 +451,7 @@ object JavaPoet {
 
             // Add serialize method entry
             val condBoolean = fieldTlType is TLTypeConditional && fieldTlType.realType is TLTypeRaw && fieldTlType.realType.name == "Bool"
+            val condIndicator = fieldTlType is TLTypeConditional && fieldTlType.indicator
             if (!condBoolean) {
                 serializeMethod.addStatement(serializeParameter(fieldName, fieldTlType))
                 computeSizeMethod.addStatement(computeSizeParameter(fieldName, fieldTlType))
@@ -470,18 +471,20 @@ object JavaPoet {
             if (fieldTlType !is TLTypeFlag) {
                 // Add set()/get()
                 accessors.add(generateGetter(parameter.name, fieldName, fieldType))
-                accessors.add(generateSetter(parameter.name, fieldName, fieldType))
+                if (!condIndicator) {
+                    accessors.add(generateSetter(parameter.name, fieldName, fieldType))
 
-                // Add constructor parameter
-                constructorBuilder.addParameter(fieldType, fieldName)
-                constructorBuilder.addStatement("this.$fieldName = $fieldName")
+                    // Add constructor parameter
+                    constructorBuilder.addParameter(fieldType, fieldName)
+                    constructorBuilder.addStatement("this.$fieldName = $fieldName")
 
-                // Add api method
-                apiMethod?.addParameter(fieldType, fieldName)
-                apiWrappedMethod?.addParameter(fieldType, fieldName)
-                if (fieldTlType is TLTypeFunctional) {
-                    apiMethod?.addTypeVariable(TypeVariableName.get("T", TYPE_TL_OBJECT))
-                    apiWrappedMethod?.addTypeVariable(TypeVariableName.get("T", TYPE_TL_OBJECT))
+                    // Add api method
+                    apiMethod?.addParameter(fieldType, fieldName)
+                    apiWrappedMethod?.addParameter(fieldType, fieldName)
+                    if (fieldTlType is TLTypeFunctional) {
+                        apiMethod?.addTypeVariable(TypeVariableName.get("T", TYPE_TL_OBJECT))
+                        apiWrappedMethod?.addTypeVariable(TypeVariableName.get("T", TYPE_TL_OBJECT))
+                    }
                 }
             }
         }
@@ -496,12 +499,18 @@ object JavaPoet {
                 clazz.addMethod(computeSizeMethod.build())
             }
 
+            // _constructor
+            clazz.addField(FieldSpec.builder(String::class.java, "_constructor")
+                    .addModifiers(Modifier.PRIVATE, Modifier.FINAL)
+                    .initializer("\$S", "$name#${hex(id)}")
+                    .build())
+
             // toString()
             clazz.addMethod(MethodSpec.methodBuilder("toString")
                     .addAnnotation(Override::class.java)
                     .addModifiers(Modifier.PUBLIC)
                     .returns(String::class.java)
-                    .addStatement("""return "$name#${hex(id)}"""")
+                    .addStatement("return _constructor")
                     .build())
 
             // getConstructorId

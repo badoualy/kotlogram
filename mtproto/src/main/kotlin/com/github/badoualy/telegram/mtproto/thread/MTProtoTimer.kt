@@ -5,16 +5,9 @@ import kotlin.concurrent.schedule
 
 internal object MTProtoTimer {
 
-    private var timer: Timer? = null
+    private var timer = Timer()
 
-    fun schedule(delay: Long, action: TimerTask.() -> Unit): TimerTask {
-        if (timer == null)
-            timer = Timer()
-        return timer!!.schedule(delay, action)
-    }
+    fun schedule(delay: Long, action: TimerTask.() -> Unit) = timer.schedule(delay, action)
 
-    fun shutdown() {
-        timer?.cancel()
-        timer = null
-    }
+    fun shutdown() = timer.cancel()
 }

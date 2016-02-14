@@ -23,6 +23,8 @@ public class TLRequestContactsDeleteContact extends TLMethod<TLLink> {
 
     protected TLAbsInputUser id;
 
+    private final String _constructor = "contacts.deleteContact#8e953744";
+
     public TLRequestContactsDeleteContact() {
     }
 
@@ -63,7 +65,7 @@ public class TLRequestContactsDeleteContact extends TLMethod<TLLink> {
 
     @Override
     public String toString() {
-        return "contacts.deleteContact#8e953744";
+        return _constructor;
     }
 
     @Override

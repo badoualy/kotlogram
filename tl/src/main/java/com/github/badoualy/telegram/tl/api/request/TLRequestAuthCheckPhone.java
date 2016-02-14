@@ -24,6 +24,8 @@ public class TLRequestAuthCheckPhone extends TLMethod<TLCheckedPhone> {
 
     protected String phoneNumber;
 
+    private final String _constructor = "auth.checkPhone#6fe51dfb";
+
     public TLRequestAuthCheckPhone() {
     }
 
@@ -64,7 +66,7 @@ public class TLRequestAuthCheckPhone extends TLMethod<TLCheckedPhone> {
 
     @Override
     public String toString() {
-        return "auth.checkPhone#6fe51dfb";
+        return _constructor;
     }
 
     @Override

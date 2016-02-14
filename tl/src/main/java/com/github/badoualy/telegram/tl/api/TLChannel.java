@@ -60,10 +60,12 @@ public class TLChannel extends TLAbsChat {
 
     protected String restrictionReason;
 
+    private final String _constructor = "channel#4b1b7506";
+
     public TLChannel() {
     }
 
-    public TLChannel(boolean creator, boolean kicked, boolean left, boolean editor, boolean moderator, boolean broadcast, boolean verified, boolean megagroup, boolean restricted, int id, long accessHash, String title, String username, TLAbsChatPhoto photo, int date, int version, String restrictionReason) {
+    public TLChannel(boolean creator, boolean kicked, boolean left, boolean editor, boolean moderator, boolean broadcast, boolean verified, boolean megagroup, int id, long accessHash, String title, String username, TLAbsChatPhoto photo, int date, int version, String restrictionReason) {
         this.creator = creator;
         this.kicked = kicked;
         this.left = left;
@@ -72,7 +74,6 @@ public class TLChannel extends TLAbsChat {
         this.broadcast = broadcast;
         this.verified = verified;
         this.megagroup = megagroup;
-        this.restricted = restricted;
         this.id = id;
         this.accessHash = accessHash;
         this.title = title;
@@ -155,7 +156,7 @@ public class TLChannel extends TLAbsChat {
 
     @Override
     public String toString() {
-        return "channel#4b1b7506";
+        return _constructor;
     }
 
     @Override
@@ -257,10 +258,6 @@ public class TLChannel extends TLAbsChat {
 
     public boolean getRestricted() {
         return restricted;
-    }
-
-    public void setRestricted(boolean restricted) {
-        this.restricted = restricted;
     }
 
     public int getId() {

@@ -21,6 +21,8 @@ public class TLKeyboardButton extends TLObject {
 
     protected String text;
 
+    private final String _constructor = "keyboardButton#a2fa4880";
+
     public TLKeyboardButton() {
     }
 
@@ -48,7 +50,7 @@ public class TLKeyboardButton extends TLObject {
 
     @Override
     public String toString() {
-        return "keyboardButton#a2fa4880";
+        return _constructor;
     }
 
     @Override

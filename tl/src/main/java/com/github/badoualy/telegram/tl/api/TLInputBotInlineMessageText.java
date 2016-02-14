@@ -32,6 +32,8 @@ public class TLInputBotInlineMessageText extends TLAbsInputBotInlineMessage {
 
     protected TLVector<TLAbsMessageEntity> entities;
 
+    private final String _constructor = "inputBotInlineMessageText#adf0df71";
+
     public TLInputBotInlineMessageText() {
     }
 
@@ -78,7 +80,7 @@ public class TLInputBotInlineMessageText extends TLAbsInputBotInlineMessage {
 
     @Override
     public String toString() {
-        return "inputBotInlineMessageText#adf0df71";
+        return _constructor;
     }
 
     @Override

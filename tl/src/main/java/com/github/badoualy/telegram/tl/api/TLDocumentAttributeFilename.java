@@ -20,6 +20,8 @@ public class TLDocumentAttributeFilename extends TLAbsDocumentAttribute {
 
     protected String fileName;
 
+    private final String _constructor = "documentAttributeFilename#15590068";
+
     public TLDocumentAttributeFilename() {
     }
 
@@ -47,7 +49,7 @@ public class TLDocumentAttributeFilename extends TLAbsDocumentAttribute {
 
     @Override
     public String toString() {
-        return "documentAttributeFilename#15590068";
+        return _constructor;
     }
 
     @Override

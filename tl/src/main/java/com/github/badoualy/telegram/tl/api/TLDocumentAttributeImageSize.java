@@ -22,6 +22,8 @@ public class TLDocumentAttributeImageSize extends TLAbsDocumentAttribute {
 
     protected int h;
 
+    private final String _constructor = "documentAttributeImageSize#6c37c15c";
+
     public TLDocumentAttributeImageSize() {
     }
 
@@ -53,7 +55,7 @@ public class TLDocumentAttributeImageSize extends TLAbsDocumentAttribute {
 
     @Override
     public String toString() {
-        return "documentAttributeImageSize#6c37c15c";
+        return _constructor;
     }
 
     @Override

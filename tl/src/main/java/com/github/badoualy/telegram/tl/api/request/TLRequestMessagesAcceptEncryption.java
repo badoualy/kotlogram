@@ -34,6 +34,8 @@ public class TLRequestMessagesAcceptEncryption extends TLMethod<TLAbsEncryptedCh
 
     protected long keyFingerprint;
 
+    private final String _constructor = "messages.acceptEncryption#3dbc0415";
+
     public TLRequestMessagesAcceptEncryption() {
     }
 
@@ -82,7 +84,7 @@ public class TLRequestMessagesAcceptEncryption extends TLMethod<TLAbsEncryptedCh
 
     @Override
     public String toString() {
-        return "messages.acceptEncryption#3dbc0415";
+        return _constructor;
     }
 
     @Override

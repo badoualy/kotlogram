@@ -20,6 +20,8 @@ public class TLMessageActionChatDeleteUser extends TLAbsMessageAction {
 
     protected int userId;
 
+    private final String _constructor = "messageActionChatDeleteUser#b2ae9b0c";
+
     public TLMessageActionChatDeleteUser() {
     }
 
@@ -47,7 +49,7 @@ public class TLMessageActionChatDeleteUser extends TLAbsMessageAction {
 
     @Override
     public String toString() {
-        return "messageActionChatDeleteUser#b2ae9b0c";
+        return _constructor;
     }
 
     @Override

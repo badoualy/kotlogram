@@ -21,6 +21,8 @@ public class TLUpdateNotifySettings extends TLAbsUpdate {
 
     protected TLAbsPeerNotifySettings notifySettings;
 
+    private final String _constructor = "updateNotifySettings#bec268ef";
+
     public TLUpdateNotifySettings() {
     }
 
@@ -52,7 +54,7 @@ public class TLUpdateNotifySettings extends TLAbsUpdate {
 
     @Override
     public String toString() {
-        return "updateNotifySettings#bec268ef";
+        return _constructor;
     }
 
     @Override

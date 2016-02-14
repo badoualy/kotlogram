@@ -26,6 +26,8 @@ public class TLContact extends TLObject {
 
     protected boolean mutual;
 
+    private final String _constructor = "contact#f911c994";
+
     public TLContact() {
     }
 
@@ -57,7 +59,7 @@ public class TLContact extends TLObject {
 
     @Override
     public String toString() {
-        return "contact#f911c994";
+        return _constructor;
     }
 
     @Override

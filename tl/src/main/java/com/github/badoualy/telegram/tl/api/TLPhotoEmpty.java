@@ -18,6 +18,8 @@ import static com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_INT64;
 public class TLPhotoEmpty extends TLAbsPhoto {
     public static final int CONSTRUCTOR_ID = 0x2331b22d;
 
+    private final String _constructor = "photoEmpty#2331b22d";
+
     public TLPhotoEmpty() {
     }
 
@@ -45,7 +47,7 @@ public class TLPhotoEmpty extends TLAbsPhoto {
 
     @Override
     public String toString() {
-        return "photoEmpty#2331b22d";
+        return _constructor;
     }
 
     @Override

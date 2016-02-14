@@ -31,6 +31,8 @@ public class TLUpdateUserPhoto extends TLAbsUpdate {
 
     protected boolean previous;
 
+    private final String _constructor = "updateUserPhoto#95313b0c";
+
     public TLUpdateUserPhoto() {
     }
 
@@ -70,7 +72,7 @@ public class TLUpdateUserPhoto extends TLAbsUpdate {
 
     @Override
     public String toString() {
-        return "updateUserPhoto#95313b0c";
+        return _constructor;
     }
 
     @Override

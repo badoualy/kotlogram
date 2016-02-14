@@ -30,6 +30,8 @@ public class TLRequestHelpGetAppUpdate extends TLMethod<TLAbsAppUpdate> {
 
     protected String langCode;
 
+    private final String _constructor = "help.getAppUpdate#c812ac7e";
+
     public TLRequestHelpGetAppUpdate() {
     }
 
@@ -82,7 +84,7 @@ public class TLRequestHelpGetAppUpdate extends TLMethod<TLAbsAppUpdate> {
 
     @Override
     public String toString() {
-        return "help.getAppUpdate#c812ac7e";
+        return _constructor;
     }
 
     @Override

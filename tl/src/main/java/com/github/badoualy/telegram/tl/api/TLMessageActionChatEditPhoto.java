@@ -19,6 +19,8 @@ public class TLMessageActionChatEditPhoto extends TLAbsMessageAction {
 
     protected TLAbsPhoto photo;
 
+    private final String _constructor = "messageActionChatEditPhoto#7fcb13a8";
+
     public TLMessageActionChatEditPhoto() {
     }
 
@@ -46,7 +48,7 @@ public class TLMessageActionChatEditPhoto extends TLAbsMessageAction {
 
     @Override
     public String toString() {
-        return "messageActionChatEditPhoto#7fcb13a8";
+        return _constructor;
     }
 
     @Override

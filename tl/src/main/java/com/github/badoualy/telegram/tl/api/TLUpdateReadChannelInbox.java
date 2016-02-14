@@ -22,6 +22,8 @@ public class TLUpdateReadChannelInbox extends TLAbsUpdate {
 
     protected int maxId;
 
+    private final String _constructor = "updateReadChannelInbox#4214f37f";
+
     public TLUpdateReadChannelInbox() {
     }
 
@@ -53,7 +55,7 @@ public class TLUpdateReadChannelInbox extends TLAbsUpdate {
 
     @Override
     public String toString() {
-        return "updateReadChannelInbox#4214f37f";
+        return _constructor;
     }
 
     @Override

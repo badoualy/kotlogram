@@ -26,6 +26,8 @@ public class TLWallPaper extends TLAbsWallPaper {
 
     protected TLVector<TLAbsPhotoSize> sizes;
 
+    private final String _constructor = "wallPaper#ccb03657";
+
     public TLWallPaper() {
     }
 
@@ -65,7 +67,7 @@ public class TLWallPaper extends TLAbsWallPaper {
 
     @Override
     public String toString() {
-        return "wallPaper#ccb03657";
+        return _constructor;
     }
 
     @Override

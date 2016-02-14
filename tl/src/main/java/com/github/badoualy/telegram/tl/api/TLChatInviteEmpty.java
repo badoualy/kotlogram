@@ -7,12 +7,14 @@ package com.github.badoualy.telegram.tl.api;
 public class TLChatInviteEmpty extends TLAbsExportedChatInvite {
     public static final int CONSTRUCTOR_ID = 0x69df3769;
 
+    private final String _constructor = "chatInviteEmpty#69df3769";
+
     public TLChatInviteEmpty() {
     }
 
     @Override
     public String toString() {
-        return "chatInviteEmpty#69df3769";
+        return _constructor;
     }
 
     @Override

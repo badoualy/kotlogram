@@ -21,6 +21,8 @@ public class TLInputChatPhoto extends TLAbsInputChatPhoto {
 
     protected TLAbsInputPhotoCrop crop;
 
+    private final String _constructor = "inputChatPhoto#b2e1bf08";
+
     public TLInputChatPhoto() {
     }
 
@@ -52,7 +54,7 @@ public class TLInputChatPhoto extends TLAbsInputChatPhoto {
 
     @Override
     public String toString() {
-        return "inputChatPhoto#b2e1bf08";
+        return _constructor;
     }
 
     @Override

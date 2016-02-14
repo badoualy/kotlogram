@@ -112,6 +112,10 @@ internal class DefaultTelegramClient internal constructor(val application: Teleg
         this.timeoutDuration = timeout
     }
 
+    override fun getConnection() = mtProtoHandler!!.connection
+
+    override fun notifyReady() = mtProtoHandler!!.readMessage()
+
     override fun close() = close(true)
 
     override fun close(cleanUp: Boolean) {
@@ -120,6 +124,10 @@ internal class DefaultTelegramClient internal constructor(val application: Teleg
         if (cleanUp)
             Kotlogram.cleanUp()
     }
+
+    override fun startListening() = mtProtoHandler?.startWatchdog() ?: Unit
+
+    override fun stopListening() = mtProtoHandler?.stopWatchdog() ?: Unit
 
     override fun <T : TLObject> executeRpcQuery(method: TLMethod<T>) = executeRpcQuery(method, mtProtoHandler!!)
 
@@ -176,6 +184,8 @@ internal class DefaultTelegramClient internal constructor(val application: Teleg
 
     @Throws(IOException::class)
     override fun <T : TLObject> initConnection(query: TLMethod<T>) = executeRpcQuery(TLRequestInitConnection(application.apiId, application.deviceModel, application.systemVersion, application.appVersion, application.langCode, query))
+
+    override fun messagesSendMessage(peer: TLAbsInputPeer, message: String, randomId: Long) = super.messagesSendMessage(true, false, peer, null, message, randomId, null, null)
 
     private fun migrate(dcId: Int) {
         Log.d(TAG, "Migrating to DC$dcId")

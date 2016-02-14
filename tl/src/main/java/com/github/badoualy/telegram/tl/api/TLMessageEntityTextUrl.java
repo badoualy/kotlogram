@@ -23,6 +23,8 @@ public class TLMessageEntityTextUrl extends TLAbsMessageEntity {
 
     protected String url;
 
+    private final String _constructor = "messageEntityTextUrl#76a6d327";
+
     public TLMessageEntityTextUrl() {
     }
 
@@ -58,7 +60,7 @@ public class TLMessageEntityTextUrl extends TLAbsMessageEntity {
 
     @Override
     public String toString() {
-        return "messageEntityTextUrl#76a6d327";
+        return _constructor;
     }
 
     @Override

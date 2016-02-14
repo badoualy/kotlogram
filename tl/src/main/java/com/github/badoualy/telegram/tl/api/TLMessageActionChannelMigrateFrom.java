@@ -25,6 +25,8 @@ public class TLMessageActionChannelMigrateFrom extends TLAbsMessageAction {
 
     protected int chatId;
 
+    private final String _constructor = "messageActionChannelMigrateFrom#b055eaee";
+
     public TLMessageActionChannelMigrateFrom() {
     }
 
@@ -56,7 +58,7 @@ public class TLMessageActionChannelMigrateFrom extends TLAbsMessageAction {
 
     @Override
     public String toString() {
-        return "messageActionChannelMigrateFrom#b055eaee";
+        return _constructor;
     }
 
     @Override

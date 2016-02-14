@@ -44,6 +44,8 @@ public class TLVideo extends TLAbsVideo {
 
     protected int h;
 
+    private final String _constructor = "video#f72887d3";
+
     public TLVideo() {
     }
 
@@ -107,7 +109,7 @@ public class TLVideo extends TLAbsVideo {
 
     @Override
     public String toString() {
-        return "video#f72887d3";
+        return _constructor;
     }
 
     @Override

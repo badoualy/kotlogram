@@ -33,6 +33,8 @@ public class TLRequestAuthImportBotAuthorization extends TLMethod<TLAuthorizatio
 
     protected String botAuthToken;
 
+    private final String _constructor = "auth.importBotAuthorization#67a3ff2c";
+
     public TLRequestAuthImportBotAuthorization() {
     }
 
@@ -85,7 +87,7 @@ public class TLRequestAuthImportBotAuthorization extends TLMethod<TLAuthorizatio
 
     @Override
     public String toString() {
-        return "auth.importBotAuthorization#67a3ff2c";
+        return _constructor;
     }
 
     @Override

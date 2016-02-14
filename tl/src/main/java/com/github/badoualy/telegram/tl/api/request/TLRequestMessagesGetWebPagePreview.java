@@ -24,6 +24,8 @@ public class TLRequestMessagesGetWebPagePreview extends TLMethod<TLAbsMessageMed
 
     protected String message;
 
+    private final String _constructor = "messages.getWebPagePreview#25223e24";
+
     public TLRequestMessagesGetWebPagePreview() {
     }
 
@@ -64,7 +66,7 @@ public class TLRequestMessagesGetWebPagePreview extends TLMethod<TLAbsMessageMed
 
     @Override
     public String toString() {
-        return "messages.getWebPagePreview#25223e24";
+        return _constructor;
     }
 
     @Override

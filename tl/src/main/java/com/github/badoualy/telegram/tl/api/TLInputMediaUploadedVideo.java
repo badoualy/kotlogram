@@ -35,6 +35,8 @@ public class TLInputMediaUploadedVideo extends TLAbsInputMedia {
 
     protected String caption;
 
+    private final String _constructor = "inputMediaUploadedVideo#82713fdf";
+
     public TLInputMediaUploadedVideo() {
     }
 
@@ -82,7 +84,7 @@ public class TLInputMediaUploadedVideo extends TLAbsInputMedia {
 
     @Override
     public String toString() {
-        return "inputMediaUploadedVideo#82713fdf";
+        return _constructor;
     }
 
     @Override

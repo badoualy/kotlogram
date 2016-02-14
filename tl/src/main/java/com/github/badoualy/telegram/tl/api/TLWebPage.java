@@ -56,6 +56,8 @@ public class TLWebPage extends TLAbsWebPage {
 
     protected TLAbsDocument document;
 
+    private final String _constructor = "webPage#ca820ed7";
+
     public TLWebPage() {
     }
 
@@ -162,7 +164,7 @@ public class TLWebPage extends TLAbsWebPage {
 
     @Override
     public String toString() {
-        return "webPage#ca820ed7";
+        return _constructor;
     }
 
     @Override

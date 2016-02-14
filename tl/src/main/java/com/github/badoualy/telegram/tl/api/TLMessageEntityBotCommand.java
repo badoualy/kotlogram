@@ -18,6 +18,8 @@ import static com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_INT32;
 public class TLMessageEntityBotCommand extends TLAbsMessageEntity {
     public static final int CONSTRUCTOR_ID = 0x6cef8ac7;
 
+    private final String _constructor = "messageEntityBotCommand#6cef8ac7";
+
     public TLMessageEntityBotCommand() {
     }
 
@@ -49,7 +51,7 @@ public class TLMessageEntityBotCommand extends TLAbsMessageEntity {
 
     @Override
     public String toString() {
-        return "messageEntityBotCommand#6cef8ac7";
+        return _constructor;
     }
 
     @Override

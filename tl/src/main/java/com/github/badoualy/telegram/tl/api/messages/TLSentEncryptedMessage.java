@@ -18,6 +18,8 @@ import static com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_INT32;
 public class TLSentEncryptedMessage extends TLAbsSentEncryptedMessage {
     public static final int CONSTRUCTOR_ID = 0x560f8935;
 
+    private final String _constructor = "messages.sentEncryptedMessage#560f8935";
+
     public TLSentEncryptedMessage() {
     }
 
@@ -45,7 +47,7 @@ public class TLSentEncryptedMessage extends TLAbsSentEncryptedMessage {
 
     @Override
     public String toString() {
-        return "messages.sentEncryptedMessage#560f8935";
+        return _constructor;
     }
 
     @Override

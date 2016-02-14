@@ -23,6 +23,8 @@ public class TLRequestAccountGetPrivacy extends TLMethod<TLPrivacyRules> {
 
     protected TLInputPrivacyKeyStatusTimestamp key;
 
+    private final String _constructor = "account.getPrivacy#dadbc950";
+
     public TLRequestAccountGetPrivacy() {
     }
 
@@ -63,7 +65,7 @@ public class TLRequestAccountGetPrivacy extends TLMethod<TLPrivacyRules> {
 
     @Override
     public String toString() {
-        return "account.getPrivacy#dadbc950";
+        return _constructor;
     }
 
     @Override

@@ -20,6 +20,8 @@ public class TLUpdateEncryptedChatTyping extends TLAbsUpdate {
 
     protected int chatId;
 
+    private final String _constructor = "updateEncryptedChatTyping#1710f156";
+
     public TLUpdateEncryptedChatTyping() {
     }
 
@@ -47,7 +49,7 @@ public class TLUpdateEncryptedChatTyping extends TLAbsUpdate {
 
     @Override
     public String toString() {
-        return "updateEncryptedChatTyping#1710f156";
+        return _constructor;
     }
 
     @Override

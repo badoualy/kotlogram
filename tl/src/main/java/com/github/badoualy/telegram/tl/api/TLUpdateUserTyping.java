@@ -24,6 +24,8 @@ public class TLUpdateUserTyping extends TLAbsUpdate {
 
     protected TLAbsSendMessageAction action;
 
+    private final String _constructor = "updateUserTyping#5c486927";
+
     public TLUpdateUserTyping() {
     }
 
@@ -55,7 +57,7 @@ public class TLUpdateUserTyping extends TLAbsUpdate {
 
     @Override
     public String toString() {
-        return "updateUserTyping#5c486927";
+        return _constructor;
     }
 
     @Override

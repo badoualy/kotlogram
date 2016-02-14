@@ -7,12 +7,14 @@ package com.github.badoualy.telegram.tl.api;
 public class TLSendMessageTypingAction extends TLAbsSendMessageAction {
     public static final int CONSTRUCTOR_ID = 0x16bf744e;
 
+    private final String _constructor = "sendMessageTypingAction#16bf744e";
+
     public TLSendMessageTypingAction() {
     }
 
     @Override
     public String toString() {
-        return "sendMessageTypingAction#16bf744e";
+        return _constructor;
     }
 
     @Override

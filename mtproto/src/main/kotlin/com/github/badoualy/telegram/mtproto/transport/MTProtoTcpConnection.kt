@@ -7,6 +7,8 @@ import java.net.InetSocketAddress
 import java.net.StandardSocketOptions
 import java.nio.ByteBuffer
 import java.nio.ByteOrder
+import java.nio.channels.SelectionKey
+import java.nio.channels.Selector
 import java.nio.channels.SocketChannel
 
 class MTProtoTcpConnection
@@ -18,6 +20,8 @@ class MTProtoTcpConnection
     private val socketChannel: SocketChannel
     private val msgHeaderBuffer = ByteBuffer.allocate(1)
     private val msgLengthBuffer = ByteBuffer.allocate(3)
+
+    private var selectionKey: SelectionKey? = null
 
     init {
         socketChannel = SocketChannel.open()
@@ -59,7 +63,7 @@ class MTProtoTcpConnection
         val length = request.size / 4
         val headerLength = if (length >= 127) 4 else 1
         val totalLength = request.size + headerLength
-        val buffer = if (totalLength < 512) ByteBuffer.allocate(totalLength) else ByteBuffer.allocateDirect(totalLength)
+        val buffer = ByteBuffer.allocate(totalLength)
 
         /*
         There is an abridged version of the same protocol: if the client sends 0xef as the first byte
@@ -86,6 +90,20 @@ class MTProtoTcpConnection
         return readMessage()
     }
 
+    override fun register(selector: Selector): SelectionKey {
+        socketChannel.configureBlocking(false)
+        selectionKey = socketChannel.register(selector, SelectionKey.OP_READ)
+        return selectionKey!!
+    }
+
+    override fun unregister(): SelectionKey? {
+        val selector = selectionKey?.selector()
+        selectionKey?.cancel()
+        selector?.wakeup()
+        socketChannel.configureBlocking(true) // Default mode
+        return selectionKey
+    }
+
     @Throws(IOException::class)
     override fun close() {
         Log.d(TAG, "Closing connection")
@@ -96,7 +114,7 @@ class MTProtoTcpConnection
 
     private fun readBytes(length: Int, recycledBuffer: ByteBuffer? = null, order: ByteOrder = ByteOrder.BIG_ENDIAN): ByteBuffer {
         recycledBuffer?.clear()
-        val buffer = recycledBuffer ?: if (length < 512) ByteBuffer.allocate(length) else ByteBuffer.allocateDirect(length)
+        val buffer = recycledBuffer ?: ByteBuffer.allocate(length)
         buffer.order(order)
 
         var totalRead = 0

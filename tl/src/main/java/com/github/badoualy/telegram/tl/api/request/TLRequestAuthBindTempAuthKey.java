@@ -37,6 +37,8 @@ public class TLRequestAuthBindTempAuthKey extends TLMethod<TLBool> {
 
     protected TLBytes encryptedMessage;
 
+    private final String _constructor = "auth.bindTempAuthKey#cdd42a05";
+
     public TLRequestAuthBindTempAuthKey() {
     }
 
@@ -89,7 +91,7 @@ public class TLRequestAuthBindTempAuthKey extends TLMethod<TLBool> {
 
     @Override
     public String toString() {
-        return "auth.bindTempAuthKey#cdd42a05";
+        return _constructor;
     }
 
     @Override

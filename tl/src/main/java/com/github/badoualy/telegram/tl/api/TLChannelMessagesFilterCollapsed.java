@@ -7,12 +7,14 @@ package com.github.badoualy.telegram.tl.api;
 public class TLChannelMessagesFilterCollapsed extends TLAbsChannelMessagesFilter {
     public static final int CONSTRUCTOR_ID = 0xfa01232e;
 
+    private final String _constructor = "channelMessagesFilterCollapsed#fa01232e";
+
     public TLChannelMessagesFilterCollapsed() {
     }
 
     @Override
     public String toString() {
-        return "channelMessagesFilterCollapsed#fa01232e";
+        return _constructor;
     }
 
     @Override

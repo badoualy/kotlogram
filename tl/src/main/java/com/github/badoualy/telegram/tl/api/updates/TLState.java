@@ -29,6 +29,8 @@ public class TLState extends TLObject {
 
     protected int unreadCount;
 
+    private final String _constructor = "updates.state#a56c2a3e";
+
     public TLState() {
     }
 
@@ -72,7 +74,7 @@ public class TLState extends TLObject {
 
     @Override
     public String toString() {
-        return "updates.state#a56c2a3e";
+        return _constructor;
     }
 
     @Override

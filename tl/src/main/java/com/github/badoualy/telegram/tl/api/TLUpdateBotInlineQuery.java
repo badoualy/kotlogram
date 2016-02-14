@@ -32,6 +32,8 @@ public class TLUpdateBotInlineQuery extends TLAbsUpdate {
 
     protected String offset;
 
+    private final String _constructor = "updateBotInlineQuery#c01eea08";
+
     public TLUpdateBotInlineQuery() {
     }
 
@@ -71,7 +73,7 @@ public class TLUpdateBotInlineQuery extends TLAbsUpdate {
 
     @Override
     public String toString() {
-        return "updateBotInlineQuery#c01eea08";
+        return _constructor;
     }
 
     @Override

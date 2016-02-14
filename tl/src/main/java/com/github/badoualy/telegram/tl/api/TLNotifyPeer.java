@@ -19,6 +19,8 @@ public class TLNotifyPeer extends TLAbsNotifyPeer {
 
     protected TLAbsPeer peer;
 
+    private final String _constructor = "notifyPeer#9fd40bd8";
+
     public TLNotifyPeer() {
     }
 
@@ -46,7 +48,7 @@ public class TLNotifyPeer extends TLAbsNotifyPeer {
 
     @Override
     public String toString() {
-        return "notifyPeer#9fd40bd8";
+        return _constructor;
     }
 
     @Override

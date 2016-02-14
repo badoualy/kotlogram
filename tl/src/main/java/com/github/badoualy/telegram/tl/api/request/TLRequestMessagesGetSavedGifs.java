@@ -24,6 +24,8 @@ public class TLRequestMessagesGetSavedGifs extends TLMethod<TLAbsSavedGifs> {
 
     protected int hash;
 
+    private final String _constructor = "messages.getSavedGifs#83bf3d52";
+
     public TLRequestMessagesGetSavedGifs() {
     }
 
@@ -64,7 +66,7 @@ public class TLRequestMessagesGetSavedGifs extends TLMethod<TLAbsSavedGifs> {
 
     @Override
     public String toString() {
-        return "messages.getSavedGifs#83bf3d52";
+        return _constructor;
     }
 
     @Override

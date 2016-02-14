@@ -25,6 +25,8 @@ public class TLUpdateUserBlocked extends TLAbsUpdate {
 
     protected boolean blocked;
 
+    private final String _constructor = "updateUserBlocked#80ece81a";
+
     public TLUpdateUserBlocked() {
     }
 
@@ -56,7 +58,7 @@ public class TLUpdateUserBlocked extends TLAbsUpdate {
 
     @Override
     public String toString() {
-        return "updateUserBlocked#80ece81a";
+        return _constructor;
     }
 
     @Override

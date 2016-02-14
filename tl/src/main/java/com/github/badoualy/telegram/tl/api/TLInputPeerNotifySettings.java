@@ -33,6 +33,8 @@ public class TLInputPeerNotifySettings extends TLObject {
 
     protected int eventsMask;
 
+    private final String _constructor = "inputPeerNotifySettings#46a2ce98";
+
     public TLInputPeerNotifySettings() {
     }
 
@@ -72,7 +74,7 @@ public class TLInputPeerNotifySettings extends TLObject {
 
     @Override
     public String toString() {
-        return "inputPeerNotifySettings#46a2ce98";
+        return _constructor;
     }
 
     @Override

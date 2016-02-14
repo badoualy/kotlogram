@@ -20,6 +20,8 @@ public class TLPeerUser extends TLAbsPeer {
 
     protected int userId;
 
+    private final String _constructor = "peerUser#9db1bc6d";
+
     public TLPeerUser() {
     }
 
@@ -47,7 +49,7 @@ public class TLPeerUser extends TLAbsPeer {
 
     @Override
     public String toString() {
-        return "peerUser#9db1bc6d";
+        return _constructor;
     }
 
     @Override

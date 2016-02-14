@@ -28,6 +28,8 @@ public class TLDhConfig extends TLAbsDhConfig {
 
     protected int version;
 
+    private final String _constructor = "messages.dhConfig#2c221edd";
+
     public TLDhConfig() {
     }
 
@@ -67,7 +69,7 @@ public class TLDhConfig extends TLAbsDhConfig {
 
     @Override
     public String toString() {
-        return "messages.dhConfig#2c221edd";
+        return _constructor;
     }
 
     @Override

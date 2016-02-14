@@ -20,6 +20,8 @@ public class TLPeerChat extends TLAbsPeer {
 
     protected int chatId;
 
+    private final String _constructor = "peerChat#bad0e5bb";
+
     public TLPeerChat() {
     }
 
@@ -47,7 +49,7 @@ public class TLPeerChat extends TLAbsPeer {
 
     @Override
     public String toString() {
-        return "peerChat#bad0e5bb";
+        return _constructor;
     }
 
     @Override

@@ -41,6 +41,8 @@ public class TLRequestMessagesForwardMessages extends TLMethod<TLAbsUpdates> {
 
     protected TLAbsInputPeer toPeer;
 
+    private final String _constructor = "messages.forwardMessages#708e0195";
+
     public TLRequestMessagesForwardMessages() {
     }
 
@@ -107,7 +109,7 @@ public class TLRequestMessagesForwardMessages extends TLMethod<TLAbsUpdates> {
 
     @Override
     public String toString() {
-        return "messages.forwardMessages#708e0195";
+        return _constructor;
     }
 
     @Override

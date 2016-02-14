@@ -51,6 +51,8 @@ public class TLAuthorization extends TLObject {
 
     protected String region;
 
+    private final String _constructor = "authorization#7bf2e6f6";
+
     public TLAuthorization() {
     }
 
@@ -126,7 +128,7 @@ public class TLAuthorization extends TLObject {
 
     @Override
     public String toString() {
-        return "authorization#7bf2e6f6";
+        return _constructor;
     }
 
     @Override

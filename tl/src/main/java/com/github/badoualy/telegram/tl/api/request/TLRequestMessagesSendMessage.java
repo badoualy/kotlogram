@@ -53,6 +53,8 @@ public class TLRequestMessagesSendMessage extends TLMethod<TLAbsUpdates> {
 
     protected TLVector<TLAbsMessageEntity> entities;
 
+    private final String _constructor = "messages.sendMessage#fa88427a";
+
     public TLRequestMessagesSendMessage() {
     }
 
@@ -133,7 +135,7 @@ public class TLRequestMessagesSendMessage extends TLMethod<TLAbsUpdates> {
 
     @Override
     public String toString() {
-        return "messages.sendMessage#fa88427a";
+        return _constructor;
     }
 
     @Override

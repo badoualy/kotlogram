@@ -23,6 +23,8 @@ public class TLRequestContactsBlock extends TLMethod<TLBool> {
 
     protected TLAbsInputUser id;
 
+    private final String _constructor = "contacts.block#332b49fc";
+
     public TLRequestContactsBlock() {
     }
 
@@ -63,7 +65,7 @@ public class TLRequestContactsBlock extends TLMethod<TLBool> {
 
     @Override
     public String toString() {
-        return "contacts.block#332b49fc";
+        return _constructor;
     }
 
     @Override

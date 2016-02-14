@@ -7,12 +7,14 @@ package com.github.badoualy.telegram.tl.api;
 public class TLInputMediaEmpty extends TLAbsInputMedia {
     public static final int CONSTRUCTOR_ID = 0x9664f57f;
 
+    private final String _constructor = "inputMediaEmpty#9664f57f";
+
     public TLInputMediaEmpty() {
     }
 
     @Override
     public String toString() {
-        return "inputMediaEmpty#9664f57f";
+        return _constructor;
     }
 
     @Override

@@ -24,6 +24,8 @@ public class TLRequestMessagesGetFullChat extends TLMethod<TLChatFull> {
 
     protected int chatId;
 
+    private final String _constructor = "messages.getFullChat#3b831c66";
+
     public TLRequestMessagesGetFullChat() {
     }
 
@@ -64,7 +66,7 @@ public class TLRequestMessagesGetFullChat extends TLMethod<TLChatFull> {
 
     @Override
     public String toString() {
-        return "messages.getFullChat#3b831c66";
+        return _constructor;
     }
 
     @Override

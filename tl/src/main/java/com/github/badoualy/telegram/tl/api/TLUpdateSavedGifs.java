@@ -7,12 +7,14 @@ package com.github.badoualy.telegram.tl.api;
 public class TLUpdateSavedGifs extends TLAbsUpdate {
     public static final int CONSTRUCTOR_ID = 0x9375341e;
 
+    private final String _constructor = "updateSavedGifs#9375341e";
+
     public TLUpdateSavedGifs() {
     }
 
     @Override
     public String toString() {
-        return "updateSavedGifs#9375341e";
+        return _constructor;
     }
 
     @Override

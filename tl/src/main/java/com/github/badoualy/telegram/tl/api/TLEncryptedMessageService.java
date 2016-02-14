@@ -25,6 +25,8 @@ import static com.github.badoualy.telegram.tl.TLObjectUtils.computeTLBytesSerial
 public class TLEncryptedMessageService extends TLAbsEncryptedMessage {
     public static final int CONSTRUCTOR_ID = 0x23734b06;
 
+    private final String _constructor = "encryptedMessageService#23734b06";
+
     public TLEncryptedMessageService() {
     }
 
@@ -64,7 +66,7 @@ public class TLEncryptedMessageService extends TLAbsEncryptedMessage {
 
     @Override
     public String toString() {
-        return "encryptedMessageService#23734b06";
+        return _constructor;
     }
 
     @Override

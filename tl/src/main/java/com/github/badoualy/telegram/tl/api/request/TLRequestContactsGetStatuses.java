@@ -18,6 +18,8 @@ import static com.github.badoualy.telegram.tl.StreamUtils.readTLObject;
 public class TLRequestContactsGetStatuses extends TLMethod<TLVector<TLContactStatus>> {
     public static final int CONSTRUCTOR_ID = 0xc4a353ee;
 
+    private final String _constructor = "contacts.getStatuses#c4a353ee";
+
     public TLRequestContactsGetStatuses() {
     }
 
@@ -36,7 +38,7 @@ public class TLRequestContactsGetStatuses extends TLMethod<TLVector<TLContactSta
 
     @Override
     public String toString() {
-        return "contacts.getStatuses#c4a353ee";
+        return _constructor;
     }
 
     @Override

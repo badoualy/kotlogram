@@ -25,6 +25,8 @@ public class TLRequestMessagesReceivedMessages extends TLMethod<TLVector<TLRecei
 
     protected int maxId;
 
+    private final String _constructor = "messages.receivedMessages#5a954c0";
+
     public TLRequestMessagesReceivedMessages() {
     }
 
@@ -65,7 +67,7 @@ public class TLRequestMessagesReceivedMessages extends TLMethod<TLVector<TLRecei
 
     @Override
     public String toString() {
-        return "messages.receivedMessages#5a954c0";
+        return _constructor;
     }
 
     @Override

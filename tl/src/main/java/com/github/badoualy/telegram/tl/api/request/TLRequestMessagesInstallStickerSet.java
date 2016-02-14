@@ -28,6 +28,8 @@ public class TLRequestMessagesInstallStickerSet extends TLMethod<TLBool> {
 
     protected boolean disabled;
 
+    private final String _constructor = "messages.installStickerSet#7b30c3a6";
+
     public TLRequestMessagesInstallStickerSet() {
     }
 
@@ -72,7 +74,7 @@ public class TLRequestMessagesInstallStickerSet extends TLMethod<TLBool> {
 
     @Override
     public String toString() {
-        return "messages.installStickerSet#7b30c3a6";
+        return _constructor;
     }
 
     @Override

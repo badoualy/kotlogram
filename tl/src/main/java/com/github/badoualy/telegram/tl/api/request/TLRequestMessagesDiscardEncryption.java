@@ -24,6 +24,8 @@ public class TLRequestMessagesDiscardEncryption extends TLMethod<TLBool> {
 
     protected int chatId;
 
+    private final String _constructor = "messages.discardEncryption#edd923c5";
+
     public TLRequestMessagesDiscardEncryption() {
     }
 
@@ -64,7 +66,7 @@ public class TLRequestMessagesDiscardEncryption extends TLMethod<TLBool> {
 
     @Override
     public String toString() {
-        return "messages.discardEncryption#edd923c5";
+        return _constructor;
     }
 
     @Override

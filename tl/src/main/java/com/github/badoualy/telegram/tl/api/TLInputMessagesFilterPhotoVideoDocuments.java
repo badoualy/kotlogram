@@ -7,12 +7,14 @@ package com.github.badoualy.telegram.tl.api;
 public class TLInputMessagesFilterPhotoVideoDocuments extends TLAbsMessagesFilter {
     public static final int CONSTRUCTOR_ID = 0xd95e73bb;
 
+    private final String _constructor = "inputMessagesFilterPhotoVideoDocuments#d95e73bb";
+
     public TLInputMessagesFilterPhotoVideoDocuments() {
     }
 
     @Override
     public String toString() {
-        return "inputMessagesFilterPhotoVideoDocuments#d95e73bb";
+        return _constructor;
     }
 
     @Override

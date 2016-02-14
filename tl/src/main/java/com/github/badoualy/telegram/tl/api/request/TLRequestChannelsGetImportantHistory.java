@@ -36,6 +36,8 @@ public class TLRequestChannelsGetImportantHistory extends TLMethod<TLAbsMessages
 
     protected int minId;
 
+    private final String _constructor = "channels.getImportantHistory#ddb929cb";
+
     public TLRequestChannelsGetImportantHistory() {
     }
 
@@ -96,7 +98,7 @@ public class TLRequestChannelsGetImportantHistory extends TLMethod<TLAbsMessages
 
     @Override
     public String toString() {
-        return "channels.getImportantHistory#ddb929cb";
+        return _constructor;
     }
 
     @Override

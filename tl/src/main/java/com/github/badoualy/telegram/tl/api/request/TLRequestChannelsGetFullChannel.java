@@ -23,6 +23,8 @@ public class TLRequestChannelsGetFullChannel extends TLMethod<TLChatFull> {
 
     protected TLAbsInputChannel channel;
 
+    private final String _constructor = "channels.getFullChannel#8736a09";
+
     public TLRequestChannelsGetFullChannel() {
     }
 
@@ -63,7 +65,7 @@ public class TLRequestChannelsGetFullChannel extends TLMethod<TLChatFull> {
 
     @Override
     public String toString() {
-        return "channels.getFullChannel#8736a09";
+        return _constructor;
     }
 
     @Override

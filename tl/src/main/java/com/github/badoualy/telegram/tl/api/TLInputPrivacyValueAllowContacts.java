@@ -7,12 +7,14 @@ package com.github.badoualy.telegram.tl.api;
 public class TLInputPrivacyValueAllowContacts extends TLAbsInputPrivacyRule {
     public static final int CONSTRUCTOR_ID = 0xd09e07b;
 
+    private final String _constructor = "inputPrivacyValueAllowContacts#d09e07b";
+
     public TLInputPrivacyValueAllowContacts() {
     }
 
     @Override
     public String toString() {
-        return "inputPrivacyValueAllowContacts#d09e07b";
+        return _constructor;
     }
 
     @Override

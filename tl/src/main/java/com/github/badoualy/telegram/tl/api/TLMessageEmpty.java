@@ -18,6 +18,8 @@ import static com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_INT32;
 public class TLMessageEmpty extends TLAbsMessage {
     public static final int CONSTRUCTOR_ID = 0x83e5de54;
 
+    private final String _constructor = "messageEmpty#83e5de54";
+
     public TLMessageEmpty() {
     }
 
@@ -45,7 +47,7 @@ public class TLMessageEmpty extends TLAbsMessage {
 
     @Override
     public String toString() {
-        return "messageEmpty#83e5de54";
+        return _constructor;
     }
 
     @Override

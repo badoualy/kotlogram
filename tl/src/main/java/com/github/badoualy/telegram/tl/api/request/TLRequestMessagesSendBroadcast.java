@@ -38,6 +38,8 @@ public class TLRequestMessagesSendBroadcast extends TLMethod<TLAbsUpdates> {
 
     protected TLAbsInputMedia media;
 
+    private final String _constructor = "messages.sendBroadcast#bf73f4da";
+
     public TLRequestMessagesSendBroadcast() {
     }
 
@@ -90,7 +92,7 @@ public class TLRequestMessagesSendBroadcast extends TLMethod<TLAbsUpdates> {
 
     @Override
     public String toString() {
-        return "messages.sendBroadcast#bf73f4da";
+        return _constructor;
     }
 
     @Override

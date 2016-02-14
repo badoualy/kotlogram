@@ -30,6 +30,8 @@ public class TLResolvedPeer extends TLObject {
 
     protected TLVector<TLAbsUser> users;
 
+    private final String _constructor = "contacts.resolvedPeer#7f077ad9";
+
     public TLResolvedPeer() {
     }
 
@@ -65,7 +67,7 @@ public class TLResolvedPeer extends TLObject {
 
     @Override
     public String toString() {
-        return "contacts.resolvedPeer#7f077ad9";
+        return _constructor;
     }
 
     @Override

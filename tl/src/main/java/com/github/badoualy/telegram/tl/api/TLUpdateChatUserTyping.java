@@ -26,6 +26,8 @@ public class TLUpdateChatUserTyping extends TLAbsUpdate {
 
     protected TLAbsSendMessageAction action;
 
+    private final String _constructor = "updateChatUserTyping#9a65ea1f";
+
     public TLUpdateChatUserTyping() {
     }
 
@@ -61,7 +63,7 @@ public class TLUpdateChatUserTyping extends TLAbsUpdate {
 
     @Override
     public String toString() {
-        return "updateChatUserTyping#9a65ea1f";
+        return _constructor;
     }
 
     @Override

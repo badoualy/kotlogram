@@ -29,6 +29,8 @@ public class TLRequestMessagesSearchGifs extends TLMethod<TLFoundGifs> {
 
     protected int offset;
 
+    private final String _constructor = "messages.searchGifs#bf9a776b";
+
     public TLRequestMessagesSearchGifs() {
     }
 
@@ -73,7 +75,7 @@ public class TLRequestMessagesSearchGifs extends TLMethod<TLFoundGifs> {
 
     @Override
     public String toString() {
-        return "messages.searchGifs#bf9a776b";
+        return _constructor;
     }
 
     @Override

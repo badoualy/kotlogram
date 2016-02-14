@@ -33,6 +33,8 @@ public class TLInputMediaUploadedThumbDocument extends TLAbsInputMedia {
 
     protected String caption;
 
+    private final String _constructor = "inputMediaUploadedThumbDocument#ad613491";
+
     public TLInputMediaUploadedThumbDocument() {
     }
 
@@ -76,7 +78,7 @@ public class TLInputMediaUploadedThumbDocument extends TLAbsInputMedia {
 
     @Override
     public String toString() {
-        return "inputMediaUploadedThumbDocument#ad613491";
+        return _constructor;
     }
 
     @Override

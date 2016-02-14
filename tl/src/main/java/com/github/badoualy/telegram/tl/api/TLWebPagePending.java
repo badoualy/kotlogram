@@ -23,6 +23,8 @@ public class TLWebPagePending extends TLAbsWebPage {
 
     protected int date;
 
+    private final String _constructor = "webPagePending#c586da1c";
+
     public TLWebPagePending() {
     }
 
@@ -54,7 +56,7 @@ public class TLWebPagePending extends TLAbsWebPage {
 
     @Override
     public String toString() {
-        return "webPagePending#c586da1c";
+        return _constructor;
     }
 
     @Override

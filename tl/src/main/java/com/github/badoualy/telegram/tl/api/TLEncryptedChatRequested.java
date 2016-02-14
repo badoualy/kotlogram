@@ -35,6 +35,8 @@ public class TLEncryptedChatRequested extends TLAbsEncryptedChat {
 
     protected TLBytes gA;
 
+    private final String _constructor = "encryptedChatRequested#c878527e";
+
     public TLEncryptedChatRequested() {
     }
 
@@ -82,7 +84,7 @@ public class TLEncryptedChatRequested extends TLAbsEncryptedChat {
 
     @Override
     public String toString() {
-        return "encryptedChatRequested#c878527e";
+        return _constructor;
     }
 
     @Override

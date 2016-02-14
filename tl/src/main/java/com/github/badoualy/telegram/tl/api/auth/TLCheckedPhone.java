@@ -21,6 +21,8 @@ public class TLCheckedPhone extends TLObject {
 
     protected boolean phoneRegistered;
 
+    private final String _constructor = "auth.checkedPhone#811ea28e";
+
     public TLCheckedPhone() {
     }
 
@@ -48,7 +50,7 @@ public class TLCheckedPhone extends TLObject {
 
     @Override
     public String toString() {
-        return "auth.checkedPhone#811ea28e";
+        return _constructor;
     }
 
     @Override

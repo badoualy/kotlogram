@@ -21,6 +21,8 @@ public class TLChatPhoto extends TLAbsChatPhoto {
 
     protected TLAbsFileLocation photoBig;
 
+    private final String _constructor = "chatPhoto#6153276a";
+
     public TLChatPhoto() {
     }
 
@@ -52,7 +54,7 @@ public class TLChatPhoto extends TLAbsChatPhoto {
 
     @Override
     public String toString() {
-        return "chatPhoto#6153276a";
+        return _constructor;
     }
 
     @Override

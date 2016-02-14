@@ -24,6 +24,8 @@ public class TLRequestContactsGetSuggested extends TLMethod<TLSuggested> {
 
     protected int limit;
 
+    private final String _constructor = "contacts.getSuggested#cd773428";
+
     public TLRequestContactsGetSuggested() {
     }
 
@@ -64,7 +66,7 @@ public class TLRequestContactsGetSuggested extends TLMethod<TLSuggested> {
 
     @Override
     public String toString() {
-        return "contacts.getSuggested#cd773428";
+        return _constructor;
     }
 
     @Override

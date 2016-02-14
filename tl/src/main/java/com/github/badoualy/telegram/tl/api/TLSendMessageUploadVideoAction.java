@@ -20,6 +20,8 @@ public class TLSendMessageUploadVideoAction extends TLAbsSendMessageAction {
 
     protected int progress;
 
+    private final String _constructor = "sendMessageUploadVideoAction#e9763aec";
+
     public TLSendMessageUploadVideoAction() {
     }
 
@@ -47,7 +49,7 @@ public class TLSendMessageUploadVideoAction extends TLAbsSendMessageAction {
 
     @Override
     public String toString() {
-        return "sendMessageUploadVideoAction#e9763aec";
+        return _constructor;
     }
 
     @Override

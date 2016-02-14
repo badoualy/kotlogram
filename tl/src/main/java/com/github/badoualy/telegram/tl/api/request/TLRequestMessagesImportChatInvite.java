@@ -24,6 +24,8 @@ public class TLRequestMessagesImportChatInvite extends TLMethod<TLAbsUpdates> {
 
     protected String hash;
 
+    private final String _constructor = "messages.importChatInvite#6c50051c";
+
     public TLRequestMessagesImportChatInvite() {
     }
 
@@ -64,7 +66,7 @@ public class TLRequestMessagesImportChatInvite extends TLMethod<TLAbsUpdates> {
 
     @Override
     public String toString() {
-        return "messages.importChatInvite#6c50051c";
+        return _constructor;
     }
 
     @Override

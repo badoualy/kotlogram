@@ -24,6 +24,8 @@ public class TLRequestAuthRecoverPassword extends TLMethod<TLAuthorization> {
 
     protected String code;
 
+    private final String _constructor = "auth.recoverPassword#4ea56e92";
+
     public TLRequestAuthRecoverPassword() {
     }
 
@@ -64,7 +66,7 @@ public class TLRequestAuthRecoverPassword extends TLMethod<TLAuthorization> {
 
     @Override
     public String toString() {
-        return "auth.recoverPassword#4ea56e92";
+        return _constructor;
     }
 
     @Override

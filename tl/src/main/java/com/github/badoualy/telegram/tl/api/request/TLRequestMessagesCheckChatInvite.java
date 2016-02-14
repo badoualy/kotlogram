@@ -24,6 +24,8 @@ public class TLRequestMessagesCheckChatInvite extends TLMethod<TLAbsChatInvite> 
 
     protected String hash;
 
+    private final String _constructor = "messages.checkChatInvite#3eadb1bb";
+
     public TLRequestMessagesCheckChatInvite() {
     }
 
@@ -64,7 +66,7 @@ public class TLRequestMessagesCheckChatInvite extends TLMethod<TLAbsChatInvite> 
 
     @Override
     public String toString() {
-        return "messages.checkChatInvite#3eadb1bb";
+        return _constructor;
     }
 
     @Override

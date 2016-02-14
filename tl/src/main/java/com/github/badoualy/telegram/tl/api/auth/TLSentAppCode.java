@@ -24,6 +24,8 @@ import static com.github.badoualy.telegram.tl.TLObjectUtils.computeTLStringSeria
 public class TLSentAppCode extends TLAbsSentCode {
     public static final int CONSTRUCTOR_ID = 0xe325edcf;
 
+    private final String _constructor = "auth.sentAppCode#e325edcf";
+
     public TLSentAppCode() {
     }
 
@@ -63,7 +65,7 @@ public class TLSentAppCode extends TLAbsSentCode {
 
     @Override
     public String toString() {
-        return "auth.sentAppCode#e325edcf";
+        return _constructor;
     }
 
     @Override

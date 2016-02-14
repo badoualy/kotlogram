@@ -25,6 +25,8 @@ public class TLRequestHelpSaveAppLog extends TLMethod<TLBool> {
 
     protected TLVector<TLInputAppEvent> events;
 
+    private final String _constructor = "help.saveAppLog#6f02f748";
+
     public TLRequestHelpSaveAppLog() {
     }
 
@@ -65,7 +67,7 @@ public class TLRequestHelpSaveAppLog extends TLMethod<TLBool> {
 
     @Override
     public String toString() {
-        return "help.saveAppLog#6f02f748";
+        return _constructor;
     }
 
     @Override

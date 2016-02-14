@@ -31,6 +31,8 @@ public class TLEncryptedFile extends TLAbsEncryptedFile {
 
     protected int keyFingerprint;
 
+    private final String _constructor = "encryptedFile#4a70994c";
+
     public TLEncryptedFile() {
     }
 
@@ -74,7 +76,7 @@ public class TLEncryptedFile extends TLAbsEncryptedFile {
 
     @Override
     public String toString() {
-        return "encryptedFile#4a70994c";
+        return _constructor;
     }
 
     @Override

@@ -18,6 +18,8 @@ import static com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_INT32;
 public class TLMessageEntityItalic extends TLAbsMessageEntity {
     public static final int CONSTRUCTOR_ID = 0x826f8b60;
 
+    private final String _constructor = "messageEntityItalic#826f8b60";
+
     public TLMessageEntityItalic() {
     }
 
@@ -49,7 +51,7 @@ public class TLMessageEntityItalic extends TLAbsMessageEntity {
 
     @Override
     public String toString() {
-        return "messageEntityItalic#826f8b60";
+        return _constructor;
     }
 
     @Override

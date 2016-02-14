@@ -7,12 +7,14 @@ package com.github.badoualy.telegram.tl.api.storage;
 public class TLFilePng extends TLAbsFileType {
     public static final int CONSTRUCTOR_ID = 0xa4f63c0;
 
+    private final String _constructor = "storage.filePng#a4f63c0";
+
     public TLFilePng() {
     }
 
     @Override
     public String toString() {
-        return "storage.filePng#a4f63c0";
+        return _constructor;
     }
 
     @Override

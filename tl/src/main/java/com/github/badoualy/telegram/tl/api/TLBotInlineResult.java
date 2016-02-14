@@ -43,6 +43,8 @@ public class TLBotInlineResult extends TLAbsBotInlineResult {
 
     protected Integer duration;
 
+    private final String _constructor = "botInlineResult#9bebaeb9";
+
     public TLBotInlineResult() {
     }
 
@@ -134,7 +136,7 @@ public class TLBotInlineResult extends TLAbsBotInlineResult {
 
     @Override
     public String toString() {
-        return "botInlineResult#9bebaeb9";
+        return _constructor;
     }
 
     @Override

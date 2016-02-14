@@ -31,6 +31,8 @@ public class TLUpdateServiceNotification extends TLAbsUpdate {
 
     protected boolean popup;
 
+    private final String _constructor = "updateServiceNotification#382dd3e4";
+
     public TLUpdateServiceNotification() {
     }
 
@@ -70,7 +72,7 @@ public class TLUpdateServiceNotification extends TLAbsUpdate {
 
     @Override
     public String toString() {
-        return "updateServiceNotification#382dd3e4";
+        return _constructor;
     }
 
     @Override

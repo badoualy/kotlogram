@@ -43,6 +43,8 @@ public class TLRequestMessagesSendMedia extends TLMethod<TLAbsUpdates> {
 
     protected TLAbsReplyMarkup replyMarkup;
 
+    private final String _constructor = "messages.sendMedia#c8f16791";
+
     public TLRequestMessagesSendMedia() {
     }
 
@@ -115,7 +117,7 @@ public class TLRequestMessagesSendMedia extends TLMethod<TLAbsUpdates> {
 
     @Override
     public String toString() {
-        return "messages.sendMedia#c8f16791";
+        return _constructor;
     }
 
     @Override

@@ -28,6 +28,8 @@ public class TLRequestUpdatesGetDifference extends TLMethod<TLAbsDifference> {
 
     protected int qts;
 
+    private final String _constructor = "updates.getDifference#a041495";
+
     public TLRequestUpdatesGetDifference() {
     }
 
@@ -76,7 +78,7 @@ public class TLRequestUpdatesGetDifference extends TLMethod<TLAbsDifference> {
 
     @Override
     public String toString() {
-        return "updates.getDifference#a041495";
+        return _constructor;
     }
 
     @Override

@@ -25,6 +25,8 @@ public class TLBlockedSlice extends TLAbsBlocked {
 
     protected int count;
 
+    private final String _constructor = "contacts.blockedSlice#900802a1";
+
     public TLBlockedSlice() {
     }
 
@@ -60,7 +62,7 @@ public class TLBlockedSlice extends TLAbsBlocked {
 
     @Override
     public String toString() {
-        return "contacts.blockedSlice#900802a1";
+        return _constructor;
     }
 
     @Override

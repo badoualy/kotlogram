@@ -24,6 +24,8 @@ public class TLRequestMessagesReorderStickerSets extends TLMethod<TLBool> {
 
     protected TLLongVector order;
 
+    private final String _constructor = "messages.reorderStickerSets#9fcfbc30";
+
     public TLRequestMessagesReorderStickerSets() {
     }
 
@@ -64,7 +66,7 @@ public class TLRequestMessagesReorderStickerSets extends TLMethod<TLBool> {
 
     @Override
     public String toString() {
-        return "messages.reorderStickerSets#9fcfbc30";
+        return _constructor;
     }
 
     @Override

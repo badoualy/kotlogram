@@ -24,6 +24,8 @@ public class TLRequestAccountResetAuthorization extends TLMethod<TLBool> {
 
     protected long hash;
 
+    private final String _constructor = "account.resetAuthorization#df77f3bc";
+
     public TLRequestAccountResetAuthorization() {
     }
 
@@ -64,7 +66,7 @@ public class TLRequestAccountResetAuthorization extends TLMethod<TLBool> {
 
     @Override
     public String toString() {
-        return "account.resetAuthorization#df77f3bc";
+        return _constructor;
     }
 
     @Override

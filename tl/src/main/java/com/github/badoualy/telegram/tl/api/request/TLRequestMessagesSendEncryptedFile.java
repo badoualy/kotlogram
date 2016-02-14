@@ -37,6 +37,8 @@ public class TLRequestMessagesSendEncryptedFile extends TLMethod<TLAbsSentEncryp
 
     protected TLAbsInputEncryptedFile file;
 
+    private final String _constructor = "messages.sendEncryptedFile#9a901b66";
+
     public TLRequestMessagesSendEncryptedFile() {
     }
 
@@ -89,7 +91,7 @@ public class TLRequestMessagesSendEncryptedFile extends TLMethod<TLAbsSentEncryp
 
     @Override
     public String toString() {
-        return "messages.sendEncryptedFile#9a901b66";
+        return _constructor;
     }
 
     @Override

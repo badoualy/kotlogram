@@ -24,6 +24,8 @@ public class TLMessageMediaVideo extends TLAbsMessageMedia {
 
     protected String caption;
 
+    private final String _constructor = "messageMediaVideo#5bcf1675";
+
     public TLMessageMediaVideo() {
     }
 
@@ -55,7 +57,7 @@ public class TLMessageMediaVideo extends TLAbsMessageMedia {
 
     @Override
     public String toString() {
-        return "messageMediaVideo#5bcf1675";
+        return _constructor;
     }
 
     @Override

@@ -30,6 +30,8 @@ public class TLRequestHelpGetAppChangelog extends TLMethod<TLAbsAppChangelog> {
 
     protected String langCode;
 
+    private final String _constructor = "help.getAppChangelog#5bab7fb2";
+
     public TLRequestHelpGetAppChangelog() {
     }
 
@@ -82,7 +84,7 @@ public class TLRequestHelpGetAppChangelog extends TLMethod<TLAbsAppChangelog> {
 
     @Override
     public String toString() {
-        return "help.getAppChangelog#5bab7fb2";
+        return _constructor;
     }
 
     @Override

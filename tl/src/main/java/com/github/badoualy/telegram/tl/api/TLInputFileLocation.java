@@ -27,6 +27,8 @@ public class TLInputFileLocation extends TLAbsInputFileLocation {
 
     protected long secret;
 
+    private final String _constructor = "inputFileLocation#14637196";
+
     public TLInputFileLocation() {
     }
 
@@ -62,7 +64,7 @@ public class TLInputFileLocation extends TLAbsInputFileLocation {
 
     @Override
     public String toString() {
-        return "inputFileLocation#14637196";
+        return _constructor;
     }
 
     @Override

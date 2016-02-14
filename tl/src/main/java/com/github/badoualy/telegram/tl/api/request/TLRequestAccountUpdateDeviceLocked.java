@@ -24,6 +24,8 @@ public class TLRequestAccountUpdateDeviceLocked extends TLMethod<TLBool> {
 
     protected int period;
 
+    private final String _constructor = "account.updateDeviceLocked#38df3532";
+
     public TLRequestAccountUpdateDeviceLocked() {
     }
 
@@ -64,7 +66,7 @@ public class TLRequestAccountUpdateDeviceLocked extends TLMethod<TLBool> {
 
     @Override
     public String toString() {
-        return "account.updateDeviceLocked#38df3532";
+        return _constructor;
     }
 
     @Override

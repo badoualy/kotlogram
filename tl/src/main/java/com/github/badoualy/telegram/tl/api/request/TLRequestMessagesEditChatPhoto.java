@@ -28,6 +28,8 @@ public class TLRequestMessagesEditChatPhoto extends TLMethod<TLAbsUpdates> {
 
     protected TLAbsInputChatPhoto photo;
 
+    private final String _constructor = "messages.editChatPhoto#ca4c79d8";
+
     public TLRequestMessagesEditChatPhoto() {
     }
 
@@ -72,7 +74,7 @@ public class TLRequestMessagesEditChatPhoto extends TLMethod<TLAbsUpdates> {
 
     @Override
     public String toString() {
-        return "messages.editChatPhoto#ca4c79d8";
+        return _constructor;
     }
 
     @Override

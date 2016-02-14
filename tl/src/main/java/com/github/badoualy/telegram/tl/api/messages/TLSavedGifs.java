@@ -26,6 +26,8 @@ public class TLSavedGifs extends TLAbsSavedGifs {
 
     protected TLVector<TLAbsDocument> gifs;
 
+    private final String _constructor = "messages.savedGifs#2e0709a5";
+
     public TLSavedGifs() {
     }
 
@@ -57,7 +59,7 @@ public class TLSavedGifs extends TLAbsSavedGifs {
 
     @Override
     public String toString() {
-        return "messages.savedGifs#2e0709a5";
+        return _constructor;
     }
 
     @Override

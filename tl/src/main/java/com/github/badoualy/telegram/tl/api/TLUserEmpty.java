@@ -18,6 +18,8 @@ import static com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_INT32;
 public class TLUserEmpty extends TLAbsUser {
     public static final int CONSTRUCTOR_ID = 0x200250ba;
 
+    private final String _constructor = "userEmpty#200250ba";
+
     public TLUserEmpty() {
     }
 
@@ -45,7 +47,7 @@ public class TLUserEmpty extends TLAbsUser {
 
     @Override
     public String toString() {
-        return "userEmpty#200250ba";
+        return _constructor;
     }
 
     @Override

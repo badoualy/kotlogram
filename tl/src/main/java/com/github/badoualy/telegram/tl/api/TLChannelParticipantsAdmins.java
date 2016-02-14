@@ -7,12 +7,14 @@ package com.github.badoualy.telegram.tl.api;
 public class TLChannelParticipantsAdmins extends TLAbsChannelParticipantsFilter {
     public static final int CONSTRUCTOR_ID = 0xb4608969;
 
+    private final String _constructor = "channelParticipantsAdmins#b4608969";
+
     public TLChannelParticipantsAdmins() {
     }
 
     @Override
     public String toString() {
-        return "channelParticipantsAdmins#b4608969";
+        return _constructor;
     }
 
     @Override

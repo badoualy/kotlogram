@@ -34,6 +34,8 @@ public class TLBotInfo extends TLAbsBotInfo {
 
     protected TLVector<TLBotCommand> commands;
 
+    private final String _constructor = "botInfo#9cf585d";
+
     public TLBotInfo() {
     }
 
@@ -77,7 +79,7 @@ public class TLBotInfo extends TLAbsBotInfo {
 
     @Override
     public String toString() {
-        return "botInfo#9cf585d";
+        return _constructor;
     }
 
     @Override

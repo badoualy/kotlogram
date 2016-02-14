@@ -33,6 +33,8 @@ public class TLChannelMessages extends TLAbsMessages {
 
     protected TLVector<TLMessageGroup> collapsed;
 
+    private final String _constructor = "messages.channelMessages#bc0f17bc";
+
     public TLChannelMessages() {
     }
 
@@ -92,7 +94,7 @@ public class TLChannelMessages extends TLAbsMessages {
 
     @Override
     public String toString() {
-        return "messages.channelMessages#bc0f17bc";
+        return _constructor;
     }
 
     @Override

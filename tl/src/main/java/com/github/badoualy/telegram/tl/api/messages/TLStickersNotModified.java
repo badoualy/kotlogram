@@ -7,12 +7,14 @@ package com.github.badoualy.telegram.tl.api.messages;
 public class TLStickersNotModified extends TLAbsStickers {
     public static final int CONSTRUCTOR_ID = 0xf1749a22;
 
+    private final String _constructor = "messages.stickersNotModified#f1749a22";
+
     public TLStickersNotModified() {
     }
 
     @Override
     public String toString() {
-        return "messages.stickersNotModified#f1749a22";
+        return _constructor;
     }
 
     @Override

@@ -23,6 +23,8 @@ public class TLContactBlocked extends TLObject {
 
     protected int date;
 
+    private final String _constructor = "contactBlocked#561bc879";
+
     public TLContactBlocked() {
     }
 
@@ -54,7 +56,7 @@ public class TLContactBlocked extends TLObject {
 
     @Override
     public String toString() {
-        return "contactBlocked#561bc879";
+        return _constructor;
     }
 
     @Override

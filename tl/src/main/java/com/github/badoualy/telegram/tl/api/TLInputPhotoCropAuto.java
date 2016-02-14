@@ -7,12 +7,14 @@ package com.github.badoualy.telegram.tl.api;
 public class TLInputPhotoCropAuto extends TLAbsInputPhotoCrop {
     public static final int CONSTRUCTOR_ID = 0xade6b004;
 
+    private final String _constructor = "inputPhotoCropAuto#ade6b004";
+
     public TLInputPhotoCropAuto() {
     }
 
     @Override
     public String toString() {
-        return "inputPhotoCropAuto#ade6b004";
+        return _constructor;
     }
 
     @Override

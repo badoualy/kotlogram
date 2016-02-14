@@ -20,6 +20,8 @@ public class TLInputPeerChat extends TLAbsInputPeer {
 
     protected int chatId;
 
+    private final String _constructor = "inputPeerChat#179be863";
+
     public TLInputPeerChat() {
     }
 
@@ -47,7 +49,7 @@ public class TLInputPeerChat extends TLAbsInputPeer {
 
     @Override
     public String toString() {
-        return "inputPeerChat#179be863";
+        return _constructor;
     }
 
     @Override

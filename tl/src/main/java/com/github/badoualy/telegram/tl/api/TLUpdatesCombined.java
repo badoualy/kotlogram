@@ -33,6 +33,8 @@ public class TLUpdatesCombined extends TLAbsUpdates {
 
     protected int seq;
 
+    private final String _constructor = "updatesCombined#725b04c3";
+
     public TLUpdatesCombined() {
     }
 
@@ -80,7 +82,7 @@ public class TLUpdatesCombined extends TLAbsUpdates {
 
     @Override
     public String toString() {
-        return "updatesCombined#725b04c3";
+        return _constructor;
     }
 
     @Override

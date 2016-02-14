@@ -26,6 +26,8 @@ public class TLInputEncryptedChat extends TLObject {
 
     protected long accessHash;
 
+    private final String _constructor = "inputEncryptedChat#f141b5e1";
+
     public TLInputEncryptedChat() {
     }
 
@@ -57,7 +59,7 @@ public class TLInputEncryptedChat extends TLObject {
 
     @Override
     public String toString() {
-        return "inputEncryptedChat#f141b5e1";
+        return _constructor;
     }
 
     @Override

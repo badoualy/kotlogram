@@ -22,6 +22,8 @@ public class TLGeoPoint extends TLAbsGeoPoint {
 
     protected double lat;
 
+    private final String _constructor = "geoPoint#2049d70c";
+
     public TLGeoPoint() {
     }
 
@@ -53,7 +55,7 @@ public class TLGeoPoint extends TLAbsGeoPoint {
 
     @Override
     public String toString() {
-        return "geoPoint#2049d70c";
+        return _constructor;
     }
 
     @Override

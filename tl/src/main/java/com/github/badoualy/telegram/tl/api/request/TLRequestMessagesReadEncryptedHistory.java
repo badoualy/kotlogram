@@ -28,6 +28,8 @@ public class TLRequestMessagesReadEncryptedHistory extends TLMethod<TLBool> {
 
     protected int maxDate;
 
+    private final String _constructor = "messages.readEncryptedHistory#7f4b690a";
+
     public TLRequestMessagesReadEncryptedHistory() {
     }
 
@@ -72,7 +74,7 @@ public class TLRequestMessagesReadEncryptedHistory extends TLMethod<TLBool> {
 
     @Override
     public String toString() {
-        return "messages.readEncryptedHistory#7f4b690a";
+        return _constructor;
     }
 
     @Override

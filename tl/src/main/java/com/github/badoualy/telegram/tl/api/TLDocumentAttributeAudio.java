@@ -27,6 +27,8 @@ public class TLDocumentAttributeAudio extends TLAbsDocumentAttribute {
 
     protected String performer;
 
+    private final String _constructor = "documentAttributeAudio#ded218e0";
+
     public TLDocumentAttributeAudio() {
     }
 
@@ -62,7 +64,7 @@ public class TLDocumentAttributeAudio extends TLAbsDocumentAttribute {
 
     @Override
     public String toString() {
-        return "documentAttributeAudio#ded218e0";
+        return _constructor;
     }
 
     @Override

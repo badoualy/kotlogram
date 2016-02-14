@@ -7,12 +7,14 @@ package com.github.badoualy.telegram.tl.api;
 public class TLInputPhotoEmpty extends TLAbsInputPhoto {
     public static final int CONSTRUCTOR_ID = 0x1cd7bf0d;
 
+    private final String _constructor = "inputPhotoEmpty#1cd7bf0d";
+
     public TLInputPhotoEmpty() {
     }
 
     @Override
     public String toString() {
-        return "inputPhotoEmpty#1cd7bf0d";
+        return _constructor;
     }
 
     @Override

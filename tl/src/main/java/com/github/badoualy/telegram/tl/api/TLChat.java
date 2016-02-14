@@ -49,6 +49,8 @@ public class TLChat extends TLAbsChat {
 
     protected TLAbsInputChannel migratedTo;
 
+    private final String _constructor = "chat#d91cdd54";
+
     public TLChat() {
     }
 
@@ -130,7 +132,7 @@ public class TLChat extends TLAbsChat {
 
     @Override
     public String toString() {
-        return "chat#d91cdd54";
+        return _constructor;
     }
 
     @Override

@@ -17,6 +17,8 @@ import static com.github.badoualy.telegram.tl.StreamUtils.readTLObject;
 public class TLRequestAccountResetNotifySettings extends TLMethod<TLBool> {
     public static final int CONSTRUCTOR_ID = 0xdb7e1747;
 
+    private final String _constructor = "account.resetNotifySettings#db7e1747";
+
     public TLRequestAccountResetNotifySettings() {
     }
 
@@ -35,7 +37,7 @@ public class TLRequestAccountResetNotifySettings extends TLMethod<TLBool> {
 
     @Override
     public String toString() {
-        return "account.resetNotifySettings#db7e1747";
+        return _constructor;
     }
 
     @Override

@@ -31,6 +31,8 @@ public class TLFoundGif extends TLAbsFoundGif {
 
     protected int h;
 
+    private final String _constructor = "foundGif#162ecc1f";
+
     public TLFoundGif() {
     }
 
@@ -78,7 +80,7 @@ public class TLFoundGif extends TLAbsFoundGif {
 
     @Override
     public String toString() {
-        return "foundGif#162ecc1f";
+        return _constructor;
     }
 
     @Override

@@ -22,6 +22,8 @@ public class TLChatParticipantAdmin extends TLAbsChatParticipant {
 
     protected int date;
 
+    private final String _constructor = "chatParticipantAdmin#e2d6e436";
+
     public TLChatParticipantAdmin() {
     }
 
@@ -57,7 +59,7 @@ public class TLChatParticipantAdmin extends TLAbsChatParticipant {
 
     @Override
     public String toString() {
-        return "chatParticipantAdmin#e2d6e436";
+        return _constructor;
     }
 
     @Override

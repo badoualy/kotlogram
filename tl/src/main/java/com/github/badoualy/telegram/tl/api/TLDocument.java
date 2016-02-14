@@ -43,6 +43,8 @@ public class TLDocument extends TLAbsDocument {
 
     protected TLVector<TLAbsDocumentAttribute> attributes;
 
+    private final String _constructor = "document#f9a39f4f";
+
     public TLDocument() {
     }
 
@@ -98,7 +100,7 @@ public class TLDocument extends TLAbsDocument {
 
     @Override
     public String toString() {
-        return "document#f9a39f4f";
+        return _constructor;
     }
 
     @Override

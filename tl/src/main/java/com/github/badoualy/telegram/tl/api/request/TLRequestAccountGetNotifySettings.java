@@ -23,6 +23,8 @@ public class TLRequestAccountGetNotifySettings extends TLMethod<TLAbsPeerNotifyS
 
     protected TLAbsInputNotifyPeer peer;
 
+    private final String _constructor = "account.getNotifySettings#12b3ad31";
+
     public TLRequestAccountGetNotifySettings() {
     }
 
@@ -63,7 +65,7 @@ public class TLRequestAccountGetNotifySettings extends TLMethod<TLAbsPeerNotifyS
 
     @Override
     public String toString() {
-        return "account.getNotifySettings#12b3ad31";
+        return _constructor;
     }
 
     @Override

@@ -29,6 +29,8 @@ public class TLRequestAccountSetPrivacy extends TLMethod<TLPrivacyRules> {
 
     protected TLVector<TLAbsInputPrivacyRule> rules;
 
+    private final String _constructor = "account.setPrivacy#c9f81ce8";
+
     public TLRequestAccountSetPrivacy() {
     }
 
@@ -73,7 +75,7 @@ public class TLRequestAccountSetPrivacy extends TLMethod<TLPrivacyRules> {
 
     @Override
     public String toString() {
-        return "account.setPrivacy#c9f81ce8";
+        return _constructor;
     }
 
     @Override

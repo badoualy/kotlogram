@@ -7,12 +7,14 @@ package com.github.badoualy.telegram.tl.api;
 public class TLInputPrivacyValueDisallowAll extends TLAbsInputPrivacyRule {
     public static final int CONSTRUCTOR_ID = 0xd66b66c9;
 
+    private final String _constructor = "inputPrivacyValueDisallowAll#d66b66c9";
+
     public TLInputPrivacyValueDisallowAll() {
     }
 
     @Override
     public String toString() {
-        return "inputPrivacyValueDisallowAll#d66b66c9";
+        return _constructor;
     }
 
     @Override

@@ -29,6 +29,8 @@ public class TLRequestChannelsEditAdmin extends TLMethod<TLAbsUpdates> {
 
     protected TLAbsChannelParticipantRole role;
 
+    private final String _constructor = "channels.editAdmin#eb7611d0";
+
     public TLRequestChannelsEditAdmin() {
     }
 
@@ -77,7 +79,7 @@ public class TLRequestChannelsEditAdmin extends TLMethod<TLAbsUpdates> {
 
     @Override
     public String toString() {
-        return "channels.editAdmin#eb7611d0";
+        return _constructor;
     }
 
     @Override

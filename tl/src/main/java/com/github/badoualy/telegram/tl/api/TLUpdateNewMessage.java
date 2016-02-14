@@ -26,6 +26,8 @@ public class TLUpdateNewMessage extends TLAbsUpdate {
 
     protected int ptsCount;
 
+    private final String _constructor = "updateNewMessage#1f2b0afd";
+
     public TLUpdateNewMessage() {
     }
 
@@ -61,7 +63,7 @@ public class TLUpdateNewMessage extends TLAbsUpdate {
 
     @Override
     public String toString() {
-        return "updateNewMessage#1f2b0afd";
+        return _constructor;
     }
 
     @Override

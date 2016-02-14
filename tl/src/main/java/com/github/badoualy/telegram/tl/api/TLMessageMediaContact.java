@@ -29,6 +29,8 @@ public class TLMessageMediaContact extends TLAbsMessageMedia {
 
     protected int userId;
 
+    private final String _constructor = "messageMediaContact#5e7d2f39";
+
     public TLMessageMediaContact() {
     }
 
@@ -68,7 +70,7 @@ public class TLMessageMediaContact extends TLAbsMessageMedia {
 
     @Override
     public String toString() {
-        return "messageMediaContact#5e7d2f39";
+        return _constructor;
     }
 
     @Override

@@ -7,12 +7,14 @@ package com.github.badoualy.telegram.tl.api;
 public class TLContactLinkContact extends TLAbsContactLink {
     public static final int CONSTRUCTOR_ID = 0xd502c2d0;
 
+    private final String _constructor = "contactLinkContact#d502c2d0";
+
     public TLContactLinkContact() {
     }
 
     @Override
     public String toString() {
-        return "contactLinkContact#d502c2d0";
+        return _constructor;
     }
 
     @Override

@@ -26,6 +26,8 @@ public class TLUpdateContactLink extends TLAbsUpdate {
 
     protected TLAbsContactLink foreignLink;
 
+    private final String _constructor = "updateContactLink#9d2e67c5";
+
     public TLUpdateContactLink() {
     }
 
@@ -61,7 +63,7 @@ public class TLUpdateContactLink extends TLAbsUpdate {
 
     @Override
     public String toString() {
-        return "updateContactLink#9d2e67c5";
+        return _constructor;
     }
 
     @Override

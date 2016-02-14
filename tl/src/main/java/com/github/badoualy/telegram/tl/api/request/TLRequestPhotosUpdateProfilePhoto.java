@@ -26,6 +26,8 @@ public class TLRequestPhotosUpdateProfilePhoto extends TLMethod<TLAbsUserProfile
 
     protected TLAbsInputPhotoCrop crop;
 
+    private final String _constructor = "photos.updateProfilePhoto#eef579a0";
+
     public TLRequestPhotosUpdateProfilePhoto() {
     }
 
@@ -70,7 +72,7 @@ public class TLRequestPhotosUpdateProfilePhoto extends TLMethod<TLAbsUserProfile
 
     @Override
     public String toString() {
-        return "photos.updateProfilePhoto#eef579a0";
+        return _constructor;
     }
 
     @Override

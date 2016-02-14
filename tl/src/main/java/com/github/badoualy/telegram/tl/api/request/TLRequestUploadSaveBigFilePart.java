@@ -37,6 +37,8 @@ public class TLRequestUploadSaveBigFilePart extends TLMethod<TLBool> {
 
     protected TLBytes bytes;
 
+    private final String _constructor = "upload.saveBigFilePart#de7b673d";
+
     public TLRequestUploadSaveBigFilePart() {
     }
 
@@ -89,7 +91,7 @@ public class TLRequestUploadSaveBigFilePart extends TLMethod<TLBool> {
 
     @Override
     public String toString() {
-        return "upload.saveBigFilePart#de7b673d";
+        return _constructor;
     }
 
     @Override

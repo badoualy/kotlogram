@@ -22,6 +22,8 @@ public class TLInputDocumentFileLocation extends TLAbsInputFileLocation {
 
     protected long accessHash;
 
+    private final String _constructor = "inputDocumentFileLocation#4e45abe9";
+
     public TLInputDocumentFileLocation() {
     }
 
@@ -53,7 +55,7 @@ public class TLInputDocumentFileLocation extends TLAbsInputFileLocation {
 
     @Override
     public String toString() {
-        return "inputDocumentFileLocation#4e45abe9";
+        return _constructor;
     }
 
     @Override

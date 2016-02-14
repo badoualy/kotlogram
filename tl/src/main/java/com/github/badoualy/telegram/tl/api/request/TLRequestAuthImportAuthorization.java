@@ -30,6 +30,8 @@ public class TLRequestAuthImportAuthorization extends TLMethod<TLAuthorization> 
 
     protected TLBytes bytes;
 
+    private final String _constructor = "auth.importAuthorization#e3ef9613";
+
     public TLRequestAuthImportAuthorization() {
     }
 
@@ -74,7 +76,7 @@ public class TLRequestAuthImportAuthorization extends TLMethod<TLAuthorization> 
 
     @Override
     public String toString() {
-        return "auth.importAuthorization#e3ef9613";
+        return _constructor;
     }
 
     @Override

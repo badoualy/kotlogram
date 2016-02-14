@@ -17,6 +17,8 @@ import static com.github.badoualy.telegram.tl.StreamUtils.readTLObject;
 public class TLRequestAccountGetAccountTTL extends TLMethod<TLAccountDaysTTL> {
     public static final int CONSTRUCTOR_ID = 0x8fc711d;
 
+    private final String _constructor = "account.getAccountTTL#8fc711d";
+
     public TLRequestAccountGetAccountTTL() {
     }
 
@@ -35,7 +37,7 @@ public class TLRequestAccountGetAccountTTL extends TLMethod<TLAccountDaysTTL> {
 
     @Override
     public String toString() {
-        return "account.getAccountTTL#8fc711d";
+        return _constructor;
     }
 
     @Override

@@ -18,6 +18,8 @@ import static com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_INT64;
 public class TLAudioEmpty extends TLAbsAudio {
     public static final int CONSTRUCTOR_ID = 0x586988d8;
 
+    private final String _constructor = "audioEmpty#586988d8";
+
     public TLAudioEmpty() {
     }
 
@@ -45,7 +47,7 @@ public class TLAudioEmpty extends TLAbsAudio {
 
     @Override
     public String toString() {
-        return "audioEmpty#586988d8";
+        return _constructor;
     }
 
     @Override

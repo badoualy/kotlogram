@@ -60,6 +60,8 @@ public class TLMessage extends TLAbsMessage {
 
     protected Integer views;
 
+    private final String _constructor = "message#c992e15c";
+
     public TLMessage() {
     }
 
@@ -167,7 +169,7 @@ public class TLMessage extends TLAbsMessage {
 
     @Override
     public String toString() {
-        return "message#c992e15c";
+        return _constructor;
     }
 
     @Override

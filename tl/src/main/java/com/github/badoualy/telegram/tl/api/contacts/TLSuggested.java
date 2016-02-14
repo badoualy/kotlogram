@@ -25,6 +25,8 @@ public class TLSuggested extends TLObject {
 
     protected TLVector<TLAbsUser> users;
 
+    private final String _constructor = "contacts.suggested#5649dcc5";
+
     public TLSuggested() {
     }
 
@@ -56,7 +58,7 @@ public class TLSuggested extends TLObject {
 
     @Override
     public String toString() {
-        return "contacts.suggested#5649dcc5";
+        return _constructor;
     }
 
     @Override

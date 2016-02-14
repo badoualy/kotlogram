@@ -21,6 +21,8 @@ import static com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_CONSTRUCTOR_ID;
 public class TLMessages extends TLAbsMessages {
     public static final int CONSTRUCTOR_ID = 0x8c718e87;
 
+    private final String _constructor = "messages.messages#8c718e87";
+
     public TLMessages() {
     }
 
@@ -56,7 +58,7 @@ public class TLMessages extends TLAbsMessages {
 
     @Override
     public String toString() {
-        return "messages.messages#8c718e87";
+        return _constructor;
     }
 
     @Override

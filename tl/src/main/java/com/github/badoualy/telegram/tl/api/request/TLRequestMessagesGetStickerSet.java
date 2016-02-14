@@ -23,6 +23,8 @@ public class TLRequestMessagesGetStickerSet extends TLMethod<TLStickerSet> {
 
     protected TLAbsInputStickerSet stickerset;
 
+    private final String _constructor = "messages.getStickerSet#2619a90e";
+
     public TLRequestMessagesGetStickerSet() {
     }
 
@@ -63,7 +65,7 @@ public class TLRequestMessagesGetStickerSet extends TLMethod<TLStickerSet> {
 
     @Override
     public String toString() {
-        return "messages.getStickerSet#2619a90e";
+        return _constructor;
     }
 
     @Override

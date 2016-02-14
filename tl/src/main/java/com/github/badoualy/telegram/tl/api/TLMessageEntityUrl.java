@@ -18,6 +18,8 @@ import static com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_INT32;
 public class TLMessageEntityUrl extends TLAbsMessageEntity {
     public static final int CONSTRUCTOR_ID = 0x6ed02538;
 
+    private final String _constructor = "messageEntityUrl#6ed02538";
+
     public TLMessageEntityUrl() {
     }
 
@@ -49,7 +51,7 @@ public class TLMessageEntityUrl extends TLAbsMessageEntity {
 
     @Override
     public String toString() {
-        return "messageEntityUrl#6ed02538";
+        return _constructor;
     }
 
     @Override

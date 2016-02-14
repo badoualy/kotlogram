@@ -48,6 +48,8 @@ public class TLChannelFull extends TLAbsChatFull {
 
     protected Integer migratedFromMaxId;
 
+    private final String _constructor = "channelFull#9e341ddf";
+
     public TLChannelFull() {
     }
 
@@ -146,7 +148,7 @@ public class TLChannelFull extends TLAbsChatFull {
 
     @Override
     public String toString() {
-        return "channelFull#9e341ddf";
+        return _constructor;
     }
 
     @Override

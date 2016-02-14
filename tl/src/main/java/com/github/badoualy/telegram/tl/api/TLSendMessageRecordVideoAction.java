@@ -7,12 +7,14 @@ package com.github.badoualy.telegram.tl.api;
 public class TLSendMessageRecordVideoAction extends TLAbsSendMessageAction {
     public static final int CONSTRUCTOR_ID = 0xa187d66f;
 
+    private final String _constructor = "sendMessageRecordVideoAction#a187d66f";
+
     public TLSendMessageRecordVideoAction() {
     }
 
     @Override
     public String toString() {
-        return "sendMessageRecordVideoAction#a187d66f";
+        return _constructor;
     }
 
     @Override

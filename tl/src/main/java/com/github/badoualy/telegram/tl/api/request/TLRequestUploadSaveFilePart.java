@@ -35,6 +35,8 @@ public class TLRequestUploadSaveFilePart extends TLMethod<TLBool> {
 
     protected TLBytes bytes;
 
+    private final String _constructor = "upload.saveFilePart#b304a621";
+
     public TLRequestUploadSaveFilePart() {
     }
 
@@ -83,7 +85,7 @@ public class TLRequestUploadSaveFilePart extends TLMethod<TLBool> {
 
     @Override
     public String toString() {
-        return "upload.saveFilePart#b304a621";
+        return _constructor;
     }
 
     @Override

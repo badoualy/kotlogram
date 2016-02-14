@@ -20,6 +20,8 @@ public class TLMessageActionChannelCreate extends TLAbsMessageAction {
 
     protected String title;
 
+    private final String _constructor = "messageActionChannelCreate#95d2ac92";
+
     public TLMessageActionChannelCreate() {
     }
 
@@ -47,7 +49,7 @@ public class TLMessageActionChannelCreate extends TLAbsMessageAction {
 
     @Override
     public String toString() {
-        return "messageActionChannelCreate#95d2ac92";
+        return _constructor;
     }
 
     @Override

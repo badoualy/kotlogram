@@ -26,6 +26,8 @@ public class TLSupport extends TLObject {
 
     protected TLAbsUser user;
 
+    private final String _constructor = "help.support#17c6b5f6";
+
     public TLSupport() {
     }
 
@@ -57,7 +59,7 @@ public class TLSupport extends TLObject {
 
     @Override
     public String toString() {
-        return "help.support#17c6b5f6";
+        return _constructor;
     }
 
     @Override

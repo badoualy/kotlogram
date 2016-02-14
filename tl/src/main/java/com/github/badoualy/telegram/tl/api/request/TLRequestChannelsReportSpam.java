@@ -31,6 +31,8 @@ public class TLRequestChannelsReportSpam extends TLMethod<TLBool> {
 
     protected TLIntVector id;
 
+    private final String _constructor = "channels.reportSpam#fe087810";
+
     public TLRequestChannelsReportSpam() {
     }
 
@@ -79,7 +81,7 @@ public class TLRequestChannelsReportSpam extends TLMethod<TLBool> {
 
     @Override
     public String toString() {
-        return "channels.reportSpam#fe087810";
+        return _constructor;
     }
 
     @Override

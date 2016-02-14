@@ -20,6 +20,8 @@ public class TLChatInviteExported extends TLAbsExportedChatInvite {
 
     protected String link;
 
+    private final String _constructor = "chatInviteExported#fc2e05bc";
+
     public TLChatInviteExported() {
     }
 
@@ -47,7 +49,7 @@ public class TLChatInviteExported extends TLAbsExportedChatInvite {
 
     @Override
     public String toString() {
-        return "chatInviteExported#fc2e05bc";
+        return _constructor;
     }
 
     @Override

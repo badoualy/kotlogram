@@ -27,6 +27,8 @@ public class TLInputEncryptedFileBigUploaded extends TLAbsInputEncryptedFile {
 
     protected int keyFingerprint;
 
+    private final String _constructor = "inputEncryptedFileBigUploaded#2dc173c8";
+
     public TLInputEncryptedFileBigUploaded() {
     }
 
@@ -62,7 +64,7 @@ public class TLInputEncryptedFileBigUploaded extends TLAbsInputEncryptedFile {
 
     @Override
     public String toString() {
-        return "inputEncryptedFileBigUploaded#2dc173c8";
+        return _constructor;
     }
 
     @Override

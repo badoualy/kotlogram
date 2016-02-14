@@ -20,6 +20,8 @@ import static com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_CONSTRUCTOR_ID;
 public class TLPhotos extends TLAbsPhotos {
     public static final int CONSTRUCTOR_ID = 0x8dca6aa5;
 
+    private final String _constructor = "photos.photos#8dca6aa5";
+
     public TLPhotos() {
     }
 
@@ -51,7 +53,7 @@ public class TLPhotos extends TLAbsPhotos {
 
     @Override
     public String toString() {
-        return "photos.photos#8dca6aa5";
+        return _constructor;
     }
 
     @Override

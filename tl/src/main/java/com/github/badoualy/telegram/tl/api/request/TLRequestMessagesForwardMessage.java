@@ -33,6 +33,8 @@ public class TLRequestMessagesForwardMessage extends TLMethod<TLAbsUpdates> {
 
     protected long randomId;
 
+    private final String _constructor = "messages.forwardMessage#33963bf9";
+
     public TLRequestMessagesForwardMessage() {
     }
 
@@ -81,7 +83,7 @@ public class TLRequestMessagesForwardMessage extends TLMethod<TLAbsUpdates> {
 
     @Override
     public String toString() {
-        return "messages.forwardMessage#33963bf9";
+        return _constructor;
     }
 
     @Override

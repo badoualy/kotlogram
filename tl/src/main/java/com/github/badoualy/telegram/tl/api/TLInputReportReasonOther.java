@@ -20,6 +20,8 @@ public class TLInputReportReasonOther extends TLAbsReportReason {
 
     protected String text;
 
+    private final String _constructor = "inputReportReasonOther#e1746d0a";
+
     public TLInputReportReasonOther() {
     }
 
@@ -47,7 +49,7 @@ public class TLInputReportReasonOther extends TLAbsReportReason {
 
     @Override
     public String toString() {
-        return "inputReportReasonOther#e1746d0a";
+        return _constructor;
     }
 
     @Override

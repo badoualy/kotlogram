@@ -19,6 +19,8 @@ public class TLMessageMediaGeo extends TLAbsMessageMedia {
 
     protected TLAbsGeoPoint geo;
 
+    private final String _constructor = "messageMediaGeo#56e0d474";
+
     public TLMessageMediaGeo() {
     }
 
@@ -46,7 +48,7 @@ public class TLMessageMediaGeo extends TLAbsMessageMedia {
 
     @Override
     public String toString() {
-        return "messageMediaGeo#56e0d474";
+        return _constructor;
     }
 
     @Override

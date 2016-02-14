@@ -23,6 +23,8 @@ public class TLAffectedMessages extends TLObject {
 
     protected int ptsCount;
 
+    private final String _constructor = "messages.affectedMessages#84d19185";
+
     public TLAffectedMessages() {
     }
 
@@ -54,7 +56,7 @@ public class TLAffectedMessages extends TLObject {
 
     @Override
     public String toString() {
-        return "messages.affectedMessages#84d19185";
+        return _constructor;
     }
 
     @Override

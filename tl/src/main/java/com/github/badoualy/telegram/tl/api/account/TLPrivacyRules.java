@@ -25,6 +25,8 @@ public class TLPrivacyRules extends TLObject {
 
     protected TLVector<TLAbsUser> users;
 
+    private final String _constructor = "account.privacyRules#554abb6f";
+
     public TLPrivacyRules() {
     }
 
@@ -56,7 +58,7 @@ public class TLPrivacyRules extends TLObject {
 
     @Override
     public String toString() {
-        return "account.privacyRules#554abb6f";
+        return _constructor;
     }
 
     @Override

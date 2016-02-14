@@ -34,6 +34,8 @@ public class TLRequestPhotosUploadProfilePhoto extends TLMethod<TLPhoto> {
 
     protected TLAbsInputPhotoCrop crop;
 
+    private final String _constructor = "photos.uploadProfilePhoto#d50f9c88";
+
     public TLRequestPhotosUploadProfilePhoto() {
     }
 
@@ -86,7 +88,7 @@ public class TLRequestPhotosUploadProfilePhoto extends TLMethod<TLPhoto> {
 
     @Override
     public String toString() {
-        return "photos.uploadProfilePhoto#d50f9c88";
+        return _constructor;
     }
 
     @Override

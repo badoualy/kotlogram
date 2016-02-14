@@ -26,6 +26,8 @@ public class TLRequestInvokeWithLayer<T extends TLObject> extends TLMethod<T> {
 
     protected TLMethod<T> query;
 
+    private final String _constructor = "invokeWithLayer#da9b0d0d";
+
     public TLRequestInvokeWithLayer() {
     }
 
@@ -63,7 +65,7 @@ public class TLRequestInvokeWithLayer<T extends TLObject> extends TLMethod<T> {
 
     @Override
     public String toString() {
-        return "invokeWithLayer#da9b0d0d";
+        return _constructor;
     }
 
     @Override

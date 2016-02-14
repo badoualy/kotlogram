@@ -27,6 +27,8 @@ public class TLMessageGroup extends TLObject {
 
     protected int date;
 
+    private final String _constructor = "messageGroup#e8346f53";
+
     public TLMessageGroup() {
     }
 
@@ -66,7 +68,7 @@ public class TLMessageGroup extends TLObject {
 
     @Override
     public String toString() {
-        return "messageGroup#e8346f53";
+        return _constructor;
     }
 
     @Override

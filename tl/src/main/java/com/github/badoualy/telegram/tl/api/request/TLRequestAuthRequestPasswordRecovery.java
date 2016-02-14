@@ -17,6 +17,8 @@ import static com.github.badoualy.telegram.tl.StreamUtils.readTLObject;
 public class TLRequestAuthRequestPasswordRecovery extends TLMethod<TLPasswordRecovery> {
     public static final int CONSTRUCTOR_ID = 0xd897bc66;
 
+    private final String _constructor = "auth.requestPasswordRecovery#d897bc66";
+
     public TLRequestAuthRequestPasswordRecovery() {
     }
 
@@ -35,7 +37,7 @@ public class TLRequestAuthRequestPasswordRecovery extends TLMethod<TLPasswordRec
 
     @Override
     public String toString() {
-        return "auth.requestPasswordRecovery#d897bc66";
+        return _constructor;
     }
 
     @Override

@@ -27,6 +27,8 @@ public class TLExportedAuthorization extends TLObject {
 
     protected TLBytes bytes;
 
+    private final String _constructor = "auth.exportedAuthorization#df969c2d";
+
     public TLExportedAuthorization() {
     }
 
@@ -58,7 +60,7 @@ public class TLExportedAuthorization extends TLObject {
 
     @Override
     public String toString() {
-        return "auth.exportedAuthorization#df969c2d";
+        return _constructor;
     }
 
     @Override

@@ -18,6 +18,8 @@ import static com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_INT32;
 public class TLReplyKeyboardHide extends TLAbsReplyMarkup {
     public static final int CONSTRUCTOR_ID = 0xa03e5b85;
 
+    private final String _constructor = "replyKeyboardHide#a03e5b85";
+
     public TLReplyKeyboardHide() {
     }
 
@@ -55,7 +57,7 @@ public class TLReplyKeyboardHide extends TLAbsReplyMarkup {
 
     @Override
     public String toString() {
-        return "replyKeyboardHide#a03e5b85";
+        return _constructor;
     }
 
     @Override

@@ -26,6 +26,8 @@ public class TLSentChangePhoneCode extends TLObject {
 
     protected int sendCallTimeout;
 
+    private final String _constructor = "account.sentChangePhoneCode#a4f58c4c";
+
     public TLSentChangePhoneCode() {
     }
 
@@ -57,7 +59,7 @@ public class TLSentChangePhoneCode extends TLObject {
 
     @Override
     public String toString() {
-        return "account.sentChangePhoneCode#a4f58c4c";
+        return _constructor;
     }
 
     @Override

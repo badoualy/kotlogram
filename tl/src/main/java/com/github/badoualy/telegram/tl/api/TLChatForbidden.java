@@ -23,6 +23,8 @@ public class TLChatForbidden extends TLAbsChat {
 
     protected String title;
 
+    private final String _constructor = "chatForbidden#7328bdb";
+
     public TLChatForbidden() {
     }
 
@@ -54,7 +56,7 @@ public class TLChatForbidden extends TLAbsChat {
 
     @Override
     public String toString() {
-        return "chatForbidden#7328bdb";
+        return _constructor;
     }
 
     @Override

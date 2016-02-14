@@ -19,6 +19,8 @@ public class TLChatInviteAlready extends TLAbsChatInvite {
 
     protected TLAbsChat chat;
 
+    private final String _constructor = "chatInviteAlready#5a686d7c";
+
     public TLChatInviteAlready() {
     }
 
@@ -46,7 +48,7 @@ public class TLChatInviteAlready extends TLAbsChatInvite {
 
     @Override
     public String toString() {
-        return "chatInviteAlready#5a686d7c";
+        return _constructor;
     }
 
     @Override

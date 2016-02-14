@@ -63,6 +63,8 @@ public class TLConfig extends TLObject {
 
     protected TLVector<TLDisabledFeature> disabledFeatures;
 
+    private final String _constructor = "config#6bbc5f8";
+
     public TLConfig() {
     }
 
@@ -162,7 +164,7 @@ public class TLConfig extends TLObject {
 
     @Override
     public String toString() {
-        return "config#6bbc5f8";
+        return _constructor;
     }
 
     @Override

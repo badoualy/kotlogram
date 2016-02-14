@@ -19,6 +19,8 @@ public class TLInputNotifyPeer extends TLAbsInputNotifyPeer {
 
     protected TLAbsInputPeer peer;
 
+    private final String _constructor = "inputNotifyPeer#b8bc5b0c";
+
     public TLInputNotifyPeer() {
     }
 
@@ -46,7 +48,7 @@ public class TLInputNotifyPeer extends TLAbsInputNotifyPeer {
 
     @Override
     public String toString() {
-        return "inputNotifyPeer#b8bc5b0c";
+        return _constructor;
     }
 
     @Override

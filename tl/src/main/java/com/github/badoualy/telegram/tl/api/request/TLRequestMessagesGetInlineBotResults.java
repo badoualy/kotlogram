@@ -30,6 +30,8 @@ public class TLRequestMessagesGetInlineBotResults extends TLMethod<TLBotResults>
 
     protected String offset;
 
+    private final String _constructor = "messages.getInlineBotResults#9324600d";
+
     public TLRequestMessagesGetInlineBotResults() {
     }
 
@@ -78,7 +80,7 @@ public class TLRequestMessagesGetInlineBotResults extends TLMethod<TLBotResults>
 
     @Override
     public String toString() {
-        return "messages.getInlineBotResults#9324600d";
+        return _constructor;
     }
 
     @Override

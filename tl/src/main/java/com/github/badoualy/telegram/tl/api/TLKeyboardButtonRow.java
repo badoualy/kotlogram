@@ -21,6 +21,8 @@ public class TLKeyboardButtonRow extends TLObject {
 
     protected TLVector<TLKeyboardButton> buttons;
 
+    private final String _constructor = "keyboardButtonRow#77608b83";
+
     public TLKeyboardButtonRow() {
     }
 
@@ -48,7 +50,7 @@ public class TLKeyboardButtonRow extends TLObject {
 
     @Override
     public String toString() {
-        return "keyboardButtonRow#77608b83";
+        return _constructor;
     }
 
     @Override

@@ -20,6 +20,8 @@ public class TLUserStatusOnline extends TLAbsUserStatus {
 
     protected int expires;
 
+    private final String _constructor = "userStatusOnline#edb93949";
+
     public TLUserStatusOnline() {
     }
 
@@ -47,7 +49,7 @@ public class TLUserStatusOnline extends TLAbsUserStatus {
 
     @Override
     public String toString() {
-        return "userStatusOnline#edb93949";
+        return _constructor;
     }
 
     @Override

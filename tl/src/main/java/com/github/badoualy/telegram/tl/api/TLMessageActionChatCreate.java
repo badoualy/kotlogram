@@ -25,6 +25,8 @@ public class TLMessageActionChatCreate extends TLAbsMessageAction {
 
     protected TLIntVector users;
 
+    private final String _constructor = "messageActionChatCreate#a6638b9a";
+
     public TLMessageActionChatCreate() {
     }
 
@@ -56,7 +58,7 @@ public class TLMessageActionChatCreate extends TLAbsMessageAction {
 
     @Override
     public String toString() {
-        return "messageActionChatCreate#a6638b9a";
+        return _constructor;
     }
 
     @Override

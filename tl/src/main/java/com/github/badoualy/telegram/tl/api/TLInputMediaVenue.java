@@ -30,6 +30,8 @@ public class TLInputMediaVenue extends TLAbsInputMedia {
 
     protected String venueId;
 
+    private final String _constructor = "inputMediaVenue#2827a81a";
+
     public TLInputMediaVenue() {
     }
 
@@ -73,7 +75,7 @@ public class TLInputMediaVenue extends TLAbsInputMedia {
 
     @Override
     public String toString() {
-        return "inputMediaVenue#2827a81a";
+        return _constructor;
     }
 
     @Override

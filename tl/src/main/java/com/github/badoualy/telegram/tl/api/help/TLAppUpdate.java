@@ -32,6 +32,8 @@ public class TLAppUpdate extends TLAbsAppUpdate {
 
     protected String text;
 
+    private final String _constructor = "help.appUpdate#8987f311";
+
     public TLAppUpdate() {
     }
 
@@ -71,7 +73,7 @@ public class TLAppUpdate extends TLAbsAppUpdate {
 
     @Override
     public String toString() {
-        return "help.appUpdate#8987f311";
+        return _constructor;
     }
 
     @Override

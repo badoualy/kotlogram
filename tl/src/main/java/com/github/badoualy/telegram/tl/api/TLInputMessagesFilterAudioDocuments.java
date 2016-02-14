@@ -7,12 +7,14 @@ package com.github.badoualy.telegram.tl.api;
 public class TLInputMessagesFilterAudioDocuments extends TLAbsMessagesFilter {
     public static final int CONSTRUCTOR_ID = 0x5afbf764;
 
+    private final String _constructor = "inputMessagesFilterAudioDocuments#5afbf764";
+
     public TLInputMessagesFilterAudioDocuments() {
     }
 
     @Override
     public String toString() {
-        return "inputMessagesFilterAudioDocuments#5afbf764";
+        return _constructor;
     }
 
     @Override

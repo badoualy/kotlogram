@@ -7,12 +7,14 @@ package com.github.badoualy.telegram.tl.api;
 public class TLUserStatusEmpty extends TLAbsUserStatus {
     public static final int CONSTRUCTOR_ID = 0x9d05049;
 
+    private final String _constructor = "userStatusEmpty#9d05049";
+
     public TLUserStatusEmpty() {
     }
 
     @Override
     public String toString() {
-        return "userStatusEmpty#9d05049";
+        return _constructor;
     }
 
     @Override

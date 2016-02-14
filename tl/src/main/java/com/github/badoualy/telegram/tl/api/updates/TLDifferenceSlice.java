@@ -37,6 +37,8 @@ public class TLDifferenceSlice extends TLAbsDifference {
 
     protected TLState intermediateState;
 
+    private final String _constructor = "updates.differenceSlice#a8fb1981";
+
     public TLDifferenceSlice() {
     }
 
@@ -84,7 +86,7 @@ public class TLDifferenceSlice extends TLAbsDifference {
 
     @Override
     public String toString() {
-        return "updates.differenceSlice#a8fb1981";
+        return _constructor;
     }
 
     @Override

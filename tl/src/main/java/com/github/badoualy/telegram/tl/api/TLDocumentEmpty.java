@@ -18,6 +18,8 @@ import static com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_INT64;
 public class TLDocumentEmpty extends TLAbsDocument {
     public static final int CONSTRUCTOR_ID = 0x36f8c871;
 
+    private final String _constructor = "documentEmpty#36f8c871";
+
     public TLDocumentEmpty() {
     }
 
@@ -45,7 +47,7 @@ public class TLDocumentEmpty extends TLAbsDocument {
 
     @Override
     public String toString() {
-        return "documentEmpty#36f8c871";
+        return _constructor;
     }
 
     @Override

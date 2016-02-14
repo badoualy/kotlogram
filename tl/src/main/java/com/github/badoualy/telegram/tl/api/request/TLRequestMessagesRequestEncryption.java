@@ -34,6 +34,8 @@ public class TLRequestMessagesRequestEncryption extends TLMethod<TLAbsEncryptedC
 
     protected TLBytes gA;
 
+    private final String _constructor = "messages.requestEncryption#f64daf43";
+
     public TLRequestMessagesRequestEncryption() {
     }
 
@@ -82,7 +84,7 @@ public class TLRequestMessagesRequestEncryption extends TLMethod<TLAbsEncryptedC
 
     @Override
     public String toString() {
-        return "messages.requestEncryption#f64daf43";
+        return _constructor;
     }
 
     @Override

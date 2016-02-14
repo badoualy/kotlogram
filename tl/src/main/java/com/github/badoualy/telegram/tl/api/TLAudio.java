@@ -36,6 +36,8 @@ public class TLAudio extends TLAbsAudio {
 
     protected int dcId;
 
+    private final String _constructor = "audio#f9e35055";
+
     public TLAudio() {
     }
 
@@ -87,7 +89,7 @@ public class TLAudio extends TLAbsAudio {
 
     @Override
     public String toString() {
-        return "audio#f9e35055";
+        return _constructor;
     }
 
     @Override

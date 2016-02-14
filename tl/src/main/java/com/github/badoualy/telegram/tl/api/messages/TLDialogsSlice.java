@@ -27,6 +27,8 @@ public class TLDialogsSlice extends TLAbsDialogs {
 
     protected int count;
 
+    private final String _constructor = "messages.dialogsSlice#71e094f3";
+
     public TLDialogsSlice() {
     }
 
@@ -70,7 +72,7 @@ public class TLDialogsSlice extends TLAbsDialogs {
 
     @Override
     public String toString() {
-        return "messages.dialogsSlice#71e094f3";
+        return _constructor;
     }
 
     @Override

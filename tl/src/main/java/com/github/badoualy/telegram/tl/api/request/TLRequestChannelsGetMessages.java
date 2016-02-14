@@ -28,6 +28,8 @@ public class TLRequestChannelsGetMessages extends TLMethod<TLAbsMessages> {
 
     protected TLIntVector id;
 
+    private final String _constructor = "channels.getMessages#93d7b347";
+
     public TLRequestChannelsGetMessages() {
     }
 
@@ -72,7 +74,7 @@ public class TLRequestChannelsGetMessages extends TLMethod<TLAbsMessages> {
 
     @Override
     public String toString() {
-        return "channels.getMessages#93d7b347";
+        return _constructor;
     }
 
     @Override

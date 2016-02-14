@@ -19,6 +19,8 @@ public class TLUpdateChatParticipants extends TLAbsUpdate {
 
     protected TLAbsChatParticipants participants;
 
+    private final String _constructor = "updateChatParticipants#7761198";
+
     public TLUpdateChatParticipants() {
     }
 
@@ -46,7 +48,7 @@ public class TLUpdateChatParticipants extends TLAbsUpdate {
 
     @Override
     public String toString() {
-        return "updateChatParticipants#7761198";
+        return _constructor;
     }
 
     @Override

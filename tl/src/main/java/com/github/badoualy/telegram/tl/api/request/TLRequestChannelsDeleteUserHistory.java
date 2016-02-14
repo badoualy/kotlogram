@@ -26,6 +26,8 @@ public class TLRequestChannelsDeleteUserHistory extends TLMethod<TLAffectedHisto
 
     protected TLAbsInputUser userId;
 
+    private final String _constructor = "channels.deleteUserHistory#d10dd71b";
+
     public TLRequestChannelsDeleteUserHistory() {
     }
 
@@ -70,7 +72,7 @@ public class TLRequestChannelsDeleteUserHistory extends TLMethod<TLAffectedHisto
 
     @Override
     public String toString() {
-        return "channels.deleteUserHistory#d10dd71b";
+        return _constructor;
     }
 
     @Override

@@ -20,6 +20,8 @@ public class TLUpdateNewStickerSet extends TLAbsUpdate {
 
     protected TLStickerSet stickerset;
 
+    private final String _constructor = "updateNewStickerSet#688a30aa";
+
     public TLUpdateNewStickerSet() {
     }
 
@@ -47,7 +49,7 @@ public class TLUpdateNewStickerSet extends TLAbsUpdate {
 
     @Override
     public String toString() {
-        return "updateNewStickerSet#688a30aa";
+        return _constructor;
     }
 
     @Override

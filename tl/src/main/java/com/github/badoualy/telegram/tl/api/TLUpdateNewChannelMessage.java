@@ -26,6 +26,8 @@ public class TLUpdateNewChannelMessage extends TLAbsUpdate {
 
     protected int ptsCount;
 
+    private final String _constructor = "updateNewChannelMessage#62ba04d9";
+
     public TLUpdateNewChannelMessage() {
     }
 
@@ -61,7 +63,7 @@ public class TLUpdateNewChannelMessage extends TLAbsUpdate {
 
     @Override
     public String toString() {
-        return "updateNewChannelMessage#62ba04d9";
+        return _constructor;
     }
 
     @Override

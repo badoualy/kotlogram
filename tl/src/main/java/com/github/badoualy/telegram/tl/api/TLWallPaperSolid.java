@@ -23,6 +23,8 @@ public class TLWallPaperSolid extends TLAbsWallPaper {
 
     protected int bgColor;
 
+    private final String _constructor = "wallPaperSolid#63117f24";
+
     public TLWallPaperSolid() {
     }
 
@@ -62,7 +64,7 @@ public class TLWallPaperSolid extends TLAbsWallPaper {
 
     @Override
     public String toString() {
-        return "wallPaperSolid#63117f24";
+        return _constructor;
     }
 
     @Override

@@ -20,6 +20,8 @@ public class TLUpdateChannel extends TLAbsUpdate {
 
     protected int channelId;
 
+    private final String _constructor = "updateChannel#b6d45656";
+
     public TLUpdateChannel() {
     }
 
@@ -47,7 +49,7 @@ public class TLUpdateChannel extends TLAbsUpdate {
 
     @Override
     public String toString() {
-        return "updateChannel#b6d45656";
+        return _constructor;
     }
 
     @Override

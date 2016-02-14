@@ -7,12 +7,14 @@ package com.github.badoualy.telegram.tl.api;
 public class TLInputUserSelf extends TLAbsInputUser {
     public static final int CONSTRUCTOR_ID = 0xf7c1b13f;
 
+    private final String _constructor = "inputUserSelf#f7c1b13f";
+
     public TLInputUserSelf() {
     }
 
     @Override
     public String toString() {
-        return "inputUserSelf#f7c1b13f";
+        return _constructor;
     }
 
     @Override

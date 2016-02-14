@@ -29,6 +29,8 @@ public class TLChannelMessagesFilter extends TLAbsChannelMessagesFilter {
 
     protected TLVector<TLMessageRange> ranges;
 
+    private final String _constructor = "channelMessagesFilter#cd77d957";
+
     public TLChannelMessagesFilter() {
     }
 
@@ -73,7 +75,7 @@ public class TLChannelMessagesFilter extends TLAbsChannelMessagesFilter {
 
     @Override
     public String toString() {
-        return "channelMessagesFilter#cd77d957";
+        return _constructor;
     }
 
     @Override

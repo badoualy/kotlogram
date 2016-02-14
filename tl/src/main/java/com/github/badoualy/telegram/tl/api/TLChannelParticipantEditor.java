@@ -22,6 +22,8 @@ public class TLChannelParticipantEditor extends TLAbsChannelParticipant {
 
     protected int date;
 
+    private final String _constructor = "channelParticipantEditor#98192d61";
+
     public TLChannelParticipantEditor() {
     }
 
@@ -57,7 +59,7 @@ public class TLChannelParticipantEditor extends TLAbsChannelParticipant {
 
     @Override
     public String toString() {
-        return "channelParticipantEditor#98192d61";
+        return _constructor;
     }
 
     @Override

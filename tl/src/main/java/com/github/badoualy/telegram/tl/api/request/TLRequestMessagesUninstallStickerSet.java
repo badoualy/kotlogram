@@ -23,6 +23,8 @@ public class TLRequestMessagesUninstallStickerSet extends TLMethod<TLBool> {
 
     protected TLAbsInputStickerSet stickerset;
 
+    private final String _constructor = "messages.uninstallStickerSet#f96e55de";
+
     public TLRequestMessagesUninstallStickerSet() {
     }
 
@@ -63,7 +65,7 @@ public class TLRequestMessagesUninstallStickerSet extends TLMethod<TLBool> {
 
     @Override
     public String toString() {
-        return "messages.uninstallStickerSet#f96e55de";
+        return _constructor;
     }
 
     @Override

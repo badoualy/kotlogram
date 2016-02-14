@@ -36,6 +36,8 @@ public class TLRequestMessagesGetHistory extends TLMethod<TLAbsMessages> {
 
     protected int minId;
 
+    private final String _constructor = "messages.getHistory#8a8ec2da";
+
     public TLRequestMessagesGetHistory() {
     }
 
@@ -96,7 +98,7 @@ public class TLRequestMessagesGetHistory extends TLMethod<TLAbsMessages> {
 
     @Override
     public String toString() {
-        return "messages.getHistory#8a8ec2da";
+        return _constructor;
     }
 
     @Override

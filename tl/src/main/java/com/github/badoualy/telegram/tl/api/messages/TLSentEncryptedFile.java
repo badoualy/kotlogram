@@ -23,6 +23,8 @@ public class TLSentEncryptedFile extends TLAbsSentEncryptedMessage {
 
     protected TLAbsEncryptedFile file;
 
+    private final String _constructor = "messages.sentEncryptedFile#9493ff32";
+
     public TLSentEncryptedFile() {
     }
 
@@ -54,7 +56,7 @@ public class TLSentEncryptedFile extends TLAbsSentEncryptedMessage {
 
     @Override
     public String toString() {
-        return "messages.sentEncryptedFile#9493ff32";
+        return _constructor;
     }
 
     @Override

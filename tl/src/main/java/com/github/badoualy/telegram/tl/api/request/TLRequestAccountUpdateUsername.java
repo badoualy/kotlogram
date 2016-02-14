@@ -24,6 +24,8 @@ public class TLRequestAccountUpdateUsername extends TLMethod<TLAbsUser> {
 
     protected String username;
 
+    private final String _constructor = "account.updateUsername#3e0bdd7c";
+
     public TLRequestAccountUpdateUsername() {
     }
 
@@ -64,7 +66,7 @@ public class TLRequestAccountUpdateUsername extends TLMethod<TLAbsUser> {
 
     @Override
     public String toString() {
-        return "account.updateUsername#3e0bdd7c";
+        return _constructor;
     }
 
     @Override

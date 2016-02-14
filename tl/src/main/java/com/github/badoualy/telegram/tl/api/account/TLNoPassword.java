@@ -22,6 +22,8 @@ import static com.github.badoualy.telegram.tl.TLObjectUtils.computeTLStringSeria
 public class TLNoPassword extends TLAbsPassword {
     public static final int CONSTRUCTOR_ID = 0x96dabc18;
 
+    private final String _constructor = "account.noPassword#96dabc18";
+
     public TLNoPassword() {
     }
 
@@ -53,7 +55,7 @@ public class TLNoPassword extends TLAbsPassword {
 
     @Override
     public String toString() {
-        return "account.noPassword#96dabc18";
+        return _constructor;
     }
 
     @Override

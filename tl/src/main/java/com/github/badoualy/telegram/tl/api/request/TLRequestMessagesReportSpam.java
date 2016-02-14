@@ -23,6 +23,8 @@ public class TLRequestMessagesReportSpam extends TLMethod<TLBool> {
 
     protected TLAbsInputPeer peer;
 
+    private final String _constructor = "messages.reportSpam#cf1592db";
+
     public TLRequestMessagesReportSpam() {
     }
 
@@ -63,7 +65,7 @@ public class TLRequestMessagesReportSpam extends TLMethod<TLBool> {
 
     @Override
     public String toString() {
-        return "messages.reportSpam#cf1592db";
+        return _constructor;
     }
 
     @Override

@@ -32,6 +32,8 @@ public class TLRequestMessagesGetMessagesViews extends TLMethod<TLIntVector> {
 
     protected boolean increment;
 
+    private final String _constructor = "messages.getMessagesViews#c4c8a55d";
+
     public TLRequestMessagesGetMessagesViews() {
     }
 
@@ -80,7 +82,7 @@ public class TLRequestMessagesGetMessagesViews extends TLMethod<TLIntVector> {
 
     @Override
     public String toString() {
-        return "messages.getMessagesViews#c4c8a55d";
+        return _constructor;
     }
 
     @Override

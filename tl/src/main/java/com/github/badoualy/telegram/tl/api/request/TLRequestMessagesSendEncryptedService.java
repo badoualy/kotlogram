@@ -34,6 +34,8 @@ public class TLRequestMessagesSendEncryptedService extends TLMethod<TLAbsSentEnc
 
     protected TLBytes data;
 
+    private final String _constructor = "messages.sendEncryptedService#32d439a4";
+
     public TLRequestMessagesSendEncryptedService() {
     }
 
@@ -82,7 +84,7 @@ public class TLRequestMessagesSendEncryptedService extends TLMethod<TLAbsSentEnc
 
     @Override
     public String toString() {
-        return "messages.sendEncryptedService#32d439a4";
+        return _constructor;
     }
 
     @Override

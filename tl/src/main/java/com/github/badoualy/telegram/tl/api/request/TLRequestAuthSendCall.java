@@ -26,6 +26,8 @@ public class TLRequestAuthSendCall extends TLMethod<TLBool> {
 
     protected String phoneCodeHash;
 
+    private final String _constructor = "auth.sendCall#3c51564";
+
     public TLRequestAuthSendCall() {
     }
 
@@ -70,7 +72,7 @@ public class TLRequestAuthSendCall extends TLMethod<TLBool> {
 
     @Override
     public String toString() {
-        return "auth.sendCall#3c51564";
+        return _constructor;
     }
 
     @Override

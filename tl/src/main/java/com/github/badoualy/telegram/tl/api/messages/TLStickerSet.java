@@ -29,6 +29,8 @@ public class TLStickerSet extends TLObject {
 
     protected TLVector<TLAbsDocument> documents;
 
+    private final String _constructor = "messages.stickerSet#b60a24a6";
+
     public TLStickerSet() {
     }
 
@@ -64,7 +66,7 @@ public class TLStickerSet extends TLObject {
 
     @Override
     public String toString() {
-        return "messages.stickerSet#b60a24a6";
+        return _constructor;
     }
 
     @Override

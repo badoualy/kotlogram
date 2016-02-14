@@ -33,6 +33,8 @@ public class TLRequestMessagesEditChatAdmin extends TLMethod<TLBool> {
 
     protected boolean isAdmin;
 
+    private final String _constructor = "messages.editChatAdmin#a9e69f2e";
+
     public TLRequestMessagesEditChatAdmin() {
     }
 
@@ -81,7 +83,7 @@ public class TLRequestMessagesEditChatAdmin extends TLMethod<TLBool> {
 
     @Override
     public String toString() {
-        return "messages.editChatAdmin#a9e69f2e";
+        return _constructor;
     }
 
     @Override

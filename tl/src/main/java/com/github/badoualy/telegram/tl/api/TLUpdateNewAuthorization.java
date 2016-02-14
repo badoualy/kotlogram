@@ -32,6 +32,8 @@ public class TLUpdateNewAuthorization extends TLAbsUpdate {
 
     protected String location;
 
+    private final String _constructor = "updateNewAuthorization#8f06529a";
+
     public TLUpdateNewAuthorization() {
     }
 
@@ -71,7 +73,7 @@ public class TLUpdateNewAuthorization extends TLAbsUpdate {
 
     @Override
     public String toString() {
-        return "updateNewAuthorization#8f06529a";
+        return _constructor;
     }
 
     @Override

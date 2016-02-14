@@ -35,6 +35,8 @@ public class TLRequestAuthSendCode extends TLMethod<TLAbsSentCode> {
 
     protected String langCode;
 
+    private final String _constructor = "auth.sendCode#768d5f4d";
+
     public TLRequestAuthSendCode() {
     }
 
@@ -91,7 +93,7 @@ public class TLRequestAuthSendCode extends TLMethod<TLAbsSentCode> {
 
     @Override
     public String toString() {
-        return "auth.sendCode#768d5f4d";
+        return _constructor;
     }
 
     @Override

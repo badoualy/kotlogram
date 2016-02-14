@@ -24,6 +24,8 @@ public class TLUpdateEncryption extends TLAbsUpdate {
 
     protected int date;
 
+    private final String _constructor = "updateEncryption#b4a2e88d";
+
     public TLUpdateEncryption() {
     }
 
@@ -55,7 +57,7 @@ public class TLUpdateEncryption extends TLAbsUpdate {
 
     @Override
     public String toString() {
-        return "updateEncryption#b4a2e88d";
+        return _constructor;
     }
 
     @Override

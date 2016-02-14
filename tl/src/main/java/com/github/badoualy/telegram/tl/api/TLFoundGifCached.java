@@ -24,6 +24,8 @@ public class TLFoundGifCached extends TLAbsFoundGif {
 
     protected TLAbsDocument document;
 
+    private final String _constructor = "foundGifCached#9c750409";
+
     public TLFoundGifCached() {
     }
 
@@ -59,7 +61,7 @@ public class TLFoundGifCached extends TLAbsFoundGif {
 
     @Override
     public String toString() {
-        return "foundGifCached#9c750409";
+        return _constructor;
     }
 
     @Override

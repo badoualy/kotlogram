@@ -26,6 +26,8 @@ public class TLMessagesSlice extends TLAbsMessages {
 
     protected int count;
 
+    private final String _constructor = "messages.messagesSlice#b446ae3";
+
     public TLMessagesSlice() {
     }
 
@@ -65,7 +67,7 @@ public class TLMessagesSlice extends TLAbsMessages {
 
     @Override
     public String toString() {
-        return "messages.messagesSlice#b446ae3";
+        return _constructor;
     }
 
     @Override

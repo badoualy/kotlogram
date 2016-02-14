@@ -7,12 +7,14 @@ package com.github.badoualy.telegram.tl.api;
 public class TLInputGeoPointEmpty extends TLAbsInputGeoPoint {
     public static final int CONSTRUCTOR_ID = 0xe4c123d6;
 
+    private final String _constructor = "inputGeoPointEmpty#e4c123d6";
+
     public TLInputGeoPointEmpty() {
     }
 
     @Override
     public String toString() {
-        return "inputGeoPointEmpty#e4c123d6";
+        return _constructor;
     }
 
     @Override

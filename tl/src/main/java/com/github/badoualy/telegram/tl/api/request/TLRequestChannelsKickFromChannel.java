@@ -31,6 +31,8 @@ public class TLRequestChannelsKickFromChannel extends TLMethod<TLAbsUpdates> {
 
     protected boolean kicked;
 
+    private final String _constructor = "channels.kickFromChannel#a672de14";
+
     public TLRequestChannelsKickFromChannel() {
     }
 
@@ -79,7 +81,7 @@ public class TLRequestChannelsKickFromChannel extends TLMethod<TLAbsUpdates> {
 
     @Override
     public String toString() {
-        return "channels.kickFromChannel#a672de14";
+        return _constructor;
     }
 
     @Override

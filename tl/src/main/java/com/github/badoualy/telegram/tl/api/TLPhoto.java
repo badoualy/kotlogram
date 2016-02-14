@@ -30,6 +30,8 @@ public class TLPhoto extends TLAbsPhoto {
 
     protected TLVector<TLAbsPhotoSize> sizes;
 
+    private final String _constructor = "photo#cded42fe";
+
     public TLPhoto() {
     }
 
@@ -69,7 +71,7 @@ public class TLPhoto extends TLAbsPhoto {
 
     @Override
     public String toString() {
-        return "photo#cded42fe";
+        return _constructor;
     }
 
     @Override

@@ -33,6 +33,8 @@ public class TLChannelDifference extends TLAbsChannelDifference {
 
     protected TLVector<TLAbsUser> users;
 
+    private final String _constructor = "updates.channelDifference#2064674e";
+
     public TLChannelDifference() {
     }
 
@@ -95,7 +97,7 @@ public class TLChannelDifference extends TLAbsChannelDifference {
 
     @Override
     public String toString() {
-        return "updates.channelDifference#2064674e";
+        return _constructor;
     }
 
     @Override

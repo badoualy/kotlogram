@@ -26,6 +26,8 @@ public class TLRequestMessagesSetTyping extends TLMethod<TLBool> {
 
     protected TLAbsSendMessageAction action;
 
+    private final String _constructor = "messages.setTyping#a3825e50";
+
     public TLRequestMessagesSetTyping() {
     }
 
@@ -70,7 +72,7 @@ public class TLRequestMessagesSetTyping extends TLMethod<TLBool> {
 
     @Override
     public String toString() {
-        return "messages.setTyping#a3825e50";
+        return _constructor;
     }
 
     @Override

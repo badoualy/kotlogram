@@ -21,6 +21,8 @@ public class TLRequestInvokeWithoutUpdates<T extends TLObject> extends TLMethod<
 
     protected TLMethod<T> query;
 
+    private final String _constructor = "invokeWithoutUpdates#bf9459b7";
+
     public TLRequestInvokeWithoutUpdates() {
     }
 
@@ -54,7 +56,7 @@ public class TLRequestInvokeWithoutUpdates<T extends TLObject> extends TLMethod<
 
     @Override
     public String toString() {
-        return "invokeWithoutUpdates#bf9459b7";
+        return _constructor;
     }
 
     @Override

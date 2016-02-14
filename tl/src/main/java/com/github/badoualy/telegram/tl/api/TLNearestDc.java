@@ -28,6 +28,8 @@ public class TLNearestDc extends TLObject {
 
     protected int nearestDc;
 
+    private final String _constructor = "nearestDc#8e1a1775";
+
     public TLNearestDc() {
     }
 
@@ -63,7 +65,7 @@ public class TLNearestDc extends TLObject {
 
     @Override
     public String toString() {
-        return "nearestDc#8e1a1775";
+        return _constructor;
     }
 
     @Override

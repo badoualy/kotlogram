@@ -24,6 +24,8 @@ public class TLDocumentAttributeSticker extends TLAbsDocumentAttribute {
 
     protected TLAbsInputStickerSet stickerset;
 
+    private final String _constructor = "documentAttributeSticker#3a556302";
+
     public TLDocumentAttributeSticker() {
     }
 
@@ -55,7 +57,7 @@ public class TLDocumentAttributeSticker extends TLAbsDocumentAttribute {
 
     @Override
     public String toString() {
-        return "documentAttributeSticker#3a556302";
+        return _constructor;
     }
 
     @Override

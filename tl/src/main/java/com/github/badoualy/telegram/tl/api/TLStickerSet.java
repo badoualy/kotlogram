@@ -45,6 +45,8 @@ public class TLStickerSet extends TLObject {
 
     protected int hash;
 
+    private final String _constructor = "stickerSet#cd303b41";
+
     public TLStickerSet() {
     }
 
@@ -112,7 +114,7 @@ public class TLStickerSet extends TLObject {
 
     @Override
     public String toString() {
-        return "stickerSet#cd303b41";
+        return _constructor;
     }
 
     @Override

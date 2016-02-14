@@ -7,12 +7,14 @@ package com.github.badoualy.telegram.tl.api.messages;
 public class TLSavedGifsNotModified extends TLAbsSavedGifs {
     public static final int CONSTRUCTOR_ID = 0xe8025ca2;
 
+    private final String _constructor = "messages.savedGifsNotModified#e8025ca2";
+
     public TLSavedGifsNotModified() {
     }
 
     @Override
     public String toString() {
-        return "messages.savedGifsNotModified#e8025ca2";
+        return _constructor;
     }
 
     @Override

@@ -23,6 +23,8 @@ public class TLContactSuggested extends TLObject {
 
     protected int mutualContacts;
 
+    private final String _constructor = "contactSuggested#3de191a1";
+
     public TLContactSuggested() {
     }
 
@@ -54,7 +56,7 @@ public class TLContactSuggested extends TLObject {
 
     @Override
     public String toString() {
-        return "contactSuggested#3de191a1";
+        return _constructor;
     }
 
     @Override

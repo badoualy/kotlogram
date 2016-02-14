@@ -7,12 +7,14 @@ package com.github.badoualy.telegram.tl.api;
 public class TLChatPhotoEmpty extends TLAbsChatPhoto {
     public static final int CONSTRUCTOR_ID = 0x37c1011c;
 
+    private final String _constructor = "chatPhotoEmpty#37c1011c";
+
     public TLChatPhotoEmpty() {
     }
 
     @Override
     public String toString() {
-        return "chatPhotoEmpty#37c1011c";
+        return _constructor;
     }
 
     @Override

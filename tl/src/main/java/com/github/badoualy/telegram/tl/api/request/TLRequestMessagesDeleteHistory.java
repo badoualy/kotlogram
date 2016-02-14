@@ -28,6 +28,8 @@ public class TLRequestMessagesDeleteHistory extends TLMethod<TLAffectedHistory> 
 
     protected int maxId;
 
+    private final String _constructor = "messages.deleteHistory#b7c13bd9";
+
     public TLRequestMessagesDeleteHistory() {
     }
 
@@ -72,7 +74,7 @@ public class TLRequestMessagesDeleteHistory extends TLMethod<TLAffectedHistory> 
 
     @Override
     public String toString() {
-        return "messages.deleteHistory#b7c13bd9";
+        return _constructor;
     }
 
     @Override

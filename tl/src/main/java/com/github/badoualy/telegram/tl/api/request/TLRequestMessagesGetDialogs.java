@@ -32,6 +32,8 @@ public class TLRequestMessagesGetDialogs extends TLMethod<TLAbsDialogs> {
 
     protected int limit;
 
+    private final String _constructor = "messages.getDialogs#6b47f94d";
+
     public TLRequestMessagesGetDialogs() {
     }
 
@@ -84,7 +86,7 @@ public class TLRequestMessagesGetDialogs extends TLMethod<TLAbsDialogs> {
 
     @Override
     public String toString() {
-        return "messages.getDialogs#6b47f94d";
+        return _constructor;
     }
 
     @Override

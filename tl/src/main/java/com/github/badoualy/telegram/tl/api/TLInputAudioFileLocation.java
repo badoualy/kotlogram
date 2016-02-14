@@ -22,6 +22,8 @@ public class TLInputAudioFileLocation extends TLAbsInputFileLocation {
 
     protected long accessHash;
 
+    private final String _constructor = "inputAudioFileLocation#74dc404d";
+
     public TLInputAudioFileLocation() {
     }
 
@@ -53,7 +55,7 @@ public class TLInputAudioFileLocation extends TLAbsInputFileLocation {
 
     @Override
     public String toString() {
-        return "inputAudioFileLocation#74dc404d";
+        return _constructor;
     }
 
     @Override

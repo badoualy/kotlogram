@@ -7,12 +7,14 @@ package com.github.badoualy.telegram.tl.api.contacts;
 public class TLContactsNotModified extends TLAbsContacts {
     public static final int CONSTRUCTOR_ID = 0xb74ba9d2;
 
+    private final String _constructor = "contacts.contactsNotModified#b74ba9d2";
+
     public TLContactsNotModified() {
     }
 
     @Override
     public String toString() {
-        return "contacts.contactsNotModified#b74ba9d2";
+        return _constructor;
     }
 
     @Override

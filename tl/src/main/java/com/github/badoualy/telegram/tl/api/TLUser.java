@@ -66,19 +66,19 @@ public class TLUser extends TLAbsUser {
 
     protected String botInlinePlaceholder;
 
+    private final String _constructor = "user#d10d979a";
+
     public TLUser() {
     }
 
-    public TLUser(boolean self, boolean contact, boolean mutualContact, boolean deleted, boolean bot, boolean botChatHistory, boolean botNochats, boolean verified, boolean restricted, int id, Long accessHash, String firstName, String lastName, String username, String phone, TLAbsUserProfilePhoto photo, TLAbsUserStatus status, Integer botInfoVersion, String restrictionReason, String botInlinePlaceholder) {
+    public TLUser(boolean self, boolean contact, boolean mutualContact, boolean deleted, boolean botChatHistory, boolean botNochats, boolean verified, int id, Long accessHash, String firstName, String lastName, String username, String phone, TLAbsUserProfilePhoto photo, TLAbsUserStatus status, Integer botInfoVersion, String restrictionReason, String botInlinePlaceholder) {
         this.self = self;
         this.contact = contact;
         this.mutualContact = mutualContact;
         this.deleted = deleted;
-        this.bot = bot;
         this.botChatHistory = botChatHistory;
         this.botNochats = botNochats;
         this.verified = verified;
-        this.restricted = restricted;
         this.id = id;
         this.accessHash = accessHash;
         this.firstName = firstName;
@@ -181,7 +181,7 @@ public class TLUser extends TLAbsUser {
 
     @Override
     public String toString() {
-        return "user#d10d979a";
+        return _constructor;
     }
 
     @Override
@@ -256,10 +256,6 @@ public class TLUser extends TLAbsUser {
         return bot;
     }
 
-    public void setBot(boolean bot) {
-        this.bot = bot;
-    }
-
     public boolean getBotChatHistory() {
         return botChatHistory;
     }
@@ -286,10 +282,6 @@ public class TLUser extends TLAbsUser {
 
     public boolean getRestricted() {
         return restricted;
-    }
-
-    public void setRestricted(boolean restricted) {
-        this.restricted = restricted;
     }
 
     public int getId() {

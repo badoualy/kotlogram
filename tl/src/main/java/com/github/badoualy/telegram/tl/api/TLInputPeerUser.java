@@ -25,6 +25,8 @@ public class TLInputPeerUser extends TLAbsInputPeer {
 
     protected long accessHash;
 
+    private final String _constructor = "inputPeerUser#7b8e7de6";
+
     public TLInputPeerUser() {
     }
 
@@ -56,7 +58,7 @@ public class TLInputPeerUser extends TLAbsInputPeer {
 
     @Override
     public String toString() {
-        return "inputPeerUser#7b8e7de6";
+        return _constructor;
     }
 
     @Override

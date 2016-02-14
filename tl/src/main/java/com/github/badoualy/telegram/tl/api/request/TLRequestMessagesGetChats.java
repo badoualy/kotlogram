@@ -24,6 +24,8 @@ public class TLRequestMessagesGetChats extends TLMethod<TLChats> {
 
     protected TLIntVector id;
 
+    private final String _constructor = "messages.getChats#3c6aa187";
+
     public TLRequestMessagesGetChats() {
     }
 
@@ -64,7 +66,7 @@ public class TLRequestMessagesGetChats extends TLMethod<TLChats> {
 
     @Override
     public String toString() {
-        return "messages.getChats#3c6aa187";
+        return _constructor;
     }
 
     @Override

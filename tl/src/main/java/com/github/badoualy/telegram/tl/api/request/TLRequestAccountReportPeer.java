@@ -26,6 +26,8 @@ public class TLRequestAccountReportPeer extends TLMethod<TLBool> {
 
     protected TLAbsReportReason reason;
 
+    private final String _constructor = "account.reportPeer#ae189d5f";
+
     public TLRequestAccountReportPeer() {
     }
 
@@ -70,7 +72,7 @@ public class TLRequestAccountReportPeer extends TLMethod<TLBool> {
 
     @Override
     public String toString() {
-        return "account.reportPeer#ae189d5f";
+        return _constructor;
     }
 
     @Override

@@ -20,6 +20,8 @@ import static com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_INT32;
 public class TLDialog extends TLAbsDialog {
     public static final int CONSTRUCTOR_ID = 0xc1dd804a;
 
+    private final String _constructor = "dialog#c1dd804a";
+
     public TLDialog() {
     }
 
@@ -63,7 +65,7 @@ public class TLDialog extends TLAbsDialog {
 
     @Override
     public String toString() {
-        return "dialog#c1dd804a";
+        return _constructor;
     }
 
     @Override

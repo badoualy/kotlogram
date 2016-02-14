@@ -23,6 +23,8 @@ public class TLRequestChannelsLeaveChannel extends TLMethod<TLAbsUpdates> {
 
     protected TLAbsInputChannel channel;
 
+    private final String _constructor = "channels.leaveChannel#f836aa95";
+
     public TLRequestChannelsLeaveChannel() {
     }
 
@@ -63,7 +65,7 @@ public class TLRequestChannelsLeaveChannel extends TLMethod<TLAbsUpdates> {
 
     @Override
     public String toString() {
-        return "channels.leaveChannel#f836aa95";
+        return _constructor;
     }
 
     @Override

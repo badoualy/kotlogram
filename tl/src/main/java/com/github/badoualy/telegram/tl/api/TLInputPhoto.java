@@ -22,6 +22,8 @@ public class TLInputPhoto extends TLAbsInputPhoto {
 
     protected long accessHash;
 
+    private final String _constructor = "inputPhoto#fb95c6c4";
+
     public TLInputPhoto() {
     }
 
@@ -53,7 +55,7 @@ public class TLInputPhoto extends TLAbsInputPhoto {
 
     @Override
     public String toString() {
-        return "inputPhoto#fb95c6c4";
+        return _constructor;
     }
 
     @Override

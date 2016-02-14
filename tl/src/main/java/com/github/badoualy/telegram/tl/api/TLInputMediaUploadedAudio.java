@@ -29,6 +29,8 @@ public class TLInputMediaUploadedAudio extends TLAbsInputMedia {
 
     protected String mimeType;
 
+    private final String _constructor = "inputMediaUploadedAudio#4e498cab";
+
     public TLInputMediaUploadedAudio() {
     }
 
@@ -64,7 +66,7 @@ public class TLInputMediaUploadedAudio extends TLAbsInputMedia {
 
     @Override
     public String toString() {
-        return "inputMediaUploadedAudio#4e498cab";
+        return _constructor;
     }
 
     @Override

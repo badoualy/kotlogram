@@ -37,6 +37,8 @@ public class TLRequestMessagesSearchGlobal extends TLMethod<TLAbsMessages> {
 
     protected int limit;
 
+    private final String _constructor = "messages.searchGlobal#9e3cacb0";
+
     public TLRequestMessagesSearchGlobal() {
     }
 
@@ -93,7 +95,7 @@ public class TLRequestMessagesSearchGlobal extends TLMethod<TLAbsMessages> {
 
     @Override
     public String toString() {
-        return "messages.searchGlobal#9e3cacb0";
+        return _constructor;
     }
 
     @Override

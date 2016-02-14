@@ -24,6 +24,8 @@ public class TLUpdateEncryptedMessagesRead extends TLAbsUpdate {
 
     protected int date;
 
+    private final String _constructor = "updateEncryptedMessagesRead#38fe25b7";
+
     public TLUpdateEncryptedMessagesRead() {
     }
 
@@ -59,7 +61,7 @@ public class TLUpdateEncryptedMessagesRead extends TLAbsUpdate {
 
     @Override
     public String toString() {
-        return "updateEncryptedMessagesRead#38fe25b7";
+        return _constructor;
     }
 
     @Override

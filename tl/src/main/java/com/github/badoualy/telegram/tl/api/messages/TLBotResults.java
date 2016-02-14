@@ -39,6 +39,8 @@ public class TLBotResults extends TLObject {
 
     protected TLVector<TLAbsBotInlineResult> results;
 
+    private final String _constructor = "messages.botResults#1170b0a3";
+
     public TLBotResults() {
     }
 
@@ -89,7 +91,7 @@ public class TLBotResults extends TLObject {
 
     @Override
     public String toString() {
-        return "messages.botResults#1170b0a3";
+        return _constructor;
     }
 
     @Override

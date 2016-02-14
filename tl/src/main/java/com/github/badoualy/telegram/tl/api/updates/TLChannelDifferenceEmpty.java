@@ -18,6 +18,8 @@ import static com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_INT32;
 public class TLChannelDifferenceEmpty extends TLAbsChannelDifference {
     public static final int CONSTRUCTOR_ID = 0x3e11affb;
 
+    private final String _constructor = "updates.channelDifferenceEmpty#3e11affb";
+
     public TLChannelDifferenceEmpty() {
     }
 
@@ -64,7 +66,7 @@ public class TLChannelDifferenceEmpty extends TLAbsChannelDifference {
 
     @Override
     public String toString() {
-        return "updates.channelDifferenceEmpty#3e11affb";
+        return _constructor;
     }
 
     @Override

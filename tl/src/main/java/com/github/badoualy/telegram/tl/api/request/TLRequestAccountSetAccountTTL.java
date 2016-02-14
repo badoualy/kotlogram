@@ -23,6 +23,8 @@ public class TLRequestAccountSetAccountTTL extends TLMethod<TLBool> {
 
     protected TLAccountDaysTTL ttl;
 
+    private final String _constructor = "account.setAccountTTL#2442485e";
+
     public TLRequestAccountSetAccountTTL() {
     }
 
@@ -63,7 +65,7 @@ public class TLRequestAccountSetAccountTTL extends TLMethod<TLBool> {
 
     @Override
     public String toString() {
-        return "account.setAccountTTL#2442485e";
+        return _constructor;
     }
 
     @Override

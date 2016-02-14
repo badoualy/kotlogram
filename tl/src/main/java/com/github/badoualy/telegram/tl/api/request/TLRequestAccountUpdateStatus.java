@@ -24,6 +24,8 @@ public class TLRequestAccountUpdateStatus extends TLMethod<TLBool> {
 
     protected boolean offline;
 
+    private final String _constructor = "account.updateStatus#6628562c";
+
     public TLRequestAccountUpdateStatus() {
     }
 
@@ -64,7 +66,7 @@ public class TLRequestAccountUpdateStatus extends TLMethod<TLBool> {
 
     @Override
     public String toString() {
-        return "account.updateStatus#6628562c";
+        return _constructor;
     }
 
     @Override

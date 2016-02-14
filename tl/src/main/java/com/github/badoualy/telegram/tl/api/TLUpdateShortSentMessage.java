@@ -41,6 +41,8 @@ public class TLUpdateShortSentMessage extends TLAbsUpdates {
 
     protected TLVector<TLAbsMessageEntity> entities;
 
+    private final String _constructor = "updateShortSentMessage#11f1331c";
+
     public TLUpdateShortSentMessage() {
     }
 
@@ -107,7 +109,7 @@ public class TLUpdateShortSentMessage extends TLAbsUpdates {
 
     @Override
     public String toString() {
-        return "updateShortSentMessage#11f1331c";
+        return _constructor;
     }
 
     @Override

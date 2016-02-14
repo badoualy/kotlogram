@@ -7,12 +7,14 @@ package com.github.badoualy.telegram.tl.api;
 public class TLInputDocumentEmpty extends TLAbsInputDocument {
     public static final int CONSTRUCTOR_ID = 0x72f0eaae;
 
+    private final String _constructor = "inputDocumentEmpty#72f0eaae";
+
     public TLInputDocumentEmpty() {
     }
 
     @Override
     public String toString() {
-        return "inputDocumentEmpty#72f0eaae";
+        return _constructor;
     }
 
     @Override

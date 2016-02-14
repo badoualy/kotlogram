@@ -32,6 +32,8 @@ public class TLPeerNotifySettings extends TLAbsPeerNotifySettings {
 
     protected int eventsMask;
 
+    private final String _constructor = "peerNotifySettings#8d5e11ee";
+
     public TLPeerNotifySettings() {
     }
 
@@ -71,7 +73,7 @@ public class TLPeerNotifySettings extends TLAbsPeerNotifySettings {
 
     @Override
     public String toString() {
-        return "peerNotifySettings#8d5e11ee";
+        return _constructor;
     }
 
     @Override

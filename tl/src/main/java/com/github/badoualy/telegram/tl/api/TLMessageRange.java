@@ -23,6 +23,8 @@ public class TLMessageRange extends TLObject {
 
     protected int maxId;
 
+    private final String _constructor = "messageRange#ae30253";
+
     public TLMessageRange() {
     }
 
@@ -54,7 +56,7 @@ public class TLMessageRange extends TLObject {
 
     @Override
     public String toString() {
-        return "messageRange#ae30253";
+        return _constructor;
     }
 
     @Override

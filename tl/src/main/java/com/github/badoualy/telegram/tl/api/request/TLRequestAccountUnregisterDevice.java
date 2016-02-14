@@ -29,6 +29,8 @@ public class TLRequestAccountUnregisterDevice extends TLMethod<TLBool> {
 
     protected String token;
 
+    private final String _constructor = "account.unregisterDevice#65c55b40";
+
     public TLRequestAccountUnregisterDevice() {
     }
 
@@ -73,7 +75,7 @@ public class TLRequestAccountUnregisterDevice extends TLMethod<TLBool> {
 
     @Override
     public String toString() {
-        return "account.unregisterDevice#65c55b40";
+        return _constructor;
     }
 
     @Override

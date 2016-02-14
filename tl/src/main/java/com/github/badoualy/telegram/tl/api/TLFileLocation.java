@@ -23,6 +23,8 @@ public class TLFileLocation extends TLAbsFileLocation {
 
     protected int dcId;
 
+    private final String _constructor = "fileLocation#53d69076";
+
     public TLFileLocation() {
     }
 
@@ -62,7 +64,7 @@ public class TLFileLocation extends TLAbsFileLocation {
 
     @Override
     public String toString() {
-        return "fileLocation#53d69076";
+        return _constructor;
     }
 
     @Override

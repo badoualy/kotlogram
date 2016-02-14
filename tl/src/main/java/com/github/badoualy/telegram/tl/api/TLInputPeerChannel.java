@@ -25,6 +25,8 @@ public class TLInputPeerChannel extends TLAbsInputPeer {
 
     protected long accessHash;
 
+    private final String _constructor = "inputPeerChannel#20adaef8";
+
     public TLInputPeerChannel() {
     }
 
@@ -56,7 +58,7 @@ public class TLInputPeerChannel extends TLAbsInputPeer {
 
     @Override
     public String toString() {
-        return "inputPeerChannel#20adaef8";
+        return _constructor;
     }
 
     @Override

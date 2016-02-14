@@ -20,6 +20,8 @@ public class TLInputBotInlineMessageMediaAuto extends TLAbsInputBotInlineMessage
 
     protected String caption;
 
+    private final String _constructor = "inputBotInlineMessageMediaAuto#2e43e587";
+
     public TLInputBotInlineMessageMediaAuto() {
     }
 
@@ -47,7 +49,7 @@ public class TLInputBotInlineMessageMediaAuto extends TLAbsInputBotInlineMessage
 
     @Override
     public String toString() {
-        return "inputBotInlineMessageMediaAuto#2e43e587";
+        return _constructor;
     }
 
     @Override

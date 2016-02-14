@@ -18,6 +18,8 @@ import static com.github.badoualy.telegram.tl.StreamUtils.readTLObject;
 public class TLRequestAccountGetWallPapers extends TLMethod<TLVector<TLAbsWallPaper>> {
     public static final int CONSTRUCTOR_ID = 0xc04cfac2;
 
+    private final String _constructor = "account.getWallPapers#c04cfac2";
+
     public TLRequestAccountGetWallPapers() {
     }
 
@@ -36,7 +38,7 @@ public class TLRequestAccountGetWallPapers extends TLMethod<TLVector<TLAbsWallPa
 
     @Override
     public String toString() {
-        return "account.getWallPapers#c04cfac2";
+        return _constructor;
     }
 
     @Override

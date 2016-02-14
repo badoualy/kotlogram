@@ -27,6 +27,8 @@ public class TLPhoto extends TLObject {
 
     protected TLVector<TLAbsUser> users;
 
+    private final String _constructor = "photos.photo#20212ca8";
+
     public TLPhoto() {
     }
 
@@ -58,7 +60,7 @@ public class TLPhoto extends TLObject {
 
     @Override
     public String toString() {
-        return "photos.photo#20212ca8";
+        return _constructor;
     }
 
     @Override

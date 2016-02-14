@@ -24,6 +24,8 @@ public class TLUpdateNewEncryptedMessage extends TLAbsUpdate {
 
     protected int qts;
 
+    private final String _constructor = "updateNewEncryptedMessage#12bcbd9a";
+
     public TLUpdateNewEncryptedMessage() {
     }
 
@@ -55,7 +57,7 @@ public class TLUpdateNewEncryptedMessage extends TLAbsUpdate {
 
     @Override
     public String toString() {
-        return "updateNewEncryptedMessage#12bcbd9a";
+        return _constructor;
     }
 
     @Override

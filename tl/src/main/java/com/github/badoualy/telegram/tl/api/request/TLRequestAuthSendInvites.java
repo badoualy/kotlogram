@@ -29,6 +29,8 @@ public class TLRequestAuthSendInvites extends TLMethod<TLBool> {
 
     protected String message;
 
+    private final String _constructor = "auth.sendInvites#771c1d97";
+
     public TLRequestAuthSendInvites() {
     }
 
@@ -73,7 +75,7 @@ public class TLRequestAuthSendInvites extends TLMethod<TLBool> {
 
     @Override
     public String toString() {
-        return "auth.sendInvites#771c1d97";
+        return _constructor;
     }
 
     @Override

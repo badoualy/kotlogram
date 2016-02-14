@@ -24,6 +24,8 @@ public class TLRequestAccountSendChangePhoneCode extends TLMethod<TLSentChangePh
 
     protected String phoneNumber;
 
+    private final String _constructor = "account.sendChangePhoneCode#a407a8f4";
+
     public TLRequestAccountSendChangePhoneCode() {
     }
 
@@ -64,7 +66,7 @@ public class TLRequestAccountSendChangePhoneCode extends TLMethod<TLSentChangePh
 
     @Override
     public String toString() {
-        return "account.sendChangePhoneCode#a407a8f4";
+        return _constructor;
     }
 
     @Override

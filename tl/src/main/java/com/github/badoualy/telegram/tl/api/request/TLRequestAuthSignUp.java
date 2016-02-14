@@ -32,6 +32,8 @@ public class TLRequestAuthSignUp extends TLMethod<TLAuthorization> {
 
     protected String lastName;
 
+    private final String _constructor = "auth.signUp#1b067634";
+
     public TLRequestAuthSignUp() {
     }
 
@@ -88,7 +90,7 @@ public class TLRequestAuthSignUp extends TLMethod<TLAuthorization> {
 
     @Override
     public String toString() {
-        return "auth.signUp#1b067634";
+        return _constructor;
     }
 
     @Override

@@ -26,6 +26,8 @@ public class TLStickerPack extends TLObject {
 
     protected TLLongVector documents;
 
+    private final String _constructor = "stickerPack#12b299d4";
+
     public TLStickerPack() {
     }
 
@@ -57,7 +59,7 @@ public class TLStickerPack extends TLObject {
 
     @Override
     public String toString() {
-        return "stickerPack#12b299d4";
+        return _constructor;
     }
 
     @Override

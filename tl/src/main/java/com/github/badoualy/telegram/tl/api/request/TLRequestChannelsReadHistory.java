@@ -28,6 +28,8 @@ public class TLRequestChannelsReadHistory extends TLMethod<TLBool> {
 
     protected int maxId;
 
+    private final String _constructor = "channels.readHistory#cc104937";
+
     public TLRequestChannelsReadHistory() {
     }
 
@@ -72,7 +74,7 @@ public class TLRequestChannelsReadHistory extends TLMethod<TLBool> {
 
     @Override
     public String toString() {
-        return "channels.readHistory#cc104937";
+        return _constructor;
     }
 
     @Override

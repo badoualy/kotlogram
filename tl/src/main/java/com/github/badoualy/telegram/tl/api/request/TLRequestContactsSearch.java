@@ -29,6 +29,8 @@ public class TLRequestContactsSearch extends TLMethod<TLFound> {
 
     protected int limit;
 
+    private final String _constructor = "contacts.search#11f812d8";
+
     public TLRequestContactsSearch() {
     }
 
@@ -73,7 +75,7 @@ public class TLRequestContactsSearch extends TLMethod<TLFound> {
 
     @Override
     public String toString() {
-        return "contacts.search#11f812d8";
+        return _constructor;
     }
 
     @Override

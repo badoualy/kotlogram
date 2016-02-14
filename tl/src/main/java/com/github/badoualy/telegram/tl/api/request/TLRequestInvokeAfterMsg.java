@@ -26,6 +26,8 @@ public class TLRequestInvokeAfterMsg<T extends TLObject> extends TLMethod<T> {
 
     protected TLMethod<T> query;
 
+    private final String _constructor = "invokeAfterMsg#cb9f372d";
+
     public TLRequestInvokeAfterMsg() {
     }
 
@@ -63,7 +65,7 @@ public class TLRequestInvokeAfterMsg<T extends TLObject> extends TLMethod<T> {
 
     @Override
     public String toString() {
-        return "invokeAfterMsg#cb9f372d";
+        return _constructor;
     }
 
     @Override

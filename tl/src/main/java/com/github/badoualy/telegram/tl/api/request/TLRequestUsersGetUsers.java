@@ -25,6 +25,8 @@ public class TLRequestUsersGetUsers extends TLMethod<TLVector<TLAbsUser>> {
 
     protected TLVector<TLAbsInputUser> id;
 
+    private final String _constructor = "users.getUsers#d91a548";
+
     public TLRequestUsersGetUsers() {
     }
 
@@ -65,7 +67,7 @@ public class TLRequestUsersGetUsers extends TLMethod<TLVector<TLAbsUser>> {
 
     @Override
     public String toString() {
-        return "users.getUsers#d91a548";
+        return _constructor;
     }
 
     @Override

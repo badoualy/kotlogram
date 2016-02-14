@@ -25,6 +25,8 @@ public class TLInputChannel extends TLAbsInputChannel {
 
     protected long accessHash;
 
+    private final String _constructor = "inputChannel#afeb712e";
+
     public TLInputChannel() {
     }
 
@@ -56,7 +58,7 @@ public class TLInputChannel extends TLAbsInputChannel {
 
     @Override
     public String toString() {
-        return "inputChannel#afeb712e";
+        return _constructor;
     }
 
     @Override

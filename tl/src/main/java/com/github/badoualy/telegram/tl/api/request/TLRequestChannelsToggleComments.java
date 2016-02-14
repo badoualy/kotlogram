@@ -28,6 +28,8 @@ public class TLRequestChannelsToggleComments extends TLMethod<TLAbsUpdates> {
 
     protected boolean enabled;
 
+    private final String _constructor = "channels.toggleComments#aaa29e88";
+
     public TLRequestChannelsToggleComments() {
     }
 
@@ -72,7 +74,7 @@ public class TLRequestChannelsToggleComments extends TLMethod<TLAbsUpdates> {
 
     @Override
     public String toString() {
-        return "channels.toggleComments#aaa29e88";
+        return _constructor;
     }
 
     @Override

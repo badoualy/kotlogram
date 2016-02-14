@@ -21,6 +21,8 @@ public class TLTermsOfService extends TLObject {
 
     protected String text;
 
+    private final String _constructor = "help.termsOfService#f1ee3e90";
+
     public TLTermsOfService() {
     }
 
@@ -48,7 +50,7 @@ public class TLTermsOfService extends TLObject {
 
     @Override
     public String toString() {
-        return "help.termsOfService#f1ee3e90";
+        return _constructor;
     }
 
     @Override

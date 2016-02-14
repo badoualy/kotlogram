@@ -26,6 +26,8 @@ public class TLInputFile extends TLAbsInputFile {
 
     protected String md5Checksum;
 
+    private final String _constructor = "inputFile#f52ff27f";
+
     public TLInputFile() {
     }
 
@@ -65,7 +67,7 @@ public class TLInputFile extends TLAbsInputFile {
 
     @Override
     public String toString() {
-        return "inputFile#f52ff27f";
+        return _constructor;
     }
 
     @Override

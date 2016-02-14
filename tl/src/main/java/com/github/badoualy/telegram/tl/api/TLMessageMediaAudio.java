@@ -19,6 +19,8 @@ public class TLMessageMediaAudio extends TLAbsMessageMedia {
 
     protected TLAbsAudio audio;
 
+    private final String _constructor = "messageMediaAudio#c6b68300";
+
     public TLMessageMediaAudio() {
     }
 
@@ -46,7 +48,7 @@ public class TLMessageMediaAudio extends TLAbsMessageMedia {
 
     @Override
     public String toString() {
-        return "messageMediaAudio#c6b68300";
+        return _constructor;
     }
 
     @Override

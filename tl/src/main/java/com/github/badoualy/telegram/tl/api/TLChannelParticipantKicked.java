@@ -22,6 +22,8 @@ public class TLChannelParticipantKicked extends TLAbsChannelParticipant {
 
     protected int date;
 
+    private final String _constructor = "channelParticipantKicked#8cc5e69a";
+
     public TLChannelParticipantKicked() {
     }
 
@@ -57,7 +59,7 @@ public class TLChannelParticipantKicked extends TLAbsChannelParticipant {
 
     @Override
     public String toString() {
-        return "channelParticipantKicked#8cc5e69a";
+        return _constructor;
     }
 
     @Override

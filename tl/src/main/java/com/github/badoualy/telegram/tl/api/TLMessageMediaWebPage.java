@@ -19,6 +19,8 @@ public class TLMessageMediaWebPage extends TLAbsMessageMedia {
 
     protected TLAbsWebPage webpage;
 
+    private final String _constructor = "messageMediaWebPage#a32dd600";
+
     public TLMessageMediaWebPage() {
     }
 
@@ -46,7 +48,7 @@ public class TLMessageMediaWebPage extends TLAbsMessageMedia {
 
     @Override
     public String toString() {
-        return "messageMediaWebPage#a32dd600";
+        return _constructor;
     }
 
     @Override

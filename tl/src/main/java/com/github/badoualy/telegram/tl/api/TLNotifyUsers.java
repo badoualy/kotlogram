@@ -7,12 +7,14 @@ package com.github.badoualy.telegram.tl.api;
 public class TLNotifyUsers extends TLAbsNotifyPeer {
     public static final int CONSTRUCTOR_ID = 0xb4c83b4c;
 
+    private final String _constructor = "notifyUsers#b4c83b4c";
+
     public TLNotifyUsers() {
     }
 
     @Override
     public String toString() {
-        return "notifyUsers#b4c83b4c";
+        return _constructor;
     }
 
     @Override

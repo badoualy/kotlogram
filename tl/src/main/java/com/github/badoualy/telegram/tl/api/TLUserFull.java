@@ -34,6 +34,8 @@ public class TLUserFull extends TLObject {
 
     protected TLAbsBotInfo botInfo;
 
+    private final String _constructor = "userFull#5a89ac5b";
+
     public TLUserFull() {
     }
 
@@ -81,7 +83,7 @@ public class TLUserFull extends TLObject {
 
     @Override
     public String toString() {
-        return "userFull#5a89ac5b";
+        return _constructor;
     }
 
     @Override

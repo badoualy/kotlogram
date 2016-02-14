@@ -22,6 +22,8 @@ public class TLInputEncryptedFileLocation extends TLAbsInputFileLocation {
 
     protected long accessHash;
 
+    private final String _constructor = "inputEncryptedFileLocation#f5235d55";
+
     public TLInputEncryptedFileLocation() {
     }
 
@@ -53,7 +55,7 @@ public class TLInputEncryptedFileLocation extends TLAbsInputFileLocation {
 
     @Override
     public String toString() {
-        return "inputEncryptedFileLocation#f5235d55";
+        return _constructor;
     }
 
     @Override

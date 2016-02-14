@@ -27,6 +27,8 @@ public class TLUpdateDeleteMessages extends TLAbsUpdate {
 
     protected int ptsCount;
 
+    private final String _constructor = "updateDeleteMessages#a20db0e5";
+
     public TLUpdateDeleteMessages() {
     }
 
@@ -62,7 +64,7 @@ public class TLUpdateDeleteMessages extends TLAbsUpdate {
 
     @Override
     public String toString() {
-        return "updateDeleteMessages#a20db0e5";
+        return _constructor;
     }
 
     @Override

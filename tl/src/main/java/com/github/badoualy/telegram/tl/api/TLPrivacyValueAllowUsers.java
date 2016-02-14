@@ -20,6 +20,8 @@ public class TLPrivacyValueAllowUsers extends TLAbsPrivacyRule {
 
     protected TLIntVector users;
 
+    private final String _constructor = "privacyValueAllowUsers#4d5bbe0c";
+
     public TLPrivacyValueAllowUsers() {
     }
 
@@ -47,7 +49,7 @@ public class TLPrivacyValueAllowUsers extends TLAbsPrivacyRule {
 
     @Override
     public String toString() {
-        return "privacyValueAllowUsers#4d5bbe0c";
+        return _constructor;
     }
 
     @Override

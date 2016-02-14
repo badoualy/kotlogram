@@ -50,6 +50,8 @@ public class TLInputBotInlineResult extends TLObject {
 
     protected TLAbsInputBotInlineMessage sendMessage;
 
+    private final String _constructor = "inputBotInlineResult#2cbbe15a";
+
     public TLInputBotInlineResult() {
     }
 
@@ -141,7 +143,7 @@ public class TLInputBotInlineResult extends TLObject {
 
     @Override
     public String toString() {
-        return "inputBotInlineResult#2cbbe15a";
+        return _constructor;
     }
 
     @Override

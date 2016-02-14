@@ -32,6 +32,8 @@ public class TLBotInlineMessageText extends TLAbsBotInlineMessage {
 
     protected TLVector<TLAbsMessageEntity> entities;
 
+    private final String _constructor = "botInlineMessageText#a56197a9";
+
     public TLBotInlineMessageText() {
     }
 
@@ -78,7 +80,7 @@ public class TLBotInlineMessageText extends TLAbsBotInlineMessage {
 
     @Override
     public String toString() {
-        return "botInlineMessageText#a56197a9";
+        return _constructor;
     }
 
     @Override
