@@ -1,6 +1,7 @@
 package com.github.badoualy.telegram.mtproto.transport
 
 import java.io.IOException
+import java.nio.channels.SelectableChannel
 import java.nio.channels.SelectionKey
 import java.nio.channels.Selector
 
@@ -29,4 +30,6 @@ interface MTProtoConnection {
 
     /** Previously registered SelectionKey */
     fun unregister(): SelectionKey?
+
+    fun setBlocking(blocking: Boolean): SelectableChannel?
 }

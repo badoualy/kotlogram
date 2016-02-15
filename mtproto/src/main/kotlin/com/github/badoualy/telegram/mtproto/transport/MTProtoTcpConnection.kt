@@ -104,6 +104,8 @@ internal class MTProtoTcpConnection
         return selectionKey
     }
 
+    override fun setBlocking(blocking: Boolean) = socketChannel.configureBlocking(blocking)
+
     @Throws(IOException::class)
     override fun close() {
         Log.d(TAG, "Closing connection")

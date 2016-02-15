@@ -52,11 +52,15 @@ internal object MTProtoWatchdog : Runnable {
                             pool.execute {
                                 if (!connection.isOpen())
                                     return@execute
+                                //connection.setBlocking(true)
                                 readMessage(connection)
+                                //connection.setBlocking(false)
 
                                 // Done reading
-                                key.interestOps(SelectionKey.OP_READ)
-                                selector.wakeup()
+                                if (key.isValid) {
+                                    key.interestOps(SelectionKey.OP_READ)
+                                    selector.wakeup()
+                                }
                             }
                         }
                     }
@@ -114,9 +118,8 @@ internal object MTProtoWatchdog : Runnable {
         synchronized(this) {
             connectionList.remove(connection)
             subscriberMap.remove(connection)?.onCompleted()
-            val key = keyMap.filter { it.value == connection }.keys.firstOrNull()
+            val key = connection.unregister()
             if (key != null) keyMap.remove(key)
-            connection.unregister()
         }
     }
 
