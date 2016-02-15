@@ -20,6 +20,7 @@ import org.apache.commons.io.FileUtils;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Random;
@@ -28,13 +29,27 @@ import java.util.Scanner;
 @SuppressWarnings("ALL")
 public class KotlogramSample {
 
+    public static final int API_ID = 99999;
+    public static final String API_HASH = "<YOUR_HASH_HERE>";
+    public static final String MODEL = "Model";
+    public static final String SYSTEM_VERSION = "SysVer";
+    public static final String APP_VERSION = "AppVer";
+    public static final String LANG_CODE = "en";
+
+    public static TelegramApp application = new TelegramApp(API_ID, API_HASH, MODEL, SYSTEM_VERSION, APP_VERSION, LANG_CODE);
+    public static final String PHONE_NUMBER = "+00000000000"; // TODO: you need to fill this
+
+    public static final File AUTH_KEY_FILE = new File("sample" + File.separator + "auth.key");
+    public static final File NEAREST_DC_FILE = new File("sample" + File.separator + "dc.save");
+    public static final File SALT_FILE = new File("sample" + File.separator + "salt.save");
+
     public static void main(String[] args) throws InterruptedException {
         // Activate debug log or not, false by default
         // Kotlogram.setDebugLogEnabled(true);
 
         // Replace the following constants with your app's information
         // This informations are used in initConnection and sendCode rpc methods
-        TelegramApp app = new TelegramApp(C.API_ID, C.API_HASH, C.MODEL, C.SYSTEM_VERSION, C.APP_VERSION, C.LANG_CODE);
+        TelegramApp app = new TelegramApp(API_ID, API_HASH, MODEL, SYSTEM_VERSION, APP_VERSION, LANG_CODE);
 
         // This is a synchronous client, that will block until the response arrive (or until timeout)
         // A client which return an Observable<T> where T is the response type will be available soon
@@ -43,12 +58,12 @@ public class KotlogramSample {
         // You can start making requests
         try {
             // Send code to account
-            TLAbsSentCode sentCode = client.authSendCode(C.PHONE_NUMBER, 5);
+            TLAbsSentCode sentCode = client.authSendCode(PHONE_NUMBER, 5);
             System.out.println("Authentication code: ");
             String code = new Scanner(System.in).nextLine();
 
             // Auth with the received code
-            TLAuthorization authorization = client.authSignIn(C.PHONE_NUMBER, sentCode.getPhoneCodeHash(), code);
+            TLAuthorization authorization = client.authSignIn(PHONE_NUMBER, sentCode.getPhoneCodeHash(), code);
             TLUser self = authorization.getUser().getAsUser();
             System.out.println("You are now signed in as " + self.getFirstName() + " " + self.getLastName());
 
@@ -89,7 +104,7 @@ public class KotlogramSample {
         @Override
         public void saveAuthKey(@NotNull AuthKey authKey) {
             try {
-                FileUtils.writeByteArrayToFile(C.AUTH_KEY_FILE, authKey.getKey());
+                FileUtils.writeByteArrayToFile(AUTH_KEY_FILE, authKey.getKey());
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -99,7 +114,7 @@ public class KotlogramSample {
         @Override
         public AuthKey loadAuthKey() {
             try {
-                return new AuthKey(FileUtils.readFileToByteArray(C.AUTH_KEY_FILE));
+                return new AuthKey(FileUtils.readFileToByteArray(AUTH_KEY_FILE));
             } catch (IOException e) {
                 if (!(e instanceof FileNotFoundException))
                     e.printStackTrace();
@@ -111,7 +126,7 @@ public class KotlogramSample {
         @Override
         public void saveDc(@NotNull DataCenter dataCenter) {
             try {
-                FileUtils.write(C.NEAREST_DC_FILE, dataCenter.toString());
+                FileUtils.write(NEAREST_DC_FILE, dataCenter.toString());
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -121,7 +136,7 @@ public class KotlogramSample {
         @Override
         public DataCenter loadDc() {
             try {
-                String[] infos = FileUtils.readFileToString(C.NEAREST_DC_FILE).split(":");
+                String[] infos = FileUtils.readFileToString(NEAREST_DC_FILE).split(":");
                 return new DataCenter(infos[0], Integer.parseInt(infos[1]));
             } catch (IOException e) {
                 if (!(e instanceof FileNotFoundException))
@@ -134,7 +149,7 @@ public class KotlogramSample {
         @Override
         public void deleteAuthKey() {
             try {
-                FileUtils.forceDelete(C.AUTH_KEY_FILE);
+                FileUtils.forceDelete(AUTH_KEY_FILE);
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -143,7 +158,7 @@ public class KotlogramSample {
         @Override
         public void deleteDc() {
             try {
-                FileUtils.forceDelete(C.NEAREST_DC_FILE);
+                FileUtils.forceDelete(NEAREST_DC_FILE);
             } catch (IOException e) {
                 e.printStackTrace();
             }
