@@ -5,7 +5,7 @@ import java.util.*
 import kotlin.concurrent.schedule
 
 /**
- * Util class to store clients some time before closing them to be able to re-use them if it's likely that
+ * Util class to cache clients some time before closing them to be able to re-use them if it's likely that
  * they'll be used again soon
  */
 object TelegramClientPool {

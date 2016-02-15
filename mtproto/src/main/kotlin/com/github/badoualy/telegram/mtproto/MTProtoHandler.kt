@@ -86,7 +86,7 @@ class MTProtoHandler {
                 .subscribe()
     }
 
-    fun stopWatchdog() = MTProtoWatchdog.stop(connection!!)
+    private fun stopWatchdog() = MTProtoWatchdog.stop(connection!!)
 
     /** Close the connection and re-open another one with a new session id */
     fun resetConnection() {
@@ -165,7 +165,7 @@ class MTProtoHandler {
      * @throws IOException
      */
     @Throws(IOException::class)
-    fun sendMessageAck(messageId: Long) {
+    private fun sendMessageAck(messageId: Long) {
         var flush = false
         var startTimer = false
         var list: ArrayList<Long>? = null
@@ -228,7 +228,7 @@ class MTProtoHandler {
      * @throws IOException
      */
     @Throws(IOException::class)
-    fun sendMessagesAck(messagesId: LongArray) {
+    private fun sendMessagesAck(messagesId: LongArray) {
         if (messagesId.isEmpty())
             return
 
@@ -244,7 +244,7 @@ class MTProtoHandler {
      * @throws IOException
      */
     @Throws(IOException::class)
-    fun sendMessage(message: MTMessage) {
+    private fun sendMessage(message: MTMessage) {
         Log.d(TAG, "Sending message with msgId " + message.messageId + " and seqNo " + message.seqNo)
         val encryptedMessage = MTProtoMessageEncryption.encrypt(authKey!!, sessionId!!, salt, message)
         sendData(encryptedMessage.data)
@@ -257,7 +257,7 @@ class MTProtoHandler {
      * @throws IOException
      */
     @Throws(IOException::class)
-    fun sendData(data: ByteArray) = connection!!.writeMessage(data)
+    private fun sendData(data: ByteArray) = connection!!.writeMessage(data)
 
     /** Build a container with all the extras to send with a method invocation called */
     private fun getExtraToSend(): Array<MTMessage> {
@@ -288,9 +288,9 @@ class MTProtoHandler {
      * @param clazz object type to check
      * @return true if the object is content related, else false
      */
-    fun isContentRelated(clazz: Class<out TLObject>) = !clazz.simpleName.startsWith("MT")
+    private fun isContentRelated(clazz: Class<out TLObject>) = !clazz.simpleName.startsWith("MT")
 
-    fun isContentRelated(message: TLObject) = isContentRelated(message.javaClass)
+    private fun isContentRelated(message: TLObject) = isContentRelated(message.javaClass)
 
     /**
      * Generate a valid seqNo value for the given message type
@@ -298,7 +298,7 @@ class MTProtoHandler {
      * @return a valid seqNo value to send
      * @see <a href="https://core.telegram.org/mtproto/description#message-sequence-number-msg-seqno">MTProto description</a>
      */
-    fun generateSeqNo(clazz: Class<out TLObject>) =
+    private fun generateSeqNo(clazz: Class<out TLObject>) =
             if (isContentRelated(clazz)) {
                 val seqNo = crMessageSent * 2 + 1
                 crMessageSent++
@@ -307,9 +307,9 @@ class MTProtoHandler {
                 crMessageSent * 2
             }
 
-    fun generateSeqNo(message: TLObject) = generateSeqNo(message.javaClass)
+    private fun generateSeqNo(message: TLObject) = generateSeqNo(message.javaClass)
 
-    fun generateMessageId(): Long {
+    private fun generateMessageId(): Long {
         lastMessageId = Math.max(TimeOverlord.generateMessageId(), lastMessageId + 4)
         return lastMessageId
     }

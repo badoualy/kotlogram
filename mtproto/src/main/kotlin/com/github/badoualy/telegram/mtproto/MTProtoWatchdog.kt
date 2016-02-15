@@ -39,6 +39,7 @@ internal object MTProtoWatchdog : Runnable {
                     connectionList
                             .filterNot { keyMap.containsValue(it) }
                             .forEach { keyMap.put(it.register(selector), it) }
+                    dirty = false
                 }
             }
 
@@ -79,7 +80,7 @@ internal object MTProtoWatchdog : Runnable {
     private fun readMessage(connection: MTProtoConnection) {
         val subscriber = subscriberMap[connection]
         if (subscriber == null || subscriber.isUnsubscribed || !connectionList.contains(connection)) {
-            Log.e(TAG, "Subscribed already unsubscribed, cancelling")
+            Log.e(TAG, "Subscribed already unsubscribed, dropping")
             stop(connection)
             return
         }
@@ -96,16 +97,17 @@ internal object MTProtoWatchdog : Runnable {
     }
 
     fun start(connection: MTProtoConnection) = Observable.create<ByteArray> { s ->
-        connectionList.add(connection)
-        subscriberMap.put(connection, s)
-
         synchronized(this) {
+            connectionList.add(connection)
+            subscriberMap.put(connection, s)
+
             dirty = true
             if (!running) {
                 running = true
                 executor.execute(this)
             }
         }
+        selector.wakeup()
     }
 
     fun stop(connection: MTProtoConnection) {
