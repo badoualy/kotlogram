@@ -1,0 +1,48 @@
+{
+  "contacts": [
+    {
+      "clientId": 0,
+      "phone": "IUrN1YKvvaC",
+      "firstName": "CRYxxHP0oEPjh1g5bj7R",
+      "lastName": "0y3QR",
+      "_constructor": "inputPhoneContact#f392b7f4"
+    },
+    {
+      "clientId": 0,
+      "phone": "s4acJP9FXRYIKkjoAXTCPW",
+      "firstName": "9vyvVx3QRkH5343tzJnYmhP",
+      "lastName": "vGt0I8CA5mBzTjF3h",
+      "_constructor": "inputPhoneContact#f392b7f4"
+    },
+    {
+      "clientId": 0,
+      "phone": "vmfCxGAjcshJ7Ynb4MGnM3",
+      "firstName": "EssFT",
+      "lastName": "atq36nlSK",
+      "_constructor": "inputPhoneContact#f392b7f4"
+    },
+    {
+      "clientId": 0,
+      "phone": "AK8dwOthUrioViK7vUcTqDUa",
+      "firstName": "F5RGpyDN4svm8VDDjl1OVm",
+      "lastName": "Z1kWFSyNhVWFxVh0QBYX6ZJb5kOB",
+      "_constructor": "inputPhoneContact#f392b7f4"
+    },
+    {
+      "clientId": 0,
+      "phone": "CRl0J66ak7syX1XikLWeY",
+      "firstName": "7GsRKDAwWag8wVQ",
+      "lastName": "Olrv7y",
+      "_constructor": "inputPhoneContact#f392b7f4"
+    },
+    {
+      "clientId": 0,
+      "phone": "IoFzF6yWVI7Bf0m6joTF2BBv",
+      "firstName": "p6WsZrjNusfokt9igqsyEYDjk",
+      "lastName": "88pajYs35MAq0u5rZrlQswumB",
+      "_constructor": "inputPhoneContact#f392b7f4"
+    }
+  ],
+  "replace": false,
+  "_constructor": "contacts.importContacts#da30b32d"
+}

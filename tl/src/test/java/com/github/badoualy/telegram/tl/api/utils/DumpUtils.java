@@ -18,7 +18,7 @@ import java.util.Collection;
 
 public class DumpUtils {
 
-    private static String dumpDir = "./src/test/resources/";
+    private static String dumpDir = "./src/test/resources/dump/";
     private static Gson gson = new GsonBuilder().setPrettyPrinting().serializeNulls().create();
 
     public static Collection<File> loadAll() {

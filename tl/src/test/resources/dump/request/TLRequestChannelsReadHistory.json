@@ -1,0 +1,9 @@
+{
+  "channel": {
+    "channelId": 0,
+    "accessHash": 0,
+    "_constructor": "inputChannel#afeb712e"
+  },
+  "maxId": 0,
+  "_constructor": "channels.readHistory#cc104937"
+}

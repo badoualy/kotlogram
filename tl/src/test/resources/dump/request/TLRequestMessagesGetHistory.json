@@ -1,0 +1,12 @@
+{
+  "peer": {
+    "chatId": 0,
+    "_constructor": "inputPeerChat#179be863"
+  },
+  "offsetId": 0,
+  "addOffset": 0,
+  "limit": 0,
+  "maxId": 0,
+  "minId": 0,
+  "_constructor": "messages.getHistory#8a8ec2da"
+}

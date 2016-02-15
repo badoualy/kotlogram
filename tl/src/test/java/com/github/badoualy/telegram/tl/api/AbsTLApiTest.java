@@ -75,6 +75,7 @@ public abstract class AbsTLApiTest {
         fields.stream()
               .filter(field -> !field.getName().equalsIgnoreCase("flags"))
               .filter(field -> ((field.getModifiers() & Modifier.STATIC) == 0))
+              .filter(field -> ((field.getModifiers() & Modifier.FINAL) == 0))
               .forEach(field -> {
                   field.setAccessible(true);
                   try {

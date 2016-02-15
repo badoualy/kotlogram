@@ -1,0 +1,33 @@
+{
+  "phoneNumber": "Y1L8MQ6v5",
+  "user": {
+    "flags": 847999,
+    "self": false,
+    "contact": false,
+    "mutualContact": true,
+    "deleted": true,
+    "bot": true,
+    "botChatHistory": true,
+    "botNochats": false,
+    "verified": false,
+    "restricted": true,
+    "accessHash": 0,
+    "firstName": "0c0gnFg",
+    "lastName": "peeydXkiHlGd",
+    "username": "H48nPMnsvBXAhkgt7L0XJv",
+    "phone": "inoPgB1bMkXduxND3VVV6",
+    "photo": {
+      "_constructor": "userProfilePhotoEmpty#4f11bae1"
+    },
+    "status": {
+      "expires": 0,
+      "_constructor": "userStatusOnline#edb93949"
+    },
+    "botInfoVersion": 0,
+    "restrictionReason": "JQqPQIsq7LsQv07F",
+    "botInlinePlaceholder": "q3S8e",
+    "_constructor": "user#d10d979a",
+    "id": 0
+  },
+  "_constructor": "help.support#17c6b5f6"
+}

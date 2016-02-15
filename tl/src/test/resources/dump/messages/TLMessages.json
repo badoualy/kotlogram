@@ -1,0 +1,611 @@
+{
+  "_constructor": "messages.messages#8c718e87",
+  "messages": [
+    {
+      "flags": 274,
+      "unread": false,
+      "out": true,
+      "mentioned": true,
+      "mediaUnread": false,
+      "fromId": 0,
+      "toId": {
+        "channelId": 0,
+        "_constructor": "peerChannel#bddde532"
+      },
+      "date": 0,
+      "action": {
+        "title": "PpEB4vdixoc8e1oXHo8PDb",
+        "_constructor": "messageActionChannelCreate#95d2ac92"
+      },
+      "_constructor": "messageService#c06b9607",
+      "id": 0
+    },
+    {
+      "_constructor": "messageEmpty#83e5de54",
+      "id": 0
+    },
+    {
+      "flags": 4044,
+      "unread": false,
+      "out": false,
+      "mentioned": false,
+      "mediaUnread": false,
+      "fromId": 0,
+      "toId": {
+        "chatId": 0,
+        "_constructor": "peerChat#bad0e5bb"
+      },
+      "fwdFromId": {
+        "chatId": 0,
+        "_constructor": "peerChat#bad0e5bb"
+      },
+      "fwdDate": 0,
+      "viaBotId": 0,
+      "replyToMsgId": 0,
+      "date": 0,
+      "message": "sh3reqYcxLV5ZNFIbmT32mbVT4IO4",
+      "media": {
+        "_constructor": "messageMediaEmpty#3ded6320"
+      },
+      "replyMarkup": {
+        "resize": true,
+        "singleUse": true,
+        "rows": [
+          {
+            "buttons": [
+              {
+                "text": "C7t6ECQwgWV",
+                "_constructor": "keyboardButton#a2fa4880"
+              },
+              {
+                "text": "wDvIkMm8ElJAGeO95M",
+                "_constructor": "keyboardButton#a2fa4880"
+              },
+              {
+                "text": "pDjaOEMiUpcE4",
+                "_constructor": "keyboardButton#a2fa4880"
+              },
+              {
+                "text": "IVc83J5xdCnkcOFicV3euHn",
+                "_constructor": "keyboardButton#a2fa4880"
+              },
+              {
+                "text": "wz5irG3y05P5n",
+                "_constructor": "keyboardButton#a2fa4880"
+              },
+              {
+                "text": "MjpddYHho1F0pwvjOcaCEgYKzFD",
+                "_constructor": "keyboardButton#a2fa4880"
+              }
+            ],
+            "_constructor": "keyboardButtonRow#77608b83"
+          },
+          {
+            "buttons": [
+              {
+                "text": "7HtJPadyV4mh9gjLTKkl56TNWM6jN",
+                "_constructor": "keyboardButton#a2fa4880"
+              },
+              {
+                "text": "msZary",
+                "_constructor": "keyboardButton#a2fa4880"
+              },
+              {
+                "text": "z8VEuaXVySHyvOiWNGyc4eepWhgM4",
+                "_constructor": "keyboardButton#a2fa4880"
+              },
+              {
+                "text": "gOjyWsVDKL1LmTST6hfLZIgu",
+                "_constructor": "keyboardButton#a2fa4880"
+              },
+              {
+                "text": "SRG9GMz2lvPfqxO8WGROq7Cmt",
+                "_constructor": "keyboardButton#a2fa4880"
+              },
+              {
+                "text": "fsTXd19zTbf",
+                "_constructor": "keyboardButton#a2fa4880"
+              },
+              {
+                "text": "lkgCaEJq5C4RL",
+                "_constructor": "keyboardButton#a2fa4880"
+              },
+              {
+                "text": "C53wSYCmyV5qMQk1a8t",
+                "_constructor": "keyboardButton#a2fa4880"
+              }
+            ],
+            "_constructor": "keyboardButtonRow#77608b83"
+          },
+          {
+            "buttons": [
+              {
+                "text": "wxvbFbwV",
+                "_constructor": "keyboardButton#a2fa4880"
+              },
+              {
+                "text": "Ea73oE",
+                "_constructor": "keyboardButton#a2fa4880"
+              },
+              {
+                "text": "2wfHpaYmESdmgMAJ8Uty",
+                "_constructor": "keyboardButton#a2fa4880"
+              },
+              {
+                "text": "IKtidIOiHqT",
+                "_constructor": "keyboardButton#a2fa4880"
+              },
+              {
+                "text": "072iDUWQ1rwlzeprmT5pVMz4IZ",
+                "_constructor": "keyboardButton#a2fa4880"
+              },
+              {
+                "text": "QEU4Pk8h1GmkKxR12",
+                "_constructor": "keyboardButton#a2fa4880"
+              },
+              {
+                "text": "a1CI7quBm",
+                "_constructor": "keyboardButton#a2fa4880"
+              },
+              {
+                "text": "jkOqWAxEws",
+                "_constructor": "keyboardButton#a2fa4880"
+              }
+            ],
+            "_constructor": "keyboardButtonRow#77608b83"
+          },
+          {
+            "buttons": [
+              {
+                "text": "j1bHjB4d4kAZ",
+                "_constructor": "keyboardButton#a2fa4880"
+              },
+              {
+                "text": "yCHwcck6S24XmQHtR",
+                "_constructor": "keyboardButton#a2fa4880"
+              }
+            ],
+            "_constructor": "keyboardButtonRow#77608b83"
+          },
+          {
+            "buttons": [
+              {
+                "text": "LLC5PcOj8WASWKuf",
+                "_constructor": "keyboardButton#a2fa4880"
+              },
+              {
+                "text": "l6sXg1rvSXTfgf3zaJI",
+                "_constructor": "keyboardButton#a2fa4880"
+              },
+              {
+                "text": "Mr1TLrywCELZN0QC2TjDNaPx4B",
+                "_constructor": "keyboardButton#a2fa4880"
+              },
+              {
+                "text": "32hQMJ8XUN7G3X2Is3XX4V",
+                "_constructor": "keyboardButton#a2fa4880"
+              },
+              {
+                "text": "kDskB05Z0abpRDmgvZW77",
+                "_constructor": "keyboardButton#a2fa4880"
+              },
+              {
+                "text": "oDXli2C1",
+                "_constructor": "keyboardButton#a2fa4880"
+              },
+              {
+                "text": "GNpG6okpax6cweUvz0eu",
+                "_constructor": "keyboardButton#a2fa4880"
+              },
+              {
+                "text": "BiNEPkd6ndKrXOYeU4bz",
+                "_constructor": "keyboardButton#a2fa4880"
+              },
+              {
+                "text": "1IXc3UrB4T8bkUS",
+                "_constructor": "keyboardButton#a2fa4880"
+              },
+              {
+                "text": "ivfzhnyKQALVzVMvE3dw123AJ",
+                "_constructor": "keyboardButton#a2fa4880"
+              },
+              {
+                "text": "Ced5pmxNBYh",
+                "_constructor": "keyboardButton#a2fa4880"
+              }
+            ],
+            "_constructor": "keyboardButtonRow#77608b83"
+          },
+          {
+            "buttons": [
+              {
+                "text": "PSlj6KGdYXAK3byJBE2hm1ZANrzmP",
+                "_constructor": "keyboardButton#a2fa4880"
+              },
+              {
+                "text": "uveUdClIv1Rl7Xbu",
+                "_constructor": "keyboardButton#a2fa4880"
+              },
+              {
+                "text": "hNvvCWOp9VKyrDpuNJsMCTX",
+                "_constructor": "keyboardButton#a2fa4880"
+              },
+              {
+                "text": "tz9KAKF08wf",
+                "_constructor": "keyboardButton#a2fa4880"
+              },
+              {
+                "text": "cwztISuGoPV1vP3Ktb916jA4LkWT8",
+                "_constructor": "keyboardButton#a2fa4880"
+              },
+              {
+                "text": "y6cQEw9qdIugUuI1mdkw6CU3",
+                "_constructor": "keyboardButton#a2fa4880"
+              },
+              {
+                "text": "cP71C5MQUzJqryZT7g4QnN",
+                "_constructor": "keyboardButton#a2fa4880"
+              }
+            ],
+            "_constructor": "keyboardButtonRow#77608b83"
+          },
+          {
+            "buttons": [
+              {
+                "text": "TJImFgS",
+                "_constructor": "keyboardButton#a2fa4880"
+              },
+              {
+                "text": "hwHDhjYxV",
+                "_constructor": "keyboardButton#a2fa4880"
+              },
+              {
+                "text": "ADdn9LVVMWmHynlfkmn7nGi",
+                "_constructor": "keyboardButton#a2fa4880"
+              },
+              {
+                "text": "Wx92RfXL",
+                "_constructor": "keyboardButton#a2fa4880"
+              },
+              {
+                "text": "2bDKjmNGwVM0xPTkkGW",
+                "_constructor": "keyboardButton#a2fa4880"
+              },
+              {
+                "text": "v8jOW4",
+                "_constructor": "keyboardButton#a2fa4880"
+              },
+              {
+                "text": "Xsb8jtMUkGch5iL2VqQ",
+                "_constructor": "keyboardButton#a2fa4880"
+              },
+              {
+                "text": "l4O6JiPjNAb6qifTtkrCjR",
+                "_constructor": "keyboardButton#a2fa4880"
+              }
+            ],
+            "_constructor": "keyboardButtonRow#77608b83"
+          },
+          {
+            "buttons": [
+              {
+                "text": "6kkFk8",
+                "_constructor": "keyboardButton#a2fa4880"
+              },
+              {
+                "text": "E0nNEXwPRLZEXJFCtwD",
+                "_constructor": "keyboardButton#a2fa4880"
+              },
+              {
+                "text": "b92haM4nID",
+                "_constructor": "keyboardButton#a2fa4880"
+              },
+              {
+                "text": "7dRTdgPoJltZYZQGf5OJzpp0M",
+                "_constructor": "keyboardButton#a2fa4880"
+              },
+              {
+                "text": "Gq9wONJw7stX7YUUwpyd1WQJ",
+                "_constructor": "keyboardButton#a2fa4880"
+              }
+            ],
+            "_constructor": "keyboardButtonRow#77608b83"
+          }
+        ],
+        "_constructor": "replyKeyboardMarkup#3502758c",
+        "flags": 3,
+        "selective": false
+      },
+      "entities": [
+        {
+          "_constructor": "messageEntityUrl#6ed02538",
+          "offset": 0,
+          "length": 0
+        },
+        {
+          "_constructor": "messageEntityBold#bd610bc9",
+          "offset": 0,
+          "length": 0
+        },
+        {
+          "_constructor": "messageEntityItalic#826f8b60",
+          "offset": 0,
+          "length": 0
+        },
+        {
+          "_constructor": "messageEntityCode#28a20571",
+          "offset": 0,
+          "length": 0
+        }
+      ],
+      "views": 0,
+      "_constructor": "message#c992e15c",
+      "id": 0
+    },
+    {
+      "flags": 4060,
+      "unread": false,
+      "out": false,
+      "mentioned": true,
+      "mediaUnread": false,
+      "fromId": 0,
+      "toId": {
+        "chatId": 0,
+        "_constructor": "peerChat#bad0e5bb"
+      },
+      "fwdFromId": {
+        "userId": 0,
+        "_constructor": "peerUser#9db1bc6d"
+      },
+      "fwdDate": 0,
+      "viaBotId": 0,
+      "replyToMsgId": 0,
+      "date": 0,
+      "message": "hnGeA6AIxepnk",
+      "media": {
+        "document": {
+          "accessHash": 0,
+          "date": 0,
+          "mimeType": "JRwi3VFTAuiwwWtA8MqUkjUQdX",
+          "size": 0,
+          "thumb": {
+            "location": {
+              "dcId": 0,
+              "_constructor": "fileLocation#53d69076",
+              "volumeId": 0,
+              "localId": 0,
+              "secret": 0
+            },
+            "w": 0,
+            "h": 0,
+            "size": 0,
+            "_constructor": "photoSize#77bfb61b",
+            "type": "yRisYXp7ES1HBzUavxDmCml5owHL"
+          },
+          "dcId": 0,
+          "attributes": [
+            {
+              "w": 0,
+              "h": 0,
+              "_constructor": "documentAttributeImageSize#6c37c15c"
+            },
+            {
+              "duration": 0,
+              "title": "4SVN1DU6oAFgLOt8ikMrJPVF",
+              "performer": "ijYBBTx72zdK7T",
+              "_constructor": "documentAttributeAudio#ded218e0"
+            },
+            {
+              "duration": 0,
+              "title": "VIHifPGPgh62NXTIHryk7Ywy",
+              "performer": "w5wTDyEmZ0nxDPWQTtlrht9Y304e",
+              "_constructor": "documentAttributeAudio#ded218e0"
+            },
+            {
+              "duration": 0,
+              "w": 0,
+              "h": 0,
+              "_constructor": "documentAttributeVideo#5910cccb"
+            },
+            {
+              "duration": 0,
+              "title": "df827qxLxCdwjCE0Dq69pR",
+              "performer": "xfpTkAxqhb",
+              "_constructor": "documentAttributeAudio#ded218e0"
+            },
+            {
+              "alt": "1doaosokHG9MXPyS",
+              "stickerset": {
+                "shortName": "NmWFRB2lKdIVO1",
+                "_constructor": "inputStickerSetShortName#861cc8a0"
+              },
+              "_constructor": "documentAttributeSticker#3a556302"
+            },
+            {
+              "fileName": "GAlnM5ltEZalefEqZh75bunD8KB",
+              "_constructor": "documentAttributeFilename#15590068"
+            },
+            {
+              "alt": "aTvdJ7jBanaG",
+              "stickerset": {
+                "id": 0,
+                "accessHash": 0,
+                "_constructor": "inputStickerSetID#9de7a269"
+              },
+              "_constructor": "documentAttributeSticker#3a556302"
+            },
+            {
+              "alt": "HUf5AFDki",
+              "stickerset": {
+                "id": 0,
+                "accessHash": 0,
+                "_constructor": "inputStickerSetID#9de7a269"
+              },
+              "_constructor": "documentAttributeSticker#3a556302"
+            },
+            {
+              "duration": 0,
+              "w": 0,
+              "h": 0,
+              "_constructor": "documentAttributeVideo#5910cccb"
+            },
+            {
+              "duration": 0,
+              "title": "Hp4w4LsLeKriC",
+              "performer": "FQZUMpeHT",
+              "_constructor": "documentAttributeAudio#ded218e0"
+            }
+          ],
+          "_constructor": "document#f9a39f4f",
+          "id": 0
+        },
+        "caption": "EsmaYgSx4giP",
+        "_constructor": "messageMediaDocument#f3e02ea8"
+      },
+      "replyMarkup": {
+        "_constructor": "replyKeyboardHide#a03e5b85",
+        "flags": 0,
+        "selective": false
+      },
+      "entities": [
+        {
+          "language": "G6eFvdJQzT",
+          "_constructor": "messageEntityPre#73924be0",
+          "offset": 0,
+          "length": 0
+        },
+        {
+          "language": "oF4zOA8m48ualowmA1jx9c",
+          "_constructor": "messageEntityPre#73924be0",
+          "offset": 0,
+          "length": 0
+        },
+        {
+          "_constructor": "messageEntityMention#fa04579d",
+          "offset": 0,
+          "length": 0
+        },
+        {
+          "language": "YFc3muQk43UVwlTAyNIbXmjEIEPo",
+          "_constructor": "messageEntityPre#73924be0",
+          "offset": 0,
+          "length": 0
+        },
+        {
+          "_constructor": "messageEntityBold#bd610bc9",
+          "offset": 0,
+          "length": 0
+        }
+      ],
+      "views": 0,
+      "_constructor": "message#c992e15c",
+      "id": 0
+    }
+  ],
+  "chats": [
+    {
+      "flags": 90,
+      "creator": false,
+      "kicked": true,
+      "left": false,
+      "adminsEnabled": true,
+      "admin": true,
+      "deactivated": false,
+      "title": "JWZYjxUFPF3oPZ0ZSp7mdGg8vxD66",
+      "photo": {
+        "photoSmall": {
+          "_constructor": "fileLocationUnavailable#7c596b46",
+          "volumeId": 0,
+          "localId": 0,
+          "secret": 0
+        },
+        "photoBig": {
+          "_constructor": "fileLocationUnavailable#7c596b46",
+          "volumeId": 0,
+          "localId": 0,
+          "secret": 0
+        },
+        "_constructor": "chatPhoto#6153276a"
+      },
+      "participantsCount": 0,
+      "date": 0,
+      "version": 0,
+      "migratedTo": {
+        "_constructor": "inputChannelEmpty#ee8c1e86"
+      },
+      "_constructor": "chat#d91cdd54",
+      "id": 0
+    },
+    {
+      "flags": 592,
+      "creator": false,
+      "kicked": false,
+      "left": false,
+      "editor": false,
+      "moderator": true,
+      "broadcast": false,
+      "verified": false,
+      "megagroup": false,
+      "restricted": true,
+      "accessHash": 0,
+      "title": "bSxRrJfTfSD35yCufZ",
+      "username": "omBduYXVo0E8WR",
+      "photo": {
+        "photoSmall": {
+          "_constructor": "fileLocationUnavailable#7c596b46",
+          "volumeId": 0,
+          "localId": 0,
+          "secret": 0
+        },
+        "photoBig": {
+          "dcId": 0,
+          "_constructor": "fileLocation#53d69076",
+          "volumeId": 0,
+          "localId": 0,
+          "secret": 0
+        },
+        "_constructor": "chatPhoto#6153276a"
+      },
+      "date": 0,
+      "version": 0,
+      "restrictionReason": "ylCfIMzOrS0FfoV23fSFDl7Dj9IEt",
+      "_constructor": "channel#4b1b7506",
+      "id": 0
+    },
+    {
+      "_constructor": "chatEmpty#9ba2d800",
+      "id": 0
+    },
+    {
+      "flags": 79,
+      "creator": true,
+      "kicked": true,
+      "left": true,
+      "adminsEnabled": true,
+      "admin": false,
+      "deactivated": false,
+      "title": "QZaqFdJc3Xlluu",
+      "photo": {
+        "_constructor": "chatPhotoEmpty#37c1011c"
+      },
+      "participantsCount": 0,
+      "date": 0,
+      "version": 0,
+      "migratedTo": {
+        "_constructor": "inputChannelEmpty#ee8c1e86"
+      },
+      "_constructor": "chat#d91cdd54",
+      "id": 0
+    }
+  ],
+  "users": [
+    {
+      "_constructor": "userEmpty#200250ba",
+      "id": 0
+    },
+    {
+      "_constructor": "userEmpty#200250ba",
+      "id": 0
+    }
+  ]
+}

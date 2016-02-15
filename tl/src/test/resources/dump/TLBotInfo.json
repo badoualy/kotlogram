@@ -1,0 +1,34 @@
+{
+  "userId": 0,
+  "version": 0,
+  "shareText": "HEEl9u7CmtXTGcjx3iwjsU9Hh",
+  "description": "NqwXStcthL",
+  "commands": [
+    {
+      "command": "XujgTjJ4ke8dyr9",
+      "description": "522PB93kRwBMfoZz",
+      "_constructor": "botCommand#c27ac8c7"
+    },
+    {
+      "command": "hnon8L2VG6o46mEpAkh0hsV",
+      "description": "zQxwdYAPrM4RGQ95M",
+      "_constructor": "botCommand#c27ac8c7"
+    },
+    {
+      "command": "IpOHND76fNiqAD3Im2RGO2I5K",
+      "description": "SaWtisG57GsZeHYmszRXI22g",
+      "_constructor": "botCommand#c27ac8c7"
+    },
+    {
+      "command": "wKezuvSeanGEz6iR8dstXWwH1",
+      "description": "kXXYZfAhkK",
+      "_constructor": "botCommand#c27ac8c7"
+    },
+    {
+      "command": "BlDN94A9jIgcfp",
+      "description": "F50Pgebul7iojYW8u6d8z3oVY",
+      "_constructor": "botCommand#c27ac8c7"
+    }
+  ],
+  "_constructor": "botInfo#9cf585d"
+}

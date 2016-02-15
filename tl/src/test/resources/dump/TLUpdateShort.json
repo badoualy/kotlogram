@@ -1,0 +1,22 @@
+{
+  "update": {
+    "type": "040CWZLQSYBOHJatzv",
+    "message": "9LlTbm",
+    "media": {
+      "geo": {
+        "_long": 0.0,
+        "lat": 0.0,
+        "_constructor": "geoPoint#2049d70c"
+      },
+      "title": "LFvHW31wrAuazhJ8OTj33s0",
+      "address": "skfao5T9UdPZUcN98Eoxo3lgCP4b",
+      "provider": "T8cu1VltJ",
+      "venueId": "GjIP1XdPydKoitRsYi9a5ym1IEU",
+      "_constructor": "messageMediaVenue#7912b71f"
+    },
+    "popup": false,
+    "_constructor": "updateServiceNotification#382dd3e4"
+  },
+  "date": 0,
+  "_constructor": "updateShort#78d4dec1"
+}

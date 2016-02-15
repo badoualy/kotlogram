@@ -1,0 +1,97 @@
+{
+  "contacts": [
+    {
+      "userId": 0,
+      "mutual": true,
+      "_constructor": "contact#f911c994"
+    },
+    {
+      "userId": 0,
+      "mutual": false,
+      "_constructor": "contact#f911c994"
+    },
+    {
+      "userId": 0,
+      "mutual": false,
+      "_constructor": "contact#f911c994"
+    },
+    {
+      "userId": 0,
+      "mutual": false,
+      "_constructor": "contact#f911c994"
+    },
+    {
+      "userId": 0,
+      "mutual": false,
+      "_constructor": "contact#f911c994"
+    },
+    {
+      "userId": 0,
+      "mutual": false,
+      "_constructor": "contact#f911c994"
+    },
+    {
+      "userId": 0,
+      "mutual": false,
+      "_constructor": "contact#f911c994"
+    },
+    {
+      "userId": 0,
+      "mutual": true,
+      "_constructor": "contact#f911c994"
+    },
+    {
+      "userId": 0,
+      "mutual": false,
+      "_constructor": "contact#f911c994"
+    },
+    {
+      "userId": 0,
+      "mutual": false,
+      "_constructor": "contact#f911c994"
+    }
+  ],
+  "users": [
+    {
+      "_constructor": "userEmpty#200250ba",
+      "id": 0
+    },
+    {
+      "flags": 873599,
+      "self": true,
+      "contact": false,
+      "mutualContact": true,
+      "deleted": false,
+      "bot": true,
+      "botChatHistory": false,
+      "botNochats": true,
+      "verified": false,
+      "restricted": true,
+      "accessHash": 0,
+      "firstName": "caHeSauat53qlDAo95Ixzf9",
+      "lastName": "KY96am",
+      "username": "y1V3y6cJ5V",
+      "phone": "hkNJh9z6pwqkDyw",
+      "photo": {
+        "_constructor": "userProfilePhotoEmpty#4f11bae1"
+      },
+      "status": {
+        "_constructor": "userStatusRecently#e26f42f1"
+      },
+      "botInfoVersion": 0,
+      "restrictionReason": "h1tqAc",
+      "botInlinePlaceholder": "6QLy5Cvs3MapEv4JSvF",
+      "_constructor": "user#d10d979a",
+      "id": 0
+    },
+    {
+      "_constructor": "userEmpty#200250ba",
+      "id": 0
+    },
+    {
+      "_constructor": "userEmpty#200250ba",
+      "id": 0
+    }
+  ],
+  "_constructor": "contacts.contacts#6f8b8cb2"
+}

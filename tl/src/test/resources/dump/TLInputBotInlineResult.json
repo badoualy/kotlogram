@@ -1,0 +1,59 @@
+{
+  "flags": 254,
+  "id": "lkhBHF4AquJA",
+  "type": "kcmyRA9dVOGQOqUji29ZH",
+  "title": "wTQrY82SD4ZXgr78KuPgTLsu",
+  "description": "ZBiXBXgEkR5VkH5Dga7Va",
+  "url": "ZKEP2dq179Qu8D1tlXrx1htpvBQ",
+  "thumbUrl": "Iq0eZrS1jzzJXY4j",
+  "contentUrl": "vm9VakouBIQbxhFzxZY",
+  "contentType": "gHfQNZIDYcrWjPjGkg4",
+  "w": 0,
+  "h": 0,
+  "duration": 0,
+  "sendMessage": {
+    "flags": 3,
+    "noWebpage": true,
+    "message": "btt1X6rdKZrOF",
+    "entities": [
+      {
+        "_constructor": "messageEntityHashtag#6f635b0d",
+        "offset": 0,
+        "length": 0
+      },
+      {
+        "_constructor": "messageEntityUrl#6ed02538",
+        "offset": 0,
+        "length": 0
+      },
+      {
+        "language": "hePxB1DEgQ7b2W1c9WQcbtgaI",
+        "_constructor": "messageEntityPre#73924be0",
+        "offset": 0,
+        "length": 0
+      },
+      {
+        "_constructor": "messageEntityUrl#6ed02538",
+        "offset": 0,
+        "length": 0
+      },
+      {
+        "_constructor": "messageEntityUrl#6ed02538",
+        "offset": 0,
+        "length": 0
+      },
+      {
+        "_constructor": "messageEntityUnknown#bb92ba95",
+        "offset": 0,
+        "length": 0
+      },
+      {
+        "_constructor": "messageEntityCode#28a20571",
+        "offset": 0,
+        "length": 0
+      }
+    ],
+    "_constructor": "inputBotInlineMessageText#adf0df71"
+  },
+  "_constructor": "inputBotInlineResult#2cbbe15a"
+}

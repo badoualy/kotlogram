@@ -1,0 +1,24 @@
+{
+  "message": {
+    "flags": 305,
+    "unread": true,
+    "out": false,
+    "mentioned": true,
+    "mediaUnread": true,
+    "fromId": 0,
+    "toId": {
+      "chatId": 0,
+      "_constructor": "peerChat#bad0e5bb"
+    },
+    "date": 0,
+    "action": {
+      "inviterId": 0,
+      "_constructor": "messageActionChatJoinedByLink#f89cf5e8"
+    },
+    "_constructor": "messageService#c06b9607",
+    "id": 0
+  },
+  "pts": 0,
+  "ptsCount": 0,
+  "_constructor": "updateNewMessage#1f2b0afd"
+}

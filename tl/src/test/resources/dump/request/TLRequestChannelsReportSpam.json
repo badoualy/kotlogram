@@ -1,0 +1,13 @@
+{
+  "channel": {
+    "_constructor": "inputChannelEmpty#ee8c1e86"
+  },
+  "userId": {
+    "_constructor": "inputUserEmpty#b98886cf"
+  },
+  "id": [
+    0,
+    0
+  ],
+  "_constructor": "channels.reportSpam#fe087810"
+}

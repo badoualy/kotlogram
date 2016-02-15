@@ -40,6 +40,9 @@ public class TLApiDumpTest implements ITest {
         return FilenameUtils.removeExtension(file.getName());
     }
 
+    /**
+     * Deserialize each previously dumped TL types and ensure that the result is correct
+     */
     public static class TestFactory {
 
         @Factory

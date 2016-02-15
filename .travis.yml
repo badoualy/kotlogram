@@ -1,6 +1,9 @@
 language: java
 sudo: required
+jdk:
+ - oraclejdk8
+
 before_install:
  - chmod +x gradlew
-jdk:
-  - oraclejdk8
+
+script: ./gradlew test

@@ -1,0 +1,59 @@
+{
+  "dcOptions": [
+    {
+      "flags": 2,
+      "ipv6": false,
+      "mediaOnly": true,
+      "id": 0,
+      "ipAddress": "2YqTvfhDe6pUF",
+      "port": 0,
+      "_constructor": "dcOption#5d8c6cc"
+    },
+    {
+      "flags": 3,
+      "ipv6": true,
+      "mediaOnly": true,
+      "id": 0,
+      "ipAddress": "MyJvNvuRUWTASlb",
+      "port": 0,
+      "_constructor": "dcOption#5d8c6cc"
+    },
+    {
+      "flags": 0,
+      "ipv6": false,
+      "mediaOnly": false,
+      "id": 0,
+      "ipAddress": "guk1I2",
+      "port": 0,
+      "_constructor": "dcOption#5d8c6cc"
+    },
+    {
+      "flags": 2,
+      "ipv6": false,
+      "mediaOnly": true,
+      "id": 0,
+      "ipAddress": "mwjuB9mj91ss",
+      "port": 0,
+      "_constructor": "dcOption#5d8c6cc"
+    },
+    {
+      "flags": 1,
+      "ipv6": true,
+      "mediaOnly": false,
+      "id": 0,
+      "ipAddress": "EpMZzHlwa1Tlm19cdvVXUEX",
+      "port": 0,
+      "_constructor": "dcOption#5d8c6cc"
+    },
+    {
+      "flags": 0,
+      "ipv6": false,
+      "mediaOnly": false,
+      "id": 0,
+      "ipAddress": "PgaMCJg",
+      "port": 0,
+      "_constructor": "dcOption#5d8c6cc"
+    }
+  ],
+  "_constructor": "updateDcOptions#8e5e9873"
+}

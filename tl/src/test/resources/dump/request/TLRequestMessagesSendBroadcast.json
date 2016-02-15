@@ -1,0 +1,40 @@
+{
+  "contacts": [
+    {
+      "_constructor": "inputUserEmpty#b98886cf"
+    },
+    {
+      "userId": 0,
+      "accessHash": 0,
+      "_constructor": "inputUser#d8292816"
+    }
+  ],
+  "randomId": [
+    0,
+    0
+  ],
+  "message": "I92sJq24Ae6tIZZHFR6mQd",
+  "media": {
+    "file": {
+      "md5Checksum": "zOO7nUaxX7Aw",
+      "_constructor": "inputFile#f52ff27f",
+      "id": 0,
+      "parts": 0,
+      "name": "EJuvVw"
+    },
+    "thumb": {
+      "md5Checksum": "kXXhPjmEclzlBE",
+      "_constructor": "inputFile#f52ff27f",
+      "id": 0,
+      "parts": 0,
+      "name": "vRk9luXpWKe5"
+    },
+    "duration": 0,
+    "w": 0,
+    "h": 0,
+    "mimeType": "OzuCBGcyRqMI9TQc9dj",
+    "caption": "oAbMO0r7QESdRGofll",
+    "_constructor": "inputMediaUploadedThumbVideo#7780ddf9"
+  },
+  "_constructor": "messages.sendBroadcast#bf73f4da"
+}

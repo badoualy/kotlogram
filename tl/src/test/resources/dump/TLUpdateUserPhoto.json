@@ -1,0 +1,9 @@
+{
+  "userId": 0,
+  "date": 0,
+  "photo": {
+    "_constructor": "userProfilePhotoEmpty#4f11bae1"
+  },
+  "previous": true,
+  "_constructor": "updateUserPhoto#95313b0c"
+}

@@ -1,0 +1,10 @@
+{
+  "userId": 0,
+  "myLink": {
+    "_constructor": "contactLinkHasPhone#268f3f59"
+  },
+  "foreignLink": {
+    "_constructor": "contactLinkHasPhone#268f3f59"
+  },
+  "_constructor": "updateContactLink#9d2e67c5"
+}

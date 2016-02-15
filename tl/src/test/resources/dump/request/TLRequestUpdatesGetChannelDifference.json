@@ -1,0 +1,11 @@
+{
+  "channel": {
+    "_constructor": "inputChannelEmpty#ee8c1e86"
+  },
+  "filter": {
+    "_constructor": "channelMessagesFilterEmpty#94d42ee7"
+  },
+  "pts": 0,
+  "limit": 0,
+  "_constructor": "updates.getChannelDifference#bb32d7c0"
+}

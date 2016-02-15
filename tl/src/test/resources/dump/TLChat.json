@@ -1,0 +1,21 @@
+{
+  "flags": 95,
+  "creator": true,
+  "kicked": true,
+  "left": true,
+  "adminsEnabled": true,
+  "admin": true,
+  "deactivated": false,
+  "title": "GGyqFgCsjFA25JW0AOg",
+  "photo": {
+    "_constructor": "chatPhotoEmpty#37c1011c"
+  },
+  "participantsCount": 0,
+  "date": 0,
+  "version": 0,
+  "migratedTo": {
+    "_constructor": "inputChannelEmpty#ee8c1e86"
+  },
+  "_constructor": "chat#d91cdd54",
+  "id": 0
+}

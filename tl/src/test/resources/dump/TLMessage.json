@@ -1,0 +1,88 @@
+{
+  "flags": 4076,
+  "unread": false,
+  "out": false,
+  "mentioned": false,
+  "mediaUnread": true,
+  "fromId": 0,
+  "toId": {
+    "chatId": 0,
+    "_constructor": "peerChat#bad0e5bb"
+  },
+  "fwdFromId": {
+    "userId": 0,
+    "_constructor": "peerUser#9db1bc6d"
+  },
+  "fwdDate": 0,
+  "viaBotId": 0,
+  "replyToMsgId": 0,
+  "date": 0,
+  "message": "fDcm92ntrIzhyOGDG4cFvn",
+  "media": {
+    "geo": {
+      "_constructor": "geoPointEmpty#1117dd5f"
+    },
+    "_constructor": "messageMediaGeo#56e0d474"
+  },
+  "replyMarkup": {
+    "_constructor": "replyKeyboardHide#a03e5b85",
+    "flags": 4,
+    "selective": true
+  },
+  "entities": [
+    {
+      "_constructor": "messageEntityMention#fa04579d",
+      "offset": 0,
+      "length": 0
+    },
+    {
+      "language": "9whhy782enVXBfl976vD0Af4ap",
+      "_constructor": "messageEntityPre#73924be0",
+      "offset": 0,
+      "length": 0
+    },
+    {
+      "_constructor": "messageEntityHashtag#6f635b0d",
+      "offset": 0,
+      "length": 0
+    },
+    {
+      "_constructor": "messageEntityBold#bd610bc9",
+      "offset": 0,
+      "length": 0
+    },
+    {
+      "_constructor": "messageEntityBold#bd610bc9",
+      "offset": 0,
+      "length": 0
+    },
+    {
+      "_constructor": "messageEntityBotCommand#6cef8ac7",
+      "offset": 0,
+      "length": 0
+    },
+    {
+      "_constructor": "messageEntityBotCommand#6cef8ac7",
+      "offset": 0,
+      "length": 0
+    },
+    {
+      "_constructor": "messageEntityUnknown#bb92ba95",
+      "offset": 0,
+      "length": 0
+    },
+    {
+      "_constructor": "messageEntityHashtag#6f635b0d",
+      "offset": 0,
+      "length": 0
+    },
+    {
+      "_constructor": "messageEntityEmail#64e475c2",
+      "offset": 0,
+      "length": 0
+    }
+  ],
+  "views": 0,
+  "_constructor": "message#c992e15c",
+  "id": 0
+}

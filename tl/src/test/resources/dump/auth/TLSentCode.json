@@ -1,0 +1,7 @@
+{
+  "_constructor": "auth.sentCode#efed51d9",
+  "phoneRegistered": true,
+  "phoneCodeHash": "IO7UXpTK5dYzBg6r9vV7KD",
+  "sendCallTimeout": 0,
+  "isPassword": false
+}

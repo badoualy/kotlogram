@@ -1,0 +1,64 @@
+{
+  "key": {
+    "_constructor": "privacyKeyStatusTimestamp#bc2eab30"
+  },
+  "rules": [
+    {
+      "users": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "_constructor": "privacyValueDisallowUsers#c7f49b7"
+    },
+    {
+      "_constructor": "privacyValueDisallowAll#8b73e763"
+    },
+    {
+      "users": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "_constructor": "privacyValueAllowUsers#4d5bbe0c"
+    },
+    {
+      "users": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "_constructor": "privacyValueDisallowUsers#c7f49b7"
+    },
+    {
+      "users": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "_constructor": "privacyValueAllowUsers#4d5bbe0c"
+    }
+  ],
+  "_constructor": "updatePrivacy#ee3b272a"
+}

@@ -1,0 +1,11 @@
+{
+  "id": [
+    {
+      "_constructor": "inputUserSelf#f7c1b13f"
+    },
+    {
+      "_constructor": "inputUserEmpty#b98886cf"
+    }
+  ],
+  "_constructor": "users.getUsers#d91a548"
+}

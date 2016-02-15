@@ -1,0 +1,34 @@
+{
+  "flags": 2238,
+  "unread": false,
+  "out": true,
+  "mentioned": true,
+  "mediaUnread": true,
+  "id": 0,
+  "userId": 0,
+  "message": "jwZJBJVN057L",
+  "pts": 0,
+  "ptsCount": 0,
+  "date": 0,
+  "fwdFromId": {
+    "channelId": 0,
+    "_constructor": "peerChannel#bddde532"
+  },
+  "fwdDate": 0,
+  "viaBotId": 0,
+  "replyToMsgId": 0,
+  "entities": [
+    {
+      "_constructor": "messageEntityBotCommand#6cef8ac7",
+      "offset": 0,
+      "length": 0
+    },
+    {
+      "url": "QQGaMMes73GJLYbQ1k",
+      "_constructor": "messageEntityTextUrl#76a6d327",
+      "offset": 0,
+      "length": 0
+    }
+  ],
+  "_constructor": "updateShortMessage#13e4deaa"
+}

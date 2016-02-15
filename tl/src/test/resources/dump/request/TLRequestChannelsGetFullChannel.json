@@ -1,0 +1,8 @@
+{
+  "channel": {
+    "channelId": 0,
+    "accessHash": 0,
+    "_constructor": "inputChannel#afeb712e"
+  },
+  "_constructor": "channels.getFullChannel#8736a09"
+}

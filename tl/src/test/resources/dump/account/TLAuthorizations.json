@@ -1,0 +1,37 @@
+{
+  "authorizations": [
+    {
+      "hash": 0,
+      "flags": 0,
+      "deviceModel": "NXUAV9nA6R3MqO8QpW6og45avOi",
+      "platform": "DDFUly4Rv8oeUiDePoU9t",
+      "systemVersion": "6sAQd30LhT3dIx",
+      "apiId": 0,
+      "appName": "q8WEMK",
+      "appVersion": "25RpYhE6",
+      "dateCreated": 0,
+      "dateActive": 0,
+      "ip": "Liu1cUsIzoO9f",
+      "country": "atB52IVE47N0UVe5i",
+      "region": "h9BY7MH5I2KS",
+      "_constructor": "authorization#7bf2e6f6"
+    },
+    {
+      "hash": 0,
+      "flags": 0,
+      "deviceModel": "wXFZvLPnnln8oeQ19qxe8",
+      "platform": "dhPqTktBA",
+      "systemVersion": "7IvfJmLk",
+      "apiId": 0,
+      "appName": "bEnZwqQHy5zchhrb4KkN",
+      "appVersion": "T4vTZs5hFl8vwUywBhrbp1tZlBi",
+      "dateCreated": 0,
+      "dateActive": 0,
+      "ip": "eCBJt69MsGTbjPczkgW2yPNmoDsYN",
+      "country": "yGxmEe1a8iu7iFiDpmlp0",
+      "region": "XYEU8xYaYvbX5ws8UZ",
+      "_constructor": "authorization#7bf2e6f6"
+    }
+  ],
+  "_constructor": "account.authorizations#1250abde"
+}

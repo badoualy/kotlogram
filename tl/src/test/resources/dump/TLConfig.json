@@ -1,0 +1,133 @@
+{
+  "date": 0,
+  "expires": 0,
+  "testMode": true,
+  "thisDc": 0,
+  "dcOptions": [
+    {
+      "flags": 1,
+      "ipv6": true,
+      "mediaOnly": false,
+      "id": 0,
+      "ipAddress": "O1IyzjEIxcowcLqAYDI",
+      "port": 0,
+      "_constructor": "dcOption#5d8c6cc"
+    },
+    {
+      "flags": 2,
+      "ipv6": false,
+      "mediaOnly": true,
+      "id": 0,
+      "ipAddress": "mvncEtwoQYuwanZqvvYVmZ2b0uJD",
+      "port": 0,
+      "_constructor": "dcOption#5d8c6cc"
+    },
+    {
+      "flags": 2,
+      "ipv6": false,
+      "mediaOnly": true,
+      "id": 0,
+      "ipAddress": "8MzK2LuWBiNDtEboy73BA",
+      "port": 0,
+      "_constructor": "dcOption#5d8c6cc"
+    },
+    {
+      "flags": 0,
+      "ipv6": false,
+      "mediaOnly": false,
+      "id": 0,
+      "ipAddress": "xAvi81eWSMnJhiTS",
+      "port": 0,
+      "_constructor": "dcOption#5d8c6cc"
+    },
+    {
+      "flags": 0,
+      "ipv6": false,
+      "mediaOnly": false,
+      "id": 0,
+      "ipAddress": "S4Cd9onlr8gzGiK3U4mKTcvXoALL",
+      "port": 0,
+      "_constructor": "dcOption#5d8c6cc"
+    },
+    {
+      "flags": 0,
+      "ipv6": false,
+      "mediaOnly": false,
+      "id": 0,
+      "ipAddress": "OMwrZ6PDEOzeBwSUUed0Vbraml",
+      "port": 0,
+      "_constructor": "dcOption#5d8c6cc"
+    }
+  ],
+  "chatSizeMax": 0,
+  "megagroupSizeMax": 0,
+  "forwardedCountMax": 0,
+  "onlineUpdatePeriodMs": 0,
+  "offlineBlurTimeoutMs": 0,
+  "offlineIdleTimeoutMs": 0,
+  "onlineCloudTimeoutMs": 0,
+  "notifyCloudDelayMs": 0,
+  "notifyDefaultDelayMs": 0,
+  "chatBigSize": 0,
+  "pushChatPeriodMs": 0,
+  "pushChatLimit": 0,
+  "savedGifsLimit": 0,
+  "disabledFeatures": [
+    {
+      "feature": "K2mjQ",
+      "description": "FuAbGbSQA2X1hvJJ",
+      "_constructor": "disabledFeature#ae636f24"
+    },
+    {
+      "feature": "EgWF5bt",
+      "description": "hweMpv81Zwq8b1oqjWRvUIQ",
+      "_constructor": "disabledFeature#ae636f24"
+    },
+    {
+      "feature": "nRzLLiuCUbQX79feY8odjFc6jTi5",
+      "description": "xKYeazOq",
+      "_constructor": "disabledFeature#ae636f24"
+    },
+    {
+      "feature": "SIuGa1Z5w9E8gbt7Kdgw8VRyM",
+      "description": "JIUTtQGrv5mUxjN",
+      "_constructor": "disabledFeature#ae636f24"
+    },
+    {
+      "feature": "5KlPTbamEs71",
+      "description": "SfSxuv",
+      "_constructor": "disabledFeature#ae636f24"
+    },
+    {
+      "feature": "I80fwUWYwF209pUy3VSS",
+      "description": "cz2xo7tyltNmCKpsVgB0wALcNPP",
+      "_constructor": "disabledFeature#ae636f24"
+    },
+    {
+      "feature": "HQgZOWk7RMYOW7DfwM0xjkgvjoM",
+      "description": "qDwoM5fFQkolqUxMJId4PK",
+      "_constructor": "disabledFeature#ae636f24"
+    },
+    {
+      "feature": "wsvtU8yH4B83dcEqbspNYReH1Ql",
+      "description": "KUUUM3nX93t0JeOKTx0IWxFGQvvzF",
+      "_constructor": "disabledFeature#ae636f24"
+    },
+    {
+      "feature": "4d64JwSCc1pPxkTb",
+      "description": "jqSNOGkaig",
+      "_constructor": "disabledFeature#ae636f24"
+    },
+    {
+      "feature": "JAXk5A5hzmG63yBkUd",
+      "description": "QtiLkvhF3oR37Ij",
+      "_constructor": "disabledFeature#ae636f24"
+    },
+    {
+      "feature": "lzeooWMyMkpa2A",
+      "description": "EzbZEBK6Zp",
+      "_constructor": "disabledFeature#ae636f24"
+    }
+  ],
+  "_constructor": "config#6bbc5f8"
+}

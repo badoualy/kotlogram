@@ -1,0 +1,13 @@
+{
+  "myLink": {
+    "_constructor": "contactLinkHasPhone#268f3f59"
+  },
+  "foreignLink": {
+    "_constructor": "contactLinkNone#feedd3ad"
+  },
+  "user": {
+    "_constructor": "userEmpty#200250ba",
+    "id": 0
+  },
+  "_constructor": "contacts.link#3ace484c"
+}

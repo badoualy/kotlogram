@@ -1,0 +1,20 @@
+{
+  "topImportantMessage": 0,
+  "unreadImportantCount": 0,
+  "pts": 0,
+  "_constructor": "dialogChannel#5b8496b2",
+  "peer": {
+    "userId": 0,
+    "_constructor": "peerUser#9db1bc6d"
+  },
+  "topMessage": 0,
+  "readInboxMaxId": 0,
+  "unreadCount": 0,
+  "notifySettings": {
+    "muteUntil": 0,
+    "sound": "V8CzK3e44MbHNkvPLfdz9htSFrRcR",
+    "showPreviews": false,
+    "eventsMask": 0,
+    "_constructor": "peerNotifySettings#8d5e11ee"
+  }
+}

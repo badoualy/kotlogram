@@ -42,6 +42,9 @@ public final class TLApiTest extends AbsTLApiTest implements ITest {
         return clazz.getCanonicalName().replace(BASE_PACKAGE + ".", "");
     }
 
+    /**
+     * Serialize and deserialize each TL types and check equality
+     */
     public static class TLApiTestFactory {
 
         @Factory

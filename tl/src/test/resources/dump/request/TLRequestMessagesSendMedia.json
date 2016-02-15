@@ -1,0 +1,65 @@
+{
+  "flags": 21,
+  "broadcast": true,
+  "peer": {
+    "_constructor": "inputPeerSelf#7da07ec9"
+  },
+  "replyToMsgId": 0,
+  "media": {
+    "file": {
+      "md5Checksum": "hKiHgxB6aepviVcEatMTZnnyRI",
+      "_constructor": "inputFile#f52ff27f",
+      "id": 0,
+      "parts": 0,
+      "name": "cV9M8ZbLvHtnWvFoql8"
+    },
+    "mimeType": "cAoZsZcojhuxPr",
+    "attributes": [
+      {
+        "alt": "XHCo2cHcZl6vnxElUgvFzUAImy",
+        "stickerset": {
+          "id": 0,
+          "accessHash": 0,
+          "_constructor": "inputStickerSetID#9de7a269"
+        },
+        "_constructor": "documentAttributeSticker#3a556302"
+      },
+      {
+        "alt": "t2WZTP7r5lnRL6ahyaOM",
+        "stickerset": {
+          "id": 0,
+          "accessHash": 0,
+          "_constructor": "inputStickerSetID#9de7a269"
+        },
+        "_constructor": "documentAttributeSticker#3a556302"
+      },
+      {
+        "duration": 0,
+        "title": "awF72g8WV00oNvZwaPLeH",
+        "performer": "g7xfTInD4lRKAP9M0PtFP2pR",
+        "_constructor": "documentAttributeAudio#ded218e0"
+      },
+      {
+        "w": 0,
+        "h": 0,
+        "_constructor": "documentAttributeImageSize#6c37c15c"
+      },
+      {
+        "duration": 0,
+        "title": "beqnIh2opxkMfx7",
+        "performer": "0ZKRZVGj24KRazPQk10",
+        "_constructor": "documentAttributeAudio#ded218e0"
+      }
+    ],
+    "caption": "z8ESksDmMSB9WiAwYrgdrProE6cfk",
+    "_constructor": "inputMediaUploadedDocument#1d89306d"
+  },
+  "randomId": 0,
+  "replyMarkup": {
+    "singleUse": false,
+    "_constructor": "replyKeyboardForceReply#f4108aa0",
+    "flags": 4,
+    "selective": true
+  },
+  "_constructor": "messages.sendMedia#c8f16791"
+}

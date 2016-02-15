@@ -1,0 +1,11 @@
+{
+  "peer": {
+    "chatId": 0,
+    "_constructor": "inputPeerChat#179be863"
+  },
+  "reason": {
+    "text": "i7hrMZt",
+    "_constructor": "inputReportReasonOther#e1746d0a"
+  },
+  "_constructor": "account.reportPeer#ae189d5f"
+}

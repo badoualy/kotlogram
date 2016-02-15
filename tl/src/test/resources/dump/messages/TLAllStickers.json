@@ -1,0 +1,97 @@
+{
+  "hash": 0,
+  "sets": [
+    {
+      "flags": 0,
+      "installed": false,
+      "disabled": false,
+      "official": false,
+      "id": 0,
+      "accessHash": 0,
+      "title": "OpFgyrCuSRApC",
+      "shortName": "NF5d5rKvjd0F",
+      "count": 0,
+      "hash": 0,
+      "_constructor": "stickerSet#cd303b41"
+    },
+    {
+      "flags": 4,
+      "installed": false,
+      "disabled": false,
+      "official": true,
+      "id": 0,
+      "accessHash": 0,
+      "title": "VNX7qyyKLGUg2YDG",
+      "shortName": "aHJBpXu5Jp5rgRDUKw8a6G0Q",
+      "count": 0,
+      "hash": 0,
+      "_constructor": "stickerSet#cd303b41"
+    },
+    {
+      "flags": 1,
+      "installed": true,
+      "disabled": false,
+      "official": false,
+      "id": 0,
+      "accessHash": 0,
+      "title": "XiaeVAJALXbl0iIQv",
+      "shortName": "8ksxhz5",
+      "count": 0,
+      "hash": 0,
+      "_constructor": "stickerSet#cd303b41"
+    },
+    {
+      "flags": 3,
+      "installed": true,
+      "disabled": true,
+      "official": false,
+      "id": 0,
+      "accessHash": 0,
+      "title": "bycbCBKIwBguILWvQ16dXIuo",
+      "shortName": "GX5XpTZZzA8WQiaIJjaJJpAd1E",
+      "count": 0,
+      "hash": 0,
+      "_constructor": "stickerSet#cd303b41"
+    },
+    {
+      "flags": 2,
+      "installed": false,
+      "disabled": true,
+      "official": false,
+      "id": 0,
+      "accessHash": 0,
+      "title": "cYRprHoq6d7f9G2eirOYx9hNWBl",
+      "shortName": "ZYxD7reei16MHMTBr",
+      "count": 0,
+      "hash": 0,
+      "_constructor": "stickerSet#cd303b41"
+    },
+    {
+      "flags": 0,
+      "installed": false,
+      "disabled": false,
+      "official": false,
+      "id": 0,
+      "accessHash": 0,
+      "title": "g3kAFE0kD9foqM4Nkh1JlkAvDqMb",
+      "shortName": "f8Phpqjcwthaw2kieS9gkcH9ippjW",
+      "count": 0,
+      "hash": 0,
+      "_constructor": "stickerSet#cd303b41"
+    },
+    {
+      "flags": 0,
+      "installed": false,
+      "disabled": false,
+      "official": false,
+      "id": 0,
+      "accessHash": 0,
+      "title": "vKmYun",
+      "shortName": "TGnYFR7UW",
+      "count": 0,
+      "hash": 0,
+      "_constructor": "stickerSet#cd303b41"
+    }
+  ],
+  "_constructor": "messages.allStickers#edfd405f"
+}

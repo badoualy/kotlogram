@@ -1,0 +1,561 @@
+{
+  "hash": "vFPThFc7OtDXmG39T2SHTPaBLWle",
+  "stickers": [
+    {
+      "_constructor": "documentEmpty#36f8c871",
+      "id": 0
+    },
+    {
+      "accessHash": 0,
+      "date": 0,
+      "mimeType": "oTYvJQf",
+      "size": 0,
+      "thumb": {
+        "_constructor": "photoSizeEmpty#e17e23c",
+        "type": "5oPTm31s"
+      },
+      "dcId": 0,
+      "attributes": [
+        {
+          "duration": 0,
+          "title": "f36AD1lsUxlBjPfC7KNysTOh2",
+          "performer": "FUVNomCR711z1PWj",
+          "_constructor": "documentAttributeAudio#ded218e0"
+        },
+        {
+          "alt": "QSH7fsSYOddnIAYXmlG",
+          "stickerset": {
+            "id": 0,
+            "accessHash": 0,
+            "_constructor": "inputStickerSetID#9de7a269"
+          },
+          "_constructor": "documentAttributeSticker#3a556302"
+        },
+        {
+          "_constructor": "documentAttributeAnimated#11b58939"
+        },
+        {
+          "alt": "OkAL6tSv7r",
+          "stickerset": {
+            "shortName": "bsp0T1nl2YfZeAbqkHKa4Ucpn",
+            "_constructor": "inputStickerSetShortName#861cc8a0"
+          },
+          "_constructor": "documentAttributeSticker#3a556302"
+        }
+      ],
+      "_constructor": "document#f9a39f4f",
+      "id": 0
+    },
+    {
+      "_constructor": "documentEmpty#36f8c871",
+      "id": 0
+    },
+    {
+      "accessHash": 0,
+      "date": 0,
+      "mimeType": "L93gZbdI5RcPY4zb0krgghKIr6",
+      "size": 0,
+      "thumb": {
+        "location": {
+          "_constructor": "fileLocationUnavailable#7c596b46",
+          "volumeId": 0,
+          "localId": 0,
+          "secret": 0
+        },
+        "w": 0,
+        "h": 0,
+        "size": 0,
+        "_constructor": "photoSize#77bfb61b",
+        "type": "umL2r"
+      },
+      "dcId": 0,
+      "attributes": [
+        {
+          "duration": 0,
+          "w": 0,
+          "h": 0,
+          "_constructor": "documentAttributeVideo#5910cccb"
+        },
+        {
+          "duration": 0,
+          "title": "khnhTKPGSt",
+          "performer": "GA3KvL5CtC6Czc50p4gei3a",
+          "_constructor": "documentAttributeAudio#ded218e0"
+        },
+        {
+          "alt": "t4m0HkVuKEFxLhVvxxXHygMAcAeEb",
+          "stickerset": {
+            "id": 0,
+            "accessHash": 0,
+            "_constructor": "inputStickerSetID#9de7a269"
+          },
+          "_constructor": "documentAttributeSticker#3a556302"
+        },
+        {
+          "duration": 0,
+          "title": "a5vabpH3yfpJUGTzm8zPRZVASG",
+          "performer": "dp0LcZctPtupIPJ7ItVz",
+          "_constructor": "documentAttributeAudio#ded218e0"
+        },
+        {
+          "fileName": "H3heQEl",
+          "_constructor": "documentAttributeFilename#15590068"
+        },
+        {
+          "fileName": "EPhs4aCqz40QquX3yLvrTmjOFRYB",
+          "_constructor": "documentAttributeFilename#15590068"
+        },
+        {
+          "_constructor": "documentAttributeAnimated#11b58939"
+        },
+        {
+          "alt": "lF5TOLKSogWb96UlovmKJ",
+          "stickerset": {
+            "_constructor": "inputStickerSetEmpty#ffb62b95"
+          },
+          "_constructor": "documentAttributeSticker#3a556302"
+        },
+        {
+          "_constructor": "documentAttributeAnimated#11b58939"
+        },
+        {
+          "duration": 0,
+          "title": "fOldUTdbQF2tlEhdMh",
+          "performer": "UjHfvjzkJgF",
+          "_constructor": "documentAttributeAudio#ded218e0"
+        },
+        {
+          "w": 0,
+          "h": 0,
+          "_constructor": "documentAttributeImageSize#6c37c15c"
+        }
+      ],
+      "_constructor": "document#f9a39f4f",
+      "id": 0
+    },
+    {
+      "_constructor": "documentEmpty#36f8c871",
+      "id": 0
+    },
+    {
+      "accessHash": 0,
+      "date": 0,
+      "mimeType": "eqXPJy5Cg2GAX4S273xZV3uuA1w",
+      "size": 0,
+      "thumb": {
+        "location": {
+          "dcId": 0,
+          "_constructor": "fileLocation#53d69076",
+          "volumeId": 0,
+          "localId": 0,
+          "secret": 0
+        },
+        "w": 0,
+        "h": 0,
+        "size": 0,
+        "_constructor": "photoSize#77bfb61b",
+        "type": "6v3uHDYkX25C"
+      },
+      "dcId": 0,
+      "attributes": [
+        {
+          "_constructor": "documentAttributeAnimated#11b58939"
+        },
+        {
+          "alt": "ZazRcQFrj",
+          "stickerset": {
+            "shortName": "aWsky1JZtMi7La3",
+            "_constructor": "inputStickerSetShortName#861cc8a0"
+          },
+          "_constructor": "documentAttributeSticker#3a556302"
+        },
+        {
+          "fileName": "ypafzCfjw",
+          "_constructor": "documentAttributeFilename#15590068"
+        },
+        {
+          "duration": 0,
+          "w": 0,
+          "h": 0,
+          "_constructor": "documentAttributeVideo#5910cccb"
+        },
+        {
+          "duration": 0,
+          "w": 0,
+          "h": 0,
+          "_constructor": "documentAttributeVideo#5910cccb"
+        },
+        {
+          "alt": "nRXWTL8aR9DOPZleur",
+          "stickerset": {
+            "_constructor": "inputStickerSetEmpty#ffb62b95"
+          },
+          "_constructor": "documentAttributeSticker#3a556302"
+        },
+        {
+          "alt": "CwLq08AwmaS9Kv8VIk0Mom9W0M",
+          "stickerset": {
+            "shortName": "Z31ZqpAt7",
+            "_constructor": "inputStickerSetShortName#861cc8a0"
+          },
+          "_constructor": "documentAttributeSticker#3a556302"
+        },
+        {
+          "w": 0,
+          "h": 0,
+          "_constructor": "documentAttributeImageSize#6c37c15c"
+        },
+        {
+          "duration": 0,
+          "w": 0,
+          "h": 0,
+          "_constructor": "documentAttributeVideo#5910cccb"
+        }
+      ],
+      "_constructor": "document#f9a39f4f",
+      "id": 0
+    },
+    {
+      "_constructor": "documentEmpty#36f8c871",
+      "id": 0
+    },
+    {
+      "accessHash": 0,
+      "date": 0,
+      "mimeType": "ZZHqZ0",
+      "size": 0,
+      "thumb": {
+        "location": {
+          "dcId": 0,
+          "_constructor": "fileLocation#53d69076",
+          "volumeId": 0,
+          "localId": 0,
+          "secret": 0
+        },
+        "w": 0,
+        "h": 0,
+        "bytes": {
+          "data": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "offset": 0,
+          "len": 247
+        },
+        "_constructor": "photoCachedSize#e9a734fa",
+        "type": "eq30oeHmL"
+      },
+      "dcId": 0,
+      "attributes": [
+        {
+          "duration": 0,
+          "title": "WLjbWWNfhhwgQFkg9cXcm1Qa",
+          "performer": "WBD1Fe",
+          "_constructor": "documentAttributeAudio#ded218e0"
+        },
+        {
+          "duration": 0,
+          "w": 0,
+          "h": 0,
+          "_constructor": "documentAttributeVideo#5910cccb"
+        },
+        {
+          "w": 0,
+          "h": 0,
+          "_constructor": "documentAttributeImageSize#6c37c15c"
+        },
+        {
+          "duration": 0,
+          "w": 0,
+          "h": 0,
+          "_constructor": "documentAttributeVideo#5910cccb"
+        },
+        {
+          "duration": 0,
+          "w": 0,
+          "h": 0,
+          "_constructor": "documentAttributeVideo#5910cccb"
+        },
+        {
+          "duration": 0,
+          "w": 0,
+          "h": 0,
+          "_constructor": "documentAttributeVideo#5910cccb"
+        },
+        {
+          "alt": "4oDekRSqE551O1LO39fEzOmaU",
+          "stickerset": {
+            "id": 0,
+            "accessHash": 0,
+            "_constructor": "inputStickerSetID#9de7a269"
+          },
+          "_constructor": "documentAttributeSticker#3a556302"
+        },
+        {
+          "_constructor": "documentAttributeAnimated#11b58939"
+        },
+        {
+          "alt": "dtJx6YB1aeHZYdx7yCy8y6FkjCfS",
+          "stickerset": {
+            "id": 0,
+            "accessHash": 0,
+            "_constructor": "inputStickerSetID#9de7a269"
+          },
+          "_constructor": "documentAttributeSticker#3a556302"
+        }
+      ],
+      "_constructor": "document#f9a39f4f",
+      "id": 0
+    },
+    {
+      "_constructor": "documentEmpty#36f8c871",
+      "id": 0
+    }
+  ],
+  "_constructor": "messages.stickers#8a8ecd32"
+}

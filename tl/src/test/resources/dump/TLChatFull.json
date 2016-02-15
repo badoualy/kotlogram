@@ -1,0 +1,59 @@
+{
+  "participants": {
+    "flags": 1,
+    "selfParticipant": {
+      "_constructor": "chatParticipantCreator#da13538a",
+      "userId": 0
+    },
+    "_constructor": "chatParticipantsForbidden#fc900c2b",
+    "chatId": 0
+  },
+  "_constructor": "chatFull#2e02a614",
+  "id": 0,
+  "chatPhoto": {
+    "_constructor": "photoEmpty#2331b22d",
+    "id": 0
+  },
+  "notifySettings": {
+    "_constructor": "peerNotifySettingsEmpty#70a68512"
+  },
+  "exportedInvite": {
+    "link": "BXnkIp2X3NOGGeJk",
+    "_constructor": "chatInviteExported#fc2e05bc"
+  },
+  "botInfo": [
+    {
+      "_constructor": "botInfoEmpty#bb2e37ce"
+    },
+    {
+      "_constructor": "botInfoEmpty#bb2e37ce"
+    },
+    {
+      "userId": 0,
+      "version": 0,
+      "shareText": "jvu1m2teHtq",
+      "description": "ttGeP26gFWaYLO5HzIK",
+      "commands": [
+        {
+          "command": "mP8HRoQKPyr",
+          "description": "tjoixKSA81",
+          "_constructor": "botCommand#c27ac8c7"
+        },
+        {
+          "command": "GUDcc7VV5aTjKs6",
+          "description": "XSKhJ0Z811Xx3g9qxhVufQ0tPnk8X",
+          "_constructor": "botCommand#c27ac8c7"
+        },
+        {
+          "command": "Zwvo2BnKEPzWx4g5ybqJ66C2bkAgD",
+          "description": "7f46t1",
+          "_constructor": "botCommand#c27ac8c7"
+        }
+      ],
+      "_constructor": "botInfo#9cf585d"
+    },
+    {
+      "_constructor": "botInfoEmpty#bb2e37ce"
+    }
+  ]
+}

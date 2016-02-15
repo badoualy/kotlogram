@@ -1,0 +1,12 @@
+{
+  "geoPoint": {
+    "lat": 0.0,
+    "_long": 0.0,
+    "_constructor": "inputGeoPoint#f3b7acc9"
+  },
+  "title": "FHAgZCBs",
+  "address": "IVONvS1ppDQ7RqgLdXqwdpkgUb4rY",
+  "provider": "WoNbK0z4IOVaZDMhSaFK",
+  "venueId": "76fn54TO3r",
+  "_constructor": "inputMediaVenue#2827a81a"
+}

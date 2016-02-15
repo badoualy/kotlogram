@@ -1,0 +1,70 @@
+{
+  "flags": 2221,
+  "unread": true,
+  "out": false,
+  "mentioned": false,
+  "mediaUnread": true,
+  "id": 0,
+  "fromId": 0,
+  "chatId": 0,
+  "message": "dlFreosf",
+  "pts": 0,
+  "ptsCount": 0,
+  "date": 0,
+  "fwdFromId": {
+    "channelId": 0,
+    "_constructor": "peerChannel#bddde532"
+  },
+  "fwdDate": 0,
+  "viaBotId": 0,
+  "replyToMsgId": 0,
+  "entities": [
+    {
+      "_constructor": "messageEntityEmail#64e475c2",
+      "offset": 0,
+      "length": 0
+    },
+    {
+      "url": "9yFqvpPlYicSB05pn",
+      "_constructor": "messageEntityTextUrl#76a6d327",
+      "offset": 0,
+      "length": 0
+    },
+    {
+      "_constructor": "messageEntityMention#fa04579d",
+      "offset": 0,
+      "length": 0
+    },
+    {
+      "_constructor": "messageEntityItalic#826f8b60",
+      "offset": 0,
+      "length": 0
+    },
+    {
+      "_constructor": "messageEntityItalic#826f8b60",
+      "offset": 0,
+      "length": 0
+    },
+    {
+      "_constructor": "messageEntityCode#28a20571",
+      "offset": 0,
+      "length": 0
+    },
+    {
+      "_constructor": "messageEntityUrl#6ed02538",
+      "offset": 0,
+      "length": 0
+    },
+    {
+      "_constructor": "messageEntityUrl#6ed02538",
+      "offset": 0,
+      "length": 0
+    },
+    {
+      "_constructor": "messageEntityBold#bd610bc9",
+      "offset": 0,
+      "length": 0
+    }
+  ],
+  "_constructor": "updateShortChatMessage#248afa62"
+}

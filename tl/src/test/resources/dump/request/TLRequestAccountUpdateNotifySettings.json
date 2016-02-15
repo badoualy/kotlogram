@@ -1,0 +1,13 @@
+{
+  "peer": {
+    "_constructor": "inputNotifyAll#a429b886"
+  },
+  "settings": {
+    "muteUntil": 0,
+    "sound": "f60lUn",
+    "showPreviews": false,
+    "eventsMask": 0,
+    "_constructor": "inputPeerNotifySettings#46a2ce98"
+  },
+  "_constructor": "account.updateNotifySettings#84be5b93"
+}

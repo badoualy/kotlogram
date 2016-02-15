@@ -1,0 +1,20 @@
+{
+  "flags": 259,
+  "unread": true,
+  "out": true,
+  "mentioned": false,
+  "mediaUnread": false,
+  "fromId": 0,
+  "toId": {
+    "channelId": 0,
+    "_constructor": "peerChannel#bddde532"
+  },
+  "date": 0,
+  "action": {
+    "title": "Rv1hC3QXCwSQpTjR5dNdDaLjL0rUP",
+    "chatId": 0,
+    "_constructor": "messageActionChannelMigrateFrom#b055eaee"
+  },
+  "_constructor": "messageService#c06b9607",
+  "id": 0
+}

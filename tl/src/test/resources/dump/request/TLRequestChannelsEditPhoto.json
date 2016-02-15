@@ -1,0 +1,18 @@
+{
+  "channel": {
+    "_constructor": "inputChannelEmpty#ee8c1e86"
+  },
+  "photo": {
+    "file": {
+      "_constructor": "inputFileBig#fa4f0bb5",
+      "id": 0,
+      "parts": 0,
+      "name": "m8uY3PDizW"
+    },
+    "crop": {
+      "_constructor": "inputPhotoCropAuto#ade6b004"
+    },
+    "_constructor": "inputChatUploadedPhoto#94254732"
+  },
+  "_constructor": "channels.editPhoto#f12e57c9"
+}

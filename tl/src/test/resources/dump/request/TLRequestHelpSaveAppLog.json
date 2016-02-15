@@ -1,0 +1,40 @@
+{
+  "events": [
+    {
+      "time": 0.0,
+      "type": "hOGqtPscAI",
+      "peer": 0,
+      "data": "htl741SMNsC6b5T",
+      "_constructor": "inputAppEvent#770656a8"
+    },
+    {
+      "time": 0.0,
+      "type": "mcfRnIRgfwCtC6aOVUqGWHNugRj5",
+      "peer": 0,
+      "data": "ypId5s2unE6lFb8",
+      "_constructor": "inputAppEvent#770656a8"
+    },
+    {
+      "time": 0.0,
+      "type": "bGoqvalDnfbEFRt9",
+      "peer": 0,
+      "data": "qYY2XpNjvzmbt2XObs",
+      "_constructor": "inputAppEvent#770656a8"
+    },
+    {
+      "time": 0.0,
+      "type": "2zTY4y9CC4MPCKzSNW",
+      "peer": 0,
+      "data": "JaTmSfwomhcbRWPxWo6Xyn3V",
+      "_constructor": "inputAppEvent#770656a8"
+    },
+    {
+      "time": 0.0,
+      "type": "tW7czBs",
+      "peer": 0,
+      "data": "DEixManE89m7E1TSZLtIOq0mbFeob",
+      "_constructor": "inputAppEvent#770656a8"
+    }
+  ],
+  "_constructor": "help.saveAppLog#6f02f748"
+}

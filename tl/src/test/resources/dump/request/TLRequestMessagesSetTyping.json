@@ -1,0 +1,11 @@
+{
+  "peer": {
+    "userId": 0,
+    "accessHash": 0,
+    "_constructor": "inputPeerUser#7b8e7de6"
+  },
+  "action": {
+    "_constructor": "sendMessageRecordAudioAction#d52f73f7"
+  },
+  "_constructor": "messages.setTyping#a3825e50"
+}

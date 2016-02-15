@@ -1,0 +1,11 @@
+{
+  "channelId": 0,
+  "group": {
+    "minId": 0,
+    "maxId": 0,
+    "count": 0,
+    "date": 0,
+    "_constructor": "messageGroup#e8346f53"
+  },
+  "_constructor": "updateChannelGroup#c36c1e3c"
+}

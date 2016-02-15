@@ -1,0 +1,10 @@
+{
+  "location": {
+    "id": 0,
+    "accessHash": 0,
+    "_constructor": "inputAudioFileLocation#74dc404d"
+  },
+  "offset": 0,
+  "limit": 0,
+  "_constructor": "upload.getFile#e3a6cfb5"
+}
