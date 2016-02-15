@@ -1,5 +1,5 @@
 ![Kotlogram](http://s28.postimg.org/u3sc3e24t/logo.png)
-[![Release](https://jitpack.io/v/badoualy/kotlogram.svg)](https://jitpack.io/#badoualy/kotlogram)
+[![Release](https://jitpack.io/v/badoualy/kotlogram.svg)](https://jitpack.io/#badoualy/kotlogram) [![Build Status](https://travis-ci.org/badoualy/kotlogram.svg?branch=master)](https://travis-ci.org/badoualy/kotlogram)
 ===========
 > **Easy to use** and **straightforward** Kotlin (and Java) binding of [Telegram API](https://core.telegram.org/api).
 > The project is coded in **Kotlin**, with some classes (mostly generated and legacy classes) in Java
