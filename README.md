@@ -15,10 +15,6 @@ Main tasks left:
 - Implement [Perfect Forward Secrecy](https://core.telegram.org/api/pfs).
 - Improve error handling for the requests, and the exceptions in the mtproto module.
 
-Known Bugs
-----------------
-- createChannel method always seems to fail, the issue is either with the tl-schema (got it from official web app) or with Telegram blocking this feature for non-official apps
-
 Usage
 ----------------
 #### Dependency
