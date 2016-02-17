@@ -5,7 +5,7 @@ internal object TimeOverlord {
 
     var timeDelta: Long = 0
         private set
-    val localTime: Long
+    val localTime: Long // ms
         get() = System.currentTimeMillis()
     val serverTime: Long
         get() = localTime + timeDelta
@@ -14,5 +14,11 @@ internal object TimeOverlord {
         timeDelta = serverTime - localTime
     }
 
+    // Reverse operation, shift right then multiply by 1000
+    fun synchronizeTime(messageId: Long){
+        setServerTime((messageId ushr 32) * 1000)
+    }
+
+    // Take time in seconds and shift left
     fun generateMessageId() = (serverTime / 1000) shl 32
 }

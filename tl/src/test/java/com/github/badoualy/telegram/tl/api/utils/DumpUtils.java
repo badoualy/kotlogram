@@ -18,11 +18,15 @@ import java.util.Collection;
 
 public class DumpUtils {
 
-    private static String dumpDir = "./src/test/resources/dump/";
+    public static final String dumpDir = "./src/test/resources/dump/";
     private static Gson gson = new GsonBuilder().setPrettyPrinting().serializeNulls().create();
 
     public static Collection<File> loadAll() {
-        return FileUtils.listFiles(new File(dumpDir), new String[]{"dump"}, true);
+        return loadAll(dumpDir);
+    }
+
+    public static Collection<File> loadAll(String path) {
+        return FileUtils.listFiles(new File(path), new String[]{"dump"}, true);
     }
 
     public static byte[] load(File file) throws IOException, DecoderException {
@@ -36,7 +40,6 @@ public class DumpUtils {
     }
 
     public static <T extends TLObject> void dump(T object, byte[] serialized) {
-
         try {
             String path = getFilePath(object.getClass());
             FileUtils.writeStringToFile(new File(dumpDir + path + ".json"), toJson(object), Charset.forName("UTF-8"));
