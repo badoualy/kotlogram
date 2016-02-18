@@ -317,11 +317,12 @@ class MTProtoHandler {
     }
 
     private fun onMessageReceived(bytes: ByteArray) {
+        var message: MTMessage = MTMessage()
         try {
             if (bytes.size == 4)
                 throw RpcErrorException(MTRpcError(StreamUtils.readInt(bytes)))
 
-            val message = MTProtoMessageEncryption.decrypt(authKey!!, sessionId!!, bytes)
+            message = MTProtoMessageEncryption.decrypt(authKey!!, sessionId!!, bytes)
             Log.d(TAG, "Received msg ${message.messageId} with seqNo ${message.seqNo}")
 
             // Check if is a container
@@ -339,6 +340,8 @@ class MTProtoHandler {
                 else -> handleMessage(message)
             }
         } catch (e: IOException) {
+            Log.e(TAG, "Dump");
+            Log.e(TAG, StreamUtils.toHexString(message.payload))
             if (subscriberMap.size == 1) {
                 // We only have 1 method executing, it means that this is the one that failed
                 subscriberMap[subscriberMap.keys.first()]?.onError(e)

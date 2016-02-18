@@ -50,6 +50,7 @@ internal class MTProtoTcpConnection
         if (length == 0x7f)
             length = readInt24(readBytes(3, msgLengthBuffer))
 
+        Log.d(TAG, "About to read a message of length " + (length * 4))
         val buffer = readBytes(length * 4)
 
         // TODO: fix to return bytebuffer

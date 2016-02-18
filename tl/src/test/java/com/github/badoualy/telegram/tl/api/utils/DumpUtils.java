@@ -1,5 +1,6 @@
 package com.github.badoualy.telegram.tl.api.utils;
 
+import com.github.badoualy.telegram.tl.StreamUtils;
 import com.github.badoualy.telegram.tl.api.AbsTLApiTest;
 import com.github.badoualy.telegram.tl.core.TLObject;
 import com.google.gson.Gson;
@@ -43,7 +44,7 @@ public class DumpUtils {
         try {
             String path = getFilePath(object.getClass());
             FileUtils.writeStringToFile(new File(dumpDir + path + ".json"), toJson(object), Charset.forName("UTF-8"));
-            FileUtils.writeStringToFile(new File(dumpDir + path + ".dump"), bytesToHex(serialized), Charset.forName("UTF-8"));
+            FileUtils.writeStringToFile(new File(dumpDir + path + ".dump"), StreamUtils.toHexString(serialized), Charset.forName("UTF-8"));
             HexDump.dump(serialized, 0, new FileOutputStream(dumpDir + path + ".dump2"), 0); // More friendly dump
         } catch (IOException e) {
             e.printStackTrace();
@@ -61,18 +62,6 @@ public class DumpUtils {
         if (!folder.isEmpty())
             fileName = folder + File.separatorChar + fileName;
         return fileName;
-    }
-
-    private static final char[] hexArray = "0123456789ABCDEF".toCharArray();
-
-    private static String bytesToHex(byte[] bytes) {
-        char[] hexChars = new char[bytes.length * 2];
-        for (int j = 0; j < bytes.length; j++) {
-            int v = bytes[j] & 0xFF;
-            hexChars[j * 2] = hexArray[v >>> 4];
-            hexChars[j * 2 + 1] = hexArray[v & 0x0F];
-        }
-        return new String(hexChars);
     }
 
 }
