@@ -222,7 +222,9 @@ public final class StreamUtils {
 
     @SuppressWarnings("ResultOfMethodCallIgnored")
     public static void skipBytes(int count, InputStream stream) throws IOException {
-        stream.skip(count);
+        // Skipping with skip() on a gzip stream is buggy when reached end of stream
+        // stream.skip(count);
+        readBytes(count, stream);
     }
 
     public static void readBytes(byte[] buffer, int offset, int count, InputStream stream) throws IOException {
