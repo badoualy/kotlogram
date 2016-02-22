@@ -104,7 +104,7 @@ object AuthKeyCreation {
      */
     @Throws(IOException::class)
     private fun <T : TLObject> executeMethod(method: TLMethod<T>): T {
-        val requestMessageId = TimeOverlord.generateMessageId()
+        val requestMessageId = TimeOverlord.generateMessageId(connection!!.dataCenter)
         val data = method.serialize()
 
         // @see https://core.telegram.org/mtproto/description#unencrypted-message
@@ -168,7 +168,7 @@ object AuthKeyCreation {
             throw SecurityException()
         }
 
-        TimeOverlord.setServerTime(dhInner.serverTime * 1000L)
+        TimeOverlord.setServerTime(connection!!.dataCenter, dhInner.serverTime * 1000L)
 
         for (i in 0..AUTH_RETRY_COUNT - 1) {
             val b = loadBigInt(RandomUtils.randomByteArray(256))
@@ -271,7 +271,7 @@ object AuthKeyCreation {
         val authKey = if (!tmpKey)
             AuthKey(keySaltPair.first)
         else
-            TempAuthKey(keySaltPair.first, TimeOverlord.serverTime.toInt() + tmpKeyExpireDelay)
+            TempAuthKey(keySaltPair.first, TimeOverlord.getServerTime(connection!!.dataCenter).toInt() + tmpKeyExpireDelay)
         return AuthResult(authKey, keySaltPair.second, connection!!)
     }
 }

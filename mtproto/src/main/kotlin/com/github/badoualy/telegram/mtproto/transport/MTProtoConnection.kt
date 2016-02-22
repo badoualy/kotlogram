@@ -1,5 +1,6 @@
 package com.github.badoualy.telegram.mtproto.transport
 
+import com.github.badoualy.telegram.mtproto.DataCenter
 import java.io.IOException
 import java.nio.channels.SelectableChannel
 import java.nio.channels.SelectionKey
@@ -7,9 +8,12 @@ import java.nio.channels.Selector
 
 interface MTProtoConnection {
 
+    val ip: String
+
     val port: Int
 
-    val ip: String
+    val dataCenter: DataCenter
+        get() = DataCenter(ip, port)
 
     @Throws(IOException::class)
     fun readMessage(): ByteArray

@@ -4,7 +4,6 @@ package com.github.badoualy.telegram.mtproto.auth
 import com.github.badoualy.telegram.mtproto.MTProtoHandler
 import com.github.badoualy.telegram.mtproto.secure.MTProtoMessageEncryption
 import com.github.badoualy.telegram.mtproto.secure.RandomUtils
-import com.github.badoualy.telegram.mtproto.time.TimeOverlord
 import com.github.badoualy.telegram.mtproto.tl.MTMessage
 import com.github.badoualy.telegram.mtproto.tl.auth.BindAuthKeyInner
 import com.github.badoualy.telegram.mtproto.util.Log
@@ -51,7 +50,7 @@ object TempAuthKeyBinding {
         val randomPart2 = RandomUtils.randomLong() // replace salt
 
         // Build inner message
-        val msgId = TimeOverlord.generateMessageId()
+        val msgId = 0L //TimeOverlord.generateMessageId()
         val mtBindingMessage = MTMessage(msgId, 0, bindingMessage.serialize())
         val encryptedMessage = MTProtoMessageEncryption.encrypt(authKey, randomPart1, randomPart2, mtBindingMessage)
 

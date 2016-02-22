@@ -14,8 +14,8 @@ object TelegramClientPool {
 
     private val DEFAULT_EXPIRATION_DELAY = 5L * 60L * 1000L // 5 minutes
 
-    private val map = HashMap<Int, TelegramClient>()
-    private val expireMap = HashMap<Int, Long>()
+    private val map = HashMap<Long, TelegramClient>()
+    private val expireMap = HashMap<Long, Long>()
 
     private val timer = Timer()
 
@@ -27,7 +27,7 @@ object TelegramClientPool {
      * @param expiresIn time before expiration (in ms)
      */
     @JvmOverloads @JvmStatic
-    fun put(id: Int, client: TelegramClient, expiresIn: Long = DEFAULT_EXPIRATION_DELAY) {
+    fun put(id: Long, client: TelegramClient, expiresIn: Long = DEFAULT_EXPIRATION_DELAY) {
         Log.d(TAG, "Adding client with id $id")
         synchronized(this) {
             // Already have a client with this id, close the new one and reset timer
@@ -49,7 +49,7 @@ object TelegramClientPool {
      * @return cached client, or null if no client cached for the given id
      */
     @JvmStatic
-    fun getAndRemove(id: Int): TelegramClient? {
+    fun getAndRemove(id: Long): TelegramClient? {
         synchronized(this) {
             expireMap.remove(id)
             return map.remove(id)
@@ -63,7 +63,7 @@ object TelegramClientPool {
     }
 
     @JvmStatic
-    fun onTimeout(id: Int) {
+    fun onTimeout(id: Long) {
         synchronized(this) {
             if (expireMap.getOrDefault(id, 0) <= System.currentTimeMillis()) {
                 Log.d(TAG, "$id client timeout")

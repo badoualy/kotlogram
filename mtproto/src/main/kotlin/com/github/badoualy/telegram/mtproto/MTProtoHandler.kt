@@ -312,7 +312,7 @@ class MTProtoHandler {
     private fun generateSeqNo(message: TLObject) = generateSeqNo(message.javaClass)
 
     private fun generateMessageId(): Long {
-        lastMessageId = Math.max(TimeOverlord.generateMessageId(), lastMessageId + 4)
+        lastMessageId = Math.max(TimeOverlord.generateMessageId(connection!!.dataCenter), lastMessageId + 4)
         return lastMessageId
     }
 
@@ -429,7 +429,7 @@ class MTProtoHandler {
         when (badMessage.errorCode) {
             MTBadMessage.ERROR_MSG_ID_TOO_LOW, MTBadMessage.ERROR_MSG_ID_TOO_HIGH -> {
                 lastMessageId = 0
-                TimeOverlord.synchronizeTime(container.messageId)
+                TimeOverlord.synchronizeTime(connection!!.dataCenter, container.messageId)
 
                 // Resend message with good salt
                 val sentMessage = sentMessageList.filter { it.messageId == badMessage.badMsgId }.firstOrNull()
