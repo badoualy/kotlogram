@@ -3,7 +3,7 @@
 # Files containing secret/personnal values
 Main.java
 auth*.key
-C.java
+src/test/java/com/github/badoualy/telegram/C.java
 *.save
 *.jpg
 Sample*.java

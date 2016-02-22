@@ -1,5 +1,7 @@
 package com.github.badoualy.telegram.mtproto.time
 
+import com.github.badoualy.telegram.mtproto.util.Log
+
 
 internal object TimeOverlord {
 
@@ -12,6 +14,7 @@ internal object TimeOverlord {
 
     fun setServerTime(serverTime: Long) {
         timeDelta = serverTime - localTime
+        Log.e("TimeOverlord", "New time delta is $timeDelta")
     }
 
     // Reverse operation, shift right then multiply by 1000

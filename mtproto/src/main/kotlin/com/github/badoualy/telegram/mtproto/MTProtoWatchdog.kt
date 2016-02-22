@@ -95,8 +95,10 @@ internal object MTProtoWatchdog : Runnable {
             subscriber.onNext(message)
         } catch (e: IOException) {
             // Silent fail if no subscriber
-            if (!subscriber.isUnsubscribed)
+            if (!subscriber.isUnsubscribed) {
+                Log.e(TAG, "Sending exception to subscriber")
                 subscriber.onError(e)
+            }
         }
     }
 

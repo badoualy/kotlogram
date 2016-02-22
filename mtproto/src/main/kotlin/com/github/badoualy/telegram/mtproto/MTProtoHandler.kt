@@ -427,13 +427,18 @@ class MTProtoHandler {
         Log.e(TAG, badMessage.toPrettyString())
 
         when (badMessage.errorCode) {
-            MTBadMessage.ERROR_MSG_ID_TOO_LOW -> {
+            MTBadMessage.ERROR_MSG_ID_TOO_LOW, MTBadMessage.ERROR_MSG_ID_TOO_HIGH -> {
                 lastMessageId = 0
                 TimeOverlord.synchronizeTime(container.messageId)
-            }
-            MTBadMessage.ERROR_MSG_ID_TOO_HIGH -> {
-                lastMessageId = 0
-                TimeOverlord.synchronizeTime(container.messageId)
+
+                // Resend message with good salt
+                val sentMessage = sentMessageList.filter { it.messageId == badMessage.badMsgId }.firstOrNull()
+                if (sentMessage != null) {
+                    Log.d(TAG, "Re-sending message ${badMessage.badMsgId} with new msgId")
+                    sendMessage(sentMessage)
+                } else {
+                    Log.e(TAG, "Couldn't find sentMessage in history with msgId ${badMessage.badMsgId}, can't re-send with good msgid")
+                }
             }
             MTBadMessage.ERROR_MSG_ID_MODULO -> {
 
