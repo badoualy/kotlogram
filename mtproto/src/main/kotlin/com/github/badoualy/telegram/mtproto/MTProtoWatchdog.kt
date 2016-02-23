@@ -119,7 +119,8 @@ internal object MTProtoWatchdog : Runnable {
     fun stop(connection: MTProtoConnection) {
         synchronized(this) {
             connectionList.remove(connection)
-            subscriberMap.remove(connection)?.onCompleted()
+            val subscriber = subscriberMap.remove(connection)
+            subscriber?.unsubscribe()
             val key = connection.unregister()
             if (key != null) keyMap.remove(key)
         }

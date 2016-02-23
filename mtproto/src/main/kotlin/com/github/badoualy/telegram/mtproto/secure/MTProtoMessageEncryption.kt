@@ -9,6 +9,7 @@ import com.github.badoualy.telegram.tl.StreamUtils.*
 import java.io.ByteArrayInputStream
 import java.io.ByteArrayOutputStream
 import java.io.IOException
+import java.math.BigInteger
 import java.security.MessageDigest
 import java.security.NoSuchAlgorithmException
 import java.util.*
@@ -138,10 +139,10 @@ class MTProtoMessageEncryption {
             val paddingSize = encryptedDataLength - 32 - msgLength // serverSalt(8) + sessionId(8) + messageId(8) + seqNo(4) + msgLen(4)
 
             // Security checks
-            if (msgId % 2 == 0L) throw SecurityException("Message id of messages sent be the server must be odd, found " + msgId)
-            if (msgLength % 4 != 0) throw SecurityException("Message length must be a multiple of 4, found " + msgLength)
-            if (paddingSize > 15 || paddingSize < 0) throw SecurityException("Padding must be between 0 and 15 included, found " + paddingSize)
-            if (!Arrays.equals(session, sessionId)) throw SecurityException("The message was not intended for this session")
+            if (msgId % 2 == 0L) throw SecurityException("Message id of messages sent be the server must be odd, found $msgId")
+            if (msgLength % 4 != 0) throw SecurityException("Message length must be a multiple of 4, found $msgLength")
+            if (paddingSize > 15 || paddingSize < 0) throw SecurityException("Padding must be between 0 and 15 included, found $paddingSize")
+            if (!Arrays.equals(session, sessionId)) throw SecurityException("The message was not intended for this session, expected ${BigInteger(sessionId).toLong()}, found ${BigInteger(session).toLong()}")
 
             // Read message
             val message = ByteArray(msgLength)
