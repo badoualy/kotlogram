@@ -24,6 +24,7 @@ import rx.schedulers.Schedulers
 import java.io.IOException
 import java.math.BigInteger
 import java.util.*
+import java.util.concurrent.Executors
 import java.util.concurrent.TimeUnit
 
 class MTProtoHandler {
@@ -386,7 +387,7 @@ class MTProtoHandler {
                 throw IllegalStateException("RpcError handled in handleMessage()")
                 // This should never happen, it should always be contained in MTRpcResult
             }
-            is TLAbsUpdates -> Observable.just(messageContent).observeOn(Schedulers.computation()).subscribe { apiCallback?.onUpdates(it) }
+            is TLAbsUpdates -> updatePool.execute { apiCallback?.onUpdates(messageContent) }
             is MTNewSessionCreated -> {
                 //salt = message.serverSalt
                 sendMessageAck(message.messageId)
@@ -497,6 +498,10 @@ class MTProtoHandler {
     }
 
     companion object {
+
+        /** Thread pool to forward update callback */
+        val updatePool = Executors.newFixedThreadPool(8)
+
         /** Cleanup all the threads and common resources associated to this instance */
         @JvmStatic
         fun cleanUp() {
