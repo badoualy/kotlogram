@@ -17,6 +17,7 @@ import com.github.badoualy.telegram.tl.api.request.TLRequestInvokeWithLayer
 import com.github.badoualy.telegram.tl.core.TLMethod
 import com.github.badoualy.telegram.tl.core.TLObject
 import java.io.IOException
+import java.math.BigInteger
 import java.util.concurrent.TimeoutException
 
 internal class DefaultTelegramClient internal constructor(val application: TelegramApp, val apiStorage: TelegramApiStorage,
@@ -50,6 +51,7 @@ internal class DefaultTelegramClient internal constructor(val application: Teleg
 
         // No need to check DC if we have an authKey in storage
         init(checkNearestDc = generateAuthKey)
+        Log.d(TAG, "Client ready with MTProto#${BigInteger(mtProtoHandler!!.sessionId).toLong()}")
     }
 
     private fun init(checkNearestDc: Boolean = true) {
@@ -209,10 +211,10 @@ internal class DefaultTelegramClient internal constructor(val application: Teleg
             is TLUpdates -> update.updates.forEach { u -> handleUpdate(u, update) } // Multiple messages
             is TLUpdatesCombined -> update.updates.forEach { u -> handleUpdate(u, update) }
             is TLUpdateShort -> handleUpdate(update.update, update)
-            is TLUpdateShortChatMessage -> updateCallback?.onShortChatMessage(update) // group new message
-            is TLUpdateShortMessage -> updateCallback?.onShortMessage(update) // 1v1 new message
-            is TLUpdateShortSentMessage -> updateCallback?.onShortSentMessage(update)
-            is TLUpdatesTooLong -> updateCallback?.onUpdateTooLong() // Warn that the client should refresh manually
+            is TLUpdateShortChatMessage -> updateCallback?.onShortChatMessage(this, update) // group new message
+            is TLUpdateShortMessage -> updateCallback?.onShortMessage(this, update) // 1v1 new message
+            is TLUpdateShortSentMessage -> updateCallback?.onShortSentMessage(this, update)
+            is TLUpdatesTooLong -> updateCallback?.onUpdateTooLong(this) // Warn that the client should refresh manually
         }
     }
 
@@ -243,9 +245,9 @@ internal class DefaultTelegramClient internal constructor(val application: Teleg
         is TLUpdateEncryption -> Unit
         is TLUpdateMessageID -> Unit
         is TLUpdateNewAuthorization -> Unit
-        is TLUpdateNewChannelMessage -> updateCallback?.onNewChannelMessage(update, container) // Message in channel
-        is TLUpdateNewEncryptedMessage -> updateCallback?.onNewEncryptedMessage(update, container)
-        is TLUpdateNewMessage -> updateCallback?.onNewMessage(update, container) // Multiple message at once
+        is TLUpdateNewChannelMessage -> updateCallback?.onNewChannelMessage(this, update, container) // Message in channel
+        is TLUpdateNewEncryptedMessage -> updateCallback?.onNewEncryptedMessage(this, update, container)
+        is TLUpdateNewMessage -> updateCallback?.onNewMessage(this, update, container) // Multiple message at once
         is TLUpdateNewStickerSet -> Unit
         is TLUpdateNotifySettings -> Unit
         is TLUpdatePrivacy -> Unit

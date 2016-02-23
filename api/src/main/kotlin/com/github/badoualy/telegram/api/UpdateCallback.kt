@@ -4,17 +4,17 @@ import com.github.badoualy.telegram.tl.api.*
 
 interface UpdateCallback {
 
-    fun onShortMessage(message: TLUpdateShortMessage)
+    fun onShortMessage(client: TelegramClient, message: TLUpdateShortMessage)
 
-    fun onShortChatMessage(message: TLUpdateShortChatMessage)
+    fun onShortChatMessage(client: TelegramClient, message: TLUpdateShortChatMessage)
 
-    fun onShortSentMessage(message: TLUpdateShortSentMessage)
+    fun onShortSentMessage(client: TelegramClient, message: TLUpdateShortSentMessage)
 
-    fun onUpdateTooLong()
+    fun onUpdateTooLong(client: TelegramClient)
 
-    fun onNewMessage(message: TLUpdateNewMessage, container: TLAbsUpdates)
+    fun onNewMessage(client: TelegramClient, message: TLUpdateNewMessage, container: TLAbsUpdates)
 
-    fun onNewEncryptedMessage(message: TLUpdateNewEncryptedMessage, container: TLAbsUpdates)
+    fun onNewEncryptedMessage(client: TelegramClient, message: TLUpdateNewEncryptedMessage, container: TLAbsUpdates)
 
-    fun onNewChannelMessage(message: TLUpdateNewChannelMessage, container: TLAbsUpdates)
+    fun onNewChannelMessage(client: TelegramClient, message: TLUpdateNewChannelMessage, container: TLAbsUpdates)
 }
