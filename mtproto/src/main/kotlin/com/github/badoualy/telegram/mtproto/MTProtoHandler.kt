@@ -434,7 +434,8 @@ class MTProtoHandler {
                 // Resend message with good salt
                 val sentMessage = sentMessageList.filter { it.messageId == badMessage.badMsgId }.firstOrNull()
                 if (sentMessage != null) {
-                    Log.d(TAG, "Re-sending message ${badMessage.badMsgId} with new msgId")
+                    sentMessage.messageId = generateMessageId()
+                    Log.d(TAG, "Re-sending message ${badMessage.badMsgId} with new msgId ${sentMessage.messageId}")
                     sendMessage(sentMessage)
                 } else {
                     Log.e(TAG, "Couldn't find sentMessage in history with msgId ${badMessage.badMsgId}, can't re-send with good msgid")
