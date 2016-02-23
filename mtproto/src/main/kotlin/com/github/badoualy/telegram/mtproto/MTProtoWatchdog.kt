@@ -91,7 +91,7 @@ internal object MTProtoWatchdog : Runnable {
 
         try {
             val message = connection.readMessage()
-            Log.d(TAG, "New message of length: " + message.size)
+            Log.d(TAG, "New message of length: ${message.size}")
             subscriber.onNext(message)
         } catch (e: IOException) {
             // Silent fail if no subscriber

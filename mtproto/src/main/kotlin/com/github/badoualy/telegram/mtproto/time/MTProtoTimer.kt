@@ -1,4 +1,4 @@
-package com.github.badoualy.telegram.mtproto.thread
+package com.github.badoualy.telegram.mtproto.time
 
 import java.util.*
 import kotlin.concurrent.schedule

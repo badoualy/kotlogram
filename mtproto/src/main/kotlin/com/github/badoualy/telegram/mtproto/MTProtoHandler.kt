@@ -5,7 +5,7 @@ import com.github.badoualy.telegram.mtproto.auth.AuthResult
 import com.github.badoualy.telegram.mtproto.exception.RpcErrorException
 import com.github.badoualy.telegram.mtproto.secure.MTProtoMessageEncryption
 import com.github.badoualy.telegram.mtproto.secure.RandomUtils
-import com.github.badoualy.telegram.mtproto.thread.MTProtoTimer
+import com.github.badoualy.telegram.mtproto.time.MTProtoTimer
 import com.github.badoualy.telegram.mtproto.time.TimeOverlord
 import com.github.badoualy.telegram.mtproto.tl.*
 import com.github.badoualy.telegram.mtproto.transport.MTProtoConnection
@@ -386,7 +386,7 @@ class MTProtoHandler {
                 throw IllegalStateException("RpcError handled in handleMessage()")
                 // This should never happen, it should always be contained in MTRpcResult
             }
-            is TLAbsUpdates -> apiCallback?.onUpdates(messageContent)
+            is TLAbsUpdates -> Observable.just(messageContent).observeOn(Schedulers.computation()).subscribe { apiCallback?.onUpdates(it) }
             is MTNewSessionCreated -> {
                 //salt = message.serverSalt
                 sendMessageAck(message.messageId)
