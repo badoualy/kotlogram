@@ -438,7 +438,11 @@ class MTProtoHandler {
                 // Resend message with good salt
                 val sentMessage = sentMessageList.filter { it.messageId == badMessage.badMsgId }.firstOrNull()
                 if (sentMessage != null) {
+                    // Update map and generate new msgId
+                    val subscriber = subscriberMap.remove(sentMessage.messageId)
                     sentMessage.messageId = generateMessageId()
+                    subscriberMap.put(sentMessage.messageId, subscriber)
+
                     Log.d(TAG, "Re-sending message ${badMessage.badMsgId} with new msgId ${sentMessage.messageId}")
                     sendMessage(sentMessage)
                 } else {
