@@ -7,7 +7,7 @@ import com.github.badoualy.telegram.tl.api.TLUpdates
 
 interface UpdateCallback {
 
-    fun onUpdates(client: TelegramClient, message: TLUpdates)
+    fun onUpdates(client: TelegramClient, updates: TLUpdates)
 
     fun onShortMessage(client: TelegramClient, message: TLUpdateShortMessage)
 
