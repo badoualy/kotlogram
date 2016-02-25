@@ -217,9 +217,9 @@ internal class DefaultTelegramClient internal constructor(val application: Teleg
 
     override fun onUpdates(update: TLAbsUpdates) {
         when (update) {
-            is TLUpdates -> update.updates.forEach { u -> handleUpdate(u, update) } // Multiple messages
-            is TLUpdatesCombined -> update.updates.forEach { u -> handleUpdate(u, update) }
-            is TLUpdateShort -> handleUpdate(update.update, update)
+            is TLUpdates -> updateCallback?.onUpdates(this, update) // Multiple messages
+            //is TLUpdatesCombined -> update.updates.forEach { u -> handleUpdate(u, update) }
+            //is TLUpdateShort -> handleUpdate(update.update, update)
             is TLUpdateShortChatMessage -> updateCallback?.onShortChatMessage(this, update) // group new message
             is TLUpdateShortMessage -> updateCallback?.onShortMessage(this, update) // 1v1 new message
             is TLUpdateShortSentMessage -> updateCallback?.onShortSentMessage(this, update)
@@ -227,7 +227,7 @@ internal class DefaultTelegramClient internal constructor(val application: Teleg
         }
     }
 
-    fun handleUpdate(update: TLAbsUpdate, container: TLAbsUpdates) = when (update) {
+    /*fun handleUpdate(update: TLAbsUpdate, container: TLAbsUpdates) = when (update) {
         is TLUpdateBotInlineQuery -> Unit
         is TLUpdateBotInlineSend -> Unit
 
@@ -276,7 +276,7 @@ internal class DefaultTelegramClient internal constructor(val application: Teleg
         is TLUpdateUserTyping -> Unit
         is TLUpdateWebPage -> Unit
         else -> Unit
-    }
+    }*/
 
     override fun onSalt(salt: Long) = apiStorage.saveServerSalt(salt)
 }
