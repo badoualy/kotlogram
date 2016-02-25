@@ -217,6 +217,9 @@ class MTProtoHandler {
 
     /** If buffer timed out, check that the relevant buffer wasn't already flushed, and if not, flush it */
     private fun onBufferTimeout(id: Int) {
+        if (!(connection?.isOpen() ?: false))
+            return
+
         var list: ArrayList<Long>? = null
 
         synchronized(messageToAckList) {
