@@ -22,6 +22,9 @@ interface TelegramClient : TelegramApi {
     @Throws(RpcErrorException::class, IOException::class)
     fun <T : TLObject> executeRpcQuery(method: TLMethod<T>): T
 
+    @Throws(RpcErrorException::class, IOException::class)
+    fun <T : TLObject> executeRpcQuery(method: TLMethod<T>, dcId: Int): T
+
     /** Convenience method wrapping the argument with TelegramApp values */
     @Throws(RpcErrorException::class, IOException::class)
     fun authSendCode(phoneNumber: String, smsType: Int): TLAbsSentCode

@@ -41,6 +41,10 @@ fun TLAbsMessage.getStickerAlt() = when (isSticker()) {
     false -> null
 }
 
+fun TLAbsMessage.getSticker(): TLDocument? {
+    if (!isSticker()) return null
+    return ((this as TLMessage).media as TLMessageMediaDocument).document.asDocument
+}
 
 
 /////////////// TLAbsPeer

@@ -125,6 +125,15 @@ internal class DefaultTelegramClient internal constructor(val application: Teleg
 
     override fun <T : TLObject> executeRpcQuery(method: TLMethod<T>) = executeRpcQuery(method, mtProtoHandler!!)
 
+    override fun <T : TLObject> executeRpcQuery(method: TLMethod<T>, dcId: Int): T {
+        val migratedHandler = getExportedMTProtoHandler(dcId)
+        try {
+            return executeRpcQuery(method, migratedHandler)
+        } finally {
+            migratedHandler.close()
+        }
+    }
+
     @Throws(IOException::class)
     private fun <T : TLObject> executeRpcQuery(method: TLMethod<T>, mtProtoHandler: MTProtoHandler, attemptCount: Int = 0): T {
         // BlockingObservable.first() will throw a RuntimeException if onError() is called by observable
@@ -143,12 +152,9 @@ internal class DefaultTelegramClient internal constructor(val application: Teleg
                         } else if (error.message.startsWith("FILE_MIGRATE_")) {
                             val migratedHandler = getExportedMTProtoHandler(error.message.removePrefix("FILE_MIGRATE_").toInt())
                             try {
-                                val result = executeRpcQuery(method, migratedHandler)
+                                return executeRpcQuery(method, migratedHandler)
+                            } finally {
                                 migratedHandler.close()
-                                return result
-                            } catch (e: RuntimeException) {
-                                migratedHandler.close()
-                                throw e
                             }
                         }
                     }

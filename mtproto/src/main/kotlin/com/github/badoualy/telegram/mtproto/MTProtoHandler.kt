@@ -87,7 +87,11 @@ class MTProtoHandler {
     fun startWatchdog() {
         MTProtoWatchdog.start(connection!!)
                 .observeOn(Schedulers.computation())
-                .doOnError { t -> t.printStackTrace() } // TODO: handle
+                .doOnError {
+                    // TODO: handle
+                    Log.e(TAG, "FIX ME PLEASE")
+                    it.printStackTrace()
+                }
                 .doOnNext { onMessageReceived(it) }
                 .subscribe()
     }
