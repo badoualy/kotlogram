@@ -126,6 +126,9 @@ internal class DefaultTelegramClient internal constructor(val application: Teleg
     override fun <T : TLObject> executeRpcQuery(method: TLMethod<T>) = executeRpcQuery(method, mtProtoHandler!!)
 
     override fun <T : TLObject> executeRpcQuery(method: TLMethod<T>, dcId: Int): T {
+        if (Kotlogram.getDcById(dcId).equals(dataCenter))
+            return executeRpcQuery(method)
+
         val migratedHandler = getExportedMTProtoHandler(dcId)
         try {
             return executeRpcQuery(method, migratedHandler)
