@@ -3,6 +3,7 @@ package com.github.badoualy.telegram.api
 import com.github.badoualy.telegram.mtproto.exception.RpcErrorException
 import com.github.badoualy.telegram.tl.api.*
 import com.github.badoualy.telegram.tl.api.auth.TLAbsSentCode
+import com.github.badoualy.telegram.tl.api.request.TLRequestUploadGetFile
 import com.github.badoualy.telegram.tl.api.upload.TLFile
 import com.github.badoualy.telegram.tl.core.TLMethod
 import com.github.badoualy.telegram.tl.core.TLObject
@@ -60,8 +61,12 @@ interface TelegramClient : TelegramApi {
             else -> null
         } ?: return null
 
+        if (photoLocation !is TLFileLocation)
+            return null
+
         val inputLocation = TLInputFileLocation(photoLocation.volumeId, photoLocation.localId, photoLocation.secret)
-        return uploadGetFile(inputLocation, 0, 0)
+        val request = TLRequestUploadGetFile(inputLocation, 0, 0)
+        return executeRpcQuery(request, photoLocation.dcId)
     }
 
     /** Convenience method to download a chat photo */
@@ -78,7 +83,11 @@ interface TelegramClient : TelegramApi {
             else -> null
         } ?: return null
 
+        if (photoLocation !is TLFileLocation)
+            return null
+
         val inputLocation = TLInputFileLocation(photoLocation.volumeId, photoLocation.localId, photoLocation.secret)
-        return uploadGetFile(inputLocation, 0, 0)
+        val request = TLRequestUploadGetFile(inputLocation, 0, 0)
+        return executeRpcQuery(request, photoLocation.dcId)
     }
 }
