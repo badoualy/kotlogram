@@ -26,6 +26,12 @@ fun TLAbsMessage.getMessageOrEmpty() = when (this) {
     else -> ""
 }
 
+fun TLAbsMessage.getToAsPeer() = when (this) {
+    is TLMessage -> toId
+    is TLMessageService -> toId
+    else -> null
+}
+
 fun TLMessage.isForward() = fwdFromId != null
 fun TLMessage.isReply() = replyToMsgId != null
 fun TLAbsMessage.isSticker(): Boolean {
@@ -100,6 +106,16 @@ fun TLAbsPeerNotifySettings.isMuted() = when (this) {
 
 
 /////////////// TLAbsMessageMedia
+
+fun TLAbsMessageMedia.getLocation(): TLGeoPoint? = when (this) {
+    is TLMessageMediaGeo -> geo as TLGeoPoint
+    else -> null
+}
+
+fun TLMessageMediaGeo.getLocation(): TLGeoPoint? = when (geo) {
+    is TLGeoPoint -> geo as TLGeoPoint
+    else -> null
+}
 
 fun TLAbsMessageMedia.getAbsMediaInput() = when (this) {
     is TLMessageMediaAudio -> getMediaInput()
