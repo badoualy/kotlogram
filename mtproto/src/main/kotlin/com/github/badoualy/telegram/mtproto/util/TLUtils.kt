@@ -165,8 +165,8 @@ fun TLMessageMediaPhoto.getMediaInput() = when (photo) {
         if (photoSize != null) {
             val location = photoSize.location
             if (location is TLFileLocation) {
-                TLInputFileLocation(location.volumeId, location.localId, location.secret)
-                MediaInput(TLInputDocumentFileLocation(photo.id, photo.accessHash), photoSize.size, "image/jpeg", location.dcId)
+                val inputLocation = TLInputFileLocation(location.volumeId, location.localId, location.secret)
+                MediaInput(inputLocation, photoSize.size, "image/jpeg", location.dcId)
             } else null
         } else null
     }
