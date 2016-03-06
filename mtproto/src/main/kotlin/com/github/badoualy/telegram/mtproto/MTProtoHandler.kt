@@ -353,15 +353,8 @@ class MTProtoHandler {
                 else -> handleMessage(message)
             }
         } catch (e: IOException) {
-            Log.e(TAG, "Dump");
-            Log.e(TAG, StreamUtils.toHexString(message.payload))
-            if (subscriberMap.size == 1) {
-                // We only have 1 method executing, it means that this is the one that failed
-                subscriberMap[subscriberMap.keys.first()]?.onError(e)
-            } else {
-                // TODO: cleaner way ?
-                throw RuntimeException(e)
-            }
+            Log.e(TAG, "Hex dump ${StreamUtils.toHexString(message.payload)}")
+            e.printStackTrace() // Can't do anything better
         }
     }
 
