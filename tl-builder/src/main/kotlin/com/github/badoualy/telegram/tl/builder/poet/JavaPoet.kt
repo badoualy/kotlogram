@@ -122,7 +122,7 @@ object JavaPoet {
         println("${methods.size} methods related classes")
 
         apiWrappedClazz.addMethod(MethodSpec.methodBuilder("executeRpcQuery")
-                .addException(IOException::class.java)
+                .addException(TYPE_RPC_EXCEPTION).addException(IOException::class.java)
                 .addModifiers(Modifier.PUBLIC, Modifier.ABSTRACT)
                 .addTypeVariable(TypeVariableName.get("T", TYPE_TL_OBJECT))
                 .returns(TypeVariableName.get("T"))
@@ -326,11 +326,11 @@ object JavaPoet {
 
         apiMethod = MethodSpec.methodBuilder(method.name.lCamelCase())
                 .addModifiers(Modifier.PUBLIC, Modifier.ABSTRACT)
-                .addException(IOException::class.java)
+                .addException(TYPE_RPC_EXCEPTION).addException(IOException::class.java)
                 .returns(responseType)
         apiWrappedMethod = MethodSpec.methodBuilder(method.name.lCamelCase())
                 .addModifiers(Modifier.PUBLIC).addAnnotation(Override::class.java)
-                .addException(IOException::class.java)
+                .addException(TYPE_RPC_EXCEPTION).addException(IOException::class.java)
                 .returns(responseType)
                 .addStatement("return (\$T) executeRpcQuery(new \$T(\$L))",
                         responseType,

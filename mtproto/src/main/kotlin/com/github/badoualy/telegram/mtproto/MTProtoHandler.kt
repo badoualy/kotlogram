@@ -2,7 +2,6 @@ package com.github.badoualy.telegram.mtproto
 
 import com.github.badoualy.telegram.mtproto.auth.AuthKey
 import com.github.badoualy.telegram.mtproto.auth.AuthResult
-import com.github.badoualy.telegram.mtproto.exception.RpcErrorException
 import com.github.badoualy.telegram.mtproto.secure.MTProtoMessageEncryption
 import com.github.badoualy.telegram.mtproto.secure.RandomUtils
 import com.github.badoualy.telegram.mtproto.time.MTProtoTimer
@@ -17,6 +16,7 @@ import com.github.badoualy.telegram.tl.api.TLApiContext
 import com.github.badoualy.telegram.tl.core.TLMethod
 import com.github.badoualy.telegram.tl.core.TLObject
 import com.github.badoualy.telegram.tl.exception.DeserializationException
+import com.github.badoualy.telegram.tl.exception.RpcErrorException
 import org.apache.commons.lang3.StringUtils
 import rx.Observable
 import rx.Subscriber
@@ -333,7 +333,7 @@ class MTProtoHandler {
         var message: MTMessage = MTMessage()
         try {
             if (bytes.size == 4)
-                throw RpcErrorException(MTRpcError(StreamUtils.readInt(bytes)))
+                throw RpcErrorException(StreamUtils.readInt(bytes), "INVALID_AUTH_KEY")
 
             message = MTProtoMessageEncryption.decrypt(authKey!!, sessionId!!, bytes)
             Log.d(TAG, "Received msg ${message.messageId} with seqNo ${message.seqNo}")
@@ -495,7 +495,7 @@ class MTProtoHandler {
             val resultContent = mtProtoContext.deserializeMessage(result.content)
             if (resultContent is MTRpcError) {
                 Log.e(TAG, "rpcError ${resultContent.errorCode}: ${resultContent.message}")
-                subscriber?.onError(RpcErrorException(resultContent))
+                subscriber?.onError(RpcErrorException(resultContent.errorCode, resultContent.errorTag))
             }
         } else {
             subscriber?.onNext(apiContext.deserializeMessage(result.content))
