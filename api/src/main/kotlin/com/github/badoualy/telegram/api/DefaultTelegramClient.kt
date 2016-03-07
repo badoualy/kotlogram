@@ -168,7 +168,7 @@ internal class DefaultTelegramClient internal constructor(val application: Teleg
                 }
                 is IOException -> throw exception.cause as IOException
                 is TimeoutException -> {
-                    if (attemptCount == 0) {
+                    if (attemptCount < 2) {
                         // Experimental, try to resend request ...
                         Log.e(TAG, "Attempting MtProtoHandler reset after failure")
                         debugListener?.onTimeoutBeforeReset()
