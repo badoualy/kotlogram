@@ -380,11 +380,6 @@ class MTProtoHandler {
                 handleResult(messageContent)
                 sendMessageAck(message.messageId)
             }
-            is MTRpcError -> {
-                Log.e(TAG, "RpcError ${messageContent.errorCode}: ${messageContent.message}")
-                throw IllegalStateException("RpcError handled in handleMessage()")
-                // This should never happen, it should always be contained in MTRpcResult
-            }
             is TLAbsUpdates -> updatePool.execute { apiCallback?.onUpdates(messageContent) }
             is MTNewSessionCreated -> {
                 //salt = message.serverSalt
@@ -422,7 +417,7 @@ class MTProtoHandler {
             is MTFutureSalt -> {
                 // TODO
             }
-            else -> throw RuntimeException("Unsupported case ${messageContent.javaClass.simpleName} ${messageContent.toString()}")
+            else -> throw IllegalStateException("Unsupported case ${messageContent.javaClass.simpleName} ${messageContent.toString()}")
         }
     }
 
