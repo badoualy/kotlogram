@@ -46,6 +46,7 @@ class MTProtoHandler {
         private set
 
     private val subscriberMap = Hashtable<Long, Subscriber<TLObject>>(10)
+    private val requestMap = Hashtable<Long, TLMethod<*>>(10)
     private val sentMessageList = ArrayList<MTMessage>(10)
     private var messageToAckList = ArrayList<Long>(ACK_BUFFER_SIZE)
 
@@ -121,6 +122,7 @@ class MTProtoHandler {
         }
 
         subscriberMap.clear()
+        requestMap.clear()
         sentMessageList.clear()
         messageToAckList.clear()
     }
@@ -159,6 +161,7 @@ class MTProtoHandler {
                 @Suppress("UNCHECKED_CAST")
                 val s = subscriber as Subscriber<TLObject>
                 subscriberMap.put(msgId, s)
+                requestMap.put(msgId, method)
             } catch (e: IOException) {
                 subscriber.onError(e)
             }
@@ -435,8 +438,10 @@ class MTProtoHandler {
                 if (sentMessage != null) {
                     // Update map and generate new msgId
                     val subscriber = subscriberMap.remove(sentMessage.messageId)
+                    val request = requestMap.remove(sentMessage.messageId)
                     sentMessage.messageId = generateMessageId()
                     subscriberMap.put(sentMessage.messageId, subscriber)
+                    requestMap.put(sentMessage.messageId, request)
 
                     Log.d(TAG, "Re-sending message ${badMessage.badMsgId} with new msgId ${sentMessage.messageId}")
                     sendMessage(sentMessage)
@@ -475,6 +480,14 @@ class MTProtoHandler {
                     null
                 }
 
+        val request =
+                if (requestMap.containsKey(result.messageId))
+                    requestMap.remove(result.messageId)!!
+                else {
+                    Log.e(TAG, "No request object found for msgId ${result.messageId}")
+                    null
+                }
+
         val classId = StreamUtils.readInt(result.content)
         Log.d(TAG, "Response is a $classId")
         if (mtProtoContext.isSupportedObject(classId)) {
@@ -482,9 +495,14 @@ class MTProtoHandler {
             if (resultContent is MTRpcError) {
                 Log.e(TAG, "rpcError ${resultContent.errorCode}: ${resultContent.message}")
                 subscriber?.onError(RpcErrorException(resultContent.errorCode, resultContent.errorTag))
-            }
+            } else
+                Log.e(TAG, "Unsupported content ${result.toString()}")
         } else {
-            subscriber?.onNext(apiContext.deserializeMessage(result.content))
+            val response =
+                    if (request != null)
+                        request.deserializeResponse(result.content, apiContext)
+                    else apiContext.deserializeMessage(result.content)
+            subscriber?.onNext(response)
         }
 
         subscriber?.onCompleted()
