@@ -4,14 +4,12 @@ import com.github.badoualy.telegram.tl.TLContext;
 import com.github.badoualy.telegram.tl.api.TLAbsInputUser;
 import com.github.badoualy.telegram.tl.api.TLAbsUser;
 import com.github.badoualy.telegram.tl.core.TLMethod;
-import com.github.badoualy.telegram.tl.core.TLObject;
 import com.github.badoualy.telegram.tl.core.TLVector;
 
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 
-import static com.github.badoualy.telegram.tl.StreamUtils.readTLObject;
 import static com.github.badoualy.telegram.tl.StreamUtils.readTLVector;
 import static com.github.badoualy.telegram.tl.StreamUtils.writeTLVector;
 import static com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_CONSTRUCTOR_ID;
@@ -37,14 +35,7 @@ public class TLRequestUsersGetUsers extends TLMethod<TLVector<TLAbsUser>> {
     @Override
     @SuppressWarnings("unchecked")
     public TLVector<TLAbsUser> deserializeResponse(InputStream stream, TLContext context) throws IOException {
-        final TLObject response = readTLObject(stream, context);
-        if (response == null) {
-            throw new IOException("Unable to parse response");
-        }
-        if (!(response instanceof TLVector)) {
-            throw new IOException("Incorrect response type, expected getClass().getCanonicalName(), found response.getClass().getCanonicalName()");
-        }
-        return (TLVector<TLAbsUser>) response;
+        return readTLVector(stream, context);
     }
 
     @Override

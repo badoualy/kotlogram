@@ -4,7 +4,6 @@ import com.github.badoualy.telegram.tl.TLContext;
 import com.github.badoualy.telegram.tl.api.TLAbsInputPeer;
 import com.github.badoualy.telegram.tl.core.TLIntVector;
 import com.github.badoualy.telegram.tl.core.TLMethod;
-import com.github.badoualy.telegram.tl.core.TLObject;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -46,14 +45,7 @@ public class TLRequestMessagesGetMessagesViews extends TLMethod<TLIntVector> {
     @Override
     @SuppressWarnings("unchecked")
     public TLIntVector deserializeResponse(InputStream stream, TLContext context) throws IOException {
-        final TLObject response = readTLObject(stream, context);
-        if (response == null) {
-            throw new IOException("Unable to parse response");
-        }
-        if (!(response instanceof TLIntVector)) {
-            throw new IOException("Incorrect response type, expected getClass().getCanonicalName(), found response.getClass().getCanonicalName()");
-        }
-        return (TLIntVector) response;
+        return readTLIntVector(stream, context);
     }
 
     @Override

@@ -310,6 +310,13 @@ object JavaPoet {
 
             // Delegate
             deserializeResponseMethod.addStatement("return query.deserializeResponse(stream, context)", TypeVariableName.get("T"))
+        } else if (method.tlType is TLTypeGeneric) {
+            when (responseType){
+                TYPE_TL_INT_VECTOR -> deserializeResponseMethod.addStatement("return readTLIntVector(stream, context)")
+                TYPE_TL_LONG_VECTOR -> deserializeResponseMethod.addStatement("return readTLLongVector(stream, context)")
+                TYPE_TL_STRING_VECTOR-> deserializeResponseMethod.addStatement("return readTLStringVector(stream, context)")
+                else -> deserializeResponseMethod.addStatement("return readTLVector(stream, context)")
+            }
         } else {
             deserializeResponseMethod.addStatement("final \$T response = readTLObject(stream, context)", TYPE_TL_OBJECT)
                     .beginControlFlow("if (response == null)")
