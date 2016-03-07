@@ -26,6 +26,7 @@ import java.math.BigInteger
 import java.util.*
 import java.util.concurrent.Executors
 import java.util.concurrent.TimeUnit
+import java.util.concurrent.TimeoutException
 
 class MTProtoHandler {
 
@@ -88,9 +89,8 @@ class MTProtoHandler {
         MTProtoWatchdog.start(connection!!)
                 .observeOn(Schedulers.computation())
                 .doOnError {
-                    // TODO: handle
-                    Log.e(TAG, "FIX ME PLEASE")
                     it.printStackTrace()
+                    subscriberMap.maxBy { it.key }?.value?.onError(TimeoutException()) ?: resetConnection()
                 }
                 .doOnNext { onMessageReceived(it) }
                 .subscribe()
