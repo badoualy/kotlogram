@@ -101,14 +101,9 @@ class MTProtoHandler {
     /** Close the connection and re-open another one with a new session id */
     fun resetConnection() {
         Log.e(TAG, "Reset connection...")
-        try {
-            stopWatchdog()
-            connection!!.close()
-            subscriberMap.clear()
-            sentMessageList.clear()
-            messageToAckList.clear()
-        } catch (e: IOException) {
-        }
+        bufferTimeoutTask?.cancel()
+        onBufferTimeout(bufferId, false)
+        close()
 
         connection = MTProtoTcpConnection(connection!!.ip, connection!!.port)
         init()
@@ -119,12 +114,15 @@ class MTProtoHandler {
     fun close() {
         bufferTimeoutTask?.cancel()
         onBufferTimeout(bufferId)
-        stopWatchdog()
         try {
+            stopWatchdog()
             connection!!.close()
         } catch (e: IOException) {
-            e.printStackTrace()
         }
+
+        subscriberMap.clear()
+        sentMessageList.clear()
+        messageToAckList.clear()
     }
 
     @Throws(IOException::class)
@@ -216,7 +214,7 @@ class MTProtoHandler {
     }
 
     /** If buffer timed out, check that the relevant buffer wasn't already flushed, and if not, flush it */
-    private fun onBufferTimeout(id: Int) {
+    private fun onBufferTimeout(id: Int, flush: Boolean = true) {
         if (!(connection?.isOpen() ?: false))
             return
 
@@ -483,7 +481,7 @@ class MTProtoHandler {
                 }
 
         val classId = StreamUtils.readInt(result.content)
-        Log.d(TAG, "Response is a " + classId)
+        Log.d(TAG, "Response is a $classId")
         if (mtProtoContext.isSupportedObject(classId)) {
             val resultContent = mtProtoContext.deserializeMessage(result.content)
             if (resultContent is MTRpcError) {
