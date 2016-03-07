@@ -152,8 +152,8 @@ internal class DefaultTelegramClient internal constructor(val application: Teleg
                     if (rpcException.code == 303) {
                         // DC error
                         Log.e(TAG, "Received DC error: ${rpcException.toString()}")
-                        if (rpcException.tag.startsWith("PHONE_MIGRATE_")) {
-                            migrate(rpcException.tag.removePrefix("PHONE_MIGRATE_").toInt())
+                        if (rpcException.tag.startsWith("PHONE_MIGRATE_") || rpcException.tag.startsWith("NETWORK_MIGRATE_")) {
+                            migrate(rpcException.tag.removePrefix("PHONE_MIGRATE_").removePrefix("NETWORK_MIGRATE_").toInt())
                             return executeRpcQuery(method)
                         } else if (rpcException.tag.startsWith("FILE_MIGRATE_")) {
                             val migratedHandler = getExportedMTProtoHandler(rpcException.tag.removePrefix("FILE_MIGRATE_").toInt())
