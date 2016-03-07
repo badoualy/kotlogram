@@ -1,12 +1,12 @@
 package com.github.badoualy.telegram.api
 
-import com.github.badoualy.telegram.mtproto.exception.RpcErrorException
 import com.github.badoualy.telegram.tl.api.*
 import com.github.badoualy.telegram.tl.api.auth.TLAbsSentCode
 import com.github.badoualy.telegram.tl.api.request.TLRequestUploadGetFile
 import com.github.badoualy.telegram.tl.api.upload.TLFile
 import com.github.badoualy.telegram.tl.core.TLMethod
 import com.github.badoualy.telegram.tl.core.TLObject
+import com.github.badoualy.telegram.tl.exception.RpcErrorException
 import java.io.IOException
 
 interface TelegramClient : TelegramApi {

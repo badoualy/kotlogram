@@ -6,7 +6,6 @@ import com.github.badoualy.telegram.mtproto.MTProtoHandler
 import com.github.badoualy.telegram.mtproto.auth.AuthKey
 import com.github.badoualy.telegram.mtproto.auth.AuthKeyCreation
 import com.github.badoualy.telegram.mtproto.auth.AuthResult
-import com.github.badoualy.telegram.mtproto.exception.RpcErrorException
 import com.github.badoualy.telegram.mtproto.exception.SecurityException
 import com.github.badoualy.telegram.mtproto.util.Log
 import com.github.badoualy.telegram.tl.api.*
@@ -16,6 +15,7 @@ import com.github.badoualy.telegram.tl.api.request.TLRequestInitConnection
 import com.github.badoualy.telegram.tl.api.request.TLRequestInvokeWithLayer
 import com.github.badoualy.telegram.tl.core.TLMethod
 import com.github.badoualy.telegram.tl.core.TLObject
+import com.github.badoualy.telegram.tl.exception.RpcErrorException
 import java.io.IOException
 import java.math.BigInteger
 import java.util.concurrent.TimeoutException
@@ -68,8 +68,8 @@ internal class DefaultTelegramClient internal constructor(val application: Teleg
                     ensureNearestDc(nearestDc)
             } catch(e: Exception) {
                 mtProtoHandler?.close()
-                if (e is RpcErrorException && e.error.errorCode == -404)
-                    throw SecurityException("Your authorization key is invalid (error " + e.error.errorCode + ")")
+                if (e is RpcErrorException && e.code == -404)
+                    throw SecurityException("Your authorization key is invalid (error ${e.code})")
                 throw RuntimeException(e)
             }
         }
@@ -83,6 +83,7 @@ internal class DefaultTelegramClient internal constructor(val application: Teleg
         return authResult
     }
 
+    @Throws(RpcErrorException::class, IOException::class)
     private fun <T : TLObject> initConnection(mtProtoHandler: MTProtoHandler, method: TLMethod<T>): T {
         val result =
                 try {
@@ -95,7 +96,7 @@ internal class DefaultTelegramClient internal constructor(val application: Teleg
         return result
     }
 
-    @Throws(IOException::class)
+    @Throws(RpcErrorException::class, IOException::class)
     private fun ensureNearestDc(nearestDc: TLNearestDc) {
         if (nearestDc.thisDc != nearestDc.nearestDc) {
             if (!generateAuthKey) {
@@ -123,8 +124,10 @@ internal class DefaultTelegramClient internal constructor(val application: Teleg
             Kotlogram.cleanUp()
     }
 
+    @Throws(RpcErrorException::class, IOException::class)
     override fun <T : TLObject> executeRpcQuery(method: TLMethod<T>) = executeRpcQuery(method, mtProtoHandler!!)
 
+    @Throws(RpcErrorException::class, IOException::class)
     override fun <T : TLObject> executeRpcQuery(method: TLMethod<T>, dcId: Int): T {
         if (Kotlogram.getDcById(dcId).equals(dataCenter))
             return executeRpcQuery(method)
@@ -137,7 +140,7 @@ internal class DefaultTelegramClient internal constructor(val application: Teleg
         }
     }
 
-    @Throws(IOException::class)
+    @Throws(RpcErrorException::class, IOException::class)
     private fun <T : TLObject> executeRpcQuery(method: TLMethod<T>, mtProtoHandler: MTProtoHandler, attemptCount: Int = 0): T {
         // BlockingObservable.first() will throw a RuntimeException if onError() is called by observable
         try {
@@ -145,15 +148,15 @@ internal class DefaultTelegramClient internal constructor(val application: Teleg
         } catch(exception: RuntimeException) {
             when (exception.cause) {
                 is RpcErrorException -> {
-                    val error = (exception.cause as RpcErrorException).error
-                    if (error.errorCode == 303) {
+                    val rpcException = (exception.cause as RpcErrorException)
+                    if (rpcException.code == 303) {
                         // DC error
-                        Log.e(TAG, "Received DC error: " + error.message)
-                        if (error.message.startsWith("PHONE_MIGRATE_")) {
-                            migrate(error.message.removePrefix("PHONE_MIGRATE_").toInt())
+                        Log.e(TAG, "Received DC error: ${rpcException.toString()}")
+                        if (rpcException.tag.startsWith("PHONE_MIGRATE_")) {
+                            migrate(rpcException.tag.removePrefix("PHONE_MIGRATE_").toInt())
                             return executeRpcQuery(method)
-                        } else if (error.message.startsWith("FILE_MIGRATE_")) {
-                            val migratedHandler = getExportedMTProtoHandler(error.message.removePrefix("FILE_MIGRATE_").toInt())
+                        } else if (rpcException.tag.startsWith("FILE_MIGRATE_")) {
+                            val migratedHandler = getExportedMTProtoHandler(rpcException.tag.removePrefix("FILE_MIGRATE_").toInt())
                             try {
                                 return executeRpcQuery(method, migratedHandler)
                             } finally {
@@ -161,7 +164,7 @@ internal class DefaultTelegramClient internal constructor(val application: Teleg
                             }
                         }
                     }
-                    throw exception.cause as RpcErrorException
+                    throw RpcErrorException(rpcException.code, rpcException.message) // Better stack trace
                 }
                 is IOException -> throw exception.cause as IOException
                 is TimeoutException -> {
@@ -182,12 +185,13 @@ internal class DefaultTelegramClient internal constructor(val application: Teleg
         }
     }
 
-    @Throws(IOException::class)
+    @Throws(RpcErrorException::class, IOException::class)
     override fun authSendCode(phoneNumber: String, smsType: Int) = super.authSendCode(phoneNumber, smsType, application.apiId, application.apiHash, application.langCode)
 
-    @Throws(IOException::class)
+    @Throws(RpcErrorException::class, IOException::class)
     override fun <T : TLObject> initConnection(query: TLMethod<T>) = executeRpcQuery(TLRequestInitConnection(application.apiId, application.deviceModel, application.systemVersion, application.appVersion, application.langCode, query))
 
+    @Throws(RpcErrorException::class, IOException::class)
     override fun messagesSendMessage(peer: TLAbsInputPeer, message: String, randomId: Long) = super.messagesSendMessage(true, false, peer, null, message, randomId, null, null)
 
     private fun migrate(dcId: Int) {
@@ -202,7 +206,7 @@ internal class DefaultTelegramClient internal constructor(val application: Teleg
         init(checkNearestDc = false)
     }
 
-    @Throws(IOException::class)
+    @Throws(RpcErrorException::class, IOException::class)
     private fun getExportedMTProtoHandler(dcId: Int): MTProtoHandler {
         Log.d(TAG, "Creating handler on DC$dcId")
         val dc = Kotlogram.getDcById(dcId)
@@ -218,65 +222,14 @@ internal class DefaultTelegramClient internal constructor(val application: Teleg
     override fun onUpdates(update: TLAbsUpdates) {
         when (update) {
             is TLUpdates -> updateCallback?.onUpdates(this, update) // Multiple messages
-            //is TLUpdatesCombined -> update.updates.forEach { u -> handleUpdate(u, update) }
-            //is TLUpdateShort -> handleUpdate(update.update, update)
+            is TLUpdatesCombined -> updateCallback?.onUpdatesCombined(this, update)
+            is TLUpdateShort -> updateCallback?.onUpdateShort(this, update)
             is TLUpdateShortChatMessage -> updateCallback?.onShortChatMessage(this, update) // group new message
             is TLUpdateShortMessage -> updateCallback?.onShortMessage(this, update) // 1v1 new message
             is TLUpdateShortSentMessage -> updateCallback?.onShortSentMessage(this, update)
             is TLUpdatesTooLong -> updateCallback?.onUpdateTooLong(this) // Warn that the client should refresh manually
         }
     }
-
-    /*fun handleUpdate(update: TLAbsUpdate, container: TLAbsUpdates) = when (update) {
-        is TLUpdateBotInlineQuery -> Unit
-        is TLUpdateBotInlineSend -> Unit
-
-        is TLUpdateChannel -> Unit
-        is TLUpdateChannelGroup -> Unit
-        is TLUpdateChannelMessageViews -> Unit
-        is TLUpdateChannelTooLong -> Unit
-
-        is TLUpdateChatAdmins -> Unit
-        is TLUpdateChatParticipantAdd -> Unit
-        is TLUpdateChatParticipantAdmin -> Unit
-        is TLUpdateChatParticipantDelete -> Unit
-        is TLUpdateChatParticipants -> Unit
-        is TLUpdateChatUserTyping -> Unit
-
-        is TLUpdateContactLink -> Unit
-        is TLUpdateContactRegistered -> Unit
-
-        is TLUpdateDcOptions -> Unit
-        is TLUpdateDeleteChannelMessages -> Unit
-        is TLUpdateDeleteMessages -> Unit
-        is TLUpdateEncryptedChatTyping -> Unit
-        is TLUpdateEncryptedMessagesRead -> Unit
-        is TLUpdateEncryption -> Unit
-        is TLUpdateMessageID -> Unit
-        is TLUpdateNewAuthorization -> Unit
-        is TLUpdateNewChannelMessage -> updateCallback?.onNewChannelMessage(this, update, container) // Message in channel
-        is TLUpdateNewEncryptedMessage -> updateCallback?.onNewEncryptedMessage(this, update, container)
-        is TLUpdateNewMessage -> updateCallback?.onNewMessage(this, update, container) // Multiple message at once
-        is TLUpdateNewStickerSet -> Unit
-        is TLUpdateNotifySettings -> Unit
-        is TLUpdatePrivacy -> Unit
-        is TLUpdateReadChannelInbox -> Unit
-        is TLUpdateReadHistoryInbox -> Unit
-        is TLUpdateReadHistoryOutbox -> Unit
-        is TLUpdateReadMessagesContents -> Unit
-        is TLUpdateSavedGifs -> Unit
-        is TLUpdateServiceNotification -> Unit
-        is TLUpdateStickerSets -> Unit
-        is TLUpdateStickerSetsOrder -> Unit
-        is TLUpdateUserBlocked -> Unit
-        is TLUpdateUserName -> Unit
-        is TLUpdateUserPhone -> Unit
-        is TLUpdateUserPhoto -> Unit
-        is TLUpdateUserStatus -> Unit
-        is TLUpdateUserTyping -> Unit
-        is TLUpdateWebPage -> Unit
-        else -> Unit
-    }*/
 
     override fun onSalt(salt: Long) = apiStorage.saveServerSalt(salt)
 }
