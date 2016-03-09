@@ -59,19 +59,18 @@ internal class DefaultTelegramClient internal constructor(val application: Teleg
         debugListener?.onSocketCreated()
         mtProtoHandler!!.startWatchdog()
 
-        if (generateAuthKey) {
-            try {
-                // Call to initConnection to setup information about this app for the user to see in "active sessions"
-                // Also will indicate to Telegram which layer to use through InvokeWithLayer
-                val nearestDc = initConnection(mtProtoHandler!!, TLRequestHelpGetNearestDc())
-                if (checkNearestDc)
-                    ensureNearestDc(nearestDc)
-            } catch(e: Exception) {
-                mtProtoHandler?.close()
-                if (e is RpcErrorException && e.code == -404)
-                    throw SecurityException("Your authorization key is invalid (error ${e.code})")
-                throw RuntimeException(e)
-            }
+        try {
+            // Call to initConnection to setup information about this app for the user to see in "active sessions"
+            // Also will indicate to Telegram which layer to use through InvokeWithLayer
+            // Re-call every time to ensure connection is alive and to update layer
+            val nearestDc = initConnection(mtProtoHandler!!, TLRequestHelpGetNearestDc())
+            if (checkNearestDc)
+                ensureNearestDc(nearestDc)
+        } catch(e: Exception) {
+            mtProtoHandler?.close()
+            if (e is RpcErrorException && e.code == -404)
+                throw SecurityException("Your authorization key is invalid (error ${e.code})")
+            throw RuntimeException(e)
         }
     }
 
@@ -85,14 +84,8 @@ internal class DefaultTelegramClient internal constructor(val application: Teleg
 
     @Throws(RpcErrorException::class, IOException::class)
     private fun <T : TLObject> initConnection(mtProtoHandler: MTProtoHandler, method: TLMethod<T>): T {
-        val result =
-                try {
-                    mtProtoHandler.executeMethodSync(TLRequestInvokeWithLayer(Kotlogram.API_LAYER, TLRequestInitConnection(application.apiId, application.deviceModel, application.systemVersion, application.appVersion, application.langCode, method)), timeoutDuration)
-                } catch (e: RuntimeException) {
-                    if (e.cause is TimeoutException)
-                        throw IOException("Request timed out")
-                    throw e
-                }
+        val initConnectionRequest = TLRequestInitConnection(application.apiId, application.deviceModel, application.systemVersion, application.appVersion, application.langCode, method)
+        val result = executeRpcQuery(TLRequestInvokeWithLayer(Kotlogram.API_LAYER, initConnectionRequest), mtProtoHandler)
         return result
     }
 

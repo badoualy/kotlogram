@@ -250,7 +250,7 @@ class MTProtoHandler {
 
         val ackMessage = MTMsgsAck(messagesId)
         val ackMessageId = generateMessageId()
-        Log.d(TAG, "Send ack for messages " + messagesId.joinToString(", ") + " with ackMsgId " + ackMessageId)
+        Log.d(TAG, "Send ack for messages ${messagesId.joinToString(", ")} with ackMsgId $ackMessageId")
         sendMessage(MTMessage(ackMessageId, generateSeqNo(ackMessage), ackMessage.serialize()))
     }
 
@@ -261,7 +261,7 @@ class MTProtoHandler {
      */
     @Throws(IOException::class)
     private fun sendMessage(message: MTMessage) {
-        Log.d(TAG, "Sending message with msgId " + message.messageId + " and seqNo " + message.seqNo)
+        Log.d(TAG, "Sending message with msgId ${message.messageId} and seqNo ${message.seqNo}")
         val encryptedMessage = MTProtoMessageEncryption.encrypt(authKey!!, sessionId!!, salt, message)
         sendData(encryptedMessage.data)
         sentMessageList.add(message)
@@ -464,13 +464,13 @@ class MTProtoHandler {
             MTBadMessage.ERROR_SEQNO_EXPECTED_ODD -> {
 
             }
-            else -> Log.e(TAG, "Unknown error code: " + badMessage.toPrettyString())
+            else -> Log.e(TAG, "Unknown error code: ${badMessage.toPrettyString()}")
         }
     }
 
     @Throws(IOException::class)
     private fun handleResult(result: MTRpcResult) {
-        Log.d(TAG, "Got result for msgId " + result.messageId)
+        Log.d(TAG, "Got result for msgId ${result.messageId}")
 
         val subscriber =
                 if (subscriberMap.containsKey(result.messageId))

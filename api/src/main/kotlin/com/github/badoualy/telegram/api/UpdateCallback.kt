@@ -8,7 +8,7 @@ interface UpdateCallback {
 
     fun onUpdatesCombined(client: TelegramClient, updates: TLUpdatesCombined)
 
-    fun onUpdateShort(client: TelegramClient, updates: TLUpdateShort)
+    fun onUpdateShort(client: TelegramClient, update: TLUpdateShort)
 
     fun onShortMessage(client: TelegramClient, message: TLUpdateShortMessage)
 
