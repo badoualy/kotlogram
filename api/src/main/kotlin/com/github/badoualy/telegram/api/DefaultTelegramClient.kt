@@ -9,15 +9,13 @@ import com.github.badoualy.telegram.mtproto.auth.AuthResult
 import com.github.badoualy.telegram.mtproto.exception.SecurityException
 import com.github.badoualy.telegram.mtproto.util.Log
 import com.github.badoualy.telegram.tl.api.*
-import com.github.badoualy.telegram.tl.api.request.TLRequestAuthImportAuthorization
-import com.github.badoualy.telegram.tl.api.request.TLRequestHelpGetNearestDc
-import com.github.badoualy.telegram.tl.api.request.TLRequestInitConnection
-import com.github.badoualy.telegram.tl.api.request.TLRequestInvokeWithLayer
+import com.github.badoualy.telegram.tl.api.request.*
 import com.github.badoualy.telegram.tl.core.TLMethod
 import com.github.badoualy.telegram.tl.core.TLObject
 import com.github.badoualy.telegram.tl.exception.RpcErrorException
 import java.io.IOException
 import java.math.BigInteger
+import java.nio.channels.ClosedChannelException
 import java.util.concurrent.TimeoutException
 
 internal class DefaultTelegramClient internal constructor(val application: TelegramApp, val apiStorage: TelegramApiStorage,
@@ -63,14 +61,15 @@ internal class DefaultTelegramClient internal constructor(val application: Teleg
             // Call to initConnection to setup information about this app for the user to see in "active sessions"
             // Also will indicate to Telegram which layer to use through InvokeWithLayer
             // Re-call every time to ensure connection is alive and to update layer
-            val nearestDc = initConnection(mtProtoHandler!!, TLRequestHelpGetNearestDc())
             if (checkNearestDc)
-                ensureNearestDc(nearestDc)
+                ensureNearestDc(initConnection(mtProtoHandler!!, TLRequestHelpGetNearestDc()))
+            else // GetNearestDc will not start updates: // TODO: replace with getDifference for updates
+                initConnection(mtProtoHandler!!, TLRequestUpdatesGetState())
         } catch(e: Exception) {
             mtProtoHandler?.close()
             if (e is RpcErrorException && e.code == -404)
                 throw SecurityException("Your authorization key is invalid (error ${e.code})")
-            throw RuntimeException(e)
+            throw e
         }
     }
 
@@ -159,8 +158,7 @@ internal class DefaultTelegramClient internal constructor(val application: Teleg
                     }
                     throw RpcErrorException(rpcException.code, rpcException.message) // Better stack trace
                 }
-                is IOException -> throw exception.cause as IOException
-                is TimeoutException -> {
+                is TimeoutException, is ClosedChannelException -> {
                     if (attemptCount < 2) {
                         // Experimental, try to resend request ...
                         Log.e(TAG, "Attempting MtProtoHandler reset after failure")
@@ -173,6 +171,7 @@ internal class DefaultTelegramClient internal constructor(val application: Teleg
                     debugListener?.onTimeoutAfterReset()
                     throw TimeoutException("Request timed out")
                 }
+                is IOException -> throw exception.cause as IOException
                 else -> throw exception
             }
         }
