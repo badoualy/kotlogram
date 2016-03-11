@@ -17,25 +17,33 @@ internal class MTProtoTcpConnection
 
     private val TAG = "MTProtoTcpConnection#$id"
 
-    private val socketChannel: SocketChannel
+    private var socketChannel: SocketChannel
     private val msgHeaderBuffer = ByteBuffer.allocate(1)
     private val msgLengthBuffer = ByteBuffer.allocate(3)
 
     private var selectionKey: SelectionKey? = null
 
     init {
-        socketChannel = SocketChannel.open()
-        socketChannel.setOption(StandardSocketOptions.SO_KEEPALIVE, true)
-        socketChannel.setOption(StandardSocketOptions.TCP_NODELAY, true)
-        socketChannel.configureBlocking(true)
-        socketChannel.connect(InetSocketAddress(ip, port))
+        var attempt = 0
+        do {
+            socketChannel = SocketChannel.open()
+            socketChannel.setOption(StandardSocketOptions.SO_KEEPALIVE, true)
+            //socketChannel.setOption(StandardSocketOptions.TCP_NODELAY, true)
+            socketChannel.configureBlocking(true)
+            try {
+                socketChannel.connect(InetSocketAddress(ip, port))
+                socketChannel.finishConnect()
 
-        if (abridgedProtocol) {
-            // @see https://core.telegram.org/mtproto/samples-auth_key
-            socketChannel.write(ByteBuffer.wrap(byteArrayOf(0xef.toByte())))
-        }
+                if (abridgedProtocol) {
+                    // @see https://core.telegram.org/mtproto/samples-auth_key
+                    socketChannel.write(ByteBuffer.wrap(byteArrayOf(0xef.toByte())))
+                }
+                Log.d(TAG, "Connected to $ip:$port ${socketChannel.isConnected} ${socketChannel.isOpen}")
 
-        Log.d(TAG, "Connected to $ip:$port")
+                break
+            } catch(e: Exception) {
+            }
+        } while (attempt++ < 1)
     }
 
     @Throws(IOException::class)
