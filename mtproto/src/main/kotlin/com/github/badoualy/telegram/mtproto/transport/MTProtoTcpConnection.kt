@@ -13,9 +13,9 @@ import java.nio.channels.SocketChannel
 
 internal class MTProtoTcpConnection
 @Throws(IOException::class)
-@JvmOverloads constructor(override val ip: String, override val port: Int, abridgedProtocol: Boolean = true) : MTProtoConnection {
+@JvmOverloads constructor(override val id: Long, override val ip: String, override val port: Int, abridgedProtocol: Boolean = true) : MTProtoConnection {
 
-    private val TAG = "MTProtoTcpConnection"
+    private val TAG = "MTProtoTcpConnection#$id"
 
     private val socketChannel: SocketChannel
     private val msgHeaderBuffer = ByteBuffer.allocate(1)

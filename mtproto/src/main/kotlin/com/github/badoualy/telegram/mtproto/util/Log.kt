@@ -20,11 +20,13 @@ class Log {
 
         @JvmStatic
         @JvmOverloads
-        fun e(tag: String, message: String, tabCount: Int = 0) {
+        fun e(tag: String, message: String, e: Throwable? = null, tabCount: Int = 0) {
             if (enabled) {
                 for (i in 0..tabCount - 1) System.err.print("    ")
                 System.err.println("[${Thread.currentThread().name}] $tag# $message")
             }
+
+            e?.printStackTrace()
         }
     }
 }

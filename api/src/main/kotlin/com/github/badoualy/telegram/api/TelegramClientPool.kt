@@ -18,7 +18,7 @@ object TelegramClientPool {
     private val listenerMap = HashMap<Long, OnClientTimeoutListener>()
     private val expireMap = HashMap<Long, Long>()
 
-    private val timer = Timer()
+    private var timer = Timer()
 
     /**
      * Cache the given client for a fixed amount of time before closing it if not used during that time
@@ -46,7 +46,12 @@ object TelegramClientPool {
             }
         }
 
-        timer.schedule(expiresIn, { onTimeout(id) })
+        try {
+            timer.schedule(expiresIn, { onTimeout(id) })
+        } catch (e: IllegalStateException) {
+            timer = Timer()
+            timer.schedule(expiresIn, { onTimeout(id) })
+        }
     }
 
     /**

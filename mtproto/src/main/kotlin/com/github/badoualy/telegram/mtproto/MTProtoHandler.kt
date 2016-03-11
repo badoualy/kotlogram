@@ -13,6 +13,7 @@ import com.github.badoualy.telegram.mtproto.util.Log
 import com.github.badoualy.telegram.tl.StreamUtils
 import com.github.badoualy.telegram.tl.api.TLAbsUpdates
 import com.github.badoualy.telegram.tl.api.TLApiContext
+import com.github.badoualy.telegram.tl.api.request.TLRequestHelpGetNearestDc
 import com.github.badoualy.telegram.tl.core.TLMethod
 import com.github.badoualy.telegram.tl.core.TLObject
 import com.github.badoualy.telegram.tl.exception.DeserializationException
@@ -59,21 +60,19 @@ class MTProtoHandler {
     private val apiCallback: ApiCallback?
 
     constructor(authResult: AuthResult, apiCallback: ApiCallback?) {
+        init()
         connection = authResult.connection
         authKey = authResult.authKey
         this.salt = authResult.serverSalt
         this.apiCallback = apiCallback
-
-        init()
     }
 
     constructor(dataCenter: DataCenter, authKey: AuthKey, salt: Long?, apiCallback: ApiCallback?) {
-        connection = MTProtoTcpConnection(dataCenter.ip, dataCenter.port)
+        init()
+        connection = MTProtoTcpConnection(BigInteger(sessionId).toLong(), dataCenter.ip, dataCenter.port)
         this.authKey = authKey
         this.salt = salt ?: 0
         this.apiCallback = apiCallback
-
-        init()
     }
 
     private fun init() {
@@ -90,8 +89,15 @@ class MTProtoHandler {
         MTProtoWatchdog.start(connection!!)
                 .observeOn(Schedulers.computation())
                 .doOnError {
-                    it.printStackTrace()
-                    subscriberMap.maxBy { it.key }?.value?.onError(TimeoutException()) ?: resetConnection()
+                    Log.e(TAG, "doOnError()", it)
+                    val singleSubscriber = subscriberMap.maxBy { it.key }?.value
+                    if (singleSubscriber != null) {
+                        Log.d(TAG, "Found a single subscriber, sending timeout")
+                        singleSubscriber.onError(TimeoutException())
+                    } else {
+                        Log.d(TAG, "Reset connection")
+                        resetConnection()
+                    }
                 }
                 .doOnNext { onMessageReceived(it) }
                 .subscribe()
@@ -106,9 +112,10 @@ class MTProtoHandler {
         onBufferTimeout(bufferId, false)
         close()
 
-        connection = MTProtoTcpConnection(connection!!.ip, connection!!.port)
         init()
+        connection = MTProtoTcpConnection(BigInteger(sessionId).toLong(), connection!!.ip, connection!!.port)
         startWatchdog()
+        executeMethod(TLRequestHelpGetNearestDc(), 5L)
     }
 
     /** Properly close the connection to Telegram's server after sending ACK for messages if any to send */
@@ -234,7 +241,8 @@ class MTProtoHandler {
             bufferId++
         }
 
-        sendMessagesAck(list!!.toLongArray())
+        if (flush)
+            sendMessagesAck(list!!.toLongArray())
     }
 
     /**

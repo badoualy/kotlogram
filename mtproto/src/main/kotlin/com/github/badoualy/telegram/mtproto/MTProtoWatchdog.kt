@@ -52,14 +52,14 @@ internal object MTProtoWatchdog : Runnable {
                             pool.execute {
                                 if (!connection.isOpen())
                                     return@execute
-                                //connection.setBlocking(true)
-                                readMessage(connection)
-                                //connection.setBlocking(false)
+                                val wentGood = readMessage(connection)
 
                                 // Done reading
-                                if (key.isValid) {
+                                if (wentGood && key.isValid) {
                                     key.interestOps(SelectionKey.OP_READ)
                                     selector.wakeup()
+                                } else if (!wentGood) {
+                                    stop(connection)
                                 }
                             }
                         }
@@ -81,25 +81,28 @@ internal object MTProtoWatchdog : Runnable {
         }
     }
 
-    private fun readMessage(connection: MTProtoConnection) {
+    private fun readMessage(connection: MTProtoConnection): Boolean {
         val subscriber = subscriberMap[connection]
         if (subscriber == null || subscriber.isUnsubscribed || !connectionList.contains(connection)) {
-            Log.e(TAG, "Subscribed already unsubscribed, dropping")
-            stop(connection)
-            return
+            Log.e("$TAG${connection.id}", "Subscribed already unsubscribed, dropping")
+            return false
         }
 
         try {
             val message = connection.readMessage()
-            Log.d(TAG, "New message of length: ${message.size}")
+            Log.d("$TAG${connection.id}", "New message of length: ${message.size}")
             subscriber.onNext(message)
         } catch (e: IOException) {
             // Silent fail if no subscriber
             if (!subscriber.isUnsubscribed) {
-                Log.e(TAG, "Sending exception to subscriber")
+                Log.e("$TAG${connection.id}", "Sending exception to subscriber")
                 subscriber.onError(e)
             }
+
+            return false
         }
+
+        return true
     }
 
     fun start(connection: MTProtoConnection) = Observable.create<ByteArray> { s ->
