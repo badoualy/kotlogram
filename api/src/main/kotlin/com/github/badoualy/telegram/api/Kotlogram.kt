@@ -10,9 +10,8 @@ object Kotlogram {
 
     @JvmOverloads @JvmStatic
     fun getDefaultClient(application: TelegramApp, apiStorage: TelegramApiStorage, preferredDataCenter: DataCenter = PROD_DC4,
-                         updateCallback: UpdateCallback? = null,
-                         debugListener: DebugListener? = null)
-            : TelegramClient = DefaultTelegramClient(application, apiStorage, preferredDataCenter, updateCallback, debugListener)
+                         updateCallback: UpdateCallback? = null)
+            : TelegramClient = DefaultTelegramClient(application, apiStorage, preferredDataCenter, updateCallback)
 
     @JvmStatic
     fun setDebugLogEnabled(enabled: Boolean) {

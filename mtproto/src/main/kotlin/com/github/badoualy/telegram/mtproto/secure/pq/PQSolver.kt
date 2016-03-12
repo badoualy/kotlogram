@@ -4,7 +4,7 @@ import com.github.badoualy.telegram.mtproto.util.SolvedPQ
 import java.math.BigInteger
 import java.util.*
 
-class PQSolver {
+internal class PQSolver {
 
     companion object {
         /**

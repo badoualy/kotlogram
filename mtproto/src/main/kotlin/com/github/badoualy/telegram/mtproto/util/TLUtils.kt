@@ -3,9 +3,9 @@ package com.github.badoualy.telegram.mtproto.util
 import com.github.badoualy.telegram.tl.api.*
 
 /////////////// Message
-fun TLAbsMessage.getDate(): Long = when (this) {
-    is TLMessage -> date.toLong()
-    is TLMessageService -> date.toLong()
+fun TLAbsMessage.getDate(): Int = when (this) {
+    is TLMessage -> date
+    is TLMessageService -> date
     else -> 0
 }
 
@@ -74,7 +74,7 @@ fun TLAbsPeer.getPeerId() = when (this) {
 
 fun TLAbsPeer.isChat() = this is TLPeerChat
 fun TLAbsPeer.isChannel() = this is TLPeerChannel
-fun TLAbsPeer.isSimpleDicussion() = this is TLPeerUser
+fun TLAbsPeer.is1v1() = this is TLPeerUser
 
 
 
@@ -106,72 +106,3 @@ fun TLAbsPeerNotifySettings.isMuted() = when (this) {
     is TLPeerNotifySettings -> muteUntil > ((System.currentTimeMillis() / 1000) + 60)
     else -> false
 }
-
-
-/////////////// TLAbsMessageMedia
-
-fun TLAbsMessageMedia.getLocation(): TLGeoPoint? = when (this) {
-    is TLMessageMediaGeo -> geo as TLGeoPoint
-    else -> null
-}
-
-fun TLMessageMediaGeo.getLocation(): TLGeoPoint? = when (geo) {
-    is TLGeoPoint -> geo as TLGeoPoint
-    else -> null
-}
-
-fun TLAbsMessageMedia.getAbsMediaInput() = when (this) {
-    is TLMessageMediaAudio -> getMediaInput()
-    is TLMessageMediaContact -> null // nothing to download
-    is TLMessageMediaDocument -> getMediaInput()
-    is TLMessageMediaEmpty -> null // nothing to download
-    is TLMessageMediaGeo -> null // nothing to download
-    is TLMessageMediaPhoto -> getMediaInput()
-    is TLMessageMediaUnsupported -> null // nothing to download
-    is TLMessageMediaVenue -> null // nothing to download
-    is TLMessageMediaVideo -> getMediaInput()
-    is TLMessageMediaWebPage -> null // nothing to download
-    else -> null
-}
-
-fun TLMessageMediaDocument.getMediaInput() = when (document) {
-    is TLDocument -> {
-        val document = document as TLDocument
-        MediaInput(TLInputDocumentFileLocation(document.id, (document.accessHash)), document.size, document.mimeType, document.dcId)
-    }
-    else -> null
-}
-
-fun TLMessageMediaAudio.getMediaInput() = when (audio) {
-    is TLAudio -> {
-        val audio = audio as TLAudio
-        MediaInput(TLInputAudioFileLocation(audio.id, audio.accessHash), audio.size, audio.mimeType, audio.dcId)
-    }
-    else -> null
-}
-
-fun TLMessageMediaVideo.getMediaInput() = when (video) {
-    is TLVideo -> {
-        val video = video as TLVideo
-        MediaInput(TLInputVideoFileLocation(video.id, video.accessHash), video.size, video.mimeType, video.dcId)
-    }
-    else -> null
-}
-
-fun TLMessageMediaPhoto.getMediaInput() = when (photo) {
-    is TLPhoto -> {
-        val photo = photo as TLPhoto
-        val photoSize = photo.sizes.filterIsInstance<TLPhotoSize>().maxBy { it.w * it.h } // Biggest
-        if (photoSize != null) {
-            val location = photoSize.location
-            if (location is TLFileLocation) {
-                val inputLocation = TLInputFileLocation(location.volumeId, location.localId, location.secret)
-                MediaInput(inputLocation, photoSize.size, "image/jpeg", location.dcId)
-            } else null
-        } else null
-    }
-    else -> null
-}
-
-
-data class MediaInput(val inputFileLocation: TLAbsInputFileLocation, val size: Int, val mimeType: String, val dcId: Int)

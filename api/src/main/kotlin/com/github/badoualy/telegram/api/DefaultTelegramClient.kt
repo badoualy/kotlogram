@@ -20,8 +20,7 @@ import java.util.concurrent.TimeoutException
 
 internal class DefaultTelegramClient internal constructor(val application: TelegramApp, val apiStorage: TelegramApiStorage,
                                                           val preferredDataCenter: DataCenter,
-                                                          val updateCallback: UpdateCallback?,
-                                                          val debugListener: DebugListener?) : TelegramApiWrapper(), TelegramClient, ApiCallback {
+                                                          val updateCallback: UpdateCallback?) : TelegramApiWrapper(), TelegramClient, ApiCallback {
 
     private val TAG = "TelegramClient"
 
@@ -54,7 +53,6 @@ internal class DefaultTelegramClient internal constructor(val application: Teleg
 
     private fun init(checkNearestDc: Boolean = true) {
         mtProtoHandler = if (generateAuthKey) MTProtoHandler(generateAuthKey(), this) else MTProtoHandler(dataCenter!!, authKey!!, apiStorage.loadServerSalt(), this)
-        debugListener?.onSocketCreated()
         mtProtoHandler!!.startWatchdog()
 
         try {
@@ -110,7 +108,6 @@ internal class DefaultTelegramClient internal constructor(val application: Teleg
     override fun close() = close(true)
 
     override fun close(cleanUp: Boolean) {
-        debugListener?.onSocketDestroyed()
         mtProtoHandler?.close() ?: Unit
         if (cleanUp)
             Kotlogram.cleanUp()
@@ -162,13 +159,11 @@ internal class DefaultTelegramClient internal constructor(val application: Teleg
                     if (attemptCount < 2) {
                         // Experimental, try to resend request ...
                         Log.e(TAG, "Attempting MtProtoHandler reset after failure")
-                        debugListener?.onTimeoutBeforeReset()
                         mtProtoHandler.resetConnection()
                         val result = executeRpcQuery(method, mtProtoHandler, attemptCount + 1)
                         Log.d(TAG, "Reset worked")
                         return result
                     }
-                    debugListener?.onTimeoutAfterReset()
                     throw TimeoutException("Request timed out")
                 }
                 is IOException -> throw exception.cause as IOException
@@ -206,7 +201,6 @@ internal class DefaultTelegramClient internal constructor(val application: Teleg
         val authResult = AuthKeyCreation.createAuthKey(dc) ?: throw IOException("Couldn't create authorization key on DC$dcId")
         val mtProtoHandler = MTProtoHandler(authResult, null)
         mtProtoHandler.startWatchdog()
-        debugListener?.onSocketCreated()
         initConnection(mtProtoHandler, TLRequestAuthImportAuthorization(exportedAuthorization.id, exportedAuthorization.bytes))
         return mtProtoHandler
     }

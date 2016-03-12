@@ -2,7 +2,7 @@ package com.github.badoualy.telegram.mtproto.util
 
 import java.math.BigInteger
 
-open class Pair<F, S>(val first: F, val second: S) {
+internal open class Pair<F, S>(val first: F, val second: S) {
 
     override fun equals(other: Any?) = other is Pair<*, *> && other.first == first && other.second == second
 
@@ -15,12 +15,12 @@ open class Pair<F, S>(val first: F, val second: S) {
 
 // Some useful subclasses for convenience
 
-class SolvedPQ(p: Long, q: Long) : Pair<BigInteger, BigInteger>(BigInteger.valueOf(Math.min(p, q)), BigInteger.valueOf(Math.max(p, q))) {
+internal class SolvedPQ(p: Long, q: Long) : Pair<BigInteger, BigInteger>(BigInteger.valueOf(Math.min(p, q)), BigInteger.valueOf(Math.max(p, q))) {
     val p = first
     val q = second
 }
 
-class AesKeyIvPair(key: ByteArray, iv: ByteArray) : Pair<ByteArray, ByteArray>(key, iv) {
+internal class AesKeyIvPair(key: ByteArray, iv: ByteArray) : Pair<ByteArray, ByteArray>(key, iv) {
     val key = first
     val iv = second
 }
