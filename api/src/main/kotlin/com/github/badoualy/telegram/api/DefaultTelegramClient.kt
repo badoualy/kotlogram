@@ -61,8 +61,20 @@ internal class DefaultTelegramClient internal constructor(val application: Teleg
             // Re-call every time to ensure connection is alive and to update layer
             if (checkNearestDc)
                 ensureNearestDc(initConnection(mtProtoHandler!!, TLRequestHelpGetNearestDc()))
-            else // GetNearestDc will not start updates: // TODO: replace with getDifference for updates
-                initConnection(mtProtoHandler!!, TLRequestUpdatesGetState())
+            else {
+                if (!generateAuthKey) {
+                    try {
+                        // GetNearestDc will not start updates: // TODO: replace with getDifference for updates
+                        initConnection(mtProtoHandler!!, TLRequestUpdatesGetState())
+                        return
+                    } catch(e: RpcErrorException) {
+                        // User may not be signed in already, in this case, ignore exception
+                        if (e.code != 401)
+                            throw e
+                    }
+                }
+                initConnection(mtProtoHandler!!, TLRequestHelpGetNearestDc())
+            }
         } catch(e: Exception) {
             mtProtoHandler?.close()
             if (e is RpcErrorException && e.code == -404)

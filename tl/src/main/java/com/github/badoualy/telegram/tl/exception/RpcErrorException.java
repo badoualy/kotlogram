@@ -18,4 +18,9 @@ public class RpcErrorException extends Exception {
     public String getTag() {
         return tag;
     }
+
+    @Override
+    public String toString() {
+        return getMessage();
+    }
 }
