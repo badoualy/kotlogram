@@ -29,7 +29,7 @@ fun TLAbsMessageMedia.getAbsMediaInput() = when (this) {
 fun TLAbsMessageMedia.getAbsMediaThumbnailInput() = when (this) {
     is TLMessageMediaAudio -> null // nothing to download
     is TLMessageMediaContact -> null // nothing to download
-    is TLMessageMediaDocument -> null // TODO: maybe file photo ?
+    is TLMessageMediaDocument -> getMediaThumbnailInput()
     is TLMessageMediaEmpty -> null // nothing to download
     is TLMessageMediaGeo -> null // nothing to download
     is TLMessageMediaPhoto -> getMediaThumbnailInput()
@@ -46,6 +46,11 @@ fun TLMessageMediaDocument.getMediaInput() = when (document) {
         val inputFileLocation = InputFileLocation(TLInputDocumentFileLocation(document.id, (document.accessHash)), document.dcId)
         MediaInput(inputFileLocation, document.size, document.mimeType)
     }
+    else -> null
+}
+
+fun TLMessageMediaDocument.getMediaThumbnailInput() = when (document) {
+    is TLDocument -> (document as TLDocument).thumb.getMediaInput()
     else -> null
 }
 
@@ -82,7 +87,7 @@ fun TLMessageMediaPhoto.getMediaThumbnailInput() = when (photo) {
     else -> null
 }
 
-fun TLAbsPhotoSize.getMediaInput() = when (this) {
+fun TLAbsPhotoSize?.getMediaInput() = when (this) {
     is TLPhotoSize -> {
         val inputFileLocation = location.toInputFileLocation()
         if (inputFileLocation != null)
@@ -92,7 +97,7 @@ fun TLAbsPhotoSize.getMediaInput() = when (this) {
     is TLPhotoCachedSize -> {
         val inputFileLocation = location.toInputFileLocation()
         if (inputFileLocation != null)
-            MediaInput(inputFileLocation, bytes.length, "image/jpeg") // TODO size
+            MediaInput(inputFileLocation, bytes.length, "image/jpeg")
         else null
     }
     else -> null
