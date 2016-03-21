@@ -1,6 +1,7 @@
 package com.github.badoualy.telegram.mtproto.util
 
 import com.github.badoualy.telegram.tl.api.*
+import com.github.badoualy.telegram.tl.core.TLBytes
 
 fun TLAbsMessageMedia.getLocation(): TLGeoPoint? = when (this) {
     is TLMessageMediaGeo -> geo as TLGeoPoint
@@ -87,6 +88,18 @@ fun TLMessageMediaPhoto.getMediaThumbnailInput() = when (photo) {
     else -> null
 }
 
+fun TLMessageMediaWebPage.getMediaInput() = when (webpage) {
+    is TLWebPage -> {
+        val photo = (webpage as TLWebPage).photo
+        if (photo is TLPhoto)
+            photo.sizes.getMaxSize()?.getMediaInput()
+        else null
+    }
+    else -> null
+}
+
+fun TLMessageMediaWebPage.getMediaThumbnailInput() = getMediaInput()
+
 fun TLAbsPhotoSize?.getMediaInput() = when (this) {
     is TLPhotoSize -> {
         val inputFileLocation = location.toInputFileLocation()
@@ -97,7 +110,7 @@ fun TLAbsPhotoSize?.getMediaInput() = when (this) {
     is TLPhotoCachedSize -> {
         val inputFileLocation = location.toInputFileLocation()
         if (inputFileLocation != null)
-            MediaInput(inputFileLocation, bytes.length, "image/jpeg")
+            MediaInput(inputFileLocation, bytes.length, "image/jpeg", bytes)
         else null
     }
     else -> null
@@ -133,5 +146,5 @@ fun TLAbsFileLocation.toInputFileLocation() = when (this) {
     else -> null
 }
 
-data class MediaInput(val inputFileLocation: InputFileLocation, val size: Int, val mimeType: String)
+data class MediaInput(val inputFileLocation: InputFileLocation, val size: Int, val mimeType: String, val cached: TLBytes? = null)
 data class InputFileLocation(val inputFileLocation: TLAbsInputFileLocation, val dcId: Int)
