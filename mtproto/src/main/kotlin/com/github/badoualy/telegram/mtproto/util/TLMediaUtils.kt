@@ -23,7 +23,7 @@ fun TLAbsMessageMedia.getAbsMediaInput() = when (this) {
     is TLMessageMediaUnsupported -> null // nothing to download
     is TLMessageMediaVenue -> null // nothing to download
     is TLMessageMediaVideo -> getMediaInput()
-    is TLMessageMediaWebPage -> null // nothing to download
+    is TLMessageMediaWebPage -> getMediaInput()
     else -> null
 }
 
@@ -37,7 +37,7 @@ fun TLAbsMessageMedia.getAbsMediaThumbnailInput() = when (this) {
     is TLMessageMediaUnsupported -> null // nothing to download
     is TLMessageMediaVenue -> null // nothing to download
     is TLMessageMediaVideo -> getMediaThumbnailInput()
-    is TLMessageMediaWebPage -> null // nothing to download
+    is TLMessageMediaWebPage -> getMediaThumbnailInput()
     else -> null
 }
 
