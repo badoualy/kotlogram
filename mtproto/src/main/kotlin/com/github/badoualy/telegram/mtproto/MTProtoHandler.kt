@@ -391,7 +391,10 @@ class MTProtoHandler {
                 handleResult(messageContent)
                 sendMessageAck(message.messageId)
             }
-            is TLAbsUpdates -> updatePool.execute { apiCallback?.onUpdates(messageContent) }
+            is TLAbsUpdates -> {
+                updatePool.execute { apiCallback?.onUpdates(messageContent) }
+                sendMessageAck(message.messageId)
+            }
             is MTNewSessionCreated -> {
                 //salt = message.serverSalt
                 sendMessageAck(message.messageId)
@@ -423,9 +426,6 @@ class MTProtoHandler {
                 // TODO
             }
             is MTFutureSalts -> {
-                // TODO
-            }
-            is MTFutureSalt -> {
                 // TODO
             }
             else -> throw IllegalStateException("Unsupported case ${messageContent.javaClass.simpleName} ${messageContent.toString()}")
