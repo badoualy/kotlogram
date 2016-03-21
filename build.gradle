@@ -69,3 +69,7 @@ subprojects {
         archives javadocJar
     }
 }
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '2.12'
+}
