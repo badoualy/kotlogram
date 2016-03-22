@@ -98,7 +98,15 @@ fun TLMessageMediaWebPage.getMediaInput() = when (webpage) {
     else -> null
 }
 
-fun TLMessageMediaWebPage.getMediaThumbnailInput() = getMediaInput()
+fun TLMessageMediaWebPage.getMediaThumbnailInput() = when (webpage) {
+    is TLWebPage -> {
+        val photo = (webpage as TLWebPage).photo
+        if (photo is TLPhoto)
+            photo.sizes.getMinSize()?.getMediaInput()
+        else null
+    }
+    else -> null
+}
 
 fun TLAbsPhotoSize?.getMediaInput() = when (this) {
     is TLPhotoSize -> {

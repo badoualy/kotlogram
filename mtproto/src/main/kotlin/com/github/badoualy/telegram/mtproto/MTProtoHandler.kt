@@ -33,7 +33,7 @@ class MTProtoHandler {
 
     private var TAG = "MTProtoHandler"
     private val ACK_BUFFER_SIZE = 15
-    private val ACK_BUFFER_TIMEOUT: Long = 60 * 1000
+    private val ACK_BUFFER_TIMEOUT: Long = 150 * 1000
 
     private val mtProtoContext = MTProtoContext
     private val apiContext = TLApiContext.getInstance()
