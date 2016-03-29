@@ -13,7 +13,6 @@ Beta
 The project is still in beta, a lot is yet to be done. It comes with absolutely no warranty!
 Main tasks left:
 - Implement [Perfect Forward Secrecy](https://core.telegram.org/api/pfs).
-- Improve error handling for the requests, and the exceptions in the mtproto module.
 
 Usage
 ----------------
