@@ -10,9 +10,9 @@ fun TLAbsMessage.getDate(): Int = when (this) {
 }
 
 fun TLAbsMessage.getFromId(): Int = when (this) {
-    is TLMessage -> fromId
-    is TLMessageService -> fromId
-    else -> 0
+    is TLMessage -> fromId ?: -1
+    is TLMessageService -> fromId ?: -1
+    else -> -1
 }
 
 fun TLAbsMessage.isUnread(): Boolean = when (this) {

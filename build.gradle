@@ -1,5 +1,5 @@
 allprojects {
-    version = "0.0.5-beta"
+    version = "0.0.6-beta"
 
     repositories {
         jcenter()
@@ -25,7 +25,7 @@ subprojects {
     }
 
     buildscript {
-        ext.kotlin_version = '1.0.1'
+        ext.kotlin_version = '1.0.1-2'
         repositories {
             mavenCentral()
         }
