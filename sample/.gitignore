@@ -8,3 +8,4 @@ src/test/java/com/github/badoualy/telegram/C.java
 *.jpg
 Sample*.java
 /src/main/resources/*
+tmp
