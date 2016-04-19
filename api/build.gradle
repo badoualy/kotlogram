@@ -6,3 +6,15 @@ dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
     compile project(':mtproto')
 }
+
+task fatJar(type: Jar) {
+    manifest {
+        attributes("Application-Name": "Kotlogram API",
+                   "Specification-Title": "Kotlogram API",
+                   "Implementation-Title": "com.github.badoualy.telegram.api",
+                   "Implementation-Version": version)
+    }
+    baseName = "kotlogram-$project.name"
+    from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } }
+    with jar
+}

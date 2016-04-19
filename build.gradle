@@ -1,15 +1,8 @@
-allprojects {
-    version = "0.0.6-beta"
-
-    repositories {
-        jcenter()
-        mavenCentral()
-    }
-}
-
 subprojects {
     apply plugin: 'java'
+    apply plugin: 'maven'
 
+    version = "0.0.7-beta"
     group = 'com.github.badoualy'
 
     sourceCompatibility = 1.8
@@ -72,4 +65,18 @@ subprojects {
 
 task wrapper(type: Wrapper) {
     gradleVersion = '2.12'
+}
+
+task fatJar {
+    group = "build"
+    description = "Generate a jar for each module including all dependencies"
+
+    subprojects.each {
+        it.afterEvaluate {
+            def fatJarTask = it.tasks.findByName('fatJar')
+            if (fatJarTask) {
+                dependsOn(fatJarTask)
+            }
+        }
+    }
 }
