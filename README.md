@@ -1,6 +1,9 @@
 ![Kotlogram](http://s28.postimg.org/u3sc3e24t/logo.png)
 [![Release](https://jitpack.io/v/badoualy/kotlogram.svg)](https://jitpack.io/#badoualy/kotlogram) [![Build Status](https://travis-ci.org/badoualy/kotlogram.svg?branch=master)](https://travis-ci.org/badoualy/kotlogram)
 ===========
+> Documentation moved [http://kotlogram.badoualy.com](http://kotlogram.badoualy.com)
+===========
+
 > **Easy to use** and **straightforward** Kotlin (and Java) binding of [Telegram API](https://core.telegram.org/api).
 > The project is coded in **Kotlin**, with some classes (mostly generated and legacy classes) in Java
 > The Java code will be replaced by Kotlin over time
@@ -13,7 +16,6 @@ Beta
 The project is still in beta, a lot is yet to be done. It comes with absolutely no warranty!
 Main tasks left:
 - Implement [Perfect Forward Secrecy](https://core.telegram.org/api/pfs).
-- Improve error handling for the requests, and the exceptions in the mtproto module.
 
 Usage
 ----------------
@@ -30,7 +32,7 @@ repositories {
 
 Then add the library dependency:
 ```gradle
-compile 'com.github.badoualy:kotlogram:0.0.5'
+compile 'com.github.badoualy:kotlogram:0.0.6'
 ```
 
 ### Be warned
