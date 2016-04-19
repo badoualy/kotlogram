@@ -1,0 +1,7 @@
+{
+  "channel": {
+    "_constructor": "inputChannelEmpty#ee8c1e86"
+  },
+  "enabled": true,
+  "_constructor": "channels.toggleSignatures#1f69b606"
+}

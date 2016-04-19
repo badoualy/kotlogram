@@ -1,0 +1,25 @@
+{
+  "photo": {
+    "_constructor": "photoEmpty#2331b22d",
+    "id": 0
+  },
+  "document": {
+    "_constructor": "documentEmpty#36f8c871",
+    "id": 0
+  },
+  "title": "BfgSdJxkhBG22ZuNI0yMDHo",
+  "description": "Q9zdh449xa",
+  "_constructor": "botInlineMediaResult#17db940b",
+  "flags": 15,
+  "id": "EFzm0OvDgKWhIF8Fx2L",
+  "type": "TAaxO8BhG",
+  "sendMessage": {
+    "caption": "ZfmTyLRUVrr",
+    "_constructor": "botInlineMessageMediaAuto#a74b15b",
+    "flags": 4,
+    "replyMarkup": {
+      "flags": 4,
+      "_constructor": "replyKeyboardHide#a03e5b85"
+    }
+  }
+}
