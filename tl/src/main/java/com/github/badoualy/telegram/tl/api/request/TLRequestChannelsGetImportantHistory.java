@@ -22,11 +22,13 @@ import static com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_INT32;
  * @see <a href="http://github.com/badoualy/kotlogram">http://github.com/badoualy/kotlogram</a>
  */
 public class TLRequestChannelsGetImportantHistory extends TLMethod<TLAbsMessages> {
-    public static final int CONSTRUCTOR_ID = 0xddb929cb;
+    public static final int CONSTRUCTOR_ID = 0x8f494bb2;
 
     protected TLAbsInputChannel channel;
 
     protected int offsetId;
+
+    protected int offsetDate;
 
     protected int addOffset;
 
@@ -36,14 +38,15 @@ public class TLRequestChannelsGetImportantHistory extends TLMethod<TLAbsMessages
 
     protected int minId;
 
-    private final String _constructor = "channels.getImportantHistory#ddb929cb";
+    private final String _constructor = "channels.getImportantHistory#8f494bb2";
 
     public TLRequestChannelsGetImportantHistory() {
     }
 
-    public TLRequestChannelsGetImportantHistory(TLAbsInputChannel channel, int offsetId, int addOffset, int limit, int maxId, int minId) {
+    public TLRequestChannelsGetImportantHistory(TLAbsInputChannel channel, int offsetId, int offsetDate, int addOffset, int limit, int maxId, int minId) {
         this.channel = channel;
         this.offsetId = offsetId;
+        this.offsetDate = offsetDate;
         this.addOffset = addOffset;
         this.limit = limit;
         this.maxId = maxId;
@@ -67,6 +70,7 @@ public class TLRequestChannelsGetImportantHistory extends TLMethod<TLAbsMessages
     public void serializeBody(OutputStream stream) throws IOException {
         writeTLObject(channel, stream);
         writeInt(offsetId, stream);
+        writeInt(offsetDate, stream);
         writeInt(addOffset, stream);
         writeInt(limit, stream);
         writeInt(maxId, stream);
@@ -78,6 +82,7 @@ public class TLRequestChannelsGetImportantHistory extends TLMethod<TLAbsMessages
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
         channel = readTLObject(stream, context, TLAbsInputChannel.class, -1);
         offsetId = readInt(stream);
+        offsetDate = readInt(stream);
         addOffset = readInt(stream);
         limit = readInt(stream);
         maxId = readInt(stream);
@@ -88,6 +93,7 @@ public class TLRequestChannelsGetImportantHistory extends TLMethod<TLAbsMessages
     public int computeSerializedSize() {
         int size = SIZE_CONSTRUCTOR_ID;
         size += channel.computeSerializedSize();
+        size += SIZE_INT32;
         size += SIZE_INT32;
         size += SIZE_INT32;
         size += SIZE_INT32;
@@ -106,22 +112,6 @@ public class TLRequestChannelsGetImportantHistory extends TLMethod<TLAbsMessages
         return CONSTRUCTOR_ID;
     }
 
-    @Override
-    @SuppressWarnings("PointlessBooleanExpression")
-    public boolean equals(Object object) {
-        if (!(object instanceof TLRequestChannelsGetImportantHistory)) return false;
-        if (object == this) return true;
-
-        TLRequestChannelsGetImportantHistory o = (TLRequestChannelsGetImportantHistory) object;
-
-        return (channel == o.channel || (channel != null && o.channel != null && channel.equals(o.channel)))
-                && offsetId == o.offsetId
-                && addOffset == o.addOffset
-                && limit == o.limit
-                && maxId == o.maxId
-                && minId == o.minId;
-    }
-
     public TLAbsInputChannel getChannel() {
         return channel;
     }
@@ -136,6 +126,14 @@ public class TLRequestChannelsGetImportantHistory extends TLMethod<TLAbsMessages
 
     public void setOffsetId(int offsetId) {
         this.offsetId = offsetId;
+    }
+
+    public int getOffsetDate() {
+        return offsetDate;
+    }
+
+    public void setOffsetDate(int offsetDate) {
+        this.offsetDate = offsetDate;
     }
 
     public int getAddOffset() {

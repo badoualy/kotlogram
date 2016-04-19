@@ -67,18 +67,6 @@ public class TLStickers extends TLAbsStickers {
         return CONSTRUCTOR_ID;
     }
 
-    @Override
-    @SuppressWarnings("PointlessBooleanExpression")
-    public boolean equals(Object object) {
-        if (!(object instanceof TLStickers)) return false;
-        if (object == this) return true;
-
-        TLStickers o = (TLStickers) object;
-
-        return (hash == o.hash || (hash != null && o.hash != null && hash.equals(o.hash)))
-                && (stickers == o.stickers || (stickers != null && o.stickers != null && stickers.equals(o.stickers)));
-    }
-
     public String getHash() {
         return hash;
     }

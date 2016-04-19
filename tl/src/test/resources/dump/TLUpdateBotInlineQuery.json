@@ -1,7 +1,13 @@
 {
+  "flags": 1,
   "queryId": 0,
   "userId": 0,
-  "query": "oGYEHb8cIqrf",
-  "offset": "rsp9HkaNN5z43k",
-  "_constructor": "updateBotInlineQuery#c01eea08"
+  "query": "S9NpDv6FQBIs",
+  "geo": {
+    "_long": 0.0,
+    "lat": 0.0,
+    "_constructor": "geoPoint#2049d70c"
+  },
+  "offset": "3WppVXMr6Y1cxzJZYSr44bnN",
+  "_constructor": "updateBotInlineQuery#54826690"
 }

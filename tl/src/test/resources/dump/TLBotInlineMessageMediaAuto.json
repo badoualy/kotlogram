@@ -1,4 +1,9 @@
 {
-  "caption": "ZqGn37Y41ara45IqWVzBU7",
-  "_constructor": "botInlineMessageMediaAuto#fc56e87d"
+  "caption": "S4L1bnSFAEOyZ8B0Vj",
+  "_constructor": "botInlineMessageMediaAuto#a74b15b",
+  "flags": 4,
+  "replyMarkup": {
+    "flags": 4,
+    "_constructor": "replyKeyboardHide#a03e5b85"
+  }
 }

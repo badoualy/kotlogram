@@ -57,17 +57,6 @@ public class TLPeerChannel extends TLAbsPeer {
         return CONSTRUCTOR_ID;
     }
 
-    @Override
-    @SuppressWarnings("PointlessBooleanExpression")
-    public boolean equals(Object object) {
-        if (!(object instanceof TLPeerChannel)) return false;
-        if (object == this) return true;
-
-        TLPeerChannel o = (TLPeerChannel) object;
-
-        return channelId == o.channelId;
-    }
-
     public int getChannelId() {
         return channelId;
     }

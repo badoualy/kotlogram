@@ -83,21 +83,6 @@ public class TLInputMediaVenue extends TLAbsInputMedia {
         return CONSTRUCTOR_ID;
     }
 
-    @Override
-    @SuppressWarnings("PointlessBooleanExpression")
-    public boolean equals(Object object) {
-        if (!(object instanceof TLInputMediaVenue)) return false;
-        if (object == this) return true;
-
-        TLInputMediaVenue o = (TLInputMediaVenue) object;
-
-        return (geoPoint == o.geoPoint || (geoPoint != null && o.geoPoint != null && geoPoint.equals(o.geoPoint)))
-                && (title == o.title || (title != null && o.title != null && title.equals(o.title)))
-                && (address == o.address || (address != null && o.address != null && address.equals(o.address)))
-                && (provider == o.provider || (provider != null && o.provider != null && provider.equals(o.provider)))
-                && (venueId == o.venueId || (venueId != null && o.venueId != null && venueId.equals(o.venueId)));
-    }
-
     public TLAbsInputGeoPoint getGeoPoint() {
         return geoPoint;
     }

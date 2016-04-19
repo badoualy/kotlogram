@@ -1,23 +1,14 @@
 {
-  "flags": 767,
-  "creator": true,
-  "kicked": true,
-  "left": true,
-  "editor": true,
-  "moderator": true,
-  "broadcast": true,
-  "verified": true,
-  "megagroup": false,
-  "restricted": true,
+  "flags": 12021,
   "accessHash": 0,
-  "title": "65UZsddKWiIzgQ3xmMCYTk4Vb2U3",
-  "username": "6bmZxckiIgpVPhmUtHp",
+  "title": "HUsACf",
+  "username": "AnIIPbIQXb8D",
   "photo": {
     "_constructor": "chatPhotoEmpty#37c1011c"
   },
   "date": 0,
   "version": 0,
-  "restrictionReason": "q7vN5hNs7gMgwwHmS2tXhH5Pr",
-  "_constructor": "channel#4b1b7506",
+  "restrictionReason": "hWvjEuENVyYRy4G26b",
+  "_constructor": "channel#a14dca52",
   "id": 0
 }

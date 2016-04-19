@@ -65,18 +65,6 @@ public class TLInputMediaPhoto extends TLAbsInputMedia {
         return CONSTRUCTOR_ID;
     }
 
-    @Override
-    @SuppressWarnings("PointlessBooleanExpression")
-    public boolean equals(Object object) {
-        if (!(object instanceof TLInputMediaPhoto)) return false;
-        if (object == this) return true;
-
-        TLInputMediaPhoto o = (TLInputMediaPhoto) object;
-
-        return (id == o.id || (id != null && o.id != null && id.equals(o.id)))
-                && (caption == o.caption || (caption != null && o.caption != null && caption.equals(o.caption)));
-    }
-
     public TLAbsInputPhoto getId() {
         return id;
     }

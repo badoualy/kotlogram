@@ -21,9 +21,13 @@ import static com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_INT32;
 public class TLReplyKeyboardMarkup extends TLAbsReplyMarkup {
     public static final int CONSTRUCTOR_ID = 0x3502758c;
 
+    protected int flags;
+
     protected boolean resize;
 
     protected boolean singleUse;
+
+    protected boolean selective;
 
     protected TLVector<TLKeyboardButtonRow> rows;
 
@@ -44,6 +48,7 @@ public class TLReplyKeyboardMarkup extends TLAbsReplyMarkup {
         flags = resize ? (flags | 1) : (flags &~ 1);
         flags = singleUse ? (flags | 2) : (flags &~ 2);
         flags = selective ? (flags | 4) : (flags &~ 4);
+        // Fields below may not be serialized due to flags field value
     }
 
     @Override
@@ -82,21 +87,6 @@ public class TLReplyKeyboardMarkup extends TLAbsReplyMarkup {
     @Override
     public int getConstructorId() {
         return CONSTRUCTOR_ID;
-    }
-
-    @Override
-    @SuppressWarnings("PointlessBooleanExpression")
-    public boolean equals(Object object) {
-        if (!(object instanceof TLReplyKeyboardMarkup)) return false;
-        if (object == this) return true;
-
-        TLReplyKeyboardMarkup o = (TLReplyKeyboardMarkup) object;
-
-        return flags == o.flags
-                && resize == o.resize
-                && singleUse == o.singleUse
-                && selective == o.selective
-                && (rows == o.rows || (rows != null && o.rows != null && rows.equals(o.rows)));
     }
 
     public boolean getResize() {

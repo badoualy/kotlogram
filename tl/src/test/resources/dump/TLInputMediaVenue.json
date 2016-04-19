@@ -1,12 +1,10 @@
 {
   "geoPoint": {
-    "lat": 0.0,
-    "_long": 0.0,
-    "_constructor": "inputGeoPoint#f3b7acc9"
+    "_constructor": "inputGeoPointEmpty#e4c123d6"
   },
-  "title": "FHAgZCBs",
-  "address": "IVONvS1ppDQ7RqgLdXqwdpkgUb4rY",
-  "provider": "WoNbK0z4IOVaZDMhSaFK",
-  "venueId": "76fn54TO3r",
+  "title": "K0jX3EYDYAtrr",
+  "address": "ev6ch2DYoRFmhqFweKRcHBv",
+  "provider": "o9DAL1fLyLE5KaqwF1ql81x",
+  "venueId": "LbVUiMQdKMtTme36WDFuBiTGL",
   "_constructor": "inputMediaVenue#2827a81a"
 }

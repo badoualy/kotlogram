@@ -82,18 +82,6 @@ public class TLRequestChannelsReadHistory extends TLMethod<TLBool> {
         return CONSTRUCTOR_ID;
     }
 
-    @Override
-    @SuppressWarnings("PointlessBooleanExpression")
-    public boolean equals(Object object) {
-        if (!(object instanceof TLRequestChannelsReadHistory)) return false;
-        if (object == this) return true;
-
-        TLRequestChannelsReadHistory o = (TLRequestChannelsReadHistory) object;
-
-        return (channel == o.channel || (channel != null && o.channel != null && channel.equals(o.channel)))
-                && maxId == o.maxId;
-    }
-
     public TLAbsInputChannel getChannel() {
         return channel;
     }

@@ -1,66 +1,8 @@
 {
   "photo": {
-    "accessHash": 0,
-    "date": 0,
-    "sizes": [
-      {
-        "location": {
-          "dcId": 0,
-          "_constructor": "fileLocation#53d69076",
-          "volumeId": 0,
-          "localId": 0,
-          "secret": 0
-        },
-        "w": 0,
-        "h": 0,
-        "bytes": {
-          "data": [
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0
-          ],
-          "offset": 0,
-          "len": 14
-        },
-        "_constructor": "photoCachedSize#e9a734fa",
-        "type": "taJ6XjKBP"
-      },
-      {
-        "_constructor": "photoSizeEmpty#e17e23c",
-        "type": "CBa1Nw7xhZ2eLWXDukzM6EEM7b"
-      },
-      {
-        "location": {
-          "_constructor": "fileLocationUnavailable#7c596b46",
-          "volumeId": 0,
-          "localId": 0,
-          "secret": 0
-        },
-        "w": 0,
-        "h": 0,
-        "size": 0,
-        "_constructor": "photoSize#77bfb61b",
-        "type": "usAELNzMsavTADNarwd"
-      },
-      {
-        "_constructor": "photoSizeEmpty#e17e23c",
-        "type": "7ZEZhRp6RjoJPvFKoSVHM"
-      }
-    ],
-    "_constructor": "photo#cded42fe",
+    "_constructor": "photoEmpty#2331b22d",
     "id": 0
   },
-  "caption": "rmv4d",
+  "caption": "WX69u0DMjC39Y9Mwf",
   "_constructor": "messageMediaPhoto#3d8ce53d"
 }

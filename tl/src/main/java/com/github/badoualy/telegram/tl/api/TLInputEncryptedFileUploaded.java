@@ -81,20 +81,6 @@ public class TLInputEncryptedFileUploaded extends TLAbsInputEncryptedFile {
         return CONSTRUCTOR_ID;
     }
 
-    @Override
-    @SuppressWarnings("PointlessBooleanExpression")
-    public boolean equals(Object object) {
-        if (!(object instanceof TLInputEncryptedFileUploaded)) return false;
-        if (object == this) return true;
-
-        TLInputEncryptedFileUploaded o = (TLInputEncryptedFileUploaded) object;
-
-        return id == o.id
-                && parts == o.parts
-                && (md5Checksum == o.md5Checksum || (md5Checksum != null && o.md5Checksum != null && md5Checksum.equals(o.md5Checksum)))
-                && keyFingerprint == o.keyFingerprint;
-    }
-
     public long getId() {
         return id;
     }

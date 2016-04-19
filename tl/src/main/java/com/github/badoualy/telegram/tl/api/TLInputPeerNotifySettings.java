@@ -8,12 +8,9 @@ import java.io.InputStream;
 import java.io.OutputStream;
 
 import static com.github.badoualy.telegram.tl.StreamUtils.readInt;
-import static com.github.badoualy.telegram.tl.StreamUtils.readTLBool;
 import static com.github.badoualy.telegram.tl.StreamUtils.readTLString;
-import static com.github.badoualy.telegram.tl.StreamUtils.writeBoolean;
 import static com.github.badoualy.telegram.tl.StreamUtils.writeInt;
 import static com.github.badoualy.telegram.tl.StreamUtils.writeString;
-import static com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_BOOLEAN;
 import static com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_CONSTRUCTOR_ID;
 import static com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_INT32;
 import static com.github.badoualy.telegram.tl.TLObjectUtils.computeTLStringSerializedSize;
@@ -23,52 +20,64 @@ import static com.github.badoualy.telegram.tl.TLObjectUtils.computeTLStringSeria
  * @see <a href="http://github.com/badoualy/kotlogram">http://github.com/badoualy/kotlogram</a>
  */
 public class TLInputPeerNotifySettings extends TLObject {
-    public static final int CONSTRUCTOR_ID = 0x46a2ce98;
+    public static final int CONSTRUCTOR_ID = 0x38935eb2;
+
+    protected int flags;
+
+    protected boolean showPreviews;
+
+    protected boolean silent;
 
     protected int muteUntil;
 
     protected String sound;
 
-    protected boolean showPreviews;
-
-    protected int eventsMask;
-
-    private final String _constructor = "inputPeerNotifySettings#46a2ce98";
+    private final String _constructor = "inputPeerNotifySettings#38935eb2";
 
     public TLInputPeerNotifySettings() {
     }
 
-    public TLInputPeerNotifySettings(int muteUntil, String sound, boolean showPreviews, int eventsMask) {
+    public TLInputPeerNotifySettings(boolean showPreviews, boolean silent, int muteUntil, String sound) {
+        this.showPreviews = showPreviews;
+        this.silent = silent;
         this.muteUntil = muteUntil;
         this.sound = sound;
-        this.showPreviews = showPreviews;
-        this.eventsMask = eventsMask;
+    }
+
+    private void computeFlags() {
+        flags = 0;
+        flags = showPreviews ? (flags | 1) : (flags &~ 1);
+        flags = silent ? (flags | 2) : (flags &~ 2);
+        // Fields below may not be serialized due to flags field value
     }
 
     @Override
     public void serializeBody(OutputStream stream) throws IOException {
+        computeFlags();
+
+        writeInt(flags, stream);
         writeInt(muteUntil, stream);
         writeString(sound, stream);
-        writeBoolean(showPreviews, stream);
-        writeInt(eventsMask, stream);
     }
 
     @Override
     @SuppressWarnings("unchecked")
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
+        flags = readInt(stream);
+        showPreviews = (flags & 1) != 0;
+        silent = (flags & 2) != 0;
         muteUntil = readInt(stream);
         sound = readTLString(stream);
-        showPreviews = readTLBool(stream);
-        eventsMask = readInt(stream);
     }
 
     @Override
     public int computeSerializedSize() {
+        computeFlags();
+
         int size = SIZE_CONSTRUCTOR_ID;
         size += SIZE_INT32;
-        size += computeTLStringSerializedSize(sound);
-        size += SIZE_BOOLEAN;
         size += SIZE_INT32;
+        size += computeTLStringSerializedSize(sound);
         return size;
     }
 
@@ -82,18 +91,20 @@ public class TLInputPeerNotifySettings extends TLObject {
         return CONSTRUCTOR_ID;
     }
 
-    @Override
-    @SuppressWarnings("PointlessBooleanExpression")
-    public boolean equals(Object object) {
-        if (!(object instanceof TLInputPeerNotifySettings)) return false;
-        if (object == this) return true;
+    public boolean getShowPreviews() {
+        return showPreviews;
+    }
 
-        TLInputPeerNotifySettings o = (TLInputPeerNotifySettings) object;
+    public void setShowPreviews(boolean showPreviews) {
+        this.showPreviews = showPreviews;
+    }
 
-        return muteUntil == o.muteUntil
-                && (sound == o.sound || (sound != null && o.sound != null && sound.equals(o.sound)))
-                && showPreviews == o.showPreviews
-                && eventsMask == o.eventsMask;
+    public boolean getSilent() {
+        return silent;
+    }
+
+    public void setSilent(boolean silent) {
+        this.silent = silent;
     }
 
     public int getMuteUntil() {
@@ -110,21 +121,5 @@ public class TLInputPeerNotifySettings extends TLObject {
 
     public void setSound(String sound) {
         this.sound = sound;
-    }
-
-    public boolean getShowPreviews() {
-        return showPreviews;
-    }
-
-    public void setShowPreviews(boolean showPreviews) {
-        this.showPreviews = showPreviews;
-    }
-
-    public int getEventsMask() {
-        return eventsMask;
-    }
-
-    public void setEventsMask(int eventsMask) {
-        this.eventsMask = eventsMask;
     }
 }

@@ -37,15 +37,4 @@ public class TLRequestContactsGetStatuses extends TLMethod<TLVector<TLContactSta
     public int getConstructorId() {
         return CONSTRUCTOR_ID;
     }
-
-    @Override
-    @SuppressWarnings("PointlessBooleanExpression")
-    public boolean equals(Object object) {
-        if (!(object instanceof TLRequestContactsGetStatuses)) return false;
-        if (object == this) return true;
-
-        TLRequestContactsGetStatuses o = (TLRequestContactsGetStatuses) object;
-
-        return true;
-    }
 }

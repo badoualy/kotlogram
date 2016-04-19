@@ -8,10 +8,12 @@ import java.io.InputStream;
 import java.io.OutputStream;
 
 import static com.github.badoualy.telegram.tl.StreamUtils.readInt;
+import static com.github.badoualy.telegram.tl.StreamUtils.readTLObject;
 import static com.github.badoualy.telegram.tl.StreamUtils.readTLString;
 import static com.github.badoualy.telegram.tl.StreamUtils.readTLVector;
 import static com.github.badoualy.telegram.tl.StreamUtils.writeInt;
 import static com.github.badoualy.telegram.tl.StreamUtils.writeString;
+import static com.github.badoualy.telegram.tl.StreamUtils.writeTLObject;
 import static com.github.badoualy.telegram.tl.StreamUtils.writeTLVector;
 import static com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_CONSTRUCTOR_ID;
 import static com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_INT32;
@@ -22,9 +24,7 @@ import static com.github.badoualy.telegram.tl.TLObjectUtils.computeTLStringSeria
  * @see <a href="http://github.com/badoualy/kotlogram">http://github.com/badoualy/kotlogram</a>
  */
 public class TLInputBotInlineMessageText extends TLAbsInputBotInlineMessage {
-    public static final int CONSTRUCTOR_ID = 0xadf0df71;
-
-    protected int flags;
+    public static final int CONSTRUCTOR_ID = 0x3dcd7a87;
 
     protected boolean noWebpage;
 
@@ -32,21 +32,24 @@ public class TLInputBotInlineMessageText extends TLAbsInputBotInlineMessage {
 
     protected TLVector<TLAbsMessageEntity> entities;
 
-    private final String _constructor = "inputBotInlineMessageText#adf0df71";
+    private final String _constructor = "inputBotInlineMessageText#3dcd7a87";
 
     public TLInputBotInlineMessageText() {
     }
 
-    public TLInputBotInlineMessageText(boolean noWebpage, String message, TLVector<TLAbsMessageEntity> entities) {
+    public TLInputBotInlineMessageText(boolean noWebpage, String message, TLVector<TLAbsMessageEntity> entities, TLAbsReplyMarkup replyMarkup) {
         this.noWebpage = noWebpage;
         this.message = message;
         this.entities = entities;
+        this.replyMarkup = replyMarkup;
     }
 
     private void computeFlags() {
         flags = 0;
         flags = noWebpage ? (flags | 1) : (flags &~ 1);
-        flags = entities != null ? (flags | 2) : (flags &~ 2);
+        // Fields below may not be serialized due to flags field value
+        if ((flags & 2) == 0) entities = null;
+        if ((flags & 4) == 0) replyMarkup = null;
     }
 
     @Override
@@ -55,7 +58,14 @@ public class TLInputBotInlineMessageText extends TLAbsInputBotInlineMessage {
 
         writeInt(flags, stream);
         writeString(message, stream);
-        if ((flags & 2) != 0) writeTLVector(entities, stream);
+        if ((flags & 2) != 0) {
+            if (entities == null)
+                throw new java.lang.NullPointerException("Attempt to serialize null field entities" (flags = " + flags + ");writeTLVector(entities, stream);
+        }
+        if ((flags & 4) != 0) {
+            if (replyMarkup == null)
+                throw new java.lang.NullPointerException("Attempt to serialize null field replyMarkup" (flags = " + flags + ");writeTLObject(replyMarkup, stream);
+        }
     }
 
     @Override
@@ -65,6 +75,7 @@ public class TLInputBotInlineMessageText extends TLAbsInputBotInlineMessage {
         noWebpage = (flags & 1) != 0;
         message = readTLString(stream);
         entities = (flags & 2) != 0 ? readTLVector(stream, context) : null;
+        replyMarkup = (flags & 4) != 0 ? readTLObject(stream, context, TLAbsReplyMarkup.class, -1) : null;
     }
 
     @Override
@@ -75,6 +86,7 @@ public class TLInputBotInlineMessageText extends TLAbsInputBotInlineMessage {
         size += SIZE_INT32;
         size += computeTLStringSerializedSize(message);
         if ((flags & 2) != 0) size += entities.computeSerializedSize();
+        if ((flags & 4) != 0) size += replyMarkup.computeSerializedSize();
         return size;
     }
 
@@ -86,20 +98,6 @@ public class TLInputBotInlineMessageText extends TLAbsInputBotInlineMessage {
     @Override
     public int getConstructorId() {
         return CONSTRUCTOR_ID;
-    }
-
-    @Override
-    @SuppressWarnings("PointlessBooleanExpression")
-    public boolean equals(Object object) {
-        if (!(object instanceof TLInputBotInlineMessageText)) return false;
-        if (object == this) return true;
-
-        TLInputBotInlineMessageText o = (TLInputBotInlineMessageText) object;
-
-        return flags == o.flags
-                && noWebpage == o.noWebpage
-                && (message == o.message || (message != null && o.message != null && message.equals(o.message)))
-                && (entities == o.entities || (entities != null && o.entities != null && entities.equals(o.entities)));
     }
 
     public boolean getNoWebpage() {
@@ -124,5 +122,13 @@ public class TLInputBotInlineMessageText extends TLAbsInputBotInlineMessage {
 
     public void setEntities(TLVector<TLAbsMessageEntity> entities) {
         this.entities = entities;
+    }
+
+    public TLAbsReplyMarkup getReplyMarkup() {
+        return replyMarkup;
+    }
+
+    public void setReplyMarkup(TLAbsReplyMarkup replyMarkup) {
+        this.replyMarkup = replyMarkup;
     }
 }

@@ -1,8 +1,18 @@
 {
+  "flags": 1,
   "bot": {
     "_constructor": "inputUserSelf#f7c1b13f"
   },
-  "query": "8G8DX3J6",
-  "offset": "Q11blJdx2",
-  "_constructor": "messages.getInlineBotResults#9324600d"
+  "peer": {
+    "chatId": 0,
+    "_constructor": "inputPeerChat#179be863"
+  },
+  "geoPoint": {
+    "lat": 0.0,
+    "_long": 0.0,
+    "_constructor": "inputGeoPoint#f3b7acc9"
+  },
+  "query": "9oMWqXs5YuhCY6",
+  "offset": "MTVSG",
+  "_constructor": "messages.getInlineBotResults#514e999d"
 }

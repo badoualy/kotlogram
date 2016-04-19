@@ -13,7 +13,7 @@ import java.util.Collection;
 
 public class Benchmark {
 
-    private static final int TEST_COUNT = 1000000;
+    private static final int TEST_COUNT = 10000;
 
     public static void main(String[] args) throws IOException, DecoderException {
         Collection<File> files = DumpUtils.loadAll("tl/" + DumpUtils.dumpDir);

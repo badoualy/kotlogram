@@ -67,18 +67,6 @@ public class TLAllStickers extends TLAbsAllStickers {
         return CONSTRUCTOR_ID;
     }
 
-    @Override
-    @SuppressWarnings("PointlessBooleanExpression")
-    public boolean equals(Object object) {
-        if (!(object instanceof TLAllStickers)) return false;
-        if (object == this) return true;
-
-        TLAllStickers o = (TLAllStickers) object;
-
-        return hash == o.hash
-                && (sets == o.sets || (sets != null && o.sets != null && sets.equals(o.sets)));
-    }
-
     public int getHash() {
         return hash;
     }

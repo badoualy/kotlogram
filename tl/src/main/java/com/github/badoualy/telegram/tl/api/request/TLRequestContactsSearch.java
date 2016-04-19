@@ -83,18 +83,6 @@ public class TLRequestContactsSearch extends TLMethod<TLFound> {
         return CONSTRUCTOR_ID;
     }
 
-    @Override
-    @SuppressWarnings("PointlessBooleanExpression")
-    public boolean equals(Object object) {
-        if (!(object instanceof TLRequestContactsSearch)) return false;
-        if (object == this) return true;
-
-        TLRequestContactsSearch o = (TLRequestContactsSearch) object;
-
-        return (q == o.q || (q != null && o.q != null && q.equals(o.q)))
-                && limit == o.limit;
-    }
-
     public String getQ() {
         return q;
     }

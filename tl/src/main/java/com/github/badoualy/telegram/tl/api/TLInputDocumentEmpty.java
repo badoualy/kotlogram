@@ -23,17 +23,6 @@ public class TLInputDocumentEmpty extends TLAbsInputDocument {
     }
 
     @Override
-    @SuppressWarnings("PointlessBooleanExpression")
-    public boolean equals(Object object) {
-        if (!(object instanceof TLInputDocumentEmpty)) return false;
-        if (object == this) return true;
-
-        TLInputDocumentEmpty o = (TLInputDocumentEmpty) object;
-
-        return true;
-    }
-
-    @Override
     public final boolean isEmpty() {
         return true;
     }

@@ -73,17 +73,6 @@ public class TLRequestContactsBlock extends TLMethod<TLBool> {
         return CONSTRUCTOR_ID;
     }
 
-    @Override
-    @SuppressWarnings("PointlessBooleanExpression")
-    public boolean equals(Object object) {
-        if (!(object instanceof TLRequestContactsBlock)) return false;
-        if (object == this) return true;
-
-        TLRequestContactsBlock o = (TLRequestContactsBlock) object;
-
-        return (id == o.id || (id != null && o.id != null && id.equals(o.id)));
-    }
-
     public TLAbsInputUser getId() {
         return id;
     }

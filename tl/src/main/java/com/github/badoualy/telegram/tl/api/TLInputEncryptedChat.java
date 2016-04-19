@@ -67,18 +67,6 @@ public class TLInputEncryptedChat extends TLObject {
         return CONSTRUCTOR_ID;
     }
 
-    @Override
-    @SuppressWarnings("PointlessBooleanExpression")
-    public boolean equals(Object object) {
-        if (!(object instanceof TLInputEncryptedChat)) return false;
-        if (object == this) return true;
-
-        TLInputEncryptedChat o = (TLInputEncryptedChat) object;
-
-        return chatId == o.chatId
-                && accessHash == o.accessHash;
-    }
-
     public int getChatId() {
         return chatId;
     }

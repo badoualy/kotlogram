@@ -82,21 +82,6 @@ public class TLEncryptedMessage extends TLAbsEncryptedMessage {
         return CONSTRUCTOR_ID;
     }
 
-    @Override
-    @SuppressWarnings("PointlessBooleanExpression")
-    public boolean equals(Object object) {
-        if (!(object instanceof TLEncryptedMessage)) return false;
-        if (object == this) return true;
-
-        TLEncryptedMessage o = (TLEncryptedMessage) object;
-
-        return randomId == o.randomId
-                && chatId == o.chatId
-                && date == o.date
-                && (bytes == o.bytes || (bytes != null && o.bytes != null && bytes.equals(o.bytes)))
-                && (file == o.file || (file != null && o.file != null && file.equals(o.file)));
-    }
-
     public long getRandomId() {
         return randomId;
     }

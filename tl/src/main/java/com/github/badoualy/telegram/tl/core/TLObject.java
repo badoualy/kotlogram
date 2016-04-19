@@ -1,6 +1,7 @@
 package com.github.badoualy.telegram.tl.core;
 
 import com.github.badoualy.telegram.tl.TLContext;
+import com.github.badoualy.telegram.tl.TLObjectUtils;
 import com.github.badoualy.telegram.tl.exception.InvalidConstructorIdException;
 
 import java.io.ByteArrayOutputStream;
@@ -92,6 +93,17 @@ public abstract class TLObject implements Serializable {
      * @return size in bytes
      */
     public int computeSerializedSize() {
-        return 4; // Constructor is 4-byte (int32)
+        return TLObjectUtils.SIZE_CONSTRUCTOR_ID; // Constructor is 4-byte (int32)
+    }
+
+    /**
+     * Throw an exception to notify that the field trying to be serialized is null
+     *
+     * @param fieldName name of the field trying to be serialized
+     * @param flags flags field current value
+     * @throws NullPointerException
+     */
+    protected final void throwNullFieldException(String fieldName, int flags) throws NullPointerException {
+        throw new NullPointerException("Attempt to serialize null field " + fieldName + ", flags = " + flags);
     }
 }

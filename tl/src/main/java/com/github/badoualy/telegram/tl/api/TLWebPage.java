@@ -81,18 +81,19 @@ public class TLWebPage extends TLAbsWebPage {
 
     private void computeFlags() {
         flags = 0;
-        flags = type != null ? (flags | 1) : (flags &~ 1);
-        flags = siteName != null ? (flags | 2) : (flags &~ 2);
-        flags = title != null ? (flags | 4) : (flags &~ 4);
-        flags = description != null ? (flags | 8) : (flags &~ 8);
-        flags = photo != null ? (flags | 16) : (flags &~ 16);
-        flags = embedUrl != null ? (flags | 32) : (flags &~ 32);
-        flags = embedType != null ? (flags | 32) : (flags &~ 32);
-        flags = embedWidth != null ? (flags | 64) : (flags &~ 64);
-        flags = embedHeight != null ? (flags | 64) : (flags &~ 64);
-        flags = duration != null ? (flags | 128) : (flags &~ 128);
-        flags = author != null ? (flags | 256) : (flags &~ 256);
-        flags = document != null ? (flags | 512) : (flags &~ 512);
+        // Fields below may not be serialized due to flags field value
+        if ((flags & 1) == 0) type = null;
+        if ((flags & 2) == 0) siteName = null;
+        if ((flags & 4) == 0) title = null;
+        if ((flags & 8) == 0) description = null;
+        if ((flags & 16) == 0) photo = null;
+        if ((flags & 32) == 0) embedUrl = null;
+        if ((flags & 32) == 0) embedType = null;
+        if ((flags & 64) == 0) embedWidth = null;
+        if ((flags & 64) == 0) embedHeight = null;
+        if ((flags & 128) == 0) duration = null;
+        if ((flags & 256) == 0) author = null;
+        if ((flags & 512) == 0) document = null;
     }
 
     @Override
@@ -103,18 +104,54 @@ public class TLWebPage extends TLAbsWebPage {
         writeLong(id, stream);
         writeString(url, stream);
         writeString(displayUrl, stream);
-        if ((flags & 1) != 0) writeString(type, stream);
-        if ((flags & 2) != 0) writeString(siteName, stream);
-        if ((flags & 4) != 0) writeString(title, stream);
-        if ((flags & 8) != 0) writeString(description, stream);
-        if ((flags & 16) != 0) writeTLObject(photo, stream);
-        if ((flags & 32) != 0) writeString(embedUrl, stream);
-        if ((flags & 32) != 0) writeString(embedType, stream);
-        if ((flags & 64) != 0) writeInt(embedWidth, stream);
-        if ((flags & 64) != 0) writeInt(embedHeight, stream);
-        if ((flags & 128) != 0) writeInt(duration, stream);
-        if ((flags & 256) != 0) writeString(author, stream);
-        if ((flags & 512) != 0) writeTLObject(document, stream);
+        if ((flags & 1) != 0) {
+            if (type == null) throwNullFieldException("type", flags);
+            writeString(type, stream);
+        }
+        if ((flags & 2) != 0) {
+            if (siteName == null) throwNullFieldException("siteName", flags);
+            writeString(siteName, stream);
+        }
+        if ((flags & 4) != 0) {
+            if (title == null) throwNullFieldException("title", flags);
+            writeString(title, stream);
+        }
+        if ((flags & 8) != 0) {
+            if (description == null) throwNullFieldException("description", flags);
+            writeString(description, stream);
+        }
+        if ((flags & 16) != 0) {
+            if (photo == null) throwNullFieldException("photo", flags);
+            writeTLObject(photo, stream);
+        }
+        if ((flags & 32) != 0) {
+            if (embedUrl == null) throwNullFieldException("embedUrl", flags);
+            writeString(embedUrl, stream);
+        }
+        if ((flags & 32) != 0) {
+            if (embedType == null) throwNullFieldException("embedType", flags);
+            writeString(embedType, stream);
+        }
+        if ((flags & 64) != 0) {
+            if (embedWidth == null) throwNullFieldException("embedWidth", flags);
+            writeInt(embedWidth, stream);
+        }
+        if ((flags & 64) != 0) {
+            if (embedHeight == null) throwNullFieldException("embedHeight", flags);
+            writeInt(embedHeight, stream);
+        }
+        if ((flags & 128) != 0) {
+            if (duration == null) throwNullFieldException("duration", flags);
+            writeInt(duration, stream);
+        }
+        if ((flags & 256) != 0) {
+            if (author == null) throwNullFieldException("author", flags);
+            writeString(author, stream);
+        }
+        if ((flags & 512) != 0) {
+            if (document == null) throwNullFieldException("document", flags);
+            writeTLObject(document, stream);
+        }
     }
 
     @Override
@@ -147,18 +184,54 @@ public class TLWebPage extends TLAbsWebPage {
         size += SIZE_INT64;
         size += computeTLStringSerializedSize(url);
         size += computeTLStringSerializedSize(displayUrl);
-        if ((flags & 1) != 0) size += computeTLStringSerializedSize(type);
-        if ((flags & 2) != 0) size += computeTLStringSerializedSize(siteName);
-        if ((flags & 4) != 0) size += computeTLStringSerializedSize(title);
-        if ((flags & 8) != 0) size += computeTLStringSerializedSize(description);
-        if ((flags & 16) != 0) size += photo.computeSerializedSize();
-        if ((flags & 32) != 0) size += computeTLStringSerializedSize(embedUrl);
-        if ((flags & 32) != 0) size += computeTLStringSerializedSize(embedType);
-        if ((flags & 64) != 0) size += SIZE_INT32;
-        if ((flags & 64) != 0) size += SIZE_INT32;
-        if ((flags & 128) != 0) size += SIZE_INT32;
-        if ((flags & 256) != 0) size += computeTLStringSerializedSize(author);
-        if ((flags & 512) != 0) size += document.computeSerializedSize();
+        if ((flags & 1) != 0) {
+            if (type == null) throwNullFieldException("type", flags);
+            size += computeTLStringSerializedSize(type);
+        }
+        if ((flags & 2) != 0) {
+            if (siteName == null) throwNullFieldException("siteName", flags);
+            size += computeTLStringSerializedSize(siteName);
+        }
+        if ((flags & 4) != 0) {
+            if (title == null) throwNullFieldException("title", flags);
+            size += computeTLStringSerializedSize(title);
+        }
+        if ((flags & 8) != 0) {
+            if (description == null) throwNullFieldException("description", flags);
+            size += computeTLStringSerializedSize(description);
+        }
+        if ((flags & 16) != 0) {
+            if (photo == null) throwNullFieldException("photo", flags);
+            size += photo.computeSerializedSize();
+        }
+        if ((flags & 32) != 0) {
+            if (embedUrl == null) throwNullFieldException("embedUrl", flags);
+            size += computeTLStringSerializedSize(embedUrl);
+        }
+        if ((flags & 32) != 0) {
+            if (embedType == null) throwNullFieldException("embedType", flags);
+            size += computeTLStringSerializedSize(embedType);
+        }
+        if ((flags & 64) != 0) {
+            if (embedWidth == null) throwNullFieldException("embedWidth", flags);
+            size += SIZE_INT32;
+        }
+        if ((flags & 64) != 0) {
+            if (embedHeight == null) throwNullFieldException("embedHeight", flags);
+            size += SIZE_INT32;
+        }
+        if ((flags & 128) != 0) {
+            if (duration == null) throwNullFieldException("duration", flags);
+            size += SIZE_INT32;
+        }
+        if ((flags & 256) != 0) {
+            if (author == null) throwNullFieldException("author", flags);
+            size += computeTLStringSerializedSize(author);
+        }
+        if ((flags & 512) != 0) {
+            if (document == null) throwNullFieldException("document", flags);
+            size += document.computeSerializedSize();
+        }
         return size;
     }
 
@@ -170,32 +243,6 @@ public class TLWebPage extends TLAbsWebPage {
     @Override
     public int getConstructorId() {
         return CONSTRUCTOR_ID;
-    }
-
-    @Override
-    @SuppressWarnings("PointlessBooleanExpression")
-    public boolean equals(Object object) {
-        if (!(object instanceof TLWebPage)) return false;
-        if (object == this) return true;
-
-        TLWebPage o = (TLWebPage) object;
-
-        return flags == o.flags
-                && id == o.id
-                && (url == o.url || (url != null && o.url != null && url.equals(o.url)))
-                && (displayUrl == o.displayUrl || (displayUrl != null && o.displayUrl != null && displayUrl.equals(o.displayUrl)))
-                && (type == o.type || (type != null && o.type != null && type.equals(o.type)))
-                && (siteName == o.siteName || (siteName != null && o.siteName != null && siteName.equals(o.siteName)))
-                && (title == o.title || (title != null && o.title != null && title.equals(o.title)))
-                && (description == o.description || (description != null && o.description != null && description.equals(o.description)))
-                && (photo == o.photo || (photo != null && o.photo != null && photo.equals(o.photo)))
-                && (embedUrl == o.embedUrl || (embedUrl != null && o.embedUrl != null && embedUrl.equals(o.embedUrl)))
-                && (embedType == o.embedType || (embedType != null && o.embedType != null && embedType.equals(o.embedType)))
-                && (embedWidth == o.embedWidth || (embedWidth != null && o.embedWidth != null && embedWidth.equals(o.embedWidth)))
-                && (embedHeight == o.embedHeight || (embedHeight != null && o.embedHeight != null && embedHeight.equals(o.embedHeight)))
-                && (duration == o.duration || (duration != null && o.duration != null && duration.equals(o.duration)))
-                && (author == o.author || (author != null && o.author != null && author.equals(o.author)))
-                && (document == o.document || (document != null && o.document != null && document.equals(o.document)));
     }
 
     public long getId() {

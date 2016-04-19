@@ -21,15 +21,4 @@ public class TLFileMp4 extends TLAbsFileType {
     public int getConstructorId() {
         return CONSTRUCTOR_ID;
     }
-
-    @Override
-    @SuppressWarnings("PointlessBooleanExpression")
-    public boolean equals(Object object) {
-        if (!(object instanceof TLFileMp4)) return false;
-        if (object == this) return true;
-
-        TLFileMp4 o = (TLFileMp4) object;
-
-        return true;
-    }
 }

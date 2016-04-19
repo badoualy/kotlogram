@@ -33,6 +33,10 @@ public class TLRequestMessagesForwardMessages extends TLMethod<TLAbsUpdates> {
 
     protected boolean broadcast;
 
+    protected boolean silent;
+
+    protected boolean background;
+
     protected TLAbsInputPeer fromPeer;
 
     protected TLIntVector id;
@@ -46,8 +50,10 @@ public class TLRequestMessagesForwardMessages extends TLMethod<TLAbsUpdates> {
     public TLRequestMessagesForwardMessages() {
     }
 
-    public TLRequestMessagesForwardMessages(boolean broadcast, TLAbsInputPeer fromPeer, TLIntVector id, TLLongVector randomId, TLAbsInputPeer toPeer) {
+    public TLRequestMessagesForwardMessages(boolean broadcast, boolean silent, boolean background, TLAbsInputPeer fromPeer, TLIntVector id, TLLongVector randomId, TLAbsInputPeer toPeer) {
         this.broadcast = broadcast;
+        this.silent = silent;
+        this.background = background;
         this.fromPeer = fromPeer;
         this.id = id;
         this.randomId = randomId;
@@ -70,6 +76,9 @@ public class TLRequestMessagesForwardMessages extends TLMethod<TLAbsUpdates> {
     private void computeFlags() {
         flags = 0;
         flags = broadcast ? (flags | 16) : (flags &~ 16);
+        flags = silent ? (flags | 32) : (flags &~ 32);
+        flags = background ? (flags | 64) : (flags &~ 64);
+        // Fields below may not be serialized due to flags field value
     }
 
     @Override
@@ -88,6 +97,8 @@ public class TLRequestMessagesForwardMessages extends TLMethod<TLAbsUpdates> {
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
         flags = readInt(stream);
         broadcast = (flags & 16) != 0;
+        silent = (flags & 32) != 0;
+        background = (flags & 64) != 0;
         fromPeer = readTLObject(stream, context, TLAbsInputPeer.class, -1);
         id = readTLIntVector(stream, context);
         randomId = readTLLongVector(stream, context);
@@ -117,28 +128,28 @@ public class TLRequestMessagesForwardMessages extends TLMethod<TLAbsUpdates> {
         return CONSTRUCTOR_ID;
     }
 
-    @Override
-    @SuppressWarnings("PointlessBooleanExpression")
-    public boolean equals(Object object) {
-        if (!(object instanceof TLRequestMessagesForwardMessages)) return false;
-        if (object == this) return true;
-
-        TLRequestMessagesForwardMessages o = (TLRequestMessagesForwardMessages) object;
-
-        return flags == o.flags
-                && broadcast == o.broadcast
-                && (fromPeer == o.fromPeer || (fromPeer != null && o.fromPeer != null && fromPeer.equals(o.fromPeer)))
-                && (id == o.id || (id != null && o.id != null && id.equals(o.id)))
-                && (randomId == o.randomId || (randomId != null && o.randomId != null && randomId.equals(o.randomId)))
-                && (toPeer == o.toPeer || (toPeer != null && o.toPeer != null && toPeer.equals(o.toPeer)));
-    }
-
     public boolean getBroadcast() {
         return broadcast;
     }
 
     public void setBroadcast(boolean broadcast) {
         this.broadcast = broadcast;
+    }
+
+    public boolean getSilent() {
+        return silent;
+    }
+
+    public void setSilent(boolean silent) {
+        this.silent = silent;
+    }
+
+    public boolean getBackground() {
+        return background;
+    }
+
+    public void setBackground(boolean background) {
+        this.background = background;
     }
 
     public TLAbsInputPeer getFromPeer() {

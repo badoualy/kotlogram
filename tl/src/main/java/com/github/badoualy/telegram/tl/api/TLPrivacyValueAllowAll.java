@@ -21,15 +21,4 @@ public class TLPrivacyValueAllowAll extends TLAbsPrivacyRule {
     public int getConstructorId() {
         return CONSTRUCTOR_ID;
     }
-
-    @Override
-    @SuppressWarnings("PointlessBooleanExpression")
-    public boolean equals(Object object) {
-        if (!(object instanceof TLPrivacyValueAllowAll)) return false;
-        if (object == this) return true;
-
-        TLPrivacyValueAllowAll o = (TLPrivacyValueAllowAll) object;
-
-        return true;
-    }
 }

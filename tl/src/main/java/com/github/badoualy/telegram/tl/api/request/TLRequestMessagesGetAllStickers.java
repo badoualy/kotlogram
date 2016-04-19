@@ -74,17 +74,6 @@ public class TLRequestMessagesGetAllStickers extends TLMethod<TLAbsAllStickers> 
         return CONSTRUCTOR_ID;
     }
 
-    @Override
-    @SuppressWarnings("PointlessBooleanExpression")
-    public boolean equals(Object object) {
-        if (!(object instanceof TLRequestMessagesGetAllStickers)) return false;
-        if (object == this) return true;
-
-        TLRequestMessagesGetAllStickers o = (TLRequestMessagesGetAllStickers) object;
-
-        return hash == o.hash;
-    }
-
     public int getHash() {
         return hash;
     }

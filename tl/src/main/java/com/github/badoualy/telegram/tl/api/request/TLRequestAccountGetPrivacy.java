@@ -1,7 +1,7 @@
 package com.github.badoualy.telegram.tl.api.request;
 
 import com.github.badoualy.telegram.tl.TLContext;
-import com.github.badoualy.telegram.tl.api.TLInputPrivacyKeyStatusTimestamp;
+import com.github.badoualy.telegram.tl.api.TLAbsInputPrivacyKey;
 import com.github.badoualy.telegram.tl.api.account.TLPrivacyRules;
 import com.github.badoualy.telegram.tl.core.TLMethod;
 import com.github.badoualy.telegram.tl.core.TLObject;
@@ -21,14 +21,14 @@ import static com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_CONSTRUCTOR_ID;
 public class TLRequestAccountGetPrivacy extends TLMethod<TLPrivacyRules> {
     public static final int CONSTRUCTOR_ID = 0xdadbc950;
 
-    protected TLInputPrivacyKeyStatusTimestamp key;
+    protected TLAbsInputPrivacyKey key;
 
     private final String _constructor = "account.getPrivacy#dadbc950";
 
     public TLRequestAccountGetPrivacy() {
     }
 
-    public TLRequestAccountGetPrivacy(TLInputPrivacyKeyStatusTimestamp key) {
+    public TLRequestAccountGetPrivacy(TLAbsInputPrivacyKey key) {
         this.key = key;
     }
 
@@ -53,7 +53,7 @@ public class TLRequestAccountGetPrivacy extends TLMethod<TLPrivacyRules> {
     @Override
     @SuppressWarnings("unchecked")
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
-        key = readTLObject(stream, context, TLInputPrivacyKeyStatusTimestamp.class, TLInputPrivacyKeyStatusTimestamp.CONSTRUCTOR_ID);
+        key = readTLObject(stream, context, TLAbsInputPrivacyKey.class, -1);
     }
 
     @Override
@@ -73,22 +73,11 @@ public class TLRequestAccountGetPrivacy extends TLMethod<TLPrivacyRules> {
         return CONSTRUCTOR_ID;
     }
 
-    @Override
-    @SuppressWarnings("PointlessBooleanExpression")
-    public boolean equals(Object object) {
-        if (!(object instanceof TLRequestAccountGetPrivacy)) return false;
-        if (object == this) return true;
-
-        TLRequestAccountGetPrivacy o = (TLRequestAccountGetPrivacy) object;
-
-        return (key == o.key || (key != null && o.key != null && key.equals(o.key)));
-    }
-
-    public TLInputPrivacyKeyStatusTimestamp getKey() {
+    public TLAbsInputPrivacyKey getKey() {
         return key;
     }
 
-    public void setKey(TLInputPrivacyKeyStatusTimestamp key) {
+    public void setKey(TLAbsInputPrivacyKey key) {
         this.key = key;
     }
 }

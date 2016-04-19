@@ -1,13 +1,9 @@
 {
-  "type": "o2xZvYXL3wTXB2kg1NYs0juBY",
-  "message": "zVlJkJBjbkqaDt2iZG",
+  "type": "lKRj5nI3ilbIvy3R",
+  "message": "QACT8",
   "media": {
-    "phoneNumber": "uiHQDvUXLJ80nEZN3Y0UW99YE9",
-    "firstName": "sh7vSUwjLIA",
-    "lastName": "gjkiKdkxjG8oXgxGjbpiIUf",
-    "userId": 0,
-    "_constructor": "messageMediaContact#5e7d2f39"
+    "_constructor": "messageMediaEmpty#3ded6320"
   },
-  "popup": false,
+  "popup": true,
   "_constructor": "updateServiceNotification#382dd3e4"
 }

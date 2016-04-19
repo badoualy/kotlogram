@@ -65,18 +65,6 @@ public class TLUpdateUserStatus extends TLAbsUpdate {
         return CONSTRUCTOR_ID;
     }
 
-    @Override
-    @SuppressWarnings("PointlessBooleanExpression")
-    public boolean equals(Object object) {
-        if (!(object instanceof TLUpdateUserStatus)) return false;
-        if (object == this) return true;
-
-        TLUpdateUserStatus o = (TLUpdateUserStatus) object;
-
-        return userId == o.userId
-                && (status == o.status || (status != null && o.status != null && status.equals(o.status)));
-    }
-
     public int getUserId() {
         return userId;
     }

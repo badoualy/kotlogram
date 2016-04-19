@@ -21,15 +21,4 @@ public class TLInputReportReasonPornography extends TLAbsReportReason {
     public int getConstructorId() {
         return CONSTRUCTOR_ID;
     }
-
-    @Override
-    @SuppressWarnings("PointlessBooleanExpression")
-    public boolean equals(Object object) {
-        if (!(object instanceof TLInputReportReasonPornography)) return false;
-        if (object == this) return true;
-
-        TLInputReportReasonPornography o = (TLInputReportReasonPornography) object;
-
-        return true;
-    }
 }

@@ -99,20 +99,6 @@ public class TLRequestMessagesSendEncryptedFile extends TLMethod<TLAbsSentEncryp
         return CONSTRUCTOR_ID;
     }
 
-    @Override
-    @SuppressWarnings("PointlessBooleanExpression")
-    public boolean equals(Object object) {
-        if (!(object instanceof TLRequestMessagesSendEncryptedFile)) return false;
-        if (object == this) return true;
-
-        TLRequestMessagesSendEncryptedFile o = (TLRequestMessagesSendEncryptedFile) object;
-
-        return (peer == o.peer || (peer != null && o.peer != null && peer.equals(o.peer)))
-                && randomId == o.randomId
-                && (data == o.data || (data != null && o.data != null && data.equals(o.data)))
-                && (file == o.file || (file != null && o.file != null && file.equals(o.file)));
-    }
-
     public TLInputEncryptedChat getPeer() {
         return peer;
     }

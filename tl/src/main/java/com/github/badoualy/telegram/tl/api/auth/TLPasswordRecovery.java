@@ -58,17 +58,6 @@ public class TLPasswordRecovery extends TLObject {
         return CONSTRUCTOR_ID;
     }
 
-    @Override
-    @SuppressWarnings("PointlessBooleanExpression")
-    public boolean equals(Object object) {
-        if (!(object instanceof TLPasswordRecovery)) return false;
-        if (object == this) return true;
-
-        TLPasswordRecovery o = (TLPasswordRecovery) object;
-
-        return (emailPattern == o.emailPattern || (emailPattern != null && o.emailPattern != null && emailPattern.equals(o.emailPattern)));
-    }
-
     public String getEmailPattern() {
         return emailPattern;
     }

@@ -1,7 +1,8 @@
 package com.github.badoualy.telegram.tl.api.request;
 
 import com.github.badoualy.telegram.tl.TLContext;
-import com.github.badoualy.telegram.tl.api.TLInputBotInlineResult;
+import com.github.badoualy.telegram.tl.api.TLAbsInputBotInlineResult;
+import com.github.badoualy.telegram.tl.api.TLInlineBotSwitchPM;
 import com.github.badoualy.telegram.tl.core.TLBool;
 import com.github.badoualy.telegram.tl.core.TLMethod;
 import com.github.badoualy.telegram.tl.core.TLObject;
@@ -19,6 +20,7 @@ import static com.github.badoualy.telegram.tl.StreamUtils.readTLVector;
 import static com.github.badoualy.telegram.tl.StreamUtils.writeInt;
 import static com.github.badoualy.telegram.tl.StreamUtils.writeLong;
 import static com.github.badoualy.telegram.tl.StreamUtils.writeString;
+import static com.github.badoualy.telegram.tl.StreamUtils.writeTLObject;
 import static com.github.badoualy.telegram.tl.StreamUtils.writeTLVector;
 import static com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_CONSTRUCTOR_ID;
 import static com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_INT32;
@@ -30,7 +32,7 @@ import static com.github.badoualy.telegram.tl.TLObjectUtils.computeTLStringSeria
  * @see <a href="http://github.com/badoualy/kotlogram">http://github.com/badoualy/kotlogram</a>
  */
 public class TLRequestMessagesSetInlineBotResults extends TLMethod<TLBool> {
-    public static final int CONSTRUCTOR_ID = 0x3f23ec12;
+    public static final int CONSTRUCTOR_ID = 0xeb5ea206;
 
     protected int flags;
 
@@ -40,24 +42,27 @@ public class TLRequestMessagesSetInlineBotResults extends TLMethod<TLBool> {
 
     protected long queryId;
 
-    protected TLVector<TLInputBotInlineResult> results;
+    protected TLVector<TLAbsInputBotInlineResult> results;
 
     protected int cacheTime;
 
     protected String nextOffset;
 
-    private final String _constructor = "messages.setInlineBotResults#3f23ec12";
+    protected TLInlineBotSwitchPM switchPm;
+
+    private final String _constructor = "messages.setInlineBotResults#eb5ea206";
 
     public TLRequestMessagesSetInlineBotResults() {
     }
 
-    public TLRequestMessagesSetInlineBotResults(boolean gallery, boolean _private, long queryId, TLVector<TLInputBotInlineResult> results, int cacheTime, String nextOffset) {
+    public TLRequestMessagesSetInlineBotResults(boolean gallery, boolean _private, long queryId, TLVector<TLAbsInputBotInlineResult> results, int cacheTime, String nextOffset, TLInlineBotSwitchPM switchPm) {
         this.gallery = gallery;
         this._private = _private;
         this.queryId = queryId;
         this.results = results;
         this.cacheTime = cacheTime;
         this.nextOffset = nextOffset;
+        this.switchPm = switchPm;
     }
 
     @Override
@@ -77,7 +82,9 @@ public class TLRequestMessagesSetInlineBotResults extends TLMethod<TLBool> {
         flags = 0;
         flags = gallery ? (flags | 1) : (flags &~ 1);
         flags = _private ? (flags | 2) : (flags &~ 2);
-        flags = nextOffset != null ? (flags | 4) : (flags &~ 4);
+        // Fields below may not be serialized due to flags field value
+        if ((flags & 4) == 0) nextOffset = null;
+        if ((flags & 8) == 0) switchPm = null;
     }
 
     @Override
@@ -89,6 +96,7 @@ public class TLRequestMessagesSetInlineBotResults extends TLMethod<TLBool> {
         writeTLVector(results, stream);
         writeInt(cacheTime, stream);
         if ((flags & 4) != 0) writeString(nextOffset, stream);
+        if ((flags & 8) != 0) writeTLObject(switchPm, stream);
     }
 
     @Override
@@ -101,6 +109,7 @@ public class TLRequestMessagesSetInlineBotResults extends TLMethod<TLBool> {
         results = readTLVector(stream, context);
         cacheTime = readInt(stream);
         nextOffset = (flags & 4) != 0 ? readTLString(stream) : null;
+        switchPm = (flags & 8) != 0 ? readTLObject(stream, context, TLInlineBotSwitchPM.class, TLInlineBotSwitchPM.CONSTRUCTOR_ID) : null;
     }
 
     @Override
@@ -113,6 +122,7 @@ public class TLRequestMessagesSetInlineBotResults extends TLMethod<TLBool> {
         size += results.computeSerializedSize();
         size += SIZE_INT32;
         if ((flags & 4) != 0) size += computeTLStringSerializedSize(nextOffset);
+        if ((flags & 8) != 0) size += switchPm.computeSerializedSize();
         return size;
     }
 
@@ -124,23 +134,6 @@ public class TLRequestMessagesSetInlineBotResults extends TLMethod<TLBool> {
     @Override
     public int getConstructorId() {
         return CONSTRUCTOR_ID;
-    }
-
-    @Override
-    @SuppressWarnings("PointlessBooleanExpression")
-    public boolean equals(Object object) {
-        if (!(object instanceof TLRequestMessagesSetInlineBotResults)) return false;
-        if (object == this) return true;
-
-        TLRequestMessagesSetInlineBotResults o = (TLRequestMessagesSetInlineBotResults) object;
-
-        return flags == o.flags
-                && gallery == o.gallery
-                && _private == o._private
-                && queryId == o.queryId
-                && (results == o.results || (results != null && o.results != null && results.equals(o.results)))
-                && cacheTime == o.cacheTime
-                && (nextOffset == o.nextOffset || (nextOffset != null && o.nextOffset != null && nextOffset.equals(o.nextOffset)));
     }
 
     public boolean getGallery() {
@@ -167,11 +160,11 @@ public class TLRequestMessagesSetInlineBotResults extends TLMethod<TLBool> {
         this.queryId = queryId;
     }
 
-    public TLVector<TLInputBotInlineResult> getResults() {
+    public TLVector<TLAbsInputBotInlineResult> getResults() {
         return results;
     }
 
-    public void setResults(TLVector<TLInputBotInlineResult> results) {
+    public void setResults(TLVector<TLAbsInputBotInlineResult> results) {
         this.results = results;
     }
 
@@ -189,5 +182,13 @@ public class TLRequestMessagesSetInlineBotResults extends TLMethod<TLBool> {
 
     public void setNextOffset(String nextOffset) {
         this.nextOffset = nextOffset;
+    }
+
+    public TLInlineBotSwitchPM getSwitchPm() {
+        return switchPm;
+    }
+
+    public void setSwitchPm(TLInlineBotSwitchPM switchPm) {
+        this.switchPm = switchPm;
     }
 }

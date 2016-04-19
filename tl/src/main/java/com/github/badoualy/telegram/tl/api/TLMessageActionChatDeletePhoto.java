@@ -21,15 +21,4 @@ public class TLMessageActionChatDeletePhoto extends TLAbsMessageAction {
     public int getConstructorId() {
         return CONSTRUCTOR_ID;
     }
-
-    @Override
-    @SuppressWarnings("PointlessBooleanExpression")
-    public boolean equals(Object object) {
-        if (!(object instanceof TLMessageActionChatDeletePhoto)) return false;
-        if (object == this) return true;
-
-        TLMessageActionChatDeletePhoto o = (TLMessageActionChatDeletePhoto) object;
-
-        return true;
-    }
 }

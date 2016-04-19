@@ -97,20 +97,6 @@ public class TLRequestPhotosGetUserPhotos extends TLMethod<TLAbsPhotos> {
         return CONSTRUCTOR_ID;
     }
 
-    @Override
-    @SuppressWarnings("PointlessBooleanExpression")
-    public boolean equals(Object object) {
-        if (!(object instanceof TLRequestPhotosGetUserPhotos)) return false;
-        if (object == this) return true;
-
-        TLRequestPhotosGetUserPhotos o = (TLRequestPhotosGetUserPhotos) object;
-
-        return (userId == o.userId || (userId != null && o.userId != null && userId.equals(o.userId)))
-                && offset == o.offset
-                && maxId == o.maxId
-                && limit == o.limit;
-    }
-
     public TLAbsInputUser getUserId() {
         return userId;
     }

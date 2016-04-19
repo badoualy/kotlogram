@@ -2,31 +2,6 @@
   "contacts": [
     {
       "userId": 0,
-      "mutual": true,
-      "_constructor": "contact#f911c994"
-    },
-    {
-      "userId": 0,
-      "mutual": false,
-      "_constructor": "contact#f911c994"
-    },
-    {
-      "userId": 0,
-      "mutual": false,
-      "_constructor": "contact#f911c994"
-    },
-    {
-      "userId": 0,
-      "mutual": false,
-      "_constructor": "contact#f911c994"
-    },
-    {
-      "userId": 0,
-      "mutual": false,
-      "_constructor": "contact#f911c994"
-    },
-    {
-      "userId": 0,
       "mutual": false,
       "_constructor": "contact#f911c994"
     },
@@ -38,6 +13,26 @@
     {
       "userId": 0,
       "mutual": true,
+      "_constructor": "contact#f911c994"
+    },
+    {
+      "userId": 0,
+      "mutual": true,
+      "_constructor": "contact#f911c994"
+    },
+    {
+      "userId": 0,
+      "mutual": false,
+      "_constructor": "contact#f911c994"
+    },
+    {
+      "userId": 0,
+      "mutual": true,
+      "_constructor": "contact#f911c994"
+    },
+    {
+      "userId": 0,
+      "mutual": false,
       "_constructor": "contact#f911c994"
     },
     {
@@ -57,35 +52,105 @@
       "id": 0
     },
     {
-      "flags": 873599,
+      "_constructor": "userEmpty#200250ba",
+      "id": 0
+    },
+    {
+      "flags": 1522688,
       "self": true,
-      "contact": false,
+      "contact": true,
       "mutualContact": true,
-      "deleted": false,
-      "bot": true,
+      "deleted": true,
+      "bot": false,
       "botChatHistory": false,
       "botNochats": true,
-      "verified": false,
+      "verified": true,
       "restricted": true,
-      "accessHash": 0,
-      "firstName": "caHeSauat53qlDAo95Ixzf9",
-      "lastName": "KY96am",
-      "username": "y1V3y6cJ5V",
-      "phone": "hkNJh9z6pwqkDyw",
-      "photo": {
-        "_constructor": "userProfilePhotoEmpty#4f11bae1"
-      },
-      "status": {
-        "_constructor": "userStatusRecently#e26f42f1"
-      },
-      "botInfoVersion": 0,
-      "restrictionReason": "h1tqAc",
-      "botInlinePlaceholder": "6QLy5Cvs3MapEv4JSvF",
+      "min": true,
+      "botInlineGeo": false,
+      "accessHash": null,
+      "firstName": null,
+      "lastName": null,
+      "username": null,
+      "phone": null,
+      "photo": null,
+      "status": null,
+      "botInfoVersion": null,
+      "restrictionReason": "X9zSpdJGIhr2SMgaEvxmuRTPPNyI",
+      "botInlinePlaceholder": null,
       "_constructor": "user#d10d979a",
       "id": 0
     },
     {
       "_constructor": "userEmpty#200250ba",
+      "id": 0
+    },
+    {
+      "_constructor": "userEmpty#200250ba",
+      "id": 0
+    },
+    {
+      "_constructor": "userEmpty#200250ba",
+      "id": 0
+    },
+    {
+      "flags": 1404928,
+      "self": false,
+      "contact": false,
+      "mutualContact": true,
+      "deleted": true,
+      "bot": true,
+      "botChatHistory": false,
+      "botNochats": true,
+      "verified": false,
+      "restricted": true,
+      "min": true,
+      "botInlineGeo": false,
+      "accessHash": null,
+      "firstName": null,
+      "lastName": null,
+      "username": null,
+      "phone": null,
+      "photo": null,
+      "status": null,
+      "botInfoVersion": 0,
+      "restrictionReason": "3MtNIueR",
+      "botInlinePlaceholder": null,
+      "_constructor": "user#d10d979a",
+      "id": 0
+    },
+    {
+      "_constructor": "userEmpty#200250ba",
+      "id": 0
+    },
+    {
+      "_constructor": "userEmpty#200250ba",
+      "id": 0
+    },
+    {
+      "flags": 2428928,
+      "self": false,
+      "contact": false,
+      "mutualContact": true,
+      "deleted": false,
+      "bot": false,
+      "botChatHistory": false,
+      "botNochats": true,
+      "verified": false,
+      "restricted": true,
+      "min": false,
+      "botInlineGeo": true,
+      "accessHash": null,
+      "firstName": null,
+      "lastName": null,
+      "username": null,
+      "phone": null,
+      "photo": null,
+      "status": null,
+      "botInfoVersion": null,
+      "restrictionReason": "gdhlyOCv5Sfd57RBaCuRWIjv6",
+      "botInlinePlaceholder": null,
+      "_constructor": "user#d10d979a",
       "id": 0
     },
     {

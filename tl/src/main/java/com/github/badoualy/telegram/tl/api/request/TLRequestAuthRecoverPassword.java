@@ -74,17 +74,6 @@ public class TLRequestAuthRecoverPassword extends TLMethod<TLAuthorization> {
         return CONSTRUCTOR_ID;
     }
 
-    @Override
-    @SuppressWarnings("PointlessBooleanExpression")
-    public boolean equals(Object object) {
-        if (!(object instanceof TLRequestAuthRecoverPassword)) return false;
-        if (object == this) return true;
-
-        TLRequestAuthRecoverPassword o = (TLRequestAuthRecoverPassword) object;
-
-        return (code == o.code || (code != null && o.code != null && code.equals(o.code)));
-    }
-
     public String getCode() {
         return code;
     }

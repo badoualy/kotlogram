@@ -1,7 +1,7 @@
 package com.github.badoualy.telegram.api
 
 import com.github.badoualy.telegram.tl.api.*
-import com.github.badoualy.telegram.tl.api.auth.TLAbsSentCode
+import com.github.badoualy.telegram.tl.api.auth.TLSentCode
 import com.github.badoualy.telegram.tl.api.request.TLRequestUploadGetFile
 import com.github.badoualy.telegram.tl.api.upload.TLFile
 import com.github.badoualy.telegram.tl.core.TLMethod
@@ -28,10 +28,14 @@ interface TelegramClient : TelegramApi {
 
     /** Convenience method wrapping the argument with TelegramApp values */
     @Throws(RpcErrorException::class, IOException::class)
-    fun authSendCode(phoneNumber: String, smsType: Int): TLAbsSentCode
+    fun authSendCode(phoneNumber: String, smsType: Int): TLSentCode
 
-    @Deprecated("Use authSendCode for more convenience", ReplaceWith("authSendCode(phoneNumber, smsType)"))
-    override fun authSendCode(phoneNumber: String, smsType: Int, apiId: Int, apiHash: String, langCode: String): TLAbsSentCode
+    /** Convenience method wrapping the argument with TelegramApp values */
+    @Throws(RpcErrorException::class, IOException::class)
+    fun authSendCode(allowFlashcall: Boolean, phoneNumber: String, currentNumber: Boolean): TLSentCode
+
+    @Deprecated("Use authSendCode for more convenience", ReplaceWith("authSendCode(allowFlashcall, phoneNumber, currentNumber)"))
+    override fun authSendCode(allowFlashcall: Boolean, phoneNumber: String?, currentNumber: Boolean, apiId: Int, apiHash: String?, langCode: String?): TLSentCode
 
     @Throws(RpcErrorException::class, IOException::class)
     override fun <T : TLObject?> invokeWithLayer(layer: Int, query: TLMethod<T>?): T

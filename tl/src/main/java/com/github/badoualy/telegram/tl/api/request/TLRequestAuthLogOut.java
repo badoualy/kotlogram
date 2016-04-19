@@ -44,15 +44,4 @@ public class TLRequestAuthLogOut extends TLMethod<TLBool> {
     public int getConstructorId() {
         return CONSTRUCTOR_ID;
     }
-
-    @Override
-    @SuppressWarnings("PointlessBooleanExpression")
-    public boolean equals(Object object) {
-        if (!(object instanceof TLRequestAuthLogOut)) return false;
-        if (object == this) return true;
-
-        TLRequestAuthLogOut o = (TLRequestAuthLogOut) object;
-
-        return true;
-    }
 }

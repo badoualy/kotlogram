@@ -5,12 +5,11 @@ import com.github.badoualy.telegram.tl.api.account.TLAuthorizations;
 import com.github.badoualy.telegram.tl.api.account.TLPasswordInputSettings;
 import com.github.badoualy.telegram.tl.api.account.TLPasswordSettings;
 import com.github.badoualy.telegram.tl.api.account.TLPrivacyRules;
-import com.github.badoualy.telegram.tl.api.account.TLSentChangePhoneCode;
-import com.github.badoualy.telegram.tl.api.auth.TLAbsSentCode;
 import com.github.badoualy.telegram.tl.api.auth.TLAuthorization;
 import com.github.badoualy.telegram.tl.api.auth.TLCheckedPhone;
 import com.github.badoualy.telegram.tl.api.auth.TLExportedAuthorization;
 import com.github.badoualy.telegram.tl.api.auth.TLPasswordRecovery;
+import com.github.badoualy.telegram.tl.api.auth.TLSentCode;
 import com.github.badoualy.telegram.tl.api.channels.TLChannelParticipant;
 import com.github.badoualy.telegram.tl.api.channels.TLChannelParticipants;
 import com.github.badoualy.telegram.tl.api.contacts.TLAbsBlocked;
@@ -19,7 +18,6 @@ import com.github.badoualy.telegram.tl.api.contacts.TLFound;
 import com.github.badoualy.telegram.tl.api.contacts.TLImportedContacts;
 import com.github.badoualy.telegram.tl.api.contacts.TLLink;
 import com.github.badoualy.telegram.tl.api.contacts.TLResolvedPeer;
-import com.github.badoualy.telegram.tl.api.contacts.TLSuggested;
 import com.github.badoualy.telegram.tl.api.help.TLAbsAppChangelog;
 import com.github.badoualy.telegram.tl.api.help.TLAbsAppUpdate;
 import com.github.badoualy.telegram.tl.api.help.TLInviteText;
@@ -34,10 +32,12 @@ import com.github.badoualy.telegram.tl.api.messages.TLAbsSentEncryptedMessage;
 import com.github.badoualy.telegram.tl.api.messages.TLAbsStickers;
 import com.github.badoualy.telegram.tl.api.messages.TLAffectedHistory;
 import com.github.badoualy.telegram.tl.api.messages.TLAffectedMessages;
+import com.github.badoualy.telegram.tl.api.messages.TLBotCallbackAnswer;
 import com.github.badoualy.telegram.tl.api.messages.TLBotResults;
 import com.github.badoualy.telegram.tl.api.messages.TLChatFull;
 import com.github.badoualy.telegram.tl.api.messages.TLChats;
 import com.github.badoualy.telegram.tl.api.messages.TLFoundGifs;
+import com.github.badoualy.telegram.tl.api.messages.TLMessageEditData;
 import com.github.badoualy.telegram.tl.api.messages.TLStickerSet;
 import com.github.badoualy.telegram.tl.api.photos.TLAbsPhotos;
 import com.github.badoualy.telegram.tl.api.photos.TLPhoto;
@@ -107,7 +107,7 @@ public abstract class TelegramApiWrapper implements TelegramApi {
     }
 
     @Override
-    public TLPrivacyRules accountGetPrivacy(TLInputPrivacyKeyStatusTimestamp key) throws RpcErrorException, IOException {
+    public TLPrivacyRules accountGetPrivacy(TLAbsInputPrivacyKey key) throws RpcErrorException, IOException {
         return (TLPrivacyRules) executeRpcQuery(new TLRequestAccountGetPrivacy(key));
     }
 
@@ -137,8 +137,8 @@ public abstract class TelegramApiWrapper implements TelegramApi {
     }
 
     @Override
-    public TLSentChangePhoneCode accountSendChangePhoneCode(String phoneNumber) throws RpcErrorException, IOException {
-        return (TLSentChangePhoneCode) executeRpcQuery(new TLRequestAccountSendChangePhoneCode(phoneNumber));
+    public TLSentCode accountSendChangePhoneCode(boolean allowFlashcall, String phoneNumber, Boolean currentNumber) throws RpcErrorException, IOException {
+        return (TLSentCode) executeRpcQuery(new TLRequestAccountSendChangePhoneCode(allowFlashcall, phoneNumber, currentNumber));
     }
 
     @Override
@@ -147,7 +147,7 @@ public abstract class TelegramApiWrapper implements TelegramApi {
     }
 
     @Override
-    public TLPrivacyRules accountSetPrivacy(TLInputPrivacyKeyStatusTimestamp key, TLVector<TLAbsInputPrivacyRule> rules) throws RpcErrorException, IOException {
+    public TLPrivacyRules accountSetPrivacy(TLAbsInputPrivacyKey key, TLVector<TLAbsInputPrivacyRule> rules) throws RpcErrorException, IOException {
         return (TLPrivacyRules) executeRpcQuery(new TLRequestAccountSetPrivacy(key, rules));
     }
 
@@ -172,8 +172,8 @@ public abstract class TelegramApiWrapper implements TelegramApi {
     }
 
     @Override
-    public TLAbsUser accountUpdateProfile(String firstName, String lastName) throws RpcErrorException, IOException {
-        return (TLAbsUser) executeRpcQuery(new TLRequestAccountUpdateProfile(firstName, lastName));
+    public TLAbsUser accountUpdateProfile(String firstName, String lastName, String about) throws RpcErrorException, IOException {
+        return (TLAbsUser) executeRpcQuery(new TLRequestAccountUpdateProfile(firstName, lastName, about));
     }
 
     @Override
@@ -189,6 +189,11 @@ public abstract class TelegramApiWrapper implements TelegramApi {
     @Override
     public TLBool authBindTempAuthKey(long permAuthKeyId, long nonce, int expiresAt, TLBytes encryptedMessage) throws RpcErrorException, IOException {
         return (TLBool) executeRpcQuery(new TLRequestAuthBindTempAuthKey(permAuthKeyId, nonce, expiresAt, encryptedMessage));
+    }
+
+    @Override
+    public TLBool authCancelCode(String phoneNumber, String phoneCodeHash) throws RpcErrorException, IOException {
+        return (TLBool) executeRpcQuery(new TLRequestAuthCancelCode(phoneNumber, phoneCodeHash));
     }
 
     @Override
@@ -232,28 +237,23 @@ public abstract class TelegramApiWrapper implements TelegramApi {
     }
 
     @Override
+    public TLSentCode authResendCode(String phoneNumber, String phoneCodeHash) throws RpcErrorException, IOException {
+        return (TLSentCode) executeRpcQuery(new TLRequestAuthResendCode(phoneNumber, phoneCodeHash));
+    }
+
+    @Override
     public TLBool authResetAuthorizations() throws RpcErrorException, IOException {
         return (TLBool) executeRpcQuery(new TLRequestAuthResetAuthorizations());
     }
 
     @Override
-    public TLBool authSendCall(String phoneNumber, String phoneCodeHash) throws RpcErrorException, IOException {
-        return (TLBool) executeRpcQuery(new TLRequestAuthSendCall(phoneNumber, phoneCodeHash));
-    }
-
-    @Override
-    public TLAbsSentCode authSendCode(String phoneNumber, int smsType, int apiId, String apiHash, String langCode) throws RpcErrorException, IOException {
-        return (TLAbsSentCode) executeRpcQuery(new TLRequestAuthSendCode(phoneNumber, smsType, apiId, apiHash, langCode));
+    public TLSentCode authSendCode(boolean allowFlashcall, String phoneNumber, Boolean currentNumber, int apiId, String apiHash, String langCode) throws RpcErrorException, IOException {
+        return (TLSentCode) executeRpcQuery(new TLRequestAuthSendCode(allowFlashcall, phoneNumber, currentNumber, apiId, apiHash, langCode));
     }
 
     @Override
     public TLBool authSendInvites(TLStringVector phoneNumbers, String message) throws RpcErrorException, IOException {
         return (TLBool) executeRpcQuery(new TLRequestAuthSendInvites(phoneNumbers, message));
-    }
-
-    @Override
-    public TLBool authSendSms(String phoneNumber, String phoneCodeHash) throws RpcErrorException, IOException {
-        return (TLBool) executeRpcQuery(new TLRequestAuthSendSms(phoneNumber, phoneCodeHash));
     }
 
     @Override
@@ -317,6 +317,11 @@ public abstract class TelegramApiWrapper implements TelegramApi {
     }
 
     @Override
+    public TLExportedMessageLink channelsExportMessageLink(TLAbsInputChannel channel, int id) throws RpcErrorException, IOException {
+        return (TLExportedMessageLink) executeRpcQuery(new TLRequestChannelsExportMessageLink(channel, id));
+    }
+
+    @Override
     public TLChats channelsGetChannels(TLVector<TLAbsInputChannel> id) throws RpcErrorException, IOException {
         return (TLChats) executeRpcQuery(new TLRequestChannelsGetChannels(id));
     }
@@ -332,8 +337,8 @@ public abstract class TelegramApiWrapper implements TelegramApi {
     }
 
     @Override
-    public TLAbsMessages channelsGetImportantHistory(TLAbsInputChannel channel, int offsetId, int addOffset, int limit, int maxId, int minId) throws RpcErrorException, IOException {
-        return (TLAbsMessages) executeRpcQuery(new TLRequestChannelsGetImportantHistory(channel, offsetId, addOffset, limit, maxId, minId));
+    public TLAbsMessages channelsGetImportantHistory(TLAbsInputChannel channel, int offsetId, int offsetDate, int addOffset, int limit, int maxId, int minId) throws RpcErrorException, IOException {
+        return (TLAbsMessages) executeRpcQuery(new TLRequestChannelsGetImportantHistory(channel, offsetId, offsetDate, addOffset, limit, maxId, minId));
     }
 
     @Override
@@ -387,6 +392,21 @@ public abstract class TelegramApiWrapper implements TelegramApi {
     }
 
     @Override
+    public TLAbsUpdates channelsToggleInvites(TLAbsInputChannel channel, boolean enabled) throws RpcErrorException, IOException {
+        return (TLAbsUpdates) executeRpcQuery(new TLRequestChannelsToggleInvites(channel, enabled));
+    }
+
+    @Override
+    public TLAbsUpdates channelsToggleSignatures(TLAbsInputChannel channel, boolean enabled) throws RpcErrorException, IOException {
+        return (TLAbsUpdates) executeRpcQuery(new TLRequestChannelsToggleSignatures(channel, enabled));
+    }
+
+    @Override
+    public TLAbsUpdates channelsUpdatePinnedMessage(boolean silent, TLAbsInputChannel channel, int id) throws RpcErrorException, IOException {
+        return (TLAbsUpdates) executeRpcQuery(new TLRequestChannelsUpdatePinnedMessage(silent, channel, id));
+    }
+
+    @Override
     public TLBool channelsUpdateUsername(TLAbsInputChannel channel, String username) throws RpcErrorException, IOException {
         return (TLBool) executeRpcQuery(new TLRequestChannelsUpdateUsername(channel, username));
     }
@@ -424,11 +444,6 @@ public abstract class TelegramApiWrapper implements TelegramApi {
     @Override
     public TLVector<TLContactStatus> contactsGetStatuses() throws RpcErrorException, IOException {
         return (TLVector<TLContactStatus>) executeRpcQuery(new TLRequestContactsGetStatuses());
-    }
-
-    @Override
-    public TLSuggested contactsGetSuggested(int limit) throws RpcErrorException, IOException {
-        return (TLSuggested) executeRpcQuery(new TLRequestContactsGetSuggested(limit));
     }
 
     @Override
@@ -577,6 +592,16 @@ public abstract class TelegramApiWrapper implements TelegramApi {
     }
 
     @Override
+    public TLBool messagesEditInlineBotMessage(boolean noWebpage, TLInputBotInlineMessageID id, String message, TLAbsReplyMarkup replyMarkup, TLVector<TLAbsMessageEntity> entities) throws RpcErrorException, IOException {
+        return (TLBool) executeRpcQuery(new TLRequestMessagesEditInlineBotMessage(noWebpage, id, message, replyMarkup, entities));
+    }
+
+    @Override
+    public TLAbsUpdates messagesEditMessage(boolean noWebpage, TLAbsInputPeer peer, int id, String message, TLAbsReplyMarkup replyMarkup, TLVector<TLAbsMessageEntity> entities) throws RpcErrorException, IOException {
+        return (TLAbsUpdates) executeRpcQuery(new TLRequestMessagesEditMessage(noWebpage, peer, id, message, replyMarkup, entities));
+    }
+
+    @Override
     public TLAbsExportedChatInvite messagesExportChatInvite(int chatId) throws RpcErrorException, IOException {
         return (TLAbsExportedChatInvite) executeRpcQuery(new TLRequestMessagesExportChatInvite(chatId));
     }
@@ -587,13 +612,18 @@ public abstract class TelegramApiWrapper implements TelegramApi {
     }
 
     @Override
-    public TLAbsUpdates messagesForwardMessages(boolean broadcast, TLAbsInputPeer fromPeer, TLIntVector id, TLLongVector randomId, TLAbsInputPeer toPeer) throws RpcErrorException, IOException {
-        return (TLAbsUpdates) executeRpcQuery(new TLRequestMessagesForwardMessages(broadcast, fromPeer, id, randomId, toPeer));
+    public TLAbsUpdates messagesForwardMessages(boolean broadcast, boolean silent, boolean background, TLAbsInputPeer fromPeer, TLIntVector id, TLLongVector randomId, TLAbsInputPeer toPeer) throws RpcErrorException, IOException {
+        return (TLAbsUpdates) executeRpcQuery(new TLRequestMessagesForwardMessages(broadcast, silent, background, fromPeer, id, randomId, toPeer));
     }
 
     @Override
     public TLAbsAllStickers messagesGetAllStickers(int hash) throws RpcErrorException, IOException {
         return (TLAbsAllStickers) executeRpcQuery(new TLRequestMessagesGetAllStickers(hash));
+    }
+
+    @Override
+    public TLBotCallbackAnswer messagesGetBotCallbackAnswer(TLAbsInputPeer peer, int msgId, TLBytes data) throws RpcErrorException, IOException {
+        return (TLBotCallbackAnswer) executeRpcQuery(new TLRequestMessagesGetBotCallbackAnswer(peer, msgId, data));
     }
 
     @Override
@@ -622,13 +652,18 @@ public abstract class TelegramApiWrapper implements TelegramApi {
     }
 
     @Override
-    public TLAbsMessages messagesGetHistory(TLAbsInputPeer peer, int offsetId, int addOffset, int limit, int maxId, int minId) throws RpcErrorException, IOException {
-        return (TLAbsMessages) executeRpcQuery(new TLRequestMessagesGetHistory(peer, offsetId, addOffset, limit, maxId, minId));
+    public TLAbsMessages messagesGetHistory(TLAbsInputPeer peer, int offsetId, int offsetDate, int addOffset, int limit, int maxId, int minId) throws RpcErrorException, IOException {
+        return (TLAbsMessages) executeRpcQuery(new TLRequestMessagesGetHistory(peer, offsetId, offsetDate, addOffset, limit, maxId, minId));
     }
 
     @Override
-    public TLBotResults messagesGetInlineBotResults(TLAbsInputUser bot, String query, String offset) throws RpcErrorException, IOException {
-        return (TLBotResults) executeRpcQuery(new TLRequestMessagesGetInlineBotResults(bot, query, offset));
+    public TLBotResults messagesGetInlineBotResults(TLAbsInputUser bot, TLAbsInputPeer peer, TLAbsInputGeoPoint geoPoint, String query, String offset) throws RpcErrorException, IOException {
+        return (TLBotResults) executeRpcQuery(new TLRequestMessagesGetInlineBotResults(bot, peer, geoPoint, query, offset));
+    }
+
+    @Override
+    public TLMessageEditData messagesGetMessageEditData(TLAbsInputPeer peer, int id) throws RpcErrorException, IOException {
+        return (TLMessageEditData) executeRpcQuery(new TLRequestMessagesGetMessageEditData(peer, id));
     }
 
     @Override
@@ -639,6 +674,11 @@ public abstract class TelegramApiWrapper implements TelegramApi {
     @Override
     public TLIntVector messagesGetMessagesViews(TLAbsInputPeer peer, TLIntVector id, boolean increment) throws RpcErrorException, IOException {
         return (TLIntVector) executeRpcQuery(new TLRequestMessagesGetMessagesViews(peer, id, increment));
+    }
+
+    @Override
+    public TLPeerSettings messagesGetPeerSettings(TLAbsInputPeer peer) throws RpcErrorException, IOException {
+        return (TLPeerSettings) executeRpcQuery(new TLRequestMessagesGetPeerSettings(peer));
     }
 
     @Override
@@ -659,6 +699,11 @@ public abstract class TelegramApiWrapper implements TelegramApi {
     @Override
     public TLAbsMessageMedia messagesGetWebPagePreview(String message) throws RpcErrorException, IOException {
         return (TLAbsMessageMedia) executeRpcQuery(new TLRequestMessagesGetWebPagePreview(message));
+    }
+
+    @Override
+    public TLBool messagesHideReportSpam(TLAbsInputPeer peer) throws RpcErrorException, IOException {
+        return (TLBool) executeRpcQuery(new TLRequestMessagesHideReportSpam(peer));
     }
 
     @Override
@@ -757,18 +802,23 @@ public abstract class TelegramApiWrapper implements TelegramApi {
     }
 
     @Override
-    public TLAbsUpdates messagesSendInlineBotResult(boolean broadcast, TLAbsInputPeer peer, Integer replyToMsgId, long randomId, long queryId, String id) throws RpcErrorException, IOException {
-        return (TLAbsUpdates) executeRpcQuery(new TLRequestMessagesSendInlineBotResult(broadcast, peer, replyToMsgId, randomId, queryId, id));
+    public TLAbsUpdates messagesSendInlineBotResult(boolean broadcast, boolean silent, boolean background, TLAbsInputPeer peer, Integer replyToMsgId, long randomId, long queryId, String id) throws RpcErrorException, IOException {
+        return (TLAbsUpdates) executeRpcQuery(new TLRequestMessagesSendInlineBotResult(broadcast, silent, background, peer, replyToMsgId, randomId, queryId, id));
     }
 
     @Override
-    public TLAbsUpdates messagesSendMedia(boolean broadcast, TLAbsInputPeer peer, Integer replyToMsgId, TLAbsInputMedia media, long randomId, TLAbsReplyMarkup replyMarkup) throws RpcErrorException, IOException {
-        return (TLAbsUpdates) executeRpcQuery(new TLRequestMessagesSendMedia(broadcast, peer, replyToMsgId, media, randomId, replyMarkup));
+    public TLAbsUpdates messagesSendMedia(boolean broadcast, boolean silent, boolean background, TLAbsInputPeer peer, Integer replyToMsgId, TLAbsInputMedia media, long randomId, TLAbsReplyMarkup replyMarkup) throws RpcErrorException, IOException {
+        return (TLAbsUpdates) executeRpcQuery(new TLRequestMessagesSendMedia(broadcast, silent, background, peer, replyToMsgId, media, randomId, replyMarkup));
     }
 
     @Override
-    public TLAbsUpdates messagesSendMessage(boolean noWebpage, boolean broadcast, TLAbsInputPeer peer, Integer replyToMsgId, String message, long randomId, TLAbsReplyMarkup replyMarkup, TLVector<TLAbsMessageEntity> entities) throws RpcErrorException, IOException {
-        return (TLAbsUpdates) executeRpcQuery(new TLRequestMessagesSendMessage(noWebpage, broadcast, peer, replyToMsgId, message, randomId, replyMarkup, entities));
+    public TLAbsUpdates messagesSendMessage(boolean noWebpage, boolean broadcast, boolean silent, boolean background, TLAbsInputPeer peer, Integer replyToMsgId, String message, long randomId, TLAbsReplyMarkup replyMarkup, TLVector<TLAbsMessageEntity> entities) throws RpcErrorException, IOException {
+        return (TLAbsUpdates) executeRpcQuery(new TLRequestMessagesSendMessage(noWebpage, broadcast, silent, background, peer, replyToMsgId, message, randomId, replyMarkup, entities));
+    }
+
+    @Override
+    public TLBool messagesSetBotCallbackAnswer(boolean alert, long queryId, String message) throws RpcErrorException, IOException {
+        return (TLBool) executeRpcQuery(new TLRequestMessagesSetBotCallbackAnswer(alert, queryId, message));
     }
 
     @Override
@@ -777,8 +827,8 @@ public abstract class TelegramApiWrapper implements TelegramApi {
     }
 
     @Override
-    public TLBool messagesSetInlineBotResults(boolean gallery, boolean _private, long queryId, TLVector<TLInputBotInlineResult> results, int cacheTime, String nextOffset) throws RpcErrorException, IOException {
-        return (TLBool) executeRpcQuery(new TLRequestMessagesSetInlineBotResults(gallery, _private, queryId, results, cacheTime, nextOffset));
+    public TLBool messagesSetInlineBotResults(boolean gallery, boolean _private, long queryId, TLVector<TLAbsInputBotInlineResult> results, int cacheTime, String nextOffset, TLInlineBotSwitchPM switchPm) throws RpcErrorException, IOException {
+        return (TLBool) executeRpcQuery(new TLRequestMessagesSetInlineBotResults(gallery, _private, queryId, results, cacheTime, nextOffset, switchPm));
     }
 
     @Override

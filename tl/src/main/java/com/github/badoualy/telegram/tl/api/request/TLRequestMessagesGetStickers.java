@@ -80,18 +80,6 @@ public class TLRequestMessagesGetStickers extends TLMethod<TLAbsStickers> {
         return CONSTRUCTOR_ID;
     }
 
-    @Override
-    @SuppressWarnings("PointlessBooleanExpression")
-    public boolean equals(Object object) {
-        if (!(object instanceof TLRequestMessagesGetStickers)) return false;
-        if (object == this) return true;
-
-        TLRequestMessagesGetStickers o = (TLRequestMessagesGetStickers) object;
-
-        return (emoticon == o.emoticon || (emoticon != null && o.emoticon != null && emoticon.equals(o.emoticon)))
-                && (hash == o.hash || (hash != null && o.hash != null && hash.equals(o.hash)));
-    }
-
     public String getEmoticon() {
         return emoticon;
     }

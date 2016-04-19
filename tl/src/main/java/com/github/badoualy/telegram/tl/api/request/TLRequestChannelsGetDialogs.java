@@ -80,18 +80,6 @@ public class TLRequestChannelsGetDialogs extends TLMethod<TLAbsDialogs> {
         return CONSTRUCTOR_ID;
     }
 
-    @Override
-    @SuppressWarnings("PointlessBooleanExpression")
-    public boolean equals(Object object) {
-        if (!(object instanceof TLRequestChannelsGetDialogs)) return false;
-        if (object == this) return true;
-
-        TLRequestChannelsGetDialogs o = (TLRequestChannelsGetDialogs) object;
-
-        return offset == o.offset
-                && limit == o.limit;
-    }
-
     public int getOffset() {
         return offset;
     }

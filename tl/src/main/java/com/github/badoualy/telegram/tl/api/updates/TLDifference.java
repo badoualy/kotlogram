@@ -94,22 +94,6 @@ public class TLDifference extends TLAbsDifference {
         return CONSTRUCTOR_ID;
     }
 
-    @Override
-    @SuppressWarnings("PointlessBooleanExpression")
-    public boolean equals(Object object) {
-        if (!(object instanceof TLDifference)) return false;
-        if (object == this) return true;
-
-        TLDifference o = (TLDifference) object;
-
-        return (newMessages == o.newMessages || (newMessages != null && o.newMessages != null && newMessages.equals(o.newMessages)))
-                && (newEncryptedMessages == o.newEncryptedMessages || (newEncryptedMessages != null && o.newEncryptedMessages != null && newEncryptedMessages.equals(o.newEncryptedMessages)))
-                && (otherUpdates == o.otherUpdates || (otherUpdates != null && o.otherUpdates != null && otherUpdates.equals(o.otherUpdates)))
-                && (chats == o.chats || (chats != null && o.chats != null && chats.equals(o.chats)))
-                && (users == o.users || (users != null && o.users != null && users.equals(o.users)))
-                && (state == o.state || (state != null && o.state != null && state.equals(o.state)));
-    }
-
     public TLVector<TLAbsMessage> getNewMessages() {
         return newMessages;
     }

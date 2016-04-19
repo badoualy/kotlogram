@@ -57,17 +57,6 @@ public class TLUserStatusOnline extends TLAbsUserStatus {
         return CONSTRUCTOR_ID;
     }
 
-    @Override
-    @SuppressWarnings("PointlessBooleanExpression")
-    public boolean equals(Object object) {
-        if (!(object instanceof TLUserStatusOnline)) return false;
-        if (object == this) return true;
-
-        TLUserStatusOnline o = (TLUserStatusOnline) object;
-
-        return expires == o.expires;
-    }
-
     public int getExpires() {
         return expires;
     }

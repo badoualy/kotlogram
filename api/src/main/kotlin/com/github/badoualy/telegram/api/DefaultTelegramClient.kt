@@ -9,6 +9,7 @@ import com.github.badoualy.telegram.mtproto.auth.AuthResult
 import com.github.badoualy.telegram.mtproto.exception.SecurityException
 import com.github.badoualy.telegram.mtproto.util.Log
 import com.github.badoualy.telegram.tl.api.*
+import com.github.badoualy.telegram.tl.api.auth.TLSentCode
 import com.github.badoualy.telegram.tl.api.request.*
 import com.github.badoualy.telegram.tl.core.TLMethod
 import com.github.badoualy.telegram.tl.core.TLObject
@@ -185,14 +186,18 @@ internal class DefaultTelegramClient internal constructor(val application: Teleg
         }
     }
 
+    override fun authSendCode(allowFlashcall: Boolean, phoneNumber: String, currentNumber: Boolean): TLSentCode {
+        throw UnsupportedOperationException()
+    }
+
     @Throws(RpcErrorException::class, IOException::class)
-    override fun authSendCode(phoneNumber: String, smsType: Int) = super.authSendCode(phoneNumber, smsType, application.apiId, application.apiHash, application.langCode)
+    override fun authSendCode(phoneNumber: String, smsType: Int) = super.authSendCode(false, phoneNumber, false, application.apiId, application.apiHash, application.langCode)
 
     @Throws(RpcErrorException::class, IOException::class)
     override fun <T : TLObject> initConnection(query: TLMethod<T>) = executeRpcQuery(TLRequestInitConnection(application.apiId, application.deviceModel, application.systemVersion, application.appVersion, application.langCode, query))
 
     @Throws(RpcErrorException::class, IOException::class)
-    override fun messagesSendMessage(peer: TLAbsInputPeer, message: String, randomId: Long) = super.messagesSendMessage(true, false, peer, null, message, randomId, null, null)
+    override fun messagesSendMessage(peer: TLAbsInputPeer, message: String, randomId: Long) = super.messagesSendMessage(true, false, false, false, peer, null, message, randomId, null, null)
 
     private fun migrate(dcId: Int) {
         Log.d(TAG, "Migrating to DC$dcId")

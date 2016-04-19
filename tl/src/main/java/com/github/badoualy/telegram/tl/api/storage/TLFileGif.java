@@ -21,15 +21,4 @@ public class TLFileGif extends TLAbsFileType {
     public int getConstructorId() {
         return CONSTRUCTOR_ID;
     }
-
-    @Override
-    @SuppressWarnings("PointlessBooleanExpression")
-    public boolean equals(Object object) {
-        if (!(object instanceof TLFileGif)) return false;
-        if (object == this) return true;
-
-        TLFileGif o = (TLFileGif) object;
-
-        return true;
-    }
 }

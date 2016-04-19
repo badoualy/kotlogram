@@ -83,18 +83,6 @@ public class TLRequestAccountUnregisterDevice extends TLMethod<TLBool> {
         return CONSTRUCTOR_ID;
     }
 
-    @Override
-    @SuppressWarnings("PointlessBooleanExpression")
-    public boolean equals(Object object) {
-        if (!(object instanceof TLRequestAccountUnregisterDevice)) return false;
-        if (object == this) return true;
-
-        TLRequestAccountUnregisterDevice o = (TLRequestAccountUnregisterDevice) object;
-
-        return tokenType == o.tokenType
-                && (token == o.token || (token != null && o.token != null && token.equals(o.token)));
-    }
-
     public int getTokenType() {
         return tokenType;
     }

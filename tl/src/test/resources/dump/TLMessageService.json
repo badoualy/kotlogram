@@ -1,20 +1,15 @@
 {
-  "flags": 259,
-  "unread": true,
-  "out": true,
-  "mentioned": false,
-  "mediaUnread": false,
+  "flags": 16698,
   "fromId": 0,
   "toId": {
     "channelId": 0,
     "_constructor": "peerChannel#bddde532"
   },
+  "replyToMsgId": 0,
   "date": 0,
   "action": {
-    "title": "Rv1hC3QXCwSQpTjR5dNdDaLjL0rUP",
-    "chatId": 0,
-    "_constructor": "messageActionChannelMigrateFrom#b055eaee"
+    "_constructor": "messageActionEmpty#b6aef7b0"
   },
-  "_constructor": "messageService#c06b9607",
+  "_constructor": "messageService#9e19a1f6",
   "id": 0
 }

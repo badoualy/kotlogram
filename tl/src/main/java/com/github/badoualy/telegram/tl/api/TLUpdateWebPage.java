@@ -71,19 +71,6 @@ public class TLUpdateWebPage extends TLAbsUpdate {
         return CONSTRUCTOR_ID;
     }
 
-    @Override
-    @SuppressWarnings("PointlessBooleanExpression")
-    public boolean equals(Object object) {
-        if (!(object instanceof TLUpdateWebPage)) return false;
-        if (object == this) return true;
-
-        TLUpdateWebPage o = (TLUpdateWebPage) object;
-
-        return (webpage == o.webpage || (webpage != null && o.webpage != null && webpage.equals(o.webpage)))
-                && pts == o.pts
-                && ptsCount == o.ptsCount;
-    }
-
     public TLAbsWebPage getWebpage() {
         return webpage;
     }

@@ -99,20 +99,6 @@ public class TLRequestAuthBindTempAuthKey extends TLMethod<TLBool> {
         return CONSTRUCTOR_ID;
     }
 
-    @Override
-    @SuppressWarnings("PointlessBooleanExpression")
-    public boolean equals(Object object) {
-        if (!(object instanceof TLRequestAuthBindTempAuthKey)) return false;
-        if (object == this) return true;
-
-        TLRequestAuthBindTempAuthKey o = (TLRequestAuthBindTempAuthKey) object;
-
-        return permAuthKeyId == o.permAuthKeyId
-                && nonce == o.nonce
-                && expiresAt == o.expiresAt
-                && (encryptedMessage == o.encryptedMessage || (encryptedMessage != null && o.encryptedMessage != null && encryptedMessage.equals(o.encryptedMessage)));
-    }
-
     public long getPermAuthKeyId() {
         return permAuthKeyId;
     }

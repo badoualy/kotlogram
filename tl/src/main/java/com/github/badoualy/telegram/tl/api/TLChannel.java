@@ -24,7 +24,7 @@ import static com.github.badoualy.telegram.tl.TLObjectUtils.computeTLStringSeria
  * @see <a href="http://github.com/badoualy/kotlogram">http://github.com/badoualy/kotlogram</a>
  */
 public class TLChannel extends TLAbsChat {
-    public static final int CONSTRUCTOR_ID = 0x4b1b7506;
+    public static final int CONSTRUCTOR_ID = 0xa14dca52;
 
     protected int flags;
 
@@ -46,7 +46,13 @@ public class TLChannel extends TLAbsChat {
 
     protected boolean restricted;
 
-    protected long accessHash;
+    protected boolean democracy;
+
+    protected boolean signatures;
+
+    protected boolean min;
+
+    protected Long accessHash;
 
     protected String title;
 
@@ -60,12 +66,12 @@ public class TLChannel extends TLAbsChat {
 
     protected String restrictionReason;
 
-    private final String _constructor = "channel#4b1b7506";
+    private final String _constructor = "channel#a14dca52";
 
     public TLChannel() {
     }
 
-    public TLChannel(boolean creator, boolean kicked, boolean left, boolean editor, boolean moderator, boolean broadcast, boolean verified, boolean megagroup, int id, long accessHash, String title, String username, TLAbsChatPhoto photo, int date, int version, String restrictionReason) {
+    public TLChannel(boolean creator, boolean kicked, boolean left, boolean editor, boolean moderator, boolean broadcast, boolean verified, boolean megagroup, boolean restricted, boolean democracy, boolean signatures, boolean min, int id, Long accessHash, String title, String username, TLAbsChatPhoto photo, int date, int version, String restrictionReason) {
         this.creator = creator;
         this.kicked = kicked;
         this.left = left;
@@ -74,6 +80,10 @@ public class TLChannel extends TLAbsChat {
         this.broadcast = broadcast;
         this.verified = verified;
         this.megagroup = megagroup;
+        this.restricted = restricted;
+        this.democracy = democracy;
+        this.signatures = signatures;
+        this.min = min;
         this.id = id;
         this.accessHash = accessHash;
         this.title = title;
@@ -94,9 +104,14 @@ public class TLChannel extends TLAbsChat {
         flags = broadcast ? (flags | 32) : (flags &~ 32);
         flags = verified ? (flags | 128) : (flags &~ 128);
         flags = megagroup ? (flags | 256) : (flags &~ 256);
-        flags = username != null ? (flags | 64) : (flags &~ 64);
-        flags = restrictionReason != null ? (flags | 512) : (flags &~ 512);
-        restricted = (flags & 512) != 0;
+        flags = restricted ? (flags | 512) : (flags &~ 512);
+        flags = democracy ? (flags | 1024) : (flags &~ 1024);
+        flags = signatures ? (flags | 2048) : (flags &~ 2048);
+        flags = min ? (flags | 4096) : (flags &~ 4096);
+        // Fields below may not be serialized due to flags field value
+        if ((flags & 8192) == 0) accessHash = null;
+        if ((flags & 64) == 0) username = null;
+        if ((flags & 512) == 0) restrictionReason = null;
     }
 
     @Override
@@ -105,13 +120,22 @@ public class TLChannel extends TLAbsChat {
 
         writeInt(flags, stream);
         writeInt(id, stream);
-        writeLong(accessHash, stream);
+        if ((flags & 8192) != 0) {
+            if (accessHash == null)
+                throw new java.lang.NullPointerException("Attempt to serialize null field accessHash" (flags = " + flags + ");writeLong(accessHash, stream);
+        }
         writeString(title, stream);
-        if ((flags & 64) != 0) writeString(username, stream);
+        if ((flags & 64) != 0) {
+            if (username == null)
+                throw new java.lang.NullPointerException("Attempt to serialize null field username" (flags = " + flags + ");writeString(username, stream);
+        }
         writeTLObject(photo, stream);
         writeInt(date, stream);
         writeInt(version, stream);
-        if ((flags & 512) != 0) writeString(restrictionReason, stream);
+        if ((flags & 512) != 0) {
+            if (restrictionReason == null)
+                throw new java.lang.NullPointerException("Attempt to serialize null field restrictionReason" (flags = " + flags + ");writeString(restrictionReason, stream);
+        }
     }
 
     @Override
@@ -127,8 +151,11 @@ public class TLChannel extends TLAbsChat {
         verified = (flags & 128) != 0;
         megagroup = (flags & 256) != 0;
         restricted = (flags & 512) != 0;
+        democracy = (flags & 1024) != 0;
+        signatures = (flags & 2048) != 0;
+        min = (flags & 4096) != 0;
         id = readInt(stream);
-        accessHash = readLong(stream);
+        accessHash = (flags & 8192) != 0 ? readLong(stream) : null;
         title = readTLString(stream);
         username = (flags & 64) != 0 ? readTLString(stream) : null;
         photo = readTLObject(stream, context, TLAbsChatPhoto.class, -1);
@@ -144,7 +171,7 @@ public class TLChannel extends TLAbsChat {
         int size = SIZE_CONSTRUCTOR_ID;
         size += SIZE_INT32;
         size += SIZE_INT32;
-        size += SIZE_INT64;
+        if ((flags & 8192) != 0) size += SIZE_INT64;
         size += computeTLStringSerializedSize(title);
         if ((flags & 64) != 0) size += computeTLStringSerializedSize(username);
         size += photo.computeSerializedSize();
@@ -162,34 +189,6 @@ public class TLChannel extends TLAbsChat {
     @Override
     public int getConstructorId() {
         return CONSTRUCTOR_ID;
-    }
-
-    @Override
-    @SuppressWarnings("PointlessBooleanExpression")
-    public boolean equals(Object object) {
-        if (!(object instanceof TLChannel)) return false;
-        if (object == this) return true;
-
-        TLChannel o = (TLChannel) object;
-
-        return flags == o.flags
-                && creator == o.creator
-                && kicked == o.kicked
-                && left == o.left
-                && editor == o.editor
-                && moderator == o.moderator
-                && broadcast == o.broadcast
-                && verified == o.verified
-                && megagroup == o.megagroup
-                && restricted == o.restricted
-                && id == o.id
-                && accessHash == o.accessHash
-                && (title == o.title || (title != null && o.title != null && title.equals(o.title)))
-                && (username == o.username || (username != null && o.username != null && username.equals(o.username)))
-                && (photo == o.photo || (photo != null && o.photo != null && photo.equals(o.photo)))
-                && date == o.date
-                && version == o.version
-                && (restrictionReason == o.restrictionReason || (restrictionReason != null && o.restrictionReason != null && restrictionReason.equals(o.restrictionReason)));
     }
 
     public boolean getCreator() {
@@ -260,6 +259,34 @@ public class TLChannel extends TLAbsChat {
         return restricted;
     }
 
+    public void setRestricted(boolean restricted) {
+        this.restricted = restricted;
+    }
+
+    public boolean getDemocracy() {
+        return democracy;
+    }
+
+    public void setDemocracy(boolean democracy) {
+        this.democracy = democracy;
+    }
+
+    public boolean getSignatures() {
+        return signatures;
+    }
+
+    public void setSignatures(boolean signatures) {
+        this.signatures = signatures;
+    }
+
+    public boolean getMin() {
+        return min;
+    }
+
+    public void setMin(boolean min) {
+        this.min = min;
+    }
+
     public int getId() {
         return id;
     }
@@ -268,11 +295,11 @@ public class TLChannel extends TLAbsChat {
         this.id = id;
     }
 
-    public long getAccessHash() {
+    public Long getAccessHash() {
         return accessHash;
     }
 
-    public void setAccessHash(long accessHash) {
+    public void setAccessHash(Long accessHash) {
         this.accessHash = accessHash;
     }
 

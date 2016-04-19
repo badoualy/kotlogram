@@ -24,7 +24,7 @@ import static com.github.badoualy.telegram.tl.TLObjectUtils.computeTLStringSeria
  * @see <a href="http://github.com/badoualy/kotlogram">http://github.com/badoualy/kotlogram</a>
  */
 public class TLPasswordInputSettings extends TLObject {
-    public static final int CONSTRUCTOR_ID = 0xbcfc532c;
+    public static final int CONSTRUCTOR_ID = 0x86916deb;
 
     protected int flags;
 
@@ -36,7 +36,7 @@ public class TLPasswordInputSettings extends TLObject {
 
     protected String email;
 
-    private final String _constructor = "account.passwordInputSettings#bcfc532c";
+    private final String _constructor = "account.passwordInputSettings#86916deb";
 
     public TLPasswordInputSettings() {
     }
@@ -50,10 +50,11 @@ public class TLPasswordInputSettings extends TLObject {
 
     private void computeFlags() {
         flags = 0;
-        flags = newSalt != null ? (flags | 1) : (flags &~ 1);
-        flags = newPasswordHash != null ? (flags | 1) : (flags &~ 1);
-        flags = hint != null ? (flags | 1) : (flags &~ 1);
-        flags = email != null ? (flags | 2) : (flags &~ 2);
+        // Fields below may not be serialized due to flags field value
+        if ((flags & 1) == 0) newSalt = null;
+        if ((flags & 1) == 0) newPasswordHash = null;
+        if ((flags & 1) == 0) hint = null;
+        if ((flags & 2) == 0) email = null;
     }
 
     @Override
@@ -61,10 +62,22 @@ public class TLPasswordInputSettings extends TLObject {
         computeFlags();
 
         writeInt(flags, stream);
-        if ((flags & 1) != 0) writeTLBytes(newSalt, stream);
-        if ((flags & 1) != 0) writeTLBytes(newPasswordHash, stream);
-        if ((flags & 1) != 0) writeString(hint, stream);
-        if ((flags & 2) != 0) writeString(email, stream);
+        if ((flags & 1) != 0) {
+            if (newSalt == null) throwNullFieldException("newSalt", flags);
+            writeTLBytes(newSalt, stream);
+        }
+        if ((flags & 1) != 0) {
+            if (newPasswordHash == null) throwNullFieldException("newPasswordHash", flags);
+            writeTLBytes(newPasswordHash, stream);
+        }
+        if ((flags & 1) != 0) {
+            if (hint == null) throwNullFieldException("hint", flags);
+            writeString(hint, stream);
+        }
+        if ((flags & 2) != 0) {
+            if (email == null) throwNullFieldException("email", flags);
+            writeString(email, stream);
+        }
     }
 
     @Override
@@ -83,10 +96,22 @@ public class TLPasswordInputSettings extends TLObject {
 
         int size = SIZE_CONSTRUCTOR_ID;
         size += SIZE_INT32;
-        if ((flags & 1) != 0) size += computeTLBytesSerializedSize(newSalt);
-        if ((flags & 1) != 0) size += computeTLBytesSerializedSize(newPasswordHash);
-        if ((flags & 1) != 0) size += computeTLStringSerializedSize(hint);
-        if ((flags & 2) != 0) size += computeTLStringSerializedSize(email);
+        if ((flags & 1) != 0) {
+            if (newSalt == null) throwNullFieldException("newSalt", flags);
+            size += computeTLBytesSerializedSize(newSalt);
+        }
+        if ((flags & 1) != 0) {
+            if (newPasswordHash == null) throwNullFieldException("newPasswordHash", flags);
+            size += computeTLBytesSerializedSize(newPasswordHash);
+        }
+        if ((flags & 1) != 0) {
+            if (hint == null) throwNullFieldException("hint", flags);
+            size += computeTLStringSerializedSize(hint);
+        }
+        if ((flags & 2) != 0) {
+            if (email == null) throwNullFieldException("email", flags);
+            size += computeTLStringSerializedSize(email);
+        }
         return size;
     }
 
@@ -98,21 +123,6 @@ public class TLPasswordInputSettings extends TLObject {
     @Override
     public int getConstructorId() {
         return CONSTRUCTOR_ID;
-    }
-
-    @Override
-    @SuppressWarnings("PointlessBooleanExpression")
-    public boolean equals(Object object) {
-        if (!(object instanceof TLPasswordInputSettings)) return false;
-        if (object == this) return true;
-
-        TLPasswordInputSettings o = (TLPasswordInputSettings) object;
-
-        return flags == o.flags
-                && (newSalt == o.newSalt || (newSalt != null && o.newSalt != null && newSalt.equals(o.newSalt)))
-                && (newPasswordHash == o.newPasswordHash || (newPasswordHash != null && o.newPasswordHash != null && newPasswordHash.equals(o.newPasswordHash)))
-                && (hint == o.hint || (hint != null && o.hint != null && hint.equals(o.hint)))
-                && (email == o.email || (email != null && o.email != null && email.equals(o.email)));
     }
 
     public TLBytes getNewSalt() {

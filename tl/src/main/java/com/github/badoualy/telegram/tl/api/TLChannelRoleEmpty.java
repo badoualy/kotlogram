@@ -21,15 +21,4 @@ public class TLChannelRoleEmpty extends TLAbsChannelParticipantRole {
     public int getConstructorId() {
         return CONSTRUCTOR_ID;
     }
-
-    @Override
-    @SuppressWarnings("PointlessBooleanExpression")
-    public boolean equals(Object object) {
-        if (!(object instanceof TLChannelRoleEmpty)) return false;
-        if (object == this) return true;
-
-        TLChannelRoleEmpty o = (TLChannelRoleEmpty) object;
-
-        return true;
-    }
 }

@@ -72,19 +72,6 @@ public class TLInputFileLocation extends TLAbsInputFileLocation {
         return CONSTRUCTOR_ID;
     }
 
-    @Override
-    @SuppressWarnings("PointlessBooleanExpression")
-    public boolean equals(Object object) {
-        if (!(object instanceof TLInputFileLocation)) return false;
-        if (object == this) return true;
-
-        TLInputFileLocation o = (TLInputFileLocation) object;
-
-        return volumeId == o.volumeId
-                && localId == o.localId
-                && secret == o.secret;
-    }
-
     public long getVolumeId() {
         return volumeId;
     }

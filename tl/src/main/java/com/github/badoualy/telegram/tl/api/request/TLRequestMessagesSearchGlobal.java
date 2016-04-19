@@ -103,21 +103,6 @@ public class TLRequestMessagesSearchGlobal extends TLMethod<TLAbsMessages> {
         return CONSTRUCTOR_ID;
     }
 
-    @Override
-    @SuppressWarnings("PointlessBooleanExpression")
-    public boolean equals(Object object) {
-        if (!(object instanceof TLRequestMessagesSearchGlobal)) return false;
-        if (object == this) return true;
-
-        TLRequestMessagesSearchGlobal o = (TLRequestMessagesSearchGlobal) object;
-
-        return (q == o.q || (q != null && o.q != null && q.equals(o.q)))
-                && offsetDate == o.offsetDate
-                && (offsetPeer == o.offsetPeer || (offsetPeer != null && o.offsetPeer != null && offsetPeer.equals(o.offsetPeer)))
-                && offsetId == o.offsetId
-                && limit == o.limit;
-    }
-
     public String getQ() {
         return q;
     }

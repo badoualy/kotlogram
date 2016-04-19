@@ -1,31 +1,6 @@
 {
   "photo": {
-    "accessHash": 0,
-    "date": 0,
-    "sizes": [
-      {
-        "_constructor": "photoSizeEmpty#e17e23c",
-        "type": "Wauyd1LHx"
-      },
-      {
-        "location": {
-          "_constructor": "fileLocationUnavailable#7c596b46",
-          "volumeId": 0,
-          "localId": 0,
-          "secret": 0
-        },
-        "w": 0,
-        "h": 0,
-        "size": 0,
-        "_constructor": "photoSize#77bfb61b",
-        "type": "Fk2G8oTgh"
-      },
-      {
-        "_constructor": "photoSizeEmpty#e17e23c",
-        "type": "qlH5CRA3rMN"
-      }
-    ],
-    "_constructor": "photo#cded42fe",
+    "_constructor": "photoEmpty#2331b22d",
     "id": 0
   },
   "_constructor": "messageActionChatEditPhoto#7fcb13a8"

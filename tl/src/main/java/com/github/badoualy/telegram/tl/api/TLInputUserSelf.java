@@ -21,15 +21,4 @@ public class TLInputUserSelf extends TLAbsInputUser {
     public int getConstructorId() {
         return CONSTRUCTOR_ID;
     }
-
-    @Override
-    @SuppressWarnings("PointlessBooleanExpression")
-    public boolean equals(Object object) {
-        if (!(object instanceof TLInputUserSelf)) return false;
-        if (object == this) return true;
-
-        TLInputUserSelf o = (TLInputUserSelf) object;
-
-        return true;
-    }
 }

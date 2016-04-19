@@ -59,17 +59,6 @@ public class TLAuthorizations extends TLObject {
         return CONSTRUCTOR_ID;
     }
 
-    @Override
-    @SuppressWarnings("PointlessBooleanExpression")
-    public boolean equals(Object object) {
-        if (!(object instanceof TLAuthorizations)) return false;
-        if (object == this) return true;
-
-        TLAuthorizations o = (TLAuthorizations) object;
-
-        return (authorizations == o.authorizations || (authorizations != null && o.authorizations != null && authorizations.equals(o.authorizations)));
-    }
-
     public TLVector<TLAuthorization> getAuthorizations() {
         return authorizations;
     }

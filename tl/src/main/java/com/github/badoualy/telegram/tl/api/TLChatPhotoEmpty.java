@@ -23,17 +23,6 @@ public class TLChatPhotoEmpty extends TLAbsChatPhoto {
     }
 
     @Override
-    @SuppressWarnings("PointlessBooleanExpression")
-    public boolean equals(Object object) {
-        if (!(object instanceof TLChatPhotoEmpty)) return false;
-        if (object == this) return true;
-
-        TLChatPhotoEmpty o = (TLChatPhotoEmpty) object;
-
-        return true;
-    }
-
-    @Override
     public final boolean isEmpty() {
         return true;
     }

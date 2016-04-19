@@ -78,20 +78,6 @@ public class TLUpdateChatParticipantAdmin extends TLAbsUpdate {
         return CONSTRUCTOR_ID;
     }
 
-    @Override
-    @SuppressWarnings("PointlessBooleanExpression")
-    public boolean equals(Object object) {
-        if (!(object instanceof TLUpdateChatParticipantAdmin)) return false;
-        if (object == this) return true;
-
-        TLUpdateChatParticipantAdmin o = (TLUpdateChatParticipantAdmin) object;
-
-        return chatId == o.chatId
-                && userId == o.userId
-                && isAdmin == o.isAdmin
-                && version == o.version;
-    }
-
     public int getChatId() {
         return chatId;
     }

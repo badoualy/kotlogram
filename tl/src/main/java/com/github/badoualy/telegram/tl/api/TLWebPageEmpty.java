@@ -55,17 +55,6 @@ public class TLWebPageEmpty extends TLAbsWebPage {
         return CONSTRUCTOR_ID;
     }
 
-    @Override
-    @SuppressWarnings("PointlessBooleanExpression")
-    public boolean equals(Object object) {
-        if (!(object instanceof TLWebPageEmpty)) return false;
-        if (object == this) return true;
-
-        TLWebPageEmpty o = (TLWebPageEmpty) object;
-
-        return id == o.id;
-    }
-
     public long getId() {
         return id;
     }

@@ -1,6 +1,7 @@
 package com.github.badoualy.telegram.tl.api;
 
 import com.github.badoualy.telegram.tl.TLContext;
+import com.github.badoualy.telegram.tl.core.TLObject;
 import com.github.badoualy.telegram.tl.core.TLVector;
 
 import java.io.IOException;
@@ -21,28 +22,22 @@ import static com.github.badoualy.telegram.tl.TLObjectUtils.computeTLStringSeria
  * @author Yannick Badoual yann.badoual@gmail.com
  * @see <a href="http://github.com/badoualy/kotlogram">http://github.com/badoualy/kotlogram</a>
  */
-public class TLBotInfo extends TLAbsBotInfo {
-    public static final int CONSTRUCTOR_ID = 0x9cf585d;
+public class TLBotInfo extends TLObject {
+    public static final int CONSTRUCTOR_ID = 0x98e81d3a;
 
     protected int userId;
-
-    protected int version;
-
-    protected String shareText;
 
     protected String description;
 
     protected TLVector<TLBotCommand> commands;
 
-    private final String _constructor = "botInfo#9cf585d";
+    private final String _constructor = "botInfo#98e81d3a";
 
     public TLBotInfo() {
     }
 
-    public TLBotInfo(int userId, int version, String shareText, String description, TLVector<TLBotCommand> commands) {
+    public TLBotInfo(int userId, String description, TLVector<TLBotCommand> commands) {
         this.userId = userId;
-        this.version = version;
-        this.shareText = shareText;
         this.description = description;
         this.commands = commands;
     }
@@ -50,8 +45,6 @@ public class TLBotInfo extends TLAbsBotInfo {
     @Override
     public void serializeBody(OutputStream stream) throws IOException {
         writeInt(userId, stream);
-        writeInt(version, stream);
-        writeString(shareText, stream);
         writeString(description, stream);
         writeTLVector(commands, stream);
     }
@@ -60,8 +53,6 @@ public class TLBotInfo extends TLAbsBotInfo {
     @SuppressWarnings("unchecked")
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
         userId = readInt(stream);
-        version = readInt(stream);
-        shareText = readTLString(stream);
         description = readTLString(stream);
         commands = readTLVector(stream, context);
     }
@@ -70,8 +61,6 @@ public class TLBotInfo extends TLAbsBotInfo {
     public int computeSerializedSize() {
         int size = SIZE_CONSTRUCTOR_ID;
         size += SIZE_INT32;
-        size += SIZE_INT32;
-        size += computeTLStringSerializedSize(shareText);
         size += computeTLStringSerializedSize(description);
         size += commands.computeSerializedSize();
         return size;
@@ -87,43 +76,12 @@ public class TLBotInfo extends TLAbsBotInfo {
         return CONSTRUCTOR_ID;
     }
 
-    @Override
-    @SuppressWarnings("PointlessBooleanExpression")
-    public boolean equals(Object object) {
-        if (!(object instanceof TLBotInfo)) return false;
-        if (object == this) return true;
-
-        TLBotInfo o = (TLBotInfo) object;
-
-        return userId == o.userId
-                && version == o.version
-                && (shareText == o.shareText || (shareText != null && o.shareText != null && shareText.equals(o.shareText)))
-                && (description == o.description || (description != null && o.description != null && description.equals(o.description)))
-                && (commands == o.commands || (commands != null && o.commands != null && commands.equals(o.commands)));
-    }
-
     public int getUserId() {
         return userId;
     }
 
     public void setUserId(int userId) {
         this.userId = userId;
-    }
-
-    public int getVersion() {
-        return version;
-    }
-
-    public void setVersion(int version) {
-        this.version = version;
-    }
-
-    public String getShareText() {
-        return shareText;
-    }
-
-    public void setShareText(String shareText) {
-        this.shareText = shareText;
     }
 
     public String getDescription() {
@@ -140,20 +98,5 @@ public class TLBotInfo extends TLAbsBotInfo {
 
     public void setCommands(TLVector<TLBotCommand> commands) {
         this.commands = commands;
-    }
-
-    @Override
-    public final boolean isEmpty() {
-        return false;
-    }
-
-    @Override
-    public final boolean isNotEmpty() {
-        return true;
-    }
-
-    @Override
-    public final TLBotInfo getAsBotInfo() {
-        return this;
     }
 }

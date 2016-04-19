@@ -69,19 +69,6 @@ public class TLUpdateChatParticipantDelete extends TLAbsUpdate {
         return CONSTRUCTOR_ID;
     }
 
-    @Override
-    @SuppressWarnings("PointlessBooleanExpression")
-    public boolean equals(Object object) {
-        if (!(object instanceof TLUpdateChatParticipantDelete)) return false;
-        if (object == this) return true;
-
-        TLUpdateChatParticipantDelete o = (TLUpdateChatParticipantDelete) object;
-
-        return chatId == o.chatId
-                && userId == o.userId
-                && version == o.version;
-    }
-
     public int getChatId() {
         return chatId;
     }

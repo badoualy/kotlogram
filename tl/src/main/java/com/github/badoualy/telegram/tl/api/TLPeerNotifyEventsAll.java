@@ -23,17 +23,6 @@ public class TLPeerNotifyEventsAll extends TLAbsPeerNotifyEvents {
     }
 
     @Override
-    @SuppressWarnings("PointlessBooleanExpression")
-    public boolean equals(Object object) {
-        if (!(object instanceof TLPeerNotifyEventsAll)) return false;
-        if (object == this) return true;
-
-        TLPeerNotifyEventsAll o = (TLPeerNotifyEventsAll) object;
-
-        return true;
-    }
-
-    @Override
     public final boolean isEmpty() {
         return false;
     }

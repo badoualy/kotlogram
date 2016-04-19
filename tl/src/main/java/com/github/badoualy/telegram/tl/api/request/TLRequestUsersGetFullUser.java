@@ -73,17 +73,6 @@ public class TLRequestUsersGetFullUser extends TLMethod<TLUserFull> {
         return CONSTRUCTOR_ID;
     }
 
-    @Override
-    @SuppressWarnings("PointlessBooleanExpression")
-    public boolean equals(Object object) {
-        if (!(object instanceof TLRequestUsersGetFullUser)) return false;
-        if (object == this) return true;
-
-        TLRequestUsersGetFullUser o = (TLRequestUsersGetFullUser) object;
-
-        return (id == o.id || (id != null && o.id != null && id.equals(o.id)));
-    }
-
     public TLAbsInputUser getId() {
         return id;
     }

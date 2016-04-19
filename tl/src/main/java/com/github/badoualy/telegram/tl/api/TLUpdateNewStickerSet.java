@@ -57,17 +57,6 @@ public class TLUpdateNewStickerSet extends TLAbsUpdate {
         return CONSTRUCTOR_ID;
     }
 
-    @Override
-    @SuppressWarnings("PointlessBooleanExpression")
-    public boolean equals(Object object) {
-        if (!(object instanceof TLUpdateNewStickerSet)) return false;
-        if (object == this) return true;
-
-        TLUpdateNewStickerSet o = (TLUpdateNewStickerSet) object;
-
-        return (stickerset == o.stickerset || (stickerset != null && o.stickerset != null && stickerset.equals(o.stickerset)));
-    }
-
     public TLStickerSet getStickerset() {
         return stickerset;
     }

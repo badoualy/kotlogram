@@ -46,6 +46,10 @@ public class TLUser extends TLAbsUser {
 
     protected boolean restricted;
 
+    protected boolean min;
+
+    protected boolean botInlineGeo;
+
     protected Long accessHash;
 
     protected String firstName;
@@ -71,14 +75,18 @@ public class TLUser extends TLAbsUser {
     public TLUser() {
     }
 
-    public TLUser(boolean self, boolean contact, boolean mutualContact, boolean deleted, boolean botChatHistory, boolean botNochats, boolean verified, int id, Long accessHash, String firstName, String lastName, String username, String phone, TLAbsUserProfilePhoto photo, TLAbsUserStatus status, Integer botInfoVersion, String restrictionReason, String botInlinePlaceholder) {
+    public TLUser(boolean self, boolean contact, boolean mutualContact, boolean deleted, boolean bot, boolean botChatHistory, boolean botNochats, boolean verified, boolean restricted, boolean min, boolean botInlineGeo, int id, Long accessHash, String firstName, String lastName, String username, String phone, TLAbsUserProfilePhoto photo, TLAbsUserStatus status, Integer botInfoVersion, String restrictionReason, String botInlinePlaceholder) {
         this.self = self;
         this.contact = contact;
         this.mutualContact = mutualContact;
         this.deleted = deleted;
+        this.bot = bot;
         this.botChatHistory = botChatHistory;
         this.botNochats = botNochats;
         this.verified = verified;
+        this.restricted = restricted;
+        this.min = min;
+        this.botInlineGeo = botInlineGeo;
         this.id = id;
         this.accessHash = accessHash;
         this.firstName = firstName;
@@ -98,21 +106,24 @@ public class TLUser extends TLAbsUser {
         flags = contact ? (flags | 2048) : (flags &~ 2048);
         flags = mutualContact ? (flags | 4096) : (flags &~ 4096);
         flags = deleted ? (flags | 8192) : (flags &~ 8192);
+        flags = bot ? (flags | 16384) : (flags &~ 16384);
         flags = botChatHistory ? (flags | 32768) : (flags &~ 32768);
         flags = botNochats ? (flags | 65536) : (flags &~ 65536);
         flags = verified ? (flags | 131072) : (flags &~ 131072);
-        flags = accessHash != null ? (flags | 1) : (flags &~ 1);
-        flags = firstName != null ? (flags | 2) : (flags &~ 2);
-        flags = lastName != null ? (flags | 4) : (flags &~ 4);
-        flags = username != null ? (flags | 8) : (flags &~ 8);
-        flags = phone != null ? (flags | 16) : (flags &~ 16);
-        flags = photo != null ? (flags | 32) : (flags &~ 32);
-        flags = status != null ? (flags | 64) : (flags &~ 64);
-        flags = botInfoVersion != null ? (flags | 16384) : (flags &~ 16384);
-        flags = restrictionReason != null ? (flags | 262144) : (flags &~ 262144);
-        flags = botInlinePlaceholder != null ? (flags | 524288) : (flags &~ 524288);
-        bot = (flags & 16384) != 0;
-        restricted = (flags & 262144) != 0;
+        flags = restricted ? (flags | 262144) : (flags &~ 262144);
+        flags = min ? (flags | 1048576) : (flags &~ 1048576);
+        flags = botInlineGeo ? (flags | 2097152) : (flags &~ 2097152);
+        // Fields below may not be serialized due to flags field value
+        if ((flags & 1) == 0) accessHash = null;
+        if ((flags & 2) == 0) firstName = null;
+        if ((flags & 4) == 0) lastName = null;
+        if ((flags & 8) == 0) username = null;
+        if ((flags & 16) == 0) phone = null;
+        if ((flags & 32) == 0) photo = null;
+        if ((flags & 64) == 0) status = null;
+        if ((flags & 16384) == 0) botInfoVersion = null;
+        if ((flags & 262144) == 0) restrictionReason = null;
+        if ((flags & 524288) == 0) botInlinePlaceholder = null;
     }
 
     @Override
@@ -121,16 +132,46 @@ public class TLUser extends TLAbsUser {
 
         writeInt(flags, stream);
         writeInt(id, stream);
-        if ((flags & 1) != 0) writeLong(accessHash, stream);
-        if ((flags & 2) != 0) writeString(firstName, stream);
-        if ((flags & 4) != 0) writeString(lastName, stream);
-        if ((flags & 8) != 0) writeString(username, stream);
-        if ((flags & 16) != 0) writeString(phone, stream);
-        if ((flags & 32) != 0) writeTLObject(photo, stream);
-        if ((flags & 64) != 0) writeTLObject(status, stream);
-        if ((flags & 16384) != 0) writeInt(botInfoVersion, stream);
-        if ((flags & 262144) != 0) writeString(restrictionReason, stream);
-        if ((flags & 524288) != 0) writeString(botInlinePlaceholder, stream);
+        if ((flags & 1) != 0) {
+            if (accessHash == null) throwNullFieldException("accessHash", flags);
+            writeLong(accessHash, stream);
+        }
+        if ((flags & 2) != 0) {
+            if (firstName == null) throwNullFieldException("firstName", flags);
+            writeString(firstName, stream);
+        }
+        if ((flags & 4) != 0) {
+            if (lastName == null) throwNullFieldException("lastName", flags);
+            writeString(lastName, stream);
+        }
+        if ((flags & 8) != 0) {
+            if (username == null) throwNullFieldException("username", flags);
+            writeString(username, stream);
+        }
+        if ((flags & 16) != 0) {
+            if (phone == null) throwNullFieldException("phone", flags);
+            writeString(phone, stream);
+        }
+        if ((flags & 32) != 0) {
+            if (photo == null) throwNullFieldException("photo", flags);
+            writeTLObject(photo, stream);
+        }
+        if ((flags & 64) != 0) {
+            if (status == null) throwNullFieldException("status", flags);
+            writeTLObject(status, stream);
+        }
+        if ((flags & 16384) != 0) {
+            if (botInfoVersion == null) throwNullFieldException("botInfoVersion", flags);
+            writeInt(botInfoVersion, stream);
+        }
+        if ((flags & 262144) != 0) {
+            if (restrictionReason == null) throwNullFieldException("restrictionReason", flags);
+            writeString(restrictionReason, stream);
+        }
+        if ((flags & 524288) != 0) {
+            if (botInlinePlaceholder == null) throwNullFieldException("botInlinePlaceholder", flags);
+            writeString(botInlinePlaceholder, stream);
+        }
     }
 
     @Override
@@ -146,6 +187,8 @@ public class TLUser extends TLAbsUser {
         botNochats = (flags & 65536) != 0;
         verified = (flags & 131072) != 0;
         restricted = (flags & 262144) != 0;
+        min = (flags & 1048576) != 0;
+        botInlineGeo = (flags & 2097152) != 0;
         id = readInt(stream);
         accessHash = (flags & 1) != 0 ? readLong(stream) : null;
         firstName = (flags & 2) != 0 ? readTLString(stream) : null;
@@ -166,16 +209,46 @@ public class TLUser extends TLAbsUser {
         int size = SIZE_CONSTRUCTOR_ID;
         size += SIZE_INT32;
         size += SIZE_INT32;
-        if ((flags & 1) != 0) size += SIZE_INT64;
-        if ((flags & 2) != 0) size += computeTLStringSerializedSize(firstName);
-        if ((flags & 4) != 0) size += computeTLStringSerializedSize(lastName);
-        if ((flags & 8) != 0) size += computeTLStringSerializedSize(username);
-        if ((flags & 16) != 0) size += computeTLStringSerializedSize(phone);
-        if ((flags & 32) != 0) size += photo.computeSerializedSize();
-        if ((flags & 64) != 0) size += status.computeSerializedSize();
-        if ((flags & 16384) != 0) size += SIZE_INT32;
-        if ((flags & 262144) != 0) size += computeTLStringSerializedSize(restrictionReason);
-        if ((flags & 524288) != 0) size += computeTLStringSerializedSize(botInlinePlaceholder);
+        if ((flags & 1) != 0) {
+            if (accessHash == null) throwNullFieldException("accessHash", flags);
+            size += SIZE_INT64;
+        }
+        if ((flags & 2) != 0) {
+            if (firstName == null) throwNullFieldException("firstName", flags);
+            size += computeTLStringSerializedSize(firstName);
+        }
+        if ((flags & 4) != 0) {
+            if (lastName == null) throwNullFieldException("lastName", flags);
+            size += computeTLStringSerializedSize(lastName);
+        }
+        if ((flags & 8) != 0) {
+            if (username == null) throwNullFieldException("username", flags);
+            size += computeTLStringSerializedSize(username);
+        }
+        if ((flags & 16) != 0) {
+            if (phone == null) throwNullFieldException("phone", flags);
+            size += computeTLStringSerializedSize(phone);
+        }
+        if ((flags & 32) != 0) {
+            if (photo == null) throwNullFieldException("photo", flags);
+            size += photo.computeSerializedSize();
+        }
+        if ((flags & 64) != 0) {
+            if (status == null) throwNullFieldException("status", flags);
+            size += status.computeSerializedSize();
+        }
+        if ((flags & 16384) != 0) {
+            if (botInfoVersion == null) throwNullFieldException("botInfoVersion", flags);
+            size += SIZE_INT32;
+        }
+        if ((flags & 262144) != 0) {
+            if (restrictionReason == null) throwNullFieldException("restrictionReason", flags);
+            size += computeTLStringSerializedSize(restrictionReason);
+        }
+        if ((flags & 524288) != 0) {
+            if (botInlinePlaceholder == null) throwNullFieldException("botInlinePlaceholder", flags);
+            size += computeTLStringSerializedSize(botInlinePlaceholder);
+        }
         return size;
     }
 
@@ -187,37 +260,6 @@ public class TLUser extends TLAbsUser {
     @Override
     public int getConstructorId() {
         return CONSTRUCTOR_ID;
-    }
-
-    @Override
-    @SuppressWarnings("PointlessBooleanExpression")
-    public boolean equals(Object object) {
-        if (!(object instanceof TLUser)) return false;
-        if (object == this) return true;
-
-        TLUser o = (TLUser) object;
-
-        return flags == o.flags
-                && self == o.self
-                && contact == o.contact
-                && mutualContact == o.mutualContact
-                && deleted == o.deleted
-                && bot == o.bot
-                && botChatHistory == o.botChatHistory
-                && botNochats == o.botNochats
-                && verified == o.verified
-                && restricted == o.restricted
-                && id == o.id
-                && (accessHash == o.accessHash || (accessHash != null && o.accessHash != null && accessHash.equals(o.accessHash)))
-                && (firstName == o.firstName || (firstName != null && o.firstName != null && firstName.equals(o.firstName)))
-                && (lastName == o.lastName || (lastName != null && o.lastName != null && lastName.equals(o.lastName)))
-                && (username == o.username || (username != null && o.username != null && username.equals(o.username)))
-                && (phone == o.phone || (phone != null && o.phone != null && phone.equals(o.phone)))
-                && (photo == o.photo || (photo != null && o.photo != null && photo.equals(o.photo)))
-                && (status == o.status || (status != null && o.status != null && status.equals(o.status)))
-                && (botInfoVersion == o.botInfoVersion || (botInfoVersion != null && o.botInfoVersion != null && botInfoVersion.equals(o.botInfoVersion)))
-                && (restrictionReason == o.restrictionReason || (restrictionReason != null && o.restrictionReason != null && restrictionReason.equals(o.restrictionReason)))
-                && (botInlinePlaceholder == o.botInlinePlaceholder || (botInlinePlaceholder != null && o.botInlinePlaceholder != null && botInlinePlaceholder.equals(o.botInlinePlaceholder)));
     }
 
     public boolean getSelf() {
@@ -256,6 +298,10 @@ public class TLUser extends TLAbsUser {
         return bot;
     }
 
+    public void setBot(boolean bot) {
+        this.bot = bot;
+    }
+
     public boolean getBotChatHistory() {
         return botChatHistory;
     }
@@ -282,6 +328,26 @@ public class TLUser extends TLAbsUser {
 
     public boolean getRestricted() {
         return restricted;
+    }
+
+    public void setRestricted(boolean restricted) {
+        this.restricted = restricted;
+    }
+
+    public boolean getMin() {
+        return min;
+    }
+
+    public void setMin(boolean min) {
+        this.min = min;
+    }
+
+    public boolean getBotInlineGeo() {
+        return botInlineGeo;
+    }
+
+    public void setBotInlineGeo(boolean botInlineGeo) {
+        this.botInlineGeo = botInlineGeo;
     }
 
     public int getId() {

@@ -72,19 +72,6 @@ public class TLUpdateDeleteMessages extends TLAbsUpdate {
         return CONSTRUCTOR_ID;
     }
 
-    @Override
-    @SuppressWarnings("PointlessBooleanExpression")
-    public boolean equals(Object object) {
-        if (!(object instanceof TLUpdateDeleteMessages)) return false;
-        if (object == this) return true;
-
-        TLUpdateDeleteMessages o = (TLUpdateDeleteMessages) object;
-
-        return (messages == o.messages || (messages != null && o.messages != null && messages.equals(o.messages)))
-                && pts == o.pts
-                && ptsCount == o.ptsCount;
-    }
-
     public TLIntVector getMessages() {
         return messages;
     }

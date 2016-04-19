@@ -3,7 +3,60 @@
     "_constructor": "inputChannelEmpty#ee8c1e86"
   },
   "filter": {
-    "_constructor": "channelMessagesFilterEmpty#94d42ee7"
+    "flags": 0,
+    "ranges": [
+      {
+        "minId": 0,
+        "maxId": 0,
+        "_constructor": "messageRange#ae30253"
+      },
+      {
+        "minId": 0,
+        "maxId": 0,
+        "_constructor": "messageRange#ae30253"
+      },
+      {
+        "minId": 0,
+        "maxId": 0,
+        "_constructor": "messageRange#ae30253"
+      },
+      {
+        "minId": 0,
+        "maxId": 0,
+        "_constructor": "messageRange#ae30253"
+      },
+      {
+        "minId": 0,
+        "maxId": 0,
+        "_constructor": "messageRange#ae30253"
+      },
+      {
+        "minId": 0,
+        "maxId": 0,
+        "_constructor": "messageRange#ae30253"
+      },
+      {
+        "minId": 0,
+        "maxId": 0,
+        "_constructor": "messageRange#ae30253"
+      },
+      {
+        "minId": 0,
+        "maxId": 0,
+        "_constructor": "messageRange#ae30253"
+      },
+      {
+        "minId": 0,
+        "maxId": 0,
+        "_constructor": "messageRange#ae30253"
+      },
+      {
+        "minId": 0,
+        "maxId": 0,
+        "_constructor": "messageRange#ae30253"
+      }
+    ],
+    "_constructor": "channelMessagesFilter#cd77d957"
   },
   "pts": 0,
   "limit": 0,

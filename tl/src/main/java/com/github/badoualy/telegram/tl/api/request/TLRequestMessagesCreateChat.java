@@ -84,18 +84,6 @@ public class TLRequestMessagesCreateChat extends TLMethod<TLAbsUpdates> {
         return CONSTRUCTOR_ID;
     }
 
-    @Override
-    @SuppressWarnings("PointlessBooleanExpression")
-    public boolean equals(Object object) {
-        if (!(object instanceof TLRequestMessagesCreateChat)) return false;
-        if (object == this) return true;
-
-        TLRequestMessagesCreateChat o = (TLRequestMessagesCreateChat) object;
-
-        return (users == o.users || (users != null && o.users != null && users.equals(o.users)))
-                && (title == o.title || (title != null && o.title != null && title.equals(o.title)));
-    }
-
     public TLVector<TLAbsInputUser> getUsers() {
         return users;
     }

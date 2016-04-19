@@ -84,21 +84,6 @@ public class TLPassword extends TLAbsPassword {
         return CONSTRUCTOR_ID;
     }
 
-    @Override
-    @SuppressWarnings("PointlessBooleanExpression")
-    public boolean equals(Object object) {
-        if (!(object instanceof TLPassword)) return false;
-        if (object == this) return true;
-
-        TLPassword o = (TLPassword) object;
-
-        return (currentSalt == o.currentSalt || (currentSalt != null && o.currentSalt != null && currentSalt.equals(o.currentSalt)))
-                && (newSalt == o.newSalt || (newSalt != null && o.newSalt != null && newSalt.equals(o.newSalt)))
-                && (hint == o.hint || (hint != null && o.hint != null && hint.equals(o.hint)))
-                && hasRecovery == o.hasRecovery
-                && (emailUnconfirmedPattern == o.emailUnconfirmedPattern || (emailUnconfirmedPattern != null && o.emailUnconfirmedPattern != null && emailUnconfirmedPattern.equals(o.emailUnconfirmedPattern)));
-    }
-
     public TLBytes getCurrentSalt() {
         return currentSalt;
     }

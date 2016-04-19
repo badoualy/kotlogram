@@ -1,18 +1,18 @@
 package com.github.badoualy.telegram.tl.api.auth;
 
 import com.github.badoualy.telegram.tl.TLContext;
+import com.github.badoualy.telegram.tl.core.TLObject;
 
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 
 import static com.github.badoualy.telegram.tl.StreamUtils.readInt;
-import static com.github.badoualy.telegram.tl.StreamUtils.readTLBool;
+import static com.github.badoualy.telegram.tl.StreamUtils.readTLObject;
 import static com.github.badoualy.telegram.tl.StreamUtils.readTLString;
-import static com.github.badoualy.telegram.tl.StreamUtils.writeBoolean;
 import static com.github.badoualy.telegram.tl.StreamUtils.writeInt;
 import static com.github.badoualy.telegram.tl.StreamUtils.writeString;
-import static com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_BOOLEAN;
+import static com.github.badoualy.telegram.tl.StreamUtils.writeTLObject;
 import static com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_CONSTRUCTOR_ID;
 import static com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_INT32;
 import static com.github.badoualy.telegram.tl.TLObjectUtils.computeTLStringSerializedSize;
@@ -21,45 +21,86 @@ import static com.github.badoualy.telegram.tl.TLObjectUtils.computeTLStringSeria
  * @author Yannick Badoual yann.badoual@gmail.com
  * @see <a href="http://github.com/badoualy/kotlogram">http://github.com/badoualy/kotlogram</a>
  */
-public class TLSentCode extends TLAbsSentCode {
-    public static final int CONSTRUCTOR_ID = 0xefed51d9;
+public class TLSentCode extends TLObject {
+    public static final int CONSTRUCTOR_ID = 0x5e002502;
 
-    private final String _constructor = "auth.sentCode#efed51d9";
+    protected int flags;
+
+    protected boolean phoneRegistered;
+
+    protected TLAbsSentCodeType type;
+
+    protected String phoneCodeHash;
+
+    protected TLAbsCodeType nextType;
+
+    protected Integer timeout;
+
+    private final String _constructor = "auth.sentCode#5e002502";
 
     public TLSentCode() {
     }
 
-    public TLSentCode(boolean phoneRegistered, String phoneCodeHash, int sendCallTimeout, boolean isPassword) {
+    public TLSentCode(boolean phoneRegistered, TLAbsSentCodeType type, String phoneCodeHash, TLAbsCodeType nextType, Integer timeout) {
         this.phoneRegistered = phoneRegistered;
+        this.type = type;
         this.phoneCodeHash = phoneCodeHash;
-        this.sendCallTimeout = sendCallTimeout;
-        this.isPassword = isPassword;
+        this.nextType = nextType;
+        this.timeout = timeout;
+    }
+
+    private void computeFlags() {
+        flags = 0;
+        flags = phoneRegistered ? (flags | 1) : (flags &~ 1);
+        // Fields below may not be serialized due to flags field value
+        if ((flags & 2) == 0) nextType = null;
+        if ((flags & 4) == 0) timeout = null;
     }
 
     @Override
     public void serializeBody(OutputStream stream) throws IOException {
-        writeBoolean(phoneRegistered, stream);
+        computeFlags();
+
+        writeInt(flags, stream);
+        writeTLObject(type, stream);
         writeString(phoneCodeHash, stream);
-        writeInt(sendCallTimeout, stream);
-        writeBoolean(isPassword, stream);
+        if ((flags & 2) != 0) {
+            if (nextType == null) throwNullFieldException("nextType", flags);
+            writeTLObject(nextType, stream);
+        }
+        if ((flags & 4) != 0) {
+            if (timeout == null) throwNullFieldException("timeout", flags);
+            writeInt(timeout, stream);
+        }
     }
 
     @Override
     @SuppressWarnings("unchecked")
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
-        phoneRegistered = readTLBool(stream);
+        flags = readInt(stream);
+        phoneRegistered = (flags & 1) != 0;
+        type = readTLObject(stream, context, TLAbsSentCodeType.class, -1);
         phoneCodeHash = readTLString(stream);
-        sendCallTimeout = readInt(stream);
-        isPassword = readTLBool(stream);
+        nextType = (flags & 2) != 0 ? readTLObject(stream, context, TLAbsCodeType.class, -1) : null;
+        timeout = (flags & 4) != 0 ? readInt(stream) : null;
     }
 
     @Override
     public int computeSerializedSize() {
+        computeFlags();
+
         int size = SIZE_CONSTRUCTOR_ID;
-        size += SIZE_BOOLEAN;
-        size += computeTLStringSerializedSize(phoneCodeHash);
         size += SIZE_INT32;
-        size += SIZE_BOOLEAN;
+        size += type.computeSerializedSize();
+        size += computeTLStringSerializedSize(phoneCodeHash);
+        if ((flags & 2) != 0) {
+            if (nextType == null) throwNullFieldException("nextType", flags);
+            size += nextType.computeSerializedSize();
+        }
+        if ((flags & 4) != 0) {
+            if (timeout == null) throwNullFieldException("timeout", flags);
+            size += SIZE_INT32;
+        }
         return size;
     }
 
@@ -73,26 +114,20 @@ public class TLSentCode extends TLAbsSentCode {
         return CONSTRUCTOR_ID;
     }
 
-    @Override
-    @SuppressWarnings("PointlessBooleanExpression")
-    public boolean equals(Object object) {
-        if (!(object instanceof TLSentCode)) return false;
-        if (object == this) return true;
-
-        TLSentCode o = (TLSentCode) object;
-
-        return phoneRegistered == o.phoneRegistered
-                && (phoneCodeHash == o.phoneCodeHash || (phoneCodeHash != null && o.phoneCodeHash != null && phoneCodeHash.equals(o.phoneCodeHash)))
-                && sendCallTimeout == o.sendCallTimeout
-                && isPassword == o.isPassword;
-    }
-
     public boolean getPhoneRegistered() {
         return phoneRegistered;
     }
 
     public void setPhoneRegistered(boolean phoneRegistered) {
         this.phoneRegistered = phoneRegistered;
+    }
+
+    public TLAbsSentCodeType getType() {
+        return type;
+    }
+
+    public void setType(TLAbsSentCodeType type) {
+        this.type = type;
     }
 
     public String getPhoneCodeHash() {
@@ -103,19 +138,19 @@ public class TLSentCode extends TLAbsSentCode {
         this.phoneCodeHash = phoneCodeHash;
     }
 
-    public int getSendCallTimeout() {
-        return sendCallTimeout;
+    public TLAbsCodeType getNextType() {
+        return nextType;
     }
 
-    public void setSendCallTimeout(int sendCallTimeout) {
-        this.sendCallTimeout = sendCallTimeout;
+    public void setNextType(TLAbsCodeType nextType) {
+        this.nextType = nextType;
     }
 
-    public boolean getIsPassword() {
-        return isPassword;
+    public Integer getTimeout() {
+        return timeout;
     }
 
-    public void setIsPassword(boolean isPassword) {
-        this.isPassword = isPassword;
+    public void setTimeout(Integer timeout) {
+        this.timeout = timeout;
     }
 }

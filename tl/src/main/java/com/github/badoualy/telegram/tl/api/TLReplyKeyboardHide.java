@@ -18,6 +18,10 @@ import static com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_INT32;
 public class TLReplyKeyboardHide extends TLAbsReplyMarkup {
     public static final int CONSTRUCTOR_ID = 0xa03e5b85;
 
+    protected int flags;
+
+    protected boolean selective;
+
     private final String _constructor = "replyKeyboardHide#a03e5b85";
 
     public TLReplyKeyboardHide() {
@@ -30,6 +34,7 @@ public class TLReplyKeyboardHide extends TLAbsReplyMarkup {
     private void computeFlags() {
         flags = 0;
         flags = selective ? (flags | 4) : (flags &~ 4);
+        // Fields below may not be serialized due to flags field value
     }
 
     @Override
@@ -63,18 +68,6 @@ public class TLReplyKeyboardHide extends TLAbsReplyMarkup {
     @Override
     public int getConstructorId() {
         return CONSTRUCTOR_ID;
-    }
-
-    @Override
-    @SuppressWarnings("PointlessBooleanExpression")
-    public boolean equals(Object object) {
-        if (!(object instanceof TLReplyKeyboardHide)) return false;
-        if (object == this) return true;
-
-        TLReplyKeyboardHide o = (TLReplyKeyboardHide) object;
-
-        return flags == o.flags
-                && selective == o.selective;
     }
 
     public boolean getSelective() {

@@ -57,17 +57,6 @@ public class TLSendMessageUploadAudioAction extends TLAbsSendMessageAction {
         return CONSTRUCTOR_ID;
     }
 
-    @Override
-    @SuppressWarnings("PointlessBooleanExpression")
-    public boolean equals(Object object) {
-        if (!(object instanceof TLSendMessageUploadAudioAction)) return false;
-        if (object == this) return true;
-
-        TLSendMessageUploadAudioAction o = (TLSendMessageUploadAudioAction) object;
-
-        return progress == o.progress;
-    }
-
     public int getProgress() {
         return progress;
     }

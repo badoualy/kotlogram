@@ -68,18 +68,6 @@ public class TLFoundGifs extends TLObject {
         return CONSTRUCTOR_ID;
     }
 
-    @Override
-    @SuppressWarnings("PointlessBooleanExpression")
-    public boolean equals(Object object) {
-        if (!(object instanceof TLFoundGifs)) return false;
-        if (object == this) return true;
-
-        TLFoundGifs o = (TLFoundGifs) object;
-
-        return nextOffset == o.nextOffset
-                && (results == o.results || (results != null && o.results != null && results.equals(o.results)));
-    }
-
     public int getNextOffset() {
         return nextOffset;
     }

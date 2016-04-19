@@ -80,20 +80,6 @@ public class TLUpdateUserPhoto extends TLAbsUpdate {
         return CONSTRUCTOR_ID;
     }
 
-    @Override
-    @SuppressWarnings("PointlessBooleanExpression")
-    public boolean equals(Object object) {
-        if (!(object instanceof TLUpdateUserPhoto)) return false;
-        if (object == this) return true;
-
-        TLUpdateUserPhoto o = (TLUpdateUserPhoto) object;
-
-        return userId == o.userId
-                && date == o.date
-                && (photo == o.photo || (photo != null && o.photo != null && photo.equals(o.photo)))
-                && previous == o.previous;
-    }
-
     public int getUserId() {
         return userId;
     }

@@ -23,17 +23,6 @@ public class TLInputPhotoEmpty extends TLAbsInputPhoto {
     }
 
     @Override
-    @SuppressWarnings("PointlessBooleanExpression")
-    public boolean equals(Object object) {
-        if (!(object instanceof TLInputPhotoEmpty)) return false;
-        if (object == this) return true;
-
-        TLInputPhotoEmpty o = (TLInputPhotoEmpty) object;
-
-        return true;
-    }
-
-    @Override
     public final boolean isEmpty() {
         return true;
     }

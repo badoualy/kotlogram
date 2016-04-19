@@ -86,19 +86,6 @@ public class TLRequestUpdatesGetDifference extends TLMethod<TLAbsDifference> {
         return CONSTRUCTOR_ID;
     }
 
-    @Override
-    @SuppressWarnings("PointlessBooleanExpression")
-    public boolean equals(Object object) {
-        if (!(object instanceof TLRequestUpdatesGetDifference)) return false;
-        if (object == this) return true;
-
-        TLRequestUpdatesGetDifference o = (TLRequestUpdatesGetDifference) object;
-
-        return pts == o.pts
-                && date == o.date
-                && qts == o.qts;
-    }
-
     public int getPts() {
         return pts;
     }

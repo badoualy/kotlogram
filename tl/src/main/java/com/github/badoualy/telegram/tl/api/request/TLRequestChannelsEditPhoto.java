@@ -80,18 +80,6 @@ public class TLRequestChannelsEditPhoto extends TLMethod<TLAbsUpdates> {
         return CONSTRUCTOR_ID;
     }
 
-    @Override
-    @SuppressWarnings("PointlessBooleanExpression")
-    public boolean equals(Object object) {
-        if (!(object instanceof TLRequestChannelsEditPhoto)) return false;
-        if (object == this) return true;
-
-        TLRequestChannelsEditPhoto o = (TLRequestChannelsEditPhoto) object;
-
-        return (channel == o.channel || (channel != null && o.channel != null && channel.equals(o.channel)))
-                && (photo == o.photo || (photo != null && o.photo != null && photo.equals(o.photo)));
-    }
-
     public TLAbsInputChannel getChannel() {
         return channel;
     }

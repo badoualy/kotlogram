@@ -62,18 +62,6 @@ public class TLUpdateNotifySettings extends TLAbsUpdate {
         return CONSTRUCTOR_ID;
     }
 
-    @Override
-    @SuppressWarnings("PointlessBooleanExpression")
-    public boolean equals(Object object) {
-        if (!(object instanceof TLUpdateNotifySettings)) return false;
-        if (object == this) return true;
-
-        TLUpdateNotifySettings o = (TLUpdateNotifySettings) object;
-
-        return (peer == o.peer || (peer != null && o.peer != null && peer.equals(o.peer)))
-                && (notifySettings == o.notifySettings || (notifySettings != null && o.notifySettings != null && notifySettings.equals(o.notifySettings)));
-    }
-
     public TLAbsNotifyPeer getPeer() {
         return peer;
     }

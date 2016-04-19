@@ -51,7 +51,8 @@ public class TLChannelDifference extends TLAbsChannelDifference {
     private void computeFlags() {
         flags = 0;
         flags = _final ? (flags | 1) : (flags &~ 1);
-        flags = timeout != null ? (flags | 2) : (flags &~ 2);
+        // Fields below may not be serialized due to flags field value
+        if ((flags & 2) == 0) timeout = null;
     }
 
     @Override
@@ -60,7 +61,10 @@ public class TLChannelDifference extends TLAbsChannelDifference {
 
         writeInt(flags, stream);
         writeInt(pts, stream);
-        if ((flags & 2) != 0) writeInt(timeout, stream);
+        if ((flags & 2) != 0) {
+            if (timeout == null) throwNullFieldException("timeout", flags);
+            writeInt(timeout, stream);
+        }
         writeTLVector(newMessages, stream);
         writeTLVector(otherUpdates, stream);
         writeTLVector(chats, stream);
@@ -87,7 +91,10 @@ public class TLChannelDifference extends TLAbsChannelDifference {
         int size = SIZE_CONSTRUCTOR_ID;
         size += SIZE_INT32;
         size += SIZE_INT32;
-        if ((flags & 2) != 0) size += SIZE_INT32;
+        if ((flags & 2) != 0) {
+            if (timeout == null) throwNullFieldException("timeout", flags);
+            size += SIZE_INT32;
+        }
         size += newMessages.computeSerializedSize();
         size += otherUpdates.computeSerializedSize();
         size += chats.computeSerializedSize();
@@ -103,24 +110,6 @@ public class TLChannelDifference extends TLAbsChannelDifference {
     @Override
     public int getConstructorId() {
         return CONSTRUCTOR_ID;
-    }
-
-    @Override
-    @SuppressWarnings("PointlessBooleanExpression")
-    public boolean equals(Object object) {
-        if (!(object instanceof TLChannelDifference)) return false;
-        if (object == this) return true;
-
-        TLChannelDifference o = (TLChannelDifference) object;
-
-        return flags == o.flags
-                && _final == o._final
-                && pts == o.pts
-                && (timeout == o.timeout || (timeout != null && o.timeout != null && timeout.equals(o.timeout)))
-                && (newMessages == o.newMessages || (newMessages != null && o.newMessages != null && newMessages.equals(o.newMessages)))
-                && (otherUpdates == o.otherUpdates || (otherUpdates != null && o.otherUpdates != null && otherUpdates.equals(o.otherUpdates)))
-                && (chats == o.chats || (chats != null && o.chats != null && chats.equals(o.chats)))
-                && (users == o.users || (users != null && o.users != null && users.equals(o.users)));
     }
 
     public boolean getFinal() {

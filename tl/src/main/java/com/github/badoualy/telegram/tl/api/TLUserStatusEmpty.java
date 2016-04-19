@@ -21,15 +21,4 @@ public class TLUserStatusEmpty extends TLAbsUserStatus {
     public int getConstructorId() {
         return CONSTRUCTOR_ID;
     }
-
-    @Override
-    @SuppressWarnings("PointlessBooleanExpression")
-    public boolean equals(Object object) {
-        if (!(object instanceof TLUserStatusEmpty)) return false;
-        if (object == this) return true;
-
-        TLUserStatusEmpty o = (TLUserStatusEmpty) object;
-
-        return true;
-    }
 }

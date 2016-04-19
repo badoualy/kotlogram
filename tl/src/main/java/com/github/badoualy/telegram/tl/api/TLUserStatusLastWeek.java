@@ -21,15 +21,4 @@ public class TLUserStatusLastWeek extends TLAbsUserStatus {
     public int getConstructorId() {
         return CONSTRUCTOR_ID;
     }
-
-    @Override
-    @SuppressWarnings("PointlessBooleanExpression")
-    public boolean equals(Object object) {
-        if (!(object instanceof TLUserStatusLastWeek)) return false;
-        if (object == this) return true;
-
-        TLUserStatusLastWeek o = (TLUserStatusLastWeek) object;
-
-        return true;
-    }
 }

@@ -61,18 +61,6 @@ public class TLPhotos extends TLAbsPhotos {
         return CONSTRUCTOR_ID;
     }
 
-    @Override
-    @SuppressWarnings("PointlessBooleanExpression")
-    public boolean equals(Object object) {
-        if (!(object instanceof TLPhotos)) return false;
-        if (object == this) return true;
-
-        TLPhotos o = (TLPhotos) object;
-
-        return (photos == o.photos || (photos != null && o.photos != null && photos.equals(o.photos)))
-                && (users == o.users || (users != null && o.users != null && users.equals(o.users)));
-    }
-
     public TLVector<TLAbsPhoto> getPhotos() {
         return photos;
     }

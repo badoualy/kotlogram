@@ -1,7 +1,6 @@
 package com.github.badoualy.telegram.tl.api;
 
 import com.github.badoualy.telegram.tl.TLContext;
-import com.github.badoualy.telegram.tl.core.TLObject;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -21,14 +20,10 @@ import static com.github.badoualy.telegram.tl.TLObjectUtils.computeTLStringSeria
  * @author Yannick Badoual yann.badoual@gmail.com
  * @see <a href="http://github.com/badoualy/kotlogram">http://github.com/badoualy/kotlogram</a>
  */
-public class TLInputBotInlineResult extends TLObject {
+public class TLInputBotInlineResult extends TLAbsInputBotInlineResult {
     public static final int CONSTRUCTOR_ID = 0x2cbbe15a;
 
     protected int flags;
-
-    protected String id;
-
-    protected String type;
 
     protected String title;
 
@@ -47,8 +42,6 @@ public class TLInputBotInlineResult extends TLObject {
     protected Integer h;
 
     protected Integer duration;
-
-    protected TLAbsInputBotInlineMessage sendMessage;
 
     private final String _constructor = "inputBotInlineResult#2cbbe15a";
 
@@ -72,15 +65,16 @@ public class TLInputBotInlineResult extends TLObject {
 
     private void computeFlags() {
         flags = 0;
-        flags = title != null ? (flags | 2) : (flags &~ 2);
-        flags = description != null ? (flags | 4) : (flags &~ 4);
-        flags = url != null ? (flags | 8) : (flags &~ 8);
-        flags = thumbUrl != null ? (flags | 16) : (flags &~ 16);
-        flags = contentUrl != null ? (flags | 32) : (flags &~ 32);
-        flags = contentType != null ? (flags | 32) : (flags &~ 32);
-        flags = w != null ? (flags | 64) : (flags &~ 64);
-        flags = h != null ? (flags | 64) : (flags &~ 64);
-        flags = duration != null ? (flags | 128) : (flags &~ 128);
+        // Fields below may not be serialized due to flags field value
+        if ((flags & 2) == 0) title = null;
+        if ((flags & 4) == 0) description = null;
+        if ((flags & 8) == 0) url = null;
+        if ((flags & 16) == 0) thumbUrl = null;
+        if ((flags & 32) == 0) contentUrl = null;
+        if ((flags & 32) == 0) contentType = null;
+        if ((flags & 64) == 0) w = null;
+        if ((flags & 64) == 0) h = null;
+        if ((flags & 128) == 0) duration = null;
     }
 
     @Override
@@ -90,15 +84,42 @@ public class TLInputBotInlineResult extends TLObject {
         writeInt(flags, stream);
         writeString(id, stream);
         writeString(type, stream);
-        if ((flags & 2) != 0) writeString(title, stream);
-        if ((flags & 4) != 0) writeString(description, stream);
-        if ((flags & 8) != 0) writeString(url, stream);
-        if ((flags & 16) != 0) writeString(thumbUrl, stream);
-        if ((flags & 32) != 0) writeString(contentUrl, stream);
-        if ((flags & 32) != 0) writeString(contentType, stream);
-        if ((flags & 64) != 0) writeInt(w, stream);
-        if ((flags & 64) != 0) writeInt(h, stream);
-        if ((flags & 128) != 0) writeInt(duration, stream);
+        if ((flags & 2) != 0) {
+            if (title == null) throwNullFieldException("title", flags);
+            writeString(title, stream);
+        }
+        if ((flags & 4) != 0) {
+            if (description == null) throwNullFieldException("description", flags);
+            writeString(description, stream);
+        }
+        if ((flags & 8) != 0) {
+            if (url == null) throwNullFieldException("url", flags);
+            writeString(url, stream);
+        }
+        if ((flags & 16) != 0) {
+            if (thumbUrl == null) throwNullFieldException("thumbUrl", flags);
+            writeString(thumbUrl, stream);
+        }
+        if ((flags & 32) != 0) {
+            if (contentUrl == null) throwNullFieldException("contentUrl", flags);
+            writeString(contentUrl, stream);
+        }
+        if ((flags & 32) != 0) {
+            if (contentType == null) throwNullFieldException("contentType", flags);
+            writeString(contentType, stream);
+        }
+        if ((flags & 64) != 0) {
+            if (w == null) throwNullFieldException("w", flags);
+            writeInt(w, stream);
+        }
+        if ((flags & 64) != 0) {
+            if (h == null) throwNullFieldException("h", flags);
+            writeInt(h, stream);
+        }
+        if ((flags & 128) != 0) {
+            if (duration == null) throwNullFieldException("duration", flags);
+            writeInt(duration, stream);
+        }
         writeTLObject(sendMessage, stream);
     }
 
@@ -128,15 +149,42 @@ public class TLInputBotInlineResult extends TLObject {
         size += SIZE_INT32;
         size += computeTLStringSerializedSize(id);
         size += computeTLStringSerializedSize(type);
-        if ((flags & 2) != 0) size += computeTLStringSerializedSize(title);
-        if ((flags & 4) != 0) size += computeTLStringSerializedSize(description);
-        if ((flags & 8) != 0) size += computeTLStringSerializedSize(url);
-        if ((flags & 16) != 0) size += computeTLStringSerializedSize(thumbUrl);
-        if ((flags & 32) != 0) size += computeTLStringSerializedSize(contentUrl);
-        if ((flags & 32) != 0) size += computeTLStringSerializedSize(contentType);
-        if ((flags & 64) != 0) size += SIZE_INT32;
-        if ((flags & 64) != 0) size += SIZE_INT32;
-        if ((flags & 128) != 0) size += SIZE_INT32;
+        if ((flags & 2) != 0) {
+            if (title == null) throwNullFieldException("title", flags);
+            size += computeTLStringSerializedSize(title);
+        }
+        if ((flags & 4) != 0) {
+            if (description == null) throwNullFieldException("description", flags);
+            size += computeTLStringSerializedSize(description);
+        }
+        if ((flags & 8) != 0) {
+            if (url == null) throwNullFieldException("url", flags);
+            size += computeTLStringSerializedSize(url);
+        }
+        if ((flags & 16) != 0) {
+            if (thumbUrl == null) throwNullFieldException("thumbUrl", flags);
+            size += computeTLStringSerializedSize(thumbUrl);
+        }
+        if ((flags & 32) != 0) {
+            if (contentUrl == null) throwNullFieldException("contentUrl", flags);
+            size += computeTLStringSerializedSize(contentUrl);
+        }
+        if ((flags & 32) != 0) {
+            if (contentType == null) throwNullFieldException("contentType", flags);
+            size += computeTLStringSerializedSize(contentType);
+        }
+        if ((flags & 64) != 0) {
+            if (w == null) throwNullFieldException("w", flags);
+            size += SIZE_INT32;
+        }
+        if ((flags & 64) != 0) {
+            if (h == null) throwNullFieldException("h", flags);
+            size += SIZE_INT32;
+        }
+        if ((flags & 128) != 0) {
+            if (duration == null) throwNullFieldException("duration", flags);
+            size += SIZE_INT32;
+        }
         size += sendMessage.computeSerializedSize();
         return size;
     }
@@ -149,29 +197,6 @@ public class TLInputBotInlineResult extends TLObject {
     @Override
     public int getConstructorId() {
         return CONSTRUCTOR_ID;
-    }
-
-    @Override
-    @SuppressWarnings("PointlessBooleanExpression")
-    public boolean equals(Object object) {
-        if (!(object instanceof TLInputBotInlineResult)) return false;
-        if (object == this) return true;
-
-        TLInputBotInlineResult o = (TLInputBotInlineResult) object;
-
-        return flags == o.flags
-                && (id == o.id || (id != null && o.id != null && id.equals(o.id)))
-                && (type == o.type || (type != null && o.type != null && type.equals(o.type)))
-                && (title == o.title || (title != null && o.title != null && title.equals(o.title)))
-                && (description == o.description || (description != null && o.description != null && description.equals(o.description)))
-                && (url == o.url || (url != null && o.url != null && url.equals(o.url)))
-                && (thumbUrl == o.thumbUrl || (thumbUrl != null && o.thumbUrl != null && thumbUrl.equals(o.thumbUrl)))
-                && (contentUrl == o.contentUrl || (contentUrl != null && o.contentUrl != null && contentUrl.equals(o.contentUrl)))
-                && (contentType == o.contentType || (contentType != null && o.contentType != null && contentType.equals(o.contentType)))
-                && (w == o.w || (w != null && o.w != null && w.equals(o.w)))
-                && (h == o.h || (h != null && o.h != null && h.equals(o.h)))
-                && (duration == o.duration || (duration != null && o.duration != null && duration.equals(o.duration)))
-                && (sendMessage == o.sendMessage || (sendMessage != null && o.sendMessage != null && sendMessage.equals(o.sendMessage)));
     }
 
     public String getId() {

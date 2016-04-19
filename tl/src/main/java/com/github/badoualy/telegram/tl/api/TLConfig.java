@@ -23,7 +23,7 @@ import static com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_INT32;
  * @see <a href="http://github.com/badoualy/kotlogram">http://github.com/badoualy/kotlogram</a>
  */
 public class TLConfig extends TLObject {
-    public static final int CONSTRUCTOR_ID = 0x6bbc5f8;
+    public static final int CONSTRUCTOR_ID = 0x317ceef4;
 
     protected int date;
 
@@ -61,14 +61,16 @@ public class TLConfig extends TLObject {
 
     protected int savedGifsLimit;
 
+    protected int editTimeLimit;
+
     protected TLVector<TLDisabledFeature> disabledFeatures;
 
-    private final String _constructor = "config#6bbc5f8";
+    private final String _constructor = "config#317ceef4";
 
     public TLConfig() {
     }
 
-    public TLConfig(int date, int expires, boolean testMode, int thisDc, TLVector<TLDcOption> dcOptions, int chatSizeMax, int megagroupSizeMax, int forwardedCountMax, int onlineUpdatePeriodMs, int offlineBlurTimeoutMs, int offlineIdleTimeoutMs, int onlineCloudTimeoutMs, int notifyCloudDelayMs, int notifyDefaultDelayMs, int chatBigSize, int pushChatPeriodMs, int pushChatLimit, int savedGifsLimit, TLVector<TLDisabledFeature> disabledFeatures) {
+    public TLConfig(int date, int expires, boolean testMode, int thisDc, TLVector<TLDcOption> dcOptions, int chatSizeMax, int megagroupSizeMax, int forwardedCountMax, int onlineUpdatePeriodMs, int offlineBlurTimeoutMs, int offlineIdleTimeoutMs, int onlineCloudTimeoutMs, int notifyCloudDelayMs, int notifyDefaultDelayMs, int chatBigSize, int pushChatPeriodMs, int pushChatLimit, int savedGifsLimit, int editTimeLimit, TLVector<TLDisabledFeature> disabledFeatures) {
         this.date = date;
         this.expires = expires;
         this.testMode = testMode;
@@ -87,6 +89,7 @@ public class TLConfig extends TLObject {
         this.pushChatPeriodMs = pushChatPeriodMs;
         this.pushChatLimit = pushChatLimit;
         this.savedGifsLimit = savedGifsLimit;
+        this.editTimeLimit = editTimeLimit;
         this.disabledFeatures = disabledFeatures;
     }
 
@@ -110,6 +113,7 @@ public class TLConfig extends TLObject {
         writeInt(pushChatPeriodMs, stream);
         writeInt(pushChatLimit, stream);
         writeInt(savedGifsLimit, stream);
+        writeInt(editTimeLimit, stream);
         writeTLVector(disabledFeatures, stream);
     }
 
@@ -134,6 +138,7 @@ public class TLConfig extends TLObject {
         pushChatPeriodMs = readInt(stream);
         pushChatLimit = readInt(stream);
         savedGifsLimit = readInt(stream);
+        editTimeLimit = readInt(stream);
         disabledFeatures = readTLVector(stream, context);
     }
 
@@ -145,6 +150,7 @@ public class TLConfig extends TLObject {
         size += SIZE_BOOLEAN;
         size += SIZE_INT32;
         size += dcOptions.computeSerializedSize();
+        size += SIZE_INT32;
         size += SIZE_INT32;
         size += SIZE_INT32;
         size += SIZE_INT32;
@@ -170,35 +176,6 @@ public class TLConfig extends TLObject {
     @Override
     public int getConstructorId() {
         return CONSTRUCTOR_ID;
-    }
-
-    @Override
-    @SuppressWarnings("PointlessBooleanExpression")
-    public boolean equals(Object object) {
-        if (!(object instanceof TLConfig)) return false;
-        if (object == this) return true;
-
-        TLConfig o = (TLConfig) object;
-
-        return date == o.date
-                && expires == o.expires
-                && testMode == o.testMode
-                && thisDc == o.thisDc
-                && (dcOptions == o.dcOptions || (dcOptions != null && o.dcOptions != null && dcOptions.equals(o.dcOptions)))
-                && chatSizeMax == o.chatSizeMax
-                && megagroupSizeMax == o.megagroupSizeMax
-                && forwardedCountMax == o.forwardedCountMax
-                && onlineUpdatePeriodMs == o.onlineUpdatePeriodMs
-                && offlineBlurTimeoutMs == o.offlineBlurTimeoutMs
-                && offlineIdleTimeoutMs == o.offlineIdleTimeoutMs
-                && onlineCloudTimeoutMs == o.onlineCloudTimeoutMs
-                && notifyCloudDelayMs == o.notifyCloudDelayMs
-                && notifyDefaultDelayMs == o.notifyDefaultDelayMs
-                && chatBigSize == o.chatBigSize
-                && pushChatPeriodMs == o.pushChatPeriodMs
-                && pushChatLimit == o.pushChatLimit
-                && savedGifsLimit == o.savedGifsLimit
-                && (disabledFeatures == o.disabledFeatures || (disabledFeatures != null && o.disabledFeatures != null && disabledFeatures.equals(o.disabledFeatures)));
     }
 
     public int getDate() {
@@ -343,6 +320,14 @@ public class TLConfig extends TLObject {
 
     public void setSavedGifsLimit(int savedGifsLimit) {
         this.savedGifsLimit = savedGifsLimit;
+    }
+
+    public int getEditTimeLimit() {
+        return editTimeLimit;
+    }
+
+    public void setEditTimeLimit(int editTimeLimit) {
+        this.editTimeLimit = editTimeLimit;
     }
 
     public TLVector<TLDisabledFeature> getDisabledFeatures() {

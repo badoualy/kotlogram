@@ -52,6 +52,7 @@ public class TLChatInvite extends TLAbsChatInvite {
         flags = broadcast ? (flags | 2) : (flags &~ 2);
         flags = _public ? (flags | 4) : (flags &~ 4);
         flags = megagroup ? (flags | 8) : (flags &~ 8);
+        // Fields below may not be serialized due to flags field value
     }
 
     @Override
@@ -91,22 +92,6 @@ public class TLChatInvite extends TLAbsChatInvite {
     @Override
     public int getConstructorId() {
         return CONSTRUCTOR_ID;
-    }
-
-    @Override
-    @SuppressWarnings("PointlessBooleanExpression")
-    public boolean equals(Object object) {
-        if (!(object instanceof TLChatInvite)) return false;
-        if (object == this) return true;
-
-        TLChatInvite o = (TLChatInvite) object;
-
-        return flags == o.flags
-                && channel == o.channel
-                && broadcast == o.broadcast
-                && _public == o._public
-                && megagroup == o.megagroup
-                && (title == o.title || (title != null && o.title != null && title.equals(o.title)));
     }
 
     public boolean getChannel() {

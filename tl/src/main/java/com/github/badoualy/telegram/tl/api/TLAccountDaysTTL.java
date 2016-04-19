@@ -58,17 +58,6 @@ public class TLAccountDaysTTL extends TLObject {
         return CONSTRUCTOR_ID;
     }
 
-    @Override
-    @SuppressWarnings("PointlessBooleanExpression")
-    public boolean equals(Object object) {
-        if (!(object instanceof TLAccountDaysTTL)) return false;
-        if (object == this) return true;
-
-        TLAccountDaysTTL o = (TLAccountDaysTTL) object;
-
-        return days == o.days;
-    }
-
     public int getDays() {
         return days;
     }

@@ -71,19 +71,6 @@ public class TLUpdateContactLink extends TLAbsUpdate {
         return CONSTRUCTOR_ID;
     }
 
-    @Override
-    @SuppressWarnings("PointlessBooleanExpression")
-    public boolean equals(Object object) {
-        if (!(object instanceof TLUpdateContactLink)) return false;
-        if (object == this) return true;
-
-        TLUpdateContactLink o = (TLUpdateContactLink) object;
-
-        return userId == o.userId
-                && (myLink == o.myLink || (myLink != null && o.myLink != null && myLink.equals(o.myLink)))
-                && (foreignLink == o.foreignLink || (foreignLink != null && o.foreignLink != null && foreignLink.equals(o.foreignLink)));
-    }
-
     public int getUserId() {
         return userId;
     }

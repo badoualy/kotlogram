@@ -65,18 +65,6 @@ public class TLUpdateNewEncryptedMessage extends TLAbsUpdate {
         return CONSTRUCTOR_ID;
     }
 
-    @Override
-    @SuppressWarnings("PointlessBooleanExpression")
-    public boolean equals(Object object) {
-        if (!(object instanceof TLUpdateNewEncryptedMessage)) return false;
-        if (object == this) return true;
-
-        TLUpdateNewEncryptedMessage o = (TLUpdateNewEncryptedMessage) object;
-
-        return (message == o.message || (message != null && o.message != null && message.equals(o.message)))
-                && qts == o.qts;
-    }
-
     public TLAbsEncryptedMessage getMessage() {
         return message;
     }

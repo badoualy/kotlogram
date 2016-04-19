@@ -18,7 +18,11 @@ import static com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_INT32;
 public class TLReplyKeyboardForceReply extends TLAbsReplyMarkup {
     public static final int CONSTRUCTOR_ID = 0xf4108aa0;
 
+    protected int flags;
+
     protected boolean singleUse;
+
+    protected boolean selective;
 
     private final String _constructor = "replyKeyboardForceReply#f4108aa0";
 
@@ -34,6 +38,7 @@ public class TLReplyKeyboardForceReply extends TLAbsReplyMarkup {
         flags = 0;
         flags = singleUse ? (flags | 2) : (flags &~ 2);
         flags = selective ? (flags | 4) : (flags &~ 4);
+        // Fields below may not be serialized due to flags field value
     }
 
     @Override
@@ -68,19 +73,6 @@ public class TLReplyKeyboardForceReply extends TLAbsReplyMarkup {
     @Override
     public int getConstructorId() {
         return CONSTRUCTOR_ID;
-    }
-
-    @Override
-    @SuppressWarnings("PointlessBooleanExpression")
-    public boolean equals(Object object) {
-        if (!(object instanceof TLReplyKeyboardForceReply)) return false;
-        if (object == this) return true;
-
-        TLReplyKeyboardForceReply o = (TLReplyKeyboardForceReply) object;
-
-        return flags == o.flags
-                && singleUse == o.singleUse
-                && selective == o.selective;
     }
 
     public boolean getSingleUse() {

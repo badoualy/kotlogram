@@ -24,7 +24,7 @@ import static com.github.badoualy.telegram.tl.TLObjectUtils.computeTLStringSeria
  * @see <a href="http://github.com/badoualy/kotlogram">http://github.com/badoualy/kotlogram</a>
  */
 public class TLMessage extends TLAbsMessage {
-    public static final int CONSTRUCTOR_ID = 0xc992e15c;
+    public static final int CONSTRUCTOR_ID = 0xc09be45f;
 
     protected int flags;
 
@@ -36,13 +36,15 @@ public class TLMessage extends TLAbsMessage {
 
     protected boolean mediaUnread;
 
+    protected boolean silent;
+
+    protected boolean post;
+
     protected Integer fromId;
 
     protected TLAbsPeer toId;
 
-    protected TLAbsPeer fwdFromId;
-
-    protected Integer fwdDate;
+    protected TLMessageFwdHeader fwdFrom;
 
     protected Integer viaBotId;
 
@@ -60,21 +62,24 @@ public class TLMessage extends TLAbsMessage {
 
     protected Integer views;
 
-    private final String _constructor = "message#c992e15c";
+    protected Integer editDate;
+
+    private final String _constructor = "message#c09be45f";
 
     public TLMessage() {
     }
 
-    public TLMessage(boolean unread, boolean out, boolean mentioned, boolean mediaUnread, int id, Integer fromId, TLAbsPeer toId, TLAbsPeer fwdFromId, Integer fwdDate, Integer viaBotId, Integer replyToMsgId, int date, String message, TLAbsMessageMedia media, TLAbsReplyMarkup replyMarkup, TLVector<TLAbsMessageEntity> entities, Integer views) {
+    public TLMessage(boolean unread, boolean out, boolean mentioned, boolean mediaUnread, boolean silent, boolean post, int id, Integer fromId, TLAbsPeer toId, TLMessageFwdHeader fwdFrom, Integer viaBotId, Integer replyToMsgId, int date, String message, TLAbsMessageMedia media, TLAbsReplyMarkup replyMarkup, TLVector<TLAbsMessageEntity> entities, Integer views, Integer editDate) {
         this.unread = unread;
         this.out = out;
         this.mentioned = mentioned;
         this.mediaUnread = mediaUnread;
+        this.silent = silent;
+        this.post = post;
         this.id = id;
         this.fromId = fromId;
         this.toId = toId;
-        this.fwdFromId = fwdFromId;
-        this.fwdDate = fwdDate;
+        this.fwdFrom = fwdFrom;
         this.viaBotId = viaBotId;
         this.replyToMsgId = replyToMsgId;
         this.date = date;
@@ -83,6 +88,7 @@ public class TLMessage extends TLAbsMessage {
         this.replyMarkup = replyMarkup;
         this.entities = entities;
         this.views = views;
+        this.editDate = editDate;
     }
 
     private void computeFlags() {
@@ -91,15 +97,18 @@ public class TLMessage extends TLAbsMessage {
         flags = out ? (flags | 2) : (flags &~ 2);
         flags = mentioned ? (flags | 16) : (flags &~ 16);
         flags = mediaUnread ? (flags | 32) : (flags &~ 32);
-        flags = fromId != null ? (flags | 256) : (flags &~ 256);
-        flags = fwdFromId != null ? (flags | 4) : (flags &~ 4);
-        flags = fwdDate != null ? (flags | 4) : (flags &~ 4);
-        flags = viaBotId != null ? (flags | 2048) : (flags &~ 2048);
-        flags = replyToMsgId != null ? (flags | 8) : (flags &~ 8);
-        flags = media != null ? (flags | 512) : (flags &~ 512);
-        flags = replyMarkup != null ? (flags | 64) : (flags &~ 64);
-        flags = entities != null ? (flags | 128) : (flags &~ 128);
-        flags = views != null ? (flags | 1024) : (flags &~ 1024);
+        flags = silent ? (flags | 8192) : (flags &~ 8192);
+        flags = post ? (flags | 16384) : (flags &~ 16384);
+        // Fields below may not be serialized due to flags field value
+        if ((flags & 256) == 0) fromId = null;
+        if ((flags & 4) == 0) fwdFrom = null;
+        if ((flags & 2048) == 0) viaBotId = null;
+        if ((flags & 8) == 0) replyToMsgId = null;
+        if ((flags & 512) == 0) media = null;
+        if ((flags & 64) == 0) replyMarkup = null;
+        if ((flags & 128) == 0) entities = null;
+        if ((flags & 1024) == 0) views = null;
+        if ((flags & 32768) == 0) editDate = null;
     }
 
     @Override
@@ -108,18 +117,45 @@ public class TLMessage extends TLAbsMessage {
 
         writeInt(flags, stream);
         writeInt(id, stream);
-        if ((flags & 256) != 0) writeInt(fromId, stream);
+        if ((flags & 256) != 0) {
+            if (fromId == null) throwNullFieldException("fromId", flags);
+            writeInt(fromId, stream);
+        }
         writeTLObject(toId, stream);
-        if ((flags & 4) != 0) writeTLObject(fwdFromId, stream);
-        if ((flags & 4) != 0) writeInt(fwdDate, stream);
-        if ((flags & 2048) != 0) writeInt(viaBotId, stream);
-        if ((flags & 8) != 0) writeInt(replyToMsgId, stream);
+        if ((flags & 4) != 0) {
+            if (fwdFrom == null) throwNullFieldException("fwdFrom", flags);
+            writeTLObject(fwdFrom, stream);
+        }
+        if ((flags & 2048) != 0) {
+            if (viaBotId == null) throwNullFieldException("viaBotId", flags);
+            writeInt(viaBotId, stream);
+        }
+        if ((flags & 8) != 0) {
+            if (replyToMsgId == null) throwNullFieldException("replyToMsgId", flags);
+            writeInt(replyToMsgId, stream);
+        }
         writeInt(date, stream);
         writeString(message, stream);
-        if ((flags & 512) != 0) writeTLObject(media, stream);
-        if ((flags & 64) != 0) writeTLObject(replyMarkup, stream);
-        if ((flags & 128) != 0) writeTLVector(entities, stream);
-        if ((flags & 1024) != 0) writeInt(views, stream);
+        if ((flags & 512) != 0) {
+            if (media == null) throwNullFieldException("media", flags);
+            writeTLObject(media, stream);
+        }
+        if ((flags & 64) != 0) {
+            if (replyMarkup == null) throwNullFieldException("replyMarkup", flags);
+            writeTLObject(replyMarkup, stream);
+        }
+        if ((flags & 128) != 0) {
+            if (entities == null) throwNullFieldException("entities", flags);
+            writeTLVector(entities, stream);
+        }
+        if ((flags & 1024) != 0) {
+            if (views == null) throwNullFieldException("views", flags);
+            writeInt(views, stream);
+        }
+        if ((flags & 32768) != 0) {
+            if (editDate == null) throwNullFieldException("editDate", flags);
+            writeInt(editDate, stream);
+        }
     }
 
     @Override
@@ -130,11 +166,12 @@ public class TLMessage extends TLAbsMessage {
         out = (flags & 2) != 0;
         mentioned = (flags & 16) != 0;
         mediaUnread = (flags & 32) != 0;
+        silent = (flags & 8192) != 0;
+        post = (flags & 16384) != 0;
         id = readInt(stream);
         fromId = (flags & 256) != 0 ? readInt(stream) : null;
         toId = readTLObject(stream, context, TLAbsPeer.class, -1);
-        fwdFromId = (flags & 4) != 0 ? readTLObject(stream, context, TLAbsPeer.class, -1) : null;
-        fwdDate = (flags & 4) != 0 ? readInt(stream) : null;
+        fwdFrom = (flags & 4) != 0 ? readTLObject(stream, context, TLMessageFwdHeader.class, TLMessageFwdHeader.CONSTRUCTOR_ID) : null;
         viaBotId = (flags & 2048) != 0 ? readInt(stream) : null;
         replyToMsgId = (flags & 8) != 0 ? readInt(stream) : null;
         date = readInt(stream);
@@ -143,6 +180,7 @@ public class TLMessage extends TLAbsMessage {
         replyMarkup = (flags & 64) != 0 ? readTLObject(stream, context, TLAbsReplyMarkup.class, -1) : null;
         entities = (flags & 128) != 0 ? readTLVector(stream, context) : null;
         views = (flags & 1024) != 0 ? readInt(stream) : null;
+        editDate = (flags & 32768) != 0 ? readInt(stream) : null;
     }
 
     @Override
@@ -152,18 +190,45 @@ public class TLMessage extends TLAbsMessage {
         int size = SIZE_CONSTRUCTOR_ID;
         size += SIZE_INT32;
         size += SIZE_INT32;
-        if ((flags & 256) != 0) size += SIZE_INT32;
+        if ((flags & 256) != 0) {
+            if (fromId == null) throwNullFieldException("fromId", flags);
+            size += SIZE_INT32;
+        }
         size += toId.computeSerializedSize();
-        if ((flags & 4) != 0) size += fwdFromId.computeSerializedSize();
-        if ((flags & 4) != 0) size += SIZE_INT32;
-        if ((flags & 2048) != 0) size += SIZE_INT32;
-        if ((flags & 8) != 0) size += SIZE_INT32;
+        if ((flags & 4) != 0) {
+            if (fwdFrom == null) throwNullFieldException("fwdFrom", flags);
+            size += fwdFrom.computeSerializedSize();
+        }
+        if ((flags & 2048) != 0) {
+            if (viaBotId == null) throwNullFieldException("viaBotId", flags);
+            size += SIZE_INT32;
+        }
+        if ((flags & 8) != 0) {
+            if (replyToMsgId == null) throwNullFieldException("replyToMsgId", flags);
+            size += SIZE_INT32;
+        }
         size += SIZE_INT32;
         size += computeTLStringSerializedSize(message);
-        if ((flags & 512) != 0) size += media.computeSerializedSize();
-        if ((flags & 64) != 0) size += replyMarkup.computeSerializedSize();
-        if ((flags & 128) != 0) size += entities.computeSerializedSize();
-        if ((flags & 1024) != 0) size += SIZE_INT32;
+        if ((flags & 512) != 0) {
+            if (media == null) throwNullFieldException("media", flags);
+            size += media.computeSerializedSize();
+        }
+        if ((flags & 64) != 0) {
+            if (replyMarkup == null) throwNullFieldException("replyMarkup", flags);
+            size += replyMarkup.computeSerializedSize();
+        }
+        if ((flags & 128) != 0) {
+            if (entities == null) throwNullFieldException("entities", flags);
+            size += entities.computeSerializedSize();
+        }
+        if ((flags & 1024) != 0) {
+            if (views == null) throwNullFieldException("views", flags);
+            size += SIZE_INT32;
+        }
+        if ((flags & 32768) != 0) {
+            if (editDate == null) throwNullFieldException("editDate", flags);
+            size += SIZE_INT32;
+        }
         return size;
     }
 
@@ -175,34 +240,6 @@ public class TLMessage extends TLAbsMessage {
     @Override
     public int getConstructorId() {
         return CONSTRUCTOR_ID;
-    }
-
-    @Override
-    @SuppressWarnings("PointlessBooleanExpression")
-    public boolean equals(Object object) {
-        if (!(object instanceof TLMessage)) return false;
-        if (object == this) return true;
-
-        TLMessage o = (TLMessage) object;
-
-        return flags == o.flags
-                && unread == o.unread
-                && out == o.out
-                && mentioned == o.mentioned
-                && mediaUnread == o.mediaUnread
-                && id == o.id
-                && (fromId == o.fromId || (fromId != null && o.fromId != null && fromId.equals(o.fromId)))
-                && (toId == o.toId || (toId != null && o.toId != null && toId.equals(o.toId)))
-                && (fwdFromId == o.fwdFromId || (fwdFromId != null && o.fwdFromId != null && fwdFromId.equals(o.fwdFromId)))
-                && (fwdDate == o.fwdDate || (fwdDate != null && o.fwdDate != null && fwdDate.equals(o.fwdDate)))
-                && (viaBotId == o.viaBotId || (viaBotId != null && o.viaBotId != null && viaBotId.equals(o.viaBotId)))
-                && (replyToMsgId == o.replyToMsgId || (replyToMsgId != null && o.replyToMsgId != null && replyToMsgId.equals(o.replyToMsgId)))
-                && date == o.date
-                && (message == o.message || (message != null && o.message != null && message.equals(o.message)))
-                && (media == o.media || (media != null && o.media != null && media.equals(o.media)))
-                && (replyMarkup == o.replyMarkup || (replyMarkup != null && o.replyMarkup != null && replyMarkup.equals(o.replyMarkup)))
-                && (entities == o.entities || (entities != null && o.entities != null && entities.equals(o.entities)))
-                && (views == o.views || (views != null && o.views != null && views.equals(o.views)));
     }
 
     public boolean getUnread() {
@@ -237,6 +274,22 @@ public class TLMessage extends TLAbsMessage {
         this.mediaUnread = mediaUnread;
     }
 
+    public boolean getSilent() {
+        return silent;
+    }
+
+    public void setSilent(boolean silent) {
+        this.silent = silent;
+    }
+
+    public boolean getPost() {
+        return post;
+    }
+
+    public void setPost(boolean post) {
+        this.post = post;
+    }
+
     public int getId() {
         return id;
     }
@@ -261,20 +314,12 @@ public class TLMessage extends TLAbsMessage {
         this.toId = toId;
     }
 
-    public TLAbsPeer getFwdFromId() {
-        return fwdFromId;
+    public TLMessageFwdHeader getFwdFrom() {
+        return fwdFrom;
     }
 
-    public void setFwdFromId(TLAbsPeer fwdFromId) {
-        this.fwdFromId = fwdFromId;
-    }
-
-    public Integer getFwdDate() {
-        return fwdDate;
-    }
-
-    public void setFwdDate(Integer fwdDate) {
-        this.fwdDate = fwdDate;
+    public void setFwdFrom(TLMessageFwdHeader fwdFrom) {
+        this.fwdFrom = fwdFrom;
     }
 
     public Integer getViaBotId() {
@@ -339,5 +384,13 @@ public class TLMessage extends TLAbsMessage {
 
     public void setViews(Integer views) {
         this.views = views;
+    }
+
+    public Integer getEditDate() {
+        return editDate;
+    }
+
+    public void setEditDate(Integer editDate) {
+        this.editDate = editDate;
     }
 }

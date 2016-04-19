@@ -55,17 +55,6 @@ public class TLDocumentEmpty extends TLAbsDocument {
         return CONSTRUCTOR_ID;
     }
 
-    @Override
-    @SuppressWarnings("PointlessBooleanExpression")
-    public boolean equals(Object object) {
-        if (!(object instanceof TLDocumentEmpty)) return false;
-        if (object == this) return true;
-
-        TLDocumentEmpty o = (TLDocumentEmpty) object;
-
-        return id == o.id;
-    }
-
     public long getId() {
         return id;
     }

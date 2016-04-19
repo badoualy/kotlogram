@@ -44,15 +44,4 @@ public class TLRequestHelpGetNearestDc extends TLMethod<TLNearestDc> {
     public int getConstructorId() {
         return CONSTRUCTOR_ID;
     }
-
-    @Override
-    @SuppressWarnings("PointlessBooleanExpression")
-    public boolean equals(Object object) {
-        if (!(object instanceof TLRequestHelpGetNearestDc)) return false;
-        if (object == this) return true;
-
-        TLRequestHelpGetNearestDc o = (TLRequestHelpGetNearestDc) object;
-
-        return true;
-    }
 }

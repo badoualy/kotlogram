@@ -9,10 +9,13 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 
+import static com.github.badoualy.telegram.tl.StreamUtils.readInt;
 import static com.github.badoualy.telegram.tl.StreamUtils.readTLObject;
 import static com.github.badoualy.telegram.tl.StreamUtils.readTLString;
+import static com.github.badoualy.telegram.tl.StreamUtils.writeInt;
 import static com.github.badoualy.telegram.tl.StreamUtils.writeString;
 import static com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_CONSTRUCTOR_ID;
+import static com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_INT32;
 import static com.github.badoualy.telegram.tl.TLObjectUtils.computeTLStringSerializedSize;
 
 /**
@@ -20,20 +23,25 @@ import static com.github.badoualy.telegram.tl.TLObjectUtils.computeTLStringSeria
  * @see <a href="http://github.com/badoualy/kotlogram">http://github.com/badoualy/kotlogram</a>
  */
 public class TLRequestAccountUpdateProfile extends TLMethod<TLAbsUser> {
-    public static final int CONSTRUCTOR_ID = 0xf0888d68;
+    public static final int CONSTRUCTOR_ID = 0x78515775;
+
+    protected int flags;
 
     protected String firstName;
 
     protected String lastName;
 
-    private final String _constructor = "account.updateProfile#f0888d68";
+    protected String about;
+
+    private final String _constructor = "account.updateProfile#78515775";
 
     public TLRequestAccountUpdateProfile() {
     }
 
-    public TLRequestAccountUpdateProfile(String firstName, String lastName) {
+    public TLRequestAccountUpdateProfile(String firstName, String lastName, String about) {
         this.firstName = firstName;
         this.lastName = lastName;
+        this.about = about;
     }
 
     @Override
@@ -49,24 +57,60 @@ public class TLRequestAccountUpdateProfile extends TLMethod<TLAbsUser> {
         return (TLAbsUser) response;
     }
 
+    private void computeFlags() {
+        flags = 0;
+        // Fields below may not be serialized due to flags field value
+        if ((flags & 1) == 0) firstName = null;
+        if ((flags & 2) == 0) lastName = null;
+        if ((flags & 4) == 0) about = null;
+    }
+
     @Override
     public void serializeBody(OutputStream stream) throws IOException {
-        writeString(firstName, stream);
-        writeString(lastName, stream);
+        computeFlags();
+
+        writeInt(flags, stream);
+        if ((flags & 1) != 0) {
+            if (firstName == null) throwNullFieldException("firstName", flags);
+            writeString(firstName, stream);
+        }
+        if ((flags & 2) != 0) {
+            if (lastName == null) throwNullFieldException("lastName", flags);
+            writeString(lastName, stream);
+        }
+        if ((flags & 4) != 0) {
+            if (about == null) throwNullFieldException("about", flags);
+            writeString(about, stream);
+        }
     }
 
     @Override
     @SuppressWarnings("unchecked")
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
-        firstName = readTLString(stream);
-        lastName = readTLString(stream);
+        flags = readInt(stream);
+        firstName = (flags & 1) != 0 ? readTLString(stream) : null;
+        lastName = (flags & 2) != 0 ? readTLString(stream) : null;
+        about = (flags & 4) != 0 ? readTLString(stream) : null;
     }
 
     @Override
     public int computeSerializedSize() {
+        computeFlags();
+
         int size = SIZE_CONSTRUCTOR_ID;
-        size += computeTLStringSerializedSize(firstName);
-        size += computeTLStringSerializedSize(lastName);
+        size += SIZE_INT32;
+        if ((flags & 1) != 0) {
+            if (firstName == null) throwNullFieldException("firstName", flags);
+            size += computeTLStringSerializedSize(firstName);
+        }
+        if ((flags & 2) != 0) {
+            if (lastName == null) throwNullFieldException("lastName", flags);
+            size += computeTLStringSerializedSize(lastName);
+        }
+        if ((flags & 4) != 0) {
+            if (about == null) throwNullFieldException("about", flags);
+            size += computeTLStringSerializedSize(about);
+        }
         return size;
     }
 
@@ -78,18 +122,6 @@ public class TLRequestAccountUpdateProfile extends TLMethod<TLAbsUser> {
     @Override
     public int getConstructorId() {
         return CONSTRUCTOR_ID;
-    }
-
-    @Override
-    @SuppressWarnings("PointlessBooleanExpression")
-    public boolean equals(Object object) {
-        if (!(object instanceof TLRequestAccountUpdateProfile)) return false;
-        if (object == this) return true;
-
-        TLRequestAccountUpdateProfile o = (TLRequestAccountUpdateProfile) object;
-
-        return (firstName == o.firstName || (firstName != null && o.firstName != null && firstName.equals(o.firstName)))
-                && (lastName == o.lastName || (lastName != null && o.lastName != null && lastName.equals(o.lastName)));
     }
 
     public String getFirstName() {
@@ -106,5 +138,13 @@ public class TLRequestAccountUpdateProfile extends TLMethod<TLAbsUser> {
 
     public void setLastName(String lastName) {
         this.lastName = lastName;
+    }
+
+    public String getAbout() {
+        return about;
+    }
+
+    public void setAbout(String about) {
+        this.about = about;
     }
 }

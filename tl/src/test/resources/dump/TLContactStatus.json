@@ -1,7 +1,8 @@
 {
   "userId": 0,
   "status": {
-    "_constructor": "userStatusRecently#e26f42f1"
+    "wasOnline": 0,
+    "_constructor": "userStatusOffline#8c703f"
   },
   "_constructor": "contactStatus#d3680c61"
 }

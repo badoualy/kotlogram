@@ -66,19 +66,6 @@ public class TLMessages extends TLAbsMessages {
         return CONSTRUCTOR_ID;
     }
 
-    @Override
-    @SuppressWarnings("PointlessBooleanExpression")
-    public boolean equals(Object object) {
-        if (!(object instanceof TLMessages)) return false;
-        if (object == this) return true;
-
-        TLMessages o = (TLMessages) object;
-
-        return (messages == o.messages || (messages != null && o.messages != null && messages.equals(o.messages)))
-                && (chats == o.chats || (chats != null && o.chats != null && chats.equals(o.chats)))
-                && (users == o.users || (users != null && o.users != null && users.equals(o.users)));
-    }
-
     public TLVector<TLAbsMessage> getMessages() {
         return messages;
     }

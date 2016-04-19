@@ -1,7 +1,8 @@
 {
-  "muteUntil": 0,
-  "sound": "gaRn9i7F4IZaWgLg9Lz6",
+  "flags": 2,
   "showPreviews": false,
-  "eventsMask": 0,
-  "_constructor": "inputPeerNotifySettings#46a2ce98"
+  "silent": true,
+  "muteUntil": 0,
+  "sound": "z5XEP3WmPM",
+  "_constructor": "inputPeerNotifySettings#38935eb2"
 }

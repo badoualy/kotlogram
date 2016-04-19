@@ -1,31 +1,36 @@
 {
-  "flags": 2221,
-  "unread": true,
-  "out": false,
-  "mentioned": false,
-  "mediaUnread": true,
+  "flags": 10382,
   "id": 0,
   "fromId": 0,
   "chatId": 0,
-  "message": "dlFreosf",
+  "message": "l0NUrzjbiMKu4gRSEgbof14fkTtd",
   "pts": 0,
   "ptsCount": 0,
   "date": 0,
-  "fwdFromId": {
-    "channelId": 0,
-    "_constructor": "peerChannel#bddde532"
+  "fwdFrom": {
+    "flags": 0,
+    "fromId": null,
+    "date": 0,
+    "channelId": null,
+    "channelPost": null,
+    "_constructor": "messageFwdHeader#c786ddcb"
   },
-  "fwdDate": 0,
   "viaBotId": 0,
   "replyToMsgId": 0,
   "entities": [
     {
-      "_constructor": "messageEntityEmail#64e475c2",
+      "_constructor": "messageEntityCode#28a20571",
       "offset": 0,
       "length": 0
     },
     {
-      "url": "9yFqvpPlYicSB05pn",
+      "url": "47qJIrTcRFGQqekqyZ9b",
+      "_constructor": "messageEntityTextUrl#76a6d327",
+      "offset": 0,
+      "length": 0
+    },
+    {
+      "url": "XifXCsUJAg",
       "_constructor": "messageEntityTextUrl#76a6d327",
       "offset": 0,
       "length": 0
@@ -36,35 +41,16 @@
       "length": 0
     },
     {
-      "_constructor": "messageEntityItalic#826f8b60",
+      "url": "S88RixYA",
+      "_constructor": "messageEntityTextUrl#76a6d327",
       "offset": 0,
       "length": 0
     },
     {
-      "_constructor": "messageEntityItalic#826f8b60",
-      "offset": 0,
-      "length": 0
-    },
-    {
-      "_constructor": "messageEntityCode#28a20571",
-      "offset": 0,
-      "length": 0
-    },
-    {
-      "_constructor": "messageEntityUrl#6ed02538",
-      "offset": 0,
-      "length": 0
-    },
-    {
-      "_constructor": "messageEntityUrl#6ed02538",
-      "offset": 0,
-      "length": 0
-    },
-    {
-      "_constructor": "messageEntityBold#bd610bc9",
+      "_constructor": "messageEntityBotCommand#6cef8ac7",
       "offset": 0,
       "length": 0
     }
   ],
-  "_constructor": "updateShortChatMessage#248afa62"
+  "_constructor": "updateShortChatMessage#16812688"
 }

@@ -21,15 +21,4 @@ public class TLSendMessageTypingAction extends TLAbsSendMessageAction {
     public int getConstructorId() {
         return CONSTRUCTOR_ID;
     }
-
-    @Override
-    @SuppressWarnings("PointlessBooleanExpression")
-    public boolean equals(Object object) {
-        if (!(object instanceof TLSendMessageTypingAction)) return false;
-        if (object == this) return true;
-
-        TLSendMessageTypingAction o = (TLSendMessageTypingAction) object;
-
-        return true;
-    }
 }

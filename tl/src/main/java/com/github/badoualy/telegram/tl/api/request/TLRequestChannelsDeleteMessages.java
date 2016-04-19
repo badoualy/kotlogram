@@ -82,18 +82,6 @@ public class TLRequestChannelsDeleteMessages extends TLMethod<TLAffectedMessages
         return CONSTRUCTOR_ID;
     }
 
-    @Override
-    @SuppressWarnings("PointlessBooleanExpression")
-    public boolean equals(Object object) {
-        if (!(object instanceof TLRequestChannelsDeleteMessages)) return false;
-        if (object == this) return true;
-
-        TLRequestChannelsDeleteMessages o = (TLRequestChannelsDeleteMessages) object;
-
-        return (channel == o.channel || (channel != null && o.channel != null && channel.equals(o.channel)))
-                && (id == o.id || (id != null && o.id != null && id.equals(o.id)));
-    }
-
     public TLAbsInputChannel getChannel() {
         return channel;
     }

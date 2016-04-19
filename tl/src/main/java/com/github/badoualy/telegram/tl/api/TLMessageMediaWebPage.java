@@ -56,17 +56,6 @@ public class TLMessageMediaWebPage extends TLAbsMessageMedia {
         return CONSTRUCTOR_ID;
     }
 
-    @Override
-    @SuppressWarnings("PointlessBooleanExpression")
-    public boolean equals(Object object) {
-        if (!(object instanceof TLMessageMediaWebPage)) return false;
-        if (object == this) return true;
-
-        TLMessageMediaWebPage o = (TLMessageMediaWebPage) object;
-
-        return (webpage == o.webpage || (webpage != null && o.webpage != null && webpage.equals(o.webpage)));
-    }
-
     public TLAbsWebPage getWebpage() {
         return webpage;
     }

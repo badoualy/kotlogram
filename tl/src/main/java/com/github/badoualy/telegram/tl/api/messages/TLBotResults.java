@@ -2,6 +2,7 @@ package com.github.badoualy.telegram.tl.api.messages;
 
 import com.github.badoualy.telegram.tl.TLContext;
 import com.github.badoualy.telegram.tl.api.TLAbsBotInlineResult;
+import com.github.badoualy.telegram.tl.api.TLInlineBotSwitchPM;
 import com.github.badoualy.telegram.tl.core.TLObject;
 import com.github.badoualy.telegram.tl.core.TLVector;
 
@@ -11,11 +12,13 @@ import java.io.OutputStream;
 
 import static com.github.badoualy.telegram.tl.StreamUtils.readInt;
 import static com.github.badoualy.telegram.tl.StreamUtils.readLong;
+import static com.github.badoualy.telegram.tl.StreamUtils.readTLObject;
 import static com.github.badoualy.telegram.tl.StreamUtils.readTLString;
 import static com.github.badoualy.telegram.tl.StreamUtils.readTLVector;
 import static com.github.badoualy.telegram.tl.StreamUtils.writeInt;
 import static com.github.badoualy.telegram.tl.StreamUtils.writeLong;
 import static com.github.badoualy.telegram.tl.StreamUtils.writeString;
+import static com.github.badoualy.telegram.tl.StreamUtils.writeTLObject;
 import static com.github.badoualy.telegram.tl.StreamUtils.writeTLVector;
 import static com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_CONSTRUCTOR_ID;
 import static com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_INT32;
@@ -27,7 +30,7 @@ import static com.github.badoualy.telegram.tl.TLObjectUtils.computeTLStringSeria
  * @see <a href="http://github.com/badoualy/kotlogram">http://github.com/badoualy/kotlogram</a>
  */
 public class TLBotResults extends TLObject {
-    public static final int CONSTRUCTOR_ID = 0x1170b0a3;
+    public static final int CONSTRUCTOR_ID = 0x256709a6;
 
     protected int flags;
 
@@ -37,24 +40,29 @@ public class TLBotResults extends TLObject {
 
     protected String nextOffset;
 
+    protected TLInlineBotSwitchPM switchPm;
+
     protected TLVector<TLAbsBotInlineResult> results;
 
-    private final String _constructor = "messages.botResults#1170b0a3";
+    private final String _constructor = "messages.botResults#256709a6";
 
     public TLBotResults() {
     }
 
-    public TLBotResults(boolean gallery, long queryId, String nextOffset, TLVector<TLAbsBotInlineResult> results) {
+    public TLBotResults(boolean gallery, long queryId, String nextOffset, TLInlineBotSwitchPM switchPm, TLVector<TLAbsBotInlineResult> results) {
         this.gallery = gallery;
         this.queryId = queryId;
         this.nextOffset = nextOffset;
+        this.switchPm = switchPm;
         this.results = results;
     }
 
     private void computeFlags() {
         flags = 0;
         flags = gallery ? (flags | 1) : (flags &~ 1);
-        flags = nextOffset != null ? (flags | 2) : (flags &~ 2);
+        // Fields below may not be serialized due to flags field value
+        if ((flags & 2) == 0) nextOffset = null;
+        if ((flags & 4) == 0) switchPm = null;
     }
 
     @Override
@@ -63,7 +71,14 @@ public class TLBotResults extends TLObject {
 
         writeInt(flags, stream);
         writeLong(queryId, stream);
-        if ((flags & 2) != 0) writeString(nextOffset, stream);
+        if ((flags & 2) != 0) {
+            if (nextOffset == null) throwNullFieldException("nextOffset", flags);
+            writeString(nextOffset, stream);
+        }
+        if ((flags & 4) != 0) {
+            if (switchPm == null) throwNullFieldException("switchPm", flags);
+            writeTLObject(switchPm, stream);
+        }
         writeTLVector(results, stream);
     }
 
@@ -74,6 +89,7 @@ public class TLBotResults extends TLObject {
         gallery = (flags & 1) != 0;
         queryId = readLong(stream);
         nextOffset = (flags & 2) != 0 ? readTLString(stream) : null;
+        switchPm = (flags & 4) != 0 ? readTLObject(stream, context, TLInlineBotSwitchPM.class, TLInlineBotSwitchPM.CONSTRUCTOR_ID) : null;
         results = readTLVector(stream, context);
     }
 
@@ -84,7 +100,14 @@ public class TLBotResults extends TLObject {
         int size = SIZE_CONSTRUCTOR_ID;
         size += SIZE_INT32;
         size += SIZE_INT64;
-        if ((flags & 2) != 0) size += computeTLStringSerializedSize(nextOffset);
+        if ((flags & 2) != 0) {
+            if (nextOffset == null) throwNullFieldException("nextOffset", flags);
+            size += computeTLStringSerializedSize(nextOffset);
+        }
+        if ((flags & 4) != 0) {
+            if (switchPm == null) throwNullFieldException("switchPm", flags);
+            size += switchPm.computeSerializedSize();
+        }
         size += results.computeSerializedSize();
         return size;
     }
@@ -97,21 +120,6 @@ public class TLBotResults extends TLObject {
     @Override
     public int getConstructorId() {
         return CONSTRUCTOR_ID;
-    }
-
-    @Override
-    @SuppressWarnings("PointlessBooleanExpression")
-    public boolean equals(Object object) {
-        if (!(object instanceof TLBotResults)) return false;
-        if (object == this) return true;
-
-        TLBotResults o = (TLBotResults) object;
-
-        return flags == o.flags
-                && gallery == o.gallery
-                && queryId == o.queryId
-                && (nextOffset == o.nextOffset || (nextOffset != null && o.nextOffset != null && nextOffset.equals(o.nextOffset)))
-                && (results == o.results || (results != null && o.results != null && results.equals(o.results)));
     }
 
     public boolean getGallery() {
@@ -136,6 +144,14 @@ public class TLBotResults extends TLObject {
 
     public void setNextOffset(String nextOffset) {
         this.nextOffset = nextOffset;
+    }
+
+    public TLInlineBotSwitchPM getSwitchPm() {
+        return switchPm;
+    }
+
+    public void setSwitchPm(TLInlineBotSwitchPM switchPm) {
+        this.switchPm = switchPm;
     }
 
     public TLVector<TLAbsBotInlineResult> getResults() {

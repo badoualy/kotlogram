@@ -64,6 +64,7 @@ public class TLRequestChannelsCreateChannel extends TLMethod<TLAbsUpdates> {
         flags = 0;
         flags = broadcast ? (flags | 1) : (flags &~ 1);
         flags = megagroup ? (flags | 2) : (flags &~ 2);
+        // Fields below may not be serialized due to flags field value
     }
 
     @Override
@@ -104,21 +105,6 @@ public class TLRequestChannelsCreateChannel extends TLMethod<TLAbsUpdates> {
     @Override
     public int getConstructorId() {
         return CONSTRUCTOR_ID;
-    }
-
-    @Override
-    @SuppressWarnings("PointlessBooleanExpression")
-    public boolean equals(Object object) {
-        if (!(object instanceof TLRequestChannelsCreateChannel)) return false;
-        if (object == this) return true;
-
-        TLRequestChannelsCreateChannel o = (TLRequestChannelsCreateChannel) object;
-
-        return flags == o.flags
-                && broadcast == o.broadcast
-                && megagroup == o.megagroup
-                && (title == o.title || (title != null && o.title != null && title.equals(o.title)))
-                && (about == o.about || (about != null && o.about != null && about.equals(o.about)));
     }
 
     public boolean getBroadcast() {

@@ -21,15 +21,4 @@ public class TLInputChatPhotoEmpty extends TLAbsInputChatPhoto {
     public int getConstructorId() {
         return CONSTRUCTOR_ID;
     }
-
-    @Override
-    @SuppressWarnings("PointlessBooleanExpression")
-    public boolean equals(Object object) {
-        if (!(object instanceof TLInputChatPhotoEmpty)) return false;
-        if (object == this) return true;
-
-        TLInputChatPhotoEmpty o = (TLInputChatPhotoEmpty) object;
-
-        return true;
-    }
 }

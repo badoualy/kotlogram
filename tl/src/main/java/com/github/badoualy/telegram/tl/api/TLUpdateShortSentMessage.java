@@ -61,8 +61,9 @@ public class TLUpdateShortSentMessage extends TLAbsUpdates {
         flags = 0;
         flags = unread ? (flags | 1) : (flags &~ 1);
         flags = out ? (flags | 2) : (flags &~ 2);
-        flags = media != null ? (flags | 512) : (flags &~ 512);
-        flags = entities != null ? (flags | 128) : (flags &~ 128);
+        // Fields below may not be serialized due to flags field value
+        if ((flags & 512) == 0) media = null;
+        if ((flags & 128) == 0) entities = null;
     }
 
     @Override
@@ -115,25 +116,6 @@ public class TLUpdateShortSentMessage extends TLAbsUpdates {
     @Override
     public int getConstructorId() {
         return CONSTRUCTOR_ID;
-    }
-
-    @Override
-    @SuppressWarnings("PointlessBooleanExpression")
-    public boolean equals(Object object) {
-        if (!(object instanceof TLUpdateShortSentMessage)) return false;
-        if (object == this) return true;
-
-        TLUpdateShortSentMessage o = (TLUpdateShortSentMessage) object;
-
-        return flags == o.flags
-                && unread == o.unread
-                && out == o.out
-                && id == o.id
-                && pts == o.pts
-                && ptsCount == o.ptsCount
-                && date == o.date
-                && (media == o.media || (media != null && o.media != null && media.equals(o.media)))
-                && (entities == o.entities || (entities != null && o.entities != null && entities.equals(o.entities)));
     }
 
     public boolean getUnread() {

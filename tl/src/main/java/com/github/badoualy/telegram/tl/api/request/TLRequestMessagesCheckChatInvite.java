@@ -74,17 +74,6 @@ public class TLRequestMessagesCheckChatInvite extends TLMethod<TLAbsChatInvite> 
         return CONSTRUCTOR_ID;
     }
 
-    @Override
-    @SuppressWarnings("PointlessBooleanExpression")
-    public boolean equals(Object object) {
-        if (!(object instanceof TLRequestMessagesCheckChatInvite)) return false;
-        if (object == this) return true;
-
-        TLRequestMessagesCheckChatInvite o = (TLRequestMessagesCheckChatInvite) object;
-
-        return (hash == o.hash || (hash != null && o.hash != null && hash.equals(o.hash)));
-    }
-
     public String getHash() {
         return hash;
     }

@@ -28,6 +28,8 @@ public class TLDcOption extends TLObject {
 
     protected boolean mediaOnly;
 
+    protected boolean tcpoOnly;
+
     protected int id;
 
     protected String ipAddress;
@@ -39,9 +41,10 @@ public class TLDcOption extends TLObject {
     public TLDcOption() {
     }
 
-    public TLDcOption(boolean ipv6, boolean mediaOnly, int id, String ipAddress, int port) {
+    public TLDcOption(boolean ipv6, boolean mediaOnly, boolean tcpoOnly, int id, String ipAddress, int port) {
         this.ipv6 = ipv6;
         this.mediaOnly = mediaOnly;
+        this.tcpoOnly = tcpoOnly;
         this.id = id;
         this.ipAddress = ipAddress;
         this.port = port;
@@ -51,6 +54,8 @@ public class TLDcOption extends TLObject {
         flags = 0;
         flags = ipv6 ? (flags | 1) : (flags &~ 1);
         flags = mediaOnly ? (flags | 2) : (flags &~ 2);
+        flags = tcpoOnly ? (flags | 4) : (flags &~ 4);
+        // Fields below may not be serialized due to flags field value
     }
 
     @Override
@@ -69,6 +74,7 @@ public class TLDcOption extends TLObject {
         flags = readInt(stream);
         ipv6 = (flags & 1) != 0;
         mediaOnly = (flags & 2) != 0;
+        tcpoOnly = (flags & 4) != 0;
         id = readInt(stream);
         ipAddress = readTLString(stream);
         port = readInt(stream);
@@ -96,22 +102,6 @@ public class TLDcOption extends TLObject {
         return CONSTRUCTOR_ID;
     }
 
-    @Override
-    @SuppressWarnings("PointlessBooleanExpression")
-    public boolean equals(Object object) {
-        if (!(object instanceof TLDcOption)) return false;
-        if (object == this) return true;
-
-        TLDcOption o = (TLDcOption) object;
-
-        return flags == o.flags
-                && ipv6 == o.ipv6
-                && mediaOnly == o.mediaOnly
-                && id == o.id
-                && (ipAddress == o.ipAddress || (ipAddress != null && o.ipAddress != null && ipAddress.equals(o.ipAddress)))
-                && port == o.port;
-    }
-
     public boolean getIpv6() {
         return ipv6;
     }
@@ -126,6 +116,14 @@ public class TLDcOption extends TLObject {
 
     public void setMediaOnly(boolean mediaOnly) {
         this.mediaOnly = mediaOnly;
+    }
+
+    public boolean getTcpoOnly() {
+        return tcpoOnly;
+    }
+
+    public void setTcpoOnly(boolean tcpoOnly) {
+        this.tcpoOnly = tcpoOnly;
     }
 
     public int getId() {

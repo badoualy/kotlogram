@@ -67,18 +67,6 @@ public class TLImportedContact extends TLObject {
         return CONSTRUCTOR_ID;
     }
 
-    @Override
-    @SuppressWarnings("PointlessBooleanExpression")
-    public boolean equals(Object object) {
-        if (!(object instanceof TLImportedContact)) return false;
-        if (object == this) return true;
-
-        TLImportedContact o = (TLImportedContact) object;
-
-        return userId == o.userId
-                && clientId == o.clientId;
-    }
-
     public int getUserId() {
         return userId;
     }

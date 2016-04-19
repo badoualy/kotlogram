@@ -1,8 +1,8 @@
 package com.github.badoualy.telegram.tl.api.request;
 
 import com.github.badoualy.telegram.tl.TLContext;
+import com.github.badoualy.telegram.tl.api.TLAbsInputPrivacyKey;
 import com.github.badoualy.telegram.tl.api.TLAbsInputPrivacyRule;
-import com.github.badoualy.telegram.tl.api.TLInputPrivacyKeyStatusTimestamp;
 import com.github.badoualy.telegram.tl.api.account.TLPrivacyRules;
 import com.github.badoualy.telegram.tl.core.TLMethod;
 import com.github.badoualy.telegram.tl.core.TLObject;
@@ -25,7 +25,7 @@ import static com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_CONSTRUCTOR_ID;
 public class TLRequestAccountSetPrivacy extends TLMethod<TLPrivacyRules> {
     public static final int CONSTRUCTOR_ID = 0xc9f81ce8;
 
-    protected TLInputPrivacyKeyStatusTimestamp key;
+    protected TLAbsInputPrivacyKey key;
 
     protected TLVector<TLAbsInputPrivacyRule> rules;
 
@@ -34,7 +34,7 @@ public class TLRequestAccountSetPrivacy extends TLMethod<TLPrivacyRules> {
     public TLRequestAccountSetPrivacy() {
     }
 
-    public TLRequestAccountSetPrivacy(TLInputPrivacyKeyStatusTimestamp key, TLVector<TLAbsInputPrivacyRule> rules) {
+    public TLRequestAccountSetPrivacy(TLAbsInputPrivacyKey key, TLVector<TLAbsInputPrivacyRule> rules) {
         this.key = key;
         this.rules = rules;
     }
@@ -61,7 +61,7 @@ public class TLRequestAccountSetPrivacy extends TLMethod<TLPrivacyRules> {
     @Override
     @SuppressWarnings("unchecked")
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
-        key = readTLObject(stream, context, TLInputPrivacyKeyStatusTimestamp.class, TLInputPrivacyKeyStatusTimestamp.CONSTRUCTOR_ID);
+        key = readTLObject(stream, context, TLAbsInputPrivacyKey.class, -1);
         rules = readTLVector(stream, context);
     }
 
@@ -83,23 +83,11 @@ public class TLRequestAccountSetPrivacy extends TLMethod<TLPrivacyRules> {
         return CONSTRUCTOR_ID;
     }
 
-    @Override
-    @SuppressWarnings("PointlessBooleanExpression")
-    public boolean equals(Object object) {
-        if (!(object instanceof TLRequestAccountSetPrivacy)) return false;
-        if (object == this) return true;
-
-        TLRequestAccountSetPrivacy o = (TLRequestAccountSetPrivacy) object;
-
-        return (key == o.key || (key != null && o.key != null && key.equals(o.key)))
-                && (rules == o.rules || (rules != null && o.rules != null && rules.equals(o.rules)));
-    }
-
-    public TLInputPrivacyKeyStatusTimestamp getKey() {
+    public TLAbsInputPrivacyKey getKey() {
         return key;
     }
 
-    public void setKey(TLInputPrivacyKeyStatusTimestamp key) {
+    public void setKey(TLAbsInputPrivacyKey key) {
         this.key = key;
     }
 

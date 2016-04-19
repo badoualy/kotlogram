@@ -6,7 +6,7 @@ import com.github.badoualy.telegram.mtproto.util.Log
 
 object Kotlogram {
 
-    val API_LAYER = 45
+    val API_LAYER = 51
 
     @JvmOverloads @JvmStatic
     fun getDefaultClient(application: TelegramApp, apiStorage: TelegramApiStorage, preferredDataCenter: DataCenter = PROD_DC4,

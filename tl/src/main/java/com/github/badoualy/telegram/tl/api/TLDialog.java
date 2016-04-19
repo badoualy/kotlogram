@@ -73,21 +73,6 @@ public class TLDialog extends TLAbsDialog {
         return CONSTRUCTOR_ID;
     }
 
-    @Override
-    @SuppressWarnings("PointlessBooleanExpression")
-    public boolean equals(Object object) {
-        if (!(object instanceof TLDialog)) return false;
-        if (object == this) return true;
-
-        TLDialog o = (TLDialog) object;
-
-        return (peer == o.peer || (peer != null && o.peer != null && peer.equals(o.peer)))
-                && topMessage == o.topMessage
-                && readInboxMaxId == o.readInboxMaxId
-                && unreadCount == o.unreadCount
-                && (notifySettings == o.notifySettings || (notifySettings != null && o.notifySettings != null && notifySettings.equals(o.notifySettings)));
-    }
-
     public TLAbsPeer getPeer() {
         return peer;
     }

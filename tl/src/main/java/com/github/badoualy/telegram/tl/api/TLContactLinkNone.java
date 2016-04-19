@@ -21,15 +21,4 @@ public class TLContactLinkNone extends TLAbsContactLink {
     public int getConstructorId() {
         return CONSTRUCTOR_ID;
     }
-
-    @Override
-    @SuppressWarnings("PointlessBooleanExpression")
-    public boolean equals(Object object) {
-        if (!(object instanceof TLContactLinkNone)) return false;
-        if (object == this) return true;
-
-        TLContactLinkNone o = (TLContactLinkNone) object;
-
-        return true;
-    }
 }

@@ -24,11 +24,13 @@ import static com.github.badoualy.telegram.tl.TLObjectUtils.computeTLStringSeria
  * @see <a href="http://github.com/badoualy/kotlogram">http://github.com/badoualy/kotlogram</a>
  */
 public class TLChannelFull extends TLAbsChatFull {
-    public static final int CONSTRUCTOR_ID = 0x9e341ddf;
+    public static final int CONSTRUCTOR_ID = 0x97bee562;
 
     protected int flags;
 
     protected boolean canViewParticipants;
+
+    protected boolean canSetUsername;
 
     protected String about;
 
@@ -48,13 +50,16 @@ public class TLChannelFull extends TLAbsChatFull {
 
     protected Integer migratedFromMaxId;
 
-    private final String _constructor = "channelFull#9e341ddf";
+    protected Integer pinnedMsgId;
+
+    private final String _constructor = "channelFull#97bee562";
 
     public TLChannelFull() {
     }
 
-    public TLChannelFull(boolean canViewParticipants, int id, String about, Integer participantsCount, Integer adminsCount, Integer kickedCount, int readInboxMaxId, int unreadCount, int unreadImportantCount, TLAbsPhoto chatPhoto, TLAbsPeerNotifySettings notifySettings, TLAbsExportedChatInvite exportedInvite, TLVector<TLAbsBotInfo> botInfo, Integer migratedFromChatId, Integer migratedFromMaxId) {
+    public TLChannelFull(boolean canViewParticipants, boolean canSetUsername, int id, String about, Integer participantsCount, Integer adminsCount, Integer kickedCount, int readInboxMaxId, int unreadCount, int unreadImportantCount, TLAbsPhoto chatPhoto, TLAbsPeerNotifySettings notifySettings, TLAbsExportedChatInvite exportedInvite, TLVector<TLBotInfo> botInfo, Integer migratedFromChatId, Integer migratedFromMaxId, Integer pinnedMsgId) {
         this.canViewParticipants = canViewParticipants;
+        this.canSetUsername = canSetUsername;
         this.id = id;
         this.about = about;
         this.participantsCount = participantsCount;
@@ -69,16 +74,20 @@ public class TLChannelFull extends TLAbsChatFull {
         this.botInfo = botInfo;
         this.migratedFromChatId = migratedFromChatId;
         this.migratedFromMaxId = migratedFromMaxId;
+        this.pinnedMsgId = pinnedMsgId;
     }
 
     private void computeFlags() {
         flags = 0;
         flags = canViewParticipants ? (flags | 8) : (flags &~ 8);
-        flags = participantsCount != null ? (flags | 1) : (flags &~ 1);
-        flags = adminsCount != null ? (flags | 2) : (flags &~ 2);
-        flags = kickedCount != null ? (flags | 4) : (flags &~ 4);
-        flags = migratedFromChatId != null ? (flags | 16) : (flags &~ 16);
-        flags = migratedFromMaxId != null ? (flags | 16) : (flags &~ 16);
+        flags = canSetUsername ? (flags | 64) : (flags &~ 64);
+        // Fields below may not be serialized due to flags field value
+        if ((flags & 1) == 0) participantsCount = null;
+        if ((flags & 2) == 0) adminsCount = null;
+        if ((flags & 4) == 0) kickedCount = null;
+        if ((flags & 16) == 0) migratedFromChatId = null;
+        if ((flags & 16) == 0) migratedFromMaxId = null;
+        if ((flags & 32) == 0) pinnedMsgId = null;
     }
 
     @Override
@@ -88,9 +97,18 @@ public class TLChannelFull extends TLAbsChatFull {
         writeInt(flags, stream);
         writeInt(id, stream);
         writeString(about, stream);
-        if ((flags & 1) != 0) writeInt(participantsCount, stream);
-        if ((flags & 2) != 0) writeInt(adminsCount, stream);
-        if ((flags & 4) != 0) writeInt(kickedCount, stream);
+        if ((flags & 1) != 0) {
+            if (participantsCount == null) throwNullFieldException("participantsCount", flags);
+            writeInt(participantsCount, stream);
+        }
+        if ((flags & 2) != 0) {
+            if (adminsCount == null) throwNullFieldException("adminsCount", flags);
+            writeInt(adminsCount, stream);
+        }
+        if ((flags & 4) != 0) {
+            if (kickedCount == null) throwNullFieldException("kickedCount", flags);
+            writeInt(kickedCount, stream);
+        }
         writeInt(readInboxMaxId, stream);
         writeInt(unreadCount, stream);
         writeInt(unreadImportantCount, stream);
@@ -98,8 +116,18 @@ public class TLChannelFull extends TLAbsChatFull {
         writeTLObject(notifySettings, stream);
         writeTLObject(exportedInvite, stream);
         writeTLVector(botInfo, stream);
-        if ((flags & 16) != 0) writeInt(migratedFromChatId, stream);
-        if ((flags & 16) != 0) writeInt(migratedFromMaxId, stream);
+        if ((flags & 16) != 0) {
+            if (migratedFromChatId == null) throwNullFieldException("migratedFromChatId", flags);
+            writeInt(migratedFromChatId, stream);
+        }
+        if ((flags & 16) != 0) {
+            if (migratedFromMaxId == null) throwNullFieldException("migratedFromMaxId", flags);
+            writeInt(migratedFromMaxId, stream);
+        }
+        if ((flags & 32) != 0) {
+            if (pinnedMsgId == null) throwNullFieldException("pinnedMsgId", flags);
+            writeInt(pinnedMsgId, stream);
+        }
     }
 
     @Override
@@ -107,6 +135,7 @@ public class TLChannelFull extends TLAbsChatFull {
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
         flags = readInt(stream);
         canViewParticipants = (flags & 8) != 0;
+        canSetUsername = (flags & 64) != 0;
         id = readInt(stream);
         about = readTLString(stream);
         participantsCount = (flags & 1) != 0 ? readInt(stream) : null;
@@ -121,6 +150,7 @@ public class TLChannelFull extends TLAbsChatFull {
         botInfo = readTLVector(stream, context);
         migratedFromChatId = (flags & 16) != 0 ? readInt(stream) : null;
         migratedFromMaxId = (flags & 16) != 0 ? readInt(stream) : null;
+        pinnedMsgId = (flags & 32) != 0 ? readInt(stream) : null;
     }
 
     @Override
@@ -131,9 +161,18 @@ public class TLChannelFull extends TLAbsChatFull {
         size += SIZE_INT32;
         size += SIZE_INT32;
         size += computeTLStringSerializedSize(about);
-        if ((flags & 1) != 0) size += SIZE_INT32;
-        if ((flags & 2) != 0) size += SIZE_INT32;
-        if ((flags & 4) != 0) size += SIZE_INT32;
+        if ((flags & 1) != 0) {
+            if (participantsCount == null) throwNullFieldException("participantsCount", flags);
+            size += SIZE_INT32;
+        }
+        if ((flags & 2) != 0) {
+            if (adminsCount == null) throwNullFieldException("adminsCount", flags);
+            size += SIZE_INT32;
+        }
+        if ((flags & 4) != 0) {
+            if (kickedCount == null) throwNullFieldException("kickedCount", flags);
+            size += SIZE_INT32;
+        }
         size += SIZE_INT32;
         size += SIZE_INT32;
         size += SIZE_INT32;
@@ -141,8 +180,18 @@ public class TLChannelFull extends TLAbsChatFull {
         size += notifySettings.computeSerializedSize();
         size += exportedInvite.computeSerializedSize();
         size += botInfo.computeSerializedSize();
-        if ((flags & 16) != 0) size += SIZE_INT32;
-        if ((flags & 16) != 0) size += SIZE_INT32;
+        if ((flags & 16) != 0) {
+            if (migratedFromChatId == null) throwNullFieldException("migratedFromChatId", flags);
+            size += SIZE_INT32;
+        }
+        if ((flags & 16) != 0) {
+            if (migratedFromMaxId == null) throwNullFieldException("migratedFromMaxId", flags);
+            size += SIZE_INT32;
+        }
+        if ((flags & 32) != 0) {
+            if (pinnedMsgId == null) throwNullFieldException("pinnedMsgId", flags);
+            size += SIZE_INT32;
+        }
         return size;
     }
 
@@ -156,38 +205,20 @@ public class TLChannelFull extends TLAbsChatFull {
         return CONSTRUCTOR_ID;
     }
 
-    @Override
-    @SuppressWarnings("PointlessBooleanExpression")
-    public boolean equals(Object object) {
-        if (!(object instanceof TLChannelFull)) return false;
-        if (object == this) return true;
-
-        TLChannelFull o = (TLChannelFull) object;
-
-        return flags == o.flags
-                && canViewParticipants == o.canViewParticipants
-                && id == o.id
-                && (about == o.about || (about != null && o.about != null && about.equals(o.about)))
-                && (participantsCount == o.participantsCount || (participantsCount != null && o.participantsCount != null && participantsCount.equals(o.participantsCount)))
-                && (adminsCount == o.adminsCount || (adminsCount != null && o.adminsCount != null && adminsCount.equals(o.adminsCount)))
-                && (kickedCount == o.kickedCount || (kickedCount != null && o.kickedCount != null && kickedCount.equals(o.kickedCount)))
-                && readInboxMaxId == o.readInboxMaxId
-                && unreadCount == o.unreadCount
-                && unreadImportantCount == o.unreadImportantCount
-                && (chatPhoto == o.chatPhoto || (chatPhoto != null && o.chatPhoto != null && chatPhoto.equals(o.chatPhoto)))
-                && (notifySettings == o.notifySettings || (notifySettings != null && o.notifySettings != null && notifySettings.equals(o.notifySettings)))
-                && (exportedInvite == o.exportedInvite || (exportedInvite != null && o.exportedInvite != null && exportedInvite.equals(o.exportedInvite)))
-                && (botInfo == o.botInfo || (botInfo != null && o.botInfo != null && botInfo.equals(o.botInfo)))
-                && (migratedFromChatId == o.migratedFromChatId || (migratedFromChatId != null && o.migratedFromChatId != null && migratedFromChatId.equals(o.migratedFromChatId)))
-                && (migratedFromMaxId == o.migratedFromMaxId || (migratedFromMaxId != null && o.migratedFromMaxId != null && migratedFromMaxId.equals(o.migratedFromMaxId)));
-    }
-
     public boolean getCanViewParticipants() {
         return canViewParticipants;
     }
 
     public void setCanViewParticipants(boolean canViewParticipants) {
         this.canViewParticipants = canViewParticipants;
+    }
+
+    public boolean getCanSetUsername() {
+        return canSetUsername;
+    }
+
+    public void setCanSetUsername(boolean canSetUsername) {
+        this.canSetUsername = canSetUsername;
     }
 
     public int getId() {
@@ -278,11 +309,11 @@ public class TLChannelFull extends TLAbsChatFull {
         this.exportedInvite = exportedInvite;
     }
 
-    public TLVector<TLAbsBotInfo> getBotInfo() {
+    public TLVector<TLBotInfo> getBotInfo() {
         return botInfo;
     }
 
-    public void setBotInfo(TLVector<TLAbsBotInfo> botInfo) {
+    public void setBotInfo(TLVector<TLBotInfo> botInfo) {
         this.botInfo = botInfo;
     }
 
@@ -300,5 +331,13 @@ public class TLChannelFull extends TLAbsChatFull {
 
     public void setMigratedFromMaxId(Integer migratedFromMaxId) {
         this.migratedFromMaxId = migratedFromMaxId;
+    }
+
+    public Integer getPinnedMsgId() {
+        return pinnedMsgId;
+    }
+
+    public void setPinnedMsgId(Integer pinnedMsgId) {
+        this.pinnedMsgId = pinnedMsgId;
     }
 }

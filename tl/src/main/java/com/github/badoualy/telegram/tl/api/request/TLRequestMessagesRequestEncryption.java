@@ -92,19 +92,6 @@ public class TLRequestMessagesRequestEncryption extends TLMethod<TLAbsEncryptedC
         return CONSTRUCTOR_ID;
     }
 
-    @Override
-    @SuppressWarnings("PointlessBooleanExpression")
-    public boolean equals(Object object) {
-        if (!(object instanceof TLRequestMessagesRequestEncryption)) return false;
-        if (object == this) return true;
-
-        TLRequestMessagesRequestEncryption o = (TLRequestMessagesRequestEncryption) object;
-
-        return (userId == o.userId || (userId != null && o.userId != null && userId.equals(o.userId)))
-                && randomId == o.randomId
-                && (gA == o.gA || (gA != null && o.gA != null && gA.equals(o.gA)));
-    }
-
     public TLAbsInputUser getUserId() {
         return userId;
     }

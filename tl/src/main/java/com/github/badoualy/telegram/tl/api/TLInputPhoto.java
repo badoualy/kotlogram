@@ -63,18 +63,6 @@ public class TLInputPhoto extends TLAbsInputPhoto {
         return CONSTRUCTOR_ID;
     }
 
-    @Override
-    @SuppressWarnings("PointlessBooleanExpression")
-    public boolean equals(Object object) {
-        if (!(object instanceof TLInputPhoto)) return false;
-        if (object == this) return true;
-
-        TLInputPhoto o = (TLInputPhoto) object;
-
-        return id == o.id
-                && accessHash == o.accessHash;
-    }
-
     public long getId() {
         return id;
     }

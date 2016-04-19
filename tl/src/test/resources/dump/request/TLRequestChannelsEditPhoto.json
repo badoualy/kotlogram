@@ -7,10 +7,13 @@
       "_constructor": "inputFileBig#fa4f0bb5",
       "id": 0,
       "parts": 0,
-      "name": "m8uY3PDizW"
+      "name": "NXEGm9GpPFweV4mB3hI9yraZdi5uT"
     },
     "crop": {
-      "_constructor": "inputPhotoCropAuto#ade6b004"
+      "cropLeft": 0.0,
+      "cropTop": 0.0,
+      "cropWidth": 0.0,
+      "_constructor": "inputPhotoCrop#d9915325"
     },
     "_constructor": "inputChatUploadedPhoto#94254732"
   },

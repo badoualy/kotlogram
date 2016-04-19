@@ -1,6 +1,6 @@
 {
   "peer": {
-    "_constructor": "inputNotifyAll#a429b886"
+    "_constructor": "inputNotifyChats#4a95e84e"
   },
   "_constructor": "account.getNotifySettings#12b3ad31"
 }

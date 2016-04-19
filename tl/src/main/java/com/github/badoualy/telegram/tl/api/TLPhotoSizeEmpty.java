@@ -55,17 +55,6 @@ public class TLPhotoSizeEmpty extends TLAbsPhotoSize {
         return CONSTRUCTOR_ID;
     }
 
-    @Override
-    @SuppressWarnings("PointlessBooleanExpression")
-    public boolean equals(Object object) {
-        if (!(object instanceof TLPhotoSizeEmpty)) return false;
-        if (object == this) return true;
-
-        TLPhotoSizeEmpty o = (TLPhotoSizeEmpty) object;
-
-        return (type == o.type || (type != null && o.type != null && type.equals(o.type)));
-    }
-
     public String getType() {
         return type;
     }

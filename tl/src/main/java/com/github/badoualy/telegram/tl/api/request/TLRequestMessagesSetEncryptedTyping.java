@@ -82,18 +82,6 @@ public class TLRequestMessagesSetEncryptedTyping extends TLMethod<TLBool> {
         return CONSTRUCTOR_ID;
     }
 
-    @Override
-    @SuppressWarnings("PointlessBooleanExpression")
-    public boolean equals(Object object) {
-        if (!(object instanceof TLRequestMessagesSetEncryptedTyping)) return false;
-        if (object == this) return true;
-
-        TLRequestMessagesSetEncryptedTyping o = (TLRequestMessagesSetEncryptedTyping) object;
-
-        return (peer == o.peer || (peer != null && o.peer != null && peer.equals(o.peer)))
-                && typing == o.typing;
-    }
-
     public TLInputEncryptedChat getPeer() {
         return peer;
     }

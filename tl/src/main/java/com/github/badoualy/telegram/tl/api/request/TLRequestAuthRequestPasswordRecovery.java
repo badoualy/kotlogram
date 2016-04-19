@@ -44,15 +44,4 @@ public class TLRequestAuthRequestPasswordRecovery extends TLMethod<TLPasswordRec
     public int getConstructorId() {
         return CONSTRUCTOR_ID;
     }
-
-    @Override
-    @SuppressWarnings("PointlessBooleanExpression")
-    public boolean equals(Object object) {
-        if (!(object instanceof TLRequestAuthRequestPasswordRecovery)) return false;
-        if (object == this) return true;
-
-        TLRequestAuthRequestPasswordRecovery o = (TLRequestAuthRequestPasswordRecovery) object;
-
-        return true;
-    }
 }

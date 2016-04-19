@@ -63,18 +63,6 @@ public class TLInputStickerSetID extends TLAbsInputStickerSet {
         return CONSTRUCTOR_ID;
     }
 
-    @Override
-    @SuppressWarnings("PointlessBooleanExpression")
-    public boolean equals(Object object) {
-        if (!(object instanceof TLInputStickerSetID)) return false;
-        if (object == this) return true;
-
-        TLInputStickerSetID o = (TLInputStickerSetID) object;
-
-        return id == o.id
-                && accessHash == o.accessHash;
-    }
-
     public long getId() {
         return id;
     }

@@ -82,18 +82,6 @@ public class TLRequestMessagesSaveGif extends TLMethod<TLBool> {
         return CONSTRUCTOR_ID;
     }
 
-    @Override
-    @SuppressWarnings("PointlessBooleanExpression")
-    public boolean equals(Object object) {
-        if (!(object instanceof TLRequestMessagesSaveGif)) return false;
-        if (object == this) return true;
-
-        TLRequestMessagesSaveGif o = (TLRequestMessagesSaveGif) object;
-
-        return (id == o.id || (id != null && o.id != null && id.equals(o.id)))
-                && unsave == o.unsave;
-    }
-
     public TLAbsInputDocument getId() {
         return id;
     }

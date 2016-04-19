@@ -95,20 +95,6 @@ public class TLRequestChannelsGetParticipants extends TLMethod<TLChannelParticip
         return CONSTRUCTOR_ID;
     }
 
-    @Override
-    @SuppressWarnings("PointlessBooleanExpression")
-    public boolean equals(Object object) {
-        if (!(object instanceof TLRequestChannelsGetParticipants)) return false;
-        if (object == this) return true;
-
-        TLRequestChannelsGetParticipants o = (TLRequestChannelsGetParticipants) object;
-
-        return (channel == o.channel || (channel != null && o.channel != null && channel.equals(o.channel)))
-                && (filter == o.filter || (filter != null && o.filter != null && filter.equals(o.filter)))
-                && offset == o.offset
-                && limit == o.limit;
-    }
-
     public TLAbsInputChannel getChannel() {
         return channel;
     }

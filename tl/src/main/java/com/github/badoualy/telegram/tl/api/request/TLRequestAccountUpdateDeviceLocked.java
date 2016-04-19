@@ -74,17 +74,6 @@ public class TLRequestAccountUpdateDeviceLocked extends TLMethod<TLBool> {
         return CONSTRUCTOR_ID;
     }
 
-    @Override
-    @SuppressWarnings("PointlessBooleanExpression")
-    public boolean equals(Object object) {
-        if (!(object instanceof TLRequestAccountUpdateDeviceLocked)) return false;
-        if (object == this) return true;
-
-        TLRequestAccountUpdateDeviceLocked o = (TLRequestAccountUpdateDeviceLocked) object;
-
-        return period == o.period;
-    }
-
     public int getPeriod() {
         return period;
     }

@@ -65,18 +65,6 @@ public class TLUpdateEncryption extends TLAbsUpdate {
         return CONSTRUCTOR_ID;
     }
 
-    @Override
-    @SuppressWarnings("PointlessBooleanExpression")
-    public boolean equals(Object object) {
-        if (!(object instanceof TLUpdateEncryption)) return false;
-        if (object == this) return true;
-
-        TLUpdateEncryption o = (TLUpdateEncryption) object;
-
-        return (chat == o.chat || (chat != null && o.chat != null && chat.equals(o.chat)))
-                && date == o.date;
-    }
-
     public TLAbsEncryptedChat getChat() {
         return chat;
     }

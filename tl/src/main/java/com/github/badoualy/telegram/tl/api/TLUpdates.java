@@ -84,21 +84,6 @@ public class TLUpdates extends TLAbsUpdates {
         return CONSTRUCTOR_ID;
     }
 
-    @Override
-    @SuppressWarnings("PointlessBooleanExpression")
-    public boolean equals(Object object) {
-        if (!(object instanceof TLUpdates)) return false;
-        if (object == this) return true;
-
-        TLUpdates o = (TLUpdates) object;
-
-        return (updates == o.updates || (updates != null && o.updates != null && updates.equals(o.updates)))
-                && (users == o.users || (users != null && o.users != null && users.equals(o.users)))
-                && (chats == o.chats || (chats != null && o.chats != null && chats.equals(o.chats)))
-                && date == o.date
-                && seq == o.seq;
-    }
-
     public TLVector<TLAbsUpdate> getUpdates() {
         return updates;
     }

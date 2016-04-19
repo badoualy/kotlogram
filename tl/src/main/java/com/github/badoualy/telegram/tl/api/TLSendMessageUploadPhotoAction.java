@@ -57,17 +57,6 @@ public class TLSendMessageUploadPhotoAction extends TLAbsSendMessageAction {
         return CONSTRUCTOR_ID;
     }
 
-    @Override
-    @SuppressWarnings("PointlessBooleanExpression")
-    public boolean equals(Object object) {
-        if (!(object instanceof TLSendMessageUploadPhotoAction)) return false;
-        if (object == this) return true;
-
-        TLSendMessageUploadPhotoAction o = (TLSendMessageUploadPhotoAction) object;
-
-        return progress == o.progress;
-    }
-
     public int getProgress() {
         return progress;
     }

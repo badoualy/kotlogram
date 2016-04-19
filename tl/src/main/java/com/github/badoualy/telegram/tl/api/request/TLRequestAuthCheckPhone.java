@@ -74,17 +74,6 @@ public class TLRequestAuthCheckPhone extends TLMethod<TLCheckedPhone> {
         return CONSTRUCTOR_ID;
     }
 
-    @Override
-    @SuppressWarnings("PointlessBooleanExpression")
-    public boolean equals(Object object) {
-        if (!(object instanceof TLRequestAuthCheckPhone)) return false;
-        if (object == this) return true;
-
-        TLRequestAuthCheckPhone o = (TLRequestAuthCheckPhone) object;
-
-        return (phoneNumber == o.phoneNumber || (phoneNumber != null && o.phoneNumber != null && phoneNumber.equals(o.phoneNumber)));
-    }
-
     public String getPhoneNumber() {
         return phoneNumber;
     }

@@ -77,20 +77,6 @@ public class TLDhConfig extends TLAbsDhConfig {
         return CONSTRUCTOR_ID;
     }
 
-    @Override
-    @SuppressWarnings("PointlessBooleanExpression")
-    public boolean equals(Object object) {
-        if (!(object instanceof TLDhConfig)) return false;
-        if (object == this) return true;
-
-        TLDhConfig o = (TLDhConfig) object;
-
-        return g == o.g
-                && (p == o.p || (p != null && o.p != null && p.equals(o.p)))
-                && version == o.version
-                && (random == o.random || (random != null && o.random != null && random.equals(o.random)));
-    }
-
     public int getG() {
         return g;
     }

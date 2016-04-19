@@ -57,17 +57,6 @@ public class TLMessageActionChatEditTitle extends TLAbsMessageAction {
         return CONSTRUCTOR_ID;
     }
 
-    @Override
-    @SuppressWarnings("PointlessBooleanExpression")
-    public boolean equals(Object object) {
-        if (!(object instanceof TLMessageActionChatEditTitle)) return false;
-        if (object == this) return true;
-
-        TLMessageActionChatEditTitle o = (TLMessageActionChatEditTitle) object;
-
-        return (title == o.title || (title != null && o.title != null && title.equals(o.title)));
-    }
-
     public String getTitle() {
         return title;
     }

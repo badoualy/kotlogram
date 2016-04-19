@@ -69,19 +69,6 @@ public class TLDocumentAttributeVideo extends TLAbsDocumentAttribute {
         return CONSTRUCTOR_ID;
     }
 
-    @Override
-    @SuppressWarnings("PointlessBooleanExpression")
-    public boolean equals(Object object) {
-        if (!(object instanceof TLDocumentAttributeVideo)) return false;
-        if (object == this) return true;
-
-        TLDocumentAttributeVideo o = (TLDocumentAttributeVideo) object;
-
-        return duration == o.duration
-                && w == o.w
-                && h == o.h;
-    }
-
     public int getDuration() {
         return duration;
     }

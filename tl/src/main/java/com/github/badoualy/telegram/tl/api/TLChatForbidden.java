@@ -64,18 +64,6 @@ public class TLChatForbidden extends TLAbsChat {
         return CONSTRUCTOR_ID;
     }
 
-    @Override
-    @SuppressWarnings("PointlessBooleanExpression")
-    public boolean equals(Object object) {
-        if (!(object instanceof TLChatForbidden)) return false;
-        if (object == this) return true;
-
-        TLChatForbidden o = (TLChatForbidden) object;
-
-        return id == o.id
-                && (title == o.title || (title != null && o.title != null && title.equals(o.title)));
-    }
-
     public int getId() {
         return id;
     }

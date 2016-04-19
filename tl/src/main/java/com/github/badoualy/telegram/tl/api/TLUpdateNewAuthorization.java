@@ -81,20 +81,6 @@ public class TLUpdateNewAuthorization extends TLAbsUpdate {
         return CONSTRUCTOR_ID;
     }
 
-    @Override
-    @SuppressWarnings("PointlessBooleanExpression")
-    public boolean equals(Object object) {
-        if (!(object instanceof TLUpdateNewAuthorization)) return false;
-        if (object == this) return true;
-
-        TLUpdateNewAuthorization o = (TLUpdateNewAuthorization) object;
-
-        return authKeyId == o.authKeyId
-                && date == o.date
-                && (device == o.device || (device != null && o.device != null && device.equals(o.device)))
-                && (location == o.location || (location != null && o.location != null && location.equals(o.location)));
-    }
-
     public long getAuthKeyId() {
         return authKeyId;
     }

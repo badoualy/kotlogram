@@ -72,19 +72,6 @@ public class TLInputEncryptedFileBigUploaded extends TLAbsInputEncryptedFile {
         return CONSTRUCTOR_ID;
     }
 
-    @Override
-    @SuppressWarnings("PointlessBooleanExpression")
-    public boolean equals(Object object) {
-        if (!(object instanceof TLInputEncryptedFileBigUploaded)) return false;
-        if (object == this) return true;
-
-        TLInputEncryptedFileBigUploaded o = (TLInputEncryptedFileBigUploaded) object;
-
-        return id == o.id
-                && parts == o.parts
-                && keyFingerprint == o.keyFingerprint;
-    }
-
     public long getId() {
         return id;
     }

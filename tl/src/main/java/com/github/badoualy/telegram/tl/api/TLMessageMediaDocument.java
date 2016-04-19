@@ -65,18 +65,6 @@ public class TLMessageMediaDocument extends TLAbsMessageMedia {
         return CONSTRUCTOR_ID;
     }
 
-    @Override
-    @SuppressWarnings("PointlessBooleanExpression")
-    public boolean equals(Object object) {
-        if (!(object instanceof TLMessageMediaDocument)) return false;
-        if (object == this) return true;
-
-        TLMessageMediaDocument o = (TLMessageMediaDocument) object;
-
-        return (document == o.document || (document != null && o.document != null && document.equals(o.document)))
-                && (caption == o.caption || (caption != null && o.caption != null && caption.equals(o.caption)));
-    }
-
     public TLAbsDocument getDocument() {
         return document;
     }

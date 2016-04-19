@@ -35,7 +35,7 @@ fun TLAbsMessage.getToAsPeer() = when (this) {
 fun TLAbsMessage.isReply() = this is TLMessage && replyToMsgId != null
 fun TLAbsMessage.getReplyTo() = if (this.isReply()) (this as TLMessage).replyToMsgId else null
 
-fun TLMessage.isForward() = fwdFromId != null
+fun TLMessage.isForward() = fwdFrom != null
 fun TLMessage.isReply() = replyToMsgId != null
 fun TLAbsMessage.isSticker(): Boolean {
     if (this !is TLMessage) return false

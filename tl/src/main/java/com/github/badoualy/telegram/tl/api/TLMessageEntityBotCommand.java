@@ -59,18 +59,6 @@ public class TLMessageEntityBotCommand extends TLAbsMessageEntity {
         return CONSTRUCTOR_ID;
     }
 
-    @Override
-    @SuppressWarnings("PointlessBooleanExpression")
-    public boolean equals(Object object) {
-        if (!(object instanceof TLMessageEntityBotCommand)) return false;
-        if (object == this) return true;
-
-        TLMessageEntityBotCommand o = (TLMessageEntityBotCommand) object;
-
-        return offset == o.offset
-                && length == o.length;
-    }
-
     public int getOffset() {
         return offset;
     }

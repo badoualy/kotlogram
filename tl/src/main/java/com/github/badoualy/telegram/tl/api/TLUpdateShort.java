@@ -65,18 +65,6 @@ public class TLUpdateShort extends TLAbsUpdates {
         return CONSTRUCTOR_ID;
     }
 
-    @Override
-    @SuppressWarnings("PointlessBooleanExpression")
-    public boolean equals(Object object) {
-        if (!(object instanceof TLUpdateShort)) return false;
-        if (object == this) return true;
-
-        TLUpdateShort o = (TLUpdateShort) object;
-
-        return (update == o.update || (update != null && o.update != null && update.equals(o.update)))
-                && date == o.date;
-    }
-
     public TLAbsUpdate getUpdate() {
         return update;
     }

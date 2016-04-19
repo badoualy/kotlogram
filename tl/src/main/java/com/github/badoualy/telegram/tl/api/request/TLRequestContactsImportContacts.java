@@ -84,18 +84,6 @@ public class TLRequestContactsImportContacts extends TLMethod<TLImportedContacts
         return CONSTRUCTOR_ID;
     }
 
-    @Override
-    @SuppressWarnings("PointlessBooleanExpression")
-    public boolean equals(Object object) {
-        if (!(object instanceof TLRequestContactsImportContacts)) return false;
-        if (object == this) return true;
-
-        TLRequestContactsImportContacts o = (TLRequestContactsImportContacts) object;
-
-        return (contacts == o.contacts || (contacts != null && o.contacts != null && contacts.equals(o.contacts)))
-                && replace == o.replace;
-    }
-
     public TLVector<TLInputPhoneContact> getContacts() {
         return contacts;
     }

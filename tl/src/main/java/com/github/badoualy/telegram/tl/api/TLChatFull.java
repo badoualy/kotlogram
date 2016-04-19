@@ -30,7 +30,7 @@ public class TLChatFull extends TLAbsChatFull {
     public TLChatFull() {
     }
 
-    public TLChatFull(int id, TLAbsChatParticipants participants, TLAbsPhoto chatPhoto, TLAbsPeerNotifySettings notifySettings, TLAbsExportedChatInvite exportedInvite, TLVector<TLAbsBotInfo> botInfo) {
+    public TLChatFull(int id, TLAbsChatParticipants participants, TLAbsPhoto chatPhoto, TLAbsPeerNotifySettings notifySettings, TLAbsExportedChatInvite exportedInvite, TLVector<TLBotInfo> botInfo) {
         this.id = id;
         this.participants = participants;
         this.chatPhoto = chatPhoto;
@@ -82,22 +82,6 @@ public class TLChatFull extends TLAbsChatFull {
         return CONSTRUCTOR_ID;
     }
 
-    @Override
-    @SuppressWarnings("PointlessBooleanExpression")
-    public boolean equals(Object object) {
-        if (!(object instanceof TLChatFull)) return false;
-        if (object == this) return true;
-
-        TLChatFull o = (TLChatFull) object;
-
-        return id == o.id
-                && (participants == o.participants || (participants != null && o.participants != null && participants.equals(o.participants)))
-                && (chatPhoto == o.chatPhoto || (chatPhoto != null && o.chatPhoto != null && chatPhoto.equals(o.chatPhoto)))
-                && (notifySettings == o.notifySettings || (notifySettings != null && o.notifySettings != null && notifySettings.equals(o.notifySettings)))
-                && (exportedInvite == o.exportedInvite || (exportedInvite != null && o.exportedInvite != null && exportedInvite.equals(o.exportedInvite)))
-                && (botInfo == o.botInfo || (botInfo != null && o.botInfo != null && botInfo.equals(o.botInfo)));
-    }
-
     public int getId() {
         return id;
     }
@@ -138,11 +122,11 @@ public class TLChatFull extends TLAbsChatFull {
         this.exportedInvite = exportedInvite;
     }
 
-    public TLVector<TLAbsBotInfo> getBotInfo() {
+    public TLVector<TLBotInfo> getBotInfo() {
         return botInfo;
     }
 
-    public void setBotInfo(TLVector<TLAbsBotInfo> botInfo) {
+    public void setBotInfo(TLVector<TLBotInfo> botInfo) {
         this.botInfo = botInfo;
     }
 }

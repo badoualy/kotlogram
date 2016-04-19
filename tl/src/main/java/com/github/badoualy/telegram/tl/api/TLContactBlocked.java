@@ -64,18 +64,6 @@ public class TLContactBlocked extends TLObject {
         return CONSTRUCTOR_ID;
     }
 
-    @Override
-    @SuppressWarnings("PointlessBooleanExpression")
-    public boolean equals(Object object) {
-        if (!(object instanceof TLContactBlocked)) return false;
-        if (object == this) return true;
-
-        TLContactBlocked o = (TLContactBlocked) object;
-
-        return userId == o.userId
-                && date == o.date;
-    }
-
     public int getUserId() {
         return userId;
     }

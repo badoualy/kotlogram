@@ -74,17 +74,6 @@ public class TLRequestContactsImportCard extends TLMethod<TLAbsUser> {
         return CONSTRUCTOR_ID;
     }
 
-    @Override
-    @SuppressWarnings("PointlessBooleanExpression")
-    public boolean equals(Object object) {
-        if (!(object instanceof TLRequestContactsImportCard)) return false;
-        if (object == this) return true;
-
-        TLRequestContactsImportCard o = (TLRequestContactsImportCard) object;
-
-        return (exportCard == o.exportCard || (exportCard != null && o.exportCard != null && exportCard.equals(o.exportCard)));
-    }
-
     public TLIntVector getExportCard() {
         return exportCard;
     }

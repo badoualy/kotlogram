@@ -24,7 +24,7 @@ import static com.github.badoualy.telegram.tl.TLObjectUtils.computeTLStringSeria
  * @see <a href="http://github.com/badoualy/kotlogram">http://github.com/badoualy/kotlogram</a>
  */
 public class TLUpdateShortChatMessage extends TLAbsUpdates {
-    public static final int CONSTRUCTOR_ID = 0x248afa62;
+    public static final int CONSTRUCTOR_ID = 0x16812688;
 
     protected int flags;
 
@@ -35,6 +35,8 @@ public class TLUpdateShortChatMessage extends TLAbsUpdates {
     protected boolean mentioned;
 
     protected boolean mediaUnread;
+
+    protected boolean silent;
 
     protected int id;
 
@@ -50,9 +52,7 @@ public class TLUpdateShortChatMessage extends TLAbsUpdates {
 
     protected int date;
 
-    protected TLAbsPeer fwdFromId;
-
-    protected Integer fwdDate;
+    protected TLMessageFwdHeader fwdFrom;
 
     protected Integer viaBotId;
 
@@ -60,16 +60,17 @@ public class TLUpdateShortChatMessage extends TLAbsUpdates {
 
     protected TLVector<TLAbsMessageEntity> entities;
 
-    private final String _constructor = "updateShortChatMessage#248afa62";
+    private final String _constructor = "updateShortChatMessage#16812688";
 
     public TLUpdateShortChatMessage() {
     }
 
-    public TLUpdateShortChatMessage(boolean unread, boolean out, boolean mentioned, boolean mediaUnread, int id, int fromId, int chatId, String message, int pts, int ptsCount, int date, TLAbsPeer fwdFromId, Integer fwdDate, Integer viaBotId, Integer replyToMsgId, TLVector<TLAbsMessageEntity> entities) {
+    public TLUpdateShortChatMessage(boolean unread, boolean out, boolean mentioned, boolean mediaUnread, boolean silent, int id, int fromId, int chatId, String message, int pts, int ptsCount, int date, TLMessageFwdHeader fwdFrom, Integer viaBotId, Integer replyToMsgId, TLVector<TLAbsMessageEntity> entities) {
         this.unread = unread;
         this.out = out;
         this.mentioned = mentioned;
         this.mediaUnread = mediaUnread;
+        this.silent = silent;
         this.id = id;
         this.fromId = fromId;
         this.chatId = chatId;
@@ -77,8 +78,7 @@ public class TLUpdateShortChatMessage extends TLAbsUpdates {
         this.pts = pts;
         this.ptsCount = ptsCount;
         this.date = date;
-        this.fwdFromId = fwdFromId;
-        this.fwdDate = fwdDate;
+        this.fwdFrom = fwdFrom;
         this.viaBotId = viaBotId;
         this.replyToMsgId = replyToMsgId;
         this.entities = entities;
@@ -90,11 +90,12 @@ public class TLUpdateShortChatMessage extends TLAbsUpdates {
         flags = out ? (flags | 2) : (flags &~ 2);
         flags = mentioned ? (flags | 16) : (flags &~ 16);
         flags = mediaUnread ? (flags | 32) : (flags &~ 32);
-        flags = fwdFromId != null ? (flags | 4) : (flags &~ 4);
-        flags = fwdDate != null ? (flags | 4) : (flags &~ 4);
-        flags = viaBotId != null ? (flags | 2048) : (flags &~ 2048);
-        flags = replyToMsgId != null ? (flags | 8) : (flags &~ 8);
-        flags = entities != null ? (flags | 128) : (flags &~ 128);
+        flags = silent ? (flags | 8192) : (flags &~ 8192);
+        // Fields below may not be serialized due to flags field value
+        if ((flags & 4) == 0) fwdFrom = null;
+        if ((flags & 2048) == 0) viaBotId = null;
+        if ((flags & 8) == 0) replyToMsgId = null;
+        if ((flags & 128) == 0) entities = null;
     }
 
     @Override
@@ -109,11 +110,22 @@ public class TLUpdateShortChatMessage extends TLAbsUpdates {
         writeInt(pts, stream);
         writeInt(ptsCount, stream);
         writeInt(date, stream);
-        if ((flags & 4) != 0) writeTLObject(fwdFromId, stream);
-        if ((flags & 4) != 0) writeInt(fwdDate, stream);
-        if ((flags & 2048) != 0) writeInt(viaBotId, stream);
-        if ((flags & 8) != 0) writeInt(replyToMsgId, stream);
-        if ((flags & 128) != 0) writeTLVector(entities, stream);
+        if ((flags & 4) != 0) {
+            if (fwdFrom == null) throwNullFieldException("fwdFrom", flags);
+            writeTLObject(fwdFrom, stream);
+        }
+        if ((flags & 2048) != 0) {
+            if (viaBotId == null) throwNullFieldException("viaBotId", flags);
+            writeInt(viaBotId, stream);
+        }
+        if ((flags & 8) != 0) {
+            if (replyToMsgId == null) throwNullFieldException("replyToMsgId", flags);
+            writeInt(replyToMsgId, stream);
+        }
+        if ((flags & 128) != 0) {
+            if (entities == null) throwNullFieldException("entities", flags);
+            writeTLVector(entities, stream);
+        }
     }
 
     @Override
@@ -124,6 +136,7 @@ public class TLUpdateShortChatMessage extends TLAbsUpdates {
         out = (flags & 2) != 0;
         mentioned = (flags & 16) != 0;
         mediaUnread = (flags & 32) != 0;
+        silent = (flags & 8192) != 0;
         id = readInt(stream);
         fromId = readInt(stream);
         chatId = readInt(stream);
@@ -131,8 +144,7 @@ public class TLUpdateShortChatMessage extends TLAbsUpdates {
         pts = readInt(stream);
         ptsCount = readInt(stream);
         date = readInt(stream);
-        fwdFromId = (flags & 4) != 0 ? readTLObject(stream, context, TLAbsPeer.class, -1) : null;
-        fwdDate = (flags & 4) != 0 ? readInt(stream) : null;
+        fwdFrom = (flags & 4) != 0 ? readTLObject(stream, context, TLMessageFwdHeader.class, TLMessageFwdHeader.CONSTRUCTOR_ID) : null;
         viaBotId = (flags & 2048) != 0 ? readInt(stream) : null;
         replyToMsgId = (flags & 8) != 0 ? readInt(stream) : null;
         entities = (flags & 128) != 0 ? readTLVector(stream, context) : null;
@@ -151,11 +163,22 @@ public class TLUpdateShortChatMessage extends TLAbsUpdates {
         size += SIZE_INT32;
         size += SIZE_INT32;
         size += SIZE_INT32;
-        if ((flags & 4) != 0) size += fwdFromId.computeSerializedSize();
-        if ((flags & 4) != 0) size += SIZE_INT32;
-        if ((flags & 2048) != 0) size += SIZE_INT32;
-        if ((flags & 8) != 0) size += SIZE_INT32;
-        if ((flags & 128) != 0) size += entities.computeSerializedSize();
+        if ((flags & 4) != 0) {
+            if (fwdFrom == null) throwNullFieldException("fwdFrom", flags);
+            size += fwdFrom.computeSerializedSize();
+        }
+        if ((flags & 2048) != 0) {
+            if (viaBotId == null) throwNullFieldException("viaBotId", flags);
+            size += SIZE_INT32;
+        }
+        if ((flags & 8) != 0) {
+            if (replyToMsgId == null) throwNullFieldException("replyToMsgId", flags);
+            size += SIZE_INT32;
+        }
+        if ((flags & 128) != 0) {
+            if (entities == null) throwNullFieldException("entities", flags);
+            size += entities.computeSerializedSize();
+        }
         return size;
     }
 
@@ -167,33 +190,6 @@ public class TLUpdateShortChatMessage extends TLAbsUpdates {
     @Override
     public int getConstructorId() {
         return CONSTRUCTOR_ID;
-    }
-
-    @Override
-    @SuppressWarnings("PointlessBooleanExpression")
-    public boolean equals(Object object) {
-        if (!(object instanceof TLUpdateShortChatMessage)) return false;
-        if (object == this) return true;
-
-        TLUpdateShortChatMessage o = (TLUpdateShortChatMessage) object;
-
-        return flags == o.flags
-                && unread == o.unread
-                && out == o.out
-                && mentioned == o.mentioned
-                && mediaUnread == o.mediaUnread
-                && id == o.id
-                && fromId == o.fromId
-                && chatId == o.chatId
-                && (message == o.message || (message != null && o.message != null && message.equals(o.message)))
-                && pts == o.pts
-                && ptsCount == o.ptsCount
-                && date == o.date
-                && (fwdFromId == o.fwdFromId || (fwdFromId != null && o.fwdFromId != null && fwdFromId.equals(o.fwdFromId)))
-                && (fwdDate == o.fwdDate || (fwdDate != null && o.fwdDate != null && fwdDate.equals(o.fwdDate)))
-                && (viaBotId == o.viaBotId || (viaBotId != null && o.viaBotId != null && viaBotId.equals(o.viaBotId)))
-                && (replyToMsgId == o.replyToMsgId || (replyToMsgId != null && o.replyToMsgId != null && replyToMsgId.equals(o.replyToMsgId)))
-                && (entities == o.entities || (entities != null && o.entities != null && entities.equals(o.entities)));
     }
 
     public boolean getUnread() {
@@ -226,6 +222,14 @@ public class TLUpdateShortChatMessage extends TLAbsUpdates {
 
     public void setMediaUnread(boolean mediaUnread) {
         this.mediaUnread = mediaUnread;
+    }
+
+    public boolean getSilent() {
+        return silent;
+    }
+
+    public void setSilent(boolean silent) {
+        this.silent = silent;
     }
 
     public int getId() {
@@ -284,20 +288,12 @@ public class TLUpdateShortChatMessage extends TLAbsUpdates {
         this.date = date;
     }
 
-    public TLAbsPeer getFwdFromId() {
-        return fwdFromId;
+    public TLMessageFwdHeader getFwdFrom() {
+        return fwdFrom;
     }
 
-    public void setFwdFromId(TLAbsPeer fwdFromId) {
-        this.fwdFromId = fwdFromId;
-    }
-
-    public Integer getFwdDate() {
-        return fwdDate;
-    }
-
-    public void setFwdDate(Integer fwdDate) {
-        this.fwdDate = fwdDate;
+    public void setFwdFrom(TLMessageFwdHeader fwdFrom) {
+        this.fwdFrom = fwdFrom;
     }
 
     public Integer getViaBotId() {

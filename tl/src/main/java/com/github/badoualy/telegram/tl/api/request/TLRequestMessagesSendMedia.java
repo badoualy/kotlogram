@@ -33,6 +33,10 @@ public class TLRequestMessagesSendMedia extends TLMethod<TLAbsUpdates> {
 
     protected boolean broadcast;
 
+    protected boolean silent;
+
+    protected boolean background;
+
     protected TLAbsInputPeer peer;
 
     protected Integer replyToMsgId;
@@ -48,8 +52,10 @@ public class TLRequestMessagesSendMedia extends TLMethod<TLAbsUpdates> {
     public TLRequestMessagesSendMedia() {
     }
 
-    public TLRequestMessagesSendMedia(boolean broadcast, TLAbsInputPeer peer, Integer replyToMsgId, TLAbsInputMedia media, long randomId, TLAbsReplyMarkup replyMarkup) {
+    public TLRequestMessagesSendMedia(boolean broadcast, boolean silent, boolean background, TLAbsInputPeer peer, Integer replyToMsgId, TLAbsInputMedia media, long randomId, TLAbsReplyMarkup replyMarkup) {
         this.broadcast = broadcast;
+        this.silent = silent;
+        this.background = background;
         this.peer = peer;
         this.replyToMsgId = replyToMsgId;
         this.media = media;
@@ -73,8 +79,11 @@ public class TLRequestMessagesSendMedia extends TLMethod<TLAbsUpdates> {
     private void computeFlags() {
         flags = 0;
         flags = broadcast ? (flags | 16) : (flags &~ 16);
-        flags = replyToMsgId != null ? (flags | 1) : (flags &~ 1);
-        flags = replyMarkup != null ? (flags | 4) : (flags &~ 4);
+        flags = silent ? (flags | 32) : (flags &~ 32);
+        flags = background ? (flags | 64) : (flags &~ 64);
+        // Fields below may not be serialized due to flags field value
+        if ((flags & 1) == 0) replyToMsgId = null;
+        if ((flags & 4) == 0) replyMarkup = null;
     }
 
     @Override
@@ -83,10 +92,16 @@ public class TLRequestMessagesSendMedia extends TLMethod<TLAbsUpdates> {
 
         writeInt(flags, stream);
         writeTLObject(peer, stream);
-        if ((flags & 1) != 0) writeInt(replyToMsgId, stream);
+        if ((flags & 1) != 0) {
+            if (replyToMsgId == null) throwNullFieldException("replyToMsgId", flags);
+            writeInt(replyToMsgId, stream);
+        }
         writeTLObject(media, stream);
         writeLong(randomId, stream);
-        if ((flags & 4) != 0) writeTLObject(replyMarkup, stream);
+        if ((flags & 4) != 0) {
+            if (replyMarkup == null) throwNullFieldException("replyMarkup", flags);
+            writeTLObject(replyMarkup, stream);
+        }
     }
 
     @Override
@@ -94,6 +109,8 @@ public class TLRequestMessagesSendMedia extends TLMethod<TLAbsUpdates> {
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
         flags = readInt(stream);
         broadcast = (flags & 16) != 0;
+        silent = (flags & 32) != 0;
+        background = (flags & 64) != 0;
         peer = readTLObject(stream, context, TLAbsInputPeer.class, -1);
         replyToMsgId = (flags & 1) != 0 ? readInt(stream) : null;
         media = readTLObject(stream, context, TLAbsInputMedia.class, -1);
@@ -108,10 +125,16 @@ public class TLRequestMessagesSendMedia extends TLMethod<TLAbsUpdates> {
         int size = SIZE_CONSTRUCTOR_ID;
         size += SIZE_INT32;
         size += peer.computeSerializedSize();
-        if ((flags & 1) != 0) size += SIZE_INT32;
+        if ((flags & 1) != 0) {
+            if (replyToMsgId == null) throwNullFieldException("replyToMsgId", flags);
+            size += SIZE_INT32;
+        }
         size += media.computeSerializedSize();
         size += SIZE_INT64;
-        if ((flags & 4) != 0) size += replyMarkup.computeSerializedSize();
+        if ((flags & 4) != 0) {
+            if (replyMarkup == null) throwNullFieldException("replyMarkup", flags);
+            size += replyMarkup.computeSerializedSize();
+        }
         return size;
     }
 
@@ -125,29 +148,28 @@ public class TLRequestMessagesSendMedia extends TLMethod<TLAbsUpdates> {
         return CONSTRUCTOR_ID;
     }
 
-    @Override
-    @SuppressWarnings("PointlessBooleanExpression")
-    public boolean equals(Object object) {
-        if (!(object instanceof TLRequestMessagesSendMedia)) return false;
-        if (object == this) return true;
-
-        TLRequestMessagesSendMedia o = (TLRequestMessagesSendMedia) object;
-
-        return flags == o.flags
-                && broadcast == o.broadcast
-                && (peer == o.peer || (peer != null && o.peer != null && peer.equals(o.peer)))
-                && (replyToMsgId == o.replyToMsgId || (replyToMsgId != null && o.replyToMsgId != null && replyToMsgId.equals(o.replyToMsgId)))
-                && (media == o.media || (media != null && o.media != null && media.equals(o.media)))
-                && randomId == o.randomId
-                && (replyMarkup == o.replyMarkup || (replyMarkup != null && o.replyMarkup != null && replyMarkup.equals(o.replyMarkup)));
-    }
-
     public boolean getBroadcast() {
         return broadcast;
     }
 
     public void setBroadcast(boolean broadcast) {
         this.broadcast = broadcast;
+    }
+
+    public boolean getSilent() {
+        return silent;
+    }
+
+    public void setSilent(boolean silent) {
+        this.silent = silent;
+    }
+
+    public boolean getBackground() {
+        return background;
+    }
+
+    public void setBackground(boolean background) {
+        this.background = background;
     }
 
     public TLAbsInputPeer getPeer() {

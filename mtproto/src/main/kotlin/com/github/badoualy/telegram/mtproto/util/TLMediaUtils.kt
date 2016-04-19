@@ -4,7 +4,7 @@ import com.github.badoualy.telegram.tl.api.*
 import com.github.badoualy.telegram.tl.core.TLBytes
 
 fun TLAbsMessageMedia.getLocation(): TLGeoPoint? = when (this) {
-    is TLMessageMediaGeo -> geo as TLGeoPoint
+    is TLMessageMediaGeo -> if (geo is TLGeoPoint) geo as TLGeoPoint else null
     else -> null
 }
 
@@ -14,7 +14,6 @@ fun TLMessageMediaGeo.getLocation(): TLGeoPoint? = when (geo) {
 }
 
 fun TLAbsMessageMedia.getAbsMediaInput() = when (this) {
-    is TLMessageMediaAudio -> getMediaInput()
     is TLMessageMediaContact -> null // nothing to download
     is TLMessageMediaDocument -> getMediaInput()
     is TLMessageMediaEmpty -> null // nothing to download
@@ -22,13 +21,11 @@ fun TLAbsMessageMedia.getAbsMediaInput() = when (this) {
     is TLMessageMediaPhoto -> getMediaInput()
     is TLMessageMediaUnsupported -> null // nothing to download
     is TLMessageMediaVenue -> null // nothing to download
-    is TLMessageMediaVideo -> getMediaInput()
     is TLMessageMediaWebPage -> getMediaInput()
     else -> null
 }
 
 fun TLAbsMessageMedia.getAbsMediaThumbnailInput() = when (this) {
-    is TLMessageMediaAudio -> null // nothing to download
     is TLMessageMediaContact -> null // nothing to download
     is TLMessageMediaDocument -> getMediaThumbnailInput()
     is TLMessageMediaEmpty -> null // nothing to download
@@ -36,7 +33,6 @@ fun TLAbsMessageMedia.getAbsMediaThumbnailInput() = when (this) {
     is TLMessageMediaPhoto -> getMediaThumbnailInput()
     is TLMessageMediaUnsupported -> null // nothing to download
     is TLMessageMediaVenue -> null // nothing to download
-    is TLMessageMediaVideo -> getMediaThumbnailInput()
     is TLMessageMediaWebPage -> getMediaThumbnailInput()
     else -> null
 }
@@ -52,29 +48,6 @@ fun TLMessageMediaDocument.getMediaInput() = when (document) {
 
 fun TLMessageMediaDocument.getMediaThumbnailInput() = when (document) {
     is TLDocument -> (document as TLDocument).thumb.getMediaInput()
-    else -> null
-}
-
-fun TLMessageMediaAudio.getMediaInput() = when (audio) {
-    is TLAudio -> {
-        val audio = audio as TLAudio
-        val inputFileLocation = InputFileLocation(TLInputAudioFileLocation(audio.id, audio.accessHash), audio.dcId)
-        MediaInput(inputFileLocation, audio.size, audio.mimeType)
-    }
-    else -> null
-}
-
-fun TLMessageMediaVideo.getMediaInput() = when (video) {
-    is TLVideo -> {
-        val video = video as TLVideo
-        val inputFileLocation = InputFileLocation(TLInputVideoFileLocation(video.id, video.accessHash), video.dcId)
-        MediaInput(inputFileLocation, video.size, video.mimeType)
-    }
-    else -> null
-}
-
-fun TLMessageMediaVideo.getMediaThumbnailInput() = when (video) {
-    is TLVideo -> (video as TLVideo).thumb.getMediaInput()
     else -> null
 }
 

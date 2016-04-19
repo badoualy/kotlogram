@@ -83,18 +83,6 @@ public class TLRequestChannelsInviteToChannel extends TLMethod<TLAbsUpdates> {
         return CONSTRUCTOR_ID;
     }
 
-    @Override
-    @SuppressWarnings("PointlessBooleanExpression")
-    public boolean equals(Object object) {
-        if (!(object instanceof TLRequestChannelsInviteToChannel)) return false;
-        if (object == this) return true;
-
-        TLRequestChannelsInviteToChannel o = (TLRequestChannelsInviteToChannel) object;
-
-        return (channel == o.channel || (channel != null && o.channel != null && channel.equals(o.channel)))
-                && (users == o.users || (users != null && o.users != null && users.equals(o.users)));
-    }
-
     public TLAbsInputChannel getChannel() {
         return channel;
     }

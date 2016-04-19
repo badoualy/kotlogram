@@ -55,17 +55,6 @@ public class TLPhotoEmpty extends TLAbsPhoto {
         return CONSTRUCTOR_ID;
     }
 
-    @Override
-    @SuppressWarnings("PointlessBooleanExpression")
-    public boolean equals(Object object) {
-        if (!(object instanceof TLPhotoEmpty)) return false;
-        if (object == this) return true;
-
-        TLPhotoEmpty o = (TLPhotoEmpty) object;
-
-        return id == o.id;
-    }
-
     public long getId() {
         return id;
     }

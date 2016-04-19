@@ -13,10 +13,16 @@ import org.testng.annotations.Test;
 import java.io.File;
 import java.io.IOException;
 
+/**
+ * Unit test that will read all dump and try to de-serialize then re-serialize then, checking each time if the content and the bytes are equals
+ *
+ * @author Yannick Badoual yann.badoual@gmail.com
+ * @see <a href="http://github.com/badoualy/kotlogram">http://github.com/badoualy/kotlogram</a>
+ */
 public class TLApiDumpTest implements ITest {
     private File file;
 
-    public TLApiDumpTest(File file) {
+    private TLApiDumpTest(File file) {
         this.file = file;
     }
 

@@ -1,6 +1,29 @@
 {
   "chat": {
-    "_constructor": "chatEmpty#9ba2d800",
+    "flags": 101,
+    "title": "cwcCZHpgr9v5",
+    "photo": {
+      "photoSmall": {
+        "_constructor": "fileLocationUnavailable#7c596b46",
+        "volumeId": 0,
+        "localId": 0,
+        "secret": 0
+      },
+      "photoBig": {
+        "_constructor": "fileLocationUnavailable#7c596b46",
+        "volumeId": 0,
+        "localId": 0,
+        "secret": 0
+      },
+      "_constructor": "chatPhoto#6153276a"
+    },
+    "participantsCount": 0,
+    "date": 0,
+    "version": 0,
+    "migratedTo": {
+      "_constructor": "inputChannelEmpty#ee8c1e86"
+    },
+    "_constructor": "chat#d91cdd54",
     "id": 0
   },
   "_constructor": "chatInviteAlready#5a686d7c"

@@ -57,17 +57,6 @@ public class TLMessageActionChatJoinedByLink extends TLAbsMessageAction {
         return CONSTRUCTOR_ID;
     }
 
-    @Override
-    @SuppressWarnings("PointlessBooleanExpression")
-    public boolean equals(Object object) {
-        if (!(object instanceof TLMessageActionChatJoinedByLink)) return false;
-        if (object == this) return true;
-
-        TLMessageActionChatJoinedByLink o = (TLMessageActionChatJoinedByLink) object;
-
-        return inviterId == o.inviterId;
-    }
-
     public int getInviterId() {
         return inviterId;
     }

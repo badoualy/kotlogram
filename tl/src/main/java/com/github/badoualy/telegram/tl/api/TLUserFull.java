@@ -8,21 +8,30 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 
-import static com.github.badoualy.telegram.tl.StreamUtils.readTLBool;
+import static com.github.badoualy.telegram.tl.StreamUtils.readInt;
 import static com.github.badoualy.telegram.tl.StreamUtils.readTLObject;
-import static com.github.badoualy.telegram.tl.StreamUtils.writeBoolean;
+import static com.github.badoualy.telegram.tl.StreamUtils.readTLString;
+import static com.github.badoualy.telegram.tl.StreamUtils.writeInt;
+import static com.github.badoualy.telegram.tl.StreamUtils.writeString;
 import static com.github.badoualy.telegram.tl.StreamUtils.writeTLObject;
-import static com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_BOOLEAN;
 import static com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_CONSTRUCTOR_ID;
+import static com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_INT32;
+import static com.github.badoualy.telegram.tl.TLObjectUtils.computeTLStringSerializedSize;
 
 /**
  * @author Yannick Badoual yann.badoual@gmail.com
  * @see <a href="http://github.com/badoualy/kotlogram">http://github.com/badoualy/kotlogram</a>
  */
 public class TLUserFull extends TLObject {
-    public static final int CONSTRUCTOR_ID = 0x5a89ac5b;
+    public static final int CONSTRUCTOR_ID = 0x5932fc03;
+
+    protected int flags;
+
+    protected boolean blocked;
 
     protected TLAbsUser user;
+
+    protected String about;
 
     protected TLLink link;
 
@@ -30,54 +39,88 @@ public class TLUserFull extends TLObject {
 
     protected TLAbsPeerNotifySettings notifySettings;
 
-    protected boolean blocked;
+    protected TLBotInfo botInfo;
 
-    protected TLAbsBotInfo botInfo;
-
-    private final String _constructor = "userFull#5a89ac5b";
+    private final String _constructor = "userFull#5932fc03";
 
     public TLUserFull() {
     }
 
-    public TLUserFull(TLAbsUser user, TLLink link, TLAbsPhoto profilePhoto, TLAbsPeerNotifySettings notifySettings, boolean blocked, TLAbsBotInfo botInfo) {
+    public TLUserFull(boolean blocked, TLAbsUser user, String about, TLLink link, TLAbsPhoto profilePhoto, TLAbsPeerNotifySettings notifySettings, TLBotInfo botInfo) {
+        this.blocked = blocked;
         this.user = user;
+        this.about = about;
         this.link = link;
         this.profilePhoto = profilePhoto;
         this.notifySettings = notifySettings;
-        this.blocked = blocked;
         this.botInfo = botInfo;
+    }
+
+    private void computeFlags() {
+        flags = 0;
+        flags = blocked ? (flags | 1) : (flags &~ 1);
+        // Fields below may not be serialized due to flags field value
+        if ((flags & 2) == 0) about = null;
+        if ((flags & 4) == 0) profilePhoto = null;
+        if ((flags & 8) == 0) botInfo = null;
     }
 
     @Override
     public void serializeBody(OutputStream stream) throws IOException {
+        computeFlags();
+
+        writeInt(flags, stream);
         writeTLObject(user, stream);
+        if ((flags & 2) != 0) {
+            if (about == null) throwNullFieldException("about", flags);
+            writeString(about, stream);
+        }
         writeTLObject(link, stream);
-        writeTLObject(profilePhoto, stream);
+        if ((flags & 4) != 0) {
+            if (profilePhoto == null) throwNullFieldException("profilePhoto", flags);
+            writeTLObject(profilePhoto, stream);
+        }
         writeTLObject(notifySettings, stream);
-        writeBoolean(blocked, stream);
-        writeTLObject(botInfo, stream);
+        if ((flags & 8) != 0) {
+            if (botInfo == null) throwNullFieldException("botInfo", flags);
+            writeTLObject(botInfo, stream);
+        }
     }
 
     @Override
     @SuppressWarnings("unchecked")
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
+        flags = readInt(stream);
+        blocked = (flags & 1) != 0;
         user = readTLObject(stream, context, TLAbsUser.class, -1);
+        about = (flags & 2) != 0 ? readTLString(stream) : null;
         link = readTLObject(stream, context, TLLink.class, TLLink.CONSTRUCTOR_ID);
-        profilePhoto = readTLObject(stream, context, TLAbsPhoto.class, -1);
+        profilePhoto = (flags & 4) != 0 ? readTLObject(stream, context, TLAbsPhoto.class, -1) : null;
         notifySettings = readTLObject(stream, context, TLAbsPeerNotifySettings.class, -1);
-        blocked = readTLBool(stream);
-        botInfo = readTLObject(stream, context, TLAbsBotInfo.class, -1);
+        botInfo = (flags & 8) != 0 ? readTLObject(stream, context, TLBotInfo.class, TLBotInfo.CONSTRUCTOR_ID) : null;
     }
 
     @Override
     public int computeSerializedSize() {
+        computeFlags();
+
         int size = SIZE_CONSTRUCTOR_ID;
+        size += SIZE_INT32;
         size += user.computeSerializedSize();
+        if ((flags & 2) != 0) {
+            if (about == null) throwNullFieldException("about", flags);
+            size += computeTLStringSerializedSize(about);
+        }
         size += link.computeSerializedSize();
-        size += profilePhoto.computeSerializedSize();
+        if ((flags & 4) != 0) {
+            if (profilePhoto == null) throwNullFieldException("profilePhoto", flags);
+            size += profilePhoto.computeSerializedSize();
+        }
         size += notifySettings.computeSerializedSize();
-        size += SIZE_BOOLEAN;
-        size += botInfo.computeSerializedSize();
+        if ((flags & 8) != 0) {
+            if (botInfo == null) throwNullFieldException("botInfo", flags);
+            size += botInfo.computeSerializedSize();
+        }
         return size;
     }
 
@@ -91,20 +134,12 @@ public class TLUserFull extends TLObject {
         return CONSTRUCTOR_ID;
     }
 
-    @Override
-    @SuppressWarnings("PointlessBooleanExpression")
-    public boolean equals(Object object) {
-        if (!(object instanceof TLUserFull)) return false;
-        if (object == this) return true;
+    public boolean getBlocked() {
+        return blocked;
+    }
 
-        TLUserFull o = (TLUserFull) object;
-
-        return (user == o.user || (user != null && o.user != null && user.equals(o.user)))
-                && (link == o.link || (link != null && o.link != null && link.equals(o.link)))
-                && (profilePhoto == o.profilePhoto || (profilePhoto != null && o.profilePhoto != null && profilePhoto.equals(o.profilePhoto)))
-                && (notifySettings == o.notifySettings || (notifySettings != null && o.notifySettings != null && notifySettings.equals(o.notifySettings)))
-                && blocked == o.blocked
-                && (botInfo == o.botInfo || (botInfo != null && o.botInfo != null && botInfo.equals(o.botInfo)));
+    public void setBlocked(boolean blocked) {
+        this.blocked = blocked;
     }
 
     public TLAbsUser getUser() {
@@ -113,6 +148,14 @@ public class TLUserFull extends TLObject {
 
     public void setUser(TLAbsUser user) {
         this.user = user;
+    }
+
+    public String getAbout() {
+        return about;
+    }
+
+    public void setAbout(String about) {
+        this.about = about;
     }
 
     public TLLink getLink() {
@@ -139,19 +182,11 @@ public class TLUserFull extends TLObject {
         this.notifySettings = notifySettings;
     }
 
-    public boolean getBlocked() {
-        return blocked;
-    }
-
-    public void setBlocked(boolean blocked) {
-        this.blocked = blocked;
-    }
-
-    public TLAbsBotInfo getBotInfo() {
+    public TLBotInfo getBotInfo() {
         return botInfo;
     }
 
-    public void setBotInfo(TLAbsBotInfo botInfo) {
+    public void setBotInfo(TLBotInfo botInfo) {
         this.botInfo = botInfo;
     }
 }

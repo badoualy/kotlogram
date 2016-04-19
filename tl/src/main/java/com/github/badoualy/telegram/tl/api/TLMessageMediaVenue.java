@@ -83,21 +83,6 @@ public class TLMessageMediaVenue extends TLAbsMessageMedia {
         return CONSTRUCTOR_ID;
     }
 
-    @Override
-    @SuppressWarnings("PointlessBooleanExpression")
-    public boolean equals(Object object) {
-        if (!(object instanceof TLMessageMediaVenue)) return false;
-        if (object == this) return true;
-
-        TLMessageMediaVenue o = (TLMessageMediaVenue) object;
-
-        return (geo == o.geo || (geo != null && o.geo != null && geo.equals(o.geo)))
-                && (title == o.title || (title != null && o.title != null && title.equals(o.title)))
-                && (address == o.address || (address != null && o.address != null && address.equals(o.address)))
-                && (provider == o.provider || (provider != null && o.provider != null && provider.equals(o.provider)))
-                && (venueId == o.venueId || (venueId != null && o.venueId != null && venueId.equals(o.venueId)));
-    }
-
     public TLAbsGeoPoint getGeo() {
         return geo;
     }

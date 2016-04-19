@@ -21,15 +21,4 @@ public class TLDocumentAttributeAnimated extends TLAbsDocumentAttribute {
     public int getConstructorId() {
         return CONSTRUCTOR_ID;
     }
-
-    @Override
-    @SuppressWarnings("PointlessBooleanExpression")
-    public boolean equals(Object object) {
-        if (!(object instanceof TLDocumentAttributeAnimated)) return false;
-        if (object == this) return true;
-
-        TLDocumentAttributeAnimated o = (TLDocumentAttributeAnimated) object;
-
-        return true;
-    }
 }

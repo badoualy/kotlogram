@@ -1,7 +1,9 @@
 {
   "id": {
-    "_constructor": "inputPhotoEmpty#1cd7bf0d"
+    "id": 0,
+    "accessHash": 0,
+    "_constructor": "inputPhoto#fb95c6c4"
   },
-  "caption": "Af9rLapwF2otpZLUMPjG",
+  "caption": "9i70bAmB61",
   "_constructor": "inputMediaPhoto#e9bfb4f3"
 }

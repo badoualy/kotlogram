@@ -58,17 +58,6 @@ public class TLInviteText extends TLObject {
         return CONSTRUCTOR_ID;
     }
 
-    @Override
-    @SuppressWarnings("PointlessBooleanExpression")
-    public boolean equals(Object object) {
-        if (!(object instanceof TLInviteText)) return false;
-        if (object == this) return true;
-
-        TLInviteText o = (TLInviteText) object;
-
-        return (message == o.message || (message != null && o.message != null && message.equals(o.message)));
-    }
-
     public String getMessage() {
         return message;
     }

@@ -71,20 +71,6 @@ public class TLDialogs extends TLAbsDialogs {
         return CONSTRUCTOR_ID;
     }
 
-    @Override
-    @SuppressWarnings("PointlessBooleanExpression")
-    public boolean equals(Object object) {
-        if (!(object instanceof TLDialogs)) return false;
-        if (object == this) return true;
-
-        TLDialogs o = (TLDialogs) object;
-
-        return (dialogs == o.dialogs || (dialogs != null && o.dialogs != null && dialogs.equals(o.dialogs)))
-                && (messages == o.messages || (messages != null && o.messages != null && messages.equals(o.messages)))
-                && (chats == o.chats || (chats != null && o.chats != null && chats.equals(o.chats)))
-                && (users == o.users || (users != null && o.users != null && users.equals(o.users)));
-    }
-
     public TLVector<TLAbsDialog> getDialogs() {
         return dialogs;
     }

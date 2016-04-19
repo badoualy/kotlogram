@@ -23,17 +23,6 @@ public class TLUserProfilePhotoEmpty extends TLAbsUserProfilePhoto {
     }
 
     @Override
-    @SuppressWarnings("PointlessBooleanExpression")
-    public boolean equals(Object object) {
-        if (!(object instanceof TLUserProfilePhotoEmpty)) return false;
-        if (object == this) return true;
-
-        TLUserProfilePhotoEmpty o = (TLUserProfilePhotoEmpty) object;
-
-        return true;
-    }
-
-    @Override
     public final boolean isEmpty() {
         return true;
     }

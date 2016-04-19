@@ -116,23 +116,6 @@ public class TLRequestAccountRegisterDevice extends TLMethod<TLBool> {
         return CONSTRUCTOR_ID;
     }
 
-    @Override
-    @SuppressWarnings("PointlessBooleanExpression")
-    public boolean equals(Object object) {
-        if (!(object instanceof TLRequestAccountRegisterDevice)) return false;
-        if (object == this) return true;
-
-        TLRequestAccountRegisterDevice o = (TLRequestAccountRegisterDevice) object;
-
-        return tokenType == o.tokenType
-                && (token == o.token || (token != null && o.token != null && token.equals(o.token)))
-                && (deviceModel == o.deviceModel || (deviceModel != null && o.deviceModel != null && deviceModel.equals(o.deviceModel)))
-                && (systemVersion == o.systemVersion || (systemVersion != null && o.systemVersion != null && systemVersion.equals(o.systemVersion)))
-                && (appVersion == o.appVersion || (appVersion != null && o.appVersion != null && appVersion.equals(o.appVersion)))
-                && appSandbox == o.appSandbox
-                && (langCode == o.langCode || (langCode != null && o.langCode != null && langCode.equals(o.langCode)));
-    }
-
     public int getTokenType() {
         return tokenType;
     }

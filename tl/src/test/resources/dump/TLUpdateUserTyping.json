@@ -1,7 +1,8 @@
 {
   "userId": 0,
   "action": {
-    "_constructor": "sendMessageCancelAction#fd5ec8f5"
+    "progress": 0,
+    "_constructor": "sendMessageUploadVideoAction#e9763aec"
   },
   "_constructor": "updateUserTyping#5c486927"
 }

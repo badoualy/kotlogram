@@ -32,7 +32,8 @@ public class TLChannelDifferenceEmpty extends TLAbsChannelDifference {
     private void computeFlags() {
         flags = 0;
         flags = _final ? (flags | 1) : (flags &~ 1);
-        flags = timeout != null ? (flags | 2) : (flags &~ 2);
+        // Fields below may not be serialized due to flags field value
+        if ((flags & 2) == 0) timeout = null;
     }
 
     @Override
@@ -41,7 +42,10 @@ public class TLChannelDifferenceEmpty extends TLAbsChannelDifference {
 
         writeInt(flags, stream);
         writeInt(pts, stream);
-        if ((flags & 2) != 0) writeInt(timeout, stream);
+        if ((flags & 2) != 0) {
+            if (timeout == null) throwNullFieldException("timeout", flags);
+            writeInt(timeout, stream);
+        }
     }
 
     @Override
@@ -60,7 +64,10 @@ public class TLChannelDifferenceEmpty extends TLAbsChannelDifference {
         int size = SIZE_CONSTRUCTOR_ID;
         size += SIZE_INT32;
         size += SIZE_INT32;
-        if ((flags & 2) != 0) size += SIZE_INT32;
+        if ((flags & 2) != 0) {
+            if (timeout == null) throwNullFieldException("timeout", flags);
+            size += SIZE_INT32;
+        }
         return size;
     }
 
@@ -72,20 +79,6 @@ public class TLChannelDifferenceEmpty extends TLAbsChannelDifference {
     @Override
     public int getConstructorId() {
         return CONSTRUCTOR_ID;
-    }
-
-    @Override
-    @SuppressWarnings("PointlessBooleanExpression")
-    public boolean equals(Object object) {
-        if (!(object instanceof TLChannelDifferenceEmpty)) return false;
-        if (object == this) return true;
-
-        TLChannelDifferenceEmpty o = (TLChannelDifferenceEmpty) object;
-
-        return flags == o.flags
-                && _final == o._final
-                && pts == o.pts
-                && (timeout == o.timeout || (timeout != null && o.timeout != null && timeout.equals(o.timeout)));
     }
 
     public boolean getFinal() {

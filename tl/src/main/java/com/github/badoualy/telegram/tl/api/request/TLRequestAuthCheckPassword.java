@@ -75,17 +75,6 @@ public class TLRequestAuthCheckPassword extends TLMethod<TLAuthorization> {
         return CONSTRUCTOR_ID;
     }
 
-    @Override
-    @SuppressWarnings("PointlessBooleanExpression")
-    public boolean equals(Object object) {
-        if (!(object instanceof TLRequestAuthCheckPassword)) return false;
-        if (object == this) return true;
-
-        TLRequestAuthCheckPassword o = (TLRequestAuthCheckPassword) object;
-
-        return (passwordHash == o.passwordHash || (passwordHash != null && o.passwordHash != null && passwordHash.equals(o.passwordHash)));
-    }
-
     public TLBytes getPasswordHash() {
         return passwordHash;
     }

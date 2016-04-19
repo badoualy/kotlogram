@@ -4,7 +4,7 @@ import com.fasterxml.jackson.databind.JsonNode
 import java.util.*
 
 private val genericRegex = Regex("([a-zA-Z]+)<([a-zA-Z]+)>") // Vector<SomeKindOfType>
-private val flagRegex = Regex("([a-zA-Z]+).(\\d+)\\?([a-zA-Z<>]+)") // flags.0?true
+private val flagRegex = Regex("([a-zA-Z]+).(\\d+)\\?([a-zA-Z<>.]+)") // flags.0?true
 private val rawRegex = Regex("[a-zA-Z].+")
 
 fun buildFromJson(root: JsonNode): TLDefinition {
@@ -80,9 +80,6 @@ private fun createType(typeName: String, types: Map<String, TLTypeRaw>, isParame
         val value = groups?.get(2)?.value?.toInt() ?: throw RuntimeException("Unknown error with type $typeName")
         var realType = groups?.get(3)?.value ?: throw RuntimeException("Unknown error with type $typeName")
         if (!maskName.equals("flags")) throw RuntimeException("Unsupported flag name, expected `flags`")
-
-        if (realType == "true" || realType == "false")
-            realType = "Bool"
 
         TLTypeConditional(value, createType(realType, types))
     }

@@ -94,20 +94,6 @@ public class TLRequestMessagesGetDialogs extends TLMethod<TLAbsDialogs> {
         return CONSTRUCTOR_ID;
     }
 
-    @Override
-    @SuppressWarnings("PointlessBooleanExpression")
-    public boolean equals(Object object) {
-        if (!(object instanceof TLRequestMessagesGetDialogs)) return false;
-        if (object == this) return true;
-
-        TLRequestMessagesGetDialogs o = (TLRequestMessagesGetDialogs) object;
-
-        return offsetDate == o.offsetDate
-                && offsetId == o.offsetId
-                && (offsetPeer == o.offsetPeer || (offsetPeer != null && o.offsetPeer != null && offsetPeer.equals(o.offsetPeer)))
-                && limit == o.limit;
-    }
-
     public int getOffsetDate() {
         return offsetDate;
     }

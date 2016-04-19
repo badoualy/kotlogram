@@ -21,15 +21,4 @@ public class TLInputPhotoCropAuto extends TLAbsInputPhotoCrop {
     public int getConstructorId() {
         return CONSTRUCTOR_ID;
     }
-
-    @Override
-    @SuppressWarnings("PointlessBooleanExpression")
-    public boolean equals(Object object) {
-        if (!(object instanceof TLInputPhotoCropAuto)) return false;
-        if (object == this) return true;
-
-        TLInputPhotoCropAuto o = (TLInputPhotoCropAuto) object;
-
-        return true;
-    }
 }

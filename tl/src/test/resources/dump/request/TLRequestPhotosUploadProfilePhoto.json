@@ -3,11 +3,13 @@
     "_constructor": "inputFileBig#fa4f0bb5",
     "id": 0,
     "parts": 0,
-    "name": "gIxRNBAxbNbkXMxvW"
+    "name": "iap0VwMKJov4cZmAVb2bg42dEn8"
   },
-  "caption": "kMjtW1JXrchHhF9aL",
+  "caption": "wypLKg055taflQ4gbHX",
   "geoPoint": {
-    "_constructor": "inputGeoPointEmpty#e4c123d6"
+    "lat": 0.0,
+    "_long": 0.0,
+    "_constructor": "inputGeoPoint#f3b7acc9"
   },
   "crop": {
     "_constructor": "inputPhotoCropAuto#ade6b004"

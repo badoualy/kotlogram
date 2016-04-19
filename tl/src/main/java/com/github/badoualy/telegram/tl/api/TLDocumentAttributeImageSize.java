@@ -63,18 +63,6 @@ public class TLDocumentAttributeImageSize extends TLAbsDocumentAttribute {
         return CONSTRUCTOR_ID;
     }
 
-    @Override
-    @SuppressWarnings("PointlessBooleanExpression")
-    public boolean equals(Object object) {
-        if (!(object instanceof TLDocumentAttributeImageSize)) return false;
-        if (object == this) return true;
-
-        TLDocumentAttributeImageSize o = (TLDocumentAttributeImageSize) object;
-
-        return w == o.w
-                && h == o.h;
-    }
-
     public int getW() {
         return w;
     }

@@ -23,17 +23,6 @@ public class TLEncryptedFileEmpty extends TLAbsEncryptedFile {
     }
 
     @Override
-    @SuppressWarnings("PointlessBooleanExpression")
-    public boolean equals(Object object) {
-        if (!(object instanceof TLEncryptedFileEmpty)) return false;
-        if (object == this) return true;
-
-        TLEncryptedFileEmpty o = (TLEncryptedFileEmpty) object;
-
-        return true;
-    }
-
-    @Override
     public final boolean isEmpty() {
         return true;
     }

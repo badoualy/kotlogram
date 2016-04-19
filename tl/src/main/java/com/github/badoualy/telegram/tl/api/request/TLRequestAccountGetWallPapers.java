@@ -37,15 +37,4 @@ public class TLRequestAccountGetWallPapers extends TLMethod<TLVector<TLAbsWallPa
     public int getConstructorId() {
         return CONSTRUCTOR_ID;
     }
-
-    @Override
-    @SuppressWarnings("PointlessBooleanExpression")
-    public boolean equals(Object object) {
-        if (!(object instanceof TLRequestAccountGetWallPapers)) return false;
-        if (object == this) return true;
-
-        TLRequestAccountGetWallPapers o = (TLRequestAccountGetWallPapers) object;
-
-        return true;
-    }
 }

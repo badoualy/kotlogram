@@ -21,15 +21,4 @@ public class TLInputPeerEmpty extends TLAbsInputPeer {
     public int getConstructorId() {
         return CONSTRUCTOR_ID;
     }
-
-    @Override
-    @SuppressWarnings("PointlessBooleanExpression")
-    public boolean equals(Object object) {
-        if (!(object instanceof TLInputPeerEmpty)) return false;
-        if (object == this) return true;
-
-        TLInputPeerEmpty o = (TLInputPeerEmpty) object;
-
-        return true;
-    }
 }

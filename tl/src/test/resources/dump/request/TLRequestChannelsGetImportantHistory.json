@@ -5,9 +5,10 @@
     "_constructor": "inputChannel#afeb712e"
   },
   "offsetId": 0,
+  "offsetDate": 0,
   "addOffset": 0,
   "limit": 0,
   "maxId": 0,
   "minId": 0,
-  "_constructor": "channels.getImportantHistory#ddb929cb"
+  "_constructor": "channels.getImportantHistory#8f494bb2"
 }

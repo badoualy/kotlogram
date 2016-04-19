@@ -63,18 +63,6 @@ public class TLInputDocument extends TLAbsInputDocument {
         return CONSTRUCTOR_ID;
     }
 
-    @Override
-    @SuppressWarnings("PointlessBooleanExpression")
-    public boolean equals(Object object) {
-        if (!(object instanceof TLInputDocument)) return false;
-        if (object == this) return true;
-
-        TLInputDocument o = (TLInputDocument) object;
-
-        return id == o.id
-                && accessHash == o.accessHash;
-    }
-
     public long getId() {
         return id;
     }

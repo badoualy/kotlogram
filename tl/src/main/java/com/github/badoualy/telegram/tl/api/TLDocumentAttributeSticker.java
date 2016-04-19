@@ -65,18 +65,6 @@ public class TLDocumentAttributeSticker extends TLAbsDocumentAttribute {
         return CONSTRUCTOR_ID;
     }
 
-    @Override
-    @SuppressWarnings("PointlessBooleanExpression")
-    public boolean equals(Object object) {
-        if (!(object instanceof TLDocumentAttributeSticker)) return false;
-        if (object == this) return true;
-
-        TLDocumentAttributeSticker o = (TLDocumentAttributeSticker) object;
-
-        return (alt == o.alt || (alt != null && o.alt != null && alt.equals(o.alt)))
-                && (stickerset == o.stickerset || (stickerset != null && o.stickerset != null && stickerset.equals(o.stickerset)));
-    }
-
     public String getAlt() {
         return alt;
     }

@@ -74,17 +74,6 @@ public class TLRequestMessagesReorderStickerSets extends TLMethod<TLBool> {
         return CONSTRUCTOR_ID;
     }
 
-    @Override
-    @SuppressWarnings("PointlessBooleanExpression")
-    public boolean equals(Object object) {
-        if (!(object instanceof TLRequestMessagesReorderStickerSets)) return false;
-        if (object == this) return true;
-
-        TLRequestMessagesReorderStickerSets o = (TLRequestMessagesReorderStickerSets) object;
-
-        return (order == o.order || (order != null && o.order != null && order.equals(o.order)));
-    }
-
     public TLLongVector getOrder() {
         return order;
     }

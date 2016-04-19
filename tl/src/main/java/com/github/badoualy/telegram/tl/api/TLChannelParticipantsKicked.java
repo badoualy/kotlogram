@@ -21,15 +21,4 @@ public class TLChannelParticipantsKicked extends TLAbsChannelParticipantsFilter 
     public int getConstructorId() {
         return CONSTRUCTOR_ID;
     }
-
-    @Override
-    @SuppressWarnings("PointlessBooleanExpression")
-    public boolean equals(Object object) {
-        if (!(object instanceof TLChannelParticipantsKicked)) return false;
-        if (object == this) return true;
-
-        TLChannelParticipantsKicked o = (TLChannelParticipantsKicked) object;
-
-        return true;
-    }
 }

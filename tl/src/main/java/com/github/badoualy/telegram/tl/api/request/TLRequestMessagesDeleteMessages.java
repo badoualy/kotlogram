@@ -74,17 +74,6 @@ public class TLRequestMessagesDeleteMessages extends TLMethod<TLAffectedMessages
         return CONSTRUCTOR_ID;
     }
 
-    @Override
-    @SuppressWarnings("PointlessBooleanExpression")
-    public boolean equals(Object object) {
-        if (!(object instanceof TLRequestMessagesDeleteMessages)) return false;
-        if (object == this) return true;
-
-        TLRequestMessagesDeleteMessages o = (TLRequestMessagesDeleteMessages) object;
-
-        return (id == o.id || (id != null && o.id != null && id.equals(o.id)));
-    }
-
     public TLIntVector getId() {
         return id;
     }

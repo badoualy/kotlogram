@@ -23,17 +23,6 @@ public class TLChatInviteEmpty extends TLAbsExportedChatInvite {
     }
 
     @Override
-    @SuppressWarnings("PointlessBooleanExpression")
-    public boolean equals(Object object) {
-        if (!(object instanceof TLChatInviteEmpty)) return false;
-        if (object == this) return true;
-
-        TLChatInviteEmpty o = (TLChatInviteEmpty) object;
-
-        return true;
-    }
-
-    @Override
     public final boolean isEmpty() {
         return true;
     }

@@ -1,7 +1,7 @@
 {
   "peer": {
-    "userId": 0,
-    "_constructor": "peerUser#9db1bc6d"
+    "chatId": 0,
+    "_constructor": "peerChat#bad0e5bb"
   },
   "maxId": 0,
   "pts": 0,

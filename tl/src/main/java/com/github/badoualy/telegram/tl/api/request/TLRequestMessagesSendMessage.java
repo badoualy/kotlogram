@@ -41,6 +41,10 @@ public class TLRequestMessagesSendMessage extends TLMethod<TLAbsUpdates> {
 
     protected boolean broadcast;
 
+    protected boolean silent;
+
+    protected boolean background;
+
     protected TLAbsInputPeer peer;
 
     protected Integer replyToMsgId;
@@ -58,9 +62,11 @@ public class TLRequestMessagesSendMessage extends TLMethod<TLAbsUpdates> {
     public TLRequestMessagesSendMessage() {
     }
 
-    public TLRequestMessagesSendMessage(boolean noWebpage, boolean broadcast, TLAbsInputPeer peer, Integer replyToMsgId, String message, long randomId, TLAbsReplyMarkup replyMarkup, TLVector<TLAbsMessageEntity> entities) {
+    public TLRequestMessagesSendMessage(boolean noWebpage, boolean broadcast, boolean silent, boolean background, TLAbsInputPeer peer, Integer replyToMsgId, String message, long randomId, TLAbsReplyMarkup replyMarkup, TLVector<TLAbsMessageEntity> entities) {
         this.noWebpage = noWebpage;
         this.broadcast = broadcast;
+        this.silent = silent;
+        this.background = background;
         this.peer = peer;
         this.replyToMsgId = replyToMsgId;
         this.message = message;
@@ -86,9 +92,12 @@ public class TLRequestMessagesSendMessage extends TLMethod<TLAbsUpdates> {
         flags = 0;
         flags = noWebpage ? (flags | 2) : (flags &~ 2);
         flags = broadcast ? (flags | 16) : (flags &~ 16);
-        flags = replyToMsgId != null ? (flags | 1) : (flags &~ 1);
-        flags = replyMarkup != null ? (flags | 4) : (flags &~ 4);
-        flags = entities != null ? (flags | 8) : (flags &~ 8);
+        flags = silent ? (flags | 32) : (flags &~ 32);
+        flags = background ? (flags | 64) : (flags &~ 64);
+        // Fields below may not be serialized due to flags field value
+        if ((flags & 1) == 0) replyToMsgId = null;
+        if ((flags & 4) == 0) replyMarkup = null;
+        if ((flags & 8) == 0) entities = null;
     }
 
     @Override
@@ -97,11 +106,20 @@ public class TLRequestMessagesSendMessage extends TLMethod<TLAbsUpdates> {
 
         writeInt(flags, stream);
         writeTLObject(peer, stream);
-        if ((flags & 1) != 0) writeInt(replyToMsgId, stream);
+        if ((flags & 1) != 0) {
+            if (replyToMsgId == null) throwNullFieldException("replyToMsgId", flags);
+            writeInt(replyToMsgId, stream);
+        }
         writeString(message, stream);
         writeLong(randomId, stream);
-        if ((flags & 4) != 0) writeTLObject(replyMarkup, stream);
-        if ((flags & 8) != 0) writeTLVector(entities, stream);
+        if ((flags & 4) != 0) {
+            if (replyMarkup == null) throwNullFieldException("replyMarkup", flags);
+            writeTLObject(replyMarkup, stream);
+        }
+        if ((flags & 8) != 0) {
+            if (entities == null) throwNullFieldException("entities", flags);
+            writeTLVector(entities, stream);
+        }
     }
 
     @Override
@@ -110,6 +128,8 @@ public class TLRequestMessagesSendMessage extends TLMethod<TLAbsUpdates> {
         flags = readInt(stream);
         noWebpage = (flags & 2) != 0;
         broadcast = (flags & 16) != 0;
+        silent = (flags & 32) != 0;
+        background = (flags & 64) != 0;
         peer = readTLObject(stream, context, TLAbsInputPeer.class, -1);
         replyToMsgId = (flags & 1) != 0 ? readInt(stream) : null;
         message = readTLString(stream);
@@ -125,11 +145,20 @@ public class TLRequestMessagesSendMessage extends TLMethod<TLAbsUpdates> {
         int size = SIZE_CONSTRUCTOR_ID;
         size += SIZE_INT32;
         size += peer.computeSerializedSize();
-        if ((flags & 1) != 0) size += SIZE_INT32;
+        if ((flags & 1) != 0) {
+            if (replyToMsgId == null) throwNullFieldException("replyToMsgId", flags);
+            size += SIZE_INT32;
+        }
         size += computeTLStringSerializedSize(message);
         size += SIZE_INT64;
-        if ((flags & 4) != 0) size += replyMarkup.computeSerializedSize();
-        if ((flags & 8) != 0) size += entities.computeSerializedSize();
+        if ((flags & 4) != 0) {
+            if (replyMarkup == null) throwNullFieldException("replyMarkup", flags);
+            size += replyMarkup.computeSerializedSize();
+        }
+        if ((flags & 8) != 0) {
+            if (entities == null) throwNullFieldException("entities", flags);
+            size += entities.computeSerializedSize();
+        }
         return size;
     }
 
@@ -141,25 +170,6 @@ public class TLRequestMessagesSendMessage extends TLMethod<TLAbsUpdates> {
     @Override
     public int getConstructorId() {
         return CONSTRUCTOR_ID;
-    }
-
-    @Override
-    @SuppressWarnings("PointlessBooleanExpression")
-    public boolean equals(Object object) {
-        if (!(object instanceof TLRequestMessagesSendMessage)) return false;
-        if (object == this) return true;
-
-        TLRequestMessagesSendMessage o = (TLRequestMessagesSendMessage) object;
-
-        return flags == o.flags
-                && noWebpage == o.noWebpage
-                && broadcast == o.broadcast
-                && (peer == o.peer || (peer != null && o.peer != null && peer.equals(o.peer)))
-                && (replyToMsgId == o.replyToMsgId || (replyToMsgId != null && o.replyToMsgId != null && replyToMsgId.equals(o.replyToMsgId)))
-                && (message == o.message || (message != null && o.message != null && message.equals(o.message)))
-                && randomId == o.randomId
-                && (replyMarkup == o.replyMarkup || (replyMarkup != null && o.replyMarkup != null && replyMarkup.equals(o.replyMarkup)))
-                && (entities == o.entities || (entities != null && o.entities != null && entities.equals(o.entities)));
     }
 
     public boolean getNoWebpage() {
@@ -176,6 +186,22 @@ public class TLRequestMessagesSendMessage extends TLMethod<TLAbsUpdates> {
 
     public void setBroadcast(boolean broadcast) {
         this.broadcast = broadcast;
+    }
+
+    public boolean getSilent() {
+        return silent;
+    }
+
+    public void setSilent(boolean silent) {
+        this.silent = silent;
+    }
+
+    public boolean getBackground() {
+        return background;
+    }
+
+    public void setBackground(boolean background) {
+        this.background = background;
     }
 
     public TLAbsInputPeer getPeer() {

@@ -21,15 +21,4 @@ public class TLUserStatusRecently extends TLAbsUserStatus {
     public int getConstructorId() {
         return CONSTRUCTOR_ID;
     }
-
-    @Override
-    @SuppressWarnings("PointlessBooleanExpression")
-    public boolean equals(Object object) {
-        if (!(object instanceof TLUserStatusRecently)) return false;
-        if (object == this) return true;
-
-        TLUserStatusRecently o = (TLUserStatusRecently) object;
-
-        return true;
-    }
 }

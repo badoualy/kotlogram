@@ -74,17 +74,6 @@ public class TLRequestMessagesReadMessageContents extends TLMethod<TLAffectedMes
         return CONSTRUCTOR_ID;
     }
 
-    @Override
-    @SuppressWarnings("PointlessBooleanExpression")
-    public boolean equals(Object object) {
-        if (!(object instanceof TLRequestMessagesReadMessageContents)) return false;
-        if (object == this) return true;
-
-        TLRequestMessagesReadMessageContents o = (TLRequestMessagesReadMessageContents) object;
-
-        return (id == o.id || (id != null && o.id != null && id.equals(o.id)));
-    }
-
     public TLIntVector getId() {
         return id;
     }

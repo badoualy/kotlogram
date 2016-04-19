@@ -49,7 +49,8 @@ public class TLChannelMessages extends TLAbsMessages {
 
     private void computeFlags() {
         flags = 0;
-        flags = collapsed != null ? (flags | 1) : (flags &~ 1);
+        // Fields below may not be serialized due to flags field value
+        if ((flags & 1) == 0) collapsed = null;
     }
 
     @Override
@@ -60,7 +61,10 @@ public class TLChannelMessages extends TLAbsMessages {
         writeInt(pts, stream);
         writeInt(count, stream);
         writeTLVector(messages, stream);
-        if ((flags & 1) != 0) writeTLVector(collapsed, stream);
+        if ((flags & 1) != 0) {
+            if (collapsed == null)
+                throw new java.lang.NullPointerException("Attempt to serialize null field collapsed" (flags = " + flags + ");writeTLVector(collapsed, stream);
+        }
         writeTLVector(chats, stream);
         writeTLVector(users, stream);
     }
@@ -100,23 +104,6 @@ public class TLChannelMessages extends TLAbsMessages {
     @Override
     public int getConstructorId() {
         return CONSTRUCTOR_ID;
-    }
-
-    @Override
-    @SuppressWarnings("PointlessBooleanExpression")
-    public boolean equals(Object object) {
-        if (!(object instanceof TLChannelMessages)) return false;
-        if (object == this) return true;
-
-        TLChannelMessages o = (TLChannelMessages) object;
-
-        return flags == o.flags
-                && pts == o.pts
-                && count == o.count
-                && (messages == o.messages || (messages != null && o.messages != null && messages.equals(o.messages)))
-                && (collapsed == o.collapsed || (collapsed != null && o.collapsed != null && collapsed.equals(o.collapsed)))
-                && (chats == o.chats || (chats != null && o.chats != null && chats.equals(o.chats)))
-                && (users == o.users || (users != null && o.users != null && users.equals(o.users)));
     }
 
     public int getPts() {

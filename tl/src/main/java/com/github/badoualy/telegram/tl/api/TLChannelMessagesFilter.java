@@ -44,6 +44,7 @@ public class TLChannelMessagesFilter extends TLAbsChannelMessagesFilter {
         flags = 0;
         flags = importantOnly ? (flags | 1) : (flags &~ 1);
         flags = excludeNewMessages ? (flags | 2) : (flags &~ 2);
+        // Fields below may not be serialized due to flags field value
     }
 
     @Override
@@ -81,20 +82,6 @@ public class TLChannelMessagesFilter extends TLAbsChannelMessagesFilter {
     @Override
     public int getConstructorId() {
         return CONSTRUCTOR_ID;
-    }
-
-    @Override
-    @SuppressWarnings("PointlessBooleanExpression")
-    public boolean equals(Object object) {
-        if (!(object instanceof TLChannelMessagesFilter)) return false;
-        if (object == this) return true;
-
-        TLChannelMessagesFilter o = (TLChannelMessagesFilter) object;
-
-        return flags == o.flags
-                && importantOnly == o.importantOnly
-                && excludeNewMessages == o.excludeNewMessages
-                && (ranges == o.ranges || (ranges != null && o.ranges != null && ranges.equals(o.ranges)));
     }
 
     public boolean getImportantOnly() {

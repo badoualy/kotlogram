@@ -1,7 +1,7 @@
 package com.github.badoualy.telegram.tl.api.request;
 
 import com.github.badoualy.telegram.tl.TLContext;
-import com.github.badoualy.telegram.tl.api.auth.TLAbsSentCode;
+import com.github.badoualy.telegram.tl.api.auth.TLSentCode;
 import com.github.badoualy.telegram.tl.core.TLMethod;
 import com.github.badoualy.telegram.tl.core.TLObject;
 
@@ -10,10 +10,13 @@ import java.io.InputStream;
 import java.io.OutputStream;
 
 import static com.github.badoualy.telegram.tl.StreamUtils.readInt;
+import static com.github.badoualy.telegram.tl.StreamUtils.readTLBool;
 import static com.github.badoualy.telegram.tl.StreamUtils.readTLObject;
 import static com.github.badoualy.telegram.tl.StreamUtils.readTLString;
+import static com.github.badoualy.telegram.tl.StreamUtils.writeBoolean;
 import static com.github.badoualy.telegram.tl.StreamUtils.writeInt;
 import static com.github.badoualy.telegram.tl.StreamUtils.writeString;
+import static com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_BOOLEAN;
 import static com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_CONSTRUCTOR_ID;
 import static com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_INT32;
 import static com.github.badoualy.telegram.tl.TLObjectUtils.computeTLStringSerializedSize;
@@ -22,12 +25,16 @@ import static com.github.badoualy.telegram.tl.TLObjectUtils.computeTLStringSeria
  * @author Yannick Badoual yann.badoual@gmail.com
  * @see <a href="http://github.com/badoualy/kotlogram">http://github.com/badoualy/kotlogram</a>
  */
-public class TLRequestAuthSendCode extends TLMethod<TLAbsSentCode> {
-    public static final int CONSTRUCTOR_ID = 0x768d5f4d;
+public class TLRequestAuthSendCode extends TLMethod<TLSentCode> {
+    public static final int CONSTRUCTOR_ID = 0xccfd70cf;
+
+    protected int flags;
+
+    protected boolean allowFlashcall;
 
     protected String phoneNumber;
 
-    protected int smsType;
+    protected Boolean currentNumber;
 
     protected int apiId;
 
@@ -35,14 +42,15 @@ public class TLRequestAuthSendCode extends TLMethod<TLAbsSentCode> {
 
     protected String langCode;
 
-    private final String _constructor = "auth.sendCode#768d5f4d";
+    private final String _constructor = "auth.sendCode#ccfd70cf";
 
     public TLRequestAuthSendCode() {
     }
 
-    public TLRequestAuthSendCode(String phoneNumber, int smsType, int apiId, String apiHash, String langCode) {
+    public TLRequestAuthSendCode(boolean allowFlashcall, String phoneNumber, Boolean currentNumber, int apiId, String apiHash, String langCode) {
+        this.allowFlashcall = allowFlashcall;
         this.phoneNumber = phoneNumber;
-        this.smsType = smsType;
+        this.currentNumber = currentNumber;
         this.apiId = apiId;
         this.apiHash = apiHash;
         this.langCode = langCode;
@@ -50,21 +58,34 @@ public class TLRequestAuthSendCode extends TLMethod<TLAbsSentCode> {
 
     @Override
     @SuppressWarnings("unchecked")
-    public TLAbsSentCode deserializeResponse(InputStream stream, TLContext context) throws IOException {
+    public TLSentCode deserializeResponse(InputStream stream, TLContext context) throws IOException {
         final TLObject response = readTLObject(stream, context);
         if (response == null) {
             throw new IOException("Unable to parse response");
         }
-        if (!(response instanceof TLAbsSentCode)) {
+        if (!(response instanceof TLSentCode)) {
             throw new IOException("Incorrect response type, expected getClass().getCanonicalName(), found response.getClass().getCanonicalName()");
         }
-        return (TLAbsSentCode) response;
+        return (TLSentCode) response;
+    }
+
+    private void computeFlags() {
+        flags = 0;
+        flags = allowFlashcall ? (flags | 1) : (flags &~ 1);
+        // Fields below may not be serialized due to flags field value
+        if ((flags & 1) == 0) currentNumber = null;
     }
 
     @Override
     public void serializeBody(OutputStream stream) throws IOException {
+        computeFlags();
+
+        writeInt(flags, stream);
         writeString(phoneNumber, stream);
-        writeInt(smsType, stream);
+        if ((flags & 1) != 0) {
+            if (currentNumber == null) throwNullFieldException("currentNumber", flags);
+            writeBoolean(currentNumber, stream);
+        }
         writeInt(apiId, stream);
         writeString(apiHash, stream);
         writeString(langCode, stream);
@@ -73,8 +94,10 @@ public class TLRequestAuthSendCode extends TLMethod<TLAbsSentCode> {
     @Override
     @SuppressWarnings("unchecked")
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
+        flags = readInt(stream);
+        allowFlashcall = (flags & 1) != 0;
         phoneNumber = readTLString(stream);
-        smsType = readInt(stream);
+        currentNumber = (flags & 1) != 0 ? readTLBool(stream) : null;
         apiId = readInt(stream);
         apiHash = readTLString(stream);
         langCode = readTLString(stream);
@@ -82,9 +105,15 @@ public class TLRequestAuthSendCode extends TLMethod<TLAbsSentCode> {
 
     @Override
     public int computeSerializedSize() {
+        computeFlags();
+
         int size = SIZE_CONSTRUCTOR_ID;
-        size += computeTLStringSerializedSize(phoneNumber);
         size += SIZE_INT32;
+        size += computeTLStringSerializedSize(phoneNumber);
+        if ((flags & 1) != 0) {
+            if (currentNumber == null) throwNullFieldException("currentNumber", flags);
+            size += SIZE_BOOLEAN;
+        }
         size += SIZE_INT32;
         size += computeTLStringSerializedSize(apiHash);
         size += computeTLStringSerializedSize(langCode);
@@ -101,19 +130,12 @@ public class TLRequestAuthSendCode extends TLMethod<TLAbsSentCode> {
         return CONSTRUCTOR_ID;
     }
 
-    @Override
-    @SuppressWarnings("PointlessBooleanExpression")
-    public boolean equals(Object object) {
-        if (!(object instanceof TLRequestAuthSendCode)) return false;
-        if (object == this) return true;
+    public boolean getAllowFlashcall() {
+        return allowFlashcall;
+    }
 
-        TLRequestAuthSendCode o = (TLRequestAuthSendCode) object;
-
-        return (phoneNumber == o.phoneNumber || (phoneNumber != null && o.phoneNumber != null && phoneNumber.equals(o.phoneNumber)))
-                && smsType == o.smsType
-                && apiId == o.apiId
-                && (apiHash == o.apiHash || (apiHash != null && o.apiHash != null && apiHash.equals(o.apiHash)))
-                && (langCode == o.langCode || (langCode != null && o.langCode != null && langCode.equals(o.langCode)));
+    public void setAllowFlashcall(boolean allowFlashcall) {
+        this.allowFlashcall = allowFlashcall;
     }
 
     public String getPhoneNumber() {
@@ -124,12 +146,12 @@ public class TLRequestAuthSendCode extends TLMethod<TLAbsSentCode> {
         this.phoneNumber = phoneNumber;
     }
 
-    public int getSmsType() {
-        return smsType;
+    public Boolean getCurrentNumber() {
+        return currentNumber;
     }
 
-    public void setSmsType(int smsType) {
-        this.smsType = smsType;
+    public void setCurrentNumber(Boolean currentNumber) {
+        this.currentNumber = currentNumber;
     }
 
     public int getApiId() {

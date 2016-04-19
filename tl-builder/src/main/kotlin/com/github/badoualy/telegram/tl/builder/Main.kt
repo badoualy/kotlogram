@@ -6,7 +6,7 @@ import com.github.badoualy.telegram.tl.builder.parser.buildFromJson
 import com.github.badoualy.telegram.tl.builder.poet.JavaPoet
 import java.io.File
 
-private val TL_SCHEMA_LEVEL = 45
+private val TL_SCHEMA_LEVEL = 51
 private val TL_SCHEMA_PATH = "./tl-builder/src/main/resources/tl-schema-%d.json".format(TL_SCHEMA_LEVEL)
 
 val OUTPUT = "./tl/src/main/java"

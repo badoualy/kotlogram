@@ -1,6 +1,33 @@
 {
   "contacts": [
     {
+      "userId": 0,
+      "accessHash": 0,
+      "_constructor": "inputUser#d8292816"
+    },
+    {
+      "_constructor": "inputUserEmpty#b98886cf"
+    },
+    {
+      "_constructor": "inputUserEmpty#b98886cf"
+    },
+    {
+      "_constructor": "inputUserSelf#f7c1b13f"
+    },
+    {
+      "userId": 0,
+      "accessHash": 0,
+      "_constructor": "inputUser#d8292816"
+    },
+    {
+      "userId": 0,
+      "accessHash": 0,
+      "_constructor": "inputUser#d8292816"
+    },
+    {
+      "_constructor": "inputUserEmpty#b98886cf"
+    },
+    {
       "_constructor": "inputUserEmpty#b98886cf"
     },
     {
@@ -13,28 +40,16 @@
     0,
     0
   ],
-  "message": "I92sJq24Ae6tIZZHFR6mQd",
+  "message": "AKi7hozWdXc8h",
   "media": {
-    "file": {
-      "md5Checksum": "zOO7nUaxX7Aw",
-      "_constructor": "inputFile#f52ff27f",
-      "id": 0,
-      "parts": 0,
-      "name": "EJuvVw"
+    "geoPoint": {
+      "_constructor": "inputGeoPointEmpty#e4c123d6"
     },
-    "thumb": {
-      "md5Checksum": "kXXhPjmEclzlBE",
-      "_constructor": "inputFile#f52ff27f",
-      "id": 0,
-      "parts": 0,
-      "name": "vRk9luXpWKe5"
-    },
-    "duration": 0,
-    "w": 0,
-    "h": 0,
-    "mimeType": "OzuCBGcyRqMI9TQc9dj",
-    "caption": "oAbMO0r7QESdRGofll",
-    "_constructor": "inputMediaUploadedThumbVideo#7780ddf9"
+    "title": "Tw8NORVtv93UzKn1QUy",
+    "address": "xjYgegdBJgHuQmWE01Tm0I",
+    "provider": "p51WyM0eLnmF1Z22Zsq",
+    "venueId": "06yZ7ExkzYFGBrupV6eLP2B5Ehh",
+    "_constructor": "inputMediaVenue#2827a81a"
   },
   "_constructor": "messages.sendBroadcast#bf73f4da"
 }

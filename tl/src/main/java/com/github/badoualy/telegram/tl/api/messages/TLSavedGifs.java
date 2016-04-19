@@ -67,18 +67,6 @@ public class TLSavedGifs extends TLAbsSavedGifs {
         return CONSTRUCTOR_ID;
     }
 
-    @Override
-    @SuppressWarnings("PointlessBooleanExpression")
-    public boolean equals(Object object) {
-        if (!(object instanceof TLSavedGifs)) return false;
-        if (object == this) return true;
-
-        TLSavedGifs o = (TLSavedGifs) object;
-
-        return hash == o.hash
-                && (gifs == o.gifs || (gifs != null && o.gifs != null && gifs.equals(o.gifs)));
-    }
-
     public int getHash() {
         return hash;
     }

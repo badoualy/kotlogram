@@ -88,19 +88,6 @@ public class TLRequestUploadGetFile extends TLMethod<TLFile> {
         return CONSTRUCTOR_ID;
     }
 
-    @Override
-    @SuppressWarnings("PointlessBooleanExpression")
-    public boolean equals(Object object) {
-        if (!(object instanceof TLRequestUploadGetFile)) return false;
-        if (object == this) return true;
-
-        TLRequestUploadGetFile o = (TLRequestUploadGetFile) object;
-
-        return (location == o.location || (location != null && o.location != null && location.equals(o.location)))
-                && offset == o.offset
-                && limit == o.limit;
-    }
-
     public TLAbsInputFileLocation getLocation() {
         return location;
     }

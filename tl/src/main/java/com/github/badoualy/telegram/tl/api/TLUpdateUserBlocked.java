@@ -66,18 +66,6 @@ public class TLUpdateUserBlocked extends TLAbsUpdate {
         return CONSTRUCTOR_ID;
     }
 
-    @Override
-    @SuppressWarnings("PointlessBooleanExpression")
-    public boolean equals(Object object) {
-        if (!(object instanceof TLUpdateUserBlocked)) return false;
-        if (object == this) return true;
-
-        TLUpdateUserBlocked o = (TLUpdateUserBlocked) object;
-
-        return userId == o.userId
-                && blocked == o.blocked;
-    }
-
     public int getUserId() {
         return userId;
     }

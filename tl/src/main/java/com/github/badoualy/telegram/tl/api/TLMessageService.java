@@ -18,7 +18,7 @@ import static com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_INT32;
  * @see <a href="http://github.com/badoualy/kotlogram">http://github.com/badoualy/kotlogram</a>
  */
 public class TLMessageService extends TLAbsMessage {
-    public static final int CONSTRUCTOR_ID = 0xc06b9607;
+    public static final int CONSTRUCTOR_ID = 0x9e19a1f6;
 
     protected int flags;
 
@@ -30,27 +30,36 @@ public class TLMessageService extends TLAbsMessage {
 
     protected boolean mediaUnread;
 
+    protected boolean silent;
+
+    protected boolean post;
+
     protected Integer fromId;
 
     protected TLAbsPeer toId;
+
+    protected Integer replyToMsgId;
 
     protected int date;
 
     protected TLAbsMessageAction action;
 
-    private final String _constructor = "messageService#c06b9607";
+    private final String _constructor = "messageService#9e19a1f6";
 
     public TLMessageService() {
     }
 
-    public TLMessageService(boolean unread, boolean out, boolean mentioned, boolean mediaUnread, int id, Integer fromId, TLAbsPeer toId, int date, TLAbsMessageAction action) {
+    public TLMessageService(boolean unread, boolean out, boolean mentioned, boolean mediaUnread, boolean silent, boolean post, int id, Integer fromId, TLAbsPeer toId, Integer replyToMsgId, int date, TLAbsMessageAction action) {
         this.unread = unread;
         this.out = out;
         this.mentioned = mentioned;
         this.mediaUnread = mediaUnread;
+        this.silent = silent;
+        this.post = post;
         this.id = id;
         this.fromId = fromId;
         this.toId = toId;
+        this.replyToMsgId = replyToMsgId;
         this.date = date;
         this.action = action;
     }
@@ -61,7 +70,11 @@ public class TLMessageService extends TLAbsMessage {
         flags = out ? (flags | 2) : (flags &~ 2);
         flags = mentioned ? (flags | 16) : (flags &~ 16);
         flags = mediaUnread ? (flags | 32) : (flags &~ 32);
-        flags = fromId != null ? (flags | 256) : (flags &~ 256);
+        flags = silent ? (flags | 8192) : (flags &~ 8192);
+        flags = post ? (flags | 16384) : (flags &~ 16384);
+        // Fields below may not be serialized due to flags field value
+        if ((flags & 256) == 0) fromId = null;
+        if ((flags & 8) == 0) replyToMsgId = null;
     }
 
     @Override
@@ -70,8 +83,15 @@ public class TLMessageService extends TLAbsMessage {
 
         writeInt(flags, stream);
         writeInt(id, stream);
-        if ((flags & 256) != 0) writeInt(fromId, stream);
+        if ((flags & 256) != 0) {
+            if (fromId == null) throwNullFieldException("fromId", flags);
+            writeInt(fromId, stream);
+        }
         writeTLObject(toId, stream);
+        if ((flags & 8) != 0) {
+            if (replyToMsgId == null) throwNullFieldException("replyToMsgId", flags);
+            writeInt(replyToMsgId, stream);
+        }
         writeInt(date, stream);
         writeTLObject(action, stream);
     }
@@ -84,9 +104,12 @@ public class TLMessageService extends TLAbsMessage {
         out = (flags & 2) != 0;
         mentioned = (flags & 16) != 0;
         mediaUnread = (flags & 32) != 0;
+        silent = (flags & 8192) != 0;
+        post = (flags & 16384) != 0;
         id = readInt(stream);
         fromId = (flags & 256) != 0 ? readInt(stream) : null;
         toId = readTLObject(stream, context, TLAbsPeer.class, -1);
+        replyToMsgId = (flags & 8) != 0 ? readInt(stream) : null;
         date = readInt(stream);
         action = readTLObject(stream, context, TLAbsMessageAction.class, -1);
     }
@@ -98,8 +121,15 @@ public class TLMessageService extends TLAbsMessage {
         int size = SIZE_CONSTRUCTOR_ID;
         size += SIZE_INT32;
         size += SIZE_INT32;
-        if ((flags & 256) != 0) size += SIZE_INT32;
+        if ((flags & 256) != 0) {
+            if (fromId == null) throwNullFieldException("fromId", flags);
+            size += SIZE_INT32;
+        }
         size += toId.computeSerializedSize();
+        if ((flags & 8) != 0) {
+            if (replyToMsgId == null) throwNullFieldException("replyToMsgId", flags);
+            size += SIZE_INT32;
+        }
         size += SIZE_INT32;
         size += action.computeSerializedSize();
         return size;
@@ -113,26 +143,6 @@ public class TLMessageService extends TLAbsMessage {
     @Override
     public int getConstructorId() {
         return CONSTRUCTOR_ID;
-    }
-
-    @Override
-    @SuppressWarnings("PointlessBooleanExpression")
-    public boolean equals(Object object) {
-        if (!(object instanceof TLMessageService)) return false;
-        if (object == this) return true;
-
-        TLMessageService o = (TLMessageService) object;
-
-        return flags == o.flags
-                && unread == o.unread
-                && out == o.out
-                && mentioned == o.mentioned
-                && mediaUnread == o.mediaUnread
-                && id == o.id
-                && (fromId == o.fromId || (fromId != null && o.fromId != null && fromId.equals(o.fromId)))
-                && (toId == o.toId || (toId != null && o.toId != null && toId.equals(o.toId)))
-                && date == o.date
-                && (action == o.action || (action != null && o.action != null && action.equals(o.action)));
     }
 
     public boolean getUnread() {
@@ -167,6 +177,22 @@ public class TLMessageService extends TLAbsMessage {
         this.mediaUnread = mediaUnread;
     }
 
+    public boolean getSilent() {
+        return silent;
+    }
+
+    public void setSilent(boolean silent) {
+        this.silent = silent;
+    }
+
+    public boolean getPost() {
+        return post;
+    }
+
+    public void setPost(boolean post) {
+        this.post = post;
+    }
+
     public int getId() {
         return id;
     }
@@ -189,6 +215,14 @@ public class TLMessageService extends TLAbsMessage {
 
     public void setToId(TLAbsPeer toId) {
         this.toId = toId;
+    }
+
+    public Integer getReplyToMsgId() {
+        return replyToMsgId;
+    }
+
+    public void setReplyToMsgId(Integer replyToMsgId) {
+        this.replyToMsgId = replyToMsgId;
     }
 
     public int getDate() {

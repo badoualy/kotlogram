@@ -9,13 +9,19 @@
       "userId": 0,
       "clientId": 0,
       "_constructor": "importedContact#d0028438"
+    },
+    {
+      "userId": 0,
+      "clientId": 0,
+      "_constructor": "importedContact#d0028438"
+    },
+    {
+      "userId": 0,
+      "clientId": 0,
+      "_constructor": "importedContact#d0028438"
     }
   ],
   "retryContacts": [
-    0,
-    0,
-    0,
-    0,
     0,
     0,
     0,
@@ -29,59 +35,7 @@
       "id": 0
     },
     {
-      "flags": 975999,
-      "self": true,
-      "contact": false,
-      "mutualContact": false,
-      "deleted": true,
-      "bot": true,
-      "botChatHistory": true,
-      "botNochats": false,
-      "verified": true,
-      "restricted": true,
-      "accessHash": 0,
-      "firstName": "xtTKUL",
-      "lastName": "WJBUhE6by1pftr",
-      "username": "xMsNyi",
-      "phone": "etkpw92",
-      "photo": {
-        "_constructor": "userProfilePhotoEmpty#4f11bae1"
-      },
-      "status": {
-        "_constructor": "userStatusLastWeek#7bf09fc"
-      },
-      "botInfoVersion": 0,
-      "restrictionReason": "YN0VS2",
-      "botInlinePlaceholder": "nUTK2sLx6jDeCN8WIzz6S9",
-      "_constructor": "user#d10d979a",
-      "id": 0
-    },
-    {
-      "flags": 844927,
-      "self": true,
-      "contact": false,
-      "mutualContact": false,
-      "deleted": true,
-      "bot": true,
-      "botChatHistory": true,
-      "botNochats": false,
-      "verified": false,
-      "restricted": true,
-      "accessHash": 0,
-      "firstName": "4tceRn5qWKY",
-      "lastName": "xy3YbkEov",
-      "username": "dm0bd6ZMAVNbsDtK2tI1DcqT",
-      "phone": "jJPwMMBxb6wKIf1",
-      "photo": {
-        "_constructor": "userProfilePhotoEmpty#4f11bae1"
-      },
-      "status": {
-        "_constructor": "userStatusEmpty#9d05049"
-      },
-      "botInfoVersion": 0,
-      "restrictionReason": "YZnIS8oRGBtzBDLh339rrpzALx",
-      "botInlinePlaceholder": "78AJll6LcsQe8kP3",
-      "_constructor": "user#d10d979a",
+      "_constructor": "userEmpty#200250ba",
       "id": 0
     },
     {

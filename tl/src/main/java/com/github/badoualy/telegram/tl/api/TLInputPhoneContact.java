@@ -79,20 +79,6 @@ public class TLInputPhoneContact extends TLObject {
         return CONSTRUCTOR_ID;
     }
 
-    @Override
-    @SuppressWarnings("PointlessBooleanExpression")
-    public boolean equals(Object object) {
-        if (!(object instanceof TLInputPhoneContact)) return false;
-        if (object == this) return true;
-
-        TLInputPhoneContact o = (TLInputPhoneContact) object;
-
-        return clientId == o.clientId
-                && (phone == o.phone || (phone != null && o.phone != null && phone.equals(o.phone)))
-                && (firstName == o.firstName || (firstName != null && o.firstName != null && firstName.equals(o.firstName)))
-                && (lastName == o.lastName || (lastName != null && o.lastName != null && lastName.equals(o.lastName)));
-    }
-
     public long getClientId() {
         return clientId;
     }

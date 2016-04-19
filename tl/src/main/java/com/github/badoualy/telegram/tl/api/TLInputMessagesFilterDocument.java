@@ -21,15 +21,4 @@ public class TLInputMessagesFilterDocument extends TLAbsMessagesFilter {
     public int getConstructorId() {
         return CONSTRUCTOR_ID;
     }
-
-    @Override
-    @SuppressWarnings("PointlessBooleanExpression")
-    public boolean equals(Object object) {
-        if (!(object instanceof TLInputMessagesFilterDocument)) return false;
-        if (object == this) return true;
-
-        TLInputMessagesFilterDocument o = (TLInputMessagesFilterDocument) object;
-
-        return true;
-    }
 }

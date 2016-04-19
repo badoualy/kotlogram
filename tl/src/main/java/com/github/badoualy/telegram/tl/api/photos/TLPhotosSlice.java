@@ -70,19 +70,6 @@ public class TLPhotosSlice extends TLAbsPhotos {
         return CONSTRUCTOR_ID;
     }
 
-    @Override
-    @SuppressWarnings("PointlessBooleanExpression")
-    public boolean equals(Object object) {
-        if (!(object instanceof TLPhotosSlice)) return false;
-        if (object == this) return true;
-
-        TLPhotosSlice o = (TLPhotosSlice) object;
-
-        return count == o.count
-                && (photos == o.photos || (photos != null && o.photos != null && photos.equals(o.photos)))
-                && (users == o.users || (users != null && o.users != null && users.equals(o.users)));
-    }
-
     public int getCount() {
         return count;
     }

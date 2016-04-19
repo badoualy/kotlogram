@@ -82,21 +82,6 @@ public class TLState extends TLObject {
         return CONSTRUCTOR_ID;
     }
 
-    @Override
-    @SuppressWarnings("PointlessBooleanExpression")
-    public boolean equals(Object object) {
-        if (!(object instanceof TLState)) return false;
-        if (object == this) return true;
-
-        TLState o = (TLState) object;
-
-        return pts == o.pts
-                && qts == o.qts
-                && date == o.date
-                && seq == o.seq
-                && unreadCount == o.unreadCount;
-    }
-
     public int getPts() {
         return pts;
     }

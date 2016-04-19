@@ -75,19 +75,6 @@ public class TLChannelParticipants extends TLObject {
         return CONSTRUCTOR_ID;
     }
 
-    @Override
-    @SuppressWarnings("PointlessBooleanExpression")
-    public boolean equals(Object object) {
-        if (!(object instanceof TLChannelParticipants)) return false;
-        if (object == this) return true;
-
-        TLChannelParticipants o = (TLChannelParticipants) object;
-
-        return count == o.count
-                && (participants == o.participants || (participants != null && o.participants != null && participants.equals(o.participants)))
-                && (users == o.users || (users != null && o.users != null && users.equals(o.users)));
-    }
-
     public int getCount() {
         return count;
     }

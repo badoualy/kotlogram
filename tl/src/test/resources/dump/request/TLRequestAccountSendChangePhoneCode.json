@@ -1,4 +1,7 @@
 {
-  "phoneNumber": "iaOixIe",
-  "_constructor": "account.sendChangePhoneCode#a407a8f4"
+  "flags": 1,
+  "allowFlashcall": true,
+  "phoneNumber": "OaRdJqG6CIIRTDna2gX73gCg",
+  "currentNumber": false,
+  "_constructor": "account.sendChangePhoneCode#8e57deb"
 }

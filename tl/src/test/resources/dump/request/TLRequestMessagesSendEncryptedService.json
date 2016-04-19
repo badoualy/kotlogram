@@ -230,26 +230,10 @@
       0,
       0,
       0,
-      0,
-      0,
-      0,
-      0,
-      0,
-      0,
-      0,
-      0,
-      0,
-      0,
-      0,
-      0,
-      0,
-      0,
-      0,
-      0,
       0
     ],
     "offset": 0,
-    "len": 240
+    "len": 224
   },
   "_constructor": "messages.sendEncryptedService#32d439a4"
 }

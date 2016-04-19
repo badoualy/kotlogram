@@ -56,17 +56,6 @@ public class TLDhConfigNotModified extends TLAbsDhConfig {
         return CONSTRUCTOR_ID;
     }
 
-    @Override
-    @SuppressWarnings("PointlessBooleanExpression")
-    public boolean equals(Object object) {
-        if (!(object instanceof TLDhConfigNotModified)) return false;
-        if (object == this) return true;
-
-        TLDhConfigNotModified o = (TLDhConfigNotModified) object;
-
-        return (random == o.random || (random != null && o.random != null && random.equals(o.random)));
-    }
-
     public TLBytes getRandom() {
         return random;
     }

@@ -9,37 +9,21 @@
         0,
         0,
         0,
-        0,
         0
       ],
-      "_constructor": "privacyValueDisallowUsers#c7f49b7"
+      "_constructor": "privacyValueAllowUsers#4d5bbe0c"
+    },
+    {
+      "_constructor": "privacyValueAllowAll#65427b82"
     },
     {
       "_constructor": "privacyValueDisallowAll#8b73e763"
     },
     {
-      "users": [
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0
-      ],
-      "_constructor": "privacyValueAllowUsers#4d5bbe0c"
+      "_constructor": "privacyValueDisallowContacts#f888fa1a"
     },
     {
       "users": [
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
         0,
         0
       ],
@@ -49,15 +33,15 @@
       "users": [
         0,
         0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
         0
       ],
       "_constructor": "privacyValueAllowUsers#4d5bbe0c"
+    },
+    {
+      "_constructor": "privacyValueDisallowContacts#f888fa1a"
+    },
+    {
+      "_constructor": "privacyValueAllowAll#65427b82"
     }
   ],
   "_constructor": "updatePrivacy#ee3b272a"

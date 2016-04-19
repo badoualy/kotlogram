@@ -78,20 +78,6 @@ public class TLMessageMediaContact extends TLAbsMessageMedia {
         return CONSTRUCTOR_ID;
     }
 
-    @Override
-    @SuppressWarnings("PointlessBooleanExpression")
-    public boolean equals(Object object) {
-        if (!(object instanceof TLMessageMediaContact)) return false;
-        if (object == this) return true;
-
-        TLMessageMediaContact o = (TLMessageMediaContact) object;
-
-        return (phoneNumber == o.phoneNumber || (phoneNumber != null && o.phoneNumber != null && phoneNumber.equals(o.phoneNumber)))
-                && (firstName == o.firstName || (firstName != null && o.firstName != null && firstName.equals(o.firstName)))
-                && (lastName == o.lastName || (lastName != null && o.lastName != null && lastName.equals(o.lastName)))
-                && userId == o.userId;
-    }
-
     public String getPhoneNumber() {
         return phoneNumber;
     }

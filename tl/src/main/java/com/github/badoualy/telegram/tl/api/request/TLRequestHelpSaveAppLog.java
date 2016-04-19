@@ -75,17 +75,6 @@ public class TLRequestHelpSaveAppLog extends TLMethod<TLBool> {
         return CONSTRUCTOR_ID;
     }
 
-    @Override
-    @SuppressWarnings("PointlessBooleanExpression")
-    public boolean equals(Object object) {
-        if (!(object instanceof TLRequestHelpSaveAppLog)) return false;
-        if (object == this) return true;
-
-        TLRequestHelpSaveAppLog o = (TLRequestHelpSaveAppLog) object;
-
-        return (events == o.events || (events != null && o.events != null && events.equals(o.events)));
-    }
-
     public TLVector<TLInputAppEvent> getEvents() {
         return events;
     }

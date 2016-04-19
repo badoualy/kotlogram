@@ -63,18 +63,6 @@ public class TLInputMediaGifExternal extends TLAbsInputMedia {
         return CONSTRUCTOR_ID;
     }
 
-    @Override
-    @SuppressWarnings("PointlessBooleanExpression")
-    public boolean equals(Object object) {
-        if (!(object instanceof TLInputMediaGifExternal)) return false;
-        if (object == this) return true;
-
-        TLInputMediaGifExternal o = (TLInputMediaGifExternal) object;
-
-        return (url == o.url || (url != null && o.url != null && url.equals(o.url)))
-                && (q == o.q || (q != null && o.q != null && q.equals(o.q)));
-    }
-
     public String getUrl() {
         return url;
     }

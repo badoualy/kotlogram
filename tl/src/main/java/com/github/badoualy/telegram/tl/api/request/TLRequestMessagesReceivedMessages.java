@@ -67,17 +67,6 @@ public class TLRequestMessagesReceivedMessages extends TLMethod<TLVector<TLRecei
         return CONSTRUCTOR_ID;
     }
 
-    @Override
-    @SuppressWarnings("PointlessBooleanExpression")
-    public boolean equals(Object object) {
-        if (!(object instanceof TLRequestMessagesReceivedMessages)) return false;
-        if (object == this) return true;
-
-        TLRequestMessagesReceivedMessages o = (TLRequestMessagesReceivedMessages) object;
-
-        return maxId == o.maxId;
-    }
-
     public int getMaxId() {
         return maxId;
     }

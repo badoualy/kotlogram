@@ -57,17 +57,6 @@ public class TLInputPrivacyValueAllowUsers extends TLAbsInputPrivacyRule {
         return CONSTRUCTOR_ID;
     }
 
-    @Override
-    @SuppressWarnings("PointlessBooleanExpression")
-    public boolean equals(Object object) {
-        if (!(object instanceof TLInputPrivacyValueAllowUsers)) return false;
-        if (object == this) return true;
-
-        TLInputPrivacyValueAllowUsers o = (TLInputPrivacyValueAllowUsers) object;
-
-        return (users == o.users || (users != null && o.users != null && users.equals(o.users)));
-    }
-
     public TLVector<TLAbsInputUser> getUsers() {
         return users;
     }

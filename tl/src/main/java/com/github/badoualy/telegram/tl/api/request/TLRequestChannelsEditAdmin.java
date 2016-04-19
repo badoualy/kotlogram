@@ -87,19 +87,6 @@ public class TLRequestChannelsEditAdmin extends TLMethod<TLAbsUpdates> {
         return CONSTRUCTOR_ID;
     }
 
-    @Override
-    @SuppressWarnings("PointlessBooleanExpression")
-    public boolean equals(Object object) {
-        if (!(object instanceof TLRequestChannelsEditAdmin)) return false;
-        if (object == this) return true;
-
-        TLRequestChannelsEditAdmin o = (TLRequestChannelsEditAdmin) object;
-
-        return (channel == o.channel || (channel != null && o.channel != null && channel.equals(o.channel)))
-                && (userId == o.userId || (userId != null && o.userId != null && userId.equals(o.userId)))
-                && (role == o.role || (role != null && o.role != null && role.equals(o.role)));
-    }
-
     public TLAbsInputChannel getChannel() {
         return channel;
     }

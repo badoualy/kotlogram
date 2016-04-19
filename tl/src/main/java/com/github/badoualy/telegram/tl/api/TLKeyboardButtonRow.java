@@ -19,14 +19,14 @@ import static com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_CONSTRUCTOR_ID;
 public class TLKeyboardButtonRow extends TLObject {
     public static final int CONSTRUCTOR_ID = 0x77608b83;
 
-    protected TLVector<TLKeyboardButton> buttons;
+    protected TLVector<TLAbsKeyboardButton> buttons;
 
     private final String _constructor = "keyboardButtonRow#77608b83";
 
     public TLKeyboardButtonRow() {
     }
 
-    public TLKeyboardButtonRow(TLVector<TLKeyboardButton> buttons) {
+    public TLKeyboardButtonRow(TLVector<TLAbsKeyboardButton> buttons) {
         this.buttons = buttons;
     }
 
@@ -58,22 +58,11 @@ public class TLKeyboardButtonRow extends TLObject {
         return CONSTRUCTOR_ID;
     }
 
-    @Override
-    @SuppressWarnings("PointlessBooleanExpression")
-    public boolean equals(Object object) {
-        if (!(object instanceof TLKeyboardButtonRow)) return false;
-        if (object == this) return true;
-
-        TLKeyboardButtonRow o = (TLKeyboardButtonRow) object;
-
-        return (buttons == o.buttons || (buttons != null && o.buttons != null && buttons.equals(o.buttons)));
-    }
-
-    public TLVector<TLKeyboardButton> getButtons() {
+    public TLVector<TLAbsKeyboardButton> getButtons() {
         return buttons;
     }
 
-    public void setButtons(TLVector<TLKeyboardButton> buttons) {
+    public void setButtons(TLVector<TLAbsKeyboardButton> buttons) {
         this.buttons = buttons;
     }
 }

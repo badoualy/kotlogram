@@ -21,15 +21,4 @@ public class TLInputEncryptedFileEmpty extends TLAbsInputEncryptedFile {
     public int getConstructorId() {
         return CONSTRUCTOR_ID;
     }
-
-    @Override
-    @SuppressWarnings("PointlessBooleanExpression")
-    public boolean equals(Object object) {
-        if (!(object instanceof TLInputEncryptedFileEmpty)) return false;
-        if (object == this) return true;
-
-        TLInputEncryptedFileEmpty o = (TLInputEncryptedFileEmpty) object;
-
-        return true;
-    }
 }

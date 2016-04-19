@@ -75,19 +75,6 @@ public class TLResolvedPeer extends TLObject {
         return CONSTRUCTOR_ID;
     }
 
-    @Override
-    @SuppressWarnings("PointlessBooleanExpression")
-    public boolean equals(Object object) {
-        if (!(object instanceof TLResolvedPeer)) return false;
-        if (object == this) return true;
-
-        TLResolvedPeer o = (TLResolvedPeer) object;
-
-        return (peer == o.peer || (peer != null && o.peer != null && peer.equals(o.peer)))
-                && (chats == o.chats || (chats != null && o.chats != null && chats.equals(o.chats)))
-                && (users == o.users || (users != null && o.users != null && users.equals(o.users)));
-    }
-
     public TLAbsPeer getPeer() {
         return peer;
     }

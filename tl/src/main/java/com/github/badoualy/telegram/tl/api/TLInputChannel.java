@@ -66,18 +66,6 @@ public class TLInputChannel extends TLAbsInputChannel {
         return CONSTRUCTOR_ID;
     }
 
-    @Override
-    @SuppressWarnings("PointlessBooleanExpression")
-    public boolean equals(Object object) {
-        if (!(object instanceof TLInputChannel)) return false;
-        if (object == this) return true;
-
-        TLInputChannel o = (TLInputChannel) object;
-
-        return channelId == o.channelId
-                && accessHash == o.accessHash;
-    }
-
     public int getChannelId() {
         return channelId;
     }

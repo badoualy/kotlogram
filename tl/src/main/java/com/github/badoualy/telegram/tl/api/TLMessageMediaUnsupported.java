@@ -21,15 +21,4 @@ public class TLMessageMediaUnsupported extends TLAbsMessageMedia {
     public int getConstructorId() {
         return CONSTRUCTOR_ID;
     }
-
-    @Override
-    @SuppressWarnings("PointlessBooleanExpression")
-    public boolean equals(Object object) {
-        if (!(object instanceof TLMessageMediaUnsupported)) return false;
-        if (object == this) return true;
-
-        TLMessageMediaUnsupported o = (TLMessageMediaUnsupported) object;
-
-        return true;
-    }
 }

@@ -57,17 +57,6 @@ public class TLPeerChat extends TLAbsPeer {
         return CONSTRUCTOR_ID;
     }
 
-    @Override
-    @SuppressWarnings("PointlessBooleanExpression")
-    public boolean equals(Object object) {
-        if (!(object instanceof TLPeerChat)) return false;
-        if (object == this) return true;
-
-        TLPeerChat o = (TLPeerChat) object;
-
-        return chatId == o.chatId;
-    }
-
     public int getChatId() {
         return chatId;
     }

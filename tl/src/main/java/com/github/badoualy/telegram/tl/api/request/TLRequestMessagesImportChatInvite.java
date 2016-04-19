@@ -74,17 +74,6 @@ public class TLRequestMessagesImportChatInvite extends TLMethod<TLAbsUpdates> {
         return CONSTRUCTOR_ID;
     }
 
-    @Override
-    @SuppressWarnings("PointlessBooleanExpression")
-    public boolean equals(Object object) {
-        if (!(object instanceof TLRequestMessagesImportChatInvite)) return false;
-        if (object == this) return true;
-
-        TLRequestMessagesImportChatInvite o = (TLRequestMessagesImportChatInvite) object;
-
-        return (hash == o.hash || (hash != null && o.hash != null && hash.equals(o.hash)));
-    }
-
     public String getHash() {
         return hash;
     }

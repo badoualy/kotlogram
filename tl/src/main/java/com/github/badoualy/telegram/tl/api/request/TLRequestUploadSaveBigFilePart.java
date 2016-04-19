@@ -99,20 +99,6 @@ public class TLRequestUploadSaveBigFilePart extends TLMethod<TLBool> {
         return CONSTRUCTOR_ID;
     }
 
-    @Override
-    @SuppressWarnings("PointlessBooleanExpression")
-    public boolean equals(Object object) {
-        if (!(object instanceof TLRequestUploadSaveBigFilePart)) return false;
-        if (object == this) return true;
-
-        TLRequestUploadSaveBigFilePart o = (TLRequestUploadSaveBigFilePart) object;
-
-        return fileId == o.fileId
-                && filePart == o.filePart
-                && fileTotalParts == o.fileTotalParts
-                && (bytes == o.bytes || (bytes != null && o.bytes != null && bytes.equals(o.bytes)));
-    }
-
     public long getFileId() {
         return fileId;
     }

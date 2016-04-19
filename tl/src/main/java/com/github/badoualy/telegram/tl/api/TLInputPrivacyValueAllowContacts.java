@@ -21,15 +21,4 @@ public class TLInputPrivacyValueAllowContacts extends TLAbsInputPrivacyRule {
     public int getConstructorId() {
         return CONSTRUCTOR_ID;
     }
-
-    @Override
-    @SuppressWarnings("PointlessBooleanExpression")
-    public boolean equals(Object object) {
-        if (!(object instanceof TLInputPrivacyValueAllowContacts)) return false;
-        if (object == this) return true;
-
-        TLInputPrivacyValueAllowContacts o = (TLInputPrivacyValueAllowContacts) object;
-
-        return true;
-    }
 }

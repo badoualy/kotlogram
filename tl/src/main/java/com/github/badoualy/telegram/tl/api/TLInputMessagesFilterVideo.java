@@ -21,15 +21,4 @@ public class TLInputMessagesFilterVideo extends TLAbsMessagesFilter {
     public int getConstructorId() {
         return CONSTRUCTOR_ID;
     }
-
-    @Override
-    @SuppressWarnings("PointlessBooleanExpression")
-    public boolean equals(Object object) {
-        if (!(object instanceof TLInputMessagesFilterVideo)) return false;
-        if (object == this) return true;
-
-        TLInputMessagesFilterVideo o = (TLInputMessagesFilterVideo) object;
-
-        return true;
-    }
 }

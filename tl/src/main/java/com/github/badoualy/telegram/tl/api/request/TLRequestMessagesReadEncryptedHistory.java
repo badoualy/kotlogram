@@ -82,18 +82,6 @@ public class TLRequestMessagesReadEncryptedHistory extends TLMethod<TLBool> {
         return CONSTRUCTOR_ID;
     }
 
-    @Override
-    @SuppressWarnings("PointlessBooleanExpression")
-    public boolean equals(Object object) {
-        if (!(object instanceof TLRequestMessagesReadEncryptedHistory)) return false;
-        if (object == this) return true;
-
-        TLRequestMessagesReadEncryptedHistory o = (TLRequestMessagesReadEncryptedHistory) object;
-
-        return (peer == o.peer || (peer != null && o.peer != null && peer.equals(o.peer)))
-                && maxDate == o.maxDate;
-    }
-
     public TLInputEncryptedChat getPeer() {
         return peer;
     }

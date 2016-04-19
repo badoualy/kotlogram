@@ -1,7 +1,5 @@
 {
-  "flags": 640,
-  "unread": false,
-  "out": false,
+  "flags": 643,
   "id": 0,
   "pts": 0,
   "ptsCount": 0,
@@ -10,26 +8,6 @@
     "_constructor": "messageMediaUnsupported#9f84f49e"
   },
   "entities": [
-    {
-      "_constructor": "messageEntityCode#28a20571",
-      "offset": 0,
-      "length": 0
-    },
-    {
-      "_constructor": "messageEntityHashtag#6f635b0d",
-      "offset": 0,
-      "length": 0
-    },
-    {
-      "_constructor": "messageEntityUrl#6ed02538",
-      "offset": 0,
-      "length": 0
-    },
-    {
-      "_constructor": "messageEntityCode#28a20571",
-      "offset": 0,
-      "length": 0
-    },
     {
       "_constructor": "messageEntityItalic#826f8b60",
       "offset": 0,
@@ -41,12 +19,7 @@
       "length": 0
     },
     {
-      "_constructor": "messageEntityUnknown#bb92ba95",
-      "offset": 0,
-      "length": 0
-    },
-    {
-      "_constructor": "messageEntityHashtag#6f635b0d",
+      "_constructor": "messageEntityEmail#64e475c2",
       "offset": 0,
       "length": 0
     }

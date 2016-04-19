@@ -1,151 +1,107 @@
 {
   "newMessages": [
     {
+      "flags": 282,
+      "fromId": 0,
+      "toId": {
+        "chatId": 0,
+        "_constructor": "peerChat#bad0e5bb"
+      },
+      "replyToMsgId": 0,
+      "date": 0,
+      "action": {
+        "title": "ca9v7XyBG6Pmpo3akdNWeK6RC",
+        "_constructor": "messageActionChatEditTitle#b5a1ce5a"
+      },
+      "_constructor": "messageService#9e19a1f6",
+      "id": 0
+    },
+    {
+      "flags": 8505,
+      "fromId": 0,
+      "toId": {
+        "userId": 0,
+        "_constructor": "peerUser#9db1bc6d"
+      },
+      "replyToMsgId": 0,
+      "date": 0,
+      "action": {
+        "_constructor": "messageActionPinMessage#94bd38ed"
+      },
+      "_constructor": "messageService#9e19a1f6",
+      "id": 0
+    },
+    {
+      "flags": 8490,
+      "fromId": 0,
+      "toId": {
+        "userId": 0,
+        "_constructor": "peerUser#9db1bc6d"
+      },
+      "replyToMsgId": 0,
+      "date": 0,
+      "action": {
+        "users": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "_constructor": "messageActionChatAddUser#488a7337"
+      },
+      "_constructor": "messageService#9e19a1f6",
+      "id": 0
+    },
+    {
       "_constructor": "messageEmpty#83e5de54",
       "id": 0
     },
     {
-      "flags": 4078,
-      "unread": false,
-      "out": true,
-      "mentioned": false,
-      "mediaUnread": true,
+      "flags": 36845,
       "fromId": 0,
       "toId": {
-        "channelId": 0,
-        "_constructor": "peerChannel#bddde532"
-      },
-      "fwdFromId": {
         "chatId": 0,
         "_constructor": "peerChat#bad0e5bb"
       },
-      "fwdDate": 0,
+      "fwdFrom": {
+        "flags": 0,
+        "fromId": null,
+        "date": 0,
+        "channelId": null,
+        "channelPost": null,
+        "_constructor": "messageFwdHeader#c786ddcb"
+      },
       "viaBotId": 0,
       "replyToMsgId": 0,
       "date": 0,
-      "message": "FpqRiApbDOupGFXcdfaLzBxa",
+      "message": "zRsMi6pFDMLcw14idqSJSpttKS",
       "media": {
-        "document": {
-          "accessHash": 0,
-          "date": 0,
-          "mimeType": "kA9o2ueJX89zG0HQ",
-          "size": 0,
-          "thumb": {
-            "location": {
-              "_constructor": "fileLocationUnavailable#7c596b46",
-              "volumeId": 0,
-              "localId": 0,
-              "secret": 0
-            },
-            "w": 0,
-            "h": 0,
-            "size": 0,
-            "_constructor": "photoSize#77bfb61b",
-            "type": "rXLhrQAh"
-          },
-          "dcId": 0,
-          "attributes": [
-            {
-              "alt": "uLdNVFovnLORNTCBw0IsTyvi",
-              "stickerset": {
-                "_constructor": "inputStickerSetEmpty#ffb62b95"
-              },
-              "_constructor": "documentAttributeSticker#3a556302"
-            },
-            {
-              "fileName": "O5GmhdmRyLTi",
-              "_constructor": "documentAttributeFilename#15590068"
-            },
-            {
-              "w": 0,
-              "h": 0,
-              "_constructor": "documentAttributeImageSize#6c37c15c"
-            },
-            {
-              "duration": 0,
-              "w": 0,
-              "h": 0,
-              "_constructor": "documentAttributeVideo#5910cccb"
-            },
-            {
-              "w": 0,
-              "h": 0,
-              "_constructor": "documentAttributeImageSize#6c37c15c"
-            },
-            {
-              "w": 0,
-              "h": 0,
-              "_constructor": "documentAttributeImageSize#6c37c15c"
-            },
-            {
-              "alt": "tcN3KMLWGfIk",
-              "stickerset": {
-                "id": 0,
-                "accessHash": 0,
-                "_constructor": "inputStickerSetID#9de7a269"
-              },
-              "_constructor": "documentAttributeSticker#3a556302"
-            },
-            {
-              "duration": 0,
-              "w": 0,
-              "h": 0,
-              "_constructor": "documentAttributeVideo#5910cccb"
-            },
-            {
-              "alt": "ZpXHgIrnBS4qH3W0hRPX0J8iTE7",
-              "stickerset": {
-                "_constructor": "inputStickerSetEmpty#ffb62b95"
-              },
-              "_constructor": "documentAttributeSticker#3a556302"
-            },
-            {
-              "w": 0,
-              "h": 0,
-              "_constructor": "documentAttributeImageSize#6c37c15c"
-            },
-            {
-              "duration": 0,
-              "title": "am86jnNo",
-              "performer": "dwDgYoPs2bqerPi0ZkpjhRms",
-              "_constructor": "documentAttributeAudio#ded218e0"
-            }
-          ],
-          "_constructor": "document#f9a39f4f",
+        "photo": {
+          "_constructor": "photoEmpty#2331b22d",
           "id": 0
         },
-        "caption": "dKcAbMcAW01v",
-        "_constructor": "messageMediaDocument#f3e02ea8"
+        "caption": "NVVJB8VowBBr4",
+        "_constructor": "messageMediaPhoto#3d8ce53d"
       },
       "replyMarkup": {
-        "_constructor": "replyKeyboardHide#a03e5b85",
-        "flags": 4,
-        "selective": true
+        "flags": 0,
+        "_constructor": "replyKeyboardHide#a03e5b85"
       },
       "entities": [
         {
-          "_constructor": "messageEntityUnknown#bb92ba95",
+          "language": "pQaRripdl",
+          "_constructor": "messageEntityPre#73924be0",
           "offset": 0,
           "length": 0
         },
         {
-          "url": "36eL8PLGyeGnzSV7acvpX3N4bGu",
+          "url": "KoEsb",
           "_constructor": "messageEntityTextUrl#76a6d327",
-          "offset": 0,
-          "length": 0
-        },
-        {
-          "_constructor": "messageEntityCode#28a20571",
-          "offset": 0,
-          "length": 0
-        },
-        {
-          "_constructor": "messageEntityHashtag#6f635b0d",
-          "offset": 0,
-          "length": 0
-        },
-        {
-          "_constructor": "messageEntityItalic#826f8b60",
           "offset": 0,
           "length": 0
         },
@@ -163,256 +119,90 @@
           "_constructor": "messageEntityUrl#6ed02538",
           "offset": 0,
           "length": 0
+        },
+        {
+          "_constructor": "messageEntityUnknown#bb92ba95",
+          "offset": 0,
+          "length": 0
+        },
+        {
+          "url": "zL0GBdnX",
+          "_constructor": "messageEntityTextUrl#76a6d327",
+          "offset": 0,
+          "length": 0
+        },
+        {
+          "language": "tY84gYezoHYBw8Z6L0l6FpDEx",
+          "_constructor": "messageEntityPre#73924be0",
+          "offset": 0,
+          "length": 0
+        },
+        {
+          "_constructor": "messageEntityItalic#826f8b60",
+          "offset": 0,
+          "length": 0
         }
       ],
       "views": 0,
-      "_constructor": "message#c992e15c",
+      "editDate": 0,
+      "_constructor": "message#c09be45f",
       "id": 0
     },
     {
-      "flags": 4092,
-      "unread": false,
-      "out": false,
-      "mentioned": true,
-      "mediaUnread": true,
+      "flags": 16699,
       "fromId": 0,
       "toId": {
         "userId": 0,
         "_constructor": "peerUser#9db1bc6d"
       },
-      "fwdFromId": {
+      "replyToMsgId": 0,
+      "date": 0,
+      "action": {
+        "title": "cRlgAZZOnC68",
+        "chatId": 0,
+        "_constructor": "messageActionChannelMigrateFrom#b055eaee"
+      },
+      "_constructor": "messageService#9e19a1f6",
+      "id": 0
+    },
+    {
+      "flags": 36844,
+      "fromId": 0,
+      "toId": {
         "chatId": 0,
         "_constructor": "peerChat#bad0e5bb"
       },
-      "fwdDate": 0,
+      "fwdFrom": {
+        "flags": 0,
+        "fromId": null,
+        "date": 0,
+        "channelId": null,
+        "channelPost": null,
+        "_constructor": "messageFwdHeader#c786ddcb"
+      },
       "viaBotId": 0,
       "replyToMsgId": 0,
       "date": 0,
-      "message": "Rdzwq9LMjoq3TNpxiWJk",
+      "message": "OC9nBU84HIx67KMovgYbuo",
       "media": {
-        "document": {
-          "accessHash": 0,
-          "date": 0,
-          "mimeType": "zdZdQPu5XkBbEv1ziMhzvj66",
-          "size": 0,
-          "thumb": {
-            "location": {
-              "dcId": 0,
-              "_constructor": "fileLocation#53d69076",
-              "volumeId": 0,
-              "localId": 0,
-              "secret": 0
-            },
-            "w": 0,
-            "h": 0,
-            "bytes": {
-              "data": [
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0
-              ],
-              "offset": 0,
-              "len": 110
-            },
-            "_constructor": "photoCachedSize#e9a734fa",
-            "type": "tzbjIC8BV55TsSdz"
-          },
-          "dcId": 0,
-          "attributes": [
-            {
-              "duration": 0,
-              "w": 0,
-              "h": 0,
-              "_constructor": "documentAttributeVideo#5910cccb"
-            },
-            {
-              "fileName": "sfDByy1NNce1qRnEUlXLwx83C",
-              "_constructor": "documentAttributeFilename#15590068"
-            },
-            {
-              "_constructor": "documentAttributeAnimated#11b58939"
-            },
-            {
-              "_constructor": "documentAttributeAnimated#11b58939"
-            },
-            {
-              "duration": 0,
-              "title": "An07r1",
-              "performer": "ET8KoVpA0HaKsFffGTBYtb",
-              "_constructor": "documentAttributeAudio#ded218e0"
-            },
-            {
-              "duration": 0,
-              "title": "cc1lRTnbFtY",
-              "performer": "dBx7lVBoXw",
-              "_constructor": "documentAttributeAudio#ded218e0"
-            },
-            {
-              "duration": 0,
-              "w": 0,
-              "h": 0,
-              "_constructor": "documentAttributeVideo#5910cccb"
-            },
-            {
-              "alt": "Cs24UgrEkaH",
-              "stickerset": {
-                "id": 0,
-                "accessHash": 0,
-                "_constructor": "inputStickerSetID#9de7a269"
-              },
-              "_constructor": "documentAttributeSticker#3a556302"
-            },
-            {
-              "duration": 0,
-              "w": 0,
-              "h": 0,
-              "_constructor": "documentAttributeVideo#5910cccb"
-            },
-            {
-              "w": 0,
-              "h": 0,
-              "_constructor": "documentAttributeImageSize#6c37c15c"
-            },
-            {
-              "w": 0,
-              "h": 0,
-              "_constructor": "documentAttributeImageSize#6c37c15c"
-            }
-          ],
-          "_constructor": "document#f9a39f4f",
-          "id": 0
-        },
-        "caption": "HIhbYIixTuZQw2ckZ7s7",
-        "_constructor": "messageMediaDocument#f3e02ea8"
+        "phoneNumber": "tDCG58SMK",
+        "firstName": "6HPTp8o7jG6",
+        "lastName": "4MdkXt",
+        "userId": 0,
+        "_constructor": "messageMediaContact#5e7d2f39"
       },
       "replyMarkup": {
-        "resize": true,
-        "singleUse": true,
+        "flags": 0,
         "rows": [
           {
             "buttons": [
               {
-                "text": "8DKeERzmROmkHmHe2vVx0xqm",
-                "_constructor": "keyboardButton#a2fa4880"
+                "_constructor": "keyboardButton#a2fa4880",
+                "text": "J2CFQi4ykCfrnTIWJ"
               },
               {
-                "text": "VQAUZUo61Oj",
-                "_constructor": "keyboardButton#a2fa4880"
-              },
-              {
-                "text": "etdbprf5HKt",
-                "_constructor": "keyboardButton#a2fa4880"
-              },
-              {
-                "text": "WRGD6uEPHO9U29UqXMDxATBi4THL",
-                "_constructor": "keyboardButton#a2fa4880"
+                "_constructor": "keyboardButtonRequestGeoLocation#fc796b3f",
+                "text": "fYpWXVYFyAHAAMFlj9q"
               }
             ],
             "_constructor": "keyboardButtonRow#77608b83"
@@ -420,153 +210,392 @@
           {
             "buttons": [
               {
-                "text": "Jvwbd0JIYfMRJH2ygUVmIR",
-                "_constructor": "keyboardButton#a2fa4880"
-              },
-              {
-                "text": "3MW6gZsxqx",
-                "_constructor": "keyboardButton#a2fa4880"
-              }
-            ],
-            "_constructor": "keyboardButtonRow#77608b83"
-          },
-          {
-            "buttons": [
-              {
-                "text": "v4B8BVDuLEFte1PYGBZDwQ5E",
-                "_constructor": "keyboardButton#a2fa4880"
-              },
-              {
-                "text": "5UU5dfa6KMf61GoIRGzgChkNAEg",
-                "_constructor": "keyboardButton#a2fa4880"
-              }
-            ],
-            "_constructor": "keyboardButtonRow#77608b83"
-          },
-          {
-            "buttons": [
-              {
-                "text": "TTiT31rmMJDMOVg0KKqILKMW5bY9",
-                "_constructor": "keyboardButton#a2fa4880"
-              },
-              {
-                "text": "t4zM51gVj0RbTFpLTcqoqFH",
-                "_constructor": "keyboardButton#a2fa4880"
-              },
-              {
-                "text": "MpZ8UCTE3uSZcfQO6",
-                "_constructor": "keyboardButton#a2fa4880"
-              },
-              {
-                "text": "CXxTCTTmQJ9Bz1y5",
-                "_constructor": "keyboardButton#a2fa4880"
-              },
-              {
-                "text": "27uWNjj",
-                "_constructor": "keyboardButton#a2fa4880"
-              },
-              {
-                "text": "t21mZmgNHaWIHl5PXB6PA8",
-                "_constructor": "keyboardButton#a2fa4880"
-              },
-              {
-                "text": "AQvOFw4QwxBAR1dHLCJpHw",
-                "_constructor": "keyboardButton#a2fa4880"
-              },
-              {
-                "text": "IZoGr8hS1i0SCmG5nx16ASP",
-                "_constructor": "keyboardButton#a2fa4880"
-              },
-              {
-                "text": "5hqZwY",
-                "_constructor": "keyboardButton#a2fa4880"
-              },
-              {
-                "text": "c46Lxb6tma",
-                "_constructor": "keyboardButton#a2fa4880"
-              },
-              {
-                "text": "HXRBD",
-                "_constructor": "keyboardButton#a2fa4880"
-              }
-            ],
-            "_constructor": "keyboardButtonRow#77608b83"
-          }
-        ],
-        "_constructor": "replyKeyboardMarkup#3502758c",
-        "flags": 3,
-        "selective": false
-      },
-      "entities": [
-        {
-          "_constructor": "messageEntityCode#28a20571",
-          "offset": 0,
-          "length": 0
-        },
-        {
-          "_constructor": "messageEntityEmail#64e475c2",
-          "offset": 0,
-          "length": 0
-        },
-        {
-          "_constructor": "messageEntityMention#fa04579d",
-          "offset": 0,
-          "length": 0
-        }
-      ],
-      "views": 0,
-      "_constructor": "message#c992e15c",
-      "id": 0
-    },
-    {
-      "flags": 4077,
-      "unread": true,
-      "out": false,
-      "mentioned": false,
-      "mediaUnread": true,
-      "fromId": 0,
-      "toId": {
-        "userId": 0,
-        "_constructor": "peerUser#9db1bc6d"
-      },
-      "fwdFromId": {
-        "channelId": 0,
-        "_constructor": "peerChannel#bddde532"
-      },
-      "fwdDate": 0,
-      "viaBotId": 0,
-      "replyToMsgId": 0,
-      "date": 0,
-      "message": "XfrRPwYRjLHBUhu6mjsqtSgolW2pA",
-      "media": {
-        "webpage": {
-          "flags": 1023,
-          "url": "hNmlR6SZqypgr",
-          "displayUrl": "Rs7zQZmnT85xVQM94",
-          "type": "Md4gTc8nGAyKir0IgO",
-          "siteName": "rhNg0NdFG",
-          "title": "bWrVikWfvj4XrWzVeXUdkW",
-          "description": "MMMiQ0WTNz0ou",
-          "photo": {
-            "accessHash": 0,
-            "date": 0,
-            "sizes": [
-              {
-                "_constructor": "photoSizeEmpty#e17e23c",
-                "type": "l6Zt1dt22C344yUviDr1y"
-              },
-              {
-                "location": {
-                  "dcId": 0,
-                  "_constructor": "fileLocation#53d69076",
-                  "volumeId": 0,
-                  "localId": 0,
-                  "secret": 0
-                },
-                "w": 0,
-                "h": 0,
-                "bytes": {
+                "data": {
                   "data": [
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0
+                  ],
+                  "offset": 0,
+                  "len": 152
+                },
+                "_constructor": "keyboardButtonCallback#683a5e46",
+                "text": "HSCDqQOZr2d96Nyb0pCl11t75"
+              },
+              {
+                "url": "3NuNSVSL",
+                "_constructor": "keyboardButtonUrl#258aff05",
+                "text": "s97W3u5h"
+              },
+              {
+                "url": "r8P7l5ze1HMu6eDhPwVfA2WZihIzt",
+                "_constructor": "keyboardButtonUrl#258aff05",
+                "text": "jVUhu5F2jh9gQK2x"
+              },
+              {
+                "_constructor": "keyboardButtonRequestGeoLocation#fc796b3f",
+                "text": "6CmrTQ9eJorpLcAcPAgq4Fdq"
+              },
+              {
+                "_constructor": "keyboardButtonRequestGeoLocation#fc796b3f",
+                "text": "9MrtO"
+              }
+            ],
+            "_constructor": "keyboardButtonRow#77608b83"
+          },
+          {
+            "buttons": [
+              {
+                "_constructor": "keyboardButton#a2fa4880",
+                "text": "iMzGA7LV"
+              },
+              {
+                "data": {
+                  "data": [
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0
+                  ],
+                  "offset": 0,
+                  "len": 109
+                },
+                "_constructor": "keyboardButtonCallback#683a5e46",
+                "text": "zCgYSl"
+              }
+            ],
+            "_constructor": "keyboardButtonRow#77608b83"
+          },
+          {
+            "buttons": [
+              {
+                "_constructor": "keyboardButtonRequestGeoLocation#fc796b3f",
+                "text": "auOOGt9bJTxm9QvMKmQGdV"
+              },
+              {
+                "_constructor": "keyboardButton#a2fa4880",
+                "text": "okuWi7QVXKPSnUF"
+              }
+            ],
+            "_constructor": "keyboardButtonRow#77608b83"
+          },
+          {
+            "buttons": [
+              {
+                "data": {
+                  "data": [
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
                     0,
                     0,
                     0,
@@ -743,109 +772,78 @@
                     0
                   ],
                   "offset": 0,
-                  "len": 174
+                  "len": 232
                 },
-                "_constructor": "photoCachedSize#e9a734fa",
-                "type": "DnzPrJ"
+                "_constructor": "keyboardButtonCallback#683a5e46",
+                "text": "s9bT1rL"
+              },
+              {
+                "_constructor": "keyboardButton#a2fa4880",
+                "text": "3hrJO44NtjAHStheXQhG0bXEX2oq"
+              },
+              {
+                "_constructor": "keyboardButtonRequestGeoLocation#fc796b3f",
+                "text": "yUNiSyTPGcGsUwYNrV"
+              },
+              {
+                "_constructor": "keyboardButtonRequestPhone#b16a6c29",
+                "text": "g7JJvypyf2UbYQ48BYUdk04eFww3m"
               }
             ],
-            "_constructor": "photo#cded42fe",
-            "id": 0
+            "_constructor": "keyboardButtonRow#77608b83"
           },
-          "embedUrl": "Jam7UdDC9JGkfmmH26o7FK1Xs5cw",
-          "embedType": "OR2Pi79GhczerBN6",
-          "embedWidth": 0,
-          "embedHeight": 0,
-          "duration": 0,
-          "author": "XS22WICnb6m5i2xKXlT2MMTk9EQt",
-          "document": {
-            "accessHash": 0,
-            "date": 0,
-            "mimeType": "miP474gUc3NrVJTB",
-            "size": 0,
-            "thumb": {
-              "_constructor": "photoSizeEmpty#e17e23c",
-              "type": "z9PKcHSPBEoFCHG"
-            },
-            "dcId": 0,
-            "attributes": [
+          {
+            "buttons": [
               {
-                "w": 0,
-                "h": 0,
-                "_constructor": "documentAttributeImageSize#6c37c15c"
+                "_constructor": "keyboardButtonRequestPhone#b16a6c29",
+                "text": "ub5n2M9l456MTquFpgkgu"
               },
               {
-                "w": 0,
-                "h": 0,
-                "_constructor": "documentAttributeImageSize#6c37c15c"
+                "_constructor": "keyboardButton#a2fa4880",
+                "text": "JRAdkqB6xIreiqnfXGydfzOi3"
               },
               {
-                "fileName": "Q0hAxf",
-                "_constructor": "documentAttributeFilename#15590068"
+                "_constructor": "keyboardButton#a2fa4880",
+                "text": "eQmuUU1bkqRVppt4vZ7f"
               },
               {
-                "alt": "8oDBi9i1VC",
-                "stickerset": {
-                  "id": 0,
-                  "accessHash": 0,
-                  "_constructor": "inputStickerSetID#9de7a269"
-                },
-                "_constructor": "documentAttributeSticker#3a556302"
-              },
-              {
-                "alt": "pV37bmRpyb1r9AYqVfVfd",
-                "stickerset": {
-                  "id": 0,
-                  "accessHash": 0,
-                  "_constructor": "inputStickerSetID#9de7a269"
-                },
-                "_constructor": "documentAttributeSticker#3a556302"
-              },
-              {
-                "alt": "oaz4EqiX6cMrrys79nVxwaockf06",
-                "stickerset": {
-                  "shortName": "GOs2rWsoDuAs6a5IzQR",
-                  "_constructor": "inputStickerSetShortName#861cc8a0"
-                },
-                "_constructor": "documentAttributeSticker#3a556302"
-              },
-              {
-                "duration": 0,
-                "title": "Kwev4lcyTY7MbvNZVdzw",
-                "performer": "Lqg0mmW",
-                "_constructor": "documentAttributeAudio#ded218e0"
-              },
-              {
-                "duration": 0,
-                "w": 0,
-                "h": 0,
-                "_constructor": "documentAttributeVideo#5910cccb"
-              },
-              {
-                "alt": "ZWz1pJoFFjB9H5FSW9jQHJvmyFn",
-                "stickerset": {
-                  "shortName": "Vxzsuo84NDW98sBo",
-                  "_constructor": "inputStickerSetShortName#861cc8a0"
-                },
-                "_constructor": "documentAttributeSticker#3a556302"
+                "_constructor": "keyboardButton#a2fa4880",
+                "text": "KwPPWz54Hq6eZKLbqUBapisqJC"
               }
             ],
-            "_constructor": "document#f9a39f4f",
-            "id": 0
-          },
-          "_constructor": "webPage#ca820ed7",
-          "id": 0
-        },
-        "_constructor": "messageMediaWebPage#a32dd600"
-      },
-      "replyMarkup": {
-        "_constructor": "replyKeyboardHide#a03e5b85",
-        "flags": 0,
-        "selective": false
+            "_constructor": "keyboardButtonRow#77608b83"
+          }
+        ],
+        "_constructor": "replyKeyboardMarkup#3502758c"
       },
       "entities": [
         {
+          "_constructor": "messageEntityItalic#826f8b60",
+          "offset": 0,
+          "length": 0
+        },
+        {
+          "_constructor": "messageEntityMention#fa04579d",
+          "offset": 0,
+          "length": 0
+        },
+        {
+          "_constructor": "messageEntityCode#28a20571",
+          "offset": 0,
+          "length": 0
+        },
+        {
           "_constructor": "messageEntityHashtag#6f635b0d",
+          "offset": 0,
+          "length": 0
+        },
+        {
+          "_constructor": "messageEntityUrl#6ed02538",
+          "offset": 0,
+          "length": 0
+        },
+        {
+          "_constructor": "messageEntityUrl#6ed02538",
           "offset": 0,
           "length": 0
         },
@@ -855,275 +853,1374 @@
           "length": 0
         },
         {
-          "_constructor": "messageEntityBold#bd610bc9",
-          "offset": 0,
-          "length": 0
-        },
-        {
-          "_constructor": "messageEntityCode#28a20571",
-          "offset": 0,
-          "length": 0
-        },
-        {
-          "_constructor": "messageEntityCode#28a20571",
-          "offset": 0,
-          "length": 0
-        },
-        {
-          "_constructor": "messageEntityBotCommand#6cef8ac7",
-          "offset": 0,
-          "length": 0
-        },
-        {
-          "url": "yxZv04PXf",
-          "_constructor": "messageEntityTextUrl#76a6d327",
+          "_constructor": "messageEntityHashtag#6f635b0d",
           "offset": 0,
           "length": 0
         }
       ],
       "views": 0,
-      "_constructor": "message#c992e15c",
+      "editDate": 0,
+      "_constructor": "message#c09be45f",
+      "id": 0
+    },
+    {
+      "flags": 314,
+      "fromId": 0,
+      "toId": {
+        "userId": 0,
+        "_constructor": "peerUser#9db1bc6d"
+      },
+      "replyToMsgId": 0,
+      "date": 0,
+      "action": {
+        "inviterId": 0,
+        "_constructor": "messageActionChatJoinedByLink#f89cf5e8"
+      },
+      "_constructor": "messageService#9e19a1f6",
       "id": 0
     }
   ],
   "otherUpdates": [
     {
-      "id": 0,
-      "randomId": 0,
-      "_constructor": "updateMessageID#4e90bfd6"
-    },
-    {
-      "key": {
-        "_constructor": "privacyKeyStatusTimestamp#bc2eab30"
-      },
-      "rules": [
-        {
-          "_constructor": "privacyValueDisallowContacts#f888fa1a"
-        },
-        {
-          "_constructor": "privacyValueDisallowAll#8b73e763"
-        },
-        {
-          "_constructor": "privacyValueAllowContacts#fffe1bac"
-        }
-      ],
-      "_constructor": "updatePrivacy#ee3b272a"
-    },
-    {
-      "channelId": 0,
-      "_constructor": "updateChannel#b6d45656"
-    },
-    {
-      "message": {
-        "_constructor": "encryptedMessageService#23734b06",
-        "randomId": 0,
-        "chatId": 0,
-        "date": 0,
-        "bytes": {
-          "data": [
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0
+      "webpage": {
+        "flags": 1023,
+        "url": "oy5faJaJ",
+        "displayUrl": "f7dlnrc",
+        "type": "JsJO9MBlYo",
+        "siteName": "zxEsZOstNNLUXPJdC",
+        "title": "l7h1I",
+        "description": "CfgMv0zecP",
+        "photo": {
+          "accessHash": 0,
+          "date": 0,
+          "sizes": [
+            {
+              "location": {
+                "dcId": 0,
+                "_constructor": "fileLocation#53d69076",
+                "volumeId": 0,
+                "localId": 0,
+                "secret": 0
+              },
+              "w": 0,
+              "h": 0,
+              "bytes": {
+                "data": [
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0
+                ],
+                "offset": 0,
+                "len": 172
+              },
+              "_constructor": "photoCachedSize#e9a734fa",
+              "type": "gN9xk4gRcorhiBGxY3"
+            },
+            {
+              "_constructor": "photoSizeEmpty#e17e23c",
+              "type": "xjhKJY1"
+            },
+            {
+              "_constructor": "photoSizeEmpty#e17e23c",
+              "type": "qaw0qmv"
+            },
+            {
+              "location": {
+                "_constructor": "fileLocationUnavailable#7c596b46",
+                "volumeId": 0,
+                "localId": 0,
+                "secret": 0
+              },
+              "w": 0,
+              "h": 0,
+              "bytes": {
+                "data": [
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0
+                ],
+                "offset": 0,
+                "len": 196
+              },
+              "_constructor": "photoCachedSize#e9a734fa",
+              "type": "7U5kebULtwgU1Qgzypfi7vvR8"
+            },
+            {
+              "_constructor": "photoSizeEmpty#e17e23c",
+              "type": "jsqSjQlyc3Tc1fgkyX"
+            },
+            {
+              "_constructor": "photoSizeEmpty#e17e23c",
+              "type": "Tw51XwJfIgVxDT67dizcPnTYV"
+            },
+            {
+              "location": {
+                "dcId": 0,
+                "_constructor": "fileLocation#53d69076",
+                "volumeId": 0,
+                "localId": 0,
+                "secret": 0
+              },
+              "w": 0,
+              "h": 0,
+              "size": 0,
+              "_constructor": "photoSize#77bfb61b",
+              "type": "2Dzxaa0bn9q1vy9h"
+            },
+            {
+              "location": {
+                "dcId": 0,
+                "_constructor": "fileLocation#53d69076",
+                "volumeId": 0,
+                "localId": 0,
+                "secret": 0
+              },
+              "w": 0,
+              "h": 0,
+              "bytes": {
+                "data": [
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0
+                ],
+                "offset": 0,
+                "len": 76
+              },
+              "_constructor": "photoCachedSize#e9a734fa",
+              "type": "77O9toeEcdSi"
+            },
+            {
+              "_constructor": "photoSizeEmpty#e17e23c",
+              "type": "BW6DvCIt2J6fivLv7VLc87Y"
+            },
+            {
+              "location": {
+                "dcId": 0,
+                "_constructor": "fileLocation#53d69076",
+                "volumeId": 0,
+                "localId": 0,
+                "secret": 0
+              },
+              "w": 0,
+              "h": 0,
+              "bytes": {
+                "data": [
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0
+                ],
+                "offset": 0,
+                "len": 191
+              },
+              "_constructor": "photoCachedSize#e9a734fa",
+              "type": "VRJOVAyXjxcgE8HSt4LT"
+            }
           ],
-          "offset": 0,
-          "len": 78
-        }
-      },
-      "qts": 0,
-      "_constructor": "updateNewEncryptedMessage#12bcbd9a"
-    },
-    {
-      "userId": 0,
-      "myLink": {
-        "_constructor": "contactLinkUnknown#5f4f9247"
-      },
-      "foreignLink": {
-        "_constructor": "contactLinkUnknown#5f4f9247"
-      },
-      "_constructor": "updateContactLink#9d2e67c5"
-    },
-    {
-      "message": {
-        "flags": 272,
-        "unread": false,
-        "out": false,
-        "mentioned": true,
-        "mediaUnread": false,
-        "fromId": 0,
-        "toId": {
-          "channelId": 0,
-          "_constructor": "peerChannel#bddde532"
+          "_constructor": "photo#cded42fe",
+          "id": 0
         },
-        "date": 0,
-        "action": {
-          "users": [
-            0,
-            0
+        "embedUrl": "Czi709o7UVjB4BKx",
+        "embedType": "VTeLkuLFGFjFck4bLJQr9AiT5",
+        "embedWidth": 0,
+        "embedHeight": 0,
+        "duration": 0,
+        "author": "5lJPD2Eqv4Oaj8O2rS38uvVFd5HZ",
+        "document": {
+          "accessHash": 0,
+          "date": 0,
+          "mimeType": "uN0eWllmT2eA37uHkQXYhCSiGpcXL",
+          "size": 0,
+          "thumb": {
+            "_constructor": "photoSizeEmpty#e17e23c",
+            "type": "Jo4fdAxhDS6bIeO61nLeWbHX"
+          },
+          "dcId": 0,
+          "attributes": [
+            {
+              "duration": 0,
+              "w": 0,
+              "h": 0,
+              "_constructor": "documentAttributeVideo#5910cccb"
+            },
+            {
+              "duration": 0,
+              "w": 0,
+              "h": 0,
+              "_constructor": "documentAttributeVideo#5910cccb"
+            },
+            {
+              "duration": 0,
+              "w": 0,
+              "h": 0,
+              "_constructor": "documentAttributeVideo#5910cccb"
+            },
+            {
+              "w": 0,
+              "h": 0,
+              "_constructor": "documentAttributeImageSize#6c37c15c"
+            },
+            {
+              "_constructor": "documentAttributeAnimated#11b58939"
+            },
+            {
+              "alt": "dCSFAa",
+              "stickerset": {
+                "_constructor": "inputStickerSetEmpty#ffb62b95"
+              },
+              "_constructor": "documentAttributeSticker#3a556302"
+            },
+            {
+              "w": 0,
+              "h": 0,
+              "_constructor": "documentAttributeImageSize#6c37c15c"
+            }
           ],
-          "_constructor": "messageActionChatAddUser#488a7337"
+          "_constructor": "document#f9a39f4f",
+          "id": 0
         },
-        "_constructor": "messageService#c06b9607",
+        "_constructor": "webPage#ca820ed7",
         "id": 0
       },
       "pts": 0,
       "ptsCount": 0,
-      "_constructor": "updateNewChannelMessage#62ba04d9"
+      "_constructor": "updateWebPage#7f891213"
     },
     {
-      "participants": {
-        "flags": 1,
-        "selfParticipant": {
-          "_constructor": "chatParticipantCreator#da13538a",
-          "userId": 0
-        },
-        "_constructor": "chatParticipantsForbidden#fc900c2b",
-        "chatId": 0
+      "peer": {
+        "_constructor": "notifyChats#c007cec3"
       },
-      "_constructor": "updateChatParticipants#7761198"
+      "notifySettings": {
+        "_constructor": "peerNotifySettingsEmpty#70a68512"
+      },
+      "_constructor": "updateNotifySettings#bec268ef"
+    },
+    {
+      "stickerset": {
+        "set": {
+          "flags": 2,
+          "installed": false,
+          "disabled": true,
+          "official": false,
+          "id": 0,
+          "accessHash": 0,
+          "title": "5tVC6zjo",
+          "shortName": "1YM287XzIdAIY5gtqGjhsmXboHlz5",
+          "count": 0,
+          "hash": 0,
+          "_constructor": "stickerSet#cd303b41"
+        },
+        "packs": [
+          {
+            "emoticon": "uYbJ06en0",
+            "documents": [
+              0,
+              0,
+              0,
+              0
+            ],
+            "_constructor": "stickerPack#12b299d4"
+          },
+          {
+            "emoticon": "xovntX5kmzLSOYIb",
+            "documents": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "_constructor": "stickerPack#12b299d4"
+          },
+          {
+            "emoticon": "VpNWhK6SxcLsrwALeUsL6rvbr",
+            "documents": [
+              0,
+              0
+            ],
+            "_constructor": "stickerPack#12b299d4"
+          },
+          {
+            "emoticon": "HULbNdpXCq4T2O",
+            "documents": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "_constructor": "stickerPack#12b299d4"
+          },
+          {
+            "emoticon": "uLbOQiMsnJFONV3mdLGF5GwW",
+            "documents": [
+              0,
+              0,
+              0
+            ],
+            "_constructor": "stickerPack#12b299d4"
+          },
+          {
+            "emoticon": "OLihl",
+            "documents": [
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "_constructor": "stickerPack#12b299d4"
+          },
+          {
+            "emoticon": "QpsADCa",
+            "documents": [
+              0,
+              0
+            ],
+            "_constructor": "stickerPack#12b299d4"
+          },
+          {
+            "emoticon": "axHd343IzEPXbLcX1uNfoj",
+            "documents": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "_constructor": "stickerPack#12b299d4"
+          },
+          {
+            "emoticon": "oloF6enki3toJiZ2edJ",
+            "documents": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "_constructor": "stickerPack#12b299d4"
+          },
+          {
+            "emoticon": "4d7cpKGjU2Q3GsZZ77CFawxZQEn",
+            "documents": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "_constructor": "stickerPack#12b299d4"
+          }
+        ],
+        "documents": [
+          {
+            "accessHash": 0,
+            "date": 0,
+            "mimeType": "X55ds55m",
+            "size": 0,
+            "thumb": {
+              "_constructor": "photoSizeEmpty#e17e23c",
+              "type": "fWy4D9pSSSl1HHGnA46"
+            },
+            "dcId": 0,
+            "attributes": [
+              {
+                "w": 0,
+                "h": 0,
+                "_constructor": "documentAttributeImageSize#6c37c15c"
+              },
+              {
+                "alt": "MsbYE4jA4h2wt3eCG",
+                "stickerset": {
+                  "shortName": "knB4jxoNqDeC4Gp8MaW10dUSu",
+                  "_constructor": "inputStickerSetShortName#861cc8a0"
+                },
+                "_constructor": "documentAttributeSticker#3a556302"
+              },
+              {
+                "flags": 7,
+                "duration": 0,
+                "title": "xy57uqQBeB6d2Q",
+                "performer": "MDmEysViF0HXpSH81Q",
+                "waveform": {
+                  "data": [
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0
+                  ],
+                  "offset": 0,
+                  "len": 153
+                },
+                "_constructor": "documentAttributeAudio#9852f9c6"
+              }
+            ],
+            "_constructor": "document#f9a39f4f",
+            "id": 0
+          },
+          {
+            "_constructor": "documentEmpty#36f8c871",
+            "id": 0
+          }
+        ],
+        "_constructor": "messages.stickerSet#b60a24a6"
+      },
+      "_constructor": "updateNewStickerSet#688a30aa"
+    },
+    {
+      "channelId": 0,
+      "maxId": 0,
+      "_constructor": "updateReadChannelInbox#4214f37f"
+    },
+    {
+      "messages": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "pts": 0,
+      "ptsCount": 0,
+      "_constructor": "updateReadMessagesContents#68c13933"
+    },
+    {
+      "dcOptions": [
+        {
+          "flags": 2,
+          "ipv6": false,
+          "mediaOnly": true,
+          "tcpoOnly": false,
+          "id": 0,
+          "ipAddress": "pb3vxIgJu0125xL1kK",
+          "port": 0,
+          "_constructor": "dcOption#5d8c6cc"
+        },
+        {
+          "flags": 7,
+          "ipv6": true,
+          "mediaOnly": true,
+          "tcpoOnly": true,
+          "id": 0,
+          "ipAddress": "xXJQhXWTdfnAW4RnW9RiIsxj9PLZ",
+          "port": 0,
+          "_constructor": "dcOption#5d8c6cc"
+        },
+        {
+          "flags": 4,
+          "ipv6": false,
+          "mediaOnly": false,
+          "tcpoOnly": true,
+          "id": 0,
+          "ipAddress": "ghVZBMtqxvDOR",
+          "port": 0,
+          "_constructor": "dcOption#5d8c6cc"
+        },
+        {
+          "flags": 2,
+          "ipv6": false,
+          "mediaOnly": true,
+          "tcpoOnly": false,
+          "id": 0,
+          "ipAddress": "coTp6AL5TeJ3OiS8WZdsSDNInV3DK",
+          "port": 0,
+          "_constructor": "dcOption#5d8c6cc"
+        },
+        {
+          "flags": 7,
+          "ipv6": true,
+          "mediaOnly": true,
+          "tcpoOnly": true,
+          "id": 0,
+          "ipAddress": "oi8QfeCSP4Yz5",
+          "port": 0,
+          "_constructor": "dcOption#5d8c6cc"
+        },
+        {
+          "flags": 4,
+          "ipv6": false,
+          "mediaOnly": false,
+          "tcpoOnly": true,
+          "id": 0,
+          "ipAddress": "cR75t5GG9H0qbHL4iva4UYae2juqW",
+          "port": 0,
+          "_constructor": "dcOption#5d8c6cc"
+        },
+        {
+          "flags": 0,
+          "ipv6": false,
+          "mediaOnly": false,
+          "tcpoOnly": false,
+          "id": 0,
+          "ipAddress": "e1FFblG6zSHKow3yF7EhrGC",
+          "port": 0,
+          "_constructor": "dcOption#5d8c6cc"
+        },
+        {
+          "flags": 1,
+          "ipv6": true,
+          "mediaOnly": false,
+          "tcpoOnly": false,
+          "id": 0,
+          "ipAddress": "J0EEwU33JLZwyv",
+          "port": 0,
+          "_constructor": "dcOption#5d8c6cc"
+        },
+        {
+          "flags": 5,
+          "ipv6": true,
+          "mediaOnly": false,
+          "tcpoOnly": true,
+          "id": 0,
+          "ipAddress": "g9N7t7R3TTW6S8PJfUGlpW9",
+          "port": 0,
+          "_constructor": "dcOption#5d8c6cc"
+        },
+        {
+          "flags": 7,
+          "ipv6": true,
+          "mediaOnly": true,
+          "tcpoOnly": true,
+          "id": 0,
+          "ipAddress": "PNUWAP1SZACFCMcK5AI5KzPzSi3",
+          "port": 0,
+          "_constructor": "dcOption#5d8c6cc"
+        }
+      ],
+      "_constructor": "updateDcOptions#8e5e9873"
     }
   ],
   "chats": [
     {
-      "flags": 597,
-      "creator": true,
-      "kicked": false,
-      "left": true,
-      "editor": false,
-      "moderator": true,
-      "broadcast": false,
-      "verified": false,
-      "megagroup": false,
-      "restricted": true,
       "accessHash": 0,
-      "title": "F8dihgSir2",
-      "username": "0ZrmnVfUoYVuxv7cEosUxXxUe3r",
-      "photo": {
-        "_constructor": "chatPhotoEmpty#37c1011c"
-      },
-      "date": 0,
-      "version": 0,
-      "restrictionReason": "nuc3KCF",
-      "_constructor": "channel#4b1b7506",
-      "id": 0
-    },
-    {
-      "accessHash": 0,
-      "title": "q5f8ufJUBZAVyXv",
+      "title": "t7yY2hDiTO62y3vqfZs",
       "_constructor": "channelForbidden#2d85832c",
       "id": 0
     },
     {
-      "flags": 887,
-      "creator": true,
-      "kicked": true,
-      "left": true,
-      "editor": false,
-      "moderator": true,
-      "broadcast": true,
-      "verified": false,
-      "megagroup": true,
-      "restricted": true,
+      "_constructor": "chatEmpty#9ba2d800",
+      "id": 0
+    },
+    {
+      "flags": 10991,
       "accessHash": 0,
-      "title": "PGZt3g8zLlndx3bFevIg7I4zv1Uzv",
-      "username": "4YdgMEY",
+      "title": "vZV4DPVVQHwZKxH176V",
+      "username": "ikguAgEjR5xCZyvGFVU52zlcUuf",
       "photo": {
         "_constructor": "chatPhotoEmpty#37c1011c"
       },
       "date": 0,
       "version": 0,
-      "restrictionReason": "I9j3Zu3LbpIaXQZZJUe5i",
-      "_constructor": "channel#4b1b7506",
+      "restrictionReason": "GSbmKPI1",
+      "_constructor": "channel#a14dca52",
       "id": 0
     },
     {
-      "title": "Ltc1BvzvhX7CbYX",
+      "title": "MExVHOgH20xvzGsMv3Yt0H7f",
       "_constructor": "chatForbidden#7328bdb",
       "id": 0
     },
     {
-      "flags": 71,
-      "creator": true,
-      "kicked": true,
-      "left": true,
-      "adminsEnabled": false,
-      "admin": false,
-      "deactivated": false,
-      "title": "TraYwDmpPE5QCl7SEQ4S4SPdm98",
+      "flags": 12018,
+      "accessHash": 0,
+      "title": "CWIyg1TZ",
+      "username": "2wvZ5Xhuj9rWsYp",
       "photo": {
         "photoSmall": {
           "_constructor": "fileLocationUnavailable#7c596b46",
@@ -1139,6 +2236,44 @@
         },
         "_constructor": "chatPhoto#6153276a"
       },
+      "date": 0,
+      "version": 0,
+      "restrictionReason": "HwLLz7Y2",
+      "_constructor": "channel#a14dca52",
+      "id": 0
+    },
+    {
+      "accessHash": 0,
+      "title": "rmyTPZSXMspzn",
+      "_constructor": "channelForbidden#2d85832c",
+      "id": 0
+    },
+    {
+      "accessHash": 0,
+      "title": "m6SEeRWBCBg21q7mSDVb",
+      "_constructor": "channelForbidden#2d85832c",
+      "id": 0
+    },
+    {
+      "flags": 8786,
+      "accessHash": 0,
+      "title": "lH45nIfzbLSr4uUjMQqKTBWCE",
+      "username": "Zk7nfVQ5kfhWnVfPKjB8",
+      "photo": {
+        "_constructor": "chatPhotoEmpty#37c1011c"
+      },
+      "date": 0,
+      "version": 0,
+      "restrictionReason": "I4hG3LBNjFlCwAL7p",
+      "_constructor": "channel#a14dca52",
+      "id": 0
+    },
+    {
+      "flags": 92,
+      "title": "TdJYAbc",
+      "photo": {
+        "_constructor": "chatPhotoEmpty#37c1011c"
+      },
       "participantsCount": 0,
       "date": 0,
       "version": 0,
@@ -1151,107 +2286,49 @@
       "id": 0
     },
     {
-      "title": "03s8buD7DDzWSJ3g",
-      "_constructor": "chatForbidden#7328bdb",
-      "id": 0
-    },
-    {
-      "title": "axbFlf",
-      "_constructor": "chatForbidden#7328bdb",
-      "id": 0
-    },
-    {
-      "flags": 983,
-      "creator": true,
-      "kicked": true,
-      "left": true,
-      "editor": false,
-      "moderator": true,
-      "broadcast": false,
-      "verified": true,
-      "megagroup": true,
-      "restricted": true,
       "accessHash": 0,
-      "title": "jG9mdSypLItzSQO5Z2F3aa",
-      "username": "MJK2Ofe8py",
-      "photo": {
-        "_constructor": "chatPhotoEmpty#37c1011c"
-      },
-      "date": 0,
-      "version": 0,
-      "restrictionReason": "V1W2I7W",
-      "_constructor": "channel#4b1b7506",
+      "title": "ax7CfqzFuQRWoGvc5aK5wI",
+      "_constructor": "channelForbidden#2d85832c",
       "id": 0
     }
   ],
   "users": [
     {
-      "_constructor": "userEmpty#200250ba",
-      "id": 0
-    },
-    {
-      "_constructor": "userEmpty#200250ba",
-      "id": 0
-    },
-    {
-      "_constructor": "userEmpty#200250ba",
-      "id": 0
-    },
-    {
-      "flags": 1011839,
+      "flags": 2496512,
       "self": false,
-      "contact": false,
-      "mutualContact": true,
-      "deleted": true,
-      "bot": true,
-      "botChatHistory": false,
-      "botNochats": true,
-      "verified": true,
-      "restricted": true,
-      "accessHash": 0,
-      "firstName": "02tXsT",
-      "lastName": "yx4gDAjP8SLEMmShyXRZ9EVusI",
-      "username": "19Wh5paQatG2n9",
-      "phone": "kYJKLf5bsFxQp06IoSFKwyfwx",
-      "photo": {
-        "_constructor": "userProfilePhotoEmpty#4f11bae1"
-      },
-      "status": {
-        "wasOnline": 0,
-        "_constructor": "userStatusOffline#8c703f"
-      },
-      "botInfoVersion": 0,
-      "restrictionReason": "eOg29zQ5P2gH",
-      "botInlinePlaceholder": "oGEg2nT0t",
-      "_constructor": "user#d10d979a",
-      "id": 0
-    },
-    {
-      "flags": 906367,
-      "self": true,
-      "contact": false,
+      "contact": true,
       "mutualContact": true,
       "deleted": false,
-      "bot": true,
-      "botChatHistory": true,
-      "botNochats": true,
-      "verified": false,
+      "bot": false,
+      "botChatHistory": false,
+      "botNochats": false,
+      "verified": true,
       "restricted": true,
-      "accessHash": 0,
-      "firstName": "QlpveSZWNlJ2QohbC4f7",
-      "lastName": "nRcVIoCqHE1lPvN7JMZGhNY3",
-      "username": "zrQ0tedQAMK",
-      "phone": "CvLkhK3rYCsm4ZXekElhfpaP",
-      "photo": {
-        "_constructor": "userProfilePhotoEmpty#4f11bae1"
-      },
-      "status": {
-        "_constructor": "userStatusLastMonth#77ebc742"
-      },
-      "botInfoVersion": 0,
-      "restrictionReason": "BDzzExnXOxzWILL7",
-      "botInlinePlaceholder": "ST2o02Vi9bTIixlbUsSpx",
+      "min": false,
+      "botInlineGeo": true,
+      "accessHash": null,
+      "firstName": null,
+      "lastName": null,
+      "username": null,
+      "phone": null,
+      "photo": null,
+      "status": null,
+      "botInfoVersion": null,
+      "restrictionReason": "YugFOPnxnX7BhxVlzNb",
+      "botInlinePlaceholder": null,
       "_constructor": "user#d10d979a",
+      "id": 0
+    },
+    {
+      "_constructor": "userEmpty#200250ba",
+      "id": 0
+    },
+    {
+      "_constructor": "userEmpty#200250ba",
+      "id": 0
+    },
+    {
+      "_constructor": "userEmpty#200250ba",
       "id": 0
     },
     {
@@ -1260,8 +2337,7 @@
     }
   ],
   "_constructor": "updates.channelDifference#2064674e",
-  "flags": 2,
-  "_final": false,
+  "flags": 3,
   "pts": 0,
   "timeout": 0
 }

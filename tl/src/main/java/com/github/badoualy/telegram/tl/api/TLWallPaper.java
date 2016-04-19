@@ -75,20 +75,6 @@ public class TLWallPaper extends TLAbsWallPaper {
         return CONSTRUCTOR_ID;
     }
 
-    @Override
-    @SuppressWarnings("PointlessBooleanExpression")
-    public boolean equals(Object object) {
-        if (!(object instanceof TLWallPaper)) return false;
-        if (object == this) return true;
-
-        TLWallPaper o = (TLWallPaper) object;
-
-        return id == o.id
-                && (title == o.title || (title != null && o.title != null && title.equals(o.title)))
-                && (sizes == o.sizes || (sizes != null && o.sizes != null && sizes.equals(o.sizes)))
-                && color == o.color;
-    }
-
     public int getId() {
         return id;
     }

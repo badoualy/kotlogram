@@ -69,19 +69,6 @@ public class TLInputFileBig extends TLAbsInputFile {
         return CONSTRUCTOR_ID;
     }
 
-    @Override
-    @SuppressWarnings("PointlessBooleanExpression")
-    public boolean equals(Object object) {
-        if (!(object instanceof TLInputFileBig)) return false;
-        if (object == this) return true;
-
-        TLInputFileBig o = (TLInputFileBig) object;
-
-        return id == o.id
-                && parts == o.parts
-                && (name == o.name || (name != null && o.name != null && name.equals(o.name)));
-    }
-
     public long getId() {
         return id;
     }

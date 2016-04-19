@@ -98,23 +98,6 @@ public class TLEncryptedChat extends TLAbsEncryptedChat {
         return CONSTRUCTOR_ID;
     }
 
-    @Override
-    @SuppressWarnings("PointlessBooleanExpression")
-    public boolean equals(Object object) {
-        if (!(object instanceof TLEncryptedChat)) return false;
-        if (object == this) return true;
-
-        TLEncryptedChat o = (TLEncryptedChat) object;
-
-        return id == o.id
-                && accessHash == o.accessHash
-                && date == o.date
-                && adminId == o.adminId
-                && participantId == o.participantId
-                && (gAOrB == o.gAOrB || (gAOrB != null && o.gAOrB != null && gAOrB.equals(o.gAOrB)))
-                && keyFingerprint == o.keyFingerprint;
-    }
-
     public int getId() {
         return id;
     }

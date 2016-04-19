@@ -74,19 +74,6 @@ public class TLImportedContacts extends TLObject {
         return CONSTRUCTOR_ID;
     }
 
-    @Override
-    @SuppressWarnings("PointlessBooleanExpression")
-    public boolean equals(Object object) {
-        if (!(object instanceof TLImportedContacts)) return false;
-        if (object == this) return true;
-
-        TLImportedContacts o = (TLImportedContacts) object;
-
-        return (imported == o.imported || (imported != null && o.imported != null && imported.equals(o.imported)))
-                && (retryContacts == o.retryContacts || (retryContacts != null && o.retryContacts != null && retryContacts.equals(o.retryContacts)))
-                && (users == o.users || (users != null && o.users != null && users.equals(o.users)));
-    }
-
     public TLVector<TLImportedContact> getImported() {
         return imported;
     }

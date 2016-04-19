@@ -414,20 +414,21 @@ object JavaPoet {
             for (parameter in condParameters) {
                 val tlType = parameter.tlType as TLTypeConditional
                 val realType = tlType.realType
-                val fieldType = getType(realType)
                 val fieldName = parameter.name.lCamelCase().javaEscape()
 
-                if (fieldType == TypeName.BOOLEAN) {
-                    // Check if is an indicator of presence of another field
-                    if (condParameters.count { (it.tlType as TLTypeConditional).value == tlType.value } > 1)
-                        tlType.indicator = true
-                    else computeFlagsMethod.addStatement("flags = $fieldName ? (flags | ${tlType.pow2Value()}) : (flags &~ ${tlType.pow2Value()})")
-                } else computeFlagsMethod.addStatement("flags = $fieldName != null ? (flags | ${tlType.pow2Value()}) : (flags &~ ${tlType.pow2Value()})")
+                if (realType is TLTypeRaw && arrayOf("true", "false").contains(realType.name)) {
+                    computeFlagsMethod.addStatement("flags = $fieldName ? (flags | ${tlType.pow2Value()}) : (flags &~ ${tlType.pow2Value()})")
+                }
             }
+            computeFlagsMethod.addCode("// Fields below may not be serialized due to flags field value\n")
+            for (parameter in condParameters) {
+                val tlType = parameter.tlType as TLTypeConditional
+                val realType = tlType.realType
+                val fieldName = parameter.name.lCamelCase().javaEscape()
 
-            // Update boolean values
-            condParameters.filter { (it.tlType as TLTypeConditional).indicator }
-                    .forEach { p -> computeFlagsMethod.addStatement(p.name.lCamelCase().javaEscape() + " = " + deserializeParameter(p.tlType, getType(p.tlType))) }
+                if (!(realType is TLTypeRaw && arrayOf("true", "false").contains(realType.name)))
+                    computeFlagsMethod.addStatement("if ((flags & ${tlType.pow2Value()}) == 0) $fieldName = null")
+            }
 
             clazz.addMethod(computeFlagsMethod.build());
 
@@ -452,16 +453,20 @@ object JavaPoet {
                 val typeArg = fieldType.typeArguments.first()
                 fieldType = ParameterizedTypeName.get(fieldType.rawType, typeArg)
             }
+            // Build field
             val fieldName = parameter.name.lCamelCase().javaEscape()
-            if (!parameter.inherited || id == null) // Null-id is superclass
-                clazz.addField(fieldType, fieldName, Modifier.PROTECTED)
+            if (!parameter.inherited || id == null) {
+                // Null-id is superclass
+                val fieldBuilder = FieldSpec.builder(fieldType, fieldName, Modifier.PROTECTED)
+                //if (!fieldTlType.serializable())
+                //fieldBuilder.addModifiers(Modifier.TRANSIENT)
+                clazz.addField(fieldBuilder.build())
+            }
 
-            // Add serialize method entry
-            val condBoolean = fieldTlType is TLTypeConditional && fieldTlType.realType is TLTypeRaw && fieldTlType.realType.name == "Bool"
-            val condIndicator = fieldTlType is TLTypeConditional && fieldTlType.indicator
-            if (!condBoolean) {
-                serializeMethod.addStatement(serializeParameter(fieldName, fieldTlType))
-                computeSizeMethod.addStatement(computeSizeParameter(fieldName, fieldTlType))
+            // Add serialize method entry if not a boolean present only to compute flag
+            if (fieldTlType.serializable()) {
+                serializeMethod.addCode(serializeParameter(fieldName, fieldTlType) + "\n")
+                computeSizeMethod.addCode(computeSizeParameter(fieldName, fieldTlType) + "\n")
             }
             val deserializeStatement = "$fieldName = ${deserializeParameter(fieldTlType, fieldType)}"
             val count = deserializeStatement.split("\$T").size - 1
@@ -478,20 +483,18 @@ object JavaPoet {
             if (fieldTlType !is TLTypeFlag) {
                 // Add set()/get()
                 accessors.add(generateGetter(parameter.name, fieldName, fieldType))
-                if (!condIndicator) {
-                    accessors.add(generateSetter(parameter.name, fieldName, fieldType))
+                accessors.add(generateSetter(parameter.name, fieldName, fieldType))
 
-                    // Add constructor parameter
-                    constructorBuilder.addParameter(fieldType, fieldName)
-                    constructorBuilder.addStatement("this.$fieldName = $fieldName")
+                // Add constructor parameter
+                constructorBuilder.addParameter(fieldType, fieldName)
+                constructorBuilder.addStatement("this.$fieldName = $fieldName")
 
-                    // Add api method
-                    apiMethod?.addParameter(fieldType, fieldName)
-                    apiWrappedMethod?.addParameter(fieldType, fieldName)
-                    if (fieldTlType is TLTypeFunctional) {
-                        apiMethod?.addTypeVariable(TypeVariableName.get("T", TYPE_TL_OBJECT))
-                        apiWrappedMethod?.addTypeVariable(TypeVariableName.get("T", TYPE_TL_OBJECT))
-                    }
+                // Add api method
+                apiMethod?.addParameter(fieldType, fieldName)
+                apiWrappedMethod?.addParameter(fieldType, fieldName)
+                if (fieldTlType is TLTypeFunctional) {
+                    apiMethod?.addTypeVariable(TypeVariableName.get("T", TYPE_TL_OBJECT))
+                    apiWrappedMethod?.addTypeVariable(TypeVariableName.get("T", TYPE_TL_OBJECT))
                 }
             }
         }
@@ -530,7 +533,7 @@ object JavaPoet {
 
             if (equalsStatements.isEmpty()) equalsMethod.addStatement("return true")
             else equalsMethod.addStatement(equalsStatements.joinToString("\n&& ", prefix = "return "))
-            clazz.addMethod(equalsMethod.build())
+            //clazz.addMethod(equalsMethod.build())
         }
         clazz.addMethods(accessors)
     }
@@ -540,9 +543,10 @@ object JavaPoet {
         is TLTypeAny -> TypeVariableName.get("T")
         is TLTypeFlag -> TypeName.INT
         is TLTypeConditional -> {
-            var realType = getType(type.realType)
-            if (realType == TypeName.BOOLEAN) realType
-            else realType.box()
+            val realTlType = getType(type.realType)
+            if (type.realType !is TLTypeRaw || !arrayOf("true", "false").contains(type.realType.name))
+                realTlType.box()
+            else realTlType
         }
         is TLTypeGeneric -> {
             when ((type.generics.first() as TLTypeRaw).name) {
@@ -561,27 +565,36 @@ object JavaPoet {
                 "float" -> TypeName.FLOAT
                 "string" -> TypeName.get(String::class.java)
                 "bytes" -> TYPE_TL_BYTES // TODO: wrap in bytes[], figure out offset/length
-                "Bool" -> if (boxedInTl) TYPE_TL_BOOL else TypeName.BOOLEAN
-                else -> typeClassNameMap[type]!!
+                "Bool", "true", "false" -> if (boxedInTl) TYPE_TL_BOOL else TypeName.BOOLEAN
+                else -> typeClassNameMap[type] ?: throw RuntimeException("Unknown type $type")
             }
         }
         else -> throw RuntimeException("Unsupported type $type")
     }
 
     private fun serializeParameter(fieldName: String, fieldTlType: TLType): String = when (fieldTlType) {
-        is TLTypeFunctional -> "writeTLMethod($fieldName, stream)"
-        is TLTypeFlag -> "writeInt($fieldName, stream)"
-        is TLTypeConditional -> "if ((flags & ${fieldTlType.pow2Value()}) != 0) ${serializeParameter(fieldName, fieldTlType.realType)}"
-        is TLTypeGeneric -> "writeTLVector($fieldName, stream)"
+        is TLTypeFunctional -> "writeTLMethod($fieldName, stream);"
+        is TLTypeFlag -> "writeInt($fieldName, stream);"
+        is TLTypeConditional -> {
+            val statement = StringBuilder()
+            statement.append("if ((flags & ${fieldTlType.pow2Value()}) != 0) {\n")
+                    .append("""    if ($fieldName == null) throwNullFieldException("$fieldName", flags);""").append('\n')
+                    .append("    ")
+                    .append(serializeParameter(fieldName, fieldTlType.realType)).append('\n')
+                    .append('}')
+            statement.toString()
+        }
+        is TLTypeGeneric -> "writeTLVector($fieldName, stream);"
         is TLTypeRaw -> when (fieldTlType.name) {
-            "int" -> "writeInt($fieldName, stream)"
-            "long" -> "writeLong($fieldName, stream)"
-            "double" -> "writeDouble($fieldName, stream)"
-            "float" -> "writeFloat($fieldName, stream)"
-            "string" -> "writeString($fieldName, stream)"
-            "bytes" -> "writeTLBytes($fieldName, stream)"
-            "Bool" -> "writeBoolean($fieldName, stream)"
-            else -> "writeTLObject($fieldName, stream)"
+            "int" -> "writeInt($fieldName, stream);"
+            "long" -> "writeLong($fieldName, stream);"
+            "double" -> "writeDouble($fieldName, stream);"
+            "float" -> "writeFloat($fieldName, stream);"
+            "string" -> "writeString($fieldName, stream);"
+            "bytes" -> "writeTLBytes($fieldName, stream);"
+            "Bool" -> "writeBoolean($fieldName, stream);"
+            "true", "false" -> ""
+            else -> "writeTLObject($fieldName, stream);"
         }
         else -> throw RuntimeException("Unsupported type $fieldTlType")
     }
@@ -592,7 +605,7 @@ object JavaPoet {
         is TLTypeConditional -> {
             val prefix = "(flags & ${fieldTlType.pow2Value()}) != 0"
             val realType = fieldTlType.realType
-            if (realType is TLTypeRaw && arrayOf("Bool", "true").contains(realType.name)) prefix
+            if (realType is TLTypeRaw && arrayOf("true", "false").contains(realType.name)) prefix
             else "$prefix ? ${deserializeParameter(realType, fieldType)} : null"
         }
         is TLTypeGeneric -> when ((fieldTlType.generics.first() as TLTypeRaw).name) {
@@ -620,21 +633,29 @@ object JavaPoet {
     }
 
     private fun computeSizeParameter(fieldName: String, fieldTlType: TLType): String = when (fieldTlType) {
-        is TLTypeFunctional -> "size += $fieldName.computeSerializedSize()"
-        is TLTypeFlag -> "size += SIZE_INT32"
-        is TLTypeConditional -> "if ((flags & ${fieldTlType.pow2Value()}) != 0) ${computeSizeParameter(fieldName, fieldTlType.realType)}"
-        is TLTypeGeneric -> "size += $fieldName.computeSerializedSize()"
+        is TLTypeFunctional -> "size += $fieldName.computeSerializedSize();"
+        is TLTypeFlag -> "size += SIZE_INT32;"
+        is TLTypeConditional -> {
+            val statement = StringBuilder()
+            statement.append("if ((flags & ${fieldTlType.pow2Value()}) != 0) {\n")
+                    .append("""    if ($fieldName == null) throwNullFieldException("$fieldName", flags);""").append('\n')
+                    .append("    ")
+                    .append(computeSizeParameter(fieldName, fieldTlType.realType)).append("\n")
+                    .append('}')
+            statement.toString()
+        }
+        is TLTypeGeneric -> "size += $fieldName.computeSerializedSize();"
         is TLTypeRaw -> {
             val name = fieldTlType.name
             when (name) {
-                "int" -> "size += SIZE_INT32"
-                "long" -> "size += SIZE_INT64"
-                "double" -> "size += SIZE_DOUBLE"
-                "float" -> "size += SIZE_DOUBLE"
-                "string" -> "size += computeTLStringSerializedSize($fieldName)"
-                "bytes" -> "size += computeTLBytesSerializedSize($fieldName)"
-                "Bool" -> "size += SIZE_BOOLEAN"
-                else -> "size += $fieldName.computeSerializedSize()"
+                "int" -> "size += SIZE_INT32;"
+                "long" -> "size += SIZE_INT64;"
+                "double" -> "size += SIZE_DOUBLE;"
+                "float" -> "size += SIZE_DOUBLE;"
+                "string" -> "size += computeTLStringSerializedSize($fieldName);"
+                "bytes" -> "size += computeTLBytesSerializedSize($fieldName);"
+                "Bool" -> "size += SIZE_BOOLEAN;"
+                else -> "size += $fieldName.computeSerializedSize();"
             }
         }
         else -> throw RuntimeException("Unsupported type $fieldTlType")

@@ -67,18 +67,6 @@ public class TLSupport extends TLObject {
         return CONSTRUCTOR_ID;
     }
 
-    @Override
-    @SuppressWarnings("PointlessBooleanExpression")
-    public boolean equals(Object object) {
-        if (!(object instanceof TLSupport)) return false;
-        if (object == this) return true;
-
-        TLSupport o = (TLSupport) object;
-
-        return (phoneNumber == o.phoneNumber || (phoneNumber != null && o.phoneNumber != null && phoneNumber.equals(o.phoneNumber)))
-                && (user == o.user || (user != null && o.user != null && user.equals(o.user)));
-    }
-
     public String getPhoneNumber() {
         return phoneNumber;
     }

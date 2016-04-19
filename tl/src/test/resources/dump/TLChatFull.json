@@ -2,7 +2,9 @@
   "participants": {
     "flags": 1,
     "selfParticipant": {
-      "_constructor": "chatParticipantCreator#da13538a",
+      "inviterId": 0,
+      "date": 0,
+      "_constructor": "chatParticipant#c8d7493e",
       "userId": 0
     },
     "_constructor": "chatParticipantsForbidden#fc900c2b",
@@ -18,42 +20,418 @@
     "_constructor": "peerNotifySettingsEmpty#70a68512"
   },
   "exportedInvite": {
-    "link": "BXnkIp2X3NOGGeJk",
-    "_constructor": "chatInviteExported#fc2e05bc"
+    "_constructor": "chatInviteEmpty#69df3769"
   },
   "botInfo": [
     {
-      "_constructor": "botInfoEmpty#bb2e37ce"
-    },
-    {
-      "_constructor": "botInfoEmpty#bb2e37ce"
-    },
-    {
       "userId": 0,
-      "version": 0,
-      "shareText": "jvu1m2teHtq",
-      "description": "ttGeP26gFWaYLO5HzIK",
+      "description": "yqaFaJ9frx8ngoZy16",
       "commands": [
         {
-          "command": "mP8HRoQKPyr",
-          "description": "tjoixKSA81",
+          "command": "KWxTVe4OGr",
+          "description": "Zs53D",
           "_constructor": "botCommand#c27ac8c7"
         },
         {
-          "command": "GUDcc7VV5aTjKs6",
-          "description": "XSKhJ0Z811Xx3g9qxhVufQ0tPnk8X",
+          "command": "Wz57W98jMLPUjuXCFtF3I",
+          "description": "1XCBSNa47CILJ8TkBPC79bId",
           "_constructor": "botCommand#c27ac8c7"
         },
         {
-          "command": "Zwvo2BnKEPzWx4g5ybqJ66C2bkAgD",
-          "description": "7f46t1",
+          "command": "dQA5jFJY28UIHw3A3K2ZH8Xr1",
+          "description": "lHx1pHJXfqJouUcR",
+          "_constructor": "botCommand#c27ac8c7"
+        },
+        {
+          "command": "UhyAizHDAxhT3g101ryaD",
+          "description": "gdHp9",
+          "_constructor": "botCommand#c27ac8c7"
+        },
+        {
+          "command": "dCzAUnlVNuyxSM6cLJtAxyJ1l",
+          "description": "CbFR0",
+          "_constructor": "botCommand#c27ac8c7"
+        },
+        {
+          "command": "7D4vnRxKZ5Fxl1pe1O9",
+          "description": "utNC5bQEALykE2iHbI3B7O",
+          "_constructor": "botCommand#c27ac8c7"
+        },
+        {
+          "command": "0kJI2",
+          "description": "G5T9ydo",
           "_constructor": "botCommand#c27ac8c7"
         }
       ],
-      "_constructor": "botInfo#9cf585d"
+      "_constructor": "botInfo#98e81d3a"
     },
     {
-      "_constructor": "botInfoEmpty#bb2e37ce"
+      "userId": 0,
+      "description": "AbHaLcuNJI6koWd",
+      "commands": [
+        {
+          "command": "u3EE5RThgPmRE",
+          "description": "P084YgWIA7PvZojHPuJCRt",
+          "_constructor": "botCommand#c27ac8c7"
+        },
+        {
+          "command": "4plOgTa4L6mPaS0PNG3W4MMxd",
+          "description": "BPz1Tkpn",
+          "_constructor": "botCommand#c27ac8c7"
+        },
+        {
+          "command": "PLn3fcYFbGV3NU0Z",
+          "description": "tn5jdR",
+          "_constructor": "botCommand#c27ac8c7"
+        },
+        {
+          "command": "CetOIdBhw2hGAj8axEWv8TrRWqRn",
+          "description": "DThQyg5MNZnCut2uBLzg",
+          "_constructor": "botCommand#c27ac8c7"
+        },
+        {
+          "command": "KZsAd",
+          "description": "n6qvbmy",
+          "_constructor": "botCommand#c27ac8c7"
+        },
+        {
+          "command": "GNNf8pB",
+          "description": "YVws6UAOWpUnAtR",
+          "_constructor": "botCommand#c27ac8c7"
+        },
+        {
+          "command": "d78FMskC7TfkIzVJeV",
+          "description": "icoiybo047DwjQX5Ip5ga5v",
+          "_constructor": "botCommand#c27ac8c7"
+        },
+        {
+          "command": "kYfuQhHM5y73",
+          "description": "P4lVEUW2fOG689arDZkid",
+          "_constructor": "botCommand#c27ac8c7"
+        }
+      ],
+      "_constructor": "botInfo#98e81d3a"
+    },
+    {
+      "userId": 0,
+      "description": "wYGqBG5u5kkQd",
+      "commands": [
+        {
+          "command": "iTWwHFSKScpnvpjVXxH",
+          "description": "lKIwrF5XT5cJCaLIT",
+          "_constructor": "botCommand#c27ac8c7"
+        },
+        {
+          "command": "tOPsqszucNjOAuVthcIKQBAxKzfB",
+          "description": "aLnKfroLod",
+          "_constructor": "botCommand#c27ac8c7"
+        },
+        {
+          "command": "tt9AGKxDdoxL0VSPnL",
+          "description": "BmbYKShxPvNkWI6ziP9Y",
+          "_constructor": "botCommand#c27ac8c7"
+        },
+        {
+          "command": "QpDpVgqwIoHWyihZ5rnf6",
+          "description": "9tb4GV5z4cq5BoB6hEpB",
+          "_constructor": "botCommand#c27ac8c7"
+        },
+        {
+          "command": "u5mcJiFSkTK7ppA",
+          "description": "OSXGNJgf7lIEi4WOOEl6LCoiEDW",
+          "_constructor": "botCommand#c27ac8c7"
+        }
+      ],
+      "_constructor": "botInfo#98e81d3a"
+    },
+    {
+      "userId": 0,
+      "description": "HmC01MfnJ3GYeSYyuGA4nu",
+      "commands": [
+        {
+          "command": "Y2iq0v7wzA",
+          "description": "yQXfu3C",
+          "_constructor": "botCommand#c27ac8c7"
+        },
+        {
+          "command": "2sfvrVQC9XIZVgvWJdTgSj",
+          "description": "Zzpfo7xHLlgtFNPHoXa9ZJ",
+          "_constructor": "botCommand#c27ac8c7"
+        },
+        {
+          "command": "KdOcbHzKJ7SBUzItsfSmhRmkbfF",
+          "description": "I9OvA",
+          "_constructor": "botCommand#c27ac8c7"
+        },
+        {
+          "command": "4Z7KgW",
+          "description": "0JflUo1p0pnAnpFc2h",
+          "_constructor": "botCommand#c27ac8c7"
+        },
+        {
+          "command": "dWTJg1RInuhceF6JwV4h6",
+          "description": "xGZYD7AGBVnwJ45",
+          "_constructor": "botCommand#c27ac8c7"
+        },
+        {
+          "command": "k9s1F1lI7UbiJu",
+          "description": "lYMeoFo",
+          "_constructor": "botCommand#c27ac8c7"
+        },
+        {
+          "command": "darzyZTgoJmcyIYhfq3cc50XPnjo",
+          "description": "wQXhEwMc0VIHMezsSSBVxVqg7NG",
+          "_constructor": "botCommand#c27ac8c7"
+        },
+        {
+          "command": "nQ5SIxm1mdWvxpp159a",
+          "description": "HRLgl3rweOz",
+          "_constructor": "botCommand#c27ac8c7"
+        }
+      ],
+      "_constructor": "botInfo#98e81d3a"
+    },
+    {
+      "userId": 0,
+      "description": "rh3xokI6JJAFIjr0NJ9VpjV",
+      "commands": [
+        {
+          "command": "BLqKNqB6LQMtKCA4eEvo",
+          "description": "Orxjco0PgmnXlQ431OlUkBUgcY",
+          "_constructor": "botCommand#c27ac8c7"
+        },
+        {
+          "command": "J9J0PDk0k8D",
+          "description": "r7aLNdn5G5exUZCcZNM",
+          "_constructor": "botCommand#c27ac8c7"
+        },
+        {
+          "command": "E18I7",
+          "description": "qHgTR5KjS4x0HWu4dtiN",
+          "_constructor": "botCommand#c27ac8c7"
+        },
+        {
+          "command": "a9ic7sMQZgGPRH",
+          "description": "AHGWb6fDWG7zNszSIKuXm",
+          "_constructor": "botCommand#c27ac8c7"
+        },
+        {
+          "command": "DxD3aoQ",
+          "description": "7JNoDocIX",
+          "_constructor": "botCommand#c27ac8c7"
+        },
+        {
+          "command": "DcylAuwNiDec9M3GJj0mVff",
+          "description": "4NBxy",
+          "_constructor": "botCommand#c27ac8c7"
+        },
+        {
+          "command": "XGb3MDPa0hBAJeEhJZTWrXMGB",
+          "description": "dYcedOrGpkWOqqCw",
+          "_constructor": "botCommand#c27ac8c7"
+        },
+        {
+          "command": "bWJtds86R1thPz9B",
+          "description": "XpAb13CUGsaMroFKc",
+          "_constructor": "botCommand#c27ac8c7"
+        },
+        {
+          "command": "wqhdCP8RX",
+          "description": "NMk8PbXYreBP4X03TZlNBSTjVnVm",
+          "_constructor": "botCommand#c27ac8c7"
+        }
+      ],
+      "_constructor": "botInfo#98e81d3a"
+    },
+    {
+      "userId": 0,
+      "description": "qiicugWexIvo5zMoIdQpdBw",
+      "commands": [
+        {
+          "command": "qdnqPC6T",
+          "description": "ufCrr7huZq3lI",
+          "_constructor": "botCommand#c27ac8c7"
+        },
+        {
+          "command": "xxGhReZiTaBljqNHGy2tNmHUN",
+          "description": "Wb54wQBP1fIFSmSGXGh9rYm",
+          "_constructor": "botCommand#c27ac8c7"
+        },
+        {
+          "command": "DYcUTlCaJzh4ij22J5azx0xEi",
+          "description": "AQnNdMRunSJ5atSBz6aYbUFM303p",
+          "_constructor": "botCommand#c27ac8c7"
+        },
+        {
+          "command": "JFsVU3mAhp71a7xa0COlhFi",
+          "description": "EiJ3mtPNVOnQuxoccVJ2r",
+          "_constructor": "botCommand#c27ac8c7"
+        },
+        {
+          "command": "WinpGlEUyIfvUMtCpI407ibmumc2",
+          "description": "YciS3FAXr",
+          "_constructor": "botCommand#c27ac8c7"
+        }
+      ],
+      "_constructor": "botInfo#98e81d3a"
+    },
+    {
+      "userId": 0,
+      "description": "LP292QihqyM6cdg0Dkje",
+      "commands": [
+        {
+          "command": "gw9xksTlOboXAdFbOS",
+          "description": "pSkcuw0BvJTltm6WuMcI",
+          "_constructor": "botCommand#c27ac8c7"
+        },
+        {
+          "command": "uzDkcfwcUN",
+          "description": "ctJ04wRtc",
+          "_constructor": "botCommand#c27ac8c7"
+        },
+        {
+          "command": "Z3kF7I4SOenwTyhqFmkgRN",
+          "description": "9t765DZ2WF3x6mgG6hapR",
+          "_constructor": "botCommand#c27ac8c7"
+        },
+        {
+          "command": "ODgOeqXkM4",
+          "description": "fTwQ0ibXve7UaQ3natoSPx2Iz",
+          "_constructor": "botCommand#c27ac8c7"
+        },
+        {
+          "command": "DdBTRPmsMCp2KPyEXRgP6XZ777XV",
+          "description": "mlPFRLEhFxAlnNiimurj1Uo",
+          "_constructor": "botCommand#c27ac8c7"
+        },
+        {
+          "command": "ggjVPFeme0nhwFRD3",
+          "description": "QzXzwt",
+          "_constructor": "botCommand#c27ac8c7"
+        },
+        {
+          "command": "ywx4vNbMAhqbFA3g",
+          "description": "cCBgO7cym",
+          "_constructor": "botCommand#c27ac8c7"
+        },
+        {
+          "command": "DKKfV",
+          "description": "2XnYolHZPIIfJ",
+          "_constructor": "botCommand#c27ac8c7"
+        },
+        {
+          "command": "9iuitfMJlU7vsDRdzFOgUvzu",
+          "description": "fpqdCd81bFbcDajwuXbbRh4",
+          "_constructor": "botCommand#c27ac8c7"
+        },
+        {
+          "command": "9geXh717Vo2ctdg",
+          "description": "zzKlalh0xAmZQnoQQdJffZZIgi",
+          "_constructor": "botCommand#c27ac8c7"
+        },
+        {
+          "command": "xwPjtJwG5Y2rP",
+          "description": "Nke6aygcAWcwc",
+          "_constructor": "botCommand#c27ac8c7"
+        }
+      ],
+      "_constructor": "botInfo#98e81d3a"
+    },
+    {
+      "userId": 0,
+      "description": "30D3IsqJQnbMG3sJfPUnHUsxK9",
+      "commands": [
+        {
+          "command": "bdhvq6LwaH4JMHZvVpR",
+          "description": "SEXOUt55gnQuj2Xz7EHbnd",
+          "_constructor": "botCommand#c27ac8c7"
+        },
+        {
+          "command": "n4cwI8Aba6",
+          "description": "wuGED1w4DT3gsrcI741",
+          "_constructor": "botCommand#c27ac8c7"
+        },
+        {
+          "command": "VVR7T2rUfvHby0d",
+          "description": "ok8FGQkEv3vJiWz6f53eyTyA",
+          "_constructor": "botCommand#c27ac8c7"
+        },
+        {
+          "command": "O9ljVEzU0",
+          "description": "QVqbytpNgUeTRjoMa5T74X",
+          "_constructor": "botCommand#c27ac8c7"
+        },
+        {
+          "command": "l4Way0ALddGz",
+          "description": "t4UoKbt",
+          "_constructor": "botCommand#c27ac8c7"
+        }
+      ],
+      "_constructor": "botInfo#98e81d3a"
+    },
+    {
+      "userId": 0,
+      "description": "u9RxGwbSEvq",
+      "commands": [
+        {
+          "command": "nw63aej21z0u28bQk4Vm1",
+          "description": "hZtZ2FPL6dutAncWehY",
+          "_constructor": "botCommand#c27ac8c7"
+        },
+        {
+          "command": "YhRp7E3XUxiNYVCS",
+          "description": "W6APKs5DOnjhaMIfqxot",
+          "_constructor": "botCommand#c27ac8c7"
+        }
+      ],
+      "_constructor": "botInfo#98e81d3a"
+    },
+    {
+      "userId": 0,
+      "description": "FoMuS5WXoWxAWiTBAJIsrli",
+      "commands": [
+        {
+          "command": "21A33PHPeNeyFOhqqJ5MfxlKZR28e",
+          "description": "aOsgvYSQWmdoL5T36LFllkzwqu0",
+          "_constructor": "botCommand#c27ac8c7"
+        },
+        {
+          "command": "x1quBl4Scqjlg6uXXZOVSEzU",
+          "description": "42nVU098x9w43hKgCzdP",
+          "_constructor": "botCommand#c27ac8c7"
+        },
+        {
+          "command": "vyz46YdcDQZBxLy9lvbO",
+          "description": "gCkcme6",
+          "_constructor": "botCommand#c27ac8c7"
+        },
+        {
+          "command": "KbXr4BvhqQRbcn8pRUgRvuhlI0",
+          "description": "jVJM8e2wcTAXEkT9UTyK2F5Zm",
+          "_constructor": "botCommand#c27ac8c7"
+        },
+        {
+          "command": "zD8tWKH9it9fFz3T9",
+          "description": "MLZqVN4KFZ25yxVSxZ28xfDT9",
+          "_constructor": "botCommand#c27ac8c7"
+        },
+        {
+          "command": "e7blVVcFVqo8umw",
+          "description": "SVStBbZjGln",
+          "_constructor": "botCommand#c27ac8c7"
+        },
+        {
+          "command": "Jnb6ZZuySPU57iI4X8RCKahnfkH",
+          "description": "eVWlzgTkLEe0Y",
+          "_constructor": "botCommand#c27ac8c7"
+        },
+        {
+          "command": "GkhxE",
+          "description": "r0vkqxA7h7mJMRMJJWqYJV",
+          "_constructor": "botCommand#c27ac8c7"
+        }
+      ],
+      "_constructor": "botInfo#98e81d3a"
     }
   ]
 }

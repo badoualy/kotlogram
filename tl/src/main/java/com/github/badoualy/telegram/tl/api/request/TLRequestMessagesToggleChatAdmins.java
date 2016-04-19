@@ -83,18 +83,6 @@ public class TLRequestMessagesToggleChatAdmins extends TLMethod<TLAbsUpdates> {
         return CONSTRUCTOR_ID;
     }
 
-    @Override
-    @SuppressWarnings("PointlessBooleanExpression")
-    public boolean equals(Object object) {
-        if (!(object instanceof TLRequestMessagesToggleChatAdmins)) return false;
-        if (object == this) return true;
-
-        TLRequestMessagesToggleChatAdmins o = (TLRequestMessagesToggleChatAdmins) object;
-
-        return chatId == o.chatId
-                && enabled == o.enabled;
-    }
-
     public int getChatId() {
         return chatId;
     }

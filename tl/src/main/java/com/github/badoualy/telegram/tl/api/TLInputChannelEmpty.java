@@ -23,17 +23,6 @@ public class TLInputChannelEmpty extends TLAbsInputChannel {
     }
 
     @Override
-    @SuppressWarnings("PointlessBooleanExpression")
-    public boolean equals(Object object) {
-        if (!(object instanceof TLInputChannelEmpty)) return false;
-        if (object == this) return true;
-
-        TLInputChannelEmpty o = (TLInputChannelEmpty) object;
-
-        return true;
-    }
-
-    @Override
     public final boolean isEmpty() {
         return true;
     }

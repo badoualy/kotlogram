@@ -73,17 +73,6 @@ public class TLRequestChannelsJoinChannel extends TLMethod<TLAbsUpdates> {
         return CONSTRUCTOR_ID;
     }
 
-    @Override
-    @SuppressWarnings("PointlessBooleanExpression")
-    public boolean equals(Object object) {
-        if (!(object instanceof TLRequestChannelsJoinChannel)) return false;
-        if (object == this) return true;
-
-        TLRequestChannelsJoinChannel o = (TLRequestChannelsJoinChannel) object;
-
-        return (channel == o.channel || (channel != null && o.channel != null && channel.equals(o.channel)));
-    }
-
     public TLAbsInputChannel getChannel() {
         return channel;
     }

@@ -73,18 +73,6 @@ public class TLRequestInvokeWithLayer<T extends TLObject> extends TLMethod<T> {
         return CONSTRUCTOR_ID;
     }
 
-    @Override
-    @SuppressWarnings("PointlessBooleanExpression")
-    public boolean equals(Object object) {
-        if (!(object instanceof TLRequestInvokeWithLayer)) return false;
-        if (object == this) return true;
-
-        TLRequestInvokeWithLayer o = (TLRequestInvokeWithLayer) object;
-
-        return layer == o.layer
-                && (query == o.query || (query != null && o.query != null && query.equals(o.query)));
-    }
-
     public int getLayer() {
         return layer;
     }

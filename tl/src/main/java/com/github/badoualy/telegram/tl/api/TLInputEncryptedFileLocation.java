@@ -63,18 +63,6 @@ public class TLInputEncryptedFileLocation extends TLAbsInputFileLocation {
         return CONSTRUCTOR_ID;
     }
 
-    @Override
-    @SuppressWarnings("PointlessBooleanExpression")
-    public boolean equals(Object object) {
-        if (!(object instanceof TLInputEncryptedFileLocation)) return false;
-        if (object == this) return true;
-
-        TLInputEncryptedFileLocation o = (TLInputEncryptedFileLocation) object;
-
-        return id == o.id
-                && accessHash == o.accessHash;
-    }
-
     public long getId() {
         return id;
     }

@@ -66,18 +66,6 @@ public class TLInputUser extends TLAbsInputUser {
         return CONSTRUCTOR_ID;
     }
 
-    @Override
-    @SuppressWarnings("PointlessBooleanExpression")
-    public boolean equals(Object object) {
-        if (!(object instanceof TLInputUser)) return false;
-        if (object == this) return true;
-
-        TLInputUser o = (TLInputUser) object;
-
-        return userId == o.userId
-                && accessHash == o.accessHash;
-    }
-
     public int getUserId() {
         return userId;
     }

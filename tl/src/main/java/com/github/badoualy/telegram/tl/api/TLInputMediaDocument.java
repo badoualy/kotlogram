@@ -65,18 +65,6 @@ public class TLInputMediaDocument extends TLAbsInputMedia {
         return CONSTRUCTOR_ID;
     }
 
-    @Override
-    @SuppressWarnings("PointlessBooleanExpression")
-    public boolean equals(Object object) {
-        if (!(object instanceof TLInputMediaDocument)) return false;
-        if (object == this) return true;
-
-        TLInputMediaDocument o = (TLInputMediaDocument) object;
-
-        return (id == o.id || (id != null && o.id != null && id.equals(o.id)))
-                && (caption == o.caption || (caption != null && o.caption != null && caption.equals(o.caption)));
-    }
-
     public TLAbsInputDocument getId() {
         return id;
     }

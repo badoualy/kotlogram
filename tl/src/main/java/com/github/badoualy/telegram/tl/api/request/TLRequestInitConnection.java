@@ -100,22 +100,6 @@ public class TLRequestInitConnection<T extends TLObject> extends TLMethod<T> {
         return CONSTRUCTOR_ID;
     }
 
-    @Override
-    @SuppressWarnings("PointlessBooleanExpression")
-    public boolean equals(Object object) {
-        if (!(object instanceof TLRequestInitConnection)) return false;
-        if (object == this) return true;
-
-        TLRequestInitConnection o = (TLRequestInitConnection) object;
-
-        return apiId == o.apiId
-                && (deviceModel == o.deviceModel || (deviceModel != null && o.deviceModel != null && deviceModel.equals(o.deviceModel)))
-                && (systemVersion == o.systemVersion || (systemVersion != null && o.systemVersion != null && systemVersion.equals(o.systemVersion)))
-                && (appVersion == o.appVersion || (appVersion != null && o.appVersion != null && appVersion.equals(o.appVersion)))
-                && (langCode == o.langCode || (langCode != null && o.langCode != null && langCode.equals(o.langCode)))
-                && (query == o.query || (query != null && o.query != null && query.equals(o.query)));
-    }
-
     public int getApiId() {
         return apiId;
     }

@@ -11,8 +11,8 @@ import com.github.badoualy.telegram.tl.api.TLInputPeerEmpty;
 import com.github.badoualy.telegram.tl.api.TLInputPeerUser;
 import com.github.badoualy.telegram.tl.api.TLMessage;
 import com.github.badoualy.telegram.tl.api.TLUser;
-import com.github.badoualy.telegram.tl.api.auth.TLAbsSentCode;
 import com.github.badoualy.telegram.tl.api.auth.TLAuthorization;
+import com.github.badoualy.telegram.tl.api.auth.TLSentCode;
 import com.github.badoualy.telegram.tl.api.messages.TLAbsDialogs;
 import com.github.badoualy.telegram.tl.exception.RpcErrorException;
 
@@ -58,7 +58,7 @@ public class KotlogramSample {
         // You can start making requests
         try {
             // Send code to account
-            TLAbsSentCode sentCode = client.authSendCode(PHONE_NUMBER, 5);
+            TLSentCode sentCode = client.authSendCode(PHONE_NUMBER, 5);
             System.out.println("Authentication code: ");
             String code = new Scanner(System.in).nextLine();
 
@@ -83,7 +83,7 @@ public class KotlogramSample {
             TLUser randomUser = dialogs.getUsers().get(0).getAsUser();
             TLInputPeerUser inputUser = new TLInputPeerUser(randomUser.getId(), randomUser.getAccessHash());
             int randomId = new Random(System.currentTimeMillis()).nextInt();
-            client.messagesSendMessage(false, false, inputUser, 0, "Kotlogram is awesome!", randomId, null, null);
+            client.messagesSendMessage(inputUser, "Kotlogram is awesome!", randomId);
             System.out.println("Message sent");
         } catch (RpcErrorException e) {
             e.printStackTrace();

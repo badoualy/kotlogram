@@ -21,15 +21,4 @@ public class TLInputStickerSetEmpty extends TLAbsInputStickerSet {
     public int getConstructorId() {
         return CONSTRUCTOR_ID;
     }
-
-    @Override
-    @SuppressWarnings("PointlessBooleanExpression")
-    public boolean equals(Object object) {
-        if (!(object instanceof TLInputStickerSetEmpty)) return false;
-        if (object == this) return true;
-
-        TLInputStickerSetEmpty o = (TLInputStickerSetEmpty) object;
-
-        return true;
-    }
 }

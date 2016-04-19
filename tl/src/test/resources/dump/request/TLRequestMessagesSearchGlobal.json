@@ -1,10 +1,8 @@
 {
-  "q": "6j9eaOBbV8D",
+  "q": "QB7uXoh",
   "offsetDate": 0,
   "offsetPeer": {
-    "channelId": 0,
-    "accessHash": 0,
-    "_constructor": "inputPeerChannel#20adaef8"
+    "_constructor": "inputPeerEmpty#7f3b18ea"
   },
   "offsetId": 0,
   "limit": 0,

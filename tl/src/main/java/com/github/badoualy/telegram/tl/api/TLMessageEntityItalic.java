@@ -59,18 +59,6 @@ public class TLMessageEntityItalic extends TLAbsMessageEntity {
         return CONSTRUCTOR_ID;
     }
 
-    @Override
-    @SuppressWarnings("PointlessBooleanExpression")
-    public boolean equals(Object object) {
-        if (!(object instanceof TLMessageEntityItalic)) return false;
-        if (object == this) return true;
-
-        TLMessageEntityItalic o = (TLMessageEntityItalic) object;
-
-        return offset == o.offset
-                && length == o.length;
-    }
-
     public int getOffset() {
         return offset;
     }

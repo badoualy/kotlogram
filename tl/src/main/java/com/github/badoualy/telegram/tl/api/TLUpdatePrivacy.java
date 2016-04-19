@@ -20,7 +20,7 @@ import static com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_CONSTRUCTOR_ID;
 public class TLUpdatePrivacy extends TLAbsUpdate {
     public static final int CONSTRUCTOR_ID = 0xee3b272a;
 
-    protected TLPrivacyKeyStatusTimestamp key;
+    protected TLAbsPrivacyKey key;
 
     protected TLVector<TLAbsPrivacyRule> rules;
 
@@ -29,7 +29,7 @@ public class TLUpdatePrivacy extends TLAbsUpdate {
     public TLUpdatePrivacy() {
     }
 
-    public TLUpdatePrivacy(TLPrivacyKeyStatusTimestamp key, TLVector<TLAbsPrivacyRule> rules) {
+    public TLUpdatePrivacy(TLAbsPrivacyKey key, TLVector<TLAbsPrivacyRule> rules) {
         this.key = key;
         this.rules = rules;
     }
@@ -43,7 +43,7 @@ public class TLUpdatePrivacy extends TLAbsUpdate {
     @Override
     @SuppressWarnings("unchecked")
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
-        key = readTLObject(stream, context, TLPrivacyKeyStatusTimestamp.class, TLPrivacyKeyStatusTimestamp.CONSTRUCTOR_ID);
+        key = readTLObject(stream, context, TLAbsPrivacyKey.class, -1);
         rules = readTLVector(stream, context);
     }
 
@@ -65,23 +65,11 @@ public class TLUpdatePrivacy extends TLAbsUpdate {
         return CONSTRUCTOR_ID;
     }
 
-    @Override
-    @SuppressWarnings("PointlessBooleanExpression")
-    public boolean equals(Object object) {
-        if (!(object instanceof TLUpdatePrivacy)) return false;
-        if (object == this) return true;
-
-        TLUpdatePrivacy o = (TLUpdatePrivacy) object;
-
-        return (key == o.key || (key != null && o.key != null && key.equals(o.key)))
-                && (rules == o.rules || (rules != null && o.rules != null && rules.equals(o.rules)));
-    }
-
-    public TLPrivacyKeyStatusTimestamp getKey() {
+    public TLAbsPrivacyKey getKey() {
         return key;
     }
 
-    public void setKey(TLPrivacyKeyStatusTimestamp key) {
+    public void setKey(TLAbsPrivacyKey key) {
         this.key = key;
     }
 

@@ -82,18 +82,6 @@ public class TLRequestChannelsEditAbout extends TLMethod<TLBool> {
         return CONSTRUCTOR_ID;
     }
 
-    @Override
-    @SuppressWarnings("PointlessBooleanExpression")
-    public boolean equals(Object object) {
-        if (!(object instanceof TLRequestChannelsEditAbout)) return false;
-        if (object == this) return true;
-
-        TLRequestChannelsEditAbout o = (TLRequestChannelsEditAbout) object;
-
-        return (channel == o.channel || (channel != null && o.channel != null && channel.equals(o.channel)))
-                && (about == o.about || (about != null && o.about != null && about.equals(o.about)));
-    }
-
     public TLAbsInputChannel getChannel() {
         return channel;
     }

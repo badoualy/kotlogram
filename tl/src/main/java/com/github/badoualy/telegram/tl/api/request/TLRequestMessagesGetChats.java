@@ -74,17 +74,6 @@ public class TLRequestMessagesGetChats extends TLMethod<TLChats> {
         return CONSTRUCTOR_ID;
     }
 
-    @Override
-    @SuppressWarnings("PointlessBooleanExpression")
-    public boolean equals(Object object) {
-        if (!(object instanceof TLRequestMessagesGetChats)) return false;
-        if (object == this) return true;
-
-        TLRequestMessagesGetChats o = (TLRequestMessagesGetChats) object;
-
-        return (id == o.id || (id != null && o.id != null && id.equals(o.id)));
-    }
-
     public TLIntVector getId() {
         return id;
     }

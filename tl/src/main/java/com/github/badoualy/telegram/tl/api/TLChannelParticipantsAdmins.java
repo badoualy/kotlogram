@@ -21,15 +21,4 @@ public class TLChannelParticipantsAdmins extends TLAbsChannelParticipantsFilter 
     public int getConstructorId() {
         return CONSTRUCTOR_ID;
     }
-
-    @Override
-    @SuppressWarnings("PointlessBooleanExpression")
-    public boolean equals(Object object) {
-        if (!(object instanceof TLChannelParticipantsAdmins)) return false;
-        if (object == this) return true;
-
-        TLChannelParticipantsAdmins o = (TLChannelParticipantsAdmins) object;
-
-        return true;
-    }
 }

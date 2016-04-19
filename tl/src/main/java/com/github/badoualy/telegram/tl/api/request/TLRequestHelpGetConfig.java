@@ -44,15 +44,4 @@ public class TLRequestHelpGetConfig extends TLMethod<TLConfig> {
     public int getConstructorId() {
         return CONSTRUCTOR_ID;
     }
-
-    @Override
-    @SuppressWarnings("PointlessBooleanExpression")
-    public boolean equals(Object object) {
-        if (!(object instanceof TLRequestHelpGetConfig)) return false;
-        if (object == this) return true;
-
-        TLRequestHelpGetConfig o = (TLRequestHelpGetConfig) object;
-
-        return true;
-    }
 }

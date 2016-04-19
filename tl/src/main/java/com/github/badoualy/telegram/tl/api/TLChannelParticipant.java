@@ -61,18 +61,6 @@ public class TLChannelParticipant extends TLAbsChannelParticipant {
         return CONSTRUCTOR_ID;
     }
 
-    @Override
-    @SuppressWarnings("PointlessBooleanExpression")
-    public boolean equals(Object object) {
-        if (!(object instanceof TLChannelParticipant)) return false;
-        if (object == this) return true;
-
-        TLChannelParticipant o = (TLChannelParticipant) object;
-
-        return userId == o.userId
-                && date == o.date;
-    }
-
     public int getUserId() {
         return userId;
     }

@@ -66,17 +66,6 @@ public class TLRequestUsersGetUsers extends TLMethod<TLVector<TLAbsUser>> {
         return CONSTRUCTOR_ID;
     }
 
-    @Override
-    @SuppressWarnings("PointlessBooleanExpression")
-    public boolean equals(Object object) {
-        if (!(object instanceof TLRequestUsersGetUsers)) return false;
-        if (object == this) return true;
-
-        TLRequestUsersGetUsers o = (TLRequestUsersGetUsers) object;
-
-        return (id == o.id || (id != null && o.id != null && id.equals(o.id)));
-    }
-
     public TLVector<TLAbsInputUser> getId() {
         return id;
     }

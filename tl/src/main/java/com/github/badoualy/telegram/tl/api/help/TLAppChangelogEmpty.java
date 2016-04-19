@@ -23,17 +23,6 @@ public class TLAppChangelogEmpty extends TLAbsAppChangelog {
     }
 
     @Override
-    @SuppressWarnings("PointlessBooleanExpression")
-    public boolean equals(Object object) {
-        if (!(object instanceof TLAppChangelogEmpty)) return false;
-        if (object == this) return true;
-
-        TLAppChangelogEmpty o = (TLAppChangelogEmpty) object;
-
-        return true;
-    }
-
-    @Override
     public final boolean isEmpty() {
         return true;
     }

@@ -136,29 +136,6 @@ public class TLAuthorization extends TLObject {
         return CONSTRUCTOR_ID;
     }
 
-    @Override
-    @SuppressWarnings("PointlessBooleanExpression")
-    public boolean equals(Object object) {
-        if (!(object instanceof TLAuthorization)) return false;
-        if (object == this) return true;
-
-        TLAuthorization o = (TLAuthorization) object;
-
-        return hash == o.hash
-                && flags == o.flags
-                && (deviceModel == o.deviceModel || (deviceModel != null && o.deviceModel != null && deviceModel.equals(o.deviceModel)))
-                && (platform == o.platform || (platform != null && o.platform != null && platform.equals(o.platform)))
-                && (systemVersion == o.systemVersion || (systemVersion != null && o.systemVersion != null && systemVersion.equals(o.systemVersion)))
-                && apiId == o.apiId
-                && (appName == o.appName || (appName != null && o.appName != null && appName.equals(o.appName)))
-                && (appVersion == o.appVersion || (appVersion != null && o.appVersion != null && appVersion.equals(o.appVersion)))
-                && dateCreated == o.dateCreated
-                && dateActive == o.dateActive
-                && (ip == o.ip || (ip != null && o.ip != null && ip.equals(o.ip)))
-                && (country == o.country || (country != null && o.country != null && country.equals(o.country)))
-                && (region == o.region || (region != null && o.region != null && region.equals(o.region)));
-    }
-
     public long getHash() {
         return hash;
     }

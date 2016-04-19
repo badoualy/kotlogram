@@ -36,7 +36,8 @@ public class TLChatParticipantsForbidden extends TLAbsChatParticipants {
 
     private void computeFlags() {
         flags = 0;
-        flags = selfParticipant != null ? (flags | 1) : (flags &~ 1);
+        // Fields below may not be serialized due to flags field value
+        if ((flags & 1) == 0) selfParticipant = null;
     }
 
     @Override
@@ -45,7 +46,10 @@ public class TLChatParticipantsForbidden extends TLAbsChatParticipants {
 
         writeInt(flags, stream);
         writeInt(chatId, stream);
-        if ((flags & 1) != 0) writeTLObject(selfParticipant, stream);
+        if ((flags & 1) != 0) {
+            if (selfParticipant == null)
+                throw new java.lang.NullPointerException("Attempt to serialize null field selfParticipant" (flags = " + flags + ");writeTLObject(selfParticipant, stream);
+        }
     }
 
     @Override
@@ -75,19 +79,6 @@ public class TLChatParticipantsForbidden extends TLAbsChatParticipants {
     @Override
     public int getConstructorId() {
         return CONSTRUCTOR_ID;
-    }
-
-    @Override
-    @SuppressWarnings("PointlessBooleanExpression")
-    public boolean equals(Object object) {
-        if (!(object instanceof TLChatParticipantsForbidden)) return false;
-        if (object == this) return true;
-
-        TLChatParticipantsForbidden o = (TLChatParticipantsForbidden) object;
-
-        return flags == o.flags
-                && chatId == o.chatId
-                && (selfParticipant == o.selfParticipant || (selfParticipant != null && o.selfParticipant != null && selfParticipant.equals(o.selfParticipant)));
     }
 
     public int getChatId() {

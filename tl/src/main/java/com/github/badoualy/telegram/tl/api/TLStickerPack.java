@@ -67,18 +67,6 @@ public class TLStickerPack extends TLObject {
         return CONSTRUCTOR_ID;
     }
 
-    @Override
-    @SuppressWarnings("PointlessBooleanExpression")
-    public boolean equals(Object object) {
-        if (!(object instanceof TLStickerPack)) return false;
-        if (object == this) return true;
-
-        TLStickerPack o = (TLStickerPack) object;
-
-        return (emoticon == o.emoticon || (emoticon != null && o.emoticon != null && emoticon.equals(o.emoticon)))
-                && (documents == o.documents || (documents != null && o.documents != null && documents.equals(o.documents)));
-    }
-
     public String getEmoticon() {
         return emoticon;
     }

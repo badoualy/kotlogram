@@ -1,8 +1,10 @@
 {
-  "phoneNumber": "NGfInOugOztjNJ",
-  "smsType": 0,
+  "flags": 0,
+  "allowFlashcall": false,
+  "phoneNumber": "dkyKZZagF9MxHYE",
+  "currentNumber": null,
   "apiId": 0,
-  "apiHash": "z8lrTZORCAoHT1Wka",
-  "langCode": "ZlFGr9q0MUNBD4vUF3CPV9oyS",
-  "_constructor": "auth.sendCode#768d5f4d"
+  "apiHash": "ZPAEyOZL9u",
+  "langCode": "O7hG8Y",
+  "_constructor": "auth.sendCode#ccfd70cf"
 }

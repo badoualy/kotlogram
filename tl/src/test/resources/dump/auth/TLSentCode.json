@@ -1,7 +1,12 @@
 {
-  "_constructor": "auth.sentCode#efed51d9",
-  "phoneRegistered": true,
-  "phoneCodeHash": "IO7UXpTK5dYzBg6r9vV7KD",
-  "sendCallTimeout": 0,
-  "isPassword": false
+  "flags": 0,
+  "phoneRegistered": false,
+  "type": {
+    "length": 0,
+    "_constructor": "auth.sentCodeTypeApp#3dbb5986"
+  },
+  "phoneCodeHash": "QbAicJqv",
+  "nextType": null,
+  "timeout": null,
+  "_constructor": "auth.sentCode#5e002502"
 }
