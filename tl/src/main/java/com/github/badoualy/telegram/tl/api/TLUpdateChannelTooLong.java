@@ -46,7 +46,10 @@ public class TLUpdateChannelTooLong extends TLAbsUpdate {
 
         writeInt(flags, stream);
         writeInt(channelId, stream);
-        if ((flags & 1) != 0) writeInt(pts, stream);
+        if ((flags & 1) != 0) {
+            if (pts == null) throwNullFieldException("pts", flags);
+            writeInt(pts, stream);
+        }
     }
 
     @Override
@@ -64,7 +67,10 @@ public class TLUpdateChannelTooLong extends TLAbsUpdate {
         int size = SIZE_CONSTRUCTOR_ID;
         size += SIZE_INT32;
         size += SIZE_INT32;
-        if ((flags & 1) != 0) size += SIZE_INT32;
+        if ((flags & 1) != 0) {
+            if (pts == null) throwNullFieldException("pts", flags);
+            size += SIZE_INT32;
+        }
         return size;
     }
 

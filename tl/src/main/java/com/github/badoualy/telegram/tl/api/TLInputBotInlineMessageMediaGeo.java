@@ -45,8 +45,8 @@ public class TLInputBotInlineMessageMediaGeo extends TLAbsInputBotInlineMessage 
         writeInt(flags, stream);
         writeTLObject(geoPoint, stream);
         if ((flags & 4) != 0) {
-            if (replyMarkup == null)
-                throw new java.lang.NullPointerException("Attempt to serialize null field replyMarkup" (flags = " + flags + ");writeTLObject(replyMarkup, stream);
+            if (replyMarkup == null) throwNullFieldException("replyMarkup", flags);
+            writeTLObject(replyMarkup, stream);
         }
     }
 
@@ -65,7 +65,10 @@ public class TLInputBotInlineMessageMediaGeo extends TLAbsInputBotInlineMessage 
         int size = SIZE_CONSTRUCTOR_ID;
         size += SIZE_INT32;
         size += geoPoint.computeSerializedSize();
-        if ((flags & 4) != 0) size += replyMarkup.computeSerializedSize();
+        if ((flags & 4) != 0) {
+            if (replyMarkup == null) throwNullFieldException("replyMarkup", flags);
+            size += replyMarkup.computeSerializedSize();
+        }
         return size;
     }
 

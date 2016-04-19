@@ -59,12 +59,12 @@ public class TLInputBotInlineMessageText extends TLAbsInputBotInlineMessage {
         writeInt(flags, stream);
         writeString(message, stream);
         if ((flags & 2) != 0) {
-            if (entities == null)
-                throw new java.lang.NullPointerException("Attempt to serialize null field entities" (flags = " + flags + ");writeTLVector(entities, stream);
+            if (entities == null) throwNullFieldException("entities", flags);
+            writeTLVector(entities, stream);
         }
         if ((flags & 4) != 0) {
-            if (replyMarkup == null)
-                throw new java.lang.NullPointerException("Attempt to serialize null field replyMarkup" (flags = " + flags + ");writeTLObject(replyMarkup, stream);
+            if (replyMarkup == null) throwNullFieldException("replyMarkup", flags);
+            writeTLObject(replyMarkup, stream);
         }
     }
 
@@ -85,8 +85,14 @@ public class TLInputBotInlineMessageText extends TLAbsInputBotInlineMessage {
         int size = SIZE_CONSTRUCTOR_ID;
         size += SIZE_INT32;
         size += computeTLStringSerializedSize(message);
-        if ((flags & 2) != 0) size += entities.computeSerializedSize();
-        if ((flags & 4) != 0) size += replyMarkup.computeSerializedSize();
+        if ((flags & 2) != 0) {
+            if (entities == null) throwNullFieldException("entities", flags);
+            size += entities.computeSerializedSize();
+        }
+        if ((flags & 4) != 0) {
+            if (replyMarkup == null) throwNullFieldException("replyMarkup", flags);
+            size += replyMarkup.computeSerializedSize();
+        }
         return size;
     }
 

@@ -121,20 +121,20 @@ public class TLChannel extends TLAbsChat {
         writeInt(flags, stream);
         writeInt(id, stream);
         if ((flags & 8192) != 0) {
-            if (accessHash == null)
-                throw new java.lang.NullPointerException("Attempt to serialize null field accessHash" (flags = " + flags + ");writeLong(accessHash, stream);
+            if (accessHash == null) throwNullFieldException("accessHash", flags);
+            writeLong(accessHash, stream);
         }
         writeString(title, stream);
         if ((flags & 64) != 0) {
-            if (username == null)
-                throw new java.lang.NullPointerException("Attempt to serialize null field username" (flags = " + flags + ");writeString(username, stream);
+            if (username == null) throwNullFieldException("username", flags);
+            writeString(username, stream);
         }
         writeTLObject(photo, stream);
         writeInt(date, stream);
         writeInt(version, stream);
         if ((flags & 512) != 0) {
-            if (restrictionReason == null)
-                throw new java.lang.NullPointerException("Attempt to serialize null field restrictionReason" (flags = " + flags + ");writeString(restrictionReason, stream);
+            if (restrictionReason == null) throwNullFieldException("restrictionReason", flags);
+            writeString(restrictionReason, stream);
         }
     }
 
@@ -171,13 +171,22 @@ public class TLChannel extends TLAbsChat {
         int size = SIZE_CONSTRUCTOR_ID;
         size += SIZE_INT32;
         size += SIZE_INT32;
-        if ((flags & 8192) != 0) size += SIZE_INT64;
+        if ((flags & 8192) != 0) {
+            if (accessHash == null) throwNullFieldException("accessHash", flags);
+            size += SIZE_INT64;
+        }
         size += computeTLStringSerializedSize(title);
-        if ((flags & 64) != 0) size += computeTLStringSerializedSize(username);
+        if ((flags & 64) != 0) {
+            if (username == null) throwNullFieldException("username", flags);
+            size += computeTLStringSerializedSize(username);
+        }
         size += photo.computeSerializedSize();
         size += SIZE_INT32;
         size += SIZE_INT32;
-        if ((flags & 512) != 0) size += computeTLStringSerializedSize(restrictionReason);
+        if ((flags & 512) != 0) {
+            if (restrictionReason == null) throwNullFieldException("restrictionReason", flags);
+            size += computeTLStringSerializedSize(restrictionReason);
+        }
         return size;
     }
 

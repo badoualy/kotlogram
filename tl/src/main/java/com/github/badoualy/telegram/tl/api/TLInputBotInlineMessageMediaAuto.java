@@ -48,8 +48,8 @@ public class TLInputBotInlineMessageMediaAuto extends TLAbsInputBotInlineMessage
         writeInt(flags, stream);
         writeString(caption, stream);
         if ((flags & 4) != 0) {
-            if (replyMarkup == null)
-                throw new java.lang.NullPointerException("Attempt to serialize null field replyMarkup" (flags = " + flags + ");writeTLObject(replyMarkup, stream);
+            if (replyMarkup == null) throwNullFieldException("replyMarkup", flags);
+            writeTLObject(replyMarkup, stream);
         }
     }
 
@@ -68,7 +68,10 @@ public class TLInputBotInlineMessageMediaAuto extends TLAbsInputBotInlineMessage
         int size = SIZE_CONSTRUCTOR_ID;
         size += SIZE_INT32;
         size += computeTLStringSerializedSize(caption);
-        if ((flags & 4) != 0) size += replyMarkup.computeSerializedSize();
+        if ((flags & 4) != 0) {
+            if (replyMarkup == null) throwNullFieldException("replyMarkup", flags);
+            size += replyMarkup.computeSerializedSize();
+        }
         return size;
     }
 

@@ -47,8 +47,8 @@ public class TLChatParticipantsForbidden extends TLAbsChatParticipants {
         writeInt(flags, stream);
         writeInt(chatId, stream);
         if ((flags & 1) != 0) {
-            if (selfParticipant == null)
-                throw new java.lang.NullPointerException("Attempt to serialize null field selfParticipant" (flags = " + flags + ");writeTLObject(selfParticipant, stream);
+            if (selfParticipant == null) throwNullFieldException("selfParticipant", flags);
+            writeTLObject(selfParticipant, stream);
         }
     }
 
@@ -67,7 +67,10 @@ public class TLChatParticipantsForbidden extends TLAbsChatParticipants {
         int size = SIZE_CONSTRUCTOR_ID;
         size += SIZE_INT32;
         size += SIZE_INT32;
-        if ((flags & 1) != 0) size += selfParticipant.computeSerializedSize();
+        if ((flags & 1) != 0) {
+            if (selfParticipant == null) throwNullFieldException("selfParticipant", flags);
+            size += selfParticipant.computeSerializedSize();
+        }
         return size;
     }
 

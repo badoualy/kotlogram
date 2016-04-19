@@ -73,7 +73,10 @@ public class TLRequestMessagesSetBotCallbackAnswer extends TLMethod<TLBool> {
 
         writeInt(flags, stream);
         writeLong(queryId, stream);
-        if ((flags & 1) != 0) writeString(message, stream);
+        if ((flags & 1) != 0) {
+            if (message == null) throwNullFieldException("message", flags);
+            writeString(message, stream);
+        }
     }
 
     @Override
@@ -92,7 +95,10 @@ public class TLRequestMessagesSetBotCallbackAnswer extends TLMethod<TLBool> {
         int size = SIZE_CONSTRUCTOR_ID;
         size += SIZE_INT32;
         size += SIZE_INT64;
-        if ((flags & 1) != 0) size += computeTLStringSerializedSize(message);
+        if ((flags & 1) != 0) {
+            if (message == null) throwNullFieldException("message", flags);
+            size += computeTLStringSerializedSize(message);
+        }
         return size;
     }
 

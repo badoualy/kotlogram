@@ -95,8 +95,14 @@ public class TLRequestMessagesSetInlineBotResults extends TLMethod<TLBool> {
         writeLong(queryId, stream);
         writeTLVector(results, stream);
         writeInt(cacheTime, stream);
-        if ((flags & 4) != 0) writeString(nextOffset, stream);
-        if ((flags & 8) != 0) writeTLObject(switchPm, stream);
+        if ((flags & 4) != 0) {
+            if (nextOffset == null) throwNullFieldException("nextOffset", flags);
+            writeString(nextOffset, stream);
+        }
+        if ((flags & 8) != 0) {
+            if (switchPm == null) throwNullFieldException("switchPm", flags);
+            writeTLObject(switchPm, stream);
+        }
     }
 
     @Override
@@ -121,8 +127,14 @@ public class TLRequestMessagesSetInlineBotResults extends TLMethod<TLBool> {
         size += SIZE_INT64;
         size += results.computeSerializedSize();
         size += SIZE_INT32;
-        if ((flags & 4) != 0) size += computeTLStringSerializedSize(nextOffset);
-        if ((flags & 8) != 0) size += switchPm.computeSerializedSize();
+        if ((flags & 4) != 0) {
+            if (nextOffset == null) throwNullFieldException("nextOffset", flags);
+            size += computeTLStringSerializedSize(nextOffset);
+        }
+        if ((flags & 8) != 0) {
+            if (switchPm == null) throwNullFieldException("switchPm", flags);
+            size += switchPm.computeSerializedSize();
+        }
         return size;
     }
 

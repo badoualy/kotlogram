@@ -56,8 +56,8 @@ public class TLBotInlineMessageMediaContact extends TLAbsBotInlineMessage {
         writeString(firstName, stream);
         writeString(lastName, stream);
         if ((flags & 4) != 0) {
-            if (replyMarkup == null)
-                throw new java.lang.NullPointerException("Attempt to serialize null field replyMarkup" (flags = " + flags + ");writeTLObject(replyMarkup, stream);
+            if (replyMarkup == null) throwNullFieldException("replyMarkup", flags);
+            writeTLObject(replyMarkup, stream);
         }
     }
 
@@ -80,7 +80,10 @@ public class TLBotInlineMessageMediaContact extends TLAbsBotInlineMessage {
         size += computeTLStringSerializedSize(phoneNumber);
         size += computeTLStringSerializedSize(firstName);
         size += computeTLStringSerializedSize(lastName);
-        if ((flags & 4) != 0) size += replyMarkup.computeSerializedSize();
+        if ((flags & 4) != 0) {
+            if (replyMarkup == null) throwNullFieldException("replyMarkup", flags);
+            size += replyMarkup.computeSerializedSize();
+        }
         return size;
     }
 

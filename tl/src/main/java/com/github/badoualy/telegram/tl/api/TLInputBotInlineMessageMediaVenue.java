@@ -64,8 +64,8 @@ public class TLInputBotInlineMessageMediaVenue extends TLAbsInputBotInlineMessag
         writeString(provider, stream);
         writeString(venueId, stream);
         if ((flags & 4) != 0) {
-            if (replyMarkup == null)
-                throw new java.lang.NullPointerException("Attempt to serialize null field replyMarkup" (flags = " + flags + ");writeTLObject(replyMarkup, stream);
+            if (replyMarkup == null) throwNullFieldException("replyMarkup", flags);
+            writeTLObject(replyMarkup, stream);
         }
     }
 
@@ -92,7 +92,10 @@ public class TLInputBotInlineMessageMediaVenue extends TLAbsInputBotInlineMessag
         size += computeTLStringSerializedSize(address);
         size += computeTLStringSerializedSize(provider);
         size += computeTLStringSerializedSize(venueId);
-        if ((flags & 4) != 0) size += replyMarkup.computeSerializedSize();
+        if ((flags & 4) != 0) {
+            if (replyMarkup == null) throwNullFieldException("replyMarkup", flags);
+            size += replyMarkup.computeSerializedSize();
+        }
         return size;
     }
 

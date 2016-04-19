@@ -106,10 +106,22 @@ public class TLUpdateShortMessage extends TLAbsUpdates {
         writeInt(pts, stream);
         writeInt(ptsCount, stream);
         writeInt(date, stream);
-        if ((flags & 4) != 0) writeTLObject(fwdFrom, stream);
-        if ((flags & 2048) != 0) writeInt(viaBotId, stream);
-        if ((flags & 8) != 0) writeInt(replyToMsgId, stream);
-        if ((flags & 128) != 0) writeTLVector(entities, stream);
+        if ((flags & 4) != 0) {
+            if (fwdFrom == null) throwNullFieldException("fwdFrom", flags);
+            writeTLObject(fwdFrom, stream);
+        }
+        if ((flags & 2048) != 0) {
+            if (viaBotId == null) throwNullFieldException("viaBotId", flags);
+            writeInt(viaBotId, stream);
+        }
+        if ((flags & 8) != 0) {
+            if (replyToMsgId == null) throwNullFieldException("replyToMsgId", flags);
+            writeInt(replyToMsgId, stream);
+        }
+        if ((flags & 128) != 0) {
+            if (entities == null) throwNullFieldException("entities", flags);
+            writeTLVector(entities, stream);
+        }
     }
 
     @Override
@@ -145,10 +157,22 @@ public class TLUpdateShortMessage extends TLAbsUpdates {
         size += SIZE_INT32;
         size += SIZE_INT32;
         size += SIZE_INT32;
-        if ((flags & 4) != 0) size += fwdFrom.computeSerializedSize();
-        if ((flags & 2048) != 0) size += SIZE_INT32;
-        if ((flags & 8) != 0) size += SIZE_INT32;
-        if ((flags & 128) != 0) size += entities.computeSerializedSize();
+        if ((flags & 4) != 0) {
+            if (fwdFrom == null) throwNullFieldException("fwdFrom", flags);
+            size += fwdFrom.computeSerializedSize();
+        }
+        if ((flags & 2048) != 0) {
+            if (viaBotId == null) throwNullFieldException("viaBotId", flags);
+            size += SIZE_INT32;
+        }
+        if ((flags & 8) != 0) {
+            if (replyToMsgId == null) throwNullFieldException("replyToMsgId", flags);
+            size += SIZE_INT32;
+        }
+        if ((flags & 128) != 0) {
+            if (entities == null) throwNullFieldException("entities", flags);
+            size += entities.computeSerializedSize();
+        }
         return size;
     }
 

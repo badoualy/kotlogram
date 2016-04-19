@@ -80,7 +80,10 @@ public class TLRequestMessagesGetInlineBotResults extends TLMethod<TLBotResults>
         writeInt(flags, stream);
         writeTLObject(bot, stream);
         writeTLObject(peer, stream);
-        if ((flags & 1) != 0) writeTLObject(geoPoint, stream);
+        if ((flags & 1) != 0) {
+            if (geoPoint == null) throwNullFieldException("geoPoint", flags);
+            writeTLObject(geoPoint, stream);
+        }
         writeString(query, stream);
         writeString(offset, stream);
     }
@@ -104,7 +107,10 @@ public class TLRequestMessagesGetInlineBotResults extends TLMethod<TLBotResults>
         size += SIZE_INT32;
         size += bot.computeSerializedSize();
         size += peer.computeSerializedSize();
-        if ((flags & 1) != 0) size += geoPoint.computeSerializedSize();
+        if ((flags & 1) != 0) {
+            if (geoPoint == null) throwNullFieldException("geoPoint", flags);
+            size += geoPoint.computeSerializedSize();
+        }
         size += computeTLStringSerializedSize(query);
         size += computeTLStringSerializedSize(offset);
         return size;

@@ -62,8 +62,8 @@ public class TLChannelMessages extends TLAbsMessages {
         writeInt(count, stream);
         writeTLVector(messages, stream);
         if ((flags & 1) != 0) {
-            if (collapsed == null)
-                throw new java.lang.NullPointerException("Attempt to serialize null field collapsed" (flags = " + flags + ");writeTLVector(collapsed, stream);
+            if (collapsed == null) throwNullFieldException("collapsed", flags);
+            writeTLVector(collapsed, stream);
         }
         writeTLVector(chats, stream);
         writeTLVector(users, stream);
@@ -90,7 +90,10 @@ public class TLChannelMessages extends TLAbsMessages {
         size += SIZE_INT32;
         size += SIZE_INT32;
         size += messages.computeSerializedSize();
-        if ((flags & 1) != 0) size += collapsed.computeSerializedSize();
+        if ((flags & 1) != 0) {
+            if (collapsed == null) throwNullFieldException("collapsed", flags);
+            size += collapsed.computeSerializedSize();
+        }
         size += chats.computeSerializedSize();
         size += users.computeSerializedSize();
         return size;

@@ -75,8 +75,14 @@ public class TLUpdateShortSentMessage extends TLAbsUpdates {
         writeInt(pts, stream);
         writeInt(ptsCount, stream);
         writeInt(date, stream);
-        if ((flags & 512) != 0) writeTLObject(media, stream);
-        if ((flags & 128) != 0) writeTLVector(entities, stream);
+        if ((flags & 512) != 0) {
+            if (media == null) throwNullFieldException("media", flags);
+            writeTLObject(media, stream);
+        }
+        if ((flags & 128) != 0) {
+            if (entities == null) throwNullFieldException("entities", flags);
+            writeTLVector(entities, stream);
+        }
     }
 
     @Override
@@ -103,8 +109,14 @@ public class TLUpdateShortSentMessage extends TLAbsUpdates {
         size += SIZE_INT32;
         size += SIZE_INT32;
         size += SIZE_INT32;
-        if ((flags & 512) != 0) size += media.computeSerializedSize();
-        if ((flags & 128) != 0) size += entities.computeSerializedSize();
+        if ((flags & 512) != 0) {
+            if (media == null) throwNullFieldException("media", flags);
+            size += media.computeSerializedSize();
+        }
+        if ((flags & 128) != 0) {
+            if (entities == null) throwNullFieldException("entities", flags);
+            size += entities.computeSerializedSize();
+        }
         return size;
     }
 
