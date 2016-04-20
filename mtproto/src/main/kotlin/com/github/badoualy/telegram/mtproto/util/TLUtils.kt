@@ -3,30 +3,30 @@ package com.github.badoualy.telegram.mtproto.util
 import com.github.badoualy.telegram.tl.api.*
 
 /////////////// Message
-fun TLAbsMessage.getDate(): Int = when (this) {
+fun TLAbsMessage?.getDate() = when (this) {
     is TLMessage -> date
     is TLMessageService -> date
     else -> 0
 }
 
-fun TLAbsMessage.getFromId(): Int = when (this) {
+fun TLAbsMessage?.getFromId() = when (this) {
     is TLMessage -> fromId ?: -1
     is TLMessageService -> fromId ?: -1
     else -> -1
 }
 
-fun TLAbsMessage.isUnread(): Boolean = when (this) {
+fun TLAbsMessage.isUnread() = when (this) {
     is TLMessage -> unread
     is TLMessageService -> unread
     else -> false
 }
 
-fun TLAbsMessage.getMessageOrEmpty() = when (this) {
+fun TLAbsMessage?.getMessageOrEmpty() = when (this) {
     is TLMessage -> message
     else -> ""
 }
 
-fun TLAbsMessage.getToAsPeer() = when (this) {
+fun TLAbsMessage?.getToAsPeer() = when (this) {
     is TLMessage -> toId
     is TLMessageService -> toId
     else -> null
