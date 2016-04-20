@@ -1,34 +1,21 @@
 {
   "set": {
-    "flags": 2,
-    "installed": false,
+    "flags": 3,
+    "installed": true,
     "disabled": true,
     "official": false,
     "id": 0,
     "accessHash": 0,
-    "title": "ev9RlI3aujiUJ3ddtaOtX",
-    "shortName": "YKVyWROky6Iu2eQfQGXze4Bpd26Kb",
+    "title": "KnoR2c9JSKG0drFxqFj0u",
+    "shortName": "XGcYlr6s8Qut70J5Kct",
     "count": 0,
     "hash": 0,
     "_constructor": "stickerSet#cd303b41"
   },
   "packs": [
     {
-      "emoticon": "hVxVXtM8LObk",
+      "emoticon": "xbEWvERSeqNG3Sg0zihR1J",
       "documents": [
-        0,
-        0,
-        0,
-        0,
-        0,
-        0
-      ],
-      "_constructor": "stickerPack#12b299d4"
-    },
-    {
-      "emoticon": "EMdaa0fZxkUpG",
-      "documents": [
-        0,
         0,
         0,
         0,
@@ -43,7 +30,7 @@
       "_constructor": "stickerPack#12b299d4"
     },
     {
-      "emoticon": "zsLYeORMZTHo6mdSvQbRnEB",
+      "emoticon": "iUjLnh7X9An90VxJykJ9tLVcU8Wp",
       "documents": [
         0,
         0,
@@ -54,20 +41,8 @@
       "_constructor": "stickerPack#12b299d4"
     },
     {
-      "emoticon": "dsRoAajchXu4ysxFUXA6etTt",
+      "emoticon": "9NMyU8NfDFgV",
       "documents": [
-        0,
-        0,
-        0,
-        0
-      ],
-      "_constructor": "stickerPack#12b299d4"
-    },
-    {
-      "emoticon": "LIXKypSiBSdW39f4kyXazJ",
-      "documents": [
-        0,
-        0,
         0,
         0,
         0,
@@ -81,9 +56,40 @@
       "_constructor": "stickerPack#12b299d4"
     },
     {
-      "emoticon": "HEcLDBtzT9nLuolwDUFQ1hC3WC8",
+      "emoticon": "3jVeg7ZnmJy9aENShZFh541",
       "documents": [
         0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "_constructor": "stickerPack#12b299d4"
+    },
+    {
+      "emoticon": "TLXzf4vOsqP9WGKXqnk3s7",
+      "documents": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "_constructor": "stickerPack#12b299d4"
+    },
+    {
+      "emoticon": "T3VmoCaCbjaPf4jOn5qa",
+      "documents": [
+        0,
+        0,
+        0
+      ],
+      "_constructor": "stickerPack#12b299d4"
+    },
+    {
+      "emoticon": "WxlLMsNi1HN89oq",
+      "documents": [
         0,
         0,
         0,
@@ -95,8 +101,26 @@
       "_constructor": "stickerPack#12b299d4"
     },
     {
-      "emoticon": "COlXdl2bs37ESVUkyU1Z5tLiH",
+      "emoticon": "xA3YgGjznMI2sZ8Y4R3RPkXsgug4v",
       "documents": [
+        0,
+        0,
+        0
+      ],
+      "_constructor": "stickerPack#12b299d4"
+    },
+    {
+      "emoticon": "2oiU243p5Bi5nMV",
+      "documents": [
+        0,
+        0
+      ],
+      "_constructor": "stickerPack#12b299d4"
+    },
+    {
+      "emoticon": "qjE7ZpvOy",
+      "documents": [
+        0,
         0,
         0,
         0,
@@ -111,536 +135,26 @@
   ],
   "documents": [
     {
-      "_constructor": "documentEmpty#36f8c871",
-      "id": 0
-    },
-    {
       "accessHash": 0,
       "date": 0,
-      "mimeType": "UN4IQY3",
-      "size": 0,
-      "thumb": {
-        "location": {
-          "dcId": 0,
-          "_constructor": "fileLocation#53d69076",
-          "volumeId": 0,
-          "localId": 0,
-          "secret": 0
-        },
-        "w": 0,
-        "h": 0,
-        "size": 0,
-        "_constructor": "photoSize#77bfb61b",
-        "type": "2OmLxVEn"
-      },
-      "dcId": 0,
-      "attributes": [
-        {
-          "alt": "r2sKwtm5iypfu2beVMC27n4T",
-          "stickerset": {
-            "id": 0,
-            "accessHash": 0,
-            "_constructor": "inputStickerSetID#9de7a269"
-          },
-          "_constructor": "documentAttributeSticker#3a556302"
-        },
-        {
-          "_constructor": "documentAttributeAnimated#11b58939"
-        },
-        {
-          "fileName": "i7mQ7AFbWACZMJVN",
-          "_constructor": "documentAttributeFilename#15590068"
-        },
-        {
-          "alt": "25uDiy1nIG2CJ6H75mx4",
-          "stickerset": {
-            "id": 0,
-            "accessHash": 0,
-            "_constructor": "inputStickerSetID#9de7a269"
-          },
-          "_constructor": "documentAttributeSticker#3a556302"
-        },
-        {
-          "_constructor": "documentAttributeAnimated#11b58939"
-        },
-        {
-          "w": 0,
-          "h": 0,
-          "_constructor": "documentAttributeImageSize#6c37c15c"
-        },
-        {
-          "duration": 0,
-          "w": 0,
-          "h": 0,
-          "_constructor": "documentAttributeVideo#5910cccb"
-        },
-        {
-          "flags": 1031,
-          "duration": 0,
-          "title": "DcxKotoPTV69PraI1KL9yVKHhqy1",
-          "performer": "Mwt7G3gBqNdGzzF2KXiCDap2ykxO",
-          "waveform": {
-            "data": [
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0
-            ],
-            "offset": 0,
-            "len": 177
-          },
-          "_constructor": "documentAttributeAudio#9852f9c6"
-        },
-        {
-          "w": 0,
-          "h": 0,
-          "_constructor": "documentAttributeImageSize#6c37c15c"
-        }
-      ],
-      "_constructor": "document#f9a39f4f",
-      "id": 0
-    },
-    {
-      "accessHash": 0,
-      "date": 0,
-      "mimeType": "7VWSWkEDoNjKzZTZSNdw6bDuqbNj",
-      "size": 0,
-      "thumb": {
-        "location": {
-          "dcId": 0,
-          "_constructor": "fileLocation#53d69076",
-          "volumeId": 0,
-          "localId": 0,
-          "secret": 0
-        },
-        "w": 0,
-        "h": 0,
-        "size": 0,
-        "_constructor": "photoSize#77bfb61b",
-        "type": "fJYDFrq2DIJL4iCCgwr"
-      },
-      "dcId": 0,
-      "attributes": [
-        {
-          "w": 0,
-          "h": 0,
-          "_constructor": "documentAttributeImageSize#6c37c15c"
-        },
-        {
-          "fileName": "bE9DVm8TDhLRv4j1",
-          "_constructor": "documentAttributeFilename#15590068"
-        },
-        {
-          "fileName": "gYoZe5EBidJ1ITTMG",
-          "_constructor": "documentAttributeFilename#15590068"
-        },
-        {
-          "flags": 7,
-          "duration": 0,
-          "title": "DovZTHqGJ4Sm56iAueWRm",
-          "performer": "xyuj9fMm6TcSvsG6qToNbCreYcivD",
-          "waveform": {
-            "data": [
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0
-            ],
-            "offset": 0,
-            "len": 89
-          },
-          "_constructor": "documentAttributeAudio#9852f9c6"
-        },
-        {
-          "flags": 7,
-          "duration": 0,
-          "title": "nPdkavZQR",
-          "performer": "OgdUvC",
-          "waveform": {
-            "data": [
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0
-            ],
-            "offset": 0,
-            "len": 69
-          },
-          "_constructor": "documentAttributeAudio#9852f9c6"
-        },
-        {
-          "duration": 0,
-          "w": 0,
-          "h": 0,
-          "_constructor": "documentAttributeVideo#5910cccb"
-        },
-        {
-          "alt": "yqk8bnO",
-          "stickerset": {
-            "id": 0,
-            "accessHash": 0,
-            "_constructor": "inputStickerSetID#9de7a269"
-          },
-          "_constructor": "documentAttributeSticker#3a556302"
-        },
-        {
-          "_constructor": "documentAttributeAnimated#11b58939"
-        },
-        {
-          "w": 0,
-          "h": 0,
-          "_constructor": "documentAttributeImageSize#6c37c15c"
-        }
-      ],
-      "_constructor": "document#f9a39f4f",
-      "id": 0
-    },
-    {
-      "_constructor": "documentEmpty#36f8c871",
-      "id": 0
-    },
-    {
-      "_constructor": "documentEmpty#36f8c871",
-      "id": 0
-    },
-    {
-      "_constructor": "documentEmpty#36f8c871",
-      "id": 0
-    },
-    {
-      "accessHash": 0,
-      "date": 0,
-      "mimeType": "Ez5xXSWrjaoF5",
+      "mimeType": "LFKUA05WxzvOws8qTYuPfqq",
       "size": 0,
       "thumb": {
         "_constructor": "photoSizeEmpty#e17e23c",
-        "type": "9Y8xYpDW9gfEyz"
+        "type": "DulKRI0"
       },
       "dcId": 0,
       "attributes": [
+        {
+          "w": 0,
+          "h": 0,
+          "_constructor": "documentAttributeImageSize#6c37c15c"
+        },
+        {
+          "w": 0,
+          "h": 0,
+          "_constructor": "documentAttributeImageSize#6c37c15c"
+        },
         {
           "duration": 0,
           "w": 0,
@@ -648,21 +162,41 @@
           "_constructor": "documentAttributeVideo#5910cccb"
         },
         {
-          "fileName": "taWttwlQsmttKf",
-          "_constructor": "documentAttributeFilename#15590068"
+          "w": 0,
+          "h": 0,
+          "_constructor": "documentAttributeImageSize#6c37c15c"
         },
         {
-          "alt": "4rZI3nyTcJ97TG6aMOuznYPsmpRwc",
+          "alt": "7OgZqgtHQJ7VFhDoleY0j",
           "stickerset": {
-            "_constructor": "inputStickerSetEmpty#ffb62b95"
+            "shortName": "yBBZfazCn",
+            "_constructor": "inputStickerSetShortName#861cc8a0"
           },
           "_constructor": "documentAttributeSticker#3a556302"
         },
         {
-          "_constructor": "documentAttributeAnimated#11b58939"
+          "fileName": "FzhD9Hevy71hzqBJwb",
+          "_constructor": "documentAttributeFilename#15590068"
+        },
+        {
+          "w": 0,
+          "h": 0,
+          "_constructor": "documentAttributeImageSize#6c37c15c"
         }
       ],
       "_constructor": "document#f9a39f4f",
+      "id": 0
+    },
+    {
+      "_constructor": "documentEmpty#36f8c871",
+      "id": 0
+    },
+    {
+      "_constructor": "documentEmpty#36f8c871",
+      "id": 0
+    },
+    {
+      "_constructor": "documentEmpty#36f8c871",
       "id": 0
     }
   ],

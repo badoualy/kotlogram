@@ -3,30 +3,22 @@
     "_constructor": "inputFileBig#fa4f0bb5",
     "id": 0,
     "parts": 0,
-    "name": "CzOUxO72ZmshL3zk"
+    "name": "5iVg29FBStDVUXoonyTwq"
   },
   "thumb": {
     "_constructor": "inputFileBig#fa4f0bb5",
     "id": 0,
     "parts": 0,
-    "name": "WYnl6"
+    "name": "Kt9yEyaud5mo7c9TGrqIi6n0"
   },
-  "mimeType": "Bo8lheisZa",
+  "mimeType": "DfTM1zR0AB0XcHDTVJB3AkVA",
   "attributes": [
     {
-      "w": 0,
-      "h": 0,
-      "_constructor": "documentAttributeImageSize#6c37c15c"
-    },
-    {
-      "fileName": "mPkjjctDjSgCe4Xs",
-      "_constructor": "documentAttributeFilename#15590068"
-    },
-    {
-      "alt": "5598wlWShhMJsE3",
+      "alt": "m2oIcjQw9UkGXVuW0waZo7M0Txh0",
       "stickerset": {
-        "shortName": "mO05hwZLL6QK16e0fFD7N",
-        "_constructor": "inputStickerSetShortName#861cc8a0"
+        "id": 0,
+        "accessHash": 0,
+        "_constructor": "inputStickerSetID#9de7a269"
       },
       "_constructor": "documentAttributeSticker#3a556302"
     },
@@ -34,97 +26,26 @@
       "_constructor": "documentAttributeAnimated#11b58939"
     },
     {
-      "fileName": "t8Ds1n2sntKajFDwsIH52aVw1a",
-      "_constructor": "documentAttributeFilename#15590068"
-    },
-    {
+      "flags": 1024,
+      "voice": true,
       "duration": 0,
-      "w": 0,
-      "h": 0,
-      "_constructor": "documentAttributeVideo#5910cccb"
-    },
-    {
-      "flags": 7,
-      "duration": 0,
-      "title": "SwQeyxYjrvB",
-      "performer": "TmATkUB",
-      "waveform": {
-        "data": [
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0
-        ],
-        "offset": 0,
-        "len": 55
-      },
+      "title": null,
+      "performer": null,
+      "waveform": null,
       "_constructor": "documentAttributeAudio#9852f9c6"
     },
     {
-      "w": 0,
-      "h": 0,
-      "_constructor": "documentAttributeImageSize#6c37c15c"
-    },
-    {
-      "w": 0,
-      "h": 0,
-      "_constructor": "documentAttributeImageSize#6c37c15c"
-    },
-    {
       "_constructor": "documentAttributeAnimated#11b58939"
+    },
+    {
+      "fileName": "R3VibCOQ4t5xKsAwkYfnP",
+      "_constructor": "documentAttributeFilename#15590068"
+    },
+    {
+      "fileName": "pLWFUanwN7a9H78xk8vhl9",
+      "_constructor": "documentAttributeFilename#15590068"
     }
   ],
-  "caption": "K0B2O",
+  "caption": "vYf9t2cY1rZrZqx",
   "_constructor": "inputMediaUploadedThumbDocument#ad613491"
 }

@@ -1,6 +1,12 @@
 {
-  "flags": 73,
-  "title": "ULXf8dI9Q9RuUKFmq",
+  "flags": 3,
+  "creator": true,
+  "kicked": true,
+  "left": false,
+  "adminsEnabled": false,
+  "admin": false,
+  "deactivated": false,
+  "title": "in6VofYViwBRwVhE6TIy",
   "photo": {
     "photoSmall": {
       "_constructor": "fileLocationUnavailable#7c596b46",
@@ -19,9 +25,7 @@
   "participantsCount": 0,
   "date": 0,
   "version": 0,
-  "migratedTo": {
-    "_constructor": "inputChannelEmpty#ee8c1e86"
-  },
+  "migratedTo": null,
   "_constructor": "chat#d91cdd54",
   "id": 0
 }

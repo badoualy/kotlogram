@@ -5,6 +5,6 @@
   "userId": {
     "_constructor": "inputUserSelf#f7c1b13f"
   },
-  "kicked": false,
+  "kicked": true,
   "_constructor": "channels.kickFromChannel#a672de14"
 }

@@ -1,6 +1,7 @@
 {
   "location": {
-    "_constructor": "fileLocationUnavailable#7c596b46",
+    "dcId": 0,
+    "_constructor": "fileLocation#53d69076",
     "volumeId": 0,
     "localId": 0,
     "secret": 0
@@ -9,5 +10,5 @@
   "h": 0,
   "size": 0,
   "_constructor": "photoSize#77bfb61b",
-  "type": "aVqOE4tbS2G"
+  "type": "NE4LPv6heK9ex"
 }

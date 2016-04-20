@@ -1,56 +1,20 @@
 {
-  "flags": 10382,
+  "flags": 33,
+  "unread": true,
+  "out": false,
+  "mentioned": false,
+  "mediaUnread": true,
+  "silent": false,
   "id": 0,
   "fromId": 0,
   "chatId": 0,
-  "message": "l0NUrzjbiMKu4gRSEgbof14fkTtd",
+  "message": "MjZhaB2",
   "pts": 0,
   "ptsCount": 0,
   "date": 0,
-  "fwdFrom": {
-    "flags": 0,
-    "fromId": null,
-    "date": 0,
-    "channelId": null,
-    "channelPost": null,
-    "_constructor": "messageFwdHeader#c786ddcb"
-  },
-  "viaBotId": 0,
-  "replyToMsgId": 0,
-  "entities": [
-    {
-      "_constructor": "messageEntityCode#28a20571",
-      "offset": 0,
-      "length": 0
-    },
-    {
-      "url": "47qJIrTcRFGQqekqyZ9b",
-      "_constructor": "messageEntityTextUrl#76a6d327",
-      "offset": 0,
-      "length": 0
-    },
-    {
-      "url": "XifXCsUJAg",
-      "_constructor": "messageEntityTextUrl#76a6d327",
-      "offset": 0,
-      "length": 0
-    },
-    {
-      "_constructor": "messageEntityMention#fa04579d",
-      "offset": 0,
-      "length": 0
-    },
-    {
-      "url": "S88RixYA",
-      "_constructor": "messageEntityTextUrl#76a6d327",
-      "offset": 0,
-      "length": 0
-    },
-    {
-      "_constructor": "messageEntityBotCommand#6cef8ac7",
-      "offset": 0,
-      "length": 0
-    }
-  ],
+  "fwdFrom": null,
+  "viaBotId": null,
+  "replyToMsgId": null,
+  "entities": null,
   "_constructor": "updateShortChatMessage#16812688"
 }

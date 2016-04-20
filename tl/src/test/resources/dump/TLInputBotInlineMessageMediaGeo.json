@@ -3,9 +3,6 @@
     "_constructor": "inputGeoPointEmpty#e4c123d6"
   },
   "_constructor": "inputBotInlineMessageMediaGeo#f4a59de1",
-  "flags": 4,
-  "replyMarkup": {
-    "flags": 4,
-    "_constructor": "replyKeyboardForceReply#f4108aa0"
-  }
+  "flags": 0,
+  "replyMarkup": null
 }

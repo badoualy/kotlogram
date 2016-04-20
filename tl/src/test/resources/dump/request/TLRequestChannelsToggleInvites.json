@@ -4,6 +4,6 @@
     "accessHash": 0,
     "_constructor": "inputChannel#afeb712e"
   },
-  "enabled": false,
+  "enabled": true,
   "_constructor": "channels.toggleInvites#49609307"
 }

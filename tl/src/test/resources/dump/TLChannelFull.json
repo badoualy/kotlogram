@@ -1,301 +1,48 @@
 {
-  "flags": 127,
-  "about": "Im5ypuGLm9y8OIHMI9HNhZjuVC5m4",
-  "participantsCount": 0,
-  "adminsCount": 0,
-  "kickedCount": 0,
+  "flags": 0,
+  "canViewParticipants": false,
+  "canSetUsername": false,
+  "about": "630hwda6tWuK",
+  "participantsCount": null,
+  "adminsCount": null,
+  "kickedCount": null,
   "readInboxMaxId": 0,
   "unreadCount": 0,
   "unreadImportantCount": 0,
-  "migratedFromChatId": 0,
-  "migratedFromMaxId": 0,
-  "pinnedMsgId": 0,
+  "migratedFromChatId": null,
+  "migratedFromMaxId": null,
+  "pinnedMsgId": null,
   "_constructor": "channelFull#97bee562",
   "id": 0,
   "chatPhoto": {
-    "accessHash": 0,
-    "date": 0,
-    "sizes": [
-      {
-        "_constructor": "photoSizeEmpty#e17e23c",
-        "type": "E7aFseRl4QrEH6zxQkic0wurTLr6"
-      },
-      {
-        "location": {
-          "dcId": 0,
-          "_constructor": "fileLocation#53d69076",
-          "volumeId": 0,
-          "localId": 0,
-          "secret": 0
-        },
-        "w": 0,
-        "h": 0,
-        "size": 0,
-        "_constructor": "photoSize#77bfb61b",
-        "type": "IZ5c1"
-      },
-      {
-        "_constructor": "photoSizeEmpty#e17e23c",
-        "type": "phdFLpP"
-      },
-      {
-        "location": {
-          "dcId": 0,
-          "_constructor": "fileLocation#53d69076",
-          "volumeId": 0,
-          "localId": 0,
-          "secret": 0
-        },
-        "w": 0,
-        "h": 0,
-        "bytes": {
-          "data": [
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0
-          ],
-          "offset": 0,
-          "len": 175
-        },
-        "_constructor": "photoCachedSize#e9a734fa",
-        "type": "a2SLSBbRLcM"
-      }
-    ],
-    "_constructor": "photo#cded42fe",
+    "_constructor": "photoEmpty#2331b22d",
     "id": 0
   },
   "notifySettings": {
     "_constructor": "peerNotifySettingsEmpty#70a68512"
   },
   "exportedInvite": {
-    "link": "SJkRsu7JBZ7zBnFgOoo3UWGct",
+    "link": "5sQ5Sh5imEspLQtwPqzIHvv",
     "_constructor": "chatInviteExported#fc2e05bc"
   },
   "botInfo": [
     {
       "userId": 0,
-      "description": "aR9lI",
+      "description": "5z4BPIDxXqaWsJ",
       "commands": [
         {
-          "command": "T9ilDQ6Del",
-          "description": "6exgGWvv7DztYOtcYFuZpNJv",
+          "command": "3hVWZhQKWhAAY5qpfLxeg5k1",
+          "description": "lzCpenA6vV9Yu2WCfE",
           "_constructor": "botCommand#c27ac8c7"
         },
         {
-          "command": "R3ZS73",
-          "description": "Gja0WqNneH8RfMz1E0j",
+          "command": "6camO",
+          "description": "BghbGowA3tNOkMcx5kZAFPhoT",
           "_constructor": "botCommand#c27ac8c7"
         },
         {
-          "command": "LRa2CZX2TB8Je",
-          "description": "2ccWI",
-          "_constructor": "botCommand#c27ac8c7"
-        },
-        {
-          "command": "KoTg1twxZIuXPHjGHAeta8PZ",
-          "description": "xbsBH2rWZTE59Z",
-          "_constructor": "botCommand#c27ac8c7"
-        },
-        {
-          "command": "tg4Y9ID8vC",
-          "description": "Py1c1cnJFRLO4NJN6A57EnTCJL74",
-          "_constructor": "botCommand#c27ac8c7"
-        },
-        {
-          "command": "kWmLzQfo1qnfKcNnxr73UVEkYm",
-          "description": "acCN84uXfn",
-          "_constructor": "botCommand#c27ac8c7"
-        },
-        {
-          "command": "KiUvnVIE0mOSTE9hMT9ypqTet",
-          "description": "MQLzqVwBnikpP",
-          "_constructor": "botCommand#c27ac8c7"
-        },
-        {
-          "command": "VuopqFETJ07juj97J",
-          "description": "aqaKr92gHg",
-          "_constructor": "botCommand#c27ac8c7"
-        },
-        {
-          "command": "t71J4Ltd8DMxFKG2ti51",
-          "description": "rtHAnZnzEVl5sk",
-          "_constructor": "botCommand#c27ac8c7"
-        },
-        {
-          "command": "grqmOm0ZLLfxpQAhiRHMOAT",
-          "description": "98FbjFq59p0",
+          "command": "lniX70DlK6Jt3cX1eJuJ",
+          "description": "khNR1Jz6o",
           "_constructor": "botCommand#c27ac8c7"
         }
       ],
@@ -303,68 +50,31 @@
     },
     {
       "userId": 0,
-      "description": "OMdFVVZJULu2D121",
+      "description": "mjGocJeu0zCOyZKGDTsHb",
       "commands": [
         {
-          "command": "PXo1uOkwU7ls",
-          "description": "Z0VlEf76wVMiopUzGBGYFg9VWfrC",
+          "command": "5lulv5",
+          "description": "MQ35EMV",
           "_constructor": "botCommand#c27ac8c7"
         },
         {
-          "command": "vB3ShUn1r1",
-          "description": "M5xZhpAWyL",
+          "command": "YTlNv1jbOhMCrrWvFE",
+          "description": "4HFxInY2Hk7sZCKGkztat82nMV",
           "_constructor": "botCommand#c27ac8c7"
         },
         {
-          "command": "VIm3KPPv38",
-          "description": "1npBFPX6B2jc3NDd1",
+          "command": "WXsCjz3J",
+          "description": "Wn0noKy",
           "_constructor": "botCommand#c27ac8c7"
         },
         {
-          "command": "BpnAdJiE",
-          "description": "QcdEmi23hSrfuRwXIiitAjAM6om",
+          "command": "5lEHc",
+          "description": "7fEHuqwKY",
           "_constructor": "botCommand#c27ac8c7"
         },
         {
-          "command": "Ex8xQKkeHqg6hM0h",
-          "description": "0jhwVjUpA",
-          "_constructor": "botCommand#c27ac8c7"
-        }
-      ],
-      "_constructor": "botInfo#98e81d3a"
-    },
-    {
-      "userId": 0,
-      "description": "OMV25COTcn38iEMU7pJ3eJW7nqqI",
-      "commands": [
-        {
-          "command": "U7LCjDyvIQb58oq",
-          "description": "hSEpqxO7fQeN9DhHJvuXR0zyHPNq",
-          "_constructor": "botCommand#c27ac8c7"
-        },
-        {
-          "command": "C5gLBNm",
-          "description": "nsxMBjgaeW7ZrXBrQixLI",
-          "_constructor": "botCommand#c27ac8c7"
-        },
-        {
-          "command": "X34iedW",
-          "description": "jc4Aka5KU42",
-          "_constructor": "botCommand#c27ac8c7"
-        },
-        {
-          "command": "aQwMSh3Hel7b",
-          "description": "uBNkZcKUs4",
-          "_constructor": "botCommand#c27ac8c7"
-        },
-        {
-          "command": "mJ1tHW7Eq",
-          "description": "36mhGnBWKOWZKOAjFXVO5LfW",
-          "_constructor": "botCommand#c27ac8c7"
-        },
-        {
-          "command": "rebgHt669VvLs1i0",
-          "description": "zaU3ZQyCt0H1MleF",
+          "command": "Px9xWAIrQpDckcb3",
+          "description": "5HmWW6AkcRMILNgFpvKla",
           "_constructor": "botCommand#c27ac8c7"
         }
       ],

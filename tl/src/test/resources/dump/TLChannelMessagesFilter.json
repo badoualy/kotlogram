@@ -1,16 +1,8 @@
 {
-  "flags": 2,
+  "flags": 1,
+  "importantOnly": true,
+  "excludeNewMessages": false,
   "ranges": [
-    {
-      "minId": 0,
-      "maxId": 0,
-      "_constructor": "messageRange#ae30253"
-    },
-    {
-      "minId": 0,
-      "maxId": 0,
-      "_constructor": "messageRange#ae30253"
-    },
     {
       "minId": 0,
       "maxId": 0,

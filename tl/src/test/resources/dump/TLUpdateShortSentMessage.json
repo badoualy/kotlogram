@@ -1,28 +1,12 @@
 {
-  "flags": 643,
+  "flags": 2,
+  "unread": false,
+  "out": true,
   "id": 0,
   "pts": 0,
   "ptsCount": 0,
   "date": 0,
-  "media": {
-    "_constructor": "messageMediaUnsupported#9f84f49e"
-  },
-  "entities": [
-    {
-      "_constructor": "messageEntityItalic#826f8b60",
-      "offset": 0,
-      "length": 0
-    },
-    {
-      "_constructor": "messageEntityHashtag#6f635b0d",
-      "offset": 0,
-      "length": 0
-    },
-    {
-      "_constructor": "messageEntityEmail#64e475c2",
-      "offset": 0,
-      "length": 0
-    }
-  ],
+  "media": null,
+  "entities": null,
   "_constructor": "updateShortSentMessage#11f1331c"
 }

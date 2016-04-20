@@ -1,29 +1,28 @@
 {
   "chat": {
-    "flags": 101,
-    "title": "cwcCZHpgr9v5",
+    "flags": 2571,
+    "creator": true,
+    "kicked": true,
+    "left": false,
+    "editor": true,
+    "moderator": false,
+    "broadcast": false,
+    "verified": false,
+    "megagroup": false,
+    "restricted": true,
+    "democracy": false,
+    "signatures": true,
+    "min": false,
+    "accessHash": null,
+    "title": "uPzHJ07JI",
+    "username": null,
     "photo": {
-      "photoSmall": {
-        "_constructor": "fileLocationUnavailable#7c596b46",
-        "volumeId": 0,
-        "localId": 0,
-        "secret": 0
-      },
-      "photoBig": {
-        "_constructor": "fileLocationUnavailable#7c596b46",
-        "volumeId": 0,
-        "localId": 0,
-        "secret": 0
-      },
-      "_constructor": "chatPhoto#6153276a"
+      "_constructor": "chatPhotoEmpty#37c1011c"
     },
-    "participantsCount": 0,
     "date": 0,
     "version": 0,
-    "migratedTo": {
-      "_constructor": "inputChannelEmpty#ee8c1e86"
-    },
-    "_constructor": "chat#d91cdd54",
+    "restrictionReason": "CaRBteRkR2lyFi",
+    "_constructor": "channel#a14dca52",
     "id": 0
   },
   "_constructor": "chatInviteAlready#5a686d7c"

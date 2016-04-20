@@ -1,9 +1,9 @@
 {
   "myLink": {
-    "_constructor": "contactLinkNone#feedd3ad"
+    "_constructor": "contactLinkUnknown#5f4f9247"
   },
   "foreignLink": {
-    "_constructor": "contactLinkUnknown#5f4f9247"
+    "_constructor": "contactLinkNone#feedd3ad"
   },
   "user": {
     "_constructor": "userEmpty#200250ba",

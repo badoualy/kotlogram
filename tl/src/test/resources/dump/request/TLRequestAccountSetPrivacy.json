@@ -1,32 +1,18 @@
 {
   "key": {
-    "_constructor": "inputPrivacyKeyChatInvite#bdfb0426"
+    "_constructor": "inputPrivacyKeyStatusTimestamp#4f96cb18"
   },
   "rules": [
     {
       "users": [
         {
-          "_constructor": "inputUserSelf#f7c1b13f"
-        },
-        {
-          "_constructor": "inputUserSelf#f7c1b13f"
-        },
-        {
-          "_constructor": "inputUserSelf#f7c1b13f"
-        },
-        {
           "_constructor": "inputUserEmpty#b98886cf"
         },
         {
           "_constructor": "inputUserEmpty#b98886cf"
         },
         {
-          "_constructor": "inputUserEmpty#b98886cf"
-        },
-        {
-          "userId": 0,
-          "accessHash": 0,
-          "_constructor": "inputUser#d8292816"
+          "_constructor": "inputUserSelf#f7c1b13f"
         },
         {
           "userId": 0,
@@ -34,44 +20,15 @@
           "_constructor": "inputUser#d8292816"
         }
       ],
-      "_constructor": "inputPrivacyValueDisallowUsers#90110467"
+      "_constructor": "inputPrivacyValueAllowUsers#131cc67f"
     },
     {
       "users": [
         {
-          "userId": 0,
-          "accessHash": 0,
-          "_constructor": "inputUser#d8292816"
+          "_constructor": "inputUserEmpty#b98886cf"
         },
         {
           "_constructor": "inputUserSelf#f7c1b13f"
-        },
-        {
-          "_constructor": "inputUserSelf#f7c1b13f"
-        },
-        {
-          "_constructor": "inputUserSelf#f7c1b13f"
-        }
-      ],
-      "_constructor": "inputPrivacyValueDisallowUsers#90110467"
-    },
-    {
-      "_constructor": "inputPrivacyValueAllowAll#184b35ce"
-    },
-    {
-      "_constructor": "inputPrivacyValueAllowAll#184b35ce"
-    },
-    {
-      "users": [
-        {
-          "userId": 0,
-          "accessHash": 0,
-          "_constructor": "inputUser#d8292816"
-        },
-        {
-          "userId": 0,
-          "accessHash": 0,
-          "_constructor": "inputUser#d8292816"
         },
         {
           "userId": 0,
@@ -79,13 +36,7 @@
           "_constructor": "inputUser#d8292816"
         }
       ],
-      "_constructor": "inputPrivacyValueDisallowUsers#90110467"
-    },
-    {
-      "_constructor": "inputPrivacyValueAllowAll#184b35ce"
-    },
-    {
-      "_constructor": "inputPrivacyValueDisallowAll#d66b66c9"
+      "_constructor": "inputPrivacyValueAllowUsers#131cc67f"
     }
   ],
   "_constructor": "account.setPrivacy#c9f81ce8"

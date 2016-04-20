@@ -3,11 +3,11 @@
     "_constructor": "inputNotifyUsers#193b4417"
   },
   "settings": {
-    "flags": 0,
-    "showPreviews": false,
-    "silent": false,
+    "flags": 3,
+    "showPreviews": true,
+    "silent": true,
     "muteUntil": 0,
-    "sound": "fzXCuKF89APg",
+    "sound": "A7xzpdjscLUoU0504eq6lMu",
     "_constructor": "inputPeerNotifySettings#38935eb2"
   },
   "_constructor": "account.updateNotifySettings#84be5b93"

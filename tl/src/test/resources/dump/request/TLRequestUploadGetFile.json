@@ -1,9 +1,8 @@
 {
   "location": {
-    "volumeId": 0,
-    "localId": 0,
-    "secret": 0,
-    "_constructor": "inputFileLocation#14637196"
+    "id": 0,
+    "accessHash": 0,
+    "_constructor": "inputDocumentFileLocation#4e45abe9"
   },
   "offset": 0,
   "limit": 0,

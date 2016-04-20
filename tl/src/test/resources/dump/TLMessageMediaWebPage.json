@@ -1,6 +1,21 @@
 {
   "webpage": {
-    "_constructor": "webPageEmpty#eb1477e8",
+    "flags": 0,
+    "url": "xf4SPgyzIG1kFq",
+    "displayUrl": "NPdgd8v15uSKBTNq0lzvv8",
+    "type": null,
+    "siteName": null,
+    "title": null,
+    "description": null,
+    "photo": null,
+    "embedUrl": null,
+    "embedType": null,
+    "embedWidth": null,
+    "embedHeight": null,
+    "duration": null,
+    "author": null,
+    "document": null,
+    "_constructor": "webPage#ca820ed7",
     "id": 0
   },
   "_constructor": "messageMediaWebPage#a32dd600"

@@ -1,14 +1,21 @@
 {
-  "flags": 16698,
-  "fromId": 0,
+  "flags": 8241,
+  "unread": true,
+  "out": false,
+  "mentioned": true,
+  "mediaUnread": true,
+  "silent": true,
+  "post": false,
+  "fromId": null,
   "toId": {
     "channelId": 0,
     "_constructor": "peerChannel#bddde532"
   },
-  "replyToMsgId": 0,
+  "replyToMsgId": null,
   "date": 0,
   "action": {
-    "_constructor": "messageActionEmpty#b6aef7b0"
+    "inviterId": 0,
+    "_constructor": "messageActionChatJoinedByLink#f89cf5e8"
   },
   "_constructor": "messageService#9e19a1f6",
   "id": 0

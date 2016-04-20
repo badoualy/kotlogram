@@ -2,7 +2,7 @@
   "offsetDate": 0,
   "offsetId": 0,
   "offsetPeer": {
-    "_constructor": "inputPeerEmpty#7f3b18ea"
+    "_constructor": "inputPeerSelf#7da07ec9"
   },
   "limit": 0,
   "_constructor": "messages.getDialogs#6b47f94d"

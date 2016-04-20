@@ -1,4 +1,4 @@
 {
-  "phoneRegistered": false,
+  "phoneRegistered": true,
   "_constructor": "auth.checkedPhone#811ea28e"
 }

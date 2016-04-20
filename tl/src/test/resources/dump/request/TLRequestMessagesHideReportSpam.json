@@ -1,6 +1,8 @@
 {
   "peer": {
-    "_constructor": "inputPeerSelf#7da07ec9"
+    "channelId": 0,
+    "accessHash": 0,
+    "_constructor": "inputPeerChannel#20adaef8"
   },
   "_constructor": "messages.hideReportSpam#a8f1709b"
 }

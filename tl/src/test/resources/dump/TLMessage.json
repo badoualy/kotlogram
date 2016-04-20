@@ -1,53 +1,26 @@
 {
-  "flags": 45039,
-  "fromId": 0,
+  "flags": 24609,
+  "unread": true,
+  "out": false,
+  "mentioned": false,
+  "mediaUnread": true,
+  "silent": true,
+  "post": true,
+  "fromId": null,
   "toId": {
-    "chatId": 0,
-    "_constructor": "peerChat#bad0e5bb"
+    "channelId": 0,
+    "_constructor": "peerChannel#bddde532"
   },
-  "fwdFrom": {
-    "flags": 0,
-    "fromId": null,
-    "date": 0,
-    "channelId": null,
-    "channelPost": null,
-    "_constructor": "messageFwdHeader#c786ddcb"
-  },
-  "viaBotId": 0,
-  "replyToMsgId": 0,
+  "fwdFrom": null,
+  "viaBotId": null,
+  "replyToMsgId": null,
   "date": 0,
-  "message": "9uEF5CPJCEQHROAb",
-  "media": {
-    "phoneNumber": "a9wozkI7ro9wehCpAzoI9X6rRF",
-    "firstName": "0C56mN7gtocUPmEFJ02Ur",
-    "lastName": "jztfsy5UTNk5V1MBo9h26",
-    "userId": 0,
-    "_constructor": "messageMediaContact#5e7d2f39"
-  },
-  "replyMarkup": {
-    "flags": 0,
-    "_constructor": "replyKeyboardHide#a03e5b85"
-  },
-  "entities": [
-    {
-      "_constructor": "messageEntityBold#bd610bc9",
-      "offset": 0,
-      "length": 0
-    },
-    {
-      "_constructor": "messageEntityUrl#6ed02538",
-      "offset": 0,
-      "length": 0
-    },
-    {
-      "url": "bqFrEIAiFKJiIOliUAhNltw1svR",
-      "_constructor": "messageEntityTextUrl#76a6d327",
-      "offset": 0,
-      "length": 0
-    }
-  ],
-  "views": 0,
-  "editDate": 0,
+  "message": "obRHpiJRNfq",
+  "media": null,
+  "replyMarkup": null,
+  "entities": null,
+  "views": null,
+  "editDate": null,
   "_constructor": "message#c09be45f",
   "id": 0
 }

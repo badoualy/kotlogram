@@ -1,6 +1,6 @@
 {
-  "flags": 1,
+  "flags": 0,
   "channelId": 0,
-  "pts": 0,
+  "pts": null,
   "_constructor": "updateChannelTooLong#eb0467fb"
 }

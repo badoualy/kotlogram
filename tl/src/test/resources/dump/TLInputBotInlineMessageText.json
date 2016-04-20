@@ -1,37 +1,8 @@
 {
-  "message": "X2FTJEGq9n22MZH",
-  "entities": [
-    {
-      "_constructor": "messageEntityEmail#64e475c2",
-      "offset": 0,
-      "length": 0
-    },
-    {
-      "_constructor": "messageEntityMention#fa04579d",
-      "offset": 0,
-      "length": 0
-    },
-    {
-      "_constructor": "messageEntityBotCommand#6cef8ac7",
-      "offset": 0,
-      "length": 0
-    },
-    {
-      "_constructor": "messageEntityUnknown#bb92ba95",
-      "offset": 0,
-      "length": 0
-    },
-    {
-      "url": "1WzOSuMzGWFYU73Ygyq6",
-      "_constructor": "messageEntityTextUrl#76a6d327",
-      "offset": 0,
-      "length": 0
-    }
-  ],
+  "noWebpage": true,
+  "message": "PQH4Z2EEONnuq7WjbntypOtP",
+  "entities": null,
   "_constructor": "inputBotInlineMessageText#3dcd7a87",
-  "flags": 7,
-  "replyMarkup": {
-    "flags": 6,
-    "_constructor": "replyKeyboardForceReply#f4108aa0"
-  }
+  "flags": 1,
+  "replyMarkup": null
 }

@@ -1,23 +1,7 @@
 {
   "rules": [
     {
-      "_constructor": "privacyValueDisallowContacts#f888fa1a"
-    },
-    {
-      "_constructor": "privacyValueDisallowContacts#f888fa1a"
-    },
-    {
-      "_constructor": "privacyValueAllowAll#65427b82"
-    },
-    {
-      "_constructor": "privacyValueAllowAll#65427b82"
-    },
-    {
-      "users": [
-        0,
-        0
-      ],
-      "_constructor": "privacyValueDisallowUsers#c7f49b7"
+      "_constructor": "privacyValueDisallowAll#8b73e763"
     },
     {
       "users": [
@@ -30,9 +14,53 @@
         0,
         0,
         0,
+        0,
         0
       ],
-      "_constructor": "privacyValueDisallowUsers#c7f49b7"
+      "_constructor": "privacyValueAllowUsers#4d5bbe0c"
+    },
+    {
+      "users": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "_constructor": "privacyValueAllowUsers#4d5bbe0c"
+    },
+    {
+      "_constructor": "privacyValueDisallowContacts#f888fa1a"
+    },
+    {
+      "_constructor": "privacyValueAllowAll#65427b82"
+    },
+    {
+      "users": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "_constructor": "privacyValueAllowUsers#4d5bbe0c"
+    },
+    {
+      "_constructor": "privacyValueDisallowContacts#f888fa1a"
+    },
+    {
+      "_constructor": "privacyValueAllowAll#65427b82"
+    },
+    {
+      "_constructor": "privacyValueAllowContacts#fffe1bac"
     }
   ],
   "users": [
@@ -41,29 +69,7 @@
       "id": 0
     },
     {
-      "flags": 3550208,
-      "self": true,
-      "contact": true,
-      "mutualContact": false,
-      "deleted": true,
-      "bot": false,
-      "botChatHistory": false,
-      "botNochats": false,
-      "verified": true,
-      "restricted": true,
-      "min": true,
-      "botInlineGeo": true,
-      "accessHash": null,
-      "firstName": null,
-      "lastName": null,
-      "username": null,
-      "phone": null,
-      "photo": null,
-      "status": null,
-      "botInfoVersion": null,
-      "restrictionReason": "UOQYH9ZXany38SKLMG91K",
-      "botInlinePlaceholder": null,
-      "_constructor": "user#d10d979a",
+      "_constructor": "userEmpty#200250ba",
       "id": 0
     },
     {
@@ -71,12 +77,24 @@
       "id": 0
     },
     {
-      "flags": 63488,
+      "_constructor": "userEmpty#200250ba",
+      "id": 0
+    },
+    {
+      "_constructor": "userEmpty#200250ba",
+      "id": 0
+    },
+    {
+      "_constructor": "userEmpty#200250ba",
+      "id": 0
+    },
+    {
+      "flags": 45056,
       "self": false,
-      "contact": true,
+      "contact": false,
       "mutualContact": true,
       "deleted": true,
-      "bot": true,
+      "bot": false,
       "botChatHistory": true,
       "botNochats": false,
       "verified": false,
@@ -90,25 +108,25 @@
       "phone": null,
       "photo": null,
       "status": null,
-      "botInfoVersion": 0,
+      "botInfoVersion": null,
       "restrictionReason": null,
       "botInlinePlaceholder": null,
       "_constructor": "user#d10d979a",
       "id": 0
     },
     {
-      "flags": 1409024,
+      "flags": 3536896,
       "self": false,
-      "contact": false,
-      "mutualContact": false,
-      "deleted": false,
-      "bot": false,
+      "contact": true,
+      "mutualContact": true,
+      "deleted": true,
+      "bot": true,
       "botChatHistory": true,
       "botNochats": true,
       "verified": false,
       "restricted": true,
       "min": true,
-      "botInlineGeo": false,
+      "botInlineGeo": true,
       "accessHash": null,
       "firstName": null,
       "lastName": null,
@@ -116,58 +134,24 @@
       "phone": null,
       "photo": null,
       "status": null,
-      "botInfoVersion": null,
-      "restrictionReason": "PR3X4OH",
+      "botInfoVersion": 0,
+      "restrictionReason": "o1dk311ygCSoNBfv9HoOHUoUx6",
       "botInlinePlaceholder": null,
       "_constructor": "user#d10d979a",
       "id": 0
     },
     {
-      "flags": 3171328,
+      "flags": 2475008,
       "self": true,
       "contact": false,
       "mutualContact": false,
-      "deleted": true,
-      "bot": true,
-      "botChatHistory": false,
-      "botNochats": false,
-      "verified": false,
-      "restricted": false,
-      "min": true,
-      "botInlineGeo": true,
-      "accessHash": null,
-      "firstName": null,
-      "lastName": null,
-      "username": null,
-      "phone": null,
-      "photo": null,
-      "status": null,
-      "botInfoVersion": 0,
-      "restrictionReason": null,
-      "botInlinePlaceholder": null,
-      "_constructor": "user#d10d979a",
-      "id": 0
-    },
-    {
-      "_constructor": "userEmpty#200250ba",
-      "id": 0
-    },
-    {
-      "_constructor": "userEmpty#200250ba",
-      "id": 0
-    },
-    {
-      "flags": 3476480,
-      "self": true,
-      "contact": true,
-      "mutualContact": false,
       "deleted": false,
-      "bot": false,
-      "botChatHistory": false,
+      "bot": true,
+      "botChatHistory": true,
       "botNochats": true,
       "verified": false,
       "restricted": true,
-      "min": true,
+      "min": false,
       "botInlineGeo": true,
       "accessHash": null,
       "firstName": null,
@@ -176,34 +160,8 @@
       "phone": null,
       "photo": null,
       "status": null,
-      "botInfoVersion": null,
-      "restrictionReason": "mAmmAvwcLRCxyByv",
-      "botInlinePlaceholder": null,
-      "_constructor": "user#d10d979a",
-      "id": 0
-    },
-    {
-      "flags": 1199104,
-      "self": true,
-      "contact": true,
-      "mutualContact": false,
-      "deleted": false,
-      "bot": true,
-      "botChatHistory": false,
-      "botNochats": false,
-      "verified": true,
-      "restricted": false,
-      "min": true,
-      "botInlineGeo": false,
-      "accessHash": null,
-      "firstName": null,
-      "lastName": null,
-      "username": null,
-      "phone": null,
-      "photo": null,
-      "status": null,
       "botInfoVersion": 0,
-      "restrictionReason": null,
+      "restrictionReason": "anQGIS12",
       "botInlinePlaceholder": null,
       "_constructor": "user#d10d979a",
       "id": 0

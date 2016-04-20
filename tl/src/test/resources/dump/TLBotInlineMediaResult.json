@@ -1,25 +1,18 @@
 {
-  "photo": {
-    "_constructor": "photoEmpty#2331b22d",
-    "id": 0
-  },
-  "document": {
-    "_constructor": "documentEmpty#36f8c871",
-    "id": 0
-  },
-  "title": "BfgSdJxkhBG22ZuNI0yMDHo",
-  "description": "Q9zdh449xa",
+  "photo": null,
+  "document": null,
+  "title": null,
+  "description": null,
   "_constructor": "botInlineMediaResult#17db940b",
-  "flags": 15,
-  "id": "EFzm0OvDgKWhIF8Fx2L",
-  "type": "TAaxO8BhG",
+  "flags": 0,
+  "id": "BZ2C0QHfU4ldXIJpIypMo0ic",
+  "type": "Pb1C0x",
   "sendMessage": {
-    "caption": "ZfmTyLRUVrr",
-    "_constructor": "botInlineMessageMediaAuto#a74b15b",
-    "flags": 4,
-    "replyMarkup": {
-      "flags": 4,
-      "_constructor": "replyKeyboardHide#a03e5b85"
-    }
+    "noWebpage": false,
+    "message": "f7UVddL7yFC9Mv",
+    "entities": null,
+    "_constructor": "botInlineMessageText#8c7f65e2",
+    "flags": 0,
+    "replyMarkup": null
   }
 }

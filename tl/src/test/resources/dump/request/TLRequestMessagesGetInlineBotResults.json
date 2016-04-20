@@ -1,18 +1,13 @@
 {
-  "flags": 1,
+  "flags": 0,
   "bot": {
-    "_constructor": "inputUserSelf#f7c1b13f"
+    "_constructor": "inputUserEmpty#b98886cf"
   },
   "peer": {
-    "chatId": 0,
-    "_constructor": "inputPeerChat#179be863"
+    "_constructor": "inputPeerEmpty#7f3b18ea"
   },
-  "geoPoint": {
-    "lat": 0.0,
-    "_long": 0.0,
-    "_constructor": "inputGeoPoint#f3b7acc9"
-  },
-  "query": "9oMWqXs5YuhCY6",
-  "offset": "MTVSG",
+  "geoPoint": null,
+  "query": "EvKrkpJx5QdwYlCZtLGHY1XobZQKA",
+  "offset": "EGxAgYzkOQIE24z",
   "_constructor": "messages.getInlineBotResults#514e999d"
 }

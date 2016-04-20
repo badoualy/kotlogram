@@ -6,25 +6,7 @@
       "_constructor": "inputUser#d8292816"
     },
     {
-      "userId": 0,
-      "accessHash": 0,
-      "_constructor": "inputUser#d8292816"
-    },
-    {
-      "userId": 0,
-      "accessHash": 0,
-      "_constructor": "inputUser#d8292816"
-    },
-    {
-      "_constructor": "inputUserEmpty#b98886cf"
-    },
-    {
-      "userId": 0,
-      "accessHash": 0,
-      "_constructor": "inputUser#d8292816"
-    },
-    {
-      "_constructor": "inputUserEmpty#b98886cf"
+      "_constructor": "inputUserSelf#f7c1b13f"
     },
     {
       "_constructor": "inputUserEmpty#b98886cf"
@@ -33,15 +15,29 @@
       "_constructor": "inputUserSelf#f7c1b13f"
     },
     {
-      "_constructor": "inputUserSelf#f7c1b13f"
+      "userId": 0,
+      "accessHash": 0,
+      "_constructor": "inputUser#d8292816"
+    },
+    {
+      "userId": 0,
+      "accessHash": 0,
+      "_constructor": "inputUser#d8292816"
+    },
+    {
+      "userId": 0,
+      "accessHash": 0,
+      "_constructor": "inputUser#d8292816"
     },
     {
       "_constructor": "inputUserEmpty#b98886cf"
     },
     {
-      "_constructor": "inputUserEmpty#b98886cf"
+      "userId": 0,
+      "accessHash": 0,
+      "_constructor": "inputUser#d8292816"
     }
   ],
-  "title": "poUX7Ny",
+  "title": "A2Q2e7fAgHZ1m4nXE",
   "_constructor": "messages.createChat#9cb126e"
 }

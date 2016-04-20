@@ -1,7 +1,20 @@
 {
   "chatId": 0,
   "photo": {
-    "_constructor": "inputChatPhotoEmpty#1ca48f57"
+    "file": {
+      "md5Checksum": "chd8Zu8IJQdxpcyImju",
+      "_constructor": "inputFile#f52ff27f",
+      "id": 0,
+      "parts": 0,
+      "name": "KgPkm8jg1BcDVp2TxB0DfWTkZxEn"
+    },
+    "crop": {
+      "cropLeft": 0.0,
+      "cropTop": 0.0,
+      "cropWidth": 0.0,
+      "_constructor": "inputPhotoCrop#d9915325"
+    },
+    "_constructor": "inputChatUploadedPhoto#94254732"
   },
   "_constructor": "messages.editChatPhoto#ca4c79d8"
 }

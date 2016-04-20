@@ -1,7 +1,7 @@
 {
-  "flags": 7,
-  "firstName": "OgPw4p0eNQkpqe9uyyKAcl",
-  "lastName": "9ehQq7TShnsMov1Zi73NLh",
-  "about": "WyRPZttsvj7aO",
+  "flags": 0,
+  "firstName": null,
+  "lastName": null,
+  "about": null,
   "_constructor": "account.updateProfile#78515775"
 }

@@ -1,8 +1,6 @@
 {
   "geoPoint": {
-    "lat": 0.0,
-    "_long": 0.0,
-    "_constructor": "inputGeoPoint#f3b7acc9"
+    "_constructor": "inputGeoPointEmpty#e4c123d6"
   },
   "_constructor": "inputMediaGeoPoint#f9c44144"
 }

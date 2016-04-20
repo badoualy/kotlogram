@@ -8,9 +8,6 @@
   "readInboxMaxId": 0,
   "unreadCount": 0,
   "notifySettings": {
-    "flags": 1,
-    "muteUntil": 0,
-    "sound": "Hp2DTAxhC2Awoz9oG",
-    "_constructor": "peerNotifySettings#9acda4c0"
+    "_constructor": "peerNotifySettingsEmpty#70a68512"
   }
 }

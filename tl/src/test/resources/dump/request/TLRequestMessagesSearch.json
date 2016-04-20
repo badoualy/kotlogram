@@ -1,13 +1,13 @@
 {
-  "flags": 1,
+  "flags": 0,
+  "importantOnly": false,
   "peer": {
-    "channelId": 0,
-    "accessHash": 0,
-    "_constructor": "inputPeerChannel#20adaef8"
+    "chatId": 0,
+    "_constructor": "inputPeerChat#179be863"
   },
-  "q": "hoLpShOmy1p4hQNzaioF",
+  "q": "7133GmkRuwFLeSRwvW4jjzdKNF",
   "filter": {
-    "_constructor": "inputMessagesFilterPhotoVideo#56e9f0e4"
+    "_constructor": "inputMessagesFilterPhotoVideoDocuments#d95e73bb"
   },
   "minDate": 0,
   "maxDate": 0,

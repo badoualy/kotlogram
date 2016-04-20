@@ -1,12 +1,14 @@
 {
-  "flags": 65,
+  "flags": 0,
+  "broadcast": false,
+  "silent": false,
+  "background": false,
   "peer": {
-    "chatId": 0,
-    "_constructor": "inputPeerChat#179be863"
+    "_constructor": "inputPeerEmpty#7f3b18ea"
   },
-  "replyToMsgId": 0,
+  "replyToMsgId": null,
   "randomId": 0,
   "queryId": 0,
-  "id": "sqDMKyWXCAbOh0EGDDRpuM1W3ro4E",
+  "id": "PPVZiOQUpnEqX8YTWPqfi09",
   "_constructor": "messages.sendInlineBotResult#b16e06fe"
 }

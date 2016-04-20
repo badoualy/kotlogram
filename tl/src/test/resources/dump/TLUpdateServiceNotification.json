@@ -1,9 +1,28 @@
 {
-  "type": "lKRj5nI3ilbIvy3R",
-  "message": "QACT8",
+  "type": "rnRjgYCLJzAwD1eHkRHQMM",
+  "message": "Kyja8fBDzGTYXHK6AQU1btzgZ",
   "media": {
-    "_constructor": "messageMediaEmpty#3ded6320"
+    "webpage": {
+      "flags": 0,
+      "url": "CuZOzDLrywamCW9TZqHkUXt4NsSjK",
+      "displayUrl": "xIpo3",
+      "type": null,
+      "siteName": null,
+      "title": null,
+      "description": null,
+      "photo": null,
+      "embedUrl": null,
+      "embedType": null,
+      "embedWidth": null,
+      "embedHeight": null,
+      "duration": null,
+      "author": null,
+      "document": null,
+      "_constructor": "webPage#ca820ed7",
+      "id": 0
+    },
+    "_constructor": "messageMediaWebPage#a32dd600"
   },
-  "popup": true,
+  "popup": false,
   "_constructor": "updateServiceNotification#382dd3e4"
 }

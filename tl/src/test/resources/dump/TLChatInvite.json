@@ -1,5 +1,9 @@
 {
-  "flags": 0,
-  "title": "E6uJocVlcA4uK",
+  "flags": 4,
+  "channel": false,
+  "broadcast": false,
+  "_public": true,
+  "megagroup": false,
+  "title": "z4LYSPllZa0doHvko5I1",
   "_constructor": "chatInvite#93e99b60"
 }

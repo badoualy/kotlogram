@@ -1,6 +1,7 @@
 {
   "peer": {
-    "_constructor": "inputPeerEmpty#7f3b18ea"
+    "chatId": 0,
+    "_constructor": "inputPeerChat#179be863"
   },
   "maxId": 0,
   "_constructor": "messages.deleteHistory#b7c13bd9"

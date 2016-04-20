@@ -2,17 +2,17 @@
   "flags": 1,
   "blocked": true,
   "user": {
-    "flags": 3375104,
+    "flags": 2551808,
     "self": false,
     "contact": false,
-    "mutualContact": false,
-    "deleted": false,
-    "bot": false,
+    "mutualContact": true,
+    "deleted": true,
+    "bot": true,
     "botChatHistory": true,
-    "botNochats": true,
+    "botNochats": false,
     "verified": true,
-    "restricted": false,
-    "min": true,
+    "restricted": true,
+    "min": false,
     "botInlineGeo": true,
     "accessHash": null,
     "firstName": null,
@@ -21,8 +21,8 @@
     "phone": null,
     "photo": null,
     "status": null,
-    "botInfoVersion": null,
-    "restrictionReason": null,
+    "botInfoVersion": 0,
+    "restrictionReason": "pSGxot",
     "botInlinePlaceholder": null,
     "_constructor": "user#d10d979a",
     "id": 0
@@ -30,10 +30,10 @@
   "about": null,
   "link": {
     "myLink": {
-      "_constructor": "contactLinkHasPhone#268f3f59"
+      "_constructor": "contactLinkUnknown#5f4f9247"
     },
     "foreignLink": {
-      "_constructor": "contactLinkNone#feedd3ad"
+      "_constructor": "contactLinkContact#d502c2d0"
     },
     "user": {
       "_constructor": "userEmpty#200250ba",

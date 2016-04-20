@@ -5,16 +5,9 @@
     "_constructor": "inputChannel#afeb712e"
   },
   "userId": {
-    "_constructor": "inputUserEmpty#b98886cf"
+    "_constructor": "inputUserSelf#f7c1b13f"
   },
   "id": [
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
     0,
     0
   ],

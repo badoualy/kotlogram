@@ -1,6 +1,7 @@
 {
   "_constructor": "updates.channelDifferenceEmpty#3e11affb",
-  "flags": 3,
+  "flags": 1,
+  "_final": true,
   "pts": 0,
-  "timeout": 0
+  "timeout": null
 }

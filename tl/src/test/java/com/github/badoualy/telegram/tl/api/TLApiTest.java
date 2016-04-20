@@ -39,7 +39,7 @@ public final class TLApiTest extends AbsTLApiTest implements ITest {
         Assert.assertEquals(is.available(), 0, "Deserialization did not consume whole payload of " + bytes.length + " bytes");
         Assert.assertEquals(DumpUtils.toJson(deserializedObject), DumpUtils.toJson(object), "Deserialization of serialized object returned an object non-equals");
 
-        //DumpUtils.dump(object, bytes);
+        DumpUtils.dump(object, bytes);
     }
 
     @Override

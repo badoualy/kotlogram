@@ -1,5 +1,5 @@
 {
-  "flags": 1,
-  "reportSpam": true,
+  "flags": 0,
+  "reportSpam": false,
   "_constructor": "peerSettings#818426cd"
 }

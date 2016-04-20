@@ -5,7 +5,8 @@
     "_constructor": "inputPeerUser#7b8e7de6"
   },
   "action": {
-    "_constructor": "sendMessageCancelAction#fd5ec8f5"
+    "progress": 0,
+    "_constructor": "sendMessageUploadPhotoAction#d1d34a26"
   },
   "_constructor": "messages.setTyping#a3825e50"
 }

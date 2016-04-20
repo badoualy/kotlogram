@@ -1,66 +1,16 @@
 {
   "date": 0,
   "expires": 0,
-  "testMode": true,
+  "testMode": false,
   "thisDc": 0,
   "dcOptions": [
     {
-      "flags": 4,
-      "ipv6": false,
-      "mediaOnly": false,
-      "tcpoOnly": true,
-      "id": 0,
-      "ipAddress": "O77vrzyB45UZaANlIX0XmjVQpwHCT",
-      "port": 0,
-      "_constructor": "dcOption#5d8c6cc"
-    },
-    {
-      "flags": 7,
-      "ipv6": true,
-      "mediaOnly": true,
-      "tcpoOnly": true,
-      "id": 0,
-      "ipAddress": "xqTp3KtLmJ7Jx6LsOQhhIHW6vPLMt",
-      "port": 0,
-      "_constructor": "dcOption#5d8c6cc"
-    },
-    {
       "flags": 5,
       "ipv6": true,
       "mediaOnly": false,
       "tcpoOnly": true,
       "id": 0,
-      "ipAddress": "e8GMKgpgg49UIvgM8B",
-      "port": 0,
-      "_constructor": "dcOption#5d8c6cc"
-    },
-    {
-      "flags": 1,
-      "ipv6": true,
-      "mediaOnly": false,
-      "tcpoOnly": false,
-      "id": 0,
-      "ipAddress": "agir0PXhZTjskR",
-      "port": 0,
-      "_constructor": "dcOption#5d8c6cc"
-    },
-    {
-      "flags": 5,
-      "ipv6": true,
-      "mediaOnly": false,
-      "tcpoOnly": true,
-      "id": 0,
-      "ipAddress": "BUDUZGx",
-      "port": 0,
-      "_constructor": "dcOption#5d8c6cc"
-    },
-    {
-      "flags": 4,
-      "ipv6": false,
-      "mediaOnly": false,
-      "tcpoOnly": true,
-      "id": 0,
-      "ipAddress": "tcl21QvbUpXnsGAE3Fond2JQ4S0",
+      "ipAddress": "uY3VbIY4jzt3KkARNfqzo1x",
       "port": 0,
       "_constructor": "dcOption#5d8c6cc"
     },
@@ -70,17 +20,7 @@
       "mediaOnly": true,
       "tcpoOnly": true,
       "id": 0,
-      "ipAddress": "CQFulh8CpJMHU60E1aqex2A",
-      "port": 0,
-      "_constructor": "dcOption#5d8c6cc"
-    },
-    {
-      "flags": 0,
-      "ipv6": false,
-      "mediaOnly": false,
-      "tcpoOnly": false,
-      "id": 0,
-      "ipAddress": "m94P90q1dD9N",
+      "ipAddress": "F0ls4kEWjEgi",
       "port": 0,
       "_constructor": "dcOption#5d8c6cc"
     }
@@ -101,38 +41,33 @@
   "editTimeLimit": 0,
   "disabledFeatures": [
     {
-      "feature": "oAFNGRdW6",
-      "description": "SrR1YgISLI9w6QKcF2ckd2p8BzB",
+      "feature": "WiC3uRMrTh3nvRMia",
+      "description": "Ps5r46ERSUec",
       "_constructor": "disabledFeature#ae636f24"
     },
     {
-      "feature": "dEwbE8V",
-      "description": "tCRReAZWPNzbm0jpXDM0JUPxw1Q",
+      "feature": "QDIkplAq1cuRwLlf06sjt",
+      "description": "b6cbSb76KZgSrPOYdadUosQueirqz",
       "_constructor": "disabledFeature#ae636f24"
     },
     {
-      "feature": "r7ysmCsiPb0Bb7XUfEumcukBmxrnB",
-      "description": "rISkqwSw2qi",
+      "feature": "P3w1hji5",
+      "description": "wWTt20",
       "_constructor": "disabledFeature#ae636f24"
     },
     {
-      "feature": "7pjP12eV4W3opaiuotIR",
-      "description": "xjcN9cuRHZh",
+      "feature": "vNYqHkxMLiWcAKH",
+      "description": "20UIOn",
       "_constructor": "disabledFeature#ae636f24"
     },
     {
-      "feature": "zhTIi3",
-      "description": "9tHv0uqdLNHDwJreOw49LGL",
+      "feature": "sel38Dmg1UzTC05nwYZjul",
+      "description": "tmIZk2IuVIuaFkawfjhqzNqH7",
       "_constructor": "disabledFeature#ae636f24"
     },
     {
-      "feature": "CHq2mGEzAC",
-      "description": "0oUnP5Fc0KH1WHpFcgfSlKuwfV6a3",
-      "_constructor": "disabledFeature#ae636f24"
-    },
-    {
-      "feature": "QvBpyFFNqdFdeSTSKsZZ6HUtbTLf",
-      "description": "lSa7tGN3rE1",
+      "feature": "gBJNUvjL4gyFHEV5cYx5vrhd",
+      "description": "AHXCiu",
       "_constructor": "disabledFeature#ae636f24"
     }
   ],

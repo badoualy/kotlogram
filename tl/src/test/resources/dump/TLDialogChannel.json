@@ -4,8 +4,8 @@
   "pts": 0,
   "_constructor": "dialogChannel#5b8496b2",
   "peer": {
-    "chatId": 0,
-    "_constructor": "peerChat#bad0e5bb"
+    "channelId": 0,
+    "_constructor": "peerChannel#bddde532"
   },
   "topMessage": 0,
   "readInboxMaxId": 0,

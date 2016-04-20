@@ -1,11 +1,11 @@
 {
-  "flags": 0,
-  "phoneRegistered": false,
+  "flags": 1,
+  "phoneRegistered": true,
   "type": {
     "length": 0,
-    "_constructor": "auth.sentCodeTypeApp#3dbb5986"
+    "_constructor": "auth.sentCodeTypeSms#c000bba2"
   },
-  "phoneCodeHash": "QbAicJqv",
+  "phoneCodeHash": "tPcqIoDLcKazwWo3swK",
   "nextType": null,
   "timeout": null,
   "_constructor": "auth.sentCode#5e002502"

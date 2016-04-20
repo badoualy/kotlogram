@@ -1,9 +1,15 @@
 {
   "update": {
-    "flags": 1,
-    "channelId": 0,
-    "pts": 0,
-    "_constructor": "updateChannelTooLong#eb0467fb"
+    "type": "1MMQKHhw8",
+    "message": "HES5PBdlm6UY6OLT",
+    "media": {
+      "geo": {
+        "_constructor": "geoPointEmpty#1117dd5f"
+      },
+      "_constructor": "messageMediaGeo#56e0d474"
+    },
+    "popup": false,
+    "_constructor": "updateServiceNotification#382dd3e4"
   },
   "date": 0,
   "_constructor": "updateShort#78d4dec1"

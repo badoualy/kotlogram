@@ -1,13 +1,9 @@
 {
-  "flags": 1,
+  "flags": 0,
   "queryId": 0,
   "userId": 0,
-  "query": "S9NpDv6FQBIs",
-  "geo": {
-    "_long": 0.0,
-    "lat": 0.0,
-    "_constructor": "geoPoint#2049d70c"
-  },
-  "offset": "3WppVXMr6Y1cxzJZYSr44bnN",
+  "query": "D3Xmo",
+  "geo": null,
+  "offset": "8O5prRwm0tGnb3LwVNGKq2AlB1JG7",
   "_constructor": "updateBotInlineQuery#54826690"
 }
