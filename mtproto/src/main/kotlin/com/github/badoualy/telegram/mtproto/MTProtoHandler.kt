@@ -18,7 +18,6 @@ import com.github.badoualy.telegram.tl.core.TLMethod
 import com.github.badoualy.telegram.tl.core.TLObject
 import com.github.badoualy.telegram.tl.exception.DeserializationException
 import com.github.badoualy.telegram.tl.exception.RpcErrorException
-import org.apache.commons.lang3.StringUtils
 import rx.Observable
 import rx.Subscriber
 import rx.schedulers.Schedulers
@@ -384,7 +383,7 @@ class MTProtoHandler {
 
         when (messageContent) {
             is MTMsgsAck -> {
-                Log.d(TAG, "Received ack for ${StringUtils.join(messageContent.messages, ", ")}")
+                Log.d(TAG, "Received ack for " + messageContent.messages.joinToString(", "))
                 // TODO check missing ack ?
             }
             is MTRpcResult -> {

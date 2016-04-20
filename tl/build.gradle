@@ -23,6 +23,8 @@ tasks.withType(Test) {
 }
 
 task fatJar(type: Jar) {
+    group = "build"
+    description = "Generate a jar including all dependencies"
     manifest {
         attributes("Application-Name": "Kotlogram TL",
                    "Specification-Title": "Kotlogram TL",

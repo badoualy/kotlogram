@@ -8,6 +8,8 @@ dependencies {
 }
 
 task fatJar(type: Jar) {
+    group = "build"
+    description = "Generate a jar including all dependencies"
     manifest {
         attributes("Application-Name": "Kotlogram API",
                    "Specification-Title": "Kotlogram API",
