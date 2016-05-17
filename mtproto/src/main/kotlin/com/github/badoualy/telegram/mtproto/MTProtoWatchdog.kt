@@ -83,7 +83,7 @@ internal object MTProtoWatchdog : Runnable {
     }
 
     private fun readMessage(connection: MTProtoConnection): Boolean {
-        logger.warn("[${connection.id}] readMessage()")
+        logger.info("[${connection.id}] readMessage()")
         val subscriber = subscriberMap[connection]
         if (subscriber == null || subscriber.isUnsubscribed || !connectionList.contains(connection)) {
             logger.warn("[${connection.id}] Subscribed already unsubscribed, dropping")
