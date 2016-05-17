@@ -2,7 +2,6 @@ package com.github.badoualy.telegram.api
 
 import com.github.badoualy.telegram.mtproto.DataCenter
 import com.github.badoualy.telegram.mtproto.MTProtoHandler
-import com.github.badoualy.telegram.mtproto.util.Log
 
 object Kotlogram {
 
@@ -12,11 +11,6 @@ object Kotlogram {
     fun getDefaultClient(application: TelegramApp, apiStorage: TelegramApiStorage, preferredDataCenter: DataCenter = PROD_DC4,
                          updateCallback: UpdateCallback? = null)
             : TelegramClient = DefaultTelegramClient(application, apiStorage, preferredDataCenter, updateCallback)
-
-    @JvmStatic
-    fun setDebugLogEnabled(enabled: Boolean) {
-        Log.enabled = enabled
-    }
 
     @JvmStatic
     fun cleanUp() {

@@ -1,7 +1,8 @@
 package com.github.badoualy.telegram.mtproto.transport
 
-import com.github.badoualy.telegram.mtproto.util.Log
 import com.github.badoualy.telegram.tl.ByteBufferUtils.*
+import org.slf4j.LoggerFactory
+import org.slf4j.MarkerFactory
 import java.io.IOException
 import java.net.InetSocketAddress
 import java.net.StandardSocketOptions
@@ -15,7 +16,7 @@ internal class MTProtoTcpConnection
 @Throws(IOException::class)
 @JvmOverloads constructor(override val id: Long, override val ip: String, override val port: Int, abridgedProtocol: Boolean = true) : MTProtoConnection {
 
-    private val TAG = "MTProtoTcpConnection#$id"
+    private val idMarker = MarkerFactory.getMarker(id.toString())
 
     private var socketChannel: SocketChannel
     private val msgHeaderBuffer = ByteBuffer.allocate(1)
@@ -38,7 +39,7 @@ internal class MTProtoTcpConnection
                     // @see https://core.telegram.org/mtproto/samples-auth_key
                     socketChannel.write(ByteBuffer.wrap(byteArrayOf(0xef.toByte())))
                 }
-                Log.d(TAG, "Connected to $ip:$port ${socketChannel.isConnected} ${socketChannel.isOpen}")
+                logger.debug(idMarker, "Connected to $ip:$port ${socketChannel.isConnected} ${socketChannel.isOpen}")
 
                 break
             } catch(e: Exception) {
@@ -58,7 +59,7 @@ internal class MTProtoTcpConnection
         if (length == 0x7f)
             length = readInt24(readBytes(3, msgLengthBuffer))
 
-        Log.d(TAG, "About to read a message of length " + (length * 4))
+        logger.debug(idMarker, "About to read a message of length " + (length * 4))
         val buffer = readBytes(length * 4)
 
         // TODO: fix to return bytebuffer
@@ -117,7 +118,7 @@ internal class MTProtoTcpConnection
 
     @Throws(IOException::class)
     override fun close() {
-        Log.d(TAG, "Closing connection")
+        logger.debug(idMarker, "Closing connection")
         socketChannel.close()
     }
 
@@ -144,5 +145,9 @@ internal class MTProtoTcpConnection
     private fun writeBytes(buffer: ByteBuffer) {
         while (buffer.hasRemaining())
             socketChannel.write(buffer)
+    }
+
+    companion object {
+        private val logger = LoggerFactory.getLogger(MTProtoTcpConnection::class.java)
     }
 }

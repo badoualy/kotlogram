@@ -7,13 +7,13 @@ import com.github.badoualy.telegram.mtproto.auth.AuthKey
 import com.github.badoualy.telegram.mtproto.auth.AuthKeyCreation
 import com.github.badoualy.telegram.mtproto.auth.AuthResult
 import com.github.badoualy.telegram.mtproto.exception.SecurityException
-import com.github.badoualy.telegram.mtproto.util.Log
 import com.github.badoualy.telegram.tl.api.*
 import com.github.badoualy.telegram.tl.api.auth.TLSentCode
 import com.github.badoualy.telegram.tl.api.request.*
 import com.github.badoualy.telegram.tl.core.TLMethod
 import com.github.badoualy.telegram.tl.core.TLObject
 import com.github.badoualy.telegram.tl.exception.RpcErrorException
+import org.slf4j.LoggerFactory
 import java.io.IOException
 import java.math.BigInteger
 import java.nio.channels.ClosedChannelException
@@ -22,8 +22,6 @@ import java.util.concurrent.TimeoutException
 internal class DefaultTelegramClient internal constructor(val application: TelegramApp, val apiStorage: TelegramApiStorage,
                                                           val preferredDataCenter: DataCenter,
                                                           val updateCallback: UpdateCallback?) : TelegramApiWrapper(), TelegramClient, ApiCallback {
-
-    private val TAG = "TelegramClient"
 
     private var mtProtoHandler: MTProtoHandler? = null
     private var authKey: AuthKey? = null
@@ -43,13 +41,13 @@ internal class DefaultTelegramClient internal constructor(val application: Teleg
                 apiStorage.deleteAuthKey()
                 throw RuntimeException("Found an authorization key in storage, but the DC configuration was not found, deleting authorization key")
             }
-            Log.d(TAG, "No data center found in storage, using preferred ${preferredDataCenter.toString()}")
+            logger.debug("No data center found in storage, using preferred ${preferredDataCenter.toString()}")
             dataCenter = preferredDataCenter
         }
 
         // No need to check DC if we have an authKey in storage
         init(checkNearestDc = generateAuthKey)
-        Log.d(TAG, "Client ready with MTProto#${BigInteger(mtProtoHandler!!.sessionId).toLong()}")
+        logger.debug("Client ready with MTProto#${BigInteger(mtProtoHandler!!.sessionId).toLong()}")
     }
 
     private fun init(checkNearestDc: Boolean = true) {
@@ -94,7 +92,7 @@ internal class DefaultTelegramClient internal constructor(val application: Teleg
 
     @Throws(RpcErrorException::class, IOException::class)
     private fun <T : TLObject> initConnection(mtProtoHandler: MTProtoHandler, method: TLMethod<T>): T {
-        Log.d(TAG, "Init connection with method ${method.toString()}")
+        logger.debug("Init connection with method ${method.toString()}")
         val initConnectionRequest = TLRequestInitConnection(application.apiId, application.deviceModel, application.systemVersion, application.appVersion, application.langCode, method)
         val result = executeRpcQuery(TLRequestInvokeWithLayer(Kotlogram.API_LAYER, initConnectionRequest), mtProtoHandler)
         return result
@@ -111,7 +109,7 @@ internal class DefaultTelegramClient internal constructor(val application: Teleg
             }
             migrate(nearestDc.nearestDc)
         } else {
-            Log.d(TAG, "Connected to the nearest DC${nearestDc.thisDc}")
+            logger.debug("Connected to the nearest DC${nearestDc.thisDc}")
         }
     }
 
@@ -154,7 +152,7 @@ internal class DefaultTelegramClient internal constructor(val application: Teleg
                     val rpcException = (exception.cause as RpcErrorException)
                     if (rpcException.code == 303) {
                         // DC error
-                        Log.e(TAG, "Received DC error: ${rpcException.toString()}")
+                        logger.error("Received DC error: ${rpcException.toString()}")
                         if (rpcException.tag.startsWith("PHONE_MIGRATE_") || rpcException.tag.startsWith("NETWORK_MIGRATE_")) {
                             migrate(rpcException.tag.removePrefix("PHONE_MIGRATE_").removePrefix("NETWORK_MIGRATE_").toInt())
                             return executeRpcQuery(method)
@@ -172,10 +170,10 @@ internal class DefaultTelegramClient internal constructor(val application: Teleg
                 is TimeoutException, is ClosedChannelException -> {
                     if (attemptCount < 2) {
                         // Experimental, try to resend request ...
-                        Log.e(TAG, "Attempting MtProtoHandler reset after failure")
+                        logger.error("Attempting MtProtoHandler reset after failure")
                         mtProtoHandler.resetConnection()
                         val result = executeRpcQuery(method, mtProtoHandler, attemptCount + 1)
-                        Log.d(TAG, "Reset worked")
+                        logger.debug("Reset worked")
                         return result
                     }
                     throw TimeoutException("Request timed out")
@@ -200,7 +198,7 @@ internal class DefaultTelegramClient internal constructor(val application: Teleg
     override fun messagesSendMessage(peer: TLAbsInputPeer, message: String, randomId: Long) = super.messagesSendMessage(true, false, false, false, peer, null, message, randomId, null, null)
 
     private fun migrate(dcId: Int) {
-        Log.d(TAG, "Migrating to DC$dcId")
+        logger.debug("Migrating to DC$dcId")
         mtProtoHandler?.close()
         authKey = null
         dataCenter = Kotlogram.getDcById(dcId)
@@ -213,7 +211,7 @@ internal class DefaultTelegramClient internal constructor(val application: Teleg
 
     @Throws(RpcErrorException::class, IOException::class)
     private fun getExportedMTProtoHandler(dcId: Int): MTProtoHandler {
-        Log.d(TAG, "Creating handler on DC$dcId")
+        logger.debug("Creating handler on DC$dcId")
         val dc = Kotlogram.getDcById(dcId)
         val exportedAuthorization = authExportAuthorization(dcId)
         val authResult = AuthKeyCreation.createAuthKey(dc) ?: throw IOException("Couldn't create authorization key on DC$dcId")
@@ -236,4 +234,8 @@ internal class DefaultTelegramClient internal constructor(val application: Teleg
     }
 
     override fun onSalt(salt: Long) = apiStorage.saveServerSalt(salt)
+
+    companion object {
+        private val logger = LoggerFactory.getLogger(TelegramClient::class.java)
+    }
 }

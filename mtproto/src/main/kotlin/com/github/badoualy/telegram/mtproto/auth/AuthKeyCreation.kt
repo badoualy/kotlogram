@@ -13,12 +13,12 @@ import com.github.badoualy.telegram.mtproto.time.TimeOverlord
 import com.github.badoualy.telegram.mtproto.tl.auth.*
 import com.github.badoualy.telegram.mtproto.transport.MTProtoConnection
 import com.github.badoualy.telegram.mtproto.transport.MTProtoTcpConnection
-import com.github.badoualy.telegram.mtproto.util.Log
 import com.github.badoualy.telegram.mtproto.util.Pair
 import com.github.badoualy.telegram.mtproto.util.SolvedPQ
 import com.github.badoualy.telegram.tl.StreamUtils
 import com.github.badoualy.telegram.tl.core.TLMethod
 import com.github.badoualy.telegram.tl.core.TLObject
+import org.slf4j.LoggerFactory
 import java.io.ByteArrayInputStream
 import java.io.ByteArrayOutputStream
 import java.io.IOException
@@ -31,7 +31,7 @@ import java.util.*
  */
 object AuthKeyCreation {
 
-    private val TAG = "AuthKeyCreation"
+    private val logger = LoggerFactory.getLogger(AuthKeyCreation::class.java)
 
     private val AUTH_ATTEMPT_COUNT = 5
     private val AUTH_RETRY_COUNT = 5
@@ -69,7 +69,7 @@ object AuthKeyCreation {
             try {
                 connection = MTProtoTcpConnection(-1, dataCenter.ip, dataCenter.port)
                 val authResult = createKey(tmpKey)
-                Log.d(TAG, "Key created after " + (i + 1) + " attempt in " + (System.currentTimeMillis() - start) + " ms")
+                logger.debug("Key created after " + (i + 1) + " attempt in " + (System.currentTimeMillis() - start) + " ms")
                 connection = null
                 return authResult
             } catch (e: FingerprintNotFoundException) {
@@ -92,7 +92,7 @@ object AuthKeyCreation {
 
         }
 
-        Log.e(TAG, "Key creation failed $AUTH_ATTEMPT_COUNT times")
+        logger.error("Key creation failed $AUTH_ATTEMPT_COUNT times")
         connection = null
         return null
     }
@@ -220,34 +220,34 @@ object AuthKeyCreation {
     /** For details about the protocol, see https://core.telegram.org/mtproto/auth_key  */
     @Throws(IOException::class, FingerprintNotFoundException::class)
     private fun createKey(tmpKey: Boolean): AuthResult {
-        Log.d(TAG, "Attempting to create a " + (if (tmpKey) "temporary " else "permanent") + " Authorization Key")
+        logger.debug("Attempting to create a " + (if (tmpKey) "temporary " else "permanent") + " Authorization Key")
 
         // Step 1
         val nonce = RandomUtils.randomInt128() // int128
         val resPQ = executeMethod(ReqPQ(nonce))
-        Log.d(TAG, "Got resPQ with " + resPQ.fingerprints.size + " fingerprints")
-        Log.d(TAG, "Step1 done")
+        logger.debug("Got resPQ with " + resPQ.fingerprints.size + " fingerprints")
+        logger.debug("Step1 done")
 
         // Step 2
         val publicKey = Arrays.stream(Key.AVAILABLE_KEYS).filter { k ->
             resPQ.fingerprints.contains(k.fingerprint)
         }.findFirst().orElseThrow { FingerprintNotFoundException(resPQ.fingerprints.joinToString(", ")) }
-        Log.d(TAG, "Step2 done")
+        logger.debug("Step2 done")
 
         // Step 3
         val solvedPQ = PQSolver.solve(BigInteger(1, resPQ.pq))
-        Log.d(TAG, "Step3 done")
+        logger.debug("Step3 done")
 
         // Step 4
         val pair = createStep4Request(resPQ, solvedPQ, publicKey, tmpKey)
         val reqDhParams = pair.first
         val newNonce = pair.second
-        Log.d(TAG, "Step4 request created")
+        logger.debug("Step4 request created")
 
         val start = System.nanoTime()
         val dhParams = executeMethod(reqDhParams)
         val step4Duration = (System.nanoTime() - start) / (1000 * 1000)
-        Log.d(TAG, "Step4 done")
+        logger.debug("Step4 done")
 
         // Step 5
         if (dhParams is ServerDhFailure) {
@@ -259,7 +259,7 @@ object AuthKeyCreation {
         }
 
         val serverDhParams = dhParams as ServerDhOk
-        Log.d(TAG, "Step5 done")
+        logger.debug("Step5 done")
 
         // -------------------------
         // PQ-Auth end
@@ -267,7 +267,7 @@ object AuthKeyCreation {
         // -------------------------
         val keySaltPair = lastStep(resPQ, newNonce, serverDhParams, step4Duration)
 
-        Log.d(TAG, "Step6 to 9 done")
+        logger.debug("Step6 to 9 done")
         val authKey = if (!tmpKey)
             AuthKey(keySaltPair.first)
         else

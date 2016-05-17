@@ -1,6 +1,6 @@
 package com.github.badoualy.telegram.api
 
-import com.github.badoualy.telegram.mtproto.util.Log
+import org.slf4j.LoggerFactory
 import java.util.*
 import kotlin.concurrent.schedule
 
@@ -10,7 +10,7 @@ import kotlin.concurrent.schedule
  */
 object TelegramClientPool {
 
-    private val TAG = "TelegramClientPool"
+    private val logger = LoggerFactory.getLogger(TelegramClientPool::class.java)
 
     private val DEFAULT_EXPIRATION_DELAY = 5L * 60L * 1000L // 5 minutes
 
@@ -29,7 +29,7 @@ object TelegramClientPool {
      */
     @JvmOverloads @JvmStatic
     fun put(id: Long, client: TelegramClient, listener: OnClientTimeoutListener?, expiresIn: Long = DEFAULT_EXPIRATION_DELAY) {
-        Log.d(TAG, "Adding client with id $id")
+        logger.debug("Adding client with id $id")
         synchronized(this) {
             // Already have a client with this id, close the new one and reset timer
             expireMap.put(id, System.currentTimeMillis() + expiresIn)
@@ -78,7 +78,7 @@ object TelegramClientPool {
         val timeout =
                 synchronized(this) {
                     if (expireMap.getOrDefault(id, 0) <= System.currentTimeMillis()) {
-                        Log.d(TAG, "$id client timeout")
+                        logger.info("$id client timeout")
                         val client = getAndRemove(id)
                         if (client != null) {
                             client.close(false)

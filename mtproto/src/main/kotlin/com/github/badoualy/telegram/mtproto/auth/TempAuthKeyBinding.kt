@@ -6,7 +6,6 @@ import com.github.badoualy.telegram.mtproto.secure.MTProtoMessageEncryption
 import com.github.badoualy.telegram.mtproto.secure.RandomUtils
 import com.github.badoualy.telegram.mtproto.tl.MTMessage
 import com.github.badoualy.telegram.mtproto.tl.auth.BindAuthKeyInner
-import com.github.badoualy.telegram.mtproto.util.Log
 import com.github.badoualy.telegram.tl.api.request.TLRequestAuthBindTempAuthKey
 import com.github.badoualy.telegram.tl.core.TLBytes
 import java.io.IOException
@@ -38,7 +37,6 @@ object TempAuthKeyBinding {
     fun bindKey(tempAuthKey: TempAuthKey, authKey: AuthKey, mtProtoHandler: MTProtoHandler): Boolean {
         if (!Arrays.equals(mtProtoHandler.authKey!!.keyId, tempAuthKey.keyId))
             throw IllegalStateException("The MTProtoHandler must use the temporary authorization key that you want to bind")
-        Log.d(TAG, "Attempting to bind temporary authorization key")
 
         val nonce = BigInteger(RandomUtils.randomByteArray(8)).longValueExact()
 

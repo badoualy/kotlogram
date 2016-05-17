@@ -12,6 +12,7 @@ dependencies {
     //compile 'org.apache.commons:commons-lang3:3.4'
 
     compile 'io.reactivex:rxjava:1.0.16'
+    compile 'org.slf4j:slf4j-simple:1.7.21'
 }
 
 task fatJar(type: Jar) {

@@ -1,7 +1,7 @@
 package com.github.badoualy.telegram.mtproto
 
 import com.github.badoualy.telegram.mtproto.transport.MTProtoConnection
-import com.github.badoualy.telegram.mtproto.util.Log
+import org.slf4j.LoggerFactory
 import rx.Observable
 import rx.Subscriber
 import java.io.IOException
@@ -16,7 +16,7 @@ import java.util.concurrent.Executors
  */
 internal object MTProtoWatchdog : Runnable {
 
-    private val TAG = "MTProtoWatchdog"
+    private val logger = LoggerFactory.getLogger(MTProtoWatchdog.javaClass)
 
     private val SELECT_TIMEOUT_DELAY = 10 * 1000L // 10 seconds
 
@@ -73,7 +73,7 @@ internal object MTProtoWatchdog : Runnable {
                 synchronized(this) {
                     if (connectionList.isEmpty()) {
                         running = false
-                        Log.d(TAG, "Stopping watchdog...")
+                        logger.debug("Stopping watchdog...")
                         return
                     }
                 }
@@ -84,18 +84,18 @@ internal object MTProtoWatchdog : Runnable {
     private fun readMessage(connection: MTProtoConnection): Boolean {
         val subscriber = subscriberMap[connection]
         if (subscriber == null || subscriber.isUnsubscribed || !connectionList.contains(connection)) {
-            Log.e("$TAG${connection.id}", "Subscribed already unsubscribed, dropping")
+            logger.warn("[${connection.id}] Subscribed already unsubscribed, dropping")
             return false
         }
 
         try {
             val message = connection.readMessage()
-            Log.d("$TAG${connection.id}", "New message of length: ${message.size}")
+            logger.debug("[${connection.id}] New message of length: ${message.size}")
             subscriber.onNext(message)
         } catch (e: IOException) {
             // Silent fail if no subscriber
             if (!subscriber.isUnsubscribed) {
-                Log.e("$TAG${connection.id}", "Sending exception to subscriber")
+                logger.error("[${connection.id}] Sending exception to subscriber")
                 subscriber.onError(e)
             }
 
