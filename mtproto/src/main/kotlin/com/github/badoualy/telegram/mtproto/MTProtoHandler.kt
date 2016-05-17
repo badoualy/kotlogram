@@ -9,6 +9,7 @@ import com.github.badoualy.telegram.mtproto.time.TimeOverlord
 import com.github.badoualy.telegram.mtproto.tl.*
 import com.github.badoualy.telegram.mtproto.transport.MTProtoConnection
 import com.github.badoualy.telegram.mtproto.transport.MTProtoTcpConnection
+import com.github.badoualy.telegram.mtproto.util.NamedThreadFactory
 import com.github.badoualy.telegram.tl.StreamUtils
 import com.github.badoualy.telegram.tl.api.TLAbsUpdates
 import com.github.badoualy.telegram.tl.api.TLApiContext
@@ -26,7 +27,8 @@ import rx.schedulers.Schedulers
 import java.io.IOException
 import java.math.BigInteger
 import java.util.*
-import java.util.concurrent.Executors
+import java.util.concurrent.LinkedBlockingQueue
+import java.util.concurrent.ThreadPoolExecutor
 import java.util.concurrent.TimeUnit
 import java.util.concurrent.TimeoutException
 
@@ -526,7 +528,7 @@ class MTProtoHandler {
         val logger = LoggerFactory.getLogger(MTProtoHandler::class.java)  
                 
         /** Thread pool to forward update callback */
-        val updatePool = Executors.newFixedThreadPool(8)
+        val updatePool = ThreadPoolExecutor(4, 8, 0L, TimeUnit.MILLISECONDS, LinkedBlockingQueue<Runnable>(), NamedThreadFactory("UpdatePool"))
 
         /** Cleanup all the threads and common resources associated to this instance */
         @JvmStatic

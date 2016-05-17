@@ -1,6 +1,7 @@
 package com.github.badoualy.telegram.mtproto
 
 import com.github.badoualy.telegram.mtproto.transport.MTProtoConnection
+import com.github.badoualy.telegram.mtproto.util.NamedThreadFactory
 import org.slf4j.LoggerFactory
 import rx.Observable
 import rx.Subscriber
@@ -26,8 +27,8 @@ internal object MTProtoWatchdog : Runnable {
     private val connectionList = ArrayList<MTProtoConnection>()
     private val subscriberMap = HashMap<MTProtoConnection, Subscriber<in ByteArray>>()
 
-    private val executor = Executors.newSingleThreadExecutor()
-    private val pool = Executors.newCachedThreadPool() // TODO fixed pool?
+    private val executor = Executors.newSingleThreadExecutor(NamedThreadFactory(javaClass.simpleName, true))
+    private val pool = Executors.newCachedThreadPool(NamedThreadFactory("${javaClass.simpleName}-executor")) // TODO fixed pool?
 
     private var dirty = false
     private var running = false
