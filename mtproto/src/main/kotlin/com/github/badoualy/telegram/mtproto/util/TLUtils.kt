@@ -1,6 +1,7 @@
 package com.github.badoualy.telegram.mtproto.util
 
 import com.github.badoualy.telegram.tl.api.*
+import java.util.concurrent.TimeUnit
 
 /////////////// Message
 fun TLAbsMessage?.getDate() = when (this) {
@@ -10,9 +11,9 @@ fun TLAbsMessage?.getDate() = when (this) {
 }
 
 fun TLAbsMessage?.getFromId() = when (this) {
-    is TLMessage -> fromId ?: -1
-    is TLMessageService -> fromId ?: -1
-    else -> -1
+    is TLMessage -> fromId ?: null
+    is TLMessageService -> fromId ?: null
+    else -> null
 }
 
 fun TLAbsMessage.isUnread() = when (this) {
@@ -33,7 +34,7 @@ fun TLAbsMessage?.getToAsPeer() = when (this) {
 }
 
 fun TLAbsMessage.isReply() = this is TLMessage && replyToMsgId != null
-fun TLAbsMessage.getReplyTo() = if (this.isReply()) (this as TLMessage).replyToMsgId else null
+fun TLAbsMessage.getReplyTo() = if (this is TLMessage) replyToMsgId else null
 
 fun TLMessage.isForward() = fwdFrom != null
 fun TLMessage.isReply() = replyToMsgId != null
@@ -88,13 +89,11 @@ fun TLAbsMessageAction.getChatTitle(): String? = when (this) {
     else -> null
 }
 
-fun TLAbsMessageAction.getIdList(): IntArray? = when (this) {
+fun TLAbsMessageAction.getUserIdList(): IntArray? = when (this) {
     is TLMessageActionChatAddUser -> users.toIntArray()
     is TLMessageActionChatCreate -> users.toIntArray()
     is TLMessageActionChatDeleteUser -> intArrayOf(userId)
     is TLMessageActionChatJoinedByLink -> intArrayOf(inviterId)
-    is TLMessageActionChannelMigrateFrom -> intArrayOf(chatId)
-    is TLMessageActionChatMigrateTo -> intArrayOf(channelId)
     else -> null
 }
 
@@ -103,6 +102,6 @@ fun TLAbsMessageAction.getIdList(): IntArray? = when (this) {
 /////////////// TLNotifySettings
 
 fun TLAbsPeerNotifySettings.isMuted() = when (this) {
-    is TLPeerNotifySettings -> muteUntil > ((System.currentTimeMillis() / 1000) + 60)
+    is TLPeerNotifySettings -> muteUntil > TimeUnit.MILLISECONDS.toSeconds(System.currentTimeMillis()) + 60
     else -> false
 }

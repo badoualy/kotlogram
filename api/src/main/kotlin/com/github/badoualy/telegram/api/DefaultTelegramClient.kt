@@ -167,7 +167,7 @@ internal class DefaultTelegramClient internal constructor(val application: Teleg
                             }
                         }
                     }
-                    throw RpcErrorException(rpcException.code, rpcException.message) // Better stack trace
+                    throw RpcErrorException(rpcException.code, rpcException.tag) // Better stack trace
                 }
                 is TimeoutException, is ClosedChannelException -> {
                     if (attemptCount < 2) {

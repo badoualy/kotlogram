@@ -78,6 +78,7 @@ interface TelegramClient : TelegramApi {
     fun getChatPhoto(chat: TLAbsChat, big: Boolean = true): TLFile? {
         val chatPhoto = when (chat) {
             is TLChat -> chat.photo
+            is TLChannel -> chat.photo
             is TLChatEmpty, is TLChatForbidden -> null
             else -> null
         } ?: return null
@@ -94,4 +95,8 @@ interface TelegramClient : TelegramApi {
         val request = TLRequestUploadGetFile(inputLocation, 0, 0)
         return executeRpcQuery(request, photoLocation.dcId)
     }
+
+    /** Convenience method to download a channel photo */
+    @Throws(RpcErrorException::class, IOException::class)
+    fun getChannelPhoto(chat: TLAbsChat, big: Boolean = true) = getChatPhoto(chat, big)
 }
