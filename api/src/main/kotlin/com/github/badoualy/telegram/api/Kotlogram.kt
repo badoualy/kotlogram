@@ -2,10 +2,25 @@ package com.github.badoualy.telegram.api
 
 import com.github.badoualy.telegram.mtproto.DataCenter
 import com.github.badoualy.telegram.mtproto.MTProtoHandler
+import org.slf4j.LoggerFactory
 
 object Kotlogram {
 
+    val logger = LoggerFactory.getLogger(Kotlogram::class.java)
+
     val API_LAYER = 51
+
+    init {
+        logger.warn("""
+         __  ___   ______   .___________. __        ______     _______ .______          ___      .___  ___.
+        |  |/  /  /  __  \  |           ||  |      /  __  \   /  _____||   _  \        /   \     |   \/   |
+        |  '  /  |  |  |  | `---|  |----`|  |     |  |  |  | |  |  __  |  |_)  |      /  ^  \    |  \  /  |
+        |    <   |  |  |  |     |  |     |  |     |  |  |  | |  | |_ | |      /      /  /_\  \   |  |\/|  |
+        |  .  \  |  `--'  |     |  |     |  `----.|  `--'  | |  |__| | |  |\  \----./  _____  \  |  |  |  |
+        |__|\__\  \______/      |__|     |_______| \______/   \______| | _| `._____/__/     \__\ |__|  |__|
+        Using layer $API_LAYER
+        """)
+    }
 
     @JvmOverloads @JvmStatic
     fun getDefaultClient(application: TelegramApp, apiStorage: TelegramApiStorage, preferredDataCenter: DataCenter = PROD_DC4,
@@ -14,8 +29,10 @@ object Kotlogram {
 
     @JvmStatic
     fun cleanUp() {
+        logger.warn("==================== CLEANING ====================")
         TelegramClientPool.cleanUp()
         MTProtoHandler.cleanUp()
+        logger.warn("==================== CLEANED ====================")
     }
 
      @JvmField val PROD_DC1 = DataCenter("149.154.175.50", 443)

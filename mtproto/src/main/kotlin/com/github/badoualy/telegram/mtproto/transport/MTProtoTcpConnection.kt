@@ -37,12 +37,14 @@ internal class MTProtoTcpConnection
 
                 if (abridgedProtocol) {
                     // @see https://core.telegram.org/mtproto/samples-auth_key
+                    logger.info(idMarker, "Using abridged protocol")
                     socketChannel.write(ByteBuffer.wrap(byteArrayOf(0xef.toByte())))
                 }
-                logger.debug(idMarker, "Connected to $ip:$port ${socketChannel.isConnected} ${socketChannel.isOpen}")
+                logger.info(idMarker, "Connected to $ip:$port isConnected: ${socketChannel.isConnected}, isOpen: ${socketChannel.isOpen}")
 
                 break
             } catch(e: Exception) {
+                logger.error(idMarker, "Failed to connect", e)
             }
         } while (attempt++ < 1)
     }
@@ -59,10 +61,10 @@ internal class MTProtoTcpConnection
         if (length == 0x7f)
             length = readInt24(readBytes(3, msgLengthBuffer))
 
-        logger.debug(idMarker, "About to read a message of length " + (length * 4))
+        logger.debug(idMarker, "About to read a message of length ${length * 4}")
         val buffer = readBytes(length * 4)
 
-        // TODO: fix to return bytebuffer
+        // TODO: fix to return ByteBuffer
         val bytes = ByteArray(buffer.remaining())
         buffer.get(bytes, 0, buffer.remaining())
         return bytes

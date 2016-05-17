@@ -22,6 +22,7 @@ internal object TimeOverlord {
 
     fun setServerTime(dataCenter: DataCenter, serverTime: Long) {
         deltaMap.put(dataCenter, serverTime - localTime)
+        logger.warn("New server time $serverTime")
         logger.warn("New time delta for ${dataCenter.toString()} is ${deltaMap[dataCenter]}")
     }
 

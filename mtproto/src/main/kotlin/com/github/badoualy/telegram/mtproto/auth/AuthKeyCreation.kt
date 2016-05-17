@@ -69,7 +69,7 @@ object AuthKeyCreation {
             try {
                 connection = MTProtoTcpConnection(-1, dataCenter.ip, dataCenter.port)
                 val authResult = createKey(tmpKey)
-                logger.debug("Key created after " + (i + 1) + " attempt in " + (System.currentTimeMillis() - start) + " ms")
+                logger.debug("Key created after ${i + 1} attempt in ${System.currentTimeMillis() - start} ms")
                 connection = null
                 return authResult
             } catch (e: FingerprintNotFoundException) {
@@ -199,12 +199,13 @@ object AuthKeyCreation {
 
                 return Pair(authKey, serverSalt)
             } else if (result is DhGenRetry) {
+                logger.warn("Received ${result.javaClass.simpleName}")
                 val newNonceHash = substring(SHA1(newNonce, byteArrayOf(2), authAuxHash), 4, 16)
 
                 if (!Arrays.equals(result.newNonceHash, newNonceHash))
                     throw SecurityException()
-
             } else if (result is DhGenFailure) {
+                logger.warn("Received ${result.javaClass.simpleName}")
                 val newNonceHash = substring(SHA1(newNonce, byteArrayOf(3), authAuxHash), 4, 16)
 
                 if (!Arrays.equals(result.newNonceHash, newNonceHash))
@@ -225,29 +226,29 @@ object AuthKeyCreation {
         // Step 1
         val nonce = RandomUtils.randomInt128() // int128
         val resPQ = executeMethod(ReqPQ(nonce))
-        logger.debug("Got resPQ with " + resPQ.fingerprints.size + " fingerprints")
-        logger.debug("Step1 done")
+        logger.trace("Got resPQ with " + resPQ.fingerprints.size + " fingerprints")
+        logger.trace("Step1 done")
 
         // Step 2
         val publicKey = Arrays.stream(Key.AVAILABLE_KEYS).filter { k ->
             resPQ.fingerprints.contains(k.fingerprint)
         }.findFirst().orElseThrow { FingerprintNotFoundException(resPQ.fingerprints.joinToString(", ")) }
-        logger.debug("Step2 done")
+        logger.trace("Step2 done")
 
         // Step 3
         val solvedPQ = PQSolver.solve(BigInteger(1, resPQ.pq))
-        logger.debug("Step3 done")
+        logger.trace("Step3 done")
 
         // Step 4
         val pair = createStep4Request(resPQ, solvedPQ, publicKey, tmpKey)
         val reqDhParams = pair.first
         val newNonce = pair.second
-        logger.debug("Step4 request created")
+        logger.trace("Step4 request created")
 
         val start = System.nanoTime()
         val dhParams = executeMethod(reqDhParams)
         val step4Duration = (System.nanoTime() - start) / (1000 * 1000)
-        logger.debug("Step4 done")
+        logger.trace("Step4 done")
 
         // Step 5
         if (dhParams is ServerDhFailure) {
@@ -259,7 +260,7 @@ object AuthKeyCreation {
         }
 
         val serverDhParams = dhParams as ServerDhOk
-        logger.debug("Step5 done")
+        logger.trace("Step5 done")
 
         // -------------------------
         // PQ-Auth end
@@ -267,7 +268,7 @@ object AuthKeyCreation {
         // -------------------------
         val keySaltPair = lastStep(resPQ, newNonce, serverDhParams, step4Duration)
 
-        logger.debug("Step6 to 9 done")
+        logger.trace("Step6 to 9 done")
         val authKey = if (!tmpKey)
             AuthKey(keySaltPair.first)
         else

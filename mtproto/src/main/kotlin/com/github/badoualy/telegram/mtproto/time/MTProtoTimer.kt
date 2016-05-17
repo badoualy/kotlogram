@@ -5,7 +5,7 @@ import kotlin.concurrent.schedule
 
 internal object MTProtoTimer {
 
-    private var timer = Timer()
+    private var timer = Timer(javaClass.simpleName)
 
     fun schedule(delay: Long, action: TimerTask.() -> Unit) = timer.schedule(delay, action)
 

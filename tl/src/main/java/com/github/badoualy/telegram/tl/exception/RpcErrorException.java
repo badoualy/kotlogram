@@ -23,4 +23,14 @@ public class RpcErrorException extends Exception {
     public String toString() {
         return getMessage();
     }
+
+    /**
+     * Parse the tag to extract the integer value at the end (ex: FILE_MIGRATE_X, FLOOD_WAIT_X, ...)
+     *
+     * @return extracted integer value
+     */
+    public Integer getTagInteger() {
+        String[] chunks = tag.split("_");
+        return Integer.parseInt(chunks[chunks.length - 1]);
+    }
 }

@@ -28,7 +28,7 @@ internal object MTProtoWatchdog : Runnable {
     private val subscriberMap = HashMap<MTProtoConnection, Subscriber<in ByteArray>>()
 
     private val executor = Executors.newSingleThreadExecutor(NamedThreadFactory(javaClass.simpleName, true))
-    private val pool = Executors.newCachedThreadPool(NamedThreadFactory("${javaClass.simpleName}-executor")) // TODO fixed pool?
+    private val pool = Executors.newCachedThreadPool(NamedThreadFactory("${javaClass.simpleName}-exec")) // TODO fixed pool?
 
     private var dirty = false
     private var running = false
@@ -74,7 +74,7 @@ internal object MTProtoWatchdog : Runnable {
                 synchronized(this) {
                     if (connectionList.isEmpty()) {
                         running = false
-                        logger.debug("Stopping watchdog...")
+                        logger.warn("Stopping watchdog...")
                         return
                     }
                 }
@@ -83,6 +83,7 @@ internal object MTProtoWatchdog : Runnable {
     }
 
     private fun readMessage(connection: MTProtoConnection): Boolean {
+        logger.warn("[${connection.id}] readMessage()")
         val subscriber = subscriberMap[connection]
         if (subscriber == null || subscriber.isUnsubscribed || !connectionList.contains(connection)) {
             logger.warn("[${connection.id}] Subscribed already unsubscribed, dropping")
@@ -100,6 +101,7 @@ internal object MTProtoWatchdog : Runnable {
                 subscriber.onError(e)
             }
 
+            logger.warn("[${connection.id}] Already unsubscribed")
             return false
         }
 
@@ -107,6 +109,7 @@ internal object MTProtoWatchdog : Runnable {
     }
 
     fun start(connection: MTProtoConnection) = Observable.create<ByteArray> { s ->
+        logger.info("Adding ${connection.id} to watchdog")
         synchronized(this) {
             connectionList.add(connection)
             subscriberMap.put(connection, s)
@@ -121,6 +124,7 @@ internal object MTProtoWatchdog : Runnable {
     }
 
     fun stop(connection: MTProtoConnection) {
+        logger.info("Stopping ${connection.id}")
         synchronized(this) {
             connectionList.remove(connection)
             val subscriber = subscriberMap.remove(connection)
@@ -131,6 +135,7 @@ internal object MTProtoWatchdog : Runnable {
     }
 
     fun cleanUp() {
+        logger.warn("==================== SHUTTING DOWN WATCHDOG ====================")
         executor.shutdownNow()
         pool.shutdownNow()
     }

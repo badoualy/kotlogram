@@ -10,9 +10,9 @@ interface UpdateCallback {
 
     fun onUpdateShort(client: TelegramClient, update: TLUpdateShort)
 
-    fun onShortMessage(client: TelegramClient, message: TLUpdateShortMessage)
-
     fun onShortChatMessage(client: TelegramClient, message: TLUpdateShortChatMessage)
+
+    fun onShortMessage(client: TelegramClient, message: TLUpdateShortMessage)
 
     fun onShortSentMessage(client: TelegramClient, message: TLUpdateShortSentMessage)
 
