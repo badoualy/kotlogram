@@ -68,6 +68,7 @@ class MTProtoHandler {
     constructor(authResult: AuthResult, apiCallback: ApiCallback?) {
         init()
         connection = authResult.connection
+        connection!!.id = sessionIdLong!!
         authKey = authResult.authKey
         this.salt = authResult.serverSalt
         this.apiCallback = apiCallback

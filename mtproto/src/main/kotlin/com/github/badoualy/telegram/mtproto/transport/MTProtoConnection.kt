@@ -8,7 +8,7 @@ import java.nio.channels.Selector
 
 interface MTProtoConnection {
 
-    val id: Long
+    var id: Long
 
     val ip: String
 
