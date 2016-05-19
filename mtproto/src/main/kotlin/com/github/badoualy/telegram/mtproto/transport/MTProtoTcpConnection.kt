@@ -14,8 +14,13 @@ import java.nio.channels.SocketChannel
 
 internal class MTProtoTcpConnection
 @Throws(IOException::class)
-@JvmOverloads constructor(override val id: Long, override val ip: String, override val port: Int, abridgedProtocol: Boolean = true) : MTProtoConnection {
+@JvmOverloads constructor(id: Long, override val ip: String, override val port: Int, abridgedProtocol: Boolean = true) : MTProtoConnection {
 
+    override var id = id;
+        set(value) {
+            field = value
+            MarkerFactory.getMarker(value.toString())
+        }
     private val idMarker = MarkerFactory.getMarker(id.toString())
 
     private var socketChannel: SocketChannel
