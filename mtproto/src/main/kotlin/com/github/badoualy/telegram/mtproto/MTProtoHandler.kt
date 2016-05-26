@@ -56,6 +56,7 @@ class MTProtoHandler {
     private val requestMap = Hashtable<Long, TLMethod<*>>(10)
     private val sentMessageList = ArrayList<MTMessage>(10)
     private var messageToAckList = ArrayList<Long>(ACK_BUFFER_SIZE)
+    private var requestQueue = LinkedList<QueuedMethod<*>>()
 
     private var crMessageSent = 0 // Number of content related message sent
     private var lastMessageId: Long = 0
@@ -143,6 +144,18 @@ class MTProtoHandler {
     }
 
     /**
+     * Queue a method to be executed with the next message.
+     * @param method method to execute
+     * @param timeout validity duration in ms, if nothing is sent during this period, this method will be discarded
+     */
+    fun <T : TLObject> queueMethod(method: TLMethod<T>, timeout: Long) {
+        synchronized(requestQueue) {
+            logger.debug(sessionMarker, "Queued ${method.toString()} with timeout of $timeout")
+            requestQueue.add(QueuedMethod(method, System.currentTimeMillis() + timeout))
+        }
+    }
+
+    /**
      * Execute the given method, generates a message id, serialize the method, encrypt it then send it
      * @param method method to execute
      * @param timeout timeout before returning an error
@@ -156,16 +169,22 @@ class MTProtoHandler {
         val observable = Observable.create<T> { subscriber ->
             logger.debug(sessionMarker, "executeMethod ${method.toString()} onSubscribe()")
             try {
-                val extra = getExtraToSend()
+                val extra = ArrayList<MTMessage>(2)
+                val extraAck = getAckToSend()
+                if (extraAck != null)
+                    extra.add(extraAck)
+                val extraMethod = getQueuedRequestToSend()
+                if (extraMethod.isNotEmpty())
+                    extra.addAll(extraMethod)
 
                 val msgId = generateMessageId()
                 val methodMessage = MTMessage(msgId, generateSeqNo(method), method.serialize())
                 logger.info(sessionMarker, "Sending method with msgId ${methodMessage.messageId} and seqNo ${methodMessage.seqNo}")
 
-                if (extra != null) {
+                if (extra.isNotEmpty()) {
                     logger.debug(sessionMarker, "Sending method with extra")
                     val container = MTMessagesContainer()
-                    container.messages.add(extra)
+                    container.messages.addAll(extra)
                     container.messages.add(methodMessage)
                     sendMessage(MTMessage(generateMessageId(), generateSeqNo(container), container.serialize()))
                 } else {
@@ -226,6 +245,7 @@ class MTProtoHandler {
             }
         }
         if (flush) {
+            logger.info(sessionMarker, "Flushing ack buffer")
             bufferTimeoutTask?.cancel()
             bufferTimeoutTask = null
             sendMessagesAck(list!!.toLongArray())
@@ -268,6 +288,7 @@ class MTProtoHandler {
         val ackMessage = MTMsgsAck(messagesId)
         val ackMessageId = generateMessageId()
         logger.debug(sessionMarker, "Sending ack for messages ${messagesId.joinToString(", ")} with ackMsgId $ackMessageId")
+        // TODO: get message queue
         sendMessage(MTMessage(ackMessageId, generateSeqNo(ackMessage), ackMessage.serialize()))
     }
 
@@ -293,7 +314,7 @@ class MTProtoHandler {
     private fun sendData(data: ByteArray) = connection!!.writeMessage(data)
 
     /** Build a container with all the extras to send with a method invocation called */
-    private fun getExtraToSend(): MTMessage? {
+    private fun getAckToSend(): MTMessage? {
         // Collect messages to ack
         var toAckList: ArrayList<Long>? = null
         synchronized(messageToAckList) {
@@ -313,8 +334,34 @@ class MTProtoHandler {
             return ackMessage
         }
 
-        logger.debug(sessionMarker, "No extra to send")
+        logger.debug(sessionMarker, "No extra ack to send")
         return null
+    }
+
+    /** Build a list of messages to send with the next request from the queued requests */
+    private fun getQueuedRequestToSend(): List<MTMessage> {
+        var toSend: MutableList<TLMethod<*>>? = null
+        synchronized(requestQueue) {
+            if (requestQueue.isNotEmpty()) {
+                toSend = ArrayList<TLMethod<*>>(5)
+                var request: QueuedMethod<*>?
+                val time = System.currentTimeMillis()
+                while (requestQueue.isNotEmpty()) {
+                    request = requestQueue.remove()
+                    logger.warn("Current " + time)
+                    logger.warn("Current2 " + request.timeout)
+                    if (request.timeout < time)
+                        logger.debug(sessionMarker, "Queued method ${request.method.toString()} timed out, dropping")
+                    else
+                        toSend!!.add(request.method)
+                }
+            }
+        }
+
+        if (toSend != null && toSend!!.isNotEmpty())
+            return toSend!!.map { MTMessage(generateMessageId(), generateSeqNo(it), it.serialize()) }.toList()
+
+        return emptyList()
     }
 
     /**
@@ -563,4 +610,6 @@ class MTProtoHandler {
             MTProtoTimer.shutdown()
         }
     }
+
+    private data class QueuedMethod<T : TLObject?>(val method: TLMethod<T>, val timeout: Long)
 }

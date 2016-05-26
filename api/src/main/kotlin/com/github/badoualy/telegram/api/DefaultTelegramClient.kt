@@ -129,6 +129,8 @@ internal class DefaultTelegramClient internal constructor(val application: Teleg
             Kotlogram.cleanUp()
     }
 
+    override fun <T : TLObject> queueMethod(method: TLMethod<T>, timeout: Long) = mtProtoHandler?.queueMethod(method, timeout)
+
     @Throws(RpcErrorException::class, IOException::class)
     override fun <T : TLObject> executeRpcQuery(method: TLMethod<T>) = executeRpcQuery(method, mtProtoHandler!!)
 
@@ -207,18 +209,6 @@ internal class DefaultTelegramClient internal constructor(val application: Teleg
 
     @Throws(RpcErrorException::class, IOException::class)
     override fun messagesSendMessage(peer: TLAbsInputPeer, message: String, randomId: Long) = super.messagesSendMessage(true, false, false, false, peer, null, message, randomId, null, null)
-
-    /**
-     * Calls [accountUpdateStatus] asynchronously. Will silently fails is any error occurs
-     * @param offline true if user is offline
-     */
-    fun accountUpdateStatusAsync(offline: Boolean) {
-        try {
-            mtProtoHandler?.executeMethod(TLRequestAccountUpdateStatus(offline), timeoutDuration)
-        } catch(e: Exception) {
-            logger.warn("accountUpdateStatusAsync() failed", e)
-        }
-    }
 
     private fun migrate(dcId: Int) {
         logger.info("Migrating to DC$dcId")

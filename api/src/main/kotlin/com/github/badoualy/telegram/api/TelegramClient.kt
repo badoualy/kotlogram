@@ -20,6 +20,13 @@ interface TelegramClient : TelegramApi {
     /** Close connection, and clean the threads if cleanUp is true */
     fun close(cleanUp: Boolean)
 
+    /**
+     * Queue a method to be executed with the next message.
+     * @param method method to execute
+     * @param timeout validity duration in ms, if nothing is sent during this period, this method will be discarded
+     */
+    open fun <T : TLObject> queueMethod(method: TLMethod<T>, timeout: Long): Unit?
+
     @Throws(RpcErrorException::class, IOException::class)
     fun <T : TLObject> executeRpcQuery(method: TLMethod<T>): T
 
