@@ -77,7 +77,7 @@ class MTProtoHandler {
 
     constructor(dataCenter: DataCenter, authKey: AuthKey, salt: Long?, apiCallback: ApiCallback?) {
         init()
-        connection = MTProtoTcpConnection(BigInteger(sessionId).toLong(), dataCenter.ip, dataCenter.port)
+        connection = MTProtoTcpConnection(sessionIdLong!!, dataCenter.ip, dataCenter.port)
         this.authKey = authKey
         this.salt = salt ?: 0
         this.apiCallback = apiCallback
@@ -99,16 +99,7 @@ class MTProtoHandler {
         logger.info(sessionMarker, "startWatchdog()")
         MTProtoWatchdog.start(connection!!)
                 .observeOn(Schedulers.computation())
-                .doOnError {
-                    logger.error(sessionMarker, "doOnError()", it)
-                    val singleSubscriber = subscriberMap.maxBy { it.key }?.value
-                    if (singleSubscriber != null) {
-                        logger.debug(sessionMarker, "Found a single subscriber, sending timeout")
-                        singleSubscriber.onError(TimeoutException())
-                    } else {
-                        resetConnection()
-                    }
-                }
+                .doOnError { onErrorReceived(it) }
                 .doOnNext { onMessageReceived(it) }
                 .subscribe()
     }
@@ -357,12 +348,23 @@ class MTProtoHandler {
         return lastMessageId
     }
 
+    private fun onErrorReceived(it: Throwable) {
+        logger.error(sessionMarker, "onErrorReceived()", it)
+        val singleSubscriber = subscriberMap.maxBy { it.key }?.value
+        if (singleSubscriber != null) {
+            logger.debug(sessionMarker, "Found a single subscriber, sending timeout")
+            singleSubscriber.onError(TimeoutException())
+        } else {
+            resetConnection()
+        }
+    }
+
     private fun onMessageReceived(bytes: ByteArray) {
         var message: MTMessage = MTMessage()
         try {
             if (bytes.size == 4) {
-                logger.error(sessionMarker, "onMessageReceived(): INVALID_AUTH_KEY")
-                throw RpcErrorException(StreamUtils.readInt(bytes), "INVALID_AUTH_KEY")
+                onErrorReceived(RpcErrorException(StreamUtils.readInt(bytes), "INVALID_AUTH_KEY"))
+                return
             }
 
             message = MTProtoMessageEncryption.decrypt(authKey!!, sessionId!!, bytes)

@@ -19,9 +19,9 @@ internal class MTProtoTcpConnection
     override var id = id;
         set(value) {
             field = value
-            MarkerFactory.getMarker(value.toString())
+            idMarker = MarkerFactory.getMarker(value.toString())
         }
-    private val idMarker = MarkerFactory.getMarker(id.toString())
+    private var idMarker = MarkerFactory.getMarker(id.toString())
 
     private var socketChannel: SocketChannel
     private val msgHeaderBuffer = ByteBuffer.allocate(1)
