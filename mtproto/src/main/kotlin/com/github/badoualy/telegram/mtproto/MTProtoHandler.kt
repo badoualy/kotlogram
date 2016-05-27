@@ -348,8 +348,6 @@ class MTProtoHandler {
                 val time = System.currentTimeMillis()
                 while (requestQueue.isNotEmpty()) {
                     request = requestQueue.remove()
-                    logger.warn("Current " + time)
-                    logger.warn("Current2 " + request.timeout)
                     if (request.timeout < time)
                         logger.debug(sessionMarker, "Queued method ${request.method.toString()} timed out, dropping")
                     else
