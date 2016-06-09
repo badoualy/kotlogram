@@ -25,8 +25,11 @@ interface TelegramClient : TelegramApi {
      * @param method method to execute
      * @param timeout validity duration in ms, if nothing is sent during this period, this method will be discarded
      */
-    open fun <T : TLObject> queueMethod(method: TLMethod<T>, timeout: Long): Unit?
+    fun <T : TLObject> queueMethod(method: TLMethod<T>, timeout: Long): Unit?
 
+    //////////////////////////////////////////////////////////
+    //////////////////// Convenience API ////////////////////
+    ////////////////////////////////////////////////////////
     @Throws(RpcErrorException::class, IOException::class)
     fun <T : TLObject> executeRpcQuery(method: TLMethod<T>): T
 
