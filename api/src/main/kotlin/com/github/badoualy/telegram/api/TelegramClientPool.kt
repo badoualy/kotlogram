@@ -2,7 +2,6 @@ package com.github.badoualy.telegram.api
 
 import org.slf4j.LoggerFactory
 import java.util.*
-import java.util.concurrent.atomic.AtomicInteger
 import kotlin.concurrent.schedule
 
 /**
@@ -20,8 +19,6 @@ class TelegramClientPool {
     private val map = HashMap<Long, TelegramClient>()
     private val listenerMap = HashMap<Long, OnClientTimeoutListener>()
     private val expireMap = HashMap<Long, Long>()
-
-    private var timer = Timer("${javaClass.simpleName}-${poolId.andIncrement}")
 
     /**
      * Cache the given client for a fixed amount of time before closing it if not used during that time
@@ -52,7 +49,7 @@ class TelegramClientPool {
         try {
             timer.schedule(expiresIn, { onTimeout(id) })
         } catch (e: IllegalStateException) {
-            timer = Timer("${javaClass.simpleName}-${poolId.andIncrement}")
+            timer = Timer("${javaClass.simpleName}")
             timer.schedule(expiresIn, { onTimeout(id) })
         }
     }
@@ -67,11 +64,6 @@ class TelegramClientPool {
             expireMap.remove(id)
             return map.remove(id)
         }
-    }
-
-    /** Clean up the threads used */
-    fun cleanUp() {
-        timer.cancel()
     }
 
     fun onTimeout(id: Long) {
@@ -92,13 +84,19 @@ class TelegramClientPool {
     }
 
     companion object {
-        private val poolId = AtomicInteger(1)
+        private var timer = Timer("${TelegramClientPool::class.java.simpleName}")
 
         @JvmField
         val DEFAULT_POOL = TelegramClientPool()
 
         @JvmField
         val DOWNLOADER_POOL = TelegramClientPool()
+
+        /** Clean up the threads used */
+        @JvmStatic
+        fun cleanUp() {
+            timer.cancel()
+        }
     }
 }
 
