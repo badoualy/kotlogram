@@ -96,9 +96,6 @@ class TelegramClientPool {
 
         @JvmField
         val DEFAULT_POOL = TelegramClientPool()
-
-        @JvmField
-        val DOWNLOADER_POOL = TelegramClientPool()
     }
 }
 

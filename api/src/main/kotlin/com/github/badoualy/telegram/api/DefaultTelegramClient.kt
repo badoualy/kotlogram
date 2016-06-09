@@ -16,6 +16,7 @@ import com.github.badoualy.telegram.tl.exception.RpcErrorException
 import org.slf4j.LoggerFactory
 import java.io.IOException
 import java.nio.channels.ClosedChannelException
+import java.util.*
 import java.util.concurrent.TimeoutException
 
 internal class DefaultTelegramClient internal constructor(val application: TelegramApp, val apiStorage: TelegramApiStorage,
@@ -25,6 +26,8 @@ internal class DefaultTelegramClient internal constructor(val application: Teleg
     private var mtProtoHandler: MTProtoHandler? = null
     private var authKey: AuthKey? = null
     private var dataCenter: DataCenter? = null
+
+    private var authKeyMap = HashMap<Int, AuthKey>()
 
     private var timeoutDuration: Long = 5000L
 
@@ -224,14 +227,25 @@ internal class DefaultTelegramClient internal constructor(val application: Teleg
 
     @Throws(RpcErrorException::class, IOException::class)
     private fun getExportedMTProtoHandler(dcId: Int): MTProtoHandler {
-        logger.debug("Creating new handler on DC$dcId")
-        val dc = Kotlogram.getDcById(dcId)
-        val exportedAuthorization = authExportAuthorization(dcId)
-        val authResult = AuthKeyCreation.createAuthKey(dc) ?: throw IOException("Couldn't create authorization key on DC$dcId")
-        val mtProtoHandler = MTProtoHandler(authResult, null)
-        mtProtoHandler.startWatchdog()
-        initConnection(mtProtoHandler, TLRequestAuthImportAuthorization(exportedAuthorization.id, exportedAuthorization.bytes))
-        return mtProtoHandler
+        logger.trace("getExportedMTProtoHandler(DC$dcId)")
+        return if (authKeyMap.contains(dcId)) {
+            logger.debug("Already have key for DC$dcId")
+            val authKey = authKeyMap[dcId]!!
+            val mtProtoHandler = MTProtoHandler(Kotlogram.getDcById(dcId), authKey, null, null)
+            mtProtoHandler.startWatchdog()
+            initConnection(mtProtoHandler, TLRequestHelpGetNearestDc())
+            mtProtoHandler
+        } else {
+            logger.debug("Creating new handler on DC$dcId")
+            val dc = Kotlogram.getDcById(dcId)
+            val exportedAuthorization = authExportAuthorization(dcId)
+            val authResult = AuthKeyCreation.createAuthKey(dc) ?: throw IOException("Couldn't create authorization key on DC$dcId")
+            val mtProtoHandler = MTProtoHandler(authResult, null)
+            mtProtoHandler.startWatchdog()
+            initConnection(mtProtoHandler, TLRequestAuthImportAuthorization(exportedAuthorization.id, exportedAuthorization.bytes))
+            authKeyMap.put(dcId, authResult.authKey)
+            mtProtoHandler
+        }
     }
 
     override fun onUpdates(update: TLAbsUpdates) {

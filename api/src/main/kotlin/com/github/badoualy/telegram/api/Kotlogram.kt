@@ -31,7 +31,6 @@ object Kotlogram {
     fun cleanUp() {
         logger.warn("==================== CLEANING ====================")
         TelegramClientPool.DEFAULT_POOL.cleanUp()
-        TelegramClientPool.DOWNLOADER_POOL.cleanUp()
         MTProtoHandler.cleanUp()
         logger.warn("==================== CLEANED ====================")
     }
