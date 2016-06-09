@@ -2,13 +2,16 @@ package com.github.badoualy.telegram.api
 
 import org.slf4j.LoggerFactory
 import java.util.*
+import java.util.concurrent.atomic.AtomicInteger
 import kotlin.concurrent.schedule
 
 /**
  * Util class to cache clients some time before closing them to be able to re-use them if it's likely that
  * they'll be used again soon
  */
-object TelegramClientPool {
+class TelegramClientPool {
+
+    private constructor()
 
     private val logger = LoggerFactory.getLogger(TelegramClientPool::class.java)
 
@@ -18,7 +21,7 @@ object TelegramClientPool {
     private val listenerMap = HashMap<Long, OnClientTimeoutListener>()
     private val expireMap = HashMap<Long, Long>()
 
-    private var timer = Timer()
+    private var timer = Timer("${javaClass.simpleName}-${poolId.andIncrement}")
 
     /**
      * Cache the given client for a fixed amount of time before closing it if not used during that time
@@ -27,7 +30,7 @@ object TelegramClientPool {
      * @param client client to keep open
      * @param expiresIn time before expiration (in ms)
      */
-    @JvmOverloads @JvmStatic
+    @JvmOverloads
     fun put(id: Long, client: TelegramClient, listener: OnClientTimeoutListener?, expiresIn: Long = DEFAULT_EXPIRATION_DELAY) {
         logger.debug("Adding client with id $id")
         synchronized(this) {
@@ -49,7 +52,7 @@ object TelegramClientPool {
         try {
             timer.schedule(expiresIn, { onTimeout(id) })
         } catch (e: IllegalStateException) {
-            timer = Timer()
+            timer = Timer("${javaClass.simpleName}-${poolId.andIncrement}")
             timer.schedule(expiresIn, { onTimeout(id) })
         }
     }
@@ -59,7 +62,6 @@ object TelegramClientPool {
      * @param id id used to cache the client
      * @return cached client, or null if no client cached for the given id
      */
-    @JvmStatic
     fun getAndRemove(id: Long): TelegramClient? {
         synchronized(this) {
             expireMap.remove(id)
@@ -68,19 +70,17 @@ object TelegramClientPool {
     }
 
     /** Clean up the threads used */
-    @JvmStatic
     fun cleanUp() {
         timer.cancel()
     }
 
-    @JvmStatic
     fun onTimeout(id: Long) {
         val timeout =
                 synchronized(this) {
                     if (expireMap.getOrDefault(id, 0) <= System.currentTimeMillis()) {
-                        logger.info("$id client timeout")
                         val client = getAndRemove(id)
                         if (client != null) {
+                            logger.info("$id client timeout")
                             client.close(false)
                             true
                         } else false
@@ -89,6 +89,16 @@ object TelegramClientPool {
         if (timeout)
             listenerMap.remove(id)?.onClientTimeout(id)
 
+    }
+
+    companion object {
+        private val poolId = AtomicInteger(1)
+
+        @JvmField
+        val DEFAULT_POOL = TelegramClientPool()
+
+        @JvmField
+        val DOWNLOADER_POOL = TelegramClientPool()
     }
 }
 
