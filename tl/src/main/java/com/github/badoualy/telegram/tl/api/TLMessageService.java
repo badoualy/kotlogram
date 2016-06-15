@@ -22,8 +22,6 @@ public class TLMessageService extends TLAbsMessage {
 
     protected int flags;
 
-    protected boolean unread;
-
     protected boolean out;
 
     protected boolean mentioned;
@@ -49,8 +47,7 @@ public class TLMessageService extends TLAbsMessage {
     public TLMessageService() {
     }
 
-    public TLMessageService(boolean unread, boolean out, boolean mentioned, boolean mediaUnread, boolean silent, boolean post, int id, Integer fromId, TLAbsPeer toId, Integer replyToMsgId, int date, TLAbsMessageAction action) {
-        this.unread = unread;
+    public TLMessageService(boolean out, boolean mentioned, boolean mediaUnread, boolean silent, boolean post, int id, Integer fromId, TLAbsPeer toId, Integer replyToMsgId, int date, TLAbsMessageAction action) {
         this.out = out;
         this.mentioned = mentioned;
         this.mediaUnread = mediaUnread;
@@ -66,12 +63,11 @@ public class TLMessageService extends TLAbsMessage {
 
     private void computeFlags() {
         flags = 0;
-        flags = unread ? (flags | 1) : (flags &~ 1);
-        flags = out ? (flags | 2) : (flags &~ 2);
-        flags = mentioned ? (flags | 16) : (flags &~ 16);
-        flags = mediaUnread ? (flags | 32) : (flags &~ 32);
-        flags = silent ? (flags | 8192) : (flags &~ 8192);
-        flags = post ? (flags | 16384) : (flags &~ 16384);
+        flags = out ? (flags | 2) : (flags & ~2);
+        flags = mentioned ? (flags | 16) : (flags & ~16);
+        flags = mediaUnread ? (flags | 32) : (flags & ~32);
+        flags = silent ? (flags | 8192) : (flags & ~8192);
+        flags = post ? (flags | 16384) : (flags & ~16384);
         // Fields below may not be serialized due to flags field value
         if ((flags & 256) == 0) fromId = null;
         if ((flags & 8) == 0) replyToMsgId = null;
@@ -100,7 +96,6 @@ public class TLMessageService extends TLAbsMessage {
     @SuppressWarnings("unchecked")
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
         flags = readInt(stream);
-        unread = (flags & 1) != 0;
         out = (flags & 2) != 0;
         mentioned = (flags & 16) != 0;
         mediaUnread = (flags & 32) != 0;
@@ -143,14 +138,6 @@ public class TLMessageService extends TLAbsMessage {
     @Override
     public int getConstructorId() {
         return CONSTRUCTOR_ID;
-    }
-
-    public boolean getUnread() {
-        return unread;
-    }
-
-    public void setUnread(boolean unread) {
-        this.unread = unread;
     }
 
     public boolean getOut() {

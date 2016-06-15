@@ -45,9 +45,9 @@ public class TLReplyKeyboardMarkup extends TLAbsReplyMarkup {
 
     private void computeFlags() {
         flags = 0;
-        flags = resize ? (flags | 1) : (flags &~ 1);
-        flags = singleUse ? (flags | 2) : (flags &~ 2);
-        flags = selective ? (flags | 4) : (flags &~ 4);
+        flags = resize ? (flags | 1) : (flags & ~1);
+        flags = singleUse ? (flags | 2) : (flags & ~2);
+        flags = selective ? (flags | 4) : (flags & ~4);
         // Fields below may not be serialized due to flags field value
     }
 

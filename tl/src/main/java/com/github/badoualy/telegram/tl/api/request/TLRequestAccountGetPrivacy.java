@@ -40,7 +40,8 @@ public class TLRequestAccountGetPrivacy extends TLMethod<TLPrivacyRules> {
             throw new IOException("Unable to parse response");
         }
         if (!(response instanceof TLPrivacyRules)) {
-            throw new IOException("Incorrect response type, expected getClass().getCanonicalName(), found response.getClass().getCanonicalName()");
+            throw new IOException(
+                    "Incorrect response type, expected getClass().getCanonicalName(), found response.getClass().getCanonicalName()");
         }
         return (TLPrivacyRules) response;
     }

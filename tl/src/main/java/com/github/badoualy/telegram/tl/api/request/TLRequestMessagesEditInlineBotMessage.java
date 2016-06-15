@@ -65,14 +65,15 @@ public class TLRequestMessagesEditInlineBotMessage extends TLMethod<TLBool> {
             throw new IOException("Unable to parse response");
         }
         if (!(response instanceof TLBool)) {
-            throw new IOException("Incorrect response type, expected getClass().getCanonicalName(), found response.getClass().getCanonicalName()");
+            throw new IOException(
+                    "Incorrect response type, expected getClass().getCanonicalName(), found response.getClass().getCanonicalName()");
         }
         return (TLBool) response;
     }
 
     private void computeFlags() {
         flags = 0;
-        flags = noWebpage ? (flags | 2) : (flags &~ 2);
+        flags = noWebpage ? (flags | 2) : (flags & ~2);
         // Fields below may not be serialized due to flags field value
         if ((flags & 2048) == 0) message = null;
         if ((flags & 4) == 0) replyMarkup = null;

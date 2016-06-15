@@ -41,7 +41,8 @@ public class TLRequestMessagesReadMessageContents extends TLMethod<TLAffectedMes
             throw new IOException("Unable to parse response");
         }
         if (!(response instanceof TLAffectedMessages)) {
-            throw new IOException("Incorrect response type, expected getClass().getCanonicalName(), found response.getClass().getCanonicalName()");
+            throw new IOException(
+                    "Incorrect response type, expected getClass().getCanonicalName(), found response.getClass().getCanonicalName()");
         }
         return (TLAffectedMessages) response;
     }

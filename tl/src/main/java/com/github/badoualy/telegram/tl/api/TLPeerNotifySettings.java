@@ -45,8 +45,8 @@ public class TLPeerNotifySettings extends TLAbsPeerNotifySettings {
 
     private void computeFlags() {
         flags = 0;
-        flags = showPreviews ? (flags | 1) : (flags &~ 1);
-        flags = silent ? (flags | 2) : (flags &~ 2);
+        flags = showPreviews ? (flags | 1) : (flags & ~1);
+        flags = silent ? (flags | 2) : (flags & ~2);
         // Fields below may not be serialized due to flags field value
     }
 

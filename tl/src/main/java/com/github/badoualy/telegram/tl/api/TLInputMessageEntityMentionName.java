@@ -1,9 +1,6 @@
-package com.github.badoualy.telegram.tl.api.request;
+package com.github.badoualy.telegram.tl.api;
 
 import com.github.badoualy.telegram.tl.TLContext;
-import com.github.badoualy.telegram.tl.api.messages.TLAbsDialogs;
-import com.github.badoualy.telegram.tl.core.TLMethod;
-import com.github.badoualy.telegram.tl.core.TLObject;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -12,6 +9,7 @@ import java.io.OutputStream;
 import static com.github.badoualy.telegram.tl.StreamUtils.readInt;
 import static com.github.badoualy.telegram.tl.StreamUtils.readTLObject;
 import static com.github.badoualy.telegram.tl.StreamUtils.writeInt;
+import static com.github.badoualy.telegram.tl.StreamUtils.writeTLObject;
 import static com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_CONSTRUCTOR_ID;
 import static com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_INT32;
 
@@ -19,47 +17,35 @@ import static com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_INT32;
  * @author Yannick Badoual yann.badoual@gmail.com
  * @see <a href="http://github.com/badoualy/kotlogram">http://github.com/badoualy/kotlogram</a>
  */
-public class TLRequestChannelsGetDialogs extends TLMethod<TLAbsDialogs> {
-    public static final int CONSTRUCTOR_ID = 0xa9d3d249;
+public class TLInputMessageEntityMentionName extends TLAbsMessageEntity {
+    public static final int CONSTRUCTOR_ID = 0x208e68c9;
 
-    protected int offset;
+    protected TLAbsInputUser userId;
 
-    protected int limit;
+    private final String _constructor = "inputMessageEntityMentionName#208e68c9";
 
-    private final String _constructor = "channels.getDialogs#a9d3d249";
-
-    public TLRequestChannelsGetDialogs() {
+    public TLInputMessageEntityMentionName() {
     }
 
-    public TLRequestChannelsGetDialogs(int offset, int limit) {
+    public TLInputMessageEntityMentionName(int offset, int length, TLAbsInputUser userId) {
         this.offset = offset;
-        this.limit = limit;
-    }
-
-    @Override
-    @SuppressWarnings("unchecked")
-    public TLAbsDialogs deserializeResponse(InputStream stream, TLContext context) throws IOException {
-        final TLObject response = readTLObject(stream, context);
-        if (response == null) {
-            throw new IOException("Unable to parse response");
-        }
-        if (!(response instanceof TLAbsDialogs)) {
-            throw new IOException("Incorrect response type, expected getClass().getCanonicalName(), found response.getClass().getCanonicalName()");
-        }
-        return (TLAbsDialogs) response;
+        this.length = length;
+        this.userId = userId;
     }
 
     @Override
     public void serializeBody(OutputStream stream) throws IOException {
         writeInt(offset, stream);
-        writeInt(limit, stream);
+        writeInt(length, stream);
+        writeTLObject(userId, stream);
     }
 
     @Override
     @SuppressWarnings("unchecked")
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
         offset = readInt(stream);
-        limit = readInt(stream);
+        length = readInt(stream);
+        userId = readTLObject(stream, context, TLAbsInputUser.class, -1);
     }
 
     @Override
@@ -67,6 +53,7 @@ public class TLRequestChannelsGetDialogs extends TLMethod<TLAbsDialogs> {
         int size = SIZE_CONSTRUCTOR_ID;
         size += SIZE_INT32;
         size += SIZE_INT32;
+        size += userId.computeSerializedSize();
         return size;
     }
 
@@ -88,11 +75,19 @@ public class TLRequestChannelsGetDialogs extends TLMethod<TLAbsDialogs> {
         this.offset = offset;
     }
 
-    public int getLimit() {
-        return limit;
+    public int getLength() {
+        return length;
     }
 
-    public void setLimit(int limit) {
-        this.limit = limit;
+    public void setLength(int length) {
+        this.length = length;
+    }
+
+    public TLAbsInputUser getUserId() {
+        return userId;
+    }
+
+    public void setUserId(TLAbsInputUser userId) {
+        this.userId = userId;
     }
 }

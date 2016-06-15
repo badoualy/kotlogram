@@ -40,7 +40,8 @@ public class TLRequestUsersGetFullUser extends TLMethod<TLUserFull> {
             throw new IOException("Unable to parse response");
         }
         if (!(response instanceof TLUserFull)) {
-            throw new IOException("Incorrect response type, expected getClass().getCanonicalName(), found response.getClass().getCanonicalName()");
+            throw new IOException(
+                    "Incorrect response type, expected getClass().getCanonicalName(), found response.getClass().getCanonicalName()");
         }
         return (TLUserFull) response;
     }

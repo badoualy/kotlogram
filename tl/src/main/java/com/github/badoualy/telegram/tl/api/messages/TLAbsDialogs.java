@@ -1,9 +1,9 @@
 package com.github.badoualy.telegram.tl.api.messages;
 
 import com.github.badoualy.telegram.tl.api.TLAbsChat;
-import com.github.badoualy.telegram.tl.api.TLAbsDialog;
 import com.github.badoualy.telegram.tl.api.TLAbsMessage;
 import com.github.badoualy.telegram.tl.api.TLAbsUser;
+import com.github.badoualy.telegram.tl.api.TLDialog;
 import com.github.badoualy.telegram.tl.core.TLObject;
 import com.github.badoualy.telegram.tl.core.TLVector;
 
@@ -12,7 +12,7 @@ import com.github.badoualy.telegram.tl.core.TLVector;
  * @see <a href="http://github.com/badoualy/kotlogram">http://github.com/badoualy/kotlogram</a>
  */
 public abstract class TLAbsDialogs extends TLObject {
-    protected TLVector<TLAbsDialog> dialogs;
+    protected TLVector<TLDialog> dialogs;
 
     protected TLVector<TLAbsMessage> messages;
 
@@ -23,11 +23,11 @@ public abstract class TLAbsDialogs extends TLObject {
     public TLAbsDialogs() {
     }
 
-    public TLVector<TLAbsDialog> getDialogs() {
+    public TLVector<TLDialog> getDialogs() {
         return dialogs;
     }
 
-    public void setDialogs(TLVector<TLAbsDialog> dialogs) {
+    public void setDialogs(TLVector<TLDialog> dialogs) {
         this.dialogs = dialogs;
     }
 

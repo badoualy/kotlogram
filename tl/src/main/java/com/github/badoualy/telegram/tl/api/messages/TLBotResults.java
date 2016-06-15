@@ -59,7 +59,7 @@ public class TLBotResults extends TLObject {
 
     private void computeFlags() {
         flags = 0;
-        flags = gallery ? (flags | 1) : (flags &~ 1);
+        flags = gallery ? (flags | 1) : (flags & ~1);
         // Fields below may not be serialized due to flags field value
         if ((flags & 2) == 0) nextOffset = null;
         if ((flags & 4) == 0) switchPm = null;

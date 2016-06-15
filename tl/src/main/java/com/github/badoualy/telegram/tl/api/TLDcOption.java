@@ -52,9 +52,9 @@ public class TLDcOption extends TLObject {
 
     private void computeFlags() {
         flags = 0;
-        flags = ipv6 ? (flags | 1) : (flags &~ 1);
-        flags = mediaOnly ? (flags | 2) : (flags &~ 2);
-        flags = tcpoOnly ? (flags | 4) : (flags &~ 4);
+        flags = ipv6 ? (flags | 1) : (flags & ~1);
+        flags = mediaOnly ? (flags | 2) : (flags & ~2);
+        flags = tcpoOnly ? (flags | 4) : (flags & ~4);
         // Fields below may not be serialized due to flags field value
     }
 

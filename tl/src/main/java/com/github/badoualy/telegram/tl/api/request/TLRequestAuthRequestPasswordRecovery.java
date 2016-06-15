@@ -30,7 +30,8 @@ public class TLRequestAuthRequestPasswordRecovery extends TLMethod<TLPasswordRec
             throw new IOException("Unable to parse response");
         }
         if (!(response instanceof TLPasswordRecovery)) {
-            throw new IOException("Incorrect response type, expected getClass().getCanonicalName(), found response.getClass().getCanonicalName()");
+            throw new IOException(
+                    "Incorrect response type, expected getClass().getCanonicalName(), found response.getClass().getCanonicalName()");
         }
         return (TLPasswordRecovery) response;
     }

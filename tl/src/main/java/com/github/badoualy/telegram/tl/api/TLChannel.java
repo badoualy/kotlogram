@@ -96,18 +96,18 @@ public class TLChannel extends TLAbsChat {
 
     private void computeFlags() {
         flags = 0;
-        flags = creator ? (flags | 1) : (flags &~ 1);
-        flags = kicked ? (flags | 2) : (flags &~ 2);
-        flags = left ? (flags | 4) : (flags &~ 4);
-        flags = editor ? (flags | 8) : (flags &~ 8);
-        flags = moderator ? (flags | 16) : (flags &~ 16);
-        flags = broadcast ? (flags | 32) : (flags &~ 32);
-        flags = verified ? (flags | 128) : (flags &~ 128);
-        flags = megagroup ? (flags | 256) : (flags &~ 256);
-        flags = restricted ? (flags | 512) : (flags &~ 512);
-        flags = democracy ? (flags | 1024) : (flags &~ 1024);
-        flags = signatures ? (flags | 2048) : (flags &~ 2048);
-        flags = min ? (flags | 4096) : (flags &~ 4096);
+        flags = creator ? (flags | 1) : (flags & ~1);
+        flags = kicked ? (flags | 2) : (flags & ~2);
+        flags = left ? (flags | 4) : (flags & ~4);
+        flags = editor ? (flags | 8) : (flags & ~8);
+        flags = moderator ? (flags | 16) : (flags & ~16);
+        flags = broadcast ? (flags | 32) : (flags & ~32);
+        flags = verified ? (flags | 128) : (flags & ~128);
+        flags = megagroup ? (flags | 256) : (flags & ~256);
+        flags = restricted ? (flags | 512) : (flags & ~512);
+        flags = democracy ? (flags | 1024) : (flags & ~1024);
+        flags = signatures ? (flags | 2048) : (flags & ~2048);
+        flags = min ? (flags | 4096) : (flags & ~4096);
         // Fields below may not be serialized due to flags field value
         if ((flags & 8192) == 0) accessHash = null;
         if ((flags & 64) == 0) username = null;

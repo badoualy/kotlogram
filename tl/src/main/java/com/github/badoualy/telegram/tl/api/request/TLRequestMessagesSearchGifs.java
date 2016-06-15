@@ -47,7 +47,8 @@ public class TLRequestMessagesSearchGifs extends TLMethod<TLFoundGifs> {
             throw new IOException("Unable to parse response");
         }
         if (!(response instanceof TLFoundGifs)) {
-            throw new IOException("Incorrect response type, expected getClass().getCanonicalName(), found response.getClass().getCanonicalName()");
+            throw new IOException(
+                    "Incorrect response type, expected getClass().getCanonicalName(), found response.getClass().getCanonicalName()");
         }
         return (TLFoundGifs) response;
     }

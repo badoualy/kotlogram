@@ -1,7 +1,6 @@
 package com.github.badoualy.telegram.tl.api;
 
 import com.github.badoualy.telegram.tl.TLContext;
-import com.github.badoualy.telegram.tl.core.TLObject;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -16,50 +15,40 @@ import static com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_INT32;
  * @author Yannick Badoual yann.badoual@gmail.com
  * @see <a href="http://github.com/badoualy/kotlogram">http://github.com/badoualy/kotlogram</a>
  */
-public class TLMessageGroup extends TLObject {
-    public static final int CONSTRUCTOR_ID = 0xe8346f53;
+public class TLMessageEntityMentionName extends TLAbsMessageEntity {
+    public static final int CONSTRUCTOR_ID = 0x352dca58;
 
-    protected int minId;
+    protected int userId;
 
-    protected int maxId;
+    private final String _constructor = "messageEntityMentionName#352dca58";
 
-    protected int count;
-
-    protected int date;
-
-    private final String _constructor = "messageGroup#e8346f53";
-
-    public TLMessageGroup() {
+    public TLMessageEntityMentionName() {
     }
 
-    public TLMessageGroup(int minId, int maxId, int count, int date) {
-        this.minId = minId;
-        this.maxId = maxId;
-        this.count = count;
-        this.date = date;
+    public TLMessageEntityMentionName(int offset, int length, int userId) {
+        this.offset = offset;
+        this.length = length;
+        this.userId = userId;
     }
 
     @Override
     public void serializeBody(OutputStream stream) throws IOException {
-        writeInt(minId, stream);
-        writeInt(maxId, stream);
-        writeInt(count, stream);
-        writeInt(date, stream);
+        writeInt(offset, stream);
+        writeInt(length, stream);
+        writeInt(userId, stream);
     }
 
     @Override
     @SuppressWarnings("unchecked")
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
-        minId = readInt(stream);
-        maxId = readInt(stream);
-        count = readInt(stream);
-        date = readInt(stream);
+        offset = readInt(stream);
+        length = readInt(stream);
+        userId = readInt(stream);
     }
 
     @Override
     public int computeSerializedSize() {
         int size = SIZE_CONSTRUCTOR_ID;
-        size += SIZE_INT32;
         size += SIZE_INT32;
         size += SIZE_INT32;
         size += SIZE_INT32;
@@ -76,35 +65,27 @@ public class TLMessageGroup extends TLObject {
         return CONSTRUCTOR_ID;
     }
 
-    public int getMinId() {
-        return minId;
+    public int getOffset() {
+        return offset;
     }
 
-    public void setMinId(int minId) {
-        this.minId = minId;
+    public void setOffset(int offset) {
+        this.offset = offset;
     }
 
-    public int getMaxId() {
-        return maxId;
+    public int getLength() {
+        return length;
     }
 
-    public void setMaxId(int maxId) {
-        this.maxId = maxId;
+    public void setLength(int length) {
+        this.length = length;
     }
 
-    public int getCount() {
-        return count;
+    public int getUserId() {
+        return userId;
     }
 
-    public void setCount(int count) {
-        this.count = count;
-    }
-
-    public int getDate() {
-        return date;
-    }
-
-    public void setDate(int date) {
-        this.date = date;
+    public void setUserId(int userId) {
+        this.userId = userId;
     }
 }

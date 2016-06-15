@@ -81,7 +81,8 @@ public class TLUpdateBotInlineSend extends TLAbsUpdate {
         query = readTLString(stream);
         geo = (flags & 1) != 0 ? readTLObject(stream, context, TLAbsGeoPoint.class, -1) : null;
         id = readTLString(stream);
-        msgId = (flags & 2) != 0 ? readTLObject(stream, context, TLInputBotInlineMessageID.class, TLInputBotInlineMessageID.CONSTRUCTOR_ID) : null;
+        msgId = (flags & 2) != 0 ? readTLObject(stream, context, TLInputBotInlineMessageID.class,
+                                                TLInputBotInlineMessageID.CONSTRUCTOR_ID) : null;
     }
 
     @Override

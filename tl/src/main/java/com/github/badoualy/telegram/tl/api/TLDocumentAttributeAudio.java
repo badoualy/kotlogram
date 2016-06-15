@@ -52,7 +52,7 @@ public class TLDocumentAttributeAudio extends TLAbsDocumentAttribute {
 
     private void computeFlags() {
         flags = 0;
-        flags = voice ? (flags | 1024) : (flags &~ 1024);
+        flags = voice ? (flags | 1024) : (flags & ~1024);
         // Fields below may not be serialized due to flags field value
         if ((flags & 1) == 0) title = null;
         if ((flags & 2) == 0) performer = null;

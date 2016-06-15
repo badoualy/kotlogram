@@ -8,7 +8,6 @@ import com.github.badoualy.telegram.mtproto.auth.AuthKeyCreation
 import com.github.badoualy.telegram.mtproto.auth.AuthResult
 import com.github.badoualy.telegram.mtproto.exception.SecurityException
 import com.github.badoualy.telegram.tl.api.*
-import com.github.badoualy.telegram.tl.api.auth.TLSentCode
 import com.github.badoualy.telegram.tl.api.request.*
 import com.github.badoualy.telegram.tl.core.TLMethod
 import com.github.badoualy.telegram.tl.core.TLObject
@@ -200,12 +199,8 @@ internal class DefaultTelegramClient internal constructor(val application: Teleg
         }
     }
 
-    override fun authSendCode(allowFlashcall: Boolean, phoneNumber: String, currentNumber: Boolean): TLSentCode {
-        throw UnsupportedOperationException()
-    }
-
     @Throws(RpcErrorException::class, IOException::class)
-    override fun authSendCode(phoneNumber: String, smsType: Int) = super.authSendCode(false, phoneNumber, false, application.apiId, application.apiHash, application.langCode)
+    override fun authSendCode(allowFlashcall: Boolean, phoneNumber: String, currentNumber: Boolean) = super.authSendCode(allowFlashcall, phoneNumber, currentNumber, application.apiId, application.apiHash)
 
     @Throws(RpcErrorException::class, IOException::class)
     override fun <T : TLObject> initConnection(query: TLMethod<T>) = executeRpcQuery(TLRequestInitConnection(application.apiId, application.deviceModel, application.systemVersion, application.appVersion, application.langCode, query))

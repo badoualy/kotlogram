@@ -40,7 +40,7 @@ public class TLBotCallbackAnswer extends TLObject {
 
     private void computeFlags() {
         flags = 0;
-        flags = alert ? (flags | 2) : (flags &~ 2);
+        flags = alert ? (flags | 2) : (flags & ~2);
         // Fields below may not be serialized due to flags field value
         if ((flags & 1) == 0) message = null;
     }

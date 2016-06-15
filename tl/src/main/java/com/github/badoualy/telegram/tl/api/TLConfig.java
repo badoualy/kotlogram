@@ -23,7 +23,7 @@ import static com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_INT32;
  * @see <a href="http://github.com/badoualy/kotlogram">http://github.com/badoualy/kotlogram</a>
  */
 public class TLConfig extends TLObject {
-    public static final int CONSTRUCTOR_ID = 0x317ceef4;
+    public static final int CONSTRUCTOR_ID = 0xc9411388;
 
     protected int date;
 
@@ -63,14 +63,16 @@ public class TLConfig extends TLObject {
 
     protected int editTimeLimit;
 
+    protected int ratingEDecay;
+
     protected TLVector<TLDisabledFeature> disabledFeatures;
 
-    private final String _constructor = "config#317ceef4";
+    private final String _constructor = "config#c9411388";
 
     public TLConfig() {
     }
 
-    public TLConfig(int date, int expires, boolean testMode, int thisDc, TLVector<TLDcOption> dcOptions, int chatSizeMax, int megagroupSizeMax, int forwardedCountMax, int onlineUpdatePeriodMs, int offlineBlurTimeoutMs, int offlineIdleTimeoutMs, int onlineCloudTimeoutMs, int notifyCloudDelayMs, int notifyDefaultDelayMs, int chatBigSize, int pushChatPeriodMs, int pushChatLimit, int savedGifsLimit, int editTimeLimit, TLVector<TLDisabledFeature> disabledFeatures) {
+    public TLConfig(int date, int expires, boolean testMode, int thisDc, TLVector<TLDcOption> dcOptions, int chatSizeMax, int megagroupSizeMax, int forwardedCountMax, int onlineUpdatePeriodMs, int offlineBlurTimeoutMs, int offlineIdleTimeoutMs, int onlineCloudTimeoutMs, int notifyCloudDelayMs, int notifyDefaultDelayMs, int chatBigSize, int pushChatPeriodMs, int pushChatLimit, int savedGifsLimit, int editTimeLimit, int ratingEDecay, TLVector<TLDisabledFeature> disabledFeatures) {
         this.date = date;
         this.expires = expires;
         this.testMode = testMode;
@@ -90,6 +92,7 @@ public class TLConfig extends TLObject {
         this.pushChatLimit = pushChatLimit;
         this.savedGifsLimit = savedGifsLimit;
         this.editTimeLimit = editTimeLimit;
+        this.ratingEDecay = ratingEDecay;
         this.disabledFeatures = disabledFeatures;
     }
 
@@ -114,6 +117,7 @@ public class TLConfig extends TLObject {
         writeInt(pushChatLimit, stream);
         writeInt(savedGifsLimit, stream);
         writeInt(editTimeLimit, stream);
+        writeInt(ratingEDecay, stream);
         writeTLVector(disabledFeatures, stream);
     }
 
@@ -139,6 +143,7 @@ public class TLConfig extends TLObject {
         pushChatLimit = readInt(stream);
         savedGifsLimit = readInt(stream);
         editTimeLimit = readInt(stream);
+        ratingEDecay = readInt(stream);
         disabledFeatures = readTLVector(stream, context);
     }
 
@@ -150,6 +155,7 @@ public class TLConfig extends TLObject {
         size += SIZE_BOOLEAN;
         size += SIZE_INT32;
         size += dcOptions.computeSerializedSize();
+        size += SIZE_INT32;
         size += SIZE_INT32;
         size += SIZE_INT32;
         size += SIZE_INT32;
@@ -328,6 +334,14 @@ public class TLConfig extends TLObject {
 
     public void setEditTimeLimit(int editTimeLimit) {
         this.editTimeLimit = editTimeLimit;
+    }
+
+    public int getRatingEDecay() {
+        return ratingEDecay;
+    }
+
+    public void setRatingEDecay(int ratingEDecay) {
+        this.ratingEDecay = ratingEDecay;
     }
 
     public TLVector<TLDisabledFeature> getDisabledFeatures() {

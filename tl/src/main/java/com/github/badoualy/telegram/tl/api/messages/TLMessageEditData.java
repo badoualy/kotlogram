@@ -34,7 +34,7 @@ public class TLMessageEditData extends TLObject {
 
     private void computeFlags() {
         flags = 0;
-        flags = caption ? (flags | 1) : (flags &~ 1);
+        flags = caption ? (flags | 1) : (flags & ~1);
         // Fields below may not be serialized due to flags field value
     }
 

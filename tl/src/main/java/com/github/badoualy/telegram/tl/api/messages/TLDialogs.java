@@ -2,9 +2,9 @@ package com.github.badoualy.telegram.tl.api.messages;
 
 import com.github.badoualy.telegram.tl.TLContext;
 import com.github.badoualy.telegram.tl.api.TLAbsChat;
-import com.github.badoualy.telegram.tl.api.TLAbsDialog;
 import com.github.badoualy.telegram.tl.api.TLAbsMessage;
 import com.github.badoualy.telegram.tl.api.TLAbsUser;
+import com.github.badoualy.telegram.tl.api.TLDialog;
 import com.github.badoualy.telegram.tl.core.TLVector;
 
 import java.io.IOException;
@@ -27,7 +27,7 @@ public class TLDialogs extends TLAbsDialogs {
     public TLDialogs() {
     }
 
-    public TLDialogs(TLVector<TLAbsDialog> dialogs, TLVector<TLAbsMessage> messages, TLVector<TLAbsChat> chats, TLVector<TLAbsUser> users) {
+    public TLDialogs(TLVector<TLDialog> dialogs, TLVector<TLAbsMessage> messages, TLVector<TLAbsChat> chats, TLVector<TLAbsUser> users) {
         this.dialogs = dialogs;
         this.messages = messages;
         this.chats = chats;
@@ -71,11 +71,11 @@ public class TLDialogs extends TLAbsDialogs {
         return CONSTRUCTOR_ID;
     }
 
-    public TLVector<TLAbsDialog> getDialogs() {
+    public TLVector<TLDialog> getDialogs() {
         return dialogs;
     }
 
-    public void setDialogs(TLVector<TLAbsDialog> dialogs) {
+    public void setDialogs(TLVector<TLDialog> dialogs) {
         this.dialogs = dialogs;
     }
 

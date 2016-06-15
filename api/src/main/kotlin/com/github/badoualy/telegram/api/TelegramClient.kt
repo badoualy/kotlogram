@@ -38,14 +38,10 @@ interface TelegramClient : TelegramApi {
 
     /** Convenience method wrapping the argument with TelegramApp values */
     @Throws(RpcErrorException::class, IOException::class)
-    fun authSendCode(phoneNumber: String, smsType: Int): TLSentCode
-
-    /** Convenience method wrapping the argument with TelegramApp values */
-    @Throws(RpcErrorException::class, IOException::class)
     fun authSendCode(allowFlashcall: Boolean, phoneNumber: String, currentNumber: Boolean): TLSentCode
 
     @Deprecated("Use authSendCode for more convenience", ReplaceWith("authSendCode(allowFlashcall, phoneNumber, currentNumber)"))
-    override fun authSendCode(allowFlashcall: Boolean, phoneNumber: String?, currentNumber: Boolean, apiId: Int, apiHash: String?, langCode: String?): TLSentCode
+    override fun authSendCode(allowFlashcall: Boolean, phoneNumber: String?, currentNumber: Boolean?, apiId: Int, apiHash: String?): TLSentCode
 
     @Throws(RpcErrorException::class, IOException::class)
     override fun <T : TLObject?> invokeWithLayer(layer: Int, query: TLMethod<T>?): T

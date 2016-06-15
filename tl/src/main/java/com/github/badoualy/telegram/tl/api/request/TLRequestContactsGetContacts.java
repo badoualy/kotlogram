@@ -41,7 +41,8 @@ public class TLRequestContactsGetContacts extends TLMethod<TLAbsContacts> {
             throw new IOException("Unable to parse response");
         }
         if (!(response instanceof TLAbsContacts)) {
-            throw new IOException("Incorrect response type, expected getClass().getCanonicalName(), found response.getClass().getCanonicalName()");
+            throw new IOException(
+                    "Incorrect response type, expected getClass().getCanonicalName(), found response.getClass().getCanonicalName()");
         }
         return (TLAbsContacts) response;
     }

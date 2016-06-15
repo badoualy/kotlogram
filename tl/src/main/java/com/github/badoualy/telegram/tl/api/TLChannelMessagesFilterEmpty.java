@@ -21,4 +21,14 @@ public class TLChannelMessagesFilterEmpty extends TLAbsChannelMessagesFilter {
     public int getConstructorId() {
         return CONSTRUCTOR_ID;
     }
+
+    @Override
+    public final boolean isEmpty() {
+        return true;
+    }
+
+    @Override
+    public final boolean isNotEmpty() {
+        return false;
+    }
 }

@@ -24,7 +24,7 @@ import static com.github.badoualy.telegram.tl.TLObjectUtils.computeTLStringSeria
  * @see <a href="http://github.com/badoualy/kotlogram">http://github.com/badoualy/kotlogram</a>
  */
 public class TLChannelFull extends TLAbsChatFull {
-    public static final int CONSTRUCTOR_ID = 0x97bee562;
+    public static final int CONSTRUCTOR_ID = 0xc3d5512f;
 
     protected int flags;
 
@@ -42,9 +42,9 @@ public class TLChannelFull extends TLAbsChatFull {
 
     protected int readInboxMaxId;
 
-    protected int unreadCount;
+    protected int readOutboxMaxId;
 
-    protected int unreadImportantCount;
+    protected int unreadCount;
 
     protected Integer migratedFromChatId;
 
@@ -52,12 +52,12 @@ public class TLChannelFull extends TLAbsChatFull {
 
     protected Integer pinnedMsgId;
 
-    private final String _constructor = "channelFull#97bee562";
+    private final String _constructor = "channelFull#c3d5512f";
 
     public TLChannelFull() {
     }
 
-    public TLChannelFull(boolean canViewParticipants, boolean canSetUsername, int id, String about, Integer participantsCount, Integer adminsCount, Integer kickedCount, int readInboxMaxId, int unreadCount, int unreadImportantCount, TLAbsPhoto chatPhoto, TLAbsPeerNotifySettings notifySettings, TLAbsExportedChatInvite exportedInvite, TLVector<TLBotInfo> botInfo, Integer migratedFromChatId, Integer migratedFromMaxId, Integer pinnedMsgId) {
+    public TLChannelFull(boolean canViewParticipants, boolean canSetUsername, int id, String about, Integer participantsCount, Integer adminsCount, Integer kickedCount, int readInboxMaxId, int readOutboxMaxId, int unreadCount, TLAbsPhoto chatPhoto, TLAbsPeerNotifySettings notifySettings, TLAbsExportedChatInvite exportedInvite, TLVector<TLBotInfo> botInfo, Integer migratedFromChatId, Integer migratedFromMaxId, Integer pinnedMsgId) {
         this.canViewParticipants = canViewParticipants;
         this.canSetUsername = canSetUsername;
         this.id = id;
@@ -66,8 +66,8 @@ public class TLChannelFull extends TLAbsChatFull {
         this.adminsCount = adminsCount;
         this.kickedCount = kickedCount;
         this.readInboxMaxId = readInboxMaxId;
+        this.readOutboxMaxId = readOutboxMaxId;
         this.unreadCount = unreadCount;
-        this.unreadImportantCount = unreadImportantCount;
         this.chatPhoto = chatPhoto;
         this.notifySettings = notifySettings;
         this.exportedInvite = exportedInvite;
@@ -79,8 +79,8 @@ public class TLChannelFull extends TLAbsChatFull {
 
     private void computeFlags() {
         flags = 0;
-        flags = canViewParticipants ? (flags | 8) : (flags &~ 8);
-        flags = canSetUsername ? (flags | 64) : (flags &~ 64);
+        flags = canViewParticipants ? (flags | 8) : (flags & ~8);
+        flags = canSetUsername ? (flags | 64) : (flags & ~64);
         // Fields below may not be serialized due to flags field value
         if ((flags & 1) == 0) participantsCount = null;
         if ((flags & 2) == 0) adminsCount = null;
@@ -110,8 +110,8 @@ public class TLChannelFull extends TLAbsChatFull {
             writeInt(kickedCount, stream);
         }
         writeInt(readInboxMaxId, stream);
+        writeInt(readOutboxMaxId, stream);
         writeInt(unreadCount, stream);
-        writeInt(unreadImportantCount, stream);
         writeTLObject(chatPhoto, stream);
         writeTLObject(notifySettings, stream);
         writeTLObject(exportedInvite, stream);
@@ -142,8 +142,8 @@ public class TLChannelFull extends TLAbsChatFull {
         adminsCount = (flags & 2) != 0 ? readInt(stream) : null;
         kickedCount = (flags & 4) != 0 ? readInt(stream) : null;
         readInboxMaxId = readInt(stream);
+        readOutboxMaxId = readInt(stream);
         unreadCount = readInt(stream);
-        unreadImportantCount = readInt(stream);
         chatPhoto = readTLObject(stream, context, TLAbsPhoto.class, -1);
         notifySettings = readTLObject(stream, context, TLAbsPeerNotifySettings.class, -1);
         exportedInvite = readTLObject(stream, context, TLAbsExportedChatInvite.class, -1);
@@ -269,20 +269,20 @@ public class TLChannelFull extends TLAbsChatFull {
         this.readInboxMaxId = readInboxMaxId;
     }
 
+    public int getReadOutboxMaxId() {
+        return readOutboxMaxId;
+    }
+
+    public void setReadOutboxMaxId(int readOutboxMaxId) {
+        this.readOutboxMaxId = readOutboxMaxId;
+    }
+
     public int getUnreadCount() {
         return unreadCount;
     }
 
     public void setUnreadCount(int unreadCount) {
         this.unreadCount = unreadCount;
-    }
-
-    public int getUnreadImportantCount() {
-        return unreadImportantCount;
-    }
-
-    public void setUnreadImportantCount(int unreadImportantCount) {
-        this.unreadImportantCount = unreadImportantCount;
     }
 
     public TLAbsPhoto getChatPhoto() {

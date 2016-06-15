@@ -23,8 +23,6 @@ public class TLChannelMessagesFilter extends TLAbsChannelMessagesFilter {
 
     protected int flags;
 
-    protected boolean importantOnly;
-
     protected boolean excludeNewMessages;
 
     protected TLVector<TLMessageRange> ranges;
@@ -34,16 +32,14 @@ public class TLChannelMessagesFilter extends TLAbsChannelMessagesFilter {
     public TLChannelMessagesFilter() {
     }
 
-    public TLChannelMessagesFilter(boolean importantOnly, boolean excludeNewMessages, TLVector<TLMessageRange> ranges) {
-        this.importantOnly = importantOnly;
+    public TLChannelMessagesFilter(boolean excludeNewMessages, TLVector<TLMessageRange> ranges) {
         this.excludeNewMessages = excludeNewMessages;
         this.ranges = ranges;
     }
 
     private void computeFlags() {
         flags = 0;
-        flags = importantOnly ? (flags | 1) : (flags &~ 1);
-        flags = excludeNewMessages ? (flags | 2) : (flags &~ 2);
+        flags = excludeNewMessages ? (flags | 2) : (flags & ~2);
         // Fields below may not be serialized due to flags field value
     }
 
@@ -59,7 +55,6 @@ public class TLChannelMessagesFilter extends TLAbsChannelMessagesFilter {
     @SuppressWarnings("unchecked")
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
         flags = readInt(stream);
-        importantOnly = (flags & 1) != 0;
         excludeNewMessages = (flags & 2) != 0;
         ranges = readTLVector(stream, context);
     }
@@ -84,14 +79,6 @@ public class TLChannelMessagesFilter extends TLAbsChannelMessagesFilter {
         return CONSTRUCTOR_ID;
     }
 
-    public boolean getImportantOnly() {
-        return importantOnly;
-    }
-
-    public void setImportantOnly(boolean importantOnly) {
-        this.importantOnly = importantOnly;
-    }
-
     public boolean getExcludeNewMessages() {
         return excludeNewMessages;
     }
@@ -106,5 +93,20 @@ public class TLChannelMessagesFilter extends TLAbsChannelMessagesFilter {
 
     public void setRanges(TLVector<TLMessageRange> ranges) {
         this.ranges = ranges;
+    }
+
+    @Override
+    public final boolean isEmpty() {
+        return false;
+    }
+
+    @Override
+    public final boolean isNotEmpty() {
+        return true;
+    }
+
+    @Override
+    public final TLChannelMessagesFilter getAsChannelMessagesFilter() {
+        return this;
     }
 }

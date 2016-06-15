@@ -51,14 +51,15 @@ public class TLRequestChannelsUpdatePinnedMessage extends TLMethod<TLAbsUpdates>
             throw new IOException("Unable to parse response");
         }
         if (!(response instanceof TLAbsUpdates)) {
-            throw new IOException("Incorrect response type, expected getClass().getCanonicalName(), found response.getClass().getCanonicalName()");
+            throw new IOException(
+                    "Incorrect response type, expected getClass().getCanonicalName(), found response.getClass().getCanonicalName()");
         }
         return (TLAbsUpdates) response;
     }
 
     private void computeFlags() {
         flags = 0;
-        flags = silent ? (flags | 1) : (flags &~ 1);
+        flags = silent ? (flags | 1) : (flags & ~1);
         // Fields below may not be serialized due to flags field value
     }
 
