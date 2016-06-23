@@ -1,6 +1,22 @@
 {
   "message": {
-    "_constructor": "messageEmpty#83e5de54",
+    "flags": 16416,
+    "out": false,
+    "mentioned": false,
+    "mediaUnread": true,
+    "silent": false,
+    "post": true,
+    "fromId": null,
+    "toId": {
+      "channelId": 0,
+      "_constructor": "peerChannel#bddde532"
+    },
+    "replyToMsgId": null,
+    "date": 0,
+    "action": {
+      "_constructor": "messageActionHistoryClear#9fbab604"
+    },
+    "_constructor": "messageService#9e19a1f6",
     "id": 0
   },
   "pts": 0,

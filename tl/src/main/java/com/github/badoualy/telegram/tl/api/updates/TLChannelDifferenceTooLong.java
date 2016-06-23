@@ -22,17 +22,15 @@ import static com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_INT32;
  * @see <a href="http://github.com/badoualy/kotlogram">http://github.com/badoualy/kotlogram</a>
  */
 public class TLChannelDifferenceTooLong extends TLAbsChannelDifference {
-    public static final int CONSTRUCTOR_ID = 0x5e167646;
+    public static final int CONSTRUCTOR_ID = 0x410dee07;
 
     protected int topMessage;
 
-    protected int topImportantMessage;
-
     protected int readInboxMaxId;
 
-    protected int unreadCount;
+    protected int readOutboxMaxId;
 
-    protected int unreadImportantCount;
+    protected int unreadCount;
 
     protected TLVector<TLAbsMessage> messages;
 
@@ -40,20 +38,19 @@ public class TLChannelDifferenceTooLong extends TLAbsChannelDifference {
 
     protected TLVector<TLAbsUser> users;
 
-    private final String _constructor = "updates.channelDifferenceTooLong#5e167646";
+    private final String _constructor = "updates.channelDifferenceTooLong#410dee07";
 
     public TLChannelDifferenceTooLong() {
     }
 
-    public TLChannelDifferenceTooLong(boolean _final, int pts, Integer timeout, int topMessage, int topImportantMessage, int readInboxMaxId, int unreadCount, int unreadImportantCount, TLVector<TLAbsMessage> messages, TLVector<TLAbsChat> chats, TLVector<TLAbsUser> users) {
+    public TLChannelDifferenceTooLong(boolean _final, int pts, Integer timeout, int topMessage, int readInboxMaxId, int readOutboxMaxId, int unreadCount, TLVector<TLAbsMessage> messages, TLVector<TLAbsChat> chats, TLVector<TLAbsUser> users) {
         this._final = _final;
         this.pts = pts;
         this.timeout = timeout;
         this.topMessage = topMessage;
-        this.topImportantMessage = topImportantMessage;
         this.readInboxMaxId = readInboxMaxId;
+        this.readOutboxMaxId = readOutboxMaxId;
         this.unreadCount = unreadCount;
-        this.unreadImportantCount = unreadImportantCount;
         this.messages = messages;
         this.chats = chats;
         this.users = users;
@@ -61,7 +58,7 @@ public class TLChannelDifferenceTooLong extends TLAbsChannelDifference {
 
     private void computeFlags() {
         flags = 0;
-        flags = _final ? (flags | 1) : (flags &~ 1);
+        flags = _final ? (flags | 1) : (flags & ~1);
         // Fields below may not be serialized due to flags field value
         if ((flags & 2) == 0) timeout = null;
     }
@@ -77,10 +74,9 @@ public class TLChannelDifferenceTooLong extends TLAbsChannelDifference {
             writeInt(timeout, stream);
         }
         writeInt(topMessage, stream);
-        writeInt(topImportantMessage, stream);
         writeInt(readInboxMaxId, stream);
+        writeInt(readOutboxMaxId, stream);
         writeInt(unreadCount, stream);
-        writeInt(unreadImportantCount, stream);
         writeTLVector(messages, stream);
         writeTLVector(chats, stream);
         writeTLVector(users, stream);
@@ -94,10 +90,9 @@ public class TLChannelDifferenceTooLong extends TLAbsChannelDifference {
         pts = readInt(stream);
         timeout = (flags & 2) != 0 ? readInt(stream) : null;
         topMessage = readInt(stream);
-        topImportantMessage = readInt(stream);
         readInboxMaxId = readInt(stream);
+        readOutboxMaxId = readInt(stream);
         unreadCount = readInt(stream);
-        unreadImportantCount = readInt(stream);
         messages = readTLVector(stream, context);
         chats = readTLVector(stream, context);
         users = readTLVector(stream, context);
@@ -114,7 +109,6 @@ public class TLChannelDifferenceTooLong extends TLAbsChannelDifference {
             if (timeout == null) throwNullFieldException("timeout", flags);
             size += SIZE_INT32;
         }
-        size += SIZE_INT32;
         size += SIZE_INT32;
         size += SIZE_INT32;
         size += SIZE_INT32;
@@ -167,14 +161,6 @@ public class TLChannelDifferenceTooLong extends TLAbsChannelDifference {
         this.topMessage = topMessage;
     }
 
-    public int getTopImportantMessage() {
-        return topImportantMessage;
-    }
-
-    public void setTopImportantMessage(int topImportantMessage) {
-        this.topImportantMessage = topImportantMessage;
-    }
-
     public int getReadInboxMaxId() {
         return readInboxMaxId;
     }
@@ -183,20 +169,20 @@ public class TLChannelDifferenceTooLong extends TLAbsChannelDifference {
         this.readInboxMaxId = readInboxMaxId;
     }
 
+    public int getReadOutboxMaxId() {
+        return readOutboxMaxId;
+    }
+
+    public void setReadOutboxMaxId(int readOutboxMaxId) {
+        this.readOutboxMaxId = readOutboxMaxId;
+    }
+
     public int getUnreadCount() {
         return unreadCount;
     }
 
     public void setUnreadCount(int unreadCount) {
         this.unreadCount = unreadCount;
-    }
-
-    public int getUnreadImportantCount() {
-        return unreadImportantCount;
-    }
-
-    public void setUnreadImportantCount(int unreadImportantCount) {
-        this.unreadImportantCount = unreadImportantCount;
     }
 
     public TLVector<TLAbsMessage> getMessages() {

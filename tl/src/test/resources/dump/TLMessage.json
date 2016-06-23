@@ -1,21 +1,20 @@
 {
-  "flags": 24609,
-  "unread": true,
+  "flags": 16384,
   "out": false,
   "mentioned": false,
-  "mediaUnread": true,
-  "silent": true,
+  "mediaUnread": false,
+  "silent": false,
   "post": true,
   "fromId": null,
   "toId": {
-    "channelId": 0,
-    "_constructor": "peerChannel#bddde532"
+    "chatId": 0,
+    "_constructor": "peerChat#bad0e5bb"
   },
   "fwdFrom": null,
   "viaBotId": null,
   "replyToMsgId": null,
   "date": 0,
-  "message": "obRHpiJRNfq",
+  "message": "rqc6u6JTa",
   "media": null,
   "replyMarkup": null,
   "entities": null,

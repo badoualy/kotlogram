@@ -1,19 +1,19 @@
 {
-  "flags": 1588,
-  "creator": false,
-  "kicked": false,
-  "left": true,
-  "editor": false,
+  "flags": 1467,
+  "creator": true,
+  "kicked": true,
+  "left": false,
+  "editor": true,
   "moderator": true,
   "broadcast": true,
-  "verified": false,
-  "megagroup": false,
-  "restricted": true,
+  "verified": true,
+  "megagroup": true,
+  "restricted": false,
   "democracy": true,
   "signatures": false,
   "min": false,
   "accessHash": null,
-  "title": "Zh4P5B2ZPwVnkSef3",
+  "title": "WbzO3YuYex30S58C",
   "username": null,
   "photo": {
     "photoSmall": {
@@ -32,7 +32,7 @@
   },
   "date": 0,
   "version": 0,
-  "restrictionReason": "cQzsz3zJsrcgdg",
+  "restrictionReason": null,
   "_constructor": "channel#a14dca52",
   "id": 0
 }

@@ -1,6 +1,9 @@
 {
+  "flags": 32,
+  "broadcast": true,
+  "megagroup": false,
   "accessHash": 0,
-  "title": "fflHtZ4h6mGvV02v4vOvfwGBVN",
-  "_constructor": "channelForbidden#2d85832c",
+  "title": "5UYexYKkaxeNEq8TLZ",
+  "_constructor": "channelForbidden#8537784f",
   "id": 0
 }

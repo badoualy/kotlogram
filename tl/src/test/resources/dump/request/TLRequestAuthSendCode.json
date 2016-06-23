@@ -1,10 +1,9 @@
 {
   "flags": 0,
   "allowFlashcall": false,
-  "phoneNumber": "QlYzqWlg079FP0eeC2sgVjG",
+  "phoneNumber": "XweT8mCPx0RDpzElletalAAehpJQ",
   "currentNumber": null,
   "apiId": 0,
-  "apiHash": "BMwgfdEfbeXsCt9WmPKTHT",
-  "langCode": "qq8uxWHnHP6wPUPcuyCtNO",
-  "_constructor": "auth.sendCode#ccfd70cf"
+  "apiHash": "zWdxiSzpo9iXmpuOzkGJa4",
+  "_constructor": "auth.sendCode#86aef0ec"
 }

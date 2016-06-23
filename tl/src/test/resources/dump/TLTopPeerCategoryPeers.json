@@ -1,0 +1,73 @@
+{
+  "category": {
+    "_constructor": "topPeerCategoryCorrespondents#637b7ed"
+  },
+  "count": 0,
+  "peers": [
+    {
+      "peer": {
+        "userId": 0,
+        "_constructor": "peerUser#9db1bc6d"
+      },
+      "rating": 0.0,
+      "_constructor": "topPeer#edcdc05b"
+    },
+    {
+      "peer": {
+        "chatId": 0,
+        "_constructor": "peerChat#bad0e5bb"
+      },
+      "rating": 0.0,
+      "_constructor": "topPeer#edcdc05b"
+    },
+    {
+      "peer": {
+        "userId": 0,
+        "_constructor": "peerUser#9db1bc6d"
+      },
+      "rating": 0.0,
+      "_constructor": "topPeer#edcdc05b"
+    },
+    {
+      "peer": {
+        "channelId": 0,
+        "_constructor": "peerChannel#bddde532"
+      },
+      "rating": 0.0,
+      "_constructor": "topPeer#edcdc05b"
+    },
+    {
+      "peer": {
+        "userId": 0,
+        "_constructor": "peerUser#9db1bc6d"
+      },
+      "rating": 0.0,
+      "_constructor": "topPeer#edcdc05b"
+    },
+    {
+      "peer": {
+        "userId": 0,
+        "_constructor": "peerUser#9db1bc6d"
+      },
+      "rating": 0.0,
+      "_constructor": "topPeer#edcdc05b"
+    },
+    {
+      "peer": {
+        "channelId": 0,
+        "_constructor": "peerChannel#bddde532"
+      },
+      "rating": 0.0,
+      "_constructor": "topPeer#edcdc05b"
+    },
+    {
+      "peer": {
+        "chatId": 0,
+        "_constructor": "peerChat#bad0e5bb"
+      },
+      "rating": 0.0,
+      "_constructor": "topPeer#edcdc05b"
+    }
+  ],
+  "_constructor": "topPeerCategoryPeers#fb834291"
+}

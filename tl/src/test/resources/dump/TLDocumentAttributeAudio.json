@@ -1,6 +1,6 @@
 {
-  "flags": 1024,
-  "voice": true,
+  "flags": 0,
+  "voice": false,
   "duration": 0,
   "title": null,
   "performer": null,

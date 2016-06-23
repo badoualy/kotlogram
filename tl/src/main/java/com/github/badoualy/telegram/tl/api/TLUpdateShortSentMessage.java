@@ -25,8 +25,6 @@ public class TLUpdateShortSentMessage extends TLAbsUpdates {
 
     protected int flags;
 
-    protected boolean unread;
-
     protected boolean out;
 
     protected int id;
@@ -46,8 +44,7 @@ public class TLUpdateShortSentMessage extends TLAbsUpdates {
     public TLUpdateShortSentMessage() {
     }
 
-    public TLUpdateShortSentMessage(boolean unread, boolean out, int id, int pts, int ptsCount, int date, TLAbsMessageMedia media, TLVector<TLAbsMessageEntity> entities) {
-        this.unread = unread;
+    public TLUpdateShortSentMessage(boolean out, int id, int pts, int ptsCount, int date, TLAbsMessageMedia media, TLVector<TLAbsMessageEntity> entities) {
         this.out = out;
         this.id = id;
         this.pts = pts;
@@ -59,8 +56,7 @@ public class TLUpdateShortSentMessage extends TLAbsUpdates {
 
     private void computeFlags() {
         flags = 0;
-        flags = unread ? (flags | 1) : (flags &~ 1);
-        flags = out ? (flags | 2) : (flags &~ 2);
+        flags = out ? (flags | 2) : (flags & ~2);
         // Fields below may not be serialized due to flags field value
         if ((flags & 512) == 0) media = null;
         if ((flags & 128) == 0) entities = null;
@@ -89,7 +85,6 @@ public class TLUpdateShortSentMessage extends TLAbsUpdates {
     @SuppressWarnings("unchecked")
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
         flags = readInt(stream);
-        unread = (flags & 1) != 0;
         out = (flags & 2) != 0;
         id = readInt(stream);
         pts = readInt(stream);
@@ -128,14 +123,6 @@ public class TLUpdateShortSentMessage extends TLAbsUpdates {
     @Override
     public int getConstructorId() {
         return CONSTRUCTOR_ID;
-    }
-
-    public boolean getUnread() {
-        return unread;
-    }
-
-    public void setUnread(boolean unread) {
-        this.unread = unread;
     }
 
     public boolean getOut() {

@@ -46,7 +46,7 @@ public class TLBotInlineMessageText extends TLAbsBotInlineMessage {
 
     private void computeFlags() {
         flags = 0;
-        flags = noWebpage ? (flags | 1) : (flags &~ 1);
+        flags = noWebpage ? (flags | 1) : (flags & ~1);
         // Fields below may not be serialized due to flags field value
         if ((flags & 2) == 0) entities = null;
         if ((flags & 4) == 0) replyMarkup = null;

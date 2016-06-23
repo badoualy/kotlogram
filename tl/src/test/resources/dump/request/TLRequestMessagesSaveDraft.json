@@ -1,0 +1,13 @@
+{
+  "flags": 2,
+  "noWebpage": true,
+  "replyToMsgId": null,
+  "peer": {
+    "channelId": 0,
+    "accessHash": 0,
+    "_constructor": "inputPeerChannel#20adaef8"
+  },
+  "message": "hIC2TXk4R0Iw",
+  "entities": null,
+  "_constructor": "messages.saveDraft#bc39e14b"
+}

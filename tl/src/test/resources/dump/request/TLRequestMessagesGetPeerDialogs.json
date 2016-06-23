@@ -1,0 +1,47 @@
+{
+  "peers": [
+    {
+      "chatId": 0,
+      "_constructor": "inputPeerChat#179be863"
+    },
+    {
+      "chatId": 0,
+      "_constructor": "inputPeerChat#179be863"
+    },
+    {
+      "_constructor": "inputPeerEmpty#7f3b18ea"
+    },
+    {
+      "_constructor": "inputPeerSelf#7da07ec9"
+    },
+    {
+      "_constructor": "inputPeerEmpty#7f3b18ea"
+    },
+    {
+      "chatId": 0,
+      "_constructor": "inputPeerChat#179be863"
+    },
+    {
+      "chatId": 0,
+      "_constructor": "inputPeerChat#179be863"
+    },
+    {
+      "chatId": 0,
+      "_constructor": "inputPeerChat#179be863"
+    },
+    {
+      "channelId": 0,
+      "accessHash": 0,
+      "_constructor": "inputPeerChannel#20adaef8"
+    },
+    {
+      "_constructor": "inputPeerSelf#7da07ec9"
+    },
+    {
+      "userId": 0,
+      "accessHash": 0,
+      "_constructor": "inputPeerUser#7b8e7de6"
+    }
+  ],
+  "_constructor": "messages.getPeerDialogs#2d9776b9"
+}

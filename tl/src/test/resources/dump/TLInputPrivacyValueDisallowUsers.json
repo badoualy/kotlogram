@@ -4,20 +4,13 @@
       "_constructor": "inputUserSelf#f7c1b13f"
     },
     {
-      "userId": 0,
-      "accessHash": 0,
-      "_constructor": "inputUser#d8292816"
-    },
-    {
       "_constructor": "inputUserSelf#f7c1b13f"
     },
     {
-      "_constructor": "inputUserSelf#f7c1b13f"
+      "_constructor": "inputUserEmpty#b98886cf"
     },
     {
-      "userId": 0,
-      "accessHash": 0,
-      "_constructor": "inputUser#d8292816"
+      "_constructor": "inputUserEmpty#b98886cf"
     },
     {
       "userId": 0,
@@ -33,10 +26,14 @@
       "_constructor": "inputUserEmpty#b98886cf"
     },
     {
-      "_constructor": "inputUserSelf#f7c1b13f"
+      "userId": 0,
+      "accessHash": 0,
+      "_constructor": "inputUser#d8292816"
     },
     {
-      "_constructor": "inputUserEmpty#b98886cf"
+      "userId": 0,
+      "accessHash": 0,
+      "_constructor": "inputUser#d8292816"
     },
     {
       "_constructor": "inputUserEmpty#b98886cf"

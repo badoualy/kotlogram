@@ -28,8 +28,6 @@ public class TLUpdateShortMessage extends TLAbsUpdates {
 
     protected int flags;
 
-    protected boolean unread;
-
     protected boolean out;
 
     protected boolean mentioned;
@@ -63,8 +61,7 @@ public class TLUpdateShortMessage extends TLAbsUpdates {
     public TLUpdateShortMessage() {
     }
 
-    public TLUpdateShortMessage(boolean unread, boolean out, boolean mentioned, boolean mediaUnread, boolean silent, int id, int userId, String message, int pts, int ptsCount, int date, TLMessageFwdHeader fwdFrom, Integer viaBotId, Integer replyToMsgId, TLVector<TLAbsMessageEntity> entities) {
-        this.unread = unread;
+    public TLUpdateShortMessage(boolean out, boolean mentioned, boolean mediaUnread, boolean silent, int id, int userId, String message, int pts, int ptsCount, int date, TLMessageFwdHeader fwdFrom, Integer viaBotId, Integer replyToMsgId, TLVector<TLAbsMessageEntity> entities) {
         this.out = out;
         this.mentioned = mentioned;
         this.mediaUnread = mediaUnread;
@@ -83,11 +80,10 @@ public class TLUpdateShortMessage extends TLAbsUpdates {
 
     private void computeFlags() {
         flags = 0;
-        flags = unread ? (flags | 1) : (flags &~ 1);
-        flags = out ? (flags | 2) : (flags &~ 2);
-        flags = mentioned ? (flags | 16) : (flags &~ 16);
-        flags = mediaUnread ? (flags | 32) : (flags &~ 32);
-        flags = silent ? (flags | 8192) : (flags &~ 8192);
+        flags = out ? (flags | 2) : (flags & ~2);
+        flags = mentioned ? (flags | 16) : (flags & ~16);
+        flags = mediaUnread ? (flags | 32) : (flags & ~32);
+        flags = silent ? (flags | 8192) : (flags & ~8192);
         // Fields below may not be serialized due to flags field value
         if ((flags & 4) == 0) fwdFrom = null;
         if ((flags & 2048) == 0) viaBotId = null;
@@ -128,7 +124,6 @@ public class TLUpdateShortMessage extends TLAbsUpdates {
     @SuppressWarnings("unchecked")
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
         flags = readInt(stream);
-        unread = (flags & 1) != 0;
         out = (flags & 2) != 0;
         mentioned = (flags & 16) != 0;
         mediaUnread = (flags & 32) != 0;
@@ -184,14 +179,6 @@ public class TLUpdateShortMessage extends TLAbsUpdates {
     @Override
     public int getConstructorId() {
         return CONSTRUCTOR_ID;
-    }
-
-    public boolean getUnread() {
-        return unread;
-    }
-
-    public void setUnread(boolean unread) {
-        this.unread = unread;
     }
 
     public boolean getOut() {

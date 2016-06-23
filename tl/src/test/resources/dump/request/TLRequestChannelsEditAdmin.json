@@ -5,7 +5,9 @@
     "_constructor": "inputChannel#afeb712e"
   },
   "userId": {
-    "_constructor": "inputUserSelf#f7c1b13f"
+    "userId": 0,
+    "accessHash": 0,
+    "_constructor": "inputUser#d8292816"
   },
   "role": {
     "_constructor": "channelRoleEditor#820bfe8c"

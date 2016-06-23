@@ -2,72 +2,18 @@
   "hash": 0,
   "gifs": [
     {
-      "accessHash": 0,
-      "date": 0,
-      "mimeType": "3yeG1Zpj1ptzsU1CuJYat27",
-      "size": 0,
-      "thumb": {
-        "_constructor": "photoSizeEmpty#e17e23c",
-        "type": "TuVCTInE8BSXdsbN"
-      },
-      "dcId": 0,
-      "attributes": [
-        {
-          "_constructor": "documentAttributeAnimated#11b58939"
-        },
-        {
-          "_constructor": "documentAttributeAnimated#11b58939"
-        },
-        {
-          "duration": 0,
-          "w": 0,
-          "h": 0,
-          "_constructor": "documentAttributeVideo#5910cccb"
-        },
-        {
-          "duration": 0,
-          "w": 0,
-          "h": 0,
-          "_constructor": "documentAttributeVideo#5910cccb"
-        },
-        {
-          "_constructor": "documentAttributeAnimated#11b58939"
-        },
-        {
-          "alt": "C3SIT7fU1p12wdlHyOFME",
-          "stickerset": {
-            "id": 0,
-            "accessHash": 0,
-            "_constructor": "inputStickerSetID#9de7a269"
-          },
-          "_constructor": "documentAttributeSticker#3a556302"
-        },
-        {
-          "w": 0,
-          "h": 0,
-          "_constructor": "documentAttributeImageSize#6c37c15c"
-        },
-        {
-          "w": 0,
-          "h": 0,
-          "_constructor": "documentAttributeImageSize#6c37c15c"
-        },
-        {
-          "fileName": "kinpYndW3s",
-          "_constructor": "documentAttributeFilename#15590068"
-        }
-      ],
-      "_constructor": "document#f9a39f4f",
+      "_constructor": "documentEmpty#36f8c871",
       "id": 0
     },
     {
       "accessHash": 0,
       "date": 0,
-      "mimeType": "66DaIhe1sC",
+      "mimeType": "o5nYK6ey0X6",
       "size": 0,
       "thumb": {
         "location": {
-          "_constructor": "fileLocationUnavailable#7c596b46",
+          "dcId": 0,
+          "_constructor": "fileLocation#53d69076",
           "volumeId": 0,
           "localId": 0,
           "secret": 0
@@ -293,22 +239,42 @@
             0,
             0,
             0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
             0
           ],
           "offset": 0,
-          "len": 218
+          "len": 228
         },
         "_constructor": "photoCachedSize#e9a734fa",
-        "type": "nxWDMfTxfOLIUYRJfZyEuAICudyF"
+        "type": "0fzON41I2o"
       },
       "dcId": 0,
       "attributes": [
         {
-          "alt": "BUc7hsS17p9Z7HuLItVkZSaLO",
+          "alt": "pek9CAkIkZ02",
           "stickerset": {
             "_constructor": "inputStickerSetEmpty#ffb62b95"
           },
           "_constructor": "documentAttributeSticker#3a556302"
+        },
+        {
+          "duration": 0,
+          "w": 0,
+          "h": 0,
+          "_constructor": "documentAttributeVideo#5910cccb"
+        },
+        {
+          "fileName": "RaqKM",
+          "_constructor": "documentAttributeFilename#15590068"
         },
         {
           "w": 0,
@@ -316,11 +282,14 @@
           "_constructor": "documentAttributeImageSize#6c37c15c"
         },
         {
-          "alt": "PUpp8F3dJmj4EKp",
-          "stickerset": {
-            "_constructor": "inputStickerSetEmpty#ffb62b95"
-          },
-          "_constructor": "documentAttributeSticker#3a556302"
+          "w": 0,
+          "h": 0,
+          "_constructor": "documentAttributeImageSize#6c37c15c"
+        },
+        {
+          "w": 0,
+          "h": 0,
+          "_constructor": "documentAttributeImageSize#6c37c15c"
         },
         {
           "flags": 0,
@@ -330,119 +299,18 @@
           "performer": null,
           "waveform": null,
           "_constructor": "documentAttributeAudio#9852f9c6"
-        }
-      ],
-      "_constructor": "document#f9a39f4f",
-      "id": 0
-    },
-    {
-      "_constructor": "documentEmpty#36f8c871",
-      "id": 0
-    },
-    {
-      "accessHash": 0,
-      "date": 0,
-      "mimeType": "NZRZUlJQZ0GqmGqq4GFb",
-      "size": 0,
-      "thumb": {
-        "_constructor": "photoSizeEmpty#e17e23c",
-        "type": "E61Y59S3OP"
-      },
-      "dcId": 0,
-      "attributes": [
-        {
-          "w": 0,
-          "h": 0,
-          "_constructor": "documentAttributeImageSize#6c37c15c"
         },
         {
-          "alt": "aL9Xd6i26Kbmha19TyPq",
-          "stickerset": {
-            "shortName": "88H0fadn3En977ZFOyfSNdJMX",
-            "_constructor": "inputStickerSetShortName#861cc8a0"
-          },
-          "_constructor": "documentAttributeSticker#3a556302"
-        },
-        {
-          "fileName": "qdlAr2",
-          "_constructor": "documentAttributeFilename#15590068"
-        },
-        {
-          "w": 0,
-          "h": 0,
-          "_constructor": "documentAttributeImageSize#6c37c15c"
-        },
-        {
-          "w": 0,
-          "h": 0,
-          "_constructor": "documentAttributeImageSize#6c37c15c"
-        },
-        {
-          "w": 0,
-          "h": 0,
-          "_constructor": "documentAttributeImageSize#6c37c15c"
-        },
-        {
+          "flags": 1024,
+          "voice": true,
           "duration": 0,
-          "w": 0,
-          "h": 0,
-          "_constructor": "documentAttributeVideo#5910cccb"
+          "title": null,
+          "performer": null,
+          "waveform": null,
+          "_constructor": "documentAttributeAudio#9852f9c6"
         }
       ],
       "_constructor": "document#f9a39f4f",
-      "id": 0
-    },
-    {
-      "_constructor": "documentEmpty#36f8c871",
-      "id": 0
-    },
-    {
-      "accessHash": 0,
-      "date": 0,
-      "mimeType": "Eew1EbytrvkmKZQ6ma",
-      "size": 0,
-      "thumb": {
-        "location": {
-          "_constructor": "fileLocationUnavailable#7c596b46",
-          "volumeId": 0,
-          "localId": 0,
-          "secret": 0
-        },
-        "w": 0,
-        "h": 0,
-        "size": 0,
-        "_constructor": "photoSize#77bfb61b",
-        "type": "mpSgIHBhPHc3hRyccEV25C8s"
-      },
-      "dcId": 0,
-      "attributes": [
-        {
-          "_constructor": "documentAttributeAnimated#11b58939"
-        },
-        {
-          "_constructor": "documentAttributeAnimated#11b58939"
-        },
-        {
-          "fileName": "8re0sJKnTz",
-          "_constructor": "documentAttributeFilename#15590068"
-        },
-        {
-          "_constructor": "documentAttributeAnimated#11b58939"
-        },
-        {
-          "alt": "GbsLMdvUyFRT",
-          "stickerset": {
-            "shortName": "3rKGpSgKDlZBl",
-            "_constructor": "inputStickerSetShortName#861cc8a0"
-          },
-          "_constructor": "documentAttributeSticker#3a556302"
-        }
-      ],
-      "_constructor": "document#f9a39f4f",
-      "id": 0
-    },
-    {
-      "_constructor": "documentEmpty#36f8c871",
       "id": 0
     }
   ],

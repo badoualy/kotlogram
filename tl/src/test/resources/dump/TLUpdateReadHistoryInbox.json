@@ -1,7 +1,7 @@
 {
   "peer": {
-    "channelId": 0,
-    "_constructor": "peerChannel#bddde532"
+    "chatId": 0,
+    "_constructor": "peerChat#bad0e5bb"
   },
   "maxId": 0,
   "pts": 0,

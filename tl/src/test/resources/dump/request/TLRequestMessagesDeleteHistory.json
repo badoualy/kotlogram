@@ -1,8 +1,11 @@
 {
+  "flags": 1,
+  "justClear": true,
   "peer": {
-    "chatId": 0,
-    "_constructor": "inputPeerChat#179be863"
+    "channelId": 0,
+    "accessHash": 0,
+    "_constructor": "inputPeerChannel#20adaef8"
   },
   "maxId": 0,
-  "_constructor": "messages.deleteHistory#b7c13bd9"
+  "_constructor": "messages.deleteHistory#1c015b09"
 }

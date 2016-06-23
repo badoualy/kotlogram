@@ -31,8 +31,6 @@ public class TLRequestMessagesForwardMessages extends TLMethod<TLAbsUpdates> {
 
     protected int flags;
 
-    protected boolean broadcast;
-
     protected boolean silent;
 
     protected boolean background;
@@ -50,8 +48,7 @@ public class TLRequestMessagesForwardMessages extends TLMethod<TLAbsUpdates> {
     public TLRequestMessagesForwardMessages() {
     }
 
-    public TLRequestMessagesForwardMessages(boolean broadcast, boolean silent, boolean background, TLAbsInputPeer fromPeer, TLIntVector id, TLLongVector randomId, TLAbsInputPeer toPeer) {
-        this.broadcast = broadcast;
+    public TLRequestMessagesForwardMessages(boolean silent, boolean background, TLAbsInputPeer fromPeer, TLIntVector id, TLLongVector randomId, TLAbsInputPeer toPeer) {
         this.silent = silent;
         this.background = background;
         this.fromPeer = fromPeer;
@@ -68,16 +65,16 @@ public class TLRequestMessagesForwardMessages extends TLMethod<TLAbsUpdates> {
             throw new IOException("Unable to parse response");
         }
         if (!(response instanceof TLAbsUpdates)) {
-            throw new IOException("Incorrect response type, expected getClass().getCanonicalName(), found response.getClass().getCanonicalName()");
+            throw new IOException(
+                    "Incorrect response type, expected getClass().getCanonicalName(), found response.getClass().getCanonicalName()");
         }
         return (TLAbsUpdates) response;
     }
 
     private void computeFlags() {
         flags = 0;
-        flags = broadcast ? (flags | 16) : (flags &~ 16);
-        flags = silent ? (flags | 32) : (flags &~ 32);
-        flags = background ? (flags | 64) : (flags &~ 64);
+        flags = silent ? (flags | 32) : (flags & ~32);
+        flags = background ? (flags | 64) : (flags & ~64);
         // Fields below may not be serialized due to flags field value
     }
 
@@ -96,7 +93,6 @@ public class TLRequestMessagesForwardMessages extends TLMethod<TLAbsUpdates> {
     @SuppressWarnings("unchecked")
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
         flags = readInt(stream);
-        broadcast = (flags & 16) != 0;
         silent = (flags & 32) != 0;
         background = (flags & 64) != 0;
         fromPeer = readTLObject(stream, context, TLAbsInputPeer.class, -1);
@@ -126,14 +122,6 @@ public class TLRequestMessagesForwardMessages extends TLMethod<TLAbsUpdates> {
     @Override
     public int getConstructorId() {
         return CONSTRUCTOR_ID;
-    }
-
-    public boolean getBroadcast() {
-        return broadcast;
-    }
-
-    public void setBroadcast(boolean broadcast) {
-        this.broadcast = broadcast;
     }
 
     public boolean getSilent() {

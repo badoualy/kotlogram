@@ -55,15 +55,16 @@ public class TLRequestChannelsCreateChannel extends TLMethod<TLAbsUpdates> {
             throw new IOException("Unable to parse response");
         }
         if (!(response instanceof TLAbsUpdates)) {
-            throw new IOException("Incorrect response type, expected getClass().getCanonicalName(), found response.getClass().getCanonicalName()");
+            throw new IOException(
+                    "Incorrect response type, expected getClass().getCanonicalName(), found response.getClass().getCanonicalName()");
         }
         return (TLAbsUpdates) response;
     }
 
     private void computeFlags() {
         flags = 0;
-        flags = broadcast ? (flags | 1) : (flags &~ 1);
-        flags = megagroup ? (flags | 2) : (flags &~ 2);
+        flags = broadcast ? (flags | 1) : (flags & ~1);
+        flags = megagroup ? (flags | 2) : (flags & ~2);
         // Fields below may not be serialized due to flags field value
     }
 

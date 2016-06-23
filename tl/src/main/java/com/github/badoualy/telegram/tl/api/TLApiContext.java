@@ -27,6 +27,8 @@ import com.github.badoualy.telegram.tl.api.contacts.TLFound;
 import com.github.badoualy.telegram.tl.api.contacts.TLImportedContacts;
 import com.github.badoualy.telegram.tl.api.contacts.TLLink;
 import com.github.badoualy.telegram.tl.api.contacts.TLResolvedPeer;
+import com.github.badoualy.telegram.tl.api.contacts.TLTopPeers;
+import com.github.badoualy.telegram.tl.api.contacts.TLTopPeersNotModified;
 import com.github.badoualy.telegram.tl.api.help.TLAppChangelog;
 import com.github.badoualy.telegram.tl.api.help.TLAppChangelogEmpty;
 import com.github.badoualy.telegram.tl.api.help.TLAppUpdate;
@@ -50,6 +52,7 @@ import com.github.badoualy.telegram.tl.api.messages.TLFoundGifs;
 import com.github.badoualy.telegram.tl.api.messages.TLMessageEditData;
 import com.github.badoualy.telegram.tl.api.messages.TLMessages;
 import com.github.badoualy.telegram.tl.api.messages.TLMessagesSlice;
+import com.github.badoualy.telegram.tl.api.messages.TLPeerDialogs;
 import com.github.badoualy.telegram.tl.api.messages.TLSavedGifs;
 import com.github.badoualy.telegram.tl.api.messages.TLSavedGifsNotModified;
 import com.github.badoualy.telegram.tl.api.messages.TLSentEncryptedFile;
@@ -86,7 +89,7 @@ public class TLApiContext extends TLContext {
     private static TLApiContext instance;
 
     public TLApiContext() {
-        super(405);
+        super(419);
     }
 
     public static TLApiContext getInstance() {
@@ -105,7 +108,8 @@ public class TLApiContext extends TLContext {
         registerClass(TLPasswordSettings.CONSTRUCTOR_ID, TLPasswordSettings.class);
         registerClass(TLPrivacyRules.CONSTRUCTOR_ID, TLPrivacyRules.class);
         registerClass(TLAccountDaysTTL.CONSTRUCTOR_ID, TLAccountDaysTTL.class);
-        registerClass(com.github.badoualy.telegram.tl.api.auth.TLAuthorization.CONSTRUCTOR_ID, com.github.badoualy.telegram.tl.api.auth.TLAuthorization.class);
+        registerClass(com.github.badoualy.telegram.tl.api.auth.TLAuthorization.CONSTRUCTOR_ID,
+                      com.github.badoualy.telegram.tl.api.auth.TLAuthorization.class);
         registerClass(TLCheckedPhone.CONSTRUCTOR_ID, TLCheckedPhone.class);
         registerClass(TLCodeTypeCall.CONSTRUCTOR_ID, TLCodeTypeCall.class);
         registerClass(TLCodeTypeFlashCall.CONSTRUCTOR_ID, TLCodeTypeFlashCall.class);
@@ -131,7 +135,6 @@ public class TLApiContext extends TLContext {
         registerClass(TLChannelForbidden.CONSTRUCTOR_ID, TLChannelForbidden.class);
         registerClass(TLChannelFull.CONSTRUCTOR_ID, TLChannelFull.class);
         registerClass(TLChannelMessagesFilter.CONSTRUCTOR_ID, TLChannelMessagesFilter.class);
-        registerClass(TLChannelMessagesFilterCollapsed.CONSTRUCTOR_ID, TLChannelMessagesFilterCollapsed.class);
         registerClass(TLChannelMessagesFilterEmpty.CONSTRUCTOR_ID, TLChannelMessagesFilterEmpty.class);
         registerClass(TLChannelParticipant.CONSTRUCTOR_ID, TLChannelParticipant.class);
         registerClass(TLChannelParticipantCreator.CONSTRUCTOR_ID, TLChannelParticipantCreator.class);
@@ -146,7 +149,8 @@ public class TLApiContext extends TLContext {
         registerClass(TLChannelRoleEditor.CONSTRUCTOR_ID, TLChannelRoleEditor.class);
         registerClass(TLChannelRoleEmpty.CONSTRUCTOR_ID, TLChannelRoleEmpty.class);
         registerClass(TLChannelRoleModerator.CONSTRUCTOR_ID, TLChannelRoleModerator.class);
-        registerClass(com.github.badoualy.telegram.tl.api.channels.TLChannelParticipant.CONSTRUCTOR_ID, com.github.badoualy.telegram.tl.api.channels.TLChannelParticipant.class);
+        registerClass(com.github.badoualy.telegram.tl.api.channels.TLChannelParticipant.CONSTRUCTOR_ID,
+                      com.github.badoualy.telegram.tl.api.channels.TLChannelParticipant.class);
         registerClass(TLChannelParticipants.CONSTRUCTOR_ID, TLChannelParticipants.class);
         registerClass(TLChat.CONSTRUCTOR_ID, TLChat.class);
         registerClass(TLChatEmpty.CONSTRUCTOR_ID, TLChatEmpty.class);
@@ -179,9 +183,10 @@ public class TLApiContext extends TLContext {
         registerClass(TLImportedContacts.CONSTRUCTOR_ID, TLImportedContacts.class);
         registerClass(TLLink.CONSTRUCTOR_ID, TLLink.class);
         registerClass(TLResolvedPeer.CONSTRUCTOR_ID, TLResolvedPeer.class);
+        registerClass(TLTopPeers.CONSTRUCTOR_ID, TLTopPeers.class);
+        registerClass(TLTopPeersNotModified.CONSTRUCTOR_ID, TLTopPeersNotModified.class);
         registerClass(TLDcOption.CONSTRUCTOR_ID, TLDcOption.class);
         registerClass(TLDialog.CONSTRUCTOR_ID, TLDialog.class);
-        registerClass(TLDialogChannel.CONSTRUCTOR_ID, TLDialogChannel.class);
         registerClass(TLDisabledFeature.CONSTRUCTOR_ID, TLDisabledFeature.class);
         registerClass(TLDocument.CONSTRUCTOR_ID, TLDocument.class);
         registerClass(TLDocumentAttributeAnimated.CONSTRUCTOR_ID, TLDocumentAttributeAnimated.class);
@@ -191,6 +196,8 @@ public class TLApiContext extends TLContext {
         registerClass(TLDocumentAttributeSticker.CONSTRUCTOR_ID, TLDocumentAttributeSticker.class);
         registerClass(TLDocumentAttributeVideo.CONSTRUCTOR_ID, TLDocumentAttributeVideo.class);
         registerClass(TLDocumentEmpty.CONSTRUCTOR_ID, TLDocumentEmpty.class);
+        registerClass(TLDraftMessage.CONSTRUCTOR_ID, TLDraftMessage.class);
+        registerClass(TLDraftMessageEmpty.CONSTRUCTOR_ID, TLDraftMessageEmpty.class);
         registerClass(TLEncryptedChat.CONSTRUCTOR_ID, TLEncryptedChat.class);
         registerClass(TLEncryptedChatDiscarded.CONSTRUCTOR_ID, TLEncryptedChatDiscarded.class);
         registerClass(TLEncryptedChatEmpty.CONSTRUCTOR_ID, TLEncryptedChatEmpty.class);
@@ -255,6 +262,8 @@ public class TLApiContext extends TLContext {
         registerClass(TLInputMediaUploadedPhoto.CONSTRUCTOR_ID, TLInputMediaUploadedPhoto.class);
         registerClass(TLInputMediaUploadedThumbDocument.CONSTRUCTOR_ID, TLInputMediaUploadedThumbDocument.class);
         registerClass(TLInputMediaVenue.CONSTRUCTOR_ID, TLInputMediaVenue.class);
+        registerClass(TLInputMessageEntityMentionName.CONSTRUCTOR_ID, TLInputMessageEntityMentionName.class);
+        registerClass(TLInputMessagesFilterChatPhotos.CONSTRUCTOR_ID, TLInputMessagesFilterChatPhotos.class);
         registerClass(TLInputMessagesFilterDocument.CONSTRUCTOR_ID, TLInputMessagesFilterDocument.class);
         registerClass(TLInputMessagesFilterEmpty.CONSTRUCTOR_ID, TLInputMessagesFilterEmpty.class);
         registerClass(TLInputMessagesFilterGif.CONSTRUCTOR_ID, TLInputMessagesFilterGif.class);
@@ -319,6 +328,7 @@ public class TLApiContext extends TLContext {
         registerClass(TLMessageActionChatJoinedByLink.CONSTRUCTOR_ID, TLMessageActionChatJoinedByLink.class);
         registerClass(TLMessageActionChatMigrateTo.CONSTRUCTOR_ID, TLMessageActionChatMigrateTo.class);
         registerClass(TLMessageActionEmpty.CONSTRUCTOR_ID, TLMessageActionEmpty.class);
+        registerClass(TLMessageActionHistoryClear.CONSTRUCTOR_ID, TLMessageActionHistoryClear.class);
         registerClass(TLMessageActionPinMessage.CONSTRUCTOR_ID, TLMessageActionPinMessage.class);
         registerClass(TLMessageEmpty.CONSTRUCTOR_ID, TLMessageEmpty.class);
         registerClass(TLMessageEntityBold.CONSTRUCTOR_ID, TLMessageEntityBold.class);
@@ -328,12 +338,12 @@ public class TLApiContext extends TLContext {
         registerClass(TLMessageEntityHashtag.CONSTRUCTOR_ID, TLMessageEntityHashtag.class);
         registerClass(TLMessageEntityItalic.CONSTRUCTOR_ID, TLMessageEntityItalic.class);
         registerClass(TLMessageEntityMention.CONSTRUCTOR_ID, TLMessageEntityMention.class);
+        registerClass(TLMessageEntityMentionName.CONSTRUCTOR_ID, TLMessageEntityMentionName.class);
         registerClass(TLMessageEntityPre.CONSTRUCTOR_ID, TLMessageEntityPre.class);
         registerClass(TLMessageEntityTextUrl.CONSTRUCTOR_ID, TLMessageEntityTextUrl.class);
         registerClass(TLMessageEntityUnknown.CONSTRUCTOR_ID, TLMessageEntityUnknown.class);
         registerClass(TLMessageEntityUrl.CONSTRUCTOR_ID, TLMessageEntityUrl.class);
         registerClass(TLMessageFwdHeader.CONSTRUCTOR_ID, TLMessageFwdHeader.class);
-        registerClass(TLMessageGroup.CONSTRUCTOR_ID, TLMessageGroup.class);
         registerClass(TLMessageMediaContact.CONSTRUCTOR_ID, TLMessageMediaContact.class);
         registerClass(TLMessageMediaDocument.CONSTRUCTOR_ID, TLMessageMediaDocument.class);
         registerClass(TLMessageMediaEmpty.CONSTRUCTOR_ID, TLMessageMediaEmpty.class);
@@ -351,7 +361,8 @@ public class TLApiContext extends TLContext {
         registerClass(TLBotCallbackAnswer.CONSTRUCTOR_ID, TLBotCallbackAnswer.class);
         registerClass(TLBotResults.CONSTRUCTOR_ID, TLBotResults.class);
         registerClass(TLChannelMessages.CONSTRUCTOR_ID, TLChannelMessages.class);
-        registerClass(com.github.badoualy.telegram.tl.api.messages.TLChatFull.CONSTRUCTOR_ID, com.github.badoualy.telegram.tl.api.messages.TLChatFull.class);
+        registerClass(com.github.badoualy.telegram.tl.api.messages.TLChatFull.CONSTRUCTOR_ID,
+                      com.github.badoualy.telegram.tl.api.messages.TLChatFull.class);
         registerClass(TLChats.CONSTRUCTOR_ID, TLChats.class);
         registerClass(TLDhConfig.CONSTRUCTOR_ID, TLDhConfig.class);
         registerClass(TLDhConfigNotModified.CONSTRUCTOR_ID, TLDhConfigNotModified.class);
@@ -361,11 +372,13 @@ public class TLApiContext extends TLContext {
         registerClass(TLMessageEditData.CONSTRUCTOR_ID, TLMessageEditData.class);
         registerClass(TLMessages.CONSTRUCTOR_ID, TLMessages.class);
         registerClass(TLMessagesSlice.CONSTRUCTOR_ID, TLMessagesSlice.class);
+        registerClass(TLPeerDialogs.CONSTRUCTOR_ID, TLPeerDialogs.class);
         registerClass(TLSavedGifs.CONSTRUCTOR_ID, TLSavedGifs.class);
         registerClass(TLSavedGifsNotModified.CONSTRUCTOR_ID, TLSavedGifsNotModified.class);
         registerClass(TLSentEncryptedFile.CONSTRUCTOR_ID, TLSentEncryptedFile.class);
         registerClass(TLSentEncryptedMessage.CONSTRUCTOR_ID, TLSentEncryptedMessage.class);
-        registerClass(com.github.badoualy.telegram.tl.api.messages.TLStickerSet.CONSTRUCTOR_ID, com.github.badoualy.telegram.tl.api.messages.TLStickerSet.class);
+        registerClass(com.github.badoualy.telegram.tl.api.messages.TLStickerSet.CONSTRUCTOR_ID,
+                      com.github.badoualy.telegram.tl.api.messages.TLStickerSet.class);
         registerClass(TLStickers.CONSTRUCTOR_ID, TLStickers.class);
         registerClass(TLStickersNotModified.CONSTRUCTOR_ID, TLStickersNotModified.class);
         registerClass(TLNearestDc.CONSTRUCTOR_ID, TLNearestDc.class);
@@ -386,7 +399,8 @@ public class TLApiContext extends TLContext {
         registerClass(TLPhotoEmpty.CONSTRUCTOR_ID, TLPhotoEmpty.class);
         registerClass(TLPhotoSize.CONSTRUCTOR_ID, TLPhotoSize.class);
         registerClass(TLPhotoSizeEmpty.CONSTRUCTOR_ID, TLPhotoSizeEmpty.class);
-        registerClass(com.github.badoualy.telegram.tl.api.photos.TLPhoto.CONSTRUCTOR_ID, com.github.badoualy.telegram.tl.api.photos.TLPhoto.class);
+        registerClass(com.github.badoualy.telegram.tl.api.photos.TLPhoto.CONSTRUCTOR_ID,
+                      com.github.badoualy.telegram.tl.api.photos.TLPhoto.class);
         registerClass(TLPhotos.CONSTRUCTOR_ID, TLPhotos.class);
         registerClass(TLPhotosSlice.CONSTRUCTOR_ID, TLPhotosSlice.class);
         registerClass(TLPrivacyKeyChatInvite.CONSTRUCTOR_ID, TLPrivacyKeyChatInvite.class);
@@ -424,11 +438,17 @@ public class TLApiContext extends TLContext {
         registerClass(TLFilePng.CONSTRUCTOR_ID, TLFilePng.class);
         registerClass(TLFileUnknown.CONSTRUCTOR_ID, TLFileUnknown.class);
         registerClass(TLFileWebp.CONSTRUCTOR_ID, TLFileWebp.class);
+        registerClass(TLTopPeer.CONSTRUCTOR_ID, TLTopPeer.class);
+        registerClass(TLTopPeerCategoryBotsInline.CONSTRUCTOR_ID, TLTopPeerCategoryBotsInline.class);
+        registerClass(TLTopPeerCategoryBotsPM.CONSTRUCTOR_ID, TLTopPeerCategoryBotsPM.class);
+        registerClass(TLTopPeerCategoryChannels.CONSTRUCTOR_ID, TLTopPeerCategoryChannels.class);
+        registerClass(TLTopPeerCategoryCorrespondents.CONSTRUCTOR_ID, TLTopPeerCategoryCorrespondents.class);
+        registerClass(TLTopPeerCategoryGroups.CONSTRUCTOR_ID, TLTopPeerCategoryGroups.class);
+        registerClass(TLTopPeerCategoryPeers.CONSTRUCTOR_ID, TLTopPeerCategoryPeers.class);
         registerClass(TLUpdateBotCallbackQuery.CONSTRUCTOR_ID, TLUpdateBotCallbackQuery.class);
         registerClass(TLUpdateBotInlineQuery.CONSTRUCTOR_ID, TLUpdateBotInlineQuery.class);
         registerClass(TLUpdateBotInlineSend.CONSTRUCTOR_ID, TLUpdateBotInlineSend.class);
         registerClass(TLUpdateChannel.CONSTRUCTOR_ID, TLUpdateChannel.class);
-        registerClass(TLUpdateChannelGroup.CONSTRUCTOR_ID, TLUpdateChannelGroup.class);
         registerClass(TLUpdateChannelMessageViews.CONSTRUCTOR_ID, TLUpdateChannelMessageViews.class);
         registerClass(TLUpdateChannelPinnedMessage.CONSTRUCTOR_ID, TLUpdateChannelPinnedMessage.class);
         registerClass(TLUpdateChannelTooLong.CONSTRUCTOR_ID, TLUpdateChannelTooLong.class);
@@ -443,6 +463,7 @@ public class TLApiContext extends TLContext {
         registerClass(TLUpdateDcOptions.CONSTRUCTOR_ID, TLUpdateDcOptions.class);
         registerClass(TLUpdateDeleteChannelMessages.CONSTRUCTOR_ID, TLUpdateDeleteChannelMessages.class);
         registerClass(TLUpdateDeleteMessages.CONSTRUCTOR_ID, TLUpdateDeleteMessages.class);
+        registerClass(TLUpdateDraftMessage.CONSTRUCTOR_ID, TLUpdateDraftMessage.class);
         registerClass(TLUpdateEditChannelMessage.CONSTRUCTOR_ID, TLUpdateEditChannelMessage.class);
         registerClass(TLUpdateEditMessage.CONSTRUCTOR_ID, TLUpdateEditMessage.class);
         registerClass(TLUpdateEncryptedChatTyping.CONSTRUCTOR_ID, TLUpdateEncryptedChatTyping.class);
@@ -458,6 +479,7 @@ public class TLApiContext extends TLContext {
         registerClass(TLUpdateNotifySettings.CONSTRUCTOR_ID, TLUpdateNotifySettings.class);
         registerClass(TLUpdatePrivacy.CONSTRUCTOR_ID, TLUpdatePrivacy.class);
         registerClass(TLUpdateReadChannelInbox.CONSTRUCTOR_ID, TLUpdateReadChannelInbox.class);
+        registerClass(TLUpdateReadChannelOutbox.CONSTRUCTOR_ID, TLUpdateReadChannelOutbox.class);
         registerClass(TLUpdateReadHistoryInbox.CONSTRUCTOR_ID, TLUpdateReadHistoryInbox.class);
         registerClass(TLUpdateReadHistoryOutbox.CONSTRUCTOR_ID, TLUpdateReadHistoryOutbox.class);
         registerClass(TLUpdateReadMessagesContents.CONSTRUCTOR_ID, TLUpdateReadMessagesContents.class);

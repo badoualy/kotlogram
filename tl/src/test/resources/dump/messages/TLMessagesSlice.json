@@ -3,52 +3,9 @@
   "_constructor": "messages.messagesSlice#b446ae3",
   "messages": [
     {
-      "flags": 50,
-      "unread": false,
-      "out": true,
-      "mentioned": true,
-      "mediaUnread": true,
-      "silent": false,
-      "post": false,
-      "fromId": null,
-      "toId": {
-        "userId": 0,
-        "_constructor": "peerUser#9db1bc6d"
-      },
-      "replyToMsgId": null,
-      "date": 0,
-      "action": {
-        "_constructor": "messageActionPinMessage#94bd38ed"
-      },
-      "_constructor": "messageService#9e19a1f6",
-      "id": 0
-    },
-    {
-      "flags": 0,
-      "unread": false,
+      "flags": 8208,
       "out": false,
-      "mentioned": false,
-      "mediaUnread": false,
-      "silent": false,
-      "post": false,
-      "fromId": null,
-      "toId": {
-        "channelId": 0,
-        "_constructor": "peerChannel#bddde532"
-      },
-      "replyToMsgId": null,
-      "date": 0,
-      "action": {
-        "_constructor": "messageActionEmpty#b6aef7b0"
-      },
-      "_constructor": "messageService#9e19a1f6",
-      "id": 0
-    },
-    {
-      "flags": 8194,
-      "unread": false,
-      "out": true,
-      "mentioned": false,
+      "mentioned": true,
       "mediaUnread": false,
       "silent": true,
       "post": false,
@@ -60,123 +17,35 @@
       "replyToMsgId": null,
       "date": 0,
       "action": {
-        "_constructor": "messageActionEmpty#b6aef7b0"
+        "channelId": 0,
+        "_constructor": "messageActionChatMigrateTo#51bdb021"
       },
       "_constructor": "messageService#9e19a1f6",
       "id": 0
     },
     {
-      "_constructor": "messageEmpty#83e5de54",
-      "id": 0
-    },
-    {
-      "flags": 0,
-      "unread": false,
-      "out": false,
-      "mentioned": false,
-      "mediaUnread": false,
-      "silent": false,
-      "post": false,
-      "fromId": null,
-      "toId": {
-        "chatId": 0,
-        "_constructor": "peerChat#bad0e5bb"
-      },
-      "fwdFrom": null,
-      "viaBotId": null,
-      "replyToMsgId": null,
-      "date": 0,
-      "message": "JIUvPDlLmcuyXzRKyuSsF8d",
-      "media": null,
-      "replyMarkup": null,
-      "entities": null,
-      "views": null,
-      "editDate": null,
-      "_constructor": "message#c09be45f",
-      "id": 0
-    },
-    {
-      "flags": 16416,
-      "unread": false,
-      "out": false,
-      "mentioned": false,
-      "mediaUnread": true,
-      "silent": false,
-      "post": true,
-      "fromId": null,
-      "toId": {
-        "chatId": 0,
-        "_constructor": "peerChat#bad0e5bb"
-      },
-      "fwdFrom": null,
-      "viaBotId": null,
-      "replyToMsgId": null,
-      "date": 0,
-      "message": "ATZSejCL4yPWEV",
-      "media": null,
-      "replyMarkup": null,
-      "entities": null,
-      "views": null,
-      "editDate": null,
-      "_constructor": "message#c09be45f",
-      "id": 0
-    },
-    {
-      "_constructor": "messageEmpty#83e5de54",
-      "id": 0
-    },
-    {
-      "flags": 16418,
-      "unread": false,
+      "flags": 34,
       "out": true,
       "mentioned": false,
       "mediaUnread": true,
       "silent": false,
-      "post": true,
-      "fromId": null,
-      "toId": {
-        "chatId": 0,
-        "_constructor": "peerChat#bad0e5bb"
-      },
-      "replyToMsgId": null,
-      "date": 0,
-      "action": {
-        "title": "oFy9RIkzXhZd",
-        "_constructor": "messageActionChannelCreate#95d2ac92"
-      },
-      "_constructor": "messageService#9e19a1f6",
-      "id": 0
-    },
-    {
-      "_constructor": "messageEmpty#83e5de54",
-      "id": 0
-    },
-    {
-      "flags": 8225,
-      "unread": true,
-      "out": false,
-      "mentioned": false,
-      "mediaUnread": true,
-      "silent": true,
       "post": false,
       "fromId": null,
       "toId": {
-        "chatId": 0,
-        "_constructor": "peerChat#bad0e5bb"
+        "userId": 0,
+        "_constructor": "peerUser#9db1bc6d"
       },
       "replyToMsgId": null,
       "date": 0,
       "action": {
-        "title": "nFXak7R",
-        "chatId": 0,
-        "_constructor": "messageActionChannelMigrateFrom#b055eaee"
+        "channelId": 0,
+        "_constructor": "messageActionChatMigrateTo#51bdb021"
       },
       "_constructor": "messageService#9e19a1f6",
       "id": 0
     },
     {
-      "flags": 8211,
-      "unread": true,
+      "flags": 8210,
       "out": true,
       "mentioned": true,
       "mediaUnread": false,
@@ -187,45 +56,107 @@
         "userId": 0,
         "_constructor": "peerUser#9db1bc6d"
       },
+      "fwdFrom": null,
+      "viaBotId": null,
       "replyToMsgId": null,
       "date": 0,
-      "action": {
-        "_constructor": "messageActionPinMessage#94bd38ed"
-      },
-      "_constructor": "messageService#9e19a1f6",
+      "message": "Dng9Z56LYkUyM92kXByn4EkIEhLq",
+      "media": null,
+      "replyMarkup": null,
+      "entities": null,
+      "views": null,
+      "editDate": null,
+      "_constructor": "message#c09be45f",
       "id": 0
     }
   ],
   "chats": [
     {
-      "flags": 7823,
+      "title": "YDdYK8LPqhmqOmZKvAEVjn2EdidZ",
+      "_constructor": "chatForbidden#7328bdb",
+      "id": 0
+    },
+    {
+      "title": "eQ3IuPYj6q4btVslB",
+      "_constructor": "chatForbidden#7328bdb",
+      "id": 0
+    },
+    {
+      "flags": 677,
       "creator": true,
-      "kicked": true,
+      "kicked": false,
       "left": true,
-      "editor": true,
+      "editor": false,
       "moderator": false,
-      "broadcast": false,
+      "broadcast": true,
       "verified": true,
       "megagroup": false,
       "restricted": true,
-      "democracy": true,
-      "signatures": true,
-      "min": true,
+      "democracy": false,
+      "signatures": false,
+      "min": false,
       "accessHash": null,
-      "title": "976bUoHxfWYfmtdpEj2",
+      "title": "KP9OPX9D",
       "username": null,
       "photo": {
         "_constructor": "chatPhotoEmpty#37c1011c"
       },
       "date": 0,
       "version": 0,
-      "restrictionReason": "N6RI0jpqGLtnBBrogHZK0",
+      "restrictionReason": "uADEPNRtsgZPO8l",
       "_constructor": "channel#a14dca52",
       "id": 0
     },
     {
-      "title": "JCO8NIBmAETeuGsIARkpQEeeOx",
-      "_constructor": "chatForbidden#7328bdb",
+      "flags": 5132,
+      "creator": false,
+      "kicked": false,
+      "left": true,
+      "editor": true,
+      "moderator": false,
+      "broadcast": false,
+      "verified": false,
+      "megagroup": false,
+      "restricted": false,
+      "democracy": true,
+      "signatures": false,
+      "min": true,
+      "accessHash": null,
+      "title": "YKiZe0k6ms2",
+      "username": null,
+      "photo": {
+        "_constructor": "chatPhotoEmpty#37c1011c"
+      },
+      "date": 0,
+      "version": 0,
+      "restrictionReason": null,
+      "_constructor": "channel#a14dca52",
+      "id": 0
+    },
+    {
+      "flags": 1595,
+      "creator": true,
+      "kicked": true,
+      "left": false,
+      "editor": true,
+      "moderator": true,
+      "broadcast": true,
+      "verified": false,
+      "megagroup": false,
+      "restricted": true,
+      "democracy": true,
+      "signatures": false,
+      "min": false,
+      "accessHash": null,
+      "title": "sPxmeLOQZMJGxSZyjksej3ILKr",
+      "username": null,
+      "photo": {
+        "_constructor": "chatPhotoEmpty#37c1011c"
+      },
+      "date": 0,
+      "version": 0,
+      "restrictionReason": "9FWagQXB1ZfLFaMf7d5eb9zT",
+      "_constructor": "channel#a14dca52",
       "id": 0
     },
     {
@@ -235,16 +166,40 @@
   ],
   "users": [
     {
-      "flags": 84992,
-      "self": true,
-      "contact": true,
-      "mutualContact": false,
+      "_constructor": "userEmpty#200250ba",
+      "id": 0
+    },
+    {
+      "_constructor": "userEmpty#200250ba",
+      "id": 0
+    },
+    {
+      "_constructor": "userEmpty#200250ba",
+      "id": 0
+    },
+    {
+      "_constructor": "userEmpty#200250ba",
+      "id": 0
+    },
+    {
+      "_constructor": "userEmpty#200250ba",
+      "id": 0
+    },
+    {
+      "_constructor": "userEmpty#200250ba",
+      "id": 0
+    },
+    {
+      "flags": 331776,
+      "self": false,
+      "contact": false,
+      "mutualContact": true,
       "deleted": false,
-      "bot": true,
+      "bot": false,
       "botChatHistory": false,
       "botNochats": true,
       "verified": false,
-      "restricted": false,
+      "restricted": true,
       "min": false,
       "botInlineGeo": false,
       "accessHash": null,
@@ -254,8 +209,8 @@
       "phone": null,
       "photo": null,
       "status": null,
-      "botInfoVersion": 0,
-      "restrictionReason": null,
+      "botInfoVersion": null,
+      "restrictionReason": "6API89s9JYtfgnFSSu",
       "botInlinePlaceholder": null,
       "_constructor": "user#d10d979a",
       "id": 0
@@ -265,15 +220,41 @@
       "id": 0
     },
     {
-      "flags": 2379776,
+      "flags": 1390592,
+      "self": false,
+      "contact": true,
+      "mutualContact": true,
+      "deleted": true,
+      "bot": false,
+      "botChatHistory": false,
+      "botNochats": true,
+      "verified": false,
+      "restricted": true,
+      "min": true,
+      "botInlineGeo": false,
+      "accessHash": null,
+      "firstName": null,
+      "lastName": null,
+      "username": null,
+      "phone": null,
+      "photo": null,
+      "status": null,
+      "botInfoVersion": null,
+      "restrictionReason": "35RFXcdQppw0culDuMUgqB",
+      "botInlinePlaceholder": null,
+      "_constructor": "user#d10d979a",
+      "id": 0
+    },
+    {
+      "flags": 2519040,
       "self": false,
       "contact": false,
       "mutualContact": true,
-      "deleted": false,
+      "deleted": true,
       "bot": true,
       "botChatHistory": false,
       "botNochats": false,
-      "verified": false,
+      "verified": true,
       "restricted": true,
       "min": false,
       "botInlineGeo": true,
@@ -285,7 +266,7 @@
       "photo": null,
       "status": null,
       "botInfoVersion": 0,
-      "restrictionReason": "1OE1t",
+      "restrictionReason": "Twd4B4d",
       "botInlinePlaceholder": null,
       "_constructor": "user#d10d979a",
       "id": 0

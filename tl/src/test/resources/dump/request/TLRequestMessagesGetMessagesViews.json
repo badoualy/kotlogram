@@ -1,11 +1,11 @@
 {
   "peer": {
-    "_constructor": "inputPeerEmpty#7f3b18ea"
+    "_constructor": "inputPeerSelf#7da07ec9"
   },
   "id": [
     0,
     0
   ],
-  "increment": false,
+  "increment": true,
   "_constructor": "messages.getMessagesViews#c4c8a55d"
 }

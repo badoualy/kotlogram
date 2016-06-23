@@ -417,7 +417,7 @@ object JavaPoet {
                 val fieldName = parameter.name.lCamelCase().javaEscape()
 
                 if (realType is TLTypeRaw && arrayOf("true", "false").contains(realType.name)) {
-                    computeFlagsMethod.addStatement("flags = $fieldName ? (flags | ${tlType.pow2Value()}) : (flags &~ ${tlType.pow2Value()})")
+                    computeFlagsMethod.addStatement("flags = $fieldName ? (flags | ${tlType.pow2Value()}) : (flags & ~${tlType.pow2Value()})")
                 }
             }
             computeFlagsMethod.addCode("// Fields below may not be serialized due to flags field value\n")

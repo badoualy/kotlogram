@@ -1,105 +1,59 @@
 {
   "rules": [
     {
+      "_constructor": "privacyValueAllowAll#65427b82"
+    },
+    {
+      "_constructor": "privacyValueAllowContacts#fffe1bac"
+    },
+    {
+      "_constructor": "privacyValueAllowAll#65427b82"
+    },
+    {
+      "users": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "_constructor": "privacyValueAllowUsers#4d5bbe0c"
+    },
+    {
+      "_constructor": "privacyValueDisallowContacts#f888fa1a"
+    },
+    {
       "_constructor": "privacyValueDisallowAll#8b73e763"
     },
     {
       "users": [
         0,
         0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0
-      ],
-      "_constructor": "privacyValueAllowUsers#4d5bbe0c"
-    },
-    {
-      "users": [
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
         0
       ],
       "_constructor": "privacyValueAllowUsers#4d5bbe0c"
     },
     {
       "_constructor": "privacyValueDisallowContacts#f888fa1a"
-    },
-    {
-      "_constructor": "privacyValueAllowAll#65427b82"
-    },
-    {
-      "users": [
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0
-      ],
-      "_constructor": "privacyValueAllowUsers#4d5bbe0c"
-    },
-    {
-      "_constructor": "privacyValueDisallowContacts#f888fa1a"
-    },
-    {
-      "_constructor": "privacyValueAllowAll#65427b82"
-    },
-    {
-      "_constructor": "privacyValueAllowContacts#fffe1bac"
     }
   ],
   "users": [
     {
-      "_constructor": "userEmpty#200250ba",
-      "id": 0
-    },
-    {
-      "_constructor": "userEmpty#200250ba",
-      "id": 0
-    },
-    {
-      "_constructor": "userEmpty#200250ba",
-      "id": 0
-    },
-    {
-      "_constructor": "userEmpty#200250ba",
-      "id": 0
-    },
-    {
-      "_constructor": "userEmpty#200250ba",
-      "id": 0
-    },
-    {
-      "_constructor": "userEmpty#200250ba",
-      "id": 0
-    },
-    {
-      "flags": 45056,
-      "self": false,
-      "contact": false,
+      "flags": 1268736,
+      "self": true,
+      "contact": true,
       "mutualContact": true,
-      "deleted": true,
-      "bot": false,
-      "botChatHistory": true,
-      "botNochats": false,
-      "verified": false,
+      "deleted": false,
+      "bot": true,
+      "botChatHistory": false,
+      "botNochats": true,
+      "verified": true,
       "restricted": false,
-      "min": false,
+      "min": true,
       "botInlineGeo": false,
       "accessHash": null,
       "firstName": null,
@@ -108,62 +62,34 @@
       "phone": null,
       "photo": null,
       "status": null,
-      "botInfoVersion": null,
+      "botInfoVersion": 0,
       "restrictionReason": null,
       "botInlinePlaceholder": null,
       "_constructor": "user#d10d979a",
       "id": 0
     },
     {
-      "flags": 3536896,
-      "self": false,
-      "contact": true,
-      "mutualContact": true,
-      "deleted": true,
-      "bot": true,
-      "botChatHistory": true,
-      "botNochats": true,
-      "verified": false,
-      "restricted": true,
-      "min": true,
-      "botInlineGeo": true,
-      "accessHash": null,
-      "firstName": null,
-      "lastName": null,
-      "username": null,
-      "phone": null,
-      "photo": null,
-      "status": null,
-      "botInfoVersion": 0,
-      "restrictionReason": "o1dk311ygCSoNBfv9HoOHUoUx6",
-      "botInlinePlaceholder": null,
-      "_constructor": "user#d10d979a",
+      "_constructor": "userEmpty#200250ba",
       "id": 0
     },
     {
-      "flags": 2475008,
-      "self": true,
-      "contact": false,
-      "mutualContact": false,
-      "deleted": false,
-      "bot": true,
-      "botChatHistory": true,
-      "botNochats": true,
-      "verified": false,
-      "restricted": true,
-      "min": false,
-      "botInlineGeo": true,
-      "accessHash": null,
-      "firstName": null,
-      "lastName": null,
-      "username": null,
-      "phone": null,
-      "photo": null,
-      "status": null,
-      "botInfoVersion": 0,
-      "restrictionReason": "anQGIS12",
-      "botInlinePlaceholder": null,
-      "_constructor": "user#d10d979a",
+      "_constructor": "userEmpty#200250ba",
+      "id": 0
+    },
+    {
+      "_constructor": "userEmpty#200250ba",
+      "id": 0
+    },
+    {
+      "_constructor": "userEmpty#200250ba",
+      "id": 0
+    },
+    {
+      "_constructor": "userEmpty#200250ba",
+      "id": 0
+    },
+    {
+      "_constructor": "userEmpty#200250ba",
       "id": 0
     }
   ],

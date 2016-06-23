@@ -30,8 +30,6 @@ public class TLRequestMessagesSearch extends TLMethod<TLAbsMessages> {
 
     protected int flags;
 
-    protected boolean importantOnly;
-
     protected TLAbsInputPeer peer;
 
     protected String q;
@@ -53,8 +51,7 @@ public class TLRequestMessagesSearch extends TLMethod<TLAbsMessages> {
     public TLRequestMessagesSearch() {
     }
 
-    public TLRequestMessagesSearch(boolean importantOnly, TLAbsInputPeer peer, String q, TLAbsMessagesFilter filter, int minDate, int maxDate, int offset, int maxId, int limit) {
-        this.importantOnly = importantOnly;
+    public TLRequestMessagesSearch(TLAbsInputPeer peer, String q, TLAbsMessagesFilter filter, int minDate, int maxDate, int offset, int maxId, int limit) {
         this.peer = peer;
         this.q = q;
         this.filter = filter;
@@ -73,21 +70,14 @@ public class TLRequestMessagesSearch extends TLMethod<TLAbsMessages> {
             throw new IOException("Unable to parse response");
         }
         if (!(response instanceof TLAbsMessages)) {
-            throw new IOException("Incorrect response type, expected getClass().getCanonicalName(), found response.getClass().getCanonicalName()");
+            throw new IOException(
+                    "Incorrect response type, expected getClass().getCanonicalName(), found response.getClass().getCanonicalName()");
         }
         return (TLAbsMessages) response;
     }
 
-    private void computeFlags() {
-        flags = 0;
-        flags = importantOnly ? (flags | 1) : (flags &~ 1);
-        // Fields below may not be serialized due to flags field value
-    }
-
     @Override
     public void serializeBody(OutputStream stream) throws IOException {
-        computeFlags();
-
         writeInt(flags, stream);
         writeTLObject(peer, stream);
         writeString(q, stream);
@@ -103,7 +93,6 @@ public class TLRequestMessagesSearch extends TLMethod<TLAbsMessages> {
     @SuppressWarnings("unchecked")
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
         flags = readInt(stream);
-        importantOnly = (flags & 1) != 0;
         peer = readTLObject(stream, context, TLAbsInputPeer.class, -1);
         q = readTLString(stream);
         filter = readTLObject(stream, context, TLAbsMessagesFilter.class, -1);
@@ -116,8 +105,6 @@ public class TLRequestMessagesSearch extends TLMethod<TLAbsMessages> {
 
     @Override
     public int computeSerializedSize() {
-        computeFlags();
-
         int size = SIZE_CONSTRUCTOR_ID;
         size += SIZE_INT32;
         size += peer.computeSerializedSize();
@@ -139,14 +126,6 @@ public class TLRequestMessagesSearch extends TLMethod<TLAbsMessages> {
     @Override
     public int getConstructorId() {
         return CONSTRUCTOR_ID;
-    }
-
-    public boolean getImportantOnly() {
-        return importantOnly;
-    }
-
-    public void setImportantOnly(boolean importantOnly) {
-        this.importantOnly = importantOnly;
     }
 
     public TLAbsInputPeer getPeer() {

@@ -26,7 +26,7 @@ import static com.github.badoualy.telegram.tl.TLObjectUtils.computeTLStringSeria
  * @see <a href="http://github.com/badoualy/kotlogram">http://github.com/badoualy/kotlogram</a>
  */
 public class TLRequestAuthSendCode extends TLMethod<TLSentCode> {
-    public static final int CONSTRUCTOR_ID = 0xccfd70cf;
+    public static final int CONSTRUCTOR_ID = 0x86aef0ec;
 
     protected int flags;
 
@@ -40,20 +40,17 @@ public class TLRequestAuthSendCode extends TLMethod<TLSentCode> {
 
     protected String apiHash;
 
-    protected String langCode;
-
-    private final String _constructor = "auth.sendCode#ccfd70cf";
+    private final String _constructor = "auth.sendCode#86aef0ec";
 
     public TLRequestAuthSendCode() {
     }
 
-    public TLRequestAuthSendCode(boolean allowFlashcall, String phoneNumber, Boolean currentNumber, int apiId, String apiHash, String langCode) {
+    public TLRequestAuthSendCode(boolean allowFlashcall, String phoneNumber, Boolean currentNumber, int apiId, String apiHash) {
         this.allowFlashcall = allowFlashcall;
         this.phoneNumber = phoneNumber;
         this.currentNumber = currentNumber;
         this.apiId = apiId;
         this.apiHash = apiHash;
-        this.langCode = langCode;
     }
 
     @Override
@@ -64,14 +61,15 @@ public class TLRequestAuthSendCode extends TLMethod<TLSentCode> {
             throw new IOException("Unable to parse response");
         }
         if (!(response instanceof TLSentCode)) {
-            throw new IOException("Incorrect response type, expected getClass().getCanonicalName(), found response.getClass().getCanonicalName()");
+            throw new IOException(
+                    "Incorrect response type, expected getClass().getCanonicalName(), found response.getClass().getCanonicalName()");
         }
         return (TLSentCode) response;
     }
 
     private void computeFlags() {
         flags = 0;
-        flags = allowFlashcall ? (flags | 1) : (flags &~ 1);
+        flags = allowFlashcall ? (flags | 1) : (flags & ~1);
         // Fields below may not be serialized due to flags field value
         if ((flags & 1) == 0) currentNumber = null;
     }
@@ -88,7 +86,6 @@ public class TLRequestAuthSendCode extends TLMethod<TLSentCode> {
         }
         writeInt(apiId, stream);
         writeString(apiHash, stream);
-        writeString(langCode, stream);
     }
 
     @Override
@@ -100,7 +97,6 @@ public class TLRequestAuthSendCode extends TLMethod<TLSentCode> {
         currentNumber = (flags & 1) != 0 ? readTLBool(stream) : null;
         apiId = readInt(stream);
         apiHash = readTLString(stream);
-        langCode = readTLString(stream);
     }
 
     @Override
@@ -116,7 +112,6 @@ public class TLRequestAuthSendCode extends TLMethod<TLSentCode> {
         }
         size += SIZE_INT32;
         size += computeTLStringSerializedSize(apiHash);
-        size += computeTLStringSerializedSize(langCode);
         return size;
     }
 
@@ -168,13 +163,5 @@ public class TLRequestAuthSendCode extends TLMethod<TLSentCode> {
 
     public void setApiHash(String apiHash) {
         this.apiHash = apiHash;
-    }
-
-    public String getLangCode() {
-        return langCode;
-    }
-
-    public void setLangCode(String langCode) {
-        this.langCode = langCode;
     }
 }

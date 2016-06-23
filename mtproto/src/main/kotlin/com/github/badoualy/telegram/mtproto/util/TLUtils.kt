@@ -16,12 +16,6 @@ fun TLAbsMessage?.getFromId() = when (this) {
     else -> null
 }
 
-fun TLAbsMessage.isUnread() = when (this) {
-    is TLMessage -> unread
-    is TLMessageService -> unread
-    else -> false
-}
-
 fun TLAbsMessage?.getMessageOrEmpty() = when (this) {
     is TLMessage -> message
     else -> ""

@@ -1,16 +1,15 @@
 {
-  "flags": 34,
+  "flags": 130,
   "noWebpage": true,
-  "broadcast": false,
-  "silent": true,
+  "silent": false,
   "background": false,
+  "clearDraft": true,
   "peer": {
-    "channelId": 0,
-    "accessHash": 0,
-    "_constructor": "inputPeerChannel#20adaef8"
+    "chatId": 0,
+    "_constructor": "inputPeerChat#179be863"
   },
   "replyToMsgId": null,
-  "message": "tiN01JJ7Xi6KPRoLREPWoy5vd",
+  "message": "gzg2Vz9c0zU937d",
   "randomId": 0,
   "replyMarkup": null,
   "entities": null,

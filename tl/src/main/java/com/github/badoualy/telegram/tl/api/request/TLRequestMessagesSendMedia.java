@@ -31,11 +31,11 @@ public class TLRequestMessagesSendMedia extends TLMethod<TLAbsUpdates> {
 
     protected int flags;
 
-    protected boolean broadcast;
-
     protected boolean silent;
 
     protected boolean background;
+
+    protected boolean clearDraft;
 
     protected TLAbsInputPeer peer;
 
@@ -52,10 +52,10 @@ public class TLRequestMessagesSendMedia extends TLMethod<TLAbsUpdates> {
     public TLRequestMessagesSendMedia() {
     }
 
-    public TLRequestMessagesSendMedia(boolean broadcast, boolean silent, boolean background, TLAbsInputPeer peer, Integer replyToMsgId, TLAbsInputMedia media, long randomId, TLAbsReplyMarkup replyMarkup) {
-        this.broadcast = broadcast;
+    public TLRequestMessagesSendMedia(boolean silent, boolean background, boolean clearDraft, TLAbsInputPeer peer, Integer replyToMsgId, TLAbsInputMedia media, long randomId, TLAbsReplyMarkup replyMarkup) {
         this.silent = silent;
         this.background = background;
+        this.clearDraft = clearDraft;
         this.peer = peer;
         this.replyToMsgId = replyToMsgId;
         this.media = media;
@@ -71,16 +71,17 @@ public class TLRequestMessagesSendMedia extends TLMethod<TLAbsUpdates> {
             throw new IOException("Unable to parse response");
         }
         if (!(response instanceof TLAbsUpdates)) {
-            throw new IOException("Incorrect response type, expected getClass().getCanonicalName(), found response.getClass().getCanonicalName()");
+            throw new IOException(
+                    "Incorrect response type, expected getClass().getCanonicalName(), found response.getClass().getCanonicalName()");
         }
         return (TLAbsUpdates) response;
     }
 
     private void computeFlags() {
         flags = 0;
-        flags = broadcast ? (flags | 16) : (flags &~ 16);
-        flags = silent ? (flags | 32) : (flags &~ 32);
-        flags = background ? (flags | 64) : (flags &~ 64);
+        flags = silent ? (flags | 32) : (flags & ~32);
+        flags = background ? (flags | 64) : (flags & ~64);
+        flags = clearDraft ? (flags | 128) : (flags & ~128);
         // Fields below may not be serialized due to flags field value
         if ((flags & 1) == 0) replyToMsgId = null;
         if ((flags & 4) == 0) replyMarkup = null;
@@ -108,9 +109,9 @@ public class TLRequestMessagesSendMedia extends TLMethod<TLAbsUpdates> {
     @SuppressWarnings("unchecked")
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
         flags = readInt(stream);
-        broadcast = (flags & 16) != 0;
         silent = (flags & 32) != 0;
         background = (flags & 64) != 0;
+        clearDraft = (flags & 128) != 0;
         peer = readTLObject(stream, context, TLAbsInputPeer.class, -1);
         replyToMsgId = (flags & 1) != 0 ? readInt(stream) : null;
         media = readTLObject(stream, context, TLAbsInputMedia.class, -1);
@@ -148,14 +149,6 @@ public class TLRequestMessagesSendMedia extends TLMethod<TLAbsUpdates> {
         return CONSTRUCTOR_ID;
     }
 
-    public boolean getBroadcast() {
-        return broadcast;
-    }
-
-    public void setBroadcast(boolean broadcast) {
-        this.broadcast = broadcast;
-    }
-
     public boolean getSilent() {
         return silent;
     }
@@ -170,6 +163,14 @@ public class TLRequestMessagesSendMedia extends TLMethod<TLAbsUpdates> {
 
     public void setBackground(boolean background) {
         this.background = background;
+    }
+
+    public boolean getClearDraft() {
+        return clearDraft;
+    }
+
+    public void setClearDraft(boolean clearDraft) {
+        this.clearDraft = clearDraft;
     }
 
     public TLAbsInputPeer getPeer() {

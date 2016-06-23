@@ -1,8 +1,8 @@
 {
-  "noWebpage": true,
-  "message": "M3CEbb7ojFP",
+  "noWebpage": false,
+  "message": "qeSwb2IDynAt",
   "entities": null,
   "_constructor": "botInlineMessageText#8c7f65e2",
-  "flags": 1,
+  "flags": 0,
   "replyMarkup": null
 }

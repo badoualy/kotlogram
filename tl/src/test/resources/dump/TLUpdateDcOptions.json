@@ -6,7 +6,7 @@
       "mediaOnly": false,
       "tcpoOnly": true,
       "id": 0,
-      "ipAddress": "yBXxDLbGBR9PXoHkqg6V3",
+      "ipAddress": "Fz6lFHM9GzAM2UQWrL",
       "port": 0,
       "_constructor": "dcOption#5d8c6cc"
     },
@@ -16,7 +16,47 @@
       "mediaOnly": true,
       "tcpoOnly": false,
       "id": 0,
-      "ipAddress": "o38C3r2PhNnXLGCWo",
+      "ipAddress": "2ZTqeR39hQ6iYstCVZsiGM",
+      "port": 0,
+      "_constructor": "dcOption#5d8c6cc"
+    },
+    {
+      "flags": 4,
+      "ipv6": false,
+      "mediaOnly": false,
+      "tcpoOnly": true,
+      "id": 0,
+      "ipAddress": "PxvL5a9",
+      "port": 0,
+      "_constructor": "dcOption#5d8c6cc"
+    },
+    {
+      "flags": 0,
+      "ipv6": false,
+      "mediaOnly": false,
+      "tcpoOnly": false,
+      "id": 0,
+      "ipAddress": "A2IQ15rXWsjUC1GJOvHQeUmjWbj",
+      "port": 0,
+      "_constructor": "dcOption#5d8c6cc"
+    },
+    {
+      "flags": 5,
+      "ipv6": true,
+      "mediaOnly": false,
+      "tcpoOnly": true,
+      "id": 0,
+      "ipAddress": "4SP6JSn5B4DBAK7CnkIEPJklKgjQa",
+      "port": 0,
+      "_constructor": "dcOption#5d8c6cc"
+    },
+    {
+      "flags": 0,
+      "ipv6": false,
+      "mediaOnly": false,
+      "tcpoOnly": false,
+      "id": 0,
+      "ipAddress": "cJt55I4U87G6pr",
       "port": 0,
       "_constructor": "dcOption#5d8c6cc"
     }

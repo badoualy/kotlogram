@@ -1,7 +1,9 @@
 {
   "participants": [
     {
-      "_constructor": "chatParticipantCreator#da13538a",
+      "inviterId": 0,
+      "date": 0,
+      "_constructor": "chatParticipantAdmin#e2d6e436",
       "userId": 0
     },
     {
@@ -11,15 +13,9 @@
       "userId": 0
     },
     {
-      "_constructor": "chatParticipantCreator#da13538a",
-      "userId": 0
-    },
-    {
-      "_constructor": "chatParticipantCreator#da13538a",
-      "userId": 0
-    },
-    {
-      "_constructor": "chatParticipantCreator#da13538a",
+      "inviterId": 0,
+      "date": 0,
+      "_constructor": "chatParticipantAdmin#e2d6e436",
       "userId": 0
     },
     {

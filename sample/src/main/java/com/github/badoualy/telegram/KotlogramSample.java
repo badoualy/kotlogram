@@ -58,7 +58,7 @@ public class KotlogramSample {
         // You can start making requests
         try {
             // Send code to account
-            TLSentCode sentCode = client.authSendCode(PHONE_NUMBER, 5);
+            TLSentCode sentCode = client.authSendCode(false, PHONE_NUMBER, true);
             System.out.println("Authentication code: ");
             String code = new Scanner(System.in).nextLine();
 

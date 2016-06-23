@@ -41,7 +41,8 @@ public class TLRequestMessagesExportChatInvite extends TLMethod<TLAbsExportedCha
             throw new IOException("Unable to parse response");
         }
         if (!(response instanceof TLAbsExportedChatInvite)) {
-            throw new IOException("Incorrect response type, expected getClass().getCanonicalName(), found response.getClass().getCanonicalName()");
+            throw new IOException(
+                    "Incorrect response type, expected getClass().getCanonicalName(), found response.getClass().getCanonicalName()");
         }
         return (TLAbsExportedChatInvite) response;
     }

@@ -1,0 +1,259 @@
+{
+  "dialogs": [
+    {
+      "flags": 0,
+      "peer": {
+        "userId": 0,
+        "_constructor": "peerUser#9db1bc6d"
+      },
+      "topMessage": 0,
+      "readInboxMaxId": 0,
+      "readOutboxMaxId": 0,
+      "unreadCount": 0,
+      "notifySettings": {
+        "_constructor": "peerNotifySettingsEmpty#70a68512"
+      },
+      "pts": null,
+      "draft": null,
+      "_constructor": "dialog#66ffba14"
+    },
+    {
+      "flags": 0,
+      "peer": {
+        "userId": 0,
+        "_constructor": "peerUser#9db1bc6d"
+      },
+      "topMessage": 0,
+      "readInboxMaxId": 0,
+      "readOutboxMaxId": 0,
+      "unreadCount": 0,
+      "notifySettings": {
+        "flags": 2,
+        "showPreviews": false,
+        "silent": true,
+        "muteUntil": 0,
+        "sound": "qhxg4MjSYAGpJZfEO6opTsVGJf",
+        "_constructor": "peerNotifySettings#9acda4c0"
+      },
+      "pts": null,
+      "draft": null,
+      "_constructor": "dialog#66ffba14"
+    },
+    {
+      "flags": 0,
+      "peer": {
+        "chatId": 0,
+        "_constructor": "peerChat#bad0e5bb"
+      },
+      "topMessage": 0,
+      "readInboxMaxId": 0,
+      "readOutboxMaxId": 0,
+      "unreadCount": 0,
+      "notifySettings": {
+        "_constructor": "peerNotifySettingsEmpty#70a68512"
+      },
+      "pts": null,
+      "draft": null,
+      "_constructor": "dialog#66ffba14"
+    }
+  ],
+  "messages": [
+    {
+      "flags": 24592,
+      "out": false,
+      "mentioned": true,
+      "mediaUnread": false,
+      "silent": true,
+      "post": true,
+      "fromId": null,
+      "toId": {
+        "userId": 0,
+        "_constructor": "peerUser#9db1bc6d"
+      },
+      "replyToMsgId": null,
+      "date": 0,
+      "action": {
+        "userId": 0,
+        "_constructor": "messageActionChatDeleteUser#b2ae9b0c"
+      },
+      "_constructor": "messageService#9e19a1f6",
+      "id": 0
+    },
+    {
+      "flags": 16400,
+      "out": false,
+      "mentioned": true,
+      "mediaUnread": false,
+      "silent": false,
+      "post": true,
+      "fromId": null,
+      "toId": {
+        "userId": 0,
+        "_constructor": "peerUser#9db1bc6d"
+      },
+      "replyToMsgId": null,
+      "date": 0,
+      "action": {
+        "title": "Av61mzqIRI5G",
+        "chatId": 0,
+        "_constructor": "messageActionChannelMigrateFrom#b055eaee"
+      },
+      "_constructor": "messageService#9e19a1f6",
+      "id": 0
+    }
+  ],
+  "chats": [
+    {
+      "title": "j0zhztdbTdmr",
+      "_constructor": "chatForbidden#7328bdb",
+      "id": 0
+    },
+    {
+      "flags": 4899,
+      "creator": true,
+      "kicked": true,
+      "left": false,
+      "editor": false,
+      "moderator": false,
+      "broadcast": true,
+      "verified": false,
+      "megagroup": true,
+      "restricted": true,
+      "democracy": false,
+      "signatures": false,
+      "min": true,
+      "accessHash": null,
+      "title": "K2xVHT",
+      "username": null,
+      "photo": {
+        "photoSmall": {
+          "_constructor": "fileLocationUnavailable#7c596b46",
+          "volumeId": 0,
+          "localId": 0,
+          "secret": 0
+        },
+        "photoBig": {
+          "_constructor": "fileLocationUnavailable#7c596b46",
+          "volumeId": 0,
+          "localId": 0,
+          "secret": 0
+        },
+        "_constructor": "chatPhoto#6153276a"
+      },
+      "date": 0,
+      "version": 0,
+      "restrictionReason": "lBeQJuF7PLATnrYtMuMP6ooclEep",
+      "_constructor": "channel#a14dca52",
+      "id": 0
+    }
+  ],
+  "users": [
+    {
+      "flags": 1563648,
+      "self": true,
+      "contact": true,
+      "mutualContact": true,
+      "deleted": false,
+      "bot": true,
+      "botChatHistory": true,
+      "botNochats": true,
+      "verified": true,
+      "restricted": true,
+      "min": true,
+      "botInlineGeo": false,
+      "accessHash": null,
+      "firstName": null,
+      "lastName": null,
+      "username": null,
+      "phone": null,
+      "photo": null,
+      "status": null,
+      "botInfoVersion": 0,
+      "restrictionReason": "bgAQdFE",
+      "botInlinePlaceholder": null,
+      "_constructor": "user#d10d979a",
+      "id": 0
+    },
+    {
+      "_constructor": "userEmpty#200250ba",
+      "id": 0
+    },
+    {
+      "_constructor": "userEmpty#200250ba",
+      "id": 0
+    },
+    {
+      "_constructor": "userEmpty#200250ba",
+      "id": 0
+    },
+    {
+      "_constructor": "userEmpty#200250ba",
+      "id": 0
+    },
+    {
+      "flags": 3604480,
+      "self": false,
+      "contact": false,
+      "mutualContact": false,
+      "deleted": false,
+      "bot": false,
+      "botChatHistory": false,
+      "botNochats": true,
+      "verified": true,
+      "restricted": true,
+      "min": true,
+      "botInlineGeo": true,
+      "accessHash": null,
+      "firstName": null,
+      "lastName": null,
+      "username": null,
+      "phone": null,
+      "photo": null,
+      "status": null,
+      "botInfoVersion": null,
+      "restrictionReason": "KUSMeL1WXKzB",
+      "botInlinePlaceholder": null,
+      "_constructor": "user#d10d979a",
+      "id": 0
+    },
+    {
+      "_constructor": "userEmpty#200250ba",
+      "id": 0
+    },
+    {
+      "flags": 1060864,
+      "self": false,
+      "contact": false,
+      "mutualContact": true,
+      "deleted": true,
+      "bot": false,
+      "botChatHistory": false,
+      "botNochats": false,
+      "verified": false,
+      "restricted": false,
+      "min": true,
+      "botInlineGeo": false,
+      "accessHash": null,
+      "firstName": null,
+      "lastName": null,
+      "username": null,
+      "phone": null,
+      "photo": null,
+      "status": null,
+      "botInfoVersion": null,
+      "restrictionReason": null,
+      "botInlinePlaceholder": null,
+      "_constructor": "user#d10d979a",
+      "id": 0
+    }
+  ],
+  "state": {
+    "pts": 0,
+    "qts": 0,
+    "date": 0,
+    "seq": 0,
+    "unreadCount": 0,
+    "_constructor": "updates.state#a56c2a3e"
+  },
+  "_constructor": "messages.peerDialogs#3371c354"
+}

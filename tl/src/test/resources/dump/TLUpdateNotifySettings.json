@@ -1,9 +1,14 @@
 {
   "peer": {
-    "_constructor": "notifyAll#74d07c60"
+    "_constructor": "notifyChats#c007cec3"
   },
   "notifySettings": {
-    "_constructor": "peerNotifySettingsEmpty#70a68512"
+    "flags": 3,
+    "showPreviews": true,
+    "silent": true,
+    "muteUntil": 0,
+    "sound": "7oBRJnMMfWXHHophnV96SFJ1i2d4c",
+    "_constructor": "peerNotifySettings#9acda4c0"
   },
   "_constructor": "updateNotifySettings#bec268ef"
 }

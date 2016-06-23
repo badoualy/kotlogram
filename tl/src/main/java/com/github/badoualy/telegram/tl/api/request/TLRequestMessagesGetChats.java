@@ -41,7 +41,8 @@ public class TLRequestMessagesGetChats extends TLMethod<TLChats> {
             throw new IOException("Unable to parse response");
         }
         if (!(response instanceof TLChats)) {
-            throw new IOException("Incorrect response type, expected getClass().getCanonicalName(), found response.getClass().getCanonicalName()");
+            throw new IOException(
+                    "Incorrect response type, expected getClass().getCanonicalName(), found response.getClass().getCanonicalName()");
         }
         return (TLChats) response;
     }

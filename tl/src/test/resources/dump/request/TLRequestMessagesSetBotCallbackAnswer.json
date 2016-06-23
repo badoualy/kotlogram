@@ -1,6 +1,6 @@
 {
-  "flags": 2,
-  "alert": true,
+  "flags": 0,
+  "alert": false,
   "queryId": 0,
   "message": null,
   "_constructor": "messages.setBotCallbackAnswer#481c591a"

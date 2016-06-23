@@ -9,4 +9,12 @@ import com.github.badoualy.telegram.tl.core.TLObject;
 public abstract class TLAbsChannelMessagesFilter extends TLObject {
     public TLAbsChannelMessagesFilter() {
     }
+
+    public abstract boolean isEmpty();
+
+    public abstract boolean isNotEmpty();
+
+    public TLChannelMessagesFilter getAsChannelMessagesFilter() {
+        return null;
+    }
 }

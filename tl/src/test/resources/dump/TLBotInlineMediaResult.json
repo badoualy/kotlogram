@@ -5,13 +5,17 @@
   "description": null,
   "_constructor": "botInlineMediaResult#17db940b",
   "flags": 0,
-  "id": "BZ2C0QHfU4ldXIJpIypMo0ic",
-  "type": "Pb1C0x",
+  "id": "s2vspq76MYBxc",
+  "type": "Ng6IZ1Yl",
   "sendMessage": {
-    "noWebpage": false,
-    "message": "f7UVddL7yFC9Mv",
-    "entities": null,
-    "_constructor": "botInlineMessageText#8c7f65e2",
+    "geo": {
+      "_constructor": "geoPointEmpty#1117dd5f"
+    },
+    "title": "4K5PvqDKwrRijwgQ1p2H4UIZ7DBrr",
+    "address": "BV6lv53KXz18rpZ",
+    "provider": "fOBi7MBwDGdp4Fm",
+    "venueId": "QYQjwTfK4zAF9IFLnW3gVBIwF",
+    "_constructor": "botInlineMessageMediaVenue#4366232e",
     "flags": 0,
     "replyMarkup": null
   }

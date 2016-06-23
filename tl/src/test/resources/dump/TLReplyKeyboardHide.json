@@ -1,5 +1,5 @@
 {
-  "flags": 0,
-  "selective": false,
+  "flags": 4,
+  "selective": true,
   "_constructor": "replyKeyboardHide#a03e5b85"
 }

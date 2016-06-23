@@ -8,7 +8,7 @@ object Kotlogram {
 
     val logger = LoggerFactory.getLogger(Kotlogram::class.java)
 
-    val API_LAYER = 51
+    val API_LAYER = 53
 
     init {
         logger.warn("""

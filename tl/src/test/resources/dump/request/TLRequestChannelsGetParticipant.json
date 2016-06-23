@@ -3,7 +3,7 @@
     "_constructor": "inputChannelEmpty#ee8c1e86"
   },
   "userId": {
-    "_constructor": "inputUserEmpty#b98886cf"
+    "_constructor": "inputUserSelf#f7c1b13f"
   },
   "_constructor": "channels.getParticipant#546dd7a6"
 }

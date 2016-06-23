@@ -41,7 +41,8 @@ public class TLRequestMessagesCheckChatInvite extends TLMethod<TLAbsChatInvite> 
             throw new IOException("Unable to parse response");
         }
         if (!(response instanceof TLAbsChatInvite)) {
-            throw new IOException("Incorrect response type, expected getClass().getCanonicalName(), found response.getClass().getCanonicalName()");
+            throw new IOException(
+                    "Incorrect response type, expected getClass().getCanonicalName(), found response.getClass().getCanonicalName()");
         }
         return (TLAbsChatInvite) response;
     }

@@ -2,7 +2,8 @@
   "offsetDate": 0,
   "offsetId": 0,
   "offsetPeer": {
-    "_constructor": "inputPeerSelf#7da07ec9"
+    "chatId": 0,
+    "_constructor": "inputPeerChat#179be863"
   },
   "limit": 0,
   "_constructor": "messages.getDialogs#6b47f94d"

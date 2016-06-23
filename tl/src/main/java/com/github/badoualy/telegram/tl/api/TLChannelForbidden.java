@@ -22,25 +22,43 @@ import static com.github.badoualy.telegram.tl.TLObjectUtils.computeTLStringSeria
  * @see <a href="http://github.com/badoualy/kotlogram">http://github.com/badoualy/kotlogram</a>
  */
 public class TLChannelForbidden extends TLAbsChat {
-    public static final int CONSTRUCTOR_ID = 0x2d85832c;
+    public static final int CONSTRUCTOR_ID = 0x8537784f;
+
+    protected int flags;
+
+    protected boolean broadcast;
+
+    protected boolean megagroup;
 
     protected long accessHash;
 
     protected String title;
 
-    private final String _constructor = "channelForbidden#2d85832c";
+    private final String _constructor = "channelForbidden#8537784f";
 
     public TLChannelForbidden() {
     }
 
-    public TLChannelForbidden(int id, long accessHash, String title) {
+    public TLChannelForbidden(boolean broadcast, boolean megagroup, int id, long accessHash, String title) {
+        this.broadcast = broadcast;
+        this.megagroup = megagroup;
         this.id = id;
         this.accessHash = accessHash;
         this.title = title;
     }
 
+    private void computeFlags() {
+        flags = 0;
+        flags = broadcast ? (flags | 32) : (flags & ~32);
+        flags = megagroup ? (flags | 256) : (flags & ~256);
+        // Fields below may not be serialized due to flags field value
+    }
+
     @Override
     public void serializeBody(OutputStream stream) throws IOException {
+        computeFlags();
+
+        writeInt(flags, stream);
         writeInt(id, stream);
         writeLong(accessHash, stream);
         writeString(title, stream);
@@ -49,6 +67,9 @@ public class TLChannelForbidden extends TLAbsChat {
     @Override
     @SuppressWarnings("unchecked")
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
+        flags = readInt(stream);
+        broadcast = (flags & 32) != 0;
+        megagroup = (flags & 256) != 0;
         id = readInt(stream);
         accessHash = readLong(stream);
         title = readTLString(stream);
@@ -56,7 +77,10 @@ public class TLChannelForbidden extends TLAbsChat {
 
     @Override
     public int computeSerializedSize() {
+        computeFlags();
+
         int size = SIZE_CONSTRUCTOR_ID;
+        size += SIZE_INT32;
         size += SIZE_INT32;
         size += SIZE_INT64;
         size += computeTLStringSerializedSize(title);
@@ -71,6 +95,22 @@ public class TLChannelForbidden extends TLAbsChat {
     @Override
     public int getConstructorId() {
         return CONSTRUCTOR_ID;
+    }
+
+    public boolean getBroadcast() {
+        return broadcast;
+    }
+
+    public void setBroadcast(boolean broadcast) {
+        this.broadcast = broadcast;
+    }
+
+    public boolean getMegagroup() {
+        return megagroup;
+    }
+
+    public void setMegagroup(boolean megagroup) {
+        this.megagroup = megagroup;
     }
 
     public int getId() {

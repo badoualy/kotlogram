@@ -1,6 +1,8 @@
 {
   "geo": {
-    "_constructor": "geoPointEmpty#1117dd5f"
+    "_long": 0.0,
+    "lat": 0.0,
+    "_constructor": "geoPoint#2049d70c"
   },
   "_constructor": "botInlineMessageMediaGeo#3a8fd8b8",
   "flags": 0,
