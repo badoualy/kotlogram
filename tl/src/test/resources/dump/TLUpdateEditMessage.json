@@ -1,6 +1,27 @@
 {
   "message": {
-    "_constructor": "messageEmpty#83e5de54",
+    "flags": 8224,
+    "out": false,
+    "mentioned": false,
+    "mediaUnread": true,
+    "silent": true,
+    "post": false,
+    "fromId": null,
+    "toId": {
+      "userId": 0,
+      "_constructor": "peerUser#9db1bc6d"
+    },
+    "fwdFrom": null,
+    "viaBotId": null,
+    "replyToMsgId": null,
+    "date": 0,
+    "message": "rGHf6kF1UDIelzgqIX32mmHu6Jit",
+    "media": null,
+    "replyMarkup": null,
+    "entities": null,
+    "views": null,
+    "editDate": null,
+    "_constructor": "message#c09be45f",
     "id": 0
   },
   "pts": 0,

@@ -1,0 +1,16 @@
+{
+  "peer": {
+    "channelId": 0,
+    "_constructor": "peerChannel#bddde532"
+  },
+  "draft": {
+    "flags": 2,
+    "noWebpage": true,
+    "replyToMsgId": null,
+    "message": "lsIZDJhW3PWeLJ",
+    "entities": null,
+    "date": 0,
+    "_constructor": "draftMessage#fd8e711f"
+  },
+  "_constructor": "updateDraftMessage#ee2bb969"
+}

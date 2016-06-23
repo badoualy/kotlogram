@@ -1,0 +1,12 @@
+{
+  "flags": 6,
+  "correspondents": false,
+  "botsPm": true,
+  "botsInline": true,
+  "groups": false,
+  "channels": false,
+  "offset": 0,
+  "limit": 0,
+  "hash": 0,
+  "_constructor": "contacts.getTopPeers#d4982db5"
+}

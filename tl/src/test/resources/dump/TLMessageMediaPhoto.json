@@ -1,8 +1,29 @@
 {
   "photo": {
-    "_constructor": "photoEmpty#2331b22d",
+    "accessHash": 0,
+    "date": 0,
+    "sizes": [
+      {
+        "location": {
+          "_constructor": "fileLocationUnavailable#7c596b46",
+          "volumeId": 0,
+          "localId": 0,
+          "secret": 0
+        },
+        "w": 0,
+        "h": 0,
+        "size": 0,
+        "_constructor": "photoSize#77bfb61b",
+        "type": "6CDKKQe6zf3ZZ88eVgV9X"
+      },
+      {
+        "_constructor": "photoSizeEmpty#e17e23c",
+        "type": "YA86g3rEVxt3GzohIFg"
+      }
+    ],
+    "_constructor": "photo#cded42fe",
     "id": 0
   },
-  "caption": "lxE1qXYCuwbY",
+  "caption": "JdE4LVb4xuw8frtJhC",
   "_constructor": "messageMediaPhoto#3d8ce53d"
 }

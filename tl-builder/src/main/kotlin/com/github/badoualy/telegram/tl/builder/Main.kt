@@ -13,7 +13,7 @@ val OUTPUT = "./tl/src/main/java"
 val OUTPUT_TEST = "./tl/src/test/java"
 
 fun main(args: Array<String>) {
-    println("TL Compiler developed by Yannick Badoual, Kotlogram (c) 2015 v1.0")
+    println("TL Compiler developed by Yannick Badoual, Kotlogram (c) 2016 v1.0")
 
     var tlSchemaNode = ObjectMapper().readValue(File(TL_SCHEMA_PATH), JsonNode::class.java)
     var definition = buildFromJson(tlSchemaNode)

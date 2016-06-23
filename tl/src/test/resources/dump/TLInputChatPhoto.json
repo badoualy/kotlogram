@@ -1,9 +1,14 @@
 {
   "id": {
-    "_constructor": "inputPhotoEmpty#1cd7bf0d"
+    "id": 0,
+    "accessHash": 0,
+    "_constructor": "inputPhoto#fb95c6c4"
   },
   "crop": {
-    "_constructor": "inputPhotoCropAuto#ade6b004"
+    "cropLeft": 0.0,
+    "cropTop": 0.0,
+    "cropWidth": 0.0,
+    "_constructor": "inputPhotoCrop#d9915325"
   },
   "_constructor": "inputChatPhoto#b2e1bf08"
 }

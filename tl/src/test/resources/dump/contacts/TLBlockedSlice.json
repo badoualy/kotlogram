@@ -26,25 +26,77 @@
       "userId": 0,
       "date": 0,
       "_constructor": "contactBlocked#561bc879"
+    },
+    {
+      "userId": 0,
+      "date": 0,
+      "_constructor": "contactBlocked#561bc879"
+    },
+    {
+      "userId": 0,
+      "date": 0,
+      "_constructor": "contactBlocked#561bc879"
+    },
+    {
+      "userId": 0,
+      "date": 0,
+      "_constructor": "contactBlocked#561bc879"
+    },
+    {
+      "userId": 0,
+      "date": 0,
+      "_constructor": "contactBlocked#561bc879"
+    },
+    {
+      "userId": 0,
+      "date": 0,
+      "_constructor": "contactBlocked#561bc879"
+    },
+    {
+      "userId": 0,
+      "date": 0,
+      "_constructor": "contactBlocked#561bc879"
     }
   ],
   "users": [
     {
-      "_constructor": "userEmpty#200250ba",
-      "id": 0
-    },
-    {
-      "flags": 1364992,
-      "self": true,
+      "flags": 3575808,
+      "self": false,
       "contact": false,
       "mutualContact": true,
       "deleted": false,
-      "bot": true,
+      "bot": false,
       "botChatHistory": true,
       "botNochats": false,
-      "verified": false,
+      "verified": true,
       "restricted": true,
       "min": true,
+      "botInlineGeo": true,
+      "accessHash": null,
+      "firstName": null,
+      "lastName": null,
+      "username": null,
+      "phone": null,
+      "photo": null,
+      "status": null,
+      "botInfoVersion": null,
+      "restrictionReason": "BBQEQnNtzeevo3GogOsgoT",
+      "botInlinePlaceholder": null,
+      "_constructor": "user#d10d979a",
+      "id": 0
+    },
+    {
+      "flags": 334848,
+      "self": true,
+      "contact": true,
+      "mutualContact": true,
+      "deleted": false,
+      "bot": false,
+      "botChatHistory": false,
+      "botNochats": true,
+      "verified": false,
+      "restricted": true,
+      "min": false,
       "botInlineGeo": false,
       "accessHash": null,
       "firstName": null,
@@ -53,23 +105,87 @@
       "phone": null,
       "photo": null,
       "status": null,
-      "botInfoVersion": 0,
-      "restrictionReason": "j5btWLKnjuY4GcFsiP",
+      "botInfoVersion": null,
+      "restrictionReason": "MaefPePu8X2Mi",
       "botInlinePlaceholder": null,
       "_constructor": "user#d10d979a",
       "id": 0
     },
     {
-      "flags": 2255872,
+      "_constructor": "userEmpty#200250ba",
+      "id": 0
+    },
+    {
+      "flags": 3601408,
+      "self": true,
+      "contact": false,
+      "mutualContact": true,
+      "deleted": true,
+      "bot": true,
+      "botChatHistory": true,
+      "botNochats": false,
+      "verified": true,
+      "restricted": true,
+      "min": true,
+      "botInlineGeo": true,
+      "accessHash": null,
+      "firstName": null,
+      "lastName": null,
+      "username": null,
+      "phone": null,
+      "photo": null,
+      "status": null,
+      "botInfoVersion": 0,
+      "restrictionReason": "Q5fL9E02MGrIz4nk6IIXYvCDO8FwG",
+      "botInlinePlaceholder": null,
+      "_constructor": "user#d10d979a",
+      "id": 0
+    },
+    {
+      "_constructor": "userEmpty#200250ba",
+      "id": 0
+    },
+    {
+      "_constructor": "userEmpty#200250ba",
+      "id": 0
+    },
+    {
+      "flags": 2426880,
+      "self": false,
+      "contact": true,
+      "mutualContact": false,
+      "deleted": false,
+      "bot": false,
+      "botChatHistory": false,
+      "botNochats": true,
+      "verified": false,
+      "restricted": true,
+      "min": false,
+      "botInlineGeo": true,
+      "accessHash": null,
+      "firstName": null,
+      "lastName": null,
+      "username": null,
+      "phone": null,
+      "photo": null,
+      "status": null,
+      "botInfoVersion": null,
+      "restrictionReason": "OR4J5RakiUEH1l9iUOS5Ax",
+      "botInlinePlaceholder": null,
+      "_constructor": "user#d10d979a",
+      "id": 0
+    },
+    {
+      "flags": 2509824,
       "self": true,
       "contact": true,
       "mutualContact": false,
-      "deleted": true,
+      "deleted": false,
       "bot": true,
       "botChatHistory": false,
       "botNochats": false,
       "verified": true,
-      "restricted": false,
+      "restricted": true,
       "min": false,
       "botInlineGeo": true,
       "accessHash": null,
@@ -80,13 +196,9 @@
       "photo": null,
       "status": null,
       "botInfoVersion": 0,
-      "restrictionReason": null,
+      "restrictionReason": "8VDDG7HIJfF9gLXa",
       "botInlinePlaceholder": null,
       "_constructor": "user#d10d979a",
-      "id": 0
-    },
-    {
-      "_constructor": "userEmpty#200250ba",
       "id": 0
     }
   ]

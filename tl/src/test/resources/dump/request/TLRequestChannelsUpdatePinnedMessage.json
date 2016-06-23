@@ -2,9 +2,7 @@
   "flags": 0,
   "silent": false,
   "channel": {
-    "channelId": 0,
-    "accessHash": 0,
-    "_constructor": "inputChannel#afeb712e"
+    "_constructor": "inputChannelEmpty#ee8c1e86"
   },
   "id": 0,
   "_constructor": "channels.updatePinnedMessage#a72ded52"

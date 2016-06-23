@@ -1,26 +1,14 @@
 {
-  "flags": 3,
+  "flags": 23,
   "creator": true,
   "kicked": true,
-  "left": false,
+  "left": true,
   "adminsEnabled": false,
-  "admin": false,
+  "admin": true,
   "deactivated": false,
-  "title": "in6VofYViwBRwVhE6TIy",
+  "title": "JnYam6iKWvf5Yb3yPwY",
   "photo": {
-    "photoSmall": {
-      "_constructor": "fileLocationUnavailable#7c596b46",
-      "volumeId": 0,
-      "localId": 0,
-      "secret": 0
-    },
-    "photoBig": {
-      "_constructor": "fileLocationUnavailable#7c596b46",
-      "volumeId": 0,
-      "localId": 0,
-      "secret": 0
-    },
-    "_constructor": "chatPhoto#6153276a"
+    "_constructor": "chatPhotoEmpty#37c1011c"
   },
   "participantsCount": 0,
   "date": 0,

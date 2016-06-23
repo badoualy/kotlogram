@@ -1,28 +1,18 @@
 {
-  "type": "rnRjgYCLJzAwD1eHkRHQMM",
-  "message": "Kyja8fBDzGTYXHK6AQU1btzgZ",
+  "type": "jgEjcImbUf",
+  "message": "pZwiQURN",
   "media": {
-    "webpage": {
-      "flags": 0,
-      "url": "CuZOzDLrywamCW9TZqHkUXt4NsSjK",
-      "displayUrl": "xIpo3",
-      "type": null,
-      "siteName": null,
-      "title": null,
-      "description": null,
-      "photo": null,
-      "embedUrl": null,
-      "embedType": null,
-      "embedWidth": null,
-      "embedHeight": null,
-      "duration": null,
-      "author": null,
-      "document": null,
-      "_constructor": "webPage#ca820ed7",
-      "id": 0
+    "geo": {
+      "_long": 0.0,
+      "lat": 0.0,
+      "_constructor": "geoPoint#2049d70c"
     },
-    "_constructor": "messageMediaWebPage#a32dd600"
+    "title": "TxT2w",
+    "address": "Wl1L88Ss2yv",
+    "provider": "ji9XYdJjS",
+    "venueId": "JN2yxce9jBhWSfb1VXAIX",
+    "_constructor": "messageMediaVenue#7912b71f"
   },
-  "popup": false,
+  "popup": true,
   "_constructor": "updateServiceNotification#382dd3e4"
 }

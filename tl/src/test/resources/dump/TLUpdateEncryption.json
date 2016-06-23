@@ -1,10 +1,6 @@
 {
   "chat": {
-    "accessHash": 0,
-    "date": 0,
-    "adminId": 0,
-    "participantId": 0,
-    "_constructor": "encryptedChatWaiting#3bf703dc",
+    "_constructor": "encryptedChatEmpty#ab7ec0a0",
     "id": 0
   },
   "date": 0,

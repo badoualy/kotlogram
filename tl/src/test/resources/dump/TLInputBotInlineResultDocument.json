@@ -6,16 +6,16 @@
     "_constructor": "inputDocumentEmpty#72f0eaae"
   },
   "_constructor": "inputBotInlineResultDocument#fff8fdc4",
-  "id": "JYYq34aqmMLIZeUY2gjZOh9ej0",
-  "type": "Pde2mc9rHze7",
+  "id": "1Pjsa0P5c7Y9kE1",
+  "type": "NLeXCS",
   "sendMessage": {
     "geoPoint": {
       "_constructor": "inputGeoPointEmpty#e4c123d6"
     },
-    "title": "s9MmAnwAZWXDn477mKn",
-    "address": "Llwfb7DYsyhlqyLvhdaNny",
-    "provider": "VnpF4uFUu66fepG",
-    "venueId": "nof8D",
+    "title": "ONP8VUNQZuKdzN7w8wqs9cKnGBS3u",
+    "address": "WjEJ4UcGnaQ0f94OASGo4kuet",
+    "provider": "0SEHFdkrgeTfQ",
+    "venueId": "HsEsLJURcenf52huTjjoEpNwo",
     "_constructor": "inputBotInlineMessageMediaVenue#aaafadc8",
     "flags": 0,
     "replyMarkup": null

@@ -139,16 +139,21 @@
       0,
       0,
       0,
+      0,
+      0,
+      0,
+      0,
       0
     ],
     "offset": 0,
-    "len": 133
+    "len": 137
   },
   "file": {
     "id": 0,
     "parts": 0,
+    "md5Checksum": "CV0iE",
     "keyFingerprint": 0,
-    "_constructor": "inputEncryptedFileBigUploaded#2dc173c8"
+    "_constructor": "inputEncryptedFileUploaded#64bd0306"
   },
   "_constructor": "messages.sendEncryptedFile#9a901b66"
 }

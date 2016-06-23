@@ -10,15 +10,13 @@
   "duration": null,
   "_constructor": "botInlineResult#9bebaeb9",
   "flags": 0,
-  "id": "DC3ESOeq8yBP7g21SpdMe535tP",
-  "type": "kF2Hc1PWdKry",
+  "id": "u7uA7VtMIY72ZFN2r4NDo",
+  "type": "j33rYm",
   "sendMessage": {
-    "geo": {
-      "_long": 0.0,
-      "lat": 0.0,
-      "_constructor": "geoPoint#2049d70c"
-    },
-    "_constructor": "botInlineMessageMediaGeo#3a8fd8b8",
+    "phoneNumber": "ZH3VfHYsxDhQi",
+    "firstName": "JymoUs4chzR6S2xV5Pwf4",
+    "lastName": "2iKFYYNPPBF",
+    "_constructor": "botInlineMessageMediaContact#35edb4d4",
     "flags": 0,
     "replyMarkup": null
   }

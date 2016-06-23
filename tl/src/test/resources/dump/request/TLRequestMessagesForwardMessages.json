@@ -1,14 +1,14 @@
 {
   "flags": 0,
-  "broadcast": false,
   "silent": false,
   "background": false,
   "fromPeer": {
-    "channelId": 0,
-    "accessHash": 0,
-    "_constructor": "inputPeerChannel#20adaef8"
+    "_constructor": "inputPeerEmpty#7f3b18ea"
   },
   "id": [
+    0,
+    0,
+    0,
     0,
     0
   ],
@@ -21,13 +21,11 @@
     0,
     0,
     0,
-    0,
     0
   ],
   "toPeer": {
-    "channelId": 0,
-    "accessHash": 0,
-    "_constructor": "inputPeerChannel#20adaef8"
+    "chatId": 0,
+    "_constructor": "inputPeerChat#179be863"
   },
   "_constructor": "messages.forwardMessages#708e0195"
 }

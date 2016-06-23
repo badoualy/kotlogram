@@ -3,9 +3,10 @@
     "_constructor": "inputUserSelf#f7c1b13f"
   },
   "peer": {
-    "_constructor": "inputPeerSelf#7da07ec9"
+    "chatId": 0,
+    "_constructor": "inputPeerChat#179be863"
   },
   "randomId": 0,
-  "startParam": "1ex8ylN7gD6yFPLc3aj",
+  "startParam": "wnkZrG5avBGhnu2",
   "_constructor": "messages.startBot#e6df7378"
 }

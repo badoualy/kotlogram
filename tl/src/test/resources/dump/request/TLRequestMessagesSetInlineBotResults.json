@@ -16,30 +16,11 @@
       "h": null,
       "duration": null,
       "_constructor": "inputBotInlineResult#2cbbe15a",
-      "id": "Nd9fdnSwN2oCiiXrMEOJ",
-      "type": "Pw3MU2l1b",
+      "id": "N3CeSefP18z5Tk3460u2w37jC",
+      "type": "VXxGbrJVHmL3mFw2Bcj",
       "sendMessage": {
-        "caption": "Ih6mwVx6PDaWgaLVZCL6CZNodgG",
+        "caption": "MnapDDNjXJHPBw0SyqMXpOtlxEv",
         "_constructor": "inputBotInlineMessageMediaAuto#292fed13",
-        "flags": 0,
-        "replyMarkup": null
-      }
-    },
-    {
-      "flags": 0,
-      "title": null,
-      "description": null,
-      "document": {
-        "_constructor": "inputDocumentEmpty#72f0eaae"
-      },
-      "_constructor": "inputBotInlineResultDocument#fff8fdc4",
-      "id": "csYwYQj5zZv7v8v",
-      "type": "eg4NmBj4lzM2H7oPZhZ",
-      "sendMessage": {
-        "phoneNumber": "glZZqQq5XZy4AMLnCJPAMiE",
-        "firstName": "GdbsxBPZkD3UENBks1Xdj631Uomo",
-        "lastName": "807T2vrDS12BGdpvedtBmIvu9OYe",
-        "_constructor": "inputBotInlineMessageMediaContact#2daf01a7",
         "flags": 0,
         "replyMarkup": null
       }
@@ -49,13 +30,15 @@
         "_constructor": "inputPhotoEmpty#1cd7bf0d"
       },
       "_constructor": "inputBotInlineResultPhoto#a8d864a7",
-      "id": "9tzXXm56YtKKiEE6LGdtNX",
-      "type": "NZ9qMY2jJhHykvuo2n94E",
+      "id": "VKSAV3zd7b75UFusKcUtnX0zQ",
+      "type": "NAk8aO3d8",
       "sendMessage": {
-        "phoneNumber": "eBdcfOr2Xna2llwHqMgzKGT2887",
-        "firstName": "Ghefq7cGnYqQ8pA6Gf0gdlZ3jHCu",
-        "lastName": "vUfyyFY4eFY7guTLlUH",
-        "_constructor": "inputBotInlineMessageMediaContact#2daf01a7",
+        "geoPoint": {
+          "lat": 0.0,
+          "_long": 0.0,
+          "_constructor": "inputGeoPoint#f3b7acc9"
+        },
+        "_constructor": "inputBotInlineMessageMediaGeo#f4a59de1",
         "flags": 0,
         "replyMarkup": null
       }
@@ -67,11 +50,32 @@
         "_constructor": "inputPhoto#fb95c6c4"
       },
       "_constructor": "inputBotInlineResultPhoto#a8d864a7",
-      "id": "oHM4gBVTRu0b",
-      "type": "UNjZcV2TbkfsCmILZZMBu",
+      "id": "BVYVELscS5DNJtmjO",
+      "type": "WIVnAhbg6IH",
       "sendMessage": {
-        "caption": "yu2FyOuZdVdYzYtLrJhvmT0puZ",
-        "_constructor": "inputBotInlineMessageMediaAuto#292fed13",
+        "noWebpage": true,
+        "message": "a0VAS",
+        "entities": null,
+        "_constructor": "inputBotInlineMessageText#3dcd7a87",
+        "flags": 1,
+        "replyMarkup": null
+      }
+    },
+    {
+      "flags": 0,
+      "title": null,
+      "description": null,
+      "document": {
+        "_constructor": "inputDocumentEmpty#72f0eaae"
+      },
+      "_constructor": "inputBotInlineResultDocument#fff8fdc4",
+      "id": "9qofJcGM5ULTRa",
+      "type": "2nwGO1eNKXrFy3dgwMg4457Cr",
+      "sendMessage": {
+        "phoneNumber": "bWhSpNcBkkVpAx42cDQsRHbAuBYTd",
+        "firstName": "SXkRHBx8ET2poFHQe3dS",
+        "lastName": "AtGgU4P3QvaWb66iAZa0MRgTbFQ",
+        "_constructor": "inputBotInlineMessageMediaContact#2daf01a7",
         "flags": 0,
         "replyMarkup": null
       }
@@ -88,16 +92,18 @@
       "h": null,
       "duration": null,
       "_constructor": "inputBotInlineResult#2cbbe15a",
-      "id": "oWThJoweRctoh5jMPLOK",
-      "type": "nGLBaFbxBVbeF8xDeRTOx1o",
+      "id": "Ne5r5DuTD7PBZs4HaontPH7",
+      "type": "DOqHZBtUM6iOIcCYBzkr7",
       "sendMessage": {
         "geoPoint": {
-          "_constructor": "inputGeoPointEmpty#e4c123d6"
+          "lat": 0.0,
+          "_long": 0.0,
+          "_constructor": "inputGeoPoint#f3b7acc9"
         },
-        "title": "K8rRUdlsnmjBzF",
-        "address": "TXmBKvOUbMqXKBeO",
-        "provider": "VKMXdExhTTE",
-        "venueId": "6gCGgPYArrll1yRoDDUEp",
+        "title": "EyMUlLW",
+        "address": "2pZ1r5dXjJYh2Tyq",
+        "provider": "9z61BK6NuEVftVePjgB",
+        "venueId": "LOLIUm",
         "_constructor": "inputBotInlineMessageMediaVenue#aaafadc8",
         "flags": 0,
         "replyMarkup": null
@@ -107,17 +113,37 @@
       "flags": 0,
       "title": null,
       "description": null,
-      "document": {
+      "url": null,
+      "thumbUrl": null,
+      "contentUrl": null,
+      "contentType": null,
+      "w": null,
+      "h": null,
+      "duration": null,
+      "_constructor": "inputBotInlineResult#2cbbe15a",
+      "id": "ffRZePqahjCRP2e7cD",
+      "type": "wcIcXI",
+      "sendMessage": {
+        "caption": "ICORPHpAUD5yEAROfb3bC94IP",
+        "_constructor": "inputBotInlineMessageMediaAuto#292fed13",
+        "flags": 0,
+        "replyMarkup": null
+      }
+    },
+    {
+      "photo": {
         "id": 0,
         "accessHash": 0,
-        "_constructor": "inputDocument#18798952"
+        "_constructor": "inputPhoto#fb95c6c4"
       },
-      "_constructor": "inputBotInlineResultDocument#fff8fdc4",
-      "id": "tMYjlcKCdr4ZUjtigC9",
-      "type": "gfp28LAj4gQPx8ZLu4svlM790lE",
+      "_constructor": "inputBotInlineResultPhoto#a8d864a7",
+      "id": "UmuoxRDRyEfU",
+      "type": "K0OJMWNqMuDu6xhFk29uJ",
       "sendMessage": {
-        "caption": "0IRF7ct2kyvOO8ky5c",
-        "_constructor": "inputBotInlineMessageMediaAuto#292fed13",
+        "noWebpage": false,
+        "message": "QkP38f1TUVhGAIbv",
+        "entities": null,
+        "_constructor": "inputBotInlineMessageText#3dcd7a87",
         "flags": 0,
         "replyMarkup": null
       }
@@ -134,18 +160,16 @@
       "h": null,
       "duration": null,
       "_constructor": "inputBotInlineResult#2cbbe15a",
-      "id": "jJd1bmLVyHlrSCWmDOhhVkhP5",
-      "type": "pvaaqf",
+      "id": "nOLLoQ",
+      "type": "64wXht6U9g8Gr",
       "sendMessage": {
         "geoPoint": {
-          "lat": 0.0,
-          "_long": 0.0,
-          "_constructor": "inputGeoPoint#f3b7acc9"
+          "_constructor": "inputGeoPointEmpty#e4c123d6"
         },
-        "title": "0gb2EqVIIexvkBFJHoB9LKEN4x6",
-        "address": "II4kYlgeL",
-        "provider": "ZTPTJzGLoq1YLTwXMwPjc5oBxbrvi",
-        "venueId": "ly1ub5Tu",
+        "title": "9J2pUk1huEt7E8rf",
+        "address": "eZriCF9SzPaaWIxFhTQQug",
+        "provider": "Wbz5IvSdmuEax",
+        "venueId": "aQrXWnlnlMBCFqdvtDnppV50EmDPK",
         "_constructor": "inputBotInlineMessageMediaVenue#aaafadc8",
         "flags": 0,
         "replyMarkup": null

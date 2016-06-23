@@ -1,7 +1,9 @@
 {
   "contacts": [
     {
-      "_constructor": "inputUserSelf#f7c1b13f"
+      "userId": 0,
+      "accessHash": 0,
+      "_constructor": "inputUser#d8292816"
     },
     {
       "_constructor": "inputUserSelf#f7c1b13f"
@@ -10,55 +12,49 @@
       "_constructor": "inputUserSelf#f7c1b13f"
     },
     {
+      "_constructor": "inputUserEmpty#b98886cf"
+    },
+    {
       "_constructor": "inputUserSelf#f7c1b13f"
+    },
+    {
+      "_constructor": "inputUserEmpty#b98886cf"
+    },
+    {
+      "_constructor": "inputUserSelf#f7c1b13f"
+    },
+    {
+      "_constructor": "inputUserSelf#f7c1b13f"
+    },
+    {
+      "userId": 0,
+      "accessHash": 0,
+      "_constructor": "inputUser#d8292816"
+    },
+    {
+      "_constructor": "inputUserEmpty#b98886cf"
+    },
+    {
+      "userId": 0,
+      "accessHash": 0,
+      "_constructor": "inputUser#d8292816"
     }
   ],
   "randomId": [
     0,
     0,
     0,
-    0,
-    0,
-    0,
-    0,
     0
   ],
-  "message": "BUN0JYDhUs",
+  "message": "4D5GP3D2ln",
   "media": {
-    "file": {
-      "_constructor": "inputFileBig#fa4f0bb5",
+    "id": {
       "id": 0,
-      "parts": 0,
-      "name": "qGwOFGlZORwVCKgX87dr"
+      "accessHash": 0,
+      "_constructor": "inputPhoto#fb95c6c4"
     },
-    "mimeType": "0BH7XSFwEaz71sx9sGo8QjGt",
-    "attributes": [
-      {
-        "duration": 0,
-        "w": 0,
-        "h": 0,
-        "_constructor": "documentAttributeVideo#5910cccb"
-      },
-      {
-        "fileName": "WddHbGZOV4FJ",
-        "_constructor": "documentAttributeFilename#15590068"
-      },
-      {
-        "flags": 0,
-        "voice": false,
-        "duration": 0,
-        "title": null,
-        "performer": null,
-        "waveform": null,
-        "_constructor": "documentAttributeAudio#9852f9c6"
-      },
-      {
-        "fileName": "EkhRCOVSjjccb2n",
-        "_constructor": "documentAttributeFilename#15590068"
-      }
-    ],
-    "caption": "mO2y8V",
-    "_constructor": "inputMediaUploadedDocument#1d89306d"
+    "caption": "k4O4MRUIIjPePyVL",
+    "_constructor": "inputMediaPhoto#e9bfb4f3"
   },
   "_constructor": "messages.sendBroadcast#bf73f4da"
 }

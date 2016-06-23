@@ -5,22 +5,42 @@
   "thisDc": 0,
   "dcOptions": [
     {
+      "flags": 2,
+      "ipv6": false,
+      "mediaOnly": true,
+      "tcpoOnly": false,
+      "id": 0,
+      "ipAddress": "WspvE3dwxBQKyYEvH5Gpfl",
+      "port": 0,
+      "_constructor": "dcOption#5d8c6cc"
+    },
+    {
       "flags": 5,
       "ipv6": true,
       "mediaOnly": false,
       "tcpoOnly": true,
       "id": 0,
-      "ipAddress": "uY3VbIY4jzt3KkARNfqzo1x",
+      "ipAddress": "IWqqQNDxTvVYekBpG1Uk",
       "port": 0,
       "_constructor": "dcOption#5d8c6cc"
     },
     {
-      "flags": 6,
+      "flags": 1,
+      "ipv6": true,
+      "mediaOnly": false,
+      "tcpoOnly": false,
+      "id": 0,
+      "ipAddress": "pcVndZq4iOA8c8FjUal7qw5qE",
+      "port": 0,
+      "_constructor": "dcOption#5d8c6cc"
+    },
+    {
+      "flags": 4,
       "ipv6": false,
-      "mediaOnly": true,
+      "mediaOnly": false,
       "tcpoOnly": true,
       "id": 0,
-      "ipAddress": "F0ls4kEWjEgi",
+      "ipAddress": "LxGOt3NFFeDCfKfHHFgE",
       "port": 0,
       "_constructor": "dcOption#5d8c6cc"
     }
@@ -39,37 +59,18 @@
   "pushChatLimit": 0,
   "savedGifsLimit": 0,
   "editTimeLimit": 0,
+  "ratingEDecay": 0,
   "disabledFeatures": [
     {
-      "feature": "WiC3uRMrTh3nvRMia",
-      "description": "Ps5r46ERSUec",
+      "feature": "kiXuC9OGUFQUwvo5PIZnzF",
+      "description": "GETAbBaHfhPadvD",
       "_constructor": "disabledFeature#ae636f24"
     },
     {
-      "feature": "QDIkplAq1cuRwLlf06sjt",
-      "description": "b6cbSb76KZgSrPOYdadUosQueirqz",
-      "_constructor": "disabledFeature#ae636f24"
-    },
-    {
-      "feature": "P3w1hji5",
-      "description": "wWTt20",
-      "_constructor": "disabledFeature#ae636f24"
-    },
-    {
-      "feature": "vNYqHkxMLiWcAKH",
-      "description": "20UIOn",
-      "_constructor": "disabledFeature#ae636f24"
-    },
-    {
-      "feature": "sel38Dmg1UzTC05nwYZjul",
-      "description": "tmIZk2IuVIuaFkawfjhqzNqH7",
-      "_constructor": "disabledFeature#ae636f24"
-    },
-    {
-      "feature": "gBJNUvjL4gyFHEV5cYx5vrhd",
-      "description": "AHXCiu",
+      "feature": "2PAacpM1EK8jWQOWJcLiVdaAep",
+      "description": "dZ9adiS4khWbrisq",
       "_constructor": "disabledFeature#ae636f24"
     }
   ],
-  "_constructor": "config#317ceef4"
+  "_constructor": "config#c9411388"
 }

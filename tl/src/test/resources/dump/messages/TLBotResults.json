@@ -1,10 +1,33 @@
 {
-  "flags": 1,
-  "gallery": true,
+  "flags": 0,
+  "gallery": false,
   "queryId": 0,
   "nextOffset": null,
   "switchPm": null,
   "results": [
+    {
+      "title": null,
+      "description": null,
+      "url": null,
+      "thumbUrl": null,
+      "contentUrl": null,
+      "contentType": null,
+      "w": null,
+      "h": null,
+      "duration": null,
+      "_constructor": "botInlineResult#9bebaeb9",
+      "flags": 0,
+      "id": "RLdXruO",
+      "type": "N2GNdVK45BKYzv04",
+      "sendMessage": {
+        "phoneNumber": "xMmNhi",
+        "firstName": "OakApMoIiCySifBE7LD3JhPpykPW",
+        "lastName": "RwXKFAGcclksAp2L08K",
+        "_constructor": "botInlineMessageMediaContact#35edb4d4",
+        "flags": 0,
+        "replyMarkup": null
+      }
+    },
     {
       "photo": null,
       "document": null,
@@ -12,29 +35,42 @@
       "description": null,
       "_constructor": "botInlineMediaResult#17db940b",
       "flags": 0,
-      "id": "PdpJoBAmjnKLKoCveLD9",
-      "type": "IrBDUCXdtuAZCxSBnvNA4EMFX2",
+      "id": "ixViUWfk8RYSzxXFxE2wAWswXVnI",
+      "type": "rYAlUBPd9jG16XU41v1GGSmS",
       "sendMessage": {
-        "caption": "klEopvwZ8P3YQOHyP3Odds98gZe4P",
+        "phoneNumber": "HfFRdcIWocXdu0KTdnl0a0",
+        "firstName": "LZ3CKg",
+        "lastName": "ACD86Na4STAjWxambe1",
+        "_constructor": "botInlineMessageMediaContact#35edb4d4",
+        "flags": 0,
+        "replyMarkup": null
+      }
+    },
+    {
+      "photo": null,
+      "document": null,
+      "title": null,
+      "description": null,
+      "_constructor": "botInlineMediaResult#17db940b",
+      "flags": 0,
+      "id": "GqhWQ1mu6srFAeL",
+      "type": "mfFIMwG7Kr3lqnujE1ZCKfqYWkw",
+      "sendMessage": {
+        "caption": "0IoEN3B1xhO70PxPLAfj",
         "_constructor": "botInlineMessageMediaAuto#a74b15b",
         "flags": 0,
         "replyMarkup": null
       }
     },
     {
+      "photo": null,
+      "document": null,
       "title": null,
       "description": null,
-      "url": null,
-      "thumbUrl": null,
-      "contentUrl": null,
-      "contentType": null,
-      "w": null,
-      "h": null,
-      "duration": null,
-      "_constructor": "botInlineResult#9bebaeb9",
+      "_constructor": "botInlineMediaResult#17db940b",
       "flags": 0,
-      "id": "pMc4r3q6CBoypwmY3XG1",
-      "type": "mzEV12",
+      "id": "weCWHT9Nyzd",
+      "type": "9ojRBNwT8Fm66LXnOyGA",
       "sendMessage": {
         "geo": {
           "_constructor": "geoPointEmpty#1117dd5f"
@@ -45,21 +81,24 @@
       }
     },
     {
-      "photo": null,
-      "document": null,
       "title": null,
       "description": null,
-      "_constructor": "botInlineMediaResult#17db940b",
+      "url": null,
+      "thumbUrl": null,
+      "contentUrl": null,
+      "contentType": null,
+      "w": null,
+      "h": null,
+      "duration": null,
+      "_constructor": "botInlineResult#9bebaeb9",
       "flags": 0,
-      "id": "3itUkrtV",
-      "type": "I2cPS47jrlaqdB",
+      "id": "JQ2SuibONZtlkGYWLtaFcJEZ9XG5",
+      "type": "txankXMVqZu9NK3X",
       "sendMessage": {
-        "geo": {
-          "_long": 0.0,
-          "lat": 0.0,
-          "_constructor": "geoPoint#2049d70c"
-        },
-        "_constructor": "botInlineMessageMediaGeo#3a8fd8b8",
+        "phoneNumber": "GMyESqza",
+        "firstName": "L1KFyGVZUBcfGy",
+        "lastName": "9YTHoc9H87Fzl",
+        "_constructor": "botInlineMessageMediaContact#35edb4d4",
         "flags": 0,
         "replyMarkup": null
       }
@@ -76,97 +115,16 @@
       "duration": null,
       "_constructor": "botInlineResult#9bebaeb9",
       "flags": 0,
-      "id": "MmdKVNPS",
-      "type": "3FIhD1",
+      "id": "4SdImfCYdGd5BoWbDpPSmxIk14qLJ",
+      "type": "9OSIJFgEwc5Tdh",
       "sendMessage": {
         "geo": {
           "_constructor": "geoPointEmpty#1117dd5f"
         },
-        "title": "VX8U3mfJpQRdcEpzVgN",
-        "address": "sRmSuSJDS77EXhGAc",
-        "provider": "ypk3eWQTI8RkO",
-        "venueId": "aUsEd0kJJkRzrGM6mvWyXo",
-        "_constructor": "botInlineMessageMediaVenue#4366232e",
-        "flags": 0,
-        "replyMarkup": null
-      }
-    },
-    {
-      "title": null,
-      "description": null,
-      "url": null,
-      "thumbUrl": null,
-      "contentUrl": null,
-      "contentType": null,
-      "w": null,
-      "h": null,
-      "duration": null,
-      "_constructor": "botInlineResult#9bebaeb9",
-      "flags": 0,
-      "id": "nhy8NIhIbhkcB",
-      "type": "Lg8d2vYP0YutSqxsi7",
-      "sendMessage": {
-        "phoneNumber": "gd5xXMB3",
-        "firstName": "vDDiIySe0LxCoEW",
-        "lastName": "8ilp087PKMAxX",
-        "_constructor": "botInlineMessageMediaContact#35edb4d4",
-        "flags": 0,
-        "replyMarkup": null
-      }
-    },
-    {
-      "photo": null,
-      "document": null,
-      "title": null,
-      "description": null,
-      "_constructor": "botInlineMediaResult#17db940b",
-      "flags": 0,
-      "id": "65LwPmh87B1sF1UIHOTO",
-      "type": "mM4oDkEg0qA3qsV1rl1zI9DOQ",
-      "sendMessage": {
-        "phoneNumber": "bVimoqb",
-        "firstName": "JzEa1nunA7FUTNFiG2J63",
-        "lastName": "vvHBym7eXoL9sM36",
-        "_constructor": "botInlineMessageMediaContact#35edb4d4",
-        "flags": 0,
-        "replyMarkup": null
-      }
-    },
-    {
-      "photo": null,
-      "document": null,
-      "title": null,
-      "description": null,
-      "_constructor": "botInlineMediaResult#17db940b",
-      "flags": 0,
-      "id": "0hJQYc",
-      "type": "ANwrpKJrbLLfIFBY4d8sI",
-      "sendMessage": {
-        "phoneNumber": "crtsF4NGzrUylefI3GXNbUUYiA05f",
-        "firstName": "wvpKKsCZggZhfaaF33VPEJ1nCbt",
-        "lastName": "WAsrAd8d98uA3GU8v8",
-        "_constructor": "botInlineMessageMediaContact#35edb4d4",
-        "flags": 0,
-        "replyMarkup": null
-      }
-    },
-    {
-      "photo": null,
-      "document": null,
-      "title": null,
-      "description": null,
-      "_constructor": "botInlineMediaResult#17db940b",
-      "flags": 0,
-      "id": "oU555PjyicFTXggs",
-      "type": "q7Ha6HNqE2fyOfiKzJ8mFC",
-      "sendMessage": {
-        "geo": {
-          "_constructor": "geoPointEmpty#1117dd5f"
-        },
-        "title": "wZO2AeJNhAi",
-        "address": "0R1VJCv5K7wMXiJg",
-        "provider": "L5UzR9ACRBojfTD3Ns3GDh8N0Il",
-        "venueId": "JugfZqQj7ziYfbgHZd1UCxmbr2TVb",
+        "title": "0mM2MWimVJAOYebv",
+        "address": "C5snW",
+        "provider": "VGwHMhynGMTmbnwF6Dk90KIkp0F",
+        "venueId": "ysIXrRS6oSqYDvPKsiV7g0K",
         "_constructor": "botInlineMessageMediaVenue#4366232e",
         "flags": 0,
         "replyMarkup": null
@@ -179,12 +137,12 @@
       "description": null,
       "_constructor": "botInlineMediaResult#17db940b",
       "flags": 0,
-      "id": "02QMSrnAlYgts",
-      "type": "KGK9LMddfA1ncfviXEZR2XawTPo",
+      "id": "0b5YTdRrDsOepi",
+      "type": "cHmq4ZbKG7H0i",
       "sendMessage": {
-        "phoneNumber": "mkiigD",
-        "firstName": "Y9CmJm8c0LqhksJ",
-        "lastName": "OsKjkuuIH2xtqknxAvX2",
+        "phoneNumber": "x0BEW8iiNKmAbx8QAt",
+        "firstName": "mha7G5KXTXS5MCDRZ8",
+        "lastName": "cQP73Jr7BDB1N",
         "_constructor": "botInlineMessageMediaContact#35edb4d4",
         "flags": 0,
         "replyMarkup": null
@@ -197,11 +155,11 @@
       "description": null,
       "_constructor": "botInlineMediaResult#17db940b",
       "flags": 0,
-      "id": "cBsjfHxfyhaVB1u2yrjmT5wDbVYe",
-      "type": "7k5BFmGSCmetBTuq3D3Nv0gDpZMZ",
+      "id": "pCgmBLC712gQAj131M5aQxS",
+      "type": "PKtJk2QZgBxrVHCuUrZUEFHhAR",
       "sendMessage": {
         "noWebpage": true,
-        "message": "cQsExvegOK0Zg",
+        "message": "tl5E4WjMIH",
         "entities": null,
         "_constructor": "botInlineMessageText#8c7f65e2",
         "flags": 1,
@@ -215,11 +173,34 @@
       "description": null,
       "_constructor": "botInlineMediaResult#17db940b",
       "flags": 0,
-      "id": "zBOCzx4N2ojJlGwyMB1",
-      "type": "JNvY7qw5OUbcxpvC6czVyeDJw3c",
+      "id": "VSKgyGtQLD32w7C",
+      "type": "ymMOzhHBMnJ",
       "sendMessage": {
-        "caption": "hDtlwBJg6UhyZjphGU1jCS8dV8sn",
+        "caption": "Ibc82zPFMdi6dbyK",
         "_constructor": "botInlineMessageMediaAuto#a74b15b",
+        "flags": 0,
+        "replyMarkup": null
+      }
+    },
+    {
+      "title": null,
+      "description": null,
+      "url": null,
+      "thumbUrl": null,
+      "contentUrl": null,
+      "contentType": null,
+      "w": null,
+      "h": null,
+      "duration": null,
+      "_constructor": "botInlineResult#9bebaeb9",
+      "flags": 0,
+      "id": "ACYOHzt2s",
+      "type": "oZIozURyi7jsn9MYafQliI",
+      "sendMessage": {
+        "noWebpage": false,
+        "message": "kMYTOI3b96QVb4gB1AMw",
+        "entities": null,
+        "_constructor": "botInlineMessageText#8c7f65e2",
         "flags": 0,
         "replyMarkup": null
       }

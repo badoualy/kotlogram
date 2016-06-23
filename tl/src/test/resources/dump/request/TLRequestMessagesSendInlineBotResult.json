@@ -1,14 +1,16 @@
 {
-  "flags": 0,
-  "broadcast": false,
-  "silent": false,
-  "background": false,
+  "flags": 96,
+  "silent": true,
+  "background": true,
+  "clearDraft": false,
   "peer": {
-    "_constructor": "inputPeerEmpty#7f3b18ea"
+    "channelId": 0,
+    "accessHash": 0,
+    "_constructor": "inputPeerChannel#20adaef8"
   },
   "replyToMsgId": null,
   "randomId": 0,
   "queryId": 0,
-  "id": "PPVZiOQUpnEqX8YTWPqfi09",
+  "id": "Bsg4g49et6IIGl",
   "_constructor": "messages.sendInlineBotResult#b16e06fe"
 }

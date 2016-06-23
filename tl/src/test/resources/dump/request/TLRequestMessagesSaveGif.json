@@ -1,9 +1,7 @@
 {
   "id": {
-    "id": 0,
-    "accessHash": 0,
-    "_constructor": "inputDocument#18798952"
+    "_constructor": "inputDocumentEmpty#72f0eaae"
   },
-  "unsave": true,
+  "unsave": false,
   "_constructor": "messages.saveGif#327a30cb"
 }

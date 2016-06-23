@@ -1,34 +1,16 @@
 {
   "key": {
-    "_constructor": "privacyKeyStatusTimestamp#bc2eab30"
+    "_constructor": "privacyKeyChatInvite#500e6dfa"
   },
   "rules": [
     {
       "_constructor": "privacyValueAllowContacts#fffe1bac"
     },
     {
-      "users": [
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0
-      ],
-      "_constructor": "privacyValueDisallowUsers#c7f49b7"
+      "_constructor": "privacyValueDisallowContacts#f888fa1a"
     },
     {
-      "users": [
-        0,
-        0,
-        0,
-        0,
-        0
-      ],
-      "_constructor": "privacyValueDisallowUsers#c7f49b7"
+      "_constructor": "privacyValueAllowAll#65427b82"
     }
   ],
   "_constructor": "updatePrivacy#ee3b272a"

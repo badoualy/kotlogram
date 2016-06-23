@@ -1,8 +1,8 @@
 {
-  "flags": 0,
-  "broadcast": false,
-  "megagroup": false,
-  "title": "AVTLXqqRqgH",
-  "about": "8GZMXaA2kbYq9mKgASZ",
+  "flags": 3,
+  "broadcast": true,
+  "megagroup": true,
+  "title": "18M2HExSP",
+  "about": "KfqQZpRn8xcHAqv",
   "_constructor": "channels.createChannel#f4893d7f"
 }

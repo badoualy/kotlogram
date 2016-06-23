@@ -1,11 +1,11 @@
 {
-  "flags": 1,
-  "phoneRegistered": true,
+  "flags": 0,
+  "phoneRegistered": false,
   "type": {
-    "length": 0,
-    "_constructor": "auth.sentCodeTypeSms#c000bba2"
+    "pattern": "PokrXJ1iaeqJWmRYgT1wXZ4In4h2A",
+    "_constructor": "auth.sentCodeTypeFlashCall#ab03c6d9"
   },
-  "phoneCodeHash": "tPcqIoDLcKazwWo3swK",
+  "phoneCodeHash": "fiARvfkBnrw7d5g530HtNj7O",
   "nextType": null,
   "timeout": null,
   "_constructor": "auth.sentCode#5e002502"

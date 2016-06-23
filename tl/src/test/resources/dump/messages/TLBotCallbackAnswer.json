@@ -1,6 +1,6 @@
 {
-  "flags": 2,
-  "alert": true,
+  "flags": 0,
+  "alert": false,
   "message": null,
   "_constructor": "messages.botCallbackAnswer#1264f1c6"
 }

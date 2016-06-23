@@ -1,21 +1,43 @@
 {
   "set": {
-    "flags": 3,
-    "installed": true,
+    "flags": 2,
+    "installed": false,
     "disabled": true,
     "official": false,
     "id": 0,
     "accessHash": 0,
-    "title": "KnoR2c9JSKG0drFxqFj0u",
-    "shortName": "XGcYlr6s8Qut70J5Kct",
+    "title": "okWPkBUKp",
+    "shortName": "GuklZ01o1SoW5xY",
     "count": 0,
     "hash": 0,
     "_constructor": "stickerSet#cd303b41"
   },
   "packs": [
     {
-      "emoticon": "xbEWvERSeqNG3Sg0zihR1J",
+      "emoticon": "2zgO5b1KDr9",
       "documents": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "_constructor": "stickerPack#12b299d4"
+    },
+    {
+      "emoticon": "Di8tF2C2MpJ3rhT13HFu9FZ1ywba",
+      "documents": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "_constructor": "stickerPack#12b299d4"
+    },
+    {
+      "emoticon": "sSFNbc4",
+      "documents": [
+        0,
         0,
         0,
         0,
@@ -30,9 +52,8 @@
       "_constructor": "stickerPack#12b299d4"
     },
     {
-      "emoticon": "iUjLnh7X9An90VxJykJ9tLVcU8Wp",
+      "emoticon": "HZE8EYjGGCJyeH0r4wyvwQj5",
       "documents": [
-        0,
         0,
         0,
         0,
@@ -41,55 +62,10 @@
       "_constructor": "stickerPack#12b299d4"
     },
     {
-      "emoticon": "9NMyU8NfDFgV",
+      "emoticon": "XcJZLe",
       "documents": [
         0,
         0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0
-      ],
-      "_constructor": "stickerPack#12b299d4"
-    },
-    {
-      "emoticon": "3jVeg7ZnmJy9aENShZFh541",
-      "documents": [
-        0,
-        0,
-        0,
-        0,
-        0,
-        0
-      ],
-      "_constructor": "stickerPack#12b299d4"
-    },
-    {
-      "emoticon": "TLXzf4vOsqP9WGKXqnk3s7",
-      "documents": [
-        0,
-        0,
-        0,
-        0,
-        0
-      ],
-      "_constructor": "stickerPack#12b299d4"
-    },
-    {
-      "emoticon": "T3VmoCaCbjaPf4jOn5qa",
-      "documents": [
-        0,
-        0,
-        0
-      ],
-      "_constructor": "stickerPack#12b299d4"
-    },
-    {
-      "emoticon": "WxlLMsNi1HN89oq",
-      "documents": [
         0,
         0,
         0,
@@ -101,31 +77,8 @@
       "_constructor": "stickerPack#12b299d4"
     },
     {
-      "emoticon": "xA3YgGjznMI2sZ8Y4R3RPkXsgug4v",
+      "emoticon": "RHUmsMSJqduA",
       "documents": [
-        0,
-        0,
-        0
-      ],
-      "_constructor": "stickerPack#12b299d4"
-    },
-    {
-      "emoticon": "2oiU243p5Bi5nMV",
-      "documents": [
-        0,
-        0
-      ],
-      "_constructor": "stickerPack#12b299d4"
-    },
-    {
-      "emoticon": "qjE7ZpvOy",
-      "documents": [
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
         0,
         0,
         0
@@ -135,25 +88,47 @@
   ],
   "documents": [
     {
+      "_constructor": "documentEmpty#36f8c871",
+      "id": 0
+    },
+    {
       "accessHash": 0,
       "date": 0,
-      "mimeType": "LFKUA05WxzvOws8qTYuPfqq",
+      "mimeType": "llRGLRr8H1",
       "size": 0,
       "thumb": {
-        "_constructor": "photoSizeEmpty#e17e23c",
-        "type": "DulKRI0"
+        "location": {
+          "_constructor": "fileLocationUnavailable#7c596b46",
+          "volumeId": 0,
+          "localId": 0,
+          "secret": 0
+        },
+        "w": 0,
+        "h": 0,
+        "size": 0,
+        "_constructor": "photoSize#77bfb61b",
+        "type": "BjfyNSjTgO0zSaqOQoan"
       },
       "dcId": 0,
       "attributes": [
         {
-          "w": 0,
-          "h": 0,
-          "_constructor": "documentAttributeImageSize#6c37c15c"
+          "flags": 0,
+          "voice": false,
+          "duration": 0,
+          "title": null,
+          "performer": null,
+          "waveform": null,
+          "_constructor": "documentAttributeAudio#9852f9c6"
         },
         {
-          "w": 0,
-          "h": 0,
-          "_constructor": "documentAttributeImageSize#6c37c15c"
+          "alt": "AB5eUUEVVN87vO",
+          "stickerset": {
+            "_constructor": "inputStickerSetEmpty#ffb62b95"
+          },
+          "_constructor": "documentAttributeSticker#3a556302"
+        },
+        {
+          "_constructor": "documentAttributeAnimated#11b58939"
         },
         {
           "duration": 0,
@@ -162,41 +137,356 @@
           "_constructor": "documentAttributeVideo#5910cccb"
         },
         {
-          "w": 0,
-          "h": 0,
-          "_constructor": "documentAttributeImageSize#6c37c15c"
-        },
-        {
-          "alt": "7OgZqgtHQJ7VFhDoleY0j",
-          "stickerset": {
-            "shortName": "yBBZfazCn",
-            "_constructor": "inputStickerSetShortName#861cc8a0"
-          },
-          "_constructor": "documentAttributeSticker#3a556302"
-        },
-        {
-          "fileName": "FzhD9Hevy71hzqBJwb",
-          "_constructor": "documentAttributeFilename#15590068"
-        },
-        {
-          "w": 0,
-          "h": 0,
-          "_constructor": "documentAttributeImageSize#6c37c15c"
+          "flags": 0,
+          "voice": false,
+          "duration": 0,
+          "title": null,
+          "performer": null,
+          "waveform": null,
+          "_constructor": "documentAttributeAudio#9852f9c6"
         }
       ],
       "_constructor": "document#f9a39f4f",
       "id": 0
     },
     {
-      "_constructor": "documentEmpty#36f8c871",
+      "accessHash": 0,
+      "date": 0,
+      "mimeType": "ojPYVZC1B4ECtim",
+      "size": 0,
+      "thumb": {
+        "location": {
+          "_constructor": "fileLocationUnavailable#7c596b46",
+          "volumeId": 0,
+          "localId": 0,
+          "secret": 0
+        },
+        "w": 0,
+        "h": 0,
+        "size": 0,
+        "_constructor": "photoSize#77bfb61b",
+        "type": "F62jDxwuHDLqp2qByvejfhOVBaiAE"
+      },
+      "dcId": 0,
+      "attributes": [
+        {
+          "alt": "lMttDbBPJ",
+          "stickerset": {
+            "_constructor": "inputStickerSetEmpty#ffb62b95"
+          },
+          "_constructor": "documentAttributeSticker#3a556302"
+        },
+        {
+          "duration": 0,
+          "w": 0,
+          "h": 0,
+          "_constructor": "documentAttributeVideo#5910cccb"
+        },
+        {
+          "alt": "oVmFuTkvEXu0MuzF4mKy",
+          "stickerset": {
+            "shortName": "2BuPTOiK",
+            "_constructor": "inputStickerSetShortName#861cc8a0"
+          },
+          "_constructor": "documentAttributeSticker#3a556302"
+        },
+        {
+          "duration": 0,
+          "w": 0,
+          "h": 0,
+          "_constructor": "documentAttributeVideo#5910cccb"
+        },
+        {
+          "_constructor": "documentAttributeAnimated#11b58939"
+        },
+        {
+          "w": 0,
+          "h": 0,
+          "_constructor": "documentAttributeImageSize#6c37c15c"
+        },
+        {
+          "alt": "FFXxhBUKQW9OUC1x6",
+          "stickerset": {
+            "shortName": "WMzVvA34FAaoYxnL",
+            "_constructor": "inputStickerSetShortName#861cc8a0"
+          },
+          "_constructor": "documentAttributeSticker#3a556302"
+        },
+        {
+          "fileName": "mvLC5i9RB1qSBF4TBWnbef0k8",
+          "_constructor": "documentAttributeFilename#15590068"
+        },
+        {
+          "_constructor": "documentAttributeAnimated#11b58939"
+        },
+        {
+          "alt": "xRKkjr3lrP",
+          "stickerset": {
+            "id": 0,
+            "accessHash": 0,
+            "_constructor": "inputStickerSetID#9de7a269"
+          },
+          "_constructor": "documentAttributeSticker#3a556302"
+        },
+        {
+          "duration": 0,
+          "w": 0,
+          "h": 0,
+          "_constructor": "documentAttributeVideo#5910cccb"
+        }
+      ],
+      "_constructor": "document#f9a39f4f",
       "id": 0
     },
     {
-      "_constructor": "documentEmpty#36f8c871",
-      "id": 0
-    },
-    {
-      "_constructor": "documentEmpty#36f8c871",
+      "accessHash": 0,
+      "date": 0,
+      "mimeType": "3aOgf5aDZ0aojaz",
+      "size": 0,
+      "thumb": {
+        "location": {
+          "dcId": 0,
+          "_constructor": "fileLocation#53d69076",
+          "volumeId": 0,
+          "localId": 0,
+          "secret": 0
+        },
+        "w": 0,
+        "h": 0,
+        "bytes": {
+          "data": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "offset": 0,
+          "len": 200
+        },
+        "_constructor": "photoCachedSize#e9a734fa",
+        "type": "o7HbDdA7xgGZOZUvf"
+      },
+      "dcId": 0,
+      "attributes": [
+        {
+          "_constructor": "documentAttributeAnimated#11b58939"
+        },
+        {
+          "alt": "SgBzlifShWOCAfXjQgaYzq9gx9",
+          "stickerset": {
+            "id": 0,
+            "accessHash": 0,
+            "_constructor": "inputStickerSetID#9de7a269"
+          },
+          "_constructor": "documentAttributeSticker#3a556302"
+        },
+        {
+          "flags": 1024,
+          "voice": true,
+          "duration": 0,
+          "title": null,
+          "performer": null,
+          "waveform": null,
+          "_constructor": "documentAttributeAudio#9852f9c6"
+        }
+      ],
+      "_constructor": "document#f9a39f4f",
       "id": 0
     }
   ],

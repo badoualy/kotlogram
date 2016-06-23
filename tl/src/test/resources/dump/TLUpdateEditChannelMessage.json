@@ -1,6 +1,23 @@
 {
   "message": {
-    "_constructor": "messageEmpty#83e5de54",
+    "flags": 16434,
+    "out": true,
+    "mentioned": true,
+    "mediaUnread": true,
+    "silent": false,
+    "post": true,
+    "fromId": null,
+    "toId": {
+      "userId": 0,
+      "_constructor": "peerUser#9db1bc6d"
+    },
+    "replyToMsgId": null,
+    "date": 0,
+    "action": {
+      "inviterId": 0,
+      "_constructor": "messageActionChatJoinedByLink#f89cf5e8"
+    },
+    "_constructor": "messageService#9e19a1f6",
     "id": 0
   },
   "pts": 0,
