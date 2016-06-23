@@ -35,6 +35,8 @@ import static com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_INT32;
 @SuppressWarnings("NullableProblems")
 public class TLVector<T> extends TLObject implements List<T> {
 
+    public static final transient TLVector EMPTY_ARRAY = new TLVector();
+
     public static final int CONSTRUCTOR_ID = 0x1cb5c415;
 
     protected final Class itemClazz;
