@@ -1,6 +1,7 @@
 package com.github.badoualy.telegram.api
 
 import org.slf4j.LoggerFactory
+import org.slf4j.MarkerFactory
 import java.util.*
 import kotlin.concurrent.schedule
 
@@ -8,14 +9,13 @@ import kotlin.concurrent.schedule
  * Util class to cache clients some time before closing them to be able to re-use them if it's likely that
  * they'll be used again soon
  */
-class TelegramClientPool {
+class TelegramClientPool private constructor(name: String) {
 
-    private constructor()
-
-    private val logger = LoggerFactory.getLogger(TelegramClientPool::class.java)
+    private val marker = MarkerFactory.getMarker(name)
 
     private val DEFAULT_EXPIRATION_DELAY = 5L * 60L * 1000L // 5 minutes
 
+    private var timer = Timer("Timer-${TelegramClientPool::class.java.simpleName}-$name")
     private val map = HashMap<Long, TelegramClient>()
     private val listenerMap = HashMap<Long, OnClientTimeoutListener>()
     private val expireMap = HashMap<Long, Long>()
@@ -29,7 +29,7 @@ class TelegramClientPool {
      */
     @JvmOverloads
     fun put(id: Long, client: TelegramClient, listener: OnClientTimeoutListener?, expiresIn: Long = DEFAULT_EXPIRATION_DELAY) {
-        logger.debug("Adding client with id $id")
+        logger.debug(marker, "Adding client with id $id")
         synchronized(this) {
             // Already have a client with this id, close the new one and reset timer
             expireMap.put(id, System.currentTimeMillis() + expiresIn)
@@ -72,7 +72,7 @@ class TelegramClientPool {
                     if (expireMap.getOrDefault(id, 0) <= System.currentTimeMillis()) {
                         val client = getAndRemove(id)
                         if (client != null) {
-                            logger.info("$id client timeout")
+                            logger.info(marker, "$id client timeout")
                             client.close(false)
                             true
                         } else false
@@ -83,20 +83,18 @@ class TelegramClientPool {
 
     }
 
+    fun cleanUp() {
+        timer.cancel()
+    }
+
     companion object {
-        private var timer = Timer("${TelegramClientPool::class.java.simpleName}")
+        private val logger = LoggerFactory.getLogger(TelegramClientPool::class.java)
 
         @JvmField
-        val DEFAULT_POOL = TelegramClientPool()
+        val DEFAULT_POOL = TelegramClientPool("DefaultPool")
 
         @JvmField
-        val DOWNLOADER_POOL = TelegramClientPool()
-
-        /** Clean up the threads used */
-        @JvmStatic
-        fun cleanUp() {
-            timer.cancel()
-        }
+        val DOWNLOADER_POOL = TelegramClientPool("DownloaderPool")
     }
 }
 
