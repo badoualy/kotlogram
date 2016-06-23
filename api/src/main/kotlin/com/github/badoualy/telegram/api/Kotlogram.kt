@@ -30,7 +30,8 @@ object Kotlogram {
     @JvmStatic
     fun cleanUp() {
         logger.warn("==================== CLEANING ====================")
-        TelegramClientPool.cleanUp()
+        TelegramClientPool.DEFAULT_POOL.cleanUp()
+        TelegramClientPool.DOWNLOADER_POOL.cleanUp()
         MTProtoHandler.cleanUp()
         logger.warn("==================== CLEANED ====================")
     }
