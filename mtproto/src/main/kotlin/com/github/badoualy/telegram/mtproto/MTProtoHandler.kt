@@ -561,7 +561,7 @@ class MTProtoHandler {
                 if (subscriberMap.containsKey(result.messageId)) {
                     subscriberMap.remove(result.messageId)!!
                 } else {
-                    logger.error(sessionMarker, "No subscriber found for msgId ${result.messageId}")
+                    logger.warn(sessionMarker, "No subscriber found for msgId ${result.messageId}")
                     null
                 }
 
@@ -569,7 +569,7 @@ class MTProtoHandler {
                 if (requestMap.containsKey(result.messageId)) {
                     requestMap.remove(result.messageId)!!
                 } else {
-                    logger.error(sessionMarker, "No request object found for msgId ${result.messageId}")
+                    logger.warn(sessionMarker, "No request object found for msgId ${result.messageId}")
                     null
                 }
 
