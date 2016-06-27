@@ -1,6 +1,7 @@
 package com.github.badoualy.telegram.tl;
 
 import com.github.badoualy.telegram.tl.core.TLBytes;
+import com.github.badoualy.telegram.tl.core.TLObject;
 
 import java.nio.charset.Charset;
 
@@ -30,5 +31,18 @@ public final class TLObjectUtils {
 
     public static int computeTLStringSerializedSize(String string) {
         return computeTLBytesSerializedSize(string.getBytes(Charset.forName("UTF-8")).length);
+    }
+
+    /**
+     * Checks if the given object is content-related (useful for seqNo generation)
+     * @param clazz object type to check
+     * @return true if the object is content related, else false
+     */
+    public static boolean isContentRelated(Class<? extends TLObject> clazz){
+        return !clazz.getSimpleName().startsWith("MT");
+    }
+
+    public static <T extends TLObject> boolean isContentRelated(T object){
+        return isContentRelated(object.getClass());
     }
 }

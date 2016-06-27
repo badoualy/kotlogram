@@ -27,6 +27,8 @@ interface TelegramClient : TelegramApi {
      */
     fun <T : TLObject> queueMethod(method: TLMethod<T>, timeout: Long): Unit?
 
+    fun getDownloaderClient(): TelegramClient
+
     //////////////////////////////////////////////////////////
     //////////////////// Convenience API ////////////////////
     ////////////////////////////////////////////////////////

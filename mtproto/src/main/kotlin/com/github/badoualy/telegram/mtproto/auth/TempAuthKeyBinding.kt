@@ -42,7 +42,7 @@ object TempAuthKeyBinding {
 
         val bindingMessage = BindAuthKeyInner(nonce,
                                               tempAuthKey.getKeyIdAsLong(), authKey.getKeyIdAsLong(),
-                                              mtProtoHandler.sessionId!!, tempAuthKey.expiresAt)
+                                              mtProtoHandler.session.id, tempAuthKey.expiresAt)
 
         val randomPart1 = RandomUtils.randomByteArray(8) // replace session_id
         val randomPart2 = RandomUtils.randomLong() // replace salt

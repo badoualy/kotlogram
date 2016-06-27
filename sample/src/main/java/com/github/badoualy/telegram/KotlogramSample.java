@@ -4,8 +4,9 @@ import com.github.badoualy.telegram.api.Kotlogram;
 import com.github.badoualy.telegram.api.TelegramApiStorage;
 import com.github.badoualy.telegram.api.TelegramApp;
 import com.github.badoualy.telegram.api.TelegramClient;
-import com.github.badoualy.telegram.mtproto.DataCenter;
+import com.github.badoualy.telegram.mtproto.model.DataCenter;
 import com.github.badoualy.telegram.mtproto.auth.AuthKey;
+import com.github.badoualy.telegram.mtproto.model.MTSession;
 import com.github.badoualy.telegram.tl.api.TLAbsMessage;
 import com.github.badoualy.telegram.tl.api.TLInputPeerEmpty;
 import com.github.badoualy.telegram.tl.api.TLInputPeerUser;
@@ -165,13 +166,13 @@ public class KotlogramSample {
         }
 
         @Override
-        public void saveServerSalt(long salt) {
+        public void saveSession(@NotNull MTSession session) {
 
         }
 
         @Nullable
         @Override
-        public Long loadServerSalt() {
+        public MTSession loadSession() {
             return null;
         }
     }

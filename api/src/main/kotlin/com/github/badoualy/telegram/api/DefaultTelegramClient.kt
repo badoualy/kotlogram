@@ -1,12 +1,13 @@
 package com.github.badoualy.telegram.api
 
 import com.github.badoualy.telegram.mtproto.ApiCallback
-import com.github.badoualy.telegram.mtproto.DataCenter
 import com.github.badoualy.telegram.mtproto.MTProtoHandler
 import com.github.badoualy.telegram.mtproto.auth.AuthKey
 import com.github.badoualy.telegram.mtproto.auth.AuthKeyCreation
 import com.github.badoualy.telegram.mtproto.auth.AuthResult
 import com.github.badoualy.telegram.mtproto.exception.SecurityException
+import com.github.badoualy.telegram.mtproto.model.DataCenter
+import com.github.badoualy.telegram.mtproto.model.MTSession
 import com.github.badoualy.telegram.tl.api.*
 import com.github.badoualy.telegram.tl.api.request.*
 import com.github.badoualy.telegram.tl.core.TLMethod
@@ -40,6 +41,7 @@ internal class DefaultTelegramClient internal constructor(val application: Teleg
         if (dataCenter == null) {
             if (!generateAuthKey) {
                 apiStorage.deleteAuthKey()
+                apiStorage.saveSession(null)
                 throw RuntimeException("Found an authorization key in storage, but the DC configuration was not found, deleting authorization key")
             }
             logger.warn("No data center found in storage, using preferred ${preferredDataCenter.toString()}")
@@ -48,14 +50,14 @@ internal class DefaultTelegramClient internal constructor(val application: Teleg
 
         // No need to check DC if we have an authKey in storage
         init(checkNearestDc = generateAuthKey)
-        logger.info(mtProtoHandler!!.sessionMarker, "Client ready")
+        logger.info(mtProtoHandler!!.session.marker, "Client ready")
     }
 
     private fun init(checkNearestDc: Boolean = true) {
         logger.debug("init() $checkNearestDc")
         mtProtoHandler =
                 if (generateAuthKey) MTProtoHandler(generateAuthKey(), this)
-                else MTProtoHandler(dataCenter!!, authKey!!, apiStorage.loadServerSalt(), this)
+                else MTProtoHandler(dataCenter!!, authKey!!, apiStorage.loadSession(), this)
         mtProtoHandler!!.startWatchdog()
 
         try {
@@ -129,7 +131,10 @@ internal class DefaultTelegramClient internal constructor(val application: Teleg
         mtProtoHandler?.close()
         if (cleanUp)
             Kotlogram.cleanUp()
+        apiStorage.saveSession(mtProtoHandler!!.session)
     }
+
+    override fun getDownloaderClient() = DefaultTelegramClient(application, ReadOnlyApiStorage(authKey!!, mtProtoHandler!!.session), preferredDataCenter, updateCallback)
 
     override fun <T : TLObject> queueMethod(method: TLMethod<T>, timeout: Long) = mtProtoHandler?.queueMethod(method, timeout)
 
@@ -215,6 +220,7 @@ internal class DefaultTelegramClient internal constructor(val application: Teleg
         dataCenter = Kotlogram.getDcById(dcId)
         apiStorage.deleteAuthKey()
         apiStorage.deleteDc()
+        apiStorage.saveSession(null)
         generateAuthKey = true
 
         init(checkNearestDc = false)
@@ -254,8 +260,6 @@ internal class DefaultTelegramClient internal constructor(val application: Teleg
             is TLUpdatesTooLong -> updateCallback?.onUpdateTooLong(this) // Warn that the client should refresh manually
         }
     }
-
-    override fun onSalt(salt: Long) = apiStorage.saveServerSalt(salt)
 
     companion object {
         private val logger = LoggerFactory.getLogger(TelegramClient::class.java)

@@ -1,7 +1,8 @@
 package com.github.badoualy.telegram.api
 
-import com.github.badoualy.telegram.mtproto.DataCenter
 import com.github.badoualy.telegram.mtproto.auth.AuthKey
+import com.github.badoualy.telegram.mtproto.model.DataCenter
+import com.github.badoualy.telegram.mtproto.model.MTSession
 
 interface TelegramApiStorage {
 
@@ -37,12 +38,35 @@ interface TelegramApiStorage {
     /** Delete the data center information from persistent memory */
     fun deleteDc()
 
-    /** Save the given server salt to a persistent memory */
-    fun saveServerSalt(salt: Long)
+    /** Save the given session to a persistent memory */
+    fun saveSession(session: MTSession?)
 
     /**
-     * Load a previously server salt from persistent memory
-     * @return the server salt, or null if none was saved
+     * Load a previously saved session from persistent memory
+     * @return the server session, or null if none was saved
      */
-    fun loadServerSalt(): Long?
+    fun loadSession(): MTSession?
+}
+
+internal class ReadOnlyApiStorage(val authKey: AuthKey, val session: MTSession) : TelegramApiStorage {
+    override fun loadAuthKey() = authKey
+
+    override fun loadDc() = session.dataCenter
+
+    override fun loadSession() = session
+
+    override fun deleteAuthKey() {
+    }
+
+    override fun saveDc(dataCenter: DataCenter) {
+    }
+
+    override fun deleteDc() {
+    }
+
+    override fun saveSession(session: MTSession?) {
+    }
+
+    override fun saveAuthKey(authKey: AuthKey) {
+    }
 }

@@ -1,6 +1,6 @@
 package com.github.badoualy.telegram.mtproto.transport
 
-import com.github.badoualy.telegram.mtproto.DataCenter
+import com.github.badoualy.telegram.mtproto.model.DataCenter
 import java.io.IOException
 import java.nio.channels.SelectableChannel
 import java.nio.channels.SelectionKey

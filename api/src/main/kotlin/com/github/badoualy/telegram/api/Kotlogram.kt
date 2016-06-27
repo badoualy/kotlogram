@@ -1,6 +1,6 @@
 package com.github.badoualy.telegram.api
 
-import com.github.badoualy.telegram.mtproto.DataCenter
+import com.github.badoualy.telegram.mtproto.model.DataCenter
 import com.github.badoualy.telegram.mtproto.MTProtoHandler
 import org.slf4j.LoggerFactory
 
