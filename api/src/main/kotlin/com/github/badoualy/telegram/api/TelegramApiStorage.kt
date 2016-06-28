@@ -48,7 +48,7 @@ interface TelegramApiStorage {
     fun loadSession(): MTSession?
 }
 
-internal class ReadOnlyApiStorage(val authKey: AuthKey, val session: MTSession) : TelegramApiStorage {
+class ReadOnlyApiStorage(val authKey: AuthKey, val session: MTSession) : TelegramApiStorage {
     override fun loadAuthKey() = authKey
 
     override fun loadDc() = session.dataCenter
