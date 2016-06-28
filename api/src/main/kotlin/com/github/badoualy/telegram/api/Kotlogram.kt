@@ -1,7 +1,7 @@
 package com.github.badoualy.telegram.api
 
-import com.github.badoualy.telegram.mtproto.model.DataCenter
 import com.github.badoualy.telegram.mtproto.MTProtoHandler
+import com.github.badoualy.telegram.mtproto.model.DataCenter
 import org.slf4j.LoggerFactory
 
 object Kotlogram {
@@ -46,5 +46,8 @@ object Kotlogram {
 
     @JvmStatic
     fun getDcById(id: Int) = PROD_DCS[id - 1]
+
+    @JvmStatic
+    fun getDcId(dataCenter: DataCenter) = PROD_DCS.indexOf(dataCenter) + 1
 }
 

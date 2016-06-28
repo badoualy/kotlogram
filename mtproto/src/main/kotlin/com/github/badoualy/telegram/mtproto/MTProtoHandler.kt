@@ -97,7 +97,6 @@ class MTProtoHandler {
         onBufferTimeout(bufferId, false)
         close()
 
-        // TODO: test if we can keep same session id
         session = newSession(connection!!.dataCenter)
         connection = MTProtoTcpConnection(session.idLong, connection!!.ip, connection!!.port)
         startWatchdog()
@@ -489,17 +488,28 @@ class MTProtoHandler {
             MTBadMessage.ERROR_MSG_ID_MODULO -> {
                 // Should never happen
             }
-            MTBadMessage.ERROR_SEQNO_TOO_LOW -> {
-                // TODO: resend with + 2
-            }
-            MTBadMessage.ERROR_SEQNO_TOO_HIGH -> {
-                // TODO: resend with - 2
+            MTBadMessage.ERROR_SEQNO_TOO_LOW, MTBadMessage.ERROR_SEQNO_TOO_HIGH -> {
+                if (badMessage.errorCode == MTBadMessage.ERROR_MSG_ID_TOO_LOW)
+                    session.contentRelatedCount++
+                else
+                    session.contentRelatedCount--
+
+                // Resend message with good salt
+                val sentMessage = sentMessageList.filter { it.messageId == badMessage.badMsgId }.firstOrNull()
+                if (sentMessage != null) {
+                    logger.warn(session.marker, "Re-sending message ${badMessage.badMsgId} with new seqno")
+                    sendMessage(sentMessage)
+                } else {
+                    logger.error(session.marker, "Couldn't find sentMessage in history with msgId ${badMessage.badMsgId}, can't re-send with good seqno")
+                }
             }
             MTBadMessage.ERROR_SEQNO_EXPECTED_EVEN -> {
-                // TODO: resend with + 1
+                // Should never happen
+                logger.error("ERROR_SEQNO_EXPECTED_EVENfor ${badMessage.badMsgId}")
             }
             MTBadMessage.ERROR_SEQNO_EXPECTED_ODD -> {
-                    // TODO: resend with + 1
+                // Should never happen
+                logger.error("ERROR_SEQNO_EXPECTED_ODD for ${badMessage.badMsgId}")
             }
             else -> logger.error(session.marker, "Unknown error ${badMessage.toPrettyString()}")
         }
