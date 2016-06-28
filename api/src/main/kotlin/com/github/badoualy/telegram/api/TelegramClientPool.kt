@@ -59,6 +59,18 @@ class TelegramClientPool private constructor(name: String) {
      * @param id id used to cache the client
      * @return cached client, or null if no client cached for the given id
      */
+    fun peek(id: Long): TelegramClient? {
+        synchronized(this) {
+            return map[id]
+        }
+    }
+
+
+    /**
+     * Retrieve a previously cached client associated with the id and remove it from this pool
+     * @param id id used to cache the client
+     * @return cached client, or null if no client cached for the given id
+     */
     fun getAndRemove(id: Long): TelegramClient? {
         synchronized(this) {
             expireMap.remove(id)
@@ -80,7 +92,6 @@ class TelegramClientPool private constructor(name: String) {
                 }
         if (timeout)
             listenerMap.remove(id)?.onClientTimeout(id)
-
     }
 
     fun cleanUp() {
