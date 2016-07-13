@@ -95,8 +95,11 @@ public class TLRequestMessagesSendMessage extends TLMethod<TLAbsUpdates> {
         flags = silent ? (flags | 32) : (flags & ~32);
         flags = background ? (flags | 64) : (flags & ~64);
         flags = clearDraft ? (flags | 128) : (flags & ~128);
+
+        // TODO: update in generator
+        flags = replyToMsgId != null ? (flags | 1) : (flags & ~1);
+
         // Fields below may not be serialized due to flags field value
-        if ((flags & 1) == 0) replyToMsgId = null;
         if ((flags & 4) == 0) replyMarkup = null;
         if ((flags & 8) == 0) entities = null;
     }
