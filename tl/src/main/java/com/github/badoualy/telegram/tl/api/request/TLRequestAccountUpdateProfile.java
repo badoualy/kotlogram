@@ -52,18 +52,17 @@ public class TLRequestAccountUpdateProfile extends TLMethod<TLAbsUser> {
             throw new IOException("Unable to parse response");
         }
         if (!(response instanceof TLAbsUser)) {
-            throw new IOException(
-                    "Incorrect response type, expected getClass().getCanonicalName(), found response.getClass().getCanonicalName()");
+            throw new IOException("Incorrect response type, expected getClass().getCanonicalName(), found response.getClass().getCanonicalName()");
         }
         return (TLAbsUser) response;
     }
 
     private void computeFlags() {
         flags = 0;
+        flags = firstName != null ? (flags | 1) : (flags & ~1);
+        flags = lastName != null ? (flags | 2) : (flags & ~2);
+        flags = about != null ? (flags | 4) : (flags & ~4);
         // Fields below may not be serialized due to flags field value
-        if ((flags & 1) == 0) firstName = null;
-        if ((flags & 2) == 0) lastName = null;
-        if ((flags & 4) == 0) about = null;
     }
 
     @Override

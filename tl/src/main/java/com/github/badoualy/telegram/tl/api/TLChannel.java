@@ -108,10 +108,10 @@ public class TLChannel extends TLAbsChat {
         flags = democracy ? (flags | 1024) : (flags & ~1024);
         flags = signatures ? (flags | 2048) : (flags & ~2048);
         flags = min ? (flags | 4096) : (flags & ~4096);
+        flags = accessHash != null ? (flags | 8192) : (flags & ~8192);
+        flags = username != null ? (flags | 64) : (flags & ~64);
+        flags = restrictionReason != null ? (flags | 512) : (flags & ~512);
         // Fields below may not be serialized due to flags field value
-        if ((flags & 8192) == 0) accessHash = null;
-        if ((flags & 64) == 0) username = null;
-        if ((flags & 512) == 0) restrictionReason = null;
     }
 
     @Override

@@ -43,10 +43,10 @@ public class TLMessageFwdHeader extends TLObject {
 
     private void computeFlags() {
         flags = 0;
+        flags = fromId != null ? (flags | 1) : (flags & ~1);
+        flags = channelId != null ? (flags | 2) : (flags & ~2);
+        flags = channelPost != null ? (flags | 4) : (flags & ~4);
         // Fields below may not be serialized due to flags field value
-        if ((flags & 1) == 0) fromId = null;
-        if ((flags & 2) == 0) channelId = null;
-        if ((flags & 4) == 0) channelPost = null;
     }
 
     @Override

@@ -32,8 +32,8 @@ public class TLChannelDifferenceEmpty extends TLAbsChannelDifference {
     private void computeFlags() {
         flags = 0;
         flags = _final ? (flags | 1) : (flags & ~1);
+        flags = timeout != null ? (flags | 2) : (flags & ~2);
         // Fields below may not be serialized due to flags field value
-        if ((flags & 2) == 0) timeout = null;
     }
 
     @Override

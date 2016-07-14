@@ -30,8 +30,7 @@ public class TLRequestHelpGetInviteText extends TLMethod<TLInviteText> {
             throw new IOException("Unable to parse response");
         }
         if (!(response instanceof TLInviteText)) {
-            throw new IOException(
-                    "Incorrect response type, expected getClass().getCanonicalName(), found response.getClass().getCanonicalName()");
+            throw new IOException("Incorrect response type, expected getClass().getCanonicalName(), found response.getClass().getCanonicalName()");
         }
         return (TLInviteText) response;
     }

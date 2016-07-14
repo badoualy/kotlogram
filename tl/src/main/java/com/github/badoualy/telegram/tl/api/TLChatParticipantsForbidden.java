@@ -36,8 +36,8 @@ public class TLChatParticipantsForbidden extends TLAbsChatParticipants {
 
     private void computeFlags() {
         flags = 0;
+        flags = selfParticipant != null ? (flags | 1) : (flags & ~1);
         // Fields below may not be serialized due to flags field value
-        if ((flags & 1) == 0) selfParticipant = null;
     }
 
     @Override

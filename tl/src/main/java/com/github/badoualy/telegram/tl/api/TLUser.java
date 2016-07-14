@@ -113,17 +113,17 @@ public class TLUser extends TLAbsUser {
         flags = restricted ? (flags | 262144) : (flags & ~262144);
         flags = min ? (flags | 1048576) : (flags & ~1048576);
         flags = botInlineGeo ? (flags | 2097152) : (flags & ~2097152);
+        flags = accessHash != null ? (flags | 1) : (flags & ~1);
+        flags = firstName != null ? (flags | 2) : (flags & ~2);
+        flags = lastName != null ? (flags | 4) : (flags & ~4);
+        flags = username != null ? (flags | 8) : (flags & ~8);
+        flags = phone != null ? (flags | 16) : (flags & ~16);
+        flags = photo != null ? (flags | 32) : (flags & ~32);
+        flags = status != null ? (flags | 64) : (flags & ~64);
+        flags = botInfoVersion != null ? (flags | 16384) : (flags & ~16384);
+        flags = restrictionReason != null ? (flags | 262144) : (flags & ~262144);
+        flags = botInlinePlaceholder != null ? (flags | 524288) : (flags & ~524288);
         // Fields below may not be serialized due to flags field value
-        if ((flags & 1) == 0) accessHash = null;
-        if ((flags & 2) == 0) firstName = null;
-        if ((flags & 4) == 0) lastName = null;
-        if ((flags & 8) == 0) username = null;
-        if ((flags & 16) == 0) phone = null;
-        if ((flags & 32) == 0) photo = null;
-        if ((flags & 64) == 0) status = null;
-        if ((flags & 16384) == 0) botInfoVersion = null;
-        if ((flags & 262144) == 0) restrictionReason = null;
-        if ((flags & 524288) == 0) botInlinePlaceholder = null;
     }
 
     @Override

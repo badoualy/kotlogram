@@ -36,8 +36,8 @@ public class TLUpdateChannelTooLong extends TLAbsUpdate {
 
     private void computeFlags() {
         flags = 0;
+        flags = pts != null ? (flags | 1) : (flags & ~1);
         // Fields below may not be serialized due to flags field value
-        if ((flags & 1) == 0) pts = null;
     }
 
     @Override

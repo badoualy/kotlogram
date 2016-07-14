@@ -72,8 +72,7 @@ public class TLRequestMessagesSendInlineBotResult extends TLMethod<TLAbsUpdates>
             throw new IOException("Unable to parse response");
         }
         if (!(response instanceof TLAbsUpdates)) {
-            throw new IOException(
-                    "Incorrect response type, expected getClass().getCanonicalName(), found response.getClass().getCanonicalName()");
+            throw new IOException("Incorrect response type, expected getClass().getCanonicalName(), found response.getClass().getCanonicalName()");
         }
         return (TLAbsUpdates) response;
     }
@@ -83,8 +82,8 @@ public class TLRequestMessagesSendInlineBotResult extends TLMethod<TLAbsUpdates>
         flags = silent ? (flags | 32) : (flags & ~32);
         flags = background ? (flags | 64) : (flags & ~64);
         flags = clearDraft ? (flags | 128) : (flags & ~128);
+        flags = replyToMsgId != null ? (flags | 1) : (flags & ~1);
         // Fields below may not be serialized due to flags field value
-        if ((flags & 1) == 0) replyToMsgId = null;
     }
 
     @Override

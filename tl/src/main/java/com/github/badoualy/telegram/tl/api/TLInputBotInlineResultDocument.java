@@ -47,9 +47,9 @@ public class TLInputBotInlineResultDocument extends TLAbsInputBotInlineResult {
 
     private void computeFlags() {
         flags = 0;
+        flags = title != null ? (flags | 2) : (flags & ~2);
+        flags = description != null ? (flags | 4) : (flags & ~4);
         // Fields below may not be serialized due to flags field value
-        if ((flags & 2) == 0) title = null;
-        if ((flags & 4) == 0) description = null;
     }
 
     @Override

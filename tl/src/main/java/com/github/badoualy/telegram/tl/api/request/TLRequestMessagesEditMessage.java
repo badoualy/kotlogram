@@ -68,8 +68,7 @@ public class TLRequestMessagesEditMessage extends TLMethod<TLAbsUpdates> {
             throw new IOException("Unable to parse response");
         }
         if (!(response instanceof TLAbsUpdates)) {
-            throw new IOException(
-                    "Incorrect response type, expected getClass().getCanonicalName(), found response.getClass().getCanonicalName()");
+            throw new IOException("Incorrect response type, expected getClass().getCanonicalName(), found response.getClass().getCanonicalName()");
         }
         return (TLAbsUpdates) response;
     }
@@ -77,10 +76,10 @@ public class TLRequestMessagesEditMessage extends TLMethod<TLAbsUpdates> {
     private void computeFlags() {
         flags = 0;
         flags = noWebpage ? (flags | 2) : (flags & ~2);
+        flags = message != null ? (flags | 2048) : (flags & ~2048);
+        flags = replyMarkup != null ? (flags | 4) : (flags & ~4);
+        flags = entities != null ? (flags | 8) : (flags & ~8);
         // Fields below may not be serialized due to flags field value
-        if ((flags & 2048) == 0) message = null;
-        if ((flags & 4) == 0) replyMarkup = null;
-        if ((flags & 8) == 0) entities = null;
     }
 
     @Override

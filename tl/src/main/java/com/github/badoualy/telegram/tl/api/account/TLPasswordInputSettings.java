@@ -50,11 +50,11 @@ public class TLPasswordInputSettings extends TLObject {
 
     private void computeFlags() {
         flags = 0;
+        flags = newSalt != null ? (flags | 1) : (flags & ~1);
+        flags = newPasswordHash != null ? (flags | 1) : (flags & ~1);
+        flags = hint != null ? (flags | 1) : (flags & ~1);
+        flags = email != null ? (flags | 2) : (flags & ~2);
         // Fields below may not be serialized due to flags field value
-        if ((flags & 1) == 0) newSalt = null;
-        if ((flags & 1) == 0) newPasswordHash = null;
-        if ((flags & 1) == 0) hint = null;
-        if ((flags & 2) == 0) email = null;
     }
 
     @Override

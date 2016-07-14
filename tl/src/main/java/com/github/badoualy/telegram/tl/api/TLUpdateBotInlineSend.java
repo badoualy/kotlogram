@@ -50,9 +50,9 @@ public class TLUpdateBotInlineSend extends TLAbsUpdate {
 
     private void computeFlags() {
         flags = 0;
+        flags = geo != null ? (flags | 1) : (flags & ~1);
+        flags = msgId != null ? (flags | 2) : (flags & ~2);
         // Fields below may not be serialized due to flags field value
-        if ((flags & 1) == 0) geo = null;
-        if ((flags & 2) == 0) msgId = null;
     }
 
     @Override
@@ -81,8 +81,7 @@ public class TLUpdateBotInlineSend extends TLAbsUpdate {
         query = readTLString(stream);
         geo = (flags & 1) != 0 ? readTLObject(stream, context, TLAbsGeoPoint.class, -1) : null;
         id = readTLString(stream);
-        msgId = (flags & 2) != 0 ? readTLObject(stream, context, TLInputBotInlineMessageID.class,
-                                                TLInputBotInlineMessageID.CONSTRUCTOR_ID) : null;
+        msgId = (flags & 2) != 0 ? readTLObject(stream, context, TLInputBotInlineMessageID.class, TLInputBotInlineMessageID.CONSTRUCTOR_ID) : null;
     }
 
     @Override

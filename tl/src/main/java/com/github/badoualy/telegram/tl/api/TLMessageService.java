@@ -68,9 +68,9 @@ public class TLMessageService extends TLAbsMessage {
         flags = mediaUnread ? (flags | 32) : (flags & ~32);
         flags = silent ? (flags | 8192) : (flags & ~8192);
         flags = post ? (flags | 16384) : (flags & ~16384);
+        flags = fromId != null ? (flags | 256) : (flags & ~256);
+        flags = replyToMsgId != null ? (flags | 8) : (flags & ~8);
         // Fields below may not be serialized due to flags field value
-        if ((flags & 256) == 0) fromId = null;
-        if ((flags & 8) == 0) replyToMsgId = null;
     }
 
     @Override

@@ -108,8 +108,7 @@ public class TLApiContext extends TLContext {
         registerClass(TLPasswordSettings.CONSTRUCTOR_ID, TLPasswordSettings.class);
         registerClass(TLPrivacyRules.CONSTRUCTOR_ID, TLPrivacyRules.class);
         registerClass(TLAccountDaysTTL.CONSTRUCTOR_ID, TLAccountDaysTTL.class);
-        registerClass(com.github.badoualy.telegram.tl.api.auth.TLAuthorization.CONSTRUCTOR_ID,
-                      com.github.badoualy.telegram.tl.api.auth.TLAuthorization.class);
+        registerClass(com.github.badoualy.telegram.tl.api.auth.TLAuthorization.CONSTRUCTOR_ID, com.github.badoualy.telegram.tl.api.auth.TLAuthorization.class);
         registerClass(TLCheckedPhone.CONSTRUCTOR_ID, TLCheckedPhone.class);
         registerClass(TLCodeTypeCall.CONSTRUCTOR_ID, TLCodeTypeCall.class);
         registerClass(TLCodeTypeFlashCall.CONSTRUCTOR_ID, TLCodeTypeFlashCall.class);
@@ -149,8 +148,7 @@ public class TLApiContext extends TLContext {
         registerClass(TLChannelRoleEditor.CONSTRUCTOR_ID, TLChannelRoleEditor.class);
         registerClass(TLChannelRoleEmpty.CONSTRUCTOR_ID, TLChannelRoleEmpty.class);
         registerClass(TLChannelRoleModerator.CONSTRUCTOR_ID, TLChannelRoleModerator.class);
-        registerClass(com.github.badoualy.telegram.tl.api.channels.TLChannelParticipant.CONSTRUCTOR_ID,
-                      com.github.badoualy.telegram.tl.api.channels.TLChannelParticipant.class);
+        registerClass(com.github.badoualy.telegram.tl.api.channels.TLChannelParticipant.CONSTRUCTOR_ID, com.github.badoualy.telegram.tl.api.channels.TLChannelParticipant.class);
         registerClass(TLChannelParticipants.CONSTRUCTOR_ID, TLChannelParticipants.class);
         registerClass(TLChat.CONSTRUCTOR_ID, TLChat.class);
         registerClass(TLChatEmpty.CONSTRUCTOR_ID, TLChatEmpty.class);
@@ -361,8 +359,7 @@ public class TLApiContext extends TLContext {
         registerClass(TLBotCallbackAnswer.CONSTRUCTOR_ID, TLBotCallbackAnswer.class);
         registerClass(TLBotResults.CONSTRUCTOR_ID, TLBotResults.class);
         registerClass(TLChannelMessages.CONSTRUCTOR_ID, TLChannelMessages.class);
-        registerClass(com.github.badoualy.telegram.tl.api.messages.TLChatFull.CONSTRUCTOR_ID,
-                      com.github.badoualy.telegram.tl.api.messages.TLChatFull.class);
+        registerClass(com.github.badoualy.telegram.tl.api.messages.TLChatFull.CONSTRUCTOR_ID, com.github.badoualy.telegram.tl.api.messages.TLChatFull.class);
         registerClass(TLChats.CONSTRUCTOR_ID, TLChats.class);
         registerClass(TLDhConfig.CONSTRUCTOR_ID, TLDhConfig.class);
         registerClass(TLDhConfigNotModified.CONSTRUCTOR_ID, TLDhConfigNotModified.class);
@@ -377,8 +374,7 @@ public class TLApiContext extends TLContext {
         registerClass(TLSavedGifsNotModified.CONSTRUCTOR_ID, TLSavedGifsNotModified.class);
         registerClass(TLSentEncryptedFile.CONSTRUCTOR_ID, TLSentEncryptedFile.class);
         registerClass(TLSentEncryptedMessage.CONSTRUCTOR_ID, TLSentEncryptedMessage.class);
-        registerClass(com.github.badoualy.telegram.tl.api.messages.TLStickerSet.CONSTRUCTOR_ID,
-                      com.github.badoualy.telegram.tl.api.messages.TLStickerSet.class);
+        registerClass(com.github.badoualy.telegram.tl.api.messages.TLStickerSet.CONSTRUCTOR_ID, com.github.badoualy.telegram.tl.api.messages.TLStickerSet.class);
         registerClass(TLStickers.CONSTRUCTOR_ID, TLStickers.class);
         registerClass(TLStickersNotModified.CONSTRUCTOR_ID, TLStickersNotModified.class);
         registerClass(TLNearestDc.CONSTRUCTOR_ID, TLNearestDc.class);
@@ -399,8 +395,7 @@ public class TLApiContext extends TLContext {
         registerClass(TLPhotoEmpty.CONSTRUCTOR_ID, TLPhotoEmpty.class);
         registerClass(TLPhotoSize.CONSTRUCTOR_ID, TLPhotoSize.class);
         registerClass(TLPhotoSizeEmpty.CONSTRUCTOR_ID, TLPhotoSizeEmpty.class);
-        registerClass(com.github.badoualy.telegram.tl.api.photos.TLPhoto.CONSTRUCTOR_ID,
-                      com.github.badoualy.telegram.tl.api.photos.TLPhoto.class);
+        registerClass(com.github.badoualy.telegram.tl.api.photos.TLPhoto.CONSTRUCTOR_ID, com.github.badoualy.telegram.tl.api.photos.TLPhoto.class);
         registerClass(TLPhotos.CONSTRUCTOR_ID, TLPhotos.class);
         registerClass(TLPhotosSlice.CONSTRUCTOR_ID, TLPhotosSlice.class);
         registerClass(TLPrivacyKeyChatInvite.CONSTRUCTOR_ID, TLPrivacyKeyChatInvite.class);

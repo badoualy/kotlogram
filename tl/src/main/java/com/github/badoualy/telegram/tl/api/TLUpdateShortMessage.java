@@ -84,11 +84,11 @@ public class TLUpdateShortMessage extends TLAbsUpdates {
         flags = mentioned ? (flags | 16) : (flags & ~16);
         flags = mediaUnread ? (flags | 32) : (flags & ~32);
         flags = silent ? (flags | 8192) : (flags & ~8192);
+        flags = fwdFrom != null ? (flags | 4) : (flags & ~4);
+        flags = viaBotId != null ? (flags | 2048) : (flags & ~2048);
+        flags = replyToMsgId != null ? (flags | 8) : (flags & ~8);
+        flags = entities != null ? (flags | 128) : (flags & ~128);
         // Fields below may not be serialized due to flags field value
-        if ((flags & 4) == 0) fwdFrom = null;
-        if ((flags & 2048) == 0) viaBotId = null;
-        if ((flags & 8) == 0) replyToMsgId = null;
-        if ((flags & 128) == 0) entities = null;
     }
 
     @Override

@@ -418,28 +418,30 @@ object JavaPoet {
 
                 if (realType is TLTypeRaw && arrayOf("true", "false").contains(realType.name)) {
                     computeFlagsMethod.addStatement("flags = $fieldName ? (flags | ${tlType.pow2Value()}) : (flags & ~${tlType.pow2Value()})")
+                } else {
+                    computeFlagsMethod.addStatement("flags = $fieldName != null ? (flags | ${tlType.pow2Value()}) : (flags & ~${tlType.pow2Value()})")
                 }
             }
             computeFlagsMethod.addCode("// Fields below may not be serialized due to flags field value\n")
-            for (parameter in condParameters) {
-                val tlType = parameter.tlType as TLTypeConditional
-                val realType = tlType.realType
-                val fieldName = parameter.name.lCamelCase().javaEscape()
+//            for (parameter in condParameters) {
+//                val tlType = parameter.tlType as TLTypeConditional
+//                val realType = tlType.realType
+//                val fieldName = parameter.name.lCamelCase().javaEscape()
+//
+//                if (!(realType is TLTypeRaw && arrayOf("true", "false").contains(realType.name)))
+//                    computeFlagsMethod.addStatement("if ((flags & ${tlType.pow2Value()}) == 0) $fieldName = null")
+//            }
 
-                if (!(realType is TLTypeRaw && arrayOf("true", "false").contains(realType.name)))
-                    computeFlagsMethod.addStatement("if ((flags & ${tlType.pow2Value()}) == 0) $fieldName = null")
-            }
+            clazz.addMethod(computeFlagsMethod.build())
 
-            clazz.addMethod(computeFlagsMethod.build());
-
-            serializeMethod.addStatement("computeFlags()");
+            serializeMethod.addStatement("computeFlags()")
             serializeMethod.addCode("\n")
 
-            computeSizeMethod.addStatement("computeFlags()");
+            computeSizeMethod.addStatement("computeFlags()")
             computeSizeMethod.addCode("\n")
         }
 
-        computeSizeMethod.addStatement("int size = SIZE_CONSTRUCTOR_ID");
+        computeSizeMethod.addStatement("int size = SIZE_CONSTRUCTOR_ID")
 
         // Parameters
         val accessors = ArrayList<MethodSpec>()

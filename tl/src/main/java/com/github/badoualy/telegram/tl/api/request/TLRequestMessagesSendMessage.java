@@ -83,8 +83,7 @@ public class TLRequestMessagesSendMessage extends TLMethod<TLAbsUpdates> {
             throw new IOException("Unable to parse response");
         }
         if (!(response instanceof TLAbsUpdates)) {
-            throw new IOException(
-                    "Incorrect response type, expected getClass().getCanonicalName(), found response.getClass().getCanonicalName()");
+            throw new IOException("Incorrect response type, expected getClass().getCanonicalName(), found response.getClass().getCanonicalName()");
         }
         return (TLAbsUpdates) response;
     }
@@ -95,13 +94,10 @@ public class TLRequestMessagesSendMessage extends TLMethod<TLAbsUpdates> {
         flags = silent ? (flags | 32) : (flags & ~32);
         flags = background ? (flags | 64) : (flags & ~64);
         flags = clearDraft ? (flags | 128) : (flags & ~128);
-
-        // TODO: update in generator
         flags = replyToMsgId != null ? (flags | 1) : (flags & ~1);
-
+        flags = replyMarkup != null ? (flags | 4) : (flags & ~4);
+        flags = entities != null ? (flags | 8) : (flags & ~8);
         // Fields below may not be serialized due to flags field value
-        if ((flags & 4) == 0) replyMarkup = null;
-        if ((flags & 8) == 0) entities = null;
     }
 
     @Override

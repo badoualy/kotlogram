@@ -30,8 +30,7 @@ public class TLRequestUpdatesGetState extends TLMethod<TLState> {
             throw new IOException("Unable to parse response");
         }
         if (!(response instanceof TLState)) {
-            throw new IOException(
-                    "Incorrect response type, expected getClass().getCanonicalName(), found response.getClass().getCanonicalName()");
+            throw new IOException("Incorrect response type, expected getClass().getCanonicalName(), found response.getClass().getCanonicalName()");
         }
         return (TLState) response;
     }

@@ -59,10 +59,10 @@ public class TLUserFull extends TLObject {
     private void computeFlags() {
         flags = 0;
         flags = blocked ? (flags | 1) : (flags & ~1);
+        flags = about != null ? (flags | 2) : (flags & ~2);
+        flags = profilePhoto != null ? (flags | 4) : (flags & ~4);
+        flags = botInfo != null ? (flags | 8) : (flags & ~8);
         // Fields below may not be serialized due to flags field value
-        if ((flags & 2) == 0) about = null;
-        if ((flags & 4) == 0) profilePhoto = null;
-        if ((flags & 8) == 0) botInfo = null;
     }
 
     @Override

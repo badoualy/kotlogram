@@ -40,8 +40,7 @@ public class TLRequestChannelsGetFullChannel extends TLMethod<TLChatFull> {
             throw new IOException("Unable to parse response");
         }
         if (!(response instanceof TLChatFull)) {
-            throw new IOException(
-                    "Incorrect response type, expected getClass().getCanonicalName(), found response.getClass().getCanonicalName()");
+            throw new IOException("Incorrect response type, expected getClass().getCanonicalName(), found response.getClass().getCanonicalName()");
         }
         return (TLChatFull) response;
     }

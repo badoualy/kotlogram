@@ -48,11 +48,11 @@ public class TLBotInlineMediaResult extends TLAbsBotInlineResult {
 
     private void computeFlags() {
         flags = 0;
+        flags = photo != null ? (flags | 1) : (flags & ~1);
+        flags = document != null ? (flags | 2) : (flags & ~2);
+        flags = title != null ? (flags | 4) : (flags & ~4);
+        flags = description != null ? (flags | 8) : (flags & ~8);
         // Fields below may not be serialized due to flags field value
-        if ((flags & 1) == 0) photo = null;
-        if ((flags & 2) == 0) document = null;
-        if ((flags & 4) == 0) title = null;
-        if ((flags & 8) == 0) description = null;
     }
 
     @Override

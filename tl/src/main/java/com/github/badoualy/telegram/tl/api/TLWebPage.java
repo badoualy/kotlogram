@@ -81,19 +81,19 @@ public class TLWebPage extends TLAbsWebPage {
 
     private void computeFlags() {
         flags = 0;
+        flags = type != null ? (flags | 1) : (flags & ~1);
+        flags = siteName != null ? (flags | 2) : (flags & ~2);
+        flags = title != null ? (flags | 4) : (flags & ~4);
+        flags = description != null ? (flags | 8) : (flags & ~8);
+        flags = photo != null ? (flags | 16) : (flags & ~16);
+        flags = embedUrl != null ? (flags | 32) : (flags & ~32);
+        flags = embedType != null ? (flags | 32) : (flags & ~32);
+        flags = embedWidth != null ? (flags | 64) : (flags & ~64);
+        flags = embedHeight != null ? (flags | 64) : (flags & ~64);
+        flags = duration != null ? (flags | 128) : (flags & ~128);
+        flags = author != null ? (flags | 256) : (flags & ~256);
+        flags = document != null ? (flags | 512) : (flags & ~512);
         // Fields below may not be serialized due to flags field value
-        if ((flags & 1) == 0) type = null;
-        if ((flags & 2) == 0) siteName = null;
-        if ((flags & 4) == 0) title = null;
-        if ((flags & 8) == 0) description = null;
-        if ((flags & 16) == 0) photo = null;
-        if ((flags & 32) == 0) embedUrl = null;
-        if ((flags & 32) == 0) embedType = null;
-        if ((flags & 64) == 0) embedWidth = null;
-        if ((flags & 64) == 0) embedHeight = null;
-        if ((flags & 128) == 0) duration = null;
-        if ((flags & 256) == 0) author = null;
-        if ((flags & 512) == 0) document = null;
     }
 
     @Override
