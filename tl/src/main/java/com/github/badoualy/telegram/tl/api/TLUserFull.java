@@ -62,7 +62,6 @@ public class TLUserFull extends TLObject {
         flags = about != null ? (flags | 2) : (flags & ~2);
         flags = profilePhoto != null ? (flags | 4) : (flags & ~4);
         flags = botInfo != null ? (flags | 8) : (flags & ~8);
-        // Fields below may not be serialized due to flags field value
     }
 
     @Override

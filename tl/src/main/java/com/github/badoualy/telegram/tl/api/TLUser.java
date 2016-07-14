@@ -123,7 +123,6 @@ public class TLUser extends TLAbsUser {
         flags = botInfoVersion != null ? (flags | 16384) : (flags & ~16384);
         flags = restrictionReason != null ? (flags | 262144) : (flags & ~262144);
         flags = botInlinePlaceholder != null ? (flags | 524288) : (flags & ~524288);
-        // Fields below may not be serialized due to flags field value
     }
 
     @Override

@@ -74,7 +74,6 @@ public class TLInputBotInlineResult extends TLAbsInputBotInlineResult {
         flags = w != null ? (flags | 64) : (flags & ~64);
         flags = h != null ? (flags | 64) : (flags & ~64);
         flags = duration != null ? (flags | 128) : (flags & ~128);
-        // Fields below may not be serialized due to flags field value
     }
 
     @Override

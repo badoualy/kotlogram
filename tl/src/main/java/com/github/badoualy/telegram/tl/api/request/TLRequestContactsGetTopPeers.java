@@ -76,7 +76,6 @@ public class TLRequestContactsGetTopPeers extends TLMethod<TLAbsTopPeers> {
         flags = botsInline ? (flags | 4) : (flags & ~4);
         flags = groups ? (flags | 1024) : (flags & ~1024);
         flags = channels ? (flags | 32768) : (flags & ~32768);
-        // Fields below may not be serialized due to flags field value
     }
 
     @Override

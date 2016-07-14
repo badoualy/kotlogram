@@ -91,7 +91,6 @@ public class TLUpdateShortChatMessage extends TLAbsUpdates {
         flags = viaBotId != null ? (flags | 2048) : (flags & ~2048);
         flags = replyToMsgId != null ? (flags | 8) : (flags & ~8);
         flags = entities != null ? (flags | 128) : (flags & ~128);
-        // Fields below may not be serialized due to flags field value
     }
 
     @Override

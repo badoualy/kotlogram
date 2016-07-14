@@ -111,7 +111,6 @@ public class TLChannel extends TLAbsChat {
         flags = accessHash != null ? (flags | 8192) : (flags & ~8192);
         flags = username != null ? (flags | 64) : (flags & ~64);
         flags = restrictionReason != null ? (flags | 512) : (flags & ~512);
-        // Fields below may not be serialized due to flags field value
     }
 
     @Override

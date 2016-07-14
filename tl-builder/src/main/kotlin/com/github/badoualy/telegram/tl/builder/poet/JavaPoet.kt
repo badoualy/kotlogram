@@ -406,7 +406,7 @@ object JavaPoet {
 
         // Compute flag for serialization
         val condParameters = parameters.filter { it.tlType is TLTypeConditional }
-        if (condParameters.isNotEmpty()) {
+        if (condParameters.isNotEmpty() && id != null) {
             val computeFlagsMethod = MethodSpec.methodBuilder("computeFlags")
                     .addModifiers(Modifier.PRIVATE)
 
@@ -422,7 +422,7 @@ object JavaPoet {
                     computeFlagsMethod.addStatement("flags = $fieldName != null ? (flags | ${tlType.pow2Value()}) : (flags & ~${tlType.pow2Value()})")
                 }
             }
-            computeFlagsMethod.addCode("// Fields below may not be serialized due to flags field value\n")
+//            computeFlagsMethod.addCode("// Fields below may not be serialized due to flags field value\n")
 //            for (parameter in condParameters) {
 //                val tlType = parameter.tlType as TLTypeConditional
 //                val realType = tlType.realType

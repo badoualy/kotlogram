@@ -56,7 +56,6 @@ public class TLDocumentAttributeAudio extends TLAbsDocumentAttribute {
         flags = title != null ? (flags | 1) : (flags & ~1);
         flags = performer != null ? (flags | 2) : (flags & ~2);
         flags = waveform != null ? (flags | 4) : (flags & ~4);
-        // Fields below may not be serialized due to flags field value
     }
 
     @Override

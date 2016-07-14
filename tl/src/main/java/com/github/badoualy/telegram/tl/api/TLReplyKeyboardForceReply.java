@@ -38,7 +38,6 @@ public class TLReplyKeyboardForceReply extends TLAbsReplyMarkup {
         flags = 0;
         flags = singleUse ? (flags | 2) : (flags & ~2);
         flags = selective ? (flags | 4) : (flags & ~4);
-        // Fields below may not be serialized due to flags field value
     }
 
     @Override

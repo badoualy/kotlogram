@@ -70,7 +70,6 @@ public class TLRequestMessagesGetInlineBotResults extends TLMethod<TLBotResults>
     private void computeFlags() {
         flags = 0;
         flags = geoPoint != null ? (flags | 1) : (flags & ~1);
-        // Fields below may not be serialized due to flags field value
     }
 
     @Override

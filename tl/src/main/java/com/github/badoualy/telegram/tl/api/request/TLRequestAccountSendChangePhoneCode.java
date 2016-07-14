@@ -64,7 +64,6 @@ public class TLRequestAccountSendChangePhoneCode extends TLMethod<TLSentCode> {
         flags = 0;
         flags = allowFlashcall ? (flags | 1) : (flags & ~1);
         flags = currentNumber != null ? (flags | 1) : (flags & ~1);
-        // Fields below may not be serialized due to flags field value
     }
 
     @Override

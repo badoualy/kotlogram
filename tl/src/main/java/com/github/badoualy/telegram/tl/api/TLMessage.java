@@ -104,7 +104,6 @@ public class TLMessage extends TLAbsMessage {
         flags = entities != null ? (flags | 128) : (flags & ~128);
         flags = views != null ? (flags | 1024) : (flags & ~1024);
         flags = editDate != null ? (flags | 32768) : (flags & ~32768);
-        // Fields below may not be serialized due to flags field value
     }
 
     @Override

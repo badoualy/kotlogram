@@ -83,7 +83,6 @@ public class TLRequestMessagesSendMedia extends TLMethod<TLAbsUpdates> {
         flags = clearDraft ? (flags | 128) : (flags & ~128);
         flags = replyToMsgId != null ? (flags | 1) : (flags & ~1);
         flags = replyMarkup != null ? (flags | 4) : (flags & ~4);
-        // Fields below may not be serialized due to flags field value
     }
 
     @Override

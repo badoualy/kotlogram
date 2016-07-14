@@ -87,7 +87,6 @@ public class TLChannelFull extends TLAbsChatFull {
         flags = migratedFromChatId != null ? (flags | 16) : (flags & ~16);
         flags = migratedFromMaxId != null ? (flags | 16) : (flags & ~16);
         flags = pinnedMsgId != null ? (flags | 32) : (flags & ~32);
-        // Fields below may not be serialized due to flags field value
     }
 
     @Override

@@ -52,7 +52,6 @@ public class TLBotInlineMediaResult extends TLAbsBotInlineResult {
         flags = document != null ? (flags | 2) : (flags & ~2);
         flags = title != null ? (flags | 4) : (flags & ~4);
         flags = description != null ? (flags | 8) : (flags & ~8);
-        // Fields below may not be serialized due to flags field value
     }
 
     @Override

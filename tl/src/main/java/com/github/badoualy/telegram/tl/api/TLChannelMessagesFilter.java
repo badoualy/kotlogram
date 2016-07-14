@@ -40,7 +40,6 @@ public class TLChannelMessagesFilter extends TLAbsChannelMessagesFilter {
     private void computeFlags() {
         flags = 0;
         flags = excludeNewMessages ? (flags | 2) : (flags & ~2);
-        // Fields below may not be serialized due to flags field value
     }
 
     @Override

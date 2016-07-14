@@ -64,7 +64,6 @@ public class TLRequestChannelsCreateChannel extends TLMethod<TLAbsUpdates> {
         flags = 0;
         flags = broadcast ? (flags | 1) : (flags & ~1);
         flags = megagroup ? (flags | 2) : (flags & ~2);
-        // Fields below may not be serialized due to flags field value
     }
 
     @Override

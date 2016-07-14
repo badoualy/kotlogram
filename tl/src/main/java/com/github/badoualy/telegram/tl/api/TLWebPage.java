@@ -93,7 +93,6 @@ public class TLWebPage extends TLAbsWebPage {
         flags = duration != null ? (flags | 128) : (flags & ~128);
         flags = author != null ? (flags | 256) : (flags & ~256);
         flags = document != null ? (flags | 512) : (flags & ~512);
-        // Fields below may not be serialized due to flags field value
     }
 
     @Override

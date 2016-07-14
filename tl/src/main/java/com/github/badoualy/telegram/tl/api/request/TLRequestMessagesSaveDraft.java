@@ -74,7 +74,6 @@ public class TLRequestMessagesSaveDraft extends TLMethod<TLBool> {
         flags = noWebpage ? (flags | 2) : (flags & ~2);
         flags = replyToMsgId != null ? (flags | 1) : (flags & ~1);
         flags = entities != null ? (flags | 8) : (flags & ~8);
-        // Fields below may not be serialized due to flags field value
     }
 
     @Override

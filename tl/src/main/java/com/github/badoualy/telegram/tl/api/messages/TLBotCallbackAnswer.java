@@ -42,7 +42,6 @@ public class TLBotCallbackAnswer extends TLObject {
         flags = 0;
         flags = alert ? (flags | 2) : (flags & ~2);
         flags = message != null ? (flags | 1) : (flags & ~1);
-        // Fields below may not be serialized due to flags field value
     }
 
     @Override

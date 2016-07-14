@@ -51,7 +51,6 @@ public class TLChannelForbidden extends TLAbsChat {
         flags = 0;
         flags = broadcast ? (flags | 32) : (flags & ~32);
         flags = megagroup ? (flags | 256) : (flags & ~256);
-        // Fields below may not be serialized due to flags field value
     }
 
     @Override

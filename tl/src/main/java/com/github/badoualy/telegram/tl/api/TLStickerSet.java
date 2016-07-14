@@ -67,7 +67,6 @@ public class TLStickerSet extends TLObject {
         flags = installed ? (flags | 1) : (flags & ~1);
         flags = disabled ? (flags | 2) : (flags & ~2);
         flags = official ? (flags | 4) : (flags & ~4);
-        // Fields below may not be serialized due to flags field value
     }
 
     @Override

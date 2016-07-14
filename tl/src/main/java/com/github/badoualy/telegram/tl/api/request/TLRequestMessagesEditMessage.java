@@ -79,7 +79,6 @@ public class TLRequestMessagesEditMessage extends TLMethod<TLAbsUpdates> {
         flags = message != null ? (flags | 2048) : (flags & ~2048);
         flags = replyMarkup != null ? (flags | 4) : (flags & ~4);
         flags = entities != null ? (flags | 8) : (flags & ~8);
-        // Fields below may not be serialized due to flags field value
     }
 
     @Override

@@ -59,7 +59,6 @@ public class TLUpdateShortSentMessage extends TLAbsUpdates {
         flags = out ? (flags | 2) : (flags & ~2);
         flags = media != null ? (flags | 512) : (flags & ~512);
         flags = entities != null ? (flags | 128) : (flags & ~128);
-        // Fields below may not be serialized due to flags field value
     }
 
     @Override

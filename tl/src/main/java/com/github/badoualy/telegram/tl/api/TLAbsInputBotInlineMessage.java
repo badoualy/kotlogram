@@ -14,12 +14,6 @@ public abstract class TLAbsInputBotInlineMessage extends TLObject {
     public TLAbsInputBotInlineMessage() {
     }
 
-    private void computeFlags() {
-        flags = 0;
-        flags = replyMarkup != null ? (flags | 4) : (flags & ~4);
-        // Fields below may not be serialized due to flags field value
-    }
-
     public TLAbsReplyMarkup getReplyMarkup() {
         return replyMarkup;
     }

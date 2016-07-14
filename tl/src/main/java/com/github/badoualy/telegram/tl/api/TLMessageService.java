@@ -70,7 +70,6 @@ public class TLMessageService extends TLAbsMessage {
         flags = post ? (flags | 16384) : (flags & ~16384);
         flags = fromId != null ? (flags | 256) : (flags & ~256);
         flags = replyToMsgId != null ? (flags | 8) : (flags & ~8);
-        // Fields below may not be serialized due to flags field value
     }
 
     @Override

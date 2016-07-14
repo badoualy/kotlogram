@@ -74,7 +74,6 @@ public class TLRequestMessagesForwardMessages extends TLMethod<TLAbsUpdates> {
         flags = 0;
         flags = silent ? (flags | 32) : (flags & ~32);
         flags = background ? (flags | 64) : (flags & ~64);
-        // Fields below may not be serialized due to flags field value
     }
 
     @Override

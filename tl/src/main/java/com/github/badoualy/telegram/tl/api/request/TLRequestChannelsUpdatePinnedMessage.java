@@ -59,7 +59,6 @@ public class TLRequestChannelsUpdatePinnedMessage extends TLMethod<TLAbsUpdates>
     private void computeFlags() {
         flags = 0;
         flags = silent ? (flags | 1) : (flags & ~1);
-        // Fields below may not be serialized due to flags field value
     }
 
     @Override

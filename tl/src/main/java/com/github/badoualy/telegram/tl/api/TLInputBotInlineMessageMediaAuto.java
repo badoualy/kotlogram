@@ -38,7 +38,6 @@ public class TLInputBotInlineMessageMediaAuto extends TLAbsInputBotInlineMessage
     private void computeFlags() {
         flags = 0;
         flags = replyMarkup != null ? (flags | 4) : (flags & ~4);
-        // Fields below may not be serialized due to flags field value
     }
 
     @Override

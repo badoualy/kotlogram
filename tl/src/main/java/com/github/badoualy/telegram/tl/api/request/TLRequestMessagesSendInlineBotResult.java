@@ -83,7 +83,6 @@ public class TLRequestMessagesSendInlineBotResult extends TLMethod<TLAbsUpdates>
         flags = background ? (flags | 64) : (flags & ~64);
         flags = clearDraft ? (flags | 128) : (flags & ~128);
         flags = replyToMsgId != null ? (flags | 1) : (flags & ~1);
-        // Fields below may not be serialized due to flags field value
     }
 
     @Override

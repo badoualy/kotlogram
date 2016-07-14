@@ -46,7 +46,6 @@ public class TLMessageFwdHeader extends TLObject {
         flags = fromId != null ? (flags | 1) : (flags & ~1);
         flags = channelId != null ? (flags | 2) : (flags & ~2);
         flags = channelPost != null ? (flags | 4) : (flags & ~4);
-        // Fields below may not be serialized due to flags field value
     }
 
     @Override

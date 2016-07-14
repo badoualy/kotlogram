@@ -52,7 +52,6 @@ public class TLChatInvite extends TLAbsChatInvite {
         flags = broadcast ? (flags | 2) : (flags & ~2);
         flags = _public ? (flags | 4) : (flags & ~4);
         flags = megagroup ? (flags | 8) : (flags & ~8);
-        // Fields below may not be serialized due to flags field value
     }
 
     @Override

@@ -59,7 +59,6 @@ public class TLDialog extends TLObject {
         flags = 0;
         flags = pts != null ? (flags | 1) : (flags & ~1);
         flags = draft != null ? (flags | 2) : (flags & ~2);
-        // Fields below may not be serialized due to flags field value
     }
 
     @Override

@@ -54,7 +54,6 @@ public class TLSentCode extends TLObject {
         flags = phoneRegistered ? (flags | 1) : (flags & ~1);
         flags = nextType != null ? (flags | 2) : (flags & ~2);
         flags = timeout != null ? (flags | 4) : (flags & ~4);
-        // Fields below may not be serialized due to flags field value
     }
 
     @Override

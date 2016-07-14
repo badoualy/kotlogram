@@ -62,7 +62,6 @@ public class TLBotResults extends TLObject {
         flags = gallery ? (flags | 1) : (flags & ~1);
         flags = nextOffset != null ? (flags | 2) : (flags & ~2);
         flags = switchPm != null ? (flags | 4) : (flags & ~4);
-        // Fields below may not be serialized due to flags field value
     }
 
     @Override

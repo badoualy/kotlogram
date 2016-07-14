@@ -97,7 +97,6 @@ public class TLRequestMessagesSendMessage extends TLMethod<TLAbsUpdates> {
         flags = replyToMsgId != null ? (flags | 1) : (flags & ~1);
         flags = replyMarkup != null ? (flags | 4) : (flags & ~4);
         flags = entities != null ? (flags | 8) : (flags & ~8);
-        // Fields below may not be serialized due to flags field value
     }
 
     @Override

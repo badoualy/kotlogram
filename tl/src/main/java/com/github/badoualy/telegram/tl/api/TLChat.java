@@ -79,7 +79,6 @@ public class TLChat extends TLAbsChat {
         flags = admin ? (flags | 16) : (flags & ~16);
         flags = deactivated ? (flags | 32) : (flags & ~32);
         flags = migratedTo != null ? (flags | 64) : (flags & ~64);
-        // Fields below may not be serialized due to flags field value
     }
 
     @Override
