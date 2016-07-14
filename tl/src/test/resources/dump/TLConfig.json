@@ -5,42 +5,42 @@
   "thisDc": 0,
   "dcOptions": [
     {
-      "flags": 2,
-      "ipv6": false,
-      "mediaOnly": true,
-      "tcpoOnly": false,
-      "id": 0,
-      "ipAddress": "WspvE3dwxBQKyYEvH5Gpfl",
-      "port": 0,
-      "_constructor": "dcOption#5d8c6cc"
-    },
-    {
-      "flags": 5,
-      "ipv6": true,
-      "mediaOnly": false,
-      "tcpoOnly": true,
-      "id": 0,
-      "ipAddress": "IWqqQNDxTvVYekBpG1Uk",
-      "port": 0,
-      "_constructor": "dcOption#5d8c6cc"
-    },
-    {
       "flags": 1,
       "ipv6": true,
       "mediaOnly": false,
       "tcpoOnly": false,
       "id": 0,
-      "ipAddress": "pcVndZq4iOA8c8FjUal7qw5qE",
+      "ipAddress": "9f1gZ1s9dsq3nuw3JXZLHQT2",
       "port": 0,
       "_constructor": "dcOption#5d8c6cc"
     },
     {
-      "flags": 4,
-      "ipv6": false,
-      "mediaOnly": false,
+      "flags": 7,
+      "ipv6": true,
+      "mediaOnly": true,
       "tcpoOnly": true,
       "id": 0,
-      "ipAddress": "LxGOt3NFFeDCfKfHHFgE",
+      "ipAddress": "CTP0Xm3024BnhiBpdFBN4xH",
+      "port": 0,
+      "_constructor": "dcOption#5d8c6cc"
+    },
+    {
+      "flags": 7,
+      "ipv6": true,
+      "mediaOnly": true,
+      "tcpoOnly": true,
+      "id": 0,
+      "ipAddress": "9TZ3C003JxBCAkzoHvOGg1",
+      "port": 0,
+      "_constructor": "dcOption#5d8c6cc"
+    },
+    {
+      "flags": 0,
+      "ipv6": false,
+      "mediaOnly": false,
+      "tcpoOnly": false,
+      "id": 0,
+      "ipAddress": "BTyfgKELEItAKk4z",
       "port": 0,
       "_constructor": "dcOption#5d8c6cc"
     }
@@ -62,13 +62,18 @@
   "ratingEDecay": 0,
   "disabledFeatures": [
     {
-      "feature": "kiXuC9OGUFQUwvo5PIZnzF",
-      "description": "GETAbBaHfhPadvD",
+      "feature": "yndxhUmd8x26Wp",
+      "description": "b6MCAYx7QKPz25Xeh8DwnhP1uM0H",
       "_constructor": "disabledFeature#ae636f24"
     },
     {
-      "feature": "2PAacpM1EK8jWQOWJcLiVdaAep",
-      "description": "dZ9adiS4khWbrisq",
+      "feature": "r9ASW8OIFh8CSMiMM",
+      "description": "eJ08sHR",
+      "_constructor": "disabledFeature#ae636f24"
+    },
+    {
+      "feature": "synDF",
+      "description": "qIYU3Kj4Euyra8xq",
       "_constructor": "disabledFeature#ae636f24"
     }
   ],

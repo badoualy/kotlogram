@@ -45,105 +45,37 @@
       "userId": 0,
       "date": 0,
       "_constructor": "contactBlocked#561bc879"
-    },
-    {
-      "userId": 0,
-      "date": 0,
-      "_constructor": "contactBlocked#561bc879"
     }
   ],
   "users": [
     {
-      "_constructor": "userEmpty#200250ba",
-      "id": 0
-    },
-    {
-      "_constructor": "userEmpty#200250ba",
-      "id": 0
-    },
-    {
-      "_constructor": "userEmpty#200250ba",
-      "id": 0
-    },
-    {
-      "flags": 1563648,
+      "flags": 1041535,
       "self": true,
-      "contact": true,
-      "mutualContact": true,
-      "deleted": false,
+      "contact": false,
+      "mutualContact": false,
+      "deleted": true,
       "bot": true,
       "botChatHistory": true,
       "botNochats": true,
       "verified": true,
       "restricted": true,
-      "min": true,
-      "botInlineGeo": false,
-      "accessHash": null,
-      "firstName": null,
-      "lastName": null,
-      "username": null,
-      "phone": null,
-      "photo": null,
-      "status": null,
-      "botInfoVersion": 0,
-      "restrictionReason": "LcEZ2YTd",
-      "botInlinePlaceholder": null,
-      "_constructor": "user#d10d979a",
-      "id": 0
-    },
-    {
-      "flags": 2241536,
-      "self": true,
-      "contact": false,
-      "mutualContact": true,
-      "deleted": true,
-      "bot": false,
-      "botChatHistory": false,
-      "botNochats": false,
-      "verified": true,
-      "restricted": false,
       "min": false,
-      "botInlineGeo": true,
-      "accessHash": null,
-      "firstName": null,
-      "lastName": null,
-      "username": null,
-      "phone": null,
-      "photo": null,
-      "status": null,
-      "botInfoVersion": null,
-      "restrictionReason": null,
-      "botInlinePlaceholder": null,
-      "_constructor": "user#d10d979a",
-      "id": 0
-    },
-    {
-      "_constructor": "userEmpty#200250ba",
-      "id": 0
-    },
-    {
-      "flags": 1476608,
-      "self": false,
-      "contact": true,
-      "mutualContact": false,
-      "deleted": false,
-      "bot": false,
-      "botChatHistory": true,
-      "botNochats": false,
-      "verified": true,
-      "restricted": true,
-      "min": true,
       "botInlineGeo": false,
-      "accessHash": null,
-      "firstName": null,
-      "lastName": null,
-      "username": null,
-      "phone": null,
-      "photo": null,
-      "status": null,
-      "botInfoVersion": null,
-      "restrictionReason": "oZwV5LALhyb4v4P",
-      "botInlinePlaceholder": null,
+      "accessHash": 0,
+      "firstName": "n2RJ65lpTE8RjP8i1FCHbX6Qhx",
+      "lastName": "jdYHhRFTlYU2PgBcrdk",
+      "username": "TIFbI9gGHoLzmrVUzZS5w7MDD",
+      "phone": "KJnAmRcsL5s9Uc2mnyXTHT3YK",
+      "photo": {
+        "_constructor": "userProfilePhotoEmpty#4f11bae1"
+      },
+      "status": {
+        "expires": 0,
+        "_constructor": "userStatusOnline#edb93949"
+      },
+      "botInfoVersion": 0,
+      "restrictionReason": "lRDnZoysxD0",
+      "botInlinePlaceholder": "WIaNdm",
       "_constructor": "user#d10d979a",
       "id": 0
     },
@@ -156,33 +88,90 @@
       "id": 0
     },
     {
-      "flags": 57344,
-      "self": false,
-      "contact": false,
-      "mutualContact": false,
+      "flags": 1899647,
+      "self": true,
+      "contact": true,
+      "mutualContact": true,
       "deleted": true,
       "bot": true,
       "botChatHistory": true,
       "botNochats": false,
       "verified": false,
-      "restricted": false,
-      "min": false,
+      "restricted": true,
+      "min": true,
       "botInlineGeo": false,
-      "accessHash": null,
-      "firstName": null,
-      "lastName": null,
-      "username": null,
-      "phone": null,
-      "photo": null,
-      "status": null,
+      "accessHash": 0,
+      "firstName": "iFDfGHW8b2bJ7gi13535qIT2mG0jP",
+      "lastName": "NxyfFjrvAknOFbMebvPj6kNY3a3",
+      "username": "k6QYsy",
+      "phone": "3ugNgH601soFJJn7VxF3",
+      "photo": {
+        "photoId": 0,
+        "photoSmall": {
+          "dcId": 0,
+          "_constructor": "fileLocation#53d69076",
+          "volumeId": 0,
+          "localId": 0,
+          "secret": 0
+        },
+        "photoBig": {
+          "dcId": 0,
+          "_constructor": "fileLocation#53d69076",
+          "volumeId": 0,
+          "localId": 0,
+          "secret": 0
+        },
+        "_constructor": "userProfilePhoto#d559d8c8"
+      },
+      "status": {
+        "_constructor": "userStatusLastWeek#7bf09fc"
+      },
       "botInfoVersion": 0,
-      "restrictionReason": null,
-      "botInlinePlaceholder": null,
+      "restrictionReason": "zHUpJF9XgOiS",
+      "botInlinePlaceholder": "go7SRXuKUPbYqqMlcv8ho",
       "_constructor": "user#d10d979a",
       "id": 0
     },
     {
       "_constructor": "userEmpty#200250ba",
+      "id": 0
+    },
+    {
+      "_constructor": "userEmpty#200250ba",
+      "id": 0
+    },
+    {
+      "_constructor": "userEmpty#200250ba",
+      "id": 0
+    },
+    {
+      "flags": 4147327,
+      "self": false,
+      "contact": true,
+      "mutualContact": false,
+      "deleted": false,
+      "bot": true,
+      "botChatHistory": false,
+      "botNochats": true,
+      "verified": true,
+      "restricted": true,
+      "min": true,
+      "botInlineGeo": true,
+      "accessHash": 0,
+      "firstName": "knnJbzJ",
+      "lastName": "L6iabWt5z46QDzrQ5Ivu",
+      "username": "aovy7yewWLvhUamzIrf8qr",
+      "phone": "bc8QGIpjrO9r2uWkncA1NQ",
+      "photo": {
+        "_constructor": "userProfilePhotoEmpty#4f11bae1"
+      },
+      "status": {
+        "_constructor": "userStatusEmpty#9d05049"
+      },
+      "botInfoVersion": 0,
+      "restrictionReason": "4pY0IS6sgKlCW3YJ",
+      "botInlinePlaceholder": "MZiu8qCBmAe6QJ",
+      "_constructor": "user#d10d979a",
       "id": 0
     }
   ]

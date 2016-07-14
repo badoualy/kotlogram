@@ -4,6 +4,6 @@
     "accessHash": 0,
     "_constructor": "inputStickerSetID#9de7a269"
   },
-  "disabled": false,
+  "disabled": true,
   "_constructor": "messages.installStickerSet#7b30c3a6"
 }

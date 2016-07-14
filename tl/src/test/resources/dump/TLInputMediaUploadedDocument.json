@@ -1,19 +1,18 @@
 {
   "file": {
-    "_constructor": "inputFileBig#fa4f0bb5",
+    "md5Checksum": "GHIfLojDbOQXQtwz8HOlBTUOdyn4Q",
+    "_constructor": "inputFile#f52ff27f",
     "id": 0,
     "parts": 0,
-    "name": "QlrZyOicD8RINSBXgjHODPzISZq"
+    "name": "v6wB1HpvvVETwYf"
   },
-  "mimeType": "sDl20TJAMqxuKh",
+  "mimeType": "y3V6TCRqAgIuUoDfqFWyadTbwNE",
   "attributes": [
     {
-      "alt": "SbFvjX",
-      "stickerset": {
-        "shortName": "kvp5oK4yn4fen5EuIK4D",
-        "_constructor": "inputStickerSetShortName#861cc8a0"
-      },
-      "_constructor": "documentAttributeSticker#3a556302"
+      "_constructor": "documentAttributeAnimated#11b58939"
+    },
+    {
+      "_constructor": "documentAttributeAnimated#11b58939"
     },
     {
       "duration": 0,
@@ -22,33 +21,64 @@
       "_constructor": "documentAttributeVideo#5910cccb"
     },
     {
-      "flags": 0,
+      "w": 0,
+      "h": 0,
+      "_constructor": "documentAttributeImageSize#6c37c15c"
+    },
+    {
+      "fileName": "AxVfcojKY2skz66T2WwwGY7PGtey0",
+      "_constructor": "documentAttributeFilename#15590068"
+    },
+    {
+      "fileName": "FKyQL9jF9iTy8q3EqCuR",
+      "_constructor": "documentAttributeFilename#15590068"
+    },
+    {
+      "flags": 7,
       "voice": false,
       "duration": 0,
-      "title": null,
-      "performer": null,
-      "waveform": null,
+      "title": "z1g9Z2Vmqs5oQS42kVZlpo0k",
+      "performer": "rIFxiI0WxUndwg5N",
+      "waveform": {
+        "data": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "offset": 0,
+        "len": 28
+      },
       "_constructor": "documentAttributeAudio#9852f9c6"
     },
     {
-      "flags": 0,
-      "voice": false,
-      "duration": 0,
-      "title": null,
-      "performer": null,
-      "waveform": null,
-      "_constructor": "documentAttributeAudio#9852f9c6"
-    },
-    {
-      "flags": 0,
-      "voice": false,
-      "duration": 0,
-      "title": null,
-      "performer": null,
-      "waveform": null,
-      "_constructor": "documentAttributeAudio#9852f9c6"
+      "_constructor": "documentAttributeAnimated#11b58939"
     }
   ],
-  "caption": "aQfLwrBTTNXD3ZLs",
+  "caption": "sOiHidgu9LHvEmAO4l",
   "_constructor": "inputMediaUploadedDocument#1d89306d"
 }

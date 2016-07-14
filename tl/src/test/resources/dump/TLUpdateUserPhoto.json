@@ -2,21 +2,7 @@
   "userId": 0,
   "date": 0,
   "photo": {
-    "photoId": 0,
-    "photoSmall": {
-      "_constructor": "fileLocationUnavailable#7c596b46",
-      "volumeId": 0,
-      "localId": 0,
-      "secret": 0
-    },
-    "photoBig": {
-      "dcId": 0,
-      "_constructor": "fileLocation#53d69076",
-      "volumeId": 0,
-      "localId": 0,
-      "secret": 0
-    },
-    "_constructor": "userProfilePhoto#d559d8c8"
+    "_constructor": "userProfilePhotoEmpty#4f11bae1"
   },
   "previous": false,
   "_constructor": "updateUserPhoto#95313b0c"

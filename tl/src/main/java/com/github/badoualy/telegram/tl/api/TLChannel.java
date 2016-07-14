@@ -104,13 +104,15 @@ public class TLChannel extends TLAbsChat {
         flags = broadcast ? (flags | 32) : (flags & ~32);
         flags = verified ? (flags | 128) : (flags & ~128);
         flags = megagroup ? (flags | 256) : (flags & ~256);
-        flags = restricted ? (flags | 512) : (flags & ~512);
         flags = democracy ? (flags | 1024) : (flags & ~1024);
         flags = signatures ? (flags | 2048) : (flags & ~2048);
         flags = min ? (flags | 4096) : (flags & ~4096);
         flags = accessHash != null ? (flags | 8192) : (flags & ~8192);
         flags = username != null ? (flags | 64) : (flags & ~64);
         flags = restrictionReason != null ? (flags | 512) : (flags & ~512);
+        // Fields below are just utils boolean flags, they serve only when deserializing
+        // The flag value at the given bit is computed above by a TLObject
+        restricted = (flags & 512) != 0;
     }
 
     @Override

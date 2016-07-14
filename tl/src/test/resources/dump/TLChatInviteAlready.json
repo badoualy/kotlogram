@@ -1,34 +1,7 @@
 {
   "chat": {
-    "flags": 57,
-    "creator": true,
-    "kicked": false,
-    "left": false,
-    "adminsEnabled": true,
-    "admin": true,
-    "deactivated": true,
-    "title": "2JJh4pd15sdIdwCsE5F",
-    "photo": {
-      "photoSmall": {
-        "_constructor": "fileLocationUnavailable#7c596b46",
-        "volumeId": 0,
-        "localId": 0,
-        "secret": 0
-      },
-      "photoBig": {
-        "dcId": 0,
-        "_constructor": "fileLocation#53d69076",
-        "volumeId": 0,
-        "localId": 0,
-        "secret": 0
-      },
-      "_constructor": "chatPhoto#6153276a"
-    },
-    "participantsCount": 0,
-    "date": 0,
-    "version": 0,
-    "migratedTo": null,
-    "_constructor": "chat#d91cdd54",
+    "title": "wTWooi",
+    "_constructor": "chatForbidden#7328bdb",
     "id": 0
   },
   "_constructor": "chatInviteAlready#5a686d7c"

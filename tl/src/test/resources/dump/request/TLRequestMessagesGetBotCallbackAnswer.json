@@ -1,8 +1,6 @@
 {
   "peer": {
-    "channelId": 0,
-    "accessHash": 0,
-    "_constructor": "inputPeerChannel#20adaef8"
+    "_constructor": "inputPeerEmpty#7f3b18ea"
   },
   "msgId": 0,
   "data": {
@@ -203,10 +201,15 @@
       0,
       0,
       0,
+      0,
+      0,
+      0,
+      0,
+      0,
       0
     ],
     "offset": 0,
-    "len": 197
+    "len": 202
   },
   "_constructor": "messages.getBotCallbackAnswer#a6e94f04"
 }

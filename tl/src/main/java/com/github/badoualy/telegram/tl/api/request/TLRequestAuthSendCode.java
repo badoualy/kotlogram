@@ -68,8 +68,10 @@ public class TLRequestAuthSendCode extends TLMethod<TLSentCode> {
 
     private void computeFlags() {
         flags = 0;
-        flags = allowFlashcall ? (flags | 1) : (flags & ~1);
         flags = currentNumber != null ? (flags | 1) : (flags & ~1);
+        // Fields below are just utils boolean flags, they serve only when deserializing
+        // The flag value at the given bit is computed above by a TLObject
+        allowFlashcall = (flags & 1) != 0;
     }
 
     @Override

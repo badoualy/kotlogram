@@ -1,10 +1,10 @@
 {
   "peer": {
-    "chatId": 0,
-    "_constructor": "inputPeerChat#179be863"
+    "_constructor": "inputPeerSelf#7da07ec9"
   },
   "reason": {
-    "_constructor": "inputReportReasonSpam#58dbcab8"
+    "text": "MMBGulStNDKlm",
+    "_constructor": "inputReportReasonOther#e1746d0a"
   },
   "_constructor": "account.reportPeer#ae189d5f"
 }

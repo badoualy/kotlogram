@@ -1,8 +1,8 @@
 {
-  "flags": 0,
-  "showPreviews": false,
-  "silent": false,
+  "flags": 3,
+  "showPreviews": true,
+  "silent": true,
   "muteUntil": 0,
-  "sound": "LQMsdqF0ohy7wuKj1jr4bkapDNHPd",
+  "sound": "shwfbetWcJTiPMVghlHf1Cge",
   "_constructor": "peerNotifySettings#9acda4c0"
 }

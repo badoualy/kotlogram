@@ -1,9 +1,7 @@
 {
   "contacts": [
     {
-      "userId": 0,
-      "accessHash": 0,
-      "_constructor": "inputUser#d8292816"
+      "_constructor": "inputUserEmpty#b98886cf"
     },
     {
       "_constructor": "inputUserSelf#f7c1b13f"
@@ -15,16 +13,9 @@
       "_constructor": "inputUserEmpty#b98886cf"
     },
     {
-      "_constructor": "inputUserSelf#f7c1b13f"
-    },
-    {
-      "_constructor": "inputUserEmpty#b98886cf"
-    },
-    {
-      "_constructor": "inputUserSelf#f7c1b13f"
-    },
-    {
-      "_constructor": "inputUserSelf#f7c1b13f"
+      "userId": 0,
+      "accessHash": 0,
+      "_constructor": "inputUser#d8292816"
     },
     {
       "userId": 0,
@@ -33,28 +24,19 @@
     },
     {
       "_constructor": "inputUserEmpty#b98886cf"
-    },
-    {
-      "userId": 0,
-      "accessHash": 0,
-      "_constructor": "inputUser#d8292816"
     }
   ],
   "randomId": [
     0,
     0,
     0,
+    0,
+    0,
     0
   ],
-  "message": "4D5GP3D2ln",
+  "message": "JOooMcv4",
   "media": {
-    "id": {
-      "id": 0,
-      "accessHash": 0,
-      "_constructor": "inputPhoto#fb95c6c4"
-    },
-    "caption": "k4O4MRUIIjPePyVL",
-    "_constructor": "inputMediaPhoto#e9bfb4f3"
+    "_constructor": "inputMediaEmpty#9664f57f"
   },
   "_constructor": "messages.sendBroadcast#bf73f4da"
 }

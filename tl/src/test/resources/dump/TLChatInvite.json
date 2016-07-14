@@ -1,9 +1,9 @@
 {
-  "flags": 10,
-  "channel": false,
+  "flags": 15,
+  "channel": true,
   "broadcast": true,
-  "_public": false,
+  "_public": true,
   "megagroup": true,
-  "title": "XScP9XLvvs",
+  "title": "wspok7z8DZfF6TLxm40KdTUk9aGID",
   "_constructor": "chatInvite#93e99b60"
 }

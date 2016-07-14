@@ -1,8 +1,8 @@
 {
-  "flags": 6,
-  "correspondents": false,
-  "botsPm": true,
-  "botsInline": true,
+  "flags": 1,
+  "correspondents": true,
+  "botsPm": false,
+  "botsInline": false,
   "groups": false,
   "channels": false,
   "offset": 0,

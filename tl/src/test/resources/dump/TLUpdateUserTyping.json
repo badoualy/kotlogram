@@ -1,7 +1,8 @@
 {
   "userId": 0,
   "action": {
-    "_constructor": "sendMessageTypingAction#16bf744e"
+    "progress": 0,
+    "_constructor": "sendMessageUploadPhotoAction#d1d34a26"
   },
   "_constructor": "updateUserTyping#5c486927"
 }

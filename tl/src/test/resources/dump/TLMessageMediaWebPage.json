@@ -1,6 +1,7 @@
 {
   "webpage": {
-    "_constructor": "webPageEmpty#eb1477e8",
+    "date": 0,
+    "_constructor": "webPagePending#c586da1c",
     "id": 0
   },
   "_constructor": "messageMediaWebPage#a32dd600"

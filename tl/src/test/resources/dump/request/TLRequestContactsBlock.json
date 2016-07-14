@@ -1,8 +1,6 @@
 {
   "id": {
-    "userId": 0,
-    "accessHash": 0,
-    "_constructor": "inputUser#d8292816"
+    "_constructor": "inputUserSelf#f7c1b13f"
   },
   "_constructor": "contacts.block#332b49fc"
 }

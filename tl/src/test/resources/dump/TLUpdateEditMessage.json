@@ -1,27 +1,24 @@
 {
   "message": {
-    "flags": 8224,
+    "flags": 24840,
     "out": false,
     "mentioned": false,
-    "mediaUnread": true,
+    "mediaUnread": false,
     "silent": true,
-    "post": false,
-    "fromId": null,
+    "post": true,
+    "fromId": 0,
     "toId": {
-      "userId": 0,
-      "_constructor": "peerUser#9db1bc6d"
+      "chatId": 0,
+      "_constructor": "peerChat#bad0e5bb"
     },
-    "fwdFrom": null,
-    "viaBotId": null,
-    "replyToMsgId": null,
+    "replyToMsgId": 0,
     "date": 0,
-    "message": "rGHf6kF1UDIelzgqIX32mmHu6Jit",
-    "media": null,
-    "replyMarkup": null,
-    "entities": null,
-    "views": null,
-    "editDate": null,
-    "_constructor": "message#c09be45f",
+    "action": {
+      "title": "CGRUPbv6Dv",
+      "chatId": 0,
+      "_constructor": "messageActionChannelMigrateFrom#b055eaee"
+    },
+    "_constructor": "messageService#9e19a1f6",
     "id": 0
   },
   "pts": 0,

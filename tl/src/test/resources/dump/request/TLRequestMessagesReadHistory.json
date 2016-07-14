@@ -1,6 +1,6 @@
 {
   "peer": {
-    "_constructor": "inputPeerSelf#7da07ec9"
+    "_constructor": "inputPeerEmpty#7f3b18ea"
   },
   "maxId": 0,
   "_constructor": "messages.readHistory#e306d3a"

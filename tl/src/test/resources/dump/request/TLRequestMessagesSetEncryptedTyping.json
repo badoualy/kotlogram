@@ -4,6 +4,6 @@
     "accessHash": 0,
     "_constructor": "inputEncryptedChat#f141b5e1"
   },
-  "typing": true,
+  "typing": false,
   "_constructor": "messages.setEncryptedTyping#791451ed"
 }

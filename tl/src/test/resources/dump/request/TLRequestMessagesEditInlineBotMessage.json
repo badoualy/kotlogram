@@ -1,14 +1,63 @@
 {
-  "flags": 0,
-  "noWebpage": false,
+  "flags": 2062,
+  "noWebpage": true,
   "id": {
     "dcId": 0,
     "id": 0,
     "accessHash": 0,
     "_constructor": "inputBotInlineMessageID#890c3d89"
   },
-  "message": null,
-  "replyMarkup": null,
-  "entities": null,
+  "message": "yc9dv79hLOVkiqZTDBKu",
+  "replyMarkup": {
+    "flags": 4,
+    "selective": true,
+    "_constructor": "replyKeyboardHide#a03e5b85"
+  },
+  "entities": [
+    {
+      "userId": {
+        "_constructor": "inputUserSelf#f7c1b13f"
+      },
+      "_constructor": "inputMessageEntityMentionName#208e68c9",
+      "offset": 0,
+      "length": 0
+    },
+    {
+      "_constructor": "messageEntityMention#fa04579d",
+      "offset": 0,
+      "length": 0
+    },
+    {
+      "url": "vaqchoxi8Lq",
+      "_constructor": "messageEntityTextUrl#76a6d327",
+      "offset": 0,
+      "length": 0
+    },
+    {
+      "_constructor": "messageEntityCode#28a20571",
+      "offset": 0,
+      "length": 0
+    },
+    {
+      "_constructor": "messageEntityHashtag#6f635b0d",
+      "offset": 0,
+      "length": 0
+    },
+    {
+      "_constructor": "messageEntityHashtag#6f635b0d",
+      "offset": 0,
+      "length": 0
+    },
+    {
+      "_constructor": "messageEntityBold#bd610bc9",
+      "offset": 0,
+      "length": 0
+    },
+    {
+      "_constructor": "messageEntityUnknown#bb92ba95",
+      "offset": 0,
+      "length": 0
+    }
+  ],
   "_constructor": "messages.editInlineBotMessage#130c2c85"
 }

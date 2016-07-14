@@ -4,11 +4,34 @@
     "_constructor": "peerChannel#bddde532"
   },
   "draft": {
-    "flags": 2,
+    "flags": 11,
     "noWebpage": true,
-    "replyToMsgId": null,
-    "message": "lsIZDJhW3PWeLJ",
-    "entities": null,
+    "replyToMsgId": 0,
+    "message": "yiYV1Rh53ebgokdKGl9AN43AWp3",
+    "entities": [
+      {
+        "_constructor": "messageEntityUrl#6ed02538",
+        "offset": 0,
+        "length": 0
+      },
+      {
+        "url": "oELrXccB05GcYF3fdtx5MRsCbr",
+        "_constructor": "messageEntityTextUrl#76a6d327",
+        "offset": 0,
+        "length": 0
+      },
+      {
+        "language": "4aXQ7JS5mPqBdZfep7CmoRxG",
+        "_constructor": "messageEntityPre#73924be0",
+        "offset": 0,
+        "length": 0
+      },
+      {
+        "_constructor": "messageEntityEmail#64e475c2",
+        "offset": 0,
+        "length": 0
+      }
+    ],
     "date": 0,
     "_constructor": "draftMessage#fd8e711f"
   },

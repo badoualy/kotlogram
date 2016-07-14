@@ -1,19 +1,39 @@
 {
-  "flags": 48,
-  "out": false,
-  "mentioned": true,
+  "flags": 2222,
+  "out": true,
+  "mentioned": false,
   "mediaUnread": true,
   "silent": false,
   "id": 0,
   "fromId": 0,
   "chatId": 0,
-  "message": "X5Qwu4q4Z12sUbHnWlxIgTbEPltDB",
+  "message": "USlG1uvUCm",
   "pts": 0,
   "ptsCount": 0,
   "date": 0,
-  "fwdFrom": null,
-  "viaBotId": null,
-  "replyToMsgId": null,
-  "entities": null,
+  "fwdFrom": {
+    "flags": 7,
+    "fromId": 0,
+    "date": 0,
+    "channelId": 0,
+    "channelPost": 0,
+    "_constructor": "messageFwdHeader#c786ddcb"
+  },
+  "viaBotId": 0,
+  "replyToMsgId": 0,
+  "entities": [
+    {
+      "language": "mCtpGV",
+      "_constructor": "messageEntityPre#73924be0",
+      "offset": 0,
+      "length": 0
+    },
+    {
+      "language": "tqXGok8EwhuI7zG",
+      "_constructor": "messageEntityPre#73924be0",
+      "offset": 0,
+      "length": 0
+    }
+  ],
   "_constructor": "updateShortChatMessage#16812688"
 }

@@ -1,14 +1,17 @@
 {
   "geoPoint": {
-    "lat": 0.0,
-    "_long": 0.0,
-    "_constructor": "inputGeoPoint#f3b7acc9"
+    "_constructor": "inputGeoPointEmpty#e4c123d6"
   },
-  "title": "ZWTNawKgJfSPjPVyecq5sO",
-  "address": "UrHf3wWaNRsLi",
-  "provider": "GerOi",
-  "venueId": "pjtGcgDcvsi6Zjw0",
+  "title": "lGI3tmMON3qF2n",
+  "address": "aYxvUjctIuxXjwf7rDT8v983grz",
+  "provider": "QIl7Xs9LeXu9I6fcfnw8HCZ",
+  "venueId": "XXbZ4euuxWR4aPtWW",
   "_constructor": "inputBotInlineMessageMediaVenue#aaafadc8",
-  "flags": 0,
-  "replyMarkup": null
+  "flags": 4,
+  "replyMarkup": {
+    "flags": 0,
+    "singleUse": false,
+    "selective": false,
+    "_constructor": "replyKeyboardForceReply#f4108aa0"
+  }
 }

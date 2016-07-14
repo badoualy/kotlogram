@@ -1,10 +1,13 @@
 {
   "geo": {
-    "_long": 0.0,
-    "lat": 0.0,
-    "_constructor": "geoPoint#2049d70c"
+    "_constructor": "geoPointEmpty#1117dd5f"
   },
   "_constructor": "botInlineMessageMediaGeo#3a8fd8b8",
-  "flags": 0,
-  "replyMarkup": null
+  "flags": 4,
+  "replyMarkup": {
+    "flags": 2,
+    "singleUse": true,
+    "selective": false,
+    "_constructor": "replyKeyboardForceReply#f4108aa0"
+  }
 }

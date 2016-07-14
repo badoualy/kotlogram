@@ -5,9 +5,9 @@
     "accessHash": 0,
     "_constructor": "inputPeerUser#7b8e7de6"
   },
-  "q": "lkpBoKazmcW2",
+  "q": "RYa2w4i9ka",
   "filter": {
-    "_constructor": "inputMessagesFilterPhotoVideoDocuments#d95e73bb"
+    "_constructor": "inputMessagesFilterChatPhotos#3a20ecb8"
   },
   "minDate": 0,
   "maxDate": 0,

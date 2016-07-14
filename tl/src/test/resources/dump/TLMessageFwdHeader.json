@@ -1,8 +1,8 @@
 {
-  "flags": 0,
-  "fromId": null,
+  "flags": 7,
+  "fromId": 0,
   "date": 0,
-  "channelId": null,
-  "channelPost": null,
+  "channelId": 0,
+  "channelPost": 0,
   "_constructor": "messageFwdHeader#c786ddcb"
 }

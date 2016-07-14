@@ -1,16 +1,13 @@
 {
   "peer": {
-    "peer": {
-      "_constructor": "inputPeerEmpty#7f3b18ea"
-    },
-    "_constructor": "inputNotifyPeer#b8bc5b0c"
+    "_constructor": "inputNotifyUsers#193b4417"
   },
   "settings": {
     "flags": 3,
     "showPreviews": true,
     "silent": true,
     "muteUntil": 0,
-    "sound": "VuVU64RjoWFSNscTdCgi",
+    "sound": "V6FuR7JaYgSBMu",
     "_constructor": "inputPeerNotifySettings#38935eb2"
   },
   "_constructor": "account.updateNotifySettings#84be5b93"

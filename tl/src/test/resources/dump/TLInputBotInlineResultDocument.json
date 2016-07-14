@@ -1,23 +1,31 @@
 {
-  "flags": 0,
-  "title": null,
-  "description": null,
+  "flags": 6,
+  "title": "vRzXSu0Q5H0zQeF4bjU",
+  "description": "OsYekB",
   "document": {
-    "_constructor": "inputDocumentEmpty#72f0eaae"
+    "id": 0,
+    "accessHash": 0,
+    "_constructor": "inputDocument#18798952"
   },
   "_constructor": "inputBotInlineResultDocument#fff8fdc4",
-  "id": "1Pjsa0P5c7Y9kE1",
-  "type": "NLeXCS",
+  "id": "ycQe9R377xdrXlw",
+  "type": "zlXGTaD5Ms0bFCDR7BInjwi",
   "sendMessage": {
     "geoPoint": {
-      "_constructor": "inputGeoPointEmpty#e4c123d6"
+      "lat": 0.0,
+      "_long": 0.0,
+      "_constructor": "inputGeoPoint#f3b7acc9"
     },
-    "title": "ONP8VUNQZuKdzN7w8wqs9cKnGBS3u",
-    "address": "WjEJ4UcGnaQ0f94OASGo4kuet",
-    "provider": "0SEHFdkrgeTfQ",
-    "venueId": "HsEsLJURcenf52huTjjoEpNwo",
+    "title": "YosrvDhQ",
+    "address": "WiHuWOSGiahHzOLx6o4hBNOzQ4m",
+    "provider": "iQf9tjn5ZiZ3OrSU5IXQb",
+    "venueId": "xisqytaUBtV95U",
     "_constructor": "inputBotInlineMessageMediaVenue#aaafadc8",
-    "flags": 0,
-    "replyMarkup": null
+    "flags": 4,
+    "replyMarkup": {
+      "flags": 0,
+      "selective": false,
+      "_constructor": "replyKeyboardHide#a03e5b85"
+    }
   }
 }

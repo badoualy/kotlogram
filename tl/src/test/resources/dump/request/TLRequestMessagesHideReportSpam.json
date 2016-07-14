@@ -1,7 +1,6 @@
 {
   "peer": {
-    "chatId": 0,
-    "_constructor": "inputPeerChat#179be863"
+    "_constructor": "inputPeerSelf#7da07ec9"
   },
   "_constructor": "messages.hideReportSpam#a8f1709b"
 }

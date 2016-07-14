@@ -1,36 +1,72 @@
 {
   "file": {
-    "_constructor": "inputFileBig#fa4f0bb5",
-    "id": 0,
-    "parts": 0,
-    "name": "XcMrNXMIesuJ3gvW4PJ8lSt"
-  },
-  "thumb": {
-    "md5Checksum": "NYLi3uyUGrAQIGUWiJyY9joh",
+    "md5Checksum": "gT4l7JJgFfkoiulPBvY",
     "_constructor": "inputFile#f52ff27f",
     "id": 0,
     "parts": 0,
-    "name": "IvgQ48alfnqFXN6txVLQ"
+    "name": "dhE50nHZpiFl7UslBKPH9H2I4"
   },
-  "mimeType": "0GHUq1C4zW1aY",
+  "thumb": {
+    "_constructor": "inputFileBig#fa4f0bb5",
+    "id": 0,
+    "parts": 0,
+    "name": "G8sL0G2I8mCRM7"
+  },
+  "mimeType": "tWomOrFL0DglC6cFC",
   "attributes": [
     {
-      "fileName": "0KrGCgWSe46mgB3k",
-      "_constructor": "documentAttributeFilename#15590068"
-    },
-    {
+      "flags": 1031,
+      "voice": true,
       "duration": 0,
-      "w": 0,
-      "h": 0,
-      "_constructor": "documentAttributeVideo#5910cccb"
-    },
-    {
-      "flags": 0,
-      "voice": false,
-      "duration": 0,
-      "title": null,
-      "performer": null,
-      "waveform": null,
+      "title": "t1UrkOKN0X1Eys5WbBmP",
+      "performer": "S7aGpffuEz5BQIBxtVJxiYm6S3",
+      "waveform": {
+        "data": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "offset": 0,
+        "len": 41
+      },
       "_constructor": "documentAttributeAudio#9852f9c6"
     },
     {
@@ -40,12 +76,15 @@
       "_constructor": "documentAttributeVideo#5910cccb"
     },
     {
-      "duration": 0,
+      "fileName": "XC651",
+      "_constructor": "documentAttributeFilename#15590068"
+    },
+    {
       "w": 0,
       "h": 0,
-      "_constructor": "documentAttributeVideo#5910cccb"
+      "_constructor": "documentAttributeImageSize#6c37c15c"
     }
   ],
-  "caption": "vQu0WhnV6",
+  "caption": "6shNtRAzh09RBUYYpu",
   "_constructor": "inputMediaUploadedThumbDocument#ad613491"
 }

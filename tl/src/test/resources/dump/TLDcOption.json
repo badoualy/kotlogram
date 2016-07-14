@@ -1,10 +1,10 @@
 {
-  "flags": 6,
+  "flags": 4,
   "ipv6": false,
-  "mediaOnly": true,
+  "mediaOnly": false,
   "tcpoOnly": true,
   "id": 0,
-  "ipAddress": "fQK5oxuQVxL",
+  "ipAddress": "eC77O0wHSX5G",
   "port": 0,
   "_constructor": "dcOption#5d8c6cc"
 }

@@ -2,11 +2,541 @@
   "geo": {
     "_constructor": "geoPointEmpty#1117dd5f"
   },
-  "title": "UXsCW8qNk3hLpISo9RYj6cSFBeGM",
-  "address": "uewnC2IuBQtUwV13P1Cdpj9I",
-  "provider": "oFmWv6v9F0f0ynH4ugi5h",
-  "venueId": "mBE2tuUkdtP",
+  "title": "YtPtxU",
+  "address": "RHj00H5amiocJebPhWaV",
+  "provider": "6pV7iLRDxAGPWAu8mRzNM",
+  "venueId": "QdMZr",
   "_constructor": "botInlineMessageMediaVenue#4366232e",
-  "flags": 0,
-  "replyMarkup": null
+  "flags": 4,
+  "replyMarkup": {
+    "rows": [
+      {
+        "buttons": [
+          {
+            "_constructor": "keyboardButton#a2fa4880",
+            "text": "35S2tff"
+          },
+          {
+            "_constructor": "keyboardButton#a2fa4880",
+            "text": "qzta1ccSBzuRULmCVf9lohl0u"
+          },
+          {
+            "_constructor": "keyboardButtonRequestPhone#b16a6c29",
+            "text": "TiAqUWpRhw"
+          },
+          {
+            "_constructor": "keyboardButton#a2fa4880",
+            "text": "UNdzB"
+          },
+          {
+            "_constructor": "keyboardButtonRequestGeoLocation#fc796b3f",
+            "text": "rW7RAT55LL93bDuMt1Mw"
+          },
+          {
+            "_constructor": "keyboardButtonRequestPhone#b16a6c29",
+            "text": "bnaQ3Y7zmsDPrXpPro7Z1vONnI8f"
+          },
+          {
+            "data": {
+              "data": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              "offset": 0,
+              "len": 120
+            },
+            "_constructor": "keyboardButtonCallback#683a5e46",
+            "text": "BvkZ2d25UWVG7bzWGttDpjf6l"
+          },
+          {
+            "_constructor": "keyboardButtonRequestPhone#b16a6c29",
+            "text": "UzHBfuG1Iz4A2Gc5Z"
+          }
+        ],
+        "_constructor": "keyboardButtonRow#77608b83"
+      },
+      {
+        "buttons": [
+          {
+            "_constructor": "keyboardButton#a2fa4880",
+            "text": "Wjtq9hOdMNGhA6xc5Of1ns"
+          },
+          {
+            "_constructor": "keyboardButtonRequestPhone#b16a6c29",
+            "text": "OzS9CJ"
+          },
+          {
+            "query": "Q98QHhRLA3mMFcyAcZ40CpYS",
+            "_constructor": "keyboardButtonSwitchInline#ea1b7a14",
+            "text": "7TO9iWh6qbAELEhY8u"
+          },
+          {
+            "_constructor": "keyboardButton#a2fa4880",
+            "text": "qsNqkZJTW"
+          }
+        ],
+        "_constructor": "keyboardButtonRow#77608b83"
+      },
+      {
+        "buttons": [
+          {
+            "url": "bhejy43U4",
+            "_constructor": "keyboardButtonUrl#258aff05",
+            "text": "E7sVg5si9hqc"
+          },
+          {
+            "_constructor": "keyboardButton#a2fa4880",
+            "text": "Cn9HVE5tYQZkyWde329MtQb"
+          },
+          {
+            "_constructor": "keyboardButtonRequestPhone#b16a6c29",
+            "text": "5Qp73a2h"
+          },
+          {
+            "data": {
+              "data": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              "offset": 0,
+              "len": 30
+            },
+            "_constructor": "keyboardButtonCallback#683a5e46",
+            "text": "G7gYdNRtUvHGmRwvKKu4J"
+          },
+          {
+            "_constructor": "keyboardButtonRequestPhone#b16a6c29",
+            "text": "7nIr7ZLFx"
+          }
+        ],
+        "_constructor": "keyboardButtonRow#77608b83"
+      },
+      {
+        "buttons": [
+          {
+            "query": "kUlEPKs",
+            "_constructor": "keyboardButtonSwitchInline#ea1b7a14",
+            "text": "Fq7G9Mx0mg5xQ"
+          },
+          {
+            "_constructor": "keyboardButtonRequestPhone#b16a6c29",
+            "text": "LMr5cBxUdDGc4vjulDyunyqY3QRa"
+          },
+          {
+            "data": {
+              "data": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              "offset": 0,
+              "len": 36
+            },
+            "_constructor": "keyboardButtonCallback#683a5e46",
+            "text": "4A7A0wHw3TkYJvLwBr8YZ8cGjhc"
+          }
+        ],
+        "_constructor": "keyboardButtonRow#77608b83"
+      },
+      {
+        "buttons": [
+          {
+            "_constructor": "keyboardButtonRequestPhone#b16a6c29",
+            "text": "inPrzaujTNGb"
+          },
+          {
+            "_constructor": "keyboardButtonRequestPhone#b16a6c29",
+            "text": "D8pSVE8KtzKL0kLnQu4XnDJXI"
+          },
+          {
+            "_constructor": "keyboardButton#a2fa4880",
+            "text": "Tbm0Ke4iECkt0jTl"
+          },
+          {
+            "url": "HX5YuXKbHj1B2B",
+            "_constructor": "keyboardButtonUrl#258aff05",
+            "text": "onhcDR4H"
+          },
+          {
+            "_constructor": "keyboardButtonRequestGeoLocation#fc796b3f",
+            "text": "kqLdCBcstdhV25enLIqM"
+          },
+          {
+            "_constructor": "keyboardButton#a2fa4880",
+            "text": "pVF8dlC0xy5jexaELp1H7t"
+          },
+          {
+            "url": "QbpHuIscvSOdGChA1",
+            "_constructor": "keyboardButtonUrl#258aff05",
+            "text": "BwG6LMg6HGin40JJWU"
+          },
+          {
+            "_constructor": "keyboardButtonRequestGeoLocation#fc796b3f",
+            "text": "HoWqRN"
+          },
+          {
+            "url": "5TdsDByVnZHmDdq",
+            "_constructor": "keyboardButtonUrl#258aff05",
+            "text": "eJJUIkBUodl2RWCuPcrRwBnvN6"
+          },
+          {
+            "_constructor": "keyboardButtonRequestPhone#b16a6c29",
+            "text": "ZiLSasSMZT8A0PEUMt2neX"
+          }
+        ],
+        "_constructor": "keyboardButtonRow#77608b83"
+      },
+      {
+        "buttons": [
+          {
+            "query": "2CAzOIF2N",
+            "_constructor": "keyboardButtonSwitchInline#ea1b7a14",
+            "text": "1bKjKwgXnke9F"
+          },
+          {
+            "_constructor": "keyboardButtonRequestPhone#b16a6c29",
+            "text": "3HrGOMFjB5Q"
+          },
+          {
+            "url": "PjjytQgJgL5eTIAoSOFuY",
+            "_constructor": "keyboardButtonUrl#258aff05",
+            "text": "fWerVvHoqGdPc8Q5f1ijEjUSCE"
+          },
+          {
+            "_constructor": "keyboardButtonRequestGeoLocation#fc796b3f",
+            "text": "miU1VtHAnMUKaa4FxXirBj43to5Mw"
+          },
+          {
+            "query": "spbGZ1IMVjxGmCPO4kpfs5xA0kfQJ",
+            "_constructor": "keyboardButtonSwitchInline#ea1b7a14",
+            "text": "77qwl7UvWUsTx"
+          },
+          {
+            "_constructor": "keyboardButtonRequestGeoLocation#fc796b3f",
+            "text": "vkghd0"
+          },
+          {
+            "query": "A5XQulA8L1XF6na7vARUUDPk",
+            "_constructor": "keyboardButtonSwitchInline#ea1b7a14",
+            "text": "e0bzQvbno3kpMG9izLiWtGy9v45V"
+          },
+          {
+            "_constructor": "keyboardButtonRequestGeoLocation#fc796b3f",
+            "text": "QMfMjFfaaeQrkIH5SUaWhNNV"
+          },
+          {
+            "data": {
+              "data": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              "offset": 0,
+              "len": 120
+            },
+            "_constructor": "keyboardButtonCallback#683a5e46",
+            "text": "a5J1YOHc"
+          }
+        ],
+        "_constructor": "keyboardButtonRow#77608b83"
+      }
+    ],
+    "_constructor": "replyInlineMarkup#48a30254"
+  }
 }

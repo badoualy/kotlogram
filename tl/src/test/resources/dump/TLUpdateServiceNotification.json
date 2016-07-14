@@ -1,18 +1,13 @@
 {
-  "type": "jgEjcImbUf",
-  "message": "pZwiQURN",
+  "type": "fZUChv11yKXfZG0Z",
+  "message": "3Pi1qGKHPS2iBu",
   "media": {
-    "geo": {
-      "_long": 0.0,
-      "lat": 0.0,
-      "_constructor": "geoPoint#2049d70c"
+    "webpage": {
+      "_constructor": "webPageEmpty#eb1477e8",
+      "id": 0
     },
-    "title": "TxT2w",
-    "address": "Wl1L88Ss2yv",
-    "provider": "ji9XYdJjS",
-    "venueId": "JN2yxce9jBhWSfb1VXAIX",
-    "_constructor": "messageMediaVenue#7912b71f"
+    "_constructor": "messageMediaWebPage#a32dd600"
   },
-  "popup": true,
+  "popup": false,
   "_constructor": "updateServiceNotification#382dd3e4"
 }

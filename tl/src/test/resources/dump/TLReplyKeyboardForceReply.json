@@ -1,6 +1,6 @@
 {
-  "flags": 6,
-  "singleUse": true,
-  "selective": true,
+  "flags": 0,
+  "singleUse": false,
+  "selective": false,
   "_constructor": "replyKeyboardForceReply#f4108aa0"
 }

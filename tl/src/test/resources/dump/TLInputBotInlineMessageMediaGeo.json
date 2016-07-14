@@ -1,10 +1,12 @@
 {
   "geoPoint": {
-    "lat": 0.0,
-    "_long": 0.0,
-    "_constructor": "inputGeoPoint#f3b7acc9"
+    "_constructor": "inputGeoPointEmpty#e4c123d6"
   },
   "_constructor": "inputBotInlineMessageMediaGeo#f4a59de1",
-  "flags": 0,
-  "replyMarkup": null
+  "flags": 4,
+  "replyMarkup": {
+    "flags": 4,
+    "selective": true,
+    "_constructor": "replyKeyboardHide#a03e5b85"
+  }
 }

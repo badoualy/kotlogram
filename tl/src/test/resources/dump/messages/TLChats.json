@@ -1,110 +1,56 @@
 {
   "chats": [
     {
-      "flags": 6533,
-      "creator": true,
+      "flags": 13936,
+      "creator": false,
       "kicked": false,
-      "left": true,
-      "editor": false,
-      "moderator": false,
-      "broadcast": false,
-      "verified": true,
-      "megagroup": true,
-      "restricted": false,
-      "democracy": false,
-      "signatures": true,
-      "min": true,
-      "accessHash": null,
-      "title": "yOxBh72fRQUXP",
-      "username": null,
-      "photo": {
-        "_constructor": "chatPhotoEmpty#37c1011c"
-      },
-      "date": 0,
-      "version": 0,
-      "restrictionReason": null,
-      "_constructor": "channel#a14dca52",
-      "id": 0
-    },
-    {
-      "flags": 256,
-      "broadcast": false,
-      "megagroup": true,
-      "accessHash": 0,
-      "title": "ONSBMa6WEagr3eW",
-      "_constructor": "channelForbidden#8537784f",
-      "id": 0
-    },
-    {
-      "flags": 3595,
-      "creator": true,
-      "kicked": true,
       "left": false,
-      "editor": true,
-      "moderator": false,
-      "broadcast": false,
+      "editor": false,
+      "moderator": true,
+      "broadcast": true,
       "verified": false,
       "megagroup": false,
       "restricted": true,
       "democracy": true,
-      "signatures": true,
-      "min": false,
-      "accessHash": null,
-      "title": "bAVuXq9C",
-      "username": null,
+      "signatures": false,
+      "min": true,
+      "accessHash": 0,
+      "title": "hJGKOxmgXLlDKsyijtP",
+      "username": "Jcp2qzUP0T5dJx9crv9Z0dW6FQd",
       "photo": {
         "_constructor": "chatPhotoEmpty#37c1011c"
       },
       "date": 0,
       "version": 0,
-      "restrictionReason": "QfOgY",
+      "restrictionReason": "Hmp0rUL",
       "_constructor": "channel#a14dca52",
       "id": 0
     },
     {
-      "flags": 0,
-      "broadcast": false,
-      "megagroup": false,
-      "accessHash": 0,
-      "title": "hfzMhvME",
-      "_constructor": "channelForbidden#8537784f",
-      "id": 0
-    },
-    {
-      "flags": 0,
-      "broadcast": false,
-      "megagroup": false,
-      "accessHash": 0,
-      "title": "I3CRBNR6YQ",
-      "_constructor": "channelForbidden#8537784f",
-      "id": 0
-    },
-    {
-      "flags": 28,
-      "creator": false,
+      "flags": 101,
+      "creator": true,
       "kicked": false,
       "left": true,
-      "adminsEnabled": true,
-      "admin": true,
-      "deactivated": false,
-      "title": "jva9y7rwwZIVKe5I6bi4ST8yrR3f",
+      "adminsEnabled": false,
+      "admin": false,
+      "deactivated": true,
+      "title": "Al1xdmukiGtQIRw4h2Vb3vcNS",
       "photo": {
         "_constructor": "chatPhotoEmpty#37c1011c"
       },
       "participantsCount": 0,
       "date": 0,
       "version": 0,
-      "migratedTo": null,
+      "migratedTo": {
+        "channelId": 0,
+        "accessHash": 0,
+        "_constructor": "inputChannel#afeb712e"
+      },
       "_constructor": "chat#d91cdd54",
       "id": 0
     },
     {
-      "flags": 256,
-      "broadcast": false,
-      "megagroup": true,
-      "accessHash": 0,
-      "title": "uW7oS19BJUX1hr0dgb7",
-      "_constructor": "channelForbidden#8537784f",
+      "_constructor": "chatEmpty#9ba2d800",
       "id": 0
     }
   ],

@@ -3,19 +3,16 @@
     "_constructor": "inputFileBig#fa4f0bb5",
     "id": 0,
     "parts": 0,
-    "name": "mAwkK1DulqQ3514s4gFh"
+    "name": "buZ9H"
   },
-  "caption": "vkhII",
+  "caption": "ilQVv7nMwJFdkX",
   "geoPoint": {
     "lat": 0.0,
     "_long": 0.0,
     "_constructor": "inputGeoPoint#f3b7acc9"
   },
   "crop": {
-    "cropLeft": 0.0,
-    "cropTop": 0.0,
-    "cropWidth": 0.0,
-    "_constructor": "inputPhotoCrop#d9915325"
+    "_constructor": "inputPhotoCropAuto#ade6b004"
   },
   "_constructor": "photos.uploadProfilePhoto#d50f9c88"
 }

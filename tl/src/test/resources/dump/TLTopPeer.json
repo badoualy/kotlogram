@@ -1,7 +1,7 @@
 {
   "peer": {
-    "channelId": 0,
-    "_constructor": "peerChannel#bddde532"
+    "userId": 0,
+    "_constructor": "peerUser#9db1bc6d"
   },
   "rating": 0.0,
   "_constructor": "topPeer#edcdc05b"

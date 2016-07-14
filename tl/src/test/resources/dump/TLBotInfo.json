@@ -1,35 +1,60 @@
 {
   "userId": 0,
-  "description": "iUQZXoOcNltmbqX2QKOet1q8Wrl",
+  "description": "YTVblC3",
   "commands": [
     {
-      "command": "FweIHgQCwn5y7XiW5GpmN8Awn",
-      "description": "rAoOib1HPUa",
+      "command": "2SmIFBSgdVYF",
+      "description": "909VkmktOIZCsqo4VwCpjx5Yh",
       "_constructor": "botCommand#c27ac8c7"
     },
     {
-      "command": "6tLlN",
-      "description": "HXJijxv6mhSwQpOoGSJduMYG",
+      "command": "pAGRVYgN",
+      "description": "LbF9sHM8laqI7Bm5iD9thFpfzLU",
       "_constructor": "botCommand#c27ac8c7"
     },
     {
-      "command": "cXXWDBHyAnb2nUb",
-      "description": "Kaanf6SnyTePX4CCVM",
+      "command": "LoyzgrUqJVvrwH",
+      "description": "RC2Vmehw25IFy",
       "_constructor": "botCommand#c27ac8c7"
     },
     {
-      "command": "N6s1mTpa",
-      "description": "gIaNwO012",
+      "command": "Bild41zTTbmpo69",
+      "description": "VL1RLpxjRSWHralGTdspYsb46",
       "_constructor": "botCommand#c27ac8c7"
     },
     {
-      "command": "pfyl1jcMXBl24Td",
-      "description": "zh8CCTKsEDCrqZ7",
+      "command": "QzgS6hUi1Wv88ZhtPai",
+      "description": "e5CtOmaN",
       "_constructor": "botCommand#c27ac8c7"
     },
     {
-      "command": "0LXWu4MY",
-      "description": "77K32lJAFYGR41",
+      "command": "MOYhboOZ",
+      "description": "TnkcF0fwmlqjXKuE1su",
+      "_constructor": "botCommand#c27ac8c7"
+    },
+    {
+      "command": "KqfYBYTGijCQlK9uQl7nvQ8TBu",
+      "description": "DBOAX242e3Ae",
+      "_constructor": "botCommand#c27ac8c7"
+    },
+    {
+      "command": "7ScLu9iSaOqTOKlIMw0xV00S27R4",
+      "description": "4qCc9si85vI59",
+      "_constructor": "botCommand#c27ac8c7"
+    },
+    {
+      "command": "efjMYj",
+      "description": "CyK2KogW1MjTEcoWMV",
+      "_constructor": "botCommand#c27ac8c7"
+    },
+    {
+      "command": "wCkahjM5bu",
+      "description": "oQjJTdsfJN71PMlv",
+      "_constructor": "botCommand#c27ac8c7"
+    },
+    {
+      "command": "vCuN8Bnbv4P5c06O",
+      "description": "nvIaVI",
       "_constructor": "botCommand#c27ac8c7"
     }
   ],

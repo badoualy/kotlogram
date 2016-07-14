@@ -1,9 +1,9 @@
 {
-  "flags": 0,
-  "allowFlashcall": false,
-  "phoneNumber": "XweT8mCPx0RDpzElletalAAehpJQ",
-  "currentNumber": null,
+  "flags": 1,
+  "allowFlashcall": true,
+  "phoneNumber": "yjqoJjeRah0q1OD",
+  "currentNumber": true,
   "apiId": 0,
-  "apiHash": "zWdxiSzpo9iXmpuOzkGJa4",
+  "apiHash": "ETzPBv9",
   "_constructor": "auth.sendCode#86aef0ec"
 }

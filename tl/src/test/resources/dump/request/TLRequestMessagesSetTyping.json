@@ -1,10 +1,10 @@
 {
   "peer": {
-    "_constructor": "inputPeerSelf#7da07ec9"
+    "chatId": 0,
+    "_constructor": "inputPeerChat#179be863"
   },
   "action": {
-    "progress": 0,
-    "_constructor": "sendMessageUploadPhotoAction#d1d34a26"
+    "_constructor": "sendMessageGeoLocationAction#176f8ba1"
   },
   "_constructor": "messages.setTyping#a3825e50"
 }

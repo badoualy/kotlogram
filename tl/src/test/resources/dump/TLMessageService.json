@@ -1,19 +1,20 @@
 {
-  "flags": 24624,
-  "out": false,
-  "mentioned": true,
+  "flags": 16682,
+  "out": true,
+  "mentioned": false,
   "mediaUnread": true,
-  "silent": true,
+  "silent": false,
   "post": true,
-  "fromId": null,
+  "fromId": 0,
   "toId": {
     "channelId": 0,
     "_constructor": "peerChannel#bddde532"
   },
-  "replyToMsgId": null,
+  "replyToMsgId": 0,
   "date": 0,
   "action": {
-    "_constructor": "messageActionChatDeletePhoto#95e3fbef"
+    "channelId": 0,
+    "_constructor": "messageActionChatMigrateTo#51bdb021"
   },
   "_constructor": "messageService#9e19a1f6",
   "id": 0

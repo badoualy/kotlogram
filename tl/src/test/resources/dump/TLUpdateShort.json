@@ -1,13 +1,8 @@
 {
   "update": {
-    "peer": {
-      "chatId": 0,
-      "_constructor": "peerChat#bad0e5bb"
-    },
-    "maxId": 0,
-    "pts": 0,
-    "ptsCount": 0,
-    "_constructor": "updateReadHistoryInbox#9961fd5c"
+    "userId": 0,
+    "phone": "3IL3fa5ArshgMJJIFzFizCVnjdd",
+    "_constructor": "updateUserPhone#12b9417b"
   },
   "date": 0,
   "_constructor": "updateShort#78d4dec1"

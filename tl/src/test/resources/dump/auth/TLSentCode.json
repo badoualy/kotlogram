@@ -1,12 +1,14 @@
 {
-  "flags": 0,
-  "phoneRegistered": false,
+  "flags": 7,
+  "phoneRegistered": true,
   "type": {
-    "pattern": "PokrXJ1iaeqJWmRYgT1wXZ4In4h2A",
-    "_constructor": "auth.sentCodeTypeFlashCall#ab03c6d9"
+    "length": 0,
+    "_constructor": "auth.sentCodeTypeCall#5353e5a7"
   },
-  "phoneCodeHash": "fiARvfkBnrw7d5g530HtNj7O",
-  "nextType": null,
-  "timeout": null,
+  "phoneCodeHash": "B2QLGamfWKPPjbMw",
+  "nextType": {
+    "_constructor": "auth.codeTypeFlashCall#226ccefb"
+  },
+  "timeout": 0,
   "_constructor": "auth.sentCode#5e002502"
 }

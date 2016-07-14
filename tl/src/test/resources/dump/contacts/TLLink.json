@@ -1,34 +1,12 @@
 {
   "myLink": {
-    "_constructor": "contactLinkContact#d502c2d0"
+    "_constructor": "contactLinkHasPhone#268f3f59"
   },
   "foreignLink": {
-    "_constructor": "contactLinkUnknown#5f4f9247"
+    "_constructor": "contactLinkHasPhone#268f3f59"
   },
   "user": {
-    "flags": 2210816,
-    "self": true,
-    "contact": true,
-    "mutualContact": true,
-    "deleted": true,
-    "bot": false,
-    "botChatHistory": true,
-    "botNochats": true,
-    "verified": false,
-    "restricted": false,
-    "min": false,
-    "botInlineGeo": true,
-    "accessHash": null,
-    "firstName": null,
-    "lastName": null,
-    "username": null,
-    "phone": null,
-    "photo": null,
-    "status": null,
-    "botInfoVersion": null,
-    "restrictionReason": null,
-    "botInlinePlaceholder": null,
-    "_constructor": "user#d10d979a",
+    "_constructor": "userEmpty#200250ba",
     "id": 0
   },
   "_constructor": "contacts.link#3ace484c"

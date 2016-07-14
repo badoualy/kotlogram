@@ -1,17 +1,81 @@
 {
-  "flags": 130,
-  "noWebpage": true,
-  "silent": false,
-  "background": false,
+  "flags": 237,
+  "noWebpage": false,
+  "silent": true,
+  "background": true,
   "clearDraft": true,
   "peer": {
-    "chatId": 0,
-    "_constructor": "inputPeerChat#179be863"
+    "userId": 0,
+    "accessHash": 0,
+    "_constructor": "inputPeerUser#7b8e7de6"
   },
-  "replyToMsgId": null,
-  "message": "gzg2Vz9c0zU937d",
+  "replyToMsgId": 0,
+  "message": "bNGIKtJ5jRE9WVS8kfbX",
   "randomId": 0,
-  "replyMarkup": null,
-  "entities": null,
+  "replyMarkup": {
+    "flags": 0,
+    "selective": false,
+    "_constructor": "replyKeyboardHide#a03e5b85"
+  },
+  "entities": [
+    {
+      "_constructor": "messageEntityUrl#6ed02538",
+      "offset": 0,
+      "length": 0
+    },
+    {
+      "language": "Y3zOnH4rqtSRL",
+      "_constructor": "messageEntityPre#73924be0",
+      "offset": 0,
+      "length": 0
+    },
+    {
+      "userId": {
+        "userId": 0,
+        "accessHash": 0,
+        "_constructor": "inputUser#d8292816"
+      },
+      "_constructor": "inputMessageEntityMentionName#208e68c9",
+      "offset": 0,
+      "length": 0
+    },
+    {
+      "_constructor": "messageEntityEmail#64e475c2",
+      "offset": 0,
+      "length": 0
+    },
+    {
+      "_constructor": "messageEntityItalic#826f8b60",
+      "offset": 0,
+      "length": 0
+    },
+    {
+      "_constructor": "messageEntityUrl#6ed02538",
+      "offset": 0,
+      "length": 0
+    },
+    {
+      "_constructor": "messageEntityMention#fa04579d",
+      "offset": 0,
+      "length": 0
+    },
+    {
+      "language": "OpQZOKzwHe2",
+      "_constructor": "messageEntityPre#73924be0",
+      "offset": 0,
+      "length": 0
+    },
+    {
+      "userId": 0,
+      "_constructor": "messageEntityMentionName#352dca58",
+      "offset": 0,
+      "length": 0
+    },
+    {
+      "_constructor": "messageEntityHashtag#6f635b0d",
+      "offset": 0,
+      "length": 0
+    }
+  ],
   "_constructor": "messages.sendMessage#fa88427a"
 }

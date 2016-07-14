@@ -1,8 +1,13 @@
 {
-  "phoneNumber": "wKsctwvCKr9rcAy522AlVFyc",
-  "firstName": "3sWgP6eG5i52vJpkjgJli",
-  "lastName": "ni2ySvM",
+  "phoneNumber": "bnS5gpgTf6",
+  "firstName": "fGasv",
+  "lastName": "cNoUSb3ZjH0UssM",
   "_constructor": "botInlineMessageMediaContact#35edb4d4",
-  "flags": 0,
-  "replyMarkup": null
+  "flags": 4,
+  "replyMarkup": {
+    "flags": 0,
+    "singleUse": false,
+    "selective": false,
+    "_constructor": "replyKeyboardForceReply#f4108aa0"
+  }
 }
