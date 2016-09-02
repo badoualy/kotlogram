@@ -1,5 +1,6 @@
 package com.github.badoualy.telegram.api
 
+import com.github.badoualy.telegram.mtproto.MTProtoHandler
 import com.github.badoualy.telegram.tl.api.*
 import com.github.badoualy.telegram.tl.api.auth.TLSentCode
 import com.github.badoualy.telegram.tl.api.request.TLRequestUploadGetFile
@@ -7,6 +8,7 @@ import com.github.badoualy.telegram.tl.api.upload.TLFile
 import com.github.badoualy.telegram.tl.core.TLMethod
 import com.github.badoualy.telegram.tl.core.TLObject
 import com.github.badoualy.telegram.tl.exception.RpcErrorException
+import rx.Observable
 import java.io.IOException
 
 interface TelegramClient : TelegramApi {
@@ -23,9 +25,19 @@ interface TelegramClient : TelegramApi {
     /**
      * Queue a method to be executed with the next message.
      * @param method method to execute
-     * @param timeout validity duration in ms, if nothing is sent during this period, this method will be discarded
+     * @param validityTimeout validity duration in ms, if nothing is sent during this period, this method will be discarded
      */
-    fun <T : TLObject> queueMethod(method: TLMethod<T>, timeout: Long): Unit?
+    fun <T : TLObject> queueMethodImmediate(method: TLMethod<T>, validityTimeout: Long)
+
+    /**
+     * Queue a method to be executed with the next message.
+     * @param method method to execute
+     * @param type of queue
+     * @param validityTimeout validity duration in ms, if nothing is sent during this period, this method will be discarded/send depending on type
+     * @param timeout request timeout (applied on the observable)
+     * @return an observable that will receive one unique item being the response
+     */
+    fun <T : TLObject> queueMethod(method: TLMethod<T>, type: Int = MTProtoHandler.QUEUE_TYPE_DISCARD, validityTimeout: Long, timeout: Long): Observable<T>?
 
     fun getDownloaderClient(): TelegramClient
 

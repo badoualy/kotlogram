@@ -129,14 +129,17 @@ class MTProtoHandler {
     /**
      * Queue a method to be executed with the next message.
      * @param method method to execute
-     * @param timeout validity duration in ms, if nothing is sent during this period, this method will be discarded
+     * @param type of queue
+     * @param validityTimeout validity duration in ms, if nothing is sent during this period, this method will be discarded/send depending on type
+     * @param timeout request timeout (applied on the observable)
+     * @return an observable that will receive one unique item being the response
      */
-    fun <T : TLObject> queueMethod(method: TLMethod<T>, timeout: Long) {
+    fun <T : TLObject> queueMethod(method: TLMethod<T>, type: Int = QUEUE_TYPE_DISCARD, validityTimeout: Long, timeout: Long): Observable<T> = Observable.create<T> { subscriber ->
         synchronized(requestQueue) {
-            logger.debug(session.marker, "Queued ${method.toString()} with timeout of $timeout")
-            requestQueue.add(QueuedMethod(method, System.currentTimeMillis() + timeout))
+            logger.debug(session.marker, "Queued ${method.toString()} with validityTimeout of $validityTimeout")
+            requestQueue.add(QueuedMethod(method, System.currentTimeMillis() + validityTimeout, subscriber))
         }
-    }
+    }.timeout(timeout, TimeUnit.MILLISECONDS)
 
     /**
      * Execute the given method, generates a message id, serialize the method, encrypt it then send it
@@ -323,26 +326,35 @@ class MTProtoHandler {
 
     /** Build a list of messages to send with the next request from the queued requests */
     private fun getQueuedRequestToSend(): List<MTMessage> {
-        var toSend: MutableList<TLMethod<*>>? = null
+        var toSend: MutableList<QueuedMethod<*>>? = null
         synchronized(requestQueue) {
             if (requestQueue.isNotEmpty()) {
-                toSend = ArrayList<TLMethod<*>>(5)
+                toSend = ArrayList<QueuedMethod<*>>(5)
                 var request: QueuedMethod<*>?
                 val time = System.currentTimeMillis()
                 while (requestQueue.isNotEmpty()) {
                     request = requestQueue.remove()
-                    if (request.timeout < time)
+                    if (request.validityTimeout < time) {
                         logger.debug(session.marker, "Queued method ${request.method.toString()} timed out, dropping")
-                    else
-                        toSend!!.add(request.method)
+                        request.subscriber.onCompleted()
+                    } else {
+                        toSend!!.add(request)
+                    }
                 }
             }
         }
 
-        if (toSend != null && toSend!!.isNotEmpty())
-            return toSend!!.map { MTMessage(session.generateMessageId(), session.generateSeqNo(it), it.serialize()) }.toList()
+        if (toSend == null || toSend!!.isEmpty())
+            return emptyList()
 
-        return emptyList()
+        return toSend!!.map {
+            val msgId = session.generateMessageId()
+            @Suppress("UNCHECKED_CAST")
+            val s = it.subscriber as Subscriber<TLObject>
+            subscriberMap.put(msgId, s)
+            requestMap.put(msgId, it.method)
+            MTMessage(msgId, session.generateSeqNo(it.method), it.method.serialize())
+        }.toList()
     }
 
     private fun onErrorReceived(it: Throwable) {
@@ -557,10 +569,13 @@ class MTProtoHandler {
 
     companion object {
 
-        val logger = LoggerFactory.getLogger(MTProtoHandler::class.java)
+        private val logger = LoggerFactory.getLogger(MTProtoHandler::class.java)!!
 
         /** Thread pool to forward update callback */
-        val updatePool = ThreadPoolExecutor(4, 8, 0L, TimeUnit.MILLISECONDS, LinkedBlockingQueue<Runnable>(), NamedThreadFactory("UpdatePool"))
+        private val updatePool = ThreadPoolExecutor(4, 8, 0L, TimeUnit.MILLISECONDS, LinkedBlockingQueue<Runnable>(), NamedThreadFactory("UpdatePool"))
+
+        @JvmStatic val QUEUE_TYPE_DISCARD = 0
+        //@JvmStatic val QUEUE_TYPE_FLUSH = 1
 
         /** Cleanup all the threads and common resources associated to this instance */
         @JvmStatic
@@ -571,5 +586,5 @@ class MTProtoHandler {
         }
     }
 
-    private data class QueuedMethod<T : TLObject?>(val method: TLMethod<T>, val timeout: Long)
+    private data class QueuedMethod<T : TLObject?>(val method: TLMethod<T>, val validityTimeout: Long, val subscriber: Subscriber<in T>)
 }

@@ -7,7 +7,6 @@ import com.github.badoualy.telegram.mtproto.auth.AuthKeyCreation
 import com.github.badoualy.telegram.mtproto.auth.AuthResult
 import com.github.badoualy.telegram.mtproto.exception.SecurityException
 import com.github.badoualy.telegram.mtproto.model.DataCenter
-import com.github.badoualy.telegram.mtproto.model.MTSession
 import com.github.badoualy.telegram.tl.api.*
 import com.github.badoualy.telegram.tl.api.request.*
 import com.github.badoualy.telegram.tl.core.TLMethod
@@ -136,7 +135,12 @@ internal class DefaultTelegramClient internal constructor(val application: Teleg
 
     override fun getDownloaderClient() = DefaultTelegramClient(application, ReadOnlyApiStorage(authKey!!, mtProtoHandler!!.session), preferredDataCenter, updateCallback)
 
-    override fun <T : TLObject> queueMethod(method: TLMethod<T>, timeout: Long) = mtProtoHandler?.queueMethod(method, timeout)
+    /** Queue method now, without handling the result or any possible error */
+    override fun <T : TLObject> queueMethodImmediate(method: TLMethod<T>, validityTimeout: Long) {
+        queueMethod(method, MTProtoHandler.QUEUE_TYPE_DISCARD, validityTimeout, Long.MAX_VALUE)?.subscribe()
+    }
+
+    override fun <T : TLObject> queueMethod(method: TLMethod<T>, type: Int, validityTimeout: Long, timeout: Long) = mtProtoHandler?.queueMethod(method, type, validityTimeout, timeout)
 
     @Throws(RpcErrorException::class, IOException::class)
     override fun <T : TLObject> executeRpcQuery(method: TLMethod<T>) = executeRpcQuery(method, mtProtoHandler!!)
