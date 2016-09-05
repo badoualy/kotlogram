@@ -247,6 +247,9 @@ internal class DefaultTelegramClient internal constructor(val application: Teleg
             cachedHandler = exportedHandlerMap[dcId]
         }
 
+        if (cachedHandler != null)
+            logger.debug("Using cached handler")
+
         return cachedHandler ?: if (authKeyMap.contains(dcId)) {
             logger.debug("Already have key for DC$dcId")
             val authKey = authKeyMap[dcId]!!
