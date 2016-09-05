@@ -7,6 +7,7 @@ import com.github.badoualy.telegram.mtproto.auth.AuthKeyCreation
 import com.github.badoualy.telegram.mtproto.auth.AuthResult
 import com.github.badoualy.telegram.mtproto.exception.SecurityException
 import com.github.badoualy.telegram.mtproto.model.DataCenter
+import com.github.badoualy.telegram.mtproto.time.MTProtoTimer
 import com.github.badoualy.telegram.tl.api.*
 import com.github.badoualy.telegram.tl.api.request.*
 import com.github.badoualy.telegram.tl.core.TLMethod
@@ -26,9 +27,12 @@ internal class DefaultTelegramClient internal constructor(val application: Teleg
     private var authKey: AuthKey? = null
     private var dataCenter: DataCenter? = null
 
-    private var authKeyMap = HashMap<Int, AuthKey>()
+    private val authKeyMap = HashMap<Int, AuthKey>()
+    private val exportedHandlerMap = HashMap<Int, MTProtoHandler>()
+    private val exportedHandlerTimeoutMap = HashMap<Int, Long>()
 
     private var timeoutDuration: Long = 5000L
+    private var exportedHandlerTimeout: Long = 15000L
 
     private var generateAuthKey: Boolean
 
@@ -124,6 +128,10 @@ internal class DefaultTelegramClient internal constructor(val application: Teleg
         this.timeoutDuration = timeout
     }
 
+    override fun setExportedClientTimeout(timeout: Long) {
+        this.exportedHandlerTimeout = timeout
+    }
+
     override fun close() = close(true)
 
     override fun close(cleanUp: Boolean) {
@@ -152,11 +160,11 @@ internal class DefaultTelegramClient internal constructor(val application: Teleg
             return executeRpcQuery(method)
 
         logger.info("Need to export handler")
-        val migratedHandler = getExportedMTProtoHandler(dcId)
+        val exportedHandler = getExportedMTProtoHandler(dcId)
         try {
-            return executeRpcQuery(method, migratedHandler)
+            return executeRpcQuery(method, exportedHandler)
         } finally {
-            migratedHandler.close()
+            releaseExportedHandler(exportedHandler, dcId)
         }
     }
 
@@ -184,7 +192,7 @@ internal class DefaultTelegramClient internal constructor(val application: Teleg
                             try {
                                 return executeRpcQuery(method, exportedHandler)
                             } finally {
-                                exportedHandler.close()
+                                releaseExportedHandler(exportedHandler, dcId)
                             }
                         }
                     }
@@ -233,7 +241,13 @@ internal class DefaultTelegramClient internal constructor(val application: Teleg
     @Throws(RpcErrorException::class, IOException::class)
     private fun getExportedMTProtoHandler(dcId: Int): MTProtoHandler {
         logger.trace("getExportedMTProtoHandler(DC$dcId)")
-        return if (authKeyMap.contains(dcId)) {
+
+        var cachedHandler: MTProtoHandler? = null
+        synchronized(exportedHandlerMap) {
+            cachedHandler = exportedHandlerMap[dcId]
+        }
+
+        return cachedHandler ?: if (authKeyMap.contains(dcId)) {
             logger.debug("Already have key for DC$dcId")
             val authKey = authKeyMap[dcId]!!
             val mtProtoHandler = MTProtoHandler(Kotlogram.getDcById(dcId), authKey, null, null)
@@ -250,6 +264,27 @@ internal class DefaultTelegramClient internal constructor(val application: Teleg
             initConnection(mtProtoHandler, TLRequestAuthImportAuthorization(exportedAuthorization.id, exportedAuthorization.bytes))
             authKeyMap.put(dcId, authResult.authKey)
             mtProtoHandler
+        }
+    }
+
+    private fun releaseExportedHandler(mtProtoHandler: MTProtoHandler, dcId: Int) {
+        synchronized(exportedHandlerMap) {
+            if (exportedHandlerMap.containsKey(dcId)) {
+                mtProtoHandler.close()
+            } else {
+                exportedHandlerMap.put(dcId, mtProtoHandler)
+            }
+            MTProtoTimer.schedule(exportedHandlerTimeout, { onExportedHandlerTimeout(dcId) })
+            exportedHandlerTimeoutMap.put(dcId, System.currentTimeMillis() + exportedHandlerTimeout)
+        }
+    }
+
+    private fun onExportedHandlerTimeout(dcId: Int) {
+        synchronized(exportedHandlerMap) {
+            if (System.currentTimeMillis() >= exportedHandlerTimeoutMap.getOrDefault(dcId, -1)) {
+                exportedHandlerMap.remove(dcId)?.close()
+                exportedHandlerTimeoutMap.remove(dcId)
+            }
         }
     }
 

@@ -16,6 +16,9 @@ interface TelegramClient : TelegramApi {
     /** Changes the request timeout with the supplied value (in ms) */
     fun setTimeout(timeout: Long)
 
+    /** Changes the timeout value for an exported handler to expire (and be closed) with the supplied value (in ms) */
+    fun setExportedClientTimeout(timeout: Long)
+
     /** Close connection to Telegram and stop everything */
     fun close()
 

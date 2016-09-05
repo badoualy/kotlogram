@@ -3,7 +3,7 @@ package com.github.badoualy.telegram.mtproto.time
 import java.util.*
 import kotlin.concurrent.schedule
 
-internal object MTProtoTimer {
+object MTProtoTimer {
 
     private var timer = Timer(javaClass.simpleName)
 

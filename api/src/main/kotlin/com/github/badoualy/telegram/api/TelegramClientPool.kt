@@ -65,7 +65,6 @@ class TelegramClientPool private constructor(name: String) {
         }
     }
 
-
     /**
      * Retrieve a previously cached client associated with the id and remove it from this pool
      * @param id id used to cache the client
@@ -97,6 +96,10 @@ class TelegramClientPool private constructor(name: String) {
     fun cleanUp() {
         timer.cancel()
     }
+
+    fun getKeys() = map.keys
+
+    fun getClients() = map.values
 
     companion object {
         private val logger = LoggerFactory.getLogger(TelegramClientPool::class.java)
