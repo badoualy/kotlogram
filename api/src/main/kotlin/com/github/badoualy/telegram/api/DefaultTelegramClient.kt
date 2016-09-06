@@ -8,13 +8,16 @@ import com.github.badoualy.telegram.mtproto.auth.AuthResult
 import com.github.badoualy.telegram.mtproto.exception.SecurityException
 import com.github.badoualy.telegram.mtproto.model.DataCenter
 import com.github.badoualy.telegram.mtproto.time.MTProtoTimer
+import com.github.badoualy.telegram.mtproto.util.InputFileLocation
 import com.github.badoualy.telegram.tl.api.*
 import com.github.badoualy.telegram.tl.api.request.*
+import com.github.badoualy.telegram.tl.api.upload.TLFile
 import com.github.badoualy.telegram.tl.core.TLMethod
 import com.github.badoualy.telegram.tl.core.TLObject
 import com.github.badoualy.telegram.tl.exception.RpcErrorException
 import org.slf4j.LoggerFactory
 import java.io.IOException
+import java.io.OutputStream
 import java.nio.channels.ClosedChannelException
 import java.util.*
 import java.util.concurrent.TimeoutException
@@ -151,28 +154,34 @@ internal class DefaultTelegramClient internal constructor(val application: Teleg
     override fun <T : TLObject> queueMethod(method: TLMethod<T>, type: Int, validityTimeout: Long, timeout: Long) = mtProtoHandler?.queueMethod(method, type, validityTimeout, timeout)
 
     @Throws(RpcErrorException::class, IOException::class)
-    override fun <T : TLObject> executeRpcQuery(method: TLMethod<T>) = executeRpcQuery(method, mtProtoHandler!!)
+    override fun <T : TLObject> executeRpcQuery(method: TLMethod<T>) = super.executeRpcQuery(method)
 
     @Throws(RpcErrorException::class, IOException::class)
-    override fun <T : TLObject> executeRpcQuery(method: TLMethod<T>, dcId: Int): T {
-        logger.debug("executeRpcQuery ${method.toString()} on DC$dcId")
+    override fun <T : TLObject> executeRpcQueries(methods: List<TLMethod<T>>) = executeRpcQueries(methods, mtProtoHandler!!)
+
+    @Throws(RpcErrorException::class, IOException::class)
+    override fun <T : TLObject> executeRpcQueries(methods: List<TLMethod<T>>, dcId: Int): List<T> {
+        logger.debug("executeRpcQuery ${methods.joinToString(", ")} on DC$dcId")
         if (Kotlogram.getDcById(dcId).equals(dataCenter))
-            return executeRpcQuery(method)
+            return executeRpcQueries(methods)
 
         logger.info("Need to export handler")
         val exportedHandler = getExportedMTProtoHandler(dcId)
         try {
-            return executeRpcQuery(method, exportedHandler)
+            return executeRpcQueries(methods, exportedHandler)
         } finally {
             releaseExportedHandler(exportedHandler, dcId)
         }
     }
 
     @Throws(RpcErrorException::class, IOException::class)
-    private fun <T : TLObject> executeRpcQuery(method: TLMethod<T>, mtProtoHandler: MTProtoHandler, attemptCount: Int = 0): T {
+    private fun <T : TLObject> executeRpcQuery(method: TLMethod<T>, mtProtoHandler: MTProtoHandler, attemptCount: Int = 0) = executeRpcQueries(listOf(method), mtProtoHandler, attemptCount).first()
+
+    @Throws(RpcErrorException::class, IOException::class)
+    private fun <T : TLObject> executeRpcQueries(methods: List<TLMethod<T>>, mtProtoHandler: MTProtoHandler, attemptCount: Int = 0): List<T> {
         // BlockingObservable.first() will throw a RuntimeException if onError() is called by observable
         try {
-            return mtProtoHandler.executeMethodSync(method, timeoutDuration)
+            return mtProtoHandler.executeMethodsSync(methods, timeoutDuration)
         } catch(exception: RuntimeException) {
             when (exception.cause) {
                 is RpcErrorException -> {
@@ -184,13 +193,13 @@ internal class DefaultTelegramClient internal constructor(val application: Teleg
                             val dcId = rpcException.tagInteger
                             logger.info("Repeat request after migration on DC$dcId")
                             migrate(dcId)
-                            return executeRpcQuery(method)
+                            return executeRpcQueries(methods)
                         } else if (rpcException.tag.startsWith("FILE_MIGRATE_")) {
                             val dcId = rpcException.tagInteger
                             logger.info("Repeat request with new handler on DC$dcId")
                             val exportedHandler = getExportedMTProtoHandler(dcId)
                             try {
-                                return executeRpcQuery(method, exportedHandler)
+                                return executeRpcQueries(methods, exportedHandler)
                             } finally {
                                 releaseExportedHandler(exportedHandler, dcId)
                             }
@@ -204,7 +213,7 @@ internal class DefaultTelegramClient internal constructor(val application: Teleg
                         // Experimental, try to resend request ...
                         logger.error("Attempting MtProtoHandler reset after failure")
                         mtProtoHandler.resetConnection()
-                        val result = executeRpcQuery(method, mtProtoHandler, attemptCount + 1)
+                        val result = executeRpcQueries(methods, mtProtoHandler, attemptCount + 1)
                         logger.debug("Reset worked")
                         return result
                     }
@@ -214,6 +223,27 @@ internal class DefaultTelegramClient internal constructor(val application: Teleg
                 else -> throw exception
             }
         }
+    }
+
+    override fun downloadSync(inputLocation: InputFileLocation, size: Int, partSize: Int, outputStream: OutputStream) {
+        var offset = 0
+        val methods = ArrayList<TLMethod<TLFile>>()
+        do {
+            methods.clear()
+            for (i in 0..5) {
+                val limit = Math.min(partSize, size - offset)
+                methods.add(TLRequestUploadGetFile(inputLocation.inputFileLocation, offset, limit))
+                offset += limit
+                if (offset >= size)
+                    break
+            }
+
+            executeRpcQueries(methods).forEach { part -> outputStream.write(part.bytes.data) }
+            outputStream.flush()
+        } while (offset < size)
+
+        outputStream.flush()
+        outputStream.close()
     }
 
     @Throws(RpcErrorException::class, IOException::class)

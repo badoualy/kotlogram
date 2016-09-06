@@ -15,10 +15,19 @@ import java.io.InputStream;
  */
 public abstract class TLMethod<T extends TLObject> extends TLObject {
 
+    private T response;
+
     public T deserializeResponse(byte[] data, TLContext context) throws IOException {
-        return deserializeResponse(new ByteArrayInputStream(data), context);
+        return response = deserializeResponse(new ByteArrayInputStream(data), context);
     }
 
     public abstract T deserializeResponse(InputStream stream, TLContext context) throws IOException;
 
+    public T getResponse() {
+        return response;
+    }
+
+    public void setResponse(T response) {
+        this.response = response;
+    }
 }

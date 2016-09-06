@@ -44,7 +44,7 @@ class MTProtoHandler {
     var session: MTSession
         private set
 
-    private val subscriberMap = Hashtable<Long, Subscriber<TLObject>>(10)
+    private val subscriberMap = Hashtable<Long, Subscriber<TLMethod<*>>>(10)
     private val requestMap = Hashtable<Long, TLMethod<*>>(10)
     private val sentMessageList = ArrayList<MTMessage>(10)
     private var messageToAckList = ArrayList<Long>(ACK_BUFFER_SIZE)
@@ -121,10 +121,15 @@ class MTProtoHandler {
     }
 
     @Throws(IOException::class)
-    fun <T : TLObject> executeMethodSync(method: TLMethod<T>, timeout: Long): T {
-        logger.debug(session.marker, "executeMethodSync ${method.toString()} with timeout of $timeout")
-        return executeMethod(method, timeout).toBlocking().first()
-    }
+    fun <T : TLObject> executeMethodSync(method: TLMethod<T>, timeout: Long) = executeMethod(method, timeout).toBlocking().first()
+
+    /**
+     * Execute the given methods synchronously and return the list of results (guaranties the order is conserved)
+     * @param methods methods to execute
+     * @param timeout timeout before returning an error
+     */
+    @Throws(IOException::class)
+    fun <T : TLObject> executeMethodsSync(methods: List<TLMethod<T>>, timeout: Long): List<T> = executeMethods(methods, timeout).toBlocking().toIterable().sortedBy { methods.indexOf(it) }.map { it.response }.toList()
 
     /**
      * Queue a method to be executed with the next message.
@@ -134,55 +139,76 @@ class MTProtoHandler {
      * @param timeout request timeout (applied on the observable)
      * @return an observable that will receive one unique item being the response
      */
-    fun <T : TLObject> queueMethod(method: TLMethod<T>, type: Int = QUEUE_TYPE_DISCARD, validityTimeout: Long, timeout: Long): Observable<T> = Observable.create<T> { subscriber ->
+    fun <T : TLObject> queueMethod(method: TLMethod<T>, type: Int = QUEUE_TYPE_DISCARD, validityTimeout: Long, timeout: Long): Observable<T> = Observable.create<TLMethod<T>> { subscriber ->
         synchronized(requestQueue) {
             logger.debug(session.marker, "Queued ${method.toString()} with validityTimeout of $validityTimeout")
             requestQueue.add(QueuedMethod(method, System.currentTimeMillis() + validityTimeout, subscriber))
         }
-    }.timeout(timeout, TimeUnit.MILLISECONDS)
+    }.map { it.response }.timeout(timeout, TimeUnit.MILLISECONDS)
 
     /**
-     * Execute the given method, generates a message id, serialize the method, encrypt it then send it
-     * @param method method to execute
+     * Execute the given method
+     * @param method methods to execute
      * @param timeout timeout before returning an error
      * @param T response type
      * @return an observable that will receive one unique item being the response
      * @throws IOException
      */
     @Throws(IOException::class)
-    fun <T : TLObject> executeMethod(method: TLMethod<T>, timeout: Long): Observable<T> {
-        logger.debug(session.marker, "executeMethod ${method.toString()}")
-        val observable = Observable.create<T> { subscriber ->
-            logger.debug(session.marker, "executeMethod ${method.toString()} onSubscribe()")
+    fun <T : TLObject> executeMethod(method: TLMethod<T>, timeout: Long): Observable<T> = executeMethods(listOf(method), timeout).map { it.response }
+
+    /**
+     * Execute the given methods, generates a message id, serialize the methods, encrypt and send
+     * @param methods methods to execute
+     * @param timeout timeout before returning an error
+     * @param T response type
+     * @return an observable that will receive one unique item being the response
+     * @throws IOException
+     */
+    @Throws(IOException::class)
+    fun <T : TLObject> executeMethods(methods: List<TLMethod<T>>, timeout: Long): Observable<TLMethod<T>> {
+        if (methods.isEmpty())
+            throw IllegalArgumentException("No methods to execute")
+
+        logger.debug(session.marker, "executeMethod ${methods.joinToString(", ")}")
+        val observable = Observable.create<TLMethod<T>> { subscriber ->
             try {
-                val extra = ArrayList<MTMessage>(2)
+                val mtMessages = ArrayList<MTMessage>(2)
+
+                // ACK
                 val extraAck = getAckToSend()
                 if (extraAck != null)
-                    extra.add(extraAck)
+                    mtMessages.add(extraAck)
+
+                // Queued method
                 val extraMethod = getQueuedRequestToSend()
-                if (extraMethod.isNotEmpty())
-                    extra.addAll(extraMethod)
-
-                val msgId = session.generateMessageId()
-                val methodMessage = MTMessage(msgId, session.generateSeqNo(method), method.serialize())
-                logger.info(session.marker, "Sending method with msgId ${methodMessage.messageId} and seqNo ${methodMessage.seqNo}")
-
-                if (extra.isNotEmpty()) {
-                    logger.debug(session.marker, "Sending method with extra")
-                    val container = MTMessagesContainer()
-                    container.messages.addAll(extra)
-                    container.messages.add(methodMessage)
-                    sendMessage(MTMessage(session.generateMessageId(), session.generateSeqNo(container), container.serialize()))
-                } else {
-                    logger.debug(session.marker, "Sending method without extra")
-                    sendMessage(methodMessage)
+                if (extraMethod.isNotEmpty()) {
+                    logger.trace(session.marker, "Queued ${extraMethod.size} methods")
+                    mtMessages.addAll(extraMethod)
                 }
 
-                // Everything went OK, save subscriber for later retrieval
+                // Methods
                 @Suppress("UNCHECKED_CAST")
-                val s = subscriber as Subscriber<TLObject>
-                subscriberMap.put(msgId, s)
-                requestMap.put(msgId, method)
+                val s = subscriber as Subscriber<TLMethod<*>>
+                methods.forEach { method ->
+                    val mtMessage = MTMessage(session.generateMessageId(), session.generateSeqNo(method), method.serialize())
+                    mtMessages.add(mtMessage)
+                    logger.info(session.marker, "Sending method ${method.toString()} with msgId ${mtMessage.messageId} and seqNo ${mtMessage.seqNo}")
+
+                    subscriberMap.put(mtMessage.messageId, s)
+                    requestMap.put(mtMessage.messageId, method)
+                }
+
+                // Wrap in container if needed, or send as is
+                if (mtMessages.size > 1) {
+                    logger.debug(session.marker, "Sending methods in container")
+                    val container = MTMessagesContainer()
+                    container.messages.addAll(mtMessages)
+                    sendMessage(MTMessage(session.generateMessageId(), session.generateSeqNo(container), container.serialize()))
+                } else {
+                    logger.debug(session.marker, "Sending single method")
+                    sendMessage(mtMessages.first())
+                }
             } catch (e: IOException) {
                 subscriber.onError(e)
             }
@@ -296,7 +322,6 @@ class MTProtoHandler {
      * @param data data to send
      * @throws IOException
      */
-    @Throws(IOException::class)
     private fun sendData(data: ByteArray) = connection!!.writeMessage(data)
 
     /** Build a container with all the extras to send with a method invocation called */
@@ -350,7 +375,7 @@ class MTProtoHandler {
         return toSend!!.map {
             val msgId = session.generateMessageId()
             @Suppress("UNCHECKED_CAST")
-            val s = it.subscriber as Subscriber<TLObject>
+            val s = it.subscriber as Subscriber<TLMethod<*>>
             subscriberMap.put(msgId, s)
             requestMap.put(msgId, it.method)
             MTMessage(msgId, session.generateSeqNo(it.method), it.method.serialize())
@@ -386,7 +411,7 @@ class MTProtoHandler {
                     val container = mtProtoContext.deserializeMessage(message.payload, MTMessagesContainer::class.java, MTMessagesContainer.CONSTRUCTOR_ID)
                     logger.trace(session.marker, "Container has ${container.messages.size} items")
                     if (container.messages.firstOrNull() { m -> m.messageId >= message.messageId } != null) {
-                        logger.warn("Message contained in container has a same or greater msgId than container, ignoring whole container")
+                        logger.warn(session.marker, "Message contained in container has a same or greater msgId than container, ignoring whole container")
                         throw SecurityException("Message contained in container has a same or greater msgId than container, ignoring whole container")
                     }
 
@@ -466,7 +491,7 @@ class MTProtoHandler {
                 // TODO
             }
             else -> {
-                logger.error("Unsupported constructor in handleMessage() ${messageContent.toString()}: ${messageContent.javaClass.simpleName}")
+                logger.error(session.marker, "Unsupported constructor in handleMessage() ${messageContent.toString()}: ${messageContent.javaClass.simpleName}")
                 throw IllegalStateException("Unsupported constructor in handleMessage() ${messageContent.toString()}: ${messageContent.javaClass.simpleName}")
             }
         }
@@ -561,10 +586,14 @@ class MTProtoHandler {
                     if (request != null)
                         request.deserializeResponse(result.content, apiContext)
                     else apiContext.deserializeMessage(result.content)
-            subscriber?.onNext(response)
+            if (request != null) {
+                request.response = response
+                subscriber?.onNext(request)
+            }
         }
 
-        subscriber?.onCompleted()
+        if (subscriber != null && !subscriberMap.containsValue(subscriber))
+            subscriber.onCompleted()
     }
 
     companion object {
@@ -586,5 +615,5 @@ class MTProtoHandler {
         }
     }
 
-    private data class QueuedMethod<T : TLObject?>(val method: TLMethod<T>, val validityTimeout: Long, val subscriber: Subscriber<in T>)
+    private data class QueuedMethod<T : TLObject?>(val method: TLMethod<T>, val validityTimeout: Long, val subscriber: Subscriber<in TLMethod<T>>)
 }

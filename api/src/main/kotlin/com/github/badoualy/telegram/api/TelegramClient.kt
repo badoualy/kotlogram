@@ -1,6 +1,7 @@
 package com.github.badoualy.telegram.api
 
 import com.github.badoualy.telegram.mtproto.MTProtoHandler
+import com.github.badoualy.telegram.mtproto.util.InputFileLocation
 import com.github.badoualy.telegram.tl.api.*
 import com.github.badoualy.telegram.tl.api.auth.TLSentCode
 import com.github.badoualy.telegram.tl.api.request.TLRequestUploadGetFile
@@ -10,6 +11,7 @@ import com.github.badoualy.telegram.tl.core.TLObject
 import com.github.badoualy.telegram.tl.exception.RpcErrorException
 import rx.Observable
 import java.io.IOException
+import java.io.OutputStream
 
 interface TelegramClient : TelegramApi {
 
@@ -48,10 +50,16 @@ interface TelegramClient : TelegramApi {
     //////////////////// Convenience API ////////////////////
     ////////////////////////////////////////////////////////
     @Throws(RpcErrorException::class, IOException::class)
-    fun <T : TLObject> executeRpcQuery(method: TLMethod<T>): T
+    fun <T : TLObject> executeRpcQuery(method: TLMethod<T>) = executeRpcQueries(listOf(method)).first()
 
     @Throws(RpcErrorException::class, IOException::class)
-    fun <T : TLObject> executeRpcQuery(method: TLMethod<T>, dcId: Int): T
+    fun <T : TLObject> executeRpcQuery(method: TLMethod<T>, dcId: Int) = executeRpcQueries(listOf(method), dcId).first()
+
+    @Throws(RpcErrorException::class, IOException::class)
+    fun <T : TLObject> executeRpcQueries(methods: List<TLMethod<T>>): List<T>
+
+    @Throws(RpcErrorException::class, IOException::class)
+    fun <T : TLObject> executeRpcQueries(methods: List<TLMethod<T>>, dcId: Int): List<T>
 
     /** Convenience method wrapping the argument with TelegramApp values */
     @Throws(RpcErrorException::class, IOException::class)
@@ -74,7 +82,7 @@ interface TelegramClient : TelegramApi {
     /** Convenience method wrapping the argument for a plain text message */
     fun messagesSendMessage(peer: TLAbsInputPeer, message: String, randomId: Long): TLAbsUpdates?
 
-    /** Convenience method to download an user profile photo */
+    /** Convenience method to downloadSync an user profile photo */
     @Throws(RpcErrorException::class, IOException::class)
     fun getUserPhoto(user: TLAbsUser, big: Boolean = true): TLFile? {
         val userPhoto = when (user) {
@@ -96,7 +104,7 @@ interface TelegramClient : TelegramApi {
         return executeRpcQuery(request, photoLocation.dcId)
     }
 
-    /** Convenience method to download a chat photo */
+    /** Convenience method to downloadSync a chat photo */
     @Throws(RpcErrorException::class, IOException::class)
     fun getChatPhoto(chat: TLAbsChat, big: Boolean = true): TLFile? {
         val chatPhoto = when (chat) {
@@ -119,7 +127,11 @@ interface TelegramClient : TelegramApi {
         return executeRpcQuery(request, photoLocation.dcId)
     }
 
-    /** Convenience method to download a channel photo */
+    /** Convenience method to downloadSync a channel photo */
     @Throws(RpcErrorException::class, IOException::class)
     fun getChannelPhoto(chat: TLAbsChat, big: Boolean = true) = getChatPhoto(chat, big)
+
+    /** Convenience method to download a file synchronously */
+    @Throws(RpcErrorException::class, IOException::class)
+    fun downloadSync(inputLocation: InputFileLocation, size: Int, partSize: Int = 512 * 1024, outputStream: OutputStream)
 }
