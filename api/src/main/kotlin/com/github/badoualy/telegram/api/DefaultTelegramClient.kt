@@ -238,7 +238,7 @@ internal class DefaultTelegramClient internal constructor(val application: Teleg
                     break
             }
 
-            executeRpcQueries(methods).forEach { part -> outputStream.write(part.bytes.data) }
+            executeRpcQueries(methods, inputLocation.dcId).forEach { part -> outputStream.write(part.bytes.data) }
             outputStream.flush()
         } while (offset < size)
 
