@@ -274,7 +274,7 @@ internal class DefaultTelegramClient internal constructor(val application: Teleg
 
         var cachedHandler: MTProtoHandler? = null
         synchronized(exportedHandlerMap) {
-            cachedHandler = exportedHandlerMap[dcId]
+            cachedHandler = exportedHandlerMap.remove(dcId)
         }
 
         if (cachedHandler != null)
