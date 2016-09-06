@@ -4,6 +4,12 @@ import com.github.badoualy.telegram.tl.core.TLBytes;
 import com.github.badoualy.telegram.tl.core.TLObject;
 
 /**
+ * Abstraction level for the following constructors:
+ * <ul>
+ * <li>{@link TLDhConfig}: messages.dhConfig#2c221edd</li>
+ * <li>{@link TLDhConfigNotModified}: messages.dhConfigNotModified#c0e24635</li>
+ * </ul>
+ *
  * @author Yannick Badoual yann.badoual@gmail.com
  * @see <a href="http://github.com/badoualy/kotlogram">http://github.com/badoualy/kotlogram</a>
  */

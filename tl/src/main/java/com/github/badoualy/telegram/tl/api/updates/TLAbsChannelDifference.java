@@ -3,6 +3,13 @@ package com.github.badoualy.telegram.tl.api.updates;
 import com.github.badoualy.telegram.tl.core.TLObject;
 
 /**
+ * Abstraction level for the following constructors:
+ * <ul>
+ * <li>{@link TLChannelDifference}: updates.channelDifference#2064674e</li>
+ * <li>{@link TLChannelDifferenceEmpty}: updates.channelDifferenceEmpty#3e11affb</li>
+ * <li>{@link TLChannelDifferenceTooLong}: updates.channelDifferenceTooLong#410dee07</li>
+ * </ul>
+ *
  * @author Yannick Badoual yann.badoual@gmail.com
  * @see <a href="http://github.com/badoualy/kotlogram">http://github.com/badoualy/kotlogram</a>
  */

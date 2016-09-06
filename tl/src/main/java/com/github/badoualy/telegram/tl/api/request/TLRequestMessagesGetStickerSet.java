@@ -40,7 +40,7 @@ public class TLRequestMessagesGetStickerSet extends TLMethod<TLStickerSet> {
             throw new IOException("Unable to parse response");
         }
         if (!(response instanceof TLStickerSet)) {
-            throw new IOException("Incorrect response type, expected getClass().getCanonicalName(), found response.getClass().getCanonicalName()");
+            throw new IOException("Incorrect response type, expected " + getClass().getCanonicalName() + ", found " + response.getClass().getCanonicalName());
         }
         return (TLStickerSet) response;
     }

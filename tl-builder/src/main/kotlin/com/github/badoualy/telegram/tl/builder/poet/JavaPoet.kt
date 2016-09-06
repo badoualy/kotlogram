@@ -204,14 +204,17 @@ object JavaPoet {
         val clazzName = className(constructor.name, abstract = true)
         val clazz = TypeSpec.classBuilder(clazzName)
                 .addModifiers(Modifier.PUBLIC, Modifier.ABSTRACT)
-                .addJavadoc(JAVADOC_AUTHOR)
-                .addJavadoc(JAVADOC_SEE)
                 .superclass(TYPE_TL_OBJECT)
 
         generateClassCommon(clazz, ClassName.get("", clazzName), constructor.name, null, constructor.parameters)
 
+        val constructors = contextConstructors.filter { c -> c.tlType == constructor.tlType }
+        clazz.addJavadoc("Abstraction level for the following constructors:\n")
+                .addJavadoc("<ul>\n")
+        constructors.forEach { clazz.addJavadoc("<li>{@link ${constructorClassNameMap[it].toString().substringAfterLast('.')}}: ${it.name}#${hex(it.id)}</li>\n") }
+        clazz.addJavadoc("</ul>\n\n")
+
         if (constructor.abstractEmptyConstructor) {
-            val constructors = contextConstructors.filter { c -> c.tlType == constructor.tlType }
             val nonEmptyConstructor = constructors.find { c -> !c.name.endsWith("empty", true) }!!
             val emptyConstructor = constructors.find { c -> c.name.endsWith("empty", true) }!!
 
@@ -246,14 +249,15 @@ object JavaPoet {
             }
         }
 
-        return clazz.build()
+        return clazz
+                .addJavadoc(JAVADOC_AUTHOR)
+                .addJavadoc(JAVADOC_SEE)
+                .build()
     }
 
     private fun generateConstructorClass(constructor: TLConstructor, superclass: ClassName = TYPE_TL_OBJECT): TypeSpec {
         val clazz = TypeSpec.classBuilder(className(constructor.name))
                 .addModifiers(Modifier.PUBLIC)
-                .addJavadoc(JAVADOC_AUTHOR)
-                .addJavadoc(JAVADOC_SEE)
                 .superclass(superclass)
         val clazzTypeName = constructorClassNameMap[constructor]!!
 
@@ -284,7 +288,10 @@ object JavaPoet {
             }
         }
 
-        return clazz.build()
+        return clazz
+                .addJavadoc(JAVADOC_AUTHOR)
+                .addJavadoc(JAVADOC_SEE)
+                .build()
     }
 
     private fun generateMethodClass(method: TLMethod): TypeSpec {
@@ -324,7 +331,7 @@ object JavaPoet {
                     .endControlFlow()
 
                     .beginControlFlow("if (!(response instanceof \$T))", if (responseType is ParameterizedTypeName) responseType.rawType else responseType)
-                    .addStatement("throw new \$T(\"Incorrect response type, expected getClass().getCanonicalName(), found response.getClass().getCanonicalName()\")", IOException::class.java)
+                    .addStatement("throw new \$T(\"Incorrect response type, expected \" + getClass().getCanonicalName() + \", found \" + response.getClass().getCanonicalName())", IOException::class.java)
                     .endControlFlow()
 
                     .addStatement("return (\$T) response", responseType)

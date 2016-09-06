@@ -44,7 +44,7 @@ public class TLRequestContactsGetBlocked extends TLMethod<TLAbsBlocked> {
             throw new IOException("Unable to parse response");
         }
         if (!(response instanceof TLAbsBlocked)) {
-            throw new IOException("Incorrect response type, expected getClass().getCanonicalName(), found response.getClass().getCanonicalName()");
+            throw new IOException("Incorrect response type, expected " + getClass().getCanonicalName() + ", found " + response.getClass().getCanonicalName());
         }
         return (TLAbsBlocked) response;
     }

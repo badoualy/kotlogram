@@ -7,6 +7,13 @@ import com.github.badoualy.telegram.tl.core.TLObject;
 import com.github.badoualy.telegram.tl.core.TLVector;
 
 /**
+ * Abstraction level for the following constructors:
+ * <ul>
+ * <li>{@link TLChannelMessages}: messages.channelMessages#99262e37</li>
+ * <li>{@link TLMessages}: messages.messages#8c718e87</li>
+ * <li>{@link TLMessagesSlice}: messages.messagesSlice#b446ae3</li>
+ * </ul>
+ *
  * @author Yannick Badoual yann.badoual@gmail.com
  * @see <a href="http://github.com/badoualy/kotlogram">http://github.com/badoualy/kotlogram</a>
  */

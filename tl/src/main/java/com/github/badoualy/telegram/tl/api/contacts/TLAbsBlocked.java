@@ -6,6 +6,12 @@ import com.github.badoualy.telegram.tl.core.TLObject;
 import com.github.badoualy.telegram.tl.core.TLVector;
 
 /**
+ * Abstraction level for the following constructors:
+ * <ul>
+ * <li>{@link TLBlocked}: contacts.blocked#1c138d15</li>
+ * <li>{@link TLBlockedSlice}: contacts.blockedSlice#900802a1</li>
+ * </ul>
+ *
  * @author Yannick Badoual yann.badoual@gmail.com
  * @see <a href="http://github.com/badoualy/kotlogram">http://github.com/badoualy/kotlogram</a>
  */

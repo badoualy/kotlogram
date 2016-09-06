@@ -4,6 +4,12 @@ import com.github.badoualy.telegram.tl.core.TLObject;
 import com.github.badoualy.telegram.tl.core.TLVector;
 
 /**
+ * Abstraction level for the following constructors:
+ * <ul>
+ * <li>{@link TLChannelFull}: channelFull#c3d5512f</li>
+ * <li>{@link TLChatFull}: chatFull#2e02a614</li>
+ * </ul>
+ *
  * @author Yannick Badoual yann.badoual@gmail.com
  * @see <a href="http://github.com/badoualy/kotlogram">http://github.com/badoualy/kotlogram</a>
  */

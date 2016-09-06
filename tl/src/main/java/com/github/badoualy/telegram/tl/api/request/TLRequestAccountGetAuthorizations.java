@@ -30,7 +30,7 @@ public class TLRequestAccountGetAuthorizations extends TLMethod<TLAuthorizations
             throw new IOException("Unable to parse response");
         }
         if (!(response instanceof TLAuthorizations)) {
-            throw new IOException("Incorrect response type, expected getClass().getCanonicalName(), found response.getClass().getCanonicalName()");
+            throw new IOException("Incorrect response type, expected " + getClass().getCanonicalName() + ", found " + response.getClass().getCanonicalName());
         }
         return (TLAuthorizations) response;
     }
