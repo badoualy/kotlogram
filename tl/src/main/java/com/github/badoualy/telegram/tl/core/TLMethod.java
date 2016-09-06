@@ -15,7 +15,7 @@ import java.io.InputStream;
  */
 public abstract class TLMethod<T extends TLObject> extends TLObject {
 
-    private T response;
+    private transient T response;
 
     public T deserializeResponse(byte[] data, TLContext context) throws IOException {
         return response = deserializeResponse(new ByteArrayInputStream(data), context);
