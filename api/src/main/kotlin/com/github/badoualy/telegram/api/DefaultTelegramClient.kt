@@ -1,5 +1,6 @@
 package com.github.badoualy.telegram.api
 
+import com.github.badoualy.telegram.api.utils.InputFileLocation
 import com.github.badoualy.telegram.mtproto.ApiCallback
 import com.github.badoualy.telegram.mtproto.MTProtoHandler
 import com.github.badoualy.telegram.mtproto.auth.AuthKey
@@ -8,7 +9,6 @@ import com.github.badoualy.telegram.mtproto.auth.AuthResult
 import com.github.badoualy.telegram.mtproto.exception.SecurityException
 import com.github.badoualy.telegram.mtproto.model.DataCenter
 import com.github.badoualy.telegram.mtproto.time.MTProtoTimer
-import com.github.badoualy.telegram.mtproto.util.InputFileLocation
 import com.github.badoualy.telegram.tl.api.*
 import com.github.badoualy.telegram.tl.api.request.*
 import com.github.badoualy.telegram.tl.api.upload.TLFile

@@ -15,7 +15,7 @@ class MTSession(var dataCenter: DataCenter, var id: ByteArray = RandomUtils.rand
     @Transient
     val idLong = BigInteger(id).toLong()
     @Transient
-    val marker = MarkerFactory.getMarker(idLong.toString())
+    val marker = MarkerFactory.getMarker(idLong.toString())!!
 
     /**
      * Generate a valid seqNo value for the given message type

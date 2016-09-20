@@ -12,9 +12,9 @@ fun buildFromJson(root: JsonNode): TLDefinition {
     val constructorsNode = root["constructors"].filterNot { c -> IgnoredTypes.contains(c["type"].textValue()) }
     val methodsNode = root["methods"]
 
-    var types = HashMap<String, TLTypeRaw>()
-    var constructors = ArrayList<TLConstructor>()
-    var methods = ArrayList<TLMethod>()
+    val types = HashMap<String, TLTypeRaw>()
+    val constructors = ArrayList<TLConstructor>()
+    val methods = ArrayList<TLMethod>()
 
     // First add all constructor types: "Abstract classes"
     constructorsNode
@@ -25,15 +25,15 @@ fun buildFromJson(root: JsonNode): TLDefinition {
     // Build constructors: type classes
     println("Reading constructors...")
     for (constructor in constructorsNode) {
-        var name = constructor["predicate"].textValue()
-        var id = constructor["id"].textValue().toInt()
+        val name = constructor["predicate"].textValue()
+        val id = constructor["id"].textValue().toInt()
         val type = constructor["type"].textValue()
-        var tlType = types[type]!!
+        val tlType = types[type]!!
 
-        var constructorParameters = ArrayList<TLParameter>()
+        val constructorParameters = ArrayList<TLParameter>()
         for (p in constructor["params"]) {
-            var pName = p["name"]!!.textValue().toString()
-            var pType = p["type"]!!.textValue().toString()
+            val pName = p["name"]!!.textValue().toString()
+            val pType = p["type"]!!.textValue().toString()
             val pTlType = createType(pType, types)
 
             constructorParameters.add(TLParameter(pName, pTlType))
@@ -45,15 +45,15 @@ fun buildFromJson(root: JsonNode): TLDefinition {
     // Build constructors: type classes
     println("Reading methods...")
     for (method in methodsNode) {
-        var name = method.get("method").textValue()
-        var id = method["id"].textValue().toInt()
+        val name = method.get("method").textValue()
+        val id = method["id"].textValue().toInt()
         val type = method["type"].textValue()
-        var tlType = createType(type, types, false)
+        val tlType = createType(type, types, false)
 
-        var methodParameters = ArrayList<TLParameter>()
+        val methodParameters = ArrayList<TLParameter>()
         for (p in method["params"]) {
-            var pName = p["name"]!!.textValue().toString()
-            var pType = p["type"]!!.textValue().toString()
+            val pName = p["name"]!!.textValue().toString()
+            val pType = p["type"]!!.textValue().toString()
             val pTlType = createType(pType, types)
 
             methodParameters.add(TLParameter(pName, pTlType))
@@ -78,7 +78,7 @@ private fun createType(typeName: String, types: Map<String, TLTypeRaw>, isParame
         val groups = flagRegex.matchEntire(typeName)?.groups
         val maskName = groups?.get(1)?.value ?: throw RuntimeException("Unknown error with type $typeName")
         val value = groups?.get(2)?.value?.toInt() ?: throw RuntimeException("Unknown error with type $typeName")
-        var realType = groups?.get(3)?.value ?: throw RuntimeException("Unknown error with type $typeName")
+        val realType = groups?.get(3)?.value ?: throw RuntimeException("Unknown error with type $typeName")
         if (!maskName.equals("flags")) throw RuntimeException("Unsupported flag name, expected `flags`")
 
         TLTypeConditional(value, createType(realType, types))

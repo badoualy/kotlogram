@@ -1,7 +1,7 @@
 package com.github.badoualy.telegram.api
 
+import com.github.badoualy.telegram.api.utils.InputFileLocation
 import com.github.badoualy.telegram.mtproto.MTProtoHandler
-import com.github.badoualy.telegram.mtproto.util.InputFileLocation
 import com.github.badoualy.telegram.tl.api.*
 import com.github.badoualy.telegram.tl.api.auth.TLSentCode
 import com.github.badoualy.telegram.tl.api.request.TLRequestUploadGetFile

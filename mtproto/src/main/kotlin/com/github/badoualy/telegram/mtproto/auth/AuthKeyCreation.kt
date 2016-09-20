@@ -1,10 +1,10 @@
 package com.github.badoualy.telegram.mtproto.auth
 
 
-import com.github.badoualy.telegram.mtproto.model.DataCenter
 import com.github.badoualy.telegram.mtproto.exception.AuthorizationException
 import com.github.badoualy.telegram.mtproto.exception.FingerprintNotFoundException
 import com.github.badoualy.telegram.mtproto.exception.SecurityException
+import com.github.badoualy.telegram.mtproto.model.DataCenter
 import com.github.badoualy.telegram.mtproto.secure.CryptoUtils.*
 import com.github.badoualy.telegram.mtproto.secure.Key
 import com.github.badoualy.telegram.mtproto.secure.RandomUtils
@@ -38,7 +38,7 @@ object AuthKeyCreation {
     private val TEMPORARY_KEY_DEFAULT_EXPIRE_DELAY = 24 * 60 * 60 // 24 hours
 
     private var connection: MTProtoConnection? = null
-    private val authContext = TlAuthContext
+    private val authContext = TLAuthContext
     private var tmpKeyExpireDelay = TEMPORARY_KEY_DEFAULT_EXPIRE_DELAY
 
     /**
@@ -58,7 +58,7 @@ object AuthKeyCreation {
      * and [Perfect Forward Secrecy](https://core.telegram.org/api/pfs)
      */
     @JvmStatic @JvmOverloads
-    fun createTmpAuthKey(dataCenter: DataCenter, expireDelay: Int = TEMPORARY_KEY_DEFAULT_EXPIRE_DELAY) {
+    private fun createTmpAuthKey(dataCenter: DataCenter, expireDelay: Int = TEMPORARY_KEY_DEFAULT_EXPIRE_DELAY) {
         tmpKeyExpireDelay = expireDelay
         createAuthKeyInternal(dataCenter, true)
     }

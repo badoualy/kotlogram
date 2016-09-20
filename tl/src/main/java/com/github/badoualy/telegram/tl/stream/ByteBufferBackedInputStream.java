@@ -21,8 +21,7 @@ public class ByteBufferBackedInputStream extends InputStream {
     }
 
     @Override
-    public int read(byte[] bytes, int off, int len)
-            throws IOException {
+    public int read(byte[] bytes, int off, int len) throws IOException {
         if (!buffer.hasRemaining()) {
             return -1;
         }

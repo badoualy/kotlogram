@@ -26,14 +26,14 @@ object JavaPoet {
     val apiClazz = TypeSpec.interfaceBuilder(TELEGRAM_API_INTERFACE)
             .addModifiers(Modifier.PUBLIC)
             .addJavadoc(JAVADOC_AUTHOR).addJavadoc(JAVADOC_SEE)
-            .addAnnotation(AnnotationSpec.builder(SuppressWarnings::class.java).addMember("value", "{\"unused\", \"unchecked\", \"RedundantCast\"}").build())
+            .addAnnotation(AnnotationSpec.builder(SuppressWarnings::class.java).addMember("value", "{\"unused\", \"unchecked\", \"RedundantCast\"}").build())!!
     var apiMethod: MethodSpec.Builder? = null
 
     var apiWrappedClazz = TypeSpec.classBuilder(TELEGRAM_API_WRAPPER)
             .addModifiers(Modifier.PUBLIC, Modifier.ABSTRACT)
             .addJavadoc(JAVADOC_AUTHOR).addJavadoc(JAVADOC_SEE)
             .addSuperinterface(TYPE_TELEGRAM_API)
-            .addAnnotation(AnnotationSpec.builder(SuppressWarnings::class.java).addMember("value", "{\"unused\", \"unchecked\", \"RedundantCast\"}").build())
+            .addAnnotation(AnnotationSpec.builder(SuppressWarnings::class.java).addMember("value", "{\"unused\", \"unchecked\", \"RedundantCast\"}").build())!!
     var apiWrappedMethod: MethodSpec.Builder? = null
 
     fun writeClasses(tlDefinition: TLDefinition) {

@@ -1,6 +1,7 @@
 package com.github.badoualy.telegram.mtproto.auth
 
 import com.github.badoualy.telegram.mtproto.secure.CryptoUtils
+import com.github.badoualy.telegram.mtproto.transport.MTProtoConnection
 import java.math.BigInteger
 import java.nio.ByteBuffer
 
@@ -21,3 +22,9 @@ open class AuthKey(val key: ByteArray) {
 }
 
 class TempAuthKey(key: ByteArray, val expiresAt: Int) : AuthKey(key)
+
+/**
+ * Result of the "Creating an Authorization Key" flow execution
+ * @see <a href="https://core.telegram.org/mtproto/auth_key">Creating an Authorization Key</a>
+ * */
+class AuthResult(val authKey: AuthKey, val serverSalt: Long, val connection: MTProtoConnection)

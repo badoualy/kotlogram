@@ -1,4 +1,4 @@
-package com.github.badoualy.telegram.mtproto.util
+package com.github.badoualy.telegram.api.utils
 
 import com.github.badoualy.telegram.tl.api.*
 import com.github.badoualy.telegram.tl.core.TLBytes
