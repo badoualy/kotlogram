@@ -57,7 +57,7 @@ object AuthKeyCreation {
      * @see [Creating an Authorization Key](https://core.telegram.org/mtproto/auth_key)
      * and [Perfect Forward Secrecy](https://core.telegram.org/api/pfs)
      */
-    @JvmStatic @JvmOverloads
+    //@JvmStatic @JvmOverloads
     private fun createTmpAuthKey(dataCenter: DataCenter, expireDelay: Int = TEMPORARY_KEY_DEFAULT_EXPIRE_DELAY) {
         tmpKeyExpireDelay = expireDelay
         createAuthKeyInternal(dataCenter, true)

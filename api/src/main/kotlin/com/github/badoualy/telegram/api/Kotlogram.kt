@@ -6,13 +6,13 @@ import org.slf4j.LoggerFactory
 
 object Kotlogram {
 
-    val logger = LoggerFactory.getLogger(Kotlogram::class.java)!!
+    private val logger = LoggerFactory.getLogger(Kotlogram::class.java)!!
 
     @JvmField
     val API_LAYER = 53
 
     init {
-        logger.warn("""
+        logger.info("""
          __  ___   ______   .___________. __        ______     _______ .______          ___      .___  ___.
         |  |/  /  /  __  \  |           ||  |      /  __  \   /  _____||   _  \        /   \     |   \/   |
         |  '  /  |  |  |  | `---|  |----`|  |     |  |  |  | |  |  __  |  |_)  |      /  ^  \    |  \  /  |

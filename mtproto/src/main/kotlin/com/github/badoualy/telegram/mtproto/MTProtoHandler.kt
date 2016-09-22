@@ -121,7 +121,7 @@ class MTProtoHandler {
     }
 
     @Throws(IOException::class)
-    fun <T : TLObject> executeMethodSync(method: TLMethod<T>, timeout: Long) = executeMethod(method, timeout).toBlocking().first()
+    fun <T : TLObject> executeMethodSync(method: TLMethod<T>, timeout: Long): T = executeMethod(method, timeout).toBlocking().first()
 
     /**
      * Execute the given methods synchronously and return the list of results (guaranties the order is conserved)
@@ -129,7 +129,7 @@ class MTProtoHandler {
      * @param timeout timeout before returning an error
      */
     @Throws(IOException::class)
-    fun <T : TLObject> executeMethodsSync(methods: List<TLMethod<T>>, timeout: Long): List<T> = executeMethods(methods, timeout).toBlocking().toIterable().sortedBy { methods.indexOf(it) }.map { it.response }.toList()
+    fun <T : TLObject> executeMethodsSync(methods: List<TLMethod<out T>>, timeout: Long): List<T> = executeMethods(methods, timeout).toBlocking().toIterable().sortedBy { methods.indexOf(it) }.map { it.response }.toList()
 
     /**
      * Queue a method to be executed with the next message.
@@ -166,7 +166,7 @@ class MTProtoHandler {
      * @throws IOException
      */
     @Throws(IOException::class)
-    fun <T : TLObject> executeMethods(methods: List<TLMethod<T>>, timeout: Long): Observable<TLMethod<T>> {
+    fun <T : TLObject> executeMethods(methods: List<TLMethod<out T>>, timeout: Long): Observable<TLMethod<T>> {
         if (methods.isEmpty())
             throw IllegalArgumentException("No methods to execute")
 
