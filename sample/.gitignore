@@ -6,6 +6,6 @@ auth*.key
 src/test/java/com/github/badoualy/telegram/C.java
 *.save
 *.jpg
-Sample*.java
+/src/test/**/Sample*.java
 /src/main/resources/*
 tmp

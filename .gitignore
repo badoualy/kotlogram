@@ -170,3 +170,6 @@ gradle-app.setting
 # Cache of project
 .gradletasknamecache
 version.properties
+src/main/resources/
+src/test/
+src/main/java/com/github/badoualy/telegram/sample/SampleSignIn.java

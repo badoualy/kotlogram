@@ -133,5 +133,9 @@ interface TelegramClient : TelegramApi {
 
     /** Convenience method to download a file synchronously */
     @Throws(RpcErrorException::class, IOException::class)
-    fun downloadSync(inputLocation: InputFileLocation, size: Int, partSize: Int = 512 * 1024, outputStream: OutputStream)
+    fun downloadSync(inputLocation: InputFileLocation, size: Int, outputStream: OutputStream) = downloadSync(inputLocation, size, 512 * 1024, outputStream)
+
+    /** Convenience method to download a file synchronously */
+    @Throws(RpcErrorException::class, IOException::class)
+    fun downloadSync(inputLocation: InputFileLocation, size: Int, partSize: Int, outputStream: OutputStream)
 }
