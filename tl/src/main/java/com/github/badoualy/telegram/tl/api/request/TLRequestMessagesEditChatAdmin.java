@@ -45,7 +45,7 @@ public class TLRequestMessagesEditChatAdmin extends TLMethod<TLBool> {
     }
 
     @Override
-    @SuppressWarnings("unchecked")
+    @SuppressWarnings({"unchecked", "SimplifiableConditionalExpression"})
     public TLBool deserializeResponse(InputStream stream, TLContext context) throws IOException {
         final TLObject response = readTLObject(stream, context);
         if (response == null) {
@@ -65,7 +65,7 @@ public class TLRequestMessagesEditChatAdmin extends TLMethod<TLBool> {
     }
 
     @Override
-    @SuppressWarnings("unchecked")
+    @SuppressWarnings({"unchecked", "SimplifiableConditionalExpression"})
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
         chatId = readInt(stream);
         userId = readTLObject(stream, context, TLAbsInputUser.class, -1);

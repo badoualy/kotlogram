@@ -41,7 +41,7 @@ public class TLDocumentAttributeSticker extends TLAbsDocumentAttribute {
     }
 
     @Override
-    @SuppressWarnings("unchecked")
+    @SuppressWarnings({"unchecked", "SimplifiableConditionalExpression"})
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
         alt = readTLString(stream);
         stickerset = readTLObject(stream, context, TLAbsInputStickerSet.class, -1);

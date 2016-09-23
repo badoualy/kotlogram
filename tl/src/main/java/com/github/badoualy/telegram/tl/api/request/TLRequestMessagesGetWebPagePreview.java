@@ -34,7 +34,7 @@ public class TLRequestMessagesGetWebPagePreview extends TLMethod<TLAbsMessageMed
     }
 
     @Override
-    @SuppressWarnings("unchecked")
+    @SuppressWarnings({"unchecked", "SimplifiableConditionalExpression"})
     public TLAbsMessageMedia deserializeResponse(InputStream stream, TLContext context) throws IOException {
         final TLObject response = readTLObject(stream, context);
         if (response == null) {
@@ -52,7 +52,7 @@ public class TLRequestMessagesGetWebPagePreview extends TLMethod<TLAbsMessageMed
     }
 
     @Override
-    @SuppressWarnings("unchecked")
+    @SuppressWarnings({"unchecked", "SimplifiableConditionalExpression"})
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
         message = readTLString(stream);
     }

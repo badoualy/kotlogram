@@ -1,9 +1,7 @@
 {
   "flags": 1,
   "selfParticipant": {
-    "inviterId": 0,
-    "date": 0,
-    "_constructor": "chatParticipantAdmin#e2d6e436",
+    "_constructor": "chatParticipantCreator#da13538a",
     "userId": 0
   },
   "_constructor": "chatParticipantsForbidden#fc900c2b",

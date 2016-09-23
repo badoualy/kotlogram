@@ -41,7 +41,7 @@ public class TLUpdatePrivacy extends TLAbsUpdate {
     }
 
     @Override
-    @SuppressWarnings("unchecked")
+    @SuppressWarnings({"unchecked", "SimplifiableConditionalExpression"})
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
         key = readTLObject(stream, context, TLAbsPrivacyKey.class, -1);
         rules = readTLVector(stream, context);

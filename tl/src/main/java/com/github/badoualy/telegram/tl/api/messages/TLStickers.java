@@ -43,7 +43,7 @@ public class TLStickers extends TLAbsStickers {
     }
 
     @Override
-    @SuppressWarnings("unchecked")
+    @SuppressWarnings({"unchecked", "SimplifiableConditionalExpression"})
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
         hash = readTLString(stream);
         stickers = readTLVector(stream, context);

@@ -1,6 +1,6 @@
 {
   "userId": {
-    "_constructor": "inputUserEmpty#b98886cf"
+    "_constructor": "inputUserSelf#f7c1b13f"
   },
   "randomId": 0,
   "gA": {
@@ -108,13 +108,10 @@
       0,
       0,
       0,
-      0,
-      0,
-      0,
       0
     ],
     "offset": 0,
-    "len": 107
+    "len": 104
   },
   "_constructor": "messages.requestEncryption#f64daf43"
 }

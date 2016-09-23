@@ -122,7 +122,7 @@ public class TLConfig extends TLObject {
     }
 
     @Override
-    @SuppressWarnings("unchecked")
+    @SuppressWarnings({"unchecked", "SimplifiableConditionalExpression"})
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
         date = readInt(stream);
         expires = readInt(stream);

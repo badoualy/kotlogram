@@ -46,7 +46,7 @@ public class TLRequestUpdatesGetChannelDifference extends TLMethod<TLAbsChannelD
     }
 
     @Override
-    @SuppressWarnings("unchecked")
+    @SuppressWarnings({"unchecked", "SimplifiableConditionalExpression"})
     public TLAbsChannelDifference deserializeResponse(InputStream stream, TLContext context) throws IOException {
         final TLObject response = readTLObject(stream, context);
         if (response == null) {
@@ -67,7 +67,7 @@ public class TLRequestUpdatesGetChannelDifference extends TLMethod<TLAbsChannelD
     }
 
     @Override
-    @SuppressWarnings("unchecked")
+    @SuppressWarnings({"unchecked", "SimplifiableConditionalExpression"})
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
         channel = readTLObject(stream, context, TLAbsInputChannel.class, -1);
         filter = readTLObject(stream, context, TLAbsChannelMessagesFilter.class, -1);

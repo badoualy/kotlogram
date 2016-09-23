@@ -23,7 +23,7 @@ public class TLRequestHelpGetAppUpdate extends TLMethod<TLAbsAppUpdate> {
     }
 
     @Override
-    @SuppressWarnings("unchecked")
+    @SuppressWarnings({"unchecked", "SimplifiableConditionalExpression"})
     public TLAbsAppUpdate deserializeResponse(InputStream stream, TLContext context) throws IOException {
         final TLObject response = readTLObject(stream, context);
         if (response == null) {

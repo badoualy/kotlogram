@@ -41,7 +41,7 @@ public class TLUpdateShort extends TLAbsUpdates {
     }
 
     @Override
-    @SuppressWarnings("unchecked")
+    @SuppressWarnings({"unchecked", "SimplifiableConditionalExpression"})
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
         update = readTLObject(stream, context, TLAbsUpdate.class, -1);
         date = readInt(stream);

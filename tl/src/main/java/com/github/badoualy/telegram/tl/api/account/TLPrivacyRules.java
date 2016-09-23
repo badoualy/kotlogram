@@ -42,7 +42,7 @@ public class TLPrivacyRules extends TLObject {
     }
 
     @Override
-    @SuppressWarnings("unchecked")
+    @SuppressWarnings({"unchecked", "SimplifiableConditionalExpression"})
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
         rules = readTLVector(stream, context);
         users = readTLVector(stream, context);

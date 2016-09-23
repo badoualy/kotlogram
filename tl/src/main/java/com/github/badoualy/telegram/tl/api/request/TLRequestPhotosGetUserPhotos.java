@@ -48,7 +48,7 @@ public class TLRequestPhotosGetUserPhotos extends TLMethod<TLAbsPhotos> {
     }
 
     @Override
-    @SuppressWarnings("unchecked")
+    @SuppressWarnings({"unchecked", "SimplifiableConditionalExpression"})
     public TLAbsPhotos deserializeResponse(InputStream stream, TLContext context) throws IOException {
         final TLObject response = readTLObject(stream, context);
         if (response == null) {
@@ -69,7 +69,7 @@ public class TLRequestPhotosGetUserPhotos extends TLMethod<TLAbsPhotos> {
     }
 
     @Override
-    @SuppressWarnings("unchecked")
+    @SuppressWarnings({"unchecked", "SimplifiableConditionalExpression"})
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
         userId = readTLObject(stream, context, TLAbsInputUser.class, -1);
         offset = readInt(stream);

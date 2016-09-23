@@ -38,7 +38,7 @@ public class TLInputChatPhoto extends TLAbsInputChatPhoto {
     }
 
     @Override
-    @SuppressWarnings("unchecked")
+    @SuppressWarnings({"unchecked", "SimplifiableConditionalExpression"})
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
         id = readTLObject(stream, context, TLAbsInputPhoto.class, -1);
         crop = readTLObject(stream, context, TLAbsInputPhotoCrop.class, -1);

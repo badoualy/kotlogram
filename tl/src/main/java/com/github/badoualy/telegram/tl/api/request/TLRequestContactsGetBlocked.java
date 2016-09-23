@@ -37,7 +37,7 @@ public class TLRequestContactsGetBlocked extends TLMethod<TLAbsBlocked> {
     }
 
     @Override
-    @SuppressWarnings("unchecked")
+    @SuppressWarnings({"unchecked", "SimplifiableConditionalExpression"})
     public TLAbsBlocked deserializeResponse(InputStream stream, TLContext context) throws IOException {
         final TLObject response = readTLObject(stream, context);
         if (response == null) {
@@ -56,7 +56,7 @@ public class TLRequestContactsGetBlocked extends TLMethod<TLAbsBlocked> {
     }
 
     @Override
-    @SuppressWarnings("unchecked")
+    @SuppressWarnings({"unchecked", "SimplifiableConditionalExpression"})
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
         offset = readInt(stream);
         limit = readInt(stream);

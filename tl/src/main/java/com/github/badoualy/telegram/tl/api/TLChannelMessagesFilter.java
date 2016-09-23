@@ -51,7 +51,7 @@ public class TLChannelMessagesFilter extends TLAbsChannelMessagesFilter {
     }
 
     @Override
-    @SuppressWarnings("unchecked")
+    @SuppressWarnings({"unchecked", "SimplifiableConditionalExpression"})
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
         flags = readInt(stream);
         excludeNewMessages = (flags & 2) != 0;

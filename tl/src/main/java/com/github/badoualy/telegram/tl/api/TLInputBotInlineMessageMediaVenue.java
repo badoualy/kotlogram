@@ -69,7 +69,7 @@ public class TLInputBotInlineMessageMediaVenue extends TLAbsInputBotInlineMessag
     }
 
     @Override
-    @SuppressWarnings("unchecked")
+    @SuppressWarnings({"unchecked", "SimplifiableConditionalExpression"})
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
         flags = readInt(stream);
         geoPoint = readTLObject(stream, context, TLAbsInputGeoPoint.class, -1);

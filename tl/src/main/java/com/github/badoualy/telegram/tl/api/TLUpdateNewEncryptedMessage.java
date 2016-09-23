@@ -41,7 +41,7 @@ public class TLUpdateNewEncryptedMessage extends TLAbsUpdate {
     }
 
     @Override
-    @SuppressWarnings("unchecked")
+    @SuppressWarnings({"unchecked", "SimplifiableConditionalExpression"})
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
         message = readTLObject(stream, context, TLAbsEncryptedMessage.class, -1);
         qts = readInt(stream);

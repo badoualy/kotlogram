@@ -52,7 +52,7 @@ public class TLUpdateChannelTooLong extends TLAbsUpdate {
     }
 
     @Override
-    @SuppressWarnings("unchecked")
+    @SuppressWarnings({"unchecked", "SimplifiableConditionalExpression"})
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
         flags = readInt(stream);
         channelId = readInt(stream);

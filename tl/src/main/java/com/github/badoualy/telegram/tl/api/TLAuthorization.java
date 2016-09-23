@@ -90,7 +90,7 @@ public class TLAuthorization extends TLObject {
     }
 
     @Override
-    @SuppressWarnings("unchecked")
+    @SuppressWarnings({"unchecked", "SimplifiableConditionalExpression"})
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
         hash = readLong(stream);
         flags = readInt(stream);

@@ -54,7 +54,7 @@ public class TLInputAppEvent extends TLObject {
     }
 
     @Override
-    @SuppressWarnings("unchecked")
+    @SuppressWarnings({"unchecked", "SimplifiableConditionalExpression"})
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
         time = readDouble(stream);
         type = readTLString(stream);

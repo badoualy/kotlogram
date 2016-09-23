@@ -1,10 +1,9 @@
 {
   "peer": {
-    "chatId": 0,
-    "_constructor": "inputPeerChat#179be863"
+    "_constructor": "inputPeerEmpty#7f3b18ea"
   },
   "action": {
-    "_constructor": "sendMessageGeoLocationAction#176f8ba1"
+    "_constructor": "sendMessageTypingAction#16bf744e"
   },
   "_constructor": "messages.setTyping#a3825e50"
 }

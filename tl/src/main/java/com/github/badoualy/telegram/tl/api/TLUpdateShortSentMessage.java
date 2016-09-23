@@ -81,7 +81,7 @@ public class TLUpdateShortSentMessage extends TLAbsUpdates {
     }
 
     @Override
-    @SuppressWarnings("unchecked")
+    @SuppressWarnings({"unchecked", "SimplifiableConditionalExpression"})
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
         flags = readInt(stream);
         out = (flags & 2) != 0;

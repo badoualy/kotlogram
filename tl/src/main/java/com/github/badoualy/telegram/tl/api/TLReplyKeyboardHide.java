@@ -44,7 +44,7 @@ public class TLReplyKeyboardHide extends TLAbsReplyMarkup {
     }
 
     @Override
-    @SuppressWarnings("unchecked")
+    @SuppressWarnings({"unchecked", "SimplifiableConditionalExpression"})
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
         flags = readInt(stream);
         selective = (flags & 4) != 0;

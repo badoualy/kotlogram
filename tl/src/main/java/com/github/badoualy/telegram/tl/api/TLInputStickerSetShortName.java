@@ -35,7 +35,7 @@ public class TLInputStickerSetShortName extends TLAbsInputStickerSet {
     }
 
     @Override
-    @SuppressWarnings("unchecked")
+    @SuppressWarnings({"unchecked", "SimplifiableConditionalExpression"})
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
         shortName = readTLString(stream);
     }

@@ -59,7 +59,7 @@ public class TLPeerDialogs extends TLObject {
     }
 
     @Override
-    @SuppressWarnings("unchecked")
+    @SuppressWarnings({"unchecked", "SimplifiableConditionalExpression"})
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
         dialogs = readTLVector(stream, context);
         messages = readTLVector(stream, context);

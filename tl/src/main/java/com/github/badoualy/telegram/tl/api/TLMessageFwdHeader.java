@@ -69,7 +69,7 @@ public class TLMessageFwdHeader extends TLObject {
     }
 
     @Override
-    @SuppressWarnings("unchecked")
+    @SuppressWarnings({"unchecked", "SimplifiableConditionalExpression"})
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
         flags = readInt(stream);
         fromId = (flags & 1) != 0 ? readInt(stream) : null;

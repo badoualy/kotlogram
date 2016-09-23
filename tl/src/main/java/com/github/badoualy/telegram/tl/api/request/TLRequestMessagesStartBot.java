@@ -49,7 +49,7 @@ public class TLRequestMessagesStartBot extends TLMethod<TLAbsUpdates> {
     }
 
     @Override
-    @SuppressWarnings("unchecked")
+    @SuppressWarnings({"unchecked", "SimplifiableConditionalExpression"})
     public TLAbsUpdates deserializeResponse(InputStream stream, TLContext context) throws IOException {
         final TLObject response = readTLObject(stream, context);
         if (response == null) {
@@ -70,7 +70,7 @@ public class TLRequestMessagesStartBot extends TLMethod<TLAbsUpdates> {
     }
 
     @Override
-    @SuppressWarnings("unchecked")
+    @SuppressWarnings({"unchecked", "SimplifiableConditionalExpression"})
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
         bot = readTLObject(stream, context, TLAbsInputUser.class, -1);
         peer = readTLObject(stream, context, TLAbsInputPeer.class, -1);

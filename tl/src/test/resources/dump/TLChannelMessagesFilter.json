@@ -1,6 +1,6 @@
 {
-  "flags": 0,
-  "excludeNewMessages": false,
+  "flags": 2,
+  "excludeNewMessages": true,
   "ranges": [
     {
       "minId": 0,

@@ -39,7 +39,7 @@ public class TLRequestMessagesGetMessageEditData extends TLMethod<TLMessageEditD
     }
 
     @Override
-    @SuppressWarnings("unchecked")
+    @SuppressWarnings({"unchecked", "SimplifiableConditionalExpression"})
     public TLMessageEditData deserializeResponse(InputStream stream, TLContext context) throws IOException {
         final TLObject response = readTLObject(stream, context);
         if (response == null) {
@@ -58,7 +58,7 @@ public class TLRequestMessagesGetMessageEditData extends TLMethod<TLMessageEditD
     }
 
     @Override
-    @SuppressWarnings("unchecked")
+    @SuppressWarnings({"unchecked", "SimplifiableConditionalExpression"})
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
         peer = readTLObject(stream, context, TLAbsInputPeer.class, -1);
         id = readInt(stream);

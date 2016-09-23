@@ -55,7 +55,7 @@ public class TLRequestMessagesGetInlineBotResults extends TLMethod<TLBotResults>
     }
 
     @Override
-    @SuppressWarnings("unchecked")
+    @SuppressWarnings({"unchecked", "SimplifiableConditionalExpression"})
     public TLBotResults deserializeResponse(InputStream stream, TLContext context) throws IOException {
         final TLObject response = readTLObject(stream, context);
         if (response == null) {
@@ -88,7 +88,7 @@ public class TLRequestMessagesGetInlineBotResults extends TLMethod<TLBotResults>
     }
 
     @Override
-    @SuppressWarnings("unchecked")
+    @SuppressWarnings({"unchecked", "SimplifiableConditionalExpression"})
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
         flags = readInt(stream);
         bot = readTLObject(stream, context, TLAbsInputUser.class, -1);

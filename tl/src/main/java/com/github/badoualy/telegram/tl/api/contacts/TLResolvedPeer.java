@@ -49,7 +49,7 @@ public class TLResolvedPeer extends TLObject {
     }
 
     @Override
-    @SuppressWarnings("unchecked")
+    @SuppressWarnings({"unchecked", "SimplifiableConditionalExpression"})
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
         peer = readTLObject(stream, context, TLAbsPeer.class, -1);
         chats = readTLVector(stream, context);

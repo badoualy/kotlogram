@@ -5,10 +5,10 @@
     "_constructor": "inputChannel#afeb712e"
   },
   "userId": {
-    "_constructor": "inputUserEmpty#b98886cf"
+    "_constructor": "inputUserSelf#f7c1b13f"
   },
   "role": {
-    "_constructor": "channelRoleModerator#9618d975"
+    "_constructor": "channelRoleEditor#820bfe8c"
   },
   "_constructor": "channels.editAdmin#eb7611d0"
 }

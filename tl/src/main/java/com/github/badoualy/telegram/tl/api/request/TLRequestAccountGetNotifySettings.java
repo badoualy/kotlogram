@@ -33,7 +33,7 @@ public class TLRequestAccountGetNotifySettings extends TLMethod<TLAbsPeerNotifyS
     }
 
     @Override
-    @SuppressWarnings("unchecked")
+    @SuppressWarnings({"unchecked", "SimplifiableConditionalExpression"})
     public TLAbsPeerNotifySettings deserializeResponse(InputStream stream, TLContext context) throws IOException {
         final TLObject response = readTLObject(stream, context);
         if (response == null) {
@@ -51,7 +51,7 @@ public class TLRequestAccountGetNotifySettings extends TLMethod<TLAbsPeerNotifyS
     }
 
     @Override
-    @SuppressWarnings("unchecked")
+    @SuppressWarnings({"unchecked", "SimplifiableConditionalExpression"})
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
         peer = readTLObject(stream, context, TLAbsInputNotifyPeer.class, -1);
     }

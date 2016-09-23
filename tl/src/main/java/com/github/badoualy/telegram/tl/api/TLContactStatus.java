@@ -42,7 +42,7 @@ public class TLContactStatus extends TLObject {
     }
 
     @Override
-    @SuppressWarnings("unchecked")
+    @SuppressWarnings({"unchecked", "SimplifiableConditionalExpression"})
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
         userId = readInt(stream);
         status = readTLObject(stream, context, TLAbsUserStatus.class, -1);

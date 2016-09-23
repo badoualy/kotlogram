@@ -99,7 +99,7 @@ public class TLChat extends TLAbsChat {
     }
 
     @Override
-    @SuppressWarnings("unchecked")
+    @SuppressWarnings({"unchecked", "SimplifiableConditionalExpression"})
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
         flags = readInt(stream);
         creator = (flags & 1) != 0;

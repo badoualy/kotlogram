@@ -39,7 +39,7 @@ public class TLRequestChannelsExportMessageLink extends TLMethod<TLExportedMessa
     }
 
     @Override
-    @SuppressWarnings("unchecked")
+    @SuppressWarnings({"unchecked", "SimplifiableConditionalExpression"})
     public TLExportedMessageLink deserializeResponse(InputStream stream, TLContext context) throws IOException {
         final TLObject response = readTLObject(stream, context);
         if (response == null) {
@@ -58,7 +58,7 @@ public class TLRequestChannelsExportMessageLink extends TLMethod<TLExportedMessa
     }
 
     @Override
-    @SuppressWarnings("unchecked")
+    @SuppressWarnings({"unchecked", "SimplifiableConditionalExpression"})
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
         channel = readTLObject(stream, context, TLAbsInputChannel.class, -1);
         id = readInt(stream);

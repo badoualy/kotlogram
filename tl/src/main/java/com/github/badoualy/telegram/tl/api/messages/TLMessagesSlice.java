@@ -47,7 +47,7 @@ public class TLMessagesSlice extends TLAbsMessages {
     }
 
     @Override
-    @SuppressWarnings("unchecked")
+    @SuppressWarnings({"unchecked", "SimplifiableConditionalExpression"})
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
         count = readInt(stream);
         messages = readTLVector(stream, context);

@@ -52,7 +52,7 @@ public class TLState extends TLObject {
     }
 
     @Override
-    @SuppressWarnings("unchecked")
+    @SuppressWarnings({"unchecked", "SimplifiableConditionalExpression"})
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
         pts = readInt(stream);
         qts = readInt(stream);

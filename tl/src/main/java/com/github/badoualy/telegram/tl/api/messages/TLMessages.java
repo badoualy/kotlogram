@@ -40,7 +40,7 @@ public class TLMessages extends TLAbsMessages {
     }
 
     @Override
-    @SuppressWarnings("unchecked")
+    @SuppressWarnings({"unchecked", "SimplifiableConditionalExpression"})
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
         messages = readTLVector(stream, context);
         chats = readTLVector(stream, context);

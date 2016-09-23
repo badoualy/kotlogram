@@ -40,7 +40,7 @@ public class TLRequestContactsSearch extends TLMethod<TLFound> {
     }
 
     @Override
-    @SuppressWarnings("unchecked")
+    @SuppressWarnings({"unchecked", "SimplifiableConditionalExpression"})
     public TLFound deserializeResponse(InputStream stream, TLContext context) throws IOException {
         final TLObject response = readTLObject(stream, context);
         if (response == null) {
@@ -59,7 +59,7 @@ public class TLRequestContactsSearch extends TLMethod<TLFound> {
     }
 
     @Override
-    @SuppressWarnings("unchecked")
+    @SuppressWarnings({"unchecked", "SimplifiableConditionalExpression"})
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
         q = readTLString(stream);
         limit = readInt(stream);

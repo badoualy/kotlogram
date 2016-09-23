@@ -44,7 +44,7 @@ public class TLRequestMessagesDeleteHistory extends TLMethod<TLAffectedHistory> 
     }
 
     @Override
-    @SuppressWarnings("unchecked")
+    @SuppressWarnings({"unchecked", "SimplifiableConditionalExpression"})
     public TLAffectedHistory deserializeResponse(InputStream stream, TLContext context) throws IOException {
         final TLObject response = readTLObject(stream, context);
         if (response == null) {
@@ -71,7 +71,7 @@ public class TLRequestMessagesDeleteHistory extends TLMethod<TLAffectedHistory> 
     }
 
     @Override
-    @SuppressWarnings("unchecked")
+    @SuppressWarnings({"unchecked", "SimplifiableConditionalExpression"})
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
         flags = readInt(stream);
         justClear = (flags & 1) != 0;

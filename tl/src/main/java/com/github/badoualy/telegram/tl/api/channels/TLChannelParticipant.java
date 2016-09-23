@@ -44,7 +44,7 @@ public class TLChannelParticipant extends TLObject {
     }
 
     @Override
-    @SuppressWarnings("unchecked")
+    @SuppressWarnings({"unchecked", "SimplifiableConditionalExpression"})
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
         participant = readTLObject(stream, context, TLAbsChannelParticipant.class, -1);
         users = readTLVector(stream, context);

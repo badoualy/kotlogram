@@ -44,7 +44,7 @@ public class TLFoundGifs extends TLObject {
     }
 
     @Override
-    @SuppressWarnings("unchecked")
+    @SuppressWarnings({"unchecked", "SimplifiableConditionalExpression"})
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
         nextOffset = readInt(stream);
         results = readTLVector(stream, context);

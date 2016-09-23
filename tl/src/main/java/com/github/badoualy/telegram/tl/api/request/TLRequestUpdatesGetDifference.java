@@ -40,7 +40,7 @@ public class TLRequestUpdatesGetDifference extends TLMethod<TLAbsDifference> {
     }
 
     @Override
-    @SuppressWarnings("unchecked")
+    @SuppressWarnings({"unchecked", "SimplifiableConditionalExpression"})
     public TLAbsDifference deserializeResponse(InputStream stream, TLContext context) throws IOException {
         final TLObject response = readTLObject(stream, context);
         if (response == null) {
@@ -60,7 +60,7 @@ public class TLRequestUpdatesGetDifference extends TLMethod<TLAbsDifference> {
     }
 
     @Override
-    @SuppressWarnings("unchecked")
+    @SuppressWarnings({"unchecked", "SimplifiableConditionalExpression"})
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
         pts = readInt(stream);
         date = readInt(stream);

@@ -7,14 +7,13 @@
   "post": true,
   "fromId": 0,
   "toId": {
-    "channelId": 0,
-    "_constructor": "peerChannel#bddde532"
+    "userId": 0,
+    "_constructor": "peerUser#9db1bc6d"
   },
   "replyToMsgId": 0,
   "date": 0,
   "action": {
-    "channelId": 0,
-    "_constructor": "messageActionChatMigrateTo#51bdb021"
+    "_constructor": "messageActionPinMessage#94bd38ed"
   },
   "_constructor": "messageService#9e19a1f6",
   "id": 0

@@ -1,7 +1,7 @@
 {
-  "flags": 1,
-  "alert": false,
+  "flags": 3,
+  "alert": true,
   "queryId": 0,
-  "message": "jbVOcYksvsegBBbxpaDf1eB",
+  "message": "EpC1mgz",
   "_constructor": "messages.setBotCallbackAnswer#481c591a"
 }

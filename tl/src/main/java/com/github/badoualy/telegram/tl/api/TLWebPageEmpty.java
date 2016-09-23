@@ -33,7 +33,7 @@ public class TLWebPageEmpty extends TLAbsWebPage {
     }
 
     @Override
-    @SuppressWarnings("unchecked")
+    @SuppressWarnings({"unchecked", "SimplifiableConditionalExpression"})
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
         id = readLong(stream);
     }

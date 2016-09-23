@@ -62,7 +62,7 @@ public class TLDifference extends TLAbsDifference {
     }
 
     @Override
-    @SuppressWarnings("unchecked")
+    @SuppressWarnings({"unchecked", "SimplifiableConditionalExpression"})
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
         newMessages = readTLVector(stream, context);
         newEncryptedMessages = readTLVector(stream, context);

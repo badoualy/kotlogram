@@ -35,7 +35,7 @@ public class TLUpdateStickerSetsOrder extends TLAbsUpdate {
     }
 
     @Override
-    @SuppressWarnings("unchecked")
+    @SuppressWarnings({"unchecked", "SimplifiableConditionalExpression"})
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
         order = readTLLongVector(stream, context);
     }

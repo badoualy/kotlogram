@@ -1,144 +1,33 @@
 {
   "message": {
-    "flags": 45004,
-    "out": false,
-    "mentioned": false,
-    "mediaUnread": false,
-    "silent": true,
+    "flags": 314,
+    "out": true,
+    "mentioned": true,
+    "mediaUnread": true,
+    "silent": false,
     "post": false,
     "fromId": 0,
     "toId": {
       "chatId": 0,
       "_constructor": "peerChat#bad0e5bb"
     },
-    "fwdFrom": {
-      "flags": 7,
-      "fromId": 0,
-      "date": 0,
-      "channelId": 0,
-      "channelPost": 0,
-      "_constructor": "messageFwdHeader#c786ddcb"
-    },
-    "viaBotId": 0,
     "replyToMsgId": 0,
     "date": 0,
-    "message": "LXF1yi",
-    "media": {
-      "document": {
-        "accessHash": 0,
-        "date": 0,
-        "mimeType": "61oKCeuui",
-        "size": 0,
-        "thumb": {
-          "location": {
-            "_constructor": "fileLocationUnavailable#7c596b46",
-            "volumeId": 0,
-            "localId": 0,
-            "secret": 0
-          },
-          "w": 0,
-          "h": 0,
-          "size": 0,
-          "_constructor": "photoSize#77bfb61b",
-          "type": "vAI7DuXOtH8R5"
-        },
-        "dcId": 0,
-        "attributes": [
-          {
-            "fileName": "JSOc7TSWK8iG8VIC7uVKMBYA",
-            "_constructor": "documentAttributeFilename#15590068"
-          },
-          {
-            "w": 0,
-            "h": 0,
-            "_constructor": "documentAttributeImageSize#6c37c15c"
-          },
-          {
-            "alt": "KfPJSEb1z",
-            "stickerset": {
-              "id": 0,
-              "accessHash": 0,
-              "_constructor": "inputStickerSetID#9de7a269"
-            },
-            "_constructor": "documentAttributeSticker#3a556302"
-          },
-          {
-            "w": 0,
-            "h": 0,
-            "_constructor": "documentAttributeImageSize#6c37c15c"
-          },
-          {
-            "w": 0,
-            "h": 0,
-            "_constructor": "documentAttributeImageSize#6c37c15c"
-          },
-          {
-            "w": 0,
-            "h": 0,
-            "_constructor": "documentAttributeImageSize#6c37c15c"
-          },
-          {
-            "w": 0,
-            "h": 0,
-            "_constructor": "documentAttributeImageSize#6c37c15c"
-          },
-          {
-            "w": 0,
-            "h": 0,
-            "_constructor": "documentAttributeImageSize#6c37c15c"
-          },
-          {
-            "duration": 0,
-            "w": 0,
-            "h": 0,
-            "_constructor": "documentAttributeVideo#5910cccb"
-          },
-          {
-            "alt": "haaucCv7X5DnpTIq2Wsh",
-            "stickerset": {
-              "_constructor": "inputStickerSetEmpty#ffb62b95"
-            },
-            "_constructor": "documentAttributeSticker#3a556302"
-          },
-          {
-            "w": 0,
-            "h": 0,
-            "_constructor": "documentAttributeImageSize#6c37c15c"
-          }
-        ],
-        "_constructor": "document#f9a39f4f",
-        "id": 0
-      },
-      "caption": "W6yVH4ZyKsOHK8dS5Gb7MAlUp",
-      "_constructor": "messageMediaDocument#f3e02ea8"
+    "action": {
+      "users": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "_constructor": "messageActionChatAddUser#488a7337"
     },
-    "replyMarkup": {
-      "flags": 0,
-      "selective": false,
-      "_constructor": "replyKeyboardHide#a03e5b85"
-    },
-    "entities": [
-      {
-        "language": "d4H1I4cuYFIgP0v3q2mQpd99xkIv",
-        "_constructor": "messageEntityPre#73924be0",
-        "offset": 0,
-        "length": 0
-      },
-      {
-        "url": "J6y323yZ7v",
-        "_constructor": "messageEntityTextUrl#76a6d327",
-        "offset": 0,
-        "length": 0
-      },
-      {
-        "_constructor": "messageEntityCode#28a20571",
-        "offset": 0,
-        "length": 0
-      }
-    ],
-    "views": 0,
-    "editDate": 0,
-    "_constructor": "message#c09be45f",
+    "_constructor": "messageService#9e19a1f6",
     "id": 0
   },
   "pts": 0,

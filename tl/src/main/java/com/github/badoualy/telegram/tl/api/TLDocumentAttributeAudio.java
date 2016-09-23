@@ -79,7 +79,7 @@ public class TLDocumentAttributeAudio extends TLAbsDocumentAttribute {
     }
 
     @Override
-    @SuppressWarnings("unchecked")
+    @SuppressWarnings({"unchecked", "SimplifiableConditionalExpression"})
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
         flags = readInt(stream);
         voice = (flags & 1024) != 0;

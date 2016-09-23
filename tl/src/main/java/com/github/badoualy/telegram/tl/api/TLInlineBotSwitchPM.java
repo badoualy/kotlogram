@@ -40,7 +40,7 @@ public class TLInlineBotSwitchPM extends TLObject {
     }
 
     @Override
-    @SuppressWarnings("unchecked")
+    @SuppressWarnings({"unchecked", "SimplifiableConditionalExpression"})
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
         text = readTLString(stream);
         startParam = readTLString(stream);

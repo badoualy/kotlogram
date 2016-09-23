@@ -33,7 +33,7 @@ public class TLDocumentEmpty extends TLAbsDocument {
     }
 
     @Override
-    @SuppressWarnings("unchecked")
+    @SuppressWarnings({"unchecked", "SimplifiableConditionalExpression"})
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
         id = readLong(stream);
     }

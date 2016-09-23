@@ -34,7 +34,7 @@ public class TLRequestPhotosDeletePhotos extends TLMethod<TLLongVector> {
     }
 
     @Override
-    @SuppressWarnings("unchecked")
+    @SuppressWarnings({"unchecked", "SimplifiableConditionalExpression"})
     public TLLongVector deserializeResponse(InputStream stream, TLContext context) throws IOException {
         return readTLLongVector(stream, context);
     }
@@ -45,7 +45,7 @@ public class TLRequestPhotosDeletePhotos extends TLMethod<TLLongVector> {
     }
 
     @Override
-    @SuppressWarnings("unchecked")
+    @SuppressWarnings({"unchecked", "SimplifiableConditionalExpression"})
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
         id = readTLVector(stream, context);
     }

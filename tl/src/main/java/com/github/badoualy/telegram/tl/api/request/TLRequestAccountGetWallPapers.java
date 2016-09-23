@@ -23,7 +23,7 @@ public class TLRequestAccountGetWallPapers extends TLMethod<TLVector<TLAbsWallPa
     }
 
     @Override
-    @SuppressWarnings("unchecked")
+    @SuppressWarnings({"unchecked", "SimplifiableConditionalExpression"})
     public TLVector<TLAbsWallPaper> deserializeResponse(InputStream stream, TLContext context) throws IOException {
         return readTLVector(stream, context);
     }

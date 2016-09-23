@@ -42,7 +42,7 @@ public class TLUpdateUserBlocked extends TLAbsUpdate {
     }
 
     @Override
-    @SuppressWarnings("unchecked")
+    @SuppressWarnings({"unchecked", "SimplifiableConditionalExpression"})
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
         userId = readInt(stream);
         blocked = readTLBool(stream);

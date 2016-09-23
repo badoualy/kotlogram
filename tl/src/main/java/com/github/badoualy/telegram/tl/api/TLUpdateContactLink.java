@@ -45,7 +45,7 @@ public class TLUpdateContactLink extends TLAbsUpdate {
     }
 
     @Override
-    @SuppressWarnings("unchecked")
+    @SuppressWarnings({"unchecked", "SimplifiableConditionalExpression"})
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
         userId = readInt(stream);
         myLink = readTLObject(stream, context, TLAbsContactLink.class, -1);

@@ -47,7 +47,7 @@ public class TLRequestPhotosUploadProfilePhoto extends TLMethod<TLPhoto> {
     }
 
     @Override
-    @SuppressWarnings("unchecked")
+    @SuppressWarnings({"unchecked", "SimplifiableConditionalExpression"})
     public TLPhoto deserializeResponse(InputStream stream, TLContext context) throws IOException {
         final TLObject response = readTLObject(stream, context);
         if (response == null) {
@@ -68,7 +68,7 @@ public class TLRequestPhotosUploadProfilePhoto extends TLMethod<TLPhoto> {
     }
 
     @Override
-    @SuppressWarnings("unchecked")
+    @SuppressWarnings({"unchecked", "SimplifiableConditionalExpression"})
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
         file = readTLObject(stream, context, TLAbsInputFile.class, -1);
         caption = readTLString(stream);

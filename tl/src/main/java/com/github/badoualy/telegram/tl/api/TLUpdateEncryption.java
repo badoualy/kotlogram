@@ -41,7 +41,7 @@ public class TLUpdateEncryption extends TLAbsUpdate {
     }
 
     @Override
-    @SuppressWarnings("unchecked")
+    @SuppressWarnings({"unchecked", "SimplifiableConditionalExpression"})
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
         chat = readTLObject(stream, context, TLAbsEncryptedChat.class, -1);
         date = readInt(stream);

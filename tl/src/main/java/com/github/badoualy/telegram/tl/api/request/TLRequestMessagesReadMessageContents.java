@@ -34,7 +34,7 @@ public class TLRequestMessagesReadMessageContents extends TLMethod<TLAffectedMes
     }
 
     @Override
-    @SuppressWarnings("unchecked")
+    @SuppressWarnings({"unchecked", "SimplifiableConditionalExpression"})
     public TLAffectedMessages deserializeResponse(InputStream stream, TLContext context) throws IOException {
         final TLObject response = readTLObject(stream, context);
         if (response == null) {
@@ -52,7 +52,7 @@ public class TLRequestMessagesReadMessageContents extends TLMethod<TLAffectedMes
     }
 
     @Override
-    @SuppressWarnings("unchecked")
+    @SuppressWarnings({"unchecked", "SimplifiableConditionalExpression"})
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
         id = readTLIntVector(stream, context);
     }

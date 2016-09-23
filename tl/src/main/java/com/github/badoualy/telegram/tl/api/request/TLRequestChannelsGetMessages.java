@@ -39,7 +39,7 @@ public class TLRequestChannelsGetMessages extends TLMethod<TLAbsMessages> {
     }
 
     @Override
-    @SuppressWarnings("unchecked")
+    @SuppressWarnings({"unchecked", "SimplifiableConditionalExpression"})
     public TLAbsMessages deserializeResponse(InputStream stream, TLContext context) throws IOException {
         final TLObject response = readTLObject(stream, context);
         if (response == null) {
@@ -58,7 +58,7 @@ public class TLRequestChannelsGetMessages extends TLMethod<TLAbsMessages> {
     }
 
     @Override
-    @SuppressWarnings("unchecked")
+    @SuppressWarnings({"unchecked", "SimplifiableConditionalExpression"})
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
         channel = readTLObject(stream, context, TLAbsInputChannel.class, -1);
         id = readTLIntVector(stream, context);

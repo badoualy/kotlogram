@@ -44,7 +44,7 @@ public class TLRequestChannelsUpdatePinnedMessage extends TLMethod<TLAbsUpdates>
     }
 
     @Override
-    @SuppressWarnings("unchecked")
+    @SuppressWarnings({"unchecked", "SimplifiableConditionalExpression"})
     public TLAbsUpdates deserializeResponse(InputStream stream, TLContext context) throws IOException {
         final TLObject response = readTLObject(stream, context);
         if (response == null) {
@@ -71,7 +71,7 @@ public class TLRequestChannelsUpdatePinnedMessage extends TLMethod<TLAbsUpdates>
     }
 
     @Override
-    @SuppressWarnings("unchecked")
+    @SuppressWarnings({"unchecked", "SimplifiableConditionalExpression"})
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
         flags = readInt(stream);
         silent = (flags & 1) != 0;

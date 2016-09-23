@@ -2,19 +2,33 @@
   "document": {
     "accessHash": 0,
     "date": 0,
-    "mimeType": "xfDwovvSUYfJ",
+    "mimeType": "Zb1tYyh2kxTT",
     "size": 0,
     "thumb": {
-      "_constructor": "photoSizeEmpty#e17e23c",
-      "type": "VCnAckLfJoV4NGvFRfl"
+      "location": {
+        "dcId": 0,
+        "_constructor": "fileLocation#53d69076",
+        "volumeId": 0,
+        "localId": 0,
+        "secret": 0
+      },
+      "w": 0,
+      "h": 0,
+      "size": 0,
+      "_constructor": "photoSize#77bfb61b",
+      "type": "AkXk0Y8Z5Iqug"
     },
     "dcId": 0,
     "attributes": [
       {
-        "duration": 0,
-        "w": 0,
-        "h": 0,
-        "_constructor": "documentAttributeVideo#5910cccb"
+        "alt": "RTcw1HVKEbh0eaMaNiWKlor9",
+        "stickerset": {
+          "_constructor": "inputStickerSetEmpty#ffb62b95"
+        },
+        "_constructor": "documentAttributeSticker#3a556302"
+      },
+      {
+        "_constructor": "documentAttributeAnimated#11b58939"
       },
       {
         "w": 0,
@@ -22,46 +36,13 @@
         "_constructor": "documentAttributeImageSize#6c37c15c"
       },
       {
-        "flags": 7,
-        "voice": false,
+        "flags": 1031,
+        "voice": true,
         "duration": 0,
-        "title": "Jz5rmoeMTNbpT4O4",
-        "performer": "MgTph1022O68T7Jan",
+        "title": "H3a1A1BijLPb8tL4QUwsvheS0lK",
+        "performer": "s6la3ezFURYpB7Ec6EjVCfXQXx",
         "waveform": {
           "data": [
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
             0,
             0,
             0,
@@ -212,14 +193,18 @@
             0
           ],
           "offset": 0,
-          "len": 181
+          "len": 148
         },
         "_constructor": "documentAttributeAudio#9852f9c6"
+      },
+      {
+        "fileName": "azQZqilyJapM5wlwCJHB0NTMn",
+        "_constructor": "documentAttributeFilename#15590068"
       }
     ],
     "_constructor": "document#f9a39f4f",
     "id": 0
   },
-  "caption": "YiHtBwuT0",
+  "caption": "FAZ4NMi51UjtznJq",
   "_constructor": "messageMediaDocument#f3e02ea8"
 }

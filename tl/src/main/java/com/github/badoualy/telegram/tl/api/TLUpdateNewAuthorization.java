@@ -53,7 +53,7 @@ public class TLUpdateNewAuthorization extends TLAbsUpdate {
     }
 
     @Override
-    @SuppressWarnings("unchecked")
+    @SuppressWarnings({"unchecked", "SimplifiableConditionalExpression"})
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
         authKeyId = readLong(stream);
         date = readInt(stream);

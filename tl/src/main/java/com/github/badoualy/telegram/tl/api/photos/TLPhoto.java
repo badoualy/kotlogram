@@ -44,7 +44,7 @@ public class TLPhoto extends TLObject {
     }
 
     @Override
-    @SuppressWarnings("unchecked")
+    @SuppressWarnings({"unchecked", "SimplifiableConditionalExpression"})
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
         photo = readTLObject(stream, context, TLAbsPhoto.class, -1);
         users = readTLVector(stream, context);

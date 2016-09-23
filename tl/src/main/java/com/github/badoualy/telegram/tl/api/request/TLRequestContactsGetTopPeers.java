@@ -57,7 +57,7 @@ public class TLRequestContactsGetTopPeers extends TLMethod<TLAbsTopPeers> {
     }
 
     @Override
-    @SuppressWarnings("unchecked")
+    @SuppressWarnings({"unchecked", "SimplifiableConditionalExpression"})
     public TLAbsTopPeers deserializeResponse(InputStream stream, TLContext context) throws IOException {
         final TLObject response = readTLObject(stream, context);
         if (response == null) {
@@ -89,7 +89,7 @@ public class TLRequestContactsGetTopPeers extends TLMethod<TLAbsTopPeers> {
     }
 
     @Override
-    @SuppressWarnings("unchecked")
+    @SuppressWarnings({"unchecked", "SimplifiableConditionalExpression"})
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
         flags = readInt(stream);
         correspondents = (flags & 1) != 0;

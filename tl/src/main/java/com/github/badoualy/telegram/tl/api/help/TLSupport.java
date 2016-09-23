@@ -43,7 +43,7 @@ public class TLSupport extends TLObject {
     }
 
     @Override
-    @SuppressWarnings("unchecked")
+    @SuppressWarnings({"unchecked", "SimplifiableConditionalExpression"})
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
         phoneNumber = readTLString(stream);
         user = readTLObject(stream, context, TLAbsUser.class, -1);

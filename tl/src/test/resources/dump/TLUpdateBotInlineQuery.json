@@ -2,12 +2,12 @@
   "flags": 1,
   "queryId": 0,
   "userId": 0,
-  "query": "QxyoRVOhYLItXY9o13",
+  "query": "D1cSRRx5hnmswrLUFOB6u",
   "geo": {
     "_long": 0.0,
     "lat": 0.0,
     "_constructor": "geoPoint#2049d70c"
   },
-  "offset": "tKEc6OlHFutB0m",
+  "offset": "E4aVn22pq",
   "_constructor": "updateBotInlineQuery#54826690"
 }

@@ -44,7 +44,7 @@ public class TLExportedAuthorization extends TLObject {
     }
 
     @Override
-    @SuppressWarnings("unchecked")
+    @SuppressWarnings({"unchecked", "SimplifiableConditionalExpression"})
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
         id = readInt(stream);
         bytes = readTLBytes(stream, context);

@@ -45,21 +45,21 @@ class TLTypeConditional(val value: Int, val realType: TLType) : TLType() {
     fun pow2Value() = Math.pow(2.toDouble(), value.toDouble()).toInt()
 
     override fun serializable() = !(realType is TLTypeRaw && realType.name.equals("true", true))
-    override fun toString() = "flag.$value?${realType.toString()}"
+    override fun toString() = "flag.$value?$realType"
     override fun equals(other: Any?) = other is TLTypeConditional && other.value == value && other.realType == realType
     override fun hashCode() = toString().hashCode()
 }
 
 // 1 Constructor = 1 class = 1 type
 class TLConstructor(val name: String, val id: Int, val parameters: ArrayList<TLParameter>, val tlType: TLTypeRaw) : Comparable<TLConstructor> {
-    override fun toString() = "$name#${hex(id)} -> ${tlType.toString()}"
+    override fun toString() = "$name#${hex(id)} -> $tlType"
     override fun compareTo(other: TLConstructor) = name.compareTo(other.name)
     override fun equals(other: Any?) = other is TLConstructor && other.name == name && other.id == id
     override fun hashCode() = toString().hashCode()
 }
 
 class TLAbstractConstructor(val name: String, val parameters: List<TLParameter>, val tlType: TLTypeRaw, val abstractEmptyConstructor: Boolean) : Comparable<TLAbstractConstructor> {
-    override fun toString() = "$name -> ${tlType.toString()}"
+    override fun toString() = "$name -> $tlType"
     override fun compareTo(other: TLAbstractConstructor) = name.compareTo(other.name)
     override fun equals(other: Any?) = other is TLConstructor && other.name == name
     override fun hashCode() = toString().hashCode()

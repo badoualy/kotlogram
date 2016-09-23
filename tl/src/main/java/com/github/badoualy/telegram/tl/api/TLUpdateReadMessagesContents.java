@@ -46,7 +46,7 @@ public class TLUpdateReadMessagesContents extends TLAbsUpdate {
     }
 
     @Override
-    @SuppressWarnings("unchecked")
+    @SuppressWarnings({"unchecked", "SimplifiableConditionalExpression"})
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
         messages = readTLIntVector(stream, context);
         pts = readInt(stream);

@@ -37,7 +37,7 @@ public class TLKeyboardButtonSwitchInline extends TLAbsKeyboardButton {
     }
 
     @Override
-    @SuppressWarnings("unchecked")
+    @SuppressWarnings({"unchecked", "SimplifiableConditionalExpression"})
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
         text = readTLString(stream);
         query = readTLString(stream);

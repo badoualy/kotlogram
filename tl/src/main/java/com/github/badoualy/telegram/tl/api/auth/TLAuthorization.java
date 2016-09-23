@@ -36,7 +36,7 @@ public class TLAuthorization extends TLObject {
     }
 
     @Override
-    @SuppressWarnings("unchecked")
+    @SuppressWarnings({"unchecked", "SimplifiableConditionalExpression"})
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
         user = readTLObject(stream, context, TLAbsUser.class, -1);
     }

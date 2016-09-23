@@ -43,7 +43,7 @@ public class TLRequestMessagesGetMessagesViews extends TLMethod<TLIntVector> {
     }
 
     @Override
-    @SuppressWarnings("unchecked")
+    @SuppressWarnings({"unchecked", "SimplifiableConditionalExpression"})
     public TLIntVector deserializeResponse(InputStream stream, TLContext context) throws IOException {
         return readTLIntVector(stream, context);
     }
@@ -56,7 +56,7 @@ public class TLRequestMessagesGetMessagesViews extends TLMethod<TLIntVector> {
     }
 
     @Override
-    @SuppressWarnings("unchecked")
+    @SuppressWarnings({"unchecked", "SimplifiableConditionalExpression"})
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
         peer = readTLObject(stream, context, TLAbsInputPeer.class, -1);
         id = readTLIntVector(stream, context);

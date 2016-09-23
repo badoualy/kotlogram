@@ -47,7 +47,7 @@ public class TLInputBotInlineMessageID extends TLObject {
     }
 
     @Override
-    @SuppressWarnings("unchecked")
+    @SuppressWarnings({"unchecked", "SimplifiableConditionalExpression"})
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
         dcId = readInt(stream);
         id = readLong(stream);

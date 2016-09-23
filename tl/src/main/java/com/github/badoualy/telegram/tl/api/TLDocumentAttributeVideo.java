@@ -43,7 +43,7 @@ public class TLDocumentAttributeVideo extends TLAbsDocumentAttribute {
     }
 
     @Override
-    @SuppressWarnings("unchecked")
+    @SuppressWarnings({"unchecked", "SimplifiableConditionalExpression"})
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
         duration = readInt(stream);
         w = readInt(stream);

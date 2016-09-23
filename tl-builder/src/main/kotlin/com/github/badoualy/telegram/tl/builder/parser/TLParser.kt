@@ -79,7 +79,7 @@ private fun createType(typeName: String, types: Map<String, TLTypeRaw>, isParame
         val maskName = groups?.get(1)?.value ?: throw RuntimeException("Unknown error with type $typeName")
         val value = groups?.get(2)?.value?.toInt() ?: throw RuntimeException("Unknown error with type $typeName")
         val realType = groups?.get(3)?.value ?: throw RuntimeException("Unknown error with type $typeName")
-        if (!maskName.equals("flags")) throw RuntimeException("Unsupported flag name, expected `flags`")
+        if (maskName != "flags") throw RuntimeException("Unsupported flag name, expected `flags`")
 
         TLTypeConditional(value, createType(realType, types))
     }

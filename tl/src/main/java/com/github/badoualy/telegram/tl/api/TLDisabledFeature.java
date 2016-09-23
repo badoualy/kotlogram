@@ -40,7 +40,7 @@ public class TLDisabledFeature extends TLObject {
     }
 
     @Override
-    @SuppressWarnings("unchecked")
+    @SuppressWarnings({"unchecked", "SimplifiableConditionalExpression"})
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
         feature = readTLString(stream);
         description = readTLString(stream);

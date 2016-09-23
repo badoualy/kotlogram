@@ -43,7 +43,7 @@ public class TLInputMediaContact extends TLAbsInputMedia {
     }
 
     @Override
-    @SuppressWarnings("unchecked")
+    @SuppressWarnings({"unchecked", "SimplifiableConditionalExpression"})
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
         phoneNumber = readTLString(stream);
         firstName = readTLString(stream);

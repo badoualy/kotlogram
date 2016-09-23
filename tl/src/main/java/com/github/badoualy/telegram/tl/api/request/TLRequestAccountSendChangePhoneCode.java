@@ -34,21 +34,21 @@ public class TLRequestAccountSendChangePhoneCode extends TLMethod<TLSentCode> {
 
     protected String phoneNumber;
 
-    protected Boolean currentNumber;
+    protected boolean currentNumber;
 
     private final String _constructor = "account.sendChangePhoneCode#8e57deb";
 
     public TLRequestAccountSendChangePhoneCode() {
     }
 
-    public TLRequestAccountSendChangePhoneCode(boolean allowFlashcall, String phoneNumber, Boolean currentNumber) {
+    public TLRequestAccountSendChangePhoneCode(boolean allowFlashcall, String phoneNumber, boolean currentNumber) {
         this.allowFlashcall = allowFlashcall;
         this.phoneNumber = phoneNumber;
         this.currentNumber = currentNumber;
     }
 
     @Override
-    @SuppressWarnings("unchecked")
+    @SuppressWarnings({"unchecked", "SimplifiableConditionalExpression"})
     public TLSentCode deserializeResponse(InputStream stream, TLContext context) throws IOException {
         final TLObject response = readTLObject(stream, context);
         if (response == null) {
@@ -62,10 +62,9 @@ public class TLRequestAccountSendChangePhoneCode extends TLMethod<TLSentCode> {
 
     private void computeFlags() {
         flags = 0;
-        flags = currentNumber != null ? (flags | 1) : (flags & ~1);
-        // Fields below are just utils boolean flags, they serve only when deserializing
-        // The flag value at the given bit is computed above by a TLObject
-        allowFlashcall = (flags & 1) != 0;
+        flags = allowFlashcall ? (flags | 1) : (flags & ~1);
+        // If field is not serialized force it to false
+        if (currentNumber && (flags & 1) == 0) currentNumber = false;
     }
 
     @Override
@@ -75,18 +74,17 @@ public class TLRequestAccountSendChangePhoneCode extends TLMethod<TLSentCode> {
         writeInt(flags, stream);
         writeString(phoneNumber, stream);
         if ((flags & 1) != 0) {
-            if (currentNumber == null) throwNullFieldException("currentNumber", flags);
             writeBoolean(currentNumber, stream);
         }
     }
 
     @Override
-    @SuppressWarnings("unchecked")
+    @SuppressWarnings({"unchecked", "SimplifiableConditionalExpression"})
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
         flags = readInt(stream);
         allowFlashcall = (flags & 1) != 0;
         phoneNumber = readTLString(stream);
-        currentNumber = (flags & 1) != 0 ? readTLBool(stream) : null;
+        currentNumber = (flags & 1) != 0 ? readTLBool(stream) : false;
     }
 
     @Override
@@ -97,7 +95,6 @@ public class TLRequestAccountSendChangePhoneCode extends TLMethod<TLSentCode> {
         size += SIZE_INT32;
         size += computeTLStringSerializedSize(phoneNumber);
         if ((flags & 1) != 0) {
-            if (currentNumber == null) throwNullFieldException("currentNumber", flags);
             size += SIZE_BOOLEAN;
         }
         return size;
@@ -129,11 +126,11 @@ public class TLRequestAccountSendChangePhoneCode extends TLMethod<TLSentCode> {
         this.phoneNumber = phoneNumber;
     }
 
-    public Boolean getCurrentNumber() {
+    public boolean getCurrentNumber() {
         return currentNumber;
     }
 
-    public void setCurrentNumber(Boolean currentNumber) {
+    public void setCurrentNumber(boolean currentNumber) {
         this.currentNumber = currentNumber;
     }
 }

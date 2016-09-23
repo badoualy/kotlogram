@@ -41,7 +41,7 @@ public class TLMessageMediaDocument extends TLAbsMessageMedia {
     }
 
     @Override
-    @SuppressWarnings("unchecked")
+    @SuppressWarnings({"unchecked", "SimplifiableConditionalExpression"})
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
         document = readTLObject(stream, context, TLAbsDocument.class, -1);
         caption = readTLString(stream);

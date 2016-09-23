@@ -83,7 +83,7 @@ public class TLDialog extends TLObject {
     }
 
     @Override
-    @SuppressWarnings("unchecked")
+    @SuppressWarnings({"unchecked", "SimplifiableConditionalExpression"})
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
         flags = readInt(stream);
         peer = readTLObject(stream, context, TLAbsPeer.class, -1);

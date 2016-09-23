@@ -39,7 +39,7 @@ public class TLDocumentAttributeImageSize extends TLAbsDocumentAttribute {
     }
 
     @Override
-    @SuppressWarnings("unchecked")
+    @SuppressWarnings({"unchecked", "SimplifiableConditionalExpression"})
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
         w = readInt(stream);
         h = readInt(stream);

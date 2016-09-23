@@ -61,7 +61,7 @@ public class TLBotInlineMessageMediaContact extends TLAbsBotInlineMessage {
     }
 
     @Override
-    @SuppressWarnings("unchecked")
+    @SuppressWarnings({"unchecked", "SimplifiableConditionalExpression"})
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
         flags = readInt(stream);
         phoneNumber = readTLString(stream);

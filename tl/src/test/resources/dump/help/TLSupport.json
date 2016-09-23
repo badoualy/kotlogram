@@ -1,32 +1,32 @@
 {
-  "phoneNumber": "LBQBh1i2bR",
+  "phoneNumber": "M5Ee4teBzc9JXEgrul",
   "user": {
-    "flags": 2081919,
+    "flags": 973951,
     "self": true,
-    "contact": false,
-    "mutualContact": false,
+    "contact": true,
+    "mutualContact": true,
     "deleted": false,
     "bot": true,
     "botChatHistory": true,
-    "botNochats": true,
+    "botNochats": false,
     "verified": true,
     "restricted": true,
-    "min": true,
+    "min": false,
     "botInlineGeo": false,
     "accessHash": 0,
-    "firstName": "dFI7VLtcHLt68y4EZBS9h",
-    "lastName": "fhtkec94H9V2NO5JNR7RupZG069",
-    "username": "Q14hUQx",
-    "phone": "xuwKJ3a0mlhRxxWqjfhnHL5ynTSyB",
+    "firstName": "TniChEBWdal0qlnX94qorPhj",
+    "lastName": "Jt4reFwcC",
+    "username": "HRCwS4eeVGQO",
+    "phone": "EOdE2LXqaTmvQXSWe",
     "photo": {
       "_constructor": "userProfilePhotoEmpty#4f11bae1"
     },
     "status": {
-      "_constructor": "userStatusLastMonth#77ebc742"
+      "_constructor": "userStatusRecently#e26f42f1"
     },
     "botInfoVersion": 0,
-    "restrictionReason": "AjXWImAuEGNvRpxYMCrN03k2",
-    "botInlinePlaceholder": "ILGLrxyAVYDb",
+    "restrictionReason": "O9dxD",
+    "botInlinePlaceholder": "A1lvC5y9zpOegjM1cK",
     "_constructor": "user#d10d979a",
     "id": 0
   },

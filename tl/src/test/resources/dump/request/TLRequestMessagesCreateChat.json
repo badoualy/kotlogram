@@ -1,7 +1,10 @@
 {
   "users": [
     {
-      "_constructor": "inputUserEmpty#b98886cf"
+      "_constructor": "inputUserSelf#f7c1b13f"
+    },
+    {
+      "_constructor": "inputUserSelf#f7c1b13f"
     },
     {
       "userId": 0,
@@ -10,8 +13,14 @@
     },
     {
       "_constructor": "inputUserEmpty#b98886cf"
+    },
+    {
+      "_constructor": "inputUserSelf#f7c1b13f"
+    },
+    {
+      "_constructor": "inputUserSelf#f7c1b13f"
     }
   ],
-  "title": "rEfBw",
+  "title": "UK8kEDB",
   "_constructor": "messages.createChat#9cb126e"
 }

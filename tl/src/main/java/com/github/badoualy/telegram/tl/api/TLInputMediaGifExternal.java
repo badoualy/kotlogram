@@ -39,7 +39,7 @@ public class TLInputMediaGifExternal extends TLAbsInputMedia {
     }
 
     @Override
-    @SuppressWarnings("unchecked")
+    @SuppressWarnings({"unchecked", "SimplifiableConditionalExpression"})
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
         url = readTLString(stream);
         q = readTLString(stream);

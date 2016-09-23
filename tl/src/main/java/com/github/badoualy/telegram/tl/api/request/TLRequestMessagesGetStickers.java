@@ -37,7 +37,7 @@ public class TLRequestMessagesGetStickers extends TLMethod<TLAbsStickers> {
     }
 
     @Override
-    @SuppressWarnings("unchecked")
+    @SuppressWarnings({"unchecked", "SimplifiableConditionalExpression"})
     public TLAbsStickers deserializeResponse(InputStream stream, TLContext context) throws IOException {
         final TLObject response = readTLObject(stream, context);
         if (response == null) {
@@ -56,7 +56,7 @@ public class TLRequestMessagesGetStickers extends TLMethod<TLAbsStickers> {
     }
 
     @Override
-    @SuppressWarnings("unchecked")
+    @SuppressWarnings({"unchecked", "SimplifiableConditionalExpression"})
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
         emoticon = readTLString(stream);
         hash = readTLString(stream);

@@ -53,7 +53,7 @@ public class TLInputBotInlineMessageMediaAuto extends TLAbsInputBotInlineMessage
     }
 
     @Override
-    @SuppressWarnings("unchecked")
+    @SuppressWarnings({"unchecked", "SimplifiableConditionalExpression"})
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
         flags = readInt(stream);
         caption = readTLString(stream);

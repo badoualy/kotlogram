@@ -37,7 +37,7 @@ public class TLRequestChannelsDeleteUserHistory extends TLMethod<TLAffectedHisto
     }
 
     @Override
-    @SuppressWarnings("unchecked")
+    @SuppressWarnings({"unchecked", "SimplifiableConditionalExpression"})
     public TLAffectedHistory deserializeResponse(InputStream stream, TLContext context) throws IOException {
         final TLObject response = readTLObject(stream, context);
         if (response == null) {
@@ -56,7 +56,7 @@ public class TLRequestChannelsDeleteUserHistory extends TLMethod<TLAffectedHisto
     }
 
     @Override
-    @SuppressWarnings("unchecked")
+    @SuppressWarnings({"unchecked", "SimplifiableConditionalExpression"})
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
         channel = readTLObject(stream, context, TLAbsInputChannel.class, -1);
         userId = readTLObject(stream, context, TLAbsInputUser.class, -1);

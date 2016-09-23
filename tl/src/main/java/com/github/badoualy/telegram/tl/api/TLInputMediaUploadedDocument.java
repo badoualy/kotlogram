@@ -52,7 +52,7 @@ public class TLInputMediaUploadedDocument extends TLAbsInputMedia {
     }
 
     @Override
-    @SuppressWarnings("unchecked")
+    @SuppressWarnings({"unchecked", "SimplifiableConditionalExpression"})
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
         file = readTLObject(stream, context, TLAbsInputFile.class, -1);
         mimeType = readTLString(stream);

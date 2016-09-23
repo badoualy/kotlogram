@@ -41,7 +41,7 @@ public class TLContacts extends TLAbsContacts {
     }
 
     @Override
-    @SuppressWarnings("unchecked")
+    @SuppressWarnings({"unchecked", "SimplifiableConditionalExpression"})
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
         contacts = readTLVector(stream, context);
         users = readTLVector(stream, context);

@@ -1,6 +1,8 @@
 {
   "peer": {
-    "_constructor": "inputPeerSelf#7da07ec9"
+    "channelId": 0,
+    "accessHash": 0,
+    "_constructor": "inputPeerChannel#20adaef8"
   },
   "id": [
     0,
@@ -11,10 +13,8 @@
     0,
     0,
     0,
-    0,
-    0,
     0
   ],
-  "increment": true,
+  "increment": false,
   "_constructor": "messages.getMessagesViews#c4c8a55d"
 }

@@ -60,7 +60,7 @@ public class TLUpdateBotCallbackQuery extends TLAbsUpdate {
     }
 
     @Override
-    @SuppressWarnings("unchecked")
+    @SuppressWarnings({"unchecked", "SimplifiableConditionalExpression"})
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
         queryId = readLong(stream);
         userId = readInt(stream);

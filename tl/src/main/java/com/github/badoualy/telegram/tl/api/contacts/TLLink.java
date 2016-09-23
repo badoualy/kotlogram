@@ -45,7 +45,7 @@ public class TLLink extends TLObject {
     }
 
     @Override
-    @SuppressWarnings("unchecked")
+    @SuppressWarnings({"unchecked", "SimplifiableConditionalExpression"})
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
         myLink = readTLObject(stream, context, TLAbsContactLink.class, -1);
         foreignLink = readTLObject(stream, context, TLAbsContactLink.class, -1);

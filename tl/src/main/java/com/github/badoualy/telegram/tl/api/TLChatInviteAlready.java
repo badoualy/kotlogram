@@ -34,7 +34,7 @@ public class TLChatInviteAlready extends TLAbsChatInvite {
     }
 
     @Override
-    @SuppressWarnings("unchecked")
+    @SuppressWarnings({"unchecked", "SimplifiableConditionalExpression"})
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
         chat = readTLObject(stream, context, TLAbsChat.class, -1);
     }

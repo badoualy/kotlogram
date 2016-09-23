@@ -71,7 +71,7 @@ public class TLChannelDifference extends TLAbsChannelDifference {
     }
 
     @Override
-    @SuppressWarnings("unchecked")
+    @SuppressWarnings({"unchecked", "SimplifiableConditionalExpression"})
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
         flags = readInt(stream);
         _final = (flags & 1) != 0;

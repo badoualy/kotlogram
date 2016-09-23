@@ -1,11 +1,11 @@
 {
-  "flags": 7,
-  "phoneRegistered": true,
+  "flags": 6,
+  "phoneRegistered": false,
   "type": {
     "length": 0,
-    "_constructor": "auth.sentCodeTypeCall#5353e5a7"
+    "_constructor": "auth.sentCodeTypeApp#3dbb5986"
   },
-  "phoneCodeHash": "B2QLGamfWKPPjbMw",
+  "phoneCodeHash": "AHIh9QHOiBnAT74322amFI",
   "nextType": {
     "_constructor": "auth.codeTypeFlashCall#226ccefb"
   },

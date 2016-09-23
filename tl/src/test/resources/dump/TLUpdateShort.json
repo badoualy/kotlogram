@@ -1,8 +1,11 @@
 {
   "update": {
+    "chatId": 0,
     "userId": 0,
-    "phone": "3IL3fa5ArshgMJJIFzFizCVnjdd",
-    "_constructor": "updateUserPhone#12b9417b"
+    "inviterId": 0,
+    "date": 0,
+    "version": 0,
+    "_constructor": "updateChatParticipantAdd#ea4b0e5c"
   },
   "date": 0,
   "_constructor": "updateShort#78d4dec1"

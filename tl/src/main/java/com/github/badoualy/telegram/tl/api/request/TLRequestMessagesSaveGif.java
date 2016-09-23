@@ -39,7 +39,7 @@ public class TLRequestMessagesSaveGif extends TLMethod<TLBool> {
     }
 
     @Override
-    @SuppressWarnings("unchecked")
+    @SuppressWarnings({"unchecked", "SimplifiableConditionalExpression"})
     public TLBool deserializeResponse(InputStream stream, TLContext context) throws IOException {
         final TLObject response = readTLObject(stream, context);
         if (response == null) {
@@ -58,7 +58,7 @@ public class TLRequestMessagesSaveGif extends TLMethod<TLBool> {
     }
 
     @Override
-    @SuppressWarnings("unchecked")
+    @SuppressWarnings({"unchecked", "SimplifiableConditionalExpression"})
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
         id = readTLObject(stream, context, TLAbsInputDocument.class, -1);
         unsave = readTLBool(stream);

@@ -3,7 +3,6 @@ package com.github.badoualy.telegram.tl.builder.poet
 import com.github.badoualy.telegram.tl.builder.*
 import com.github.badoualy.telegram.tl.builder.parser.*
 import com.squareup.javapoet.*
-import java.io.File
 import java.io.IOException
 import java.io.InputStream
 import java.io.OutputStream
@@ -307,7 +306,7 @@ object JavaPoet {
         val deserializeResponseMethod = MethodSpec.methodBuilder("deserializeResponse")
                 .addModifiers(Modifier.PUBLIC)
                 .addAnnotation(Override::class.java)
-                .addAnnotation(AnnotationSpec.builder(SuppressWarnings::class.java).addMember("value", "\"unchecked\"").build())
+                .addAnnotation(AnnotationSpec.builder(SuppressWarnings::class.java).addMember("value", """{"unchecked", "SimplifiableConditionalExpression"}""").build())
                 .addParameter(InputStream::class.java, "stream")
                 .addParameter(TYPE_TL_CONTEXT, "context")
                 .addException(IOException::class.java)
@@ -386,7 +385,7 @@ object JavaPoet {
         val deserializeMethod = MethodSpec.methodBuilder("deserializeBody")
                 .addModifiers(Modifier.PUBLIC)
                 .addAnnotation(Override::class.java)
-                .addAnnotation(AnnotationSpec.builder(SuppressWarnings::class.java).addMember("value", "\"unchecked\"").build())
+                .addAnnotation(AnnotationSpec.builder(SuppressWarnings::class.java).addMember("value", """{"unchecked", "SimplifiableConditionalExpression"}""").build())
                 .addException(IOException::class.java)
                 .addParameter(InputStream::class.java, "stream")
                 .addParameter(TYPE_TL_CONTEXT, "context")
@@ -417,8 +416,7 @@ object JavaPoet {
             val computeFlagsMethod = MethodSpec.methodBuilder("computeFlags")
                     .addModifiers(Modifier.PRIVATE)
 
-            // List of parameters that are just "boolean utils" => the flag value is defined by an object
-            val condUtilsBooleans = ArrayList<TLParameter>()
+            val condBoolean = ArrayList<TLParameter>()
 
             computeFlagsMethod.addStatement("flags = 0")
             for (parameter in condParameters) {
@@ -427,35 +425,29 @@ object JavaPoet {
                 val fieldName = parameter.name.lCamelCase().javaEscape()
 
                 if (realType is TLTypeRaw && arrayOf("true", "false").contains(realType.name)) {
-                    if (condParameters.any { it != parameter && (it.tlType as TLTypeConditional).value == tlType.value }) {
-                        condUtilsBooleans.add(parameter)
-                        continue
-                    }
                     computeFlagsMethod.addStatement("flags = $fieldName ? (flags | ${tlType.pow2Value()}) : (flags & ~${tlType.pow2Value()})")
+                    if (condParameters.any {
+                        (it != parameter
+                                && !((it.tlType as TLTypeConditional).realType is TLTypeRaw && (it.tlType.realType as TLTypeRaw).name == "Bool")
+                                && (it.tlType as TLTypeConditional).value == tlType.value)
+                    })
+                        condBoolean.add(parameter)
                 } else {
-                    computeFlagsMethod.addStatement("flags = $fieldName != null ? (flags | ${tlType.pow2Value()}) : (flags & ~${tlType.pow2Value()})")
+                    if (realType is TLTypeRaw && realType.name == "Bool" && condParameters.any { it != parameter && (it.tlType as TLTypeConditional).value == tlType.value }) {
+                        computeFlagsMethod.addCode("// If field is not serialized force it to false\n")
+                        computeFlagsMethod.addStatement("if ($fieldName && (flags & ${tlType.pow2Value()}) == 0) $fieldName = false")
+                    } else {
+                        computeFlagsMethod.addStatement("flags = $fieldName != null ? (flags | ${tlType.pow2Value()}) : (flags & ~${tlType.pow2Value()})")
+                    }
                 }
             }
 
-            if (condUtilsBooleans.isNotEmpty()) {
-                computeFlagsMethod.addCode("// Fields below are just utils boolean flags, they serve only when deserializing\n")
-                computeFlagsMethod.addCode("// The flag value at the given bit is computed above by a TLObject\n")
-                for (parameter in condUtilsBooleans) {
-                    val tlType = parameter.tlType as TLTypeConditional
-                    val fieldName = parameter.name.lCamelCase().javaEscape()
-                    computeFlagsMethod.addStatement("$fieldName = " + "(flags & ${tlType.pow2Value()}) != 0")
+            if (condBoolean.isNotEmpty()) {
+                computeFlagsMethod.addCode("\n// Following parameters might be forced to true by another field that updated the flags\n")
+                for (parameter in condBoolean) {
+                    computeFlagsMethod.addStatement("" + parameter.name.lCamelCase().javaEscape() + " = (flags & ${(parameter.tlType as TLTypeConditional).pow2Value()}) != 0")
                 }
             }
-
-//            computeFlagsMethod.addCode("// Fields below may not be serialized due to flags field value\n")
-//            for (parameter in condParameters) {
-//                val tlType = parameter.tlType as TLTypeConditional
-//                val realType = tlType.realType
-//                val fieldName = parameter.name.lCamelCase().javaEscape()
-//
-//                if (!(realType is TLTypeRaw && arrayOf("true", "false").contains(realType.name)))
-//                    computeFlagsMethod.addStatement("if ((flags & ${tlType.pow2Value()}) == 0) $fieldName = null")
-//            }
 
             clazz.addMethod(computeFlagsMethod.build())
 
@@ -571,7 +563,7 @@ object JavaPoet {
         is TLTypeFlag -> TypeName.INT
         is TLTypeConditional -> {
             val realTlType = getType(type.realType)
-            if (type.realType !is TLTypeRaw || !arrayOf("true", "false").contains(type.realType.name))
+            if (type.realType !is TLTypeRaw || !arrayOf("true", "false", "Bool").contains(type.realType.name))
                 realTlType.box()
             else realTlType
         }
@@ -605,9 +597,12 @@ object JavaPoet {
         is TLTypeConditional -> {
             val statement = StringBuilder()
             statement.append("if ((flags & ${fieldTlType.pow2Value()}) != 0) {\n")
-                    .append("""    if ($fieldName == null) throwNullFieldException("$fieldName", flags);""").append('\n')
                     .append("    ")
-                    .append(serializeParameter(fieldName, fieldTlType.realType)).append('\n')
+            if (fieldTlType.realType !is TLTypeRaw || fieldTlType.realType.name != "Bool") {
+                statement.append("""if ($fieldName == null) throwNullFieldException("$fieldName", flags);""").append('\n')
+                        .append("    ")
+            }
+            statement.append(serializeParameter(fieldName, fieldTlType.realType)).append('\n')
                     .append('}')
             statement.toString()
         }
@@ -632,8 +627,9 @@ object JavaPoet {
         is TLTypeConditional -> {
             val prefix = "(flags & ${fieldTlType.pow2Value()}) != 0"
             val realType = fieldTlType.realType
+            val suffix = if (realType is TLTypeRaw && "Bool" == realType.name) "false" else "null"
             if (realType is TLTypeRaw && arrayOf("true", "false").contains(realType.name)) prefix
-            else "$prefix ? ${deserializeParameter(realType, fieldType)} : null"
+            else "$prefix ? ${deserializeParameter(realType, fieldType)} : $suffix"
         }
         is TLTypeGeneric -> when ((fieldTlType.generics.first() as TLTypeRaw).name) {
             "int" -> "readTLIntVector(stream, context)"
@@ -665,9 +661,12 @@ object JavaPoet {
         is TLTypeConditional -> {
             val statement = StringBuilder()
             statement.append("if ((flags & ${fieldTlType.pow2Value()}) != 0) {\n")
-                    .append("""    if ($fieldName == null) throwNullFieldException("$fieldName", flags);""").append('\n')
                     .append("    ")
-                    .append(computeSizeParameter(fieldName, fieldTlType.realType)).append("\n")
+            if (fieldTlType.realType !is TLTypeRaw || fieldTlType.realType.name != "Bool") {
+                statement.append("""if ($fieldName == null) throwNullFieldException("$fieldName", flags);""").append('\n')
+                        .append("    ")
+            }
+            statement.append(computeSizeParameter(fieldName, fieldTlType.realType)).append("\n")
                     .append('}')
             statement.toString()
         }
@@ -693,30 +692,6 @@ object JavaPoet {
         else -> "($fieldName == o.$fieldName || ($fieldName != null && o.$fieldName != null && $fieldName.equals(o.$fieldName)))"
     }
 
-    private fun generateGetter(realName: String, fieldName: String, fieldType: TypeName): MethodSpec {
-        return MethodSpec.methodBuilder("get${realName.uCamelCase()}")
-                .addModifiers(Modifier.PUBLIC)
-                .returns(fieldType)
-                .addStatement("return $fieldName")
-                .build()
-    }
-
-    private fun generateSetter(realName: String, fieldName: String, fieldType: TypeName): MethodSpec {
-        return MethodSpec.methodBuilder("set${realName.uCamelCase()}")
-                .addModifiers(Modifier.PUBLIC)
-                .addParameter(fieldType, fieldName)
-                .addStatement("this.$fieldName = $fieldName")
-                .build()
-    }
-
-    private fun writeClassToFile(packageName: String, clazz: TypeSpec, output: String = OUTPUT) {
-        JavaFile.builder(packageName, clazz)
-                .addStaticImport(TYPE_STREAM_UTILS, "*")
-                .addStaticImport(TYPE_TLOBJECT_UTILS, "*")
-                .indent("    ")
-                .build().writeTo(File(output))
-    }
-
     private fun className(typeName: String, abstract: Boolean = false, request: Boolean = false) = when {
         abstract -> "TLAbs${typeName.split('.').last().uFirstLetter()}"
         request -> "TLRequest${typeName.uCamelCase()}"
@@ -730,7 +705,5 @@ object JavaPoet {
         return PACKAGE_TL_API + suffix
     }
 
-    private fun methodName(typeName: String): String {
-        return typeName.uCamelCase()
-    }
+    private fun methodName(typeName: String) = typeName.uCamelCase()
 }

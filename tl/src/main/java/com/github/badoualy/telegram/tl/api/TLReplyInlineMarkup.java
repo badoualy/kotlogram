@@ -35,7 +35,7 @@ public class TLReplyInlineMarkup extends TLAbsReplyMarkup {
     }
 
     @Override
-    @SuppressWarnings("unchecked")
+    @SuppressWarnings({"unchecked", "SimplifiableConditionalExpression"})
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
         rows = readTLVector(stream, context);
     }

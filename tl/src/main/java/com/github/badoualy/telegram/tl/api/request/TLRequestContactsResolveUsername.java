@@ -34,7 +34,7 @@ public class TLRequestContactsResolveUsername extends TLMethod<TLResolvedPeer> {
     }
 
     @Override
-    @SuppressWarnings("unchecked")
+    @SuppressWarnings({"unchecked", "SimplifiableConditionalExpression"})
     public TLResolvedPeer deserializeResponse(InputStream stream, TLContext context) throws IOException {
         final TLObject response = readTLObject(stream, context);
         if (response == null) {
@@ -52,7 +52,7 @@ public class TLRequestContactsResolveUsername extends TLMethod<TLResolvedPeer> {
     }
 
     @Override
-    @SuppressWarnings("unchecked")
+    @SuppressWarnings({"unchecked", "SimplifiableConditionalExpression"})
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
         username = readTLString(stream);
     }

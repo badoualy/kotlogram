@@ -35,7 +35,7 @@ public class TLRequestMessagesGetPeerDialogs extends TLMethod<TLPeerDialogs> {
     }
 
     @Override
-    @SuppressWarnings("unchecked")
+    @SuppressWarnings({"unchecked", "SimplifiableConditionalExpression"})
     public TLPeerDialogs deserializeResponse(InputStream stream, TLContext context) throws IOException {
         final TLObject response = readTLObject(stream, context);
         if (response == null) {
@@ -53,7 +53,7 @@ public class TLRequestMessagesGetPeerDialogs extends TLMethod<TLPeerDialogs> {
     }
 
     @Override
-    @SuppressWarnings("unchecked")
+    @SuppressWarnings({"unchecked", "SimplifiableConditionalExpression"})
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
         peers = readTLVector(stream, context);
     }

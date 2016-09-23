@@ -34,7 +34,7 @@ public class TLRequestAuthSendCode extends TLMethod<TLSentCode> {
 
     protected String phoneNumber;
 
-    protected Boolean currentNumber;
+    protected boolean currentNumber;
 
     protected int apiId;
 
@@ -45,7 +45,7 @@ public class TLRequestAuthSendCode extends TLMethod<TLSentCode> {
     public TLRequestAuthSendCode() {
     }
 
-    public TLRequestAuthSendCode(boolean allowFlashcall, String phoneNumber, Boolean currentNumber, int apiId, String apiHash) {
+    public TLRequestAuthSendCode(boolean allowFlashcall, String phoneNumber, boolean currentNumber, int apiId, String apiHash) {
         this.allowFlashcall = allowFlashcall;
         this.phoneNumber = phoneNumber;
         this.currentNumber = currentNumber;
@@ -54,7 +54,7 @@ public class TLRequestAuthSendCode extends TLMethod<TLSentCode> {
     }
 
     @Override
-    @SuppressWarnings("unchecked")
+    @SuppressWarnings({"unchecked", "SimplifiableConditionalExpression"})
     public TLSentCode deserializeResponse(InputStream stream, TLContext context) throws IOException {
         final TLObject response = readTLObject(stream, context);
         if (response == null) {
@@ -68,10 +68,9 @@ public class TLRequestAuthSendCode extends TLMethod<TLSentCode> {
 
     private void computeFlags() {
         flags = 0;
-        flags = currentNumber != null ? (flags | 1) : (flags & ~1);
-        // Fields below are just utils boolean flags, they serve only when deserializing
-        // The flag value at the given bit is computed above by a TLObject
-        allowFlashcall = (flags & 1) != 0;
+        flags = allowFlashcall ? (flags | 1) : (flags & ~1);
+        // If field is not serialized force it to false
+        if (currentNumber && (flags & 1) == 0) currentNumber = false;
     }
 
     @Override
@@ -81,7 +80,6 @@ public class TLRequestAuthSendCode extends TLMethod<TLSentCode> {
         writeInt(flags, stream);
         writeString(phoneNumber, stream);
         if ((flags & 1) != 0) {
-            if (currentNumber == null) throwNullFieldException("currentNumber", flags);
             writeBoolean(currentNumber, stream);
         }
         writeInt(apiId, stream);
@@ -89,12 +87,12 @@ public class TLRequestAuthSendCode extends TLMethod<TLSentCode> {
     }
 
     @Override
-    @SuppressWarnings("unchecked")
+    @SuppressWarnings({"unchecked", "SimplifiableConditionalExpression"})
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
         flags = readInt(stream);
         allowFlashcall = (flags & 1) != 0;
         phoneNumber = readTLString(stream);
-        currentNumber = (flags & 1) != 0 ? readTLBool(stream) : null;
+        currentNumber = (flags & 1) != 0 ? readTLBool(stream) : false;
         apiId = readInt(stream);
         apiHash = readTLString(stream);
     }
@@ -107,7 +105,6 @@ public class TLRequestAuthSendCode extends TLMethod<TLSentCode> {
         size += SIZE_INT32;
         size += computeTLStringSerializedSize(phoneNumber);
         if ((flags & 1) != 0) {
-            if (currentNumber == null) throwNullFieldException("currentNumber", flags);
             size += SIZE_BOOLEAN;
         }
         size += SIZE_INT32;
@@ -141,11 +138,11 @@ public class TLRequestAuthSendCode extends TLMethod<TLSentCode> {
         this.phoneNumber = phoneNumber;
     }
 
-    public Boolean getCurrentNumber() {
+    public boolean getCurrentNumber() {
         return currentNumber;
     }
 
-    public void setCurrentNumber(Boolean currentNumber) {
+    public void setCurrentNumber(boolean currentNumber) {
         this.currentNumber = currentNumber;
     }
 

@@ -51,7 +51,7 @@ public class TLRequestMessagesSearchGlobal extends TLMethod<TLAbsMessages> {
     }
 
     @Override
-    @SuppressWarnings("unchecked")
+    @SuppressWarnings({"unchecked", "SimplifiableConditionalExpression"})
     public TLAbsMessages deserializeResponse(InputStream stream, TLContext context) throws IOException {
         final TLObject response = readTLObject(stream, context);
         if (response == null) {
@@ -73,7 +73,7 @@ public class TLRequestMessagesSearchGlobal extends TLMethod<TLAbsMessages> {
     }
 
     @Override
-    @SuppressWarnings("unchecked")
+    @SuppressWarnings({"unchecked", "SimplifiableConditionalExpression"})
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
         q = readTLString(stream);
         offsetDate = readInt(stream);

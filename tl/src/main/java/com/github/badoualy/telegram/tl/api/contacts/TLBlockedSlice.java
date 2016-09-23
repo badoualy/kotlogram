@@ -44,7 +44,7 @@ public class TLBlockedSlice extends TLAbsBlocked {
     }
 
     @Override
-    @SuppressWarnings("unchecked")
+    @SuppressWarnings({"unchecked", "SimplifiableConditionalExpression"})
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
         count = readInt(stream);
         blocked = readTLVector(stream, context);

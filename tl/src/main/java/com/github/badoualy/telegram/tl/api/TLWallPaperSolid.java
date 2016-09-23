@@ -44,7 +44,7 @@ public class TLWallPaperSolid extends TLAbsWallPaper {
     }
 
     @Override
-    @SuppressWarnings("unchecked")
+    @SuppressWarnings({"unchecked", "SimplifiableConditionalExpression"})
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
         id = readInt(stream);
         title = readTLString(stream);

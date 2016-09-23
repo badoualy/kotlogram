@@ -35,7 +35,7 @@ public class TLUserStatusOffline extends TLAbsUserStatus {
     }
 
     @Override
-    @SuppressWarnings("unchecked")
+    @SuppressWarnings({"unchecked", "SimplifiableConditionalExpression"})
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
         wasOnline = readInt(stream);
     }

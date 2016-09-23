@@ -23,7 +23,7 @@ public class TLRequestAccountGetAccountTTL extends TLMethod<TLAccountDaysTTL> {
     }
 
     @Override
-    @SuppressWarnings("unchecked")
+    @SuppressWarnings({"unchecked", "SimplifiableConditionalExpression"})
     public TLAccountDaysTTL deserializeResponse(InputStream stream, TLContext context) throws IOException {
         final TLObject response = readTLObject(stream, context);
         if (response == null) {

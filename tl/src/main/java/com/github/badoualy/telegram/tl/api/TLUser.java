@@ -106,9 +106,11 @@ public class TLUser extends TLAbsUser {
         flags = contact ? (flags | 2048) : (flags & ~2048);
         flags = mutualContact ? (flags | 4096) : (flags & ~4096);
         flags = deleted ? (flags | 8192) : (flags & ~8192);
+        flags = bot ? (flags | 16384) : (flags & ~16384);
         flags = botChatHistory ? (flags | 32768) : (flags & ~32768);
         flags = botNochats ? (flags | 65536) : (flags & ~65536);
         flags = verified ? (flags | 131072) : (flags & ~131072);
+        flags = restricted ? (flags | 262144) : (flags & ~262144);
         flags = min ? (flags | 1048576) : (flags & ~1048576);
         flags = botInlineGeo ? (flags | 2097152) : (flags & ~2097152);
         flags = accessHash != null ? (flags | 1) : (flags & ~1);
@@ -121,8 +123,8 @@ public class TLUser extends TLAbsUser {
         flags = botInfoVersion != null ? (flags | 16384) : (flags & ~16384);
         flags = restrictionReason != null ? (flags | 262144) : (flags & ~262144);
         flags = botInlinePlaceholder != null ? (flags | 524288) : (flags & ~524288);
-        // Fields below are just utils boolean flags, they serve only when deserializing
-        // The flag value at the given bit is computed above by a TLObject
+
+        // Following parameters might be forced to true by another field that updated the flags
         bot = (flags & 16384) != 0;
         restricted = (flags & 262144) != 0;
     }
@@ -176,7 +178,7 @@ public class TLUser extends TLAbsUser {
     }
 
     @Override
-    @SuppressWarnings("unchecked")
+    @SuppressWarnings({"unchecked", "SimplifiableConditionalExpression"})
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
         flags = readInt(stream);
         self = (flags & 1024) != 0;

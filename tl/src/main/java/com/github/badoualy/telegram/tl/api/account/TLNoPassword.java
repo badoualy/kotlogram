@@ -39,7 +39,7 @@ public class TLNoPassword extends TLAbsPassword {
     }
 
     @Override
-    @SuppressWarnings("unchecked")
+    @SuppressWarnings({"unchecked", "SimplifiableConditionalExpression"})
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
         newSalt = readTLBytes(stream, context);
         emailUnconfirmedPattern = readTLString(stream);

@@ -51,7 +51,7 @@ public class TLInputPhoneContact extends TLObject {
     }
 
     @Override
-    @SuppressWarnings("unchecked")
+    @SuppressWarnings({"unchecked", "SimplifiableConditionalExpression"})
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
         clientId = readLong(stream);
         phone = readTLString(stream);

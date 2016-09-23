@@ -46,7 +46,7 @@ public class TLRequestMessagesRequestEncryption extends TLMethod<TLAbsEncryptedC
     }
 
     @Override
-    @SuppressWarnings("unchecked")
+    @SuppressWarnings({"unchecked", "SimplifiableConditionalExpression"})
     public TLAbsEncryptedChat deserializeResponse(InputStream stream, TLContext context) throws IOException {
         final TLObject response = readTLObject(stream, context);
         if (response == null) {
@@ -66,7 +66,7 @@ public class TLRequestMessagesRequestEncryption extends TLMethod<TLAbsEncryptedC
     }
 
     @Override
-    @SuppressWarnings("unchecked")
+    @SuppressWarnings({"unchecked", "SimplifiableConditionalExpression"})
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
         userId = readTLObject(stream, context, TLAbsInputUser.class, -1);
         randomId = readInt(stream);

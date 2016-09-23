@@ -33,7 +33,7 @@ public class TLRequestContactsDeleteContact extends TLMethod<TLLink> {
     }
 
     @Override
-    @SuppressWarnings("unchecked")
+    @SuppressWarnings({"unchecked", "SimplifiableConditionalExpression"})
     public TLLink deserializeResponse(InputStream stream, TLContext context) throws IOException {
         final TLObject response = readTLObject(stream, context);
         if (response == null) {
@@ -51,7 +51,7 @@ public class TLRequestContactsDeleteContact extends TLMethod<TLLink> {
     }
 
     @Override
-    @SuppressWarnings("unchecked")
+    @SuppressWarnings({"unchecked", "SimplifiableConditionalExpression"})
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
         id = readTLObject(stream, context, TLAbsInputUser.class, -1);
     }

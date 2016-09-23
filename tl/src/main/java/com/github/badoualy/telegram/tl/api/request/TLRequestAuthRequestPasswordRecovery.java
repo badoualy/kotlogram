@@ -23,7 +23,7 @@ public class TLRequestAuthRequestPasswordRecovery extends TLMethod<TLPasswordRec
     }
 
     @Override
-    @SuppressWarnings("unchecked")
+    @SuppressWarnings({"unchecked", "SimplifiableConditionalExpression"})
     public TLPasswordRecovery deserializeResponse(InputStream stream, TLContext context) throws IOException {
         final TLObject response = readTLObject(stream, context);
         if (response == null) {

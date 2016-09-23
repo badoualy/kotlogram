@@ -45,7 +45,7 @@ public class TLUpdateWebPage extends TLAbsUpdate {
     }
 
     @Override
-    @SuppressWarnings("unchecked")
+    @SuppressWarnings({"unchecked", "SimplifiableConditionalExpression"})
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
         webpage = readTLObject(stream, context, TLAbsWebPage.class, -1);
         pts = readInt(stream);

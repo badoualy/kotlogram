@@ -130,7 +130,7 @@ public class TLChannelFull extends TLAbsChatFull {
     }
 
     @Override
-    @SuppressWarnings("unchecked")
+    @SuppressWarnings({"unchecked", "SimplifiableConditionalExpression"})
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
         flags = readInt(stream);
         canViewParticipants = (flags & 8) != 0;

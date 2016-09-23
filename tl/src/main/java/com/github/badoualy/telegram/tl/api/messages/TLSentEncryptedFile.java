@@ -40,7 +40,7 @@ public class TLSentEncryptedFile extends TLAbsSentEncryptedMessage {
     }
 
     @Override
-    @SuppressWarnings("unchecked")
+    @SuppressWarnings({"unchecked", "SimplifiableConditionalExpression"})
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
         date = readInt(stream);
         file = readTLObject(stream, context, TLAbsEncryptedFile.class, -1);

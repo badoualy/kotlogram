@@ -34,7 +34,7 @@ public class TLRequestMessagesReceivedMessages extends TLMethod<TLVector<TLRecei
     }
 
     @Override
-    @SuppressWarnings("unchecked")
+    @SuppressWarnings({"unchecked", "SimplifiableConditionalExpression"})
     public TLVector<TLReceivedNotifyMessage> deserializeResponse(InputStream stream, TLContext context) throws IOException {
         return readTLVector(stream, context);
     }
@@ -45,7 +45,7 @@ public class TLRequestMessagesReceivedMessages extends TLMethod<TLVector<TLRecei
     }
 
     @Override
-    @SuppressWarnings("unchecked")
+    @SuppressWarnings({"unchecked", "SimplifiableConditionalExpression"})
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
         maxId = readInt(stream);
     }

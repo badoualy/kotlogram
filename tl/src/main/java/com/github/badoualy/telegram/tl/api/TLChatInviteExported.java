@@ -35,7 +35,7 @@ public class TLChatInviteExported extends TLAbsExportedChatInvite {
     }
 
     @Override
-    @SuppressWarnings("unchecked")
+    @SuppressWarnings({"unchecked", "SimplifiableConditionalExpression"})
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
         link = readTLString(stream);
     }

@@ -39,7 +39,7 @@ public class TLMessageEntityMentionName extends TLAbsMessageEntity {
     }
 
     @Override
-    @SuppressWarnings("unchecked")
+    @SuppressWarnings({"unchecked", "SimplifiableConditionalExpression"})
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
         offset = readInt(stream);
         length = readInt(stream);

@@ -47,7 +47,7 @@ public class TLInputFile extends TLAbsInputFile {
     }
 
     @Override
-    @SuppressWarnings("unchecked")
+    @SuppressWarnings({"unchecked", "SimplifiableConditionalExpression"})
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
         id = readLong(stream);
         parts = readInt(stream);

@@ -40,7 +40,7 @@ public class TLRequestAccountUpdatePasswordSettings extends TLMethod<TLBool> {
     }
 
     @Override
-    @SuppressWarnings("unchecked")
+    @SuppressWarnings({"unchecked", "SimplifiableConditionalExpression"})
     public TLBool deserializeResponse(InputStream stream, TLContext context) throws IOException {
         final TLObject response = readTLObject(stream, context);
         if (response == null) {
@@ -59,7 +59,7 @@ public class TLRequestAccountUpdatePasswordSettings extends TLMethod<TLBool> {
     }
 
     @Override
-    @SuppressWarnings("unchecked")
+    @SuppressWarnings({"unchecked", "SimplifiableConditionalExpression"})
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
         currentPasswordHash = readTLBytes(stream, context);
         newSettings = readTLObject(stream, context, TLPasswordInputSettings.class, TLPasswordInputSettings.CONSTRUCTOR_ID);

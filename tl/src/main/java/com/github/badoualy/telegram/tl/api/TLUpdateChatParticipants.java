@@ -34,7 +34,7 @@ public class TLUpdateChatParticipants extends TLAbsUpdate {
     }
 
     @Override
-    @SuppressWarnings("unchecked")
+    @SuppressWarnings({"unchecked", "SimplifiableConditionalExpression"})
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
         participants = readTLObject(stream, context, TLAbsChatParticipants.class, -1);
     }

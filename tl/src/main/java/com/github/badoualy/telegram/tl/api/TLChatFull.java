@@ -50,7 +50,7 @@ public class TLChatFull extends TLAbsChatFull {
     }
 
     @Override
-    @SuppressWarnings("unchecked")
+    @SuppressWarnings({"unchecked", "SimplifiableConditionalExpression"})
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
         id = readInt(stream);
         participants = readTLObject(stream, context, TLAbsChatParticipants.class, -1);

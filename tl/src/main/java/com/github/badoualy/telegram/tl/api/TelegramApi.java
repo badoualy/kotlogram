@@ -93,7 +93,7 @@ public interface TelegramApi {
 
     TLBool accountResetNotifySettings() throws RpcErrorException, IOException;
 
-    TLSentCode accountSendChangePhoneCode(boolean allowFlashcall, String phoneNumber, Boolean currentNumber) throws RpcErrorException, IOException;
+    TLSentCode accountSendChangePhoneCode(boolean allowFlashcall, String phoneNumber, boolean currentNumber) throws RpcErrorException, IOException;
 
     TLBool accountSetAccountTTL(TLAccountDaysTTL ttl) throws RpcErrorException, IOException;
 
@@ -137,7 +137,7 @@ public interface TelegramApi {
 
     TLBool authResetAuthorizations() throws RpcErrorException, IOException;
 
-    TLSentCode authSendCode(boolean allowFlashcall, String phoneNumber, Boolean currentNumber, int apiId, String apiHash) throws RpcErrorException, IOException;
+    TLSentCode authSendCode(boolean allowFlashcall, String phoneNumber, boolean currentNumber, int apiId, String apiHash) throws RpcErrorException, IOException;
 
     TLBool authSendInvites(TLStringVector phoneNumbers, String message) throws RpcErrorException, IOException;
 

@@ -46,7 +46,7 @@ public class TLRequestChannelsGetParticipants extends TLMethod<TLChannelParticip
     }
 
     @Override
-    @SuppressWarnings("unchecked")
+    @SuppressWarnings({"unchecked", "SimplifiableConditionalExpression"})
     public TLChannelParticipants deserializeResponse(InputStream stream, TLContext context) throws IOException {
         final TLObject response = readTLObject(stream, context);
         if (response == null) {
@@ -67,7 +67,7 @@ public class TLRequestChannelsGetParticipants extends TLMethod<TLChannelParticip
     }
 
     @Override
-    @SuppressWarnings("unchecked")
+    @SuppressWarnings({"unchecked", "SimplifiableConditionalExpression"})
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
         channel = readTLObject(stream, context, TLAbsInputChannel.class, -1);
         filter = readTLObject(stream, context, TLAbsChannelParticipantsFilter.class, -1);

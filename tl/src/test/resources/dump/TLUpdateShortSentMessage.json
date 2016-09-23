@@ -6,21 +6,40 @@
   "ptsCount": 0,
   "date": 0,
   "media": {
-    "photo": {
-      "_constructor": "photoEmpty#2331b22d",
-      "id": 0
-    },
-    "caption": "yZSusW7uwZtXTUAZmzdQLT",
-    "_constructor": "messageMediaPhoto#3d8ce53d"
+    "_constructor": "messageMediaUnsupported#9f84f49e"
   },
   "entities": [
     {
-      "_constructor": "messageEntityBold#bd610bc9",
+      "userId": 0,
+      "_constructor": "messageEntityMentionName#352dca58",
       "offset": 0,
       "length": 0
     },
     {
-      "_constructor": "messageEntityItalic#826f8b60",
+      "_constructor": "messageEntityUrl#6ed02538",
+      "offset": 0,
+      "length": 0
+    },
+    {
+      "url": "trLWt3PqC7ZbSNPpQgLNVkL",
+      "_constructor": "messageEntityTextUrl#76a6d327",
+      "offset": 0,
+      "length": 0
+    },
+    {
+      "_constructor": "messageEntityBotCommand#6cef8ac7",
+      "offset": 0,
+      "length": 0
+    },
+    {
+      "language": "Ww6bZntHaIH9j4aC2EFP1rRdDeTuB",
+      "_constructor": "messageEntityPre#73924be0",
+      "offset": 0,
+      "length": 0
+    },
+    {
+      "url": "lq629VYzn1ojsi5ecWIJSR",
+      "_constructor": "messageEntityTextUrl#76a6d327",
       "offset": 0,
       "length": 0
     },
@@ -35,17 +54,24 @@
       "length": 0
     },
     {
-      "_constructor": "messageEntityHashtag#6f635b0d",
+      "_constructor": "messageEntityEmail#64e475c2",
       "offset": 0,
       "length": 0
     },
     {
-      "_constructor": "messageEntityCode#28a20571",
+      "language": "bAxZMtrQmPZ2m",
+      "_constructor": "messageEntityPre#73924be0",
       "offset": 0,
       "length": 0
     },
     {
-      "_constructor": "messageEntityBotCommand#6cef8ac7",
+      "_constructor": "messageEntityEmail#64e475c2",
+      "offset": 0,
+      "length": 0
+    },
+    {
+      "url": "NLc9FN9",
+      "_constructor": "messageEntityTextUrl#76a6d327",
       "offset": 0,
       "length": 0
     }

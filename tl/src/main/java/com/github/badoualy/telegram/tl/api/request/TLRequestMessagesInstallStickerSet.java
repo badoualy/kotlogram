@@ -39,7 +39,7 @@ public class TLRequestMessagesInstallStickerSet extends TLMethod<TLBool> {
     }
 
     @Override
-    @SuppressWarnings("unchecked")
+    @SuppressWarnings({"unchecked", "SimplifiableConditionalExpression"})
     public TLBool deserializeResponse(InputStream stream, TLContext context) throws IOException {
         final TLObject response = readTLObject(stream, context);
         if (response == null) {
@@ -58,7 +58,7 @@ public class TLRequestMessagesInstallStickerSet extends TLMethod<TLBool> {
     }
 
     @Override
-    @SuppressWarnings("unchecked")
+    @SuppressWarnings({"unchecked", "SimplifiableConditionalExpression"})
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
         stickerset = readTLObject(stream, context, TLAbsInputStickerSet.class, -1);
         disabled = readTLBool(stream);

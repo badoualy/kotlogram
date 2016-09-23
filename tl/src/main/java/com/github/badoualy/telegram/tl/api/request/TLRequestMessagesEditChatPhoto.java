@@ -39,7 +39,7 @@ public class TLRequestMessagesEditChatPhoto extends TLMethod<TLAbsUpdates> {
     }
 
     @Override
-    @SuppressWarnings("unchecked")
+    @SuppressWarnings({"unchecked", "SimplifiableConditionalExpression"})
     public TLAbsUpdates deserializeResponse(InputStream stream, TLContext context) throws IOException {
         final TLObject response = readTLObject(stream, context);
         if (response == null) {
@@ -58,7 +58,7 @@ public class TLRequestMessagesEditChatPhoto extends TLMethod<TLAbsUpdates> {
     }
 
     @Override
-    @SuppressWarnings("unchecked")
+    @SuppressWarnings({"unchecked", "SimplifiableConditionalExpression"})
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
         chatId = readInt(stream);
         photo = readTLObject(stream, context, TLAbsInputChatPhoto.class, -1);

@@ -23,7 +23,7 @@ public class TLRequestAccountGetAuthorizations extends TLMethod<TLAuthorizations
     }
 
     @Override
-    @SuppressWarnings("unchecked")
+    @SuppressWarnings({"unchecked", "SimplifiableConditionalExpression"})
     public TLAuthorizations deserializeResponse(InputStream stream, TLContext context) throws IOException {
         final TLObject response = readTLObject(stream, context);
         if (response == null) {

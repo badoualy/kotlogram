@@ -50,7 +50,7 @@ public class TLUpdateChatParticipantAdmin extends TLAbsUpdate {
     }
 
     @Override
-    @SuppressWarnings("unchecked")
+    @SuppressWarnings({"unchecked", "SimplifiableConditionalExpression"})
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
         chatId = readInt(stream);
         userId = readInt(stream);

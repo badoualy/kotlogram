@@ -41,7 +41,7 @@ public class TLRequestContactsImportContacts extends TLMethod<TLImportedContacts
     }
 
     @Override
-    @SuppressWarnings("unchecked")
+    @SuppressWarnings({"unchecked", "SimplifiableConditionalExpression"})
     public TLImportedContacts deserializeResponse(InputStream stream, TLContext context) throws IOException {
         final TLObject response = readTLObject(stream, context);
         if (response == null) {
@@ -60,7 +60,7 @@ public class TLRequestContactsImportContacts extends TLMethod<TLImportedContacts
     }
 
     @Override
-    @SuppressWarnings("unchecked")
+    @SuppressWarnings({"unchecked", "SimplifiableConditionalExpression"})
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
         contacts = readTLVector(stream, context);
         replace = readTLBool(stream);

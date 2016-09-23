@@ -80,7 +80,7 @@ public class TLPasswordInputSettings extends TLObject {
     }
 
     @Override
-    @SuppressWarnings("unchecked")
+    @SuppressWarnings({"unchecked", "SimplifiableConditionalExpression"})
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
         flags = readInt(stream);
         newSalt = (flags & 1) != 0 ? readTLBytes(stream, context) : null;

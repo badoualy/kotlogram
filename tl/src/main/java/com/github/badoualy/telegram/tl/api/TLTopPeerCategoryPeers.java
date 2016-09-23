@@ -49,7 +49,7 @@ public class TLTopPeerCategoryPeers extends TLObject {
     }
 
     @Override
-    @SuppressWarnings("unchecked")
+    @SuppressWarnings({"unchecked", "SimplifiableConditionalExpression"})
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
         category = readTLObject(stream, context, TLAbsTopPeerCategory.class, -1);
         count = readInt(stream);

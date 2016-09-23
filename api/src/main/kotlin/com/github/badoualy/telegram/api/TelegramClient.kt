@@ -66,7 +66,7 @@ interface TelegramClient : TelegramApi {
     fun authSendCode(allowFlashcall: Boolean, phoneNumber: String, currentNumber: Boolean): TLSentCode
 
     @Deprecated("Use authSendCode for more convenience", ReplaceWith("authSendCode(allowFlashcall, phoneNumber, currentNumber)"))
-    override fun authSendCode(allowFlashcall: Boolean, phoneNumber: String?, currentNumber: Boolean?, apiId: Int, apiHash: String?): TLSentCode
+    override fun authSendCode(allowFlashcall: Boolean, phoneNumber: String?, currentNumber: Boolean, apiId: Int, apiHash: String?): TLSentCode
 
     @Throws(RpcErrorException::class, IOException::class)
     override fun <T : TLObject?> invokeWithLayer(layer: Int, query: TLMethod<T>?): T

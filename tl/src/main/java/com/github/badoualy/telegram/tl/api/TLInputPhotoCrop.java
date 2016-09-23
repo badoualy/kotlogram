@@ -43,7 +43,7 @@ public class TLInputPhotoCrop extends TLAbsInputPhotoCrop {
     }
 
     @Override
-    @SuppressWarnings("unchecked")
+    @SuppressWarnings({"unchecked", "SimplifiableConditionalExpression"})
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
         cropLeft = readDouble(stream);
         cropTop = readDouble(stream);

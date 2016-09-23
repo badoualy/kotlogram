@@ -35,7 +35,7 @@ public class TLMessageActionChatDeleteUser extends TLAbsMessageAction {
     }
 
     @Override
-    @SuppressWarnings("unchecked")
+    @SuppressWarnings({"unchecked", "SimplifiableConditionalExpression"})
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
         userId = readInt(stream);
     }

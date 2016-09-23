@@ -139,7 +139,7 @@ public abstract class TelegramApiWrapper implements TelegramApi {
     }
 
     @Override
-    public TLSentCode accountSendChangePhoneCode(boolean allowFlashcall, String phoneNumber, Boolean currentNumber) throws RpcErrorException, IOException {
+    public TLSentCode accountSendChangePhoneCode(boolean allowFlashcall, String phoneNumber, boolean currentNumber) throws RpcErrorException, IOException {
         return (TLSentCode) executeRpcQuery(new TLRequestAccountSendChangePhoneCode(allowFlashcall, phoneNumber, currentNumber));
     }
 
@@ -249,7 +249,7 @@ public abstract class TelegramApiWrapper implements TelegramApi {
     }
 
     @Override
-    public TLSentCode authSendCode(boolean allowFlashcall, String phoneNumber, Boolean currentNumber, int apiId, String apiHash) throws RpcErrorException, IOException {
+    public TLSentCode authSendCode(boolean allowFlashcall, String phoneNumber, boolean currentNumber, int apiId, String apiHash) throws RpcErrorException, IOException {
         return (TLSentCode) executeRpcQuery(new TLRequestAuthSendCode(allowFlashcall, phoneNumber, currentNumber, apiId, apiHash));
     }
 

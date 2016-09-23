@@ -43,7 +43,7 @@ public class TLStickerPack extends TLObject {
     }
 
     @Override
-    @SuppressWarnings("unchecked")
+    @SuppressWarnings({"unchecked", "SimplifiableConditionalExpression"})
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
         emoticon = readTLString(stream);
         documents = readTLLongVector(stream, context);

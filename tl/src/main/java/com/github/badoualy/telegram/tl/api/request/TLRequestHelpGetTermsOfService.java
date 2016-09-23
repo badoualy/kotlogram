@@ -23,7 +23,7 @@ public class TLRequestHelpGetTermsOfService extends TLMethod<TLTermsOfService> {
     }
 
     @Override
-    @SuppressWarnings("unchecked")
+    @SuppressWarnings({"unchecked", "SimplifiableConditionalExpression"})
     public TLTermsOfService deserializeResponse(InputStream stream, TLContext context) throws IOException {
         final TLObject response = readTLObject(stream, context);
         if (response == null) {

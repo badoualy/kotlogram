@@ -9,16 +9,69 @@
   "readOutboxMaxId": 0,
   "unreadCount": 0,
   "notifySettings": {
-    "flags": 0,
-    "showPreviews": false,
+    "flags": 1,
+    "showPreviews": true,
     "silent": false,
     "muteUntil": 0,
-    "sound": "nG124WTpYtQ2wIKoX2AhN",
+    "sound": "owi0qvTDghsR6MzmT",
     "_constructor": "peerNotifySettings#9acda4c0"
   },
   "pts": 0,
   "draft": {
-    "_constructor": "draftMessageEmpty#ba4baec5"
+    "flags": 11,
+    "noWebpage": true,
+    "replyToMsgId": 0,
+    "message": "bizDhS",
+    "entities": [
+      {
+        "_constructor": "messageEntityUnknown#bb92ba95",
+        "offset": 0,
+        "length": 0
+      },
+      {
+        "_constructor": "messageEntityBotCommand#6cef8ac7",
+        "offset": 0,
+        "length": 0
+      },
+      {
+        "_constructor": "messageEntityBotCommand#6cef8ac7",
+        "offset": 0,
+        "length": 0
+      },
+      {
+        "_constructor": "messageEntityUrl#6ed02538",
+        "offset": 0,
+        "length": 0
+      },
+      {
+        "_constructor": "messageEntityEmail#64e475c2",
+        "offset": 0,
+        "length": 0
+      },
+      {
+        "language": "HvGMTsDeuW3NwKtIGMcowUTN3tk",
+        "_constructor": "messageEntityPre#73924be0",
+        "offset": 0,
+        "length": 0
+      },
+      {
+        "_constructor": "messageEntityUrl#6ed02538",
+        "offset": 0,
+        "length": 0
+      },
+      {
+        "_constructor": "messageEntityBold#bd610bc9",
+        "offset": 0,
+        "length": 0
+      },
+      {
+        "_constructor": "messageEntityCode#28a20571",
+        "offset": 0,
+        "length": 0
+      }
+    ],
+    "date": 0,
+    "_constructor": "draftMessage#fd8e711f"
   },
   "_constructor": "dialog#66ffba14"
 }

@@ -3,52 +3,25 @@
   "noWebpage": true,
   "replyToMsgId": 0,
   "peer": {
-    "userId": 0,
-    "accessHash": 0,
-    "_constructor": "inputPeerUser#7b8e7de6"
+    "chatId": 0,
+    "_constructor": "inputPeerChat#179be863"
   },
-  "message": "Xy943Dwn6Ar0vveBBWghHJ6",
+  "message": "9prVbC8AO3Lbv8",
   "entities": [
     {
-      "userId": 0,
-      "_constructor": "messageEntityMentionName#352dca58",
+      "_constructor": "messageEntityBotCommand#6cef8ac7",
       "offset": 0,
       "length": 0
     },
     {
-      "_constructor": "messageEntityHashtag#6f635b0d",
-      "offset": 0,
-      "length": 0
-    },
-    {
-      "_constructor": "messageEntityUnknown#bb92ba95",
-      "offset": 0,
-      "length": 0
-    },
-    {
-      "_constructor": "messageEntityCode#28a20571",
-      "offset": 0,
-      "length": 0
-    },
-    {
-      "language": "Ur741nBB6CURz",
+      "language": "NZqZFLsBHaSVVid0BNY6Iks6HheGn",
       "_constructor": "messageEntityPre#73924be0",
       "offset": 0,
       "length": 0
     },
     {
-      "_constructor": "messageEntityUrl#6ed02538",
-      "offset": 0,
-      "length": 0
-    },
-    {
-      "_constructor": "messageEntityItalic#826f8b60",
-      "offset": 0,
-      "length": 0
-    },
-    {
-      "userId": 0,
-      "_constructor": "messageEntityMentionName#352dca58",
+      "language": "IvuInlIkP2Q9N",
+      "_constructor": "messageEntityPre#73924be0",
       "offset": 0,
       "length": 0
     },
@@ -58,7 +31,32 @@
       "length": 0
     },
     {
-      "_constructor": "messageEntityMention#fa04579d",
+      "_constructor": "messageEntityHashtag#6f635b0d",
+      "offset": 0,
+      "length": 0
+    },
+    {
+      "_constructor": "messageEntityCode#28a20571",
+      "offset": 0,
+      "length": 0
+    },
+    {
+      "_constructor": "messageEntityBold#bd610bc9",
+      "offset": 0,
+      "length": 0
+    },
+    {
+      "_constructor": "messageEntityBold#bd610bc9",
+      "offset": 0,
+      "length": 0
+    },
+    {
+      "_constructor": "messageEntityHashtag#6f635b0d",
+      "offset": 0,
+      "length": 0
+    },
+    {
+      "_constructor": "messageEntityItalic#826f8b60",
       "offset": 0,
       "length": 0
     }

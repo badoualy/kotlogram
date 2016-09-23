@@ -1,6 +1,11 @@
 {
   "peer": {
-    "_constructor": "inputNotifyUsers#193b4417"
+    "peer": {
+      "channelId": 0,
+      "accessHash": 0,
+      "_constructor": "inputPeerChannel#20adaef8"
+    },
+    "_constructor": "inputNotifyPeer#b8bc5b0c"
   },
   "_constructor": "account.getNotifySettings#12b3ad31"
 }

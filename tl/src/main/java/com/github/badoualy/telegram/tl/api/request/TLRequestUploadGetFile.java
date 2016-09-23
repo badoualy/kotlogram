@@ -42,7 +42,7 @@ public class TLRequestUploadGetFile extends TLMethod<TLFile> {
     }
 
     @Override
-    @SuppressWarnings("unchecked")
+    @SuppressWarnings({"unchecked", "SimplifiableConditionalExpression"})
     public TLFile deserializeResponse(InputStream stream, TLContext context) throws IOException {
         final TLObject response = readTLObject(stream, context);
         if (response == null) {
@@ -62,7 +62,7 @@ public class TLRequestUploadGetFile extends TLMethod<TLFile> {
     }
 
     @Override
-    @SuppressWarnings("unchecked")
+    @SuppressWarnings({"unchecked", "SimplifiableConditionalExpression"})
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
         location = readTLObject(stream, context, TLAbsInputFileLocation.class, -1);
         offset = readInt(stream);

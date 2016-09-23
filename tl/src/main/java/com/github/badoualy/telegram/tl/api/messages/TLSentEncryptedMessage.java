@@ -33,7 +33,7 @@ public class TLSentEncryptedMessage extends TLAbsSentEncryptedMessage {
     }
 
     @Override
-    @SuppressWarnings("unchecked")
+    @SuppressWarnings({"unchecked", "SimplifiableConditionalExpression"})
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
         date = readInt(stream);
     }

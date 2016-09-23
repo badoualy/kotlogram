@@ -54,7 +54,7 @@ public class TLPhotoSize extends TLAbsPhotoSize {
     }
 
     @Override
-    @SuppressWarnings("unchecked")
+    @SuppressWarnings({"unchecked", "SimplifiableConditionalExpression"})
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
         type = readTLString(stream);
         location = readTLObject(stream, context, TLAbsFileLocation.class, -1);

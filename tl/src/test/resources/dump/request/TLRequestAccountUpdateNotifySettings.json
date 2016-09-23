@@ -1,13 +1,17 @@
 {
   "peer": {
-    "_constructor": "inputNotifyUsers#193b4417"
+    "peer": {
+      "chatId": 0,
+      "_constructor": "inputPeerChat#179be863"
+    },
+    "_constructor": "inputNotifyPeer#b8bc5b0c"
   },
   "settings": {
-    "flags": 3,
+    "flags": 1,
     "showPreviews": true,
-    "silent": true,
+    "silent": false,
     "muteUntil": 0,
-    "sound": "V6FuR7JaYgSBMu",
+    "sound": "XC3ndtEX81mT7CtKflNwvPYPDP",
     "_constructor": "inputPeerNotifySettings#38935eb2"
   },
   "_constructor": "account.updateNotifySettings#84be5b93"

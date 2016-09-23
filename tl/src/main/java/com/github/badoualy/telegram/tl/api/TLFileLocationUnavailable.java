@@ -40,7 +40,7 @@ public class TLFileLocationUnavailable extends TLAbsFileLocation {
     }
 
     @Override
-    @SuppressWarnings("unchecked")
+    @SuppressWarnings({"unchecked", "SimplifiableConditionalExpression"})
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
         volumeId = readLong(stream);
         localId = readInt(stream);

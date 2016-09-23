@@ -35,7 +35,7 @@ public class TLInputPrivacyValueAllowUsers extends TLAbsInputPrivacyRule {
     }
 
     @Override
-    @SuppressWarnings("unchecked")
+    @SuppressWarnings({"unchecked", "SimplifiableConditionalExpression"})
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
         users = readTLVector(stream, context);
     }

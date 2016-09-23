@@ -45,7 +45,7 @@ public class TLRequestMessagesGetDialogs extends TLMethod<TLAbsDialogs> {
     }
 
     @Override
-    @SuppressWarnings("unchecked")
+    @SuppressWarnings({"unchecked", "SimplifiableConditionalExpression"})
     public TLAbsDialogs deserializeResponse(InputStream stream, TLContext context) throws IOException {
         final TLObject response = readTLObject(stream, context);
         if (response == null) {
@@ -66,7 +66,7 @@ public class TLRequestMessagesGetDialogs extends TLMethod<TLAbsDialogs> {
     }
 
     @Override
-    @SuppressWarnings("unchecked")
+    @SuppressWarnings({"unchecked", "SimplifiableConditionalExpression"})
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
         offsetDate = readInt(stream);
         offsetId = readInt(stream);

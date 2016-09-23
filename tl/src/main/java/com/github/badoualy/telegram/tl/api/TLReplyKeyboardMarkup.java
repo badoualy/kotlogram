@@ -59,7 +59,7 @@ public class TLReplyKeyboardMarkup extends TLAbsReplyMarkup {
     }
 
     @Override
-    @SuppressWarnings("unchecked")
+    @SuppressWarnings({"unchecked", "SimplifiableConditionalExpression"})
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
         flags = readInt(stream);
         resize = (flags & 1) != 0;

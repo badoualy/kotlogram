@@ -38,7 +38,7 @@ public class TLChatPhoto extends TLAbsChatPhoto {
     }
 
     @Override
-    @SuppressWarnings("unchecked")
+    @SuppressWarnings({"unchecked", "SimplifiableConditionalExpression"})
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
         photoSmall = readTLObject(stream, context, TLAbsFileLocation.class, -1);
         photoBig = readTLObject(stream, context, TLAbsFileLocation.class, -1);

@@ -40,7 +40,7 @@ public class TLMessageRange extends TLObject {
     }
 
     @Override
-    @SuppressWarnings("unchecked")
+    @SuppressWarnings({"unchecked", "SimplifiableConditionalExpression"})
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
         minId = readInt(stream);
         maxId = readInt(stream);

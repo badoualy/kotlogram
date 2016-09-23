@@ -54,7 +54,7 @@ public class TLEncryptedFile extends TLAbsEncryptedFile {
     }
 
     @Override
-    @SuppressWarnings("unchecked")
+    @SuppressWarnings({"unchecked", "SimplifiableConditionalExpression"})
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
         id = readLong(stream);
         accessHash = readLong(stream);

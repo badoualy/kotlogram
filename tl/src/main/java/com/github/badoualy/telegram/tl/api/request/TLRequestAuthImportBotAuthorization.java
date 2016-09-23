@@ -46,7 +46,7 @@ public class TLRequestAuthImportBotAuthorization extends TLMethod<TLAuthorizatio
     }
 
     @Override
-    @SuppressWarnings("unchecked")
+    @SuppressWarnings({"unchecked", "SimplifiableConditionalExpression"})
     public TLAuthorization deserializeResponse(InputStream stream, TLContext context) throws IOException {
         final TLObject response = readTLObject(stream, context);
         if (response == null) {
@@ -67,7 +67,7 @@ public class TLRequestAuthImportBotAuthorization extends TLMethod<TLAuthorizatio
     }
 
     @Override
-    @SuppressWarnings("unchecked")
+    @SuppressWarnings({"unchecked", "SimplifiableConditionalExpression"})
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
         flags = readInt(stream);
         apiId = readInt(stream);

@@ -37,7 +37,7 @@ public class TLBlocked extends TLAbsBlocked {
     }
 
     @Override
-    @SuppressWarnings("unchecked")
+    @SuppressWarnings({"unchecked", "SimplifiableConditionalExpression"})
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
         blocked = readTLVector(stream, context);
         users = readTLVector(stream, context);

@@ -45,7 +45,7 @@ public class TLUpdateNewChannelMessage extends TLAbsUpdate {
     }
 
     @Override
-    @SuppressWarnings("unchecked")
+    @SuppressWarnings({"unchecked", "SimplifiableConditionalExpression"})
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
         message = readTLObject(stream, context, TLAbsMessage.class, -1);
         pts = readInt(stream);

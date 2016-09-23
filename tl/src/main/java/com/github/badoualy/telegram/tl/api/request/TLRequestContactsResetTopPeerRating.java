@@ -37,7 +37,7 @@ public class TLRequestContactsResetTopPeerRating extends TLMethod<TLBool> {
     }
 
     @Override
-    @SuppressWarnings("unchecked")
+    @SuppressWarnings({"unchecked", "SimplifiableConditionalExpression"})
     public TLBool deserializeResponse(InputStream stream, TLContext context) throws IOException {
         final TLObject response = readTLObject(stream, context);
         if (response == null) {
@@ -56,7 +56,7 @@ public class TLRequestContactsResetTopPeerRating extends TLMethod<TLBool> {
     }
 
     @Override
-    @SuppressWarnings("unchecked")
+    @SuppressWarnings({"unchecked", "SimplifiableConditionalExpression"})
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
         category = readTLObject(stream, context, TLAbsTopPeerCategory.class, -1);
         peer = readTLObject(stream, context, TLAbsInputPeer.class, -1);

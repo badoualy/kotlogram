@@ -33,7 +33,7 @@ public class TLRequestUsersGetUsers extends TLMethod<TLVector<TLAbsUser>> {
     }
 
     @Override
-    @SuppressWarnings("unchecked")
+    @SuppressWarnings({"unchecked", "SimplifiableConditionalExpression"})
     public TLVector<TLAbsUser> deserializeResponse(InputStream stream, TLContext context) throws IOException {
         return readTLVector(stream, context);
     }
@@ -44,7 +44,7 @@ public class TLRequestUsersGetUsers extends TLMethod<TLVector<TLAbsUser>> {
     }
 
     @Override
-    @SuppressWarnings("unchecked")
+    @SuppressWarnings({"unchecked", "SimplifiableConditionalExpression"})
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
         id = readTLVector(stream, context);
     }

@@ -52,7 +52,7 @@ public class TLEncryptedChatWaiting extends TLAbsEncryptedChat {
     }
 
     @Override
-    @SuppressWarnings("unchecked")
+    @SuppressWarnings({"unchecked", "SimplifiableConditionalExpression"})
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
         id = readInt(stream);
         accessHash = readLong(stream);

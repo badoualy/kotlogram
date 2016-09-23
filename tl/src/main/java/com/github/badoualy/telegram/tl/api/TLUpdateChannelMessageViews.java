@@ -43,7 +43,7 @@ public class TLUpdateChannelMessageViews extends TLAbsUpdate {
     }
 
     @Override
-    @SuppressWarnings("unchecked")
+    @SuppressWarnings({"unchecked", "SimplifiableConditionalExpression"})
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
         channelId = readInt(stream);
         id = readInt(stream);

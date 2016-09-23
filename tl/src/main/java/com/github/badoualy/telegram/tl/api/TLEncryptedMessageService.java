@@ -46,7 +46,7 @@ public class TLEncryptedMessageService extends TLAbsEncryptedMessage {
     }
 
     @Override
-    @SuppressWarnings("unchecked")
+    @SuppressWarnings({"unchecked", "SimplifiableConditionalExpression"})
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
         randomId = readLong(stream);
         chatId = readInt(stream);

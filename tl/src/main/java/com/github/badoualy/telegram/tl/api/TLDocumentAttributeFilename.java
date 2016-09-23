@@ -35,7 +35,7 @@ public class TLDocumentAttributeFilename extends TLAbsDocumentAttribute {
     }
 
     @Override
-    @SuppressWarnings("unchecked")
+    @SuppressWarnings({"unchecked", "SimplifiableConditionalExpression"})
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
         fileName = readTLString(stream);
     }

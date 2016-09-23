@@ -1,6 +1,6 @@
 {
-  "flags": 0,
-  "silent": false,
+  "flags": 1,
+  "silent": true,
   "channel": {
     "channelId": 0,
     "accessHash": 0,

@@ -1,27 +1,14 @@
 {
-  "flags": 82,
+  "flags": 92,
   "creator": false,
-  "kicked": true,
-  "left": false,
-  "adminsEnabled": false,
+  "kicked": false,
+  "left": true,
+  "adminsEnabled": true,
   "admin": true,
   "deactivated": false,
-  "title": "M8Ip2vh",
+  "title": "jeegg6enA8Y5nF6Q6h3T6SxJsHC3X",
   "photo": {
-    "photoSmall": {
-      "dcId": 0,
-      "_constructor": "fileLocation#53d69076",
-      "volumeId": 0,
-      "localId": 0,
-      "secret": 0
-    },
-    "photoBig": {
-      "_constructor": "fileLocationUnavailable#7c596b46",
-      "volumeId": 0,
-      "localId": 0,
-      "secret": 0
-    },
-    "_constructor": "chatPhoto#6153276a"
+    "_constructor": "chatPhotoEmpty#37c1011c"
   },
   "participantsCount": 0,
   "date": 0,

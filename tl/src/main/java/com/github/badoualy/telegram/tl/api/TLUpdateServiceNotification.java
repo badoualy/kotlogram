@@ -52,7 +52,7 @@ public class TLUpdateServiceNotification extends TLAbsUpdate {
     }
 
     @Override
-    @SuppressWarnings("unchecked")
+    @SuppressWarnings({"unchecked", "SimplifiableConditionalExpression"})
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
         type = readTLString(stream);
         message = readTLString(stream);

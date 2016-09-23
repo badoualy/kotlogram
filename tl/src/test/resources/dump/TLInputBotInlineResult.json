@@ -1,79 +1,26 @@
 {
   "flags": 254,
-  "title": "yQucmEo6p6sjvwXt",
-  "description": "xls4g3sxOnGYjYqBt4V",
-  "url": "FRDHq",
-  "thumbUrl": "VCn8naLJdQcBNV",
-  "contentUrl": "elVlBXzGHYKrnXQKKk1xYwMVJBwo",
-  "contentType": "Keuzp0ZDOKkgsNK",
+  "title": "OO8yVn1IBfhGhere7O",
+  "description": "Cw3craNrBrhJn",
+  "url": "xfeV8eqrBtk",
+  "thumbUrl": "aj7W9q1SyeNBoW1RiI",
+  "contentUrl": "lUbQur0bnWN9upRHS6pjYmuWbZsSK",
+  "contentType": "Y6EWy3LC",
   "w": 0,
   "h": 0,
   "duration": 0,
   "_constructor": "inputBotInlineResult#2cbbe15a",
-  "id": "i6RHPTgryTA1vA8cxCqfAF9iGo",
-  "type": "9lOCGpbGdXQl",
+  "id": "gEtfHYqyZQAZDNvGbHHV6g1",
+  "type": "CwWj8lKOWh",
   "sendMessage": {
-    "noWebpage": false,
-    "message": "V5wNNJb8CmTw1",
-    "entities": [
-      {
-        "_constructor": "messageEntityBotCommand#6cef8ac7",
-        "offset": 0,
-        "length": 0
-      },
-      {
-        "userId": {
-          "userId": 0,
-          "accessHash": 0,
-          "_constructor": "inputUser#d8292816"
-        },
-        "_constructor": "inputMessageEntityMentionName#208e68c9",
-        "offset": 0,
-        "length": 0
-      },
-      {
-        "_constructor": "messageEntityEmail#64e475c2",
-        "offset": 0,
-        "length": 0
-      },
-      {
-        "_constructor": "messageEntityBotCommand#6cef8ac7",
-        "offset": 0,
-        "length": 0
-      },
-      {
-        "_constructor": "messageEntityUnknown#bb92ba95",
-        "offset": 0,
-        "length": 0
-      },
-      {
-        "userId": 0,
-        "_constructor": "messageEntityMentionName#352dca58",
-        "offset": 0,
-        "length": 0
-      },
-      {
-        "_constructor": "messageEntityItalic#826f8b60",
-        "offset": 0,
-        "length": 0
-      },
-      {
-        "_constructor": "messageEntityBold#bd610bc9",
-        "offset": 0,
-        "length": 0
-      },
-      {
-        "userId": 0,
-        "_constructor": "messageEntityMentionName#352dca58",
-        "offset": 0,
-        "length": 0
-      }
-    ],
-    "_constructor": "inputBotInlineMessageText#3dcd7a87",
-    "flags": 6,
+    "phoneNumber": "4BL7B",
+    "firstName": "j6irHzYysWpBXq4EaW9Fqu",
+    "lastName": "48Hu2jLCwbiYgiD2Aa9cw1",
+    "_constructor": "inputBotInlineMessageMediaContact#2daf01a7",
+    "flags": 4,
     "replyMarkup": {
-      "flags": 0,
-      "singleUse": false,
+      "flags": 2,
+      "singleUse": true,
       "selective": false,
       "_constructor": "replyKeyboardForceReply#f4108aa0"
     }

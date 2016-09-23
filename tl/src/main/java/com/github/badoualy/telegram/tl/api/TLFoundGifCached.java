@@ -43,7 +43,7 @@ public class TLFoundGifCached extends TLAbsFoundGif {
     }
 
     @Override
-    @SuppressWarnings("unchecked")
+    @SuppressWarnings({"unchecked", "SimplifiableConditionalExpression"})
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
         url = readTLString(stream);
         photo = readTLObject(stream, context, TLAbsPhoto.class, -1);

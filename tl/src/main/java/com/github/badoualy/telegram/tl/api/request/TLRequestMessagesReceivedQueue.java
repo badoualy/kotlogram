@@ -33,7 +33,7 @@ public class TLRequestMessagesReceivedQueue extends TLMethod<TLLongVector> {
     }
 
     @Override
-    @SuppressWarnings("unchecked")
+    @SuppressWarnings({"unchecked", "SimplifiableConditionalExpression"})
     public TLLongVector deserializeResponse(InputStream stream, TLContext context) throws IOException {
         return readTLLongVector(stream, context);
     }
@@ -44,7 +44,7 @@ public class TLRequestMessagesReceivedQueue extends TLMethod<TLLongVector> {
     }
 
     @Override
-    @SuppressWarnings("unchecked")
+    @SuppressWarnings({"unchecked", "SimplifiableConditionalExpression"})
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
         maxQts = readInt(stream);
     }

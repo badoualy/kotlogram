@@ -1,22 +1,21 @@
 {
   "message": {
-    "flags": 24840,
+    "flags": 264,
     "out": false,
     "mentioned": false,
     "mediaUnread": false,
-    "silent": true,
-    "post": true,
+    "silent": false,
+    "post": false,
     "fromId": 0,
     "toId": {
-      "chatId": 0,
-      "_constructor": "peerChat#bad0e5bb"
+      "userId": 0,
+      "_constructor": "peerUser#9db1bc6d"
     },
     "replyToMsgId": 0,
     "date": 0,
     "action": {
-      "title": "CGRUPbv6Dv",
-      "chatId": 0,
-      "_constructor": "messageActionChannelMigrateFrom#b055eaee"
+      "title": "IlqXS3zjWsci8gbD",
+      "_constructor": "messageActionChannelCreate#95d2ac92"
     },
     "_constructor": "messageService#9e19a1f6",
     "id": 0

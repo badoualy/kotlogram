@@ -4,13 +4,14 @@
     "_constructor": "inputUserSelf#f7c1b13f"
   },
   "peer": {
-    "chatId": 0,
-    "_constructor": "inputPeerChat#179be863"
+    "_constructor": "inputPeerSelf#7da07ec9"
   },
   "geoPoint": {
-    "_constructor": "inputGeoPointEmpty#e4c123d6"
+    "lat": 0.0,
+    "_long": 0.0,
+    "_constructor": "inputGeoPoint#f3b7acc9"
   },
-  "query": "Xw9XumRkoAE2hAZQ7Smp",
-  "offset": "n1TfaGos0OPx6HkTcObv6edprjBmv",
+  "query": "IO95DO2ZeonR25LRZ",
+  "offset": "oxVGLjEUHLSuIsIQoTX5ez",
   "_constructor": "messages.getInlineBotResults#514e999d"
 }

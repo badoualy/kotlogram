@@ -81,7 +81,7 @@ public class TLBotInlineMediaResult extends TLAbsBotInlineResult {
     }
 
     @Override
-    @SuppressWarnings("unchecked")
+    @SuppressWarnings({"unchecked", "SimplifiableConditionalExpression"})
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
         flags = readInt(stream);
         id = readTLString(stream);

@@ -23,7 +23,7 @@ public class TLRequestContactsGetStatuses extends TLMethod<TLVector<TLContactSta
     }
 
     @Override
-    @SuppressWarnings("unchecked")
+    @SuppressWarnings({"unchecked", "SimplifiableConditionalExpression"})
     public TLVector<TLContactStatus> deserializeResponse(InputStream stream, TLContext context) throws IOException {
         return readTLVector(stream, context);
     }

@@ -47,7 +47,7 @@ public class TLFound extends TLObject {
     }
 
     @Override
-    @SuppressWarnings("unchecked")
+    @SuppressWarnings({"unchecked", "SimplifiableConditionalExpression"})
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
         results = readTLVector(stream, context);
         chats = readTLVector(stream, context);

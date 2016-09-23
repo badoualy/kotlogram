@@ -40,7 +40,7 @@ public class TLRequestAccountChangePhone extends TLMethod<TLAbsUser> {
     }
 
     @Override
-    @SuppressWarnings("unchecked")
+    @SuppressWarnings({"unchecked", "SimplifiableConditionalExpression"})
     public TLAbsUser deserializeResponse(InputStream stream, TLContext context) throws IOException {
         final TLObject response = readTLObject(stream, context);
         if (response == null) {
@@ -60,7 +60,7 @@ public class TLRequestAccountChangePhone extends TLMethod<TLAbsUser> {
     }
 
     @Override
-    @SuppressWarnings("unchecked")
+    @SuppressWarnings({"unchecked", "SimplifiableConditionalExpression"})
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
         phoneNumber = readTLString(stream);
         phoneCodeHash = readTLString(stream);

@@ -47,7 +47,7 @@ public class TLRequestMessagesGetDocumentByHash extends TLMethod<TLAbsDocument> 
     }
 
     @Override
-    @SuppressWarnings("unchecked")
+    @SuppressWarnings({"unchecked", "SimplifiableConditionalExpression"})
     public TLAbsDocument deserializeResponse(InputStream stream, TLContext context) throws IOException {
         final TLObject response = readTLObject(stream, context);
         if (response == null) {
@@ -67,7 +67,7 @@ public class TLRequestMessagesGetDocumentByHash extends TLMethod<TLAbsDocument> 
     }
 
     @Override
-    @SuppressWarnings("unchecked")
+    @SuppressWarnings({"unchecked", "SimplifiableConditionalExpression"})
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
         sha256 = readTLBytes(stream, context);
         size = readInt(stream);

@@ -33,7 +33,7 @@ public class TLRequestAccountGetPrivacy extends TLMethod<TLPrivacyRules> {
     }
 
     @Override
-    @SuppressWarnings("unchecked")
+    @SuppressWarnings({"unchecked", "SimplifiableConditionalExpression"})
     public TLPrivacyRules deserializeResponse(InputStream stream, TLContext context) throws IOException {
         final TLObject response = readTLObject(stream, context);
         if (response == null) {
@@ -51,7 +51,7 @@ public class TLRequestAccountGetPrivacy extends TLMethod<TLPrivacyRules> {
     }
 
     @Override
-    @SuppressWarnings("unchecked")
+    @SuppressWarnings({"unchecked", "SimplifiableConditionalExpression"})
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
         key = readTLObject(stream, context, TLAbsInputPrivacyKey.class, -1);
     }

@@ -34,7 +34,7 @@ public class TLRequestContactsGetContacts extends TLMethod<TLAbsContacts> {
     }
 
     @Override
-    @SuppressWarnings("unchecked")
+    @SuppressWarnings({"unchecked", "SimplifiableConditionalExpression"})
     public TLAbsContacts deserializeResponse(InputStream stream, TLContext context) throws IOException {
         final TLObject response = readTLObject(stream, context);
         if (response == null) {
@@ -52,7 +52,7 @@ public class TLRequestContactsGetContacts extends TLMethod<TLAbsContacts> {
     }
 
     @Override
-    @SuppressWarnings("unchecked")
+    @SuppressWarnings({"unchecked", "SimplifiableConditionalExpression"})
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
         hash = readTLString(stream);
     }

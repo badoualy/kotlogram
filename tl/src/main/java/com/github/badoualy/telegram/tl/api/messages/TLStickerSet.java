@@ -48,7 +48,7 @@ public class TLStickerSet extends TLObject {
     }
 
     @Override
-    @SuppressWarnings("unchecked")
+    @SuppressWarnings({"unchecked", "SimplifiableConditionalExpression"})
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
         set = readTLObject(stream, context, com.github.badoualy.telegram.tl.api.TLStickerSet.class, com.github.badoualy.telegram.tl.api.TLStickerSet.CONSTRUCTOR_ID);
         packs = readTLVector(stream, context);

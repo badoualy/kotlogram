@@ -3,8 +3,13 @@
   "date": 0,
   "sizes": [
     {
+      "_constructor": "photoSizeEmpty#e17e23c",
+      "type": "lpbZel"
+    },
+    {
       "location": {
-        "_constructor": "fileLocationUnavailable#7c596b46",
+        "dcId": 0,
+        "_constructor": "fileLocation#53d69076",
         "volumeId": 0,
         "localId": 0,
         "secret": 0
@@ -37,102 +42,13 @@
           0,
           0,
           0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
           0
         ],
         "offset": 0,
-        "len": 114
+        "len": 25
       },
       "_constructor": "photoCachedSize#e9a734fa",
-      "type": "C37an1y9H21j92qfzkHTXY"
+      "type": "4OKN938N7IFxrAsQnPRSnUeXaP28"
     },
     {
       "location": {
@@ -179,33 +95,42 @@
           0,
           0,
           0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
           0
         ],
         "offset": 0,
-        "len": 34
+        "len": 58
       },
       "_constructor": "photoCachedSize#e9a734fa",
-      "type": "0fI4LXIwbc3"
-    },
-    {
-      "_constructor": "photoSizeEmpty#e17e23c",
-      "type": "f6YSIi50zCszfpxXCt9VSPCCJ"
-    },
-    {
-      "_constructor": "photoSizeEmpty#e17e23c",
-      "type": "D0sVXvwb070iFwBwGu2LPB"
-    },
-    {
-      "_constructor": "photoSizeEmpty#e17e23c",
-      "type": "OSArQn7GOpQhps1BQgRKUy"
-    },
-    {
-      "_constructor": "photoSizeEmpty#e17e23c",
-      "type": "eQrVG4s7"
+      "type": "FHoMoptOg"
     },
     {
       "location": {
-        "_constructor": "fileLocationUnavailable#7c596b46",
+        "dcId": 0,
+        "_constructor": "fileLocation#53d69076",
         "volumeId": 0,
         "localId": 0,
         "secret": 0
@@ -214,7 +139,25 @@
       "h": 0,
       "size": 0,
       "_constructor": "photoSize#77bfb61b",
-      "type": "O42E1P1os"
+      "type": "PWONQZcENo89aag3KIyYxGy5sprRM"
+    },
+    {
+      "location": {
+        "dcId": 0,
+        "_constructor": "fileLocation#53d69076",
+        "volumeId": 0,
+        "localId": 0,
+        "secret": 0
+      },
+      "w": 0,
+      "h": 0,
+      "size": 0,
+      "_constructor": "photoSize#77bfb61b",
+      "type": "q8a4fP0G5v5F"
+    },
+    {
+      "_constructor": "photoSizeEmpty#e17e23c",
+      "type": "3Uv9SjZMNQFXrNKNAI4nplS"
     }
   ],
   "_constructor": "photo#cded42fe",

@@ -1,9 +1,7 @@
 {
   "channel": {
-    "channelId": 0,
-    "accessHash": 0,
-    "_constructor": "inputChannel#afeb712e"
+    "_constructor": "inputChannelEmpty#ee8c1e86"
   },
-  "enabled": false,
+  "enabled": true,
   "_constructor": "channels.toggleSignatures#1f69b606"
 }

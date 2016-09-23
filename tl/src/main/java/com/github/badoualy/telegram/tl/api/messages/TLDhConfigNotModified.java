@@ -34,7 +34,7 @@ public class TLDhConfigNotModified extends TLAbsDhConfig {
     }
 
     @Override
-    @SuppressWarnings("unchecked")
+    @SuppressWarnings({"unchecked", "SimplifiableConditionalExpression"})
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
         random = readTLBytes(stream, context);
     }

@@ -45,7 +45,7 @@ public class TLUserProfilePhoto extends TLAbsUserProfilePhoto {
     }
 
     @Override
-    @SuppressWarnings("unchecked")
+    @SuppressWarnings({"unchecked", "SimplifiableConditionalExpression"})
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
         photoId = readLong(stream);
         photoSmall = readTLObject(stream, context, TLAbsFileLocation.class, -1);

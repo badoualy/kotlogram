@@ -34,7 +34,7 @@ public class TLInputMediaGeoPoint extends TLAbsInputMedia {
     }
 
     @Override
-    @SuppressWarnings("unchecked")
+    @SuppressWarnings({"unchecked", "SimplifiableConditionalExpression"})
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
         geoPoint = readTLObject(stream, context, TLAbsInputGeoPoint.class, -1);
     }

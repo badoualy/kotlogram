@@ -39,7 +39,7 @@ public class TLGeoPoint extends TLAbsGeoPoint {
     }
 
     @Override
-    @SuppressWarnings("unchecked")
+    @SuppressWarnings({"unchecked", "SimplifiableConditionalExpression"})
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
         _long = readDouble(stream);
         lat = readDouble(stream);

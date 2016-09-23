@@ -36,7 +36,7 @@ public class TLCheckedPhone extends TLObject {
     }
 
     @Override
-    @SuppressWarnings("unchecked")
+    @SuppressWarnings({"unchecked", "SimplifiableConditionalExpression"})
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
         phoneRegistered = readTLBool(stream);
     }

@@ -44,7 +44,7 @@ public class TLPhotosSlice extends TLAbsPhotos {
     }
 
     @Override
-    @SuppressWarnings("unchecked")
+    @SuppressWarnings({"unchecked", "SimplifiableConditionalExpression"})
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
         count = readInt(stream);
         photos = readTLVector(stream, context);

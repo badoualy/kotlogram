@@ -46,7 +46,7 @@ public class TLTopPeers extends TLAbsTopPeers {
     }
 
     @Override
-    @SuppressWarnings("unchecked")
+    @SuppressWarnings({"unchecked", "SimplifiableConditionalExpression"})
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
         categories = readTLVector(stream, context);
         chats = readTLVector(stream, context);

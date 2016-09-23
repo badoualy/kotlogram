@@ -40,7 +40,7 @@ public class TLRequestMessagesSearchGifs extends TLMethod<TLFoundGifs> {
     }
 
     @Override
-    @SuppressWarnings("unchecked")
+    @SuppressWarnings({"unchecked", "SimplifiableConditionalExpression"})
     public TLFoundGifs deserializeResponse(InputStream stream, TLContext context) throws IOException {
         final TLObject response = readTLObject(stream, context);
         if (response == null) {
@@ -59,7 +59,7 @@ public class TLRequestMessagesSearchGifs extends TLMethod<TLFoundGifs> {
     }
 
     @Override
-    @SuppressWarnings("unchecked")
+    @SuppressWarnings({"unchecked", "SimplifiableConditionalExpression"})
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
         q = readTLString(stream);
         offset = readInt(stream);

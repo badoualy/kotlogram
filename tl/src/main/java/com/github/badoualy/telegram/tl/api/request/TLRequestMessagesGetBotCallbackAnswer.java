@@ -46,7 +46,7 @@ public class TLRequestMessagesGetBotCallbackAnswer extends TLMethod<TLBotCallbac
     }
 
     @Override
-    @SuppressWarnings("unchecked")
+    @SuppressWarnings({"unchecked", "SimplifiableConditionalExpression"})
     public TLBotCallbackAnswer deserializeResponse(InputStream stream, TLContext context) throws IOException {
         final TLObject response = readTLObject(stream, context);
         if (response == null) {
@@ -66,7 +66,7 @@ public class TLRequestMessagesGetBotCallbackAnswer extends TLMethod<TLBotCallbac
     }
 
     @Override
-    @SuppressWarnings("unchecked")
+    @SuppressWarnings({"unchecked", "SimplifiableConditionalExpression"})
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
         peer = readTLObject(stream, context, TLAbsInputPeer.class, -1);
         msgId = readInt(stream);

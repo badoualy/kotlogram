@@ -35,7 +35,7 @@ public class TLSentCodeTypeCall extends TLAbsSentCodeType {
     }
 
     @Override
-    @SuppressWarnings("unchecked")
+    @SuppressWarnings({"unchecked", "SimplifiableConditionalExpression"})
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
         length = readInt(stream);
     }

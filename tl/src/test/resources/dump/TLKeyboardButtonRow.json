@@ -1,47 +1,26 @@
 {
   "buttons": [
     {
-      "data": {
-        "data": [
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0
-        ],
-        "offset": 0,
-        "len": 9
-      },
-      "_constructor": "keyboardButtonCallback#683a5e46",
-      "text": "bLRqkGceVFQxj6MnMF"
-    },
-    {
-      "query": "kXsD1hqmVqfCf0",
-      "_constructor": "keyboardButtonSwitchInline#ea1b7a14",
-      "text": "k5qRtT9QgEhhwOD6bLOIvw"
-    },
-    {
-      "url": "pzeF3Ih91aIxgzL9Y",
+      "url": "HDJ64MA4wI9aU",
       "_constructor": "keyboardButtonUrl#258aff05",
-      "text": "pYwKncqIo"
+      "text": "o5TwosH4PLSj6WgET9DS"
     },
     {
-      "url": "9a0pvnEDUN",
-      "_constructor": "keyboardButtonUrl#258aff05",
-      "text": "V4I55TJMbnafDXOEg"
+      "_constructor": "keyboardButton#a2fa4880",
+      "text": "FZoaSLvjXRAvQvn6nXQEa"
     },
     {
       "_constructor": "keyboardButtonRequestPhone#b16a6c29",
-      "text": "D7QBlkFYnOgAhY8"
+      "text": "e6aVl3n"
     },
     {
-      "query": "nvYeic0t7KBIPioBiGnhz",
-      "_constructor": "keyboardButtonSwitchInline#ea1b7a14",
-      "text": "4EgE1J057HbcqUvXfLA"
+      "_constructor": "keyboardButtonRequestGeoLocation#fc796b3f",
+      "text": "uPAzkqF"
+    },
+    {
+      "url": "MjhTePbfPWy",
+      "_constructor": "keyboardButtonUrl#258aff05",
+      "text": "E6SaM8D"
     }
   ],
   "_constructor": "keyboardButtonRow#77608b83"

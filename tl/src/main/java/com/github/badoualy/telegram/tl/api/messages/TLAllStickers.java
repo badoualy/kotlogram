@@ -43,7 +43,7 @@ public class TLAllStickers extends TLAbsAllStickers {
     }
 
     @Override
-    @SuppressWarnings("unchecked")
+    @SuppressWarnings({"unchecked", "SimplifiableConditionalExpression"})
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
         hash = readInt(stream);
         sets = readTLVector(stream, context);

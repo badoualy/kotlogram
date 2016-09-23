@@ -51,7 +51,7 @@ public class TLFile extends TLObject {
     }
 
     @Override
-    @SuppressWarnings("unchecked")
+    @SuppressWarnings({"unchecked", "SimplifiableConditionalExpression"})
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
         type = readTLObject(stream, context, TLAbsFileType.class, -1);
         mtime = readInt(stream);

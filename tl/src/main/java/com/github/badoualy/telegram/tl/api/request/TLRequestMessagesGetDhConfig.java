@@ -37,7 +37,7 @@ public class TLRequestMessagesGetDhConfig extends TLMethod<TLAbsDhConfig> {
     }
 
     @Override
-    @SuppressWarnings("unchecked")
+    @SuppressWarnings({"unchecked", "SimplifiableConditionalExpression"})
     public TLAbsDhConfig deserializeResponse(InputStream stream, TLContext context) throws IOException {
         final TLObject response = readTLObject(stream, context);
         if (response == null) {
@@ -56,7 +56,7 @@ public class TLRequestMessagesGetDhConfig extends TLMethod<TLAbsDhConfig> {
     }
 
     @Override
-    @SuppressWarnings("unchecked")
+    @SuppressWarnings({"unchecked", "SimplifiableConditionalExpression"})
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
         version = readInt(stream);
         randomLength = readInt(stream);

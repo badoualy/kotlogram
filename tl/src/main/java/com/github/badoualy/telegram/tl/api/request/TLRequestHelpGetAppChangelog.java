@@ -23,7 +23,7 @@ public class TLRequestHelpGetAppChangelog extends TLMethod<TLAbsAppChangelog> {
     }
 
     @Override
-    @SuppressWarnings("unchecked")
+    @SuppressWarnings({"unchecked", "SimplifiableConditionalExpression"})
     public TLAbsAppChangelog deserializeResponse(InputStream stream, TLContext context) throws IOException {
         final TLObject response = readTLObject(stream, context);
         if (response == null) {

@@ -31,7 +31,7 @@ public class TLRequestInvokeWithoutUpdates<T extends TLObject> extends TLMethod<
     }
 
     @Override
-    @SuppressWarnings("unchecked")
+    @SuppressWarnings({"unchecked", "SimplifiableConditionalExpression"})
     public T deserializeResponse(InputStream stream, TLContext context) throws IOException {
         return query.deserializeResponse(stream, context);
     }
@@ -42,7 +42,7 @@ public class TLRequestInvokeWithoutUpdates<T extends TLObject> extends TLMethod<
     }
 
     @Override
-    @SuppressWarnings("unchecked")
+    @SuppressWarnings({"unchecked", "SimplifiableConditionalExpression"})
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
         query = readTLMethod(stream, context);
     }

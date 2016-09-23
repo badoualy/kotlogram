@@ -54,7 +54,7 @@ public class TLPassword extends TLAbsPassword {
     }
 
     @Override
-    @SuppressWarnings("unchecked")
+    @SuppressWarnings({"unchecked", "SimplifiableConditionalExpression"})
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
         currentSalt = readTLBytes(stream, context);
         newSalt = readTLBytes(stream, context);

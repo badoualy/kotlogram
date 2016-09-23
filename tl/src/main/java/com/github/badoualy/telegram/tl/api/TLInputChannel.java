@@ -42,7 +42,7 @@ public class TLInputChannel extends TLAbsInputChannel {
     }
 
     @Override
-    @SuppressWarnings("unchecked")
+    @SuppressWarnings({"unchecked", "SimplifiableConditionalExpression"})
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
         channelId = readInt(stream);
         accessHash = readLong(stream);

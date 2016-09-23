@@ -41,7 +41,7 @@ public class TLInputMediaPhoto extends TLAbsInputMedia {
     }
 
     @Override
-    @SuppressWarnings("unchecked")
+    @SuppressWarnings({"unchecked", "SimplifiableConditionalExpression"})
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
         id = readTLObject(stream, context, TLAbsInputPhoto.class, -1);
         caption = readTLString(stream);

@@ -42,7 +42,7 @@ public class TLMessageActionChatCreate extends TLAbsMessageAction {
     }
 
     @Override
-    @SuppressWarnings("unchecked")
+    @SuppressWarnings({"unchecked", "SimplifiableConditionalExpression"})
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
         title = readTLString(stream);
         users = readTLIntVector(stream, context);

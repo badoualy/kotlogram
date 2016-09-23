@@ -34,7 +34,7 @@ public class TLNotifyPeer extends TLAbsNotifyPeer {
     }
 
     @Override
-    @SuppressWarnings("unchecked")
+    @SuppressWarnings({"unchecked", "SimplifiableConditionalExpression"})
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
         peer = readTLObject(stream, context, TLAbsPeer.class, -1);
     }
