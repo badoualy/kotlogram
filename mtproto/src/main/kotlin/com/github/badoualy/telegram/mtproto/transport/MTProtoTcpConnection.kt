@@ -14,14 +14,15 @@ import java.nio.channels.SocketChannel
 
 internal class MTProtoTcpConnection
 @Throws(IOException::class)
-@JvmOverloads constructor(id: Long, override val ip: String, override val port: Int, abridgedProtocol: Boolean = true) : MTProtoConnection {
+@JvmOverloads constructor(override val ip: String, override val port: Int, tag: String, abridgedProtocol: Boolean = true) : MTProtoConnection {
 
-    override var id = id;
+    override var tag: String = tag
         set(value) {
             field = value
-            idMarker = MarkerFactory.getMarker(value.toString())
+            marker = MarkerFactory.getMarker(tag)
         }
-    private var idMarker = MarkerFactory.getMarker(id.toString())
+    override var marker = MarkerFactory.getMarker(tag)!!
+        private set
 
     private var socketChannel: SocketChannel
     private val msgHeaderBuffer = ByteBuffer.allocate(1)
@@ -42,14 +43,14 @@ internal class MTProtoTcpConnection
 
                 if (abridgedProtocol) {
                     // @see https://core.telegram.org/mtproto/samples-auth_key
-                    logger.info(idMarker, "Using abridged protocol")
+                    logger.info(marker, "Using abridged protocol")
                     socketChannel.write(ByteBuffer.wrap(byteArrayOf(0xef.toByte())))
                 }
-                logger.info(idMarker, "Connected to $ip:$port isConnected: ${socketChannel.isConnected}, isOpen: ${socketChannel.isOpen}")
+                logger.info(marker, "Connected to $ip:$port isConnected: ${socketChannel.isConnected}, isOpen: ${socketChannel.isOpen}")
 
                 break
             } catch(e: Exception) {
-                logger.error(idMarker, "Failed to connect", e)
+                logger.error(marker, "Failed to connect", e)
             }
         } while (attempt++ < 1)
     }
@@ -66,7 +67,7 @@ internal class MTProtoTcpConnection
         if (length == 0x7f)
             length = readInt24(readBytes(3, msgLengthBuffer))
 
-        logger.debug(idMarker, "About to read a message of length ${length * 4}")
+        logger.debug(marker, "About to read a message of length ${length * 4}")
         val buffer = readBytes(length * 4)
 
         // TODO: fix to return ByteBuffer
@@ -121,11 +122,11 @@ internal class MTProtoTcpConnection
         return selectionKey
     }
 
-    override fun setBlocking(blocking: Boolean) = socketChannel.configureBlocking(blocking)
+    override fun setBlocking(blocking: Boolean) = socketChannel.configureBlocking(blocking)!!
 
     @Throws(IOException::class)
     override fun close() {
-        logger.debug(idMarker, "Closing connection")
+        logger.debug(marker, "Closing connection")
         socketChannel.close()
     }
 
@@ -138,7 +139,7 @@ internal class MTProtoTcpConnection
 
         var totalRead = 0
         while (totalRead < length) {
-            var read = socketChannel.read(buffer)
+            val read = socketChannel.read(buffer)
             if (read == -1)
                 throw IOException("Reached end-of-stream")
 

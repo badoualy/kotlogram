@@ -16,6 +16,7 @@ import com.github.badoualy.telegram.tl.core.TLMethod
 import com.github.badoualy.telegram.tl.core.TLObject
 import com.github.badoualy.telegram.tl.exception.RpcErrorException
 import org.slf4j.LoggerFactory
+import org.slf4j.MarkerFactory
 import java.io.IOException
 import java.io.OutputStream
 import java.nio.channels.ClosedChannelException
@@ -24,7 +25,8 @@ import java.util.concurrent.TimeoutException
 
 internal class DefaultTelegramClient internal constructor(val application: TelegramApp, val apiStorage: TelegramApiStorage,
                                                           val preferredDataCenter: DataCenter,
-                                                          val updateCallback: UpdateCallback?) : TelegramApiWrapper(), TelegramClient, ApiCallback {
+                                                          val updateCallback: UpdateCallback?,
+                                                          val tag: String) : TelegramApiWrapper(), TelegramClient, ApiCallback {
 
     private var mtProtoHandler: MTProtoHandler? = null
     private var authKey: AuthKey? = null
@@ -39,6 +41,8 @@ internal class DefaultTelegramClient internal constructor(val application: Teleg
 
     private var generateAuthKey: Boolean
 
+    private val marker = MarkerFactory.getMarker(tag)
+
     init {
         authKey = apiStorage.loadAuthKey()
         dataCenter = apiStorage.loadDc()
@@ -50,20 +54,20 @@ internal class DefaultTelegramClient internal constructor(val application: Teleg
                 apiStorage.saveSession(null)
                 throw RuntimeException("Found an authorization key in storage, but the DC configuration was not found, deleting authorization key")
             }
-            logger.warn("No data center found in storage, using preferred ${preferredDataCenter.toString()}")
+            logger.warn(marker, "No data center found in storage, using preferred ${preferredDataCenter.toString()}")
             dataCenter = preferredDataCenter
         }
 
         // No need to check DC if we have an authKey in storage
         init(checkNearestDc = generateAuthKey)
-        logger.info(mtProtoHandler!!.session.marker, "Client ready")
+        logger.info(marker, "Client ready")
     }
 
     private fun init(checkNearestDc: Boolean = true) {
-        logger.debug("init() $checkNearestDc")
+        logger.debug(marker, "init() $checkNearestDc")
         mtProtoHandler =
-                if (generateAuthKey) MTProtoHandler(generateAuthKey(), this)
-                else MTProtoHandler(dataCenter!!, authKey!!, apiStorage.loadSession(), this)
+                if (generateAuthKey) MTProtoHandler(generateAuthKey(), this, tag)
+                else MTProtoHandler(dataCenter!!, authKey!!, apiStorage.loadSession(), this, tag)
         mtProtoHandler!!.startWatchdog()
 
         try {
@@ -95,7 +99,7 @@ internal class DefaultTelegramClient internal constructor(val application: Teleg
     }
 
     private fun generateAuthKey(): AuthResult {
-        val authResult = AuthKeyCreation.createAuthKey(dataCenter!!) ?: throw RuntimeException("Couldn't generate authorization key")
+        val authResult = AuthKeyCreation.createAuthKey(dataCenter!!, tag) ?: throw RuntimeException("Couldn't generate authorization key")
         authKey = authResult.authKey
         apiStorage.saveAuthKey(authKey!!)
         apiStorage.saveDc(dataCenter!!)
@@ -104,7 +108,7 @@ internal class DefaultTelegramClient internal constructor(val application: Teleg
 
     @Throws(RpcErrorException::class, IOException::class)
     private fun <T : TLObject> initConnection(mtProtoHandler: MTProtoHandler, method: TLMethod<T>): T {
-        logger.debug("Init connection with method ${method.toString()}")
+        logger.debug(marker, "Init connection with method ${method.toString()}")
         val initConnectionRequest = TLRequestInitConnection(application.apiId, application.deviceModel, application.systemVersion, application.appVersion, application.langCode, method)
         val result = executeRpcQuery(TLRequestInvokeWithLayer(Kotlogram.API_LAYER, initConnectionRequest), mtProtoHandler)
         return result
@@ -112,9 +116,9 @@ internal class DefaultTelegramClient internal constructor(val application: Teleg
 
     @Throws(RpcErrorException::class, IOException::class)
     private fun ensureNearestDc(nearestDc: TLNearestDc) {
-        logger.debug("ensureNearestDc()")
+        logger.debug(marker, "ensureNearestDc()")
         if (nearestDc.thisDc != nearestDc.nearestDc) {
-            logger.warn("Current DC${nearestDc.thisDc} is not the nearest (DC${nearestDc.nearestDc})")
+            logger.warn(marker, "Current DC${nearestDc.thisDc} is not the nearest (DC${nearestDc.nearestDc})")
             if (!generateAuthKey) {
                 // Key was provided, yet selected DC is not the nearest
                 // TODO: Should handle authKey migration via auth.exportAuthorization
@@ -123,7 +127,7 @@ internal class DefaultTelegramClient internal constructor(val application: Teleg
             }
             migrate(nearestDc.nearestDc)
         } else {
-            logger.info("Connected to the nearest DC${nearestDc.thisDc}")
+            logger.info(marker, "Connected to the nearest DC${nearestDc.thisDc}")
         }
     }
 
@@ -144,7 +148,7 @@ internal class DefaultTelegramClient internal constructor(val application: Teleg
         apiStorage.saveSession(mtProtoHandler!!.session)
     }
 
-    override fun getDownloaderClient() = DefaultTelegramClient(application, ReadOnlyApiStorage(authKey!!, mtProtoHandler!!.session), preferredDataCenter, updateCallback)
+    override fun getDownloaderClient() = DefaultTelegramClient(application, ReadOnlyApiStorage(authKey!!, mtProtoHandler!!.session), preferredDataCenter, updateCallback, "Downloader:$tag")
 
     /** Queue method now, without handling the result or any possible error */
     override fun <T : TLObject> queueMethodImmediate(method: TLMethod<T>, validityTimeout: Long) {
@@ -161,11 +165,11 @@ internal class DefaultTelegramClient internal constructor(val application: Teleg
 
     @Throws(RpcErrorException::class, IOException::class)
     override fun <T : TLObject> executeRpcQueries(methods: List<TLMethod<T>>, dcId: Int): List<T> {
-        logger.debug("executeRpcQuery ${methods.joinToString(", ")} on DC$dcId")
+        logger.debug(marker, "executeRpcQuery ${methods.joinToString(", ")} on DC$dcId")
         if (Kotlogram.getDcById(dcId).equals(dataCenter))
             return executeRpcQueries(methods)
 
-        logger.info("Need to export handler")
+        logger.info(marker, "Need to export handler")
         val exportedHandler = getExportedMTProtoHandler(dcId)
         try {
             return executeRpcQueries(methods, exportedHandler)
@@ -188,15 +192,15 @@ internal class DefaultTelegramClient internal constructor(val application: Teleg
                     val rpcException = (exception.cause as RpcErrorException)
                     if (rpcException.code == 303) {
                         // DC error
-                        logger.error("Received DC error: ${rpcException.toString()}")
+                        logger.error(marker, "Received DC error: ${rpcException.toString()}")
                         if (rpcException.tag.startsWith("PHONE_MIGRATE_") || rpcException.tag.startsWith("NETWORK_MIGRATE_")) {
                             val dcId = rpcException.tagInteger
-                            logger.info("Repeat request after migration on DC$dcId")
+                            logger.info(marker, "Repeat request after migration on DC$dcId")
                             migrate(dcId)
                             return executeRpcQueries(methods)
                         } else if (rpcException.tag.startsWith("FILE_MIGRATE_")) {
                             val dcId = rpcException.tagInteger
-                            logger.info("Repeat request with new handler on DC$dcId")
+                            logger.info(marker, "Repeat request with new handler on DC$dcId")
                             val exportedHandler = getExportedMTProtoHandler(dcId)
                             try {
                                 return executeRpcQueries(methods, exportedHandler)
@@ -205,16 +209,16 @@ internal class DefaultTelegramClient internal constructor(val application: Teleg
                             }
                         }
                     }
-                    logger.error("Unhandled RpcError ${rpcException.toString()}")
+                    logger.error(marker, "Unhandled RpcError ${rpcException.toString()}")
                     throw RpcErrorException(rpcException.code, rpcException.tag) // Better stack trace
                 }
                 is TimeoutException, is ClosedChannelException -> {
                     if (attemptCount < 2) {
                         // Experimental, try to resend request ...
-                        logger.error("Attempting MtProtoHandler reset after failure")
+                        logger.error(marker, "Attempting MtProtoHandler reset after failure")
                         mtProtoHandler.resetConnection()
                         val result = executeRpcQueries(methods, mtProtoHandler, attemptCount + 1)
-                        logger.debug("Reset worked")
+                        logger.debug(marker, "Reset worked")
                         return result
                     }
                     throw TimeoutException("Request timed out")
@@ -256,7 +260,7 @@ internal class DefaultTelegramClient internal constructor(val application: Teleg
     override fun messagesSendMessage(peer: TLAbsInputPeer, message: String, randomId: Long) = super.messagesSendMessage(true, false, false, false, peer, null, message, randomId, null, null)
 
     private fun migrate(dcId: Int) {
-        logger.info("Migrating to DC$dcId")
+        logger.info(marker, "Migrating to DC$dcId")
         mtProtoHandler?.close()
         authKey = null
         dataCenter = Kotlogram.getDcById(dcId)
@@ -270,7 +274,7 @@ internal class DefaultTelegramClient internal constructor(val application: Teleg
 
     @Throws(RpcErrorException::class, IOException::class)
     private fun getExportedMTProtoHandler(dcId: Int): MTProtoHandler {
-        logger.trace("getExportedMTProtoHandler(DC$dcId)")
+        logger.trace(marker, "getExportedMTProtoHandler(DC$dcId)")
 
         var cachedHandler: MTProtoHandler? = null
         synchronized(exportedHandlerMap) {
@@ -278,21 +282,21 @@ internal class DefaultTelegramClient internal constructor(val application: Teleg
         }
 
         if (cachedHandler != null)
-            logger.debug("Using cached handler")
+            logger.debug(marker, "Using cached handler")
 
         return cachedHandler ?: if (authKeyMap.contains(dcId)) {
-            logger.debug("Already have key for DC$dcId")
+            logger.debug(marker, "Already have key for DC$dcId")
             val authKey = authKeyMap[dcId]!!
-            val mtProtoHandler = MTProtoHandler(Kotlogram.getDcById(dcId), authKey, null, null)
+            val mtProtoHandler = MTProtoHandler(Kotlogram.getDcById(dcId), authKey, null, null, tag)
             mtProtoHandler.startWatchdog()
             initConnection(mtProtoHandler, TLRequestHelpGetNearestDc())
             mtProtoHandler
         } else {
-            logger.debug("Creating new handler on DC$dcId")
+            logger.debug(marker, "Creating new handler on DC$dcId")
             val dc = Kotlogram.getDcById(dcId)
             val exportedAuthorization = authExportAuthorization(dcId)
-            val authResult = AuthKeyCreation.createAuthKey(dc) ?: throw IOException("Couldn't create authorization key on DC$dcId")
-            val mtProtoHandler = MTProtoHandler(authResult, null)
+            val authResult = AuthKeyCreation.createAuthKey(dc, tag) ?: throw IOException("Couldn't create authorization key on DC$dcId")
+            val mtProtoHandler = MTProtoHandler(authResult, null, tag)
             mtProtoHandler.startWatchdog()
             initConnection(mtProtoHandler, TLRequestAuthImportAuthorization(exportedAuthorization.id, exportedAuthorization.bytes))
             authKeyMap.put(dcId, authResult.authKey)

@@ -35,9 +35,6 @@ class MTProtoHandler {
     private val ACK_BUFFER_SIZE = 15
     private val ACK_BUFFER_TIMEOUT: Long = 150 * 1000
 
-    private val mtProtoContext = MTProtoContext
-    private val apiContext = TLApiContext.getInstance()
-
     private var connection: MTProtoConnection? = null
     var authKey: AuthKey? = null
         private set
@@ -54,27 +51,32 @@ class MTProtoHandler {
     private var bufferId = 0
 
     private val apiCallback: ApiCallback?
+    private val tag: String
 
-    constructor(authResult: AuthResult, apiCallback: ApiCallback?) {
-        connection = authResult.connection
-        session = MTSession(connection!!.dataCenter)
-        session.salt = authResult.serverSalt
-        connection!!.id = session.idLong
-        authKey = authResult.authKey
+    constructor(authResult: AuthResult, apiCallback: ApiCallback?, tag: String) {
+        this.tag = tag
         this.apiCallback = apiCallback
+
+        connection = authResult.connection
+        session = MTSession(connection!!.dataCenter, tag = tag)
+        session.salt = authResult.serverSalt
+        connection!!.tag = session.tag
+        authKey = authResult.authKey
         logger.debug(session.marker, "New handler from authResult")
     }
 
-    constructor(dataCenter: DataCenter, authKey: AuthKey, session: MTSession?, apiCallback: ApiCallback?) {
-        this.session = session ?: MTSession(dataCenter)
-        connection = MTProtoTcpConnection(this.session.idLong, dataCenter.ip, dataCenter.port)
-        this.authKey = authKey
+    constructor(dataCenter: DataCenter, authKey: AuthKey, session: MTSession?, apiCallback: ApiCallback?, tag: String) {
         this.apiCallback = apiCallback
+        this.tag = tag
+
+        this.session = session ?: MTSession(dataCenter, tag = tag)
+        connection = MTProtoTcpConnection(dataCenter.ip, dataCenter.port, this.session.tag)
+        this.authKey = authKey
         logger.debug(this.session.marker, "New handler from existing key")
     }
 
     private fun newSession(dataCenter: DataCenter): MTSession {
-        val session = MTSession(dataCenter)
+        val session = MTSession(dataCenter, tag = tag)
         logger.warn(session.marker, "New session created")
         return session
     }
@@ -98,7 +100,7 @@ class MTProtoHandler {
         close()
 
         session = newSession(connection!!.dataCenter)
-        connection = MTProtoTcpConnection(session.idLong, connection!!.ip, connection!!.port)
+        connection = MTProtoTcpConnection(connection!!.ip, connection!!.port, session.tag)
         startWatchdog()
         executeMethod(TLRequestHelpGetNearestDc(), 5L)
     }
@@ -542,11 +544,11 @@ class MTProtoHandler {
             }
             MTBadMessage.ERROR_SEQNO_EXPECTED_EVEN -> {
                 // Should never happen
-                logger.error("ERROR_SEQNO_EXPECTED_EVENfor ${badMessage.badMsgId}")
+                logger.error(session.marker, "ERROR_SEQNO_EXPECTED_EVEN for ${badMessage.badMsgId}")
             }
             MTBadMessage.ERROR_SEQNO_EXPECTED_ODD -> {
                 // Should never happen
-                logger.error("ERROR_SEQNO_EXPECTED_ODD for ${badMessage.badMsgId}")
+                logger.error(session.marker, "ERROR_SEQNO_EXPECTED_ODD for ${badMessage.badMsgId}")
             }
             else -> logger.error(session.marker, "Unknown error ${badMessage.toPrettyString()}")
         }
@@ -599,6 +601,9 @@ class MTProtoHandler {
     companion object {
 
         private val logger = LoggerFactory.getLogger(MTProtoHandler::class.java)!!
+
+        private val mtProtoContext = MTProtoContext
+        private val apiContext = TLApiContext.getInstance()
 
         /** Thread pool to forward update callback */
         private val updatePool = ThreadPoolExecutor(4, 8, 0L, TimeUnit.MILLISECONDS, LinkedBlockingQueue<Runnable>(), NamedThreadFactory("UpdatePool"))
