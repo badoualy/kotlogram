@@ -3,12 +3,11 @@
 
 Current layer: 53
 ===========
-> Documentation moved [http://kotlogram.badoualy.com](http://kotlogram.badoualy.com)
+Documentation@[http://kotlogram.badoualy.com](http://kotlogram.badoualy.com)
 ===========
 
 > **Easy to use** and **straightforward** Kotlin (and Java) binding of [Telegram API](https://core.telegram.org/api).
 > The project is coded in **Kotlin**, with some classes (mostly generated and legacy classes) in Java
-> The Java code will be replaced by Kotlin over time
 
 > **Kotlin, what is that, I don't know this language!** 
 > Don't worry, Kotlin is a JVM language just like Java and Scala, and is interoperable with Java! You can use this as a standard Java Library
@@ -40,7 +39,7 @@ repositories {
 
 Then add the library dependency:
 ```gradle
-compile 'com.github.badoualy:kotlogram:0.0.6'
+compile 'com.github.badoualy:kotlogram:47f69d4ce8'
 ```
 
 Licence
