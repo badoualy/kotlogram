@@ -143,7 +143,7 @@ class MTProtoHandler {
      */
     fun <T : TLObject> queueMethod(method: TLMethod<T>, type: Int = QUEUE_TYPE_DISCARD, validityTimeout: Long, timeout: Long): Observable<T> = Observable.create<TLMethod<T>> { subscriber ->
         synchronized(requestQueue) {
-            logger.debug(session.marker, "Queued ${method.toString()} with validityTimeout of $validityTimeout")
+            logger.debug(session.marker, "Queued $method with validityTimeout of $validityTimeout")
             requestQueue.add(QueuedMethod(method, System.currentTimeMillis() + validityTimeout, subscriber))
         }
     }.map { it.response }.timeout(timeout, TimeUnit.MILLISECONDS)
@@ -195,7 +195,7 @@ class MTProtoHandler {
                 methods.forEach { method ->
                     val mtMessage = MTMessage(session.generateMessageId(), session.generateSeqNo(method), method.serialize())
                     mtMessages.add(mtMessage)
-                    logger.info(session.marker, "Sending method ${method.toString()} with msgId ${mtMessage.messageId} and seqNo ${mtMessage.seqNo}")
+                    logger.info(session.marker, "Sending method $method with msgId ${mtMessage.messageId} and seqNo ${mtMessage.seqNo}")
 
                     subscriberMap.put(mtMessage.messageId, s)
                     requestMap.put(mtMessage.messageId, method)
@@ -362,7 +362,7 @@ class MTProtoHandler {
                 while (requestQueue.isNotEmpty()) {
                     request = requestQueue.remove()
                     if (request.validityTimeout < time) {
-                        logger.debug(session.marker, "Queued method ${request.method.toString()} timed out, dropping")
+                        logger.debug(session.marker, "Queued method ${request.method} timed out, dropping")
                         request.subscriber.onCompleted()
                     } else {
                         toSend!!.add(request)
@@ -445,7 +445,7 @@ class MTProtoHandler {
     @Throws(IOException::class)
     private fun handleMessage(message: MTMessage) {
         val messageContent = deserializeMessageContent(message)
-        logger.debug(session.marker, "handle ${messageContent.toString()}")
+        logger.debug(session.marker, "handle $messageContent")
 
         when (messageContent) {
             is MTMsgsAck -> {
@@ -493,8 +493,8 @@ class MTProtoHandler {
                 // TODO
             }
             else -> {
-                logger.error(session.marker, "Unsupported constructor in handleMessage() ${messageContent.toString()}: ${messageContent.javaClass.simpleName}")
-                throw IllegalStateException("Unsupported constructor in handleMessage() ${messageContent.toString()}: ${messageContent.javaClass.simpleName}")
+                logger.error(session.marker, "Unsupported constructor in handleMessage() $messageContent: ${messageContent.javaClass.simpleName}")
+                throw IllegalStateException("Unsupported constructor in handleMessage() $messageContent: ${messageContent.javaClass.simpleName}")
             }
         }
     }
@@ -582,7 +582,7 @@ class MTProtoHandler {
                 logger.error(session.marker, "rpcError ${resultContent.errorCode}: ${resultContent.message}")
                 subscriber?.onError(RpcErrorException(resultContent.errorCode, resultContent.errorTag))
             } else
-                logger.error(session.marker, "Unsupported content ${result.toString()}")
+                logger.error(session.marker, "Unsupported content $result")
         } else {
             val response =
                     if (request != null)

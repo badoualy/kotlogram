@@ -9,8 +9,8 @@ dependencies {
     testCompile 'org.testng:testng:6.9.10'
     testCompile 'org.reflections:reflections:0.9.10'
     testCompile 'org.apache.commons:commons-lang3:3.4'
-    testCompile 'com.google.code.gson:gson:2.5'
-    testCompile 'commons-io:commons-io:2.4'
+    testCompile 'com.google.code.gson:gson:2.7'
+    testCompile 'commons-io:commons-io:2.5'
     testCompile 'commons-codec:commons-codec:1.10'
 }
 

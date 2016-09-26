@@ -13,7 +13,7 @@ dependencies {
     //compile 'commons-io:commons-io:2.4'
     //compile 'org.apache.commons:commons-lang3:3.4'
 
-    compile 'io.reactivex:rxjava:1.1.0'
+    compile 'io.reactivex:rxjava:1.2.0'
     compile 'org.slf4j:slf4j-simple:1.7.21'
 }
 

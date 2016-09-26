@@ -11,7 +11,7 @@ dependencies {
     compile 'com.fasterxml.jackson.core:jackson-annotations:2.2.3'
     compile 'com.fasterxml.jackson.core:jackson-databind:2.2.3'
 
-    compile 'com.squareup:javapoet:1.6.1'
+    compile 'com.squareup:javapoet:1.7.0'
 }
 
 /*task fatJar(type: Jar) {

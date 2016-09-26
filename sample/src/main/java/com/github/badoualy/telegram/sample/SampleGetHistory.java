@@ -31,7 +31,6 @@ public class SampleGetHistory {
 
     public static void main(String[] args) {
         // This is a synchronous client, that will block until the response arrive (or until timeout)
-        // A client which return an Observable<T> where T is the response type will be available soon
         TelegramClient client = Kotlogram.getDefaultClient(application, new ApiStorage());
 
         // How many messages we want to get (same than dialogs, there is a cap)
