@@ -31,6 +31,7 @@ internal class DefaultTelegramClient internal constructor(val application: Teleg
     private var mtProtoHandler: MTProtoHandler? = null
     private var authKey: AuthKey? = null
     private var dataCenter: DataCenter? = null
+    private var closed = false
 
     private val authKeyMap = HashMap<Int, AuthKey>()
     private val exportedHandlerMap = HashMap<Int, MTProtoHandler>()
@@ -54,7 +55,7 @@ internal class DefaultTelegramClient internal constructor(val application: Teleg
                 apiStorage.saveSession(null)
                 throw RuntimeException("Found an authorization key in storage, but the DC configuration was not found, deleting authorization key")
             }
-            logger.warn(marker, "No data center found in storage, using preferred ${preferredDataCenter.toString()}")
+            logger.warn(marker, "No data center found in storage, using preferred $preferredDataCenter")
             dataCenter = preferredDataCenter
         }
 
@@ -108,7 +109,7 @@ internal class DefaultTelegramClient internal constructor(val application: Teleg
 
     @Throws(RpcErrorException::class, IOException::class)
     private fun <T : TLObject> initConnection(mtProtoHandler: MTProtoHandler, method: TLMethod<T>): T {
-        logger.debug(marker, "Init connection with method ${method.toString()}")
+        logger.debug(marker, "Init connection with method $method")
         val initConnectionRequest = TLRequestInitConnection(application.apiId, application.deviceModel, application.systemVersion, application.appVersion, application.langCode, method)
         val result = executeRpcQuery(TLRequestInvokeWithLayer(Kotlogram.API_LAYER, initConnectionRequest), mtProtoHandler)
         return result
@@ -142,11 +143,17 @@ internal class DefaultTelegramClient internal constructor(val application: Teleg
     override fun close() = close(true)
 
     override fun close(cleanUp: Boolean) {
-        mtProtoHandler?.close()
+        closed = true
+        try {
+            mtProtoHandler?.close()
+        }catch (e: Exception){
+        }
         if (cleanUp)
             Kotlogram.cleanUp()
         apiStorage.saveSession(mtProtoHandler!!.session)
     }
+
+    override fun isClosed() = closed
 
     override fun getDownloaderClient() = DefaultTelegramClient(application, ReadOnlyApiStorage(authKey!!, mtProtoHandler!!.session), preferredDataCenter, updateCallback, "Downloader:$tag")
 
@@ -166,7 +173,7 @@ internal class DefaultTelegramClient internal constructor(val application: Teleg
     @Throws(RpcErrorException::class, IOException::class)
     override fun <T : TLObject> executeRpcQueries(methods: List<TLMethod<T>>, dcId: Int): List<T> {
         logger.debug(marker, "executeRpcQuery ${methods.joinToString(", ")} on DC$dcId")
-        if (Kotlogram.getDcById(dcId).equals(dataCenter))
+        if (Kotlogram.getDcById(dcId) == dataCenter)
             return executeRpcQueries(methods)
 
         logger.info(marker, "Need to export handler")
@@ -192,7 +199,7 @@ internal class DefaultTelegramClient internal constructor(val application: Teleg
                     val rpcException = (exception.cause as RpcErrorException)
                     if (rpcException.code == 303) {
                         // DC error
-                        logger.error(marker, "Received DC error: ${rpcException.toString()}")
+                        logger.error(marker, "Received DC error: $rpcException")
                         if (rpcException.tag.startsWith("PHONE_MIGRATE_") || rpcException.tag.startsWith("NETWORK_MIGRATE_")) {
                             val dcId = rpcException.tagInteger
                             logger.info(marker, "Repeat request after migration on DC$dcId")
@@ -209,12 +216,13 @@ internal class DefaultTelegramClient internal constructor(val application: Teleg
                             }
                         }
                     }
-                    logger.error(marker, "Unhandled RpcError ${rpcException.toString()}")
+                    logger.error(marker, "Unhandled RpcError $rpcException")
                     throw RpcErrorException(rpcException.code, rpcException.tag) // Better stack trace
                 }
-                is TimeoutException, is ClosedChannelException -> {
+                is TimeoutException, is ClosedChannelException, is IOException -> {
                     if (attemptCount < 2) {
                         // Experimental, try to resend request ...
+                        Thread.sleep(500)
                         logger.error(marker, "Attempting MtProtoHandler reset after failure")
                         mtProtoHandler.resetConnection()
                         val result = executeRpcQueries(methods, mtProtoHandler, attemptCount + 1)
@@ -223,7 +231,7 @@ internal class DefaultTelegramClient internal constructor(val application: Teleg
                     }
                     throw TimeoutException("Request timed out")
                 }
-                is IOException -> throw exception.cause as IOException
+                //is IOException -> throw exception.cause as IOException
                 else -> throw exception
             }
         }
@@ -251,13 +259,13 @@ internal class DefaultTelegramClient internal constructor(val application: Teleg
     }
 
     @Throws(RpcErrorException::class, IOException::class)
-    override fun authSendCode(allowFlashcall: Boolean, phoneNumber: String, currentNumber: Boolean) = super.authSendCode(allowFlashcall, phoneNumber, currentNumber, application.apiId, application.apiHash)
+    override fun authSendCode(allowFlashcall: Boolean, phoneNumber: String, currentNumber: Boolean) = super.authSendCode(allowFlashcall, phoneNumber, currentNumber, application.apiId, application.apiHash)!!
 
     @Throws(RpcErrorException::class, IOException::class)
-    override fun <T : TLObject> initConnection(query: TLMethod<T>) = executeRpcQuery(TLRequestInitConnection(application.apiId, application.deviceModel, application.systemVersion, application.appVersion, application.langCode, query))
+    override fun <T : TLObject> initConnection(query: TLMethod<T>) = executeRpcQuery(TLRequestInitConnection(application.apiId, application.deviceModel, application.systemVersion, application.appVersion, application.langCode, query))!!
 
     @Throws(RpcErrorException::class, IOException::class)
-    override fun messagesSendMessage(peer: TLAbsInputPeer, message: String, randomId: Long) = super.messagesSendMessage(true, false, false, false, peer, null, message, randomId, null, null)
+    override fun messagesSendMessage(peer: TLAbsInputPeer, message: String, randomId: Long) = super.messagesSendMessage(true, false, false, false, peer, null, message, randomId, null, null)!!
 
     private fun migrate(dcId: Int) {
         logger.info(marker, "Migrating to DC$dcId")

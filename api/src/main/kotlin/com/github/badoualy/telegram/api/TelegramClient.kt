@@ -27,6 +27,8 @@ interface TelegramClient : TelegramApi {
     /** Close connection, and clean the threads if cleanUp is true */
     fun close(cleanUp: Boolean)
 
+    fun isClosed(): Boolean
+
     /**
      * Queue a method to be executed with the next message.
      * @param method method to execute

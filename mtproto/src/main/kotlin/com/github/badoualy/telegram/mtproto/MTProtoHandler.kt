@@ -65,6 +65,7 @@ class MTProtoHandler {
         logger.debug(session.marker, "New handler from authResult")
     }
 
+    @Throws(IOException::class)
     constructor(dataCenter: DataCenter, authKey: AuthKey, session: MTSession?, apiCallback: ApiCallback?, tag: String) {
         this.apiCallback = apiCallback
         this.tag = tag
@@ -120,6 +121,7 @@ class MTProtoHandler {
         requestMap.clear()
         sentMessageList.clear()
         messageToAckList.clear()
+        requestQueue.clear()
     }
 
     @Throws(IOException::class)

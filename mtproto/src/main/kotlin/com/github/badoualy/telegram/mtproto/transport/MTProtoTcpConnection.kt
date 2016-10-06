@@ -4,6 +4,7 @@ import com.github.badoualy.telegram.tl.ByteBufferUtils.*
 import org.slf4j.LoggerFactory
 import org.slf4j.MarkerFactory
 import java.io.IOException
+import java.net.ConnectException
 import java.net.InetSocketAddress
 import java.net.StandardSocketOptions
 import java.nio.ByteBuffer
@@ -11,6 +12,7 @@ import java.nio.ByteOrder
 import java.nio.channels.SelectionKey
 import java.nio.channels.Selector
 import java.nio.channels.SocketChannel
+import java.util.concurrent.TimeUnit
 
 internal class MTProtoTcpConnection
 @Throws(IOException::class)
@@ -51,7 +53,15 @@ internal class MTProtoTcpConnection
                 break
             } catch(e: Exception) {
                 logger.error(marker, "Failed to connect", e)
+                try {
+                    socketChannel.close()
+                } catch (e: Exception) {
+                }
             }
+            Thread.sleep(TimeUnit.SECONDS.toMillis(1))
+
+            if (attempt == 1)
+                throw ConnectException("Failed to join Telegram server at $ip:$port")
         } while (attempt++ < 1)
     }
 

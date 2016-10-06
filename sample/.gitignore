@@ -3,9 +3,10 @@
 # Files containing secret/personnal values
 Main.java
 auth*.key
-src/test/java/com/github/badoualy/telegram/C.java
+#src/test/java/com/github/badoualy/telegram/C.java
 *.save
 *.jpg
 /src/test/**/Sample*.java
 /src/main/resources/*
 tmp
+C.java
