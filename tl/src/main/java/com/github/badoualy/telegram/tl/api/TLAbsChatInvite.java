@@ -5,7 +5,7 @@ import com.github.badoualy.telegram.tl.core.TLObject;
 /**
  * Abstraction level for the following constructors:
  * <ul>
- * <li>{@link TLChatInvite}: chatInvite#93e99b60</li>
+ * <li>{@link TLChatInvite}: chatInvite#db74f558</li>
  * <li>{@link TLChatInviteAlready}: chatInviteAlready#5a686d7c</li>
  * </ul>
  *

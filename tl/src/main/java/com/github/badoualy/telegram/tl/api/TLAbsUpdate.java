@@ -5,7 +5,7 @@ import com.github.badoualy.telegram.tl.core.TLObject;
 /**
  * Abstraction level for the following constructors:
  * <ul>
- * <li>{@link TLUpdateBotCallbackQuery}: updateBotCallbackQuery#a68c688c</li>
+ * <li>{@link TLUpdateBotCallbackQuery}: updateBotCallbackQuery#e73547e1</li>
  * <li>{@link TLUpdateBotInlineQuery}: updateBotInlineQuery#54826690</li>
  * <li>{@link TLUpdateBotInlineSend}: updateBotInlineSend#e48f964</li>
  * <li>{@link TLUpdateChannel}: updateChannel#b6d45656</li>
@@ -18,6 +18,7 @@ import com.github.badoualy.telegram.tl.core.TLObject;
  * <li>{@link TLUpdateChatParticipantDelete}: updateChatParticipantDelete#6e5f8c22</li>
  * <li>{@link TLUpdateChatParticipants}: updateChatParticipants#7761198</li>
  * <li>{@link TLUpdateChatUserTyping}: updateChatUserTyping#9a65ea1f</li>
+ * <li>{@link TLUpdateConfig}: updateConfig#a229dd06</li>
  * <li>{@link TLUpdateContactLink}: updateContactLink#9d2e67c5</li>
  * <li>{@link TLUpdateContactRegistered}: updateContactRegistered#2575bbb9</li>
  * <li>{@link TLUpdateDcOptions}: updateDcOptions#8e5e9873</li>
@@ -29,7 +30,7 @@ import com.github.badoualy.telegram.tl.core.TLObject;
  * <li>{@link TLUpdateEncryptedChatTyping}: updateEncryptedChatTyping#1710f156</li>
  * <li>{@link TLUpdateEncryptedMessagesRead}: updateEncryptedMessagesRead#38fe25b7</li>
  * <li>{@link TLUpdateEncryption}: updateEncryption#b4a2e88d</li>
- * <li>{@link TLUpdateInlineBotCallbackQuery}: updateInlineBotCallbackQuery#2cbd95af</li>
+ * <li>{@link TLUpdateInlineBotCallbackQuery}: updateInlineBotCallbackQuery#f9d27a5a</li>
  * <li>{@link TLUpdateMessageID}: updateMessageID#4e90bfd6</li>
  * <li>{@link TLUpdateNewAuthorization}: updateNewAuthorization#8f06529a</li>
  * <li>{@link TLUpdateNewChannelMessage}: updateNewChannelMessage#62ba04d9</li>
@@ -38,15 +39,18 @@ import com.github.badoualy.telegram.tl.core.TLObject;
  * <li>{@link TLUpdateNewStickerSet}: updateNewStickerSet#688a30aa</li>
  * <li>{@link TLUpdateNotifySettings}: updateNotifySettings#bec268ef</li>
  * <li>{@link TLUpdatePrivacy}: updatePrivacy#ee3b272a</li>
+ * <li>{@link TLUpdatePtsChanged}: updatePtsChanged#3354678f</li>
  * <li>{@link TLUpdateReadChannelInbox}: updateReadChannelInbox#4214f37f</li>
  * <li>{@link TLUpdateReadChannelOutbox}: updateReadChannelOutbox#25d6c9c7</li>
+ * <li>{@link TLUpdateReadFeaturedStickers}: updateReadFeaturedStickers#571d2742</li>
  * <li>{@link TLUpdateReadHistoryInbox}: updateReadHistoryInbox#9961fd5c</li>
  * <li>{@link TLUpdateReadHistoryOutbox}: updateReadHistoryOutbox#2f2f21bf</li>
  * <li>{@link TLUpdateReadMessagesContents}: updateReadMessagesContents#68c13933</li>
+ * <li>{@link TLUpdateRecentStickers}: updateRecentStickers#9a422c20</li>
  * <li>{@link TLUpdateSavedGifs}: updateSavedGifs#9375341e</li>
  * <li>{@link TLUpdateServiceNotification}: updateServiceNotification#382dd3e4</li>
  * <li>{@link TLUpdateStickerSets}: updateStickerSets#43ae3dec</li>
- * <li>{@link TLUpdateStickerSetsOrder}: updateStickerSetsOrder#f0dfb451</li>
+ * <li>{@link TLUpdateStickerSetsOrder}: updateStickerSetsOrder#bb2d201</li>
  * <li>{@link TLUpdateUserBlocked}: updateUserBlocked#80ece81a</li>
  * <li>{@link TLUpdateUserName}: updateUserName#a7332b73</li>
  * <li>{@link TLUpdateUserPhone}: updateUserPhone#12b9417b</li>

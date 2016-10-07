@@ -20,6 +20,8 @@ import static com.github.badoualy.telegram.tl.TLObjectUtils.computeTLStringSeria
 public class TLInputBotInlineResultPhoto extends TLAbsInputBotInlineResult {
     public static final int CONSTRUCTOR_ID = 0xa8d864a7;
 
+    protected String type;
+
     protected TLAbsInputPhoto photo;
 
     private final String _constructor = "inputBotInlineResultPhoto#a8d864a7";

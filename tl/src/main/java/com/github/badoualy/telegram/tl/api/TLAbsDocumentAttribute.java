@@ -8,8 +8,9 @@ import com.github.badoualy.telegram.tl.core.TLObject;
  * <li>{@link TLDocumentAttributeAnimated}: documentAttributeAnimated#11b58939</li>
  * <li>{@link TLDocumentAttributeAudio}: documentAttributeAudio#9852f9c6</li>
  * <li>{@link TLDocumentAttributeFilename}: documentAttributeFilename#15590068</li>
+ * <li>{@link TLDocumentAttributeHasStickers}: documentAttributeHasStickers#9801d2f7</li>
  * <li>{@link TLDocumentAttributeImageSize}: documentAttributeImageSize#6c37c15c</li>
- * <li>{@link TLDocumentAttributeSticker}: documentAttributeSticker#3a556302</li>
+ * <li>{@link TLDocumentAttributeSticker}: documentAttributeSticker#6319d612</li>
  * <li>{@link TLDocumentAttributeVideo}: documentAttributeVideo#5910cccb</li>
  * </ul>
  *

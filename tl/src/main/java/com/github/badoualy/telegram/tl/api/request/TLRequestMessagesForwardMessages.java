@@ -35,6 +35,8 @@ public class TLRequestMessagesForwardMessages extends TLMethod<TLAbsUpdates> {
 
     protected boolean background;
 
+    protected boolean withMyScore;
+
     protected TLAbsInputPeer fromPeer;
 
     protected TLIntVector id;
@@ -48,9 +50,10 @@ public class TLRequestMessagesForwardMessages extends TLMethod<TLAbsUpdates> {
     public TLRequestMessagesForwardMessages() {
     }
 
-    public TLRequestMessagesForwardMessages(boolean silent, boolean background, TLAbsInputPeer fromPeer, TLIntVector id, TLLongVector randomId, TLAbsInputPeer toPeer) {
+    public TLRequestMessagesForwardMessages(boolean silent, boolean background, boolean withMyScore, TLAbsInputPeer fromPeer, TLIntVector id, TLLongVector randomId, TLAbsInputPeer toPeer) {
         this.silent = silent;
         this.background = background;
+        this.withMyScore = withMyScore;
         this.fromPeer = fromPeer;
         this.id = id;
         this.randomId = randomId;
@@ -74,6 +77,7 @@ public class TLRequestMessagesForwardMessages extends TLMethod<TLAbsUpdates> {
         flags = 0;
         flags = silent ? (flags | 32) : (flags & ~32);
         flags = background ? (flags | 64) : (flags & ~64);
+        flags = withMyScore ? (flags | 256) : (flags & ~256);
     }
 
     @Override
@@ -93,6 +97,7 @@ public class TLRequestMessagesForwardMessages extends TLMethod<TLAbsUpdates> {
         flags = readInt(stream);
         silent = (flags & 32) != 0;
         background = (flags & 64) != 0;
+        withMyScore = (flags & 256) != 0;
         fromPeer = readTLObject(stream, context, TLAbsInputPeer.class, -1);
         id = readTLIntVector(stream, context);
         randomId = readTLLongVector(stream, context);
@@ -136,6 +141,14 @@ public class TLRequestMessagesForwardMessages extends TLMethod<TLAbsUpdates> {
 
     public void setBackground(boolean background) {
         this.background = background;
+    }
+
+    public boolean getWithMyScore() {
+        return withMyScore;
+    }
+
+    public void setWithMyScore(boolean withMyScore) {
+        this.withMyScore = withMyScore;
     }
 
     public TLAbsInputPeer getFromPeer() {

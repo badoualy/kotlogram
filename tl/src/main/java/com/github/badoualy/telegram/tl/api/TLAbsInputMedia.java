@@ -7,13 +7,16 @@ import com.github.badoualy.telegram.tl.core.TLObject;
  * <ul>
  * <li>{@link TLInputMediaContact}: inputMediaContact#a6e45987</li>
  * <li>{@link TLInputMediaDocument}: inputMediaDocument#1a77f29c</li>
+ * <li>{@link TLInputMediaDocumentExternal}: inputMediaDocumentExternal#e5e9607c</li>
  * <li>{@link TLInputMediaEmpty}: inputMediaEmpty#9664f57f</li>
+ * <li>{@link TLInputMediaGame}: inputMediaGame#d33f43f3</li>
  * <li>{@link TLInputMediaGeoPoint}: inputMediaGeoPoint#f9c44144</li>
  * <li>{@link TLInputMediaGifExternal}: inputMediaGifExternal#4843b0fd</li>
  * <li>{@link TLInputMediaPhoto}: inputMediaPhoto#e9bfb4f3</li>
- * <li>{@link TLInputMediaUploadedDocument}: inputMediaUploadedDocument#1d89306d</li>
- * <li>{@link TLInputMediaUploadedPhoto}: inputMediaUploadedPhoto#f7aff1c0</li>
- * <li>{@link TLInputMediaUploadedThumbDocument}: inputMediaUploadedThumbDocument#ad613491</li>
+ * <li>{@link TLInputMediaPhotoExternal}: inputMediaPhotoExternal#b55f4f18</li>
+ * <li>{@link TLInputMediaUploadedDocument}: inputMediaUploadedDocument#d070f1e9</li>
+ * <li>{@link TLInputMediaUploadedPhoto}: inputMediaUploadedPhoto#630c9af1</li>
+ * <li>{@link TLInputMediaUploadedThumbDocument}: inputMediaUploadedThumbDocument#50d88cae</li>
  * <li>{@link TLInputMediaVenue}: inputMediaVenue#2827a81a</li>
  * </ul>
  *

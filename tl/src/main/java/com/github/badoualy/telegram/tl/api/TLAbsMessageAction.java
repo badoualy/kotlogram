@@ -16,6 +16,7 @@ import com.github.badoualy.telegram.tl.core.TLObject;
  * <li>{@link TLMessageActionChatJoinedByLink}: messageActionChatJoinedByLink#f89cf5e8</li>
  * <li>{@link TLMessageActionChatMigrateTo}: messageActionChatMigrateTo#51bdb021</li>
  * <li>{@link TLMessageActionEmpty}: messageActionEmpty#b6aef7b0</li>
+ * <li>{@link TLMessageActionGameScore}: messageActionGameScore#92a72876</li>
  * <li>{@link TLMessageActionHistoryClear}: messageActionHistoryClear#9fbab604</li>
  * <li>{@link TLMessageActionPinMessage}: messageActionPinMessage#94bd38ed</li>
  * </ul>

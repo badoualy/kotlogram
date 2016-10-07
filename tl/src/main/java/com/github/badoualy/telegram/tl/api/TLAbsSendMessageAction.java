@@ -7,6 +7,7 @@ import com.github.badoualy.telegram.tl.core.TLObject;
  * <ul>
  * <li>{@link TLSendMessageCancelAction}: sendMessageCancelAction#fd5ec8f5</li>
  * <li>{@link TLSendMessageChooseContactAction}: sendMessageChooseContactAction#628cbc6f</li>
+ * <li>{@link TLSendMessageGamePlayAction}: sendMessageGamePlayAction#dd6a8f48</li>
  * <li>{@link TLSendMessageGeoLocationAction}: sendMessageGeoLocationAction#176f8ba1</li>
  * <li>{@link TLSendMessageRecordAudioAction}: sendMessageRecordAudioAction#d52f73f7</li>
  * <li>{@link TLSendMessageRecordVideoAction}: sendMessageRecordVideoAction#a187d66f</li>

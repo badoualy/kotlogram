@@ -2,7 +2,6 @@ package com.github.badoualy.telegram.tl.api.request;
 
 import com.github.badoualy.telegram.tl.TLContext;
 import com.github.badoualy.telegram.tl.api.TLAbsInputPhoto;
-import com.github.badoualy.telegram.tl.api.TLAbsInputPhotoCrop;
 import com.github.badoualy.telegram.tl.api.TLAbsUserProfilePhoto;
 import com.github.badoualy.telegram.tl.core.TLMethod;
 import com.github.badoualy.telegram.tl.core.TLObject;
@@ -20,20 +19,17 @@ import static com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_CONSTRUCTOR_ID;
  * @see <a href="http://github.com/badoualy/kotlogram">http://github.com/badoualy/kotlogram</a>
  */
 public class TLRequestPhotosUpdateProfilePhoto extends TLMethod<TLAbsUserProfilePhoto> {
-    public static final int CONSTRUCTOR_ID = 0xeef579a0;
+    public static final int CONSTRUCTOR_ID = 0xf0bb5152;
 
     protected TLAbsInputPhoto id;
 
-    protected TLAbsInputPhotoCrop crop;
-
-    private final String _constructor = "photos.updateProfilePhoto#eef579a0";
+    private final String _constructor = "photos.updateProfilePhoto#f0bb5152";
 
     public TLRequestPhotosUpdateProfilePhoto() {
     }
 
-    public TLRequestPhotosUpdateProfilePhoto(TLAbsInputPhoto id, TLAbsInputPhotoCrop crop) {
+    public TLRequestPhotosUpdateProfilePhoto(TLAbsInputPhoto id) {
         this.id = id;
-        this.crop = crop;
     }
 
     @Override
@@ -52,21 +48,18 @@ public class TLRequestPhotosUpdateProfilePhoto extends TLMethod<TLAbsUserProfile
     @Override
     public void serializeBody(OutputStream stream) throws IOException {
         writeTLObject(id, stream);
-        writeTLObject(crop, stream);
     }
 
     @Override
     @SuppressWarnings({"unchecked", "SimplifiableConditionalExpression"})
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
         id = readTLObject(stream, context, TLAbsInputPhoto.class, -1);
-        crop = readTLObject(stream, context, TLAbsInputPhotoCrop.class, -1);
     }
 
     @Override
     public int computeSerializedSize() {
         int size = SIZE_CONSTRUCTOR_ID;
         size += id.computeSerializedSize();
-        size += crop.computeSerializedSize();
         return size;
     }
 
@@ -86,13 +79,5 @@ public class TLRequestPhotosUpdateProfilePhoto extends TLMethod<TLAbsUserProfile
 
     public void setId(TLAbsInputPhoto id) {
         this.id = id;
-    }
-
-    public TLAbsInputPhotoCrop getCrop() {
-        return crop;
-    }
-
-    public void setCrop(TLAbsInputPhotoCrop crop) {
-        this.crop = crop;
     }
 }

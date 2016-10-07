@@ -29,9 +29,11 @@ public class TLStickerSet extends TLObject {
 
     protected boolean installed;
 
-    protected boolean disabled;
+    protected boolean archived;
 
     protected boolean official;
+
+    protected boolean masks;
 
     protected long id;
 
@@ -50,10 +52,11 @@ public class TLStickerSet extends TLObject {
     public TLStickerSet() {
     }
 
-    public TLStickerSet(boolean installed, boolean disabled, boolean official, long id, long accessHash, String title, String shortName, int count, int hash) {
+    public TLStickerSet(boolean installed, boolean archived, boolean official, boolean masks, long id, long accessHash, String title, String shortName, int count, int hash) {
         this.installed = installed;
-        this.disabled = disabled;
+        this.archived = archived;
         this.official = official;
+        this.masks = masks;
         this.id = id;
         this.accessHash = accessHash;
         this.title = title;
@@ -65,8 +68,9 @@ public class TLStickerSet extends TLObject {
     private void computeFlags() {
         flags = 0;
         flags = installed ? (flags | 1) : (flags & ~1);
-        flags = disabled ? (flags | 2) : (flags & ~2);
+        flags = archived ? (flags | 2) : (flags & ~2);
         flags = official ? (flags | 4) : (flags & ~4);
+        flags = masks ? (flags | 8) : (flags & ~8);
     }
 
     @Override
@@ -87,8 +91,9 @@ public class TLStickerSet extends TLObject {
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
         flags = readInt(stream);
         installed = (flags & 1) != 0;
-        disabled = (flags & 2) != 0;
+        archived = (flags & 2) != 0;
         official = (flags & 4) != 0;
+        masks = (flags & 8) != 0;
         id = readLong(stream);
         accessHash = readLong(stream);
         title = readTLString(stream);
@@ -130,12 +135,12 @@ public class TLStickerSet extends TLObject {
         this.installed = installed;
     }
 
-    public boolean getDisabled() {
-        return disabled;
+    public boolean getArchived() {
+        return archived;
     }
 
-    public void setDisabled(boolean disabled) {
-        this.disabled = disabled;
+    public void setArchived(boolean archived) {
+        this.archived = archived;
     }
 
     public boolean getOfficial() {
@@ -144,6 +149,14 @@ public class TLStickerSet extends TLObject {
 
     public void setOfficial(boolean official) {
         this.official = official;
+    }
+
+    public boolean getMasks() {
+        return masks;
+    }
+
+    public void setMasks(boolean masks) {
+        this.masks = masks;
     }
 
     public long getId() {

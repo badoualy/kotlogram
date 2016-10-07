@@ -2,7 +2,7 @@ package com.github.badoualy.telegram.tl.api.request;
 
 import com.github.badoualy.telegram.tl.TLContext;
 import com.github.badoualy.telegram.tl.api.TLAbsInputStickerSet;
-import com.github.badoualy.telegram.tl.core.TLBool;
+import com.github.badoualy.telegram.tl.api.messages.TLAbsStickerSetInstallResult;
 import com.github.badoualy.telegram.tl.core.TLMethod;
 import com.github.badoualy.telegram.tl.core.TLObject;
 
@@ -21,47 +21,47 @@ import static com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_CONSTRUCTOR_ID;
  * @author Yannick Badoual yann.badoual@gmail.com
  * @see <a href="http://github.com/badoualy/kotlogram">http://github.com/badoualy/kotlogram</a>
  */
-public class TLRequestMessagesInstallStickerSet extends TLMethod<TLBool> {
-    public static final int CONSTRUCTOR_ID = 0x7b30c3a6;
+public class TLRequestMessagesInstallStickerSet extends TLMethod<TLAbsStickerSetInstallResult> {
+    public static final int CONSTRUCTOR_ID = 0xc78fe460;
 
     protected TLAbsInputStickerSet stickerset;
 
-    protected boolean disabled;
+    protected boolean archived;
 
-    private final String _constructor = "messages.installStickerSet#7b30c3a6";
+    private final String _constructor = "messages.installStickerSet#c78fe460";
 
     public TLRequestMessagesInstallStickerSet() {
     }
 
-    public TLRequestMessagesInstallStickerSet(TLAbsInputStickerSet stickerset, boolean disabled) {
+    public TLRequestMessagesInstallStickerSet(TLAbsInputStickerSet stickerset, boolean archived) {
         this.stickerset = stickerset;
-        this.disabled = disabled;
+        this.archived = archived;
     }
 
     @Override
     @SuppressWarnings({"unchecked", "SimplifiableConditionalExpression"})
-    public TLBool deserializeResponse(InputStream stream, TLContext context) throws IOException {
+    public TLAbsStickerSetInstallResult deserializeResponse(InputStream stream, TLContext context) throws IOException {
         final TLObject response = readTLObject(stream, context);
         if (response == null) {
             throw new IOException("Unable to parse response");
         }
-        if (!(response instanceof TLBool)) {
+        if (!(response instanceof TLAbsStickerSetInstallResult)) {
             throw new IOException("Incorrect response type, expected " + getClass().getCanonicalName() + ", found " + response.getClass().getCanonicalName());
         }
-        return (TLBool) response;
+        return (TLAbsStickerSetInstallResult) response;
     }
 
     @Override
     public void serializeBody(OutputStream stream) throws IOException {
         writeTLObject(stickerset, stream);
-        writeBoolean(disabled, stream);
+        writeBoolean(archived, stream);
     }
 
     @Override
     @SuppressWarnings({"unchecked", "SimplifiableConditionalExpression"})
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
         stickerset = readTLObject(stream, context, TLAbsInputStickerSet.class, -1);
-        disabled = readTLBool(stream);
+        archived = readTLBool(stream);
     }
 
     @Override
@@ -90,11 +90,11 @@ public class TLRequestMessagesInstallStickerSet extends TLMethod<TLBool> {
         this.stickerset = stickerset;
     }
 
-    public boolean getDisabled() {
-        return disabled;
+    public boolean getArchived() {
+        return archived;
     }
 
-    public void setDisabled(boolean disabled) {
-        this.disabled = disabled;
+    public void setArchived(boolean archived) {
+        this.archived = archived;
     }
 }

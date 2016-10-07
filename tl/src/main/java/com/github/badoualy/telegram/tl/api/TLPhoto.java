@@ -22,7 +22,11 @@ import static com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_INT64;
  * @see <a href="http://github.com/badoualy/kotlogram">http://github.com/badoualy/kotlogram</a>
  */
 public class TLPhoto extends TLAbsPhoto {
-    public static final int CONSTRUCTOR_ID = 0xcded42fe;
+    public static final int CONSTRUCTOR_ID = 0x9288dd29;
+
+    protected int flags;
+
+    protected boolean hasStickers;
 
     protected long accessHash;
 
@@ -30,20 +34,29 @@ public class TLPhoto extends TLAbsPhoto {
 
     protected TLVector<TLAbsPhotoSize> sizes;
 
-    private final String _constructor = "photo#cded42fe";
+    private final String _constructor = "photo#9288dd29";
 
     public TLPhoto() {
     }
 
-    public TLPhoto(long id, long accessHash, int date, TLVector<TLAbsPhotoSize> sizes) {
+    public TLPhoto(boolean hasStickers, long id, long accessHash, int date, TLVector<TLAbsPhotoSize> sizes) {
+        this.hasStickers = hasStickers;
         this.id = id;
         this.accessHash = accessHash;
         this.date = date;
         this.sizes = sizes;
     }
 
+    private void computeFlags() {
+        flags = 0;
+        flags = hasStickers ? (flags | 1) : (flags & ~1);
+    }
+
     @Override
     public void serializeBody(OutputStream stream) throws IOException {
+        computeFlags();
+
+        writeInt(flags, stream);
         writeLong(id, stream);
         writeLong(accessHash, stream);
         writeInt(date, stream);
@@ -53,6 +66,8 @@ public class TLPhoto extends TLAbsPhoto {
     @Override
     @SuppressWarnings({"unchecked", "SimplifiableConditionalExpression"})
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
+        flags = readInt(stream);
+        hasStickers = (flags & 1) != 0;
         id = readLong(stream);
         accessHash = readLong(stream);
         date = readInt(stream);
@@ -61,7 +76,10 @@ public class TLPhoto extends TLAbsPhoto {
 
     @Override
     public int computeSerializedSize() {
+        computeFlags();
+
         int size = SIZE_CONSTRUCTOR_ID;
+        size += SIZE_INT32;
         size += SIZE_INT64;
         size += SIZE_INT64;
         size += SIZE_INT32;
@@ -77,6 +95,14 @@ public class TLPhoto extends TLAbsPhoto {
     @Override
     public int getConstructorId() {
         return CONSTRUCTOR_ID;
+    }
+
+    public boolean getHasStickers() {
+        return hasStickers;
+    }
+
+    public void setHasStickers(boolean hasStickers) {
+        this.hasStickers = hasStickers;
     }
 
     public long getId() {

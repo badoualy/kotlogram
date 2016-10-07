@@ -27,7 +27,7 @@ import static com.github.badoualy.telegram.tl.TLObjectUtils.computeTLStringSeria
  * @see <a href="http://github.com/badoualy/kotlogram">http://github.com/badoualy/kotlogram</a>
  */
 public class TLDocument extends TLAbsDocument {
-    public static final int CONSTRUCTOR_ID = 0xf9a39f4f;
+    public static final int CONSTRUCTOR_ID = 0x87232bc7;
 
     protected long accessHash;
 
@@ -41,14 +41,16 @@ public class TLDocument extends TLAbsDocument {
 
     protected int dcId;
 
+    protected int version;
+
     protected TLVector<TLAbsDocumentAttribute> attributes;
 
-    private final String _constructor = "document#f9a39f4f";
+    private final String _constructor = "document#87232bc7";
 
     public TLDocument() {
     }
 
-    public TLDocument(long id, long accessHash, int date, String mimeType, int size, TLAbsPhotoSize thumb, int dcId, TLVector<TLAbsDocumentAttribute> attributes) {
+    public TLDocument(long id, long accessHash, int date, String mimeType, int size, TLAbsPhotoSize thumb, int dcId, int version, TLVector<TLAbsDocumentAttribute> attributes) {
         this.id = id;
         this.accessHash = accessHash;
         this.date = date;
@@ -56,6 +58,7 @@ public class TLDocument extends TLAbsDocument {
         this.size = size;
         this.thumb = thumb;
         this.dcId = dcId;
+        this.version = version;
         this.attributes = attributes;
     }
 
@@ -68,6 +71,7 @@ public class TLDocument extends TLAbsDocument {
         writeInt(size, stream);
         writeTLObject(thumb, stream);
         writeInt(dcId, stream);
+        writeInt(version, stream);
         writeTLVector(attributes, stream);
     }
 
@@ -81,6 +85,7 @@ public class TLDocument extends TLAbsDocument {
         size = readInt(stream);
         thumb = readTLObject(stream, context, TLAbsPhotoSize.class, -1);
         dcId = readInt(stream);
+        version = readInt(stream);
         attributes = readTLVector(stream, context);
     }
 
@@ -93,6 +98,7 @@ public class TLDocument extends TLAbsDocument {
         size += computeTLStringSerializedSize(mimeType);
         size += SIZE_INT32;
         size += thumb.computeSerializedSize();
+        size += SIZE_INT32;
         size += SIZE_INT32;
         size += attributes.computeSerializedSize();
         return size;
@@ -162,6 +168,14 @@ public class TLDocument extends TLAbsDocument {
 
     public void setDcId(int dcId) {
         this.dcId = dcId;
+    }
+
+    public int getVersion() {
+        return version;
+    }
+
+    public void setVersion(int version) {
+        this.version = version;
     }
 
     public TLVector<TLAbsDocumentAttribute> getAttributes() {

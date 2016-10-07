@@ -23,7 +23,9 @@ import static com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_INT32;
  * @see <a href="http://github.com/badoualy/kotlogram">http://github.com/badoualy/kotlogram</a>
  */
 public class TLConfig extends TLObject {
-    public static final int CONSTRUCTOR_ID = 0xc9411388;
+    public static final int CONSTRUCTOR_ID = 0x9a6b2e2a;
+
+    protected int flags;
 
     protected int date;
 
@@ -65,14 +67,18 @@ public class TLConfig extends TLObject {
 
     protected int ratingEDecay;
 
+    protected int stickersRecentLimit;
+
+    protected Integer tmpSessions;
+
     protected TLVector<TLDisabledFeature> disabledFeatures;
 
-    private final String _constructor = "config#c9411388";
+    private final String _constructor = "config#9a6b2e2a";
 
     public TLConfig() {
     }
 
-    public TLConfig(int date, int expires, boolean testMode, int thisDc, TLVector<TLDcOption> dcOptions, int chatSizeMax, int megagroupSizeMax, int forwardedCountMax, int onlineUpdatePeriodMs, int offlineBlurTimeoutMs, int offlineIdleTimeoutMs, int onlineCloudTimeoutMs, int notifyCloudDelayMs, int notifyDefaultDelayMs, int chatBigSize, int pushChatPeriodMs, int pushChatLimit, int savedGifsLimit, int editTimeLimit, int ratingEDecay, TLVector<TLDisabledFeature> disabledFeatures) {
+    public TLConfig(int date, int expires, boolean testMode, int thisDc, TLVector<TLDcOption> dcOptions, int chatSizeMax, int megagroupSizeMax, int forwardedCountMax, int onlineUpdatePeriodMs, int offlineBlurTimeoutMs, int offlineIdleTimeoutMs, int onlineCloudTimeoutMs, int notifyCloudDelayMs, int notifyDefaultDelayMs, int chatBigSize, int pushChatPeriodMs, int pushChatLimit, int savedGifsLimit, int editTimeLimit, int ratingEDecay, int stickersRecentLimit, Integer tmpSessions, TLVector<TLDisabledFeature> disabledFeatures) {
         this.date = date;
         this.expires = expires;
         this.testMode = testMode;
@@ -93,11 +99,21 @@ public class TLConfig extends TLObject {
         this.savedGifsLimit = savedGifsLimit;
         this.editTimeLimit = editTimeLimit;
         this.ratingEDecay = ratingEDecay;
+        this.stickersRecentLimit = stickersRecentLimit;
+        this.tmpSessions = tmpSessions;
         this.disabledFeatures = disabledFeatures;
+    }
+
+    private void computeFlags() {
+        flags = 0;
+        flags = tmpSessions != null ? (flags | 1) : (flags & ~1);
     }
 
     @Override
     public void serializeBody(OutputStream stream) throws IOException {
+        computeFlags();
+
+        writeInt(flags, stream);
         writeInt(date, stream);
         writeInt(expires, stream);
         writeBoolean(testMode, stream);
@@ -118,12 +134,18 @@ public class TLConfig extends TLObject {
         writeInt(savedGifsLimit, stream);
         writeInt(editTimeLimit, stream);
         writeInt(ratingEDecay, stream);
+        writeInt(stickersRecentLimit, stream);
+        if ((flags & 1) != 0) {
+            if (tmpSessions == null) throwNullFieldException("tmpSessions", flags);
+            writeInt(tmpSessions, stream);
+        }
         writeTLVector(disabledFeatures, stream);
     }
 
     @Override
     @SuppressWarnings({"unchecked", "SimplifiableConditionalExpression"})
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
+        flags = readInt(stream);
         date = readInt(stream);
         expires = readInt(stream);
         testMode = readTLBool(stream);
@@ -144,12 +166,17 @@ public class TLConfig extends TLObject {
         savedGifsLimit = readInt(stream);
         editTimeLimit = readInt(stream);
         ratingEDecay = readInt(stream);
+        stickersRecentLimit = readInt(stream);
+        tmpSessions = (flags & 1) != 0 ? readInt(stream) : null;
         disabledFeatures = readTLVector(stream, context);
     }
 
     @Override
     public int computeSerializedSize() {
+        computeFlags();
+
         int size = SIZE_CONSTRUCTOR_ID;
+        size += SIZE_INT32;
         size += SIZE_INT32;
         size += SIZE_INT32;
         size += SIZE_BOOLEAN;
@@ -170,6 +197,11 @@ public class TLConfig extends TLObject {
         size += SIZE_INT32;
         size += SIZE_INT32;
         size += SIZE_INT32;
+        size += SIZE_INT32;
+        if ((flags & 1) != 0) {
+            if (tmpSessions == null) throwNullFieldException("tmpSessions", flags);
+            size += SIZE_INT32;
+        }
         size += disabledFeatures.computeSerializedSize();
         return size;
     }
@@ -342,6 +374,22 @@ public class TLConfig extends TLObject {
 
     public void setRatingEDecay(int ratingEDecay) {
         this.ratingEDecay = ratingEDecay;
+    }
+
+    public int getStickersRecentLimit() {
+        return stickersRecentLimit;
+    }
+
+    public void setStickersRecentLimit(int stickersRecentLimit) {
+        this.stickersRecentLimit = stickersRecentLimit;
+    }
+
+    public Integer getTmpSessions() {
+        return tmpSessions;
+    }
+
+    public void setTmpSessions(Integer tmpSessions) {
+        this.tmpSessions = tmpSessions;
     }
 
     public TLVector<TLDisabledFeature> getDisabledFeatures() {

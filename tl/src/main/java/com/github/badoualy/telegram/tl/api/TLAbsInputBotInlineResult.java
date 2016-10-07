@@ -7,6 +7,7 @@ import com.github.badoualy.telegram.tl.core.TLObject;
  * <ul>
  * <li>{@link TLInputBotInlineResult}: inputBotInlineResult#2cbbe15a</li>
  * <li>{@link TLInputBotInlineResultDocument}: inputBotInlineResultDocument#fff8fdc4</li>
+ * <li>{@link TLInputBotInlineResultGame}: inputBotInlineResultGame#4fa417f2</li>
  * <li>{@link TLInputBotInlineResultPhoto}: inputBotInlineResultPhoto#a8d864a7</li>
  * </ul>
  *
@@ -15,8 +16,6 @@ import com.github.badoualy.telegram.tl.core.TLObject;
  */
 public abstract class TLAbsInputBotInlineResult extends TLObject {
     protected String id;
-
-    protected String type;
 
     protected TLAbsInputBotInlineMessage sendMessage;
 
@@ -29,14 +28,6 @@ public abstract class TLAbsInputBotInlineResult extends TLObject {
 
     public void setId(String id) {
         this.id = id;
-    }
-
-    public String getType() {
-        return type;
-    }
-
-    public void setType(String type) {
-        this.type = type;
     }
 
     public TLAbsInputBotInlineMessage getSendMessage() {

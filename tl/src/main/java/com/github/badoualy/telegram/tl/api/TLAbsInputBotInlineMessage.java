@@ -5,6 +5,7 @@ import com.github.badoualy.telegram.tl.core.TLObject;
 /**
  * Abstraction level for the following constructors:
  * <ul>
+ * <li>{@link TLInputBotInlineMessageGame}: inputBotInlineMessageGame#4b425864</li>
  * <li>{@link TLInputBotInlineMessageMediaAuto}: inputBotInlineMessageMediaAuto#292fed13</li>
  * <li>{@link TLInputBotInlineMessageMediaContact}: inputBotInlineMessageMediaContact#2daf01a7</li>
  * <li>{@link TLInputBotInlineMessageMediaGeo}: inputBotInlineMessageMediaGeo#f4a59de1</li>

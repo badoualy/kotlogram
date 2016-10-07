@@ -5,7 +5,7 @@ import com.github.badoualy.telegram.tl.core.TLObject;
 /**
  * Abstraction level for the following constructors:
  * <ul>
- * <li>{@link TLInputDocumentFileLocation}: inputDocumentFileLocation#4e45abe9</li>
+ * <li>{@link TLInputDocumentFileLocation}: inputDocumentFileLocation#430f0724</li>
  * <li>{@link TLInputEncryptedFileLocation}: inputEncryptedFileLocation#f5235d55</li>
  * <li>{@link TLInputFileLocation}: inputFileLocation#14637196</li>
  * </ul>

@@ -26,7 +26,7 @@ import static com.github.badoualy.telegram.tl.TLObjectUtils.computeTLStringSeria
  * @see <a href="http://github.com/badoualy/kotlogram">http://github.com/badoualy/kotlogram</a>
  */
 public class TLRequestMessagesSetBotCallbackAnswer extends TLMethod<TLBool> {
-    public static final int CONSTRUCTOR_ID = 0x481c591a;
+    public static final int CONSTRUCTOR_ID = 0xc927d44b;
 
     protected int flags;
 
@@ -36,15 +36,18 @@ public class TLRequestMessagesSetBotCallbackAnswer extends TLMethod<TLBool> {
 
     protected String message;
 
-    private final String _constructor = "messages.setBotCallbackAnswer#481c591a";
+    protected String url;
+
+    private final String _constructor = "messages.setBotCallbackAnswer#c927d44b";
 
     public TLRequestMessagesSetBotCallbackAnswer() {
     }
 
-    public TLRequestMessagesSetBotCallbackAnswer(boolean alert, long queryId, String message) {
+    public TLRequestMessagesSetBotCallbackAnswer(boolean alert, long queryId, String message, String url) {
         this.alert = alert;
         this.queryId = queryId;
         this.message = message;
+        this.url = url;
     }
 
     @Override
@@ -64,6 +67,7 @@ public class TLRequestMessagesSetBotCallbackAnswer extends TLMethod<TLBool> {
         flags = 0;
         flags = alert ? (flags | 2) : (flags & ~2);
         flags = message != null ? (flags | 1) : (flags & ~1);
+        flags = url != null ? (flags | 4) : (flags & ~4);
     }
 
     @Override
@@ -76,6 +80,10 @@ public class TLRequestMessagesSetBotCallbackAnswer extends TLMethod<TLBool> {
             if (message == null) throwNullFieldException("message", flags);
             writeString(message, stream);
         }
+        if ((flags & 4) != 0) {
+            if (url == null) throwNullFieldException("url", flags);
+            writeString(url, stream);
+        }
     }
 
     @Override
@@ -85,6 +93,7 @@ public class TLRequestMessagesSetBotCallbackAnswer extends TLMethod<TLBool> {
         alert = (flags & 2) != 0;
         queryId = readLong(stream);
         message = (flags & 1) != 0 ? readTLString(stream) : null;
+        url = (flags & 4) != 0 ? readTLString(stream) : null;
     }
 
     @Override
@@ -97,6 +106,10 @@ public class TLRequestMessagesSetBotCallbackAnswer extends TLMethod<TLBool> {
         if ((flags & 1) != 0) {
             if (message == null) throwNullFieldException("message", flags);
             size += computeTLStringSerializedSize(message);
+        }
+        if ((flags & 4) != 0) {
+            if (url == null) throwNullFieldException("url", flags);
+            size += computeTLStringSerializedSize(url);
         }
         return size;
     }
@@ -133,5 +146,13 @@ public class TLRequestMessagesSetBotCallbackAnswer extends TLMethod<TLBool> {
 
     public void setMessage(String message) {
         this.message = message;
+    }
+
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
     }
 }

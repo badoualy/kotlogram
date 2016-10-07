@@ -8,6 +8,7 @@ import com.github.badoualy.telegram.tl.core.TLObject;
  * <li>{@link TLMessageMediaContact}: messageMediaContact#5e7d2f39</li>
  * <li>{@link TLMessageMediaDocument}: messageMediaDocument#f3e02ea8</li>
  * <li>{@link TLMessageMediaEmpty}: messageMediaEmpty#3ded6320</li>
+ * <li>{@link TLMessageMediaGame}: messageMediaGame#fdb19008</li>
  * <li>{@link TLMessageMediaGeo}: messageMediaGeo#56e0d474</li>
  * <li>{@link TLMessageMediaPhoto}: messageMediaPhoto#3d8ce53d</li>
  * <li>{@link TLMessageMediaUnsupported}: messageMediaUnsupported#9f84f49e</li>

@@ -26,7 +26,11 @@ import static com.github.badoualy.telegram.tl.TLObjectUtils.computeTLBytesSerial
  * @see <a href="http://github.com/badoualy/kotlogram">http://github.com/badoualy/kotlogram</a>
  */
 public class TLRequestMessagesGetBotCallbackAnswer extends TLMethod<TLBotCallbackAnswer> {
-    public static final int CONSTRUCTOR_ID = 0xa6e94f04;
+    public static final int CONSTRUCTOR_ID = 0x810a9fec;
+
+    protected int flags;
+
+    protected boolean game;
 
     protected TLAbsInputPeer peer;
 
@@ -34,12 +38,13 @@ public class TLRequestMessagesGetBotCallbackAnswer extends TLMethod<TLBotCallbac
 
     protected TLBytes data;
 
-    private final String _constructor = "messages.getBotCallbackAnswer#a6e94f04";
+    private final String _constructor = "messages.getBotCallbackAnswer#810a9fec";
 
     public TLRequestMessagesGetBotCallbackAnswer() {
     }
 
-    public TLRequestMessagesGetBotCallbackAnswer(TLAbsInputPeer peer, int msgId, TLBytes data) {
+    public TLRequestMessagesGetBotCallbackAnswer(boolean game, TLAbsInputPeer peer, int msgId, TLBytes data) {
+        this.game = game;
         this.peer = peer;
         this.msgId = msgId;
         this.data = data;
@@ -58,27 +63,47 @@ public class TLRequestMessagesGetBotCallbackAnswer extends TLMethod<TLBotCallbac
         return (TLBotCallbackAnswer) response;
     }
 
+    private void computeFlags() {
+        flags = 0;
+        flags = game ? (flags | 2) : (flags & ~2);
+        flags = data != null ? (flags | 1) : (flags & ~1);
+    }
+
     @Override
     public void serializeBody(OutputStream stream) throws IOException {
+        computeFlags();
+
+        writeInt(flags, stream);
         writeTLObject(peer, stream);
         writeInt(msgId, stream);
-        writeTLBytes(data, stream);
+        if ((flags & 1) != 0) {
+            if (data == null) throwNullFieldException("data", flags);
+            writeTLBytes(data, stream);
+        }
     }
 
     @Override
     @SuppressWarnings({"unchecked", "SimplifiableConditionalExpression"})
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
+        flags = readInt(stream);
+        game = (flags & 2) != 0;
         peer = readTLObject(stream, context, TLAbsInputPeer.class, -1);
         msgId = readInt(stream);
-        data = readTLBytes(stream, context);
+        data = (flags & 1) != 0 ? readTLBytes(stream, context) : null;
     }
 
     @Override
     public int computeSerializedSize() {
+        computeFlags();
+
         int size = SIZE_CONSTRUCTOR_ID;
+        size += SIZE_INT32;
         size += peer.computeSerializedSize();
         size += SIZE_INT32;
-        size += computeTLBytesSerializedSize(data);
+        if ((flags & 1) != 0) {
+            if (data == null) throwNullFieldException("data", flags);
+            size += computeTLBytesSerializedSize(data);
+        }
         return size;
     }
 
@@ -90,6 +115,14 @@ public class TLRequestMessagesGetBotCallbackAnswer extends TLMethod<TLBotCallbac
     @Override
     public int getConstructorId() {
         return CONSTRUCTOR_ID;
+    }
+
+    public boolean getGame() {
+        return game;
+    }
+
+    public void setGame(boolean game) {
+        this.game = game;
     }
 
     public TLAbsInputPeer getPeer() {

@@ -7,9 +7,10 @@ import com.github.badoualy.telegram.tl.core.TLObject;
  * <ul>
  * <li>{@link TLKeyboardButton}: keyboardButton#a2fa4880</li>
  * <li>{@link TLKeyboardButtonCallback}: keyboardButtonCallback#683a5e46</li>
+ * <li>{@link TLKeyboardButtonGame}: keyboardButtonGame#50f41ccf</li>
  * <li>{@link TLKeyboardButtonRequestGeoLocation}: keyboardButtonRequestGeoLocation#fc796b3f</li>
  * <li>{@link TLKeyboardButtonRequestPhone}: keyboardButtonRequestPhone#b16a6c29</li>
- * <li>{@link TLKeyboardButtonSwitchInline}: keyboardButtonSwitchInline#ea1b7a14</li>
+ * <li>{@link TLKeyboardButtonSwitchInline}: keyboardButtonSwitchInline#568a748</li>
  * <li>{@link TLKeyboardButtonUrl}: keyboardButtonUrl#258aff05</li>
  * </ul>
  *

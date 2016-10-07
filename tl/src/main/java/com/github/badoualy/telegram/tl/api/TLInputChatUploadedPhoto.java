@@ -15,40 +15,34 @@ import static com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_CONSTRUCTOR_ID;
  * @see <a href="http://github.com/badoualy/kotlogram">http://github.com/badoualy/kotlogram</a>
  */
 public class TLInputChatUploadedPhoto extends TLAbsInputChatPhoto {
-    public static final int CONSTRUCTOR_ID = 0x94254732;
+    public static final int CONSTRUCTOR_ID = 0x927c55b4;
 
     protected TLAbsInputFile file;
 
-    protected TLAbsInputPhotoCrop crop;
-
-    private final String _constructor = "inputChatUploadedPhoto#94254732";
+    private final String _constructor = "inputChatUploadedPhoto#927c55b4";
 
     public TLInputChatUploadedPhoto() {
     }
 
-    public TLInputChatUploadedPhoto(TLAbsInputFile file, TLAbsInputPhotoCrop crop) {
+    public TLInputChatUploadedPhoto(TLAbsInputFile file) {
         this.file = file;
-        this.crop = crop;
     }
 
     @Override
     public void serializeBody(OutputStream stream) throws IOException {
         writeTLObject(file, stream);
-        writeTLObject(crop, stream);
     }
 
     @Override
     @SuppressWarnings({"unchecked", "SimplifiableConditionalExpression"})
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
         file = readTLObject(stream, context, TLAbsInputFile.class, -1);
-        crop = readTLObject(stream, context, TLAbsInputPhotoCrop.class, -1);
     }
 
     @Override
     public int computeSerializedSize() {
         int size = SIZE_CONSTRUCTOR_ID;
         size += file.computeSerializedSize();
-        size += crop.computeSerializedSize();
         return size;
     }
 
@@ -68,13 +62,5 @@ public class TLInputChatUploadedPhoto extends TLAbsInputChatPhoto {
 
     public void setFile(TLAbsInputFile file) {
         this.file = file;
-    }
-
-    public TLAbsInputPhotoCrop getCrop() {
-        return crop;
-    }
-
-    public void setCrop(TLAbsInputPhotoCrop crop) {
-        this.crop = crop;
     }
 }

@@ -25,6 +25,8 @@ public class TLInputBotInlineResultDocument extends TLAbsInputBotInlineResult {
 
     protected int flags;
 
+    protected String type;
+
     protected String title;
 
     protected String description;
