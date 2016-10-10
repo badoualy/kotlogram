@@ -94,6 +94,7 @@ class MTProtoHandler {
     private fun stopWatchdog() = MTProtoWatchdog.stop(connection!!)
 
     /** Close the connection and re-open another one */
+    @Throws(IOException::class)
     fun resetConnection() {
         logger.error(session.marker, "resetConnection()")
         bufferTimeoutTask?.cancel()

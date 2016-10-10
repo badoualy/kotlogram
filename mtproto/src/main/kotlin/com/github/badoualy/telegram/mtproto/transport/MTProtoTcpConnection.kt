@@ -52,7 +52,7 @@ internal class MTProtoTcpConnection
 
                 break
             } catch(e: Exception) {
-                logger.error(marker, "Failed to connect", e)
+                logger.error(marker, "Failed to connect")
                 try {
                     socketChannel.close()
                 } catch (e: Exception) {

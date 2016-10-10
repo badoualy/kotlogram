@@ -88,8 +88,8 @@ object AuthKeyCreation {
                 }
 
                 e.printStackTrace()
+                Thread.sleep(500)
             }
-
         }
 
         logger.error(connection!!.marker, "Key creation failed $AUTH_ATTEMPT_COUNT times")
