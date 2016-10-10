@@ -484,15 +484,19 @@ class MTProtoHandler {
                 }
             }
             is MTNeedResendMessage -> {
+                logger.warn(session.marker, "TODO MTNeedResendMessage")
                 // TODO
             }
             is MTNewMessageDetailedInfo -> {
+                logger.warn(session.marker, "TODO MTNewMessageDetailedInfo")
                 // TODO
             }
             is MTMessageDetailedInfo -> {
+                logger.warn(session.marker, "TODO MTMessageDetailedInfo")
                 // TODO
             }
             is MTFutureSalts -> {
+                logger.warn(session.marker, "TODO MTFutureSalts")
                 // TODO
             }
             else -> {
@@ -527,16 +531,13 @@ class MTProtoHandler {
                     logger.error(session.marker, "Couldn't find sentMessage in history with msgId ${badMessage.badMsgId}, can't re-send with good msgId")
                 }
             }
-            MTBadMessage.ERROR_MSG_ID_MODULO -> {
-                // Should never happen
-            }
             MTBadMessage.ERROR_SEQNO_TOO_LOW, MTBadMessage.ERROR_SEQNO_TOO_HIGH -> {
                 if (badMessage.errorCode == MTBadMessage.ERROR_MSG_ID_TOO_LOW)
                     session.contentRelatedCount++
                 else
                     session.contentRelatedCount--
 
-                // Resend message with good salt
+                // Resend message with good seqno
                 val sentMessage = sentMessageList.filter { it.messageId == badMessage.badMsgId }.firstOrNull()
                 if (sentMessage != null) {
                     logger.warn(session.marker, "Re-sending message ${badMessage.badMsgId} with new seqno")
@@ -552,6 +553,10 @@ class MTProtoHandler {
             MTBadMessage.ERROR_SEQNO_EXPECTED_ODD -> {
                 // Should never happen
                 logger.error(session.marker, "ERROR_SEQNO_EXPECTED_ODD for ${badMessage.badMsgId}")
+            }
+            MTBadMessage.ERROR_MSG_ID_MODULO -> {
+                // Should never happen
+                logger.error(session.marker, "ERROR_MSG_ID_MODULO for ${badMessage.badMsgId}")
             }
             else -> logger.error(session.marker, "Unknown error ${badMessage.toPrettyString()}")
         }
