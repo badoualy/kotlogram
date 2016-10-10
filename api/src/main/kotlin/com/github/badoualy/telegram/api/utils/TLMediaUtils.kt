@@ -40,7 +40,7 @@ fun TLAbsMessageMedia.getAbsMediaThumbnailInput() = when (this) {
 fun TLMessageMediaDocument.getMediaInput() = when (document) {
     is TLDocument -> {
         val document = document as TLDocument
-        val inputFileLocation = InputFileLocation(TLInputDocumentFileLocation(document.id, (document.accessHash)), document.dcId)
+        val inputFileLocation = InputFileLocation(TLInputDocumentFileLocation(document.id, document.accessHash, document.version), document.dcId)
         MediaInput(inputFileLocation, document.size, document.mimeType)
     }
     else -> null
