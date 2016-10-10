@@ -1,13 +1,12 @@
 {
+  "flags": 0,
+  "masks": false,
   "order": [
-    0,
-    0,
-    0,
     0,
     0,
     0,
     0,
     0
   ],
-  "_constructor": "messages.reorderStickerSets#9fcfbc30"
+  "_constructor": "messages.reorderStickerSets#78337739"
 }

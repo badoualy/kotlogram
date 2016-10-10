@@ -4,11 +4,11 @@
   "background": true,
   "clearDraft": true,
   "peer": {
-    "_constructor": "inputPeerEmpty#7f3b18ea"
+    "_constructor": "inputPeerSelf#7da07ec9"
   },
   "replyToMsgId": 0,
   "randomId": 0,
   "queryId": 0,
-  "id": "bOVN33",
+  "id": "oLsy2qbJNB3GgbX",
   "_constructor": "messages.sendInlineBotResult#b16e06fe"
 }

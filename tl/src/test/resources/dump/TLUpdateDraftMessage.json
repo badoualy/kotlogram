@@ -1,64 +1,10 @@
 {
   "peer": {
-    "channelId": 0,
-    "_constructor": "peerChannel#bddde532"
+    "userId": 0,
+    "_constructor": "peerUser#9db1bc6d"
   },
   "draft": {
-    "flags": 9,
-    "noWebpage": false,
-    "replyToMsgId": 0,
-    "message": "OKcgzmyG06px9VjFDu3o",
-    "entities": [
-      {
-        "language": "32KcbtcADxHU1rFqpp9xWprslbpl",
-        "_constructor": "messageEntityPre#73924be0",
-        "offset": 0,
-        "length": 0
-      },
-      {
-        "_constructor": "messageEntityEmail#64e475c2",
-        "offset": 0,
-        "length": 0
-      },
-      {
-        "_constructor": "messageEntityBotCommand#6cef8ac7",
-        "offset": 0,
-        "length": 0
-      },
-      {
-        "language": "zMMgluQQ3UgxlrGnTeRXke2oPFD32",
-        "_constructor": "messageEntityPre#73924be0",
-        "offset": 0,
-        "length": 0
-      },
-      {
-        "_constructor": "messageEntityBotCommand#6cef8ac7",
-        "offset": 0,
-        "length": 0
-      },
-      {
-        "_constructor": "messageEntityUrl#6ed02538",
-        "offset": 0,
-        "length": 0
-      },
-      {
-        "_constructor": "messageEntityEmail#64e475c2",
-        "offset": 0,
-        "length": 0
-      },
-      {
-        "userId": {
-          "userId": 0,
-          "accessHash": 0,
-          "_constructor": "inputUser#d8292816"
-        },
-        "_constructor": "inputMessageEntityMentionName#208e68c9",
-        "offset": 0,
-        "length": 0
-      }
-    ],
-    "date": 0,
-    "_constructor": "draftMessage#fd8e711f"
+    "_constructor": "draftMessageEmpty#ba4baec5"
   },
   "_constructor": "updateDraftMessage#ee2bb969"
 }

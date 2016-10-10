@@ -1,13 +1,13 @@
 {
-  "flags": 2190,
+  "flags": 2222,
   "out": true,
   "mentioned": false,
-  "mediaUnread": false,
+  "mediaUnread": true,
   "silent": false,
   "id": 0,
   "fromId": 0,
   "chatId": 0,
-  "message": "FKrVuLMp76gkHCbuDu",
+  "message": "66ELFH4eV",
   "pts": 0,
   "ptsCount": 0,
   "date": 0,
@@ -23,38 +23,12 @@
   "replyToMsgId": 0,
   "entities": [
     {
-      "_constructor": "messageEntityMention#fa04579d",
-      "offset": 0,
-      "length": 0
-    },
-    {
-      "_constructor": "messageEntityEmail#64e475c2",
-      "offset": 0,
-      "length": 0
-    },
-    {
-      "_constructor": "messageEntityMention#fa04579d",
-      "offset": 0,
-      "length": 0
-    },
-    {
-      "language": "h7NfZpj",
-      "_constructor": "messageEntityPre#73924be0",
-      "offset": 0,
-      "length": 0
-    },
-    {
-      "_constructor": "messageEntityEmail#64e475c2",
-      "offset": 0,
-      "length": 0
-    },
-    {
       "_constructor": "messageEntityUrl#6ed02538",
       "offset": 0,
       "length": 0
     },
     {
-      "_constructor": "messageEntityBold#bd610bc9",
+      "_constructor": "messageEntityItalic#826f8b60",
       "offset": 0,
       "length": 0
     }

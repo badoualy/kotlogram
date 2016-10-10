@@ -1,46 +1,18 @@
 {
   "photo": {
+    "flags": 1,
+    "hasStickers": true,
     "accessHash": 0,
     "date": 0,
     "sizes": [
       {
         "_constructor": "photoSizeEmpty#e17e23c",
-        "type": "YTy1X22P87NqS3Gmmg"
-      },
-      {
-        "_constructor": "photoSizeEmpty#e17e23c",
-        "type": "qy47ghkf2tnF5oxkMM8DS9TPEN"
+        "type": "wHcS3F7XN32QUApToJYev6W"
       },
       {
         "location": {
           "dcId": 0,
           "_constructor": "fileLocation#53d69076",
-          "volumeId": 0,
-          "localId": 0,
-          "secret": 0
-        },
-        "w": 0,
-        "h": 0,
-        "size": 0,
-        "_constructor": "photoSize#77bfb61b",
-        "type": "oPG92M74gv3Ke4a8"
-      },
-      {
-        "location": {
-          "_constructor": "fileLocationUnavailable#7c596b46",
-          "volumeId": 0,
-          "localId": 0,
-          "secret": 0
-        },
-        "w": 0,
-        "h": 0,
-        "size": 0,
-        "_constructor": "photoSize#77bfb61b",
-        "type": "yjct0U3BsNlRc0RbxIPLs8As3uAZ"
-      },
-      {
-        "location": {
-          "_constructor": "fileLocationUnavailable#7c596b46",
           "volumeId": 0,
           "localId": 0,
           "secret": 0
@@ -62,130 +34,28 @@
             0,
             0,
             0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
             0
           ],
           "offset": 0,
-          "len": 128
+          "len": 14
         },
         "_constructor": "photoCachedSize#e9a734fa",
-        "type": "LnVBYA673ufFeKb"
+        "type": "WIZbQHQ"
+      },
+      {
+        "_constructor": "photoSizeEmpty#e17e23c",
+        "type": "ccuRiJ7WMRGhmtVNaqzTcJq5E"
+      },
+      {
+        "_constructor": "photoSizeEmpty#e17e23c",
+        "type": "CkRmDurHmZKq9DoriRuTAVAcdv"
+      },
+      {
+        "_constructor": "photoSizeEmpty#e17e23c",
+        "type": "3gdU93jNXN8Qb"
       }
     ],
-    "_constructor": "photo#cded42fe",
+    "_constructor": "photo#9288dd29",
     "id": 0
   },
   "document": {
@@ -193,5 +63,5 @@
     "id": 0
   },
   "_constructor": "foundGifCached#9c750409",
-  "url": "vSQCFm8ygKC7sKKxxhz"
+  "url": "iJJT6VsT1"
 }

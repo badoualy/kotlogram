@@ -1,28 +1,7 @@
 {
   "chat": {
-    "flags": 11858,
-    "creator": false,
-    "kicked": true,
-    "left": false,
-    "editor": false,
-    "moderator": true,
-    "broadcast": false,
-    "verified": false,
-    "megagroup": false,
-    "restricted": true,
-    "democracy": true,
-    "signatures": true,
-    "min": false,
-    "accessHash": 0,
-    "title": "v0rbX52eU9cI",
-    "username": "0NNJAVIkp68v7VBQFwcxq",
-    "photo": {
-      "_constructor": "chatPhotoEmpty#37c1011c"
-    },
-    "date": 0,
-    "version": 0,
-    "restrictionReason": "2gjaudrpOIiqgZt1bybp5IZ",
-    "_constructor": "channel#a14dca52",
+    "title": "2jN9V9DGhmmYYOXerC",
+    "_constructor": "chatForbidden#7328bdb",
     "id": 0
   },
   "_constructor": "chatInviteAlready#5a686d7c"

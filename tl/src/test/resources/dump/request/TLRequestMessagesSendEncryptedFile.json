@@ -80,34 +80,16 @@
       0,
       0,
       0,
-      0,
-      0,
-      0,
-      0,
-      0,
-      0,
-      0,
-      0,
-      0,
-      0,
-      0,
-      0,
-      0,
-      0,
-      0,
-      0,
-      0,
-      0,
-      0,
       0
     ],
     "offset": 0,
-    "len": 93
+    "len": 74
   },
   "file": {
     "id": 0,
-    "accessHash": 0,
-    "_constructor": "inputEncryptedFile#5a17b5e5"
+    "parts": 0,
+    "keyFingerprint": 0,
+    "_constructor": "inputEncryptedFileBigUploaded#2dc173c8"
   },
   "_constructor": "messages.sendEncryptedFile#9a901b66"
 }

@@ -1,7 +1,8 @@
 {
-  "flags": 3,
-  "alert": true,
+  "flags": 5,
+  "alert": false,
   "queryId": 0,
-  "message": "EpC1mgz",
-  "_constructor": "messages.setBotCallbackAnswer#481c591a"
+  "message": "USSaN",
+  "url": "iOhoCIAaj",
+  "_constructor": "messages.setBotCallbackAnswer#c927d44b"
 }

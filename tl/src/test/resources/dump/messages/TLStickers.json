@@ -1,18 +1,6 @@
 {
-  "hash": "cadhHwyLlNIiu3J",
+  "hash": "msgAC0",
   "stickers": [
-    {
-      "_constructor": "documentEmpty#36f8c871",
-      "id": 0
-    },
-    {
-      "_constructor": "documentEmpty#36f8c871",
-      "id": 0
-    },
-    {
-      "_constructor": "documentEmpty#36f8c871",
-      "id": 0
-    },
     {
       "_constructor": "documentEmpty#36f8c871",
       "id": 0
@@ -28,35 +16,46 @@
     {
       "accessHash": 0,
       "date": 0,
-      "mimeType": "OEiFM2tKngx0o5gJDldQR77FhAQB",
+      "mimeType": "BYbC6Pz",
       "size": 0,
       "thumb": {
-        "location": {
-          "_constructor": "fileLocationUnavailable#7c596b46",
-          "volumeId": 0,
-          "localId": 0,
-          "secret": 0
-        },
-        "w": 0,
-        "h": 0,
-        "size": 0,
-        "_constructor": "photoSize#77bfb61b",
-        "type": "zLIkTWPbE02R5OWbuIdqsGQ"
+        "_constructor": "photoSizeEmpty#e17e23c",
+        "type": "29CXPlkOxzfKH"
       },
       "dcId": 0,
+      "version": 0,
       "attributes": [
         {
-          "fileName": "XqSYEK",
-          "_constructor": "documentAttributeFilename#15590068"
-        },
-        {
-          "flags": 7,
-          "voice": false,
+          "flags": 1031,
+          "voice": true,
           "duration": 0,
-          "title": "NqAcVuEFqVnbKx8FERQMG0qWuJq",
-          "performer": "PKVroZyDxeo9b5Ncuf",
+          "title": "0zXD6LJUggMx4i3PQfQ7BA2hFA",
+          "performer": "T4B6cpfL1U7Dz16VuHiTzP9k",
           "waveform": {
             "data": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
               0,
               0,
               0,
@@ -98,18 +97,31 @@
               0
             ],
             "offset": 0,
-            "len": 39
+            "len": 62
           },
           "_constructor": "documentAttributeAudio#9852f9c6"
+        },
+        {
+          "fileName": "pbUAgqKNYdRQKEyuQ5aVGKo",
+          "_constructor": "documentAttributeFilename#15590068"
+        },
+        {
+          "w": 0,
+          "h": 0,
+          "_constructor": "documentAttributeImageSize#6c37c15c"
         }
       ],
-      "_constructor": "document#f9a39f4f",
+      "_constructor": "document#87232bc7",
+      "id": 0
+    },
+    {
+      "_constructor": "documentEmpty#36f8c871",
       "id": 0
     },
     {
       "accessHash": 0,
       "date": 0,
-      "mimeType": "kL53JB",
+      "mimeType": "w1qsO68mbzkMGWqA7",
       "size": 0,
       "thumb": {
         "location": {
@@ -295,35 +307,95 @@
             0,
             0,
             0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
             0
           ],
           "offset": 0,
-          "len": 173
+          "len": 222
         },
         "_constructor": "photoCachedSize#e9a734fa",
-        "type": "62F3i5VobOf1P"
+        "type": "7YdRgsOnLuRJBFK2KYBACWoscS"
       },
       "dcId": 0,
+      "version": 0,
       "attributes": [
+        {
+          "flags": 1,
+          "mask": false,
+          "alt": "6WeZrbCYKVoFsIv2UV",
+          "stickerset": {
+            "id": 0,
+            "accessHash": 0,
+            "_constructor": "inputStickerSetID#9de7a269"
+          },
+          "maskCoords": {
+            "n": 0,
+            "x": 0.0,
+            "y": 0.0,
+            "zoom": 0.0,
+            "_constructor": "maskCoords#aed6dbb2"
+          },
+          "_constructor": "documentAttributeSticker#6319d612"
+        },
+        {
+          "_constructor": "documentAttributeAnimated#11b58939"
+        },
         {
           "flags": 1031,
           "voice": true,
           "duration": 0,
-          "title": "N7rI5x3i0rbh8gEcw7gM7P",
-          "performer": "sghDGksfNnaIoRR5IK0",
+          "title": "lVN977zZoUMl2INQlGrkEgdy",
+          "performer": "W1BJif743evsdPF35VVG7kwJFVDH8",
           "waveform": {
             "data": [
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
               0,
               0,
               0,
@@ -454,95 +526,36 @@
               0
             ],
             "offset": 0,
-            "len": 139
+            "len": 128
           },
           "_constructor": "documentAttributeAudio#9852f9c6"
         },
         {
-          "_constructor": "documentAttributeAnimated#11b58939"
+          "_constructor": "documentAttributeHasStickers#9801d2f7"
         },
         {
-          "fileName": "B43IFtXFY48vUn917S9k",
+          "fileName": "5qq48Jky",
           "_constructor": "documentAttributeFilename#15590068"
         },
         {
-          "alt": "CUPRdyZys2ipJdpMQn2",
+          "flags": 3,
+          "mask": true,
+          "alt": "iBeLXkDa",
           "stickerset": {
-            "_constructor": "inputStickerSetEmpty#ffb62b95"
-          },
-          "_constructor": "documentAttributeSticker#3a556302"
-        },
-        {
-          "duration": 0,
-          "w": 0,
-          "h": 0,
-          "_constructor": "documentAttributeVideo#5910cccb"
-        },
-        {
-          "_constructor": "documentAttributeAnimated#11b58939"
-        },
-        {
-          "alt": "fCG38ahvty",
-          "stickerset": {
-            "id": 0,
-            "accessHash": 0,
-            "_constructor": "inputStickerSetID#9de7a269"
-          },
-          "_constructor": "documentAttributeSticker#3a556302"
-        }
-      ],
-      "_constructor": "document#f9a39f4f",
-      "id": 0
-    },
-    {
-      "_constructor": "documentEmpty#36f8c871",
-      "id": 0
-    },
-    {
-      "_constructor": "documentEmpty#36f8c871",
-      "id": 0
-    },
-    {
-      "accessHash": 0,
-      "date": 0,
-      "mimeType": "3DbkRsyUj6I122W8kNKvCpxHn6L2",
-      "size": 0,
-      "thumb": {
-        "location": {
-          "dcId": 0,
-          "_constructor": "fileLocation#53d69076",
-          "volumeId": 0,
-          "localId": 0,
-          "secret": 0
-        },
-        "w": 0,
-        "h": 0,
-        "size": 0,
-        "_constructor": "photoSize#77bfb61b",
-        "type": "E7OYZORkfP"
-      },
-      "dcId": 0,
-      "attributes": [
-        {
-          "fileName": "FSuN9D8EkfvhnjpL8SvXLNUjsV",
-          "_constructor": "documentAttributeFilename#15590068"
-        },
-        {
-          "alt": "b1oTrfhO1EYbmv8EgSDkJXX3P2",
-          "stickerset": {
-            "shortName": "Ydo3aj9MDDuDAe",
+            "shortName": "tjKAHreo9iyCrKiCiVRTiPHvsWFaA",
             "_constructor": "inputStickerSetShortName#861cc8a0"
           },
-          "_constructor": "documentAttributeSticker#3a556302"
-        },
-        {
-          "duration": 0,
-          "w": 0,
-          "h": 0,
-          "_constructor": "documentAttributeVideo#5910cccb"
+          "maskCoords": {
+            "n": 0,
+            "x": 0.0,
+            "y": 0.0,
+            "zoom": 0.0,
+            "_constructor": "maskCoords#aed6dbb2"
+          },
+          "_constructor": "documentAttributeSticker#6319d612"
         }
       ],
-      "_constructor": "document#f9a39f4f",
+      "_constructor": "document#87232bc7",
       "id": 0
     }
   ],

@@ -1,4 +1,5 @@
 {
+  "flags": 3,
   "queryId": 0,
   "userId": 0,
   "msgId": {
@@ -7,46 +8,9 @@
     "accessHash": 0,
     "_constructor": "inputBotInlineMessageID#890c3d89"
   },
+  "chatInstance": 0,
   "data": {
     "data": [
-      0,
-      0,
-      0,
-      0,
-      0,
-      0,
-      0,
-      0,
-      0,
-      0,
-      0,
-      0,
-      0,
-      0,
-      0,
-      0,
-      0,
-      0,
-      0,
-      0,
-      0,
-      0,
-      0,
-      0,
-      0,
-      0,
-      0,
-      0,
-      0,
-      0,
-      0,
-      0,
-      0,
-      0,
-      0,
-      0,
-      0,
-      0,
       0,
       0,
       0,
@@ -105,7 +69,8 @@
       0
     ],
     "offset": 0,
-    "len": 94
+    "len": 56
   },
-  "_constructor": "updateInlineBotCallbackQuery#2cbd95af"
+  "gameShortName": "OHsTs71CK7q3UdSiRNQ",
+  "_constructor": "updateInlineBotCallbackQuery#f9d27a5a"
 }

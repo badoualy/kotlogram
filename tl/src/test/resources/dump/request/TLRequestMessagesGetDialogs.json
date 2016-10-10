@@ -2,7 +2,9 @@
   "offsetDate": 0,
   "offsetId": 0,
   "offsetPeer": {
-    "_constructor": "inputPeerSelf#7da07ec9"
+    "channelId": 0,
+    "accessHash": 0,
+    "_constructor": "inputPeerChannel#20adaef8"
   },
   "limit": 0,
   "_constructor": "messages.getDialogs#6b47f94d"

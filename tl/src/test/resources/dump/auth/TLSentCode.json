@@ -2,12 +2,12 @@
   "flags": 6,
   "phoneRegistered": false,
   "type": {
-    "length": 0,
-    "_constructor": "auth.sentCodeTypeApp#3dbb5986"
+    "pattern": "1Qrx3iv",
+    "_constructor": "auth.sentCodeTypeFlashCall#ab03c6d9"
   },
-  "phoneCodeHash": "AHIh9QHOiBnAT74322amFI",
+  "phoneCodeHash": "oDvjiP8LwZmo44Q6h4R",
   "nextType": {
-    "_constructor": "auth.codeTypeFlashCall#226ccefb"
+    "_constructor": "auth.codeTypeSms#72a3158c"
   },
   "timeout": 0,
   "_constructor": "auth.sentCode#5e002502"

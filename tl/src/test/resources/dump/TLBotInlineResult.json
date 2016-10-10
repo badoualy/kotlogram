@@ -1,30 +1,33 @@
 {
-  "title": "NTkLYxDtJ2sTL9DQNDloa7dIjNk",
-  "description": "YPOCIWsSwGuC8F",
-  "url": "PtChPsBX5736GTHBk",
-  "thumbUrl": "kPATZqt619zMDKQs9qj",
-  "contentUrl": "Kcx2FP4j4g",
-  "contentType": "CrqBRdcXAjW2oAWxHH1Kg8Ef",
+  "title": "K1rd2",
+  "description": "Kl9uoh8jK4",
+  "url": "nIXJes3EdDfPzqWfBRRS",
+  "thumbUrl": "0PCEshwO",
+  "contentUrl": "W3rrVFo0EjtTeW",
+  "contentType": "hDwGOUfEi",
   "w": 0,
   "h": 0,
   "duration": 0,
   "_constructor": "botInlineResult#9bebaeb9",
   "flags": 254,
-  "id": "dZy7AOlocdyzuoyMT6",
-  "type": "W9THdIpv347ADdXN1Wo8B",
+  "id": "6YhQgtAr4MSC1znK3ue9qahsCr5X",
+  "type": "5YlkfGwa5H5N24Q0uUuPRHA",
   "sendMessage": {
     "geo": {
       "_long": 0.0,
       "lat": 0.0,
       "_constructor": "geoPoint#2049d70c"
     },
-    "_constructor": "botInlineMessageMediaGeo#3a8fd8b8",
+    "title": "jcTyPBCSprTHQUSwg190FDB",
+    "address": "5pI9jZ",
+    "provider": "s6udCPXAmiB0nWwsm",
+    "venueId": "SHXbbnQZidikTlNU4u",
+    "_constructor": "botInlineMessageMediaVenue#4366232e",
     "flags": 4,
     "replyMarkup": {
-      "flags": 2,
-      "singleUse": true,
+      "flags": 0,
       "selective": false,
-      "_constructor": "replyKeyboardForceReply#f4108aa0"
+      "_constructor": "replyKeyboardHide#a03e5b85"
     }
   }
 }

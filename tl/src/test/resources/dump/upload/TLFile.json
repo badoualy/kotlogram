@@ -1,6 +1,6 @@
 {
   "type": {
-    "_constructor": "storage.fileJpeg#7efe0e"
+    "_constructor": "storage.fileMp3#528a0677"
   },
   "mtime": 0,
   "bytes": {
@@ -211,10 +211,28 @@
       0,
       0,
       0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
       0
     ],
     "offset": 0,
-    "len": 207
+    "len": 225
   },
   "_constructor": "upload.file#96a18d5"
 }

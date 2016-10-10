@@ -5,7 +5,7 @@
     "_constructor": "inputChannel#afeb712e"
   },
   "userId": {
-    "_constructor": "inputUserEmpty#b98886cf"
+    "_constructor": "inputUserSelf#f7c1b13f"
   },
   "_constructor": "channels.deleteUserHistory#d10dd71b"
 }

@@ -1,16 +1,19 @@
 {
-  "flags": 101,
+  "flags": 37,
   "silent": true,
-  "background": true,
+  "background": false,
   "clearDraft": false,
   "peer": {
-    "channelId": 0,
-    "accessHash": 0,
-    "_constructor": "inputPeerChannel#20adaef8"
+    "chatId": 0,
+    "_constructor": "inputPeerChat#179be863"
   },
   "replyToMsgId": 0,
   "media": {
-    "_constructor": "inputMediaEmpty#9664f57f"
+    "id": {
+      "_constructor": "inputDocumentEmpty#72f0eaae"
+    },
+    "caption": "j0ngcitzkjXB",
+    "_constructor": "inputMediaDocument#1a77f29c"
   },
   "randomId": 0,
   "replyMarkup": {

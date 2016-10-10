@@ -1,12 +1,10 @@
 {
   "file": {
-    "_constructor": "inputFileBig#fa4f0bb5",
+    "md5Checksum": "Kftv7Npo3G9nlqOZX1ScA2ne9X0BC",
+    "_constructor": "inputFile#f52ff27f",
     "id": 0,
     "parts": 0,
-    "name": "SJRzjWa4ZwQZg2L1NougGe4kTjO"
+    "name": "R7Faon6AGEU0KkxFS"
   },
-  "crop": {
-    "_constructor": "inputPhotoCropAuto#ade6b004"
-  },
-  "_constructor": "inputChatUploadedPhoto#94254732"
+  "_constructor": "inputChatUploadedPhoto#927c55b4"
 }

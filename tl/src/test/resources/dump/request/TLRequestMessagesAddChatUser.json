@@ -1,7 +1,7 @@
 {
   "chatId": 0,
   "userId": {
-    "_constructor": "inputUserEmpty#b98886cf"
+    "_constructor": "inputUserSelf#f7c1b13f"
   },
   "fwdLimit": 0,
   "_constructor": "messages.addChatUser#f9a0aa09"

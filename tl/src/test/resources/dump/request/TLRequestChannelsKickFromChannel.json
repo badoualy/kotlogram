@@ -5,9 +5,7 @@
     "_constructor": "inputChannel#afeb712e"
   },
   "userId": {
-    "userId": 0,
-    "accessHash": 0,
-    "_constructor": "inputUser#d8292816"
+    "_constructor": "inputUserEmpty#b98886cf"
   },
   "kicked": true,
   "_constructor": "channels.kickFromChannel#a672de14"

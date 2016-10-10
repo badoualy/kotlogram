@@ -1,20 +1,20 @@
 {
-  "flags": 12122,
-  "creator": false,
+  "flags": 9159,
+  "creator": true,
   "kicked": true,
-  "left": false,
-  "editor": true,
-  "moderator": true,
+  "left": true,
+  "editor": false,
+  "moderator": false,
   "broadcast": false,
-  "verified": false,
+  "verified": true,
   "megagroup": true,
   "restricted": true,
-  "democracy": true,
-  "signatures": true,
+  "democracy": false,
+  "signatures": false,
   "min": false,
   "accessHash": 0,
-  "title": "lSjz9Y22l3LX63hPDZlrh5K",
-  "username": "jkFgVti1ddkaSd6p90",
+  "title": "1CG0U",
+  "username": "9cZvjclOCbuxm7XgqI0l6E9e1jIH",
   "photo": {
     "photoSmall": {
       "_constructor": "fileLocationUnavailable#7c596b46",
@@ -23,7 +23,8 @@
       "secret": 0
     },
     "photoBig": {
-      "_constructor": "fileLocationUnavailable#7c596b46",
+      "dcId": 0,
+      "_constructor": "fileLocation#53d69076",
       "volumeId": 0,
       "localId": 0,
       "secret": 0
@@ -32,7 +33,7 @@
   },
   "date": 0,
   "version": 0,
-  "restrictionReason": "iEm7v",
+  "restrictionReason": "9sUcf2",
   "_constructor": "channel#a14dca52",
   "id": 0
 }

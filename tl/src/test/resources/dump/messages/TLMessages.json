@@ -6,10 +6,10 @@
       "id": 0
     },
     {
-      "flags": 36814,
+      "flags": 36862,
       "out": true,
-      "mentioned": false,
-      "mediaUnread": false,
+      "mentioned": true,
+      "mediaUnread": true,
       "silent": false,
       "post": false,
       "fromId": 0,
@@ -28,22 +28,1011 @@
       "viaBotId": 0,
       "replyToMsgId": 0,
       "date": 0,
-      "message": "7CATa90CqZJ",
+      "message": "PLymNdJHEhyUaXm8odGdN6SnE",
       "media": {
-        "phoneNumber": "VRkBTPlvnVRHumtaI2m",
-        "firstName": "hmChUpi18iOPny7srSCzjz",
-        "lastName": "CIB9NgYPOa8aafVClpkc",
-        "userId": 0,
-        "_constructor": "messageMediaContact#5e7d2f39"
+        "geo": {
+          "_constructor": "geoPointEmpty#1117dd5f"
+        },
+        "_constructor": "messageMediaGeo#56e0d474"
       },
       "replyMarkup": {
-        "flags": 0,
-        "selective": false,
-        "_constructor": "replyKeyboardHide#a03e5b85"
+        "flags": 7,
+        "resize": true,
+        "singleUse": true,
+        "selective": true,
+        "rows": [
+          {
+            "buttons": [
+              {
+                "url": "gI40g9ahi17icdi",
+                "_constructor": "keyboardButtonUrl#258aff05",
+                "text": "0oeta3A9wEYhY9OgYn"
+              },
+              {
+                "_constructor": "keyboardButtonGame#50f41ccf",
+                "text": "ldpxrRkPPDaL"
+              },
+              {
+                "_constructor": "keyboardButtonRequestGeoLocation#fc796b3f",
+                "text": "6J38IJ0Uhk3thiy78"
+              }
+            ],
+            "_constructor": "keyboardButtonRow#77608b83"
+          },
+          {
+            "buttons": [
+              {
+                "_constructor": "keyboardButton#a2fa4880",
+                "text": "kVoCW5jlC2VV4lpEzdOhXyXK5Z23"
+              },
+              {
+                "_constructor": "keyboardButtonRequestGeoLocation#fc796b3f",
+                "text": "7H6yl7tgfoJXGTWh"
+              },
+              {
+                "_constructor": "keyboardButtonGame#50f41ccf",
+                "text": "cRACLqKuEZBAbvfLCB6eNaib3Dc"
+              },
+              {
+                "flags": 0,
+                "samePeer": false,
+                "query": "gNqDSkqP98ENOQ8Rsjkn9Ec",
+                "_constructor": "keyboardButtonSwitchInline#568a748",
+                "text": "myd5NtsdOLWYH"
+              },
+              {
+                "url": "4goRmw8peQUTJUatodtKLYAW8FG",
+                "_constructor": "keyboardButtonUrl#258aff05",
+                "text": "jjnguS8Kpu"
+              },
+              {
+                "_constructor": "keyboardButtonGame#50f41ccf",
+                "text": "ZyIzcXu"
+              },
+              {
+                "_constructor": "keyboardButtonRequestGeoLocation#fc796b3f",
+                "text": "8bEFYm0INpH8NCoFr7"
+              },
+              {
+                "_constructor": "keyboardButtonRequestPhone#b16a6c29",
+                "text": "46677"
+              },
+              {
+                "_constructor": "keyboardButtonRequestPhone#b16a6c29",
+                "text": "601YM7ovkx"
+              },
+              {
+                "_constructor": "keyboardButtonRequestPhone#b16a6c29",
+                "text": "yXcRhzeR8aAmnS56AX"
+              }
+            ],
+            "_constructor": "keyboardButtonRow#77608b83"
+          },
+          {
+            "buttons": [
+              {
+                "_constructor": "keyboardButtonRequestPhone#b16a6c29",
+                "text": "pgwqaZZRSrG4Fr1tvBT"
+              },
+              {
+                "_constructor": "keyboardButton#a2fa4880",
+                "text": "rTvC1ujqK"
+              },
+              {
+                "flags": 1,
+                "samePeer": true,
+                "query": "WyvrGNqaDn2IZrAnGuO9NAEl9In4W",
+                "_constructor": "keyboardButtonSwitchInline#568a748",
+                "text": "FAIdOzvHKS6xz7zDEvKZj"
+              },
+              {
+                "url": "8K7qHDun96K9P5KokchSo4kWWGT",
+                "_constructor": "keyboardButtonUrl#258aff05",
+                "text": "r9K4QtpwL2ViR"
+              },
+              {
+                "_constructor": "keyboardButtonRequestGeoLocation#fc796b3f",
+                "text": "4B0o7g4tNUUVgFAEMSPh7tjdI"
+              },
+              {
+                "flags": 0,
+                "samePeer": false,
+                "query": "UlU1j3erXWLjpOhQ0nO353053",
+                "_constructor": "keyboardButtonSwitchInline#568a748",
+                "text": "Gfs1N"
+              }
+            ],
+            "_constructor": "keyboardButtonRow#77608b83"
+          },
+          {
+            "buttons": [
+              {
+                "data": {
+                  "data": [
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0
+                  ],
+                  "offset": 0,
+                  "len": 94
+                },
+                "_constructor": "keyboardButtonCallback#683a5e46",
+                "text": "If9DumJbht9DWi7W"
+              },
+              {
+                "_constructor": "keyboardButtonGame#50f41ccf",
+                "text": "GbmLMRkXdkifPz3eP75pUp0Fv"
+              },
+              {
+                "_constructor": "keyboardButtonRequestGeoLocation#fc796b3f",
+                "text": "Rrvc4ijQyoVN51MQV8EXixK"
+              },
+              {
+                "url": "EPy2soNvExoYO6qCQ4O3",
+                "_constructor": "keyboardButtonUrl#258aff05",
+                "text": "lSyhsmk2NPFcdrJ17rnbPr"
+              },
+              {
+                "_constructor": "keyboardButtonRequestPhone#b16a6c29",
+                "text": "w7UcRXMEMmB6xzs"
+              },
+              {
+                "_constructor": "keyboardButton#a2fa4880",
+                "text": "4TAmNIFEalEif"
+              },
+              {
+                "data": {
+                  "data": [
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0
+                  ],
+                  "offset": 0,
+                  "len": 99
+                },
+                "_constructor": "keyboardButtonCallback#683a5e46",
+                "text": "iaXpg3W5jhBX5IEC1wKYd"
+              }
+            ],
+            "_constructor": "keyboardButtonRow#77608b83"
+          },
+          {
+            "buttons": [
+              {
+                "url": "6L2lRjJVl",
+                "_constructor": "keyboardButtonUrl#258aff05",
+                "text": "Q0vOcRSrnOE3"
+              },
+              {
+                "_constructor": "keyboardButtonRequestGeoLocation#fc796b3f",
+                "text": "BUa1CUwaE8R7h6p3BBNMgSBOM6"
+              },
+              {
+                "_constructor": "keyboardButton#a2fa4880",
+                "text": "4lTXsehcDk9ir"
+              },
+              {
+                "_constructor": "keyboardButtonRequestGeoLocation#fc796b3f",
+                "text": "BA5xH"
+              },
+              {
+                "url": "Dzieq3HAtb8naWcNmGYaocMw0htp",
+                "_constructor": "keyboardButtonUrl#258aff05",
+                "text": "YY5bykrZ9yDwGv33Rm1pnP1wqmX"
+              },
+              {
+                "_constructor": "keyboardButton#a2fa4880",
+                "text": "IxVgN"
+              }
+            ],
+            "_constructor": "keyboardButtonRow#77608b83"
+          },
+          {
+            "buttons": [
+              {
+                "_constructor": "keyboardButton#a2fa4880",
+                "text": "Y0BUro"
+              },
+              {
+                "url": "hO6kwPApCJg",
+                "_constructor": "keyboardButtonUrl#258aff05",
+                "text": "ZtKiDSfrn32swoX1Ns94kjVU"
+              },
+              {
+                "data": {
+                  "data": [
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0
+                  ],
+                  "offset": 0,
+                  "len": 253
+                },
+                "_constructor": "keyboardButtonCallback#683a5e46",
+                "text": "JDe99HgU6lVGPCjbpti5"
+              },
+              {
+                "url": "4yJ6kew8zzYpqr7G8wHyVlcKqOby6",
+                "_constructor": "keyboardButtonUrl#258aff05",
+                "text": "Xhx0W"
+              },
+              {
+                "_constructor": "keyboardButton#a2fa4880",
+                "text": "iOZ32XOFjWEVDTo37vxR2Wn0Ejce"
+              },
+              {
+                "_constructor": "keyboardButton#a2fa4880",
+                "text": "gBmwVaAsj"
+              },
+              {
+                "data": {
+                  "data": [
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0
+                  ],
+                  "offset": 0,
+                  "len": 35
+                },
+                "_constructor": "keyboardButtonCallback#683a5e46",
+                "text": "sqINkSr9QG8SAuIAL4MUucZNta"
+              },
+              {
+                "_constructor": "keyboardButton#a2fa4880",
+                "text": "Ft20tiI83vgbQRSpSZbVMXq"
+              }
+            ],
+            "_constructor": "keyboardButtonRow#77608b83"
+          },
+          {
+            "buttons": [
+              {
+                "_constructor": "keyboardButton#a2fa4880",
+                "text": "bujWZNloNw5kdILiY"
+              },
+              {
+                "_constructor": "keyboardButtonRequestPhone#b16a6c29",
+                "text": "JB9OwArLBXM9K5N2HRA9bf"
+              }
+            ],
+            "_constructor": "keyboardButtonRow#77608b83"
+          },
+          {
+            "buttons": [
+              {
+                "_constructor": "keyboardButton#a2fa4880",
+                "text": "afW9g"
+              },
+              {
+                "_constructor": "keyboardButtonGame#50f41ccf",
+                "text": "4hF47v6bDQD"
+              },
+              {
+                "_constructor": "keyboardButtonGame#50f41ccf",
+                "text": "8LulAtA"
+              },
+              {
+                "url": "HkIpNoLGSQqUqtSB1M54jbt8",
+                "_constructor": "keyboardButtonUrl#258aff05",
+                "text": "MGvSeI8O9TGecq0EIePOz6WuXL"
+              },
+              {
+                "_constructor": "keyboardButton#a2fa4880",
+                "text": "rRtgyLyoyNCVuA7X2l"
+              },
+              {
+                "flags": 1,
+                "samePeer": true,
+                "query": "Q16ay",
+                "_constructor": "keyboardButtonSwitchInline#568a748",
+                "text": "00LAPBah1fAKDuf3JN5I4PJZGDL"
+              }
+            ],
+            "_constructor": "keyboardButtonRow#77608b83"
+          },
+          {
+            "buttons": [
+              {
+                "_constructor": "keyboardButtonRequestPhone#b16a6c29",
+                "text": "Bw6LmSqzT8run"
+              },
+              {
+                "_constructor": "keyboardButtonRequestPhone#b16a6c29",
+                "text": "VUWM3fZeQGPcFsxpZWsE"
+              },
+              {
+                "_constructor": "keyboardButtonRequestGeoLocation#fc796b3f",
+                "text": "YxTsaVAbZ5gLcKsiQKKRY3c1hXb5q"
+              },
+              {
+                "url": "ADAk08ZdZRVic6mqzMO2KkYXIew",
+                "_constructor": "keyboardButtonUrl#258aff05",
+                "text": "bVU9sRWSUu5"
+              },
+              {
+                "_constructor": "keyboardButtonRequestGeoLocation#fc796b3f",
+                "text": "YX1TMOhF8b1qBQvlHwuAGqW"
+              },
+              {
+                "_constructor": "keyboardButton#a2fa4880",
+                "text": "pmGKxvtr8yxJVmMTv"
+              },
+              {
+                "flags": 0,
+                "samePeer": false,
+                "query": "WB6qPzC",
+                "_constructor": "keyboardButtonSwitchInline#568a748",
+                "text": "a2D7Z52BFkJHtcPEtywpsLOTl"
+              },
+              {
+                "flags": 0,
+                "samePeer": false,
+                "query": "LJwripjmOG9eby8VLZ7kcbPHSRNP1",
+                "_constructor": "keyboardButtonSwitchInline#568a748",
+                "text": "ieiQVBoBngIeGoZMrmgSI1"
+              },
+              {
+                "flags": 1,
+                "samePeer": true,
+                "query": "nOZnGuhs0lzaLcMmhOR",
+                "_constructor": "keyboardButtonSwitchInline#568a748",
+                "text": "dJyLBp499fP3cANSf"
+              },
+              {
+                "_constructor": "keyboardButtonRequestGeoLocation#fc796b3f",
+                "text": "IuFc9Zsm"
+              },
+              {
+                "data": {
+                  "data": [
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0
+                  ],
+                  "offset": 0,
+                  "len": 163
+                },
+                "_constructor": "keyboardButtonCallback#683a5e46",
+                "text": "4yYaiWc87rQwxpSjo"
+              }
+            ],
+            "_constructor": "keyboardButtonRow#77608b83"
+          }
+        ],
+        "_constructor": "replyKeyboardMarkup#3502758c"
       },
       "entities": [
         {
-          "_constructor": "messageEntityBold#bd610bc9",
+          "_constructor": "messageEntityItalic#826f8b60",
           "offset": 0,
           "length": 0
         },
@@ -53,17 +1042,8 @@
           "length": 0
         },
         {
-          "_constructor": "messageEntityHashtag#6f635b0d",
-          "offset": 0,
-          "length": 0
-        },
-        {
-          "_constructor": "messageEntityMention#fa04579d",
-          "offset": 0,
-          "length": 0
-        },
-        {
-          "_constructor": "messageEntityEmail#64e475c2",
+          "language": "KL7o5hgMjHd",
+          "_constructor": "messageEntityPre#73924be0",
           "offset": 0,
           "length": 0
         },
@@ -73,8 +1053,592 @@
           "length": 0
         },
         {
-          "url": "Zx8wbcsd2F",
+          "_constructor": "messageEntityUnknown#bb92ba95",
+          "offset": 0,
+          "length": 0
+        },
+        {
+          "_constructor": "messageEntityBold#bd610bc9",
+          "offset": 0,
+          "length": 0
+        },
+        {
+          "_constructor": "messageEntityBotCommand#6cef8ac7",
+          "offset": 0,
+          "length": 0
+        },
+        {
+          "_constructor": "messageEntityUnknown#bb92ba95",
+          "offset": 0,
+          "length": 0
+        },
+        {
+          "url": "tJmplyQ3",
           "_constructor": "messageEntityTextUrl#76a6d327",
+          "offset": 0,
+          "length": 0
+        }
+      ],
+      "views": 0,
+      "editDate": 0,
+      "_constructor": "message#c09be45f",
+      "id": 0
+    },
+    {
+      "flags": 61420,
+      "out": false,
+      "mentioned": false,
+      "mediaUnread": true,
+      "silent": true,
+      "post": true,
+      "fromId": 0,
+      "toId": {
+        "chatId": 0,
+        "_constructor": "peerChat#bad0e5bb"
+      },
+      "fwdFrom": {
+        "flags": 7,
+        "fromId": 0,
+        "date": 0,
+        "channelId": 0,
+        "channelPost": 0,
+        "_constructor": "messageFwdHeader#c786ddcb"
+      },
+      "viaBotId": 0,
+      "replyToMsgId": 0,
+      "date": 0,
+      "message": "pYaxI",
+      "media": {
+        "webpage": {
+          "flags": 1023,
+          "url": "PVXRVjnqp",
+          "displayUrl": "abk6CZFWH6CKUYA76bOafd",
+          "type": "NhF4ZW8xwnZHAitHOOXPzVXDZ9",
+          "siteName": "sx9Zga0hV8hoSpcRn7",
+          "title": "STMrCP7QggERRx0AYd2cttuTdOU",
+          "description": "vKPv3K5MsHYTXJgKBGPrRuSCP",
+          "photo": {
+            "_constructor": "photoEmpty#2331b22d",
+            "id": 0
+          },
+          "embedUrl": "RLDmqQ17Wb9QpBrs54RZUyG6WoHC",
+          "embedType": "lxoC9C2vGZTEd9qgYAR8xUkwWz0x",
+          "embedWidth": 0,
+          "embedHeight": 0,
+          "duration": 0,
+          "author": "l8vbiOgo9dAJDe5hsB",
+          "document": {
+            "_constructor": "documentEmpty#36f8c871",
+            "id": 0
+          },
+          "_constructor": "webPage#ca820ed7",
+          "id": 0
+        },
+        "_constructor": "messageMediaWebPage#a32dd600"
+      },
+      "replyMarkup": {
+        "flags": 4,
+        "resize": false,
+        "singleUse": false,
+        "selective": true,
+        "rows": [
+          {
+            "buttons": [
+              {
+                "_constructor": "keyboardButtonGame#50f41ccf",
+                "text": "4WxHEK9S"
+              },
+              {
+                "_constructor": "keyboardButtonRequestGeoLocation#fc796b3f",
+                "text": "YBkReCarVvkJv"
+              },
+              {
+                "_constructor": "keyboardButton#a2fa4880",
+                "text": "cvNdXMnJx72Cz"
+              },
+              {
+                "_constructor": "keyboardButtonRequestGeoLocation#fc796b3f",
+                "text": "VDcRx"
+              },
+              {
+                "_constructor": "keyboardButton#a2fa4880",
+                "text": "3ngLCkNaHQ4HOjQ1Ns"
+              },
+              {
+                "_constructor": "keyboardButtonGame#50f41ccf",
+                "text": "Z4eFN8DpPm1w25"
+              }
+            ],
+            "_constructor": "keyboardButtonRow#77608b83"
+          },
+          {
+            "buttons": [
+              {
+                "url": "C6jwMDAGh0wFbyrpAK",
+                "_constructor": "keyboardButtonUrl#258aff05",
+                "text": "Jlmdjah1RbufJ"
+              },
+              {
+                "_constructor": "keyboardButtonRequestPhone#b16a6c29",
+                "text": "qCET0A8cbRI7qNpki"
+              },
+              {
+                "flags": 0,
+                "samePeer": false,
+                "query": "yOjbid3DKf",
+                "_constructor": "keyboardButtonSwitchInline#568a748",
+                "text": "3M3dBNv0RyjAfRxw4e7mVxDVxgpKj"
+              },
+              {
+                "_constructor": "keyboardButtonRequestGeoLocation#fc796b3f",
+                "text": "00MkBhs4gkW7326gIDzuIWZallPYF"
+              },
+              {
+                "_constructor": "keyboardButtonRequestPhone#b16a6c29",
+                "text": "25ZEC3Ip"
+              },
+              {
+                "_constructor": "keyboardButtonRequestGeoLocation#fc796b3f",
+                "text": "uoNczkX8"
+              }
+            ],
+            "_constructor": "keyboardButtonRow#77608b83"
+          },
+          {
+            "buttons": [
+              {
+                "url": "chU0oqKPPirSKPCEHXGaQINj0S1",
+                "_constructor": "keyboardButtonUrl#258aff05",
+                "text": "eFnRT9qlIFWBUNg"
+              },
+              {
+                "_constructor": "keyboardButtonGame#50f41ccf",
+                "text": "Bu4KrN7y"
+              }
+            ],
+            "_constructor": "keyboardButtonRow#77608b83"
+          },
+          {
+            "buttons": [
+              {
+                "_constructor": "keyboardButtonRequestPhone#b16a6c29",
+                "text": "dZNI3P"
+              },
+              {
+                "_constructor": "keyboardButton#a2fa4880",
+                "text": "GjkWVHyS5iLgnJ"
+              },
+              {
+                "flags": 0,
+                "samePeer": false,
+                "query": "NA1mocWYmIDDLVf",
+                "_constructor": "keyboardButtonSwitchInline#568a748",
+                "text": "VnSvJbKk9LkGH6WpCX8NP39QB"
+              }
+            ],
+            "_constructor": "keyboardButtonRow#77608b83"
+          },
+          {
+            "buttons": [
+              {
+                "_constructor": "keyboardButton#a2fa4880",
+                "text": "o9VFqEco9iAY6wAa"
+              },
+              {
+                "_constructor": "keyboardButton#a2fa4880",
+                "text": "CrfmX4VaLuW5sWTT65YqvQaZWTY6Q"
+              },
+              {
+                "flags": 1,
+                "samePeer": true,
+                "query": "TFJrNS",
+                "_constructor": "keyboardButtonSwitchInline#568a748",
+                "text": "U36A9CHTJx1KxvZjOJqaj"
+              },
+              {
+                "_constructor": "keyboardButtonRequestGeoLocation#fc796b3f",
+                "text": "1lO0dQ0jqCkKco19C6jyaI"
+              },
+              {
+                "_constructor": "keyboardButtonGame#50f41ccf",
+                "text": "rhRKrUsEv"
+              },
+              {
+                "flags": 1,
+                "samePeer": true,
+                "query": "aKguVxH",
+                "_constructor": "keyboardButtonSwitchInline#568a748",
+                "text": "vr5F8H"
+              },
+              {
+                "flags": 1,
+                "samePeer": true,
+                "query": "W0EeLD2",
+                "_constructor": "keyboardButtonSwitchInline#568a748",
+                "text": "39UdFLF3MUUh"
+              },
+              {
+                "_constructor": "keyboardButtonGame#50f41ccf",
+                "text": "zBFB5gtrus9Ju0j"
+              }
+            ],
+            "_constructor": "keyboardButtonRow#77608b83"
+          },
+          {
+            "buttons": [
+              {
+                "flags": 1,
+                "samePeer": true,
+                "query": "51WdE14uiD",
+                "_constructor": "keyboardButtonSwitchInline#568a748",
+                "text": "jRu1gxy"
+              },
+              {
+                "flags": 1,
+                "samePeer": true,
+                "query": "foBmDr8zi",
+                "_constructor": "keyboardButtonSwitchInline#568a748",
+                "text": "NgtNunZos9LjMke"
+              },
+              {
+                "_constructor": "keyboardButtonRequestPhone#b16a6c29",
+                "text": "e0ImHpU7CuuuxSe5jDJdbc"
+              },
+              {
+                "flags": 1,
+                "samePeer": true,
+                "query": "cAh0gyd2YD",
+                "_constructor": "keyboardButtonSwitchInline#568a748",
+                "text": "tU6PU2hTXRa3wiVv3htR"
+              },
+              {
+                "flags": 0,
+                "samePeer": false,
+                "query": "aqTs73tL4oXd56pXwqF25ti",
+                "_constructor": "keyboardButtonSwitchInline#568a748",
+                "text": "Dn47P7alOhGs1HDhZ3vH8J9e3r"
+              },
+              {
+                "flags": 1,
+                "samePeer": true,
+                "query": "1VQUyM4hYB9m",
+                "_constructor": "keyboardButtonSwitchInline#568a748",
+                "text": "xqgHnoat3i8rAO3pZU"
+              }
+            ],
+            "_constructor": "keyboardButtonRow#77608b83"
+          },
+          {
+            "buttons": [
+              {
+                "_constructor": "keyboardButton#a2fa4880",
+                "text": "T2kmFF3plyvdYNuomep"
+              },
+              {
+                "_constructor": "keyboardButtonRequestPhone#b16a6c29",
+                "text": "lGbj7ih"
+              },
+              {
+                "_constructor": "keyboardButtonRequestGeoLocation#fc796b3f",
+                "text": "mPqr0lCfm4uqi6eBJXsdWPutHS2u"
+              },
+              {
+                "flags": 0,
+                "samePeer": false,
+                "query": "KTlPd9Rknxxbsy9rYSB1IK",
+                "_constructor": "keyboardButtonSwitchInline#568a748",
+                "text": "JzRHx6Uwzf0aKgc1TfeQ3JyryeH8"
+              },
+              {
+                "_constructor": "keyboardButtonRequestGeoLocation#fc796b3f",
+                "text": "TngIsmBBiqVK4YG6VY0wC9Q"
+              }
+            ],
+            "_constructor": "keyboardButtonRow#77608b83"
+          },
+          {
+            "buttons": [
+              {
+                "_constructor": "keyboardButton#a2fa4880",
+                "text": "FXM9SHTnMDZpdG6ZZ"
+              },
+              {
+                "data": {
+                  "data": [
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0
+                  ],
+                  "offset": 0,
+                  "len": 224
+                },
+                "_constructor": "keyboardButtonCallback#683a5e46",
+                "text": "rkcjvU8"
+              },
+              {
+                "_constructor": "keyboardButtonGame#50f41ccf",
+                "text": "IM82ppvyv3GZUFojbwW12vH2"
+              }
+            ],
+            "_constructor": "keyboardButtonRow#77608b83"
+          }
+        ],
+        "_constructor": "replyKeyboardMarkup#3502758c"
+      },
+      "entities": [
+        {
+          "userId": {
+            "userId": 0,
+            "accessHash": 0,
+            "_constructor": "inputUser#d8292816"
+          },
+          "_constructor": "inputMessageEntityMentionName#208e68c9",
+          "offset": 0,
+          "length": 0
+        },
+        {
+          "_constructor": "messageEntityUrl#6ed02538",
+          "offset": 0,
+          "length": 0
+        },
+        {
+          "_constructor": "messageEntityUnknown#bb92ba95",
+          "offset": 0,
+          "length": 0
+        },
+        {
+          "_constructor": "messageEntityItalic#826f8b60",
+          "offset": 0,
+          "length": 0
+        },
+        {
+          "_constructor": "messageEntityUrl#6ed02538",
+          "offset": 0,
+          "length": 0
+        },
+        {
+          "_constructor": "messageEntityBotCommand#6cef8ac7",
           "offset": 0,
           "length": 0
         }
@@ -89,61 +1653,44 @@
       "id": 0
     },
     {
-      "_constructor": "messageEmpty#83e5de54",
+      "flags": 8472,
+      "out": false,
+      "mentioned": true,
+      "mediaUnread": false,
+      "silent": true,
+      "post": false,
+      "fromId": 0,
+      "toId": {
+        "userId": 0,
+        "_constructor": "peerUser#9db1bc6d"
+      },
+      "replyToMsgId": 0,
+      "date": 0,
+      "action": {
+        "title": "lXvOWoo",
+        "users": [
+          0,
+          0
+        ],
+        "_constructor": "messageActionChatCreate#a6638b9a"
+      },
+      "_constructor": "messageService#9e19a1f6",
       "id": 0
     }
   ],
   "chats": [
     {
-      "flags": 256,
-      "broadcast": false,
-      "megagroup": true,
-      "accessHash": 0,
-      "title": "8OrqtEy8nHsDLs1ctswh",
-      "_constructor": "channelForbidden#8537784f",
-      "id": 0
-    },
-    {
-      "flags": 69,
-      "creator": true,
+      "flags": 72,
+      "creator": false,
       "kicked": false,
-      "left": true,
-      "adminsEnabled": false,
+      "left": false,
+      "adminsEnabled": true,
       "admin": false,
       "deactivated": false,
-      "title": "fZGOGUSbiP65xK1X8r",
-      "photo": {
-        "_constructor": "chatPhotoEmpty#37c1011c"
-      },
-      "participantsCount": 0,
-      "date": 0,
-      "version": 0,
-      "migratedTo": {
-        "channelId": 0,
-        "accessHash": 0,
-        "_constructor": "inputChannel#afeb712e"
-      },
-      "_constructor": "chat#d91cdd54",
-      "id": 0
-    },
-    {
-      "title": "gO1VclvWFF",
-      "_constructor": "chatForbidden#7328bdb",
-      "id": 0
-    },
-    {
-      "flags": 103,
-      "creator": true,
-      "kicked": true,
-      "left": true,
-      "adminsEnabled": false,
-      "admin": false,
-      "deactivated": true,
-      "title": "3Nk9ZGWmQOAqq1E34",
+      "title": "eI3q30IP0rMwXm6NOWP3VD18y",
       "photo": {
         "photoSmall": {
-          "dcId": 0,
-          "_constructor": "fileLocation#53d69076",
+          "_constructor": "fileLocationUnavailable#7c596b46",
           "volumeId": 0,
           "localId": 0,
           "secret": 0
@@ -161,48 +1708,45 @@
       "date": 0,
       "version": 0,
       "migratedTo": {
-        "_constructor": "inputChannelEmpty#ee8c1e86"
+        "channelId": 0,
+        "accessHash": 0,
+        "_constructor": "inputChannel#afeb712e"
       },
       "_constructor": "chat#d91cdd54",
       "id": 0
     },
     {
-      "flags": 14163,
-      "creator": true,
-      "kicked": true,
-      "left": false,
-      "editor": false,
-      "moderator": true,
+      "_constructor": "chatEmpty#9ba2d800",
+      "id": 0
+    },
+    {
+      "flags": 0,
       "broadcast": false,
-      "verified": false,
-      "megagroup": true,
-      "restricted": true,
-      "democracy": true,
-      "signatures": false,
-      "min": true,
+      "megagroup": false,
       "accessHash": 0,
-      "title": "I8B76",
-      "username": "PuuPQOpOVw",
+      "title": "R97hA3",
+      "_constructor": "channelForbidden#8537784f",
+      "id": 0
+    },
+    {
+      "flags": 68,
+      "creator": false,
+      "kicked": false,
+      "left": true,
+      "adminsEnabled": false,
+      "admin": false,
+      "deactivated": false,
+      "title": "5x1NHq",
       "photo": {
         "_constructor": "chatPhotoEmpty#37c1011c"
       },
+      "participantsCount": 0,
       "date": 0,
       "version": 0,
-      "restrictionReason": "gkEU5BrtDTwfOGBIQAAwghMmiEaLZ",
-      "_constructor": "channel#a14dca52",
-      "id": 0
-    },
-    {
-      "_constructor": "chatEmpty#9ba2d800",
-      "id": 0
-    },
-    {
-      "_constructor": "chatEmpty#9ba2d800",
-      "id": 0
-    },
-    {
-      "title": "Oakqw3DK",
-      "_constructor": "chatForbidden#7328bdb",
+      "migratedTo": {
+        "_constructor": "inputChannelEmpty#ee8c1e86"
+      },
+      "_constructor": "chat#d91cdd54",
       "id": 0
     }
   ],
@@ -212,11 +1756,15 @@
       "id": 0
     },
     {
-      "flags": 4029567,
+      "_constructor": "userEmpty#200250ba",
+      "id": 0
+    },
+    {
+      "flags": 4019327,
       "self": true,
-      "contact": true,
+      "contact": false,
       "mutualContact": true,
-      "deleted": true,
+      "deleted": false,
       "bot": true,
       "botChatHistory": false,
       "botNochats": true,
@@ -225,141 +1773,14 @@
       "min": true,
       "botInlineGeo": true,
       "accessHash": 0,
-      "firstName": "uaZfX2B4Zu9G5NnTzxidLPk2",
-      "lastName": "hkBaz3viZ",
-      "username": "qLOQd",
-      "phone": "uTYpTJlaMC7lXjyMP6twD",
+      "firstName": "dcWFtDEUZMcI1",
+      "lastName": "J19aBNzySf",
+      "username": "vmgqJhECUhEQU",
+      "phone": "FRnlgmeRNkkJZUw",
       "photo": {
         "photoId": 0,
         "photoSmall": {
-          "dcId": 0,
-          "_constructor": "fileLocation#53d69076",
-          "volumeId": 0,
-          "localId": 0,
-          "secret": 0
-        },
-        "photoBig": {
-          "dcId": 0,
-          "_constructor": "fileLocation#53d69076",
-          "volumeId": 0,
-          "localId": 0,
-          "secret": 0
-        },
-        "_constructor": "userProfilePhoto#d559d8c8"
-      },
-      "status": {
-        "_constructor": "userStatusLastMonth#77ebc742"
-      },
-      "botInfoVersion": 0,
-      "restrictionReason": "I7uVMB",
-      "botInlinePlaceholder": "eWzP9g8h0d",
-      "_constructor": "user#d10d979a",
-      "id": 0
-    },
-    {
-      "flags": 910463,
-      "self": true,
-      "contact": false,
-      "mutualContact": false,
-      "deleted": true,
-      "bot": true,
-      "botChatHistory": true,
-      "botNochats": true,
-      "verified": false,
-      "restricted": true,
-      "min": false,
-      "botInlineGeo": false,
-      "accessHash": 0,
-      "firstName": "ocPPzrSKepraK",
-      "lastName": "y8QxmQ1iJjmehaQdAyE",
-      "username": "rqLxy",
-      "phone": "EAfCicJid",
-      "photo": {
-        "_constructor": "userProfilePhotoEmpty#4f11bae1"
-      },
-      "status": {
-        "_constructor": "userStatusLastWeek#7bf09fc"
-      },
-      "botInfoVersion": 0,
-      "restrictionReason": "xNFp8",
-      "botInlinePlaceholder": "nXRUBEQ0F87GKrPGDvo",
-      "_constructor": "user#d10d979a",
-      "id": 0
-    },
-    {
-      "_constructor": "userEmpty#200250ba",
-      "id": 0
-    },
-    {
-      "_constructor": "userEmpty#200250ba",
-      "id": 0
-    },
-    {
-      "_constructor": "userEmpty#200250ba",
-      "id": 0
-    },
-    {
-      "flags": 850047,
-      "self": false,
-      "contact": true,
-      "mutualContact": true,
-      "deleted": true,
-      "bot": true,
-      "botChatHistory": true,
-      "botNochats": false,
-      "verified": false,
-      "restricted": true,
-      "min": false,
-      "botInlineGeo": false,
-      "accessHash": 0,
-      "firstName": "bB6MT5RMC7jN",
-      "lastName": "v8dRltKIn6bXnLtnUSJq",
-      "username": "P8369tuZv0coX",
-      "phone": "8XZMEFxJBoWBqJduv0AZAKQcU2",
-      "photo": {
-        "_constructor": "userProfilePhotoEmpty#4f11bae1"
-      },
-      "status": {
-        "wasOnline": 0,
-        "_constructor": "userStatusOffline#8c703f"
-      },
-      "botInfoVersion": 0,
-      "restrictionReason": "mJt8rQHpgxrqE",
-      "botInlinePlaceholder": "le1WtQXmlvYfEB3E4xW5KSCoyWI",
-      "_constructor": "user#d10d979a",
-      "id": 0
-    },
-    {
-      "_constructor": "userEmpty#200250ba",
-      "id": 0
-    },
-    {
-      "_constructor": "userEmpty#200250ba",
-      "id": 0
-    },
-    {
-      "flags": 882815,
-      "self": false,
-      "contact": true,
-      "mutualContact": true,
-      "deleted": true,
-      "bot": true,
-      "botChatHistory": false,
-      "botNochats": true,
-      "verified": false,
-      "restricted": true,
-      "min": false,
-      "botInlineGeo": false,
-      "accessHash": 0,
-      "firstName": "T1Lits",
-      "lastName": "ZQ33c6Na6UrVyvgjpC4",
-      "username": "AclcCUEUJLR6vDsFdNJHxuVwm7Wu",
-      "phone": "Jg8wMDXtqOHR8L1wYn8s2vd0rE",
-      "photo": {
-        "photoId": 0,
-        "photoSmall": {
-          "dcId": 0,
-          "_constructor": "fileLocation#53d69076",
+          "_constructor": "fileLocationUnavailable#7c596b46",
           "volumeId": 0,
           "localId": 0,
           "secret": 0
@@ -373,11 +1794,143 @@
         "_constructor": "userProfilePhoto#d559d8c8"
       },
       "status": {
+        "_constructor": "userStatusLastMonth#77ebc742"
+      },
+      "botInfoVersion": 0,
+      "restrictionReason": "uz6HDVdtlnGeQ5O",
+      "botInlinePlaceholder": "Eu3i1esdygMt",
+      "_constructor": "user#d10d979a",
+      "id": 0
+    },
+    {
+      "_constructor": "userEmpty#200250ba",
+      "id": 0
+    },
+    {
+      "_constructor": "userEmpty#200250ba",
+      "id": 0
+    },
+    {
+      "flags": 4148351,
+      "self": true,
+      "contact": true,
+      "mutualContact": false,
+      "deleted": false,
+      "bot": true,
+      "botChatHistory": false,
+      "botNochats": true,
+      "verified": true,
+      "restricted": true,
+      "min": true,
+      "botInlineGeo": true,
+      "accessHash": 0,
+      "firstName": "3PDQQtstx",
+      "lastName": "LnsHMsGE3N2mP",
+      "username": "d1C85FY17xJ1PAJ2ngT",
+      "phone": "NRbJGtzaxp0IqpuKyb",
+      "photo": {
+        "_constructor": "userProfilePhotoEmpty#4f11bae1"
+      },
+      "status": {
+        "expires": 0,
+        "_constructor": "userStatusOnline#edb93949"
+      },
+      "botInfoVersion": 0,
+      "restrictionReason": "sYrzzk6f1LHuySi2O2",
+      "botInlinePlaceholder": "f34MC004E",
+      "_constructor": "user#d10d979a",
+      "id": 0
+    },
+    {
+      "_constructor": "userEmpty#200250ba",
+      "id": 0
+    },
+    {
+      "flags": 3988607,
+      "self": true,
+      "contact": true,
+      "mutualContact": true,
+      "deleted": false,
+      "bot": true,
+      "botChatHistory": true,
+      "botNochats": false,
+      "verified": false,
+      "restricted": true,
+      "min": true,
+      "botInlineGeo": true,
+      "accessHash": 0,
+      "firstName": "X1xkAEq00ST4yy5",
+      "lastName": "Bgd99RogDs6jtFybbXmzPl",
+      "username": "GP2KtrSCcd35xCbOqo7C1Tk",
+      "phone": "Mb78TPzmWszV0saoHjpH",
+      "photo": {
+        "photoId": 0,
+        "photoSmall": {
+          "_constructor": "fileLocationUnavailable#7c596b46",
+          "volumeId": 0,
+          "localId": 0,
+          "secret": 0
+        },
+        "photoBig": {
+          "dcId": 0,
+          "_constructor": "fileLocation#53d69076",
+          "volumeId": 0,
+          "localId": 0,
+          "secret": 0
+        },
+        "_constructor": "userProfilePhoto#d559d8c8"
+      },
+      "status": {
         "_constructor": "userStatusEmpty#9d05049"
       },
       "botInfoVersion": 0,
-      "restrictionReason": "IDuvaO1jgiLyS371FW1F3PP",
-      "botInlinePlaceholder": "7IFe2Z4fzQgNRqLWo1S2GV4",
+      "restrictionReason": "cnezdybuctp",
+      "botInlinePlaceholder": "HPEIdyyn2JoIcnsKNKgy",
+      "_constructor": "user#d10d979a",
+      "id": 0
+    },
+    {
+      "flags": 1003647,
+      "self": false,
+      "contact": false,
+      "mutualContact": true,
+      "deleted": false,
+      "bot": true,
+      "botChatHistory": false,
+      "botNochats": true,
+      "verified": true,
+      "restricted": true,
+      "min": false,
+      "botInlineGeo": false,
+      "accessHash": 0,
+      "firstName": "0Rc38fL5VDF25N5J1CgbzZyRVK",
+      "lastName": "wIJ2BSOOqgjCAKA",
+      "username": "GsiUYQ",
+      "phone": "UAphiHW",
+      "photo": {
+        "photoId": 0,
+        "photoSmall": {
+          "dcId": 0,
+          "_constructor": "fileLocation#53d69076",
+          "volumeId": 0,
+          "localId": 0,
+          "secret": 0
+        },
+        "photoBig": {
+          "dcId": 0,
+          "_constructor": "fileLocation#53d69076",
+          "volumeId": 0,
+          "localId": 0,
+          "secret": 0
+        },
+        "_constructor": "userProfilePhoto#d559d8c8"
+      },
+      "status": {
+        "_constructor": "userStatusEmpty#9d05049"
+      },
+      "botInfoVersion": 0,
+      "restrictionReason": "Mt7xh5DCcEUwMIrYIQ",
+      "botInlinePlaceholder": "F28Xlc8vKbhV",
       "_constructor": "user#d10d979a",
       "id": 0
     }

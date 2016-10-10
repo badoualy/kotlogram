@@ -1,13 +1,9 @@
 {
-  "type": "VPAFlcw6Wyv16kkBF5",
-  "message": "piYxUBeOg9CsN597Aq",
+  "type": "MwQrtc",
+  "message": "09o0whpNwdYC",
   "media": {
-    "webpage": {
-      "_constructor": "webPageEmpty#eb1477e8",
-      "id": 0
-    },
-    "_constructor": "messageMediaWebPage#a32dd600"
+    "_constructor": "messageMediaEmpty#3ded6320"
   },
-  "popup": false,
+  "popup": true,
   "_constructor": "updateServiceNotification#382dd3e4"
 }

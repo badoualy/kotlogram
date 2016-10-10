@@ -1,17 +1,19 @@
 {
   "flags": 1,
   "bot": {
-    "_constructor": "inputUserSelf#f7c1b13f"
+    "userId": 0,
+    "accessHash": 0,
+    "_constructor": "inputUser#d8292816"
   },
   "peer": {
-    "_constructor": "inputPeerSelf#7da07ec9"
+    "channelId": 0,
+    "accessHash": 0,
+    "_constructor": "inputPeerChannel#20adaef8"
   },
   "geoPoint": {
-    "lat": 0.0,
-    "_long": 0.0,
-    "_constructor": "inputGeoPoint#f3b7acc9"
+    "_constructor": "inputGeoPointEmpty#e4c123d6"
   },
-  "query": "IO95DO2ZeonR25LRZ",
-  "offset": "oxVGLjEUHLSuIsIQoTX5ez",
+  "query": "W6puRWAba0EJsF3wr493U",
+  "offset": "qEw8de",
   "_constructor": "messages.getInlineBotResults#514e999d"
 }

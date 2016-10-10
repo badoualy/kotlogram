@@ -3,10 +3,37 @@
     "_constructor": "contactLinkContact#d502c2d0"
   },
   "foreignLink": {
-    "_constructor": "contactLinkUnknown#5f4f9247"
+    "_constructor": "contactLinkContact#d502c2d0"
   },
   "user": {
-    "_constructor": "userEmpty#200250ba",
+    "flags": 811135,
+    "self": false,
+    "contact": false,
+    "mutualContact": false,
+    "deleted": true,
+    "bot": true,
+    "botChatHistory": false,
+    "botNochats": false,
+    "verified": false,
+    "restricted": true,
+    "min": false,
+    "botInlineGeo": false,
+    "accessHash": 0,
+    "firstName": "BaOcAPG",
+    "lastName": "744lq0aUD0MM",
+    "username": "TMTxSNvpd",
+    "phone": "m8aqKsnenjUdz9kewirjenZ6ILMb6",
+    "photo": {
+      "_constructor": "userProfilePhotoEmpty#4f11bae1"
+    },
+    "status": {
+      "wasOnline": 0,
+      "_constructor": "userStatusOffline#8c703f"
+    },
+    "botInfoVersion": 0,
+    "restrictionReason": "nbzhwnx4aiACuTh8d",
+    "botInlinePlaceholder": "HLaHzbN5fSL00hXx",
+    "_constructor": "user#d10d979a",
     "id": 0
   },
   "_constructor": "contacts.link#3ace484c"

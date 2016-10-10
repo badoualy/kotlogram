@@ -1,0 +1,20 @@
+{
+  "shortName": "3gb13RXqIeL",
+  "_constructor": "inputBotInlineResultGame#4fa417f2",
+  "id": "rT768oxyJKgn3P5Z5",
+  "sendMessage": {
+    "geoPoint": {
+      "lat": 0.0,
+      "_long": 0.0,
+      "_constructor": "inputGeoPoint#f3b7acc9"
+    },
+    "_constructor": "inputBotInlineMessageMediaGeo#f4a59de1",
+    "flags": 4,
+    "replyMarkup": {
+      "flags": 6,
+      "singleUse": true,
+      "selective": true,
+      "_constructor": "replyKeyboardForceReply#f4108aa0"
+    }
+  }
+}

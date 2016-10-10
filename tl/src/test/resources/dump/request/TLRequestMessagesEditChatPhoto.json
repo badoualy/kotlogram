@@ -2,14 +2,9 @@
   "chatId": 0,
   "photo": {
     "id": {
-      "id": 0,
-      "accessHash": 0,
-      "_constructor": "inputPhoto#fb95c6c4"
+      "_constructor": "inputPhotoEmpty#1cd7bf0d"
     },
-    "crop": {
-      "_constructor": "inputPhotoCropAuto#ade6b004"
-    },
-    "_constructor": "inputChatPhoto#b2e1bf08"
+    "_constructor": "inputChatPhoto#8953ad37"
   },
   "_constructor": "messages.editChatPhoto#ca4c79d8"
 }

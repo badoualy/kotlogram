@@ -1,0 +1,11 @@
+{
+  "peer": {
+    "chatId": 0,
+    "_constructor": "inputPeerChat#179be863"
+  },
+  "id": 0,
+  "userId": {
+    "_constructor": "inputUserEmpty#b98886cf"
+  },
+  "_constructor": "messages.getGameHighScores#e822649d"
+}

@@ -1,35 +1,25 @@
 {
   "stickerset": {
     "set": {
-      "flags": 3,
-      "installed": true,
-      "disabled": true,
-      "official": false,
+      "flags": 12,
+      "installed": false,
+      "archived": false,
+      "official": true,
+      "masks": true,
       "id": 0,
       "accessHash": 0,
-      "title": "PXl7QS1TZMvjGc1Sw",
-      "shortName": "PdC9RcBA0q0CZ",
+      "title": "EZwFC0grXH0ldRGDjI",
+      "shortName": "ldBE1HbkHcZDR",
       "count": 0,
       "hash": 0,
       "_constructor": "stickerSet#cd303b41"
     },
     "packs": [
       {
-        "emoticon": "HCrztDmfgOfMp8sWnEIx3Lb",
+        "emoticon": "ehmi6afGRuu6Yl0Wep",
         "documents": [
           0,
           0,
-          0,
-          0,
-          0,
-          0,
-          0
-        ],
-        "_constructor": "stickerPack#12b299d4"
-      },
-      {
-        "emoticon": "mHsK6Q53sJZsLD",
-        "documents": [
           0,
           0,
           0,
@@ -42,41 +32,12 @@
         "_constructor": "stickerPack#12b299d4"
       },
       {
-        "emoticon": "IVmsElwrjgac6KwygLWIr2ruEvpT",
-        "documents": [
-          0,
-          0,
-          0,
-          0
-        ],
-        "_constructor": "stickerPack#12b299d4"
-      },
-      {
-        "emoticon": "pSnQCknGiCBznp6rc",
+        "emoticon": "FXp60Ndj8dwTN4z13DlNZhL78beDt",
         "documents": [
           0,
           0,
           0,
           0,
-          0,
-          0
-        ],
-        "_constructor": "stickerPack#12b299d4"
-      },
-      {
-        "emoticon": "mM9DQfJfxRgsG8zsB",
-        "documents": [
-          0,
-          0,
-          0,
-          0,
-          0
-        ],
-        "_constructor": "stickerPack#12b299d4"
-      },
-      {
-        "emoticon": "C1A3zkTeq2r",
-        "documents": [
           0,
           0,
           0,
@@ -90,288 +51,7 @@
       {
         "accessHash": 0,
         "date": 0,
-        "mimeType": "09lXVniJ",
-        "size": 0,
-        "thumb": {
-          "location": {
-            "dcId": 0,
-            "_constructor": "fileLocation#53d69076",
-            "volumeId": 0,
-            "localId": 0,
-            "secret": 0
-          },
-          "w": 0,
-          "h": 0,
-          "size": 0,
-          "_constructor": "photoSize#77bfb61b",
-          "type": "JWYcUSnSlszyMF5yWREQ"
-        },
-        "dcId": 0,
-        "attributes": [
-          {
-            "w": 0,
-            "h": 0,
-            "_constructor": "documentAttributeImageSize#6c37c15c"
-          },
-          {
-            "fileName": "sIyfNoMVNxxkmaa63Y751eZwllbIp",
-            "_constructor": "documentAttributeFilename#15590068"
-          }
-        ],
-        "_constructor": "document#f9a39f4f",
-        "id": 0
-      },
-      {
-        "accessHash": 0,
-        "date": 0,
-        "mimeType": "23F1OX76XxpVlp1q0qqM",
-        "size": 0,
-        "thumb": {
-          "_constructor": "photoSizeEmpty#e17e23c",
-          "type": "gI7pdCk"
-        },
-        "dcId": 0,
-        "attributes": [
-          {
-            "w": 0,
-            "h": 0,
-            "_constructor": "documentAttributeImageSize#6c37c15c"
-          },
-          {
-            "flags": 1031,
-            "voice": true,
-            "duration": 0,
-            "title": "pgyOqUPYQj",
-            "performer": "9LehvrrQaRj6aqY",
-            "waveform": {
-              "data": [
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0
-              ],
-              "offset": 0,
-              "len": 201
-            },
-            "_constructor": "documentAttributeAudio#9852f9c6"
-          }
-        ],
-        "_constructor": "document#f9a39f4f",
-        "id": 0
-      },
-      {
-        "_constructor": "documentEmpty#36f8c871",
-        "id": 0
-      },
-      {
-        "_constructor": "documentEmpty#36f8c871",
-        "id": 0
-      },
-      {
-        "_constructor": "documentEmpty#36f8c871",
-        "id": 0
-      },
-      {
-        "accessHash": 0,
-        "date": 0,
-        "mimeType": "rxa43W3D3M0NqNxwv6wvVnDkZ1",
+        "mimeType": "iBhCi6TfgKHF0pt",
         "size": 0,
         "thumb": {
           "location": {
@@ -382,26 +62,19 @@
           },
           "w": 0,
           "h": 0,
-          "bytes": {
-            "data": [],
-            "offset": 0,
-            "len": 0
-          },
-          "_constructor": "photoCachedSize#e9a734fa",
-          "type": "K51XnaByfT7ZI152IBeX"
+          "size": 0,
+          "_constructor": "photoSize#77bfb61b",
+          "type": "2fd4ElH0DPz"
         },
         "dcId": 0,
+        "version": 0,
         "attributes": [
           {
-            "fileName": "S8dq6",
-            "_constructor": "documentAttributeFilename#15590068"
-          },
-          {
-            "flags": 7,
-            "voice": false,
+            "flags": 1031,
+            "voice": true,
             "duration": 0,
-            "title": "4JauSKT",
-            "performer": "ymOdbomWpEDdc",
+            "title": "EmMWFZrWBgjcYZSkGHkVW",
+            "performer": "6VX4FBxKyk9",
             "waveform": {
               "data": [
                 0,
@@ -416,6 +89,36 @@
                 0,
                 0,
                 0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              "offset": 0,
+              "len": 22
+            },
+            "_constructor": "documentAttributeAudio#9852f9c6"
+          },
+          {
+            "_constructor": "documentAttributeHasStickers#9801d2f7"
+          },
+          {
+            "_constructor": "documentAttributeAnimated#11b58939"
+          },
+          {
+            "flags": 7,
+            "voice": false,
+            "duration": 0,
+            "title": "yGs3XxaABRmbP",
+            "performer": "iJPKfseC7mC",
+            "waveform": {
+              "data": [
                 0,
                 0,
                 0,
@@ -554,541 +257,129 @@
                 0
               ],
               "offset": 0,
-              "len": 148
+              "len": 136
             },
             "_constructor": "documentAttributeAudio#9852f9c6"
-          },
-          {
-            "duration": 0,
-            "w": 0,
-            "h": 0,
-            "_constructor": "documentAttributeVideo#5910cccb"
-          },
-          {
-            "duration": 0,
-            "w": 0,
-            "h": 0,
-            "_constructor": "documentAttributeVideo#5910cccb"
-          },
-          {
-            "alt": "cx9EGsnsDJW",
-            "stickerset": {
-              "id": 0,
-              "accessHash": 0,
-              "_constructor": "inputStickerSetID#9de7a269"
-            },
-            "_constructor": "documentAttributeSticker#3a556302"
-          },
-          {
-            "fileName": "RGOfzgowwzds09KBzFk55golJ",
-            "_constructor": "documentAttributeFilename#15590068"
-          },
-          {
-            "duration": 0,
-            "w": 0,
-            "h": 0,
-            "_constructor": "documentAttributeVideo#5910cccb"
-          },
-          {
-            "w": 0,
-            "h": 0,
-            "_constructor": "documentAttributeImageSize#6c37c15c"
           },
           {
             "_constructor": "documentAttributeAnimated#11b58939"
           },
           {
-            "alt": "haLV99p5EBYVN5aZJjBDHE72edK3",
+            "flags": 1,
+            "mask": false,
+            "alt": "bFFDgHCe8u1dKR3Ult",
             "stickerset": {
               "_constructor": "inputStickerSetEmpty#ffb62b95"
             },
-            "_constructor": "documentAttributeSticker#3a556302"
+            "maskCoords": {
+              "n": 0,
+              "x": 0.0,
+              "y": 0.0,
+              "zoom": 0.0,
+              "_constructor": "maskCoords#aed6dbb2"
+            },
+            "_constructor": "documentAttributeSticker#6319d612"
           },
           {
-            "fileName": "ovfJndvmC",
-            "_constructor": "documentAttributeFilename#15590068"
+            "duration": 0,
+            "w": 0,
+            "h": 0,
+            "_constructor": "documentAttributeVideo#5910cccb"
+          },
+          {
+            "flags": 3,
+            "mask": true,
+            "alt": "p3stnLxTK8Y5OQIL6dZ8FtAvIfQ",
+            "stickerset": {
+              "_constructor": "inputStickerSetEmpty#ffb62b95"
+            },
+            "maskCoords": {
+              "n": 0,
+              "x": 0.0,
+              "y": 0.0,
+              "zoom": 0.0,
+              "_constructor": "maskCoords#aed6dbb2"
+            },
+            "_constructor": "documentAttributeSticker#6319d612"
+          },
+          {
+            "flags": 1,
+            "mask": false,
+            "alt": "6ZivQnp",
+            "stickerset": {
+              "id": 0,
+              "accessHash": 0,
+              "_constructor": "inputStickerSetID#9de7a269"
+            },
+            "maskCoords": {
+              "n": 0,
+              "x": 0.0,
+              "y": 0.0,
+              "zoom": 0.0,
+              "_constructor": "maskCoords#aed6dbb2"
+            },
+            "_constructor": "documentAttributeSticker#6319d612"
+          },
+          {
+            "_constructor": "documentAttributeAnimated#11b58939"
+          },
+          {
+            "flags": 3,
+            "mask": true,
+            "alt": "5Nvt1n",
+            "stickerset": {
+              "_constructor": "inputStickerSetEmpty#ffb62b95"
+            },
+            "maskCoords": {
+              "n": 0,
+              "x": 0.0,
+              "y": 0.0,
+              "zoom": 0.0,
+              "_constructor": "maskCoords#aed6dbb2"
+            },
+            "_constructor": "documentAttributeSticker#6319d612"
           }
         ],
-        "_constructor": "document#f9a39f4f",
+        "_constructor": "document#87232bc7",
+        "id": 0
+      },
+      {
+        "_constructor": "documentEmpty#36f8c871",
+        "id": 0
+      },
+      {
+        "_constructor": "documentEmpty#36f8c871",
+        "id": 0
+      },
+      {
+        "_constructor": "documentEmpty#36f8c871",
+        "id": 0
+      },
+      {
+        "_constructor": "documentEmpty#36f8c871",
         "id": 0
       },
       {
         "accessHash": 0,
         "date": 0,
-        "mimeType": "iLmwk60f0zoGK9yR",
+        "mimeType": "v8XWqaaQA3WEf2inZJ",
         "size": 0,
         "thumb": {
           "_constructor": "photoSizeEmpty#e17e23c",
-          "type": "1fjPYyU8i"
+          "type": "SVxywssTdBim"
         },
         "dcId": 0,
+        "version": 0,
         "attributes": [
           {
-            "fileName": "dli9hHSlP5jJrNxF",
+            "fileName": "8a8H0N2gQ7B6QyHB2s",
             "_constructor": "documentAttributeFilename#15590068"
-          },
-          {
-            "fileName": "EeUM5le56Yr9I0L",
-            "_constructor": "documentAttributeFilename#15590068"
-          },
-          {
-            "alt": "5kMFPQ",
-            "stickerset": {
-              "id": 0,
-              "accessHash": 0,
-              "_constructor": "inputStickerSetID#9de7a269"
-            },
-            "_constructor": "documentAttributeSticker#3a556302"
-          },
-          {
-            "duration": 0,
-            "w": 0,
-            "h": 0,
-            "_constructor": "documentAttributeVideo#5910cccb"
           },
           {
             "_constructor": "documentAttributeAnimated#11b58939"
           }
         ],
-        "_constructor": "document#f9a39f4f",
-        "id": 0
-      },
-      {
-        "accessHash": 0,
-        "date": 0,
-        "mimeType": "ttvJIlFD9cdUJdwABjKpmJARR",
-        "size": 0,
-        "thumb": {
-          "location": {
-            "dcId": 0,
-            "_constructor": "fileLocation#53d69076",
-            "volumeId": 0,
-            "localId": 0,
-            "secret": 0
-          },
-          "w": 0,
-          "h": 0,
-          "size": 0,
-          "_constructor": "photoSize#77bfb61b",
-          "type": "FF2fQTVNA0rL4OB4"
-        },
-        "dcId": 0,
-        "attributes": [
-          {
-            "_constructor": "documentAttributeAnimated#11b58939"
-          },
-          {
-            "alt": "uGYcc",
-            "stickerset": {
-              "_constructor": "inputStickerSetEmpty#ffb62b95"
-            },
-            "_constructor": "documentAttributeSticker#3a556302"
-          },
-          {
-            "_constructor": "documentAttributeAnimated#11b58939"
-          },
-          {
-            "flags": 7,
-            "voice": false,
-            "duration": 0,
-            "title": "zPjE0nj6YZ",
-            "performer": "g3ckOk3Iop8pntAYWdnwhTOt7Ws",
-            "waveform": {
-              "data": [
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0
-              ],
-              "offset": 0,
-              "len": 48
-            },
-            "_constructor": "documentAttributeAudio#9852f9c6"
-          },
-          {
-            "flags": 1031,
-            "voice": true,
-            "duration": 0,
-            "title": "SladdYlTgfGggi0Ck0a",
-            "performer": "I6rQ41eOHmu",
-            "waveform": {
-              "data": [
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0
-              ],
-              "offset": 0,
-              "len": 28
-            },
-            "_constructor": "documentAttributeAudio#9852f9c6"
-          },
-          {
-            "_constructor": "documentAttributeAnimated#11b58939"
-          },
-          {
-            "flags": 1031,
-            "voice": true,
-            "duration": 0,
-            "title": "e2hYZ",
-            "performer": "mmoQ69kodWrH",
-            "waveform": {
-              "data": [
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0
-              ],
-              "offset": 0,
-              "len": 218
-            },
-            "_constructor": "documentAttributeAudio#9852f9c6"
-          },
-          {
-            "_constructor": "documentAttributeAnimated#11b58939"
-          },
-          {
-            "alt": "VdZ60CjE5kNcDd1ky",
-            "stickerset": {
-              "_constructor": "inputStickerSetEmpty#ffb62b95"
-            },
-            "_constructor": "documentAttributeSticker#3a556302"
-          },
-          {
-            "fileName": "wm0kfLYNZtlvx6s84M49JNNb",
-            "_constructor": "documentAttributeFilename#15590068"
-          },
-          {
-            "alt": "dRegfRM5es5",
-            "stickerset": {
-              "id": 0,
-              "accessHash": 0,
-              "_constructor": "inputStickerSetID#9de7a269"
-            },
-            "_constructor": "documentAttributeSticker#3a556302"
-          }
-        ],
-        "_constructor": "document#f9a39f4f",
-        "id": 0
-      },
-      {
-        "accessHash": 0,
-        "date": 0,
-        "mimeType": "b10tV",
-        "size": 0,
-        "thumb": {
-          "location": {
-            "dcId": 0,
-            "_constructor": "fileLocation#53d69076",
-            "volumeId": 0,
-            "localId": 0,
-            "secret": 0
-          },
-          "w": 0,
-          "h": 0,
-          "size": 0,
-          "_constructor": "photoSize#77bfb61b",
-          "type": "C3oXLs31PPjSnUkDFohuQCU"
-        },
-        "dcId": 0,
-        "attributes": [
-          {
-            "alt": "luQW7odzF8",
-            "stickerset": {
-              "_constructor": "inputStickerSetEmpty#ffb62b95"
-            },
-            "_constructor": "documentAttributeSticker#3a556302"
-          },
-          {
-            "duration": 0,
-            "w": 0,
-            "h": 0,
-            "_constructor": "documentAttributeVideo#5910cccb"
-          }
-        ],
-        "_constructor": "document#f9a39f4f",
+        "_constructor": "document#87232bc7",
         "id": 0
       }
     ],

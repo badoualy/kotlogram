@@ -2,11 +2,5 @@
   "id": {
     "_constructor": "inputPhotoEmpty#1cd7bf0d"
   },
-  "crop": {
-    "cropLeft": 0.0,
-    "cropTop": 0.0,
-    "cropWidth": 0.0,
-    "_constructor": "inputPhotoCrop#d9915325"
-  },
-  "_constructor": "photos.updateProfilePhoto#eef579a0"
+  "_constructor": "photos.updateProfilePhoto#f0bb5152"
 }

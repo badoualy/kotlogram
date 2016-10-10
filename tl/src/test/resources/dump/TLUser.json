@@ -1,44 +1,30 @@
 {
-  "flags": 3961983,
-  "self": true,
+  "flags": 2060415,
+  "self": false,
   "contact": false,
   "mutualContact": true,
   "deleted": true,
   "bot": true,
   "botChatHistory": false,
-  "botNochats": false,
-  "verified": false,
+  "botNochats": true,
+  "verified": true,
   "restricted": true,
   "min": true,
-  "botInlineGeo": true,
+  "botInlineGeo": false,
   "accessHash": 0,
-  "firstName": "MxlIXatjEMN97OA0oWVUBVXC5b",
-  "lastName": "4IQrONWSnK2gKUEoyE",
-  "username": "nTio6WuD",
-  "phone": "btq8DmXoiKYhALKxY",
+  "firstName": "11FYqsPnWj5rN",
+  "lastName": "ZOpp5zA70RKIqRv9",
+  "username": "ShumMMIJKVz5OfdbiOZLSnGTTZN4y",
+  "phone": "AVS8CD",
   "photo": {
-    "photoId": 0,
-    "photoSmall": {
-      "dcId": 0,
-      "_constructor": "fileLocation#53d69076",
-      "volumeId": 0,
-      "localId": 0,
-      "secret": 0
-    },
-    "photoBig": {
-      "_constructor": "fileLocationUnavailable#7c596b46",
-      "volumeId": 0,
-      "localId": 0,
-      "secret": 0
-    },
-    "_constructor": "userProfilePhoto#d559d8c8"
+    "_constructor": "userProfilePhotoEmpty#4f11bae1"
   },
   "status": {
-    "_constructor": "userStatusRecently#e26f42f1"
+    "_constructor": "userStatusLastMonth#77ebc742"
   },
   "botInfoVersion": 0,
-  "restrictionReason": "pA3oKCKEqXCpalBTYg",
-  "botInlinePlaceholder": "sVosLMEl",
+  "restrictionReason": "7VZIbGVE",
+  "botInlinePlaceholder": "4GHXCOcinVKIKmVOUXer0S",
   "_constructor": "user#d10d979a",
   "id": 0
 }

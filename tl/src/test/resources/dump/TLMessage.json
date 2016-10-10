@@ -1,9 +1,9 @@
 {
-  "flags": 53230,
-  "out": true,
+  "flags": 61420,
+  "out": false,
   "mentioned": false,
   "mediaUnread": true,
-  "silent": false,
+  "silent": true,
   "post": true,
   "fromId": 0,
   "toId": {
@@ -21,81 +21,28 @@
   "viaBotId": 0,
   "replyToMsgId": 0,
   "date": 0,
-  "message": "yhHvERrjMU9qk8X5GjLsKvKXJ5a6",
+  "message": "KFfIlp1yvZLiN9dFqR8S3z3X",
   "media": {
-    "phoneNumber": "EyceAhCvWaKFeLXcxzKlOrv",
-    "firstName": "KsRWnEKBnLYD6hKUeAOwOAxRVx",
-    "lastName": "BsacHcKjRniGIxp677Kzffb7O6WBe",
+    "phoneNumber": "JLnRwh",
+    "firstName": "vN5KCpC1H9geE",
+    "lastName": "Oy5cxL8",
     "userId": 0,
     "_constructor": "messageMediaContact#5e7d2f39"
   },
   "replyMarkup": {
-    "flags": 0,
+    "flags": 2,
+    "singleUse": true,
     "selective": false,
-    "_constructor": "replyKeyboardHide#a03e5b85"
+    "_constructor": "replyKeyboardForceReply#f4108aa0"
   },
   "entities": [
     {
-      "_constructor": "messageEntityEmail#64e475c2",
+      "_constructor": "messageEntityUnknown#bb92ba95",
       "offset": 0,
       "length": 0
     },
     {
-      "_constructor": "messageEntityBold#bd610bc9",
-      "offset": 0,
-      "length": 0
-    },
-    {
-      "_constructor": "messageEntityEmail#64e475c2",
-      "offset": 0,
-      "length": 0
-    },
-    {
-      "language": "JaC961Dkpk",
-      "_constructor": "messageEntityPre#73924be0",
-      "offset": 0,
-      "length": 0
-    },
-    {
-      "language": "tk0V1xSq",
-      "_constructor": "messageEntityPre#73924be0",
-      "offset": 0,
-      "length": 0
-    },
-    {
-      "userId": {
-        "userId": 0,
-        "accessHash": 0,
-        "_constructor": "inputUser#d8292816"
-      },
-      "_constructor": "inputMessageEntityMentionName#208e68c9",
-      "offset": 0,
-      "length": 0
-    },
-    {
-      "language": "T3jzVQehRCH8",
-      "_constructor": "messageEntityPre#73924be0",
-      "offset": 0,
-      "length": 0
-    },
-    {
-      "_constructor": "messageEntityBotCommand#6cef8ac7",
-      "offset": 0,
-      "length": 0
-    },
-    {
-      "_constructor": "messageEntityItalic#826f8b60",
-      "offset": 0,
-      "length": 0
-    },
-    {
-      "userId": 0,
-      "_constructor": "messageEntityMentionName#352dca58",
-      "offset": 0,
-      "length": 0
-    },
-    {
-      "_constructor": "messageEntityMention#fa04579d",
+      "_constructor": "messageEntityHashtag#6f635b0d",
       "offset": 0,
       "length": 0
     }

@@ -3,60 +3,28 @@
   "noWebpage": true,
   "replyToMsgId": 0,
   "peer": {
-    "chatId": 0,
-    "_constructor": "inputPeerChat#179be863"
+    "_constructor": "inputPeerSelf#7da07ec9"
   },
-  "message": "9prVbC8AO3Lbv8",
+  "message": "v8BWyEVFozaLTbea3fpHrZl",
   "entities": [
     {
-      "_constructor": "messageEntityBotCommand#6cef8ac7",
-      "offset": 0,
-      "length": 0
-    },
-    {
-      "language": "NZqZFLsBHaSVVid0BNY6Iks6HheGn",
-      "_constructor": "messageEntityPre#73924be0",
-      "offset": 0,
-      "length": 0
-    },
-    {
-      "language": "IvuInlIkP2Q9N",
-      "_constructor": "messageEntityPre#73924be0",
-      "offset": 0,
-      "length": 0
-    },
-    {
-      "_constructor": "messageEntityBotCommand#6cef8ac7",
-      "offset": 0,
-      "length": 0
-    },
-    {
-      "_constructor": "messageEntityHashtag#6f635b0d",
-      "offset": 0,
-      "length": 0
-    },
-    {
-      "_constructor": "messageEntityCode#28a20571",
-      "offset": 0,
-      "length": 0
-    },
-    {
       "_constructor": "messageEntityBold#bd610bc9",
       "offset": 0,
       "length": 0
     },
     {
+      "url": "Yv0Eha58Uv4ujX2ufD6yY",
+      "_constructor": "messageEntityTextUrl#76a6d327",
+      "offset": 0,
+      "length": 0
+    },
+    {
+      "_constructor": "messageEntityUrl#6ed02538",
+      "offset": 0,
+      "length": 0
+    },
+    {
       "_constructor": "messageEntityBold#bd610bc9",
-      "offset": 0,
-      "length": 0
-    },
-    {
-      "_constructor": "messageEntityHashtag#6f635b0d",
-      "offset": 0,
-      "length": 0
-    },
-    {
-      "_constructor": "messageEntityItalic#826f8b60",
       "offset": 0,
       "length": 0
     }

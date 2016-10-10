@@ -1,9 +1,18 @@
 {
-  "alt": "gFdSF6GkVodajKMMYhw5oE9Iuasm",
+  "flags": 3,
+  "mask": true,
+  "alt": "x3WV3RA0DzO",
   "stickerset": {
     "id": 0,
     "accessHash": 0,
     "_constructor": "inputStickerSetID#9de7a269"
   },
-  "_constructor": "documentAttributeSticker#3a556302"
+  "maskCoords": {
+    "n": 0,
+    "x": 0.0,
+    "y": 0.0,
+    "zoom": 0.0,
+    "_constructor": "maskCoords#aed6dbb2"
+  },
+  "_constructor": "documentAttributeSticker#6319d612"
 }

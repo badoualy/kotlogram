@@ -1,0 +1,14 @@
+{
+  "flags": 0,
+  "editMessage": false,
+  "peer": {
+    "chatId": 0,
+    "_constructor": "inputPeerChat#179be863"
+  },
+  "id": 0,
+  "userId": {
+    "_constructor": "inputUserEmpty#b98886cf"
+  },
+  "score": 0,
+  "_constructor": "messages.setGameScore#8ef8ecc0"
+}

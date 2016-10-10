@@ -1,11 +1,28 @@
 {
   "update": {
-    "chatId": 0,
-    "userId": 0,
-    "inviterId": 0,
+    "chat": {
+      "accessHash": 0,
+      "date": 0,
+      "adminId": 0,
+      "participantId": 0,
+      "gAOrB": {
+        "data": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "offset": 0,
+        "len": 6
+      },
+      "keyFingerprint": 0,
+      "_constructor": "encryptedChat#fa56ce36",
+      "id": 0
+    },
     "date": 0,
-    "version": 0,
-    "_constructor": "updateChatParticipantAdd#ea4b0e5c"
+    "_constructor": "updateEncryption#b4a2e88d"
   },
   "date": 0,
   "_constructor": "updateShort#78d4dec1"

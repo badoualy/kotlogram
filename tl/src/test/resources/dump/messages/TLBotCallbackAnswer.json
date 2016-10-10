@@ -1,6 +1,8 @@
 {
-  "flags": 1,
-  "alert": false,
-  "message": "tuD8G9dHJSRl5",
-  "_constructor": "messages.botCallbackAnswer#1264f1c6"
+  "flags": 7,
+  "alert": true,
+  "hasUrl": false,
+  "message": "hW21q4DY86Ho1VYd",
+  "url": "aG0w5FHkB1g",
+  "_constructor": "messages.botCallbackAnswer#b10df1fb"
 }

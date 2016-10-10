@@ -1,5 +1,5 @@
 {
-  "flags": 0,
-  "caption": false,
+  "flags": 1,
+  "caption": true,
   "_constructor": "messages.messageEditData#26b5dde6"
 }

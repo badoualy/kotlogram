@@ -1,18 +1,11 @@
 {
   "channel": {
-    "_constructor": "inputChannelEmpty#ee8c1e86"
+    "channelId": 0,
+    "accessHash": 0,
+    "_constructor": "inputChannel#afeb712e"
   },
   "photo": {
-    "id": {
-      "_constructor": "inputPhotoEmpty#1cd7bf0d"
-    },
-    "crop": {
-      "cropLeft": 0.0,
-      "cropTop": 0.0,
-      "cropWidth": 0.0,
-      "_constructor": "inputPhotoCrop#d9915325"
-    },
-    "_constructor": "inputChatPhoto#b2e1bf08"
+    "_constructor": "inputChatPhotoEmpty#1ca48f57"
   },
   "_constructor": "channels.editPhoto#f12e57c9"
 }

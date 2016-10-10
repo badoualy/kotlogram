@@ -3,7 +3,7 @@
     "_constructor": "inputPeerEmpty#7f3b18ea"
   },
   "action": {
-    "_constructor": "sendMessageTypingAction#16bf744e"
+    "_constructor": "sendMessageGeoLocationAction#176f8ba1"
   },
   "_constructor": "messages.setTyping#a3825e50"
 }
