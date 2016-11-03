@@ -13,9 +13,7 @@ class MTSession(var dataCenter: DataCenter, var id: ByteArray = RandomUtils.rand
                 var salt: Long = 0, var contentRelatedCount: Int = 0, var lastMessageId: Long = 0, tag: String) {
 
     @Transient
-    val idLong = BigInteger(id).toLong()
-    @Transient
-    val tag = "$tag:$idLong"
+    val tag = "$tag:${BigInteger(id).toLong()}"
     @Transient
     val marker = MarkerFactory.getMarker(this.tag)!!
 

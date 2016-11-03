@@ -18,6 +18,8 @@ internal class MTProtoTcpConnection
 @Throws(IOException::class)
 @JvmOverloads constructor(override val ip: String, override val port: Int, tag: String, abridgedProtocol: Boolean = true) : MTProtoConnection {
 
+    private val ATTEMPT_COUNT = 3
+
     override var tag: String = tag
         set(value) {
             field = value
@@ -33,7 +35,7 @@ internal class MTProtoTcpConnection
     private var selectionKey: SelectionKey? = null
 
     init {
-        var attempt = 0
+        var attempt = 1
         do {
             socketChannel = SocketChannel.open()
             socketChannel.setOption(StandardSocketOptions.SO_KEEPALIVE, true)
@@ -52,7 +54,7 @@ internal class MTProtoTcpConnection
 
                 break
             } catch(e: Exception) {
-                logger.error(marker, "Failed to connect", e)
+                logger.error(marker, "Failed to connect")
                 try {
                     socketChannel.close()
                 } catch (e: Exception) {
@@ -60,9 +62,9 @@ internal class MTProtoTcpConnection
             }
             Thread.sleep(TimeUnit.SECONDS.toMillis(1))
 
-            if (attempt == 1)
+            if (attempt == ATTEMPT_COUNT)
                 throw ConnectException("Failed to join Telegram server at $ip:$port")
-        } while (attempt++ < 1)
+        } while (attempt++ < ATTEMPT_COUNT)
     }
 
     @Throws(IOException::class)
