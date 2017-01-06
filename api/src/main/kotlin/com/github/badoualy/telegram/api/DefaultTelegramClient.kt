@@ -8,10 +8,14 @@ import com.github.badoualy.telegram.mtproto.auth.AuthKeyCreation
 import com.github.badoualy.telegram.mtproto.auth.AuthResult
 import com.github.badoualy.telegram.mtproto.exception.SecurityException
 import com.github.badoualy.telegram.mtproto.model.DataCenter
+import com.github.badoualy.telegram.mtproto.secure.CryptoUtils
 import com.github.badoualy.telegram.mtproto.time.MTProtoTimer
 import com.github.badoualy.telegram.tl.api.*
+import com.github.badoualy.telegram.tl.api.account.TLPassword
+import com.github.badoualy.telegram.tl.api.auth.TLAuthorization
 import com.github.badoualy.telegram.tl.api.request.*
 import com.github.badoualy.telegram.tl.api.upload.TLFile
+import com.github.badoualy.telegram.tl.core.TLBytes
 import com.github.badoualy.telegram.tl.core.TLMethod
 import com.github.badoualy.telegram.tl.core.TLObject
 import com.github.badoualy.telegram.tl.exception.RpcErrorException
@@ -146,7 +150,7 @@ internal class DefaultTelegramClient internal constructor(val application: Teleg
         closed = true
         try {
             mtProtoHandler?.close()
-        }catch (e: Exception){
+        } catch (e: Exception) {
         }
         if (cleanUp)
             Kotlogram.cleanUp()
@@ -231,7 +235,7 @@ internal class DefaultTelegramClient internal constructor(val application: Teleg
                     }
                     throw TimeoutException("Request timed out")
                 }
-                //is IOException -> throw exception.cause as IOException
+            //is IOException -> throw exception.cause as IOException
                 else -> throw exception
             }
         }
@@ -260,6 +264,13 @@ internal class DefaultTelegramClient internal constructor(val application: Teleg
 
     @Throws(RpcErrorException::class, IOException::class)
     override fun authSendCode(allowFlashcall: Boolean, phoneNumber: String, currentNumber: Boolean) = super.authSendCode(allowFlashcall, phoneNumber, currentNumber, application.apiId, application.apiHash)!!
+
+    @Throws(RpcErrorException::class, IOException::class)
+    override fun authCheckPassword(password: String): TLAuthorization {
+        val tlPassword = accountGetPassword() as? TLPassword ?: throw RpcErrorException(400, "NO_PASSWORD")
+        val passwordHash = CryptoUtils.encodePasswordHash(tlPassword.currentSalt.data, password)
+        return executeRpcQuery(TLRequestAuthCheckPassword(TLBytes(passwordHash)))
+    }
 
     @Throws(RpcErrorException::class, IOException::class)
     override fun <T : TLObject> initConnection(query: TLMethod<T>) = executeRpcQuery(TLRequestInitConnection(application.apiId, application.deviceModel, application.systemVersion, application.appVersion, application.langCode, query))!!

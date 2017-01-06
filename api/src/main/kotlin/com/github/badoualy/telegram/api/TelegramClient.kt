@@ -3,9 +3,11 @@ package com.github.badoualy.telegram.api
 import com.github.badoualy.telegram.api.utils.InputFileLocation
 import com.github.badoualy.telegram.mtproto.MTProtoHandler
 import com.github.badoualy.telegram.tl.api.*
+import com.github.badoualy.telegram.tl.api.auth.TLAuthorization
 import com.github.badoualy.telegram.tl.api.auth.TLSentCode
 import com.github.badoualy.telegram.tl.api.request.TLRequestUploadGetFile
 import com.github.badoualy.telegram.tl.api.upload.TLFile
+import com.github.badoualy.telegram.tl.core.TLBytes
 import com.github.badoualy.telegram.tl.core.TLMethod
 import com.github.badoualy.telegram.tl.core.TLObject
 import com.github.badoualy.telegram.tl.exception.RpcErrorException
@@ -70,6 +72,13 @@ interface TelegramClient : TelegramApi {
     @Deprecated("Use authSendCode for more convenience", ReplaceWith("authSendCode(allowFlashcall, phoneNumber, currentNumber)"))
     override fun authSendCode(allowFlashcall: Boolean, phoneNumber: String?, currentNumber: Boolean, apiId: Int, apiHash: String?): TLSentCode
 
+    /** Convenience method wrapping the argument with salt */
+    @Throws(RpcErrorException::class, IOException::class)
+    fun authCheckPassword(password: String): TLAuthorization
+
+    @Deprecated("Use authCheckPassword for more convenience", ReplaceWith("authCheckPassword()"))
+    override fun authCheckPassword(passwordHash: TLBytes?): TLAuthorization
+
     @Throws(RpcErrorException::class, IOException::class)
     override fun <T : TLObject?> invokeWithLayer(layer: Int, query: TLMethod<T>?): T
 
@@ -93,13 +102,10 @@ interface TelegramClient : TelegramApi {
             else -> null
         } ?: return null
 
-        val photoLocation = when (userPhoto) {
+        val photoLocation = (when (userPhoto) {
             is TLUserProfilePhoto -> if (big) userPhoto.photoBig else userPhoto.photoSmall
             else -> null
-        } ?: return null
-
-        if (photoLocation !is TLFileLocation)
-            return null
+        } ?: return null) as? TLFileLocation ?: return null
 
         val inputLocation = TLInputFileLocation(photoLocation.volumeId, photoLocation.localId, photoLocation.secret)
         val request = TLRequestUploadGetFile(inputLocation, 0, 0)
@@ -116,13 +122,10 @@ interface TelegramClient : TelegramApi {
             else -> null
         } ?: return null
 
-        val photoLocation = when (chatPhoto) {
+        val photoLocation = (when (chatPhoto) {
             is TLChatPhoto -> if (big) chatPhoto.photoBig else chatPhoto.photoSmall
             else -> null
-        } ?: return null
-
-        if (photoLocation !is TLFileLocation)
-            return null
+        } ?: return null) as? TLFileLocation ?: return null
 
         val inputLocation = TLInputFileLocation(photoLocation.volumeId, photoLocation.localId, photoLocation.secret)
         val request = TLRequestUploadGetFile(inputLocation, 0, 0)

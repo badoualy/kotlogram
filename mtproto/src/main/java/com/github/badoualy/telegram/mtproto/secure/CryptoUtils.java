@@ -54,6 +54,19 @@ public final class CryptoUtils {
         }
     };
 
+    private static final ThreadLocal<MessageDigest> sha256 = new ThreadLocal<MessageDigest>() {
+        @Override
+        protected MessageDigest initialValue() {
+            MessageDigest crypt = null;
+            try {
+                crypt = MessageDigest.getInstance("SHA-256");
+            } catch (NoSuchAlgorithmException e) {
+                e.printStackTrace();
+            }
+            return crypt;
+        }
+    };
+
     private static AESImplementation currentImplementation = new DefaultAESImplementation();
 
     public static void setAESImplementation(AESImplementation implementation) {
@@ -200,6 +213,28 @@ public final class CryptoUtils {
         return crypt.digest();
     }
 
+    public static byte[] SHA256(byte[] src) {
+        try {
+            MessageDigest md = MessageDigest.getInstance("SHA-256");
+            md.update(src);
+            return md.digest();
+        } catch (Exception e) {
+        }
+        return null;
+    }
+
+    public static byte[] encodePasswordHash(byte[] salt, String password) {
+        try {
+            MessageDigest md = MessageDigest.getInstance("SHA-256");
+            md.update(salt);
+            md.update(password.getBytes("UTF-8"));
+            md.update(salt);
+            return md.digest();
+        } catch (Exception e) {
+        }
+        return null;
+    }
+
     public static byte[] concat(byte[]... v) {
         int len = 0;
         for (int i = 0; i < v.length; i++) {
@@ -220,7 +255,9 @@ public final class CryptoUtils {
         return res;
     }
 
-    /** Adds padding */
+    /**
+     * Adds padding
+     */
     public static byte[] align(byte[] src, int factor) {
         if (src.length % factor == 0) {
             return src;
