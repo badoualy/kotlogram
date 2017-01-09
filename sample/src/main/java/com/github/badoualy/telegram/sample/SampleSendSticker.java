@@ -31,7 +31,7 @@ public class SampleSendSticker {
 
             TLAllStickers tlAllStickers = (TLAllStickers) client.messagesGetAllStickers(0);
             TLStickerSet tlStickerSet = tlAllStickers.getSets().get(0);
-            // TODO fix
+            // TODO fix, please!
             /*if (!tlStickers.getStickers().isEmpty()) {
                 // Take first available one
                 TLDocument tlDocument = tlStickers.getStickers().get(0).getAsDocument();
