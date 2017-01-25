@@ -52,7 +52,11 @@ public class DumpUtils {
     }
 
     public static <T extends TLObject> String toJson(T object) {
-        return gson.toJson(object);
+        String json = gson.toJson(object);
+        if(json.contains("\r\n"))
+            return json;
+
+        return json.replace("\n", "\r\n");
     }
 
     private static String getFilePath(Class<?> clazz) {
