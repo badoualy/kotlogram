@@ -1,33 +1,22 @@
 {
-  "flags": 105,
-  "creator": true,
+  "flags": 76,
+  "creator": false,
   "kicked": false,
-  "left": false,
+  "left": true,
   "adminsEnabled": true,
   "admin": false,
-  "deactivated": true,
-  "title": "X47vrqYbdS6phejZsNhk14ktVAXpj",
+  "deactivated": false,
+  "title": "17pntYcqp3rTdLufhYlFpU",
   "photo": {
-    "photoSmall": {
-      "_constructor": "fileLocationUnavailable#7c596b46",
-      "volumeId": 0,
-      "localId": 0,
-      "secret": 0
-    },
-    "photoBig": {
-      "dcId": 0,
-      "_constructor": "fileLocation#53d69076",
-      "volumeId": 0,
-      "localId": 0,
-      "secret": 0
-    },
-    "_constructor": "chatPhoto#6153276a"
+    "_constructor": "chatPhotoEmpty#37c1011c"
   },
   "participantsCount": 0,
   "date": 0,
   "version": 0,
   "migratedTo": {
-    "_constructor": "inputChannelEmpty#ee8c1e86"
+    "channelId": 0,
+    "accessHash": 0,
+    "_constructor": "inputChannel#afeb712e"
   },
   "_constructor": "chat#d91cdd54",
   "id": 0

@@ -1,179 +1,30 @@
 {
   "set": {
-    "flags": 8,
-    "installed": false,
+    "flags": 1,
+    "installed": true,
     "archived": false,
     "official": false,
-    "masks": true,
+    "masks": false,
     "id": 0,
     "accessHash": 0,
-    "title": "lauKcn8EeOD",
-    "shortName": "Lzx1uxs5P",
+    "title": "NzWL3RvaYmJuL7gMKghgy7fJIwx",
+    "shortName": "9iDeinYf9Ty1O7Nedf1f",
     "count": 0,
     "hash": 0,
     "_constructor": "stickerSet#cd303b41"
   },
   "packs": [
     {
-      "emoticon": "2lcwowNpaxXF4TexwP8X2zp24YV",
+      "emoticon": "YQ0gnZfH6mkLjACUnGyhjjAr2tZy",
       "documents": [
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
         0,
         0
       ],
       "_constructor": "stickerPack#12b299d4"
     },
     {
-      "emoticon": "DmsSHk5ZrefG4HZ",
-      "documents": [
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0
-      ],
-      "_constructor": "stickerPack#12b299d4"
-    },
-    {
-      "emoticon": "EWgltbO0jHby",
-      "documents": [
-        0,
-        0,
-        0,
-        0
-      ],
-      "_constructor": "stickerPack#12b299d4"
-    },
-    {
-      "emoticon": "SojlnylKtVP47kQUObc0Q3GnKJnbu",
-      "documents": [
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0
-      ],
-      "_constructor": "stickerPack#12b299d4"
-    },
-    {
-      "emoticon": "zCcfzlVDtsbYY8NdeqQSgB6Zivgbu",
-      "documents": [
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0
-      ],
-      "_constructor": "stickerPack#12b299d4"
-    },
-    {
-      "emoticon": "9AttM8uqGcdK1tJ21CyZ",
-      "documents": [
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0
-      ],
-      "_constructor": "stickerPack#12b299d4"
-    },
-    {
-      "emoticon": "afkizCmFFvDGUGxWmHVw4AZ",
-      "documents": [
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0
-      ],
-      "_constructor": "stickerPack#12b299d4"
-    },
-    {
-      "emoticon": "rrJQ5gfZr4zhzhb9CL",
-      "documents": [
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0
-      ],
-      "_constructor": "stickerPack#12b299d4"
-    },
-    {
-      "emoticon": "MbbnEl0YrBT4gQNQDL",
-      "documents": [
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0
-      ],
-      "_constructor": "stickerPack#12b299d4"
-    },
-    {
-      "emoticon": "lxq5NyXyNoY6E3rAgubf2KwbCwt8K",
-      "documents": [
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0
-      ],
-      "_constructor": "stickerPack#12b299d4"
-    },
-    {
-      "emoticon": "5tSQzI9vl0AJbdiBS",
-      "documents": [
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0
-      ],
+      "emoticon": "TaTBA78h4Vyw",
+      "documents": [],
       "_constructor": "stickerPack#12b299d4"
     }
   ],
@@ -183,121 +34,25 @@
       "id": 0
     },
     {
-      "_constructor": "documentEmpty#36f8c871",
-      "id": 0
-    },
-    {
-      "_constructor": "documentEmpty#36f8c871",
-      "id": 0
-    },
-    {
-      "_constructor": "documentEmpty#36f8c871",
-      "id": 0
-    },
-    {
       "accessHash": 0,
       "date": 0,
-      "mimeType": "MYsQrwiV4bi8n7s3JhOppImp",
+      "mimeType": "1kSw8y6G4cT4OHMFfSHiaHmBM",
       "size": 0,
       "thumb": {
-        "location": {
-          "dcId": 0,
-          "_constructor": "fileLocation#53d69076",
-          "volumeId": 0,
-          "localId": 0,
-          "secret": 0
-        },
-        "w": 0,
-        "h": 0,
-        "bytes": {
-          "data": [
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0
-          ],
-          "offset": 0,
-          "len": 22
-        },
-        "_constructor": "photoCachedSize#e9a734fa",
-        "type": "JORaoNH"
+        "_constructor": "photoSizeEmpty#e17e23c",
+        "type": "clkOwNl"
       },
       "dcId": 0,
       "version": 0,
       "attributes": [
         {
-          "flags": 1,
-          "mask": false,
-          "alt": "Y5HnH7vVa0HOz9OyvZsg",
-          "stickerset": {
-            "shortName": "y54UMrqKUkHZfsz",
-            "_constructor": "inputStickerSetShortName#861cc8a0"
-          },
-          "maskCoords": {
-            "n": 0,
-            "x": 0.0,
-            "y": 0.0,
-            "zoom": 0.0,
-            "_constructor": "maskCoords#aed6dbb2"
-          },
-          "_constructor": "documentAttributeSticker#6319d612"
+          "w": 0,
+          "h": 0,
+          "_constructor": "documentAttributeImageSize#6c37c15c"
         },
         {
-          "flags": 1,
-          "mask": false,
-          "alt": "BevEXgaqQu3m7JTVDfdRsFH",
-          "stickerset": {
-            "shortName": "7nHoWF7EqUjXK2YJRKwhREP5X",
-            "_constructor": "inputStickerSetShortName#861cc8a0"
-          },
-          "maskCoords": {
-            "n": 0,
-            "x": 0.0,
-            "y": 0.0,
-            "zoom": 0.0,
-            "_constructor": "maskCoords#aed6dbb2"
-          },
-          "_constructor": "documentAttributeSticker#6319d612"
-        },
-        {
-          "_constructor": "documentAttributeHasStickers#9801d2f7"
-        },
-        {
-          "_constructor": "documentAttributeAnimated#11b58939"
-        },
-        {
-          "flags": 7,
-          "voice": false,
-          "duration": 0,
-          "title": "kIeao",
-          "performer": "DqsU0dlzeZqJdER7GstgKaUfs4n",
-          "waveform": {
-            "data": [
-              0,
-              0
-            ],
-            "offset": 0,
-            "len": 2
-          },
-          "_constructor": "documentAttributeAudio#9852f9c6"
+          "fileName": "K7UAWYYZxez",
+          "_constructor": "documentAttributeFilename#15590068"
         }
       ],
       "_constructor": "document#87232bc7",

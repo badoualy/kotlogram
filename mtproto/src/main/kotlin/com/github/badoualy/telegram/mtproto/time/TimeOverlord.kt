@@ -22,8 +22,8 @@ internal object TimeOverlord {
 
     fun setServerTime(dataCenter: DataCenter, serverTime: Long) {
         deltaMap.put(dataCenter, serverTime - localTime)
-        logger.warn("New server time for ${dataCenter.toString()} is $serverTime")
-        logger.warn("New time delta for ${dataCenter.toString()} is ${deltaMap[dataCenter]}")
+        logger.warn("New server time for $dataCenter is $serverTime")
+        logger.warn("New time delta for $dataCenter is ${deltaMap[dataCenter]}")
     }
 
     // Reverse operation, shift right then multiply by 1000

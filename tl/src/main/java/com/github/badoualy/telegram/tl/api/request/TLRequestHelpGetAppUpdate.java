@@ -15,6 +15,7 @@ import static com.github.badoualy.telegram.tl.StreamUtils.readTLObject;
  * @see <a href="http://github.com/badoualy/kotlogram">http://github.com/badoualy/kotlogram</a>
  */
 public class TLRequestHelpGetAppUpdate extends TLMethod<TLAbsAppUpdate> {
+
     public static final int CONSTRUCTOR_ID = 0xae2de196;
 
     private final String _constructor = "help.getAppUpdate#ae2de196";
@@ -30,7 +31,9 @@ public class TLRequestHelpGetAppUpdate extends TLMethod<TLAbsAppUpdate> {
             throw new IOException("Unable to parse response");
         }
         if (!(response instanceof TLAbsAppUpdate)) {
-            throw new IOException("Incorrect response type, expected " + getClass().getCanonicalName() + ", found " + response.getClass().getCanonicalName());
+            throw new IOException(
+                    "Incorrect response type, expected " + getClass().getCanonicalName() + ", found " + response
+                            .getClass().getCanonicalName());
         }
         return (TLAbsAppUpdate) response;
     }

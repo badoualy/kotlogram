@@ -1,39 +1,52 @@
 {
   "myLink": {
-    "_constructor": "contactLinkContact#d502c2d0"
+    "_constructor": "contactLinkNone#feedd3ad"
   },
   "foreignLink": {
     "_constructor": "contactLinkContact#d502c2d0"
   },
   "user": {
-    "flags": 811135,
+    "flags": 7127167,
     "self": false,
     "contact": false,
     "mutualContact": false,
-    "deleted": true,
+    "deleted": false,
     "bot": true,
-    "botChatHistory": false,
+    "botChatHistory": true,
     "botNochats": false,
     "verified": false,
     "restricted": true,
     "min": false,
-    "botInlineGeo": false,
+    "botInlineGeo": true,
     "accessHash": 0,
-    "firstName": "BaOcAPG",
-    "lastName": "744lq0aUD0MM",
-    "username": "TMTxSNvpd",
-    "phone": "m8aqKsnenjUdz9kewirjenZ6ILMb6",
+    "firstName": "67R2wIw2uxZS",
+    "lastName": "QUQau3yh0RHv6rXyBCE6S",
+    "username": "cXFaFdx5MBYpY8uT9yT",
+    "phone": "qA3tHbnaWj4X1MTIKG",
     "photo": {
-      "_constructor": "userProfilePhotoEmpty#4f11bae1"
+      "photoId": 0,
+      "photoSmall": {
+        "_constructor": "fileLocationUnavailable#7c596b46",
+        "volumeId": 0,
+        "localId": 0,
+        "secret": 0
+      },
+      "photoBig": {
+        "_constructor": "fileLocationUnavailable#7c596b46",
+        "volumeId": 0,
+        "localId": 0,
+        "secret": 0
+      },
+      "_constructor": "userProfilePhoto#d559d8c8"
     },
     "status": {
-      "wasOnline": 0,
-      "_constructor": "userStatusOffline#8c703f"
+      "_constructor": "userStatusRecently#e26f42f1"
     },
     "botInfoVersion": 0,
-    "restrictionReason": "nbzhwnx4aiACuTh8d",
-    "botInlinePlaceholder": "HLaHzbN5fSL00hXx",
-    "_constructor": "user#d10d979a",
+    "restrictionReason": "TZx1Kxs",
+    "botInlinePlaceholder": "nBAdcak8lNkWT",
+    "langCode": "dXlPdKrlXHho8UWy4HsZ8oRLnsv",
+    "_constructor": "user#2e13f4c3",
     "id": 0
   },
   "_constructor": "contacts.link#3ace484c"

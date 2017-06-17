@@ -1,8 +1,7 @@
 {
   "stickerset": {
-    "id": 0,
-    "accessHash": 0,
-    "_constructor": "inputStickerSetID#9de7a269"
+    "shortName": "znRyKdd1",
+    "_constructor": "inputStickerSetShortName#861cc8a0"
   },
   "_constructor": "messages.getStickerSet#2619a90e"
 }

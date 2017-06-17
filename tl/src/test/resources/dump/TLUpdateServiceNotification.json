@@ -1,9 +1,18 @@
 {
-  "type": "MwQrtc",
-  "message": "09o0whpNwdYC",
+  "flags": 2,
+  "popup": false,
+  "inboxDate": 0,
+  "type": "9oEdhiK7rr3vLAUFJZF4iQDB",
+  "message": "iHrPNPPXq",
   "media": {
     "_constructor": "messageMediaEmpty#3ded6320"
   },
-  "popup": true,
-  "_constructor": "updateServiceNotification#382dd3e4"
+  "entities": [
+    {
+      "_constructor": "messageEntityEmail#64e475c2",
+      "offset": 0,
+      "length": 0
+    }
+  ],
+  "_constructor": "updateServiceNotification#ebe46819"
 }

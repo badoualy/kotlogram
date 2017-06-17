@@ -20,7 +20,8 @@ import static com.github.badoualy.telegram.tl.TLObjectUtils.computeTLStringSeria
  * @see <a href="http://github.com/badoualy/kotlogram">http://github.com/badoualy/kotlogram</a>
  */
 public class TLBotCallbackAnswer extends TLObject {
-    public static final int CONSTRUCTOR_ID = 0xb10df1fb;
+
+    public static final int CONSTRUCTOR_ID = 0x36585ea4;
 
     protected int flags;
 
@@ -32,16 +33,19 @@ public class TLBotCallbackAnswer extends TLObject {
 
     protected String url;
 
-    private final String _constructor = "messages.botCallbackAnswer#b10df1fb";
+    protected int cacheTime;
+
+    private final String _constructor = "messages.botCallbackAnswer#36585ea4";
 
     public TLBotCallbackAnswer() {
     }
 
-    public TLBotCallbackAnswer(boolean alert, boolean hasUrl, String message, String url) {
+    public TLBotCallbackAnswer(boolean alert, boolean hasUrl, String message, String url, int cacheTime) {
         this.alert = alert;
         this.hasUrl = hasUrl;
         this.message = message;
         this.url = url;
+        this.cacheTime = cacheTime;
     }
 
     private void computeFlags() {
@@ -65,6 +69,7 @@ public class TLBotCallbackAnswer extends TLObject {
             if (url == null) throwNullFieldException("url", flags);
             writeString(url, stream);
         }
+        writeInt(cacheTime, stream);
     }
 
     @Override
@@ -75,6 +80,7 @@ public class TLBotCallbackAnswer extends TLObject {
         hasUrl = (flags & 8) != 0;
         message = (flags & 1) != 0 ? readTLString(stream) : null;
         url = (flags & 4) != 0 ? readTLString(stream) : null;
+        cacheTime = readInt(stream);
     }
 
     @Override
@@ -91,6 +97,7 @@ public class TLBotCallbackAnswer extends TLObject {
             if (url == null) throwNullFieldException("url", flags);
             size += computeTLStringSerializedSize(url);
         }
+        size += SIZE_INT32;
         return size;
     }
 
@@ -134,5 +141,13 @@ public class TLBotCallbackAnswer extends TLObject {
 
     public void setUrl(String url) {
         this.url = url;
+    }
+
+    public int getCacheTime() {
+        return cacheTime;
+    }
+
+    public void setCacheTime(int cacheTime) {
+        this.cacheTime = cacheTime;
     }
 }

@@ -30,7 +30,8 @@ import static com.github.badoualy.telegram.tl.TLObjectUtils.computeTLStringSeria
  * @see <a href="http://github.com/badoualy/kotlogram">http://github.com/badoualy/kotlogram</a>
  */
 public class TLBotResults extends TLObject {
-    public static final int CONSTRUCTOR_ID = 0x256709a6;
+
+    public static final int CONSTRUCTOR_ID = 0xccd3563d;
 
     protected int flags;
 
@@ -44,17 +45,20 @@ public class TLBotResults extends TLObject {
 
     protected TLVector<TLAbsBotInlineResult> results;
 
-    private final String _constructor = "messages.botResults#256709a6";
+    protected int cacheTime;
+
+    private final String _constructor = "messages.botResults#ccd3563d";
 
     public TLBotResults() {
     }
 
-    public TLBotResults(boolean gallery, long queryId, String nextOffset, TLInlineBotSwitchPM switchPm, TLVector<TLAbsBotInlineResult> results) {
+    public TLBotResults(boolean gallery, long queryId, String nextOffset, TLInlineBotSwitchPM switchPm, TLVector<TLAbsBotInlineResult> results, int cacheTime) {
         this.gallery = gallery;
         this.queryId = queryId;
         this.nextOffset = nextOffset;
         this.switchPm = switchPm;
         this.results = results;
+        this.cacheTime = cacheTime;
     }
 
     private void computeFlags() {
@@ -79,6 +83,7 @@ public class TLBotResults extends TLObject {
             writeTLObject(switchPm, stream);
         }
         writeTLVector(results, stream);
+        writeInt(cacheTime, stream);
     }
 
     @Override
@@ -88,8 +93,10 @@ public class TLBotResults extends TLObject {
         gallery = (flags & 1) != 0;
         queryId = readLong(stream);
         nextOffset = (flags & 2) != 0 ? readTLString(stream) : null;
-        switchPm = (flags & 4) != 0 ? readTLObject(stream, context, TLInlineBotSwitchPM.class, TLInlineBotSwitchPM.CONSTRUCTOR_ID) : null;
+        switchPm = (flags & 4) != 0 ? readTLObject(stream, context, TLInlineBotSwitchPM.class,
+                                                   TLInlineBotSwitchPM.CONSTRUCTOR_ID) : null;
         results = readTLVector(stream, context);
+        cacheTime = readInt(stream);
     }
 
     @Override
@@ -108,6 +115,7 @@ public class TLBotResults extends TLObject {
             size += switchPm.computeSerializedSize();
         }
         size += results.computeSerializedSize();
+        size += SIZE_INT32;
         return size;
     }
 
@@ -159,5 +167,13 @@ public class TLBotResults extends TLObject {
 
     public void setResults(TLVector<TLAbsBotInlineResult> results) {
         this.results = results;
+    }
+
+    public int getCacheTime() {
+        return cacheTime;
+    }
+
+    public void setCacheTime(int cacheTime) {
+        this.cacheTime = cacheTime;
     }
 }

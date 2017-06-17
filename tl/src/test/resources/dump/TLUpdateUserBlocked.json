@@ -1,5 +1,5 @@
 {
   "userId": 0,
-  "blocked": true,
+  "blocked": false,
   "_constructor": "updateUserBlocked#80ece81a"
 }

@@ -5,6 +5,7 @@ package com.github.badoualy.telegram.tl.api.messages;
  * @see <a href="http://github.com/badoualy/kotlogram">http://github.com/badoualy/kotlogram</a>
  */
 public class TLSavedGifsNotModified extends TLAbsSavedGifs {
+
     public static final int CONSTRUCTOR_ID = 0xe8025ca2;
 
     private final String _constructor = "messages.savedGifsNotModified#e8025ca2";

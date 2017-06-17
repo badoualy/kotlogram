@@ -19,6 +19,7 @@ import static com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_INT32;
  * @see <a href="http://github.com/badoualy/kotlogram">http://github.com/badoualy/kotlogram</a>
  */
 public class TLUpdateDeleteChannelMessages extends TLAbsUpdate {
+
     public static final int CONSTRUCTOR_ID = 0xc37521c9;
 
     protected int channelId;

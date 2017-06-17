@@ -19,6 +19,7 @@ import static com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_CONSTRUCTOR_ID;
  * @see <a href="http://github.com/badoualy/kotlogram">http://github.com/badoualy/kotlogram</a>
  */
 public class TLMessages extends TLAbsMessages {
+
     public static final int CONSTRUCTOR_ID = 0x8c718e87;
 
     private final String _constructor = "messages.messages#8c718e87";

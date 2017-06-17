@@ -1,7 +1,8 @@
 {
   "userId": 0,
   "action": {
-    "_constructor": "sendMessageGeoLocationAction#176f8ba1"
+    "progress": 0,
+    "_constructor": "sendMessageUploadAudioAction#f351d7ab"
   },
   "_constructor": "updateUserTyping#5c486927"
 }

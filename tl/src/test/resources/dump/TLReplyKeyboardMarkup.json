@@ -1,30 +1,17 @@
 {
-  "flags": 2,
+  "flags": 4,
   "resize": false,
-  "singleUse": true,
-  "selective": false,
+  "singleUse": false,
+  "selective": true,
   "rows": [
     {
       "buttons": [
         {
-          "_constructor": "keyboardButton#a2fa4880",
-          "text": "p3JvicLkinYzL0faM5RGN9Tu"
-        },
-        {
-          "_constructor": "keyboardButtonGame#50f41ccf",
-          "text": "QMsWJFnGT3Ok2wfwNXZ0Zlxrvx"
-        },
-        {
-          "_constructor": "keyboardButtonGame#50f41ccf",
-          "text": "QCFxjUvF6UR"
-        },
-        {
-          "_constructor": "keyboardButtonRequestPhone#b16a6c29",
-          "text": "vZAsaIrM8qlb28rFh"
-        },
-        {
-          "_constructor": "keyboardButtonRequestPhone#b16a6c29",
-          "text": "3WWbfU5cye87NrNajhVWJKuLx"
+          "flags": 1,
+          "samePeer": true,
+          "query": "hKtWN",
+          "_constructor": "keyboardButtonSwitchInline#568a748",
+          "text": "YB5cQj0etrhPk"
         }
       ],
       "_constructor": "keyboardButtonRow#77608b83"
@@ -32,25 +19,12 @@
     {
       "buttons": [
         {
-          "_constructor": "keyboardButtonRequestPhone#b16a6c29",
-          "text": "ObwBcIeF"
-        },
-        {
-          "_constructor": "keyboardButtonRequestGeoLocation#fc796b3f",
-          "text": "kqZCFWg5k3Qjzam"
-        },
-        {
-          "_constructor": "keyboardButton#a2fa4880",
-          "text": "aKO6fMWGM"
-        },
-        {
-          "url": "bSJC6PAfBYNytc",
-          "_constructor": "keyboardButtonUrl#258aff05",
-          "text": "ijUJwH9Lc5XtnLe3l7A9"
-        },
-        {
           "_constructor": "keyboardButtonGame#50f41ccf",
-          "text": "vjWN9aQCpgbOb12cv"
+          "text": "idlrcjEAa9ciJyxderr62VvF02O"
+        },
+        {
+          "_constructor": "keyboardButtonRequestPhone#b16a6c29",
+          "text": "DnagIioUwo"
         }
       ],
       "_constructor": "keyboardButtonRow#77608b83"

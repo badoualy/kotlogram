@@ -1,8 +1,9 @@
 {
-  "flags": 7,
-  "alert": true,
+  "flags": 5,
+  "alert": false,
   "hasUrl": false,
-  "message": "hW21q4DY86Ho1VYd",
-  "url": "aG0w5FHkB1g",
-  "_constructor": "messages.botCallbackAnswer#b10df1fb"
+  "message": "ycz53pcsBAvZ05w",
+  "url": "aqFgkX9K5L8vu",
+  "cacheTime": 0,
+  "_constructor": "messages.botCallbackAnswer#36585ea4"
 }

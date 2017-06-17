@@ -1,9 +1,9 @@
 {
-  "flags": 16648,
-  "out": false,
-  "mentioned": false,
-  "mediaUnread": false,
-  "silent": false,
+  "flags": 24890,
+  "out": true,
+  "mentioned": true,
+  "mediaUnread": true,
+  "silent": true,
   "post": true,
   "fromId": 0,
   "toId": {
@@ -13,7 +13,9 @@
   "replyToMsgId": 0,
   "date": 0,
   "action": {
-    "_constructor": "messageActionEmpty#b6aef7b0"
+    "gameId": 0,
+    "score": 0,
+    "_constructor": "messageActionGameScore#92a72876"
   },
   "_constructor": "messageService#9e19a1f6",
   "id": 0

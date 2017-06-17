@@ -2,7 +2,7 @@ subprojects {
     apply plugin: 'java'
     apply plugin: 'maven'
 
-    version = "0.0.7-beta"
+    version = "1.0.0-RC1"
     group = 'com.github.badoualy'
 
     sourceCompatibility = 1.8
@@ -18,7 +18,7 @@ subprojects {
     }
 
     buildscript {
-        ext.kotlin_version = '1.0.4'
+        ext.kotlin_version = '1.1.2-5'
         repositories {
             mavenCentral()
         }

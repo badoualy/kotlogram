@@ -26,10 +26,12 @@ public class SampleSendMessage {
 
         // You can start making requests
         try {
-            TLAbsDialogs tlAbsDialogs = client.messagesGetDialogs(0, 0, new TLInputPeerEmpty(), 1);
+            TLAbsDialogs tlAbsDialogs = client.messagesGetDialogs(true, 0, 0, new TLInputPeerEmpty(), 1);
             TLAbsInputPeer inputPeer = getInputPeer(tlAbsDialogs);
 
-            TLAbsUpdates tlAbsUpdates = client.messagesSendMessage(inputPeer, "Sent from Kotlogram :)", Math.abs(new Random().nextLong()));
+            TLAbsUpdates tlAbsUpdates = client.messagesSendMessage(inputPeer,
+                                                                   "Sent from Kotlogram :)",
+                                                                   Math.abs(new Random().nextLong()));
 
             // tlAbsUpdates contains the id and date of the message in a TLUpdateShortSentMessage
         } catch (RpcErrorException | IOException e) {

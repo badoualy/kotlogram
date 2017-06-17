@@ -3,8 +3,8 @@
   "queryId": 0,
   "userId": 0,
   "peer": {
-    "chatId": 0,
-    "_constructor": "peerChat#bad0e5bb"
+    "channelId": 0,
+    "_constructor": "peerChannel#bddde532"
   },
   "msgId": 0,
   "chatInstance": 0,
@@ -196,11 +196,38 @@
       0,
       0,
       0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
       0
     ],
     "offset": 0,
-    "len": 187
+    "len": 214
   },
-  "gameShortName": "d0MvajhFi9t0dsraN",
+  "gameShortName": "IoPszfhRSy",
   "_constructor": "updateBotCallbackQuery#e73547e1"
 }

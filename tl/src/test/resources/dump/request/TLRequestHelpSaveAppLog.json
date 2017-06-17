@@ -1,33 +1,4 @@
 {
-  "events": [
-    {
-      "time": 0.0,
-      "type": "Rs85yNMlOj5YJLTW293GWvaFRuD",
-      "peer": 0,
-      "data": "y3eXYvygFgNoknZTiYvdFy",
-      "_constructor": "inputAppEvent#770656a8"
-    },
-    {
-      "time": 0.0,
-      "type": "E5e6kvjPpVshEZZy8Nh8PmZgCtZ0X",
-      "peer": 0,
-      "data": "6wlmjQ1Tq7",
-      "_constructor": "inputAppEvent#770656a8"
-    },
-    {
-      "time": 0.0,
-      "type": "6mFETVz7m4RaPGa2h",
-      "peer": 0,
-      "data": "IXJcXqzjILacQGD",
-      "_constructor": "inputAppEvent#770656a8"
-    },
-    {
-      "time": 0.0,
-      "type": "p71rf6wjQh2nj",
-      "peer": 0,
-      "data": "mPYwyQ",
-      "_constructor": "inputAppEvent#770656a8"
-    }
-  ],
+  "events": [],
   "_constructor": "help.saveAppLog#6f02f748"
 }

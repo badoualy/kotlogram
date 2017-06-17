@@ -17,6 +17,7 @@ import static com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_CONSTRUCTOR_ID;
  * @see <a href="http://github.com/badoualy/kotlogram">http://github.com/badoualy/kotlogram</a>
  */
 public class TLStickerSetInstallResultArchive extends TLAbsStickerSetInstallResult {
+
     public static final int CONSTRUCTOR_ID = 0x35e410a8;
 
     protected TLVector<TLAbsStickerSetCovered> sets;

@@ -2,7 +2,7 @@ package com.github.badoualy.telegram.tl.api.request;
 
 import com.github.badoualy.telegram.tl.TLContext;
 import com.github.badoualy.telegram.tl.api.TLAbsInputChannel;
-import com.github.badoualy.telegram.tl.api.messages.TLChats;
+import com.github.badoualy.telegram.tl.api.messages.TLAbsChats;
 import com.github.badoualy.telegram.tl.core.TLMethod;
 import com.github.badoualy.telegram.tl.core.TLObject;
 import com.github.badoualy.telegram.tl.core.TLVector;
@@ -20,7 +20,8 @@ import static com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_CONSTRUCTOR_ID;
  * @author Yannick Badoual yann.badoual@gmail.com
  * @see <a href="http://github.com/badoualy/kotlogram">http://github.com/badoualy/kotlogram</a>
  */
-public class TLRequestChannelsGetChannels extends TLMethod<TLChats> {
+public class TLRequestChannelsGetChannels extends TLMethod<TLAbsChats> {
+
     public static final int CONSTRUCTOR_ID = 0xa7f6bbb;
 
     protected TLVector<TLAbsInputChannel> id;
@@ -36,15 +37,17 @@ public class TLRequestChannelsGetChannels extends TLMethod<TLChats> {
 
     @Override
     @SuppressWarnings({"unchecked", "SimplifiableConditionalExpression"})
-    public TLChats deserializeResponse(InputStream stream, TLContext context) throws IOException {
+    public TLAbsChats deserializeResponse(InputStream stream, TLContext context) throws IOException {
         final TLObject response = readTLObject(stream, context);
         if (response == null) {
             throw new IOException("Unable to parse response");
         }
-        if (!(response instanceof TLChats)) {
-            throw new IOException("Incorrect response type, expected " + getClass().getCanonicalName() + ", found " + response.getClass().getCanonicalName());
+        if (!(response instanceof TLAbsChats)) {
+            throw new IOException(
+                    "Incorrect response type, expected " + getClass().getCanonicalName() + ", found " + response
+                            .getClass().getCanonicalName());
         }
-        return (TLChats) response;
+        return (TLAbsChats) response;
     }
 
     @Override

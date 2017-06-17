@@ -5,6 +5,7 @@ package com.github.badoualy.telegram.tl.api;
  * @see <a href="http://github.com/badoualy/kotlogram">http://github.com/badoualy/kotlogram</a>
  */
 public class TLUserStatusLastMonth extends TLAbsUserStatus {
+
     public static final int CONSTRUCTOR_ID = 0x77ebc742;
 
     private final String _constructor = "userStatusLastMonth#77ebc742";

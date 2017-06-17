@@ -5,6 +5,7 @@ package com.github.badoualy.telegram.tl.api;
  * @see <a href="http://github.com/badoualy/kotlogram">http://github.com/badoualy/kotlogram</a>
  */
 public class TLInputMessagesFilterVoice extends TLAbsMessagesFilter {
+
     public static final int CONSTRUCTOR_ID = 0x50f5c392;
 
     private final String _constructor = "inputMessagesFilterVoice#50f5c392";

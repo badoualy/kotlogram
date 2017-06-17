@@ -5,6 +5,7 @@ package com.github.badoualy.telegram.tl.api.storage;
  * @see <a href="http://github.com/badoualy/kotlogram">http://github.com/badoualy/kotlogram</a>
  */
 public class TLFilePdf extends TLAbsFileType {
+
     public static final int CONSTRUCTOR_ID = 0xae1e508d;
 
     private final String _constructor = "storage.filePdf#ae1e508d";

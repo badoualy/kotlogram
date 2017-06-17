@@ -1,20 +1,30 @@
 {
-  "shortName": "3gb13RXqIeL",
+  "shortName": "2GDquGuxCVQUhO",
   "_constructor": "inputBotInlineResultGame#4fa417f2",
-  "id": "rT768oxyJKgn3P5Z5",
+  "id": "1RQMJATHrtBwaGH9txiFCwz1",
   "sendMessage": {
-    "geoPoint": {
-      "lat": 0.0,
-      "_long": 0.0,
-      "_constructor": "inputGeoPoint#f3b7acc9"
-    },
-    "_constructor": "inputBotInlineMessageMediaGeo#f4a59de1",
+    "phoneNumber": "YwTyK3B",
+    "firstName": "zuPkCGvl16Y4PWeGOCY",
+    "lastName": "0UIVShFhsivtiPiwyPUCM",
+    "_constructor": "inputBotInlineMessageMediaContact#2daf01a7",
     "flags": 4,
     "replyMarkup": {
-      "flags": 6,
-      "singleUse": true,
-      "selective": true,
-      "_constructor": "replyKeyboardForceReply#f4108aa0"
+      "rows": [
+        {
+          "buttons": [
+            {
+              "_constructor": "keyboardButtonRequestPhone#b16a6c29",
+              "text": "dPgyXHNYlAKeMQrA"
+            },
+            {
+              "_constructor": "keyboardButton#a2fa4880",
+              "text": "KXGFsa"
+            }
+          ],
+          "_constructor": "keyboardButtonRow#77608b83"
+        }
+      ],
+      "_constructor": "replyInlineMarkup#48a30254"
     }
   }
 }

@@ -23,7 +23,8 @@ class MTSession(var dataCenter: DataCenter, var id: ByteArray = RandomUtils.rand
      * @return a valid seqNo value to send
      * @see <a href="https://core.telegram.org/mtproto/description#message-sequence-number-msg-seqno">MTProto description</a>
      */
-    fun generateSeqNo(clazz: Class<out TLObject>) = generateSeqNo(TLObjectUtils.isContentRelated(clazz))
+    fun generateSeqNo(clazz: Class<out TLObject>) =
+            generateSeqNo(TLObjectUtils.isContentRelated(clazz))
 
     private fun generateSeqNo(contentRelated: Boolean): Int {
         var seqNo = -1

@@ -16,7 +16,12 @@ import static com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_INT32;
  * @see <a href="http://github.com/badoualy/kotlogram">http://github.com/badoualy/kotlogram</a>
  */
 public class TLDocumentAttributeVideo extends TLAbsDocumentAttribute {
-    public static final int CONSTRUCTOR_ID = 0x5910cccb;
+
+    public static final int CONSTRUCTOR_ID = 0xef02ce6;
+
+    protected int flags;
+
+    protected boolean roundMessage;
 
     protected int duration;
 
@@ -24,19 +29,28 @@ public class TLDocumentAttributeVideo extends TLAbsDocumentAttribute {
 
     protected int h;
 
-    private final String _constructor = "documentAttributeVideo#5910cccb";
+    private final String _constructor = "documentAttributeVideo#ef02ce6";
 
     public TLDocumentAttributeVideo() {
     }
 
-    public TLDocumentAttributeVideo(int duration, int w, int h) {
+    public TLDocumentAttributeVideo(boolean roundMessage, int duration, int w, int h) {
+        this.roundMessage = roundMessage;
         this.duration = duration;
         this.w = w;
         this.h = h;
     }
 
+    private void computeFlags() {
+        flags = 0;
+        flags = roundMessage ? (flags | 1) : (flags & ~1);
+    }
+
     @Override
     public void serializeBody(OutputStream stream) throws IOException {
+        computeFlags();
+
+        writeInt(flags, stream);
         writeInt(duration, stream);
         writeInt(w, stream);
         writeInt(h, stream);
@@ -45,6 +59,8 @@ public class TLDocumentAttributeVideo extends TLAbsDocumentAttribute {
     @Override
     @SuppressWarnings({"unchecked", "SimplifiableConditionalExpression"})
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
+        flags = readInt(stream);
+        roundMessage = (flags & 1) != 0;
         duration = readInt(stream);
         w = readInt(stream);
         h = readInt(stream);
@@ -52,7 +68,10 @@ public class TLDocumentAttributeVideo extends TLAbsDocumentAttribute {
 
     @Override
     public int computeSerializedSize() {
+        computeFlags();
+
         int size = SIZE_CONSTRUCTOR_ID;
+        size += SIZE_INT32;
         size += SIZE_INT32;
         size += SIZE_INT32;
         size += SIZE_INT32;
@@ -67,6 +86,14 @@ public class TLDocumentAttributeVideo extends TLAbsDocumentAttribute {
     @Override
     public int getConstructorId() {
         return CONSTRUCTOR_ID;
+    }
+
+    public boolean getRoundMessage() {
+        return roundMessage;
+    }
+
+    public void setRoundMessage(boolean roundMessage) {
+        this.roundMessage = roundMessage;
     }
 
     public int getDuration() {

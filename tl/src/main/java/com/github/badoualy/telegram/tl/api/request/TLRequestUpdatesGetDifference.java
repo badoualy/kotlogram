@@ -20,21 +20,27 @@ import static com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_INT32;
  * @see <a href="http://github.com/badoualy/kotlogram">http://github.com/badoualy/kotlogram</a>
  */
 public class TLRequestUpdatesGetDifference extends TLMethod<TLAbsDifference> {
-    public static final int CONSTRUCTOR_ID = 0xa041495;
+
+    public static final int CONSTRUCTOR_ID = 0x25939651;
+
+    protected int flags;
 
     protected int pts;
+
+    protected Integer ptsTotalLimit;
 
     protected int date;
 
     protected int qts;
 
-    private final String _constructor = "updates.getDifference#a041495";
+    private final String _constructor = "updates.getDifference#25939651";
 
     public TLRequestUpdatesGetDifference() {
     }
 
-    public TLRequestUpdatesGetDifference(int pts, int date, int qts) {
+    public TLRequestUpdatesGetDifference(int pts, Integer ptsTotalLimit, int date, int qts) {
         this.pts = pts;
+        this.ptsTotalLimit = ptsTotalLimit;
         this.date = date;
         this.qts = qts;
     }
@@ -47,14 +53,28 @@ public class TLRequestUpdatesGetDifference extends TLMethod<TLAbsDifference> {
             throw new IOException("Unable to parse response");
         }
         if (!(response instanceof TLAbsDifference)) {
-            throw new IOException("Incorrect response type, expected " + getClass().getCanonicalName() + ", found " + response.getClass().getCanonicalName());
+            throw new IOException(
+                    "Incorrect response type, expected " + getClass().getCanonicalName() + ", found " + response
+                            .getClass().getCanonicalName());
         }
         return (TLAbsDifference) response;
     }
 
+    private void computeFlags() {
+        flags = 0;
+        flags = ptsTotalLimit != null ? (flags | 1) : (flags & ~1);
+    }
+
     @Override
     public void serializeBody(OutputStream stream) throws IOException {
+        computeFlags();
+
+        writeInt(flags, stream);
         writeInt(pts, stream);
+        if ((flags & 1) != 0) {
+            if (ptsTotalLimit == null) throwNullFieldException("ptsTotalLimit", flags);
+            writeInt(ptsTotalLimit, stream);
+        }
         writeInt(date, stream);
         writeInt(qts, stream);
     }
@@ -62,15 +82,24 @@ public class TLRequestUpdatesGetDifference extends TLMethod<TLAbsDifference> {
     @Override
     @SuppressWarnings({"unchecked", "SimplifiableConditionalExpression"})
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
+        flags = readInt(stream);
         pts = readInt(stream);
+        ptsTotalLimit = (flags & 1) != 0 ? readInt(stream) : null;
         date = readInt(stream);
         qts = readInt(stream);
     }
 
     @Override
     public int computeSerializedSize() {
+        computeFlags();
+
         int size = SIZE_CONSTRUCTOR_ID;
         size += SIZE_INT32;
+        size += SIZE_INT32;
+        if ((flags & 1) != 0) {
+            if (ptsTotalLimit == null) throwNullFieldException("ptsTotalLimit", flags);
+            size += SIZE_INT32;
+        }
         size += SIZE_INT32;
         size += SIZE_INT32;
         return size;
@@ -92,6 +121,14 @@ public class TLRequestUpdatesGetDifference extends TLMethod<TLAbsDifference> {
 
     public void setPts(int pts) {
         this.pts = pts;
+    }
+
+    public Integer getPtsTotalLimit() {
+        return ptsTotalLimit;
+    }
+
+    public void setPtsTotalLimit(Integer ptsTotalLimit) {
+        this.ptsTotalLimit = ptsTotalLimit;
     }
 
     public int getDate() {

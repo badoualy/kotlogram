@@ -23,11 +23,14 @@ import static com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_INT32;
  * @see <a href="http://github.com/badoualy/kotlogram">http://github.com/badoualy/kotlogram</a>
  */
 public class TLRequestMessagesSetGameScore extends TLMethod<TLAbsUpdates> {
+
     public static final int CONSTRUCTOR_ID = 0x8ef8ecc0;
 
     protected int flags;
 
     protected boolean editMessage;
+
+    protected boolean force;
 
     protected TLAbsInputPeer peer;
 
@@ -42,8 +45,9 @@ public class TLRequestMessagesSetGameScore extends TLMethod<TLAbsUpdates> {
     public TLRequestMessagesSetGameScore() {
     }
 
-    public TLRequestMessagesSetGameScore(boolean editMessage, TLAbsInputPeer peer, int id, TLAbsInputUser userId, int score) {
+    public TLRequestMessagesSetGameScore(boolean editMessage, boolean force, TLAbsInputPeer peer, int id, TLAbsInputUser userId, int score) {
         this.editMessage = editMessage;
+        this.force = force;
         this.peer = peer;
         this.id = id;
         this.userId = userId;
@@ -58,7 +62,9 @@ public class TLRequestMessagesSetGameScore extends TLMethod<TLAbsUpdates> {
             throw new IOException("Unable to parse response");
         }
         if (!(response instanceof TLAbsUpdates)) {
-            throw new IOException("Incorrect response type, expected " + getClass().getCanonicalName() + ", found " + response.getClass().getCanonicalName());
+            throw new IOException(
+                    "Incorrect response type, expected " + getClass().getCanonicalName() + ", found " + response
+                            .getClass().getCanonicalName());
         }
         return (TLAbsUpdates) response;
     }
@@ -66,6 +72,7 @@ public class TLRequestMessagesSetGameScore extends TLMethod<TLAbsUpdates> {
     private void computeFlags() {
         flags = 0;
         flags = editMessage ? (flags | 1) : (flags & ~1);
+        flags = force ? (flags | 2) : (flags & ~2);
     }
 
     @Override
@@ -84,6 +91,7 @@ public class TLRequestMessagesSetGameScore extends TLMethod<TLAbsUpdates> {
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
         flags = readInt(stream);
         editMessage = (flags & 1) != 0;
+        force = (flags & 2) != 0;
         peer = readTLObject(stream, context, TLAbsInputPeer.class, -1);
         id = readInt(stream);
         userId = readTLObject(stream, context, TLAbsInputUser.class, -1);
@@ -119,6 +127,14 @@ public class TLRequestMessagesSetGameScore extends TLMethod<TLAbsUpdates> {
 
     public void setEditMessage(boolean editMessage) {
         this.editMessage = editMessage;
+    }
+
+    public boolean getForce() {
+        return force;
+    }
+
+    public void setForce(boolean force) {
+        this.force = force;
     }
 
     public TLAbsInputPeer getPeer() {

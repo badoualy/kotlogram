@@ -20,6 +20,7 @@ import static com.github.badoualy.telegram.tl.TLObjectUtils.computeTLStringSeria
  * @see <a href="http://github.com/badoualy/kotlogram">http://github.com/badoualy/kotlogram</a>
  */
 public class TLStickers extends TLAbsStickers {
+
     public static final int CONSTRUCTOR_ID = 0x8a8ecd32;
 
     protected String hash;

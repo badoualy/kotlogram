@@ -16,6 +16,7 @@ import static com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_INT32;
  * @see <a href="http://github.com/badoualy/kotlogram">http://github.com/badoualy/kotlogram</a>
  */
 public class TLMessageActionChatDeleteUser extends TLAbsMessageAction {
+
     public static final int CONSTRUCTOR_ID = 0xb2ae9b0c;
 
     protected int userId;

@@ -16,6 +16,7 @@ import static com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_CONSTRUCTOR_ID;
  * @see <a href="http://github.com/badoualy/kotlogram">http://github.com/badoualy/kotlogram</a>
  */
 public class TLPrivacyValueDisallowUsers extends TLAbsPrivacyRule {
+
     public static final int CONSTRUCTOR_ID = 0xc7f49b7;
 
     protected TLIntVector users;

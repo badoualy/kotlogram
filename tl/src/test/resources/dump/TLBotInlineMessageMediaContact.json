@@ -1,13 +1,15 @@
 {
-  "phoneNumber": "P5EDt1NM4Q5DrdOtrdXtJTM",
-  "firstName": "8s0AoRmyRv5j9e3VY",
-  "lastName": "DMgk89",
+  "phoneNumber": "SKwFRQN5WpHvHyLxD39Xpwvrk2",
+  "firstName": "RCEOYTuBVM91",
+  "lastName": "dkFxeMXE0xCdZickhuhd",
   "_constructor": "botInlineMessageMediaContact#35edb4d4",
   "flags": 4,
   "replyMarkup": {
-    "flags": 4,
-    "singleUse": false,
-    "selective": true,
-    "_constructor": "replyKeyboardForceReply#f4108aa0"
+    "flags": 2,
+    "resize": false,
+    "singleUse": true,
+    "selective": false,
+    "rows": [],
+    "_constructor": "replyKeyboardMarkup#3502758c"
   }
 }

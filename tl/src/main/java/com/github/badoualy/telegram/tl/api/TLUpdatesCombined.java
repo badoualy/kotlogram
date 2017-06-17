@@ -19,6 +19,7 @@ import static com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_INT32;
  * @see <a href="http://github.com/badoualy/kotlogram">http://github.com/badoualy/kotlogram</a>
  */
 public class TLUpdatesCombined extends TLAbsUpdates {
+
     public static final int CONSTRUCTOR_ID = 0x725b04c3;
 
     protected TLVector<TLAbsUpdate> updates;

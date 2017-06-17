@@ -2,7 +2,6 @@ package com.github.badoualy.telegram.tl.api.messages;
 
 import com.github.badoualy.telegram.tl.TLContext;
 import com.github.badoualy.telegram.tl.api.TLAbsChat;
-import com.github.badoualy.telegram.tl.core.TLObject;
 import com.github.badoualy.telegram.tl.core.TLVector;
 
 import java.io.IOException;
@@ -17,10 +16,9 @@ import static com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_CONSTRUCTOR_ID;
  * @author Yannick Badoual yann.badoual@gmail.com
  * @see <a href="http://github.com/badoualy/kotlogram">http://github.com/badoualy/kotlogram</a>
  */
-public class TLChats extends TLObject {
-    public static final int CONSTRUCTOR_ID = 0x64ff9fd5;
+public class TLChats extends TLAbsChats {
 
-    protected TLVector<TLAbsChat> chats;
+    public static final int CONSTRUCTOR_ID = 0x64ff9fd5;
 
     private final String _constructor = "messages.chats#64ff9fd5";
 

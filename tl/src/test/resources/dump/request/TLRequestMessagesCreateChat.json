@@ -1,22 +1,5 @@
 {
-  "users": [
-    {
-      "userId": 0,
-      "accessHash": 0,
-      "_constructor": "inputUser#d8292816"
-    },
-    {
-      "userId": 0,
-      "accessHash": 0,
-      "_constructor": "inputUser#d8292816"
-    },
-    {
-      "_constructor": "inputUserEmpty#b98886cf"
-    },
-    {
-      "_constructor": "inputUserEmpty#b98886cf"
-    }
-  ],
-  "title": "zRecVv",
+  "users": [],
+  "title": "7WYfV4scTI",
   "_constructor": "messages.createChat#9cb126e"
 }

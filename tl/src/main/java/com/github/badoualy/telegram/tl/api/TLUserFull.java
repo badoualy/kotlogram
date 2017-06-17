@@ -23,11 +23,16 @@ import static com.github.badoualy.telegram.tl.TLObjectUtils.computeTLStringSeria
  * @see <a href="http://github.com/badoualy/kotlogram">http://github.com/badoualy/kotlogram</a>
  */
 public class TLUserFull extends TLObject {
-    public static final int CONSTRUCTOR_ID = 0x5932fc03;
+
+    public static final int CONSTRUCTOR_ID = 0xf220f3f;
 
     protected int flags;
 
     protected boolean blocked;
+
+    protected boolean phoneCallsAvailable;
+
+    protected boolean phoneCallsPrivate;
 
     protected TLAbsUser user;
 
@@ -41,24 +46,31 @@ public class TLUserFull extends TLObject {
 
     protected TLBotInfo botInfo;
 
-    private final String _constructor = "userFull#5932fc03";
+    protected int commonChatsCount;
+
+    private final String _constructor = "userFull#f220f3f";
 
     public TLUserFull() {
     }
 
-    public TLUserFull(boolean blocked, TLAbsUser user, String about, TLLink link, TLAbsPhoto profilePhoto, TLAbsPeerNotifySettings notifySettings, TLBotInfo botInfo) {
+    public TLUserFull(boolean blocked, boolean phoneCallsAvailable, boolean phoneCallsPrivate, TLAbsUser user, String about, TLLink link, TLAbsPhoto profilePhoto, TLAbsPeerNotifySettings notifySettings, TLBotInfo botInfo, int commonChatsCount) {
         this.blocked = blocked;
+        this.phoneCallsAvailable = phoneCallsAvailable;
+        this.phoneCallsPrivate = phoneCallsPrivate;
         this.user = user;
         this.about = about;
         this.link = link;
         this.profilePhoto = profilePhoto;
         this.notifySettings = notifySettings;
         this.botInfo = botInfo;
+        this.commonChatsCount = commonChatsCount;
     }
 
     private void computeFlags() {
         flags = 0;
         flags = blocked ? (flags | 1) : (flags & ~1);
+        flags = phoneCallsAvailable ? (flags | 16) : (flags & ~16);
+        flags = phoneCallsPrivate ? (flags | 32) : (flags & ~32);
         flags = about != null ? (flags | 2) : (flags & ~2);
         flags = profilePhoto != null ? (flags | 4) : (flags & ~4);
         flags = botInfo != null ? (flags | 8) : (flags & ~8);
@@ -84,6 +96,7 @@ public class TLUserFull extends TLObject {
             if (botInfo == null) throwNullFieldException("botInfo", flags);
             writeTLObject(botInfo, stream);
         }
+        writeInt(commonChatsCount, stream);
     }
 
     @Override
@@ -91,12 +104,15 @@ public class TLUserFull extends TLObject {
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
         flags = readInt(stream);
         blocked = (flags & 1) != 0;
+        phoneCallsAvailable = (flags & 16) != 0;
+        phoneCallsPrivate = (flags & 32) != 0;
         user = readTLObject(stream, context, TLAbsUser.class, -1);
         about = (flags & 2) != 0 ? readTLString(stream) : null;
         link = readTLObject(stream, context, TLLink.class, TLLink.CONSTRUCTOR_ID);
         profilePhoto = (flags & 4) != 0 ? readTLObject(stream, context, TLAbsPhoto.class, -1) : null;
         notifySettings = readTLObject(stream, context, TLAbsPeerNotifySettings.class, -1);
         botInfo = (flags & 8) != 0 ? readTLObject(stream, context, TLBotInfo.class, TLBotInfo.CONSTRUCTOR_ID) : null;
+        commonChatsCount = readInt(stream);
     }
 
     @Override
@@ -120,6 +136,7 @@ public class TLUserFull extends TLObject {
             if (botInfo == null) throwNullFieldException("botInfo", flags);
             size += botInfo.computeSerializedSize();
         }
+        size += SIZE_INT32;
         return size;
     }
 
@@ -139,6 +156,22 @@ public class TLUserFull extends TLObject {
 
     public void setBlocked(boolean blocked) {
         this.blocked = blocked;
+    }
+
+    public boolean getPhoneCallsAvailable() {
+        return phoneCallsAvailable;
+    }
+
+    public void setPhoneCallsAvailable(boolean phoneCallsAvailable) {
+        this.phoneCallsAvailable = phoneCallsAvailable;
+    }
+
+    public boolean getPhoneCallsPrivate() {
+        return phoneCallsPrivate;
+    }
+
+    public void setPhoneCallsPrivate(boolean phoneCallsPrivate) {
+        this.phoneCallsPrivate = phoneCallsPrivate;
     }
 
     public TLAbsUser getUser() {
@@ -187,5 +220,13 @@ public class TLUserFull extends TLObject {
 
     public void setBotInfo(TLBotInfo botInfo) {
         this.botInfo = botInfo;
+    }
+
+    public int getCommonChatsCount() {
+        return commonChatsCount;
+    }
+
+    public void setCommonChatsCount(int commonChatsCount) {
+        this.commonChatsCount = commonChatsCount;
     }
 }

@@ -1,28 +1,9 @@
 {
   "update": {
-    "chat": {
-      "accessHash": 0,
-      "date": 0,
-      "adminId": 0,
-      "participantId": 0,
-      "gAOrB": {
-        "data": [
-          0,
-          0,
-          0,
-          0,
-          0,
-          0
-        ],
-        "offset": 0,
-        "len": 6
-      },
-      "keyFingerprint": 0,
-      "_constructor": "encryptedChat#fa56ce36",
-      "id": 0
-    },
-    "date": 0,
-    "_constructor": "updateEncryption#b4a2e88d"
+    "flags": 1,
+    "channelId": 0,
+    "pts": 0,
+    "_constructor": "updateChannelTooLong#eb0467fb"
   },
   "date": 0,
   "_constructor": "updateShort#78d4dec1"

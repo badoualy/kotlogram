@@ -15,6 +15,7 @@ import static com.github.badoualy.telegram.tl.StreamUtils.readTLVector;
  * @see <a href="http://github.com/badoualy/kotlogram">http://github.com/badoualy/kotlogram</a>
  */
 public class TLRequestContactsGetStatuses extends TLMethod<TLVector<TLContactStatus>> {
+
     public static final int CONSTRUCTOR_ID = 0xc4a353ee;
 
     private final String _constructor = "contacts.getStatuses#c4a353ee";

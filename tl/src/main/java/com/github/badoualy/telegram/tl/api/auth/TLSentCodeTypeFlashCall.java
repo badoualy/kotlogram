@@ -16,6 +16,7 @@ import static com.github.badoualy.telegram.tl.TLObjectUtils.computeTLStringSeria
  * @see <a href="http://github.com/badoualy/kotlogram">http://github.com/badoualy/kotlogram</a>
  */
 public class TLSentCodeTypeFlashCall extends TLAbsSentCodeType {
+
     public static final int CONSTRUCTOR_ID = 0xab03c6d9;
 
     protected String pattern;

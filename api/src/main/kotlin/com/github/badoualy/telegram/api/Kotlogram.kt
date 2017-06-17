@@ -10,7 +10,7 @@ object Kotlogram {
     private val logger = LoggerFactory.getLogger(Kotlogram::class.java)!!
 
     @JvmField
-    val API_LAYER = 57
+    val API_LAYER = 66
 
     init {
         logger.info("""
@@ -50,7 +50,8 @@ object Kotlogram {
     private val PROD_DC4_IP6 = DataCenter("2001:067c:04e8:f004:0000:0000:0000:000a", 443)
     private val PROD_DC5_IP6 = DataCenter("2001:0b28:f23f:f005:0000:0000:0000:000a", 443)
 
-    @JvmField val PROD_DCS = arrayOf(PROD_DC1, PROD_DC2, PROD_DC3, PROD_DC4, PROD_DC5)
+    @JvmField
+    val PROD_DCS = arrayOf(PROD_DC1, PROD_DC2, PROD_DC3, PROD_DC4, PROD_DC5)
 
     @JvmStatic
     fun getDcById(id: Int) = PROD_DCS[id - 1]

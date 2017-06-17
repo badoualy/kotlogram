@@ -21,6 +21,7 @@ import static com.github.badoualy.telegram.tl.TLObjectUtils.computeTLStringSeria
  * @see <a href="http://github.com/badoualy/kotlogram">http://github.com/badoualy/kotlogram</a>
  */
 public class TLUpdateBotInlineSend extends TLAbsUpdate {
+
     public static final int CONSTRUCTOR_ID = 0xe48f964;
 
     protected int flags;
@@ -80,7 +81,8 @@ public class TLUpdateBotInlineSend extends TLAbsUpdate {
         query = readTLString(stream);
         geo = (flags & 1) != 0 ? readTLObject(stream, context, TLAbsGeoPoint.class, -1) : null;
         id = readTLString(stream);
-        msgId = (flags & 2) != 0 ? readTLObject(stream, context, TLInputBotInlineMessageID.class, TLInputBotInlineMessageID.CONSTRUCTOR_ID) : null;
+        msgId = (flags & 2) != 0 ? readTLObject(stream, context, TLInputBotInlineMessageID.class,
+                                                TLInputBotInlineMessageID.CONSTRUCTOR_ID) : null;
     }
 
     @Override

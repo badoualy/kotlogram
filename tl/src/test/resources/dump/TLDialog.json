@@ -1,20 +1,16 @@
 {
-  "flags": 3,
+  "flags": 7,
+  "pinned": true,
   "peer": {
-    "userId": 0,
-    "_constructor": "peerUser#9db1bc6d"
+    "channelId": 0,
+    "_constructor": "peerChannel#bddde532"
   },
   "topMessage": 0,
   "readInboxMaxId": 0,
   "readOutboxMaxId": 0,
   "unreadCount": 0,
   "notifySettings": {
-    "flags": 3,
-    "showPreviews": true,
-    "silent": true,
-    "muteUntil": 0,
-    "sound": "DHJ1wR9",
-    "_constructor": "peerNotifySettings#9acda4c0"
+    "_constructor": "peerNotifySettingsEmpty#70a68512"
   },
   "pts": 0,
   "draft": {

@@ -1,14 +1,9 @@
 apply plugin: 'java'
 
-def compileLocal = true
-
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
 
-    if (compileLocal)
-        compile project(':api')
-    else
-        compile 'com.github.badoualy:kotlogram:0a16bcaade'
+    compile project(':api')
 
     compile 'org.apache.commons:commons-lang3:3.4'
     compile 'com.google.code.gson:gson:2.7'

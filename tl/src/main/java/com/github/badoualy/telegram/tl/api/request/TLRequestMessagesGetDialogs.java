@@ -22,7 +22,12 @@ import static com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_INT32;
  * @see <a href="http://github.com/badoualy/kotlogram">http://github.com/badoualy/kotlogram</a>
  */
 public class TLRequestMessagesGetDialogs extends TLMethod<TLAbsDialogs> {
-    public static final int CONSTRUCTOR_ID = 0x6b47f94d;
+
+    public static final int CONSTRUCTOR_ID = 0x191ba9c5;
+
+    protected int flags;
+
+    protected boolean excludePinned;
 
     protected int offsetDate;
 
@@ -32,12 +37,13 @@ public class TLRequestMessagesGetDialogs extends TLMethod<TLAbsDialogs> {
 
     protected int limit;
 
-    private final String _constructor = "messages.getDialogs#6b47f94d";
+    private final String _constructor = "messages.getDialogs#191ba9c5";
 
     public TLRequestMessagesGetDialogs() {
     }
 
-    public TLRequestMessagesGetDialogs(int offsetDate, int offsetId, TLAbsInputPeer offsetPeer, int limit) {
+    public TLRequestMessagesGetDialogs(boolean excludePinned, int offsetDate, int offsetId, TLAbsInputPeer offsetPeer, int limit) {
+        this.excludePinned = excludePinned;
         this.offsetDate = offsetDate;
         this.offsetId = offsetId;
         this.offsetPeer = offsetPeer;
@@ -52,13 +58,23 @@ public class TLRequestMessagesGetDialogs extends TLMethod<TLAbsDialogs> {
             throw new IOException("Unable to parse response");
         }
         if (!(response instanceof TLAbsDialogs)) {
-            throw new IOException("Incorrect response type, expected " + getClass().getCanonicalName() + ", found " + response.getClass().getCanonicalName());
+            throw new IOException(
+                    "Incorrect response type, expected " + getClass().getCanonicalName() + ", found " + response
+                            .getClass().getCanonicalName());
         }
         return (TLAbsDialogs) response;
     }
 
+    private void computeFlags() {
+        flags = 0;
+        flags = excludePinned ? (flags | 1) : (flags & ~1);
+    }
+
     @Override
     public void serializeBody(OutputStream stream) throws IOException {
+        computeFlags();
+
+        writeInt(flags, stream);
         writeInt(offsetDate, stream);
         writeInt(offsetId, stream);
         writeTLObject(offsetPeer, stream);
@@ -68,6 +84,8 @@ public class TLRequestMessagesGetDialogs extends TLMethod<TLAbsDialogs> {
     @Override
     @SuppressWarnings({"unchecked", "SimplifiableConditionalExpression"})
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
+        flags = readInt(stream);
+        excludePinned = (flags & 1) != 0;
         offsetDate = readInt(stream);
         offsetId = readInt(stream);
         offsetPeer = readTLObject(stream, context, TLAbsInputPeer.class, -1);
@@ -76,7 +94,10 @@ public class TLRequestMessagesGetDialogs extends TLMethod<TLAbsDialogs> {
 
     @Override
     public int computeSerializedSize() {
+        computeFlags();
+
         int size = SIZE_CONSTRUCTOR_ID;
+        size += SIZE_INT32;
         size += SIZE_INT32;
         size += SIZE_INT32;
         size += offsetPeer.computeSerializedSize();
@@ -92,6 +113,14 @@ public class TLRequestMessagesGetDialogs extends TLMethod<TLAbsDialogs> {
     @Override
     public int getConstructorId() {
         return CONSTRUCTOR_ID;
+    }
+
+    public boolean getExcludePinned() {
+        return excludePinned;
+    }
+
+    public void setExcludePinned(boolean excludePinned) {
+        this.excludePinned = excludePinned;
     }
 
     public int getOffsetDate() {

@@ -1,9 +1,9 @@
 {
-  "flags": 0,
-  "editMessage": false,
+  "flags": 1,
+  "editMessage": true,
+  "force": false,
   "peer": {
-    "chatId": 0,
-    "_constructor": "inputPeerChat#179be863"
+    "_constructor": "inputPeerEmpty#7f3b18ea"
   },
   "id": 0,
   "userId": {

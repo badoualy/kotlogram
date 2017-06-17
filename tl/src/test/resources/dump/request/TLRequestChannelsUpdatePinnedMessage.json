@@ -1,6 +1,6 @@
 {
-  "flags": 0,
-  "silent": false,
+  "flags": 1,
+  "silent": true,
   "channel": {
     "_constructor": "inputChannelEmpty#ee8c1e86"
   },

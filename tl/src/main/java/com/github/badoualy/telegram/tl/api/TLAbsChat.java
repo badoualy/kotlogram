@@ -16,6 +16,7 @@ import com.github.badoualy.telegram.tl.core.TLObject;
  * @see <a href="http://github.com/badoualy/kotlogram">http://github.com/badoualy/kotlogram</a>
  */
 public abstract class TLAbsChat extends TLObject {
+
     protected int id;
 
     public TLAbsChat() {

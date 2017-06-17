@@ -20,6 +20,7 @@ import static com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_INT32;
  * @see <a href="http://github.com/badoualy/kotlogram">http://github.com/badoualy/kotlogram</a>
  */
 public class TLRequestAuthExportAuthorization extends TLMethod<TLExportedAuthorization> {
+
     public static final int CONSTRUCTOR_ID = 0xe5bfffcd;
 
     protected int dcId;
@@ -41,7 +42,9 @@ public class TLRequestAuthExportAuthorization extends TLMethod<TLExportedAuthori
             throw new IOException("Unable to parse response");
         }
         if (!(response instanceof TLExportedAuthorization)) {
-            throw new IOException("Incorrect response type, expected " + getClass().getCanonicalName() + ", found " + response.getClass().getCanonicalName());
+            throw new IOException(
+                    "Incorrect response type, expected " + getClass().getCanonicalName() + ", found " + response
+                            .getClass().getCanonicalName());
         }
         return (TLExportedAuthorization) response;
     }

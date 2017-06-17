@@ -5,6 +5,7 @@ package com.github.badoualy.telegram.tl.api.storage;
  * @see <a href="http://github.com/badoualy/kotlogram">http://github.com/badoualy/kotlogram</a>
  */
 public class TLFileMov extends TLAbsFileType {
+
     public static final int CONSTRUCTOR_ID = 0x4b09ebbc;
 
     private final String _constructor = "storage.fileMov#4b09ebbc";

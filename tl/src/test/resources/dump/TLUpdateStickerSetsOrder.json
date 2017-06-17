@@ -1,14 +1,7 @@
 {
-  "flags": 0,
-  "masks": false,
+  "flags": 1,
+  "masks": true,
   "order": [
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
     0,
     0
   ],

@@ -1,82 +1,8 @@
 {
   "document": {
-    "accessHash": 0,
-    "date": 0,
-    "mimeType": "stLEvZUKMf",
-    "size": 0,
-    "thumb": {
-      "_constructor": "photoSizeEmpty#e17e23c",
-      "type": "yVsNOeksEhppOauDOvAWRMm0"
-    },
-    "dcId": 0,
-    "version": 0,
-    "attributes": [
-      {
-        "flags": 1031,
-        "voice": true,
-        "duration": 0,
-        "title": "aCx8ID8FQ9ByEm19h6H",
-        "performer": "1nCPPju",
-        "waveform": {
-          "data": [
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0
-          ],
-          "offset": 0,
-          "len": 42
-        },
-        "_constructor": "documentAttributeAudio#9852f9c6"
-      },
-      {
-        "_constructor": "documentAttributeAnimated#11b58939"
-      },
-      {
-        "_constructor": "documentAttributeHasStickers#9801d2f7"
-      }
-    ],
-    "_constructor": "document#87232bc7",
+    "_constructor": "documentEmpty#36f8c871",
     "id": 0
   },
-  "caption": "9Zxfh0RRSSzS6J4XHeNo",
+  "caption": "g3oNEkTXQC9q5QRGZvWbCdJaI6i",
   "_constructor": "messageMediaDocument#f3e02ea8"
 }

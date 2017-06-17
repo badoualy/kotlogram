@@ -5,6 +5,7 @@ package com.github.badoualy.telegram.tl.api.messages;
  * @see <a href="http://github.com/badoualy/kotlogram">http://github.com/badoualy/kotlogram</a>
  */
 public class TLStickersNotModified extends TLAbsStickers {
+
     public static final int CONSTRUCTOR_ID = 0xf1749a22;
 
     private final String _constructor = "messages.stickersNotModified#f1749a22";

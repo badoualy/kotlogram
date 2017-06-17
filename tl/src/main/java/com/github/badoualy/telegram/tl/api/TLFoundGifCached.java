@@ -18,6 +18,7 @@ import static com.github.badoualy.telegram.tl.TLObjectUtils.computeTLStringSeria
  * @see <a href="http://github.com/badoualy/kotlogram">http://github.com/badoualy/kotlogram</a>
  */
 public class TLFoundGifCached extends TLAbsFoundGif {
+
     public static final int CONSTRUCTOR_ID = 0x9c750409;
 
     protected TLAbsPhoto photo;

@@ -40,7 +40,7 @@ public class SampleGetDialogs {
 
         // You can start making requests
         try {
-            TLAbsDialogs tlAbsDialogs = client.messagesGetDialogs(0, 0, new TLInputPeerEmpty(), count);
+            TLAbsDialogs tlAbsDialogs = client.messagesGetDialogs(true, 0, 0, new TLInputPeerEmpty(), count);
 
             // Map peer id to displayable string
             HashMap<Integer, String> nameMap = createNameMap(tlAbsDialogs);
@@ -100,10 +100,12 @@ public class SampleGetDialogs {
     }
 
     public static int getId(TLAbsPeer peer) {
-        if (peer instanceof TLPeerUser)
+        if (peer instanceof TLPeerUser) {
             return ((TLPeerUser) peer).getUserId();
-        if (peer instanceof TLPeerChat)
+        }
+        if (peer instanceof TLPeerChat) {
             return ((TLPeerChat) peer).getChatId();
+        }
 
         return ((TLPeerChannel) peer).getChannelId();
     }

@@ -2,61 +2,19 @@
   "contacts": [
     {
       "clientId": 0,
-      "phone": "IgFoDvPKTjID",
-      "firstName": "MG2JUkuD6qDTSzrF6jZ",
-      "lastName": "atAVBgKZWV1kbnjoiLi",
+      "phone": "Hzi4CF1bGd68va0PuUWQKYuZx",
+      "firstName": "V9z9i63ISLn63KanPWhvmz",
+      "lastName": "bgA8G6AbHBbwBNXK3Qae7G8N8sb4",
       "_constructor": "inputPhoneContact#f392b7f4"
     },
     {
       "clientId": 0,
-      "phone": "iDFMLtDhXy",
-      "firstName": "tOKgoEOak24zXUedYjguFaUAhGX",
-      "lastName": "xMdKlNCqm",
-      "_constructor": "inputPhoneContact#f392b7f4"
-    },
-    {
-      "clientId": 0,
-      "phone": "rL02B3JNq4YK",
-      "firstName": "qf69YQDdXmPB8lLTbcRmNOZAN5X",
-      "lastName": "JN6hcnhYiDosnfq197NKFpG",
-      "_constructor": "inputPhoneContact#f392b7f4"
-    },
-    {
-      "clientId": 0,
-      "phone": "HuRWIsItIMzPw8RChRa",
-      "firstName": "FlOIZh8jinPPod4T9WguOPvhCr",
-      "lastName": "0LeFIVVxEFGE31J",
-      "_constructor": "inputPhoneContact#f392b7f4"
-    },
-    {
-      "clientId": 0,
-      "phone": "bpCCv",
-      "firstName": "rHTwXM",
-      "lastName": "tUsGyXZde0",
-      "_constructor": "inputPhoneContact#f392b7f4"
-    },
-    {
-      "clientId": 0,
-      "phone": "75ymWwzIBXxZRzZsfVZ1",
-      "firstName": "Lai7AaKlRhb",
-      "lastName": "vFtemO5HY7",
-      "_constructor": "inputPhoneContact#f392b7f4"
-    },
-    {
-      "clientId": 0,
-      "phone": "0nmgA8iEes6TmbJ0twUyra",
-      "firstName": "EKv7yJHwJaqo3I",
-      "lastName": "zSYamR9edfrPSQUPwrfQnsk8F2",
-      "_constructor": "inputPhoneContact#f392b7f4"
-    },
-    {
-      "clientId": 0,
-      "phone": "l8UtCIvX6Xfmbu8",
-      "firstName": "YXQFL",
-      "lastName": "VwvQ4paaAtJp4hYLcTEwh",
+      "phone": "TvkhWqomcmoy",
+      "firstName": "nKBLL3CrH",
+      "lastName": "wLhMClYj",
       "_constructor": "inputPhoneContact#f392b7f4"
     }
   ],
-  "replace": false,
+  "replace": true,
   "_constructor": "contacts.importContacts#da30b32d"
 }

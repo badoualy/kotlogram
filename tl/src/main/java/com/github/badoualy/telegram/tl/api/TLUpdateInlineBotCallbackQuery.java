@@ -28,6 +28,7 @@ import static com.github.badoualy.telegram.tl.TLObjectUtils.computeTLStringSeria
  * @see <a href="http://github.com/badoualy/kotlogram">http://github.com/badoualy/kotlogram</a>
  */
 public class TLUpdateInlineBotCallbackQuery extends TLAbsUpdate {
+
     public static final int CONSTRUCTOR_ID = 0xf9d27a5a;
 
     protected int flags;
@@ -89,7 +90,8 @@ public class TLUpdateInlineBotCallbackQuery extends TLAbsUpdate {
         flags = readInt(stream);
         queryId = readLong(stream);
         userId = readInt(stream);
-        msgId = readTLObject(stream, context, TLInputBotInlineMessageID.class, TLInputBotInlineMessageID.CONSTRUCTOR_ID);
+        msgId = readTLObject(stream, context, TLInputBotInlineMessageID.class,
+                             TLInputBotInlineMessageID.CONSTRUCTOR_ID);
         chatInstance = readLong(stream);
         data = (flags & 1) != 0 ? readTLBytes(stream, context) : null;
         gameShortName = (flags & 2) != 0 ? readTLString(stream) : null;

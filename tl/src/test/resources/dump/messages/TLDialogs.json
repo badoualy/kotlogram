@@ -1,694 +1,79 @@
 {
   "_constructor": "messages.dialogs#15ba6c40",
-  "dialogs": [
-    {
-      "flags": 3,
-      "peer": {
-        "channelId": 0,
-        "_constructor": "peerChannel#bddde532"
-      },
-      "topMessage": 0,
-      "readInboxMaxId": 0,
-      "readOutboxMaxId": 0,
-      "unreadCount": 0,
-      "notifySettings": {
-        "flags": 1,
-        "showPreviews": true,
-        "silent": false,
-        "muteUntil": 0,
-        "sound": "xdTttj5V56SLbYbUUsieiStKqns",
-        "_constructor": "peerNotifySettings#9acda4c0"
-      },
-      "pts": 0,
-      "draft": {
-        "flags": 9,
-        "noWebpage": false,
-        "replyToMsgId": 0,
-        "message": "eHMUt0Ca1jQ",
-        "entities": [
-          {
-            "_constructor": "messageEntityUrl#6ed02538",
-            "offset": 0,
-            "length": 0
-          },
-          {
-            "_constructor": "messageEntityHashtag#6f635b0d",
-            "offset": 0,
-            "length": 0
-          }
-        ],
-        "date": 0,
-        "_constructor": "draftMessage#fd8e711f"
-      },
-      "_constructor": "dialog#66ffba14"
-    },
-    {
-      "flags": 3,
-      "peer": {
-        "channelId": 0,
-        "_constructor": "peerChannel#bddde532"
-      },
-      "topMessage": 0,
-      "readInboxMaxId": 0,
-      "readOutboxMaxId": 0,
-      "unreadCount": 0,
-      "notifySettings": {
-        "_constructor": "peerNotifySettingsEmpty#70a68512"
-      },
-      "pts": 0,
-      "draft": {
-        "_constructor": "draftMessageEmpty#ba4baec5"
-      },
-      "_constructor": "dialog#66ffba14"
-    },
-    {
-      "flags": 3,
-      "peer": {
-        "chatId": 0,
-        "_constructor": "peerChat#bad0e5bb"
-      },
-      "topMessage": 0,
-      "readInboxMaxId": 0,
-      "readOutboxMaxId": 0,
-      "unreadCount": 0,
-      "notifySettings": {
-        "_constructor": "peerNotifySettingsEmpty#70a68512"
-      },
-      "pts": 0,
-      "draft": {
-        "flags": 9,
-        "noWebpage": false,
-        "replyToMsgId": 0,
-        "message": "ejncS6svnFD8Y",
-        "entities": [
-          {
-            "userId": 0,
-            "_constructor": "messageEntityMentionName#352dca58",
-            "offset": 0,
-            "length": 0
-          },
-          {
-            "_constructor": "messageEntityItalic#826f8b60",
-            "offset": 0,
-            "length": 0
-          },
-          {
-            "_constructor": "messageEntityBotCommand#6cef8ac7",
-            "offset": 0,
-            "length": 0
-          },
-          {
-            "url": "BpHAU789a2gfmTlOUlXk5WRUCx",
-            "_constructor": "messageEntityTextUrl#76a6d327",
-            "offset": 0,
-            "length": 0
-          }
-        ],
-        "date": 0,
-        "_constructor": "draftMessage#fd8e711f"
-      },
-      "_constructor": "dialog#66ffba14"
-    },
-    {
-      "flags": 3,
-      "peer": {
-        "chatId": 0,
-        "_constructor": "peerChat#bad0e5bb"
-      },
-      "topMessage": 0,
-      "readInboxMaxId": 0,
-      "readOutboxMaxId": 0,
-      "unreadCount": 0,
-      "notifySettings": {
-        "_constructor": "peerNotifySettingsEmpty#70a68512"
-      },
-      "pts": 0,
-      "draft": {
-        "_constructor": "draftMessageEmpty#ba4baec5"
-      },
-      "_constructor": "dialog#66ffba14"
-    },
-    {
-      "flags": 3,
-      "peer": {
-        "chatId": 0,
-        "_constructor": "peerChat#bad0e5bb"
-      },
-      "topMessage": 0,
-      "readInboxMaxId": 0,
-      "readOutboxMaxId": 0,
-      "unreadCount": 0,
-      "notifySettings": {
-        "flags": 3,
-        "showPreviews": true,
-        "silent": true,
-        "muteUntil": 0,
-        "sound": "BMEwGlqs9PGHVHqu",
-        "_constructor": "peerNotifySettings#9acda4c0"
-      },
-      "pts": 0,
-      "draft": {
-        "_constructor": "draftMessageEmpty#ba4baec5"
-      },
-      "_constructor": "dialog#66ffba14"
-    },
-    {
-      "flags": 3,
-      "peer": {
-        "channelId": 0,
-        "_constructor": "peerChannel#bddde532"
-      },
-      "topMessage": 0,
-      "readInboxMaxId": 0,
-      "readOutboxMaxId": 0,
-      "unreadCount": 0,
-      "notifySettings": {
-        "flags": 2,
-        "showPreviews": false,
-        "silent": true,
-        "muteUntil": 0,
-        "sound": "Samugo",
-        "_constructor": "peerNotifySettings#9acda4c0"
-      },
-      "pts": 0,
-      "draft": {
-        "_constructor": "draftMessageEmpty#ba4baec5"
-      },
-      "_constructor": "dialog#66ffba14"
-    }
-  ],
+  "dialogs": [],
   "messages": [
     {
-      "flags": 264,
-      "out": false,
+      "flags": 53230,
+      "out": true,
       "mentioned": false,
-      "mediaUnread": false,
+      "mediaUnread": true,
       "silent": false,
-      "post": false,
+      "post": true,
       "fromId": 0,
       "toId": {
-        "chatId": 0,
-        "_constructor": "peerChat#bad0e5bb"
+        "userId": 0,
+        "_constructor": "peerUser#9db1bc6d"
       },
+      "fwdFrom": {
+        "flags": 7,
+        "fromId": 0,
+        "date": 0,
+        "channelId": 0,
+        "channelPost": 0,
+        "_constructor": "messageFwdHeader#c786ddcb"
+      },
+      "viaBotId": 0,
       "replyToMsgId": 0,
       "date": 0,
-      "action": {
-        "title": "sNAxCZHRkItwRF",
-        "chatId": 0,
-        "_constructor": "messageActionChannelMigrateFrom#b055eaee"
+      "message": "OAyckCU7CEsWHk5yzpHNPk8",
+      "media": {
+        "flags": 15,
+        "shippingAddressRequested": true,
+        "test": true,
+        "title": "6pj8cg4U6kfi",
+        "description": "BREzzFrNMeQkvGzRch1HxKq",
+        "photo": {
+          "url": "9dDUOzId",
+          "accessHash": 0,
+          "size": 0,
+          "mimeType": "gVBpH1dDieWqxWQHjS",
+          "attributes": [
+            {
+              "fileName": "VhxZYMPnBWVWz8cq0JQ8qDWXaOXM",
+              "_constructor": "documentAttributeFilename#15590068"
+            }
+          ],
+          "dcId": 0,
+          "_constructor": "webDocument#c61acbd8"
+        },
+        "receiptMsgId": 0,
+        "currency": "RaL4oKWHWDpffiOdFhAhiTx",
+        "totalAmount": 0,
+        "startParam": "bpBd7YYvAB6Q",
+        "_constructor": "messageMediaInvoice#84551347"
       },
-      "_constructor": "messageService#9e19a1f6",
-      "id": 0
-    },
-    {
-      "_constructor": "messageEmpty#83e5de54",
+      "replyMarkup": {
+        "flags": 4,
+        "singleUse": false,
+        "selective": true,
+        "_constructor": "replyKeyboardForceReply#f4108aa0"
+      },
+      "entities": [],
+      "views": 0,
+      "editDate": 0,
+      "_constructor": "message#c09be45f",
       "id": 0
     }
   ],
   "chats": [
     {
-      "flags": 12028,
-      "creator": false,
-      "kicked": false,
-      "left": true,
-      "editor": true,
-      "moderator": true,
-      "broadcast": true,
-      "verified": true,
-      "megagroup": false,
-      "restricted": true,
-      "democracy": true,
-      "signatures": true,
-      "min": false,
-      "accessHash": 0,
-      "title": "F1jA6oEwlgZtfm",
-      "username": "f50I3XsmdBJ0BfmRgDcpH20mM",
-      "photo": {
-        "photoSmall": {
-          "dcId": 0,
-          "_constructor": "fileLocation#53d69076",
-          "volumeId": 0,
-          "localId": 0,
-          "secret": 0
-        },
-        "photoBig": {
-          "dcId": 0,
-          "_constructor": "fileLocation#53d69076",
-          "volumeId": 0,
-          "localId": 0,
-          "secret": 0
-        },
-        "_constructor": "chatPhoto#6153276a"
-      },
-      "date": 0,
-      "version": 0,
-      "restrictionReason": "vXdz1b6C6K8lNnIW",
-      "_constructor": "channel#a14dca52",
-      "id": 0
-    },
-    {
-      "title": "SkFZ0nVakCyPmAh1D94xW4GX6U4cJ",
-      "_constructor": "chatForbidden#7328bdb",
-      "id": 0
-    },
-    {
       "_constructor": "chatEmpty#9ba2d800",
-      "id": 0
-    },
-    {
-      "_constructor": "chatEmpty#9ba2d800",
-      "id": 0
-    },
-    {
-      "flags": 0,
-      "broadcast": false,
-      "megagroup": false,
-      "accessHash": 0,
-      "title": "ouEH770z",
-      "_constructor": "channelForbidden#8537784f",
-      "id": 0
-    },
-    {
-      "flags": 32,
-      "broadcast": true,
-      "megagroup": false,
-      "accessHash": 0,
-      "title": "ulcx2D",
-      "_constructor": "channelForbidden#8537784f",
-      "id": 0
-    },
-    {
-      "flags": 81,
-      "creator": true,
-      "kicked": false,
-      "left": false,
-      "adminsEnabled": false,
-      "admin": true,
-      "deactivated": false,
-      "title": "yhIKES5",
-      "photo": {
-        "_constructor": "chatPhotoEmpty#37c1011c"
-      },
-      "participantsCount": 0,
-      "date": 0,
-      "version": 0,
-      "migratedTo": {
-        "_constructor": "inputChannelEmpty#ee8c1e86"
-      },
-      "_constructor": "chat#d91cdd54",
-      "id": 0
-    },
-    {
-      "flags": 15967,
-      "creator": true,
-      "kicked": true,
-      "left": true,
-      "editor": true,
-      "moderator": true,
-      "broadcast": false,
-      "verified": false,
-      "megagroup": false,
-      "restricted": true,
-      "democracy": true,
-      "signatures": true,
-      "min": true,
-      "accessHash": 0,
-      "title": "6d0GkMiUZt",
-      "username": "oJES7QfCeTzpPBSk",
-      "photo": {
-        "photoSmall": {
-          "dcId": 0,
-          "_constructor": "fileLocation#53d69076",
-          "volumeId": 0,
-          "localId": 0,
-          "secret": 0
-        },
-        "photoBig": {
-          "_constructor": "fileLocationUnavailable#7c596b46",
-          "volumeId": 0,
-          "localId": 0,
-          "secret": 0
-        },
-        "_constructor": "chatPhoto#6153276a"
-      },
-      "date": 0,
-      "version": 0,
-      "restrictionReason": "5RARzjRelPSI4",
-      "_constructor": "channel#a14dca52",
-      "id": 0
-    },
-    {
-      "flags": 256,
-      "broadcast": false,
-      "megagroup": true,
-      "accessHash": 0,
-      "title": "I479ckhOmFkwtbl7ONfl",
-      "_constructor": "channelForbidden#8537784f",
-      "id": 0
-    },
-    {
-      "title": "QPnoQhZkqsB0gcB",
-      "_constructor": "chatForbidden#7328bdb",
-      "id": 0
-    },
-    {
-      "flags": 288,
-      "broadcast": true,
-      "megagroup": true,
-      "accessHash": 0,
-      "title": "Y99ZjgfxxEyYW2hwGxWsl",
-      "_constructor": "channelForbidden#8537784f",
       "id": 0
     }
   ],
   "users": [
     {
-      "flags": 1035391,
-      "self": true,
-      "contact": true,
-      "mutualContact": false,
-      "deleted": false,
-      "bot": true,
-      "botChatHistory": true,
-      "botNochats": true,
-      "verified": true,
-      "restricted": true,
-      "min": false,
-      "botInlineGeo": false,
-      "accessHash": 0,
-      "firstName": "B8SlUMAj030yg44ZjkOBefc",
-      "lastName": "epJSFXfZGQTiXMVQu9N2l",
-      "username": "vNdfw7Olf92ekelcrGFjv6CWeMr8x",
-      "phone": "u65CDWNNzlVTW9g",
-      "photo": {
-        "photoId": 0,
-        "photoSmall": {
-          "dcId": 0,
-          "_constructor": "fileLocation#53d69076",
-          "volumeId": 0,
-          "localId": 0,
-          "secret": 0
-        },
-        "photoBig": {
-          "_constructor": "fileLocationUnavailable#7c596b46",
-          "volumeId": 0,
-          "localId": 0,
-          "secret": 0
-        },
-        "_constructor": "userProfilePhoto#d559d8c8"
-      },
-      "status": {
-        "expires": 0,
-        "_constructor": "userStatusOnline#edb93949"
-      },
-      "botInfoVersion": 0,
-      "restrictionReason": "r7SYkLn9IWFbyGwiyd5e4ELWF19",
-      "botInlinePlaceholder": "xytwR9AcJTzCRGM4kx",
-      "_constructor": "user#d10d979a",
-      "id": 0
-    },
-    {
       "_constructor": "userEmpty#200250ba",
-      "id": 0
-    },
-    {
-      "flags": 1987711,
-      "self": true,
-      "contact": false,
-      "mutualContact": true,
-      "deleted": false,
-      "bot": true,
-      "botChatHistory": false,
-      "botNochats": false,
-      "verified": true,
-      "restricted": true,
-      "min": true,
-      "botInlineGeo": false,
-      "accessHash": 0,
-      "firstName": "wI5WOyxVxKAe06J9wqNp",
-      "lastName": "6ZoUl5",
-      "username": "NDWf5tOizLOKOVqUB1",
-      "phone": "rlxubODpInhls0cXJ",
-      "photo": {
-        "photoId": 0,
-        "photoSmall": {
-          "dcId": 0,
-          "_constructor": "fileLocation#53d69076",
-          "volumeId": 0,
-          "localId": 0,
-          "secret": 0
-        },
-        "photoBig": {
-          "_constructor": "fileLocationUnavailable#7c596b46",
-          "volumeId": 0,
-          "localId": 0,
-          "secret": 0
-        },
-        "_constructor": "userProfilePhoto#d559d8c8"
-      },
-      "status": {
-        "_constructor": "userStatusRecently#e26f42f1"
-      },
-      "botInfoVersion": 0,
-      "restrictionReason": "HIxxu9JQdjG1S6QwcJlH",
-      "botInlinePlaceholder": "FcKLULJ",
-      "_constructor": "user#d10d979a",
-      "id": 0
-    },
-    {
-      "flags": 839807,
-      "self": false,
-      "contact": false,
-      "mutualContact": true,
-      "deleted": false,
-      "bot": true,
-      "botChatHistory": true,
-      "botNochats": false,
-      "verified": false,
-      "restricted": true,
-      "min": false,
-      "botInlineGeo": false,
-      "accessHash": 0,
-      "firstName": "kkq5LVi1VbtuzibWN5VXxVH",
-      "lastName": "Q55qPW9ZJkQvJj3UFkY9QC3FpW79o",
-      "username": "ZUkzN",
-      "phone": "5BIJwzEYTPOEKCjLctMBH6LpFrfYA",
-      "photo": {
-        "photoId": 0,
-        "photoSmall": {
-          "dcId": 0,
-          "_constructor": "fileLocation#53d69076",
-          "volumeId": 0,
-          "localId": 0,
-          "secret": 0
-        },
-        "photoBig": {
-          "_constructor": "fileLocationUnavailable#7c596b46",
-          "volumeId": 0,
-          "localId": 0,
-          "secret": 0
-        },
-        "_constructor": "userProfilePhoto#d559d8c8"
-      },
-      "status": {
-        "expires": 0,
-        "_constructor": "userStatusOnline#edb93949"
-      },
-      "botInfoVersion": 0,
-      "restrictionReason": "elUhPtf90RmfcDnVEd",
-      "botInlinePlaceholder": "7nhIiCnXKn0B0bMW1lUkHr",
-      "_constructor": "user#d10d979a",
-      "id": 0
-    },
-    {
-      "flags": 3990655,
-      "self": true,
-      "contact": false,
-      "mutualContact": false,
-      "deleted": true,
-      "bot": true,
-      "botChatHistory": true,
-      "botNochats": false,
-      "verified": false,
-      "restricted": true,
-      "min": true,
-      "botInlineGeo": true,
-      "accessHash": 0,
-      "firstName": "8faTVgTZQfqBtYB64GgiEY4sN",
-      "lastName": "3yVJI9UjAvCO0GIOF",
-      "username": "65AVZxuN0XeFN2bdWSVtjE",
-      "phone": "L6i5QChuBAQ6w",
-      "photo": {
-        "_constructor": "userProfilePhotoEmpty#4f11bae1"
-      },
-      "status": {
-        "expires": 0,
-        "_constructor": "userStatusOnline#edb93949"
-      },
-      "botInfoVersion": 0,
-      "restrictionReason": "RubGZdHTLJKOvB",
-      "botInlinePlaceholder": "bmSyl4CbDlqQFBxTkG1zwKzX",
-      "_constructor": "user#d10d979a",
-      "id": 0
-    },
-    {
-      "flags": 3951743,
-      "self": true,
-      "contact": true,
-      "mutualContact": false,
-      "deleted": false,
-      "bot": true,
-      "botChatHistory": false,
-      "botNochats": false,
-      "verified": false,
-      "restricted": true,
-      "min": true,
-      "botInlineGeo": true,
-      "accessHash": 0,
-      "firstName": "nOG7hkvwo8NR7tq0gHmGtq",
-      "lastName": "W09vInfkCbH8D2M8q",
-      "username": "AYOEWUbHHAaQ5TLQ",
-      "phone": "jITNgEXGc0DIfeKF",
-      "photo": {
-        "_constructor": "userProfilePhotoEmpty#4f11bae1"
-      },
-      "status": {
-        "expires": 0,
-        "_constructor": "userStatusOnline#edb93949"
-      },
-      "botInfoVersion": 0,
-      "restrictionReason": "issswe2wXe0p8YB90oy0UPj6",
-      "botInlinePlaceholder": "HSYRGZx",
-      "_constructor": "user#d10d979a",
-      "id": 0
-    },
-    {
-      "_constructor": "userEmpty#200250ba",
-      "id": 0
-    },
-    {
-      "flags": 4081791,
-      "self": false,
-      "contact": true,
-      "mutualContact": false,
-      "deleted": false,
-      "bot": true,
-      "botChatHistory": false,
-      "botNochats": false,
-      "verified": true,
-      "restricted": true,
-      "min": true,
-      "botInlineGeo": true,
-      "accessHash": 0,
-      "firstName": "DsPN25",
-      "lastName": "2T6fBTKlabmY",
-      "username": "8fuYQ8GxSZzdXj1ibFDO3N7",
-      "phone": "QJ3woTp2TDk",
-      "photo": {
-        "_constructor": "userProfilePhotoEmpty#4f11bae1"
-      },
-      "status": {
-        "_constructor": "userStatusEmpty#9d05049"
-      },
-      "botInfoVersion": 0,
-      "restrictionReason": "C2ITJ9nUeFxxxUU",
-      "botInlinePlaceholder": "cZHIXsjn0hvwoNMtNTPM6",
-      "_constructor": "user#d10d979a",
-      "id": 0
-    },
-    {
-      "flags": 1888383,
-      "self": false,
-      "contact": false,
-      "mutualContact": true,
-      "deleted": false,
-      "bot": true,
-      "botChatHistory": true,
-      "botNochats": false,
-      "verified": false,
-      "restricted": true,
-      "min": true,
-      "botInlineGeo": false,
-      "accessHash": 0,
-      "firstName": "FTALmwlEkIvPUAmsLFNsf",
-      "lastName": "gRKtHDN3ZTdluFF7PmMwQBp755OG",
-      "username": "STbqMn18diwR7XtgpH",
-      "phone": "2DC9uhhSnVXe9vmqv",
-      "photo": {
-        "photoId": 0,
-        "photoSmall": {
-          "dcId": 0,
-          "_constructor": "fileLocation#53d69076",
-          "volumeId": 0,
-          "localId": 0,
-          "secret": 0
-        },
-        "photoBig": {
-          "dcId": 0,
-          "_constructor": "fileLocation#53d69076",
-          "volumeId": 0,
-          "localId": 0,
-          "secret": 0
-        },
-        "_constructor": "userProfilePhoto#d559d8c8"
-      },
-      "status": {
-        "wasOnline": 0,
-        "_constructor": "userStatusOffline#8c703f"
-      },
-      "botInfoVersion": 0,
-      "restrictionReason": "rjnRWv5ci01",
-      "botInlinePlaceholder": "jV9lEK",
-      "_constructor": "user#d10d979a",
-      "id": 0
-    },
-    {
-      "_constructor": "userEmpty#200250ba",
-      "id": 0
-    },
-    {
-      "flags": 1889407,
-      "self": true,
-      "contact": false,
-      "mutualContact": true,
-      "deleted": false,
-      "bot": true,
-      "botChatHistory": true,
-      "botNochats": false,
-      "verified": false,
-      "restricted": true,
-      "min": true,
-      "botInlineGeo": false,
-      "accessHash": 0,
-      "firstName": "wsXotYz2VRaot",
-      "lastName": "VgjnCEgt1wjexBcJoJuT9e",
-      "username": "WQFGXn42tG",
-      "phone": "wFFdUPSJqdx3HsI1L",
-      "photo": {
-        "photoId": 0,
-        "photoSmall": {
-          "dcId": 0,
-          "_constructor": "fileLocation#53d69076",
-          "volumeId": 0,
-          "localId": 0,
-          "secret": 0
-        },
-        "photoBig": {
-          "dcId": 0,
-          "_constructor": "fileLocation#53d69076",
-          "volumeId": 0,
-          "localId": 0,
-          "secret": 0
-        },
-        "_constructor": "userProfilePhoto#d559d8c8"
-      },
-      "status": {
-        "_constructor": "userStatusLastWeek#7bf09fc"
-      },
-      "botInfoVersion": 0,
-      "restrictionReason": "SuH0esIyzVdKdNQLUPX",
-      "botInlinePlaceholder": "q3pB9cMJSXZZDG",
-      "_constructor": "user#d10d979a",
       "id": 0
     }
   ]

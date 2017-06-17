@@ -1,13 +1,12 @@
 {
   "bot": {
-    "userId": 0,
-    "accessHash": 0,
-    "_constructor": "inputUser#d8292816"
+    "_constructor": "inputUserSelf#f7c1b13f"
   },
   "peer": {
-    "_constructor": "inputPeerSelf#7da07ec9"
+    "chatId": 0,
+    "_constructor": "inputPeerChat#179be863"
   },
   "randomId": 0,
-  "startParam": "ZEmRU3grGPELrwBhbOhaM",
+  "startParam": "Jd6YsP594qBj1",
   "_constructor": "messages.startBot#e6df7378"
 }

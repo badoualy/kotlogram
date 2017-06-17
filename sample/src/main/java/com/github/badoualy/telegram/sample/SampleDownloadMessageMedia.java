@@ -38,7 +38,7 @@ public class SampleDownloadMessageMedia {
 
         // You can start making requests
         try {
-            TLAbsDialogs tlAbsDialogs = client.messagesGetDialogs(0, 0, new TLInputPeerEmpty(), 1);
+            TLAbsDialogs tlAbsDialogs = client.messagesGetDialogs(true, 0, 0, new TLInputPeerEmpty(), 1);
             TLAbsInputPeer inputPeer = getInputPeer(tlAbsDialogs);
 
             // Get most recent message

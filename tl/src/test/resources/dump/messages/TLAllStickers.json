@@ -1,34 +1,5 @@
 {
   "hash": 0,
-  "sets": [
-    {
-      "flags": 4,
-      "installed": false,
-      "archived": false,
-      "official": true,
-      "masks": false,
-      "id": 0,
-      "accessHash": 0,
-      "title": "La9dl3SMA",
-      "shortName": "XcRi1",
-      "count": 0,
-      "hash": 0,
-      "_constructor": "stickerSet#cd303b41"
-    },
-    {
-      "flags": 8,
-      "installed": false,
-      "archived": false,
-      "official": false,
-      "masks": true,
-      "id": 0,
-      "accessHash": 0,
-      "title": "JMbLDI",
-      "shortName": "d5QPrHunxm1xtKKn",
-      "count": 0,
-      "hash": 0,
-      "_constructor": "stickerSet#cd303b41"
-    }
-  ],
+  "sets": [],
   "_constructor": "messages.allStickers#edfd405f"
 }

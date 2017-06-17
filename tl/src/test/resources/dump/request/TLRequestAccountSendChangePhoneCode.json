@@ -1,7 +1,7 @@
 {
-  "flags": 0,
-  "allowFlashcall": false,
-  "phoneNumber": "i5w6PQ5mq",
-  "currentNumber": false,
+  "flags": 1,
+  "allowFlashcall": true,
+  "phoneNumber": "4tMWEAez2O9zvI",
+  "currentNumber": true,
   "_constructor": "account.sendChangePhoneCode#8e57deb"
 }

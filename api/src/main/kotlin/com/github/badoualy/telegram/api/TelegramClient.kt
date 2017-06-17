@@ -54,10 +54,12 @@ interface TelegramClient : TelegramApi {
     //////////////////// Convenience API ////////////////////
     ////////////////////////////////////////////////////////
     @Throws(RpcErrorException::class, IOException::class)
-    fun <T : TLObject> executeRpcQuery(method: TLMethod<T>) = executeRpcQueries(listOf(method)).first()
+    fun <T : TLObject> executeRpcQuery(method: TLMethod<T>) = executeRpcQueries(
+            listOf(method)).first()
 
     @Throws(RpcErrorException::class, IOException::class)
-    fun <T : TLObject> executeRpcQuery(method: TLMethod<T>, dcId: Int) = executeRpcQueries(listOf(method), dcId).first()
+    fun <T : TLObject> executeRpcQuery(method: TLMethod<T>, dcId: Int) = executeRpcQueries(
+            listOf(method), dcId).first()
 
     @Throws(RpcErrorException::class, IOException::class)
     fun <T : TLObject> executeRpcQueries(methods: List<TLMethod<T>>): List<T>
@@ -69,7 +71,8 @@ interface TelegramClient : TelegramApi {
     @Throws(RpcErrorException::class, IOException::class)
     fun authSendCode(allowFlashcall: Boolean, phoneNumber: String, currentNumber: Boolean): TLSentCode
 
-    @Deprecated("Use authSendCode for more convenience", ReplaceWith("authSendCode(allowFlashcall, phoneNumber, currentNumber)"))
+    @Deprecated("Use authSendCode for more convenience",
+                ReplaceWith("authSendCode(allowFlashcall, phoneNumber, currentNumber)"))
     override fun authSendCode(allowFlashcall: Boolean, phoneNumber: String?, currentNumber: Boolean, apiId: Int, apiHash: String?): TLSentCode
 
     /** Convenience method wrapping the argument with salt */
@@ -107,9 +110,12 @@ interface TelegramClient : TelegramApi {
             else -> null
         } ?: return null) as? TLFileLocation ?: return null
 
-        val inputLocation = TLInputFileLocation(photoLocation.volumeId, photoLocation.localId, photoLocation.secret)
+        val inputLocation = TLInputFileLocation(photoLocation.volumeId, photoLocation.localId,
+                                                photoLocation.secret)
         val request = TLRequestUploadGetFile(inputLocation, 0, 0)
-        return executeRpcQuery(request, photoLocation.dcId)
+        return executeRpcQuery(request, photoLocation.dcId) as? TLFile
+                // TODO: handle CDN
+                ?: throw IOException("Unhandled CDN redirection")
     }
 
     /** Convenience method to downloadSync a chat photo */
@@ -127,9 +133,12 @@ interface TelegramClient : TelegramApi {
             else -> null
         } ?: return null) as? TLFileLocation ?: return null
 
-        val inputLocation = TLInputFileLocation(photoLocation.volumeId, photoLocation.localId, photoLocation.secret)
+        val inputLocation = TLInputFileLocation(photoLocation.volumeId, photoLocation.localId,
+                                                photoLocation.secret)
         val request = TLRequestUploadGetFile(inputLocation, 0, 0)
-        return executeRpcQuery(request, photoLocation.dcId)
+        return executeRpcQuery(request, photoLocation.dcId)as? TLFile
+                // TODO: handle CDN
+                ?: throw IOException("Unhandled CDN redirection")
     }
 
     /** Convenience method to downloadSync a channel photo */
@@ -138,7 +147,8 @@ interface TelegramClient : TelegramApi {
 
     /** Convenience method to download a file synchronously */
     @Throws(RpcErrorException::class, IOException::class)
-    fun downloadSync(inputLocation: InputFileLocation, size: Int, outputStream: OutputStream) = downloadSync(inputLocation, size, 512 * 1024, outputStream)
+    fun downloadSync(inputLocation: InputFileLocation, size: Int, outputStream: OutputStream) =
+            downloadSync(inputLocation, size, 512 * 1024, outputStream)
 
     /** Convenience method to download a file synchronously */
     @Throws(RpcErrorException::class, IOException::class)

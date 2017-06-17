@@ -5,6 +5,7 @@ package com.github.badoualy.telegram.tl.api;
  * @see <a href="http://github.com/badoualy/kotlogram">http://github.com/badoualy/kotlogram</a>
  */
 public class TLInputChannelEmpty extends TLAbsInputChannel {
+
     public static final int CONSTRUCTOR_ID = 0xee8c1e86;
 
     private final String _constructor = "inputChannelEmpty#ee8c1e86";

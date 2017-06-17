@@ -1,51 +1,11 @@
 {
   "flags": 1,
+  "phonecallsEnabled": false,
   "date": 0,
   "expires": 0,
   "testMode": false,
   "thisDc": 0,
-  "dcOptions": [
-    {
-      "flags": 2,
-      "ipv6": false,
-      "mediaOnly": true,
-      "tcpoOnly": false,
-      "id": 0,
-      "ipAddress": "xQoP34zqHWAjJtnQQtblaybatY",
-      "port": 0,
-      "_constructor": "dcOption#5d8c6cc"
-    },
-    {
-      "flags": 0,
-      "ipv6": false,
-      "mediaOnly": false,
-      "tcpoOnly": false,
-      "id": 0,
-      "ipAddress": "D6gswbEaBgD",
-      "port": 0,
-      "_constructor": "dcOption#5d8c6cc"
-    },
-    {
-      "flags": 3,
-      "ipv6": true,
-      "mediaOnly": true,
-      "tcpoOnly": false,
-      "id": 0,
-      "ipAddress": "cxYZkv1M6Sdu173Vib",
-      "port": 0,
-      "_constructor": "dcOption#5d8c6cc"
-    },
-    {
-      "flags": 1,
-      "ipv6": true,
-      "mediaOnly": false,
-      "tcpoOnly": false,
-      "id": 0,
-      "ipAddress": "0VEqofq",
-      "port": 0,
-      "_constructor": "dcOption#5d8c6cc"
-    }
-  ],
+  "dcOptions": [],
   "chatSizeMax": 0,
   "megagroupSizeMax": 0,
   "forwardedCountMax": 0,
@@ -63,62 +23,18 @@
   "ratingEDecay": 0,
   "stickersRecentLimit": 0,
   "tmpSessions": 0,
+  "pinnedDialogsCountMax": 0,
+  "callReceiveTimeoutMs": 0,
+  "callRingTimeoutMs": 0,
+  "callConnectTimeoutMs": 0,
+  "callPacketTimeoutMs": 0,
+  "meUrlPrefix": "XMYdOi61BZTYFk0qQYmZANFPAUkwt",
   "disabledFeatures": [
     {
-      "feature": "6ixVMyPyAiv1vEdw2nQTY0OPS5b",
-      "description": "nK1JUhvG4nAQpw8SbzSHPkBd",
-      "_constructor": "disabledFeature#ae636f24"
-    },
-    {
-      "feature": "hGhvaysLVza",
-      "description": "DzAAkJu3U6UAK1GUTuW16IQp2",
-      "_constructor": "disabledFeature#ae636f24"
-    },
-    {
-      "feature": "WBp2geu7JrDLfMrvEpKDxNdF",
-      "description": "KG8W6v1EeLDNz9CIcK7",
-      "_constructor": "disabledFeature#ae636f24"
-    },
-    {
-      "feature": "QjN6O0IMNA5yp",
-      "description": "oELGGKtvw8EHyz",
-      "_constructor": "disabledFeature#ae636f24"
-    },
-    {
-      "feature": "hkLYzrVMj4j3cwiAE3GJs7dSjo",
-      "description": "m3n0PNoEOiebGi7HwZIktAln4RoHv",
-      "_constructor": "disabledFeature#ae636f24"
-    },
-    {
-      "feature": "HuL6xCk2PJeiwNtgFDAgrxP",
-      "description": "5rSKKHRFI2WwswthJpFMa60lE9vAc",
-      "_constructor": "disabledFeature#ae636f24"
-    },
-    {
-      "feature": "h6ctTeCIXyFq",
-      "description": "UQOJhImyw",
-      "_constructor": "disabledFeature#ae636f24"
-    },
-    {
-      "feature": "opqLSnecAR",
-      "description": "gcoLrzRXgixdAx1jCMCY3",
-      "_constructor": "disabledFeature#ae636f24"
-    },
-    {
-      "feature": "m19TSb6cvRGw14iacTNM18q6c",
-      "description": "RIFuYu4tkW",
-      "_constructor": "disabledFeature#ae636f24"
-    },
-    {
-      "feature": "pn0YVxC79XMIHKb8MNHMzL1",
-      "description": "vsmtTWqH0MAHlfXoB4na6QbxGCh",
-      "_constructor": "disabledFeature#ae636f24"
-    },
-    {
-      "feature": "lzWFd3nsyuef",
-      "description": "50PX5OvyuJ",
+      "feature": "DEqByoqsRmWPMPvpdRzQlZIT1ktii",
+      "description": "FrrHgWc99KKS1asy29ajCgFlqq5OG",
       "_constructor": "disabledFeature#ae636f24"
     }
   ],
-  "_constructor": "config#9a6b2e2a"
+  "_constructor": "config#cb601684"
 }

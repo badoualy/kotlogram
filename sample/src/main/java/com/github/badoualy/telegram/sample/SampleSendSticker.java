@@ -26,7 +26,7 @@ public class SampleSendSticker {
 
         // You can start making requests
         try {
-            TLAbsDialogs tlAbsDialogs = client.messagesGetDialogs(0, 0, new TLInputPeerEmpty(), 1);
+            TLAbsDialogs tlAbsDialogs = client.messagesGetDialogs(true, 0, 0, new TLInputPeerEmpty(), 1);
             TLAbsInputPeer inputPeer = getInputPeer(tlAbsDialogs);
 
             TLAllStickers tlAllStickers = (TLAllStickers) client.messagesGetAllStickers(0);

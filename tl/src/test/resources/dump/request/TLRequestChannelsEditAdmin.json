@@ -1,12 +1,14 @@
 {
   "channel": {
-    "_constructor": "inputChannelEmpty#ee8c1e86"
+    "channelId": 0,
+    "accessHash": 0,
+    "_constructor": "inputChannel#afeb712e"
   },
   "userId": {
-    "_constructor": "inputUserSelf#f7c1b13f"
+    "_constructor": "inputUserEmpty#b98886cf"
   },
   "role": {
-    "_constructor": "channelRoleEmpty#b285a0c6"
+    "_constructor": "channelRoleModerator#9618d975"
   },
   "_constructor": "channels.editAdmin#eb7611d0"
 }

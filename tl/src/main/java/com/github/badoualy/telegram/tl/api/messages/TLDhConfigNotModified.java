@@ -17,6 +17,7 @@ import static com.github.badoualy.telegram.tl.TLObjectUtils.computeTLBytesSerial
  * @see <a href="http://github.com/badoualy/kotlogram">http://github.com/badoualy/kotlogram</a>
  */
 public class TLDhConfigNotModified extends TLAbsDhConfig {
+
     public static final int CONSTRUCTOR_ID = 0xc0e24635;
 
     private final String _constructor = "messages.dhConfigNotModified#c0e24635";

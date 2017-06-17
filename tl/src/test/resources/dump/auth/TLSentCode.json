@@ -1,13 +1,13 @@
 {
-  "flags": 6,
-  "phoneRegistered": false,
+  "flags": 7,
+  "phoneRegistered": true,
   "type": {
-    "pattern": "1Qrx3iv",
-    "_constructor": "auth.sentCodeTypeFlashCall#ab03c6d9"
+    "length": 0,
+    "_constructor": "auth.sentCodeTypeSms#c000bba2"
   },
-  "phoneCodeHash": "oDvjiP8LwZmo44Q6h4R",
+  "phoneCodeHash": "m1BY4maR7lZYpOmAISV",
   "nextType": {
-    "_constructor": "auth.codeTypeSms#72a3158c"
+    "_constructor": "auth.codeTypeFlashCall#226ccefb"
   },
   "timeout": 0,
   "_constructor": "auth.sentCode#5e002502"

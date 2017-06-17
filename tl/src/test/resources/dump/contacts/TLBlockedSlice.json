@@ -11,158 +11,15 @@
       "userId": 0,
       "date": 0,
       "_constructor": "contactBlocked#561bc879"
-    },
-    {
-      "userId": 0,
-      "date": 0,
-      "_constructor": "contactBlocked#561bc879"
-    },
-    {
-      "userId": 0,
-      "date": 0,
-      "_constructor": "contactBlocked#561bc879"
-    },
-    {
-      "userId": 0,
-      "date": 0,
-      "_constructor": "contactBlocked#561bc879"
-    },
-    {
-      "userId": 0,
-      "date": 0,
-      "_constructor": "contactBlocked#561bc879"
-    },
-    {
-      "userId": 0,
-      "date": 0,
-      "_constructor": "contactBlocked#561bc879"
     }
   ],
   "users": [
     {
-      "flags": 3034239,
-      "self": true,
-      "contact": true,
-      "mutualContact": false,
-      "deleted": false,
-      "bot": true,
-      "botChatHistory": false,
-      "botNochats": false,
-      "verified": true,
-      "restricted": true,
-      "min": false,
-      "botInlineGeo": true,
-      "accessHash": 0,
-      "firstName": "tNo20",
-      "lastName": "TeQ9gSbCRj",
-      "username": "AcS2MnOUC0Di",
-      "phone": "HKCKUuHxGXBhzcz",
-      "photo": {
-        "_constructor": "userProfilePhotoEmpty#4f11bae1"
-      },
-      "status": {
-        "_constructor": "userStatusLastWeek#7bf09fc"
-      },
-      "botInfoVersion": 0,
-      "restrictionReason": "Q6mvoZ6P8cY1MbQ0OI",
-      "botInlinePlaceholder": "08idb3MFVtOHk1JfeD",
-      "_constructor": "user#d10d979a",
-      "id": 0
-    },
-    {
       "_constructor": "userEmpty#200250ba",
       "id": 0
     },
     {
-      "flags": 2018431,
-      "self": true,
-      "contact": true,
-      "mutualContact": false,
-      "deleted": false,
-      "bot": true,
-      "botChatHistory": true,
-      "botNochats": false,
-      "verified": true,
-      "restricted": true,
-      "min": true,
-      "botInlineGeo": false,
-      "accessHash": 0,
-      "firstName": "COO4s8e0Hi2d",
-      "lastName": "SPmLi87V2ELde",
-      "username": "re4UamrLSr5vhq7hz6yXh",
-      "phone": "mTmIbk4hEPL",
-      "photo": {
-        "photoId": 0,
-        "photoSmall": {
-          "dcId": 0,
-          "_constructor": "fileLocation#53d69076",
-          "volumeId": 0,
-          "localId": 0,
-          "secret": 0
-        },
-        "photoBig": {
-          "_constructor": "fileLocationUnavailable#7c596b46",
-          "volumeId": 0,
-          "localId": 0,
-          "secret": 0
-        },
-        "_constructor": "userProfilePhoto#d559d8c8"
-      },
-      "status": {
-        "_constructor": "userStatusLastWeek#7bf09fc"
-      },
-      "botInfoVersion": 0,
-      "restrictionReason": "57d2rvnZd8qa6BIx9dIj",
-      "botInlinePlaceholder": "Z4wVRc28QTGVgxuA68nIi8",
-      "_constructor": "user#d10d979a",
-      "id": 0
-    },
-    {
       "_constructor": "userEmpty#200250ba",
-      "id": 0
-    },
-    {
-      "flags": 835711,
-      "self": false,
-      "contact": false,
-      "mutualContact": false,
-      "deleted": false,
-      "bot": true,
-      "botChatHistory": true,
-      "botNochats": false,
-      "verified": false,
-      "restricted": true,
-      "min": false,
-      "botInlineGeo": false,
-      "accessHash": 0,
-      "firstName": "HbN8RkALKQFLfi",
-      "lastName": "Rxc0tu6jpKQHhKfuYoqfOudXOX",
-      "username": "twULwr4",
-      "phone": "JUXoxxN3XdlHsIvixzwEUbAb8Z",
-      "photo": {
-        "photoId": 0,
-        "photoSmall": {
-          "_constructor": "fileLocationUnavailable#7c596b46",
-          "volumeId": 0,
-          "localId": 0,
-          "secret": 0
-        },
-        "photoBig": {
-          "_constructor": "fileLocationUnavailable#7c596b46",
-          "volumeId": 0,
-          "localId": 0,
-          "secret": 0
-        },
-        "_constructor": "userProfilePhoto#d559d8c8"
-      },
-      "status": {
-        "expires": 0,
-        "_constructor": "userStatusOnline#edb93949"
-      },
-      "botInfoVersion": 0,
-      "restrictionReason": "lpYdW9EE11UDg2BQHh3us7gFbog",
-      "botInlinePlaceholder": "PXbymuAdbHrKE6",
-      "_constructor": "user#d10d979a",
       "id": 0
     }
   ]

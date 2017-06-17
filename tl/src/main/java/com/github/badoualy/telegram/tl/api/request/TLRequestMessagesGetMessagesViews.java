@@ -23,6 +23,7 @@ import static com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_CONSTRUCTOR_ID;
  * @see <a href="http://github.com/badoualy/kotlogram">http://github.com/badoualy/kotlogram</a>
  */
 public class TLRequestMessagesGetMessagesViews extends TLMethod<TLIntVector> {
+
     public static final int CONSTRUCTOR_ID = 0xc4c8a55d;
 
     protected TLAbsInputPeer peer;

@@ -5,6 +5,7 @@ package com.github.badoualy.telegram.tl.api;
  * @see <a href="http://github.com/badoualy/kotlogram">http://github.com/badoualy/kotlogram</a>
  */
 public class TLChannelMessagesFilterEmpty extends TLAbsChannelMessagesFilter {
+
     public static final int CONSTRUCTOR_ID = 0x94d42ee7;
 
     private final String _constructor = "channelMessagesFilterEmpty#94d42ee7";

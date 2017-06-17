@@ -1,12 +1,12 @@
 {
-  "flags": 2188,
-  "out": false,
+  "flags": 2190,
+  "out": true,
   "mentioned": false,
   "mediaUnread": false,
   "silent": false,
   "id": 0,
   "userId": 0,
-  "message": "e72Q72NAt1R",
+  "message": "OfSNyaD4CTrA",
   "pts": 0,
   "ptsCount": 0,
   "date": 0,
@@ -20,43 +20,6 @@
   },
   "viaBotId": 0,
   "replyToMsgId": 0,
-  "entities": [
-    {
-      "_constructor": "messageEntityUnknown#bb92ba95",
-      "offset": 0,
-      "length": 0
-    },
-    {
-      "_constructor": "messageEntityUnknown#bb92ba95",
-      "offset": 0,
-      "length": 0
-    },
-    {
-      "_constructor": "messageEntityUnknown#bb92ba95",
-      "offset": 0,
-      "length": 0
-    },
-    {
-      "_constructor": "messageEntityBold#bd610bc9",
-      "offset": 0,
-      "length": 0
-    },
-    {
-      "_constructor": "messageEntityMention#fa04579d",
-      "offset": 0,
-      "length": 0
-    },
-    {
-      "_constructor": "messageEntityBold#bd610bc9",
-      "offset": 0,
-      "length": 0
-    },
-    {
-      "url": "i2GYdfuSjcjq5VmbQhiWOm4ShB",
-      "_constructor": "messageEntityTextUrl#76a6d327",
-      "offset": 0,
-      "length": 0
-    }
-  ],
+  "entities": [],
   "_constructor": "updateShortMessage#914fbf11"
 }

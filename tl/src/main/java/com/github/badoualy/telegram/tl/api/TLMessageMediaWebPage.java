@@ -15,6 +15,7 @@ import static com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_CONSTRUCTOR_ID;
  * @see <a href="http://github.com/badoualy/kotlogram">http://github.com/badoualy/kotlogram</a>
  */
 public class TLMessageMediaWebPage extends TLAbsMessageMedia {
+
     public static final int CONSTRUCTOR_ID = 0xa32dd600;
 
     protected TLAbsWebPage webpage;

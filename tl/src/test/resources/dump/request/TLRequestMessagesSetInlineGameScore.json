@@ -1,6 +1,7 @@
 {
-  "flags": 0,
-  "editMessage": false,
+  "flags": 3,
+  "editMessage": true,
+  "force": true,
   "id": {
     "dcId": 0,
     "id": 0,
@@ -8,7 +9,7 @@
     "_constructor": "inputBotInlineMessageID#890c3d89"
   },
   "userId": {
-    "_constructor": "inputUserEmpty#b98886cf"
+    "_constructor": "inputUserSelf#f7c1b13f"
   },
   "score": 0,
   "_constructor": "messages.setInlineGameScore#15ad9f64"

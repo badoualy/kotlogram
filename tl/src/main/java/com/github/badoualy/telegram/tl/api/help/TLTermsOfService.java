@@ -17,6 +17,7 @@ import static com.github.badoualy.telegram.tl.TLObjectUtils.computeTLStringSeria
  * @see <a href="http://github.com/badoualy/kotlogram">http://github.com/badoualy/kotlogram</a>
  */
 public class TLTermsOfService extends TLObject {
+
     public static final int CONSTRUCTOR_ID = 0xf1ee3e90;
 
     protected String text;

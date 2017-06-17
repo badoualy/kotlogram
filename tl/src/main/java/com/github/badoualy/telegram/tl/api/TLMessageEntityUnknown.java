@@ -16,6 +16,7 @@ import static com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_INT32;
  * @see <a href="http://github.com/badoualy/kotlogram">http://github.com/badoualy/kotlogram</a>
  */
 public class TLMessageEntityUnknown extends TLAbsMessageEntity {
+
     public static final int CONSTRUCTOR_ID = 0xbb92ba95;
 
     private final String _constructor = "messageEntityUnknown#bb92ba95";

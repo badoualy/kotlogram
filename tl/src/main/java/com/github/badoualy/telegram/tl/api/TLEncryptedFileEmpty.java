@@ -5,6 +5,7 @@ package com.github.badoualy.telegram.tl.api;
  * @see <a href="http://github.com/badoualy/kotlogram">http://github.com/badoualy/kotlogram</a>
  */
 public class TLEncryptedFileEmpty extends TLAbsEncryptedFile {
+
     public static final int CONSTRUCTOR_ID = 0xc21f497e;
 
     private final String _constructor = "encryptedFileEmpty#c21f497e";

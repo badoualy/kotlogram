@@ -20,6 +20,7 @@ import static com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_INT32;
  * @see <a href="http://github.com/badoualy/kotlogram">http://github.com/badoualy/kotlogram</a>
  */
 public class TLRequestContactsGetTopPeers extends TLMethod<TLAbsTopPeers> {
+
     public static final int CONSTRUCTOR_ID = 0xd4982db5;
 
     protected int flags;
@@ -64,7 +65,9 @@ public class TLRequestContactsGetTopPeers extends TLMethod<TLAbsTopPeers> {
             throw new IOException("Unable to parse response");
         }
         if (!(response instanceof TLAbsTopPeers)) {
-            throw new IOException("Incorrect response type, expected " + getClass().getCanonicalName() + ", found " + response.getClass().getCanonicalName());
+            throw new IOException(
+                    "Incorrect response type, expected " + getClass().getCanonicalName() + ", found " + response
+                            .getClass().getCanonicalName());
         }
         return (TLAbsTopPeers) response;
     }

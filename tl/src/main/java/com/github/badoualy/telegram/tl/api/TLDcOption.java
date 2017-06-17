@@ -20,6 +20,7 @@ import static com.github.badoualy.telegram.tl.TLObjectUtils.computeTLStringSeria
  * @see <a href="http://github.com/badoualy/kotlogram">http://github.com/badoualy/kotlogram</a>
  */
 public class TLDcOption extends TLObject {
+
     public static final int CONSTRUCTOR_ID = 0x5d8c6cc;
 
     protected int flags;
@@ -29,6 +30,8 @@ public class TLDcOption extends TLObject {
     protected boolean mediaOnly;
 
     protected boolean tcpoOnly;
+
+    protected boolean cdn;
 
     protected int id;
 
@@ -41,10 +44,11 @@ public class TLDcOption extends TLObject {
     public TLDcOption() {
     }
 
-    public TLDcOption(boolean ipv6, boolean mediaOnly, boolean tcpoOnly, int id, String ipAddress, int port) {
+    public TLDcOption(boolean ipv6, boolean mediaOnly, boolean tcpoOnly, boolean cdn, int id, String ipAddress, int port) {
         this.ipv6 = ipv6;
         this.mediaOnly = mediaOnly;
         this.tcpoOnly = tcpoOnly;
+        this.cdn = cdn;
         this.id = id;
         this.ipAddress = ipAddress;
         this.port = port;
@@ -55,6 +59,7 @@ public class TLDcOption extends TLObject {
         flags = ipv6 ? (flags | 1) : (flags & ~1);
         flags = mediaOnly ? (flags | 2) : (flags & ~2);
         flags = tcpoOnly ? (flags | 4) : (flags & ~4);
+        flags = cdn ? (flags | 8) : (flags & ~8);
     }
 
     @Override
@@ -74,6 +79,7 @@ public class TLDcOption extends TLObject {
         ipv6 = (flags & 1) != 0;
         mediaOnly = (flags & 2) != 0;
         tcpoOnly = (flags & 4) != 0;
+        cdn = (flags & 8) != 0;
         id = readInt(stream);
         ipAddress = readTLString(stream);
         port = readInt(stream);
@@ -123,6 +129,14 @@ public class TLDcOption extends TLObject {
 
     public void setTcpoOnly(boolean tcpoOnly) {
         this.tcpoOnly = tcpoOnly;
+    }
+
+    public boolean getCdn() {
+        return cdn;
+    }
+
+    public void setCdn(boolean cdn) {
+        this.cdn = cdn;
     }
 
     public int getId() {

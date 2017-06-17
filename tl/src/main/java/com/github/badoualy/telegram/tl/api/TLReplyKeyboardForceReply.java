@@ -16,6 +16,7 @@ import static com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_INT32;
  * @see <a href="http://github.com/badoualy/kotlogram">http://github.com/badoualy/kotlogram</a>
  */
 public class TLReplyKeyboardForceReply extends TLAbsReplyMarkup {
+
     public static final int CONSTRUCTOR_ID = 0xf4108aa0;
 
     protected int flags;

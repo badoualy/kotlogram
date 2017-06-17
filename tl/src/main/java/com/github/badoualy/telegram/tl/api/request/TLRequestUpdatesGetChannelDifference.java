@@ -23,7 +23,12 @@ import static com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_INT32;
  * @see <a href="http://github.com/badoualy/kotlogram">http://github.com/badoualy/kotlogram</a>
  */
 public class TLRequestUpdatesGetChannelDifference extends TLMethod<TLAbsChannelDifference> {
-    public static final int CONSTRUCTOR_ID = 0xbb32d7c0;
+
+    public static final int CONSTRUCTOR_ID = 0x3173d78;
+
+    protected int flags;
+
+    protected boolean force;
 
     protected TLAbsInputChannel channel;
 
@@ -33,12 +38,13 @@ public class TLRequestUpdatesGetChannelDifference extends TLMethod<TLAbsChannelD
 
     protected int limit;
 
-    private final String _constructor = "updates.getChannelDifference#bb32d7c0";
+    private final String _constructor = "updates.getChannelDifference#3173d78";
 
     public TLRequestUpdatesGetChannelDifference() {
     }
 
-    public TLRequestUpdatesGetChannelDifference(TLAbsInputChannel channel, TLAbsChannelMessagesFilter filter, int pts, int limit) {
+    public TLRequestUpdatesGetChannelDifference(boolean force, TLAbsInputChannel channel, TLAbsChannelMessagesFilter filter, int pts, int limit) {
+        this.force = force;
         this.channel = channel;
         this.filter = filter;
         this.pts = pts;
@@ -53,13 +59,23 @@ public class TLRequestUpdatesGetChannelDifference extends TLMethod<TLAbsChannelD
             throw new IOException("Unable to parse response");
         }
         if (!(response instanceof TLAbsChannelDifference)) {
-            throw new IOException("Incorrect response type, expected " + getClass().getCanonicalName() + ", found " + response.getClass().getCanonicalName());
+            throw new IOException(
+                    "Incorrect response type, expected " + getClass().getCanonicalName() + ", found " + response
+                            .getClass().getCanonicalName());
         }
         return (TLAbsChannelDifference) response;
     }
 
+    private void computeFlags() {
+        flags = 0;
+        flags = force ? (flags | 1) : (flags & ~1);
+    }
+
     @Override
     public void serializeBody(OutputStream stream) throws IOException {
+        computeFlags();
+
+        writeInt(flags, stream);
         writeTLObject(channel, stream);
         writeTLObject(filter, stream);
         writeInt(pts, stream);
@@ -69,6 +85,8 @@ public class TLRequestUpdatesGetChannelDifference extends TLMethod<TLAbsChannelD
     @Override
     @SuppressWarnings({"unchecked", "SimplifiableConditionalExpression"})
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
+        flags = readInt(stream);
+        force = (flags & 1) != 0;
         channel = readTLObject(stream, context, TLAbsInputChannel.class, -1);
         filter = readTLObject(stream, context, TLAbsChannelMessagesFilter.class, -1);
         pts = readInt(stream);
@@ -77,7 +95,10 @@ public class TLRequestUpdatesGetChannelDifference extends TLMethod<TLAbsChannelD
 
     @Override
     public int computeSerializedSize() {
+        computeFlags();
+
         int size = SIZE_CONSTRUCTOR_ID;
+        size += SIZE_INT32;
         size += channel.computeSerializedSize();
         size += filter.computeSerializedSize();
         size += SIZE_INT32;
@@ -93,6 +114,14 @@ public class TLRequestUpdatesGetChannelDifference extends TLMethod<TLAbsChannelD
     @Override
     public int getConstructorId() {
         return CONSTRUCTOR_ID;
+    }
+
+    public boolean getForce() {
+        return force;
+    }
+
+    public void setForce(boolean force) {
+        this.force = force;
     }
 
     public TLAbsInputChannel getChannel() {

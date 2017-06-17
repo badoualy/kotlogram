@@ -5,6 +5,7 @@ package com.github.badoualy.telegram.tl.api.storage;
  * @see <a href="http://github.com/badoualy/kotlogram">http://github.com/badoualy/kotlogram</a>
  */
 public class TLFilePartial extends TLAbsFileType {
+
     public static final int CONSTRUCTOR_ID = 0x40bc6f52;
 
     private final String _constructor = "storage.filePartial#40bc6f52";

@@ -19,6 +19,7 @@ import static com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_CONSTRUCTOR_ID;
  * @see <a href="http://github.com/badoualy/kotlogram">http://github.com/badoualy/kotlogram</a>
  */
 public class TLRequestChannelsExportInvite extends TLMethod<TLAbsExportedChatInvite> {
+
     public static final int CONSTRUCTOR_ID = 0xc7560885;
 
     protected TLAbsInputChannel channel;
@@ -40,7 +41,9 @@ public class TLRequestChannelsExportInvite extends TLMethod<TLAbsExportedChatInv
             throw new IOException("Unable to parse response");
         }
         if (!(response instanceof TLAbsExportedChatInvite)) {
-            throw new IOException("Incorrect response type, expected " + getClass().getCanonicalName() + ", found " + response.getClass().getCanonicalName());
+            throw new IOException(
+                    "Incorrect response type, expected " + getClass().getCanonicalName() + ", found " + response
+                            .getClass().getCanonicalName());
         }
         return (TLAbsExportedChatInvite) response;
     }

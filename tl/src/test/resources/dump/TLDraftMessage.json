@@ -1,37 +1,9 @@
 {
-  "flags": 11,
-  "noWebpage": true,
+  "flags": 9,
+  "noWebpage": false,
   "replyToMsgId": 0,
-  "message": "IgVWYx",
-  "entities": [
-    {
-      "language": "fneF2ffq9cbyWL97dleQP5S",
-      "_constructor": "messageEntityPre#73924be0",
-      "offset": 0,
-      "length": 0
-    },
-    {
-      "_constructor": "messageEntityBold#bd610bc9",
-      "offset": 0,
-      "length": 0
-    },
-    {
-      "userId": 0,
-      "_constructor": "messageEntityMentionName#352dca58",
-      "offset": 0,
-      "length": 0
-    },
-    {
-      "_constructor": "messageEntityCode#28a20571",
-      "offset": 0,
-      "length": 0
-    },
-    {
-      "_constructor": "messageEntityEmail#64e475c2",
-      "offset": 0,
-      "length": 0
-    }
-  ],
+  "message": "dN5aslt6rc4TREjK3Dq5QNBPdMZ",
+  "entities": [],
   "date": 0,
   "_constructor": "draftMessage#fd8e711f"
 }

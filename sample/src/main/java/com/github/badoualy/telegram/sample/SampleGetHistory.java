@@ -38,15 +38,16 @@ public class SampleGetHistory {
 
         // You can start making requests
         try {
-            TLAbsDialogs tlAbsDialogs = client.messagesGetDialogs(0, 0, new TLInputPeerEmpty(), 1);
+            TLAbsDialogs tlAbsDialogs = client.messagesGetDialogs(true, 0, 0, new TLInputPeerEmpty(), 1);
             TLAbsInputPeer inputPeer = getInputPeer(tlAbsDialogs);
 
             TLAbsMessages tlAbsMessages = client.messagesGetHistory(inputPeer, 0, 0, 0, count, 0, 0);
             tlAbsMessages.getMessages().forEach(message -> {
-                if (message instanceof TLMessage)
+                if (message instanceof TLMessage) {
                     System.out.println(((TLMessage) message).getMessage());
-                else
+                } else {
                     System.out.println("Service message");
+                }
             });
         } catch (RpcErrorException | IOException e) {
             e.printStackTrace();
@@ -62,15 +63,20 @@ public class SampleGetHistory {
         TLAbsPeer tlAbsPeer = tlAbsDialogs.getDialogs().get(0).getPeer();
         int peerId = getId(tlAbsPeer);
         TLObject peer = tlAbsPeer instanceof TLPeerUser ?
-                tlAbsDialogs.getUsers().stream().filter(user -> user.getId() == peerId).findFirst().get()
-                : tlAbsDialogs.getChats().stream().filter(chat -> chat.getId() == peerId).findFirst().get();
+                        tlAbsDialogs.getUsers().stream().filter(user -> user.getId() == peerId).findFirst().get()
+                                                        : tlAbsDialogs.getChats().stream()
+                                                                      .filter(chat -> chat.getId() == peerId)
+                                                                      .findFirst().get();
 
-        if (peer instanceof TLChannel)
+        if (peer instanceof TLChannel) {
             return new TLInputPeerChannel(((TLChannel) peer).getId(), ((TLChannel) peer).getAccessHash());
-        if (peer instanceof TLChat)
+        }
+        if (peer instanceof TLChat) {
             return new TLInputPeerChat(((TLChat) peer).getId());
-        if (peer instanceof TLUser)
+        }
+        if (peer instanceof TLUser) {
             return new TLInputPeerUser(((TLUser) peer).getId(), ((TLUser) peer).getAccessHash());
+        }
 
         return new TLInputPeerEmpty();
     }

@@ -19,9 +19,12 @@ import static com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_INT32;
  * @see <a href="http://github.com/badoualy/kotlogram">http://github.com/badoualy/kotlogram</a>
  */
 public class TLDialog extends TLObject {
+
     public static final int CONSTRUCTOR_ID = 0x66ffba14;
 
     protected int flags;
+
+    protected boolean pinned;
 
     protected TLAbsPeer peer;
 
@@ -44,7 +47,8 @@ public class TLDialog extends TLObject {
     public TLDialog() {
     }
 
-    public TLDialog(TLAbsPeer peer, int topMessage, int readInboxMaxId, int readOutboxMaxId, int unreadCount, TLAbsPeerNotifySettings notifySettings, Integer pts, TLAbsDraftMessage draft) {
+    public TLDialog(boolean pinned, TLAbsPeer peer, int topMessage, int readInboxMaxId, int readOutboxMaxId, int unreadCount, TLAbsPeerNotifySettings notifySettings, Integer pts, TLAbsDraftMessage draft) {
+        this.pinned = pinned;
         this.peer = peer;
         this.topMessage = topMessage;
         this.readInboxMaxId = readInboxMaxId;
@@ -57,6 +61,7 @@ public class TLDialog extends TLObject {
 
     private void computeFlags() {
         flags = 0;
+        flags = pinned ? (flags | 4) : (flags & ~4);
         flags = pts != null ? (flags | 1) : (flags & ~1);
         flags = draft != null ? (flags | 2) : (flags & ~2);
     }
@@ -86,6 +91,7 @@ public class TLDialog extends TLObject {
     @SuppressWarnings({"unchecked", "SimplifiableConditionalExpression"})
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
         flags = readInt(stream);
+        pinned = (flags & 4) != 0;
         peer = readTLObject(stream, context, TLAbsPeer.class, -1);
         topMessage = readInt(stream);
         readInboxMaxId = readInt(stream);
@@ -127,6 +133,14 @@ public class TLDialog extends TLObject {
     @Override
     public int getConstructorId() {
         return CONSTRUCTOR_ID;
+    }
+
+    public boolean getPinned() {
+        return pinned;
+    }
+
+    public void setPinned(boolean pinned) {
+        this.pinned = pinned;
     }
 
     public TLAbsPeer getPeer() {

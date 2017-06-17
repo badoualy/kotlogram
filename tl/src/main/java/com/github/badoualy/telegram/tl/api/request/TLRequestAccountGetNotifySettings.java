@@ -19,6 +19,7 @@ import static com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_CONSTRUCTOR_ID;
  * @see <a href="http://github.com/badoualy/kotlogram">http://github.com/badoualy/kotlogram</a>
  */
 public class TLRequestAccountGetNotifySettings extends TLMethod<TLAbsPeerNotifySettings> {
+
     public static final int CONSTRUCTOR_ID = 0x12b3ad31;
 
     protected TLAbsInputNotifyPeer peer;
@@ -40,7 +41,9 @@ public class TLRequestAccountGetNotifySettings extends TLMethod<TLAbsPeerNotifyS
             throw new IOException("Unable to parse response");
         }
         if (!(response instanceof TLAbsPeerNotifySettings)) {
-            throw new IOException("Incorrect response type, expected " + getClass().getCanonicalName() + ", found " + response.getClass().getCanonicalName());
+            throw new IOException(
+                    "Incorrect response type, expected " + getClass().getCanonicalName() + ", found " + response
+                            .getClass().getCanonicalName());
         }
         return (TLAbsPeerNotifySettings) response;
     }

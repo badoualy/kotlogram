@@ -16,6 +16,7 @@ import static com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_DOUBLE;
  * @see <a href="http://github.com/badoualy/kotlogram">http://github.com/badoualy/kotlogram</a>
  */
 public class TLInputGeoPoint extends TLAbsInputGeoPoint {
+
     public static final int CONSTRUCTOR_ID = 0xf3b7acc9;
 
     protected double lat;

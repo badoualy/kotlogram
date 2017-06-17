@@ -26,7 +26,8 @@ import static com.github.badoualy.telegram.tl.TLObjectUtils.computeTLStringSeria
  * @see <a href="http://github.com/badoualy/kotlogram">http://github.com/badoualy/kotlogram</a>
  */
 public class TLRequestMessagesSetBotCallbackAnswer extends TLMethod<TLBool> {
-    public static final int CONSTRUCTOR_ID = 0xc927d44b;
+
+    public static final int CONSTRUCTOR_ID = 0xd58f130a;
 
     protected int flags;
 
@@ -38,16 +39,19 @@ public class TLRequestMessagesSetBotCallbackAnswer extends TLMethod<TLBool> {
 
     protected String url;
 
-    private final String _constructor = "messages.setBotCallbackAnswer#c927d44b";
+    protected int cacheTime;
+
+    private final String _constructor = "messages.setBotCallbackAnswer#d58f130a";
 
     public TLRequestMessagesSetBotCallbackAnswer() {
     }
 
-    public TLRequestMessagesSetBotCallbackAnswer(boolean alert, long queryId, String message, String url) {
+    public TLRequestMessagesSetBotCallbackAnswer(boolean alert, long queryId, String message, String url, int cacheTime) {
         this.alert = alert;
         this.queryId = queryId;
         this.message = message;
         this.url = url;
+        this.cacheTime = cacheTime;
     }
 
     @Override
@@ -58,7 +62,9 @@ public class TLRequestMessagesSetBotCallbackAnswer extends TLMethod<TLBool> {
             throw new IOException("Unable to parse response");
         }
         if (!(response instanceof TLBool)) {
-            throw new IOException("Incorrect response type, expected " + getClass().getCanonicalName() + ", found " + response.getClass().getCanonicalName());
+            throw new IOException(
+                    "Incorrect response type, expected " + getClass().getCanonicalName() + ", found " + response
+                            .getClass().getCanonicalName());
         }
         return (TLBool) response;
     }
@@ -84,6 +90,7 @@ public class TLRequestMessagesSetBotCallbackAnswer extends TLMethod<TLBool> {
             if (url == null) throwNullFieldException("url", flags);
             writeString(url, stream);
         }
+        writeInt(cacheTime, stream);
     }
 
     @Override
@@ -94,6 +101,7 @@ public class TLRequestMessagesSetBotCallbackAnswer extends TLMethod<TLBool> {
         queryId = readLong(stream);
         message = (flags & 1) != 0 ? readTLString(stream) : null;
         url = (flags & 4) != 0 ? readTLString(stream) : null;
+        cacheTime = readInt(stream);
     }
 
     @Override
@@ -111,6 +119,7 @@ public class TLRequestMessagesSetBotCallbackAnswer extends TLMethod<TLBool> {
             if (url == null) throwNullFieldException("url", flags);
             size += computeTLStringSerializedSize(url);
         }
+        size += SIZE_INT32;
         return size;
     }
 
@@ -154,5 +163,13 @@ public class TLRequestMessagesSetBotCallbackAnswer extends TLMethod<TLBool> {
 
     public void setUrl(String url) {
         this.url = url;
+    }
+
+    public int getCacheTime() {
+        return cacheTime;
+    }
+
+    public void setCacheTime(int cacheTime) {
+        this.cacheTime = cacheTime;
     }
 }

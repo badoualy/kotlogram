@@ -6,11 +6,10 @@
   "ptsCount": 0,
   "date": 0,
   "media": {
-    "phoneNumber": "NK5D1rgZVbqziTbrG",
-    "firstName": "PWTZwa25XURuHGWRYUmAD5RdrL",
-    "lastName": "CaRCZsKOxVZdWvyQAoTWmN8",
-    "userId": 0,
-    "_constructor": "messageMediaContact#5e7d2f39"
+    "geo": {
+      "_constructor": "geoPointEmpty#1117dd5f"
+    },
+    "_constructor": "messageMediaGeo#56e0d474"
   },
   "entities": [
     {
@@ -19,21 +18,7 @@
       "length": 0
     },
     {
-      "userId": {
-        "_constructor": "inputUserSelf#f7c1b13f"
-      },
-      "_constructor": "inputMessageEntityMentionName#208e68c9",
-      "offset": 0,
-      "length": 0
-    },
-    {
-      "_constructor": "messageEntityBotCommand#6cef8ac7",
-      "offset": 0,
-      "length": 0
-    },
-    {
-      "userId": 0,
-      "_constructor": "messageEntityMentionName#352dca58",
+      "_constructor": "messageEntityCode#28a20571",
       "offset": 0,
       "length": 0
     }

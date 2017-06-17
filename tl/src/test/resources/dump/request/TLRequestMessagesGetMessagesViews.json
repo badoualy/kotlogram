@@ -1,15 +1,9 @@
 {
   "peer": {
-    "_constructor": "inputPeerEmpty#7f3b18ea"
+    "chatId": 0,
+    "_constructor": "inputPeerChat#179be863"
   },
-  "id": [
-    0,
-    0,
-    0,
-    0,
-    0,
-    0
-  ],
+  "id": [],
   "increment": false,
   "_constructor": "messages.getMessagesViews#c4c8a55d"
 }

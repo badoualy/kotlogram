@@ -22,6 +22,7 @@ import static com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_INT32;
  * @see <a href="http://github.com/badoualy/kotlogram">http://github.com/badoualy/kotlogram</a>
  */
 public class TLRequestMessagesDeleteHistory extends TLMethod<TLAffectedHistory> {
+
     public static final int CONSTRUCTOR_ID = 0x1c015b09;
 
     protected int flags;
@@ -51,7 +52,9 @@ public class TLRequestMessagesDeleteHistory extends TLMethod<TLAffectedHistory> 
             throw new IOException("Unable to parse response");
         }
         if (!(response instanceof TLAffectedHistory)) {
-            throw new IOException("Incorrect response type, expected " + getClass().getCanonicalName() + ", found " + response.getClass().getCanonicalName());
+            throw new IOException(
+                    "Incorrect response type, expected " + getClass().getCanonicalName() + ", found " + response
+                            .getClass().getCanonicalName());
         }
         return (TLAffectedHistory) response;
     }

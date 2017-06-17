@@ -5,8 +5,9 @@ import com.github.badoualy.telegram.tl.core.TLObject;
 /**
  * Abstraction level for the following constructors:
  * <ul>
- * <li>{@link TLWebPage}: webPage#ca820ed7</li>
+ * <li>{@link TLWebPage}: webPage#5f07b4bc</li>
  * <li>{@link TLWebPageEmpty}: webPageEmpty#eb1477e8</li>
+ * <li>{@link TLWebPageNotModified}: webPageNotModified#85849473</li>
  * <li>{@link TLWebPagePending}: webPagePending#c586da1c</li>
  * </ul>
  *
@@ -14,16 +15,7 @@ import com.github.badoualy.telegram.tl.core.TLObject;
  * @see <a href="http://github.com/badoualy/kotlogram">http://github.com/badoualy/kotlogram</a>
  */
 public abstract class TLAbsWebPage extends TLObject {
-    protected long id;
 
     public TLAbsWebPage() {
-    }
-
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
     }
 }

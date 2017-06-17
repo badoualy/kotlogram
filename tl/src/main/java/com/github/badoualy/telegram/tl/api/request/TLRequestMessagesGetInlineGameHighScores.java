@@ -20,6 +20,7 @@ import static com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_CONSTRUCTOR_ID;
  * @see <a href="http://github.com/badoualy/kotlogram">http://github.com/badoualy/kotlogram</a>
  */
 public class TLRequestMessagesGetInlineGameHighScores extends TLMethod<TLHighScores> {
+
     public static final int CONSTRUCTOR_ID = 0xf635e1b;
 
     protected TLInputBotInlineMessageID id;
@@ -44,7 +45,9 @@ public class TLRequestMessagesGetInlineGameHighScores extends TLMethod<TLHighSco
             throw new IOException("Unable to parse response");
         }
         if (!(response instanceof TLHighScores)) {
-            throw new IOException("Incorrect response type, expected " + getClass().getCanonicalName() + ", found " + response.getClass().getCanonicalName());
+            throw new IOException(
+                    "Incorrect response type, expected " + getClass().getCanonicalName() + ", found " + response
+                            .getClass().getCanonicalName());
         }
         return (TLHighScores) response;
     }

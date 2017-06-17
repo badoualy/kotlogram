@@ -1,6 +1,6 @@
 {
   "userId": {
-    "_constructor": "inputUserSelf#f7c1b13f"
+    "_constructor": "inputUserEmpty#b98886cf"
   },
   "randomId": 0,
   "gA": {
@@ -197,48 +197,10 @@
       0,
       0,
       0,
-      0,
-      0,
-      0,
-      0,
-      0,
-      0,
-      0,
-      0,
-      0,
-      0,
-      0,
-      0,
-      0,
-      0,
-      0,
-      0,
-      0,
-      0,
-      0,
-      0,
-      0,
-      0,
-      0,
-      0,
-      0,
-      0,
-      0,
-      0,
-      0,
-      0,
-      0,
-      0,
-      0,
-      0,
-      0,
-      0,
-      0,
-      0,
       0
     ],
     "offset": 0,
-    "len": 231
+    "len": 193
   },
   "_constructor": "messages.requestEncryption#f64daf43"
 }

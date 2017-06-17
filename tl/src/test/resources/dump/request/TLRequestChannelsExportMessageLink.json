@@ -1,8 +1,6 @@
 {
   "channel": {
-    "channelId": 0,
-    "accessHash": 0,
-    "_constructor": "inputChannel#afeb712e"
+    "_constructor": "inputChannelEmpty#ee8c1e86"
   },
   "id": 0,
   "_constructor": "channels.exportMessageLink#c846d22d"

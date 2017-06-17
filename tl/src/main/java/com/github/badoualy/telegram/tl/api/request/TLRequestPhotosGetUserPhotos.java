@@ -25,6 +25,7 @@ import static com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_INT64;
  * @see <a href="http://github.com/badoualy/kotlogram">http://github.com/badoualy/kotlogram</a>
  */
 public class TLRequestPhotosGetUserPhotos extends TLMethod<TLAbsPhotos> {
+
     public static final int CONSTRUCTOR_ID = 0x91cd32a8;
 
     protected TLAbsInputUser userId;
@@ -55,7 +56,9 @@ public class TLRequestPhotosGetUserPhotos extends TLMethod<TLAbsPhotos> {
             throw new IOException("Unable to parse response");
         }
         if (!(response instanceof TLAbsPhotos)) {
-            throw new IOException("Incorrect response type, expected " + getClass().getCanonicalName() + ", found " + response.getClass().getCanonicalName());
+            throw new IOException(
+                    "Incorrect response type, expected " + getClass().getCanonicalName() + ", found " + response
+                            .getClass().getCanonicalName());
         }
         return (TLAbsPhotos) response;
     }

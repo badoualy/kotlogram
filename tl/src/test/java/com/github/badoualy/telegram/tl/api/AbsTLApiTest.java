@@ -119,7 +119,7 @@ public abstract class AbsTLApiTest {
         else if (is(clazz, String.class)) obj = new TLStringVector();
         else obj = new TLVector(clazz);
 
-        int size = random.nextInt(10) + 2;
+        int size = random.nextInt(3);
         for (int i = 0; i < size; i++)
             obj.add(getRandom(clazz, null));
 

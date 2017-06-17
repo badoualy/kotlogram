@@ -16,6 +16,7 @@ import static com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_INT32;
  * @see <a href="http://github.com/badoualy/kotlogram">http://github.com/badoualy/kotlogram</a>
  */
 public class TLChannelParticipantKicked extends TLAbsChannelParticipant {
+
     public static final int CONSTRUCTOR_ID = 0x8cc5e69a;
 
     protected int kickedBy;

@@ -49,7 +49,7 @@ class OperatorBufferTimeout<T>(val timeout: Long, val unit: TimeUnit,
             var emit = false
             var idx: Long = 0
 
-            synchronized (this) {
+            synchronized(this) {
                 b = buffer
                 if (shouldAdd(t))
                     b!!.add(t)
@@ -90,7 +90,7 @@ class OperatorBufferTimeout<T>(val timeout: Long, val unit: TimeUnit,
             timer.unsubscribe()
 
             var b: List<T>? = null
-            synchronized (this) {
+            synchronized(this) {
                 b = buffer
                 buffer = ArrayList<T>()
                 index++
@@ -103,7 +103,7 @@ class OperatorBufferTimeout<T>(val timeout: Long, val unit: TimeUnit,
 
         fun timeout(idx: Long) {
             var b: List<T>? = null
-            synchronized (this) {
+            synchronized(this) {
                 if (idx != index) {
                     // Buffer was full or pushed before it timed out
                     return

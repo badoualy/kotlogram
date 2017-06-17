@@ -1,12 +1,6 @@
 {
-  "flags": 0,
-  "masks": false,
-  "order": [
-    0,
-    0,
-    0,
-    0,
-    0
-  ],
+  "flags": 1,
+  "masks": true,
+  "order": [],
   "_constructor": "messages.reorderStickerSets#78337739"
 }

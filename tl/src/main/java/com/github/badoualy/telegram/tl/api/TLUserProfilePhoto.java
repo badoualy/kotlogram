@@ -18,6 +18,7 @@ import static com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_INT64;
  * @see <a href="http://github.com/badoualy/kotlogram">http://github.com/badoualy/kotlogram</a>
  */
 public class TLUserProfilePhoto extends TLAbsUserProfilePhoto {
+
     public static final int CONSTRUCTOR_ID = 0xd559d8c8;
 
     protected long photoId;

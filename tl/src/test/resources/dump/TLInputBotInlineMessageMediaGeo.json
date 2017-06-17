@@ -7,9 +7,9 @@
   "_constructor": "inputBotInlineMessageMediaGeo#f4a59de1",
   "flags": 4,
   "replyMarkup": {
-    "flags": 2,
+    "flags": 6,
     "singleUse": true,
-    "selective": false,
+    "selective": true,
     "_constructor": "replyKeyboardForceReply#f4108aa0"
   }
 }

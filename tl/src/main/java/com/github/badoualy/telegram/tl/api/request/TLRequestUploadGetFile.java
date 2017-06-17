@@ -2,7 +2,7 @@ package com.github.badoualy.telegram.tl.api.request;
 
 import com.github.badoualy.telegram.tl.TLContext;
 import com.github.badoualy.telegram.tl.api.TLAbsInputFileLocation;
-import com.github.badoualy.telegram.tl.api.upload.TLFile;
+import com.github.badoualy.telegram.tl.api.upload.TLAbsFile;
 import com.github.badoualy.telegram.tl.core.TLMethod;
 import com.github.badoualy.telegram.tl.core.TLObject;
 
@@ -21,7 +21,8 @@ import static com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_INT32;
  * @author Yannick Badoual yann.badoual@gmail.com
  * @see <a href="http://github.com/badoualy/kotlogram">http://github.com/badoualy/kotlogram</a>
  */
-public class TLRequestUploadGetFile extends TLMethod<TLFile> {
+public class TLRequestUploadGetFile extends TLMethod<TLAbsFile> {
+
     public static final int CONSTRUCTOR_ID = 0xe3a6cfb5;
 
     protected TLAbsInputFileLocation location;
@@ -43,15 +44,17 @@ public class TLRequestUploadGetFile extends TLMethod<TLFile> {
 
     @Override
     @SuppressWarnings({"unchecked", "SimplifiableConditionalExpression"})
-    public TLFile deserializeResponse(InputStream stream, TLContext context) throws IOException {
+    public TLAbsFile deserializeResponse(InputStream stream, TLContext context) throws IOException {
         final TLObject response = readTLObject(stream, context);
         if (response == null) {
             throw new IOException("Unable to parse response");
         }
-        if (!(response instanceof TLFile)) {
-            throw new IOException("Incorrect response type, expected " + getClass().getCanonicalName() + ", found " + response.getClass().getCanonicalName());
+        if (!(response instanceof TLAbsFile)) {
+            throw new IOException(
+                    "Incorrect response type, expected " + getClass().getCanonicalName() + ", found " + response
+                            .getClass().getCanonicalName());
         }
-        return (TLFile) response;
+        return (TLAbsFile) response;
     }
 
     @Override

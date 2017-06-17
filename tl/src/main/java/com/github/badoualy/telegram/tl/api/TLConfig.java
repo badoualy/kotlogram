@@ -10,22 +10,28 @@ import java.io.OutputStream;
 
 import static com.github.badoualy.telegram.tl.StreamUtils.readInt;
 import static com.github.badoualy.telegram.tl.StreamUtils.readTLBool;
+import static com.github.badoualy.telegram.tl.StreamUtils.readTLString;
 import static com.github.badoualy.telegram.tl.StreamUtils.readTLVector;
 import static com.github.badoualy.telegram.tl.StreamUtils.writeBoolean;
 import static com.github.badoualy.telegram.tl.StreamUtils.writeInt;
+import static com.github.badoualy.telegram.tl.StreamUtils.writeString;
 import static com.github.badoualy.telegram.tl.StreamUtils.writeTLVector;
 import static com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_BOOLEAN;
 import static com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_CONSTRUCTOR_ID;
 import static com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_INT32;
+import static com.github.badoualy.telegram.tl.TLObjectUtils.computeTLStringSerializedSize;
 
 /**
  * @author Yannick Badoual yann.badoual@gmail.com
  * @see <a href="http://github.com/badoualy/kotlogram">http://github.com/badoualy/kotlogram</a>
  */
 public class TLConfig extends TLObject {
-    public static final int CONSTRUCTOR_ID = 0x9a6b2e2a;
+
+    public static final int CONSTRUCTOR_ID = 0xcb601684;
 
     protected int flags;
+
+    protected boolean phonecallsEnabled;
 
     protected int date;
 
@@ -71,14 +77,27 @@ public class TLConfig extends TLObject {
 
     protected Integer tmpSessions;
 
+    protected int pinnedDialogsCountMax;
+
+    protected int callReceiveTimeoutMs;
+
+    protected int callRingTimeoutMs;
+
+    protected int callConnectTimeoutMs;
+
+    protected int callPacketTimeoutMs;
+
+    protected String meUrlPrefix;
+
     protected TLVector<TLDisabledFeature> disabledFeatures;
 
-    private final String _constructor = "config#9a6b2e2a";
+    private final String _constructor = "config#cb601684";
 
     public TLConfig() {
     }
 
-    public TLConfig(int date, int expires, boolean testMode, int thisDc, TLVector<TLDcOption> dcOptions, int chatSizeMax, int megagroupSizeMax, int forwardedCountMax, int onlineUpdatePeriodMs, int offlineBlurTimeoutMs, int offlineIdleTimeoutMs, int onlineCloudTimeoutMs, int notifyCloudDelayMs, int notifyDefaultDelayMs, int chatBigSize, int pushChatPeriodMs, int pushChatLimit, int savedGifsLimit, int editTimeLimit, int ratingEDecay, int stickersRecentLimit, Integer tmpSessions, TLVector<TLDisabledFeature> disabledFeatures) {
+    public TLConfig(boolean phonecallsEnabled, int date, int expires, boolean testMode, int thisDc, TLVector<TLDcOption> dcOptions, int chatSizeMax, int megagroupSizeMax, int forwardedCountMax, int onlineUpdatePeriodMs, int offlineBlurTimeoutMs, int offlineIdleTimeoutMs, int onlineCloudTimeoutMs, int notifyCloudDelayMs, int notifyDefaultDelayMs, int chatBigSize, int pushChatPeriodMs, int pushChatLimit, int savedGifsLimit, int editTimeLimit, int ratingEDecay, int stickersRecentLimit, Integer tmpSessions, int pinnedDialogsCountMax, int callReceiveTimeoutMs, int callRingTimeoutMs, int callConnectTimeoutMs, int callPacketTimeoutMs, String meUrlPrefix, TLVector<TLDisabledFeature> disabledFeatures) {
+        this.phonecallsEnabled = phonecallsEnabled;
         this.date = date;
         this.expires = expires;
         this.testMode = testMode;
@@ -101,11 +120,18 @@ public class TLConfig extends TLObject {
         this.ratingEDecay = ratingEDecay;
         this.stickersRecentLimit = stickersRecentLimit;
         this.tmpSessions = tmpSessions;
+        this.pinnedDialogsCountMax = pinnedDialogsCountMax;
+        this.callReceiveTimeoutMs = callReceiveTimeoutMs;
+        this.callRingTimeoutMs = callRingTimeoutMs;
+        this.callConnectTimeoutMs = callConnectTimeoutMs;
+        this.callPacketTimeoutMs = callPacketTimeoutMs;
+        this.meUrlPrefix = meUrlPrefix;
         this.disabledFeatures = disabledFeatures;
     }
 
     private void computeFlags() {
         flags = 0;
+        flags = phonecallsEnabled ? (flags | 2) : (flags & ~2);
         flags = tmpSessions != null ? (flags | 1) : (flags & ~1);
     }
 
@@ -139,6 +165,12 @@ public class TLConfig extends TLObject {
             if (tmpSessions == null) throwNullFieldException("tmpSessions", flags);
             writeInt(tmpSessions, stream);
         }
+        writeInt(pinnedDialogsCountMax, stream);
+        writeInt(callReceiveTimeoutMs, stream);
+        writeInt(callRingTimeoutMs, stream);
+        writeInt(callConnectTimeoutMs, stream);
+        writeInt(callPacketTimeoutMs, stream);
+        writeString(meUrlPrefix, stream);
         writeTLVector(disabledFeatures, stream);
     }
 
@@ -146,6 +178,7 @@ public class TLConfig extends TLObject {
     @SuppressWarnings({"unchecked", "SimplifiableConditionalExpression"})
     public void deserializeBody(InputStream stream, TLContext context) throws IOException {
         flags = readInt(stream);
+        phonecallsEnabled = (flags & 2) != 0;
         date = readInt(stream);
         expires = readInt(stream);
         testMode = readTLBool(stream);
@@ -168,6 +201,12 @@ public class TLConfig extends TLObject {
         ratingEDecay = readInt(stream);
         stickersRecentLimit = readInt(stream);
         tmpSessions = (flags & 1) != 0 ? readInt(stream) : null;
+        pinnedDialogsCountMax = readInt(stream);
+        callReceiveTimeoutMs = readInt(stream);
+        callRingTimeoutMs = readInt(stream);
+        callConnectTimeoutMs = readInt(stream);
+        callPacketTimeoutMs = readInt(stream);
+        meUrlPrefix = readTLString(stream);
         disabledFeatures = readTLVector(stream, context);
     }
 
@@ -202,6 +241,12 @@ public class TLConfig extends TLObject {
             if (tmpSessions == null) throwNullFieldException("tmpSessions", flags);
             size += SIZE_INT32;
         }
+        size += SIZE_INT32;
+        size += SIZE_INT32;
+        size += SIZE_INT32;
+        size += SIZE_INT32;
+        size += SIZE_INT32;
+        size += computeTLStringSerializedSize(meUrlPrefix);
         size += disabledFeatures.computeSerializedSize();
         return size;
     }
@@ -214,6 +259,14 @@ public class TLConfig extends TLObject {
     @Override
     public int getConstructorId() {
         return CONSTRUCTOR_ID;
+    }
+
+    public boolean getPhonecallsEnabled() {
+        return phonecallsEnabled;
+    }
+
+    public void setPhonecallsEnabled(boolean phonecallsEnabled) {
+        this.phonecallsEnabled = phonecallsEnabled;
     }
 
     public int getDate() {
@@ -390,6 +443,54 @@ public class TLConfig extends TLObject {
 
     public void setTmpSessions(Integer tmpSessions) {
         this.tmpSessions = tmpSessions;
+    }
+
+    public int getPinnedDialogsCountMax() {
+        return pinnedDialogsCountMax;
+    }
+
+    public void setPinnedDialogsCountMax(int pinnedDialogsCountMax) {
+        this.pinnedDialogsCountMax = pinnedDialogsCountMax;
+    }
+
+    public int getCallReceiveTimeoutMs() {
+        return callReceiveTimeoutMs;
+    }
+
+    public void setCallReceiveTimeoutMs(int callReceiveTimeoutMs) {
+        this.callReceiveTimeoutMs = callReceiveTimeoutMs;
+    }
+
+    public int getCallRingTimeoutMs() {
+        return callRingTimeoutMs;
+    }
+
+    public void setCallRingTimeoutMs(int callRingTimeoutMs) {
+        this.callRingTimeoutMs = callRingTimeoutMs;
+    }
+
+    public int getCallConnectTimeoutMs() {
+        return callConnectTimeoutMs;
+    }
+
+    public void setCallConnectTimeoutMs(int callConnectTimeoutMs) {
+        this.callConnectTimeoutMs = callConnectTimeoutMs;
+    }
+
+    public int getCallPacketTimeoutMs() {
+        return callPacketTimeoutMs;
+    }
+
+    public void setCallPacketTimeoutMs(int callPacketTimeoutMs) {
+        this.callPacketTimeoutMs = callPacketTimeoutMs;
+    }
+
+    public String getMeUrlPrefix() {
+        return meUrlPrefix;
+    }
+
+    public void setMeUrlPrefix(String meUrlPrefix) {
+        this.meUrlPrefix = meUrlPrefix;
     }
 
     public TLVector<TLDisabledFeature> getDisabledFeatures() {

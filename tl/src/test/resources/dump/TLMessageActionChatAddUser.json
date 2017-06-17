@@ -1,15 +1,4 @@
 {
-  "users": [
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0
-  ],
+  "users": [],
   "_constructor": "messageActionChatAddUser#488a7337"
 }

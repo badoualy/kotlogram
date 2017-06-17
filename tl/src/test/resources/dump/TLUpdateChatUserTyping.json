@@ -2,7 +2,7 @@
   "chatId": 0,
   "userId": 0,
   "action": {
-    "_constructor": "sendMessageCancelAction#fd5ec8f5"
+    "_constructor": "sendMessageTypingAction#16bf744e"
   },
   "_constructor": "updateChatUserTyping#9a65ea1f"
 }

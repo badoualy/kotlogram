@@ -22,6 +22,7 @@ import static com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_INT32;
  * @see <a href="http://github.com/badoualy/kotlogram">http://github.com/badoualy/kotlogram</a>
  */
 public class TLRequestMessagesGetMessageEditData extends TLMethod<TLMessageEditData> {
+
     public static final int CONSTRUCTOR_ID = 0xfda68d36;
 
     protected TLAbsInputPeer peer;
@@ -46,7 +47,9 @@ public class TLRequestMessagesGetMessageEditData extends TLMethod<TLMessageEditD
             throw new IOException("Unable to parse response");
         }
         if (!(response instanceof TLMessageEditData)) {
-            throw new IOException("Incorrect response type, expected " + getClass().getCanonicalName() + ", found " + response.getClass().getCanonicalName());
+            throw new IOException(
+                    "Incorrect response type, expected " + getClass().getCanonicalName() + ", found " + response
+                            .getClass().getCanonicalName());
         }
         return (TLMessageEditData) response;
     }

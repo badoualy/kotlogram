@@ -22,6 +22,7 @@ import static com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_INT32;
  * @see <a href="http://github.com/badoualy/kotlogram">http://github.com/badoualy/kotlogram</a>
  */
 public class TLTopPeerCategoryPeers extends TLObject {
+
     public static final int CONSTRUCTOR_ID = 0xfb834291;
 
     protected TLAbsTopPeerCategory category;

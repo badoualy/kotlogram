@@ -24,7 +24,8 @@ import static com.github.badoualy.telegram.tl.TLObjectUtils.computeTLStringSeria
  * @see <a href="http://github.com/badoualy/kotlogram">http://github.com/badoualy/kotlogram</a>
  */
 public class TLUser extends TLAbsUser {
-    public static final int CONSTRUCTOR_ID = 0xd10d979a;
+
+    public static final int CONSTRUCTOR_ID = 0x2e13f4c3;
 
     protected int flags;
 
@@ -70,12 +71,14 @@ public class TLUser extends TLAbsUser {
 
     protected String botInlinePlaceholder;
 
-    private final String _constructor = "user#d10d979a";
+    protected String langCode;
+
+    private final String _constructor = "user#2e13f4c3";
 
     public TLUser() {
     }
 
-    public TLUser(boolean self, boolean contact, boolean mutualContact, boolean deleted, boolean bot, boolean botChatHistory, boolean botNochats, boolean verified, boolean restricted, boolean min, boolean botInlineGeo, int id, Long accessHash, String firstName, String lastName, String username, String phone, TLAbsUserProfilePhoto photo, TLAbsUserStatus status, Integer botInfoVersion, String restrictionReason, String botInlinePlaceholder) {
+    public TLUser(boolean self, boolean contact, boolean mutualContact, boolean deleted, boolean bot, boolean botChatHistory, boolean botNochats, boolean verified, boolean restricted, boolean min, boolean botInlineGeo, int id, Long accessHash, String firstName, String lastName, String username, String phone, TLAbsUserProfilePhoto photo, TLAbsUserStatus status, Integer botInfoVersion, String restrictionReason, String botInlinePlaceholder, String langCode) {
         this.self = self;
         this.contact = contact;
         this.mutualContact = mutualContact;
@@ -98,6 +101,7 @@ public class TLUser extends TLAbsUser {
         this.botInfoVersion = botInfoVersion;
         this.restrictionReason = restrictionReason;
         this.botInlinePlaceholder = botInlinePlaceholder;
+        this.langCode = langCode;
     }
 
     private void computeFlags() {
@@ -123,6 +127,7 @@ public class TLUser extends TLAbsUser {
         flags = botInfoVersion != null ? (flags | 16384) : (flags & ~16384);
         flags = restrictionReason != null ? (flags | 262144) : (flags & ~262144);
         flags = botInlinePlaceholder != null ? (flags | 524288) : (flags & ~524288);
+        flags = langCode != null ? (flags | 4194304) : (flags & ~4194304);
 
         // Following parameters might be forced to true by another field that updated the flags
         bot = (flags & 16384) != 0;
@@ -175,6 +180,10 @@ public class TLUser extends TLAbsUser {
             if (botInlinePlaceholder == null) throwNullFieldException("botInlinePlaceholder", flags);
             writeString(botInlinePlaceholder, stream);
         }
+        if ((flags & 4194304) != 0) {
+            if (langCode == null) throwNullFieldException("langCode", flags);
+            writeString(langCode, stream);
+        }
     }
 
     @Override
@@ -203,6 +212,7 @@ public class TLUser extends TLAbsUser {
         botInfoVersion = (flags & 16384) != 0 ? readInt(stream) : null;
         restrictionReason = (flags & 262144) != 0 ? readTLString(stream) : null;
         botInlinePlaceholder = (flags & 524288) != 0 ? readTLString(stream) : null;
+        langCode = (flags & 4194304) != 0 ? readTLString(stream) : null;
     }
 
     @Override
@@ -251,6 +261,10 @@ public class TLUser extends TLAbsUser {
         if ((flags & 524288) != 0) {
             if (botInlinePlaceholder == null) throwNullFieldException("botInlinePlaceholder", flags);
             size += computeTLStringSerializedSize(botInlinePlaceholder);
+        }
+        if ((flags & 4194304) != 0) {
+            if (langCode == null) throwNullFieldException("langCode", flags);
+            size += computeTLStringSerializedSize(langCode);
         }
         return size;
     }
@@ -439,6 +453,14 @@ public class TLUser extends TLAbsUser {
 
     public void setBotInlinePlaceholder(String botInlinePlaceholder) {
         this.botInlinePlaceholder = botInlinePlaceholder;
+    }
+
+    public String getLangCode() {
+        return langCode;
+    }
+
+    public void setLangCode(String langCode) {
+        this.langCode = langCode;
     }
 
     @Override

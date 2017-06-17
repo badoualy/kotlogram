@@ -1,21 +1,20 @@
 {
-  "type": "18UmMjKmFJFn7VxnzEmBy",
+  "type": "eGZzlGMk0hiJKIuXFNtJCp",
   "photo": {
     "_constructor": "inputPhotoEmpty#1cd7bf0d"
   },
   "_constructor": "inputBotInlineResultPhoto#a8d864a7",
-  "id": "ukpctRHbuZxN6bV1d",
+  "id": "KckcSEo0MTj5eMXZdBS9",
   "sendMessage": {
-    "phoneNumber": "jXOfszgEH9P6e6E0L03BOWhJ",
-    "firstName": "KDPxJ3F9AI7PjdjlOd6",
-    "lastName": "6d9xNqI0mXCL77Kh7S3p3C",
-    "_constructor": "inputBotInlineMessageMediaContact#2daf01a7",
+    "geoPoint": {
+      "_constructor": "inputGeoPointEmpty#e4c123d6"
+    },
+    "_constructor": "inputBotInlineMessageMediaGeo#f4a59de1",
     "flags": 4,
     "replyMarkup": {
-      "flags": 6,
-      "singleUse": true,
-      "selective": true,
-      "_constructor": "replyKeyboardForceReply#f4108aa0"
+      "flags": 0,
+      "selective": false,
+      "_constructor": "replyKeyboardHide#a03e5b85"
     }
   }
 }

@@ -18,6 +18,9 @@ import com.github.badoualy.telegram.tl.core.TLObject;
  * <li>{@link TLMessageActionEmpty}: messageActionEmpty#b6aef7b0</li>
  * <li>{@link TLMessageActionGameScore}: messageActionGameScore#92a72876</li>
  * <li>{@link TLMessageActionHistoryClear}: messageActionHistoryClear#9fbab604</li>
+ * <li>{@link TLMessageActionPaymentSent}: messageActionPaymentSent#40699cd0</li>
+ * <li>{@link TLMessageActionPaymentSentMe}: messageActionPaymentSentMe#8f31b327</li>
+ * <li>{@link TLMessageActionPhoneCall}: messageActionPhoneCall#80e11a7f</li>
  * <li>{@link TLMessageActionPinMessage}: messageActionPinMessage#94bd38ed</li>
  * </ul>
  *
@@ -25,6 +28,7 @@ import com.github.badoualy.telegram.tl.core.TLObject;
  * @see <a href="http://github.com/badoualy/kotlogram">http://github.com/badoualy/kotlogram</a>
  */
 public abstract class TLAbsMessageAction extends TLObject {
+
     public TLAbsMessageAction() {
     }
 }

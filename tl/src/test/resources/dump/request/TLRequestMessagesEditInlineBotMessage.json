@@ -1,62 +1,47 @@
 {
-  "flags": 2060,
-  "noWebpage": false,
+  "flags": 2062,
+  "noWebpage": true,
   "id": {
     "dcId": 0,
     "id": 0,
     "accessHash": 0,
     "_constructor": "inputBotInlineMessageID#890c3d89"
   },
-  "message": "Oc0Pv4R6LOmLKfXN",
+  "message": "sKrfp09wAs8jrA1yRUvWMP",
   "replyMarkup": {
-    "flags": 6,
-    "singleUse": true,
-    "selective": true,
-    "_constructor": "replyKeyboardForceReply#f4108aa0"
+    "rows": [
+      {
+        "buttons": [
+          {
+            "_constructor": "keyboardButtonRequestPhone#b16a6c29",
+            "text": "ok4AUtyuIZKy"
+          },
+          {
+            "flags": 0,
+            "samePeer": false,
+            "query": "jvz4SacKCZDRh4Tpu",
+            "_constructor": "keyboardButtonSwitchInline#568a748",
+            "text": "Sii9CoRFvaAzJf"
+          }
+        ],
+        "_constructor": "keyboardButtonRow#77608b83"
+      },
+      {
+        "buttons": [
+          {
+            "_constructor": "keyboardButton#a2fa4880",
+            "text": "wT6fRXAz"
+          }
+        ],
+        "_constructor": "keyboardButtonRow#77608b83"
+      }
+    ],
+    "_constructor": "replyInlineMarkup#48a30254"
   },
   "entities": [
     {
-      "_constructor": "messageEntityBotCommand#6cef8ac7",
-      "offset": 0,
-      "length": 0
-    },
-    {
-      "_constructor": "messageEntityEmail#64e475c2",
-      "offset": 0,
-      "length": 0
-    },
-    {
-      "_constructor": "messageEntityUrl#6ed02538",
-      "offset": 0,
-      "length": 0
-    },
-    {
-      "url": "vrxbStqo5kfD",
-      "_constructor": "messageEntityTextUrl#76a6d327",
-      "offset": 0,
-      "length": 0
-    },
-    {
-      "_constructor": "messageEntityBotCommand#6cef8ac7",
-      "offset": 0,
-      "length": 0
-    },
-    {
-      "language": "KW5kLt",
-      "_constructor": "messageEntityPre#73924be0",
-      "offset": 0,
-      "length": 0
-    },
-    {
-      "userId": {
-        "_constructor": "inputUserSelf#f7c1b13f"
-      },
-      "_constructor": "inputMessageEntityMentionName#208e68c9",
-      "offset": 0,
-      "length": 0
-    },
-    {
-      "_constructor": "messageEntityMention#fa04579d",
+      "userId": 0,
+      "_constructor": "messageEntityMentionName#352dca58",
       "offset": 0,
       "length": 0
     }

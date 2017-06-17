@@ -19,6 +19,7 @@ import static com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_INT64;
  * @see <a href="http://github.com/badoualy/kotlogram">http://github.com/badoualy/kotlogram</a>
  */
 public class TLInputFileLocation extends TLAbsInputFileLocation {
+
     public static final int CONSTRUCTOR_ID = 0x14637196;
 
     protected long volumeId;

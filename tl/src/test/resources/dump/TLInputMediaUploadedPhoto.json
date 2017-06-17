@@ -1,24 +1,13 @@
 {
   "flags": 1,
   "file": {
-    "md5Checksum": "VXiI2HyiEx6PugXbKq",
+    "md5Checksum": "vPsbTWtATG",
     "_constructor": "inputFile#f52ff27f",
     "id": 0,
     "parts": 0,
-    "name": "8UOnWYnH3AWd2"
+    "name": "FH7bHH218fIHlvkONmOL8vfi"
   },
-  "caption": "4S8R5QTbLjyumo2flShXB",
-  "stickers": [
-    {
-      "id": 0,
-      "accessHash": 0,
-      "_constructor": "inputDocument#18798952"
-    },
-    {
-      "id": 0,
-      "accessHash": 0,
-      "_constructor": "inputDocument#18798952"
-    }
-  ],
+  "caption": "AQFaRBJtcWIj2JuQaTO9XvqJJIKvG",
+  "stickers": [],
   "_constructor": "inputMediaUploadedPhoto#630c9af1"
 }

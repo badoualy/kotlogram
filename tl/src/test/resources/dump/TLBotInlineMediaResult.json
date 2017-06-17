@@ -7,15 +7,17 @@
     "_constructor": "documentEmpty#36f8c871",
     "id": 0
   },
-  "title": "LhUBOCfZr3dn7HDG3jQtzx7CPA",
-  "description": "SGziBq5BrlWBCL8mD8fg8oUQ3gB",
+  "title": "dNluETn3vQ9Hfz",
+  "description": "rDUH2JkHnVtlLB9O",
   "_constructor": "botInlineMediaResult#17db940b",
   "flags": 15,
-  "id": "Ks7nG8wTlkN5l",
-  "type": "RzjH2ee088YdWrIHT5xbZuuAVPdn",
+  "id": "gs2f3l03E",
+  "type": "NareT772",
   "sendMessage": {
-    "caption": "WuOsRmp4SRIQmj8tb1KR6lv",
-    "_constructor": "botInlineMessageMediaAuto#a74b15b",
+    "phoneNumber": "iNkq0H3SLGgf9GQmszQxgxZkq",
+    "firstName": "6f1SKeDKEuUP0vvo9jzApF",
+    "lastName": "5QK7gUF4QTMXc2DkX52OTjGFLW9Qf",
+    "_constructor": "botInlineMessageMediaContact#35edb4d4",
     "flags": 4,
     "replyMarkup": {
       "flags": 2,

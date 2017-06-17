@@ -1,9 +1,9 @@
 {
-  "flags": 61420,
-  "out": false,
-  "mentioned": false,
+  "flags": 53246,
+  "out": true,
+  "mentioned": true,
   "mediaUnread": true,
-  "silent": true,
+  "silent": false,
   "post": true,
   "fromId": 0,
   "toId": {
@@ -21,32 +21,55 @@
   "viaBotId": 0,
   "replyToMsgId": 0,
   "date": 0,
-  "message": "KFfIlp1yvZLiN9dFqR8S3z3X",
+  "message": "bQOCLnTWIaaOY",
   "media": {
-    "phoneNumber": "JLnRwh",
-    "firstName": "vN5KCpC1H9geE",
-    "lastName": "Oy5cxL8",
-    "userId": 0,
-    "_constructor": "messageMediaContact#5e7d2f39"
+    "flags": 15,
+    "shippingAddressRequested": true,
+    "test": true,
+    "title": "BCn7ReSy0t7OeyupGBYI2",
+    "description": "rUJxleN7Xhp4iFT8KnxL",
+    "photo": {
+      "url": "9SxpeYj6RO0nTbIkwsr0",
+      "accessHash": 0,
+      "size": 0,
+      "mimeType": "oMAIwYcY37mFzy",
+      "attributes": [
+        {
+          "_constructor": "documentAttributeAnimated#11b58939"
+        }
+      ],
+      "dcId": 0,
+      "_constructor": "webDocument#c61acbd8"
+    },
+    "receiptMsgId": 0,
+    "currency": "8w6a69u5CWYgcQTrwywvO1KryacLm",
+    "totalAmount": 0,
+    "startParam": "S46TEVxak8",
+    "_constructor": "messageMediaInvoice#84551347"
   },
   "replyMarkup": {
-    "flags": 2,
+    "flags": 6,
+    "resize": false,
     "singleUse": true,
-    "selective": false,
-    "_constructor": "replyKeyboardForceReply#f4108aa0"
+    "selective": true,
+    "rows": [
+      {
+        "buttons": [
+          {
+            "_constructor": "keyboardButton#a2fa4880",
+            "text": "Mv1HJpzWf"
+          },
+          {
+            "_constructor": "keyboardButton#a2fa4880",
+            "text": "4tM559wyr1WL8G"
+          }
+        ],
+        "_constructor": "keyboardButtonRow#77608b83"
+      }
+    ],
+    "_constructor": "replyKeyboardMarkup#3502758c"
   },
-  "entities": [
-    {
-      "_constructor": "messageEntityUnknown#bb92ba95",
-      "offset": 0,
-      "length": 0
-    },
-    {
-      "_constructor": "messageEntityHashtag#6f635b0d",
-      "offset": 0,
-      "length": 0
-    }
-  ],
+  "entities": [],
   "views": 0,
   "editDate": 0,
   "_constructor": "message#c09be45f",

@@ -12,6 +12,7 @@ import com.github.badoualy.telegram.tl.core.TLObject;
  * <li>{@link TLInputMediaGame}: inputMediaGame#d33f43f3</li>
  * <li>{@link TLInputMediaGeoPoint}: inputMediaGeoPoint#f9c44144</li>
  * <li>{@link TLInputMediaGifExternal}: inputMediaGifExternal#4843b0fd</li>
+ * <li>{@link TLInputMediaInvoice}: inputMediaInvoice#92153685</li>
  * <li>{@link TLInputMediaPhoto}: inputMediaPhoto#e9bfb4f3</li>
  * <li>{@link TLInputMediaPhotoExternal}: inputMediaPhotoExternal#b55f4f18</li>
  * <li>{@link TLInputMediaUploadedDocument}: inputMediaUploadedDocument#d070f1e9</li>
@@ -24,6 +25,7 @@ import com.github.badoualy.telegram.tl.core.TLObject;
  * @see <a href="http://github.com/badoualy/kotlogram">http://github.com/badoualy/kotlogram</a>
  */
 public abstract class TLAbsInputMedia extends TLObject {
+
     public TLAbsInputMedia() {
     }
 }

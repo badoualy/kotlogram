@@ -16,6 +16,7 @@ import static com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_INT32;
  * @see <a href="http://github.com/badoualy/kotlogram">http://github.com/badoualy/kotlogram</a>
  */
 public class TLEncryptedChatDiscarded extends TLAbsEncryptedChat {
+
     public static final int CONSTRUCTOR_ID = 0x13d6dd27;
 
     private final String _constructor = "encryptedChatDiscarded#13d6dd27";

@@ -26,6 +26,7 @@ import static com.github.badoualy.telegram.tl.TLObjectUtils.computeTLBytesSerial
  * @see <a href="http://github.com/badoualy/kotlogram">http://github.com/badoualy/kotlogram</a>
  */
 public class TLRequestMessagesSendEncrypted extends TLMethod<TLAbsSentEncryptedMessage> {
+
     public static final int CONSTRUCTOR_ID = 0xa9776773;
 
     protected TLInputEncryptedChat peer;
@@ -53,7 +54,9 @@ public class TLRequestMessagesSendEncrypted extends TLMethod<TLAbsSentEncryptedM
             throw new IOException("Unable to parse response");
         }
         if (!(response instanceof TLAbsSentEncryptedMessage)) {
-            throw new IOException("Incorrect response type, expected " + getClass().getCanonicalName() + ", found " + response.getClass().getCanonicalName());
+            throw new IOException(
+                    "Incorrect response type, expected " + getClass().getCanonicalName() + ", found " + response
+                            .getClass().getCanonicalName());
         }
         return (TLAbsSentEncryptedMessage) response;
     }

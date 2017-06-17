@@ -9,7 +9,9 @@ private val rawRegex = Regex("[a-zA-Z].+")
 
 fun buildFromJson(root: JsonNode): TLDefinition {
     println("Reading TL-Schema...")
-    val constructorsNode = root["constructors"].filterNot { c -> IgnoredTypes.contains(c["type"].textValue()) }
+    val constructorsNode = root["constructors"].filterNot { c ->
+        IgnoredTypes.contains(c["type"].textValue())
+    }
     val methodsNode = root["methods"]
 
     val types = HashMap<String, TLTypeRaw>()
@@ -26,7 +28,11 @@ fun buildFromJson(root: JsonNode): TLDefinition {
     println("Reading constructors...")
     for (constructor in constructorsNode) {
         val name = constructor["predicate"].textValue()
-        val id = constructor["id"].textValue().toInt()
+        val id = try {
+            constructor["id"].intValue()
+        } catch (e: Exception) {
+            constructor["id"].textValue().toInt()
+        }
         val type = constructor["type"].textValue()
         val tlType = types[type]!!
 
@@ -46,7 +52,11 @@ fun buildFromJson(root: JsonNode): TLDefinition {
     println("Reading methods...")
     for (method in methodsNode) {
         val name = method.get("method").textValue()
-        val id = method["id"].textValue().toInt()
+        val id = try {
+            method["id"].intValue()
+        } catch (e: Exception) {
+            method["id"].textValue().toInt()
+        }
         val type = method["type"].textValue()
         val tlType = createType(type, types, false)
 
@@ -76,18 +86,24 @@ private fun createType(typeName: String, types: Map<String, TLTypeRaw>, isParame
     isParameter && typeName == "#" -> TLTypeFlag()
     isParameter && typeName.matches(flagRegex) -> {
         val groups = flagRegex.matchEntire(typeName)?.groups
-        val maskName = groups?.get(1)?.value ?: throw RuntimeException("Unknown error with type $typeName")
-        val value = groups?.get(2)?.value?.toInt() ?: throw RuntimeException("Unknown error with type $typeName")
-        val realType = groups?.get(3)?.value ?: throw RuntimeException("Unknown error with type $typeName")
+        val maskName = groups?.get(1)?.value ?: throw RuntimeException(
+                "Unknown error with type $typeName")
+        val value = groups?.get(2)?.value?.toInt() ?: throw RuntimeException(
+                "Unknown error with type $typeName")
+        val realType = groups?.get(3)?.value ?: throw RuntimeException(
+                "Unknown error with type $typeName")
         if (maskName != "flags") throw RuntimeException("Unsupported flag name, expected `flags`")
 
         TLTypeConditional(value, createType(realType, types))
     }
     typeName.matches(genericRegex) -> {
         val groups = genericRegex.matchEntire(typeName)?.groups
-        val tlName: String = groups?.get(1)?.value ?: throw RuntimeException("Unknown error with type $typeName")
-        val genericName: String = groups?.get(2)?.value ?: throw RuntimeException("Unknown error with type $typeName")
-        if (!SupportedGenericTypes.contains(tlName)) throw RuntimeException("Unsupported generic type $tlName")
+        val tlName: String = groups?.get(1)?.value ?: throw RuntimeException(
+                "Unknown error with type $typeName")
+        val genericName: String = groups?.get(2)?.value ?: throw RuntimeException(
+                "Unknown error with type $typeName")
+        if (!SupportedGenericTypes.contains(tlName)) throw RuntimeException(
+                "Unsupported generic type $tlName")
 
         TLTypeGeneric(tlName, arrayOf(createType(genericName, types)))
     }
@@ -98,5 +114,6 @@ private fun createType(typeName: String, types: Map<String, TLTypeRaw>, isParame
             types[typeName]!!
         else throw RuntimeException("Unknown type " + typeName)
     }
-    else -> throw RuntimeException("Unsupported type $typeName for ${if (isParameter) "parameter" else "method"}")
+    else -> throw RuntimeException(
+            "Unsupported type $typeName for ${if (isParameter) "parameter" else "method"}")
 }

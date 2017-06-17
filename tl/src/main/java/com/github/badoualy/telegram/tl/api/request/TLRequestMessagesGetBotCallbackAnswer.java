@@ -26,6 +26,7 @@ import static com.github.badoualy.telegram.tl.TLObjectUtils.computeTLBytesSerial
  * @see <a href="http://github.com/badoualy/kotlogram">http://github.com/badoualy/kotlogram</a>
  */
 public class TLRequestMessagesGetBotCallbackAnswer extends TLMethod<TLBotCallbackAnswer> {
+
     public static final int CONSTRUCTOR_ID = 0x810a9fec;
 
     protected int flags;
@@ -58,7 +59,9 @@ public class TLRequestMessagesGetBotCallbackAnswer extends TLMethod<TLBotCallbac
             throw new IOException("Unable to parse response");
         }
         if (!(response instanceof TLBotCallbackAnswer)) {
-            throw new IOException("Incorrect response type, expected " + getClass().getCanonicalName() + ", found " + response.getClass().getCanonicalName());
+            throw new IOException(
+                    "Incorrect response type, expected " + getClass().getCanonicalName() + ", found " + response
+                            .getClass().getCanonicalName());
         }
         return (TLBotCallbackAnswer) response;
     }

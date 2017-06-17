@@ -5,9 +5,9 @@
     "accessHash": 0,
     "_constructor": "inputPeerUser#7b8e7de6"
   },
-  "q": "UiBWu",
+  "q": "Z7iUMyp",
   "filter": {
-    "_constructor": "inputMessagesFilterEmpty#57e2f66c"
+    "_constructor": "inputMessagesFilterPhotoVideoDocuments#d95e73bb"
   },
   "minDate": 0,
   "maxDate": 0,

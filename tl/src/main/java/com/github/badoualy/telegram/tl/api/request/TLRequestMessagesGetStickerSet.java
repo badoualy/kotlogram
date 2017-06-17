@@ -19,6 +19,7 @@ import static com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_CONSTRUCTOR_ID;
  * @see <a href="http://github.com/badoualy/kotlogram">http://github.com/badoualy/kotlogram</a>
  */
 public class TLRequestMessagesGetStickerSet extends TLMethod<TLStickerSet> {
+
     public static final int CONSTRUCTOR_ID = 0x2619a90e;
 
     protected TLAbsInputStickerSet stickerset;
@@ -40,7 +41,9 @@ public class TLRequestMessagesGetStickerSet extends TLMethod<TLStickerSet> {
             throw new IOException("Unable to parse response");
         }
         if (!(response instanceof TLStickerSet)) {
-            throw new IOException("Incorrect response type, expected " + getClass().getCanonicalName() + ", found " + response.getClass().getCanonicalName());
+            throw new IOException(
+                    "Incorrect response type, expected " + getClass().getCanonicalName() + ", found " + response
+                            .getClass().getCanonicalName());
         }
         return (TLStickerSet) response;
     }
