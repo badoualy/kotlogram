@@ -18,7 +18,7 @@ open class AuthKey(val key: ByteArray) {
     // SHA1 generates 20 bytes long hash, authKeyId is the lower 8 bytes
     val keyId = CryptoUtils.substring(CryptoUtils.SHA1(key), 12, 8)!!
 
-    val keyIdAsLong = BigInteger(keyId).longValueExact()
+    val keyIdAsLong = BigInteger(keyId).toLong()
 }
 
 class TempAuthKey(key: ByteArray, val expiresAt: Int) : AuthKey(key)

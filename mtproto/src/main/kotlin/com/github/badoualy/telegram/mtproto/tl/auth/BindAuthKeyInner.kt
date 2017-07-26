@@ -15,7 +15,7 @@ class BindAuthKeyInner @JvmOverloads constructor(var nonce: Long = 0,
     constructor(nonce: Long, tempAuthKeyId: Long, permAuthKeyId: Long,
                 tempSessionId: ByteArray, expiresAt: Int) : this(nonce,
                                                                  tempAuthKeyId, permAuthKeyId,
-                                                                 BigInteger(tempSessionId).longValueExact(), expiresAt)
+                                                                 BigInteger(tempSessionId).toLong(), expiresAt)
 
     override fun getConstructorId(): Int {
         return CONSTRUCTOR_ID

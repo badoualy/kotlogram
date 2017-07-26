@@ -28,7 +28,7 @@ class RandomUtils {
         @JvmStatic @Synchronized fun randomSessionId() = randomByteArray(8)
 
         /** @return a (random) 64-bit long number */
-        @JvmStatic @Synchronized fun randomLong() = BigInteger(randomByteArray(8)).longValueExact()
+        @JvmStatic @Synchronized fun randomLong() = BigInteger(randomByteArray(8)).toLong()
 
         /** @return a (random) int128 */
         @JvmStatic @Synchronized fun randomInt128() = randomByteArray(16)

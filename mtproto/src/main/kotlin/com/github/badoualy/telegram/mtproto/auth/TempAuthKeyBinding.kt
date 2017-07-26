@@ -38,7 +38,7 @@ object TempAuthKeyBinding {
         if (!Arrays.equals(mtProtoHandler.authKey!!.keyId, tempAuthKey.keyId))
             throw IllegalStateException("The MTProtoHandler must use the temporary authorization key that you want to bind")
 
-        val nonce = BigInteger(RandomUtils.randomByteArray(8)).longValueExact()
+        val nonce = BigInteger(RandomUtils.randomByteArray(8)).toLong()
 
         val bindingMessage = BindAuthKeyInner(nonce,
                                               tempAuthKey.keyIdAsLong, authKey.keyIdAsLong,
