@@ -74,7 +74,7 @@ object AuthKeyCreation {
                 return authResult
             } catch (e: FingerprintNotFoundException) {
                 try {
-                    connection!!.close()
+                    connection?.close()
                 } catch (e1: IOException) {
                     e1.printStackTrace()
                 }
@@ -82,7 +82,7 @@ object AuthKeyCreation {
                 e.printStackTrace()
             } catch (e: IOException) {
                 try {
-                    connection!!.close()
+                    connection?.close()
                 } catch (e1: IOException) {
                     e1.printStackTrace()
                 }
