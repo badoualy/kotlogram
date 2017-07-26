@@ -19,12 +19,11 @@ import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Random;
 import java.util.Set;
-import java.util.stream.Collectors;
 
 public abstract class AbsTLApiTest {
 
@@ -55,11 +54,24 @@ public abstract class AbsTLApiTest {
 
         Set<Class<? extends TLObject>> classList = reflections.getSubTypesOf(TLObject.class);
         System.out.println("Found " + classList.size() + " classes");
-        constructorList = classList.stream()
-                                   .filter(clazz -> (clazz.getModifiers() & Modifier.ABSTRACT) == 0)
-                                   .filter(clazz -> !clazz.getPackage().getName().equalsIgnoreCase("com.github.badoualy.telegram.tl.core"))
-                                   .sorted((o1, o2) -> o1.getSimpleName().compareTo(o2.getSimpleName()))
-                                   .collect(Collectors.toList());
+        constructorList = new ArrayList<>();
+
+        for (Class<? extends TLObject> clazz : classList) {
+            if (!((clazz.getModifiers() & Modifier.ABSTRACT) == 0)) {
+                continue;
+            }
+            if (clazz.getPackage().getName().equalsIgnoreCase("com.github.badoualy.telegram.tl.core")) {
+                continue;
+            }
+            constructorList.add(clazz);
+        }
+        Collections.sort(constructorList, new Comparator<Class<? extends TLObject>>() {
+            @Override
+            public int compare(Class<? extends TLObject> o1, Class<? extends TLObject> o2) {
+                return o1.getSimpleName().compareTo(o2.getSimpleName());
+            }
+        });
+
         System.out.println("Found " + constructorList.size() + " non abstract classes");
     }
 
@@ -69,22 +81,31 @@ public abstract class AbsTLApiTest {
         // Get class + superclass fields
         List<Field> fields = new ArrayList<>();
         Collections.addAll(fields, clazz.getDeclaredFields());
-        if (clazz.getSuperclass() != TLObject.class)
+        if (clazz.getSuperclass() != TLObject.class) {
             Collections.addAll(fields, clazz.getSuperclass().getDeclaredFields());
+        }
 
-        fields.stream()
-              .filter(field -> !field.getName().equalsIgnoreCase("flags"))
-              .filter(field -> ((field.getModifiers() & Modifier.TRANSIENT) == 0))
-              .filter(field -> ((field.getModifiers() & Modifier.STATIC) == 0))
-              .filter(field -> ((field.getModifiers() & Modifier.FINAL) == 0))
-              .forEach(field -> {
-                  field.setAccessible(true);
-                  try {
-                      field.set(object, getRandom(field.getType(), field));
-                  } catch (Exception e) {
-                      throw new RuntimeException(e);
-                  }
-              });
+        for (Field field : fields) {
+            if (field.getName().equalsIgnoreCase("flags")) {
+                continue;
+            }
+            if (!(((field.getModifiers() & Modifier.TRANSIENT) == 0))) {
+                continue;
+            }
+            if (!((field.getModifiers() & Modifier.STATIC) == 0)) {
+                continue;
+            }
+            if (!((field.getModifiers() & Modifier.FINAL) == 0)) {
+                continue;
+            }
+
+            field.setAccessible(true);
+            try {
+                field.set(object, getRandom(field.getType(), field));
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
+        }
 
         return object;
     }
@@ -92,7 +113,7 @@ public abstract class AbsTLApiTest {
     @SuppressWarnings("unchecked")
     public <T extends TLObject> T newInstanceOf(Class<T> clazz) throws Exception {
         for (Constructor<?> c : clazz.getConstructors()) {
-            if (c.getParameterCount() == 0) {
+            if (c.getParameterTypes().length == 0) {
                 c.setAccessible(true);
                 return (T) c.newInstance();
             }
@@ -114,14 +135,20 @@ public abstract class AbsTLApiTest {
     @SuppressWarnings("unchecked")
     public TLVector getRandomTLVector(Class<?> clazz) throws Exception {
         TLVector obj;
-        if (is(clazz, Integer.class)) obj = new TLIntVector();
-        else if (is(clazz, Long.class)) obj = new TLLongVector();
-        else if (is(clazz, String.class)) obj = new TLStringVector();
-        else obj = new TLVector(clazz);
+        if (is(clazz, Integer.class)) {
+            obj = new TLIntVector();
+        } else if (is(clazz, Long.class)) {
+            obj = new TLLongVector();
+        } else if (is(clazz, String.class)) {
+            obj = new TLStringVector();
+        } else {
+            obj = new TLVector(clazz);
+        }
 
         int size = random.nextInt(3);
-        for (int i = 0; i < size; i++)
+        for (int i = 0; i < size; i++) {
             obj.add(getRandom(clazz, null));
+        }
 
         return obj;
     }
@@ -129,18 +156,24 @@ public abstract class AbsTLApiTest {
     @SuppressWarnings("unchecked")
     public <T> T getRandom(Class<T> type, Field field) throws Exception {
         // Base types
-        if (is(type, int.class, Integer.class))
+        if (is(type, int.class, Integer.class)) {
             return (T) Integer.valueOf(random.nextInt());
-        if (is(type, long.class, Long.class))
+        }
+        if (is(type, long.class, Long.class)) {
             return (T) Long.valueOf(random.nextLong());
-        if (is(type, float.class, Float.class))
+        }
+        if (is(type, float.class, Float.class)) {
             return (T) Float.valueOf(random.nextFloat());
-        if (is(type, double.class, Double.class))
+        }
+        if (is(type, double.class, Double.class)) {
             return (T) Double.valueOf(random.nextDouble());
-        if (is(type, boolean.class, Boolean.class))
+        }
+        if (is(type, boolean.class, Boolean.class)) {
             return (T) Boolean.valueOf(random.nextBoolean());
-        if (is(type, String.class))
+        }
+        if (is(type, String.class)) {
             return (T) RandomStringUtils.random(random.nextInt(25) + 5, true, true);
+        }
         if (is(type, TLBytes.class)) {
             byte[] bytes = new byte[random.nextInt(256)];
             random.nextBytes(bytes);
@@ -148,12 +181,15 @@ public abstract class AbsTLApiTest {
         }
 
         // Vector
-        if (is(type, TLIntVector.class))
+        if (is(type, TLIntVector.class)) {
             return (T) getRandomTLVector(Integer.class);
-        if (is(type, TLLongVector.class))
+        }
+        if (is(type, TLLongVector.class)) {
             return (T) getRandomTLVector(Long.class);
-        if (is(type, TLStringVector.class))
+        }
+        if (is(type, TLStringVector.class)) {
             return (T) getRandomTLVector(String.class);
+        }
         if (is(type, TLVector.class)) {
             ParameterizedType genericType = (ParameterizedType) field.getGenericType();
             Type vectorType = genericType.getActualTypeArguments()[0];
@@ -176,10 +212,14 @@ public abstract class AbsTLApiTest {
     }
 
     public boolean is(Class<?> type, Class<?>... types) {
-        return Arrays.stream(types).anyMatch(clazz -> clazz == type);
+        for (Class<?> clazz : types) {
+            if (clazz == type) {
+                return true;
+            }
+        }
+        return false;
     }
 
-    // TODO: improve
     private static class PositiveRandom extends Random {
 
         public PositiveRandom(long seed) {

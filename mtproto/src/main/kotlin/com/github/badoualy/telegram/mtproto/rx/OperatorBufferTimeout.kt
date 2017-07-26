@@ -15,8 +15,8 @@ import java.util.concurrent.TimeUnit
  */
 class OperatorBufferTimeout<T>(val timeout: Long, val unit: TimeUnit,
                                val scheduler: Scheduler, val maxSize: Int,
-                               val shouldFlush: (T) -> Boolean = { t -> true },
-                               val shouldAdd: (T) -> Boolean = { t -> true }) : Observable.Operator<List<T>, T> {
+                               val shouldFlush: (T) -> Boolean = { true },
+                               val shouldAdd: (T) -> Boolean = { true }) : Observable.Operator<List<T>, T> {
 
     override fun call(t: Subscriber<in List<T>>): Subscriber<in T> {
         val parent = BufferSubscriber(SerializedSubscriber(t),
@@ -29,8 +29,8 @@ class OperatorBufferTimeout<T>(val timeout: Long, val unit: TimeUnit,
     private class BufferSubscriber<T>(val actual: Subscriber<in List<T>>,
                                       val timeout: Long, val unit: TimeUnit,
                                       val w: Scheduler.Worker, val maxSize: Int,
-                                      val shouldFlush: (T) -> Boolean = { t -> true },
-                                      val shouldAdd: (T) -> Boolean = { t -> true }) : Subscriber<T>() {
+                                      val shouldFlush: (T) -> Boolean = { true },
+                                      val shouldAdd: (T) -> Boolean = { true }) : Subscriber<T>() {
 
         val timer: SerialSubscription
         var buffer: MutableList<T>
@@ -58,7 +58,7 @@ class OperatorBufferTimeout<T>(val timeout: Long, val unit: TimeUnit,
                 if (shouldFlush(t)) {
                     buffer = ArrayList<T>()
                     index = ++idx
-                    emit = true;
+                    emit = true
                 } else {
                     val n = b!!.size
                     if (n == 1) {

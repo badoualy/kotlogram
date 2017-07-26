@@ -9,6 +9,7 @@ import org.testng.annotations.Factory;
 import org.testng.annotations.Test;
 
 import java.io.ByteArrayInputStream;
+import java.util.ArrayList;
 
 /**
  * Unit test to generate random TLObject for each type, and serialize then deserialize it and check if still equals.
@@ -36,8 +37,10 @@ public final class TLApiTest extends AbsTLApiTest implements ITest {
         T deserializedObject = newInstanceOf((Class<T>) clazz);
         ByteArrayInputStream is = new ByteArrayInputStream(bytes);
         deserializedObject.deserialize(is, TLApiTestContext.getInstance());
-        Assert.assertEquals(is.available(), 0, "Deserialization did not consume whole payload of " + bytes.length + " bytes");
-        Assert.assertEquals(DumpUtils.toJson(deserializedObject), DumpUtils.toJson(object), "Deserialization of serialized object returned an object non-equals");
+        Assert.assertEquals(is.available(), 0,
+                            "Deserialization did not consume whole payload of " + bytes.length + " bytes");
+        Assert.assertEquals(DumpUtils.toJson(deserializedObject), DumpUtils.toJson(object),
+                            "Deserialization of serialized object returned an object non-equals");
 
         //DumpUtils.dump(object, bytes);
     }
@@ -55,7 +58,11 @@ public final class TLApiTest extends AbsTLApiTest implements ITest {
         @Factory
         public Object[] generateTestSuite() {
             AbsTLApiTest.init();
-            return constructorList.stream().map(TLApiTest::new).toArray();
+            ArrayList<TLApiTest> list = new ArrayList<>();
+            for (Class<? extends TLObject> clazz : constructorList) {
+                list.add(new TLApiTest(clazz));
+            }
+            return list.toArray();
         }
     }
 }
