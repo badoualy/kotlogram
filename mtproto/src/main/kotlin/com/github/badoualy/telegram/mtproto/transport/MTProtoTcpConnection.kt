@@ -54,7 +54,7 @@ internal class MTProtoTcpConnection
 
                 break
             } catch(e: Exception) {
-                logger.error(marker, "Failed to connect")
+                logger.error(marker, "Failed to connect", e)
                 try {
                     socketChannel.close()
                 } catch (e: Exception) {

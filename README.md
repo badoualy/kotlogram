@@ -39,7 +39,7 @@ repositories {
 
 Then add the library dependency:
 ```gradle
-compile 'com.github.badoualy:kotlogram:47f69d4ce8'
+compile 'com.github.badoualy.kotlogram:api:66d520476b'
 ```
 
 Licence

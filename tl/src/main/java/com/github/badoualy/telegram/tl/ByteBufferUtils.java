@@ -103,7 +103,9 @@ public final class ByteBufferUtils {
     }
 
     public static int readByteAsInt(ByteBuffer buffer) throws IOException {
-        return Byte.toUnsignedInt(buffer.get());
+        return ((int) buffer.get()) & 0xff;
+        // API Level 1.8
+        //return Byte.toUnsignedInt(buffer.get());
     }
 
     public static void readBytes(byte[] dest, int offset, int length, ByteBuffer buffer) throws IOException {
