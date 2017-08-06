@@ -30,8 +30,8 @@ import java.util.*
 import java.util.concurrent.TimeoutException
 
 internal class DefaultTelegramClient internal constructor(val application: TelegramApp, val apiStorage: TelegramApiStorage,
-                                                          val preferredDataCenter: DataCenter,
                                                           val updateCallback: UpdateCallback?,
+                                                          val preferredDataCenter: DataCenter,
                                                           val tag: String) : TelegramApiWrapper(), TelegramClient, ApiCallback {
 
     private var mtProtoHandler: MTProtoHandler? = null
@@ -173,7 +173,7 @@ internal class DefaultTelegramClient internal constructor(val application: Teleg
     override fun getDownloaderClient() = DefaultTelegramClient(application,
                                                                ReadOnlyApiStorage(authKey!!,
                                                                                   mtProtoHandler!!.session),
-                                                               preferredDataCenter, updateCallback,
+                                                               updateCallback, preferredDataCenter,
                                                                "Downloader:$tag")
 
     /** Queue method now, without handling the result or any possible error */
@@ -223,9 +223,8 @@ internal class DefaultTelegramClient internal constructor(val application: Teleg
                     if (rpcException.code == 303) {
                         // DC error
                         logger.error(marker, "Received DC error: $rpcException")
-                        if (rpcException.tag.startsWith(
-                                "PHONE_MIGRATE_") || rpcException.tag.startsWith(
-                                "NETWORK_MIGRATE_")) {
+                        if (rpcException.tag.startsWith("PHONE_MIGRATE_")
+                                || rpcException.tag.startsWith("NETWORK_MIGRATE_")) {
                             val dcId = rpcException.tagInteger
                             logger.info(marker, "Repeat request after migration on DC$dcId")
                             migrate(dcId)
@@ -268,7 +267,9 @@ internal class DefaultTelegramClient internal constructor(val application: Teleg
         do {
             methods.clear()
             for (i in 0..5) {
-                methods.add(TLRequestUploadGetFile(inputLocation.inputFileLocation, offset, partSize))
+                methods.add(TLRequestUploadGetFile(inputLocation.inputFileLocation,
+                                                   offset,
+                                                   partSize))
                 offset += partSize
                 if (offset >= size)
                     break

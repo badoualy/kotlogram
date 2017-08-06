@@ -86,9 +86,8 @@ class MTProtoHandler {
         logger.info(session.marker, "startWatchdog()")
         MTProtoWatchdog.start(connection!!)
                 .observeOn(Schedulers.computation())
-                .doOnError { onErrorReceived(it) }
-                .doOnNext { onMessageReceived(it) }
-                .subscribe()
+                .subscribe({ onMessageReceived(it) },
+                           { onErrorReceived(it) })
     }
 
     private fun stopWatchdog() = MTProtoWatchdog.stop(connection!!)

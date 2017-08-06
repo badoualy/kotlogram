@@ -25,9 +25,11 @@ object Kotlogram {
     }
 
     @JvmOverloads @JvmStatic
-    fun getDefaultClient(application: TelegramApp, apiStorage: TelegramApiStorage, preferredDataCenter: DataCenter = PROD_DC4,
-                         updateCallback: UpdateCallback? = null, tag: String = RandomUtils.randomInt().toString())
-            : TelegramClient = DefaultTelegramClient(application, apiStorage, preferredDataCenter, updateCallback, tag)
+    fun getDefaultClient(application: TelegramApp, apiStorage: TelegramApiStorage,
+                         updateCallback: UpdateCallback? = null,
+                         preferredDataCenter: DataCenter = PROD_DC4,
+                         tag: String = RandomUtils.randomInt().toString())
+            : TelegramClient = DefaultTelegramClient(application, apiStorage, updateCallback, preferredDataCenter, tag)
 
     @JvmStatic
     fun shutdown() {
