@@ -9,19 +9,20 @@ Documentation@[http://kotlogram.badoualy.com](http://kotlogram.badoualy.com)
 > **Easy to use** and **straightforward** Kotlin (and Java) binding of [Telegram API](https://core.telegram.org/api).
 > The project is coded in **Kotlin**, with some classes (mostly generated and legacy classes) in Java
 
-> **Kotlin, what is that, I don't know this language!** 
-> Don't worry, Kotlin is a JVM language just like Java and Scala, and is interoperable with Java! You can use this as a standard Java Library
-
-Beta
+Kotlin, what is that, I don't know this language!
 ----------------
-The project is still in beta, a lot is yet to be done. It comes with absolutely no warranty!
-Main tasks left:
+Don't worry, Kotlin is a JVM language just like Java and Scala, and is fully interoperable with Java! You can use this as a standard Java Library.
+Kotlogram uses Kotlin to improve the usability of the lib. The TL Language used by Telegram's protocol as used requires a lot of boilerplate code when modeled in a language like Java. To be more developer-friendly, the lib includes a lot of utils in the form of Kotlin extension functions and properties.
+
+TODO list
+----------------
 - Implement [Perfect Forward Secrecy](https://core.telegram.org/api/pfs).
+- Implement CDN redirection handling when downloading files.
 
 Important notes
 ----------------
 This documentation's only purpose is to explain how the library works, and how to use it. Telegram documentation is sadly completely outdated and not of any use. Probably at some point in the future they'll either close the public API, or release new documentation (I'm hoping for the latter).
-But this documentation will not explain how to use their API, like how to get messages older than the date `X` or all the parameters of a rpc method.
+But this documentation **will not explain how to use their API**, like how to get messages older than the date `X` or all the parameters of a rpc method.
 Please, restrain from opening ticket about questions on the API, as I'll ignore them if I don't have the answer.
 
 Usage
