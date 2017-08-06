@@ -10,13 +10,10 @@ import java.nio.channels.Selector
 interface MTProtoConnection {
 
     var tag: String
-
     val marker: Marker
 
     val ip: String
-
     val port: Int
-
     val dataCenter: DataCenter
         get() = DataCenter(ip, port)
 

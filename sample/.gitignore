@@ -1,12 +1,10 @@
 /build
 
 # Files containing secret/personnal values
-Main.java
-auth*.key
-#src/test/java/com/github/badoualy/telegram/C.java
-*.save
+auth.key
+dc.save
+config.properties
+
+# Downloaded files...
 *.jpg
-/src/test/**/Sample*.java
-/src/main/resources/*
-tmp
-C.java
+*.webp

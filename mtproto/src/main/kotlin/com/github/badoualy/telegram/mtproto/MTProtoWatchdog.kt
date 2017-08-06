@@ -22,14 +22,15 @@ internal object MTProtoWatchdog : Runnable {
     private val SELECT_TIMEOUT_DELAY = 10 * 1000L // 10 seconds
 
     private val selector = Selector.open()
-    private val keyMap = HashMap<SelectionKey, MTProtoConnection>()
+    private val connectionMap = HashMap<SelectionKey, MTProtoConnection>()
 
     private val connectionList = ArrayList<MTProtoConnection>()
     private val subscriberMap = HashMap<MTProtoConnection, Subscriber<in ByteArray>>()
 
     private val executor = Executors.newSingleThreadExecutor(NamedThreadFactory(javaClass.simpleName, true))
-    private val pool = Executors.newCachedThreadPool(NamedThreadFactory("${javaClass.simpleName}-exec")) // TODO fixed pool?
+    private val pool = Executors.newCachedThreadPool(NamedThreadFactory("${javaClass.simpleName}-exec"))
 
+    @Volatile
     private var dirty = false
     private var running = false
 
@@ -38,8 +39,8 @@ internal object MTProtoWatchdog : Runnable {
             if (dirty) {
                 synchronized(this) {
                     connectionList
-                            .filterNot { keyMap.containsValue(it) }
-                            .forEach { keyMap.put(it.register(selector), it) }
+                            .filterNot { connectionMap.containsValue(it) }
+                            .forEach { connectionMap.put(it.register(selector), it) }
                     dirty = false
                 }
             }
@@ -48,7 +49,7 @@ internal object MTProtoWatchdog : Runnable {
                 synchronized(this) {
                     selector.selectedKeys().forEach { key ->
                         key.interestOps(0)
-                        val connection = keyMap[key]
+                        val connection = connectionMap[key]
                         if (connection != null) {
                             pool.execute {
                                 if (!connection.isOpen())
@@ -130,11 +131,11 @@ internal object MTProtoWatchdog : Runnable {
             val subscriber = subscriberMap.remove(connection)
             subscriber?.unsubscribe()
             val key = connection.unregister()
-            if (key != null) keyMap.remove(key)
+            if (key != null) connectionMap.remove(key)
         }
     }
 
-    fun cleanUp() {
+    fun shutdown() {
         logger.warn("==================== SHUTTING DOWN WATCHDOG ====================")
         executor.shutdownNow()
         pool.shutdownNow()

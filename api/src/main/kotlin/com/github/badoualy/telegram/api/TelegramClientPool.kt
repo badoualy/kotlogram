@@ -93,7 +93,7 @@ class TelegramClientPool private constructor(name: String) {
             listenerMap.remove(id)?.onClientTimeout(id)
     }
 
-    fun cleanUp() {
+    fun shutdown() {
         timer.cancel()
     }
 

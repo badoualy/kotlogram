@@ -1,6 +1,5 @@
 subprojects {
     apply plugin: 'java'
-    apply plugin: 'maven'
 
     version = "1.0.0-RC2"
     group = 'com.github.badoualy'

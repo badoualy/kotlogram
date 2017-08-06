@@ -30,12 +30,12 @@ object Kotlogram {
             : TelegramClient = DefaultTelegramClient(application, apiStorage, preferredDataCenter, updateCallback, tag)
 
     @JvmStatic
-    fun cleanUp() {
-        logger.warn("==================== CLEANING ====================")
-        TelegramClientPool.DEFAULT_POOL.cleanUp()
-        TelegramClientPool.DOWNLOADER_POOL.cleanUp()
-        MTProtoHandler.cleanUp()
-        logger.warn("==================== CLEANED ====================")
+    fun shutdown() {
+        logger.warn("==================== SHUTTING DOWN ====================")
+        TelegramClientPool.DEFAULT_POOL.shutdown()
+        TelegramClientPool.DOWNLOADER_POOL.shutdown()
+        MTProtoHandler.shutdown()
+        logger.warn("==================== SHUT DOWN DONE ====================")
     }
 
     @JvmField val PROD_DC1 = DataCenter("149.154.175.50", 443)

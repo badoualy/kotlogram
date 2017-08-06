@@ -660,11 +660,11 @@ class MTProtoHandler {
         @JvmStatic val QUEUE_TYPE_DISCARD = 0
         //@JvmStatic val QUEUE_TYPE_FLUSH = 1
 
-        /** Cleanup all the threads and common resources associated to this instance */
+        /** Shutdown all the threads and common resources associated to this instance */
         @JvmStatic
-        fun cleanUp() {
-            logger.warn("cleanUp()")
-            MTProtoWatchdog.cleanUp()
+        fun shutdown() {
+            logger.warn("shutdown()")
+            MTProtoWatchdog.shutdown()
             MTProtoTimer.shutdown()
         }
     }

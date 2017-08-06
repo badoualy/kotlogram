@@ -2,11 +2,11 @@ package com.github.badoualy.telegram.mtproto.util
 
 import java.math.BigInteger
 
-internal open class Pair<F, S>(val first: F, val second: S) {
+internal open class Pair<out F, out S>(val first: F, val second: S) {
 
     override fun equals(other: Any?) = other is Pair<*, *> && other.first == first && other.second == second
 
-    override fun hashCode() = (if (first == null) 0 else first.hashCode()) xor (if (second == null) 0 else second.hashCode())
+    override fun hashCode() = (first?.hashCode() ?: 0) xor (second?.hashCode() ?: 0)
 
     companion object {
         fun <A, B> create(a: A, b: B) = Pair(a, b)

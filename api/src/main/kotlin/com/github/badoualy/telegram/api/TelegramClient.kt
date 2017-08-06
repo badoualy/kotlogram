@@ -26,8 +26,8 @@ interface TelegramClient : TelegramApi {
     /** Close connection to Telegram and stop everything */
     fun close()
 
-    /** Close connection, and clean the threads if cleanUp is true */
-    fun close(cleanUp: Boolean)
+    /** Close connection, and clean the threads if shutdown is true */
+    fun close(shutdown: Boolean)
 
     fun isClosed(): Boolean
 
@@ -148,7 +148,7 @@ interface TelegramClient : TelegramApi {
     /** Convenience method to download a file synchronously */
     @Throws(RpcErrorException::class, IOException::class)
     fun downloadSync(inputLocation: InputFileLocation, size: Int, outputStream: OutputStream) =
-            downloadSync(inputLocation, size, 512 * 1024, outputStream)
+            downloadSync(inputLocation, size, 128 * 1024, outputStream)
 
     /** Convenience method to download a file synchronously */
     @Throws(RpcErrorException::class, IOException::class)

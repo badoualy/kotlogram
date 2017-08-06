@@ -157,14 +157,14 @@ internal class DefaultTelegramClient internal constructor(val application: Teleg
 
     override fun close() = close(true)
 
-    override fun close(cleanUp: Boolean) {
+    override fun close(shutdown: Boolean) {
         closed = true
         try {
             mtProtoHandler?.close()
         } catch (e: Exception) {
         }
-        if (cleanUp)
-            Kotlogram.cleanUp()
+        if (shutdown)
+            Kotlogram.shutdown()
         apiStorage.saveSession(mtProtoHandler!!.session)
     }
 
@@ -242,8 +242,7 @@ internal class DefaultTelegramClient internal constructor(val application: Teleg
                         }
                     }
                     logger.error(marker, "Unhandled RpcError $rpcException")
-                    throw RpcErrorException(rpcException.code,
-                                            rpcException.tag) // Better stack trace
+                    throw RpcErrorException(rpcException.code, rpcException.tag)
                 }
                 is TimeoutException, is ClosedChannelException, is IOException -> {
                     if (attemptCount < 2) {
@@ -269,9 +268,8 @@ internal class DefaultTelegramClient internal constructor(val application: Teleg
         do {
             methods.clear()
             for (i in 0..5) {
-                val limit = Math.min(partSize, size - offset)
-                methods.add(TLRequestUploadGetFile(inputLocation.inputFileLocation, offset, limit))
-                offset += limit
+                methods.add(TLRequestUploadGetFile(inputLocation.inputFileLocation, offset, partSize))
+                offset += partSize
                 if (offset >= size)
                     break
             }

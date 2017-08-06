@@ -38,8 +38,8 @@ internal class MTProtoTcpConnection
         var attempt = 1
         do {
             socketChannel = SocketChannel.open()
-            socketChannel.setOption(StandardSocketOptions.SO_KEEPALIVE, true)
-            //socketChannel.setOption(StandardSocketOptions.TCP_NODELAY, true)
+            //socketChannel.setOption(StandardSocketOptions.SO_KEEPALIVE, true)
+            socketChannel.setOption(StandardSocketOptions.TCP_NODELAY, true)
             socketChannel.configureBlocking(true)
             try {
                 socketChannel.connect(InetSocketAddress(ip, port))
@@ -50,7 +50,7 @@ internal class MTProtoTcpConnection
                     logger.info(marker, "Using abridged protocol")
                     socketChannel.write(ByteBuffer.wrap(byteArrayOf(0xef.toByte())))
                 }
-                logger.info(marker, "Connected to $ip:$port isConnected: ${socketChannel.isConnected}, isOpen: ${socketChannel.isOpen}")
+                logger.info(marker, "Connected to $ip:$port")
 
                 break
             } catch(e: Exception) {
@@ -60,7 +60,7 @@ internal class MTProtoTcpConnection
                 } catch (e: Exception) {
                 }
             }
-            Thread.sleep(TimeUnit.SECONDS.toMillis(1))
+            Thread.sleep(TimeUnit.SECONDS.toMillis(2))
 
             if (attempt == ATTEMPT_COUNT)
                 throw ConnectException("Failed to join Telegram server at $ip:$port")
