@@ -38,8 +38,8 @@ internal class MTProtoTcpConnection
         var attempt = 1
         do {
             socketChannel = SocketChannel.open()
-            //socketChannel.setOption(StandardSocketOptions.SO_KEEPALIVE, true)
-            socketChannel.setOption(StandardSocketOptions.TCP_NODELAY, true)
+            socketChannel.setOption(StandardSocketOptions.SO_KEEPALIVE, true)
+            //socketChannel.setOption(StandardSocketOptions.TCP_NODELAY, true)
             socketChannel.configureBlocking(true)
             try {
                 socketChannel.connect(InetSocketAddress(ip, port))
