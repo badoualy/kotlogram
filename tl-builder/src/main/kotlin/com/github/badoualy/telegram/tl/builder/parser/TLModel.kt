@@ -3,7 +3,7 @@ package com.github.badoualy.telegram.tl.builder.parser
 import com.github.badoualy.telegram.tl.builder.utils.hexString
 
 // Main definition
-class TLDefinition(val typeMap: Map<String, TLType>, val types: List<TLConstructor>, val methods: List<TLMethod>)
+class TLDefinition(val typeMap: Map<String, TLType>, val supertypes: List<TLAbstractConstructor>, val types: List<TLConstructor>, val methods: List<TLMethod>)
 
 // Base classes
 abstract class TLType : Comparable<TLType> {
@@ -79,10 +79,13 @@ class TLMethod(override val name: String,
                override val parameters: List<TLParameter>,
                override val tlType: TLType) : TLTypeConstructor<TLType>()
 
-// A parameter
-class TLParameter(val name: String, val tlType: TLType) {
+class TLParameter(val name: String, val tlType: TLType) : Comparable<TLParameter> {
     /** true if inherited from abstract parent (aka parameter is common to all constructors of the same type) */
     var inherited = false
 
     override fun toString() = "$name: $tlType"
+
+    override fun compareTo(other: TLParameter) = name.compareTo(other.name)
+    override fun equals(other: Any?) = other is TLParameter && other.name == name && other.tlType == tlType
+    override fun hashCode() = toString().hashCode()
 }

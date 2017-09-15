@@ -28,26 +28,54 @@ object TLDefinitionBuilder {
                 .toMap(typeMap)
 
         // Create all types constructors
-        val types = typesDef.map {
-            TLConstructor(it.name, it.id, it.parameters.map {
-                TLParameter(it.first, createType(it.second))
-            }, typeMap[it.type]!!)
+        val typesConstructors = typesDef.map {
+            TLConstructor(it.name,
+                          it.id,
+                          it.parameters.map { TLParameter(it.first, createType(it.second)) },
+                          typeMap[it.type]!!)
         }
 
         // Create all methods constructors
-        val methods = methodsDef.map {
-            TLMethod(it.name, it.id, it.parameters.map {
-                TLParameter(it.first, createType(it.second))
-            }, createType(it.type, false))
+        val methodsConstructors = methodsDef.map {
+            TLMethod(it.name,
+                     it.id,
+                     it.parameters.map { TLParameter(it.first, createType(it.second)) },
+                     createType(it.type, false))
         }
 
-        // TODO: build abstracted types constructors
-        val occurrencesMap = HashMap<String, Int>()
-        typeMap.values.forEach { occurrencesMap.put(it.name, occurrencesMap[it.name] ?: 0 + 1) }
-        val abstractedTypes = occurrencesMap.filter { it.value > 1 }.keys
-        println("To abstract"  + abstractedTypes.size)
+        // Create abstraction-layer with common supertype for types having multiple constructors
+        val supertypes = typeMap.values
+                .map { type -> Pair(type, typesConstructors.count { it.tlType == type }) }
+                .filter { it.second > 1 }
 
-        return TLDefinition(HashMap(typeMap), types, methods)
+        val supertypesConstructors = supertypes.map {
+            val tlType = it.first
+            // Constructors that will have this common abstraction
+            val subtypesConstructors = typesConstructors.filter { it.tlType == tlType }
+
+            val forEmptyConstructor = it.second == 2 &&
+                    subtypesConstructors.any { it.name.endsWith("empty", true) }
+
+            val params = subtypesConstructors.map { it.parameters }.reduce { l1, l2 ->
+                l1.intersect(l2).toList()
+            }
+
+            // Update each types parameters: reference are not the same
+            subtypesConstructors.flatMap { it.parameters }.filter { params.contains(it) }.forEach {
+                if (params.contains(it)) it.inherited = true
+            }
+
+            TLAbstractConstructor(tlType.name, params, tlType, forEmptyConstructor)
+        }
+
+        println("Found ${typesConstructors.size} types")
+        println("Found ${methodsConstructors.size} methods")
+        println("Found ${supertypesConstructors.size} supertypes")
+        println("Found ${supertypesConstructors.count { it.forEmptyConstructor }} (for-empty) supertypes")
+
+        return TLDefinition(HashMap(typeMap),
+                            supertypesConstructors, typesConstructors,
+                            methodsConstructors)
     }
 
     // Split def list between types and methods
