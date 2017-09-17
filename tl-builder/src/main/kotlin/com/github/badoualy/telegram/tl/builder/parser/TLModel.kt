@@ -67,7 +67,8 @@ class TLTypeConditional(val value: Int, val realType: TLType) : TLType() {
 class TLConstructor(override val name: String,
                     override val id: Int,
                     override val parameters: List<TLParameter>,
-                    override val tlType: TLTypeRaw) : TLTypeConstructor<TLTypeRaw>()
+                    override val tlType: TLTypeRaw,
+                    var hasSupertype: Boolean = false) : TLTypeConstructor<TLTypeRaw>()
 
 class TLAbstractConstructor(override val name: String,
                             override val parameters: List<TLParameter>,

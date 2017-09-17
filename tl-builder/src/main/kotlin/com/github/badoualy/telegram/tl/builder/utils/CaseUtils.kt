@@ -2,7 +2,7 @@ package com.github.badoualy.telegram.tl.builder.utils
 
 import java.util.*
 
-fun Int.hexString() = Integer.toHexString(this)
+fun Int.hexString() = Integer.toHexString(this)!!
 
 fun String.uFirstLetter() = this[0].toString().toUpperCase() + substring(1)
 

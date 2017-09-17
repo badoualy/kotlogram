@@ -1,5 +1,7 @@
 package com.github.badoualy.telegram.tl.stream;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.io.IOException;
 import java.io.OutputStream;
 import java.nio.ByteBuffer;
@@ -18,7 +20,7 @@ public class ByteBufferBackedOutputStream extends OutputStream {
     }
 
     @Override
-    public void write(byte[] bytes, int off, int len) throws IOException {
+    public void write(@NotNull byte[] bytes, int off, int len) throws IOException {
         buffer.put(bytes, off, len);
     }
 

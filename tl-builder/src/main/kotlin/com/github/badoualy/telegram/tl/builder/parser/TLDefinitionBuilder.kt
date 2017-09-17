@@ -1,26 +1,18 @@
 package com.github.badoualy.telegram.tl.builder.parser
 
-import java.io.File
-import kotlin.collections.ArrayList
-import kotlin.collections.HashMap
-
 object TLDefinitionBuilder {
 
     private val genericRegex = Regex("([a-zA-Z]+)<([a-zA-Z]+)>") // Vector<SomeKindOfType>
     private val flagRegex = Regex("([a-zA-Z]+).(\\d+)\\?([a-zA-Z<>.]+)") // flags.0?true
     private val rawRegex = Regex("[a-zA-Z].+")
 
-    private val tlTypeRegex = "([^#]+)#([a-f0-9]+) ([^=]*?) ?= ([^;]+);".toRegex()
-
     private val typeMap = HashMap<String, TLTypeRaw>()
 
-    fun build(file: File): TLDefinition {
+    fun build(pair: Pair<List<TLSchemaParser.ConstructorDef>, List<TLSchemaParser.ConstructorDef>>): TLDefinition {
         typeMap.clear()
         println("Reading TL-Schema...")
 
-        val defList = splitDefList(file)
-        val typesDef = mapToConstructorDef(defList.first)
-        val methodsDef = mapToConstructorDef(defList.second)
+        val (typesDef, methodsDef) = pair
 
         // Create all types
         typesDef.map { it.type }.distinct()
@@ -64,6 +56,7 @@ object TLDefinitionBuilder {
             subtypesConstructors.flatMap { it.parameters }.filter { params.contains(it) }.forEach {
                 if (params.contains(it)) it.inherited = true
             }
+            subtypesConstructors.forEach { it.hasSupertype = true }
 
             TLAbstractConstructor(tlType.name, params, tlType, forEmptyConstructor)
         }
@@ -78,55 +71,6 @@ object TLDefinitionBuilder {
                             methodsConstructors)
     }
 
-    // Split def list between types and methods
-    private fun splitDefList(file: File): Pair<List<String>, List<String>> {
-        val nodes = Pair(ArrayList<String>(), ArrayList<String>())
-
-        var parsingMethods = false
-        file.forEachLine { line ->
-            when {
-                line.isBlank() -> Unit
-                line.startsWith("//") -> Unit
-                line == "---types---" -> Unit
-                line == "---functions---" -> parsingMethods = true
-                !tlTypeRegex.matches(line.trim()) ->
-                    System.err.println("Line not matching tlTypeRegex:\n$line")
-                else -> {
-                    (if (!parsingMethods)
-                        nodes.first
-                    else
-                        nodes.second).add(line.trim())
-                }
-            }
-        }
-
-        return nodes
-    }
-
-    private fun mapToConstructorDef(constructorsDef: List<String>) = constructorsDef.mapNotNull { def ->
-        val groups = tlTypeRegex.matchEntire(def)!!.groups
-
-        val name = groups[1]!!.value
-        val id = groups[2]!!.value.toLong(16)
-        val paramsDef = if (groups.size == 5) groups[3]!!.value.trim().split(' ') else emptyList()
-        val type = groups.last()!!.value
-
-        if (IgnoredTypes.contains(type))
-            return@mapNotNull null
-
-        val parameters = paramsDef.mapNotNull { paramDef ->
-            when {
-                paramDef.isBlank() -> null
-                paramDef.replace(" ", "") == "{X:Type}" -> null
-                else -> {
-                    val fields = paramDef.split(':')
-                    Pair(fields[0], fields[1])
-                }
-            }
-        }
-
-        ConstructorDef(name, id.toInt(), parameters, type)
-    }
 
     private fun createConstructorType(typeName: String): TLTypeRaw = when {
         typeName.matches(rawRegex) -> TLTypeRaw(typeName)
@@ -173,5 +117,4 @@ object TLDefinitionBuilder {
                                                else "method")
     }
 
-    private data class ConstructorDef(val name: String, val id: Int, val parameters: List<Pair<String, String>>, val type: String)
 }

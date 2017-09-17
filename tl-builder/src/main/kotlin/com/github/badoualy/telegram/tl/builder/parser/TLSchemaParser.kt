@@ -1,0 +1,74 @@
+package com.github.badoualy.telegram.tl.builder.parser
+
+import java.io.File
+
+object TLSchemaParser {
+
+    private val tlTypeRegex = "([^#]+)#([a-f0-9]+) ([^=]*?) ?= ([^;]+);".toRegex()
+
+    fun parseTlSchema(file: File): Pair<List<ConstructorDef>, List<ConstructorDef>> {
+        val defList = splitTlSchema(file)
+
+        val typesDef = mapToConstructorDef(defList.first)
+        val methodsDef = mapToConstructorDef(defList.second)
+
+        return Pair(typesDef, methodsDef)
+    }
+
+    fun parseJsonSchema(file: File): Pair<List<ConstructorDef>, List<ConstructorDef>> {
+        // TODO
+        throw NotImplementedError()
+    }
+
+    /** Split def list between types and methods constructors */
+    private fun splitTlSchema(file: File): Pair<List<String>, List<String>> {
+        val nodes = Pair(ArrayList<String>(), ArrayList<String>())
+
+        var parsingMethods = false
+        file.forEachLine { line ->
+            when {
+                line.isBlank() -> Unit
+                line.startsWith("//") -> Unit
+                line == "---types---" -> Unit
+                line == "---functions---" -> parsingMethods = true
+                !tlTypeRegex.matches(line.trim()) ->
+                    System.err.println("Line not matching tlTypeRegex:\n$line")
+                else -> {
+                    (if (!parsingMethods)
+                        nodes.first
+                    else
+                        nodes.second).add(line.trim())
+                }
+            }
+        }
+
+        return nodes
+    }
+
+    private fun mapToConstructorDef(constructorsDef: List<String>) = constructorsDef.mapNotNull { def ->
+        val groups = tlTypeRegex.matchEntire(def)!!.groups
+
+        val name = groups[1]!!.value
+        val id = groups[2]!!.value.toLong(16)
+        val paramsDef = if (groups.size == 5) groups[3]!!.value.trim().split(' ') else emptyList()
+        val type = groups.last()!!.value
+
+        if (IgnoredTypes.contains(type))
+            return@mapNotNull null
+
+        val parameters = paramsDef.mapNotNull { paramDef ->
+            when {
+                paramDef.isBlank() -> null
+                paramDef.replace(" ", "") == "{X:Type}" -> null
+                else -> {
+                    val fields = paramDef.split(':')
+                    Pair(fields[0], fields[1])
+                }
+            }
+        }
+
+        ConstructorDef(name, id.toInt(), parameters, type)
+    }
+
+    data class ConstructorDef(val name: String, val id: Int, val parameters: List<Pair<String, String>>, val type: String)
+}

@@ -1,5 +1,7 @@
 package com.github.badoualy.telegram.tl.stream;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.ByteBuffer;
@@ -21,7 +23,7 @@ public class ByteBufferBackedInputStream extends InputStream {
     }
 
     @Override
-    public int read(byte[] bytes, int off, int len) throws IOException {
+    public int read(@NotNull byte[] bytes, int off, int len) throws IOException {
         if (!buffer.hasRemaining()) {
             return -1;
         }
