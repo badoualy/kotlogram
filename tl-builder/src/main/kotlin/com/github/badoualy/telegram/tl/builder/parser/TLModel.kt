@@ -3,7 +3,7 @@ package com.github.badoualy.telegram.tl.builder.parser
 import com.github.badoualy.telegram.tl.builder.utils.hexString
 
 // Main definition
-class TLDefinition(val typeMap: Map<String, TLType>, val supertypes: List<TLAbstractConstructor>, val types: List<TLConstructor>, val methods: List<TLMethod>)
+class TLDefinition(val supertypes: List<TLAbstractConstructor>, val types: List<TLConstructor>, val methods: List<TLMethod>)
 
 // Base classes
 abstract class TLType : Comparable<TLType> {

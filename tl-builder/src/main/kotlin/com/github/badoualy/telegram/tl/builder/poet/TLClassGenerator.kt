@@ -11,11 +11,18 @@ import java.io.IOException
 import java.io.InputStream
 import java.io.OutputStream
 
-class TLClassGenerator(val tlDefinition: TLDefinition, val config: Config) {
+@Suppress("MemberVisibilityCanPrivate")
+class TLClassGenerator(tlDefinition: TLDefinition, val config: Config) {
+
+    val methods = tlDefinition.methods
+    val supertypes = tlDefinition.supertypes
+    val types = tlDefinition.types
+
+    val executeMethodName = "executeRpcQuery"
+    val executeSyncMethodName = "executeRpcQuerySync"
 
     val typeTypeNameMap = HashMap<TLType, ClassName>()
-    val constructorTypeNameMap = HashMap<TLConstructor, ClassName>()
-    val typeSupertypeMap = HashMap<TLType, TLAbstractConstructor>()
+    val constructorTypeNameMap = HashMap<TLTypeConstructor<*>, ClassName>()
 
     val apiClass = TypeSpec.makeInterface(TELEGRAM_API_INTERFACE)
     var apiFun: FunSpec.Builder? = null
@@ -23,58 +30,55 @@ class TLClassGenerator(val tlDefinition: TLDefinition, val config: Config) {
     val apiSyncClass = TypeSpec.makeInterface(TELEGRAM_SYNC_API_INTERFACE)
     var apiSyncFun: FunSpec.Builder? = null
 
-    val apiWrapperClass = TypeSpec.makeInterface(TELEGRAM_API_WRAPPER,
-                                                 listOf(TYPE_TELEGRAM_API))
+    val apiWrapperClass = TypeSpec.makeClass(TELEGRAM_API_WRAPPER)
+            .addSuperinterfaces(listOf(TYPE_TELEGRAM_API, TYPE_RPC_QUERY_EXECUTOR))
+            .addExecutorDelegate(TYPE_RPC_QUERY_EXECUTOR, executeMethodName)
     var apiWrapperFun: FunSpec.Builder? = null
 
-    val apiSyncWrapperClass = TypeSpec.makeInterface(TELEGRAM_SYNC_API_WRAPPER,
-                                                     listOf(TYPE_TELEGRAM_SYNC_API))
+    val apiSyncWrapperClass = TypeSpec.makeClass(TELEGRAM_SYNC_API_WRAPPER)
+            .addSuperinterfaces(listOf(TYPE_TELEGRAM_SYNC_API, TYPE_RPC_QUERY_SYNC_EXECUTOR))
+            .addExecutorDelegate(TYPE_RPC_QUERY_SYNC_EXECUTOR, executeSyncMethodName)
     var apiSyncWrapperFun: FunSpec.Builder? = null
 
-    var classCount = 0
-
     fun generate() {
-        generateTypesClasses()
-        generateMethodsClasses()
-    }
-
-    fun generateTypesClasses() {
-        // Build ClassName reference for later
-        tlDefinition.supertypes
+        // TLType to TypeName map
+        supertypes
                 .map { it.tlType to it.typeName() }
                 .toMap(typeTypeNameMap)
-        tlDefinition.types
+        types
                 .filterNot { it.hasSupertype }
                 .map { it.tlType to it.typeName() }
                 .toMap(typeTypeNameMap)
-        tlDefinition.types
+
+        // TLTypeConstructor to TypeName
+        types
+                .map { it to it.typeName() }
+                .toMap(constructorTypeNameMap)
+        methods
                 .map { it to it.typeName() }
                 .toMap(constructorTypeNameMap)
 
-        // Map TLType to AbsConstructor for children usage
-        tlDefinition.supertypes
-                .map { it.tlType to it }
-                .toMap(typeSupertypeMap)
+        generateTypesClasses()
+        generateMethodsClasses()
 
-        tlDefinition.supertypes
-                .forEach {
-                    it.generateClass().writeToFile(it.tlType.packageName(),
-                                                   config.outputMain)
-                }
+        generateContextClass(TL_API_CONTEXT, types, config.outputMain)
+        generateContextClass(TL_API_TEST_CONTEXT, types.union(methods), config.outputTest)
+    }
 
-        tlDefinition.types
-                .forEach {
-                    it.generateClass().writeToFile(it.tlType.packageName(),
-                                                   config.outputMain)
-                }
+    fun generateTypesClasses() {
+        supertypes.forEach {
+            it.generateClass().writeToFile(it.tlType.packageName(), config.outputMain)
+        }
+
+        types.forEach {
+            it.generateClass().writeToFile(it.tlType.packageName(), config.outputMain)
+        }
     }
 
     fun generateMethodsClasses() {
-        val methods = tlDefinition.methods.sorted()
-        classCount += methods.size
-
-        methods.map { it.generateMethodClass() }
-                .forEach { it.writeToFile(PACKAGE_TL_API_REQUEST, config.outputMain) }
+        methods.forEach {
+            it.generateMethodClass().writeToFile(PACKAGE_TL_API_REQUEST, config.outputMain)
+        }
 
         apiClass.build().writeToFile(PACKAGE_TL_API, config.outputMain)
         apiWrapperClass.build().writeToFile(PACKAGE_TL_API, config.outputMain)
@@ -82,27 +86,46 @@ class TLClassGenerator(val tlDefinition: TLDefinition, val config: Config) {
         apiSyncWrapperClass.build().writeToFile(PACKAGE_TL_API, config.outputMain)
     }
 
+    private fun generateContextClass(name: String, constructors: Iterable<TLTypeConstructor<*>>, output: String) {
+        TypeSpec.objectBuilder(name)
+                .applyCommon()
+                .superclass(TYPE_TL_CONTEXT)
+                .addSuperclassConstructorParameter("%L", types.size)
+                .addFunction(FunSpec.makeOverride("init").apply {
+                    constructors
+                            .map { constructorTypeNameMap[it]!! }
+                            .forEach {
+                                addStatement("registerClass(%T.CONSTRUCTOR_ID, %T::class.java)",
+                                             it, it)
+                            }
+                }.build())
+                .build()
+                .writeToFile(PACKAGE_TL_API, output)
+    }
+
     private fun TLAbstractConstructor.generateClass(): TypeSpec {
-        val clazz = TypeSpec.makeTLClass(tlClassName()).addModifiers(KModifier.ABSTRACT)
+        val clazz = TypeSpec.makeTLClass(tlClassName())
+                .addModifiers(KModifier.ABSTRACT)
 
         generateClassCommon(clazz)
 
-        val subtypes = tlDefinition.types.filter { it.tlType == tlType }
+        // Add list of subclasses in KDoc
+        val subtypes = types.filter { it.tlType == tlType }
         clazz.addKdoc("Abstraction level for the following constructors:\n")
                 .addKdoc("<ul>\n")
                 .apply {
                     subtypes.forEach {
                         addKdoc("<li>")
                         addKdoc("[${it.name}#${it.id.hexString()}]")
-                        addKdoc("[${constructorTypeNameMap[it].toString().substringAfterLast('.')}]")
+                        addKdoc("[${constructorTypeNameMap[it]!!.simpleName()}]")
                         addKdoc("</li>\n")
                     }
                 }
                 .addKdoc("</ul>\n\n")
 
         if (forEmptyConstructor) {
-            val nonEmptyConstructor = subtypes.find { c -> !c.name.endsWith("empty", true) }!!
-            val emptyConstructor = subtypes.find { c -> c.name.endsWith("empty", true) }!!
+            val nonEmptyConstructor = subtypes.find { !it.name.endsWith("empty", true) }!!
+            val emptyConstructor = subtypes.find { it.name.endsWith("empty", true) }!!
 
             clazz
                     .addFunction(FunSpec.builder("isEmpty")
@@ -117,9 +140,11 @@ class TLClassGenerator(val tlDefinition: TLDefinition, val config: Config) {
                                          .addStatement("return this is %T",
                                                        constructorTypeNameMap[nonEmptyConstructor]!!)
                                          .build())
-                    .addFunction(FunSpec.builder("as" + nonEmptyConstructor.name.split(".").last().uCamelCase())
+                    .addFunction(FunSpec.builder(
+                            "as" + nonEmptyConstructor.name.split(".").last().uCamelCase())
                                          .addModifiers(KModifier.PUBLIC)
-                                         .returns(constructorTypeNameMap[nonEmptyConstructor]!!.asNullable())
+                                         .returns(
+                                                 constructorTypeNameMap[nonEmptyConstructor]!!.asNullable())
                                          .addStatement("return this as? %T",
                                                        constructorTypeNameMap[nonEmptyConstructor]!!)
                                          .build())
@@ -145,7 +170,7 @@ class TLClassGenerator(val tlDefinition: TLDefinition, val config: Config) {
         val responseFun = FunSpec.makeOverride("deserializeResponse")
                 .addParameter("stream", InputStream::class)
                 .addParameter("context", TYPE_TL_CONTEXT)
-                .addThrows(listOf(IOException::class))
+                .addThrows(IOException::class)
                 .returns(responseType)
 
         when (tlType) {
@@ -167,35 +192,33 @@ class TLClassGenerator(val tlDefinition: TLDefinition, val config: Config) {
             }
             else -> {
                 val responseCastType = (responseType as? ParameterizedTypeName)?.rawType ?: responseType
-                val message = "Incorrect response type, expected \${javaClass.canonicalName}, found \${response.javaClass.canonicalName}"
+                val nullErrorMessage = "Unable to parse response"
+                val castErrorMessage = "Incorrect response type, expected \${javaClass.canonicalName}, found \${response.javaClass.canonicalName}"
 
-                responseFun.addStatement("val response = readTLObject(stream, context) ?: throw %T(\"Unable to parse response\")",
-                                         IOException::class.java)
+                responseFun.addStatement(
+                        "val response = readTLObject(stream, context) ?: throw %T(%S)",
+                        IOException::class.java, nullErrorMessage)
                         .addStatement("return (response as? %T) ?: throw %T(%S)",
-                                      responseCastType, IOException::class, message)
+                                      responseCastType, IOException::class, castErrorMessage)
             }
         }
         clazz.addFunction(responseFun.build())
 
-        val observableResponseType = ParameterizedTypeName.get(TYPE_OBSERVABLE, responseType)
-        apiFun = FunSpec.builder(name.lCamelCase())
-                .addModifiers(KModifier.ABSTRACT)
-                .addThrowsByTypename(listOf(TYPE_RPC_EXCEPTION, IOException::class.asTypeName()))
-                .returns(observableResponseType)
-        apiSyncFun = FunSpec.builder(name.lCamelCase())
-                .addModifiers(KModifier.ABSTRACT)
-                .addThrowsByTypename(listOf(TYPE_RPC_EXCEPTION, IOException::class.asTypeName()))
-                .returns(responseType)
+        val apiResponseType = ParameterizedTypeName.get(TYPE_SINGLE, responseType)
+        apiFun = makeApiFun(apiResponseType)
+        apiSyncFun = makeApiFun(responseType)
+        apiWrapperFun = makeApiWrapperFun(apiResponseType, executeMethodName)
+        apiSyncWrapperFun = makeApiWrapperFun(responseType, executeSyncMethodName)
 
         generateClassCommon(clazz)
 
         apiClass.addFunction(apiFun!!.build())
-        //apiWrapperClass.addFunction(apiWrapperFun!!.build())
+        apiWrapperClass.addFunction(apiWrapperFun!!.build())
         apiSyncClass.addFunction(apiSyncFun!!.build())
-        //apiSyncWrapperClass.addFunction(apiSyncWrapperFun!!.build())
+        apiSyncWrapperClass.addFunction(apiSyncWrapperFun!!.build())
         apiFun = null
-        apiWrapperFun = null
         apiSyncFun = null
+        apiWrapperFun = null
         apiSyncWrapperFun = null
 
         return clazz.build()
@@ -211,11 +234,13 @@ class TLClassGenerator(val tlDefinition: TLDefinition, val config: Config) {
                                           .addProperty(PropertySpec.builder("CONSTRUCTOR_ID",
                                                                             INT,
                                                                             KModifier.CONST)
-                                                               .initializer("0x${id.hexString()}.toInt()")
+                                                               .initializer(
+                                                                       "0x${id.hexString()}.toInt()")
                                                                .build())
                                           .build())
 
             if (parameters.isNotEmpty()) {
+                // Empty constructor + constructor with all params
                 clazz.emptyConstructor()
                 constructorBuilder = FunSpec.constructorBuilder().callThisConstructor()
             }
@@ -223,12 +248,12 @@ class TLClassGenerator(val tlDefinition: TLDefinition, val config: Config) {
 
         // Serialize
         val serializeFun = FunSpec.makeOverride("serializeBody")
-                .addThrows(listOf(IOException::class))
+                .addThrows(IOException::class)
                 .addParameter("stream", OutputStream::class)
 
         // Unserialize
         val deserializeFun = FunSpec.makeOverride("deserializeBody")
-                .addThrows(listOf(IOException::class))
+                .addThrows(IOException::class)
                 .addParameter("stream", InputStream::class)
                 .addParameter("context", TYPE_TL_CONTEXT)
 
@@ -264,7 +289,8 @@ class TLClassGenerator(val tlDefinition: TLDefinition, val config: Config) {
                 val fieldName = parameter.name.lCamelCase().javaEscape()
 
                 if (realType is TLTypeRaw && arrayOf("true", "false").contains(realType.name)) {
-                    computeFlagsFun.addStatement("flags = if ($fieldName) flags.or(${tlType.pow2Value()}) else flags.and(${tlType.pow2Value()}.inv())")
+                    computeFlagsFun.addStatement(
+                            "flags = if ($fieldName) flags.or(${tlType.pow2Value()}) else flags.and(${tlType.pow2Value()}.inv())")
                     if (condParameters.any {
                         it != parameter
                                 && !((it.tlType as TLTypeConditional).realType is TLTypeRaw && (it.tlType.realType as TLTypeRaw).name == "Bool")
@@ -274,17 +300,21 @@ class TLClassGenerator(val tlDefinition: TLDefinition, val config: Config) {
                 } else {
                     if (realType is TLTypeRaw && realType.name == "Bool" && condParameters.any { it != parameter && (it.tlType as TLTypeConditional).value == tlType.value }) {
                         computeFlagsFun.addCode("// If field is not serialized force it to false\n")
-                        computeFlagsFun.addStatement("if ($fieldName && (flags and ${tlType.pow2Value()}) == 0) $fieldName = false")
+                        computeFlagsFun.addStatement(
+                                "if ($fieldName && (flags and ${tlType.pow2Value()}) == 0) $fieldName = false")
                     } else {
-                        computeFlagsFun.addStatement("flags = if ($fieldName != null) flags.or(${tlType.pow2Value()}) else flags.and(${tlType.pow2Value()}.inv())")
+                        computeFlagsFun.addStatement(
+                                "flags = if ($fieldName != null) flags.or(${tlType.pow2Value()}) else flags.and(${tlType.pow2Value()}.inv())")
                     }
                 }
             }
 
             if (condBoolean.isNotEmpty()) {
-                computeFlagsFun.addCode("\n// Following parameters might be forced to true by another field that updated the flags\n")
+                computeFlagsFun.addCode(
+                        "\n// Following parameters might be forced to true by another field that updated the flags\n")
                 for (parameter in condBoolean) {
-                    computeFlagsFun.addStatement("" + parameter.name.lCamelCase().javaEscape() + " = (flags and ${(parameter.tlType as TLTypeConditional).pow2Value()}) != 0")
+                    computeFlagsFun.addStatement(
+                            "" + parameter.name.lCamelCase().javaEscape() + " = (flags and ${(parameter.tlType as TLTypeConditional).pow2Value()}) != 0")
                 }
             }
 
@@ -315,12 +345,13 @@ class TLClassGenerator(val tlDefinition: TLDefinition, val config: Config) {
             // Build field
             val fieldName = parameter.name.lCamelCase().javaEscape()
             if (id != null || parameter.inherited) {
+                // TODO: if in flag
                 val nullable = when (fieldType) {
                     INT, LONG, FLOAT, DOUBLE, BOOLEAN -> false
                     else -> true
                 }
-                clazz.addProperty(PropertySpec.varBuilder(fieldName,
-                                                          if (nullable) fieldType.asNullable() else fieldType)
+                val realFieldType = if (nullable) fieldType.asNullable() else fieldType
+                clazz.addProperty(PropertySpec.varBuilder(fieldName, realFieldType)
                                           .apply {
                                               if (id == null) {
                                                   addModifiers(KModifier.ABSTRACT)
@@ -344,7 +375,8 @@ class TLClassGenerator(val tlDefinition: TLDefinition, val config: Config) {
                 computeSizeFun.addCode(computeSizeParameter(fieldName, fieldTlType) + "\n")
             }
 
-            val deserializeStatement = "$fieldName = ${deserializeParameter(fieldTlType, fieldType)}"
+            val deserializeStatement = "$fieldName = ${deserializeParameter(fieldTlType,
+                                                                            fieldType)}"
             val count = deserializeStatement.split("%T").size - 1
             deserializeFun.addStatement(deserializeStatement, *Array(count, { fieldType }))
 
@@ -359,6 +391,8 @@ class TLClassGenerator(val tlDefinition: TLDefinition, val config: Config) {
                 // Add api method
                 apiFun?.addParameter(fieldName, fieldType)
                 apiWrapperFun?.addParameter(fieldName, fieldType)
+                apiSyncFun?.addParameter(fieldName, fieldType)
+                apiSyncWrapperFun?.addParameter(fieldName, fieldType)
                 if (fieldTlType is TLTypeFunctional) {
                     val typeVariable = TypeVariableName.invoke("T", TYPE_TL_OBJECT)
                     apiFun?.addTypeVariable(typeVariable)
@@ -443,6 +477,41 @@ class TLClassGenerator(val tlDefinition: TLDefinition, val config: Config) {
         BOOLEAN -> "false"
         else -> "null"
     }
+
+    private fun TypeSpec.Builder.addExecutorDelegate(executorType: TypeName, methodName: String) =
+            primaryConstructor(FunSpec.constructorBuilder()
+                                       .addParameter("executor", executorType)
+                                       .build())
+                    .addProperty(PropertySpec.builder("executor", executorType)
+                                         .initializer("executor")
+                                         .build())
+                    .addFunction(FunSpec.makeOverride(methodName)
+                                         .addTypeVariable(TypeVariableName.ofTLObject())
+                                         .addParameter("method",
+                                                       ParameterizedTypeName.get(TYPE_TL_METHOD,
+                                                                                 TypeVariableName.T()))
+                                         .addStatement("return executor.$methodName(method)")
+                                         .build())
+
+    private fun TLMethod.makeApiWrapperFun(responseType: TypeName, methodName: String) =
+            FunSpec.makeOverride(name.lCamelCase())
+                    .addThrowsByTypename(TYPE_RPC_EXCEPTION, IOException::class.asTypeName())
+                    .returns(responseType)
+                    .addStatement("return $methodName(%T(%L)) as %T",
+                                  typeName(),
+                                  if (parameters.isNotEmpty()) {
+                                      parameters
+                                              .filterNot { it.tlType is TLTypeFlag }
+                                              .joinToString(
+                                                      ", ") { it.name.lCamelCase().javaEscape() }
+                                  } else "",
+                                  responseType)
+
+    private fun TLMethod.makeApiFun(responseType: TypeName) =
+            FunSpec.builder(name.lCamelCase())
+                    .addModifiers(KModifier.ABSTRACT)
+                    .addThrowsByTypename(TYPE_RPC_EXCEPTION, IOException::class.asTypeName())
+                    .returns(responseType)
 
     data class Config(val outputMain: String, val outputTest: String)
 }

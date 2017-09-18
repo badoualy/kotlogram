@@ -7,8 +7,7 @@ import kotlin.reflect.KClass
 
 fun TypeSpec.Companion.makeInterface(name: String, superInterfaceList: List<TypeName> = emptyList()) =
         TypeSpec.interfaceBuilder(name)
-                .addModifiers(KModifier.PUBLIC)
-                .addKdoc(JAVADOC_AUTHOR).addKdoc(JAVADOC_SEE)
+                .applyCommon()
                 .apply {
                     superInterfaceList.forEach { addSuperinterface(it) }
                 }
@@ -17,9 +16,12 @@ fun TypeSpec.Companion.makeTLMethodClass(name: String, responseType: TypeName) =
         TypeSpec.makeTLClass(name, ParameterizedTypeName.get(TYPE_TL_METHOD, responseType))
 
 fun TypeSpec.Companion.makeTLClass(name: String, superclass: TypeName = TYPE_TL_OBJECT) =
-        TypeSpec.classBuilder(name)
-                .addModifiers(KModifier.PUBLIC)
-                .superclass(superclass)
+        makeClass(name).superclass(superclass)
+
+fun TypeSpec.Companion.makeClass(name: String) = TypeSpec.classBuilder(name).applyCommon()
+
+fun TypeSpec.Builder.applyCommon() =
+        addModifiers(KModifier.PUBLIC)
                 .addKdoc(JAVADOC_AUTHOR)
                 .addKdoc(JAVADOC_SEE)
 
@@ -43,19 +45,19 @@ fun FunSpec.Builder.addAnnotation(type: KClass<*>, value: String) = apply {
                           .build())
 }
 
-fun FunSpec.Builder.addThrows(clazz: List<KClass<*>>) = apply {
+fun FunSpec.Builder.addThrows(vararg clazz: KClass<*>) = apply {
     addAnnotation(AnnotationSpec.builder(Throws::class)
                           .addMember("value",
                                      clazz.joinToString(",") { "%T::class" },
-                                     *clazz.toTypedArray())
+                                     clazz)
                           .build())
 }
 
-fun FunSpec.Builder.addThrowsByTypename(clazz: List<TypeName>) = apply {
+fun FunSpec.Builder.addThrowsByTypename(vararg clazz: TypeName) = apply {
     addAnnotation(AnnotationSpec.builder(Throws::class)
                           .addMember("value",
                                      clazz.joinToString(",") { "%T::class" },
-                                     *clazz.toTypedArray())
+                                     clazz)
                           .build())
 }
 
@@ -64,6 +66,9 @@ fun FunSpec.Companion.makeOverride(name: String, isPublic: Boolean = true) =
         FunSpec.builder(name)
                 .addModifiers(if (isPublic) KModifier.PUBLIC else KModifier.PROTECTED,
                               KModifier.OVERRIDE)
-                .addAnnotation(Override::class)
 
-fun ClassName.Companion.get(packageName: String, className: String) = bestGuess("$packageName.$className")
+fun ClassName.Companion.get(packageName: String, className: String) =
+        bestGuess("$packageName.$className")
+
+fun TypeVariableName.Companion.T() = TypeVariableName.invoke("T")
+fun TypeVariableName.Companion.ofTLObject() = TypeVariableName.invoke("T", TYPE_TL_OBJECT)

@@ -66,9 +66,7 @@ object TLDefinitionBuilder {
         println("Found ${supertypesConstructors.size} supertypes")
         println("Found ${supertypesConstructors.count { it.forEmptyConstructor }} (for-empty) supertypes")
 
-        return TLDefinition(HashMap(typeMap),
-                            supertypesConstructors, typesConstructors,
-                            methodsConstructors)
+        return TLDefinition(supertypesConstructors, typesConstructors, methodsConstructors)
     }
 
 

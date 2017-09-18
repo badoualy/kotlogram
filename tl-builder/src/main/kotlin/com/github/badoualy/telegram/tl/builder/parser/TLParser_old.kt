@@ -7,6 +7,9 @@
 //private val flagRegex = Regex("([a-zA-Z]+).(\\d+)\\?([a-zA-Z<>.]+)") // flags.0?true
 //private val rawRegex = Regex("[a-zA-Z].+")
 //
+
+// TODO: re-update to fit new model
+
 //fun buildFromJson(root: JsonNode): TLDefinition {
 //    println("Reading TL-Schema...")
 //    val constructorsNode = root["constructors"].filterNot { c ->
