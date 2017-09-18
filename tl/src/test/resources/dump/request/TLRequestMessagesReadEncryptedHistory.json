@@ -1,9 +1,0 @@
-{
-  "peer": {
-    "chatId": 0,
-    "accessHash": 0,
-    "_constructor": "inputEncryptedChat#f141b5e1"
-  },
-  "maxDate": 0,
-  "_constructor": "messages.readEncryptedHistory#7f4b690a"
-}

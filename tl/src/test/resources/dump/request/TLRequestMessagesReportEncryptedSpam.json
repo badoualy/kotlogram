@@ -1,8 +1,0 @@
-{
-  "peer": {
-    "chatId": 0,
-    "accessHash": 0,
-    "_constructor": "inputEncryptedChat#f141b5e1"
-  },
-  "_constructor": "messages.reportEncryptedSpam#4b0c8c0f"
-}

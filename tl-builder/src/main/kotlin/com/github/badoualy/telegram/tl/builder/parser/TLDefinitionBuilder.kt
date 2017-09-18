@@ -66,7 +66,7 @@ object TLDefinitionBuilder {
         println("Found ${supertypesConstructors.size} supertypes")
         println("Found ${supertypesConstructors.count { it.forEmptyConstructor }} (for-empty) supertypes")
 
-        return TLDefinition(supertypesConstructors, typesConstructors, methodsConstructors)
+        return TLDefinition(supertypesConstructors.sorted(), typesConstructors.sorted(), methodsConstructors.sorted())
     }
 
 

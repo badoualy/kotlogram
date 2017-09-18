@@ -8,6 +8,8 @@ import java.util.Arrays;
  */
 public class TLBytes {
 
+    public static final TLBytes EMPTY = new TLBytes(new byte[0]);
+
     private byte[] data;
     private int offset;
     private int len;

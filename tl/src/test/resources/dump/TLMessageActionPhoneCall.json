@@ -1,9 +1,0 @@
-{
-  "flags": 3,
-  "callId": 0,
-  "reason": {
-    "_constructor": "phoneCallDiscardReasonBusy#faf7e8c9"
-  },
-  "duration": 0,
-  "_constructor": "messageActionPhoneCall#80e11a7f"
-}

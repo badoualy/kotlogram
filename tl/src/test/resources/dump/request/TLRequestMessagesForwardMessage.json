@@ -1,9 +1,0 @@
-{
-  "peer": {
-    "chatId": 0,
-    "_constructor": "inputPeerChat#179be863"
-  },
-  "id": 0,
-  "randomId": 0,
-  "_constructor": "messages.forwardMessage#33963bf9"
-}

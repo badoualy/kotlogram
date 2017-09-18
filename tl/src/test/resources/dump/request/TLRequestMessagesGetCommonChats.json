@@ -1,8 +1,0 @@
-{
-  "userId": {
-    "_constructor": "inputUserSelf#f7c1b13f"
-  },
-  "maxId": 0,
-  "limit": 0,
-  "_constructor": "messages.getCommonChats#d0a48c4"
-}

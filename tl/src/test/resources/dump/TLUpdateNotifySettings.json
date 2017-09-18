@@ -1,9 +1,0 @@
-{
-  "peer": {
-    "_constructor": "notifyUsers#b4c83b4c"
-  },
-  "notifySettings": {
-    "_constructor": "peerNotifySettingsEmpty#70a68512"
-  },
-  "_constructor": "updateNotifySettings#bec268ef"
-}

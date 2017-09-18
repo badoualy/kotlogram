@@ -1,9 +1,0 @@
-{
-  "flags": 0,
-  "pinned": false,
-  "peer": {
-    "chatId": 0,
-    "_constructor": "peerChat#bad0e5bb"
-  },
-  "_constructor": "updateDialogPinned#d711a2cc"
-}

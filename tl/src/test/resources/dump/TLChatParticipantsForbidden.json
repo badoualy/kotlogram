@@ -1,9 +1,0 @@
-{
-  "flags": 1,
-  "selfParticipant": {
-    "_constructor": "chatParticipantCreator#da13538a",
-    "userId": 0
-  },
-  "_constructor": "chatParticipantsForbidden#fc900c2b",
-  "chatId": 0
-}

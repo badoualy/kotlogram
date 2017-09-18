@@ -15,7 +15,7 @@ import rx.Observable
 import java.io.IOException
 import java.io.OutputStream
 
-interface TelegramClient : TelegramApi {
+interface TelegramClient : TelegramSyncApi {
 
     /** Changes the request timeout with the supplied value (in ms) */
     fun setTimeout(timeout: Long)
@@ -54,12 +54,12 @@ interface TelegramClient : TelegramApi {
     //////////////////// Convenience API ////////////////////
     ////////////////////////////////////////////////////////
     @Throws(RpcErrorException::class, IOException::class)
-    fun <T : TLObject> executeRpcQuery(method: TLMethod<T>) = executeRpcQueries(
-            listOf(method)).first()
+    fun <T : TLObject> executeRpcQuerySync(method: TLMethod<T>) =
+            executeRpcQueries(listOf(method)).first()
 
     @Throws(RpcErrorException::class, IOException::class)
-    fun <T : TLObject> executeRpcQuery(method: TLMethod<T>, dcId: Int) = executeRpcQueries(
-            listOf(method), dcId).first()
+    fun <T : TLObject> executeRpcQuerySync(method: TLMethod<T>, dcId: Int) =
+            executeRpcQueries(listOf(method), dcId).first()
 
     @Throws(RpcErrorException::class, IOException::class)
     fun <T : TLObject> executeRpcQueries(methods: List<TLMethod<T>>): List<T>
@@ -83,7 +83,7 @@ interface TelegramClient : TelegramApi {
     override fun authCheckPassword(passwordHash: TLBytes?): TLAuthorization
 
     @Throws(RpcErrorException::class, IOException::class)
-    override fun <T : TLObject?> invokeWithLayer(layer: Int, query: TLMethod<T>?): T
+    override fun <T : TLObject> invokeWithLayer(layer: Int, query: TLMethod<T>?): T
 
     /** Convenience method wrapping the argument with TelegramApp values and casting result with good type */
     @Suppress("UNCHECKED_CAST")
@@ -91,7 +91,7 @@ interface TelegramClient : TelegramApi {
     fun <T : TLObject> initConnection(query: TLMethod<T>): T
 
     @Deprecated("Use initConnection for more convenience", ReplaceWith("initConnection(query)"))
-    override fun <T : TLObject?> initConnection(apiId: Int, deviceModel: String, systemVersion: String, appVersion: String, langCode: String, query: TLMethod<T>): T
+    override fun <T : TLObject> initConnection(apiId: Int, deviceModel: String?, systemVersion: String?, appVersion: String?, systemLangCode: String?, langPack: String?, langCode: String?, query: TLMethod<T>?): T
 
     /** Convenience method wrapping the argument for a plain text message */
     fun messagesSendMessage(peer: TLAbsInputPeer, message: String, randomId: Long): TLAbsUpdates?
@@ -113,7 +113,7 @@ interface TelegramClient : TelegramApi {
         val inputLocation = TLInputFileLocation(photoLocation.volumeId, photoLocation.localId,
                                                 photoLocation.secret)
         val request = TLRequestUploadGetFile(inputLocation, 0, 0)
-        return executeRpcQuery(request, photoLocation.dcId) as? TLFile
+        return executeRpcQuerySync(request, photoLocation.dcId) as? TLFile
                 // TODO: handle CDN
                 ?: throw IOException("Unhandled CDN redirection")
     }
@@ -136,7 +136,7 @@ interface TelegramClient : TelegramApi {
         val inputLocation = TLInputFileLocation(photoLocation.volumeId, photoLocation.localId,
                                                 photoLocation.secret)
         val request = TLRequestUploadGetFile(inputLocation, 0, 0)
-        return executeRpcQuery(request, photoLocation.dcId)as? TLFile
+        return executeRpcQuerySync(request, photoLocation.dcId)as? TLFile
                 // TODO: handle CDN
                 ?: throw IOException("Unhandled CDN redirection")
     }

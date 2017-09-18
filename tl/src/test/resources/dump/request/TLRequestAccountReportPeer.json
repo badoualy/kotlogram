@@ -1,9 +1,0 @@
-{
-  "peer": {
-    "_constructor": "inputPeerEmpty#7f3b18ea"
-  },
-  "reason": {
-    "_constructor": "inputReportReasonViolence#1e22c78d"
-  },
-  "_constructor": "account.reportPeer#ae189d5f"
-}

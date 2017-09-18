@@ -1,7 +1,0 @@
-{
-  "chatId": 0,
-  "userId": {
-    "_constructor": "inputUserSelf#f7c1b13f"
-  },
-  "_constructor": "messages.deleteChatUser#e0611f16"
-}

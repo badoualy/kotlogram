@@ -9,7 +9,7 @@ class RpcErrorException(val code: Int, val tag: String) : Exception(code.toStrin
      *
      * @return extracted integer value
      */
-    val tagInteger: Int?
+    val tagInteger: Int
         get() {
             val chunks = tag.split("_".toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray()
             return Integer.parseInt(chunks[chunks.size - 1])

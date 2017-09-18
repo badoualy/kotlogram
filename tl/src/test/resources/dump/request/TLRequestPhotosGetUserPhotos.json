@@ -1,9 +1,0 @@
-{
-  "userId": {
-    "_constructor": "inputUserSelf#f7c1b13f"
-  },
-  "offset": 0,
-  "maxId": 0,
-  "limit": 0,
-  "_constructor": "photos.getUserPhotos#91cd32a8"
-}

@@ -1,9 +1,0 @@
-{
-  "flags": 1,
-  "silent": true,
-  "channel": {
-    "_constructor": "inputChannelEmpty#ee8c1e86"
-  },
-  "id": 0,
-  "_constructor": "channels.updatePinnedMessage#a72ded52"
-}

@@ -17,7 +17,7 @@ public class Benchmark {
 
     public static void main(String[] args) throws IOException, DecoderException {
         Collection<File> files = DumpUtils.loadAll("tl/" + DumpUtils.dumpDir);
-        TLApiTestContext context = TLApiTestContext.getInstance();
+        TLApiTestContext context = TLApiTestContext.INSTANCE;
         StringBuilder builder = new StringBuilder();
         long totalTimeSerialize = 0;
         long totalTimeDeserialize = 0;

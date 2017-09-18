@@ -1,7 +1,0 @@
-{
-  "ttl": {
-    "days": 0,
-    "_constructor": "accountDaysTTL#b8d0afdf"
-  },
-  "_constructor": "account.setAccountTTL#2442485e"
-}

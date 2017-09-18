@@ -1,8 +1,0 @@
-{
-  "flags": 0,
-  "udpP2p": false,
-  "udpReflector": false,
-  "minLayer": 0,
-  "maxLayer": 0,
-  "_constructor": "phoneCallProtocol#a2bb35cb"
-}

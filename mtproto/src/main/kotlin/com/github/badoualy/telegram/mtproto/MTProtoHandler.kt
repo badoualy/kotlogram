@@ -648,7 +648,7 @@ class MTProtoHandler {
         private val logger = LoggerFactory.getLogger(MTProtoHandler::class.java)!!
 
         private val mtProtoContext = MTProtoContext
-        private val apiContext = TLApiContext.getInstance()
+        private val apiContext = TLApiContext
 
         /** Thread pool to forward update callback */
         private val updatePool = ThreadPoolExecutor(4, 8,

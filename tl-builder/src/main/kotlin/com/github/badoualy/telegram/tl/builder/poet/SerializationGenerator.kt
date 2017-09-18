@@ -16,7 +16,7 @@ internal fun serializeParameter(fieldName: String, fieldTlType: TLType): String 
                     '\n')
                     .append("    ")
         }
-        statement.append(serializeParameter(fieldName, fieldTlType.realType)).append('\n')
+        statement.append(serializeParameter(fieldName + "!!", fieldTlType.realType)).append('\n')
                 .append('}')
         statement.toString()
     }

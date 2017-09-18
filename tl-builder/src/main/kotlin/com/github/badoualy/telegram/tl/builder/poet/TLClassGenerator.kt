@@ -31,13 +31,13 @@ class TLClassGenerator(tlDefinition: TLDefinition, val config: Config) {
     var apiSyncFun: FunSpec.Builder? = null
 
     val apiWrapperClass = TypeSpec.makeClass(TELEGRAM_API_WRAPPER)
+            .addModifiers(KModifier.ABSTRACT)
             .addSuperinterfaces(listOf(TYPE_TELEGRAM_API, TYPE_RPC_QUERY_EXECUTOR))
-            .addExecutorDelegate(TYPE_RPC_QUERY_EXECUTOR, executeMethodName)
     var apiWrapperFun: FunSpec.Builder? = null
 
     val apiSyncWrapperClass = TypeSpec.makeClass(TELEGRAM_SYNC_API_WRAPPER)
+            .addModifiers(KModifier.ABSTRACT)
             .addSuperinterfaces(listOf(TYPE_TELEGRAM_SYNC_API, TYPE_RPC_QUERY_SYNC_EXECUTOR))
-            .addExecutorDelegate(TYPE_RPC_QUERY_SYNC_EXECUTOR, executeSyncMethodName)
     var apiSyncWrapperFun: FunSpec.Builder? = null
 
     fun generate() {
@@ -58,9 +58,12 @@ class TLClassGenerator(tlDefinition: TLDefinition, val config: Config) {
                 .map { it to it.typeName() }
                 .toMap(constructorTypeNameMap)
 
+        println("Generating types")
         generateTypesClasses()
+        println("Generating methods")
         generateMethodsClasses()
 
+        println("Generating context")
         generateContextClass(TL_API_CONTEXT, types, config.outputMain)
         generateContextClass(TL_API_TEST_CONTEXT, types.union(methods), config.outputTest)
     }
@@ -332,35 +335,30 @@ class TLClassGenerator(tlDefinition: TLDefinition, val config: Config) {
         // Parameters
         for (parameter in parameters) {
             val fieldTlType = parameter.tlType
-            var fieldType = getType(fieldTlType)
-
-            // TODO: check what's for
-            if (fieldType is ParameterizedTypeName
-                    && (fieldTlType is TLTypeGeneric
-                    || (fieldTlType is TLTypeConditional && fieldTlType.realType is TLTypeGeneric))) {
-                val typeArg = fieldType.typeArguments.first()
-                fieldType = ParameterizedTypeName.get(fieldType.rawType, typeArg)
+            val fieldType = getType(fieldTlType).let {
+                val nullable = (fieldTlType is TLTypeConditional && it != BOOLEAN)
+                if (nullable) it.asNullable() else it
             }
 
             // Build field
             val fieldName = parameter.name.lCamelCase().javaEscape()
             if (id != null || parameter.inherited) {
-                // TODO: if in flag
-                val nullable = when (fieldType) {
-                    INT, LONG, FLOAT, DOUBLE, BOOLEAN -> false
-                    else -> true
-                }
-                val realFieldType = if (nullable) fieldType.asNullable() else fieldType
-                clazz.addProperty(PropertySpec.varBuilder(fieldName, realFieldType)
+                clazz.addProperty(PropertySpec.varBuilder(fieldName, fieldType)
                                           .apply {
                                               if (id == null) {
                                                   addModifiers(KModifier.ABSTRACT)
                                               } else {
                                                   if (parameter.inherited)
                                                       addModifiers(KModifier.OVERRIDE)
-                                                  initializer(getInitValue(fieldType))
+                                                  getInitValue(fieldType).let {
+                                                      initializer(it,
+                                                                  if (it.contains("%T",
+                                                                                  true)) findDefaultConstructor(
+                                                                          fieldTlType)
+                                                                  else Unit)
+                                                  }
                                               }
-                                              if (!fieldTlType.serializable())
+                                              if (!fieldTlType.serializable() && id != null)
                                                   addAnnotation(Transient::class)
                                               if (fieldTlType is TLTypeFlag && (id == null || !parameter.inherited))
                                                   addModifiers(if (id == null) KModifier.PROTECTED
@@ -378,7 +376,8 @@ class TLClassGenerator(tlDefinition: TLDefinition, val config: Config) {
             val deserializeStatement = "$fieldName = ${deserializeParameter(fieldTlType,
                                                                             fieldType)}"
             val count = deserializeStatement.split("%T").size - 1
-            deserializeFun.addStatement(deserializeStatement, *Array(count, { fieldType }))
+            deserializeFun.addStatement(deserializeStatement,
+                                        *Array(count, { fieldType.asNonNullable() }))
 
             equalsStatements.add("$fieldName == other.$fieldName")
 
@@ -475,37 +474,40 @@ class TLClassGenerator(tlDefinition: TLDefinition, val config: Config) {
         FLOAT -> "0F"
         DOUBLE -> "0.0"
         BOOLEAN -> "false"
-        else -> "null"
+        String::class.asTypeName() -> "\"\""
+        TYPE_TL_BYTES -> "TLBytes.EMPTY"
+        is ParameterizedTypeName -> when (type.rawType) {
+            TYPE_TL_INT_VECTOR -> "TLIntVector()"
+            TYPE_TL_LONG_VECTOR -> "TLLongVector()"
+            TYPE_TL_STRING_VECTOR -> "TLStringVector()"
+            else -> "TLVector()"
+        }
+        else -> when {
+            type.nullable -> "null"
+            else -> "%T()"
+        }
     }
 
-    private fun TypeSpec.Builder.addExecutorDelegate(executorType: TypeName, methodName: String) =
-            primaryConstructor(FunSpec.constructorBuilder()
-                                       .addParameter("executor", executorType)
-                                       .build())
-                    .addProperty(PropertySpec.builder("executor", executorType)
-                                         .initializer("executor")
-                                         .build())
-                    .addFunction(FunSpec.makeOverride(methodName)
-                                         .addTypeVariable(TypeVariableName.ofTLObject())
-                                         .addParameter("method",
-                                                       ParameterizedTypeName.get(TYPE_TL_METHOD,
-                                                                                 TypeVariableName.T()))
-                                         .addStatement("return executor.$methodName(method)")
-                                         .build())
+    private fun findDefaultConstructor(type: TLType): TypeName {
+        // Try to find empty constructor
+        return constructorTypeNameMap.entries.firstOrNull {
+            it.key.tlType == type && (it.key.name.contains("empty", true
+            || it.key.name.contains("unavailable", true)))
+        }?.value ?: constructorTypeNameMap.entries.first { it.key.tlType == type }.value
+    }
 
     private fun TLMethod.makeApiWrapperFun(responseType: TypeName, methodName: String) =
             FunSpec.makeOverride(name.lCamelCase())
                     .addThrowsByTypename(TYPE_RPC_EXCEPTION, IOException::class.asTypeName())
                     .returns(responseType)
-                    .addStatement("return $methodName(%T(%L)) as %T",
+                    .addStatement("return $methodName(%T(%L))",
                                   typeName(),
                                   if (parameters.isNotEmpty()) {
                                       parameters
                                               .filterNot { it.tlType is TLTypeFlag }
                                               .joinToString(
                                                       ", ") { it.name.lCamelCase().javaEscape() }
-                                  } else "",
-                                  responseType)
+                                  } else "")
 
     private fun TLMethod.makeApiFun(responseType: TypeName) =
             FunSpec.builder(name.lCamelCase())

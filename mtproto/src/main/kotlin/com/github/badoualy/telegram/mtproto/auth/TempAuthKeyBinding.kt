@@ -6,7 +6,6 @@ import com.github.badoualy.telegram.mtproto.secure.MTProtoMessageEncryption
 import com.github.badoualy.telegram.mtproto.secure.RandomUtils
 import com.github.badoualy.telegram.mtproto.tl.MTMessage
 import com.github.badoualy.telegram.mtproto.tl.auth.BindAuthKeyInner
-import com.github.badoualy.telegram.tl.api.request.TLRequestAuthBindTempAuthKey
 import com.github.badoualy.telegram.tl.core.TLBytes
 import java.io.IOException
 import java.math.BigInteger
@@ -53,11 +52,11 @@ object TempAuthKeyBinding {
         val encryptedMessage = MTProtoMessageEncryption.encrypt(authKey, randomPart1, randomPart2, mtBindingMessage)
 
         // Build request
-        val request = TLRequestAuthBindTempAuthKey(authKey.keyIdAsLong, nonce,
-                                                   tempAuthKey.expiresAt,
-                                                   TLBytes(encryptedMessage.data))
-        @Suppress("UNUSED_VARIABLE")
-        val message = MTMessage(msgId, 0, request.serialize())
+//        val request = TLRequestAuthBindTempAuthKey(authKey.keyIdAsLong, nonce,
+//                                                   tempAuthKey.expiresAt,
+//                                                   TLBytes(encryptedMessage.data))
+//        @Suppress("UNUSED_VARIABLE")
+//        val message = MTMessage(msgId, 0, request.serialize())
 
         return false
     }

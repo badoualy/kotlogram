@@ -36,7 +36,7 @@ public final class TLApiTest extends AbsTLApiTest implements ITest {
 
         T deserializedObject = newInstanceOf((Class<T>) clazz);
         ByteArrayInputStream is = new ByteArrayInputStream(bytes);
-        deserializedObject.deserialize(is, TLApiTestContext.getInstance());
+        deserializedObject.deserialize(is, TLApiTestContext.INSTANCE);
         Assert.assertEquals(is.available(), 0,
                             "Deserialization did not consume whole payload of " + bytes.length + " bytes");
         Assert.assertEquals(DumpUtils.toJson(deserializedObject), DumpUtils.toJson(object),

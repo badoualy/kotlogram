@@ -45,19 +45,13 @@ fun FunSpec.Builder.addAnnotation(type: KClass<*>, value: String) = apply {
                           .build())
 }
 
-fun FunSpec.Builder.addThrows(vararg clazz: KClass<*>) = apply {
-    addAnnotation(AnnotationSpec.builder(Throws::class)
-                          .addMember("value",
-                                     clazz.joinToString(",") { "%T::class" },
-                                     clazz)
-                          .build())
-}
+fun FunSpec.Builder.addThrows(vararg clazz: KClass<*>) = addThrowsByTypename(*clazz.map { it.asTypeName() }.toTypedArray())
 
 fun FunSpec.Builder.addThrowsByTypename(vararg clazz: TypeName) = apply {
     addAnnotation(AnnotationSpec.builder(Throws::class)
                           .addMember("value",
                                      clazz.joinToString(",") { "%T::class" },
-                                     clazz)
+                                     *clazz)
                           .build())
 }
 

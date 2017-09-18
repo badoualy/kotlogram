@@ -1,8 +1,0 @@
-{
-  "peer": {
-    "id": 0,
-    "accessHash": 0,
-    "_constructor": "inputPhoneCall#1e36fded"
-  },
-  "_constructor": "phone.receivedCall#17d54f61"
-}

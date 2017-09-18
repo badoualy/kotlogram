@@ -13,8 +13,8 @@ val TLAbsMessageAction.title: String?
 
 val TLAbsMessageAction.userIdList: IntArray?
     get() = when (this) {
-        is TLMessageActionChatAddUser -> users.toIntArray()
-        is TLMessageActionChatCreate -> users.toIntArray()
+        is TLMessageActionChatAddUser -> users!!.toIntArray()
+        is TLMessageActionChatCreate -> users!!.toIntArray()
         is TLMessageActionChatDeleteUser -> intArrayOf(userId)
         is TLMessageActionChatJoinedByLink -> intArrayOf(inviterId)
         else -> null

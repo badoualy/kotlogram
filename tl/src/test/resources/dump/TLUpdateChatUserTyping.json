@@ -1,8 +1,0 @@
-{
-  "chatId": 0,
-  "userId": 0,
-  "action": {
-    "_constructor": "sendMessageTypingAction#16bf744e"
-  },
-  "_constructor": "updateChatUserTyping#9a65ea1f"
-}
