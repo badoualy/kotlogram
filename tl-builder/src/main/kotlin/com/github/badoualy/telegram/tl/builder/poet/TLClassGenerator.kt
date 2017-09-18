@@ -489,11 +489,11 @@ class TLClassGenerator(tlDefinition: TLDefinition, val config: Config) {
     }
 
     private fun findDefaultConstructor(type: TLType): TypeName {
-        // Try to find empty constructor
-        return constructorTypeNameMap.entries.firstOrNull {
-            it.key.tlType == type && (it.key.name.contains("empty", true
-            || it.key.name.contains("unavailable", true)))
-        }?.value ?: constructorTypeNameMap.entries.first { it.key.tlType == type }.value
+        // Try to find empty/unavailable constructor, or constructor with less parameters
+        val constructors = constructorTypeNameMap.entries.filter { it.key.tlType == type }
+        return constructors.firstOrNull {
+            it.key.name.contains("empty|unavailable".toRegex(RegexOption.IGNORE_CASE))
+        }?.value ?: constructors.sortedBy { it.key.parameters.size }.first().value
     }
 
     private fun TLMethod.makeApiWrapperFun(responseType: TypeName, methodName: String) =
