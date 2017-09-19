@@ -39,13 +39,13 @@ object DownloadMessageMediaSample {
                     ?: throw RuntimeException("Found no messages with media in last 100 messages")
 
             val tlAbsMedia = tlMessage.media
-            val mediaInput = tlAbsMedia.getAbsMediaInput()
+            val mediaInput = tlAbsMedia?.getAbsMediaInput()
             if (mediaInput != null) {
                 val fileName = when (tlAbsMedia) {
                     is TLMessageMediaPhoto, is TLMessageMediaWebPage -> "photo.jpg"
                     else -> {
                         // Get real file name
-                        val tlDocument = (tlAbsMedia as? TLMessageMediaDocument)?.document?.asDocument
+                        val tlDocument = (tlAbsMedia as? TLMessageMediaDocument)?.document?.asDocument()
                         tlDocument?.attributes?.filterIsInstance<TLDocumentAttributeFilename>()
                                 ?.firstOrNull()?.fileName ?: "file"
                     }

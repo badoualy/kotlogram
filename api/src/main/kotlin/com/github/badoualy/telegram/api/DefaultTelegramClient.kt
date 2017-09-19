@@ -128,7 +128,7 @@ internal class DefaultTelegramClient internal constructor(val application: Teleg
                                                             application.systemVersion,
                                                             application.appVersion,
                                                             application.langCode,
-                                                            application.langCode,
+                                                            "",
                                                             application.langCode, method)
         val result = executeRpcQuerySync(
                 TLRequestInvokeWithLayer(Kotlogram.API_LAYER, initConnectionRequest),
@@ -325,7 +325,7 @@ internal class DefaultTelegramClient internal constructor(val application: Teleg
     override fun messagesSendMessage(peer: TLAbsInputPeer, message: String, randomId: Long) =
             messagesSendMessage(true, false, false, false,
                                 peer, null, message, randomId,
-                                null, null)!!
+                                null, null)
 
     private fun migrate(dcId: Int) {
         logger.info(marker, "Migrating to DC$dcId")

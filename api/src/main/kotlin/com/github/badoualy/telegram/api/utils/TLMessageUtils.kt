@@ -40,17 +40,17 @@ val TLAbsMessage.isSticker: Boolean
         if (this !is TLMessage) return false
         if (media == null || media !is TLMessageMediaDocument) return false
         val media = this.media as TLMessageMediaDocument
-        if (media.document.isEmpty) return false
-        return media.document.asDocument.attributes.any { it is TLDocumentAttributeSticker }
+        if (media.document?.isEmpty() == true) return false
+        return media.document?.asDocument()?.attributes?.any { it is TLDocumentAttributeSticker } ?: false
     }
 
 fun TLAbsMessage.getStickerAlt() = when (isSticker) {
-    true -> ((this as? TLMessage)?.media as? TLMessageMediaDocument)?.document?.asDocument?.attributes
+    true -> ((this as? TLMessage)?.media as? TLMessageMediaDocument)?.document?.asDocument()?.attributes
             ?.filterIsInstance<TLDocumentAttributeSticker>()?.first()?.alt
     false -> null
 }
 
 fun TLAbsMessage.getSticker(): TLDocument? = when (isSticker) {
-    true -> ((this as? TLMessage)?.media as? TLMessageMediaDocument)?.document?.asDocument
+    true -> ((this as? TLMessage)?.media as? TLMessageMediaDocument)?.document?.asDocument()
     false -> null
 }

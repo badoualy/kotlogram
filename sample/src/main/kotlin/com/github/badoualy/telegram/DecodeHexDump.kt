@@ -21,7 +21,7 @@ object DecodeHexDump {
         println("Using input ${file.absolutePath}")
 
         val payload = Hex(Charsets.UTF_8).decode(file.readText()) as ByteArray
-        val tlObject = TLApiContext.getInstance().deserializeMessage(payload)
+        val tlObject = TLApiContext.deserializeMessage(payload)
 
         println("Found ${tlObject.javaClass.canonicalName}\n\n")
         println(gson.toJson(tlObject))

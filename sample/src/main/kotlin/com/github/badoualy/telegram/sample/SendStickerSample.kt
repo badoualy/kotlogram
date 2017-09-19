@@ -45,7 +45,7 @@ object SendStickerSample {
 
             if (set.documents.isNotEmpty()) {
                 val tlInputDocument = set.documents.first().toInputDocument()
-                val tlInputMediaDocument = TLInputMediaDocument(tlInputDocument, "")
+                val tlInputMediaDocument = TLInputMediaDocument(tlInputDocument, "", null)
 
                 val tlAbsUpdates = client.messagesSendMedia(false, false, false,
                                                             inputPeer, null,
