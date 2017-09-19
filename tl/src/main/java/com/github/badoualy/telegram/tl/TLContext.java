@@ -19,12 +19,10 @@ import java.util.HashMap;
 import java.util.zip.GZIPInputStream;
 
 /**
- * TypeLanguage context object. It performs deserialization of objects and vectors.
- * All known classes might be registered in context for deserialization.
- * Often this might be performed from inherited class in init() method call.
- * If TL-Object contains static int field CONSTRUCTOR_ID, then it might be used for registration,
- * but it uses reflection so it might be slow in some cases. It recommended to manually pass CONSTRUCTOR_ID
- * to registerClass method.
+ * TypeLanguage context object. It performs deserialization of objects and vectors. All known classes might be
+ * registered in context for deserialization. Often this might be performed from inherited class in init() method call.
+ * If TL-Object contains static int field CONSTRUCTOR_ID, then it might be used for registration, but it uses reflection
+ * so it might be slow in some cases. It recommended to manually pass CONSTRUCTOR_ID to registerClass method.
  *
  * @author Yannick Badoual yann.badoual@gmail.com
  * @see <a href="http://github.com/badoualy/kotlogram">http://github.com/badoualy/kotlogram</a>
@@ -93,12 +91,15 @@ public abstract class TLContext {
             clazz = null;
         }
 
-        if (constructorId == TLGzipObject.CONSTRUCTOR_ID)
+        if (constructorId == TLGzipObject.CONSTRUCTOR_ID) {
             return (T) deserializeMessage(unzipStream(stream));
-        if (constructorId == TLBool.TRUE_CONSTRUCTOR_ID)
-            return (T) TLBool.TRUE;
-        if (constructorId == TLBool.FALSE_CONSTRUCTOR_ID)
-            return (T) TLBool.FALSE;
+        }
+        if (constructorId == TLBool.Companion.getTRUE().getConstructorId()) {
+            return (T) TLBool.Companion.getTRUE();
+        }
+        if (constructorId == TLBool.Companion.getFALSE().getConstructorId()) {
+            return (T) TLBool.Companion.getFALSE();
+        }
         if (constructorId == TLVector.CONSTRUCTOR_ID) {
             /* Vector should be deserialized via the appropriate method, a vector was not expected,
              we must assume it's not any of vector<int>, vector<long>, vector<string> */
@@ -108,8 +109,9 @@ public abstract class TLContext {
         try {
             if (clazz == null) {
                 clazz = registeredClasses.get(constructorId);
-                if (clazz == null)
+                if (clazz == null) {
                     throw new UnsupportedConstructorException(constructorId);
+                }
             }
 
             T message = clazz.getConstructor().newInstance();
@@ -139,11 +141,13 @@ public abstract class TLContext {
 
     private TLVector<?> deserializeVector(InputStream stream, TLVector<?> vector) throws IOException {
         int constructorId = StreamUtils.readInt(stream);
-        if (constructorId == TLGzipObject.CONSTRUCTOR_ID)
+        if (constructorId == TLGzipObject.CONSTRUCTOR_ID) {
             return deserializeVector(unzipStream(stream));
+        }
 
-        if (constructorId == TLVector.CONSTRUCTOR_ID)
+        if (constructorId == TLVector.CONSTRUCTOR_ID) {
             return deserializeVectorBody(stream, vector);
+        }
 
         throw new InvalidConstructorIdException(constructorId, TLVector.CONSTRUCTOR_ID);
     }

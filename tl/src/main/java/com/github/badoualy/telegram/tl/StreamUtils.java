@@ -69,7 +69,7 @@ public final class StreamUtils {
     }
 
     public static void writeBoolean(boolean v, OutputStream stream) throws IOException {
-        TLBool.serialize(v, stream);
+        TLBool.Companion.serialize(v, stream);
     }
 
     public static void writeString(String v, OutputStream stream) throws IOException {
@@ -295,7 +295,7 @@ public final class StreamUtils {
     }
 
     public static boolean readTLBool(InputStream stream) throws IOException {
-        return TLBool.deserialize(stream);
+        return TLBool.Companion.deserialize(stream);
     }
 
     public static byte[] intToBytes(int value) {

@@ -31,6 +31,7 @@ val TYPE_TL_CONTEXT = ClassName.get(PACKAGE_TL, "TLContext")
 val TYPE_DESERIALIZE_EXCEPTION = ClassName.get(
         PACKAGE_TL_EXCEPTION, "DeserializeException")
 val TYPE_TLOBJECT_UTILS = ClassName.get(PACKAGE_TL, "TLObjectUtils")
+// TODO 1 for each size
 val TYPE_RPC_EXCEPTION = ClassName.get(PACKAGE_TL_EXCEPTION, "RpcErrorException")
 
 val TYPE_TL_BOOL = ClassName.get(PACKAGE_TL_CORE, "TLBool")

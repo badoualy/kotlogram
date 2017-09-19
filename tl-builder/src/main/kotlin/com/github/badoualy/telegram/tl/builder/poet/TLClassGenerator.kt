@@ -403,10 +403,11 @@ class TLClassGenerator(tlDefinition: TLDefinition, val config: Config) {
 
         if (id != null) {
             constructorBuilder?.let { clazz.addFunction(it.build()) }
-            clazz.addFunction(serializeFun.build())
-            clazz.addFunction(deserializeFun.build())
-            // TODO: if no parameters, replace by inlined return SIZE_CONSTRUCTOR_ID
-            clazz.addFunction(computeSizeFun.addStatement("return size").build())
+            if (parameters.isNotEmpty()) {
+                clazz.addFunction(serializeFun.build())
+                clazz.addFunction(deserializeFun.build())
+                clazz.addFunction(computeSizeFun.addStatement("return size").build())
+            }
 
             // _constructor
             clazz.addProperty(PropertySpec.builder("_constructor", String::class)

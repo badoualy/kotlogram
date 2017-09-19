@@ -123,8 +123,8 @@ public abstract class AbsTLApiTest {
     }
 
     public TLObject getRandomTLObject(Class<? extends TLObject> clazz) throws Exception {
-        if (clazz == TLBool.FALSE.getClass()) return TLBool.FALSE;
-        if (clazz == TLBool.TRUE.getClass()) return TLBool.TRUE;
+        if (clazz == TLBool.Companion.getFALSE().getClass()) return TLBool.Companion.getFALSE();
+        if (clazz == TLBool.Companion.getTRUE().getClass()) return TLBool.Companion.getTRUE();
 
         TLObject object = newInstanceOf(clazz);
         randomize(object);
