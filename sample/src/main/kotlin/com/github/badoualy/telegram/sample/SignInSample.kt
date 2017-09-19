@@ -33,7 +33,7 @@ object SignInSample {
                         } else throw e
                     }
 
-            authorization.user.asUser.apply {
+            authorization.user.asUser()!!.apply {
                 println("You are now signed in as $firstName $lastName @$username")
             }
         } catch (e: RpcErrorException) {

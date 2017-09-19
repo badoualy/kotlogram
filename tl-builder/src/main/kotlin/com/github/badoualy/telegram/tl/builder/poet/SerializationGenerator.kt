@@ -36,7 +36,7 @@ internal fun serializeParameter(fieldName: String, fieldTlType: TLType): String 
 }
 
 internal fun deserializeParameter(fieldTlType: TLType, fieldType: TypeName): String = when (fieldTlType) {
-    is TLTypeFunctional -> "readTLMethod(stream, context) as TLMethod<T>?"
+    is TLTypeFunctional -> "readTLMethod(stream, context) as TLMethod<T>"
     is TLTypeFlag -> "readInt(stream)"
     is TLTypeConditional -> {
         val prefix = "(flags and ${fieldTlType.pow2Value()}) != 0"
@@ -50,7 +50,7 @@ internal fun deserializeParameter(fieldTlType: TLType, fieldType: TypeName): Str
         "int" -> "readTLIntVector(stream, context)"
         "long" -> "readTLLongVector(stream, context)"
         "string" -> "readTLStringVector(stream, context)"
-        else -> "readTLVector(stream, context) as %T"
+        else -> "readTLVector(stream, context) as %1T"
     }
     is TLTypeRaw -> when (fieldTlType.name) {
         "int" -> "readInt(stream)"
@@ -63,8 +63,8 @@ internal fun deserializeParameter(fieldTlType: TLType, fieldType: TypeName): Str
         else -> {
             val className = (fieldType as ClassName).simpleName()
             val isAbstract = className.startsWith("TLAbs", true)
-            val constructorId = if (isAbstract) "-1" else "%T.CONSTRUCTOR_ID"
-            "readTLObject(stream, context, %T::class.java, $constructorId)"
+            val constructorId = if (isAbstract) "-1" else "%1T.CONSTRUCTOR_ID"
+            "readTLObject(stream, context, %1T::class.java, $constructorId)"
         }
     }
     else -> throw RuntimeException("Unsupported type $fieldTlType")
