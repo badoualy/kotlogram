@@ -258,6 +258,7 @@ class TLClassGenerator(tlDefinition: TLDefinition, val config: Config) {
         // Deserialize
         val deserializeFun = FunSpec.makeOverride("deserializeBody")
                 .addThrows(IOException::class)
+                .addAnnotation(Suppress::class, "%S", "UNCHECKED_CAST")
                 .addParameter("stream", InputStream::class)
                 .addParameter("context", TYPE_TL_CONTEXT)
 
@@ -421,9 +422,9 @@ class TLClassGenerator(tlDefinition: TLDefinition, val config: Config) {
                                       .build())
 
             // getConstructorId
-            // TODO: make this abstract property
-            clazz.addFunction(FunSpec.makeOverride("getConstructorId")
-                                      .addStatement("return CONSTRUCTOR_ID")
+            clazz.addProperty(PropertySpec.builder("constructorId", Int::class,
+                                                   KModifier.OVERRIDE)
+                                      .initializer("CONSTRUCTOR_ID")
                                       .build())
 
             if (equalsStatements.isEmpty()) {

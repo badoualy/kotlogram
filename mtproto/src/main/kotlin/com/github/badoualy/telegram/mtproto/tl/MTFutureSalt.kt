@@ -7,11 +7,11 @@ import java.io.IOException
 import java.io.InputStream
 import java.io.OutputStream
 
-class MTFutureSalt @JvmOverloads constructor(var validSince: Int = 0, var validUntil: Int = 0, var salt: Long = 0) : TLObject() {
+class MTFutureSalt @JvmOverloads constructor(var validSince: Int = 0,
+                                             var validUntil: Int = 0,
+                                             var salt: Long = 0) : TLObject() {
 
-    override fun getConstructorId(): Int {
-        return CONSTRUCTOR_ID
-    }
+    override val constructorId: Int = CONSTRUCTOR_ID
 
     @Throws(IOException::class)
     override fun serializeBody(stream: OutputStream) {

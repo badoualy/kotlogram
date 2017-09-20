@@ -7,11 +7,10 @@ import java.io.IOException
 import java.io.InputStream
 import java.io.OutputStream
 
-class MTPingDelayDisconnect @JvmOverloads constructor(var pingId: Long = 0, var disconnectDelay: Int = 0) : TLObject() {
+class MTPingDelayDisconnect @JvmOverloads constructor(var pingId: Long = 0,
+                                                      var disconnectDelay: Int = 0) : TLObject() {
 
-    override fun getConstructorId(): Int {
-        return CONSTRUCTOR_ID
-    }
+    override val constructorId: Int = CONSTRUCTOR_ID
 
     @Throws(IOException::class)
     override fun serializeBody(stream: OutputStream) {

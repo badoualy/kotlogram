@@ -9,17 +9,18 @@ import java.io.OutputStream
 import java.math.BigInteger
 
 class BindAuthKeyInner @JvmOverloads constructor(var nonce: Long = 0,
-                                                 var tempAuthKeyId: Long = 0, var permAuthKeyId: Long = 0,
-                                                 var tempSessionId: Long = 0, var expiresAt: Int = 0) : TLObject() {
+                                                 var tempAuthKeyId: Long = 0,
+                                                 var permAuthKeyId: Long = 0,
+                                                 var tempSessionId: Long = 0,
+                                                 var expiresAt: Int = 0) : TLObject() {
 
     constructor(nonce: Long, tempAuthKeyId: Long, permAuthKeyId: Long,
                 tempSessionId: ByteArray, expiresAt: Int) : this(nonce,
                                                                  tempAuthKeyId, permAuthKeyId,
-                                                                 BigInteger(tempSessionId).toLong(), expiresAt)
+                                                                 BigInteger(tempSessionId).toLong(),
+                                                                 expiresAt)
 
-    override fun getConstructorId(): Int {
-        return CONSTRUCTOR_ID
-    }
+    override val constructorId: Int = CONSTRUCTOR_ID
 
     @Throws(IOException::class)
     override fun serializeBody(stream: OutputStream) {

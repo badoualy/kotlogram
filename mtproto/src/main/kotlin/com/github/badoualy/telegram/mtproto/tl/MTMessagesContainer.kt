@@ -11,7 +11,11 @@ import java.util.*
 
 class MTMessagesContainer : TLObject {
 
-    val messages = TreeSet(Comparator<MTMessage> { mtMessage, mtMessage2 -> Math.signum((mtMessage.messageId - mtMessage2.messageId).toDouble()).toInt() })
+    val messages = TreeSet(Comparator<MTMessage> { m1, m2 ->
+        Math.signum((m1.messageId - m2.messageId).toDouble()).toInt()
+    })
+
+    override val constructorId: Int = CONSTRUCTOR_ID
 
     constructor(messages: Array<MTMessage>) {
         Collections.addAll(this.messages, *messages)
@@ -19,10 +23,6 @@ class MTMessagesContainer : TLObject {
 
     constructor() {
 
-    }
-
-    override fun getConstructorId(): Int {
-        return CONSTRUCTOR_ID
     }
 
     @Throws(IOException::class)

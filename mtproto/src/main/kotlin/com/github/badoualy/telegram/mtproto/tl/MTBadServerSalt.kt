@@ -6,11 +6,13 @@ import java.io.IOException
 import java.io.InputStream
 import java.io.OutputStream
 
-class MTBadServerSalt @JvmOverloads constructor(badMsgId: Long = 0, badMsqSeqno: Int = 0, errorCode: Int = 0, var newSalt: Long = 0) : MTBadMessage(badMsgId, badMsqSeqno, errorCode) {
+class MTBadServerSalt @JvmOverloads constructor(badMsgId: Long = 0,
+                                                badMsqSeqno: Int = 0,
+                                                errorCode: Int = 0,
+                                                var newSalt: Long = 0)
+    : MTBadMessage(badMsgId, badMsqSeqno, errorCode) {
 
-    override fun getConstructorId(): Int {
-        return CONSTRUCTOR_ID
-    }
+    override val constructorId: Int = CONSTRUCTOR_ID
 
     @Throws(IOException::class)
     override fun serializeBody(stream: OutputStream) {

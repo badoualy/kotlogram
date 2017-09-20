@@ -2,25 +2,25 @@ package com.github.badoualy.telegram.mtproto.tl
 
 import com.github.badoualy.telegram.tl.core.TLObject
 
-abstract class MTBadMessage @JvmOverloads constructor(var badMsgId: Long = 0, var badMsqSeqno: Int = 0, var errorCode: Int = 0) : TLObject() {
+abstract class MTBadMessage @JvmOverloads constructor(var badMsgId: Long = 0,
+                                                      var badMsqSeqno: Int = 0,
+                                                      var errorCode: Int = 0) : TLObject() {
     val errorMessage: String
-        get() {
+        get() =
             when (errorCode) {
-                16 -> return "msg_id too low"
-                17 -> return "msg_id too high"
-                18 -> return "incorrect two lower order msg_id bits"
-                19 -> return "container msg_id is the same as msg_id of a previously received message"
-                20 -> return "message too old, and it cannot be verified whether the server has received a message with this msg_id or not"
-                32 -> return "msg_seqno too low"
-                33 -> return "msg_seqno too high"
-                34 -> return "an even msg_seqno expected (irrelevant message), but odd received"
-                35 -> return "odd msg_seqno expected (relevant message), but even received"
-                48 -> return "incorrect server salt"
-                64 -> return "invalid container"
+                16 -> "msg_id too low"
+                17 -> "msg_id too high"
+                18 -> "incorrect two lower order msg_id bits"
+                19 -> "container msg_id is the same as msg_id of a previously received message"
+                20 -> "message too old, and it cannot be verified whether the server has received a message with this msg_id or not"
+                32 -> "msg_seqno too low"
+                33 -> "msg_seqno too high"
+                34 -> "an even msg_seqno expected (irrelevant message), but odd received"
+                35 -> "odd msg_seqno expected (relevant message), but even received"
+                48 -> "incorrect server salt"
+                64 -> "invalid container"
+                else -> ""
             }
-
-            return ""
-        }
 
     fun toPrettyString(): String {
         return "{id: $badMsgId, seqNo: $badMsqSeqno, errorCode: $errorCode, errorMessage: $errorMessage}"

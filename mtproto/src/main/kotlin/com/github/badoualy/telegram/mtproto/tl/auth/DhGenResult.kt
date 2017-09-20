@@ -8,7 +8,9 @@ import java.io.IOException
 import java.io.InputStream
 import java.io.OutputStream
 
-abstract class DhGenResult constructor(var nonce: ByteArray, var serverNonce: ByteArray, var newNonceHash: ByteArray) : TLObject() {
+abstract class DhGenResult constructor(var nonce: ByteArray,
+                                       var serverNonce: ByteArray,
+                                       var newNonceHash: ByteArray) : TLObject() {
 
     @Throws(IOException::class)
     override fun serializeBody(stream: OutputStream) {

@@ -10,11 +10,10 @@ import java.io.OutputStream
 
 class ReqSetDhClientParams @JvmOverloads constructor(var nonce: ByteArray = ByteArray(0),
                                                      var serverNonce: ByteArray = ByteArray(0),
-                                                     var encrypted: ByteArray = ByteArray(0)) : TLMethod<DhGenResult>() {
+                                                     var encrypted: ByteArray = ByteArray(0))
+    : TLMethod<DhGenResult>() {
 
-    override fun getConstructorId(): Int {
-        return CONSTRUCTOR_ID
-    }
+    override val constructorId: Int = CONSTRUCTOR_ID
 
     @Throws(IOException::class)
     override fun serializeBody(stream: OutputStream) {
@@ -32,16 +31,15 @@ class ReqSetDhClientParams @JvmOverloads constructor(var nonce: ByteArray = Byte
 
     @Throws(IOException::class)
     override fun deserializeResponse(stream: InputStream, context: TLContext): DhGenResult {
-        val response = context.deserializeMessage(stream) ?: throw DeserializationException("Unable to deserialize response")
+        val response = context.deserializeMessage(stream) ?: throw DeserializationException(
+                "Unable to deserialize response")
         if (response !is DhGenResult) {
             throw DeserializationException("Response has incorrect type")
         }
         return response
     }
 
-    override fun toString(): String {
-        return "set_client_DH_params#f5045f1f"
-    }
+    override fun toString() = "set_client_DH_params#f5045f1f"
 
     companion object {
         @JvmField

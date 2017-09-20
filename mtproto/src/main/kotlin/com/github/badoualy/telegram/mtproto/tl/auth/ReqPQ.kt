@@ -19,6 +19,8 @@ class ReqPQ constructor(nonce: ByteArray? = null) : TLMethod<ResPQ>() {
             field = nonce
         }
 
+    override val constructorId: Int = CONSTRUCTOR_ID
+
     init {
         if (nonce?.size ?: 0 != 16)
             throw IllegalArgumentException("nonce might be not null and 16 bytes length")
@@ -33,10 +35,6 @@ class ReqPQ constructor(nonce: ByteArray? = null) : TLMethod<ResPQ>() {
         }
 
         return response
-    }
-
-    override fun getConstructorId(): Int {
-        return CONSTRUCTOR_ID
     }
 
     @Throws(IOException::class)

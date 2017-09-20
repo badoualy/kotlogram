@@ -8,11 +8,10 @@ import java.io.OutputStream
 
 class ServerDhOk @JvmOverloads constructor(var nonce: ByteArray = ByteArray(0),
                                            var serverNonce: ByteArray = ByteArray(0),
-                                           var encryptedAnswer: ByteArray = ByteArray(0)) : ServerDhParams() {
+                                           var encryptedAnswer: ByteArray = ByteArray(0))
+    : ServerDhParams() {
 
-    override fun getConstructorId(): Int {
-        return CONSTRUCTOR_ID
-    }
+    override val constructorId: Int = CONSTRUCTOR_ID
 
     @Throws(IOException::class)
     override fun serializeBody(stream: OutputStream) {
@@ -28,9 +27,7 @@ class ServerDhOk @JvmOverloads constructor(var nonce: ByteArray = ByteArray(0),
         encryptedAnswer = readTLBytes(stream)
     }
 
-    override fun toString(): String {
-        return "server_DH_params_ok#d0e8075c"
-    }
+    override fun toString() = "server_DH_params_ok#d0e8075c"
 
     companion object {
         @JvmField

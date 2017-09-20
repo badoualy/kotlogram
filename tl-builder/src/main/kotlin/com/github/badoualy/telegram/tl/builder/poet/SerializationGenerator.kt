@@ -2,6 +2,7 @@ package com.github.badoualy.telegram.tl.builder.poet
 
 import com.github.badoualy.telegram.tl.builder.parser.*
 import com.squareup.kotlinpoet.ClassName
+import com.squareup.kotlinpoet.CodeBlock
 import com.squareup.kotlinpoet.TypeName
 
 internal fun serializeParameter(fieldName: String, fieldTlType: TLType): String = when (fieldTlType) {
@@ -10,13 +11,16 @@ internal fun serializeParameter(fieldName: String, fieldTlType: TLType): String 
     is TLTypeConditional -> {
         val statement = StringBuilder()
         statement.append("if ((flags and ${fieldTlType.pow2Value()}) != 0) {\n")
-                .append("    ")
-        if (fieldTlType.realType !is TLTypeRaw || fieldTlType.realType.name != "Bool") {
-            statement.append("""if ($fieldName == null) throwNullFieldException("$fieldName", flags)""").append(
-                    '\n')
-                    .append("    ")
-        }
-        statement.append(serializeParameter(fieldName + "!!", fieldTlType.realType)).append('\n')
+        val assert =
+                if (fieldTlType.realType !is TLTypeRaw || fieldTlType.realType.name != "Bool") {
+                    statement.append(
+                            """if ($fieldName == null) throwNullFieldException("$fieldName", flags)""")
+                            .append('\n')
+                    true
+                } else false
+        statement.append(serializeParameter(fieldName + if (assert) "!!" else "",
+                                            fieldTlType.realType))
+                .append('\n')
                 .append('}')
         statement.toString()
     }
@@ -71,22 +75,25 @@ internal fun deserializeParameter(fieldTlType: TLType, fieldType: TypeName): Str
 }
 
 internal fun computeSizeParameter(fieldName: String, fieldTlType: TLType): String = when (fieldTlType) {
-    is TLTypeFunctional -> "size += $fieldName!!.computeSerializedSize()"
+    is TLTypeFunctional -> "size += $fieldName.computeSerializedSize()"
     is TLTypeFlag -> "size += SIZE_INT32"
     is TLTypeConditional -> {
         val statement = StringBuilder()
         statement.append("if ((flags and ${fieldTlType.pow2Value()}) != 0) {\n")
-                .append("    ")
-        if (fieldTlType.realType !is TLTypeRaw || fieldTlType.realType.name != "Bool") {
-            statement.append("""if ($fieldName == null) throwNullFieldException("$fieldName", flags)""").append(
-                    '\n')
-                    .append("    ")
-        }
-        statement.append(computeSizeParameter(fieldName, fieldTlType.realType)).append("\n")
+        val assert =
+                if (fieldTlType.realType !is TLTypeRaw || fieldTlType.realType.name != "Bool") {
+                    statement.append(
+                            """if ($fieldName == null) throwNullFieldException("$fieldName", flags)""")
+                            .append('\n')
+                    true
+                } else false
+        statement.append(computeSizeParameter(fieldName + if (assert) "!!" else "",
+                                              fieldTlType.realType))
+                .append('\n')
                 .append('}')
         statement.toString()
     }
-    is TLTypeGeneric -> "size += $fieldName?.computeSerializedSize() ?: 0"
+    is TLTypeGeneric -> "size += $fieldName.computeSerializedSize()"
     is TLTypeRaw -> {
         val name = fieldTlType.name
         when (name) {
@@ -97,7 +104,7 @@ internal fun computeSizeParameter(fieldName: String, fieldTlType: TLType): Strin
             "string" -> "size += computeTLStringSerializedSize($fieldName)"
             "bytes" -> "size += computeTLBytesSerializedSize($fieldName)"
             "Bool" -> "size += SIZE_BOOLEAN"
-            else -> "size += $fieldName?.computeSerializedSize() ?: 0"
+            else -> "size += $fieldName.computeSerializedSize()"
         }
     }
     else -> throw RuntimeException("Unsupported type $fieldTlType")

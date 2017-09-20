@@ -6,7 +6,7 @@ import java.util.Arrays
  * @author Yannick Badoual yann.badoual@gmail.com
  * @see [http://github.com/badoualy/kotlogram](http://github.com/badoualy/kotlogram)
  */
-class TLBytes(data: ByteArray, offset: Int = 0, len: Int = data.size) {
+class TLBytes @JvmOverloads constructor(data: ByteArray, offset: Int = 0, len: Int = data.size) {
 
     var data = data
         private set

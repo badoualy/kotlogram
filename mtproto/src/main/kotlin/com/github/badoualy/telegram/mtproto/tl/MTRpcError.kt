@@ -8,7 +8,8 @@ import java.io.InputStream
 import java.io.OutputStream
 import java.util.regex.Pattern
 
-class MTRpcError @JvmOverloads constructor(var errorCode: Int = 0, var message: String = "") : TLObject() {
+class MTRpcError @JvmOverloads constructor(var errorCode: Int = 0,
+                                           var message: String = "") : TLObject() {
 
     val errorTag: String
         get() {
@@ -22,9 +23,7 @@ class MTRpcError @JvmOverloads constructor(var errorCode: Int = 0, var message: 
             return "DEFAULT"
         }
 
-    override fun getConstructorId(): Int {
-        return CONSTRUCTOR_ID
-    }
+    override val constructorId: Int = CONSTRUCTOR_ID
 
     @Throws(IOException::class)
     override fun serializeBody(stream: OutputStream) {

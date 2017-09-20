@@ -136,7 +136,7 @@ class MTProtoHandler {
     @Throws(IOException::class)
     fun <T : TLObject> executeMethodsSync(methods: List<TLMethod<out T>>, timeout: Long): List<T> =
             executeMethods(methods, timeout).toBlocking().toIterable()
-                    .sortedBy { methods.indexOf(it) }.map { it.response }.toList()
+                    .sortedBy { methods.indexOf(it) }.map { it.response!! }.toList()
 
     /**
      * Queue a method to be executed with the next message.
@@ -153,7 +153,7 @@ class MTProtoHandler {
                                           System.currentTimeMillis() + validityTimeout,
                                           subscriber))
         }
-    }.map { it.response }.timeout(timeout, TimeUnit.MILLISECONDS)
+    }.map { it.response!! }.timeout(timeout, TimeUnit.MILLISECONDS)
 
     /**
      * Execute the given method
@@ -668,5 +668,5 @@ class MTProtoHandler {
         }
     }
 
-    private data class QueuedMethod<T : TLObject?>(val method: TLMethod<T>, val validityTimeout: Long, val subscriber: Subscriber<in TLMethod<T>>)
+    private data class QueuedMethod<T : TLObject>(val method: TLMethod<T>, val validityTimeout: Long, val subscriber: Subscriber<in TLMethod<T>>)
 }

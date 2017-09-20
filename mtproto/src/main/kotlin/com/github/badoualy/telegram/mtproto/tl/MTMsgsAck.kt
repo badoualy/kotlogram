@@ -11,16 +11,14 @@ import java.io.OutputStream
 
 class MTMsgsAck @JvmOverloads constructor(var messages: TLLongVector = TLLongVector()) : TLObject() {
 
+    override val constructorId: Int = CONSTRUCTOR_ID
+
     constructor(msgIds: LongArray) : this() {
         messages.addAll(msgIds.toList())
     }
 
     constructor(msgIds: Array<Long>) : this() {
         messages.addAll(msgIds)
-    }
-
-    override fun getConstructorId(): Int {
-        return CONSTRUCTOR_ID
     }
 
     @Throws(IOException::class)

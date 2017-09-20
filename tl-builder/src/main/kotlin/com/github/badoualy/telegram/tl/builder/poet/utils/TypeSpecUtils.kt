@@ -32,20 +32,25 @@ fun TypeSpec.Builder.emptyConstructor() = apply {
 fun TypeSpec.writeToFile(packageName: String, outputDir: String) {
     FileSpec.builder(packageName, name!!)
             .addStaticImport(TYPE_STREAM_UTILS, "*")
-            .addStaticImport(TYPE_TLOBJECT_UTILS, "*")
+            .addStaticImport(TYPE_TLOBJECT_UTILS,
+                             "SIZE_INT32", "SIZE_INT64",
+                             "SIZE_CONSTRUCTOR_ID", "SIZE_BOOLEAN", "SIZE_DOUBLE",
+                             "computeTLBytesSerializedSize", "computeTLBytesSerializedSize",
+                             "computeTLStringSerializedSize")
             .indent("    ")
             .addType(this)
             .build()
             .writeTo(File(outputDir))
 }
 
-fun FunSpec.Builder.addAnnotation(type: KClass<*>, value: String) = apply {
+fun FunSpec.Builder.addAnnotation(type: KClass<*>, value: String, vararg args: Any) = apply {
     addAnnotation(AnnotationSpec.builder(type)
-                          .addMember("value", value)
+                          .addMember("value", value, *args)
                           .build())
 }
 
-fun FunSpec.Builder.addThrows(vararg clazz: KClass<*>) = addThrowsByTypename(*clazz.map { it.asTypeName() }.toTypedArray())
+fun FunSpec.Builder.addThrows(vararg clazz: KClass<*>) = addThrowsByTypename(
+        *clazz.map { it.asTypeName() }.toTypedArray())
 
 fun FunSpec.Builder.addThrowsByTypename(vararg clazz: TypeName) = apply {
     addAnnotation(AnnotationSpec.builder(Throws::class)

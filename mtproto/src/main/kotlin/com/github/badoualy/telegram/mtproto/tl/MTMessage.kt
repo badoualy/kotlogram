@@ -7,11 +7,12 @@ import java.io.IOException
 import java.io.InputStream
 import java.io.OutputStream
 
-class MTMessage @JvmOverloads constructor(var messageId: Long = 0, var seqNo: Int = 0, var payload: ByteArray = ByteArray(0), var  payloadLength: Int = payload.size) : TLObject() {
+class MTMessage @JvmOverloads constructor(var messageId: Long = 0,
+                                          var seqNo: Int = 0,
+                                          var payload: ByteArray = ByteArray(0),
+                                          var payloadLength: Int = payload.size) : TLObject() {
 
-    override fun getConstructorId(): Int {
-        return 0
-    }
+    override val constructorId: Int = 0
 
     @Throws(IOException::class)
     override fun serializeBody(stream: OutputStream) {

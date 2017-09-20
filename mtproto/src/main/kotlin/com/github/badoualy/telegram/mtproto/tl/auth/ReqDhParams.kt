@@ -8,14 +8,15 @@ import java.io.IOException
 import java.io.InputStream
 import java.io.OutputStream
 
-class ReqDhParams @JvmOverloads constructor(var nonce: ByteArray = ByteArray(0), var serverNonce: ByteArray = ByteArray(0),
-                                            var p: ByteArray = ByteArray(0), var q: ByteArray = ByteArray(0),
+class ReqDhParams @JvmOverloads constructor(var nonce: ByteArray = ByteArray(0),
+                                            var serverNonce: ByteArray = ByteArray(0),
+                                            var p: ByteArray = ByteArray(0),
+                                            var q: ByteArray = ByteArray(0),
                                             var fingerPrint: Long = 0,
-                                            var encryptedData: ByteArray = ByteArray(0)) : TLMethod<ServerDhParams> () {
+                                            var encryptedData: ByteArray = ByteArray(0))
+    : TLMethod<ServerDhParams>() {
 
-    override fun getConstructorId(): Int {
-        return CONSTRUCTOR_ID
-    }
+    override val constructorId: Int = CONSTRUCTOR_ID
 
     @Throws(IOException::class)
     override fun serializeBody(stream: OutputStream) {
@@ -39,7 +40,8 @@ class ReqDhParams @JvmOverloads constructor(var nonce: ByteArray = ByteArray(0),
 
     @Throws(IOException::class)
     override fun deserializeResponse(stream: InputStream, context: TLContext): ServerDhParams {
-        val response = context.deserializeMessage(stream) ?: throw DeserializationException("Unable to deserialize response")
+        val response = context.deserializeMessage(stream) ?: throw DeserializationException(
+                "Unable to deserialize response")
 
         if (response !is ServerDhParams) {
             throw DeserializationException("Response has incorrect type")
@@ -48,9 +50,7 @@ class ReqDhParams @JvmOverloads constructor(var nonce: ByteArray = ByteArray(0),
         return response
     }
 
-    override fun toString(): String {
-        return "req_DH_params#d712e4be"
-    }
+    override fun toString() = "req_DH_params#d712e4be"
 
     companion object {
         @JvmField
