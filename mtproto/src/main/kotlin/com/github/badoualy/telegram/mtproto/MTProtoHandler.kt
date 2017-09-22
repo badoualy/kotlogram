@@ -267,7 +267,7 @@ class MTProtoHandler {
             try {
                 bufferTimeoutTask = MTProtoTimer.schedule(ACK_BUFFER_TIMEOUT,
                                                           { onBufferTimeout(id) })
-            } catch(e: IllegalStateException) {
+            } catch (e: IllegalStateException) {
                 // TODO: remove Timer use
                 // Timer already cancelled.
             }
@@ -316,7 +316,8 @@ class MTProtoHandler {
         val ackMessage = MTMsgsAck(messagesId)
         val ackMessageId = session.generateMessageId()
         logger.debug(session.marker,
-                     "Sending ack for messages ${messagesId.joinToString(", ")} with ackMsgId $ackMessageId")
+                     "Sending ack for messages ${messagesId.joinToString(
+                             ", ")} with ackMsgId $ackMessageId")
         // TODO: get message queue
         sendMessage(MTMessage(ackMessageId,
                               session.generateSeqNo(ackMessage),
@@ -367,7 +368,8 @@ class MTProtoHandler {
                                        session.generateSeqNo(ack),
                                        ack.serialize())
             logger.debug(session.marker,
-                         "Building ack for messages ${toAckList!!.joinToString(", ")} with msgId ${ackMessage.messageId} and seqNo ${ackMessage.seqNo}")
+                         "Building ack for messages ${toAckList!!.joinToString(
+                                 ", ")} with msgId ${ackMessage.messageId} and seqNo ${ackMessage.seqNo}")
             return ackMessage
         }
 
@@ -443,7 +445,8 @@ class MTProtoHandler {
                     if (container.messages.firstOrNull() { m -> m.messageId >= message.messageId } != null) {
                         logger.warn(session.marker,
                                     "Message contained in container has a same or greater msgId than container, ignoring whole container")
-                        throw SecurityException("Message contained in container has a same or greater msgId than container, ignoring whole container")
+                        throw SecurityException(
+                                "Message contained in container has a same or greater msgId than container, ignoring whole container")
                     }
 
                     for (msg in container.messages)
@@ -531,7 +534,8 @@ class MTProtoHandler {
             else -> {
                 logger.error(session.marker,
                              "Unsupported constructor in handleMessage() $messageContent: ${messageContent.javaClass.simpleName}")
-                throw IllegalStateException("Unsupported constructor in handleMessage() $messageContent: ${messageContent.javaClass.simpleName}")
+                throw IllegalStateException(
+                        "Unsupported constructor in handleMessage() $messageContent: ${messageContent.javaClass.simpleName}")
             }
         }
     }
@@ -628,15 +632,9 @@ class MTProtoHandler {
                                                       resultContent.errorTag))
             } else
                 logger.error(session.marker, "Unsupported content $result")
-        } else {
-            val response =
-                    if (request != null)
-                        request.deserializeResponse(result.content, apiContext)
-                    else apiContext.deserializeMessage(result.content)
-            if (request != null) {
-                request.response = response
-                subscriber?.onNext(request)
-            }
+        } else if (request != null) {
+            request.deserializeResponse(result.content, apiContext)
+            subscriber?.onNext(request)
         }
 
         if (subscriber != null && !subscriberMap.containsValue(subscriber))
@@ -656,7 +654,8 @@ class MTProtoHandler {
                                                     LinkedBlockingQueue<Runnable>(),
                                                     NamedThreadFactory("UpdatePool"))
 
-        @JvmStatic val QUEUE_TYPE_DISCARD = 0
+        @JvmStatic
+        val QUEUE_TYPE_DISCARD = 0
         //@JvmStatic val QUEUE_TYPE_FLUSH = 1
 
         /** Shutdown all the threads and common resources associated to this instance */

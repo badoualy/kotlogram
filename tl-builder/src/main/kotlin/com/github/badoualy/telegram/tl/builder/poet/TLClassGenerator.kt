@@ -240,6 +240,7 @@ class TLClassGenerator(tlDefinition: TLDefinition, val config: Config) {
                                                                             KModifier.CONST)
                                                                .initializer(
                                                                        "0x${id.hexString()}.toInt()")
+                                                               .addAnnotation(JvmField::class)
                                                                .build())
                                           .build())
 

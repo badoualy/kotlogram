@@ -12,7 +12,7 @@ import java.io.InputStream
  * @param <T> return type of method
  * @author Yannick Badoual yann.badoual@gmail.com
  * @see [http://github.com/badoualy/kotlogram](http://github.com/badoualy/kotlogram)
-</T> */
+ */
 abstract class TLMethod<T : TLObject> : TLObject() {
 
     @Transient
