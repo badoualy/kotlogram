@@ -135,24 +135,29 @@ public final class StreamUtils {
 
     public static int readByte(InputStream stream) throws IOException {
         int a = stream.read();
-        if (a < 0)
+        if (a < 0) {
             throw new IOException();
+        }
         return a;
     }
 
     public static int readInt(InputStream stream) throws IOException {
         int a = stream.read();
-        if (a < 0)
+        if (a < 0) {
             throw new IOException();
+        }
         int b = stream.read();
-        if (b < 0)
+        if (b < 0) {
             throw new IOException();
+        }
         int c = stream.read();
-        if (c < 0)
+        if (c < 0) {
             throw new IOException();
+        }
         int d = stream.read();
-        if (d < 0)
+        if (d < 0) {
             throw new IOException();
+        }
 
         return a + (b << 8) + (c << 16) + (d << 24);
     }
@@ -184,6 +189,7 @@ public final class StreamUtils {
 
         return a + (b << 32);
     }
+
     public static double readDouble(InputStream stream) throws IOException {
         return Double.longBitsToDouble(readLong(stream));
     }
@@ -192,7 +198,7 @@ public final class StreamUtils {
         return new String(readTLBytes(stream), "UTF-8");
     }
 
-    public static TLObject readTLObject(InputStream stream, TLContext context) throws IOException {
+    public static <T extends TLObject> T readTLObject(InputStream stream, TLContext context) throws IOException {
         return context.deserializeMessage(stream);
     }
 
@@ -279,7 +285,7 @@ public final class StreamUtils {
     }
 
     public static TLVector readTLVector(InputStream stream, TLContext context) throws IOException {
-        return context.deserializeVector(stream);
+        return context.deserializeObjectVector(stream);
     }
 
     public static TLIntVector readTLIntVector(InputStream stream, TLContext context) throws IOException {

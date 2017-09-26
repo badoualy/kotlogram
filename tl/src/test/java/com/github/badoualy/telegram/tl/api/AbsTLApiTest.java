@@ -5,6 +5,7 @@ import com.github.badoualy.telegram.tl.core.TLBytes;
 import com.github.badoualy.telegram.tl.core.TLIntVector;
 import com.github.badoualy.telegram.tl.core.TLLongVector;
 import com.github.badoualy.telegram.tl.core.TLObject;
+import com.github.badoualy.telegram.tl.core.TLObjectVector;
 import com.github.badoualy.telegram.tl.core.TLStringVector;
 import com.github.badoualy.telegram.tl.core.TLVector;
 
@@ -142,7 +143,7 @@ public abstract class AbsTLApiTest {
         } else if (is(clazz, String.class)) {
             obj = new TLStringVector();
         } else {
-            obj = new TLVector(clazz);
+            obj = new TLObjectVector();
         }
 
         int size = random.nextInt(3);

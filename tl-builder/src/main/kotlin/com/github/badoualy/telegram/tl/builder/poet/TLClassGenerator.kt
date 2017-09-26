@@ -94,7 +94,7 @@ class TLClassGenerator(tlDefinition: TLDefinition, val config: Config) {
                 .applyCommon()
                 .superclass(TYPE_TL_CONTEXT)
                 .addSuperclassConstructorParameter("%L", types.size)
-                .addFunction(FunSpec.makeOverride("init").apply {
+                .addFunction(FunSpec.makeOverride("registerClasses").apply {
                     constructors
                             .map { constructorTypeNameMap[it]!! }
                             .forEach {
@@ -194,16 +194,13 @@ class TLClassGenerator(tlDefinition: TLDefinition, val config: Config) {
                 responseFun.addStatement("return $methodName(stream, context) as %T", responseType)
             }
             else -> {
-                val responseCastType = (responseType as? ParameterizedTypeName)?.rawType ?: responseType
-                val nullErrorMessage = "Unable to parse response"
-                val castErrorMessage = "Incorrect response type, expected \${javaClass.canonicalName}, found \${response.javaClass.canonicalName}"
-
-                responseFun
-                        .addStatement(
-                                "val response = readTLObject(stream, context) ?: throw %T(%S)",
-                                IOException::class.java, nullErrorMessage)
-                        .addStatement("return (response as? %T) ?: throw %T(%S)",
-                                      responseCastType, IOException::class, castErrorMessage)
+                if (tlType is TLAbstractConstructor) {
+                    responseFun.addStatement(
+                            "return readTLObject(stream, context, %1T::class.java, %1T.CONSTRUCTOR_ID)",
+                            responseType)
+                } else {
+                    responseFun.addStatement("return readTLObject(stream, context)", responseType)
+                }
             }
         }
         clazz.addFunction(responseFun.build())
@@ -240,7 +237,6 @@ class TLClassGenerator(tlDefinition: TLDefinition, val config: Config) {
                                                                             KModifier.CONST)
                                                                .initializer(
                                                                        "0x${id.hexString()}.toInt()")
-                                                               .addAnnotation(JvmField::class)
                                                                .build())
                                           .build())
 
@@ -283,8 +279,8 @@ class TLClassGenerator(tlDefinition: TLDefinition, val config: Config) {
         // TODO: simplify?
         val condParameters = parameters.filter { it.tlType is TLTypeConditional }
         if (condParameters.isNotEmpty() && id != null) {
-            val computeFlagsFun = FunSpec.builder("computeFlags")
-                    .addModifiers(KModifier.PRIVATE)
+            val computeFlagsFun = FunSpec.makeOverride("computeFlags", false)
+                    .returns(INT)
 
             val condBoolean = ArrayList<TLParameter>()
 
@@ -295,8 +291,8 @@ class TLClassGenerator(tlDefinition: TLDefinition, val config: Config) {
                 val fieldName = parameter.name.lCamelCase().javaEscape()
 
                 if (realType is TLTypeRaw && arrayOf("true", "false").contains(realType.name)) {
-                    computeFlagsFun.addStatement(
-                            "flags = if ($fieldName) flags.or(${tlType.pow2Value()}) else flags.and(${tlType.pow2Value()}.inv())")
+                    computeFlagsFun.addStatement("updateFlags($fieldName, ${tlType.pow2Value()})")
+
                     if (condParameters.any {
                         it != parameter
                                 && !((it.tlType as TLTypeConditional).realType is TLTypeRaw && (it.tlType.realType as TLTypeRaw).name == "Bool")
@@ -309,8 +305,7 @@ class TLClassGenerator(tlDefinition: TLDefinition, val config: Config) {
                         computeFlagsFun.addStatement(
                                 "if ($fieldName && (flags and ${tlType.pow2Value()}) == 0) $fieldName = false")
                     } else {
-                        computeFlagsFun.addStatement(
-                                "flags = if ($fieldName != null) flags.or(${tlType.pow2Value()}) else flags.and(${tlType.pow2Value()}.inv())")
+                        computeFlagsFun.addStatement("updateFlags($fieldName, ${tlType.pow2Value()})")
                     }
                 }
             }
@@ -320,9 +315,10 @@ class TLClassGenerator(tlDefinition: TLDefinition, val config: Config) {
                         "\n// Following parameters might be forced to true by another field that updated the flags\n")
                 for (parameter in condBoolean) {
                     computeFlagsFun.addStatement(
-                            "" + parameter.name.lCamelCase().javaEscape() + " = (flags and ${(parameter.tlType as TLTypeConditional).pow2Value()}) != 0")
+                            "" + parameter.name.lCamelCase().javaEscape() + " = hasField(${(parameter.tlType as TLTypeConditional).pow2Value()})")
                 }
             }
+            computeFlagsFun.addStatement("return flags")
 
             clazz.addFunction(computeFlagsFun.build())
 
@@ -338,6 +334,12 @@ class TLClassGenerator(tlDefinition: TLDefinition, val config: Config) {
         // Parameters
         for (parameter in parameters) {
             val fieldTlType = parameter.tlType
+
+            if (fieldTlType is TLTypeFlag) {
+                // Ignore
+                continue
+            }
+
             val fieldType = getType(fieldTlType).let {
                 val nullable = (fieldTlType is TLTypeConditional && it != BOOLEAN)
                 if (nullable) it.asNullable() else it
@@ -382,24 +384,21 @@ class TLClassGenerator(tlDefinition: TLDefinition, val config: Config) {
 
             equalsStatements.add("$fieldName == other.$fieldName")
 
-            // Don't add if flag in api/constructors since it's a computed value
-            if (fieldTlType !is TLTypeFlag) {
-                // Add constructor parameter
-                constructorBuilder?.addParameter(fieldName, fieldType)
-                constructorBuilder?.addStatement("this.$fieldName = $fieldName")
+            // Add constructor parameter
+            constructorBuilder?.addParameter(fieldName, fieldType)
+            constructorBuilder?.addStatement("this.$fieldName = $fieldName")
 
-                // Add api method
-                apiFun?.addParameter(fieldName, fieldType)
-                apiWrapperFun?.addParameter(fieldName, fieldType)
-                apiSyncFun?.addParameter(fieldName, fieldType)
-                apiSyncWrapperFun?.addParameter(fieldName, fieldType)
-                if (fieldTlType is TLTypeFunctional) {
-                    val typeVariable = TypeVariableName.ofTLObject()
-                    apiFun?.addTypeVariable(typeVariable)
-                    apiWrapperFun?.addTypeVariable(typeVariable)
-                    apiSyncFun?.addTypeVariable(typeVariable)
-                    apiSyncWrapperFun?.addTypeVariable(typeVariable)
-                }
+            // Add api method
+            apiFun?.addParameter(fieldName, fieldType)
+            apiWrapperFun?.addParameter(fieldName, fieldType)
+            apiSyncFun?.addParameter(fieldName, fieldType)
+            apiSyncWrapperFun?.addParameter(fieldName, fieldType)
+            if (fieldTlType is TLTypeFunctional) {
+                val typeVariable = TypeVariableName.ofTLObject()
+                apiFun?.addTypeVariable(typeVariable)
+                apiWrapperFun?.addTypeVariable(typeVariable)
+                apiSyncFun?.addTypeVariable(typeVariable)
+                apiSyncWrapperFun?.addTypeVariable(typeVariable)
             }
         }
 
@@ -448,7 +447,7 @@ class TLClassGenerator(tlDefinition: TLDefinition, val config: Config) {
                 "int" -> TYPE_TL_INT_VECTOR
                 "long" -> TYPE_TL_LONG_VECTOR
                 "string" -> TYPE_TL_STRING_VECTOR
-                else -> ParameterizedTypeName.get(TYPE_TL_VECTOR,
+                else -> ParameterizedTypeName.get(TYPE_TL_OBJECT_VECTOR,
                                                   getType(type.parameters.first(),
                                                           true))
             }
@@ -482,7 +481,7 @@ class TLClassGenerator(tlDefinition: TLDefinition, val config: Config) {
         TYPE_TL_STRING_VECTOR -> "TLStringVector()"
         is ParameterizedTypeName -> {
             when (type.rawType) {
-                TYPE_TL_VECTOR -> "TLVector()"
+                TYPE_TL_OBJECT_VECTOR -> "TLObjectVector()"
                 TYPE_TL_METHOD -> "TLRequestHelpGetConfig() as TLMethod<T>"
                 else -> throw RuntimeException("Unsupported type $type")
             }

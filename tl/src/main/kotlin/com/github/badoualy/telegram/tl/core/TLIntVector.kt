@@ -15,7 +15,7 @@ import com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_INT32
  * @author Yannick Badoual yann.badoual@gmail.com
  * @see [http://github.com/badoualy/kotlogram](http://github.com/badoualy/kotlogram)
  */
-class TLIntVector : TLVector<Int>(Int::class.java) {
+class TLIntVector : TLVector<Int>() {
 
     @Throws(IOException::class)
     override fun serializeItem(item: Int, stream: OutputStream) {

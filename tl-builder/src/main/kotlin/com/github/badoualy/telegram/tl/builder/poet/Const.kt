@@ -40,7 +40,7 @@ val TYPE_TL_GZIP_OBJECT = ClassName.get(PACKAGE_TL_CORE, "TLGzipObject")
 val TYPE_TL_INT_VECTOR = ClassName.get(PACKAGE_TL_CORE, "TLIntVector")
 val TYPE_TL_LONG_VECTOR = ClassName.get(PACKAGE_TL_CORE, "TLLongVector")
 val TYPE_TL_STRING_VECTOR = ClassName.get(PACKAGE_TL_CORE, "TLStringVector")
-val TYPE_TL_VECTOR = ClassName.get(PACKAGE_TL_CORE, "TLVector")
+val TYPE_TL_OBJECT_VECTOR = ClassName.get(PACKAGE_TL_CORE, "TLObjectVector")
 val TYPE_TL_METHOD = ClassName.get(PACKAGE_TL_CORE, "TLMethod")
 val TYPE_TL_OBJECT = ClassName.get(PACKAGE_TL_CORE, "TLObject")
 

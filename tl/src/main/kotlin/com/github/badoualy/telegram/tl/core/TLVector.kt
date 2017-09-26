@@ -2,8 +2,6 @@ package com.github.badoualy.telegram.tl.core
 
 import com.github.badoualy.telegram.tl.StreamUtils.*
 import com.github.badoualy.telegram.tl.TLContext
-import com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_CONSTRUCTOR_ID
-import com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_INT32
 import java.io.IOException
 import java.io.InputStream
 import java.io.OutputStream
@@ -18,45 +16,24 @@ import java.util.*
  * @author Yannick Badoual yann.badoual@gmail.com
  * @see [http://github.com/badoualy/kotlogram](http://github.com/badoualy/kotlogram)
  */
-open class TLVector<T> : TLObject, MutableList<T> {
+abstract class TLVector<T> internal constructor() : TLObject(), MutableList<T> {
 
-    protected val itemClazz: Class<*>
-    protected val items = ArrayList<T>()
+    private val items = ArrayList<T>()
 
     override val constructorId: Int
         get() = CONSTRUCTOR_ID
 
-    constructor() {
-        itemClazz = TLObject::class.java
-    }
-
-    constructor(destClass: Class<T>?) {
-        itemClazz =
-                if (destClass != null) {
-                    if (destClass != Int::class.java && destClass != Long::class.java
-                            && destClass != String::class.java
-                            && !TLObject::class.java.isAssignableFrom(destClass)) {
-                        throw RuntimeException("Unsupported vector type: " + destClass.simpleName)
-                    }
-                    destClass
-                } else {
-                    TLObject::class.java
-                }
-    }
-
     @Throws(IOException::class)
-    override fun serializeBody(stream: OutputStream) {
+    override final fun serializeBody(stream: OutputStream) {
         writeInt(items.size, stream)
         items.forEach { serializeItem(it, stream) }
     }
 
     @Throws(IOException::class)
-    protected open fun serializeItem(item: T, stream: OutputStream) {
-        writeTLObject(item as TLObject, stream)
-    }
+    protected abstract fun serializeItem(item: T, stream: OutputStream)
 
     @Throws(IOException::class)
-    override fun deserializeBody(stream: InputStream, context: TLContext) {
+    override final fun deserializeBody(stream: InputStream, context: TLContext) {
         val count = readInt(stream)
         for (i in 0 until count)
             items.add(deserializeItem(stream, context))
@@ -64,11 +41,7 @@ open class TLVector<T> : TLObject, MutableList<T> {
 
     @Suppress("UNCHECKED_CAST")
     @Throws(IOException::class)
-    protected open fun deserializeItem(stream: InputStream, context: TLContext): T =
-            context.deserializeMessage(stream) as T
-
-    override fun computeSerializedSize() = SIZE_CONSTRUCTOR_ID + SIZE_INT32 +
-            items.sumBy { (it as TLObject).computeSerializedSize() }
+    protected abstract fun deserializeItem(stream: InputStream, context: TLContext): T
 
     override fun toString() = "vector#1cb5c415"
 
@@ -101,8 +74,8 @@ open class TLVector<T> : TLObject, MutableList<T> {
     override fun subList(fromIndex: Int, toIndex: Int) = items.subList(fromIndex, toIndex)
 
     companion object {
-        val EMPTY_ARRAY = TLVector<TLObject>()
-
         const val CONSTRUCTOR_ID = 0x1cb5c415
+
+        val EMPTY_ARRAY = TLObjectVector<TLObject>()
     }
 }

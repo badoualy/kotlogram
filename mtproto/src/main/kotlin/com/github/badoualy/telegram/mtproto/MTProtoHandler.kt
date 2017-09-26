@@ -624,7 +624,7 @@ class MTProtoHandler {
         val classId = StreamUtils.readInt(result.content)
         logger.debug(session.marker, "Response is a $classId")
         if (mtProtoContext.isSupportedObject(classId)) {
-            val resultContent = mtProtoContext.deserializeMessage(result.content)
+            val resultContent = mtProtoContext.deserializeMessage<TLObject>(result.content)
             if (resultContent is MTRpcError) {
                 logger.error(session.marker,
                              "rpcError ${resultContent.errorCode}: ${resultContent.message}")

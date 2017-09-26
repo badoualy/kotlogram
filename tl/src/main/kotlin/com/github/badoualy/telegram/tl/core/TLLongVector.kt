@@ -16,7 +16,7 @@ import com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_INT64
  * @author Yannick Badoual yann.badoual@gmail.com
  * @see [http://github.com/badoualy/kotlogram](http://github.com/badoualy/kotlogram)
  */
-class TLLongVector : TLVector<Long>(Long::class.java) {
+class TLLongVector : TLVector<Long>() {
 
     @Throws(IOException::class)
     override fun serializeItem(item: Long, stream: OutputStream) {

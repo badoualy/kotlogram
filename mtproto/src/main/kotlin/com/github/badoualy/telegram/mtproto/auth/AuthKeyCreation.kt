@@ -163,7 +163,7 @@ object AuthKeyCreation {
         val answer = AES256IGEDecrypt(encryptedAnswer, tmpAesIv, tmpAesKey)
         val stream = ByteArrayInputStream(answer)
         val answerHash = StreamUtils.readBytes(20, stream) // Hash
-        val dhInner = authContext.deserializeMessage(stream) as ServerDhInner
+        val dhInner = authContext.deserializeMessage<ServerDhInner>(stream)
         if (!Arrays.equals(answerHash, SHA1(dhInner.serialize()))) {
             throw SecurityException()
         }

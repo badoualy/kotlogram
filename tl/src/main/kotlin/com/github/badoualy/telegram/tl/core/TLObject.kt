@@ -25,9 +25,18 @@ import com.github.badoualy.telegram.tl.StreamUtils.writeInt
 abstract class TLObject : Serializable {
 
     /**
-     * @return the constructor id represented by this class
+     * the constructor id represented by this class
      */
     abstract val constructorId: Int
+
+    @Transient
+    protected var flags: Int = 0
+
+    /**
+     * Compute and return the flags field value
+     * @return flags value (or 0 if no flag for this constructor)
+     */
+    protected open fun computeFlags() = 0
 
     /**
      * Serialize object to byte array
@@ -100,14 +109,24 @@ abstract class TLObject : Serializable {
     open fun computeSerializedSize(): Int = TLObjectUtils.SIZE_CONSTRUCTOR_ID // Constructor is 4-byte (int32)
 
     /**
-     * Throw an exception to notify that the field trying to be serialized is null
+     * Ensure that the value is not null, if it is throw an exception
      *
+     * @param value value to check
      * @param fieldName name of the field trying to be serialized
      * @param flags flags field current value
-     * @throws NullPointerException
+     * @throws NullPointerException if value is null
+     * @return value
      */
     @Throws(NullPointerException::class)
-    protected fun throwNullFieldException(fieldName: String, flags: Int) {
-        throw NullPointerException("Attempt to serialize null field $fieldName (flags = $flags)")
+    protected fun <T> ensureNotNull(value: T?, fieldName: String): T =
+            value ?: throw NullPointerException(
+                    "Attempt to serialize null field $fieldName (flags = $flags)")
+
+    protected fun hasField(value: Int) = (flags and value) != 0
+
+    protected fun updateFlags(value: Boolean, maskValue: Int) {
+        flags = if (value) flags.or(maskValue) else flags.and(maskValue.inv())
     }
+
+    protected fun updateFlags(value: Any?, maskValue: Int) = updateFlags(value != null, maskValue)
 }

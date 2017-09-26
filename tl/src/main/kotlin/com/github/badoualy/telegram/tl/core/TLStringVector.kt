@@ -16,7 +16,7 @@ import com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_INT32
  * @author Yannick Badoual yann.badoual@gmail.com
  * @see [http://github.com/badoualy/kotlogram](http://github.com/badoualy/kotlogram)
  */
-class TLStringVector : TLVector<String>(String::class.java) {
+class TLStringVector : TLVector<String>() {
 
     @Throws(IOException::class)
     override fun serializeItem(item: String, stream: OutputStream) {
@@ -27,7 +27,7 @@ class TLStringVector : TLVector<String>(String::class.java) {
     override fun deserializeItem(stream: InputStream, context: TLContext): String =
             readTLString(stream)
 
-    override fun computeSerializedSize() = SIZE_CONSTRUCTOR_ID + SIZE_INT32 + items.sumBy {
+    override fun computeSerializedSize() = SIZE_CONSTRUCTOR_ID + SIZE_INT32 + sumBy {
         TLObjectUtils.computeTLStringSerializedSize(it)
     }
 

@@ -3,6 +3,7 @@ package com.github.badoualy.telegram.mtproto.tl
 import com.github.badoualy.telegram.tl.StreamUtils.*
 import com.github.badoualy.telegram.tl.TLContext
 import com.github.badoualy.telegram.tl.core.TLObject
+import com.github.badoualy.telegram.tl.core.TLObjectVector
 import com.github.badoualy.telegram.tl.core.TLVector
 import java.io.IOException
 import java.io.InputStream
@@ -10,7 +11,7 @@ import java.io.OutputStream
 
 class MTFutureSalts @JvmOverloads constructor(var requestId: Long = 0,
                                               var now: Int = 0,
-                                              var salts: TLVector<MTFutureSalt> = TLVector())
+                                              var salts: TLVector<MTFutureSalt> = TLObjectVector())
     : TLObject() {
 
     override val constructorId: Int = CONSTRUCTOR_ID

@@ -2,7 +2,6 @@ package com.github.badoualy.telegram.tl.builder.poet
 
 import com.github.badoualy.telegram.tl.builder.parser.*
 import com.squareup.kotlinpoet.ClassName
-import com.squareup.kotlinpoet.CodeBlock
 import com.squareup.kotlinpoet.TypeName
 
 internal fun serializeParameter(fieldName: String, fieldTlType: TLType): String = when (fieldTlType) {
@@ -10,15 +9,10 @@ internal fun serializeParameter(fieldName: String, fieldTlType: TLType): String 
     is TLTypeFlag -> "writeInt($fieldName, stream)"
     is TLTypeConditional -> {
         val statement = StringBuilder()
-        statement.append("if ((flags and ${fieldTlType.pow2Value()}) != 0) {\n")
-        val assert =
-                if (fieldTlType.realType !is TLTypeRaw || fieldTlType.realType.name != "Bool") {
-                    statement.append(
-                            """if ($fieldName == null) throwNullFieldException("$fieldName", flags)""")
-                            .append('\n')
-                    true
-                } else false
-        statement.append(serializeParameter(fieldName + if (assert) "!!" else "",
+        statement.append("if (hasField(${fieldTlType.pow2Value()})) {\n")
+        val assert = fieldTlType.realType !is TLTypeRaw || fieldTlType.realType.name != "Bool"
+        fun format(s: String) = if (assert) """ensureNotNull($s, "$s")""" else s
+        statement.append(serializeParameter(format(fieldName),
                                             fieldTlType.realType))
                 .append('\n')
                 .append('}')
@@ -43,7 +37,7 @@ internal fun deserializeParameter(fieldTlType: TLType, fieldType: TypeName): Str
     is TLTypeFunctional -> "readTLMethod(stream, context) as TLMethod<T>"
     is TLTypeFlag -> "readInt(stream)"
     is TLTypeConditional -> {
-        val prefix = "(flags and ${fieldTlType.pow2Value()}) != 0"
+        val prefix = "hasField(${fieldTlType.pow2Value()})"
         val realType = fieldTlType.realType
         val suffix = if (realType is TLTypeRaw && "Bool" == realType.name) "false" else "null"
 
@@ -79,15 +73,10 @@ internal fun computeSizeParameter(fieldName: String, fieldTlType: TLType): Strin
     is TLTypeFlag -> "size += SIZE_INT32"
     is TLTypeConditional -> {
         val statement = StringBuilder()
-        statement.append("if ((flags and ${fieldTlType.pow2Value()}) != 0) {\n")
-        val assert =
-                if (fieldTlType.realType !is TLTypeRaw || fieldTlType.realType.name != "Bool") {
-                    statement.append(
-                            """if ($fieldName == null) throwNullFieldException("$fieldName", flags)""")
-                            .append('\n')
-                    true
-                } else false
-        statement.append(computeSizeParameter(fieldName + if (assert) "!!" else "",
+        statement.append("if (hasField(${fieldTlType.pow2Value()})) {\n")
+        val assert = fieldTlType.realType !is TLTypeRaw || fieldTlType.realType.name != "Bool"
+        fun format(s: String) = if (assert) """ensureNotNull($s, "$s")""" else s
+        statement.append(computeSizeParameter(format(fieldName),
                                               fieldTlType.realType))
                 .append('\n')
                 .append('}')
