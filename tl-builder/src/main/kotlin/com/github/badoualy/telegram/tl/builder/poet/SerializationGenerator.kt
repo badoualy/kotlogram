@@ -8,15 +8,9 @@ internal fun serializeParameter(fieldName: String, fieldTlType: TLType): String 
     is TLTypeFunctional -> "writeTLMethod($fieldName, stream)"
     is TLTypeFlag -> "writeInt($fieldName, stream)"
     is TLTypeConditional -> {
-        val statement = StringBuilder()
-        statement.append("if (hasField(${fieldTlType.pow2Value()})) {\n")
-        val assert = fieldTlType.realType !is TLTypeRaw || fieldTlType.realType.name != "Bool"
-        fun format(s: String) = if (assert) """ensureNotNull($s, "$s")""" else s
-        statement.append(serializeParameter(format(fieldName),
-                                            fieldTlType.realType))
-                .append('\n')
-                .append('}')
-        statement.toString()
+        "writeIfMaskTrue($fieldName, ${fieldTlType.pow2Value()}) " +
+                "{ ${serializeParameter("it",
+                                        fieldTlType.realType)} }"
     }
     is TLTypeGeneric -> "writeTLVector($fieldName, stream)"
     is TLTypeRaw -> when (fieldTlType.name) {
@@ -37,12 +31,16 @@ internal fun deserializeParameter(fieldTlType: TLType, fieldType: TypeName): Str
     is TLTypeFunctional -> "readTLMethod(stream, context) as TLMethod<T>"
     is TLTypeFlag -> "readInt(stream)"
     is TLTypeConditional -> {
-        val prefix = "hasField(${fieldTlType.pow2Value()})"
         val realType = fieldTlType.realType
-        val suffix = if (realType is TLTypeRaw && "Bool" == realType.name) "false" else "null"
 
-        if (realType is TLTypeRaw && arrayOf("true", "false").contains(realType.name)) prefix
-        else "if ($prefix) ${deserializeParameter(realType, fieldType)} else $suffix"
+        if (realType is TLTypeRaw && arrayOf("true", "false").contains(realType.name)) {
+            "isMaskTrue(${fieldTlType.pow2Value()})"
+        } else {
+            // TODO: maybe should default to null instead of false?
+            val suffix = if (realType.name == "Bool") " ?: false" else ""
+            "readIfMaskTrue(${fieldTlType.pow2Value()}) " +
+                    "{ ${deserializeParameter(realType, fieldType)} }" + suffix
+        }
     }
     is TLTypeGeneric -> when ((fieldTlType.parameters.first() as TLTypeRaw).name) {
         "int" -> "readTLIntVector(stream, context)"
@@ -61,39 +59,36 @@ internal fun deserializeParameter(fieldTlType: TLType, fieldType: TypeName): Str
         else -> {
             val className = (fieldType as ClassName).simpleName()
             val isAbstract = className.startsWith("TLAbs", true)
-            val constructorId = if (isAbstract) "-1" else "%1T.CONSTRUCTOR_ID"
-            "readTLObject(stream, context, %1T::class.java, $constructorId)"
+            if (isAbstract) {
+                "readTLObject<%1T>(stream, context)"
+            } else {
+                "readTLObject<%1T>(stream, context, %1T::class.java, %1T.CONSTRUCTOR_ID)"
+            }
         }
     }
     else -> throw RuntimeException("Unsupported type $fieldTlType")
 }
 
 internal fun computeSizeParameter(fieldName: String, fieldTlType: TLType): String = when (fieldTlType) {
-    is TLTypeFunctional -> "size += $fieldName.computeSerializedSize()"
-    is TLTypeFlag -> "size += SIZE_INT32"
+    is TLTypeFunctional -> "$fieldName.computeSerializedSize()"
+    is TLTypeFlag -> "SIZE_INT32"
     is TLTypeConditional -> {
-        val statement = StringBuilder()
-        statement.append("if (hasField(${fieldTlType.pow2Value()})) {\n")
-        val assert = fieldTlType.realType !is TLTypeRaw || fieldTlType.realType.name != "Bool"
-        fun format(s: String) = if (assert) """ensureNotNull($s, "$s")""" else s
-        statement.append(computeSizeParameter(format(fieldName),
-                                              fieldTlType.realType))
-                .append('\n')
-                .append('}')
-        statement.toString()
+        "addIfMaskTrue($fieldName, ${fieldTlType.pow2Value()}) " +
+                "{ ${computeSizeParameter("it",
+                                          fieldTlType.realType)} }"
     }
-    is TLTypeGeneric -> "size += $fieldName.computeSerializedSize()"
+    is TLTypeGeneric -> "$fieldName.computeSerializedSize()"
     is TLTypeRaw -> {
         val name = fieldTlType.name
         when (name) {
-            "int" -> "size += SIZE_INT32"
-            "long" -> "size += SIZE_INT64"
-            "double" -> "size += SIZE_DOUBLE"
-            "float" -> "size += SIZE_DOUBLE"
-            "string" -> "size += computeTLStringSerializedSize($fieldName)"
-            "bytes" -> "size += computeTLBytesSerializedSize($fieldName)"
-            "Bool" -> "size += SIZE_BOOLEAN"
-            else -> "size += $fieldName.computeSerializedSize()"
+            "int" -> "SIZE_INT32"
+            "long" -> "SIZE_INT64"
+            "double" -> "SIZE_DOUBLE"
+            "float" -> "SIZE_DOUBLE"
+            "string" -> "computeTLStringSerializedSize($fieldName)"
+            "bytes" -> "computeTLBytesSerializedSize($fieldName)"
+            "Bool" -> "SIZE_BOOLEAN"
+            else -> "$fieldName.computeSerializedSize()"
         }
     }
     else -> throw RuntimeException("Unsupported type $fieldTlType")

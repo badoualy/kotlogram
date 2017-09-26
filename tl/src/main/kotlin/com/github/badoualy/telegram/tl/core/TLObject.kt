@@ -30,13 +30,15 @@ abstract class TLObject : Serializable {
     abstract val constructorId: Int
 
     @Transient
-    protected var flags: Int = 0
+    protected var _flags: Int = 0
 
     /**
      * Compute and return the flags field value
      * @return flags value (or 0 if no flag for this constructor)
      */
-    protected open fun computeFlags() = 0
+    protected open fun computeFlags() {
+
+    }
 
     /**
      * Serialize object to byte array
@@ -118,15 +120,24 @@ abstract class TLObject : Serializable {
      * @return value
      */
     @Throws(NullPointerException::class)
-    protected fun <T> ensureNotNull(value: T?, fieldName: String): T =
+    protected fun <T> ensureNotNull(value: T?): T =
             value ?: throw NullPointerException(
-                    "Attempt to serialize null field $fieldName (flags = $flags)")
+                    "Attempt to serialize null field. value: $value, flags: $_flags)")
 
-    protected fun hasField(value: Int) = (flags and value) != 0
+    protected fun isMaskTrue(value: Int) = (_flags and value) != 0
 
     protected fun updateFlags(value: Boolean, maskValue: Int) {
-        flags = if (value) flags.or(maskValue) else flags.and(maskValue.inv())
+        _flags = if (value) _flags.or(maskValue) else _flags.and(maskValue.inv())
     }
 
     protected fun updateFlags(value: Any?, maskValue: Int) = updateFlags(value != null, maskValue)
+
+    inline protected fun <reified T> readIfMaskTrue(value: Int, body: () -> T): T? =
+            if (isMaskTrue(value)) body.invoke() else null
+
+    inline protected fun <reified T> writeIfMaskTrue(value: T?, maskValue: Int, body: (T) -> Unit) =
+            if (isMaskTrue(maskValue)) body.invoke(ensureNotNull(value)) else null
+
+    inline protected fun <reified T> addIfMaskTrue(value: T?, maskValue: Int, body: (T) -> Int) =
+            if (isMaskTrue(maskValue)) body.invoke(ensureNotNull(value)) else 0
 }

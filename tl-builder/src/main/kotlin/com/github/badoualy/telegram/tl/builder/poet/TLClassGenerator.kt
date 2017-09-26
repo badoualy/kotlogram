@@ -255,7 +255,6 @@ class TLClassGenerator(tlDefinition: TLDefinition, val config: Config) {
         // Deserialize
         val deserializeFun = FunSpec.makeOverride("deserializeBody")
                 .addThrows(IOException::class)
-                .addAnnotation(Suppress::class, "%S", "UNCHECKED_CAST")
                 .addParameter("stream", InputStream::class)
                 .addParameter("context", TYPE_TL_CONTEXT)
 
@@ -280,11 +279,10 @@ class TLClassGenerator(tlDefinition: TLDefinition, val config: Config) {
         val condParameters = parameters.filter { it.tlType is TLTypeConditional }
         if (condParameters.isNotEmpty() && id != null) {
             val computeFlagsFun = FunSpec.makeOverride("computeFlags", false)
-                    .returns(INT)
 
             val condBoolean = ArrayList<TLParameter>()
 
-            computeFlagsFun.addStatement("flags = 0")
+            computeFlagsFun.addStatement("_flags = 0")
             for (parameter in condParameters) {
                 val tlType = parameter.tlType as TLTypeConditional
                 val realType = tlType.realType
@@ -303,7 +301,7 @@ class TLClassGenerator(tlDefinition: TLDefinition, val config: Config) {
                     if (realType is TLTypeRaw && realType.name == "Bool" && condParameters.any { it != parameter && (it.tlType as TLTypeConditional).value == tlType.value }) {
                         computeFlagsFun.addCode("// If field is not serialized force it to false\n")
                         computeFlagsFun.addStatement(
-                                "if ($fieldName && (flags and ${tlType.pow2Value()}) == 0) $fieldName = false")
+                                "if ($fieldName && !isMaskTrue(${tlType.pow2Value()})) $fieldName = false")
                     } else {
                         computeFlagsFun.addStatement("updateFlags($fieldName, ${tlType.pow2Value()})")
                     }
@@ -315,10 +313,9 @@ class TLClassGenerator(tlDefinition: TLDefinition, val config: Config) {
                         "\n// Following parameters might be forced to true by another field that updated the flags\n")
                 for (parameter in condBoolean) {
                     computeFlagsFun.addStatement(
-                            "" + parameter.name.lCamelCase().javaEscape() + " = hasField(${(parameter.tlType as TLTypeConditional).pow2Value()})")
+                            "" + parameter.name.lCamelCase().javaEscape() + " = isMaskTrue(${(parameter.tlType as TLTypeConditional).pow2Value()})")
                 }
             }
-            computeFlagsFun.addStatement("return flags")
 
             clazz.addFunction(computeFlagsFun.build())
 
@@ -334,20 +331,16 @@ class TLClassGenerator(tlDefinition: TLDefinition, val config: Config) {
         // Parameters
         for (parameter in parameters) {
             val fieldTlType = parameter.tlType
-
-            if (fieldTlType is TLTypeFlag) {
-                // Ignore
-                continue
-            }
-
             val fieldType = getType(fieldTlType).let {
                 val nullable = (fieldTlType is TLTypeConditional && it != BOOLEAN)
                 if (nullable) it.asNullable() else it
             }
 
             // Build field
-            val fieldName = parameter.name.lCamelCase().javaEscape()
-            if (id != null || parameter.inherited) {
+            val fieldName =
+                    if (fieldTlType !is TLTypeFlag) parameter.name.lCamelCase().javaEscape()
+                    else "_flags"
+            if (fieldTlType !is TLTypeFlag && (id != null || parameter.inherited)) {
                 clazz.addProperty(PropertySpec.varBuilder(fieldName, fieldType)
                                           .apply {
                                               if (id == null) {
@@ -375,7 +368,8 @@ class TLClassGenerator(tlDefinition: TLDefinition, val config: Config) {
             // Add serialize method entry if not a boolean present only to compute flag
             if (fieldTlType.serializable()) {
                 serializeFun.addStatement(serializeParameter(fieldName, fieldTlType))
-                computeSizeFun.addStatement(computeSizeParameter(fieldName, fieldTlType))
+                computeSizeFun.addStatement("size += " + computeSizeParameter(fieldName,
+                                                                              fieldTlType))
             }
 
             deserializeFun.addStatement(
@@ -384,21 +378,23 @@ class TLClassGenerator(tlDefinition: TLDefinition, val config: Config) {
 
             equalsStatements.add("$fieldName == other.$fieldName")
 
-            // Add constructor parameter
-            constructorBuilder?.addParameter(fieldName, fieldType)
-            constructorBuilder?.addStatement("this.$fieldName = $fieldName")
+            if (fieldTlType !is TLTypeFlag) {
+                // Add constructor parameter
+                constructorBuilder?.addParameter(fieldName, fieldType)
+                constructorBuilder?.addStatement("this.$fieldName = $fieldName")
 
-            // Add api method
-            apiFun?.addParameter(fieldName, fieldType)
-            apiWrapperFun?.addParameter(fieldName, fieldType)
-            apiSyncFun?.addParameter(fieldName, fieldType)
-            apiSyncWrapperFun?.addParameter(fieldName, fieldType)
-            if (fieldTlType is TLTypeFunctional) {
-                val typeVariable = TypeVariableName.ofTLObject()
-                apiFun?.addTypeVariable(typeVariable)
-                apiWrapperFun?.addTypeVariable(typeVariable)
-                apiSyncFun?.addTypeVariable(typeVariable)
-                apiSyncWrapperFun?.addTypeVariable(typeVariable)
+                // Add api method
+                apiFun?.addParameter(fieldName, fieldType)
+                apiWrapperFun?.addParameter(fieldName, fieldType)
+                apiSyncFun?.addParameter(fieldName, fieldType)
+                apiSyncWrapperFun?.addParameter(fieldName, fieldType)
+                if (fieldTlType is TLTypeFunctional) {
+                    val typeVariable = TypeVariableName.ofTLObject()
+                    apiFun?.addTypeVariable(typeVariable)
+                    apiWrapperFun?.addTypeVariable(typeVariable)
+                    apiSyncFun?.addTypeVariable(typeVariable)
+                    apiSyncWrapperFun?.addTypeVariable(typeVariable)
+                }
             }
         }
 
