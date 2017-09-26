@@ -22,8 +22,6 @@ fun TypeSpec.Companion.makeClass(name: String) = TypeSpec.classBuilder(name).app
 
 fun TypeSpec.Builder.applyCommon() =
         addModifiers(KModifier.PUBLIC)
-                .addKdoc(JAVADOC_AUTHOR)
-                .addKdoc(JAVADOC_SEE)
 
 fun TypeSpec.Builder.emptyConstructor() = apply {
     primaryConstructor(FunSpec.constructorBuilder().build())

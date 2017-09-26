@@ -110,21 +110,21 @@ class TLClassGenerator(tlDefinition: TLDefinition, val config: Config) {
         val clazz = TypeSpec.makeTLClass(tlClassName())
                 .addModifiers(KModifier.ABSTRACT)
 
-        generateClassCommon(clazz)
-
         // Add list of subclasses in KDoc
         val subtypes = types.filter { it.tlType == tlType }
+
         clazz.addKdoc("Abstraction level for the following constructors:\n")
-                .addKdoc("<ul>\n")
                 .apply {
                     subtypes.forEach {
-                        addKdoc("<li>")
+                        addKdoc("* ")
                         addKdoc("[${it.name}#${it.id.hexString()}]")
                         addKdoc("[${constructorTypeNameMap[it]!!.simpleName()}]")
-                        addKdoc("</li>\n")
+                        addKdoc("\n")
                     }
+                    addKdoc("\n")
                 }
-                .addKdoc("</ul>\n\n")
+
+        generateClassCommon(clazz)
 
         if (forEmptyConstructor) {
             val nonEmptyConstructor = subtypes.find { !it.name.endsWith("empty", true) }!!
@@ -228,6 +228,9 @@ class TLClassGenerator(tlDefinition: TLDefinition, val config: Config) {
     fun TLTypeConstructor<*>.generateClassCommon(clazz: TypeSpec.Builder) {
         var constructorBuilder: FunSpec.Builder? = null
         val id = id
+
+        clazz.addKdoc(JAVADOC_AUTHOR)
+                .addKdoc(JAVADOC_SEE)
 
         if (id != null) {
             // CONSTRUCTOR_ID field

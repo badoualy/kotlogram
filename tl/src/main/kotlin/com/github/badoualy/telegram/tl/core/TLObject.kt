@@ -29,7 +29,6 @@ abstract class TLObject : Serializable {
      */
     abstract val constructorId: Int
 
-    @Transient
     protected var _flags: Int = 0
 
     /**
