@@ -8,7 +8,7 @@ internal fun serializeParameter(fieldName: String, fieldTlType: TLType): String 
     is TLTypeFunctional -> "writeTLMethod($fieldName, stream)"
     is TLTypeFlag -> "writeInt($fieldName, stream)"
     is TLTypeConditional -> {
-        "writeIfMaskTrue($fieldName, ${fieldTlType.pow2Value()}) " +
+        "doIfMask($fieldName, ${fieldTlType.pow2Value()}) " +
                 "{ ${serializeParameter("it",
                                         fieldTlType.realType)} }"
     }
@@ -34,11 +34,11 @@ internal fun deserializeParameter(fieldTlType: TLType, fieldType: TypeName): Str
         val realType = fieldTlType.realType
 
         if (realType is TLTypeRaw && arrayOf("true", "false").contains(realType.name)) {
-            "isMaskTrue(${fieldTlType.pow2Value()})"
+            "isMask(${fieldTlType.pow2Value()})"
         } else {
             // TODO: maybe should default to null instead of false?
             val suffix = if (realType.name == "Bool") " ?: false" else ""
-            "readIfMaskTrue(${fieldTlType.pow2Value()}) " +
+            "readIfMask(${fieldTlType.pow2Value()}) " +
                     "{ ${deserializeParameter(realType, fieldType)} }" + suffix
         }
     }
@@ -73,7 +73,7 @@ internal fun computeSizeParameter(fieldName: String, fieldTlType: TLType): Strin
     is TLTypeFunctional -> "$fieldName.computeSerializedSize()"
     is TLTypeFlag -> "SIZE_INT32"
     is TLTypeConditional -> {
-        "addIfMaskTrue($fieldName, ${fieldTlType.pow2Value()}) " +
+        "getIntIfMask($fieldName, ${fieldTlType.pow2Value()}) " +
                 "{ ${computeSizeParameter("it",
                                           fieldTlType.realType)} }"
     }

@@ -3,6 +3,8 @@ package com.github.badoualy.telegram.tl.core
 import java.util.Arrays
 
 /**
+ * Convenience class to wrap a [ByteArray] with an offset/len
+ *
  * @author Yannick Badoual yann.badoual@gmail.com
  * @see [http://github.com/badoualy/kotlogram](http://github.com/badoualy/kotlogram)
  */

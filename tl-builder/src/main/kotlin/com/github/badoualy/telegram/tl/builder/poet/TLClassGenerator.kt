@@ -160,6 +160,7 @@ class TLClassGenerator(tlDefinition: TLDefinition, val config: Config) {
         val clazz = TypeSpec.makeTLClass(tlClassName(),
                                          if (hasSupertype) typeTypeNameMap[tlType]!!
                                          else TYPE_TL_OBJECT)
+                .addKdoc("$name#${id.hexString()}").addKdoc("\n\n")
 
         generateClassCommon(clazz)
 
@@ -304,9 +305,10 @@ class TLClassGenerator(tlDefinition: TLDefinition, val config: Config) {
                     if (realType is TLTypeRaw && realType.name == "Bool" && condParameters.any { it != parameter && (it.tlType as TLTypeConditional).value == tlType.value }) {
                         computeFlagsFun.addCode("// If field is not serialized force it to false\n")
                         computeFlagsFun.addStatement(
-                                "if ($fieldName && !isMaskTrue(${tlType.pow2Value()})) $fieldName = false")
+                                "if ($fieldName && !isMask(${tlType.pow2Value()})) $fieldName = false")
                     } else {
-                        computeFlagsFun.addStatement("updateFlags($fieldName, ${tlType.pow2Value()})")
+                        computeFlagsFun.addStatement(
+                                "updateFlags($fieldName, ${tlType.pow2Value()})")
                     }
                 }
             }
@@ -316,7 +318,7 @@ class TLClassGenerator(tlDefinition: TLDefinition, val config: Config) {
                         "\n// Following parameters might be forced to true by another field that updated the flags\n")
                 for (parameter in condBoolean) {
                     computeFlagsFun.addStatement(
-                            "" + parameter.name.lCamelCase().javaEscape() + " = isMaskTrue(${(parameter.tlType as TLTypeConditional).pow2Value()})")
+                            "" + parameter.name.lCamelCase().javaEscape() + " = isMask(${(parameter.tlType as TLTypeConditional).pow2Value()})")
                 }
             }
 

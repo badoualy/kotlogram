@@ -17,7 +17,7 @@ interface TLSerializer {
     fun writeBoolean(v: Boolean)
     fun writeString(v: String)
 
-    fun writeTLBytes(b: ByteArray)
+    fun writeTLBytes(b: ByteArray) = writeTLBytes(TLBytes(b))
     fun writeTLBytes(b: TLBytes)
 
     fun writeTLObject(v: TLObject)
