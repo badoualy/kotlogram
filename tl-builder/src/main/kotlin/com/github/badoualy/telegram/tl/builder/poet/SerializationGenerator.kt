@@ -5,24 +5,24 @@ import com.squareup.kotlinpoet.ClassName
 import com.squareup.kotlinpoet.TypeName
 
 internal fun serializeParameter(fieldName: String, fieldTlType: TLType): String = when (fieldTlType) {
-    is TLTypeFunctional -> "writeTLMethod($fieldName, stream)"
-    is TLTypeFlag -> "writeInt($fieldName, stream)"
+    is TLTypeFunctional -> "writeTLMethod($fieldName)"
+    is TLTypeFlag -> "writeInt($fieldName)"
     is TLTypeConditional -> {
         "doIfMask($fieldName, ${fieldTlType.pow2Value()}) " +
                 "{ ${serializeParameter("it",
                                         fieldTlType.realType)} }"
     }
-    is TLTypeGeneric -> "writeTLVector($fieldName, stream)"
+    is TLTypeGeneric -> "writeTLVector($fieldName)"
     is TLTypeRaw -> when (fieldTlType.name) {
-        "int" -> "writeInt($fieldName, stream)"
-        "long" -> "writeLong($fieldName, stream)"
-        "double" -> "writeDouble($fieldName, stream)"
-        "float" -> "writeFloat($fieldName, stream)"
-        "string" -> "writeString($fieldName, stream)"
-        "bytes" -> "writeTLBytes($fieldName, stream)"
-        "Bool" -> "writeBoolean($fieldName, stream)"
+        "int" -> "writeInt($fieldName)"
+        "long" -> "writeLong($fieldName)"
+        "double" -> "writeDouble($fieldName)"
+        "float" -> "writeFloat($fieldName)"
+        "string" -> "writeString($fieldName)"
+        "bytes" -> "writeTLBytes($fieldName)"
+        "Bool" -> "writeBoolean($fieldName)"
         "true", "false" -> ""
-        else -> "writeTLObject($fieldName, stream)"
+        else -> "writeTLObject($fieldName)"
     }
     else -> throw RuntimeException("Unsupported type $fieldTlType")
 }

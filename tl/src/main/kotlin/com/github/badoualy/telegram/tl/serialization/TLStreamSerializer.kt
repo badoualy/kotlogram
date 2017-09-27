@@ -3,7 +3,6 @@ package com.github.badoualy.telegram.tl.serialization
 import com.github.badoualy.telegram.tl.core.TLBool
 import com.github.badoualy.telegram.tl.core.TLBytes
 import com.github.badoualy.telegram.tl.core.TLObject
-import java.io.ByteArrayOutputStream
 import java.io.OutputStream
 
 class TLStreamSerializer(private val stream: OutputStream) : TLSerializer {
@@ -16,9 +15,13 @@ class TLStreamSerializer(private val stream: OutputStream) : TLSerializer {
         stream.write(b.toInt())
     }
 
-    // TODO: handle offset/length
     override fun writeByteArray(byteArray: ByteArray, offset: Int, length: Int) {
-        stream.write(byteArray)
+        if (offset == 0 && length == byteArray.size) {
+            // Avoid creating copy if we send whole array
+            stream.write(byteArray)
+        } else {
+            stream.write(byteArray.copyOfRange(offset, offset + length))
+        }
     }
 
     override fun writeInt(v: Int) {
@@ -38,7 +41,7 @@ class TLStreamSerializer(private val stream: OutputStream) : TLSerializer {
     }
 
     override fun writeBoolean(v: Boolean) {
-        TLBool.serialize(v, stream)
+        TLBool.serialize(v, this)
     }
 
     override fun writeString(v: String) {
@@ -68,7 +71,7 @@ class TLStreamSerializer(private val stream: OutputStream) : TLSerializer {
     }
 
     override fun writeTLObject(v: TLObject) {
-        v.serialize(stream)
+        v.serialize(this)
     }
 
 }

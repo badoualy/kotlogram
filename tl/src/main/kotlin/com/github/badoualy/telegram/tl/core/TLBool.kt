@@ -4,9 +4,10 @@ import com.github.badoualy.telegram.tl.exception.InvalidConstructorIdException
 
 import java.io.IOException
 import java.io.InputStream
-import java.io.OutputStream
 
 import com.github.badoualy.telegram.tl.StreamUtils.readInt
+import com.github.badoualy.telegram.tl.serialization.TLSerializer
+import com.github.badoualy.telegram.tl.serialization.TLStreamSerializer
 
 /**
  * @author Yannick Badoual yann.badoual@gmail.com
@@ -46,8 +47,8 @@ sealed class TLBool : TLObject() {
         operator fun get(value: Boolean) = if (value) TRUE else FALSE
 
         @Throws(IOException::class)
-        fun serialize(value: Boolean, stream: OutputStream) {
-            get(value).serialize(stream)
+        fun serialize(value: Boolean, tlSerializer: TLSerializer) {
+            get(value).serialize(tlSerializer)
         }
 
         @Throws(IOException::class)

@@ -4,6 +4,7 @@ import com.github.badoualy.telegram.tl.StreamUtils.*
 import com.github.badoualy.telegram.tl.TLContext
 import com.github.badoualy.telegram.tl.core.TLMethod
 import com.github.badoualy.telegram.tl.exception.DeserializationException
+import com.github.badoualy.telegram.tl.serialization.TLSerializer
 import java.io.IOException
 import java.io.InputStream
 import java.io.OutputStream
@@ -16,10 +17,10 @@ class ReqSetDhClientParams @JvmOverloads constructor(var nonce: ByteArray = Byte
     override val constructorId: Int = CONSTRUCTOR_ID
 
     @Throws(IOException::class)
-    override fun serializeBody(stream: OutputStream) {
-        writeByteArray(nonce, stream)
-        writeByteArray(serverNonce, stream)
-        writeTLBytes(encrypted, stream)
+    override fun serializeBody(tlSerializer: TLSerializer) = with(tlSerializer) {
+        writeByteArray(nonce)
+        writeByteArray(serverNonce)
+        writeTLBytes(encrypted)
     }
 
     @Throws(IOException::class)

@@ -3,6 +3,7 @@ package com.github.badoualy.telegram.mtproto.tl.auth
 import com.github.badoualy.telegram.tl.StreamUtils.*
 import com.github.badoualy.telegram.tl.TLContext
 import com.github.badoualy.telegram.tl.core.TLObject
+import com.github.badoualy.telegram.tl.serialization.TLSerializer
 import java.io.IOException
 import java.io.InputStream
 import java.io.OutputStream
@@ -17,13 +18,13 @@ class ServerDhInner @JvmOverloads constructor(var nonce: ByteArray = ByteArray(0
     override val constructorId: Int = CONSTRUCTOR_ID
 
     @Throws(IOException::class)
-    override fun serializeBody(stream: OutputStream) {
-        writeByteArray(nonce, stream)
-        writeByteArray(serverNonce, stream)
-        writeInt(g, stream)
-        writeTLBytes(dhPrime, stream)
-        writeTLBytes(g_a, stream)
-        writeInt(serverTime, stream)
+    override fun serializeBody(tlSerializer: TLSerializer) = with(tlSerializer) {
+        writeByteArray(nonce)
+        writeByteArray(serverNonce)
+        writeInt(g)
+        writeTLBytes(dhPrime)
+        writeTLBytes(g_a)
+        writeInt(serverTime)
     }
 
     @Throws(IOException::class)

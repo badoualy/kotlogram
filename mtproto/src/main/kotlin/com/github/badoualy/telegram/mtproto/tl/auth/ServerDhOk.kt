@@ -2,6 +2,7 @@ package com.github.badoualy.telegram.mtproto.tl.auth
 
 import com.github.badoualy.telegram.tl.StreamUtils.*
 import com.github.badoualy.telegram.tl.TLContext
+import com.github.badoualy.telegram.tl.serialization.TLSerializer
 import java.io.IOException
 import java.io.InputStream
 import java.io.OutputStream
@@ -14,10 +15,10 @@ class ServerDhOk @JvmOverloads constructor(var nonce: ByteArray = ByteArray(0),
     override val constructorId: Int = CONSTRUCTOR_ID
 
     @Throws(IOException::class)
-    override fun serializeBody(stream: OutputStream) {
-        writeByteArray(nonce, stream)
-        writeByteArray(serverNonce, stream)
-        writeTLBytes(encryptedAnswer, stream)
+    override fun serializeBody(tlSerializer: TLSerializer) = with(tlSerializer) {
+        writeByteArray(nonce)
+        writeByteArray(serverNonce)
+        writeTLBytes(encryptedAnswer)
     }
 
     @Throws(IOException::class)

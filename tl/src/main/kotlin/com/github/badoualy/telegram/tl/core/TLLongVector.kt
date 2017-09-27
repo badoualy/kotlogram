@@ -11,6 +11,7 @@ import com.github.badoualy.telegram.tl.StreamUtils.writeLong
 import com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_CONSTRUCTOR_ID
 import com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_INT32
 import com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_INT64
+import com.github.badoualy.telegram.tl.serialization.TLSerializer
 
 /**
  * @author Yannick Badoual yann.badoual@gmail.com
@@ -19,8 +20,8 @@ import com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_INT64
 class TLLongVector : TLVector<Long>() {
 
     @Throws(IOException::class)
-    override fun serializeItem(item: Long, stream: OutputStream) {
-        writeLong(item, stream)
+    override fun serializeItem(item: Long, tlSerializer: TLSerializer) {
+        tlSerializer.writeLong(item)
     }
 
     @Throws(IOException::class)

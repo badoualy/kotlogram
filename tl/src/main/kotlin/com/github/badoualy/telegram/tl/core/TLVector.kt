@@ -2,9 +2,9 @@ package com.github.badoualy.telegram.tl.core
 
 import com.github.badoualy.telegram.tl.StreamUtils.*
 import com.github.badoualy.telegram.tl.TLContext
+import com.github.badoualy.telegram.tl.serialization.TLSerializer
 import java.io.IOException
 import java.io.InputStream
-import java.io.OutputStream
 import java.util.*
 
 /**
@@ -24,13 +24,13 @@ abstract class TLVector<T> internal constructor() : TLObject(), MutableList<T> {
         get() = CONSTRUCTOR_ID
 
     @Throws(IOException::class)
-    override final fun serializeBody(stream: OutputStream) {
-        writeInt(items.size, stream)
-        items.forEach { serializeItem(it, stream) }
+    override fun serializeBody(tlSerializer: TLSerializer) {
+        tlSerializer.writeInt(items.size)
+        items.forEach { serializeItem(it, tlSerializer) }
     }
 
     @Throws(IOException::class)
-    protected abstract fun serializeItem(item: T, stream: OutputStream)
+    protected abstract fun serializeItem(item: T, tlSerializer: TLSerializer)
 
     @Throws(IOException::class)
     override final fun deserializeBody(stream: InputStream, context: TLContext) {

@@ -3,6 +3,7 @@ package com.github.badoualy.telegram.mtproto.tl
 import com.github.badoualy.telegram.tl.StreamUtils.*
 import com.github.badoualy.telegram.tl.TLContext
 import com.github.badoualy.telegram.tl.core.TLObject
+import com.github.badoualy.telegram.tl.serialization.TLSerializer
 import java.io.IOException
 import java.io.InputStream
 import java.io.OutputStream
@@ -14,10 +15,10 @@ class MTNewMessageDetailedInfo @JvmOverloads constructor(var answerMsgId: Long =
     override val constructorId: Int = CONSTRUCTOR_ID
 
     @Throws(IOException::class)
-    override fun serializeBody(stream: OutputStream) {
-        writeLong(answerMsgId, stream)
-        writeInt(bytes, stream)
-        writeInt(status, stream)
+    override fun serializeBody(tlSerializer: TLSerializer) = with(tlSerializer) {
+        writeLong(answerMsgId)
+        writeInt(bytes)
+        writeInt(status)
     }
 
     @Throws(IOException::class)

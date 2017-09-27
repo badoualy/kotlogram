@@ -3,6 +3,7 @@ package com.github.badoualy.telegram.mtproto.tl.auth
 import com.github.badoualy.telegram.tl.StreamUtils.readInt
 import com.github.badoualy.telegram.tl.StreamUtils.writeInt
 import com.github.badoualy.telegram.tl.TLContext
+import com.github.badoualy.telegram.tl.serialization.TLSerializer
 import java.io.IOException
 import java.io.InputStream
 import java.io.OutputStream
@@ -19,9 +20,9 @@ class PQInnerTemp @JvmOverloads constructor(pq: ByteArray = ByteArray(0),
     override val constructorId: Int = CONSTRUCTOR_ID
 
     @Throws(IOException::class)
-    override fun serializeBody(stream: OutputStream) {
-        super.serializeBody(stream)
-        writeInt(expiresIn, stream)
+    override fun serializeBody(tlSerializer: TLSerializer) = with(tlSerializer) {
+        super.serializeBody(tlSerializer)
+        writeInt(expiresIn)
     }
 
     @Throws(IOException::class)

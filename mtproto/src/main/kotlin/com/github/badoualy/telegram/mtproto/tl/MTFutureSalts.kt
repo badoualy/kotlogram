@@ -5,6 +5,7 @@ import com.github.badoualy.telegram.tl.TLContext
 import com.github.badoualy.telegram.tl.core.TLObject
 import com.github.badoualy.telegram.tl.core.TLObjectVector
 import com.github.badoualy.telegram.tl.core.TLVector
+import com.github.badoualy.telegram.tl.serialization.TLSerializer
 import java.io.IOException
 import java.io.InputStream
 import java.io.OutputStream
@@ -17,12 +18,12 @@ class MTFutureSalts @JvmOverloads constructor(var requestId: Long = 0,
     override val constructorId: Int = CONSTRUCTOR_ID
 
     @Throws(IOException::class)
-    override fun serializeBody(stream: OutputStream) {
-        writeLong(requestId, stream)
-        writeInt(now, stream)
-        writeInt(salts.size, stream)
+    override fun serializeBody(tlSerializer: TLSerializer) = with(tlSerializer) {
+        writeLong(requestId)
+        writeInt(now)
+        writeInt(salts.size)
         for (salt in salts) {
-            salt.serializeBody(stream)
+            salt.serializeBody(tlSerializer)
         }
     }
 

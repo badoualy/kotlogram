@@ -3,6 +3,7 @@ package com.github.badoualy.telegram.mtproto.tl.auth
 import com.github.badoualy.telegram.tl.StreamUtils.*
 import com.github.badoualy.telegram.tl.TLContext
 import com.github.badoualy.telegram.tl.core.TLObject
+import com.github.badoualy.telegram.tl.serialization.TLSerializer
 import java.io.IOException
 import java.io.InputStream
 import java.io.OutputStream
@@ -23,13 +24,13 @@ class BindAuthKeyInner @JvmOverloads constructor(var nonce: Long = 0,
     override val constructorId: Int = CONSTRUCTOR_ID
 
     @Throws(IOException::class)
-    override fun serializeBody(stream: OutputStream) {
+    override fun serializeBody(tlSerializer: TLSerializer) = with(tlSerializer) {
         // see https://core.telegram.org/method/auth.bindTempAuthKey#encrypting-the-binding-message
-        writeLong(nonce, stream)
-        writeLong(tempAuthKeyId, stream)
-        writeLong(permAuthKeyId, stream)
-        writeLong(tempSessionId, stream)
-        writeInt(expiresAt, stream)
+        writeLong(nonce)
+        writeLong(tempAuthKeyId)
+        writeLong(permAuthKeyId)
+        writeLong(tempSessionId)
+        writeInt(expiresAt)
     }
 
     @Throws(IOException::class)

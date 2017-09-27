@@ -12,6 +12,8 @@ import java.io.Serializable
 
 import com.github.badoualy.telegram.tl.StreamUtils.readInt
 import com.github.badoualy.telegram.tl.StreamUtils.writeInt
+import com.github.badoualy.telegram.tl.serialization.TLSerializer
+import com.github.badoualy.telegram.tl.serialization.TLStreamSerializer
 
 /**
  * Basic class for all tl-objects. Contains methods for serializing and deserializing object.
@@ -49,20 +51,20 @@ abstract class TLObject : Serializable {
     @Throws(IOException::class)
     fun serialize(): ByteArray {
         val stream = ByteArrayOutputStream(computeSerializedSize())
-        serialize(stream)
+        serialize(TLStreamSerializer(stream))
         return stream.toByteArray()
     }
 
     /**
      * Serialize object to stream
      *
-     * @param stream destination stream
+     * @param tlSerializer instance of the serializer to use
      * @throws IOException
      */
     @Throws(IOException::class)
-    fun serialize(stream: OutputStream) {
-        writeInt(constructorId, stream)
-        serializeBody(stream)
+    fun serialize(tlSerializer: TLSerializer) {
+        tlSerializer.writeInt(constructorId)
+        serializeBody(tlSerializer)
     }
 
     /**
@@ -83,11 +85,11 @@ abstract class TLObject : Serializable {
     /**
      * Serialize object body to stream
      *
-     * @param stream destination stream
+     * @param tlSerializer instance of the serializer to use
      * @throws IOException
      */
     @Throws(IOException::class)
-    open fun serializeBody(stream: OutputStream) {
+    open fun serializeBody(tlSerializer: TLSerializer) {
 
     }
 
@@ -135,8 +137,9 @@ abstract class TLObject : Serializable {
     inline protected fun <reified T> readIfMask(maskValue: Int, provider: () -> T): T? =
             if (isMask(maskValue)) provider.invoke() else null
 
-    inline protected fun <reified T> doIfMask(value: T?, maskValue: Int, action: (T) -> Unit) =
-            if (isMask(maskValue)) action.invoke(ensureNotNull(value)) else null
+    inline protected fun <reified T> doIfMask(value: T?, maskValue: Int, action: (T) -> Unit) {
+        if (isMask(maskValue)) action.invoke(ensureNotNull(value))
+    }
 
     inline protected fun <reified T> getIntIfMask(value: T?, maskValue: Int, provider: (T) -> Int) =
             if (isMask(maskValue)) provider.invoke(ensureNotNull(value)) else 0

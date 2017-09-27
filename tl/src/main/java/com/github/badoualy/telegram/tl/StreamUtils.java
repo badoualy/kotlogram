@@ -69,7 +69,7 @@ public final class StreamUtils {
     }
 
     public static void writeBoolean(boolean v, OutputStream stream) throws IOException {
-        TLBool.Companion.serialize(v, stream);
+        //TLBool.Companion.serialize(v, stream);
     }
 
     public static void writeString(String v, OutputStream stream) throws IOException {
@@ -122,7 +122,7 @@ public final class StreamUtils {
     }
 
     public static void writeTLObject(TLObject v, OutputStream stream) throws IOException {
-        v.serialize(stream);
+        //v.serialize(stream);
     }
 
     public static void writeTLMethod(TLMethod v, OutputStream stream) throws IOException {

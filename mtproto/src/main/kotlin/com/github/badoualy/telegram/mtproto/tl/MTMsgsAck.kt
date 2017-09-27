@@ -5,6 +5,7 @@ import com.github.badoualy.telegram.tl.StreamUtils.writeTLVector
 import com.github.badoualy.telegram.tl.TLContext
 import com.github.badoualy.telegram.tl.core.TLLongVector
 import com.github.badoualy.telegram.tl.core.TLObject
+import com.github.badoualy.telegram.tl.serialization.TLSerializer
 import java.io.IOException
 import java.io.InputStream
 import java.io.OutputStream
@@ -22,8 +23,8 @@ class MTMsgsAck @JvmOverloads constructor(var messages: TLLongVector = TLLongVec
     }
 
     @Throws(IOException::class)
-    override fun serializeBody(stream: OutputStream) {
-        writeTLVector(messages, stream)
+    override fun serializeBody(tlSerializer: TLSerializer) = with(tlSerializer) {
+        writeTLVector(messages)
     }
 
     @Throws(IOException::class)

@@ -4,6 +4,7 @@ import com.github.badoualy.telegram.tl.StreamUtils.readBytes
 import com.github.badoualy.telegram.tl.StreamUtils.writeByteArray
 import com.github.badoualy.telegram.tl.TLContext
 import com.github.badoualy.telegram.tl.core.TLObject
+import com.github.badoualy.telegram.tl.serialization.TLSerializer
 import java.io.IOException
 import java.io.InputStream
 import java.io.OutputStream
@@ -13,10 +14,10 @@ abstract class DhGenResult constructor(var nonce: ByteArray,
                                        var newNonceHash: ByteArray) : TLObject() {
 
     @Throws(IOException::class)
-    override fun serializeBody(stream: OutputStream) {
-        writeByteArray(nonce, stream)
-        writeByteArray(serverNonce, stream)
-        writeByteArray(newNonceHash, stream)
+    override fun serializeBody(tlSerializer: TLSerializer) = with(tlSerializer) {
+        writeByteArray(nonce)
+        writeByteArray(serverNonce)
+        writeByteArray(newNonceHash)
     }
 
     @Throws(IOException::class)

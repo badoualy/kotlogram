@@ -11,6 +11,7 @@ import com.github.badoualy.telegram.tl.StreamUtils.readTLString
 import com.github.badoualy.telegram.tl.StreamUtils.writeString
 import com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_CONSTRUCTOR_ID
 import com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_INT32
+import com.github.badoualy.telegram.tl.serialization.TLSerializer
 
 /**
  * @author Yannick Badoual yann.badoual@gmail.com
@@ -19,8 +20,8 @@ import com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_INT32
 class TLStringVector : TLVector<String>() {
 
     @Throws(IOException::class)
-    override fun serializeItem(item: String, stream: OutputStream) {
-        writeString(item, stream)
+    override fun serializeItem(item: String, tlSerializer: TLSerializer) {
+        tlSerializer.writeString(item)
     }
 
     @Throws(IOException::class)

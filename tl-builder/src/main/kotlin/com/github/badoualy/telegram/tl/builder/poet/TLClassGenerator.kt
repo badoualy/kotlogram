@@ -254,7 +254,8 @@ class TLClassGenerator(tlDefinition: TLDefinition, val config: Config) {
         // Serialize
         val serializeFun = FunSpec.makeOverride("serializeBody")
                 .addThrows(IOException::class)
-                .addParameter("stream", OutputStream::class)
+                .addParameter("tlSerializer", TYPE_TL_SERIALIZER)
+                .beginControlFlow("return with (tlSerializer) ")
 
         // Deserialize
         val deserializeFun = FunSpec.makeOverride("deserializeBody")
@@ -406,7 +407,7 @@ class TLClassGenerator(tlDefinition: TLDefinition, val config: Config) {
         if (id != null) {
             constructorBuilder?.let { clazz.addFunction(it.build()) }
             if (parameters.isNotEmpty()) {
-                clazz.addFunction(serializeFun.build())
+                clazz.addFunction(serializeFun.endControlFlow().build())
                 clazz.addFunction(deserializeFun.build())
                 clazz.addFunction(computeSizeFun.addStatement("return size").build())
             }
