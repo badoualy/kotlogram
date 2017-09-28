@@ -1,19 +1,17 @@
 package com.github.badoualy.telegram.tl.core
 
+import com.github.badoualy.telegram.tl.StreamUtils.readInt
 import com.github.badoualy.telegram.tl.TLContext
 import com.github.badoualy.telegram.tl.TLObjectUtils
 import com.github.badoualy.telegram.tl.exception.InvalidConstructorIdException
-
+import com.github.badoualy.telegram.tl.serialization.TLDeserializer
+import com.github.badoualy.telegram.tl.serialization.TLSerializer
+import com.github.badoualy.telegram.tl.serialization.TLStreamDeserializer
+import com.github.badoualy.telegram.tl.serialization.TLStreamSerializer
 import java.io.ByteArrayOutputStream
 import java.io.IOException
 import java.io.InputStream
-import java.io.OutputStream
 import java.io.Serializable
-
-import com.github.badoualy.telegram.tl.StreamUtils.readInt
-import com.github.badoualy.telegram.tl.StreamUtils.writeInt
-import com.github.badoualy.telegram.tl.serialization.TLSerializer
-import com.github.badoualy.telegram.tl.serialization.TLStreamSerializer
 
 /**
  * Basic class for all tl-objects. Contains methods for serializing and deserializing object.
@@ -102,6 +100,16 @@ abstract class TLObject : Serializable {
      */
     @Throws(IOException::class)
     open fun deserializeBody(stream: InputStream, context: TLContext) {
+        deserializeBody(TLStreamDeserializer(stream, context))
+    }
+
+    /**
+     * Deserialize object from stream and context
+     *
+     * @throws IOException
+     */
+    @Throws(IOException::class)
+    open fun deserializeBody(tlDeserializer: TLDeserializer) {
 
     }
 
@@ -116,8 +124,6 @@ abstract class TLObject : Serializable {
      * Ensure that the value is not null, if it is throw an exception
      *
      * @param value value to check
-     * @param fieldName name of the field trying to be serialized
-     * @param flags flags field current value
      * @throws NullPointerException if value is null
      * @return value
      */
@@ -134,13 +140,13 @@ abstract class TLObject : Serializable {
 
     inline protected fun isMask(maskValue: Int) = (_flags and maskValue) != 0
 
-    inline protected fun <reified T> readIfMask(maskValue: Int, provider: () -> T): T? =
+    inline protected fun <T> readIfMask(maskValue: Int, provider: () -> T): T? =
             if (isMask(maskValue)) provider.invoke() else null
 
-    inline protected fun <reified T> doIfMask(value: T?, maskValue: Int, action: (T) -> Unit) {
+    inline protected fun <T> doIfMask(value: T?, maskValue: Int, action: (T) -> Unit) {
         if (isMask(maskValue)) action.invoke(ensureNotNull(value))
     }
 
-    inline protected fun <reified T> getIntIfMask(value: T?, maskValue: Int, provider: (T) -> Int) =
+    inline protected fun <T> getIntIfMask(value: T?, maskValue: Int, provider: (T) -> Int) =
             if (isMask(maskValue)) provider.invoke(ensureNotNull(value)) else 0
 }

@@ -5,6 +5,7 @@ import com.github.badoualy.telegram.tl.core.TLMethod
 import com.github.badoualy.telegram.tl.core.TLObject
 import com.github.badoualy.telegram.tl.core.TLVector
 
+// TODO: javadoc
 interface TLSerializer {
 
     fun writeByte(b: Int)

@@ -1,6 +1,6 @@
 package com.github.badoualy.telegram.tl.core
 
-import java.util.Arrays
+import java.util.*
 
 /**
  * Convenience class to wrap a [ByteArray] with an offset/len

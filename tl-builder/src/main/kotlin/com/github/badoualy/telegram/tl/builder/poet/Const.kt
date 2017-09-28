@@ -33,6 +33,7 @@ val TYPE_DESERIALIZE_EXCEPTION = ClassName.get(
 val TYPE_TLOBJECT_UTILS = ClassName.get(PACKAGE_TL, "TLObjectUtils")
 val TYPE_RPC_EXCEPTION = ClassName.get(PACKAGE_TL_EXCEPTION, "RpcErrorException")
 val TYPE_TL_SERIALIZER = ClassName.get(PACKAGE_TL + ".serialization", "TLSerializer")
+val TYPE_TL_DESERIALIZER = ClassName.get(PACKAGE_TL + ".serialization", "TLDeserializer")
 
 val TYPE_TL_BOOL = ClassName.get(PACKAGE_TL_CORE, "TLBool")
 val TYPE_TL_BYTES = ClassName.get(PACKAGE_TL_CORE, "TLBytes")

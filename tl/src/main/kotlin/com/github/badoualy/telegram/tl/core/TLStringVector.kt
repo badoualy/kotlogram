@@ -1,17 +1,13 @@
 package com.github.badoualy.telegram.tl.core
 
+import com.github.badoualy.telegram.tl.StreamUtils.readTLString
 import com.github.badoualy.telegram.tl.TLContext
 import com.github.badoualy.telegram.tl.TLObjectUtils
-
-import java.io.IOException
-import java.io.InputStream
-import java.io.OutputStream
-
-import com.github.badoualy.telegram.tl.StreamUtils.readTLString
-import com.github.badoualy.telegram.tl.StreamUtils.writeString
 import com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_CONSTRUCTOR_ID
 import com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_INT32
 import com.github.badoualy.telegram.tl.serialization.TLSerializer
+import java.io.IOException
+import java.io.InputStream
 
 /**
  * @author Yannick Badoual yann.badoual@gmail.com
