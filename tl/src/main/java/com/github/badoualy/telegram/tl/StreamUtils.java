@@ -121,18 +121,6 @@ public final class StreamUtils {
         }
     }
 
-    public static void writeTLObject(TLObject v, OutputStream stream) throws IOException {
-        //v.serialize(stream);
-    }
-
-    public static void writeTLMethod(TLMethod v, OutputStream stream) throws IOException {
-        writeTLObject(v, stream);
-    }
-
-    public static void writeTLVector(TLVector v, OutputStream stream) throws IOException {
-        writeTLObject(v, stream);
-    }
-
     public static int readByte(InputStream stream) throws IOException {
         int a = stream.read();
         if (a < 0) {
@@ -194,22 +182,6 @@ public final class StreamUtils {
         return Double.longBitsToDouble(readLong(stream));
     }
 
-    public static String readTLString(InputStream stream) throws IOException {
-        return new String(readTLBytes(stream), "UTF-8");
-    }
-
-    public static <T extends TLObject> T readTLObject(InputStream stream, TLContext context) throws IOException {
-        return context.deserializeMessage(stream);
-    }
-
-    public static <T extends TLObject> T readTLObject(InputStream stream, TLContext context, Class<T> clazz, int constructorId) throws IOException {
-        return context.deserializeMessage(stream, clazz, constructorId);
-    }
-
-    public static TLMethod readTLMethod(InputStream stream, TLContext context) throws IOException {
-        return (TLMethod) context.deserializeMessage(stream);
-    }
-
     public static byte[] readBytes(int count, InputStream stream) throws IOException {
         byte[] res = new byte[count];
         int offset = 0;
@@ -245,63 +217,6 @@ public final class StreamUtils {
                 Thread.yield();
             }
         }
-    }
-
-    public static byte[] readTLBytes(InputStream stream) throws IOException {
-        int count = stream.read();
-        int startOffset = 1;
-        if (count >= 254) {
-            count = stream.read() + (stream.read() << 8) + (stream.read() << 16);
-            startOffset = 4;
-        }
-
-        byte[] raw = readBytes(count, stream);
-        int offset = (count + startOffset) % 4;
-        if (offset != 0) {
-            int offsetCount = 4 - offset;
-            skipBytes(offsetCount, stream);
-        }
-
-        return raw;
-    }
-
-    public static TLBytes readTLBytes(InputStream stream, TLContext context) throws IOException {
-        int count = stream.read();
-        int startOffset = 1;
-        if (count >= 254) {
-            count = stream.read() + (stream.read() << 8) + (stream.read() << 16);
-            startOffset = 4;
-        }
-
-        TLBytes res = new TLBytes(new byte[count], 0, count);
-        readBytes(res.getData(), res.getOffset(), res.getLength(), stream);
-
-        int offset = (count + startOffset) % 4;
-        if (offset != 0) {
-            int offsetCount = 4 - offset;
-            skipBytes(offsetCount, stream);
-        }
-        return res;
-    }
-
-    public static TLVector readTLVector(InputStream stream, TLContext context) throws IOException {
-        return context.deserializeObjectVector(stream);
-    }
-
-    public static TLIntVector readTLIntVector(InputStream stream, TLContext context) throws IOException {
-        return context.deserializeIntVector(stream);
-    }
-
-    public static TLLongVector readTLLongVector(InputStream stream, TLContext context) throws IOException {
-        return context.deserializeLongVector(stream);
-    }
-
-    public static TLStringVector readTLStringVector(InputStream stream, TLContext context) throws IOException {
-        return context.deserializeStringVector(stream);
-    }
-
-    public static boolean readTLBool(InputStream stream) throws IOException {
-        return TLBool.Companion.deserialize(stream);
     }
 
     public static byte[] intToBytes(int value) {

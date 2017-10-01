@@ -260,8 +260,8 @@ class TLClassGenerator(tlDefinition: TLDefinition, val config: Config) {
         // Deserialize
         val deserializeFun = FunSpec.makeOverride("deserializeBody")
                 .addThrows(IOException::class)
-                .addParameter("stream", InputStream::class)
-                .addParameter("context", TYPE_TL_CONTEXT)
+                .addParameter("tlDeserializer", TYPE_TL_DESERIALIZER)
+                .beginControlFlow("return with (tlDeserializer) ")
 
         // Compute serializedSize
         val computeSizeFun = FunSpec.makeOverride("computeSerializedSize")
@@ -378,9 +378,12 @@ class TLClassGenerator(tlDefinition: TLDefinition, val config: Config) {
                                                                               fieldTlType))
             }
 
+            // Not clean, move this in deserialize func?
             deserializeFun.addStatement(
                     "$fieldName = ${deserializeParameter(fieldTlType, fieldType)}",
-                    fieldType.asNonNullable())
+                    if (fieldType is ParameterizedTypeName)
+                        fieldType.typeArguments[0]
+                    else fieldType.asNonNullable())
 
             equalsStatements.add("$fieldName == other.$fieldName")
 
@@ -408,7 +411,7 @@ class TLClassGenerator(tlDefinition: TLDefinition, val config: Config) {
             constructorBuilder?.let { clazz.addFunction(it.build()) }
             if (parameters.isNotEmpty()) {
                 clazz.addFunction(serializeFun.endControlFlow().build())
-                clazz.addFunction(deserializeFun.build())
+                clazz.addFunction(deserializeFun.endControlFlow().build())
                 clazz.addFunction(computeSizeFun.addStatement("return size").build())
             }
 

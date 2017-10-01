@@ -28,8 +28,8 @@ internal fun serializeParameter(fieldName: String, fieldTlType: TLType): String 
 }
 
 internal fun deserializeParameter(fieldTlType: TLType, fieldType: TypeName): String = when (fieldTlType) {
-    is TLTypeFunctional -> "readTLMethod(stream, context) as TLMethod<T>"
-    is TLTypeFlag -> "readInt(stream)"
+    is TLTypeFunctional -> "readTLMethod<T>()"
+    is TLTypeFlag -> "readInt()"
     is TLTypeConditional -> {
         val realType = fieldTlType.realType
 
@@ -43,26 +43,26 @@ internal fun deserializeParameter(fieldTlType: TLType, fieldType: TypeName): Str
         }
     }
     is TLTypeGeneric -> when ((fieldTlType.parameters.first() as TLTypeRaw).name) {
-        "int" -> "readTLIntVector(stream, context)"
-        "long" -> "readTLLongVector(stream, context)"
-        "string" -> "readTLStringVector(stream, context)"
-        else -> "readTLVector(stream, context) as %1T"
+        "int" -> "readTLIntVector()"
+        "long" -> "readTLLongVector()"
+        "string" -> "readTLStringVector()"
+        else -> "readTLVector<%T>()"
     }
     is TLTypeRaw -> when (fieldTlType.name) {
-        "int" -> "readInt(stream)"
-        "long" -> "readLong(stream)"
-        "double" -> "readDouble(stream)"
-        "float" -> "readFloat(stream)"
-        "string" -> "readTLString(stream)"
-        "bytes" -> "readTLBytes(stream, context)"
-        "Bool" -> "readTLBool(stream)"
+        "int" -> "readInt()"
+        "long" -> "readLong()"
+        "double" -> "readDouble()"
+        "float" -> "readFloat()"
+        "string" -> "readString()"
+        "bytes" -> "readTLBytes()"
+        "Bool" -> "readTLBool()"
         else -> {
             val className = (fieldType as ClassName).simpleName()
             val isAbstract = className.startsWith("TLAbs", true)
             if (isAbstract) {
-                "readTLObject<%1T>(stream, context)"
+                "readTLObject<%1T>()"
             } else {
-                "readTLObject<%1T>(stream, context, %1T::class.java, %1T.CONSTRUCTOR_ID)"
+                "readTLObject<%1T>(%1T::class, %1T.CONSTRUCTOR_ID)"
             }
         }
     }

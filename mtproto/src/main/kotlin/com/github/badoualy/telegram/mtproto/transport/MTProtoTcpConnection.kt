@@ -1,6 +1,5 @@
 package com.github.badoualy.telegram.mtproto.transport
 
-import com.github.badoualy.telegram.tl.ByteBufferUtils.*
 import org.slf4j.LoggerFactory
 import org.slf4j.MarkerFactory
 import java.io.IOException

@@ -62,8 +62,10 @@ class TLStreamSerializer(private val stream: OutputStream) : TLSerializer {
                     1
                 }
 
+        // Write array content
         writeByteArray(b.data, b.offset, b.length)
 
+        // Add padding (1..3 bytes)
         val offset = (b.length + startOffset) % 4
         if (offset != 0) {
             writeByteArray(ByteArray(4 - offset))

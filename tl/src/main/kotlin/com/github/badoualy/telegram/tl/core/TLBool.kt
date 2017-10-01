@@ -1,13 +1,9 @@
 package com.github.badoualy.telegram.tl.core
 
 import com.github.badoualy.telegram.tl.exception.InvalidConstructorIdException
-
-import java.io.IOException
-import java.io.InputStream
-
-import com.github.badoualy.telegram.tl.StreamUtils.readInt
+import com.github.badoualy.telegram.tl.serialization.TLDeserializer
 import com.github.badoualy.telegram.tl.serialization.TLSerializer
-import com.github.badoualy.telegram.tl.serialization.TLStreamSerializer
+import java.io.IOException
 
 /**
  * @author Yannick Badoual yann.badoual@gmail.com
@@ -52,15 +48,14 @@ sealed class TLBool : TLObject() {
         }
 
         @Throws(IOException::class)
-        fun deserialize(stream: InputStream): Boolean {
-            val constructorId = readInt(stream)
-            if (constructorId == TLBoolTrue.CONSTRUCTOR_ID)
-                return true
-            if (constructorId == TLBoolFalse.CONSTRUCTOR_ID)
-                return false
-
-            throw InvalidConstructorIdException("Wrong TLBool constructor id. Found " +
-                                                        Integer.toHexString(constructorId))
+        fun deserialize(tlDeserializer: TLDeserializer) = tlDeserializer.readInt().let {
+            when (it) {
+                TLBoolTrue.CONSTRUCTOR_ID -> true
+                TLBoolFalse.CONSTRUCTOR_ID -> false
+                else -> throw InvalidConstructorIdException(it,
+                                                            TLBoolTrue.CONSTRUCTOR_ID,
+                                                            TLBoolFalse.constructorId)
+            }
         }
     }
 

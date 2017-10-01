@@ -1,6 +1,6 @@
 package com.github.badoualy.telegram.tl.core
 
-import com.github.badoualy.telegram.tl.StreamUtils.*
+import com.github.badoualy.telegram.tl.StreamUtils.readInt
 import com.github.badoualy.telegram.tl.TLContext
 import com.github.badoualy.telegram.tl.serialization.TLSerializer
 import java.io.IOException
