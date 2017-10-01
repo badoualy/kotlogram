@@ -20,7 +20,7 @@ interface TLSerializer {
     fun writeTLBytes(b: ByteArray) = writeTLBytes(TLBytes(b))
     fun writeTLBytes(b: TLBytes)
 
-    fun writeTLObject(v: TLObject)
+    fun writeTLObject(v: TLObject) = v.serialize(this)
     fun writeTLMethod(v: TLMethod<*>) = writeTLObject(v)
     fun writeTLVector(v: TLVector<*>) = writeTLObject(v)
 }

@@ -69,9 +69,4 @@ class TLStreamSerializer(private val stream: OutputStream) : TLSerializer {
             writeByteArray(ByteArray(4 - offset))
         }
     }
-
-    override fun writeTLObject(v: TLObject) {
-        v.serialize(this)
-    }
-
 }
