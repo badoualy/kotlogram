@@ -1,7 +1,7 @@
 package com.github.badoualy.telegram.api
 
 import com.github.badoualy.telegram.api.utils.InputFileLocation
-import com.github.badoualy.telegram.mtproto.ApiCallback
+import com.github.badoualy.telegram.mtproto.TelegramApiCallback
 import com.github.badoualy.telegram.mtproto.MTProtoHandler
 import com.github.badoualy.telegram.mtproto.auth.AuthKey
 import com.github.badoualy.telegram.mtproto.auth.AuthKeyCreation
@@ -10,7 +10,6 @@ import com.github.badoualy.telegram.mtproto.exception.SecurityException
 import com.github.badoualy.telegram.mtproto.model.DataCenter
 import com.github.badoualy.telegram.mtproto.secure.CryptoUtils
 import com.github.badoualy.telegram.mtproto.time.MTProtoTimer
-import com.github.badoualy.telegram.tl.RpcQueryExecutor
 import com.github.badoualy.telegram.tl.RpcQuerySyncExecutor
 import com.github.badoualy.telegram.tl.api.*
 import com.github.badoualy.telegram.tl.api.account.TLPassword
@@ -37,7 +36,7 @@ internal class DefaultTelegramClient internal constructor(val application: Teleg
                                                           val tag: String) : TelegramSyncApiWrapper(),
                                                                              TelegramClient,
                                                                              RpcQuerySyncExecutor,
-                                                                             ApiCallback {
+                                                                             TelegramApiCallback {
 
     private var mtProtoHandler: MTProtoHandler? = null
     private var authKey: AuthKey? = null

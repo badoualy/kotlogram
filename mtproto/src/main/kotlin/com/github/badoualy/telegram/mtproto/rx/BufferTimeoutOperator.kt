@@ -13,7 +13,7 @@ import java.util.concurrent.TimeUnit
  * Add a timeout feature to an observable, starting when <b>the first item was added</b>. The existing timeout() just flush the buffer if no
  * elements are added in a given amount of time.
  */
-class OperatorBufferTimeout<T>(val timeout: Long, val unit: TimeUnit,
+class BufferTimeoutOperator<T>(val timeout: Long, val unit: TimeUnit,
                                val scheduler: Scheduler, val maxSize: Int,
                                val shouldFlush: (T) -> Boolean = { true },
                                val shouldAdd: (T) -> Boolean = { true }) : Observable.Operator<List<T>, T> {
@@ -37,10 +37,10 @@ class OperatorBufferTimeout<T>(val timeout: Long, val unit: TimeUnit,
         var index: Long = 0 // Run index
 
         init {
-            this.buffer = ArrayList<T>()
-            this.timer = SerialSubscription()
-            this.add(timer)
-            this.add(w)
+            buffer = ArrayList()
+            timer = SerialSubscription()
+            add(timer)
+            add(w)
         }
 
         override fun onNext(t: T) {
@@ -56,19 +56,19 @@ class OperatorBufferTimeout<T>(val timeout: Long, val unit: TimeUnit,
                 idx = index
 
                 if (shouldFlush(t)) {
-                    buffer = ArrayList<T>()
+                    buffer = ArrayList()
                     index = ++idx
                     emit = true
                 } else {
                     val n = b!!.size
-                    if (n == 1) {
-                        startTimer = true
-                    } else if (n < maxSize) {
-                        return
-                    } else {
-                        buffer = ArrayList<T>()
-                        index = ++idx
-                        emit = true
+                    when {
+                        n == 1 -> startTimer = true
+                        n < maxSize -> return
+                        else -> {
+                            buffer = ArrayList()
+                            index = ++idx
+                            emit = true
+                        }
                     }
                 }
             }
@@ -92,7 +92,7 @@ class OperatorBufferTimeout<T>(val timeout: Long, val unit: TimeUnit,
             var b: List<T>? = null
             synchronized(this) {
                 b = buffer
-                buffer = ArrayList<T>()
+                buffer = ArrayList()
                 index++
             }
             if (!b!!.isEmpty())
@@ -109,7 +109,7 @@ class OperatorBufferTimeout<T>(val timeout: Long, val unit: TimeUnit,
                     return
                 }
                 b = buffer
-                buffer = ArrayList<T>()
+                buffer = ArrayList()
                 index = idx + 1
             }
 

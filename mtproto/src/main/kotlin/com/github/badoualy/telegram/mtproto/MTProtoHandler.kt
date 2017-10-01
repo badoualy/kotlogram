@@ -53,10 +53,10 @@ class MTProtoHandler {
     private var bufferTimeoutTask: TimerTask? = null
     private var bufferId = 0
 
-    private val apiCallback: ApiCallback?
+    private val apiCallback: TelegramApiCallback?
     private val tag: String
 
-    constructor(authResult: AuthResult, apiCallback: ApiCallback?, tag: String) {
+    constructor(authResult: AuthResult, apiCallback: TelegramApiCallback?, tag: String) {
         this.tag = tag
         this.apiCallback = apiCallback
 
@@ -69,7 +69,7 @@ class MTProtoHandler {
     }
 
     @Throws(IOException::class)
-    constructor(dataCenter: DataCenter, authKey: AuthKey, session: MTSession?, apiCallback: ApiCallback?, tag: String) {
+    constructor(dataCenter: DataCenter, authKey: AuthKey, session: MTSession?, apiCallback: TelegramApiCallback?, tag: String) {
         this.apiCallback = apiCallback
         this.tag = tag
 
@@ -336,10 +336,10 @@ class MTProtoHandler {
     private fun sendMessage(message: MTMessage) {
         logger.debug(session.marker,
                      "Sending message with msgId ${message.messageId} and seqNo ${message.seqNo}")
-        val encryptedMessage = MTProtoMessageEncryption.encrypt(authKey!!,
-                                                                session.id,
-                                                                session.salt,
-                                                                message)
+        val encryptedMessage = MTProtoMessageEncryption.generateEncryptedMessage(authKey!!,
+                                                                                 session.id,
+                                                                                 session.salt,
+                                                                                 message)
         sendData(encryptedMessage.data)
         sentMessageList.add(message)
     }
@@ -433,7 +433,7 @@ class MTProtoHandler {
                 return
             }
 
-            message = MTProtoMessageEncryption.decrypt(authKey!!, session.id, bytes)
+            message = MTProtoMessageEncryption.extractMessage(authKey!!, session.id, bytes)
             logger.debug(session.marker,
                          "Received msg ${message.messageId} with seqNo ${message.seqNo}")
 
