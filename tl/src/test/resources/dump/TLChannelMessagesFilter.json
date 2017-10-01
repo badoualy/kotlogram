@@ -1,0 +1,21 @@
+{
+  "ranges": [
+    {
+      "minId": 0,
+      "maxId": 0,
+      "_constructor": "messageRange#ae30253",
+      "constructorId": 182649427,
+      "_flags": 0
+    },
+    {
+      "minId": 0,
+      "maxId": 0,
+      "_constructor": "messageRange#ae30253",
+      "constructorId": 182649427,
+      "_flags": 0
+    }
+  ],
+  "_constructor": "channelMessagesFilter#cd77d957",
+  "constructorId": -847783593,
+  "_flags": 0
+}

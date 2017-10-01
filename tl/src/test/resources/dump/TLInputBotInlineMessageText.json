@@ -1,0 +1,12 @@
+{
+  "message": "C6a42kIhMYisfxjE",
+  "entities": [],
+  "replyMarkup": {
+    "_constructor": "replyKeyboardHide#a03e5b85",
+    "constructorId": -1606526075,
+    "_flags": 0
+  },
+  "_constructor": "inputBotInlineMessageText#3dcd7a87",
+  "constructorId": 1036876423,
+  "_flags": 6
+}

@@ -1,0 +1,33 @@
+{
+  "id": 0,
+  "title": "RGFKc3brUdPtfuX",
+  "sizes": [
+    {
+      "type": "5kQSEyL7k",
+      "location": {
+        "volumeId": 0,
+        "localId": 0,
+        "secret": 0,
+        "_constructor": "fileLocationUnavailable#7c596b46",
+        "constructorId": 2086234950,
+        "_flags": 0
+      },
+      "w": 0,
+      "h": 0,
+      "size": 0,
+      "_constructor": "photoSize#77bfb61b",
+      "constructorId": 2009052699,
+      "_flags": 0
+    },
+    {
+      "type": "f7MPJad8FcazL0QpVVLngLJyjObl",
+      "_constructor": "photoSizeEmpty#e17e23c",
+      "constructorId": 236446268,
+      "_flags": 0
+    }
+  ],
+  "color": 0,
+  "_constructor": "wallPaper#ccb03657",
+  "constructorId": -860866985,
+  "_flags": 0
+}

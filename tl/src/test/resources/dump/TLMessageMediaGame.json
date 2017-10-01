@@ -1,0 +1,27 @@
+{
+  "game": {
+    "id": 0,
+    "accessHash": 0,
+    "shortName": "UFQk5LunnXuTp",
+    "title": "MerDqEw0LgTgj",
+    "description": "dJ8szYWMFoGqkbAia3tuab7TaA",
+    "photo": {
+      "id": 0,
+      "_constructor": "photoEmpty#2331b22d",
+      "constructorId": 590459437,
+      "_flags": 0
+    },
+    "document": {
+      "id": 0,
+      "_constructor": "documentEmpty#36f8c871",
+      "constructorId": 922273905,
+      "_flags": 0
+    },
+    "_constructor": "game#bdf9653b",
+    "constructorId": -1107729093,
+    "_flags": 1
+  },
+  "_constructor": "messageMediaGame#fdb19008",
+  "constructorId": -38694904,
+  "_flags": 0
+}

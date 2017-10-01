@@ -1,0 +1,15 @@
+{
+  "media": {
+    "id": {
+      "_constructor": "inputPhotoEmpty#1cd7bf0d",
+      "constructorId": 483901197,
+      "_flags": 0
+    },
+    "_constructor": "inputStickeredMediaPhoto#4a992157",
+    "constructorId": 1251549527,
+    "_flags": 0
+  },
+  "_constructor": "messages.getAttachedStickers#cc5b67cc",
+  "constructorId": -866424884,
+  "_flags": 0
+}

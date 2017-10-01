@@ -1,0 +1,16 @@
+{
+  "queryId": 0,
+  "userId": 0,
+  "query": "LCf8dqAwGABRe",
+  "geo": {
+    "_long": 0.0,
+    "lat": 0.0,
+    "_constructor": "geoPoint#2049d70c",
+    "constructorId": 541710092,
+    "_flags": 0
+  },
+  "offset": "mNzzWBXgkgWj",
+  "_constructor": "updateBotInlineQuery#54826690",
+  "constructorId": 1417832080,
+  "_flags": 1
+}

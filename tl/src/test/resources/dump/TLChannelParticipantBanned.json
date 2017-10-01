@@ -1,0 +1,14 @@
+{
+  "userId": 0,
+  "kickedBy": 0,
+  "date": 0,
+  "bannedRights": {
+    "untilDate": 0,
+    "_constructor": "channelBannedRights#58cf4249",
+    "constructorId": 1489977929,
+    "_flags": 0
+  },
+  "_constructor": "channelParticipantBanned#222c1886",
+  "constructorId": 573315206,
+  "_flags": 0
+}

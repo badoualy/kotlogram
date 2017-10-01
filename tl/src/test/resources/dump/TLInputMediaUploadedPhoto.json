@@ -1,0 +1,29 @@
+{
+  "file": {
+    "id": 0,
+    "parts": 0,
+    "name": "6krgX3jZSdJP4fPlUqckrXEnOhm",
+    "_constructor": "inputFileBig#fa4f0bb5",
+    "constructorId": -95482955,
+    "_flags": 0
+  },
+  "caption": "y1sofLa",
+  "stickers": [
+    {
+      "id": 0,
+      "accessHash": 0,
+      "_constructor": "inputDocument#18798952",
+      "constructorId": 410618194,
+      "_flags": 0
+    },
+    {
+      "_constructor": "inputDocumentEmpty#72f0eaae",
+      "constructorId": 1928391342,
+      "_flags": 0
+    }
+  ],
+  "ttlSeconds": 0,
+  "_constructor": "inputMediaUploadedPhoto#2f37e231",
+  "constructorId": 792191537,
+  "_flags": 3
+}

@@ -1,0 +1,31 @@
+{
+  "channel": {
+    "_constructor": "inputChannelEmpty#ee8c1e86",
+    "constructorId": -292807034,
+    "_flags": 0
+  },
+  "q": "8VCiCORZnzuWHsOIZIr1gwUw",
+  "eventsFilter": {
+    "_constructor": "channelAdminLogEventsFilter#ea107ae4",
+    "constructorId": -368018716,
+    "_flags": 0
+  },
+  "admins": [
+    {
+      "_constructor": "inputUserEmpty#b98886cf",
+      "constructorId": -1182234929,
+      "_flags": 0
+    },
+    {
+      "_constructor": "inputUserSelf#f7c1b13f",
+      "constructorId": -138301121,
+      "_flags": 0
+    }
+  ],
+  "maxId": 0,
+  "minId": 0,
+  "limit": 0,
+  "_constructor": "channels.getAdminLog#33ddf480",
+  "constructorId": 870184064,
+  "_flags": 3
+}

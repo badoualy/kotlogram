@@ -1,0 +1,20 @@
+{
+  "blocked": [],
+  "users": [
+    {
+      "id": 0,
+      "_constructor": "userEmpty#200250ba",
+      "constructorId": 537022650,
+      "_flags": 0
+    },
+    {
+      "id": 0,
+      "_constructor": "userEmpty#200250ba",
+      "constructorId": 537022650,
+      "_flags": 0
+    }
+  ],
+  "_constructor": "contacts.blocked#1c138d15",
+  "constructorId": 471043349,
+  "_flags": 0
+}

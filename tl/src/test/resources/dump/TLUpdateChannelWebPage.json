@@ -1,0 +1,15 @@
+{
+  "channelId": 0,
+  "webpage": {
+    "id": 0,
+    "date": 0,
+    "_constructor": "webPagePending#c586da1c",
+    "constructorId": -981018084,
+    "_flags": 0
+  },
+  "pts": 0,
+  "ptsCount": 0,
+  "_constructor": "updateChannelWebPage#40771900",
+  "constructorId": 1081547008,
+  "_flags": 0
+}

@@ -1,0 +1,22 @@
+{
+  "channel": {
+    "channelId": 0,
+    "accessHash": 0,
+    "_constructor": "inputChannel#afeb712e",
+    "constructorId": -1343524562,
+    "_flags": 0
+  },
+  "userId": {
+    "_constructor": "inputUserEmpty#b98886cf",
+    "constructorId": -1182234929,
+    "_flags": 0
+  },
+  "adminRights": {
+    "_constructor": "channelAdminRights#5d7ceba5",
+    "constructorId": 1568467877,
+    "_flags": 0
+  },
+  "_constructor": "channels.editAdmin#20b88214",
+  "constructorId": 548962836,
+  "_flags": 0
+}

@@ -1,0 +1,43 @@
+{
+  "authorizations": [
+    {
+      "hash": 0,
+      "flags": 0,
+      "deviceModel": "8Tc3i0Or9",
+      "platform": "U8pkZ3xT4r0j",
+      "systemVersion": "Dw8RAJBw3dOfS79YuRR6B",
+      "apiId": 0,
+      "appName": "NnwAeBuuRwcjEJWo",
+      "appVersion": "H2PUBYCfkqFr4Ku52DVV9KRCxNpDc",
+      "dateCreated": 0,
+      "dateActive": 0,
+      "ip": "WexsG2",
+      "country": "GZ7b09",
+      "region": "xi0DBits0v97u1F2U7KkXNiH",
+      "_constructor": "authorization#7bf2e6f6",
+      "constructorId": 2079516406,
+      "_flags": 0
+    },
+    {
+      "hash": 0,
+      "flags": 0,
+      "deviceModel": "V1WVuyYqSggMM",
+      "platform": "8b93KMQ4ZlCQNr",
+      "systemVersion": "ocGPf4m9qyJ70LRESoXzjjTnIeO3",
+      "apiId": 0,
+      "appName": "rS0NQ3x",
+      "appVersion": "yG20MgTWqwJYhaRqry8FygeQtRp",
+      "dateCreated": 0,
+      "dateActive": 0,
+      "ip": "wGmIXTWDEJp",
+      "country": "FJUepTvBJYxNwnN3TwU2DMO",
+      "region": "VswPIbsYw0lPbNs",
+      "_constructor": "authorization#7bf2e6f6",
+      "constructorId": 2079516406,
+      "_flags": 0
+    }
+  ],
+  "_constructor": "account.authorizations#1250abde",
+  "constructorId": 307276766,
+  "_flags": 0
+}

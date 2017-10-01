@@ -1,0 +1,17 @@
+{
+  "peer": {
+    "_constructor": "inputPeerSelf#7da07ec9",
+    "constructorId": 2107670217,
+    "_flags": 0
+  },
+  "id": 0,
+  "userId": {
+    "_constructor": "inputUserEmpty#b98886cf",
+    "constructorId": -1182234929,
+    "_flags": 0
+  },
+  "score": 0,
+  "_constructor": "messages.setGameScore#8ef8ecc0",
+  "constructorId": -1896289088,
+  "_flags": 0
+}

@@ -1,0 +1,83 @@
+{
+  "ordered": true,
+  "items": [
+    {
+      "text": {
+        "text": {
+          "text": {
+            "texts": [
+              {
+                "text": {
+                  "text": {
+                    "texts": [],
+                    "_constructor": "textConcat#7e6260d7",
+                    "constructorId": 2120376535,
+                    "_flags": 0
+                  },
+                  "_constructor": "textStrike#9bf8bb95",
+                  "constructorId": -1678197867,
+                  "_flags": 0
+                },
+                "_constructor": "textFixed#6c3f19b9",
+                "constructorId": 1816074681,
+                "_flags": 0
+              }
+            ],
+            "_constructor": "textConcat#7e6260d7",
+            "constructorId": 2120376535,
+            "_flags": 0
+          },
+          "_constructor": "textBold#6724abc4",
+          "constructorId": 1730456516,
+          "_flags": 0
+        },
+        "_constructor": "textItalic#d912a59c",
+        "constructorId": -653089380,
+        "_flags": 0
+      },
+      "_constructor": "textUnderline#c12622c4",
+      "constructorId": -1054465340,
+      "_flags": 0
+    },
+    {
+      "text": {
+        "text": {
+          "text": {
+            "text": {
+              "text": {
+                "text": {
+                  "text": "aRAd70WShvrq7OeRHuIPhQn",
+                  "_constructor": "textPlain#744694e0",
+                  "constructorId": 1950782688,
+                  "_flags": 0
+                },
+                "email": "RxB0WhpWPwUcxs8",
+                "_constructor": "textEmail#de5a0dd6",
+                "constructorId": -564523562,
+                "_flags": 0
+              },
+              "_constructor": "textFixed#6c3f19b9",
+              "constructorId": 1816074681,
+              "_flags": 0
+            },
+            "_constructor": "textFixed#6c3f19b9",
+            "constructorId": 1816074681,
+            "_flags": 0
+          },
+          "_constructor": "textItalic#d912a59c",
+          "constructorId": -653089380,
+          "_flags": 0
+        },
+        "_constructor": "textBold#6724abc4",
+        "constructorId": 1730456516,
+        "_flags": 0
+      },
+      "_constructor": "textStrike#9bf8bb95",
+      "constructorId": -1678197867,
+      "_flags": 0
+    }
+  ],
+  "_constructor": "pageBlockList#3a58c7f4",
+  "constructorId": 978896884,
+  "_flags": 0
+}

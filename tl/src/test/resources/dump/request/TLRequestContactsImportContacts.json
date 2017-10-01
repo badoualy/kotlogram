@@ -1,0 +1,16 @@
+{
+  "contacts": [
+    {
+      "clientId": 0,
+      "phone": "0yCkzzYSJW2t3U6hWAsYb3j",
+      "firstName": "zZ43n4",
+      "lastName": "Z8aKn80mmFXQOni2Jvd0T",
+      "_constructor": "inputPhoneContact#f392b7f4",
+      "constructorId": -208488460,
+      "_flags": 0
+    }
+  ],
+  "_constructor": "contacts.importContacts#2c800be5",
+  "constructorId": 746589157,
+  "_flags": 0
+}

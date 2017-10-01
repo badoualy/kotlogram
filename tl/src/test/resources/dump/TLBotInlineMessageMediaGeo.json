@@ -1,0 +1,18 @@
+{
+  "geo": {
+    "_long": 0.0,
+    "lat": 0.0,
+    "_constructor": "geoPoint#2049d70c",
+    "constructorId": 541710092,
+    "_flags": 0
+  },
+  "replyMarkup": {
+    "rows": [],
+    "_constructor": "replyInlineMarkup#48a30254",
+    "constructorId": 1218642516,
+    "_flags": 0
+  },
+  "_constructor": "botInlineMessageMediaGeo#3a8fd8b8",
+  "constructorId": 982505656,
+  "_flags": 4
+}

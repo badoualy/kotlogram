@@ -1,0 +1,15 @@
+{
+  "channel": {
+    "_constructor": "inputChannelEmpty#ee8c1e86",
+    "constructorId": -292807034,
+    "_flags": 0
+  },
+  "photo": {
+    "_constructor": "inputChatPhotoEmpty#1ca48f57",
+    "constructorId": 480546647,
+    "_flags": 0
+  },
+  "_constructor": "channels.editPhoto#f12e57c9",
+  "constructorId": -248621111,
+  "_flags": 0
+}

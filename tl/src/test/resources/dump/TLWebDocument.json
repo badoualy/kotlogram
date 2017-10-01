@@ -1,0 +1,32 @@
+{
+  "url": "lcyKFSnH",
+  "accessHash": 0,
+  "size": 0,
+  "mimeType": "UXPyskwc4JwZCpZ",
+  "attributes": [
+    {
+      "alt": "nb8dPE7N",
+      "stickerset": {
+        "_constructor": "inputStickerSetEmpty#ffb62b95",
+        "constructorId": -4838507,
+        "_flags": 0
+      },
+      "maskCoords": {
+        "n": 0,
+        "x": 0.0,
+        "y": 0.0,
+        "zoom": 0.0,
+        "_constructor": "maskCoords#aed6dbb2",
+        "constructorId": -1361650766,
+        "_flags": 0
+      },
+      "_constructor": "documentAttributeSticker#6319d612",
+      "constructorId": 1662637586,
+      "_flags": 1
+    }
+  ],
+  "dcId": 0,
+  "_constructor": "webDocument#c61acbd8",
+  "constructorId": -971322408,
+  "_flags": 0
+}

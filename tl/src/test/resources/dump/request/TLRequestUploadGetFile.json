@@ -1,0 +1,15 @@
+{
+  "location": {
+    "volumeId": 0,
+    "localId": 0,
+    "secret": 0,
+    "_constructor": "inputFileLocation#14637196",
+    "constructorId": 342061462,
+    "_flags": 0
+  },
+  "offset": 0,
+  "limit": 0,
+  "_constructor": "upload.getFile#e3a6cfb5",
+  "constructorId": -475607115,
+  "_flags": 0
+}

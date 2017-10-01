@@ -1,0 +1,12 @@
+{
+  "offset": 0,
+  "length": 0,
+  "userId": {
+    "_constructor": "inputUserSelf#f7c1b13f",
+    "constructorId": -138301121,
+    "_flags": 0
+  },
+  "_constructor": "inputMessageEntityMentionName#208e68c9",
+  "constructorId": 546203849,
+  "_flags": 0
+}

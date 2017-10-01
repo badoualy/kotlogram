@@ -1,0 +1,10 @@
+{
+  "channel": {
+    "_constructor": "inputChannelEmpty#ee8c1e86",
+    "constructorId": -292807034,
+    "_flags": 0
+  },
+  "_constructor": "channels.joinChannel#24b524c5",
+  "constructorId": 615851205,
+  "_flags": 0
+}

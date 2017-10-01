@@ -1,0 +1,35 @@
+{
+  "title": "NVImN4R",
+  "description": "wZWKinYLNX2",
+  "photo": {
+    "url": "TlxI7QJ4YWn3vZWq2RsaMnzOJ",
+    "accessHash": 0,
+    "size": 0,
+    "mimeType": "aolgUxbNAk5EqPNgBdY0c8hir",
+    "attributes": [
+      {
+        "_constructor": "documentAttributeAnimated#11b58939",
+        "constructorId": 297109817,
+        "_flags": 0
+      },
+      {
+        "w": 0,
+        "h": 0,
+        "_constructor": "documentAttributeImageSize#6c37c15c",
+        "constructorId": 1815593308,
+        "_flags": 0
+      }
+    ],
+    "dcId": 0,
+    "_constructor": "webDocument#c61acbd8",
+    "constructorId": -971322408,
+    "_flags": 0
+  },
+  "receiptMsgId": 0,
+  "currency": "vp4fPKdcu7PGxmvEyTcJcy8SMaKdc",
+  "totalAmount": 0,
+  "startParam": "JjqiB5Qc1",
+  "_constructor": "messageMediaInvoice#84551347",
+  "constructorId": -2074799289,
+  "_flags": 5
+}

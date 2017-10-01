@@ -1,0 +1,31 @@
+{
+  "title": "SxtBPNJjml8N",
+  "photo": {
+    "photoSmall": {
+      "dcId": 0,
+      "volumeId": 0,
+      "localId": 0,
+      "secret": 0,
+      "_constructor": "fileLocation#53d69076",
+      "constructorId": 1406570614,
+      "_flags": 0
+    },
+    "photoBig": {
+      "dcId": 0,
+      "volumeId": 0,
+      "localId": 0,
+      "secret": 0,
+      "_constructor": "fileLocation#53d69076",
+      "constructorId": 1406570614,
+      "_flags": 0
+    },
+    "_constructor": "chatPhoto#6153276a",
+    "constructorId": 1632839530,
+    "_flags": 0
+  },
+  "participantsCount": 0,
+  "participants": [],
+  "_constructor": "chatInvite#db74f558",
+  "constructorId": -613092008,
+  "_flags": 16
+}

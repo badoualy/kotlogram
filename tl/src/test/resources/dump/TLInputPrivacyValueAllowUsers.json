@@ -1,0 +1,17 @@
+{
+  "users": [
+    {
+      "_constructor": "inputUserSelf#f7c1b13f",
+      "constructorId": -138301121,
+      "_flags": 0
+    },
+    {
+      "_constructor": "inputUserSelf#f7c1b13f",
+      "constructorId": -138301121,
+      "_flags": 0
+    }
+  ],
+  "_constructor": "inputPrivacyValueAllowUsers#131cc67f",
+  "constructorId": 320652927,
+  "_flags": 0
+}

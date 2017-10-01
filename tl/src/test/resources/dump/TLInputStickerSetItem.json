@@ -1,0 +1,22 @@
+{
+  "document": {
+    "id": 0,
+    "accessHash": 0,
+    "_constructor": "inputDocument#18798952",
+    "constructorId": 410618194,
+    "_flags": 0
+  },
+  "emoji": "XxAE7fF9x5DyLceL0WMvb4qsoQHRC",
+  "maskCoords": {
+    "n": 0,
+    "x": 0.0,
+    "y": 0.0,
+    "zoom": 0.0,
+    "_constructor": "maskCoords#aed6dbb2",
+    "constructorId": -1361650766,
+    "_flags": 0
+  },
+  "_constructor": "inputStickerSetItem#ffa0a496",
+  "constructorId": -6249322,
+  "_flags": 1
+}

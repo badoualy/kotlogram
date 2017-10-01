@@ -1,0 +1,11 @@
+{
+  "peer": {
+    "chatId": 0,
+    "_constructor": "inputPeerChat#179be863",
+    "constructorId": 396093539,
+    "_flags": 0
+  },
+  "_constructor": "inputNotifyPeer#b8bc5b0c",
+  "constructorId": -1195615476,
+  "_flags": 0
+}

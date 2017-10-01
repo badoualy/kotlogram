@@ -1,0 +1,28 @@
+{
+  "blocks": [
+    {
+      "_constructor": "pageBlockDivider#db20b188",
+      "constructorId": -618614392,
+      "_flags": 0
+    }
+  ],
+  "photos": [
+    {
+      "id": 0,
+      "_constructor": "photoEmpty#2331b22d",
+      "constructorId": 590459437,
+      "_flags": 0
+    }
+  ],
+  "documents": [
+    {
+      "id": 0,
+      "_constructor": "documentEmpty#36f8c871",
+      "constructorId": 922273905,
+      "_flags": 0
+    }
+  ],
+  "_constructor": "pagePart#8e3f9ebe",
+  "constructorId": -1908433218,
+  "_flags": 0
+}

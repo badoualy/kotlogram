@@ -1,0 +1,14 @@
+{
+  "publicKeys": [
+    {
+      "dcId": 0,
+      "publicKey": "cEilZXPhfD",
+      "_constructor": "cdnPublicKey#c982eaba",
+      "constructorId": -914167110,
+      "_flags": 0
+    }
+  ],
+  "_constructor": "cdnConfig#5725e40a",
+  "constructorId": 1462101002,
+  "_flags": 0
+}

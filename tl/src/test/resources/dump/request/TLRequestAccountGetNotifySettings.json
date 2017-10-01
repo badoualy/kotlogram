@@ -1,0 +1,10 @@
+{
+  "peer": {
+    "_constructor": "inputNotifyChats#4a95e84e",
+    "constructorId": 1251338318,
+    "_flags": 0
+  },
+  "_constructor": "account.getNotifySettings#12b3ad31",
+  "constructorId": 313765169,
+  "_flags": 0
+}

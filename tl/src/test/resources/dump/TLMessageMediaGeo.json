@@ -1,0 +1,12 @@
+{
+  "geo": {
+    "_long": 0.0,
+    "lat": 0.0,
+    "_constructor": "geoPoint#2049d70c",
+    "constructorId": 541710092,
+    "_flags": 0
+  },
+  "_constructor": "messageMediaGeo#56e0d474",
+  "constructorId": 1457575028,
+  "_flags": 0
+}

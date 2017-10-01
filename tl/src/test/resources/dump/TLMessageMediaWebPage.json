@@ -1,0 +1,84 @@
+{
+  "webpage": {
+    "id": 0,
+    "url": "otLj89Tx0TkPG",
+    "displayUrl": "ZFggiOo5DvJHwIlp99jxfbrmFR",
+    "hash": 0,
+    "type": "Uqh1D0FX5ptcY",
+    "siteName": "E62pqy",
+    "title": "5kkls4dYhtLbs3BG9BXALJJ1",
+    "description": "mwJFMN5",
+    "photo": {
+      "id": 0,
+      "accessHash": 0,
+      "date": 0,
+      "sizes": [
+        {
+          "type": "5ZBkO0dqSGDKEnZp409Ri3rGYu",
+          "location": {
+            "volumeId": 0,
+            "localId": 0,
+            "secret": 0,
+            "_constructor": "fileLocationUnavailable#7c596b46",
+            "constructorId": 2086234950,
+            "_flags": 0
+          },
+          "w": 0,
+          "h": 0,
+          "size": 0,
+          "_constructor": "photoSize#77bfb61b",
+          "constructorId": 2009052699,
+          "_flags": 0
+        },
+        {
+          "type": "SVvGhU3GNptVXK",
+          "_constructor": "photoSizeEmpty#e17e23c",
+          "constructorId": 236446268,
+          "_flags": 0
+        }
+      ],
+      "_constructor": "photo#9288dd29",
+      "constructorId": -1836524247,
+      "_flags": 0
+    },
+    "embedUrl": "nASo35aY",
+    "embedType": "CLvppoTZKF2XvBDFe",
+    "embedWidth": 0,
+    "embedHeight": 0,
+    "duration": 0,
+    "author": "Kz3Kyem",
+    "document": {
+      "id": 0,
+      "_constructor": "documentEmpty#36f8c871",
+      "constructorId": 922273905,
+      "_flags": 0
+    },
+    "cachedPage": {
+      "blocks": [
+        {
+          "channel": {
+            "id": 0,
+            "title": "sTwbsMn29u",
+            "_constructor": "chatForbidden#7328bdb",
+            "constructorId": 120753115,
+            "_flags": 0
+          },
+          "_constructor": "pageBlockChannel#ef1751b5",
+          "constructorId": -283684427,
+          "_flags": 0
+        }
+      ],
+      "photos": [],
+      "documents": [],
+      "_constructor": "pagePart#8e3f9ebe",
+      "constructorId": -1908433218,
+      "_flags": 0
+    },
+    "_constructor": "webPage#5f07b4bc",
+    "constructorId": 1594340540,
+    "_flags": 2047
+  },
+  "_constructor": "messageMediaWebPage#a32dd600",
+  "constructorId": -1557277184,
+  "_flags": 0
+}

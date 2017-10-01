@@ -1,0 +1,12 @@
+{
+  "id": 0,
+  "reason": {
+    "_constructor": "phoneCallDiscardReasonMissed#85e42301",
+    "constructorId": -2048646399,
+    "_flags": 0
+  },
+  "duration": 0,
+  "_constructor": "phoneCallDiscarded#50ca4de1",
+  "constructorId": 1355435489,
+  "_flags": 3
+}

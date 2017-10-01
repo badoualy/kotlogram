@@ -1,0 +1,14 @@
+{
+  "peer": {
+    "channelId": 0,
+    "_constructor": "peerChannel#bddde532",
+    "constructorId": -1109531342,
+    "_flags": 0
+  },
+  "maxId": 0,
+  "pts": 0,
+  "ptsCount": 0,
+  "_constructor": "updateReadHistoryOutbox#2f2f21bf",
+  "constructorId": 791617983,
+  "_flags": 0
+}

@@ -1,0 +1,14 @@
+{
+  "userId": 0,
+  "inviterId": 0,
+  "promotedBy": 0,
+  "date": 0,
+  "adminRights": {
+    "_constructor": "channelAdminRights#5d7ceba5",
+    "constructorId": 1568467877,
+    "_flags": 0
+  },
+  "_constructor": "channelParticipantAdmin#a82fa898",
+  "constructorId": -1473271656,
+  "_flags": 0
+}

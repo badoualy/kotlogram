@@ -1,0 +1,21 @@
+{
+  "geo": {
+    "_long": 0.0,
+    "lat": 0.0,
+    "_constructor": "geoPoint#2049d70c",
+    "constructorId": 541710092,
+    "_flags": 0
+  },
+  "title": "3EWxwanKiUlc1mtBJSTMGd7Z",
+  "address": "eyiDDNQobjQv1hKXwx",
+  "provider": "WDNOYQlNqRlFou",
+  "venueId": "BO2wy1",
+  "replyMarkup": {
+    "_constructor": "replyKeyboardForceReply#f4108aa0",
+    "constructorId": -200242528,
+    "_flags": 0
+  },
+  "_constructor": "botInlineMessageMediaVenue#4366232e",
+  "constructorId": 1130767150,
+  "_flags": 4
+}

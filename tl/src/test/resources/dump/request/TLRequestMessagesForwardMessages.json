@@ -1,0 +1,21 @@
+{
+  "fromPeer": {
+    "channelId": 0,
+    "accessHash": 0,
+    "_constructor": "inputPeerChannel#20adaef8",
+    "constructorId": 548253432,
+    "_flags": 0
+  },
+  "id": [],
+  "randomId": [
+    0
+  ],
+  "toPeer": {
+    "_constructor": "inputPeerSelf#7da07ec9",
+    "constructorId": 2107670217,
+    "_flags": 0
+  },
+  "_constructor": "messages.forwardMessages#708e0195",
+  "constructorId": 1888354709,
+  "_flags": 0
+}

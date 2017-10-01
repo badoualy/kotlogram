@@ -1,0 +1,19 @@
+{
+  "peer": {
+    "chatId": 0,
+    "_constructor": "inputPeerChat#179be863",
+    "constructorId": 396093539,
+    "_flags": 0
+  },
+  "media": {
+    "phoneNumber": "cHzk5ENf0Aw4RFJGG6H",
+    "firstName": "AUdzwNbEK9fBaMtoWrVMm",
+    "lastName": "Ky1bI9ntAxcCePW",
+    "_constructor": "inputMediaContact#a6e45987",
+    "constructorId": -1494984313,
+    "_flags": 0
+  },
+  "_constructor": "messages.uploadMedia#519bc2b1",
+  "constructorId": 1369162417,
+  "_flags": 0
+}

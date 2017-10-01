@@ -1,0 +1,33 @@
+{
+  "prevMessage": {
+    "id": 0,
+    "_constructor": "messageEmpty#83e5de54",
+    "constructorId": -2082087340,
+    "_flags": 0
+  },
+  "newMessage": {
+    "id": 0,
+    "fromId": 0,
+    "toId": {
+      "chatId": 0,
+      "_constructor": "peerChat#bad0e5bb",
+      "constructorId": -1160714821,
+      "_flags": 0
+    },
+    "replyToMsgId": 0,
+    "date": 0,
+    "action": {
+      "gameId": 0,
+      "score": 0,
+      "_constructor": "messageActionGameScore#92a72876",
+      "constructorId": -1834538890,
+      "_flags": 0
+    },
+    "_constructor": "messageService#9e19a1f6",
+    "constructorId": -1642487306,
+    "_flags": 264
+  },
+  "_constructor": "channelAdminLogEventActionEditMessage#709b2405",
+  "constructorId": 1889215493,
+  "_flags": 0
+}

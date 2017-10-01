@@ -1,0 +1,19 @@
+{
+  "id": "0Y0hq7vEzB3mxsjmgc",
+  "shortName": "i2MXP2ztBd9dGLEqdzoo66J",
+  "sendMessage": {
+    "caption": "3LU45H0tHov0Kg",
+    "replyMarkup": {
+      "rows": [],
+      "_constructor": "replyInlineMarkup#48a30254",
+      "constructorId": 1218642516,
+      "_flags": 0
+    },
+    "_constructor": "inputBotInlineMessageMediaAuto#292fed13",
+    "constructorId": 691006739,
+    "_flags": 4
+  },
+  "_constructor": "inputBotInlineResultGame#4fa417f2",
+  "constructorId": 1336154098,
+  "_flags": 0
+}

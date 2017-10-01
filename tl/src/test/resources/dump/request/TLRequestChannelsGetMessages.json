@@ -1,0 +1,16 @@
+{
+  "channel": {
+    "channelId": 0,
+    "accessHash": 0,
+    "_constructor": "inputChannel#afeb712e",
+    "constructorId": -1343524562,
+    "_flags": 0
+  },
+  "id": [
+    0,
+    0
+  ],
+  "_constructor": "channels.getMessages#93d7b347",
+  "constructorId": -1814580409,
+  "_flags": 0
+}

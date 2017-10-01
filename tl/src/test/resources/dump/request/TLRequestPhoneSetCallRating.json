@@ -1,0 +1,14 @@
+{
+  "peer": {
+    "id": 0,
+    "accessHash": 0,
+    "_constructor": "inputPhoneCall#1e36fded",
+    "constructorId": 506920429,
+    "_flags": 0
+  },
+  "rating": 0,
+  "comment": "4uSVTH2Q",
+  "_constructor": "phone.setCallRating#1c536a34",
+  "constructorId": 475228724,
+  "_flags": 0
+}

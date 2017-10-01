@@ -1,0 +1,23 @@
+{
+  "photos": [
+    {
+      "id": 0,
+      "_constructor": "photoEmpty#2331b22d",
+      "constructorId": 590459437,
+      "_flags": 0
+    },
+    {
+      "id": 0,
+      "accessHash": 0,
+      "date": 0,
+      "sizes": [],
+      "_constructor": "photo#9288dd29",
+      "constructorId": -1836524247,
+      "_flags": 0
+    }
+  ],
+  "users": [],
+  "_constructor": "photos.photos#8dca6aa5",
+  "constructorId": -1916114267,
+  "_flags": 0
+}

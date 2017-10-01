@@ -1,0 +1,21 @@
+{
+  "count": 0,
+  "participants": [],
+  "users": [
+    {
+      "id": 0,
+      "_constructor": "userEmpty#200250ba",
+      "constructorId": 537022650,
+      "_flags": 0
+    },
+    {
+      "id": 0,
+      "_constructor": "userEmpty#200250ba",
+      "constructorId": 537022650,
+      "_flags": 0
+    }
+  ],
+  "_constructor": "channels.channelParticipants#f56ee2a8",
+  "constructorId": -177282392,
+  "_flags": 0
+}

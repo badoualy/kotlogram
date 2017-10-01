@@ -1,0 +1,10 @@
+{
+  "geoPoint": {
+    "_constructor": "inputGeoPointEmpty#e4c123d6",
+    "constructorId": -457104426,
+    "_flags": 0
+  },
+  "_constructor": "inputMediaGeoPoint#f9c44144",
+  "constructorId": -104578748,
+  "_flags": 0
+}

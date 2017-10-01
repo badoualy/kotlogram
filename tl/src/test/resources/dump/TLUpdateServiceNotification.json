@@ -1,0 +1,69 @@
+{
+  "inboxDate": 0,
+  "type": "hF46BvwvFYE5X",
+  "message": "3ALYmnlOZNIC",
+  "media": {
+    "game": {
+      "id": 0,
+      "accessHash": 0,
+      "shortName": "GsejxqWBn4VB",
+      "title": "FhHmz8JvhkJ",
+      "description": "Qa78br4WrmeOMS4QwbqcGmOUCB0r",
+      "photo": {
+        "id": 0,
+        "_constructor": "photoEmpty#2331b22d",
+        "constructorId": 590459437,
+        "_flags": 0
+      },
+      "document": {
+        "id": 0,
+        "accessHash": 0,
+        "date": 0,
+        "mimeType": "GtI0VAodN8BH1cWeb",
+        "size": 0,
+        "thumb": {
+          "type": "1dt9yH0ctggYc7",
+          "location": {
+            "dcId": 0,
+            "volumeId": 0,
+            "localId": 0,
+            "secret": 0,
+            "_constructor": "fileLocation#53d69076",
+            "constructorId": 1406570614,
+            "_flags": 0
+          },
+          "w": 0,
+          "h": 0,
+          "size": 0,
+          "_constructor": "photoSize#77bfb61b",
+          "constructorId": 2009052699,
+          "_flags": 0
+        },
+        "dcId": 0,
+        "version": 0,
+        "attributes": [],
+        "_constructor": "document#87232bc7",
+        "constructorId": -2027738169,
+        "_flags": 0
+      },
+      "_constructor": "game#bdf9653b",
+      "constructorId": -1107729093,
+      "_flags": 1
+    },
+    "_constructor": "messageMediaGame#fdb19008",
+    "constructorId": -38694904,
+    "_flags": 0
+  },
+  "entities": [
+    {
+      "offset": 0,
+      "length": 0,
+      "_constructor": "messageEntityMention#fa04579d",
+      "constructorId": -100378723,
+      "_flags": 0
+    }
+  ],
+  "_constructor": "updateServiceNotification#ebe46819",
+  "constructorId": -337352679,
+  "_flags": 2
+}

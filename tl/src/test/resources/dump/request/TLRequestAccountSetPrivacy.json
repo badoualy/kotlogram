@@ -1,0 +1,11 @@
+{
+  "key": {
+    "_constructor": "inputPrivacyKeyChatInvite#bdfb0426",
+    "constructorId": -1107622874,
+    "_flags": 0
+  },
+  "rules": [],
+  "_constructor": "account.setPrivacy#c9f81ce8",
+  "constructorId": -906486552,
+  "_flags": 0
+}

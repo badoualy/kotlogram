@@ -1,0 +1,21 @@
+{
+  "myLink": {
+    "_constructor": "contactLinkUnknown#5f4f9247",
+    "constructorId": 1599050311,
+    "_flags": 0
+  },
+  "foreignLink": {
+    "_constructor": "contactLinkHasPhone#268f3f59",
+    "constructorId": 646922073,
+    "_flags": 0
+  },
+  "user": {
+    "id": 0,
+    "_constructor": "userEmpty#200250ba",
+    "constructorId": 537022650,
+    "_flags": 0
+  },
+  "_constructor": "contacts.link#3ace484c",
+  "constructorId": 986597452,
+  "_flags": 0
+}

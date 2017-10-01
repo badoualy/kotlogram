@@ -1,0 +1,22 @@
+{
+  "id": 0,
+  "title": "BkgVrSqCd5BZkbYrjD1MbEVbjb71",
+  "photo": {
+    "_constructor": "chatPhotoEmpty#37c1011c",
+    "constructorId": 935395612,
+    "_flags": 0
+  },
+  "participantsCount": 0,
+  "date": 0,
+  "version": 0,
+  "migratedTo": {
+    "channelId": 0,
+    "accessHash": 0,
+    "_constructor": "inputChannel#afeb712e",
+    "constructorId": -1343524562,
+    "_flags": 0
+  },
+  "_constructor": "chat#d91cdd54",
+  "constructorId": -652419756,
+  "_flags": 64
+}

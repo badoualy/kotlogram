@@ -1,0 +1,39 @@
+{
+  "pts": 0,
+  "count": 0,
+  "messages": [],
+  "chats": [
+    {
+      "id": 0,
+      "title": "mQBtYeKbAaF3r",
+      "photo": {
+        "_constructor": "chatPhotoEmpty#37c1011c",
+        "constructorId": 935395612,
+        "_flags": 0
+      },
+      "participantsCount": 0,
+      "date": 0,
+      "version": 0,
+      "migratedTo": {
+        "channelId": 0,
+        "accessHash": 0,
+        "_constructor": "inputChannel#afeb712e",
+        "constructorId": -1343524562,
+        "_flags": 0
+      },
+      "_constructor": "chat#d91cdd54",
+      "constructorId": -652419756,
+      "_flags": 64
+    },
+    {
+      "id": 0,
+      "_constructor": "chatEmpty#9ba2d800",
+      "constructorId": -1683826688,
+      "_flags": 0
+    }
+  ],
+  "users": [],
+  "_constructor": "messages.channelMessages#99262e37",
+  "constructorId": -1725551049,
+  "_flags": 0
+}

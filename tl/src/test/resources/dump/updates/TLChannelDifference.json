@@ -1,0 +1,24 @@
+{
+  "pts": 0,
+  "timeout": 0,
+  "newMessages": [],
+  "otherUpdates": [],
+  "chats": [],
+  "users": [
+    {
+      "id": 0,
+      "_constructor": "userEmpty#200250ba",
+      "constructorId": 537022650,
+      "_flags": 0
+    },
+    {
+      "id": 0,
+      "_constructor": "userEmpty#200250ba",
+      "constructorId": 537022650,
+      "_flags": 0
+    }
+  ],
+  "_constructor": "updates.channelDifference#2064674e",
+  "constructorId": 543450958,
+  "_flags": 2
+}

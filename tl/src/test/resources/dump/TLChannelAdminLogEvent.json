@@ -1,0 +1,15 @@
+{
+  "id": 0,
+  "date": 0,
+  "userId": 0,
+  "action": {
+    "prevValue": "t22sZtYo15hcgSwUfCptBrt7MV",
+    "newValue": "ngStj1h",
+    "_constructor": "channelAdminLogEventActionChangeTitle#e6dfb825",
+    "constructorId": -421545947,
+    "_flags": 0
+  },
+  "_constructor": "channelAdminLogEvent#3b5a3e40",
+  "constructorId": 995769920,
+  "_flags": 0
+}

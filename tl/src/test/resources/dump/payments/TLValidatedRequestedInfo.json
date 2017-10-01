@@ -1,0 +1,54 @@
+{
+  "id": "YtzgoJN7WGh4Tv",
+  "shippingOptions": [
+    {
+      "id": "bHjxc",
+      "title": "mpRch1b",
+      "prices": [
+        {
+          "label": "VUixYOWMAdiMvTrK",
+          "amount": 0,
+          "_constructor": "labeledPrice#cb296bf8",
+          "constructorId": -886477832,
+          "_flags": 0
+        },
+        {
+          "label": "ZyvsBC2SyWnCm4eWQ8K7",
+          "amount": 0,
+          "_constructor": "labeledPrice#cb296bf8",
+          "constructorId": -886477832,
+          "_flags": 0
+        }
+      ],
+      "_constructor": "shippingOption#b6213cdf",
+      "constructorId": -1239335713,
+      "_flags": 0
+    },
+    {
+      "id": "Li2LkBWLziFYFwDSfplbIwRqC",
+      "title": "VKpB18q1z",
+      "prices": [
+        {
+          "label": "6ZipYqFwCDBx",
+          "amount": 0,
+          "_constructor": "labeledPrice#cb296bf8",
+          "constructorId": -886477832,
+          "_flags": 0
+        },
+        {
+          "label": "xi158ockhKeItAJ59MFDvn9",
+          "amount": 0,
+          "_constructor": "labeledPrice#cb296bf8",
+          "constructorId": -886477832,
+          "_flags": 0
+        }
+      ],
+      "_constructor": "shippingOption#b6213cdf",
+      "constructorId": -1239335713,
+      "_flags": 0
+    }
+  ],
+  "_constructor": "payments.validatedRequestedInfo#d1451883",
+  "constructorId": -784000893,
+  "_flags": 3
+}

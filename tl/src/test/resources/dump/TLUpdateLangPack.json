@@ -1,0 +1,34 @@
+{
+  "difference": {
+    "langCode": "4M3pSwxRFOox2z",
+    "fromVersion": 0,
+    "version": 0,
+    "strings": [
+      {
+        "key": "lb17fjo5KY6ea3S",
+        "zeroValue": "erp8t0i3uGyr",
+        "oneValue": "W3NA4RZXTTLhE6Af",
+        "twoValue": "YEDMhBlMz",
+        "fewValue": "K2MPf2o1jG",
+        "manyValue": "ZhDBNuryVhqk0YDeVXbXKY",
+        "otherValue": "H1Dkt",
+        "_constructor": "langPackStringPluralized#6c47ac9f",
+        "constructorId": 1816636575,
+        "_flags": 31
+      },
+      {
+        "key": "VhdBPvrf",
+        "value": "FrYaAyV7ZzPkm0KXLU",
+        "_constructor": "langPackString#cad181f6",
+        "constructorId": -892239370,
+        "_flags": 0
+      }
+    ],
+    "_constructor": "langPackDifference#f385c1f6",
+    "constructorId": -209337866,
+    "_flags": 0
+  },
+  "_constructor": "updateLangPack#56022f4d",
+  "constructorId": 1442983757,
+  "_flags": 0
+}

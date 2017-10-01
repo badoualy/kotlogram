@@ -1,0 +1,10 @@
+{
+  "replyMarkup": {
+    "_constructor": "replyKeyboardHide#a03e5b85",
+    "constructorId": -1606526075,
+    "_flags": 0
+  },
+  "_constructor": "inputBotInlineMessageGame#4b425864",
+  "constructorId": 1262639204,
+  "_flags": 4
+}

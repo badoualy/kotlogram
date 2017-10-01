@@ -1,0 +1,13 @@
+{
+  "stickerset": {
+    "id": 0,
+    "accessHash": 0,
+    "_constructor": "inputStickerSetID#9de7a269",
+    "constructorId": -1645763991,
+    "_flags": 0
+  },
+  "archived": true,
+  "_constructor": "messages.installStickerSet#c78fe460",
+  "constructorId": -946871200,
+  "_flags": 0
+}

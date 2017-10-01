@@ -1,0 +1,13 @@
+{
+  "message": {
+    "id": 0,
+    "_constructor": "messageEmpty#83e5de54",
+    "constructorId": -2082087340,
+    "_flags": 0
+  },
+  "pts": 0,
+  "ptsCount": 0,
+  "_constructor": "updateNewChannelMessage#62ba04d9",
+  "constructorId": 1656358105,
+  "_flags": 0
+}

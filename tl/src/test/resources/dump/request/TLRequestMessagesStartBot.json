@@ -1,0 +1,17 @@
+{
+  "bot": {
+    "_constructor": "inputUserEmpty#b98886cf",
+    "constructorId": -1182234929,
+    "_flags": 0
+  },
+  "peer": {
+    "_constructor": "inputPeerSelf#7da07ec9",
+    "constructorId": 2107670217,
+    "_flags": 0
+  },
+  "randomId": 0,
+  "startParam": "jjp4OaHZNrDDta6Ict61DPR",
+  "_constructor": "messages.startBot#e6df7378",
+  "constructorId": -421563528,
+  "_flags": 0
+}

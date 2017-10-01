@@ -1,0 +1,13 @@
+{
+  "phoneNumber": "0jIqXLXcD8w",
+  "firstName": "8r7iASRPKbYFn7LG",
+  "lastName": "tjWVS0jq9WADCrvqJLC",
+  "replyMarkup": {
+    "_constructor": "replyKeyboardForceReply#f4108aa0",
+    "constructorId": -200242528,
+    "_flags": 0
+  },
+  "_constructor": "inputBotInlineMessageMediaContact#2daf01a7",
+  "constructorId": 766443943,
+  "_flags": 4
+}

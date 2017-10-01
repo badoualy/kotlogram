@@ -1,0 +1,16 @@
+{
+  "userId": 0,
+  "myLink": {
+    "_constructor": "contactLinkHasPhone#268f3f59",
+    "constructorId": 646922073,
+    "_flags": 0
+  },
+  "foreignLink": {
+    "_constructor": "contactLinkNone#feedd3ad",
+    "constructorId": -17968211,
+    "_flags": 0
+  },
+  "_constructor": "updateContactLink#9d2e67c5",
+  "constructorId": -1657903163,
+  "_flags": 0
+}

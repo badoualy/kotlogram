@@ -1,0 +1,71 @@
+{
+  "dialogs": [],
+  "messages": [
+    {
+      "id": 0,
+      "_constructor": "messageEmpty#83e5de54",
+      "constructorId": -2082087340,
+      "_flags": 0
+    }
+  ],
+  "chats": [
+    {
+      "id": 0,
+      "title": "9FDL2",
+      "photo": {
+        "_constructor": "chatPhotoEmpty#37c1011c",
+        "constructorId": 935395612,
+        "_flags": 0
+      },
+      "participantsCount": 0,
+      "date": 0,
+      "version": 0,
+      "migratedTo": {
+        "channelId": 0,
+        "accessHash": 0,
+        "_constructor": "inputChannel#afeb712e",
+        "constructorId": -1343524562,
+        "_flags": 0
+      },
+      "_constructor": "chat#d91cdd54",
+      "constructorId": -652419756,
+      "_flags": 64
+    }
+  ],
+  "users": [
+    {
+      "id": 0,
+      "accessHash": 0,
+      "firstName": "SxVIj9",
+      "lastName": "INgy8nRGFgmQbl",
+      "username": "M0LNgrA9ngbSmVA",
+      "phone": "Ykeud4wBu3iADbn",
+      "photo": {
+        "_constructor": "userProfilePhotoEmpty#4f11bae1",
+        "constructorId": 1326562017,
+        "_flags": 0
+      },
+      "status": {
+        "_constructor": "userStatusEmpty#9d05049",
+        "constructorId": 164646985,
+        "_flags": 0
+      },
+      "botInfoVersion": 0,
+      "restrictionReason": "r5TEdosuF",
+      "botInlinePlaceholder": "j04VbNoLbbKcMzaOOFBPWKCmIMl",
+      "langCode": "aZy7B9",
+      "_constructor": "user#2e13f4c3",
+      "constructorId": 773059779,
+      "_flags": 4997247
+    },
+    {
+      "id": 0,
+      "_constructor": "userEmpty#200250ba",
+      "constructorId": 537022650,
+      "_flags": 0
+    }
+  ],
+  "_constructor": "messages.dialogs#15ba6c40",
+  "constructorId": 364538944,
+  "_flags": 0
+}

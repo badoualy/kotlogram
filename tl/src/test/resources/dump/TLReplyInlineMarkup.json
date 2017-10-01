@@ -1,0 +1,33 @@
+{
+  "rows": [
+    {
+      "buttons": [],
+      "_constructor": "keyboardButtonRow#77608b83",
+      "constructorId": 2002815875,
+      "_flags": 0
+    },
+    {
+      "buttons": [
+        {
+          "text": "4ZfsbHkMEm9RT",
+          "data": {
+            "data": [
+              0
+            ],
+            "offset": 0,
+            "length": 1
+          },
+          "_constructor": "keyboardButtonCallback#683a5e46",
+          "constructorId": 1748655686,
+          "_flags": 0
+        }
+      ],
+      "_constructor": "keyboardButtonRow#77608b83",
+      "constructorId": 2002815875,
+      "_flags": 0
+    }
+  ],
+  "_constructor": "replyInlineMarkup#48a30254",
+  "constructorId": 1218642516,
+  "_flags": 0
+}

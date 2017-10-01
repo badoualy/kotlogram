@@ -1,0 +1,25 @@
+{
+  "msgId": 0,
+  "info": {
+    "name": "uVMP0",
+    "phone": "Ne9nVfcyCe",
+    "email": "g6yaSx9nhy",
+    "shippingAddress": {
+      "streetLine1": "AQE75XnKWxqSlaBo",
+      "streetLine2": "Zt9irlrHdc",
+      "city": "RZvXteaFtpnnIyR",
+      "state": "czxPsaQXm44sHm7Zft29k0z",
+      "countryIso2": "fgsETHQcul9DTK",
+      "postCode": "WmnieS6nCdXhcJZX1dA",
+      "_constructor": "postAddress#1e8caaeb",
+      "constructorId": 512535275,
+      "_flags": 0
+    },
+    "_constructor": "paymentRequestedInfo#909c3f94",
+    "constructorId": -1868808300,
+    "_flags": 15
+  },
+  "_constructor": "payments.validateRequestedInfo#770a8e74",
+  "constructorId": 1997180532,
+  "_flags": 0
+}

@@ -1,0 +1,15 @@
+{
+  "q": "AseasQmHbckIv",
+  "offsetDate": 0,
+  "offsetPeer": {
+    "chatId": 0,
+    "_constructor": "inputPeerChat#179be863",
+    "constructorId": 396093539,
+    "_flags": 0
+  },
+  "offsetId": 0,
+  "limit": 0,
+  "_constructor": "messages.searchGlobal#9e3cacb0",
+  "constructorId": -1640190800,
+  "_flags": 0
+}

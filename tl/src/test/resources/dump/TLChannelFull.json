@@ -1,0 +1,45 @@
+{
+  "id": 0,
+  "about": "8JCLMGIqRXKSykDXfvho5sEt2P",
+  "participantsCount": 0,
+  "adminsCount": 0,
+  "kickedCount": 0,
+  "bannedCount": 0,
+  "readInboxMaxId": 0,
+  "readOutboxMaxId": 0,
+  "unreadCount": 0,
+  "chatPhoto": {
+    "id": 0,
+    "_constructor": "photoEmpty#2331b22d",
+    "constructorId": 590459437,
+    "_flags": 0
+  },
+  "notifySettings": {
+    "_constructor": "peerNotifySettingsEmpty#70a68512",
+    "constructorId": 1889961234,
+    "_flags": 0
+  },
+  "exportedInvite": {
+    "_constructor": "chatInviteEmpty#69df3769",
+    "constructorId": 1776236393,
+    "_flags": 0
+  },
+  "botInfo": [],
+  "migratedFromChatId": 0,
+  "migratedFromMaxId": 0,
+  "pinnedMsgId": 0,
+  "stickerset": {
+    "id": 0,
+    "accessHash": 0,
+    "title": "yPBFNiqzs84PZzbc2xmuFBPSh4",
+    "shortName": "eDWAeYnncwJ1hiFFOn2ElXEOYTi",
+    "count": 0,
+    "hash": 0,
+    "_constructor": "stickerSet#cd303b41",
+    "constructorId": -852477119,
+    "_flags": 0
+  },
+  "_constructor": "channelFull#17f45fcf",
+  "constructorId": 401891279,
+  "_flags": 311
+}

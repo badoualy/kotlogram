@@ -1,0 +1,37 @@
+{
+  "text": {
+    "text": {
+      "_constructor": "textEmpty#dc3d824f",
+      "constructorId": -599948721,
+      "_flags": 0
+    },
+    "_constructor": "textItalic#d912a59c",
+    "constructorId": -653089380,
+    "_flags": 0
+  },
+  "caption": {
+    "text": {
+      "texts": [
+        {
+          "text": {
+            "_constructor": "textEmpty#dc3d824f",
+            "constructorId": -599948721,
+            "_flags": 0
+          },
+          "_constructor": "textBold#6724abc4",
+          "constructorId": 1730456516,
+          "_flags": 0
+        }
+      ],
+      "_constructor": "textConcat#7e6260d7",
+      "constructorId": 2120376535,
+      "_flags": 0
+    },
+    "_constructor": "textUnderline#c12622c4",
+    "constructorId": -1054465340,
+    "_flags": 0
+  },
+  "_constructor": "pageBlockPullquote#4f4456d3",
+  "constructorId": 1329878739,
+  "_flags": 0
+}

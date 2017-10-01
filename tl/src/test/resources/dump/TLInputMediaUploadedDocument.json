@@ -1,0 +1,44 @@
+{
+  "file": {
+    "id": 0,
+    "parts": 0,
+    "name": "N3nbw",
+    "md5Checksum": "mQpePUGR0feFXH6AwYPxVjfwFId8",
+    "_constructor": "inputFile#f52ff27f",
+    "constructorId": -181407105,
+    "_flags": 0
+  },
+  "thumb": {
+    "id": 0,
+    "parts": 0,
+    "name": "oVaNSYgVoKuqV",
+    "_constructor": "inputFileBig#fa4f0bb5",
+    "constructorId": -95482955,
+    "_flags": 0
+  },
+  "mimeType": "zKtcWux6WyBs6pVX3LPO",
+  "attributes": [
+    {
+      "duration": 0,
+      "w": 0,
+      "h": 0,
+      "_constructor": "documentAttributeVideo#ef02ce6",
+      "constructorId": 250621158,
+      "_flags": 0
+    },
+    {
+      "duration": 0,
+      "w": 0,
+      "h": 0,
+      "_constructor": "documentAttributeVideo#ef02ce6",
+      "constructorId": 250621158,
+      "_flags": 0
+    }
+  ],
+  "caption": "CZcKTegDjcxl0Uxo79OdiyZ6TY",
+  "stickers": [],
+  "ttlSeconds": 0,
+  "_constructor": "inputMediaUploadedDocument#e39621fd",
+  "constructorId": -476700163,
+  "_flags": 7
+}

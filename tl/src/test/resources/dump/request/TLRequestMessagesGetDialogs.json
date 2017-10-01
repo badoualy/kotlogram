@@ -1,0 +1,15 @@
+{
+  "offsetDate": 0,
+  "offsetId": 0,
+  "offsetPeer": {
+    "channelId": 0,
+    "accessHash": 0,
+    "_constructor": "inputPeerChannel#20adaef8",
+    "constructorId": 548253432,
+    "_flags": 0
+  },
+  "limit": 0,
+  "_constructor": "messages.getDialogs#191ba9c5",
+  "constructorId": 421243333,
+  "_flags": 0
+}

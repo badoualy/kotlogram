@@ -1,0 +1,64 @@
+{
+  "queryId": 0,
+  "nextOffset": "wFfNcaPdPv7w4",
+  "switchPm": {
+    "text": "R1dc5iQn",
+    "startParam": "PjLWWH",
+    "_constructor": "inlineBotSwitchPM#3c20629f",
+    "constructorId": 1008755359,
+    "_flags": 0
+  },
+  "results": [
+    {
+      "id": "oDBmyuqJfe0JhyuFMrFm2KgYuMruc",
+      "type": "FX07WRtqW",
+      "title": "WnGCgBkQLaF45GrQwcQbWARYSBDT",
+      "description": "XgIh4YJqW0A",
+      "url": "BVcvGauNI2ZgKsRuxyvr",
+      "thumbUrl": "TfpuzY6BUFEzPRQ0U",
+      "contentUrl": "N7HeRyd7yXCXR91bc6xSFOHeVsl",
+      "contentType": "vAUJtEEFpXIJJYxOwATORcQxv4yjs",
+      "w": 0,
+      "h": 0,
+      "duration": 0,
+      "sendMessage": {
+        "geo": {
+          "_long": 0.0,
+          "lat": 0.0,
+          "_constructor": "geoPoint#2049d70c",
+          "constructorId": 541710092,
+          "_flags": 0
+        },
+        "replyMarkup": {
+          "rows": [
+            {
+              "buttons": [],
+              "_constructor": "keyboardButtonRow#77608b83",
+              "constructorId": 2002815875,
+              "_flags": 0
+            },
+            {
+              "buttons": [],
+              "_constructor": "keyboardButtonRow#77608b83",
+              "constructorId": 2002815875,
+              "_flags": 0
+            }
+          ],
+          "_constructor": "replyInlineMarkup#48a30254",
+          "constructorId": 1218642516,
+          "_flags": 0
+        },
+        "_constructor": "botInlineMessageMediaGeo#3a8fd8b8",
+        "constructorId": 982505656,
+        "_flags": 4
+      },
+      "_constructor": "botInlineResult#9bebaeb9",
+      "constructorId": -1679053127,
+      "_flags": 254
+    }
+  ],
+  "cacheTime": 0,
+  "_constructor": "messages.botResults#ccd3563d",
+  "constructorId": -858565059,
+  "_flags": 6
+}

@@ -1,0 +1,22 @@
+{
+  "alt": "aY3i8T4ktNdcwceKSsX8AISK",
+  "stickerset": {
+    "id": 0,
+    "accessHash": 0,
+    "_constructor": "inputStickerSetID#9de7a269",
+    "constructorId": -1645763991,
+    "_flags": 0
+  },
+  "maskCoords": {
+    "n": 0,
+    "x": 0.0,
+    "y": 0.0,
+    "zoom": 0.0,
+    "_constructor": "maskCoords#aed6dbb2",
+    "constructorId": -1361650766,
+    "_flags": 0
+  },
+  "_constructor": "documentAttributeSticker#6319d612",
+  "constructorId": 1662637586,
+  "_flags": 1
+}

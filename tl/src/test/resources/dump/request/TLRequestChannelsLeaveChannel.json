@@ -1,0 +1,12 @@
+{
+  "channel": {
+    "channelId": 0,
+    "accessHash": 0,
+    "_constructor": "inputChannel#afeb712e",
+    "constructorId": -1343524562,
+    "_flags": 0
+  },
+  "_constructor": "channels.leaveChannel#f836aa95",
+  "constructorId": -130635115,
+  "_flags": 0
+}

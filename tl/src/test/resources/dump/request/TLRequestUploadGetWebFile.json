@@ -1,0 +1,14 @@
+{
+  "location": {
+    "url": "wwCJ3utY8Ca2SyPjvQr6UR",
+    "accessHash": 0,
+    "_constructor": "inputWebFileLocation#c239d686",
+    "constructorId": -1036396922,
+    "_flags": 0
+  },
+  "offset": 0,
+  "limit": 0,
+  "_constructor": "upload.getWebFile#24e6818d",
+  "constructorId": 619086221,
+  "_flags": 0
+}

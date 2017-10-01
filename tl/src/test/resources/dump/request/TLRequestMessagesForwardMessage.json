@@ -1,0 +1,12 @@
+{
+  "peer": {
+    "_constructor": "inputPeerSelf#7da07ec9",
+    "constructorId": 2107670217,
+    "_flags": 0
+  },
+  "id": 0,
+  "randomId": 0,
+  "_constructor": "messages.forwardMessage#33963bf9",
+  "constructorId": 865483769,
+  "_flags": 0
+}

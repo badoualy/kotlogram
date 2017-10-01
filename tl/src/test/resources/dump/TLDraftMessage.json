@@ -1,0 +1,24 @@
+{
+  "replyToMsgId": 0,
+  "message": "J0f3pCJoQVarbAYMDgc",
+  "entities": [
+    {
+      "offset": 0,
+      "length": 0,
+      "_constructor": "messageEntityHashtag#6f635b0d",
+      "constructorId": 1868782349,
+      "_flags": 0
+    },
+    {
+      "offset": 0,
+      "length": 0,
+      "_constructor": "messageEntityItalic#826f8b60",
+      "constructorId": -2106619040,
+      "_flags": 0
+    }
+  ],
+  "date": 0,
+  "_constructor": "draftMessage#fd8e711f",
+  "constructorId": -40996577,
+  "_flags": 9
+}

@@ -1,0 +1,16 @@
+{
+  "scores": [
+    {
+      "pos": 0,
+      "userId": 0,
+      "score": 0,
+      "_constructor": "highScore#58fffcd0",
+      "constructorId": 1493171408,
+      "_flags": 0
+    }
+  ],
+  "users": [],
+  "_constructor": "messages.highScores#9a3bfd99",
+  "constructorId": -1707344487,
+  "_flags": 0
+}

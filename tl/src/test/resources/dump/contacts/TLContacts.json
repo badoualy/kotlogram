@@ -1,0 +1,30 @@
+{
+  "contacts": [
+    {
+      "userId": 0,
+      "mutual": false,
+      "_constructor": "contact#f911c994",
+      "constructorId": -116274796,
+      "_flags": 0
+    },
+    {
+      "userId": 0,
+      "mutual": false,
+      "_constructor": "contact#f911c994",
+      "constructorId": -116274796,
+      "_flags": 0
+    }
+  ],
+  "savedCount": 0,
+  "users": [
+    {
+      "id": 0,
+      "_constructor": "userEmpty#200250ba",
+      "constructorId": 537022650,
+      "_flags": 0
+    }
+  ],
+  "_constructor": "contacts.contacts#eae87e42",
+  "constructorId": -353862078,
+  "_flags": 0
+}

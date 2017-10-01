@@ -1,0 +1,13 @@
+{
+  "channel": {
+    "channelId": 0,
+    "accessHash": 0,
+    "_constructor": "inputChannel#afeb712e",
+    "constructorId": -1343524562,
+    "_flags": 0
+  },
+  "enabled": false,
+  "_constructor": "channels.toggleInvites#49609307",
+  "constructorId": 1231065863,
+  "_flags": 0
+}

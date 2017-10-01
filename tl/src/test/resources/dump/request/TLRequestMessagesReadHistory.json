@@ -1,0 +1,11 @@
+{
+  "peer": {
+    "_constructor": "inputPeerSelf#7da07ec9",
+    "constructorId": 2107670217,
+    "_flags": 0
+  },
+  "maxId": 0,
+  "_constructor": "messages.readHistory#e306d3a",
+  "constructorId": 238054714,
+  "_flags": 0
+}

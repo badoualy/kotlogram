@@ -1,0 +1,20 @@
+{
+  "chats": [
+    {
+      "id": 0,
+      "title": "gvFHvm2Gq",
+      "_constructor": "chatForbidden#7328bdb",
+      "constructorId": 120753115,
+      "_flags": 0
+    },
+    {
+      "id": 0,
+      "_constructor": "chatEmpty#9ba2d800",
+      "constructorId": -1683826688,
+      "_flags": 0
+    }
+  ],
+  "_constructor": "messages.chats#64ff9fd5",
+  "constructorId": 1694474197,
+  "_flags": 0
+}

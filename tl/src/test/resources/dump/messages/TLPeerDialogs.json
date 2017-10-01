@@ -1,0 +1,70 @@
+{
+  "dialogs": [
+    {
+      "peer": {
+        "userId": 0,
+        "_constructor": "peerUser#9db1bc6d",
+        "constructorId": -1649296275,
+        "_flags": 0
+      },
+      "topMessage": 0,
+      "readInboxMaxId": 0,
+      "readOutboxMaxId": 0,
+      "unreadCount": 0,
+      "unreadMentionsCount": 0,
+      "notifySettings": {
+        "_constructor": "peerNotifySettingsEmpty#70a68512",
+        "constructorId": 1889961234,
+        "_flags": 0
+      },
+      "pts": 0,
+      "draft": {
+        "_constructor": "draftMessageEmpty#ba4baec5",
+        "constructorId": -1169445179,
+        "_flags": 0
+      },
+      "_constructor": "dialog#e4def5db",
+      "constructorId": -455150117,
+      "_flags": 3
+    }
+  ],
+  "messages": [
+    {
+      "id": 0,
+      "_constructor": "messageEmpty#83e5de54",
+      "constructorId": -2082087340,
+      "_flags": 0
+    }
+  ],
+  "chats": [
+    {
+      "id": 0,
+      "_constructor": "chatEmpty#9ba2d800",
+      "constructorId": -1683826688,
+      "_flags": 0
+    },
+    {
+      "id": 0,
+      "accessHash": 0,
+      "title": "h6juKya0Qt",
+      "untilDate": 0,
+      "_constructor": "channelForbidden#289da732",
+      "constructorId": 681420594,
+      "_flags": 65536
+    }
+  ],
+  "users": [],
+  "state": {
+    "pts": 0,
+    "qts": 0,
+    "date": 0,
+    "seq": 0,
+    "unreadCount": 0,
+    "_constructor": "updates.state#a56c2a3e",
+    "constructorId": -1519637954,
+    "_flags": 0
+  },
+  "_constructor": "messages.peerDialogs#3371c354",
+  "constructorId": 863093588,
+  "_flags": 0
+}

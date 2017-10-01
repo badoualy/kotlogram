@@ -1,0 +1,31 @@
+{
+  "id": "NCt83PxnpECQooMlKtJlj9q",
+  "type": "TJ8X4eX8JxPjDxAWgz40tqp",
+  "title": "wzu5cEOMSTPEk6yFEC",
+  "description": "d8wFdQ7lckyrrue9mRIg",
+  "url": "UiPfjjxlknaCRCIMTtV",
+  "thumbUrl": "ugafDzRwQHB1MZoTElC43TjVoNJJc",
+  "contentUrl": "FZjstZe9XZkKcsZuRRhB",
+  "contentType": "qK3wWMhugaGiABu",
+  "w": 0,
+  "h": 0,
+  "duration": 0,
+  "sendMessage": {
+    "geo": {
+      "_constructor": "geoPointEmpty#1117dd5f",
+      "constructorId": 286776671,
+      "_flags": 0
+    },
+    "replyMarkup": {
+      "_constructor": "replyKeyboardHide#a03e5b85",
+      "constructorId": -1606526075,
+      "_flags": 0
+    },
+    "_constructor": "botInlineMessageMediaGeo#3a8fd8b8",
+    "constructorId": 982505656,
+    "_flags": 4
+  },
+  "_constructor": "botInlineResult#9bebaeb9",
+  "constructorId": -1679053127,
+  "_flags": 254
+}

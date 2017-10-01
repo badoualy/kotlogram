@@ -1,0 +1,60 @@
+{
+  "messages": [
+    {
+      "id": 0,
+      "fromId": 0,
+      "toId": {
+        "userId": 0,
+        "_constructor": "peerUser#9db1bc6d",
+        "constructorId": -1649296275,
+        "_flags": 0
+      },
+      "replyToMsgId": 0,
+      "date": 0,
+      "action": {
+        "users": [
+          0,
+          0
+        ],
+        "_constructor": "messageActionChatAddUser#488a7337",
+        "constructorId": 1217033015,
+        "_flags": 0
+      },
+      "_constructor": "messageService#9e19a1f6",
+      "constructorId": -1642487306,
+      "_flags": 264
+    },
+    {
+      "id": 0,
+      "fromId": 0,
+      "toId": {
+        "userId": 0,
+        "_constructor": "peerUser#9db1bc6d",
+        "constructorId": -1649296275,
+        "_flags": 0
+      },
+      "replyToMsgId": 0,
+      "date": 0,
+      "action": {
+        "callId": 0,
+        "reason": {
+          "_constructor": "phoneCallDiscardReasonMissed#85e42301",
+          "constructorId": -2048646399,
+          "_flags": 0
+        },
+        "duration": 0,
+        "_constructor": "messageActionPhoneCall#80e11a7f",
+        "constructorId": -2132731265,
+        "_flags": 3
+      },
+      "_constructor": "messageService#9e19a1f6",
+      "constructorId": -1642487306,
+      "_flags": 264
+    }
+  ],
+  "chats": [],
+  "users": [],
+  "_constructor": "messages.messages#8c718e87",
+  "constructorId": -1938715001,
+  "_flags": 0
+}

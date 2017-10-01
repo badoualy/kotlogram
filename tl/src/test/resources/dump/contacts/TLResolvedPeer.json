@@ -1,0 +1,34 @@
+{
+  "peer": {
+    "chatId": 0,
+    "_constructor": "peerChat#bad0e5bb",
+    "constructorId": -1160714821,
+    "_flags": 0
+  },
+  "chats": [
+    {
+      "id": 0,
+      "title": "YpycuavpSyuN8CYxG",
+      "_constructor": "chatForbidden#7328bdb",
+      "constructorId": 120753115,
+      "_flags": 0
+    }
+  ],
+  "users": [
+    {
+      "id": 0,
+      "_constructor": "userEmpty#200250ba",
+      "constructorId": 537022650,
+      "_flags": 0
+    },
+    {
+      "id": 0,
+      "_constructor": "userEmpty#200250ba",
+      "constructorId": 537022650,
+      "_flags": 0
+    }
+  ],
+  "_constructor": "contacts.resolvedPeer#7f077ad9",
+  "constructorId": 2131196633,
+  "_flags": 0
+}

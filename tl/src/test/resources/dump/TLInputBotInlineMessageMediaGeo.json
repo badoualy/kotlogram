@@ -1,0 +1,15 @@
+{
+  "geoPoint": {
+    "_constructor": "inputGeoPointEmpty#e4c123d6",
+    "constructorId": -457104426,
+    "_flags": 0
+  },
+  "replyMarkup": {
+    "_constructor": "replyKeyboardHide#a03e5b85",
+    "constructorId": -1606526075,
+    "_flags": 0
+  },
+  "_constructor": "inputBotInlineMessageMediaGeo#f4a59de1",
+  "constructorId": -190472735,
+  "_flags": 4
+}

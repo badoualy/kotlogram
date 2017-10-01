@@ -1,0 +1,17 @@
+{
+  "key": {
+    "_constructor": "privacyKeyChatInvite#500e6dfa",
+    "constructorId": 1343122938,
+    "_flags": 0
+  },
+  "rules": [
+    {
+      "_constructor": "privacyValueAllowContacts#fffe1bac",
+      "constructorId": -123988,
+      "_flags": 0
+    }
+  ],
+  "_constructor": "updatePrivacy#ee3b272a",
+  "constructorId": -298113238,
+  "_flags": 0
+}

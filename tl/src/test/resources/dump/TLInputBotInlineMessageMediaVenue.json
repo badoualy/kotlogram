@@ -1,0 +1,19 @@
+{
+  "geoPoint": {
+    "_constructor": "inputGeoPointEmpty#e4c123d6",
+    "constructorId": -457104426,
+    "_flags": 0
+  },
+  "title": "9Vhi3It8lDUwR3urmKgwBIwmKd",
+  "address": "6BXqqnjAQJZ3E",
+  "provider": "Ru31UYRbLqawKj6MYf9RdHlYZP",
+  "venueId": "pni5W4w35esBumv",
+  "replyMarkup": {
+    "_constructor": "replyKeyboardHide#a03e5b85",
+    "constructorId": -1606526075,
+    "_flags": 0
+  },
+  "_constructor": "inputBotInlineMessageMediaVenue#aaafadc8",
+  "constructorId": -1431327288,
+  "_flags": 4
+}

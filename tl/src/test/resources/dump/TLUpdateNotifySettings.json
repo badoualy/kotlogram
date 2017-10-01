@@ -1,0 +1,17 @@
+{
+  "peer": {
+    "_constructor": "notifyAll#74d07c60",
+    "constructorId": 1959820384,
+    "_flags": 0
+  },
+  "notifySettings": {
+    "muteUntil": 0,
+    "sound": "lfZP4oAwnf",
+    "_constructor": "peerNotifySettings#9acda4c0",
+    "constructorId": -1697798976,
+    "_flags": 0
+  },
+  "_constructor": "updateNotifySettings#bec268ef",
+  "constructorId": -1094555409,
+  "_flags": 0
+}

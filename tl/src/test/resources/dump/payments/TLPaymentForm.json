@@ -1,0 +1,114 @@
+{
+  "botId": 0,
+  "invoice": {
+    "currency": "NWSPxe8x7NRslQ",
+    "prices": [
+      {
+        "label": "t1MeKwnPQ8qXHgB9",
+        "amount": 0,
+        "_constructor": "labeledPrice#cb296bf8",
+        "constructorId": -886477832,
+        "_flags": 0
+      },
+      {
+        "label": "1v2GYxUiRN24jYEcHAz",
+        "amount": 0,
+        "_constructor": "labeledPrice#cb296bf8",
+        "constructorId": -886477832,
+        "_flags": 0
+      }
+    ],
+    "_constructor": "invoice#c30aa358",
+    "constructorId": -1022713000,
+    "_flags": 0
+  },
+  "providerId": 0,
+  "url": "IPGKOtkCb",
+  "nativeProvider": "pByZy07CvMIjSsHTo8",
+  "nativeParams": {
+    "data": "SQucCXXoLs0ocH6jej6f9",
+    "_constructor": "dataJSON#7d748d04",
+    "constructorId": 2104790276,
+    "_flags": 0
+  },
+  "savedInfo": {
+    "name": "l3D0UpgeSnBI",
+    "phone": "h5fwKkIsCkYEuyWmxFVVFXE",
+    "email": "6QS2dgb55mbeqP2",
+    "shippingAddress": {
+      "streetLine1": "LwB655eUvguEg6dSs7eM3U",
+      "streetLine2": "w2lAT9EIuz7Euz98iLruP2AWS5R",
+      "city": "SyzssQowDTEQHgxhdQFJSwft",
+      "state": "tuWnMpJBxEmjAGrOTCnz",
+      "countryIso2": "UmVzjCdLrftRheblPo2",
+      "postCode": "0pn5lbb7ihi5tCRuY10",
+      "_constructor": "postAddress#1e8caaeb",
+      "constructorId": 512535275,
+      "_flags": 0
+    },
+    "_constructor": "paymentRequestedInfo#909c3f94",
+    "constructorId": -1868808300,
+    "_flags": 15
+  },
+  "savedCredentials": {
+    "id": "LHdAFQ8RkwSaKLJ1",
+    "title": "a3HogJRVcA7id9t",
+    "_constructor": "paymentSavedCredentialsCard#cdc27a1f",
+    "constructorId": -842892769,
+    "_flags": 0
+  },
+  "users": [
+    {
+      "id": 0,
+      "accessHash": 0,
+      "firstName": "WSYvJZGSFOC7yJnW",
+      "lastName": "NKm3ieepva5Yo40Y2UZgAV",
+      "username": "sUlFh0ZVNECad3IoZ14cp2r",
+      "phone": "onm04UNv7gvojUS1",
+      "photo": {
+        "photoId": 0,
+        "photoSmall": {
+          "dcId": 0,
+          "volumeId": 0,
+          "localId": 0,
+          "secret": 0,
+          "_constructor": "fileLocation#53d69076",
+          "constructorId": 1406570614,
+          "_flags": 0
+        },
+        "photoBig": {
+          "volumeId": 0,
+          "localId": 0,
+          "secret": 0,
+          "_constructor": "fileLocationUnavailable#7c596b46",
+          "constructorId": 2086234950,
+          "_flags": 0
+        },
+        "_constructor": "userProfilePhoto#d559d8c8",
+        "constructorId": -715532088,
+        "_flags": 0
+      },
+      "status": {
+        "_constructor": "userStatusLastMonth#77ebc742",
+        "constructorId": 2011940674,
+        "_flags": 0
+      },
+      "botInfoVersion": 0,
+      "restrictionReason": "TrZLRAf7u2Cig",
+      "botInlinePlaceholder": "s72eMh2Fv2r6Lj0f10ELI9BojcxCl",
+      "langCode": "LMnsabyVvwFpgYokUMGrfUTUd",
+      "_constructor": "user#2e13f4c3",
+      "constructorId": 773059779,
+      "_flags": 4997247
+    },
+    {
+      "id": 0,
+      "_constructor": "userEmpty#200250ba",
+      "constructorId": 537022650,
+      "_flags": 0
+    }
+  ],
+  "_constructor": "payments.paymentForm#3f56aea3",
+  "constructorId": 1062645411,
+  "_flags": 19
+}

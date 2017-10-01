@@ -1,0 +1,12 @@
+{
+  "peer": {
+    "chatId": 0,
+    "_constructor": "inputPeerChat#179be863",
+    "constructorId": 396093539,
+    "_flags": 0
+  },
+  "maxId": 0,
+  "_constructor": "messages.deleteHistory#1c015b09",
+  "constructorId": 469850889,
+  "_flags": 0
+}

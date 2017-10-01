@@ -1,0 +1,12 @@
+{
+  "sticker": {
+    "id": 0,
+    "accessHash": 0,
+    "_constructor": "inputDocument#18798952",
+    "constructorId": 410618194,
+    "_flags": 0
+  },
+  "_constructor": "stickers.removeStickerFromSet#f7760f51",
+  "constructorId": -143257775,
+  "_flags": 0
+}

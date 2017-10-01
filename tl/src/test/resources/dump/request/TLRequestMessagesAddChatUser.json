@@ -1,0 +1,12 @@
+{
+  "chatId": 0,
+  "userId": {
+    "_constructor": "inputUserSelf#f7c1b13f",
+    "constructorId": -138301121,
+    "_flags": 0
+  },
+  "fwdLimit": 0,
+  "_constructor": "messages.addChatUser#f9a0aa09",
+  "constructorId": -106911223,
+  "_flags": 0
+}

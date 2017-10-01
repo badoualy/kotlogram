@@ -1,0 +1,24 @@
+{
+  "set": {
+    "id": 0,
+    "accessHash": 0,
+    "title": "VXNPh38XxWKj6q96WbBVBPqE",
+    "shortName": "9r70yIrS9z1MUJD5e1Uk",
+    "count": 0,
+    "hash": 0,
+    "_constructor": "stickerSet#cd303b41",
+    "constructorId": -852477119,
+    "_flags": 0
+  },
+  "covers": [
+    {
+      "id": 0,
+      "_constructor": "documentEmpty#36f8c871",
+      "constructorId": 922273905,
+      "_flags": 0
+    }
+  ],
+  "_constructor": "stickerSetMultiCovered#3407e51b",
+  "constructorId": 872932635,
+  "_flags": 0
+}

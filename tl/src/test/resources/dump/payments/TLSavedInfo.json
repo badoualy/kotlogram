@@ -1,0 +1,24 @@
+{
+  "savedInfo": {
+    "name": "8qSefynANTGA40xcl8",
+    "phone": "lTmGhnYp1y7w0BRng0Kc",
+    "email": "Jkm0T0q2IsMsR0",
+    "shippingAddress": {
+      "streetLine1": "ODDTtO7YbtdijcHPlMG",
+      "streetLine2": "Ppn08g1pbN",
+      "city": "KU6jLt8gC4UnrEp5Y4JhjQ6LuRm",
+      "state": "OE19x00pqVQ",
+      "countryIso2": "aruMKOEY0GR8",
+      "postCode": "XQOlIa0p8X01H",
+      "_constructor": "postAddress#1e8caaeb",
+      "constructorId": 512535275,
+      "_flags": 0
+    },
+    "_constructor": "paymentRequestedInfo#909c3f94",
+    "constructorId": -1868808300,
+    "_flags": 15
+  },
+  "_constructor": "payments.savedInfo#fb8fe43c",
+  "constructorId": -74456004,
+  "_flags": 1
+}

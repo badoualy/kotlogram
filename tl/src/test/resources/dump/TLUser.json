@@ -1,0 +1,26 @@
+{
+  "id": 0,
+  "accessHash": 0,
+  "firstName": "SEx3E5qW291L6kk",
+  "lastName": "H6qO5if9OoQTmhWH9bakv",
+  "username": "gPjkgv",
+  "phone": "Li5WFot1ji46s5iAsCEp2HgH2",
+  "photo": {
+    "_constructor": "userProfilePhotoEmpty#4f11bae1",
+    "constructorId": 1326562017,
+    "_flags": 0
+  },
+  "status": {
+    "expires": 0,
+    "_constructor": "userStatusOnline#edb93949",
+    "constructorId": -306628279,
+    "_flags": 0
+  },
+  "botInfoVersion": 0,
+  "restrictionReason": "50hhW",
+  "botInlinePlaceholder": "lyXn7VSu96di70e",
+  "langCode": "gmZSmYTo8gAzn5F",
+  "_constructor": "user#2e13f4c3",
+  "constructorId": 773059779,
+  "_flags": 4997247
+}

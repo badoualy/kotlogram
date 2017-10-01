@@ -1,0 +1,32 @@
+{
+  "updates": [
+    {
+      "messages": [
+        0
+      ],
+      "pts": 0,
+      "ptsCount": 0,
+      "_constructor": "updateReadMessagesContents#68c13933",
+      "constructorId": 1757493555,
+      "_flags": 0
+    }
+  ],
+  "users": [],
+  "chats": [
+    {
+      "id": 0,
+      "accessHash": 0,
+      "title": "t5uzWXxVqqVxzQJo8KifPl",
+      "untilDate": 0,
+      "_constructor": "channelForbidden#289da732",
+      "constructorId": 681420594,
+      "_flags": 65536
+    }
+  ],
+  "date": 0,
+  "seqStart": 0,
+  "seq": 0,
+  "_constructor": "updatesCombined#725b04c3",
+  "constructorId": 1918567619,
+  "_flags": 0
+}

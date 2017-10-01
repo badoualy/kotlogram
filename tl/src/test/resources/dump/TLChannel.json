@@ -1,0 +1,28 @@
+{
+  "id": 0,
+  "accessHash": 0,
+  "title": "1FFgPGb",
+  "username": "AdPY6pV1kt6xivWty1UsD",
+  "photo": {
+    "_constructor": "chatPhotoEmpty#37c1011c",
+    "constructorId": 935395612,
+    "_flags": 0
+  },
+  "date": 0,
+  "version": 0,
+  "restrictionReason": "5fblVK224JqN5mlKduxLdrNRejm",
+  "adminRights": {
+    "_constructor": "channelAdminRights#5d7ceba5",
+    "constructorId": 1568467877,
+    "_flags": 0
+  },
+  "bannedRights": {
+    "untilDate": 0,
+    "_constructor": "channelBannedRights#58cf4249",
+    "constructorId": 1489977929,
+    "_flags": 0
+  },
+  "_constructor": "channel#cb44b1c",
+  "constructorId": 213142300,
+  "_flags": 57920
+}

@@ -1,0 +1,28 @@
+{
+  "hash": 0,
+  "packs": [
+    {
+      "emoticon": "sjsQBKtjeKGPj",
+      "documents": [
+        0
+      ],
+      "_constructor": "stickerPack#12b299d4",
+      "constructorId": 313694676,
+      "_flags": 0
+    },
+    {
+      "emoticon": "af3cZXZ7VDP50nfbvG9",
+      "documents": [
+        0,
+        0
+      ],
+      "_constructor": "stickerPack#12b299d4",
+      "constructorId": 313694676,
+      "_flags": 0
+    }
+  ],
+  "stickers": [],
+  "_constructor": "messages.favedStickers#f37f2f16",
+  "constructorId": -209768682,
+  "_flags": 0
+}

@@ -1,0 +1,138 @@
+{
+  "message": {
+    "id": 0,
+    "fromId": 0,
+    "toId": {
+      "channelId": 0,
+      "_constructor": "peerChannel#bddde532",
+      "constructorId": -1109531342,
+      "_flags": 0
+    },
+    "fwdFrom": {
+      "fromId": 0,
+      "date": 0,
+      "channelId": 0,
+      "channelPost": 0,
+      "postAuthor": "HmnSeiutrhGdJwKUMT",
+      "_constructor": "messageFwdHeader#fadff4ac",
+      "constructorId": -85986132,
+      "_flags": 15
+    },
+    "viaBotId": 0,
+    "replyToMsgId": 0,
+    "date": 0,
+    "message": "htxj5udEyc",
+    "media": {
+      "game": {
+        "id": 0,
+        "accessHash": 0,
+        "shortName": "UaFQJhgdTkg3J7zaFGUtK2",
+        "title": "ysWGa",
+        "description": "jhCXJD",
+        "photo": {
+          "id": 0,
+          "_constructor": "photoEmpty#2331b22d",
+          "constructorId": 590459437,
+          "_flags": 0
+        },
+        "document": {
+          "id": 0,
+          "accessHash": 0,
+          "date": 0,
+          "mimeType": "OgstVwu54VPH",
+          "size": 0,
+          "thumb": {
+            "type": "Zzo313lhLpTpJLBnk0OctO",
+            "location": {
+              "dcId": 0,
+              "volumeId": 0,
+              "localId": 0,
+              "secret": 0,
+              "_constructor": "fileLocation#53d69076",
+              "constructorId": 1406570614,
+              "_flags": 0
+            },
+            "w": 0,
+            "h": 0,
+            "size": 0,
+            "_constructor": "photoSize#77bfb61b",
+            "constructorId": 2009052699,
+            "_flags": 0
+          },
+          "dcId": 0,
+          "version": 0,
+          "attributes": [
+            {
+              "fileName": "c1jtH3SucNA",
+              "_constructor": "documentAttributeFilename#15590068",
+              "constructorId": 358154344,
+              "_flags": 0
+            },
+            {
+              "duration": 0,
+              "w": 0,
+              "h": 0,
+              "_constructor": "documentAttributeVideo#ef02ce6",
+              "constructorId": 250621158,
+              "_flags": 0
+            }
+          ],
+          "_constructor": "document#87232bc7",
+          "constructorId": -2027738169,
+          "_flags": 0
+        },
+        "_constructor": "game#bdf9653b",
+        "constructorId": -1107729093,
+        "_flags": 1
+      },
+      "_constructor": "messageMediaGame#fdb19008",
+      "constructorId": -38694904,
+      "_flags": 0
+    },
+    "replyMarkup": {
+      "rows": [
+        {
+          "buttons": [
+            {
+              "text": "9fcsYKZm2Hm",
+              "_constructor": "keyboardButtonRequestGeoLocation#fc796b3f",
+              "constructorId": -59151553,
+              "_flags": 0
+            }
+          ],
+          "_constructor": "keyboardButtonRow#77608b83",
+          "constructorId": 2002815875,
+          "_flags": 0
+        }
+      ],
+      "_constructor": "replyInlineMarkup#48a30254",
+      "constructorId": 1218642516,
+      "_flags": 0
+    },
+    "entities": [
+      {
+        "offset": 0,
+        "length": 0,
+        "userId": {
+          "userId": 0,
+          "accessHash": 0,
+          "_constructor": "inputUser#d8292816",
+          "constructorId": -668391402,
+          "_flags": 0
+        },
+        "_constructor": "inputMessageEntityMentionName#208e68c9",
+        "constructorId": 546203849,
+        "_flags": 0
+      }
+    ],
+    "views": 0,
+    "editDate": 0,
+    "postAuthor": "GOBwzDHHL3gm8zgEAmceYe",
+    "_constructor": "message#90dddc11",
+    "constructorId": -1864508399,
+    "_flags": 102348
+  },
+  "_constructor": "channelAdminLogEventActionUpdatePinned#e9e82c18",
+  "constructorId": -370660328,
+  "_flags": 0
+}

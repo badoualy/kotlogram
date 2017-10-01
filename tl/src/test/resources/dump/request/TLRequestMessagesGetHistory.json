@@ -1,0 +1,16 @@
+{
+  "peer": {
+    "_constructor": "inputPeerEmpty#7f3b18ea",
+    "constructorId": 2134579434,
+    "_flags": 0
+  },
+  "offsetId": 0,
+  "offsetDate": 0,
+  "addOffset": 0,
+  "limit": 0,
+  "maxId": 0,
+  "minId": 0,
+  "_constructor": "messages.getHistory#afa92846",
+  "constructorId": -1347868602,
+  "_flags": 0
+}

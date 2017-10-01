@@ -1,0 +1,19 @@
+{
+  "peer": {
+    "id": 0,
+    "accessHash": 0,
+    "_constructor": "inputPhoneCall#1e36fded",
+    "constructorId": 506920429,
+    "_flags": 0
+  },
+  "duration": 0,
+  "reason": {
+    "_constructor": "phoneCallDiscardReasonBusy#faf7e8c9",
+    "constructorId": -84416311,
+    "_flags": 0
+  },
+  "connectionId": 0,
+  "_constructor": "phone.discardCall#78d413a6",
+  "constructorId": 2027164582,
+  "_flags": 0
+}

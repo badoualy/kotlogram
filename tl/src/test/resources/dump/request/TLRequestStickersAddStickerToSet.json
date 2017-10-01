@@ -1,0 +1,31 @@
+{
+  "stickerset": {
+    "shortName": "cyUjdogVO0Yqlc0q2vZmKnznbTEnY",
+    "_constructor": "inputStickerSetShortName#861cc8a0",
+    "constructorId": -2044933984,
+    "_flags": 0
+  },
+  "sticker": {
+    "document": {
+      "_constructor": "inputDocumentEmpty#72f0eaae",
+      "constructorId": 1928391342,
+      "_flags": 0
+    },
+    "emoji": "EUWgL",
+    "maskCoords": {
+      "n": 0,
+      "x": 0.0,
+      "y": 0.0,
+      "zoom": 0.0,
+      "_constructor": "maskCoords#aed6dbb2",
+      "constructorId": -1361650766,
+      "_flags": 0
+    },
+    "_constructor": "inputStickerSetItem#ffa0a496",
+    "constructorId": -6249322,
+    "_flags": 1
+  },
+  "_constructor": "stickers.addStickerToSet#8653febe",
+  "constructorId": -2041315650,
+  "_flags": 0
+}
