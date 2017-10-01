@@ -3,7 +3,6 @@ package com.github.badoualy.telegram.tl.core
 import com.github.badoualy.telegram.tl.TLContext
 import com.github.badoualy.telegram.tl.serialization.TLDeserializer
 import com.github.badoualy.telegram.tl.serialization.TLStreamDeserializer
-import java.io.ByteArrayInputStream
 import java.io.IOException
 
 /**
@@ -20,7 +19,7 @@ abstract class TLMethod<T : TLObject> : TLObject() {
 
     @Throws(IOException::class)
     fun deserializeResponse(data: ByteArray, context: TLContext): T {
-        response = deserializeResponse(TLStreamDeserializer(ByteArrayInputStream(data), context))
+        response = deserializeResponse(TLStreamDeserializer(data, context))
         return response!!
     }
 

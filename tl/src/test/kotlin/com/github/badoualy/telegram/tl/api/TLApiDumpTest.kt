@@ -9,7 +9,6 @@ import org.testng.Assert
 import org.testng.ITest
 import org.testng.annotations.Factory
 import org.testng.annotations.Test
-import java.io.ByteArrayInputStream
 import java.io.File
 import java.io.IOException
 
@@ -29,7 +28,8 @@ class TLApiDumpTest private constructor(private val file: File) : ITest {
         val dumpJson = DumpUtils.loadJson(file)
 
         // Deserialize and check if json is identical
-        val tlDeserializer = TLStreamDeserializer(ByteArrayInputStream(dumpSerialization), TLApiTestContext)
+        val tlDeserializer = TLStreamDeserializer(dumpSerialization,
+                                                  TLApiTestContext)
         val tlObject = tlDeserializer.readTLObject<TLObject>()
         val json = DumpUtils.toJson(tlObject)
         Assert.assertEquals(json, dumpJson, file.name)

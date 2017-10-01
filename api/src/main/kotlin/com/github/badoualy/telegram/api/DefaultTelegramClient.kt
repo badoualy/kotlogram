@@ -112,7 +112,7 @@ internal class DefaultTelegramClient internal constructor(val application: Teleg
     }
 
     private fun generateAuthKey(): AuthResult {
-        val authResult = AuthKeyCreation.createAuthKey(dataCenter!!, tag) ?:
+        val authResult = AuthKeyCreation.createAuthKey(dataCenter!!) ?:
                 throw RuntimeException("Couldn't generate authorization key")
         authKey = authResult.authKey
         apiStorage.saveAuthKey(authKey!!)
@@ -363,7 +363,7 @@ internal class DefaultTelegramClient internal constructor(val application: Teleg
             logger.debug(marker, "Creating new handler on DC$dcId")
             val dc = Kotlogram.getDcById(dcId)
             val exportedAuthorization = authExportAuthorization(dcId)
-            val authResult = AuthKeyCreation.createAuthKey(dc, tag) ?: throw IOException(
+            val authResult = AuthKeyCreation.createAuthKey(dc) ?: throw IOException(
                     "Couldn't create authorization key on DC$dcId")
             val mtProtoHandler = MTProtoHandler(authResult, null, tag)
             mtProtoHandler.startWatchdog()

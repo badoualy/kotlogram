@@ -1,13 +1,8 @@
 package com.github.badoualy.telegram.mtproto.tl.auth
 
-import com.github.badoualy.telegram.tl.StreamUtils.readInt
-import com.github.badoualy.telegram.tl.StreamUtils.writeInt
-import com.github.badoualy.telegram.tl.TLContext
 import com.github.badoualy.telegram.tl.serialization.TLDeserializer
 import com.github.badoualy.telegram.tl.serialization.TLSerializer
 import java.io.IOException
-import java.io.InputStream
-import java.io.OutputStream
 
 class PQInnerTemp @JvmOverloads constructor(pq: ByteArray = ByteArray(0),
                                             p: ByteArray = ByteArray(0),

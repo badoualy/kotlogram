@@ -1,5 +1,6 @@
 package com.github.badoualy.telegram.mtproto.transport
 
+import com.github.badoualy.telegram.mtproto.log.LogTag
 import com.github.badoualy.telegram.mtproto.model.DataCenter
 import org.slf4j.Marker
 import java.io.IOException
@@ -9,8 +10,7 @@ import java.nio.channels.Selector
 
 interface MTProtoConnection {
 
-    var tag: String
-    val marker: Marker
+    var tag: LogTag
 
     val ip: String
     val port: Int

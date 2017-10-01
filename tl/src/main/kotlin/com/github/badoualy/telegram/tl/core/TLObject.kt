@@ -45,8 +45,6 @@ abstract class TLObject : Serializable {
      * @return serialized object with header (constructor id)
      * @throws IOException
      */
-    @Deprecated(message = "You should use overload with tlSerializer instead",
-                replaceWith = ReplaceWith("serialize(tlSerializer)"))
     @Throws(IOException::class)
     fun serialize(): ByteArray {
         val stream = ByteArrayOutputStream(computeSerializedSize())

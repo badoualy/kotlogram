@@ -4,6 +4,7 @@ package com.github.badoualy.telegram.mtproto.auth
 import com.github.badoualy.telegram.mtproto.exception.AuthorizationException
 import com.github.badoualy.telegram.mtproto.exception.FingerprintNotFoundException
 import com.github.badoualy.telegram.mtproto.exception.SecurityException
+import com.github.badoualy.telegram.mtproto.log.LogTag
 import com.github.badoualy.telegram.mtproto.model.DataCenter
 import com.github.badoualy.telegram.mtproto.secure.CryptoUtils.*
 import com.github.badoualy.telegram.mtproto.secure.Key
@@ -68,9 +69,9 @@ object AuthKeyCreation {
         val start = System.currentTimeMillis()
         for (i in 0..AUTH_ATTEMPT_COUNT - 1) {
             try {
-                connection = MTProtoTcpConnection(dataCenter.ip, dataCenter.port, tag)
+                connection = MTProtoTcpConnection(dataCenter.ip, dataCenter.port, LogTag(tag))
                 val authResult = createKey(tmpKey)
-                logger.debug(connection!!.marker, "Key created after ${i + 1} attempt in ${System.currentTimeMillis() - start} ms")
+                logger.debug(connection!!.tag.marker, "Key created after ${i + 1} attempt in ${System.currentTimeMillis() - start} ms")
                 connection = null
                 return authResult
             } catch (e: FingerprintNotFoundException) {
@@ -93,7 +94,7 @@ object AuthKeyCreation {
             }
         }
 
-        logger.error(connection!!.marker, "Key creation failed $AUTH_ATTEMPT_COUNT times")
+        logger.error(connection!!.tag.marker, "Key creation failed $AUTH_ATTEMPT_COUNT times")
         connection = null
         return null
     }
@@ -200,13 +201,13 @@ object AuthKeyCreation {
 
                 return Pair(authKey, serverSalt)
             } else if (result is DhGenRetry) {
-                logger.warn(connection!!.marker, "Received ${result.javaClass.simpleName}")
+                logger.warn(connection!!.tag.marker, "Received ${result.javaClass.simpleName}")
                 val newNonceHash = substring(SHA1(newNonce, byteArrayOf(2), authAuxHash), 4, 16)
 
                 if (!Arrays.equals(result.newNonceHash, newNonceHash))
                     throw SecurityException()
             } else if (result is DhGenFailure) {
-                logger.warn(connection!!.marker, "Received ${result.javaClass.simpleName}")
+                logger.warn(connection!!.tag.marker, "Received ${result.javaClass.simpleName}")
                 val newNonceHash = substring(SHA1(newNonce, byteArrayOf(3), authAuxHash), 4, 16)
 
                 if (!Arrays.equals(result.newNonceHash, newNonceHash))
@@ -222,34 +223,34 @@ object AuthKeyCreation {
     /** For details about the protocol, see https://core.telegram.org/mtproto/auth_key  */
     @Throws(IOException::class, FingerprintNotFoundException::class)
     private fun createKey(tmpKey: Boolean): AuthResult {
-        logger.debug(connection!!.marker, "Attempting to create a " + (if (tmpKey) "temporary " else "permanent") + " Authorization Key")
+        logger.debug(connection!!.tag.marker, "Attempting to create a " + (if (tmpKey) "temporary " else "permanent") + " Authorization Key")
 
         // Step 1
         val nonce = RandomUtils.randomInt128() // int128
         val resPQ = executeMethod(ReqPQ(nonce))
-        logger.trace(connection!!.marker, "Got resPQ with " + resPQ.fingerprints.size + " fingerprints")
-        logger.trace(connection!!.marker, "Step1 done")
+        logger.trace(connection!!.tag.marker, "Got resPQ with " + resPQ.fingerprints.size + " fingerprints")
+        logger.trace(connection!!.tag.marker, "Step1 done")
 
         // Step 2
         val publicKey = Arrays.stream(Key.AVAILABLE_KEYS).filter { k ->
             resPQ.fingerprints.contains(k.fingerprint)
         }.findFirst().orElseThrow { FingerprintNotFoundException(resPQ.fingerprints.joinToString(", ")) }
-        logger.trace(connection!!.marker, "Step2 done")
+        logger.trace(connection!!.tag.marker, "Step2 done")
 
         // Step 3
         val solvedPQ = PQSolver.solve(BigInteger(1, resPQ.pq))
-        logger.trace(connection!!.marker, "Step3 done")
+        logger.trace(connection!!.tag.marker, "Step3 done")
 
         // Step 4
         val pair = createStep4Request(resPQ, solvedPQ, publicKey, tmpKey)
         val reqDhParams = pair.first
         val newNonce = pair.second
-        logger.trace(connection!!.marker, "Step4 request created")
+        logger.trace(connection!!.tag.marker, "Step4 request created")
 
         val start = System.nanoTime()
         val dhParams = executeMethod(reqDhParams)
         val step4Duration = (System.nanoTime() - start) / (1000 * 1000)
-        logger.trace(connection!!.marker, "Step4 done")
+        logger.trace(connection!!.tag.marker, "Step4 done")
 
         // Step 5
         if (dhParams is ServerDhFailure) {
@@ -261,7 +262,7 @@ object AuthKeyCreation {
         }
 
         val serverDhParams = dhParams as ServerDhOk
-        logger.trace(connection!!.marker, "Step5 done")
+        logger.trace(connection!!.tag.marker, "Step5 done")
 
         // -------------------------
         // PQ-Auth end
@@ -269,11 +270,11 @@ object AuthKeyCreation {
         // -------------------------
         val keySaltPair = lastStep(resPQ, newNonce, serverDhParams, step4Duration)
 
-        logger.trace(connection!!.marker, "Step6 to 9 done")
+        logger.trace(connection!!.tag.marker, "Step6 to 9 done")
         val authKey = if (!tmpKey)
             AuthKey(keySaltPair.first)
         else
-            TempAuthKey(keySaltPair.first, TimeOverlord.getServerTime(connection!!.dataCenter).toInt() + tmpKeyExpireDelay)
+            TempAuthKey(keySaltPair.first, TimeOverlord.getServerTime(connection!!.dataCenter) + tmpKeyExpireDelay)
         return AuthResult(authKey, keySaltPair.second, connection!!)
     }
 }

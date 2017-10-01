@@ -12,6 +12,9 @@ import java.util.zip.GZIPInputStream
 class TLStreamDeserializer(var stream: InputStream,
                            override val context: TLContext) : TLDeserializer {
 
+    constructor(byteArray: ByteArray, context: TLContext) :
+            this(ByteArrayInputStream(byteArray), context)
+
     override fun available(): Int = stream.available()
 
     override fun readByte() = stream.read().also { if (it < 0) throw IOException() }

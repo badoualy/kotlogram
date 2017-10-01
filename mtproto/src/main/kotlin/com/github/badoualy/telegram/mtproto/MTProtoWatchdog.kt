@@ -84,25 +84,25 @@ internal object MTProtoWatchdog : Runnable {
     }
 
     private fun readMessage(connection: MTProtoConnection): Boolean {
-        logger.info(connection.marker, "readMessage()")
+        logger.info(connection.tag.marker, "readMessage()")
         val subscriber = subscriberMap[connection]
         if (subscriber == null || subscriber.isUnsubscribed || !connectionList.contains(connection)) {
-            logger.warn(connection.marker, "Subscribed already unsubscribed, dropping")
+            logger.warn(connection.tag.marker, "Subscribed already unsubscribed, dropping")
             return false
         }
 
         try {
             val message = connection.readMessage()
-            logger.debug(connection.marker, "New message of length: ${message.size}")
+            logger.debug(connection.tag.marker, "New message of length: ${message.size}")
             subscriber.onNext(message)
         } catch (e: IOException) {
             // Silent fail if no subscriber
             if (!subscriber.isUnsubscribed) {
-                logger.error(connection.marker, "Sending exception to subscriber")
+                logger.error(connection.tag.marker, "Sending exception to subscriber")
                 subscriber.onError(e)
             }
 
-            logger.warn(connection.marker, "Already unsubscribed")
+            logger.warn(connection.tag.marker, "Already unsubscribed")
             return false
         }
 
@@ -110,7 +110,7 @@ internal object MTProtoWatchdog : Runnable {
     }
 
     fun start(connection: MTProtoConnection): Observable<ByteArray> = Observable.create<ByteArray> { s ->
-        logger.info(connection.marker, "Adding ${connection.tag} to watchdog")
+        logger.info(connection.tag.marker, "Adding ${connection.tag} to watchdog")
         synchronized(this) {
             connectionList.add(connection)
             subscriberMap.put(connection, s)
@@ -125,7 +125,7 @@ internal object MTProtoWatchdog : Runnable {
     }
 
     fun stop(connection: MTProtoConnection) {
-        logger.info(connection.marker, "Stopping ${connection.tag}")
+        logger.info(connection.tag.marker, "Stopping ${connection.tag}")
         synchronized(this) {
             connectionList.remove(connection)
             val subscriber = subscriberMap.remove(connection)

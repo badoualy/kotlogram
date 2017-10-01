@@ -24,7 +24,7 @@ internal class PQSolver {
                 var y = x
 
                 val lim = 1 shl (i + 18)
-                for (j in 1..lim - 1) {
+                for (j in 1 until lim) {
                     var a = x
                     var b = x
                     var c = w.toLong()

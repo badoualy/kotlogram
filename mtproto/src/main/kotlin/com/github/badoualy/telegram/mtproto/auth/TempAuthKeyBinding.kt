@@ -39,15 +39,15 @@ object TempAuthKeyBinding {
 
         val nonce = BigInteger(RandomUtils.randomByteArray(8)).toLong()
 
-        val bindingMessage = BindAuthKeyInner(nonce,
-                                              tempAuthKey.keyIdAsLong, authKey.keyIdAsLong,
-                                              mtProtoHandler.session.id, tempAuthKey.expiresAt)
-
-        val randomPart1 = RandomUtils.randomByteArray(8) // replace session_id
-        val randomPart2 = RandomUtils.randomLong() // replace salt
+//        val bindingMessage = BindAuthKeyInner(nonce,
+//                                              tempAuthKey.keyIdAsLong, authKey.keyIdAsLong,
+//                                              mtProtoHandler.session.id, tempAuthKey.expiresAt)
+//
+//        val randomPart1 = RandomUtils.randomByteArray(8) // replace session_id
+//        val randomPart2 = RandomUtils.randomLong() // replace salt
 
         // Build inner message
-        val msgId = 0L //TimeOverlord.generateMessageId()
+//        val msgId = 0L //TimeOverlord.generateMessageId()
         //val mtBindingMessage = MTMessage(msgId, 0, bindingMessage.serialize())
         //val encryptedMessage = MTProtoMessageEncryption.encrypt(authKey, randomPart1, randomPart2, mtBindingMessage)
 

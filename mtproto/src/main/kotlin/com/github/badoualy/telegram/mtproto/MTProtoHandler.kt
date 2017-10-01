@@ -2,6 +2,7 @@ package com.github.badoualy.telegram.mtproto
 
 import com.github.badoualy.telegram.mtproto.auth.AuthKey
 import com.github.badoualy.telegram.mtproto.auth.AuthResult
+import com.github.badoualy.telegram.mtproto.log.LogTag
 import com.github.badoualy.telegram.mtproto.model.DataCenter
 import com.github.badoualy.telegram.mtproto.model.MTSession
 import com.github.badoualy.telegram.mtproto.secure.MTProtoMessageEncryption
@@ -62,7 +63,7 @@ class MTProtoHandler {
         connection = authResult.connection
         session = MTSession(connection!!.dataCenter, tag = tag)
         session.salt = authResult.serverSalt
-        connection!!.tag = session.tag
+        connection!!.tag = LogTag(session.tag)
         authKey = authResult.authKey
         logger.debug(session.marker, "New handler from authResult")
     }
@@ -73,7 +74,7 @@ class MTProtoHandler {
         this.tag = tag
 
         this.session = session ?: MTSession(dataCenter, tag = tag)
-        connection = MTProtoTcpConnection(dataCenter.ip, dataCenter.port, this.session.tag)
+        connection = MTProtoTcpConnection(dataCenter.ip, dataCenter.port, LogTag(this.session.tag))
         this.authKey = authKey
         logger.debug(this.session.marker, "New handler from existing key")
     }
@@ -103,7 +104,7 @@ class MTProtoHandler {
         close()
 
         session = newSession(connection!!.dataCenter)
-        connection = MTProtoTcpConnection(connection!!.ip, connection!!.port, session.tag)
+        connection = MTProtoTcpConnection(connection!!.ip, connection!!.port, LogTag(session.tag))
         startWatchdog()
         executeMethod(TLRequestHelpGetNearestDc(), 5L)
     }

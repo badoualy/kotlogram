@@ -10,7 +10,6 @@ import org.testng.annotations.Factory
 import org.testng.annotations.Test
 
 import java.io.ByteArrayInputStream
-import java.util.ArrayList
 
 /**
  * Unit test to generate random TLObject for each type, and serialize then deserialize it and check if still equals.
@@ -32,7 +31,8 @@ class TLApiTest private constructor(private val clazz: Class<out TLObject>) : Ab
 
         val deserializedObject = newInstanceOf(clazz)
         val inputStream = ByteArrayInputStream(bytes)
-        deserializedObject.deserialize(TLStreamDeserializer(inputStream, TLApiTestContext))
+        deserializedObject.deserialize(TLStreamDeserializer(inputStream,
+                                                            TLApiTestContext))
         Assert.assertEquals(inputStream.available(), 0,
                             "Deserialization did not consume whole payload of ${bytes.size} bytes")
         Assert.assertEquals(DumpUtils.toJson(deserializedObject),
