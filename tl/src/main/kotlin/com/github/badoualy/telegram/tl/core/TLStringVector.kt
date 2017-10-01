@@ -9,7 +9,7 @@ import java.io.IOException
 
 /**
  * @author Yannick Badoual yann.badoual@gmail.com
- * @see [http://github.com/badoualy/kotlogram](http://github.com/badoualy/kotlogram)
+ * @see <a href="http://github.com/badoualy/kotlogram">http://github.com/badoualy/kotlogram</a>
  */
 class TLStringVector : TLVector<String>() {
 
@@ -25,7 +25,5 @@ class TLStringVector : TLVector<String>() {
         TLObjectUtils.computeTLStringSerializedSize(it)
     }
 
-    override fun toString(): String {
-        return "vector<string>#1cb5c415"
-    }
+    override fun toString() = "vector<string>#1cb5c415"
 }

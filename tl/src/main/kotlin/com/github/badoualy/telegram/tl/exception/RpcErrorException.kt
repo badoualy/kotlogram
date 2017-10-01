@@ -1,6 +1,6 @@
 package com.github.badoualy.telegram.tl.exception
 
-class RpcErrorException(val code: Int, val tag: String) : Exception(code.toString() + ": " + tag) {
+class RpcErrorException(val code: Int, val tag: String) : Exception("$code: $tag") {
 
     override fun toString() = message.orEmpty()
 

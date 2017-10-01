@@ -94,6 +94,7 @@ class TLClassGenerator(tlDefinition: TLDefinition, val config: Config) {
                 .applyCommon()
                 .superclass(TYPE_TL_CONTEXT)
                 .addSuperclassConstructorParameter("%L", types.size)
+                .addInitializerBlock(CodeBlock.builder().addStatement("registerClasses()").build())
                 .addFunction(FunSpec.makeOverride("registerClasses").apply {
                     constructors
                             .map { constructorTypeNameMap[it]!! }

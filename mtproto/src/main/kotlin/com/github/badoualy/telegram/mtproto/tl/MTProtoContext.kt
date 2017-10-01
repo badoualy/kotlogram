@@ -4,6 +4,10 @@ import com.github.badoualy.telegram.tl.TLContext
 
 object MTProtoContext : TLContext(15) {
 
+    init {
+        registerClasses()
+    }
+
     override fun registerClasses() {
         registerClass(MTMessagesContainer.CONSTRUCTOR_ID, MTMessagesContainer::class.java)
         registerClass(MTMsgsAck.CONSTRUCTOR_ID, MTMsgsAck::class.java)

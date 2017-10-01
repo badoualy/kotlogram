@@ -6,7 +6,7 @@ import java.util.*
  * Convenience class to wrap a [ByteArray] with an offset/len
  *
  * @author Yannick Badoual yann.badoual@gmail.com
- * @see [http://github.com/badoualy/kotlogram](http://github.com/badoualy/kotlogram)
+ * @see <a href="http://github.com/badoualy/kotlogram">http://github.com/badoualy/kotlogram</a>
  */
 class TLBytes @JvmOverloads constructor(data: ByteArray, offset: Int = 0, len: Int = data.size) {
 

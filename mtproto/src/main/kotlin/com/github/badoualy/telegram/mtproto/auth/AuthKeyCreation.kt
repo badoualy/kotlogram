@@ -18,6 +18,7 @@ import com.github.badoualy.telegram.mtproto.util.SolvedPQ
 import com.github.badoualy.telegram.tl.StreamUtils
 import com.github.badoualy.telegram.tl.core.TLMethod
 import com.github.badoualy.telegram.tl.core.TLObject
+import com.github.badoualy.telegram.tl.serialization.TLStreamDeserializer
 import org.slf4j.LoggerFactory
 import java.io.ByteArrayInputStream
 import java.io.ByteArrayOutputStream
@@ -163,7 +164,7 @@ object AuthKeyCreation {
         val answer = AES256IGEDecrypt(encryptedAnswer, tmpAesIv, tmpAesKey)
         val stream = ByteArrayInputStream(answer)
         val answerHash = StreamUtils.readBytes(20, stream) // Hash
-        val dhInner = authContext.deserializeMessage<ServerDhInner>(stream)
+        val dhInner = TLStreamDeserializer(stream, authContext).readTLObject<ServerDhInner>()
         if (!Arrays.equals(answerHash, SHA1(dhInner.serialize()))) {
             throw SecurityException()
         }

@@ -2,6 +2,7 @@ package com.github.badoualy.telegram.tl.api;
 
 import com.github.badoualy.telegram.tl.api.utils.DumpUtils;
 import com.github.badoualy.telegram.tl.core.TLObject;
+import com.github.badoualy.telegram.tl.serialization.TLStreamDeserializer;
 
 import org.testng.Assert;
 import org.testng.ITest;
@@ -36,7 +37,7 @@ public final class TLApiTest extends AbsTLApiTest implements ITest {
 
         T deserializedObject = newInstanceOf((Class<T>) clazz);
         ByteArrayInputStream is = new ByteArrayInputStream(bytes);
-        deserializedObject.deserialize(is, TLApiTestContext.INSTANCE);
+        deserializedObject.deserialize(new TLStreamDeserializer(is, TLApiTestContext.INSTANCE));
         Assert.assertEquals(is.available(), 0,
                             "Deserialization did not consume whole payload of " + bytes.length + " bytes");
         Assert.assertEquals(DumpUtils.toJson(deserializedObject), DumpUtils.toJson(object),

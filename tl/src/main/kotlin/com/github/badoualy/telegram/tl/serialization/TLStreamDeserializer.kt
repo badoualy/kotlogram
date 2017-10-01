@@ -1,18 +1,20 @@
 package com.github.badoualy.telegram.tl.serialization
 
 import com.github.badoualy.telegram.tl.TLContext
-import com.github.badoualy.telegram.tl.core.*
+import com.github.badoualy.telegram.tl.core.TLBytes
+import com.github.badoualy.telegram.tl.core.TLGzipObject
+import java.io.BufferedInputStream
+import java.io.ByteArrayInputStream
 import java.io.IOException
 import java.io.InputStream
-import kotlin.reflect.KClass
+import java.util.zip.GZIPInputStream
 
-class TLStreamDeserializer(val stream: InputStream, val context: TLContext) : TLDeserializer {
+class TLStreamDeserializer(var stream: InputStream,
+                           override val context: TLContext) : TLDeserializer {
 
     override fun available(): Int = stream.available()
 
-    override fun readByte() = stream.read().also {
-        if (it < 0) throw IOException()
-    }
+    override fun readByte() = stream.read().also { if (it < 0) throw IOException() }
 
     override fun readBytes(buffer: ByteArray, offset: Int, len: Int): ByteArray {
         var readTotal = 0
@@ -27,37 +29,6 @@ class TLStreamDeserializer(val stream: InputStream, val context: TLContext) : TL
 
         return buffer
     }
-
-    override fun readInt(): Int {
-        val a = readByte()
-        val b = readByte()
-        val c = readByte()
-        val d = readByte()
-
-        return a + (b shl 8) + (c shl 16) + (d shl 24)
-    }
-
-    override fun readUInt(): Long {
-        val a = readByte().toLong()
-        val b = readByte().toLong()
-        val c = readByte().toLong()
-        val d = readByte().toLong()
-
-        return a + (b shl 8) + (c shl 16) + (d shl 24)
-    }
-
-    override fun readLong(): Long {
-        val a = readUInt()
-        val b = readUInt()
-
-        return a + (b shl 32)
-    }
-
-    override fun readDouble() = java.lang.Double.longBitsToDouble(readLong())
-
-    override fun readBoolean() = TLBool.deserialize(this)
-
-    override fun readString() = String(readTLBytesAsBytes(), Charsets.UTF_8)
 
     override fun readTLBytes(): TLBytes {
         var len = stream.read()
@@ -79,19 +50,6 @@ class TLStreamDeserializer(val stream: InputStream, val context: TLContext) : TL
         return TLBytes(data)
     }
 
-    override fun <T : TLObject> readTLObject(): T = context.deserializeMessage(stream)
-
-    override fun <T : TLObject> readTLObject(clazz: KClass<T>, constructorId: Int): T =
-            context.deserializeMessage(stream, clazz.java, constructorId)
-
-    override fun <T : TLObject> readTLVector() = context.deserializeObjectVector<T>(stream)
-
-    override fun readTLIntVector() = context.deserializeIntVector(stream)
-
-    override fun readTLLongVector() = context.deserializeLongVector(stream)
-
-    override fun readTLStringVector() = context.deserializeStringVector(stream)
-
     private fun skipBytes(count: Int) {
         if (count > 0) {
             // Skipping with skip() on a gzip stream is buggy when reached end of stream
@@ -100,4 +58,8 @@ class TLStreamDeserializer(val stream: InputStream, val context: TLContext) : TL
         }
     }
 
+    override fun unzip() = TLGzipObject().let {
+        it.deserializeBody(this)
+        stream = BufferedInputStream(GZIPInputStream(ByteArrayInputStream(it.packedData)))
+    }
 }

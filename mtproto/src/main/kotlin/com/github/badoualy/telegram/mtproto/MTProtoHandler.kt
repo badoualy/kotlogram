@@ -19,10 +19,12 @@ import com.github.badoualy.telegram.tl.core.TLMethod
 import com.github.badoualy.telegram.tl.core.TLObject
 import com.github.badoualy.telegram.tl.exception.DeserializationException
 import com.github.badoualy.telegram.tl.exception.RpcErrorException
+import com.github.badoualy.telegram.tl.serialization.TLStreamDeserializer
 import org.slf4j.LoggerFactory
 import rx.Observable
 import rx.Subscriber
 import rx.schedulers.Schedulers
+import java.io.ByteArrayInputStream
 import java.io.IOException
 import java.util.*
 import java.util.concurrent.LinkedBlockingQueue
@@ -438,9 +440,10 @@ class MTProtoHandler {
             when (StreamUtils.readInt(message.payload)) {
                 MTMessagesContainer.CONSTRUCTOR_ID -> {
                     logger.trace(session.marker, "Message is a container")
-                    val container = mtProtoContext.deserializeMessage(message.payload,
-                                                                      MTMessagesContainer::class.java,
-                                                                      MTMessagesContainer.CONSTRUCTOR_ID)
+                    val tlDeserializer = TLStreamDeserializer(ByteArrayInputStream(message.payload),
+                                                              mtProtoContext)
+                    val container = tlDeserializer.readTLObject(MTMessagesContainer::class,
+                                                                MTMessagesContainer.CONSTRUCTOR_ID)
                     logger.trace(session.marker, "Container has ${container.messages.size} items")
                     if (container.messages.firstOrNull() { m -> m.messageId >= message.messageId } != null) {
                         logger.warn(session.marker,
@@ -465,13 +468,17 @@ class MTProtoHandler {
         // Default container, handle content
         val classId = StreamUtils.readInt(message.payload)
         logger.trace(session.marker, "Reading constructor $classId")
-        if (mtProtoContext.isSupportedObject(classId)) {
-            logger.trace(session.marker, "$classId is supported by MTProtoContext")
-            return mtProtoContext.deserializeMessage(message.payload)
-        }
 
-        logger.trace(session.marker, "$classId is not supported by MTProtoContext")
-        return apiContext.deserializeMessage(message.payload)
+        val context =
+                if (mtProtoContext.contains(classId)) {
+                    logger.trace(session.marker, "$classId is supported by MTProtoContext")
+                    mtProtoContext
+                } else {
+                    logger.trace(session.marker, "$classId is not supported by MTProtoContext")
+                    apiContext
+                }
+
+        return TLStreamDeserializer(ByteArrayInputStream(message.payload), context).readTLObject()
     }
 
     @Throws(IOException::class)
@@ -623,8 +630,9 @@ class MTProtoHandler {
 
         val classId = StreamUtils.readInt(result.content)
         logger.debug(session.marker, "Response is a $classId")
-        if (mtProtoContext.isSupportedObject(classId)) {
-            val resultContent = mtProtoContext.deserializeMessage<TLObject>(result.content)
+        if (mtProtoContext.contains(classId)) {
+            val resultContent = TLStreamDeserializer(ByteArrayInputStream(result.content),
+                                                     mtProtoContext).readTLObject<TLObject>()
             if (resultContent is MTRpcError) {
                 logger.error(session.marker,
                              "rpcError ${resultContent.errorCode}: ${resultContent.message}")

@@ -7,15 +7,14 @@ import java.io.IOException
 
 /**
  * @author Yannick Badoual yann.badoual@gmail.com
- * @see [http://github.com/badoualy/kotlogram](http://github.com/badoualy/kotlogram)
+ * @see <a href="http://github.com/badoualy/kotlogram">http://github.com/badoualy/kotlogram</a>
  */
 sealed class TLBool : TLObject() {
 
-    override fun equals(other: Any?): Boolean {
-        return this === other // Singleton, 1 instance
-    }
+    // Singleton, 1 instance
+    override fun equals(other: Any?) = this === other
 
-    override fun hashCode() = javaClass.hashCode()
+    override fun hashCode() = constructorId.hashCode()
 
     private object TLBoolTrue : TLBool() {
         const val CONSTRUCTOR_ID = 0x997275b5.toInt()

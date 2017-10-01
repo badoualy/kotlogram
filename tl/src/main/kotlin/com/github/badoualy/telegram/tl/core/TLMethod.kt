@@ -3,17 +3,15 @@ package com.github.badoualy.telegram.tl.core
 import com.github.badoualy.telegram.tl.TLContext
 import com.github.badoualy.telegram.tl.serialization.TLDeserializer
 import com.github.badoualy.telegram.tl.serialization.TLStreamDeserializer
-
 import java.io.ByteArrayInputStream
 import java.io.IOException
-import java.io.InputStream
 
 /**
  * Basic object for RPC methods. It contains special methods for deserializing result of RPC method call.
  *
  * @param <T> return type of method
  * @author Yannick Badoual yann.badoual@gmail.com
- * @see [http://github.com/badoualy/kotlogram](http://github.com/badoualy/kotlogram)
+ * @see <a href="http://github.com/badoualy/kotlogram">http://github.com/badoualy/kotlogram</a>
  */
 abstract class TLMethod<T : TLObject> : TLObject() {
 

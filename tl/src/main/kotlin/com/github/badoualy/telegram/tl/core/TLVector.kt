@@ -10,9 +10,11 @@ import java.util.*
  * For working with primitive internal types you might instantiate class TLIntVector, TLStringVector, TLLongVector for
  * vector of integer, strings or long.
  *
+ * For working with [TLObject] use [TLObjectVector].
+ *
  * @param <T> type of elements in vector
  * @author Yannick Badoual yann.badoual@gmail.com
- * @see [http://github.com/badoualy/kotlogram](http://github.com/badoualy/kotlogram)
+ * @see <a href="http://github.com/badoualy/kotlogram">http://github.com/badoualy/kotlogram</a>
  */
 abstract class TLVector<T> internal constructor() : TLObject(), MutableList<T> {
 
@@ -37,7 +39,6 @@ abstract class TLVector<T> internal constructor() : TLObject(), MutableList<T> {
             items.add(deserializeItem(tlDeserializer))
     }
 
-    @Suppress("UNCHECKED_CAST")
     @Throws(IOException::class)
     protected abstract fun deserializeItem(tlDeserializer: TLDeserializer): T
 

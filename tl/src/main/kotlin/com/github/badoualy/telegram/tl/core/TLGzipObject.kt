@@ -1,17 +1,14 @@
 package com.github.badoualy.telegram.tl.core
 
-import com.github.badoualy.telegram.tl.StreamUtils
-import com.github.badoualy.telegram.tl.TLContext
 import com.github.badoualy.telegram.tl.TLObjectUtils.computeTLBytesSerializedSize
 import com.github.badoualy.telegram.tl.serialization.TLDeserializer
 import com.github.badoualy.telegram.tl.serialization.TLSerializer
 import java.io.IOException
-import java.io.InputStream
 import java.util.*
 
 /**
  * @author Yannick Badoual yann.badoual@gmail.com
- * @see [http://github.com/badoualy/kotlogram](http://github.com/badoualy/kotlogram)
+ * @see <a href="http://github.com/badoualy/kotlogram">http://github.com/badoualy/kotlogram</a>
  */
 class TLGzipObject(var packedData: ByteArray = ByteArray(0)) : TLObject() {
 

@@ -48,8 +48,8 @@ object TempAuthKeyBinding {
 
         // Build inner message
         val msgId = 0L //TimeOverlord.generateMessageId()
-        val mtBindingMessage = MTMessage(msgId, 0, bindingMessage.serialize())
-        val encryptedMessage = MTProtoMessageEncryption.encrypt(authKey, randomPart1, randomPart2, mtBindingMessage)
+        //val mtBindingMessage = MTMessage(msgId, 0, bindingMessage.serialize())
+        //val encryptedMessage = MTProtoMessageEncryption.encrypt(authKey, randomPart1, randomPart2, mtBindingMessage)
 
         // Build request
 //        val request = TLRequestAuthBindTempAuthKey(authKey.keyIdAsLong, nonce,

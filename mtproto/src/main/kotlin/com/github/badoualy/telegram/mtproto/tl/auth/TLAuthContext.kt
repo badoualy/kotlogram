@@ -4,6 +4,10 @@ import com.github.badoualy.telegram.tl.TLContext
 
 object TLAuthContext : TLContext(15) {
 
+    init {
+        registerClasses()
+    }
+
     override fun registerClasses() {
         registerClass(ReqPQ.CONSTRUCTOR_ID, ReqPQ::class.java)
         registerClass(ResPQ.CONSTRUCTOR_ID, ResPQ::class.java)
