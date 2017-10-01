@@ -3,6 +3,7 @@ package com.github.badoualy.telegram.mtproto.tl
 import com.github.badoualy.telegram.tl.StreamUtils.*
 import com.github.badoualy.telegram.tl.TLContext
 import com.github.badoualy.telegram.tl.core.TLObject
+import com.github.badoualy.telegram.tl.serialization.TLDeserializer
 import com.github.badoualy.telegram.tl.serialization.TLSerializer
 import java.io.IOException
 import java.io.InputStream
@@ -22,10 +23,10 @@ class MTFutureSalt @JvmOverloads constructor(var validSince: Int = 0,
     }
 
     @Throws(IOException::class)
-    override fun deserializeBody(stream: InputStream, context: TLContext) {
-        validSince = readInt(stream)
-        validUntil = readInt(stream)
-        salt = readLong(stream)
+    override fun deserializeBody(tlDeserializer: TLDeserializer) = with (tlDeserializer) {
+        validSince = readInt()
+        validUntil = readInt()
+        salt = readLong()
     }
 
     override fun toString(): String {

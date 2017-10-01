@@ -2,6 +2,7 @@ package com.github.badoualy.telegram.mtproto.tl.auth
 
 import com.github.badoualy.telegram.tl.StreamUtils.*
 import com.github.badoualy.telegram.tl.TLContext
+import com.github.badoualy.telegram.tl.serialization.TLDeserializer
 import com.github.badoualy.telegram.tl.serialization.TLSerializer
 import java.io.IOException
 import java.io.InputStream
@@ -22,10 +23,10 @@ class ServerDhOk @JvmOverloads constructor(var nonce: ByteArray = ByteArray(0),
     }
 
     @Throws(IOException::class)
-    override fun deserializeBody(stream: InputStream, context: TLContext) {
-        nonce = readBytes(16, stream)
-        serverNonce = readBytes(16, stream)
-        encryptedAnswer = readTLBytes(stream)
+    override fun deserializeBody(tlDeserializer: TLDeserializer) = with (tlDeserializer) {
+        nonce = readBytes(16)
+        serverNonce = readBytes(16)
+        encryptedAnswer = readTLBytesAsBytes()
     }
 
     override fun toString() = "server_DH_params_ok#d0e8075c"

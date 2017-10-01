@@ -1,12 +1,9 @@
 package com.github.badoualy.telegram.mtproto.tl
 
-import com.github.badoualy.telegram.tl.StreamUtils.*
-import com.github.badoualy.telegram.tl.TLContext
 import com.github.badoualy.telegram.tl.core.TLObject
+import com.github.badoualy.telegram.tl.serialization.TLDeserializer
 import com.github.badoualy.telegram.tl.serialization.TLSerializer
 import java.io.IOException
-import java.io.InputStream
-import java.io.OutputStream
 
 // TODO: doc, fake object
 class MTMessage @JvmOverloads constructor(var messageId: Long = 0,
@@ -25,12 +22,13 @@ class MTMessage @JvmOverloads constructor(var messageId: Long = 0,
     }
 
     @Throws(IOException::class)
-    override fun deserializeBody(stream: InputStream, context: TLContext) {
-        messageId = readLong(stream)
-        seqNo = readInt(stream)
-        payloadLength = readInt(stream)
+    override fun deserializeBody(tlDeserializer: TLDeserializer) = with (tlDeserializer) {
+        messageId = readLong()
+        seqNo = readInt()
+        payloadLength = readInt()
         payload = ByteArray(payloadLength)
-        readBytes(payload, 0, payloadLength, stream)
+        readBytes(payload, 0, payloadLength)
+        Unit
     }
 
     override fun toString(): String {

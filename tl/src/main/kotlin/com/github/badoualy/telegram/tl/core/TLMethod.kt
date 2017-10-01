@@ -1,6 +1,8 @@
 package com.github.badoualy.telegram.tl.core
 
 import com.github.badoualy.telegram.tl.TLContext
+import com.github.badoualy.telegram.tl.serialization.TLDeserializer
+import com.github.badoualy.telegram.tl.serialization.TLStreamDeserializer
 
 import java.io.ByteArrayInputStream
 import java.io.IOException
@@ -20,12 +22,12 @@ abstract class TLMethod<T : TLObject> : TLObject() {
 
     @Throws(IOException::class)
     fun deserializeResponse(data: ByteArray, context: TLContext): T {
-        response = deserializeResponse(ByteArrayInputStream(data), context)
+        response = deserializeResponse(TLStreamDeserializer(ByteArrayInputStream(data), context))
         return response!!
     }
 
     // TODO: add an internal version to overload, and a public version
     // The public version should set response field
     @Throws(IOException::class)
-    abstract fun deserializeResponse(stream: InputStream, context: TLContext): T
+    abstract fun deserializeResponse(tlDeserializer: TLDeserializer): T
 }

@@ -6,6 +6,8 @@ import kotlin.reflect.KClass
 // TODO: javadoc
 interface TLDeserializer {
 
+    fun available(): Int
+
     fun readByte(): Int
     fun readBytes(len: Int) = readBytes(ByteArray(len), 0, len)
     fun readBytes(buffer: ByteArray, offset: Int, len: Int): ByteArray

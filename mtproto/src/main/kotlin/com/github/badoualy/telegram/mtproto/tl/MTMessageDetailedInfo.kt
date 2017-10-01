@@ -3,6 +3,7 @@ package com.github.badoualy.telegram.mtproto.tl
 import com.github.badoualy.telegram.tl.StreamUtils.*
 import com.github.badoualy.telegram.tl.TLContext
 import com.github.badoualy.telegram.tl.core.TLObject
+import com.github.badoualy.telegram.tl.serialization.TLDeserializer
 import com.github.badoualy.telegram.tl.serialization.TLSerializer
 import java.io.IOException
 import java.io.InputStream
@@ -24,11 +25,11 @@ class MTMessageDetailedInfo @JvmOverloads constructor(var msgId: Long = 0,
     }
 
     @Throws(IOException::class)
-    override fun deserializeBody(stream: InputStream, context: TLContext) {
-        msgId = readLong(stream)
-        answerMsgId = readLong(stream)
-        bytes = readInt(stream)
-        state = readInt(stream)
+    override fun deserializeBody(tlDeserializer: TLDeserializer) = with (tlDeserializer) {
+        msgId = readLong()
+        answerMsgId = readLong()
+        bytes = readInt()
+        state = readInt()
     }
 
     override fun toString(): String {

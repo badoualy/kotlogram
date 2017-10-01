@@ -4,6 +4,7 @@ import com.github.badoualy.telegram.tl.StreamUtils.*
 import com.github.badoualy.telegram.tl.TLContext
 import com.github.badoualy.telegram.tl.core.TLLongVector
 import com.github.badoualy.telegram.tl.core.TLObject
+import com.github.badoualy.telegram.tl.serialization.TLDeserializer
 import com.github.badoualy.telegram.tl.serialization.TLSerializer
 import java.io.IOException
 import java.io.InputStream
@@ -25,11 +26,11 @@ class ResPQ @JvmOverloads constructor(var nonce: ByteArray = ByteArray(0),
     }
 
     @Throws(IOException::class)
-    override fun deserializeBody(stream: InputStream, context: TLContext) {
-        nonce = readBytes(16, stream)
-        serverNonce = readBytes(16, stream)
-        pq = readTLBytes(stream)
-        fingerprints = readTLLongVector(stream, context)
+    override fun deserializeBody(tlDeserializer: TLDeserializer) = with (tlDeserializer) {
+        nonce = readBytes(16)
+        serverNonce = readBytes(16)
+        pq = readTLBytesAsBytes()
+        fingerprints = readTLLongVector()
     }
 
     override fun toString(): String {

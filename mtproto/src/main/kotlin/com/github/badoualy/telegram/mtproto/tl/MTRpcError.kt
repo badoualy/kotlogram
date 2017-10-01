@@ -3,6 +3,7 @@ package com.github.badoualy.telegram.mtproto.tl
 import com.github.badoualy.telegram.tl.StreamUtils.*
 import com.github.badoualy.telegram.tl.TLContext
 import com.github.badoualy.telegram.tl.core.TLObject
+import com.github.badoualy.telegram.tl.serialization.TLDeserializer
 import com.github.badoualy.telegram.tl.serialization.TLSerializer
 import java.io.IOException
 import java.io.InputStream
@@ -33,9 +34,9 @@ class MTRpcError @JvmOverloads constructor(var errorCode: Int = 0,
     }
 
     @Throws(IOException::class)
-    override fun deserializeBody(stream: InputStream, context: TLContext) {
-        errorCode = readInt(stream)
-        message = readTLString(stream)
+    override fun deserializeBody(tlDeserializer: TLDeserializer) = with (tlDeserializer) {
+        errorCode = readInt()
+        message = readString()
     }
 
     override fun toString(): String {

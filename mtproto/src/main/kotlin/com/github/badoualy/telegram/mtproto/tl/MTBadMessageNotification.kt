@@ -2,6 +2,7 @@ package com.github.badoualy.telegram.mtproto.tl
 
 import com.github.badoualy.telegram.tl.StreamUtils.*
 import com.github.badoualy.telegram.tl.TLContext
+import com.github.badoualy.telegram.tl.serialization.TLDeserializer
 import com.github.badoualy.telegram.tl.serialization.TLSerializer
 import java.io.IOException
 import java.io.InputStream
@@ -22,10 +23,10 @@ class MTBadMessageNotification @JvmOverloads constructor(badMsgId: Long = 0,
     }
 
     @Throws(IOException::class)
-    override fun deserializeBody(stream: InputStream, context: TLContext) {
-        badMsgId = readLong(stream)
-        badMsqSeqno = readInt(stream)
-        errorCode = readInt(stream)
+    override fun deserializeBody(tlDeserializer: TLDeserializer) = with (tlDeserializer) {
+        badMsgId = readLong()
+        badMsqSeqno = readInt()
+        errorCode = readInt()
     }
 
     override fun toString(): String {

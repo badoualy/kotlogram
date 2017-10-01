@@ -172,8 +172,7 @@ class TLClassGenerator(tlDefinition: TLDefinition, val config: Config) {
         val clazz = TypeSpec.makeTLMethodClass(tlClassName(), responseType)
 
         val responseFun = FunSpec.makeOverride("deserializeResponse")
-                .addParameter("stream", InputStream::class)
-                .addParameter("context", TYPE_TL_CONTEXT)
+                .addParameter("tlDeserializer", TYPE_TL_DESERIALIZER)
                 .addThrows(IOException::class)
                 .returns(responseType)
 
@@ -183,24 +182,27 @@ class TLClassGenerator(tlDefinition: TLDefinition, val config: Config) {
                 clazz.addTypeVariable(TypeVariableName.ofTLObject())
 
                 // Delegate
-                responseFun.addStatement("return query.deserializeResponse(stream, context)")
+                responseFun.addStatement("return query.deserializeResponse(tlDeserializer)")
             }
             is TLTypeGeneric -> {
                 val methodName = when (responseType) {
                     TYPE_TL_INT_VECTOR -> "readTLIntVector"
                     TYPE_TL_LONG_VECTOR -> "readTLLongVector"
                     TYPE_TL_STRING_VECTOR -> "readTLStringVector"
-                    else -> "readTLVector"
+                    else -> "readTLVector<%T>"
                 }
-                responseFun.addStatement("return $methodName(stream, context) as %T", responseType)
+                responseFun.addStatement("return tlDeserializer.$methodName()",
+                                         if (methodName.contains("%T")) {
+                                             (responseType as ParameterizedTypeName).typeArguments[0]
+                                         } else Unit)
             }
             else -> {
                 if (tlType is TLAbstractConstructor) {
                     responseFun.addStatement(
-                            "return readTLObject(stream, context, %1T::class.java, %1T.CONSTRUCTOR_ID)",
+                            "return tlDeserializer.readTLObject(%1T::class.java, %1T.CONSTRUCTOR_ID)",
                             responseType)
                 } else {
-                    responseFun.addStatement("return readTLObject(stream, context)", responseType)
+                    responseFun.addStatement("return tlDeserializer.readTLObject()")
                 }
             }
         }

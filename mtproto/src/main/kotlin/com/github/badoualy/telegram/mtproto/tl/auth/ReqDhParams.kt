@@ -1,14 +1,9 @@
 package com.github.badoualy.telegram.mtproto.tl.auth
 
-import com.github.badoualy.telegram.tl.StreamUtils.*
-import com.github.badoualy.telegram.tl.TLContext
 import com.github.badoualy.telegram.tl.core.TLMethod
-import com.github.badoualy.telegram.tl.core.TLObject
-import com.github.badoualy.telegram.tl.exception.DeserializationException
+import com.github.badoualy.telegram.tl.serialization.TLDeserializer
 import com.github.badoualy.telegram.tl.serialization.TLSerializer
 import java.io.IOException
-import java.io.InputStream
-import java.io.OutputStream
 
 class ReqDhParams @JvmOverloads constructor(var nonce: ByteArray = ByteArray(0),
                                             var serverNonce: ByteArray = ByteArray(0),
@@ -31,22 +26,17 @@ class ReqDhParams @JvmOverloads constructor(var nonce: ByteArray = ByteArray(0),
     }
 
     @Throws(IOException::class)
-    override fun deserializeBody(stream: InputStream, context: TLContext) {
-        nonce = readBytes(16, stream)
-        serverNonce = readBytes(16, stream)
-        p = readTLBytes(stream)
-        q = readTLBytes(stream)
-        fingerPrint = readLong(stream)
-        encryptedData = readTLBytes(stream)
+    override fun deserializeBody(tlDeserializer: TLDeserializer) = with (tlDeserializer) {
+        nonce = readBytes(16)
+        serverNonce = readBytes(16)
+        p = readTLBytesAsBytes()
+        q = readTLBytesAsBytes()
+        fingerPrint = readLong()
+        encryptedData = readTLBytesAsBytes()
     }
 
     @Throws(IOException::class)
-    override fun deserializeResponse(stream: InputStream, context: TLContext): ServerDhParams {
-        val response = context.deserializeMessage<TLObject>(stream) as? ServerDhParams
-                ?: throw DeserializationException("Response has incorrect type")
-
-        return response
-    }
+    override fun deserializeResponse(tlDeserializer: TLDeserializer): ServerDhParams = tlDeserializer.readTLObject()
 
     override fun toString() = "req_DH_params#d712e4be"
 

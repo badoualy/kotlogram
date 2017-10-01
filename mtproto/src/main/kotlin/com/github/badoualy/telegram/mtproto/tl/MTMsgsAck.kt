@@ -1,14 +1,10 @@
 package com.github.badoualy.telegram.mtproto.tl
 
-import com.github.badoualy.telegram.tl.StreamUtils.readTLLongVector
-import com.github.badoualy.telegram.tl.StreamUtils.writeTLVector
-import com.github.badoualy.telegram.tl.TLContext
 import com.github.badoualy.telegram.tl.core.TLLongVector
 import com.github.badoualy.telegram.tl.core.TLObject
+import com.github.badoualy.telegram.tl.serialization.TLDeserializer
 import com.github.badoualy.telegram.tl.serialization.TLSerializer
 import java.io.IOException
-import java.io.InputStream
-import java.io.OutputStream
 
 class MTMsgsAck @JvmOverloads constructor(var messages: TLLongVector = TLLongVector()) : TLObject() {
 
@@ -28,8 +24,8 @@ class MTMsgsAck @JvmOverloads constructor(var messages: TLLongVector = TLLongVec
     }
 
     @Throws(IOException::class)
-    override fun deserializeBody(stream: InputStream, context: TLContext) {
-        messages = readTLLongVector(stream, context)
+    override fun deserializeBody(tlDeserializer: TLDeserializer) = with (tlDeserializer) {
+        messages = readTLLongVector()
     }
 
     override fun toString(): String {

@@ -4,6 +4,7 @@ import com.github.badoualy.telegram.tl.core.*
 import com.github.badoualy.telegram.tl.exception.DeserializationException
 import com.github.badoualy.telegram.tl.exception.InvalidConstructorIdException
 import com.github.badoualy.telegram.tl.exception.UnsupportedConstructorException
+import com.github.badoualy.telegram.tl.serialization.TLStreamDeserializer
 import java.io.BufferedInputStream
 import java.io.ByteArrayInputStream
 import java.io.IOException
@@ -86,7 +87,7 @@ abstract class TLContext(size: Int = 10) {
                 }
 
                 clazz.getConstructor().newInstance().apply {
-                    deserializeBody(stream, this@TLContext)
+                    deserializeBody(TLStreamDeserializer(stream, this@TLContext))
                 }
             } catch (e: ReflectiveOperationException) {
                 // !! Should never happen
@@ -124,13 +125,13 @@ abstract class TLContext(size: Int = 10) {
 
     @Throws(IOException::class)
     private fun <T, V : TLVector<T>> V.deserializeBody(stream: InputStream) = apply {
-        deserializeBody(stream, this@TLContext)
+        deserializeBody(TLStreamDeserializer(stream, this@TLContext))
     }
 
     @Throws(IOException::class)
     private fun unzipStream(stream: InputStream): InputStream = TLGzipObject().let {
-        it.deserializeBody(stream, this)
-        val packedDataStream = ByteArrayInputStream(it.packedData!!)
+        it.deserializeBody(TLStreamDeserializer(stream, this))
+        val packedDataStream = ByteArrayInputStream(it.packedData)
         BufferedInputStream(GZIPInputStream(packedDataStream))
     }
 }

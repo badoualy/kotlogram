@@ -5,6 +5,7 @@ import com.github.badoualy.telegram.tl.StreamUtils.writeByteArray
 import com.github.badoualy.telegram.tl.TLContext
 import com.github.badoualy.telegram.tl.core.TLMethod
 import com.github.badoualy.telegram.tl.exception.DeserializationException
+import com.github.badoualy.telegram.tl.serialization.TLDeserializer
 import com.github.badoualy.telegram.tl.serialization.TLSerializer
 import java.io.IOException
 import java.io.InputStream
@@ -29,14 +30,7 @@ class ReqPQ constructor(nonce: ByteArray? = null) : TLMethod<ResPQ>() {
     }
 
     @Throws(IOException::class)
-    override fun deserializeResponse(stream: InputStream, context: TLContext): ResPQ {
-        val response = context.deserializeMessage<ResPQ>(stream)
-        if (response !is ResPQ) {
-            throw DeserializationException("Response has incorrect type")
-        }
-
-        return response
-    }
+    override fun deserializeResponse(tlDeserializer: TLDeserializer): ResPQ = tlDeserializer.readTLObject()
 
     @Throws(IOException::class)
     override fun serializeBody(tlSerializer: TLSerializer) = with(tlSerializer) {
@@ -44,8 +38,8 @@ class ReqPQ constructor(nonce: ByteArray? = null) : TLMethod<ResPQ>() {
     }
 
     @Throws(IOException::class)
-    override fun deserializeBody(stream: InputStream, context: TLContext) {
-        nonce = readBytes(16, stream)
+    override fun deserializeBody(tlDeserializer: TLDeserializer) = with (tlDeserializer) {
+        nonce = readBytes(16)
     }
 
     override fun toString(): String {

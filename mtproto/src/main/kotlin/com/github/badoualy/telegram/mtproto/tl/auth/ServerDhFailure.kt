@@ -3,6 +3,7 @@ package com.github.badoualy.telegram.mtproto.tl.auth
 import com.github.badoualy.telegram.tl.StreamUtils.readBytes
 import com.github.badoualy.telegram.tl.StreamUtils.writeByteArray
 import com.github.badoualy.telegram.tl.TLContext
+import com.github.badoualy.telegram.tl.serialization.TLDeserializer
 import com.github.badoualy.telegram.tl.serialization.TLSerializer
 import java.io.IOException
 import java.io.InputStream
@@ -23,10 +24,10 @@ class ServerDhFailure @JvmOverloads constructor(var nonce: ByteArray = ByteArray
     }
 
     @Throws(IOException::class)
-    override fun deserializeBody(stream: InputStream, context: TLContext) {
-        nonce = readBytes(16, stream)
-        serverNonce = readBytes(16, stream)
-        newNonceHash = readBytes(16, stream)
+    override fun deserializeBody(tlDeserializer: TLDeserializer) = with (tlDeserializer) {
+        nonce = readBytes(16)
+        serverNonce = readBytes(16)
+        newNonceHash = readBytes(16)
     }
 
     override fun toString() = "server_DH_params_fail#79cb045d"

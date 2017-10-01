@@ -1,10 +1,8 @@
 package com.github.badoualy.telegram.tl.core
 
-import com.github.badoualy.telegram.tl.StreamUtils.readInt
-import com.github.badoualy.telegram.tl.TLContext
+import com.github.badoualy.telegram.tl.serialization.TLDeserializer
 import com.github.badoualy.telegram.tl.serialization.TLSerializer
 import java.io.IOException
-import java.io.InputStream
 import java.util.*
 
 /**
@@ -33,15 +31,15 @@ abstract class TLVector<T> internal constructor() : TLObject(), MutableList<T> {
     protected abstract fun serializeItem(item: T, tlSerializer: TLSerializer)
 
     @Throws(IOException::class)
-    override final fun deserializeBody(stream: InputStream, context: TLContext) {
-        val count = readInt(stream)
+    override fun deserializeBody(tlDeserializer: TLDeserializer) {
+        val count = tlDeserializer.readInt()
         for (i in 0 until count)
-            items.add(deserializeItem(stream, context))
+            items.add(deserializeItem(tlDeserializer))
     }
 
     @Suppress("UNCHECKED_CAST")
     @Throws(IOException::class)
-    protected abstract fun deserializeItem(stream: InputStream, context: TLContext): T
+    protected abstract fun deserializeItem(tlDeserializer: TLDeserializer): T
 
     override fun toString() = "vector#1cb5c415"
 

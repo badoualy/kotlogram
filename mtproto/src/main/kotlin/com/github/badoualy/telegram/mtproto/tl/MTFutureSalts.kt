@@ -5,6 +5,7 @@ import com.github.badoualy.telegram.tl.TLContext
 import com.github.badoualy.telegram.tl.core.TLObject
 import com.github.badoualy.telegram.tl.core.TLObjectVector
 import com.github.badoualy.telegram.tl.core.TLVector
+import com.github.badoualy.telegram.tl.serialization.TLDeserializer
 import com.github.badoualy.telegram.tl.serialization.TLSerializer
 import java.io.IOException
 import java.io.InputStream
@@ -28,16 +29,15 @@ class MTFutureSalts @JvmOverloads constructor(var requestId: Long = 0,
     }
 
     @Throws(IOException::class)
-    override fun deserializeBody(stream: InputStream, context: TLContext) {
-        requestId = readLong(stream)
-        now = readInt(stream)
-        val count = readInt(stream)
+    override fun deserializeBody(tlDeserializer: TLDeserializer) = with (tlDeserializer) {
+        requestId = readLong()
+        now = readInt()
+        val count = readInt()
         salts.clear()
-        for (i in 0..count - 1) {
-            val salt = MTFutureSalt()
-            salt.deserializeBody(stream, context)
-            salts.add(salt)
-        }
+        (0 until count).map { MTFutureSalt() }
+                .onEach { it.deserializeBody(tlDeserializer) }
+                .toCollection(salts)
+        Unit
     }
 
     override fun toString(): String {

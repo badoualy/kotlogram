@@ -4,6 +4,7 @@ import com.github.badoualy.telegram.tl.StreamUtils.readInt
 import com.github.badoualy.telegram.tl.StreamUtils.writeInt
 import com.github.badoualy.telegram.tl.TLContext
 import com.github.badoualy.telegram.tl.core.TLObject
+import com.github.badoualy.telegram.tl.serialization.TLDeserializer
 import com.github.badoualy.telegram.tl.serialization.TLSerializer
 import java.io.IOException
 import java.io.InputStream
@@ -35,12 +36,12 @@ class MTMessagesContainer : TLObject {
     }
 
     @Throws(IOException::class)
-    override fun deserializeBody(stream: InputStream, context: TLContext) {
-        val size = readInt(stream)
+    override fun deserializeBody(tlDeserializer: TLDeserializer) = with (tlDeserializer) {
+        val size = readInt()
         messages.clear()
-        for (i in 0..size - 1) {
+        for (i in 0 until size) {
             val message = MTMessage()
-            message.deserializeBody(stream, context)
+            message.deserializeBody(tlDeserializer)
             messages.add(message)
         }
     }

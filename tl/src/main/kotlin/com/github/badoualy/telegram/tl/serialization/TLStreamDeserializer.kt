@@ -8,6 +8,8 @@ import kotlin.reflect.KClass
 
 class TLStreamDeserializer(val stream: InputStream, val context: TLContext) : TLDeserializer {
 
+    override fun available(): Int = stream.available()
+
     override fun readByte() = stream.read().also {
         if (it < 0) throw IOException()
     }
@@ -77,13 +79,10 @@ class TLStreamDeserializer(val stream: InputStream, val context: TLContext) : TL
         return TLBytes(data)
     }
 
-    override fun <T : TLObject> readTLObject(): T {
-        return context.deserializeMessage(stream)
-    }
+    override fun <T : TLObject> readTLObject(): T = context.deserializeMessage(stream)
 
-    override fun <T : TLObject> readTLObject(clazz: KClass<T>, constructorId: Int): T {
-        return context.deserializeMessage(stream, clazz.java, constructorId)
-    }
+    override fun <T : TLObject> readTLObject(clazz: KClass<T>, constructorId: Int): T =
+            context.deserializeMessage(stream, clazz.java, constructorId)
 
     override fun <T : TLObject> readTLVector() = context.deserializeObjectVector<T>(stream)
 

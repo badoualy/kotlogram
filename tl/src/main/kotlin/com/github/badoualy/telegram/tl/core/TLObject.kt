@@ -40,18 +40,37 @@ abstract class TLObject : Serializable {
 
     }
 
+    // region toremove
     /**
      * Serialize object to byte array
      *
      * @return serialized object with header
      * @throws IOException
      */
+    @Deprecated("remove and use tlSerializer version")
     @Throws(IOException::class)
     fun serialize(): ByteArray {
         val stream = ByteArrayOutputStream(computeSerializedSize())
         serialize(TLStreamSerializer(stream))
         return stream.toByteArray()
     }
+
+    /**
+     * Deserialize object from stream and current TLContext
+     *
+     * @param stream  source stream
+     * @param context tl context
+     * @throws IOException
+     */
+    @Deprecated("TODO remove")
+    @Throws(IOException::class)
+    fun deserialize(stream: InputStream, context: TLContext) {
+        val constructorId = readInt(stream)
+        if (constructorId != this.constructorId)
+            throw InvalidConstructorIdException(constructorId, this.constructorId)
+        deserializeBody(TLStreamDeserializer(stream, context))
+    }
+    // endregion
 
     /**
      * Serialize object to stream
@@ -66,21 +85,6 @@ abstract class TLObject : Serializable {
     }
 
     /**
-     * Deserialize object from stream and current TLContext
-     *
-     * @param stream  source stream
-     * @param context tl context
-     * @throws IOException
-     */
-    @Throws(IOException::class)
-    fun deserialize(stream: InputStream, context: TLContext) {
-        val constructorId = readInt(stream)
-        if (constructorId != this.constructorId)
-            throw InvalidConstructorIdException(constructorId, this.constructorId)
-        deserializeBody(stream, context)
-    }
-
-    /**
      * Serialize object body to stream
      *
      * @param tlSerializer instance of the serializer to use
@@ -89,18 +93,6 @@ abstract class TLObject : Serializable {
     @Throws(IOException::class)
     open fun serializeBody(tlSerializer: TLSerializer) {
 
-    }
-
-    /**
-     * Deserialize object from stream and context
-     *
-     * @param stream  source stream
-     * @param context tl context
-     * @throws IOException
-     */
-    @Throws(IOException::class)
-    open fun deserializeBody(stream: InputStream, context: TLContext) {
-        deserializeBody(TLStreamDeserializer(stream, context))
     }
 
     /**

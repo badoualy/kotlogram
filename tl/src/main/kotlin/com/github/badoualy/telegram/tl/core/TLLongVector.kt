@@ -5,6 +5,7 @@ import com.github.badoualy.telegram.tl.TLContext
 import com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_CONSTRUCTOR_ID
 import com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_INT32
 import com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_INT64
+import com.github.badoualy.telegram.tl.serialization.TLDeserializer
 import com.github.badoualy.telegram.tl.serialization.TLSerializer
 import java.io.IOException
 import java.io.InputStream
@@ -21,7 +22,7 @@ class TLLongVector : TLVector<Long>() {
     }
 
     @Throws(IOException::class)
-    override fun deserializeItem(stream: InputStream, context: TLContext): Long = readLong(stream)
+    override fun deserializeItem(tlDeserializer: TLDeserializer): Long = tlDeserializer.readLong()
 
     override fun computeSerializedSize() = SIZE_CONSTRUCTOR_ID + SIZE_INT32 + SIZE_INT64 * size
 

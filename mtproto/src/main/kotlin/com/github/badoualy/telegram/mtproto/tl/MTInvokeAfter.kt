@@ -1,13 +1,9 @@
 package com.github.badoualy.telegram.mtproto.tl
 
-import com.github.badoualy.telegram.tl.StreamUtils.writeByteArray
-import com.github.badoualy.telegram.tl.StreamUtils.writeLong
-import com.github.badoualy.telegram.tl.TLContext
 import com.github.badoualy.telegram.tl.core.TLObject
+import com.github.badoualy.telegram.tl.serialization.TLDeserializer
 import com.github.badoualy.telegram.tl.serialization.TLSerializer
 import java.io.IOException
-import java.io.InputStream
-import java.io.OutputStream
 
 class MTInvokeAfter(var dependMsgId: Long = 0,
                     var request: ByteArray = ByteArray(0)) : TLObject() {
@@ -21,7 +17,7 @@ class MTInvokeAfter(var dependMsgId: Long = 0,
     }
 
     @Throws(IOException::class)
-    override fun deserializeBody(stream: InputStream, context: TLContext) {
+    override fun deserializeBody(tlDeserializer: TLDeserializer) = with (tlDeserializer) {
         throw UnsupportedOperationException("Unable to deserialize invokeAfterMsg#cb9f372d")
     }
 

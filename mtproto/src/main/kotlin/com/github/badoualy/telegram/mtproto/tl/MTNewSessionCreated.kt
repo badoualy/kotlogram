@@ -4,6 +4,7 @@ import com.github.badoualy.telegram.tl.StreamUtils.readLong
 import com.github.badoualy.telegram.tl.StreamUtils.writeLong
 import com.github.badoualy.telegram.tl.TLContext
 import com.github.badoualy.telegram.tl.core.TLObject
+import com.github.badoualy.telegram.tl.serialization.TLDeserializer
 import com.github.badoualy.telegram.tl.serialization.TLSerializer
 import java.io.IOException
 import java.io.InputStream
@@ -23,10 +24,10 @@ class MTNewSessionCreated @JvmOverloads constructor(var firstMsgId: Long = 0,
     }
 
     @Throws(IOException::class)
-    override fun deserializeBody(stream: InputStream, context: TLContext) {
-        firstMsgId = readLong(stream)
-        uniqId = readLong(stream)
-        serverSalt = readLong(stream)
+    override fun deserializeBody(tlDeserializer: TLDeserializer) = with (tlDeserializer) {
+        firstMsgId = readLong()
+        uniqId = readLong()
+        serverSalt = readLong()
     }
 
     override fun toString(): String {

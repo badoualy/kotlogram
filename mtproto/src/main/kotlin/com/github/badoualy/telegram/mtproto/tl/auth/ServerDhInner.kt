@@ -3,6 +3,7 @@ package com.github.badoualy.telegram.mtproto.tl.auth
 import com.github.badoualy.telegram.tl.StreamUtils.*
 import com.github.badoualy.telegram.tl.TLContext
 import com.github.badoualy.telegram.tl.core.TLObject
+import com.github.badoualy.telegram.tl.serialization.TLDeserializer
 import com.github.badoualy.telegram.tl.serialization.TLSerializer
 import java.io.IOException
 import java.io.InputStream
@@ -28,13 +29,13 @@ class ServerDhInner @JvmOverloads constructor(var nonce: ByteArray = ByteArray(0
     }
 
     @Throws(IOException::class)
-    override fun deserializeBody(stream: InputStream, context: TLContext) {
-        nonce = readBytes(16, stream)
-        serverNonce = readBytes(16, stream)
-        g = readInt(stream)
-        dhPrime = readTLBytes(stream)
-        g_a = readTLBytes(stream)
-        serverTime = readInt(stream)
+    override fun deserializeBody(tlDeserializer: TLDeserializer) = with (tlDeserializer) {
+        nonce = readBytes(16)
+        serverNonce = readBytes(16)
+        g = readInt()
+        dhPrime = readTLBytesAsBytes()
+        g_a = readTLBytesAsBytes()
+        serverTime = readInt()
     }
 
     companion object {

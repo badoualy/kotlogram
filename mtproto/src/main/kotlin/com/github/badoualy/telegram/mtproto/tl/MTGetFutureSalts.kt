@@ -4,6 +4,7 @@ import com.github.badoualy.telegram.tl.StreamUtils.readInt
 import com.github.badoualy.telegram.tl.StreamUtils.writeInt
 import com.github.badoualy.telegram.tl.TLContext
 import com.github.badoualy.telegram.tl.core.TLObject
+import com.github.badoualy.telegram.tl.serialization.TLDeserializer
 import com.github.badoualy.telegram.tl.serialization.TLSerializer
 import java.io.IOException
 import java.io.InputStream
@@ -19,8 +20,8 @@ class MTGetFutureSalts @JvmOverloads constructor(var num: Int = 0) : TLObject() 
     }
 
     @Throws(IOException::class)
-    override fun deserializeBody(stream: InputStream, context: TLContext) {
-        num = readInt(stream)
+    override fun deserializeBody(tlDeserializer: TLDeserializer) = with (tlDeserializer) {
+        num = readInt()
     }
 
     override fun toString(): String {

@@ -3,6 +3,7 @@ package com.github.badoualy.telegram.tl.core
 import com.github.badoualy.telegram.tl.StreamUtils
 import com.github.badoualy.telegram.tl.TLContext
 import com.github.badoualy.telegram.tl.TLObjectUtils.computeTLBytesSerializedSize
+import com.github.badoualy.telegram.tl.serialization.TLDeserializer
 import com.github.badoualy.telegram.tl.serialization.TLSerializer
 import java.io.IOException
 import java.io.InputStream
@@ -23,12 +24,12 @@ class TLGzipObject(var packedData: ByteArray = ByteArray(0)) : TLObject() {
     }
 
     @Throws(IOException::class)
-    override fun deserializeBody(stream: InputStream, context: TLContext) {
-        packedData = StreamUtils.readTLBytes(stream)
+    override fun deserializeBody(tlDeserializer: TLDeserializer) {
+        packedData = tlDeserializer.readTLBytesAsBytes()
     }
 
     override fun computeSerializedSize(): Int =
-            CONSTRUCTOR_ID + computeTLBytesSerializedSize(packedData!!.size)
+            CONSTRUCTOR_ID + computeTLBytesSerializedSize(packedData.size)
 
     override fun toString() = "gzip_packed#3072cfa1"
 
@@ -41,7 +42,7 @@ class TLGzipObject(var packedData: ByteArray = ByteArray(0)) : TLObject() {
         return Arrays.equals(packedData, other.packedData)
     }
 
-    override fun hashCode() = packedData?.let { Arrays.hashCode(it) } ?: 0
+    override fun hashCode() = Arrays.hashCode(packedData)
 
     companion object {
         const val CONSTRUCTOR_ID = 0x3072cfa1
