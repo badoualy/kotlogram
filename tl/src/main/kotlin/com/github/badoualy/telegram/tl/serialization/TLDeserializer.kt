@@ -51,6 +51,8 @@ interface TLDeserializer {
     fun readTLBytes(): TLBytes
     fun readTLBytesAsBytes() = readTLBytes().data
 
+    fun <T : TLObject> readTLObject(): T = readTLObject(null, -1)
+
     fun <T : TLObject> readTLObject(expectedClazz: KClass<T>? = null, expectedConstructorId: Int = -1): T {
         var clazz = expectedClazz?.java
         var constructorId = expectedConstructorId
