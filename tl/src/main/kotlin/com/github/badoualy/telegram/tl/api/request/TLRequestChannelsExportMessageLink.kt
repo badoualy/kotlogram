@@ -29,7 +29,7 @@ class TLRequestChannelsExportMessageLink() : TLMethod<TLExportedMessageLink>() {
     }
 
     @Throws(IOException::class)
-    override fun deserializeResponse(tlDeserializer: TLDeserializer): TLExportedMessageLink = tlDeserializer.readTLObject()
+    override fun deserializeResponse(tlDeserializer: TLDeserializer): TLExportedMessageLink = tlDeserializer.readTLObject(TLExportedMessageLink::class, TLExportedMessageLink.CONSTRUCTOR_ID)
 
     @Throws(IOException::class)
     override fun serializeBody(tlSerializer: TLSerializer) = with (tlSerializer)  {

@@ -42,7 +42,7 @@ class TLRequestChannelsGetParticipants() : TLMethod<TLChannelParticipants>() {
     }
 
     @Throws(IOException::class)
-    override fun deserializeResponse(tlDeserializer: TLDeserializer): TLChannelParticipants = tlDeserializer.readTLObject()
+    override fun deserializeResponse(tlDeserializer: TLDeserializer): TLChannelParticipants = tlDeserializer.readTLObject(TLChannelParticipants::class, TLChannelParticipants.CONSTRUCTOR_ID)
 
     @Throws(IOException::class)
     override fun serializeBody(tlSerializer: TLSerializer) = with (tlSerializer)  {

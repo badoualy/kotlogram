@@ -25,7 +25,7 @@ class TLRequestChannelsGetFullChannel() : TLMethod<TLChatFull>() {
     }
 
     @Throws(IOException::class)
-    override fun deserializeResponse(tlDeserializer: TLDeserializer): TLChatFull = tlDeserializer.readTLObject()
+    override fun deserializeResponse(tlDeserializer: TLDeserializer): TLChatFull = tlDeserializer.readTLObject(TLChatFull::class, TLChatFull.CONSTRUCTOR_ID)
 
     @Throws(IOException::class)
     override fun serializeBody(tlSerializer: TLSerializer) = with (tlSerializer)  {

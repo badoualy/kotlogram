@@ -25,7 +25,7 @@ class TLRequestMessagesGetPeerSettings() : TLMethod<TLPeerSettings>() {
     }
 
     @Throws(IOException::class)
-    override fun deserializeResponse(tlDeserializer: TLDeserializer): TLPeerSettings = tlDeserializer.readTLObject()
+    override fun deserializeResponse(tlDeserializer: TLDeserializer): TLPeerSettings = tlDeserializer.readTLObject(TLPeerSettings::class, TLPeerSettings.CONSTRUCTOR_ID)
 
     @Throws(IOException::class)
     override fun serializeBody(tlSerializer: TLSerializer) = with (tlSerializer)  {

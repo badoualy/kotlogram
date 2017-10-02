@@ -15,7 +15,7 @@ class TLRequestAuthRequestPasswordRecovery : TLMethod<TLPasswordRecovery>() {
     override val constructorId: Int = CONSTRUCTOR_ID
 
     @Throws(IOException::class)
-    override fun deserializeResponse(tlDeserializer: TLDeserializer): TLPasswordRecovery = tlDeserializer.readTLObject()
+    override fun deserializeResponse(tlDeserializer: TLDeserializer): TLPasswordRecovery = tlDeserializer.readTLObject(TLPasswordRecovery::class, TLPasswordRecovery.CONSTRUCTOR_ID)
 
     override fun toString() = _constructor
 

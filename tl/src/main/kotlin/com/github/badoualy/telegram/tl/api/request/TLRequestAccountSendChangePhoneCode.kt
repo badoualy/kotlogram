@@ -20,7 +20,7 @@ class TLRequestAccountSendChangePhoneCode() : TLMethod<TLSentCode>() {
 
     var phoneNumber: String = ""
 
-    var currentNumber: Boolean = false
+    var currentNumber: Boolean? = null
 
     private val _constructor: String = "account.sendChangePhoneCode#8e57deb"
 
@@ -29,7 +29,7 @@ class TLRequestAccountSendChangePhoneCode() : TLMethod<TLSentCode>() {
     constructor(
             allowFlashcall: Boolean,
             phoneNumber: String,
-            currentNumber: Boolean
+            currentNumber: Boolean?
     ) : this() {
         this.allowFlashcall = allowFlashcall
         this.phoneNumber = phoneNumber
@@ -37,13 +37,13 @@ class TLRequestAccountSendChangePhoneCode() : TLMethod<TLSentCode>() {
     }
 
     @Throws(IOException::class)
-    override fun deserializeResponse(tlDeserializer: TLDeserializer): TLSentCode = tlDeserializer.readTLObject()
+    override fun deserializeResponse(tlDeserializer: TLDeserializer): TLSentCode = tlDeserializer.readTLObject(TLSentCode::class, TLSentCode.CONSTRUCTOR_ID)
 
     protected override fun computeFlags() {
         _flags = 0
         updateFlags(allowFlashcall, 1)
         // If field is not serialized force it to false
-        if (currentNumber && !isMask(1)) currentNumber = false
+        if (currentNumber != null && !isMask(1)) currentNumber = null
     }
 
     @Throws(IOException::class)
@@ -60,7 +60,7 @@ class TLRequestAccountSendChangePhoneCode() : TLMethod<TLSentCode>() {
         _flags = readInt()
         allowFlashcall = isMask(1)
         phoneNumber = readString()
-        currentNumber = readIfMask(1) { readBoolean() } ?: false
+        currentNumber = readIfMask(1) { readBoolean() }
     }
 
     override fun computeSerializedSize(): Int {

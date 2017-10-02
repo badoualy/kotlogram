@@ -25,7 +25,7 @@ class TLRequestContactsImportContacts() : TLMethod<TLImportedContacts>() {
     }
 
     @Throws(IOException::class)
-    override fun deserializeResponse(tlDeserializer: TLDeserializer): TLImportedContacts = tlDeserializer.readTLObject()
+    override fun deserializeResponse(tlDeserializer: TLDeserializer): TLImportedContacts = tlDeserializer.readTLObject(TLImportedContacts::class, TLImportedContacts.CONSTRUCTOR_ID)
 
     @Throws(IOException::class)
     override fun serializeBody(tlSerializer: TLSerializer) = with (tlSerializer)  {

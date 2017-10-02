@@ -198,9 +198,9 @@ class TLClassGenerator(tlDefinition: TLDefinition, val config: Config) {
                                          } else Unit)
             }
             else -> {
-                if (tlType is TLAbstractConstructor) {
+                if (supertypes.none { it.tlType == tlType }) {
                     responseFun.addStatement(
-                            "return tlDeserializer.readTLObject(%1T::class.java, %1T.CONSTRUCTOR_ID)",
+                            "return tlDeserializer.readTLObject(%1T::class, %1T.CONSTRUCTOR_ID)",
                             responseType)
                 } else {
                     responseFun.addStatement("return tlDeserializer.readTLObject()")
@@ -296,7 +296,7 @@ class TLClassGenerator(tlDefinition: TLDefinition, val config: Config) {
                 val realType = tlType.realType
                 val fieldName = parameter.name.lCamelCase().javaEscape()
 
-                if (realType is TLTypeRaw && arrayOf("true", "false").contains(realType.name)) {
+                if (realType.isTrueFalseFlag()) {
                     computeFlagsFun.addStatement("updateFlags($fieldName, ${tlType.pow2Value()})")
 
                     if (condParameters.any {
@@ -309,7 +309,7 @@ class TLClassGenerator(tlDefinition: TLDefinition, val config: Config) {
                     if (realType is TLTypeRaw && realType.name == "Bool" && condParameters.any { it != parameter && (it.tlType as TLTypeConditional).value == tlType.value }) {
                         computeFlagsFun.addCode("// If field is not serialized force it to false\n")
                         computeFlagsFun.addStatement(
-                                "if ($fieldName && !isMask(${tlType.pow2Value()})) $fieldName = false")
+                                "if ($fieldName != null && !isMask(${tlType.pow2Value()})) $fieldName = null")
                     } else {
                         computeFlagsFun.addStatement(
                                 "updateFlags($fieldName, ${tlType.pow2Value()})")
@@ -341,7 +341,7 @@ class TLClassGenerator(tlDefinition: TLDefinition, val config: Config) {
         for (parameter in parameters) {
             val fieldTlType = parameter.tlType
             val fieldType = getType(fieldTlType).let {
-                val nullable = (fieldTlType is TLTypeConditional && it != BOOLEAN)
+                val nullable = (fieldTlType is TLTypeConditional && !fieldTlType.realType.isTrueFalseFlag())
                 if (nullable) it.asNullable() else it
             }
 

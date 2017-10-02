@@ -56,7 +56,7 @@ class TLTypeConditional(val value: Int, val realType: TLType) : TLType() {
     fun pow2Value() = Math.pow(2.toDouble(), value.toDouble()).toInt()
 
     // TODO: check if needed
-    override fun serializable() = !(realType is TLTypeRaw && realType.name.equals("true", true))
+    override fun serializable() = !realType.isTrueFalseFlag()
 
     override fun toString() = "flag.$value?$realType"
 }

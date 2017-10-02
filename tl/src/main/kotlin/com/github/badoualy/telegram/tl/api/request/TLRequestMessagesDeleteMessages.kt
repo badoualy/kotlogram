@@ -29,7 +29,7 @@ class TLRequestMessagesDeleteMessages() : TLMethod<TLAffectedMessages>() {
     }
 
     @Throws(IOException::class)
-    override fun deserializeResponse(tlDeserializer: TLDeserializer): TLAffectedMessages = tlDeserializer.readTLObject()
+    override fun deserializeResponse(tlDeserializer: TLDeserializer): TLAffectedMessages = tlDeserializer.readTLObject(TLAffectedMessages::class, TLAffectedMessages.CONSTRUCTOR_ID)
 
     protected override fun computeFlags() {
         _flags = 0

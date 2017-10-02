@@ -44,7 +44,7 @@ class TLRequestMessagesGetInlineBotResults() : TLMethod<TLBotResults>() {
     }
 
     @Throws(IOException::class)
-    override fun deserializeResponse(tlDeserializer: TLDeserializer): TLBotResults = tlDeserializer.readTLObject()
+    override fun deserializeResponse(tlDeserializer: TLDeserializer): TLBotResults = tlDeserializer.readTLObject(TLBotResults::class, TLBotResults.CONSTRUCTOR_ID)
 
     protected override fun computeFlags() {
         _flags = 0

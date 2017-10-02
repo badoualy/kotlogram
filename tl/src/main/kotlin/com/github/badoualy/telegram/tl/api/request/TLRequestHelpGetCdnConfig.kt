@@ -15,7 +15,7 @@ class TLRequestHelpGetCdnConfig : TLMethod<TLCdnConfig>() {
     override val constructorId: Int = CONSTRUCTOR_ID
 
     @Throws(IOException::class)
-    override fun deserializeResponse(tlDeserializer: TLDeserializer): TLCdnConfig = tlDeserializer.readTLObject()
+    override fun deserializeResponse(tlDeserializer: TLDeserializer): TLCdnConfig = tlDeserializer.readTLObject(TLCdnConfig::class, TLCdnConfig.CONSTRUCTOR_ID)
 
     override fun toString() = _constructor
 

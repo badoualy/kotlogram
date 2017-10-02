@@ -67,14 +67,14 @@ abstract class TelegramApiWrapper : TelegramApi, RpcQueryExecutor {
     override fun accountSendChangePhoneCode(
             allowFlashcall: Boolean,
             phoneNumber: String,
-            currentNumber: Boolean
+            currentNumber: Boolean?
     ): Single<TLSentCode> = executeRpcQuery(TLRequestAccountSendChangePhoneCode(allowFlashcall, phoneNumber, currentNumber))
 
     @Throws(RpcErrorException::class,IOException::class)
     override fun accountSendConfirmPhoneCode(
             allowFlashcall: Boolean,
             hash: String,
-            currentNumber: Boolean
+            currentNumber: Boolean?
     ): Single<TLSentCode> = executeRpcQuery(TLRequestAccountSendConfirmPhoneCode(allowFlashcall, hash, currentNumber))
 
     @Throws(RpcErrorException::class,IOException::class)
@@ -123,7 +123,7 @@ abstract class TelegramApiWrapper : TelegramApi, RpcQueryExecutor {
     override fun authSendCode(
             allowFlashcall: Boolean,
             phoneNumber: String,
-            currentNumber: Boolean,
+            currentNumber: Boolean?,
             apiId: Int,
             apiHash: String
     ): Single<TLSentCode> = executeRpcQuery(TLRequestAuthSendCode(allowFlashcall, phoneNumber, currentNumber, apiId, apiHash))

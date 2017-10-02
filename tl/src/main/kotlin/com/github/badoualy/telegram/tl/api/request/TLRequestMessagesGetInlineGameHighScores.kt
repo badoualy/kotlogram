@@ -29,7 +29,7 @@ class TLRequestMessagesGetInlineGameHighScores() : TLMethod<TLHighScores>() {
     }
 
     @Throws(IOException::class)
-    override fun deserializeResponse(tlDeserializer: TLDeserializer): TLHighScores = tlDeserializer.readTLObject()
+    override fun deserializeResponse(tlDeserializer: TLDeserializer): TLHighScores = tlDeserializer.readTLObject(TLHighScores::class, TLHighScores.CONSTRUCTOR_ID)
 
     @Throws(IOException::class)
     override fun serializeBody(tlSerializer: TLSerializer) = with (tlSerializer)  {

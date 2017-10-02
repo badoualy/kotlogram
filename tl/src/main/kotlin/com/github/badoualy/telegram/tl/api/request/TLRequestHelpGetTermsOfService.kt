@@ -15,7 +15,7 @@ class TLRequestHelpGetTermsOfService : TLMethod<TLTermsOfService>() {
     override val constructorId: Int = CONSTRUCTOR_ID
 
     @Throws(IOException::class)
-    override fun deserializeResponse(tlDeserializer: TLDeserializer): TLTermsOfService = tlDeserializer.readTLObject()
+    override fun deserializeResponse(tlDeserializer: TLDeserializer): TLTermsOfService = tlDeserializer.readTLObject(TLTermsOfService::class, TLTermsOfService.CONSTRUCTOR_ID)
 
     override fun toString() = _constructor
 

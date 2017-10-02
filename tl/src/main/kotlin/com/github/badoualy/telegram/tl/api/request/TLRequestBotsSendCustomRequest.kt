@@ -27,7 +27,7 @@ class TLRequestBotsSendCustomRequest() : TLMethod<TLDataJSON>() {
     }
 
     @Throws(IOException::class)
-    override fun deserializeResponse(tlDeserializer: TLDeserializer): TLDataJSON = tlDeserializer.readTLObject()
+    override fun deserializeResponse(tlDeserializer: TLDeserializer): TLDataJSON = tlDeserializer.readTLObject(TLDataJSON::class, TLDataJSON.CONSTRUCTOR_ID)
 
     @Throws(IOException::class)
     override fun serializeBody(tlSerializer: TLSerializer) = with (tlSerializer)  {

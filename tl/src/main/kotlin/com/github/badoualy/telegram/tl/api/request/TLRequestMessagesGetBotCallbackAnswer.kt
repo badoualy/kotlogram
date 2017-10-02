@@ -43,7 +43,7 @@ class TLRequestMessagesGetBotCallbackAnswer() : TLMethod<TLBotCallbackAnswer>() 
     }
 
     @Throws(IOException::class)
-    override fun deserializeResponse(tlDeserializer: TLDeserializer): TLBotCallbackAnswer = tlDeserializer.readTLObject()
+    override fun deserializeResponse(tlDeserializer: TLDeserializer): TLBotCallbackAnswer = tlDeserializer.readTLObject(TLBotCallbackAnswer::class, TLBotCallbackAnswer.CONSTRUCTOR_ID)
 
     protected override fun computeFlags() {
         _flags = 0

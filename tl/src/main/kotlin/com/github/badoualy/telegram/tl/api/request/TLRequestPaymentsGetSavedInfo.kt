@@ -15,7 +15,7 @@ class TLRequestPaymentsGetSavedInfo : TLMethod<TLSavedInfo>() {
     override val constructorId: Int = CONSTRUCTOR_ID
 
     @Throws(IOException::class)
-    override fun deserializeResponse(tlDeserializer: TLDeserializer): TLSavedInfo = tlDeserializer.readTLObject()
+    override fun deserializeResponse(tlDeserializer: TLDeserializer): TLSavedInfo = tlDeserializer.readTLObject(TLSavedInfo::class, TLSavedInfo.CONSTRUCTOR_ID)
 
     override fun toString() = _constructor
 

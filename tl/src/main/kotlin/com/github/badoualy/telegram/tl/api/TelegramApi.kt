@@ -65,14 +65,14 @@ interface TelegramApi {
     fun accountSendChangePhoneCode(
             allowFlashcall: Boolean,
             phoneNumber: String,
-            currentNumber: Boolean
+            currentNumber: Boolean?
     ): Single<TLSentCode>
 
     @Throws(RpcErrorException::class,IOException::class)
     fun accountSendConfirmPhoneCode(
             allowFlashcall: Boolean,
             hash: String,
-            currentNumber: Boolean
+            currentNumber: Boolean?
     ): Single<TLSentCode>
 
     @Throws(RpcErrorException::class,IOException::class)
@@ -121,7 +121,7 @@ interface TelegramApi {
     fun authSendCode(
             allowFlashcall: Boolean,
             phoneNumber: String,
-            currentNumber: Boolean,
+            currentNumber: Boolean?,
             apiId: Int,
             apiHash: String
     ): Single<TLSentCode>

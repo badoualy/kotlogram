@@ -36,7 +36,7 @@ class TLRequestPaymentsValidateRequestedInfo() : TLMethod<TLValidatedRequestedIn
     }
 
     @Throws(IOException::class)
-    override fun deserializeResponse(tlDeserializer: TLDeserializer): TLValidatedRequestedInfo = tlDeserializer.readTLObject()
+    override fun deserializeResponse(tlDeserializer: TLDeserializer): TLValidatedRequestedInfo = tlDeserializer.readTLObject(TLValidatedRequestedInfo::class, TLValidatedRequestedInfo.CONSTRUCTOR_ID)
 
     protected override fun computeFlags() {
         _flags = 0

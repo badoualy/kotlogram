@@ -37,7 +37,7 @@ class TLRequestMessagesDeleteHistory() : TLMethod<TLAffectedHistory>() {
     }
 
     @Throws(IOException::class)
-    override fun deserializeResponse(tlDeserializer: TLDeserializer): TLAffectedHistory = tlDeserializer.readTLObject()
+    override fun deserializeResponse(tlDeserializer: TLDeserializer): TLAffectedHistory = tlDeserializer.readTLObject(TLAffectedHistory::class, TLAffectedHistory.CONSTRUCTOR_ID)
 
     protected override fun computeFlags() {
         _flags = 0

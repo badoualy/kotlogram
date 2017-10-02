@@ -15,7 +15,7 @@ class TLRequestHelpGetSupport : TLMethod<TLSupport>() {
     override val constructorId: Int = CONSTRUCTOR_ID
 
     @Throws(IOException::class)
-    override fun deserializeResponse(tlDeserializer: TLDeserializer): TLSupport = tlDeserializer.readTLObject()
+    override fun deserializeResponse(tlDeserializer: TLDeserializer): TLSupport = tlDeserializer.readTLObject(TLSupport::class, TLSupport.CONSTRUCTOR_ID)
 
     override fun toString() = _constructor
 

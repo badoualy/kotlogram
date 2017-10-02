@@ -25,7 +25,7 @@ class TLRequestAccountGetPrivacy() : TLMethod<TLPrivacyRules>() {
     }
 
     @Throws(IOException::class)
-    override fun deserializeResponse(tlDeserializer: TLDeserializer): TLPrivacyRules = tlDeserializer.readTLObject()
+    override fun deserializeResponse(tlDeserializer: TLDeserializer): TLPrivacyRules = tlDeserializer.readTLObject(TLPrivacyRules::class, TLPrivacyRules.CONSTRUCTOR_ID)
 
     @Throws(IOException::class)
     override fun serializeBody(tlSerializer: TLSerializer) = with (tlSerializer)  {

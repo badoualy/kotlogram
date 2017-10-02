@@ -15,7 +15,7 @@ class TLRequestHelpGetNearestDc : TLMethod<TLNearestDc>() {
     override val constructorId: Int = CONSTRUCTOR_ID
 
     @Throws(IOException::class)
-    override fun deserializeResponse(tlDeserializer: TLDeserializer): TLNearestDc = tlDeserializer.readTLObject()
+    override fun deserializeResponse(tlDeserializer: TLDeserializer): TLNearestDc = tlDeserializer.readTLObject(TLNearestDc::class, TLNearestDc.CONSTRUCTOR_ID)
 
     override fun toString() = _constructor
 
