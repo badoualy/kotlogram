@@ -1,46 +1,59 @@
 {
   "peer": {
-    "userId": 0,
-    "accessHash": 0,
-    "_constructor": "inputPeerUser#7b8e7de6",
-    "constructorId": 2072935910,
+    "chatId": 0,
+    "_constructor": "inputPeerChat#179be863",
+    "constructorId": 396093539,
     "_flags": 0
   },
   "replyToMsgId": 0,
-  "message": "03twPW5RCXN",
+  "message": "XnG443jq",
   "randomId": 0,
   "replyMarkup": {
     "rows": [
       {
-        "buttons": [],
-        "_constructor": "keyboardButtonRow#77608b83",
-        "constructorId": 2002815875,
-        "_flags": 0
-      },
-      {
         "buttons": [
           {
-            "text": "HW6Wlh2UiKwvHxAITURatdH",
-            "_constructor": "keyboardButton#a2fa4880",
-            "constructorId": -1560655744,
+            "text": "g5ILWY1uh7ejbQV2ot2roNmgYvMx",
+            "query": "PGfrCNkJ7opVCwsIU",
+            "_constructor": "keyboardButtonSwitchInline#568a748",
+            "constructorId": 90744648,
+            "_flags": 0
+          },
+          {
+            "text": "NHZH8O",
+            "_constructor": "keyboardButtonGame#50f41ccf",
+            "constructorId": 1358175439,
             "_flags": 0
           }
         ],
         "_constructor": "keyboardButtonRow#77608b83",
         "constructorId": 2002815875,
         "_flags": 0
+      },
+      {
+        "buttons": [],
+        "_constructor": "keyboardButtonRow#77608b83",
+        "constructorId": 2002815875,
+        "_flags": 0
       }
     ],
-    "_constructor": "replyKeyboardMarkup#3502758c",
-    "constructorId": 889353612,
+    "_constructor": "replyInlineMarkup#48a30254",
+    "constructorId": 1218642516,
     "_flags": 0
   },
   "entities": [
     {
       "offset": 0,
       "length": 0,
-      "_constructor": "messageEntityUrl#6ed02538",
-      "constructorId": 1859134776,
+      "_constructor": "messageEntityBold#bd610bc9",
+      "constructorId": -1117713463,
+      "_flags": 0
+    },
+    {
+      "offset": 0,
+      "length": 0,
+      "_constructor": "messageEntityBotCommand#6cef8ac7",
+      "constructorId": 1827637959,
       "_flags": 0
     }
   ],

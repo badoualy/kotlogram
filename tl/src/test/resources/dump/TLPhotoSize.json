@@ -1,12 +1,11 @@
 {
-  "type": "TPQzEnzady5iS1fPjqz1P",
+  "type": "Rjey5S",
   "location": {
-    "dcId": 0,
     "volumeId": 0,
     "localId": 0,
     "secret": 0,
-    "_constructor": "fileLocation#53d69076",
-    "constructorId": 1406570614,
+    "_constructor": "fileLocationUnavailable#7c596b46",
+    "constructorId": 2086234950,
     "_flags": 0
   },
   "w": 0,

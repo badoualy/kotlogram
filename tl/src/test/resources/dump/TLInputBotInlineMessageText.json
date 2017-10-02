@@ -1,9 +1,17 @@
 {
-  "message": "C6a42kIhMYisfxjE",
-  "entities": [],
+  "message": "JEawiXs",
+  "entities": [
+    {
+      "offset": 0,
+      "length": 0,
+      "_constructor": "messageEntityItalic#826f8b60",
+      "constructorId": -2106619040,
+      "_flags": 0
+    }
+  ],
   "replyMarkup": {
-    "_constructor": "replyKeyboardHide#a03e5b85",
-    "constructorId": -1606526075,
+    "_constructor": "replyKeyboardForceReply#f4108aa0",
+    "constructorId": -200242528,
     "_flags": 0
   },
   "_constructor": "inputBotInlineMessageText#3dcd7a87",

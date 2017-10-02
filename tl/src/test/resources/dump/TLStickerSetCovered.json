@@ -2,8 +2,8 @@
   "set": {
     "id": 0,
     "accessHash": 0,
-    "title": "x3u7DMK0wyFV",
-    "shortName": "KTBi5IsqJGyDFMJwQOtM0mZcolbZo",
+    "title": "SVrImZ9Eqt0pj69d",
+    "shortName": "wMaTReDLROn6ZsDpMXK16",
     "count": 0,
     "hash": 0,
     "_constructor": "stickerSet#cd303b41",
@@ -12,8 +12,30 @@
   },
   "cover": {
     "id": 0,
-    "_constructor": "documentEmpty#36f8c871",
-    "constructorId": 922273905,
+    "accessHash": 0,
+    "date": 0,
+    "mimeType": "FDnpuht",
+    "size": 0,
+    "thumb": {
+      "type": "3WoRsfm114fMfTS9Ytdnb42z6x3p1",
+      "_constructor": "photoSizeEmpty#e17e23c",
+      "constructorId": 236446268,
+      "_flags": 0
+    },
+    "dcId": 0,
+    "version": 0,
+    "attributes": [
+      {
+        "duration": 0,
+        "w": 0,
+        "h": 0,
+        "_constructor": "documentAttributeVideo#ef02ce6",
+        "constructorId": 250621158,
+        "_flags": 0
+      }
+    ],
+    "_constructor": "document#87232bc7",
+    "constructorId": -2027738169,
     "_flags": 0
   },
   "_constructor": "stickerSetCovered#6410a5d2",

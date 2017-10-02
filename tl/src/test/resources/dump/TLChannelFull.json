@@ -1,6 +1,6 @@
 {
   "id": 0,
-  "about": "8JCLMGIqRXKSykDXfvho5sEt2P",
+  "about": "Dl2FeXyzTxjuslib9c9Z",
   "participantsCount": 0,
   "adminsCount": 0,
   "kickedCount": 0,
@@ -15,13 +15,16 @@
     "_flags": 0
   },
   "notifySettings": {
-    "_constructor": "peerNotifySettingsEmpty#70a68512",
-    "constructorId": 1889961234,
+    "muteUntil": 0,
+    "sound": "U50ykovlkr",
+    "_constructor": "peerNotifySettings#9acda4c0",
+    "constructorId": -1697798976,
     "_flags": 0
   },
   "exportedInvite": {
-    "_constructor": "chatInviteEmpty#69df3769",
-    "constructorId": 1776236393,
+    "link": "N8uEX08g7GpFwlm5b3F",
+    "_constructor": "chatInviteExported#fc2e05bc",
+    "constructorId": -64092740,
     "_flags": 0
   },
   "botInfo": [],
@@ -31,8 +34,8 @@
   "stickerset": {
     "id": 0,
     "accessHash": 0,
-    "title": "yPBFNiqzs84PZzbc2xmuFBPSh4",
-    "shortName": "eDWAeYnncwJ1hiFFOn2ElXEOYTi",
+    "title": "ORXOpvFmC0",
+    "shortName": "oF6nUrkt1Uzp",
     "count": 0,
     "hash": 0,
     "_constructor": "stickerSet#cd303b41",

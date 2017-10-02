@@ -2,8 +2,8 @@
   "set": {
     "id": 0,
     "accessHash": 0,
-    "title": "Za81kCx",
-    "shortName": "rJcYWdICqp7asiiPmn",
+    "title": "416mZagrO7wvWAhVUG02",
+    "shortName": "B6e7DbyU1NgrT9Rhu",
     "count": 0,
     "hash": 0,
     "_constructor": "stickerSet#cd303b41",
@@ -12,11 +12,8 @@
   },
   "packs": [
     {
-      "emoticon": "7difkTr",
-      "documents": [
-        0,
-        0
-      ],
+      "emoticon": "RzwT7TB8UZVxfz",
+      "documents": [],
       "_constructor": "stickerPack#12b299d4",
       "constructorId": 313694676,
       "_flags": 0
@@ -27,23 +24,12 @@
       "id": 0,
       "accessHash": 0,
       "date": 0,
-      "mimeType": "uUwKKrtg",
+      "mimeType": "RDIsnjOJaCvLY",
       "size": 0,
       "thumb": {
-        "type": "YuYSV0SEaPVNvlDxR8FA0",
-        "location": {
-          "volumeId": 0,
-          "localId": 0,
-          "secret": 0,
-          "_constructor": "fileLocationUnavailable#7c596b46",
-          "constructorId": 2086234950,
-          "_flags": 0
-        },
-        "w": 0,
-        "h": 0,
-        "size": 0,
-        "_constructor": "photoSize#77bfb61b",
-        "constructorId": 2009052699,
+        "type": "Nk13Xz4pJFu3o",
+        "_constructor": "photoSizeEmpty#e17e23c",
+        "constructorId": 236446268,
         "_flags": 0
       },
       "dcId": 0,
@@ -55,16 +41,18 @@
           "_constructor": "documentAttributeImageSize#6c37c15c",
           "constructorId": 1815593308,
           "_flags": 0
+        },
+        {
+          "duration": 0,
+          "w": 0,
+          "h": 0,
+          "_constructor": "documentAttributeVideo#ef02ce6",
+          "constructorId": 250621158,
+          "_flags": 0
         }
       ],
       "_constructor": "document#87232bc7",
       "constructorId": -2027738169,
-      "_flags": 0
-    },
-    {
-      "id": 0,
-      "_constructor": "documentEmpty#36f8c871",
-      "constructorId": 922273905,
       "_flags": 0
     }
   ],

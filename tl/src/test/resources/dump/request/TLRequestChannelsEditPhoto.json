@@ -1,12 +1,23 @@
 {
   "channel": {
-    "_constructor": "inputChannelEmpty#ee8c1e86",
-    "constructorId": -292807034,
+    "channelId": 0,
+    "accessHash": 0,
+    "_constructor": "inputChannel#afeb712e",
+    "constructorId": -1343524562,
     "_flags": 0
   },
   "photo": {
-    "_constructor": "inputChatPhotoEmpty#1ca48f57",
-    "constructorId": 480546647,
+    "file": {
+      "id": 0,
+      "parts": 0,
+      "name": "yJsvbUR5xyP49g",
+      "md5Checksum": "oRtHegYEZIi9PM4hJWpXpoP",
+      "_constructor": "inputFile#f52ff27f",
+      "constructorId": -181407105,
+      "_flags": 0
+    },
+    "_constructor": "inputChatUploadedPhoto#927c55b4",
+    "constructorId": -1837345356,
     "_flags": 0
   },
   "_constructor": "channels.editPhoto#f12e57c9",

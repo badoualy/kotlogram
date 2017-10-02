@@ -1,8 +1,7 @@
 {
   "peer": {
-    "chatId": 0,
-    "_constructor": "inputPeerChat#179be863",
-    "constructorId": 396093539,
+    "_constructor": "inputPeerSelf#7da07ec9",
+    "constructorId": 2107670217,
     "_flags": 0
   },
   "_constructor": "messages.getPeerSettings#3672e09c",

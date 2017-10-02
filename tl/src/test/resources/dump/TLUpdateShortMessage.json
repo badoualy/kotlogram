@@ -1,7 +1,7 @@
 {
   "id": 0,
   "userId": 0,
-  "message": "Ui6o1N4fciM8w",
+  "message": "JkcvCnGv",
   "pts": 0,
   "ptsCount": 0,
   "date": 0,
@@ -10,7 +10,7 @@
     "date": 0,
     "channelId": 0,
     "channelPost": 0,
-    "postAuthor": "W0PUPFqZHrBGhsp4v8BY0",
+    "postAuthor": "fklTtja",
     "_constructor": "messageFwdHeader#fadff4ac",
     "constructorId": -85986132,
     "_flags": 15
@@ -21,8 +21,9 @@
     {
       "offset": 0,
       "length": 0,
-      "_constructor": "messageEntityMention#fa04579d",
-      "constructorId": -100378723,
+      "url": "yVQ78cP5RNa8P",
+      "_constructor": "messageEntityTextUrl#76a6d327",
+      "constructorId": 1990644519,
       "_flags": 0
     }
   ],

@@ -9,7 +9,14 @@
       "_flags": 0
     }
   ],
-  "users": [],
+  "users": [
+    {
+      "id": 0,
+      "_constructor": "userEmpty#200250ba",
+      "constructorId": 537022650,
+      "_flags": 0
+    }
+  ],
   "_constructor": "contacts.blockedSlice#900802a1",
   "constructorId": -1878523231,
   "_flags": 0

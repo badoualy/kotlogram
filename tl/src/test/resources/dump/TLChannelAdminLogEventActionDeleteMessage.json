@@ -1,44 +1,9 @@
 {
   "message": {
     "id": 0,
-    "fromId": 0,
-    "toId": {
-      "channelId": 0,
-      "_constructor": "peerChannel#bddde532",
-      "constructorId": -1109531342,
-      "_flags": 0
-    },
-    "fwdFrom": {
-      "fromId": 0,
-      "date": 0,
-      "channelId": 0,
-      "channelPost": 0,
-      "postAuthor": "OgCAWMdXjej",
-      "_constructor": "messageFwdHeader#fadff4ac",
-      "constructorId": -85986132,
-      "_flags": 15
-    },
-    "viaBotId": 0,
-    "replyToMsgId": 0,
-    "date": 0,
-    "message": "2o5AfipfQUKtEoMNz",
-    "media": {
-      "_constructor": "messageMediaUnsupported#9f84f49e",
-      "constructorId": -1618676578,
-      "_flags": 0
-    },
-    "replyMarkup": {
-      "_constructor": "replyKeyboardHide#a03e5b85",
-      "constructorId": -1606526075,
-      "_flags": 0
-    },
-    "entities": [],
-    "views": 0,
-    "editDate": 0,
-    "postAuthor": "7KUtLlAvkoT61h73rpXtMIQFK7",
-    "_constructor": "message#90dddc11",
-    "constructorId": -1864508399,
-    "_flags": 102348
+    "_constructor": "messageEmpty#83e5de54",
+    "constructorId": -2082087340,
+    "_flags": 0
   },
   "_constructor": "channelAdminLogEventActionDeleteMessage#42e047bb",
   "constructorId": 1121994683,

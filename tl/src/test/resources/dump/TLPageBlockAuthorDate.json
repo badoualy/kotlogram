@@ -1,8 +1,23 @@
 {
   "author": {
-    "text": "3fQLWlGQ51JWdB06N",
-    "_constructor": "textPlain#744694e0",
-    "constructorId": 1950782688,
+    "text": {
+      "text": {
+        "text": {
+          "_constructor": "textEmpty#dc3d824f",
+          "constructorId": -599948721,
+          "_flags": 0
+        },
+        "_constructor": "textStrike#9bf8bb95",
+        "constructorId": -1678197867,
+        "_flags": 0
+      },
+      "_constructor": "textUnderline#c12622c4",
+      "constructorId": -1054465340,
+      "_flags": 0
+    },
+    "email": "uKS1d0jXR98igWpAi",
+    "_constructor": "textEmail#de5a0dd6",
+    "constructorId": -564523562,
     "_flags": 0
   },
   "publishedDate": 0,

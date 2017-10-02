@@ -2,7 +2,7 @@
   "updates": {
     "id": 0,
     "userId": 0,
-    "message": "zXQF21",
+    "message": "X8VMN8SB0smC29",
     "pts": 0,
     "ptsCount": 0,
     "date": 0,
@@ -11,7 +11,7 @@
       "date": 0,
       "channelId": 0,
       "channelPost": 0,
-      "postAuthor": "Tuo89QkzsGPSLDnr1nvNDF",
+      "postAuthor": "gca7VVrVBT1pjviVhgdwTdJSRpY85",
       "_constructor": "messageFwdHeader#fadff4ac",
       "constructorId": -85986132,
       "_flags": 15
@@ -24,13 +24,6 @@
         "length": 0,
         "_constructor": "messageEntityCode#28a20571",
         "constructorId": 681706865,
-        "_flags": 0
-      },
-      {
-        "offset": 0,
-        "length": 0,
-        "_constructor": "messageEntityBold#bd610bc9",
-        "constructorId": -1117713463,
         "_flags": 0
       }
     ],

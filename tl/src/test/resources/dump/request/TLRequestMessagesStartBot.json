@@ -1,16 +1,18 @@
 {
   "bot": {
-    "_constructor": "inputUserEmpty#b98886cf",
-    "constructorId": -1182234929,
+    "userId": 0,
+    "accessHash": 0,
+    "_constructor": "inputUser#d8292816",
+    "constructorId": -668391402,
     "_flags": 0
   },
   "peer": {
-    "_constructor": "inputPeerSelf#7da07ec9",
-    "constructorId": 2107670217,
+    "_constructor": "inputPeerEmpty#7f3b18ea",
+    "constructorId": 2134579434,
     "_flags": 0
   },
   "randomId": 0,
-  "startParam": "jjp4OaHZNrDDta6Ict61DPR",
+  "startParam": "NOxoMc0VN",
   "_constructor": "messages.startBot#e6df7378",
   "constructorId": -421563528,
   "_flags": 0

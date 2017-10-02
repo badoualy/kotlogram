@@ -2,8 +2,8 @@
   "chatId": 0,
   "userId": 0,
   "action": {
-    "_constructor": "sendMessageGeoLocationAction#176f8ba1",
-    "constructorId": 393186209,
+    "_constructor": "sendMessageCancelAction#fd5ec8f5",
+    "constructorId": -44119819,
     "_flags": 0
   },
   "_constructor": "updateChatUserTyping#9a65ea1f",

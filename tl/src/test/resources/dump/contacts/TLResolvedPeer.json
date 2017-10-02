@@ -8,10 +8,31 @@
   "chats": [
     {
       "id": 0,
-      "title": "YpycuavpSyuN8CYxG",
-      "_constructor": "chatForbidden#7328bdb",
-      "constructorId": 120753115,
-      "_flags": 0
+      "accessHash": 0,
+      "title": "W0VOATI1eDki",
+      "username": "QrZ5ZfXEdXItSwNVd2L",
+      "photo": {
+        "_constructor": "chatPhotoEmpty#37c1011c",
+        "constructorId": 935395612,
+        "_flags": 0
+      },
+      "date": 0,
+      "version": 0,
+      "restrictionReason": "3MOA1Whd052jJ5DEHhIN3oZd",
+      "adminRights": {
+        "_constructor": "channelAdminRights#5d7ceba5",
+        "constructorId": 1568467877,
+        "_flags": 0
+      },
+      "bannedRights": {
+        "untilDate": 0,
+        "_constructor": "channelBannedRights#58cf4249",
+        "constructorId": 1489977929,
+        "_flags": 0
+      },
+      "_constructor": "channel#cb44b1c",
+      "constructorId": 213142300,
+      "_flags": 57920
     }
   ],
   "users": [
@@ -23,9 +44,46 @@
     },
     {
       "id": 0,
-      "_constructor": "userEmpty#200250ba",
-      "constructorId": 537022650,
-      "_flags": 0
+      "accessHash": 0,
+      "firstName": "Dtq5RDh",
+      "lastName": "fQF6b1xZHTv1",
+      "username": "NZWjYHD61vUx5",
+      "phone": "TP3b5rcwaG8fQYeirEd2Eo6i",
+      "photo": {
+        "photoId": 0,
+        "photoSmall": {
+          "dcId": 0,
+          "volumeId": 0,
+          "localId": 0,
+          "secret": 0,
+          "_constructor": "fileLocation#53d69076",
+          "constructorId": 1406570614,
+          "_flags": 0
+        },
+        "photoBig": {
+          "volumeId": 0,
+          "localId": 0,
+          "secret": 0,
+          "_constructor": "fileLocationUnavailable#7c596b46",
+          "constructorId": 2086234950,
+          "_flags": 0
+        },
+        "_constructor": "userProfilePhoto#d559d8c8",
+        "constructorId": -715532088,
+        "_flags": 0
+      },
+      "status": {
+        "_constructor": "userStatusRecently#e26f42f1",
+        "constructorId": -496024847,
+        "_flags": 0
+      },
+      "botInfoVersion": 0,
+      "restrictionReason": "4a3ojqhby7HOF2",
+      "botInlinePlaceholder": "FKYBPeiHVIdkIdf",
+      "langCode": "bDGB3bCRiHMJPdwlQ",
+      "_constructor": "user#2e13f4c3",
+      "constructorId": 773059779,
+      "_flags": 4997247
     }
   ],
   "_constructor": "contacts.resolvedPeer#7f077ad9",

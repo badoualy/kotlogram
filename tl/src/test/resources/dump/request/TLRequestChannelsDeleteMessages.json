@@ -4,10 +4,7 @@
     "constructorId": -292807034,
     "_flags": 0
   },
-  "id": [
-    0,
-    0
-  ],
+  "id": [],
   "_constructor": "channels.deleteMessages#84c1fd4e",
   "constructorId": -2067661490,
   "_flags": 0

@@ -1,8 +1,8 @@
 {
-  "phoneNumber": "ndVjGybDqdPvA066FwitofNweqr",
-  "currentNumber": false,
+  "phoneNumber": "BdZIC9LTWh",
+  "currentNumber": null,
   "apiId": 0,
-  "apiHash": "koWSgRjLst0oWCkwFyVO",
+  "apiHash": "uTLM5zGgxSUDsJt9lW1MgLXr",
   "_constructor": "auth.sendCode#86aef0ec",
   "constructorId": -2035355412,
   "_flags": 0

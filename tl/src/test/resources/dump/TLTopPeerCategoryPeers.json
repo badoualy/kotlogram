@@ -1,11 +1,36 @@
 {
   "category": {
-    "_constructor": "topPeerCategoryGroups#bd17a14a",
-    "constructorId": -1122524854,
+    "_constructor": "topPeerCategoryCorrespondents#637b7ed",
+    "constructorId": 104314861,
     "_flags": 0
   },
   "count": 0,
-  "peers": [],
+  "peers": [
+    {
+      "peer": {
+        "userId": 0,
+        "_constructor": "peerUser#9db1bc6d",
+        "constructorId": -1649296275,
+        "_flags": 0
+      },
+      "rating": 0.0,
+      "_constructor": "topPeer#edcdc05b",
+      "constructorId": -305282981,
+      "_flags": 0
+    },
+    {
+      "peer": {
+        "channelId": 0,
+        "_constructor": "peerChannel#bddde532",
+        "constructorId": -1109531342,
+        "_flags": 0
+      },
+      "rating": 0.0,
+      "_constructor": "topPeer#edcdc05b",
+      "constructorId": -305282981,
+      "_flags": 0
+    }
+  ],
   "_constructor": "topPeerCategoryPeers#fb834291",
   "constructorId": -75283823,
   "_flags": 0

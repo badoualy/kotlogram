@@ -1,29 +1,26 @@
 {
-  "id": "NCt83PxnpECQooMlKtJlj9q",
-  "type": "TJ8X4eX8JxPjDxAWgz40tqp",
-  "title": "wzu5cEOMSTPEk6yFEC",
-  "description": "d8wFdQ7lckyrrue9mRIg",
-  "url": "UiPfjjxlknaCRCIMTtV",
-  "thumbUrl": "ugafDzRwQHB1MZoTElC43TjVoNJJc",
-  "contentUrl": "FZjstZe9XZkKcsZuRRhB",
-  "contentType": "qK3wWMhugaGiABu",
+  "id": "ov4WEJYU6WXDd0oaOb3llnn",
+  "type": "VSlsenFvM3Ugsy4RMZuuKSLZX3j6T",
+  "title": "s9cAQRmZ03Nxh1PQ1YBmWYNPr",
+  "description": "FCpksNv9Kk76",
+  "url": "Zs6MCFi",
+  "thumbUrl": "iV20UioTgvlTWfu4TQH",
+  "contentUrl": "d6H18IN5tvj",
+  "contentType": "IvoNyr",
   "w": 0,
   "h": 0,
   "duration": 0,
   "sendMessage": {
-    "geo": {
-      "_constructor": "geoPointEmpty#1117dd5f",
-      "constructorId": 286776671,
-      "_flags": 0
-    },
+    "message": "Fyotyown",
+    "entities": [],
     "replyMarkup": {
-      "_constructor": "replyKeyboardHide#a03e5b85",
-      "constructorId": -1606526075,
+      "_constructor": "replyKeyboardForceReply#f4108aa0",
+      "constructorId": -200242528,
       "_flags": 0
     },
-    "_constructor": "botInlineMessageMediaGeo#3a8fd8b8",
-    "constructorId": 982505656,
-    "_flags": 4
+    "_constructor": "botInlineMessageText#8c7f65e2",
+    "constructorId": -1937807902,
+    "_flags": 6
   },
   "_constructor": "botInlineResult#9bebaeb9",
   "constructorId": -1679053127,

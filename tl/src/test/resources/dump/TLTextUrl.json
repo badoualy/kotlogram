@@ -1,10 +1,16 @@
 {
   "text": {
-    "_constructor": "textEmpty#dc3d824f",
-    "constructorId": -599948721,
+    "text": {
+      "text": "hEqUDl9f0AMQN9CB9hjp4fTJPhGM",
+      "_constructor": "textPlain#744694e0",
+      "constructorId": 1950782688,
+      "_flags": 0
+    },
+    "_constructor": "textStrike#9bf8bb95",
+    "constructorId": -1678197867,
     "_flags": 0
   },
-  "url": "ZapwsbPh6f4O",
+  "url": "XCOTGn",
   "webpageId": 0,
   "_constructor": "textUrl#3c2884c1",
   "constructorId": 1009288385,

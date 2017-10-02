@@ -1,5 +1,5 @@
 {
-  "phoneRegistered": false,
+  "phoneRegistered": true,
   "_constructor": "auth.checkedPhone#811ea28e",
   "constructorId": -2128698738,
   "_flags": 0

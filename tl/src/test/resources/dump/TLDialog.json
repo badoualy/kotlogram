@@ -1,8 +1,8 @@
 {
   "peer": {
-    "chatId": 0,
-    "_constructor": "peerChat#bad0e5bb",
-    "constructorId": -1160714821,
+    "channelId": 0,
+    "_constructor": "peerChannel#bddde532",
+    "constructorId": -1109531342,
     "_flags": 0
   },
   "topMessage": 0,
@@ -11,17 +11,35 @@
   "unreadCount": 0,
   "unreadMentionsCount": 0,
   "notifySettings": {
-    "muteUntil": 0,
-    "sound": "YabdRAPx44",
-    "_constructor": "peerNotifySettings#9acda4c0",
-    "constructorId": -1697798976,
+    "_constructor": "peerNotifySettingsEmpty#70a68512",
+    "constructorId": 1889961234,
     "_flags": 0
   },
   "pts": 0,
   "draft": {
-    "_constructor": "draftMessageEmpty#ba4baec5",
-    "constructorId": -1169445179,
-    "_flags": 0
+    "replyToMsgId": 0,
+    "message": "gz02xy",
+    "entities": [
+      {
+        "offset": 0,
+        "length": 0,
+        "url": "LrpmL9BtZaB",
+        "_constructor": "messageEntityTextUrl#76a6d327",
+        "constructorId": 1990644519,
+        "_flags": 0
+      },
+      {
+        "offset": 0,
+        "length": 0,
+        "_constructor": "messageEntityBotCommand#6cef8ac7",
+        "constructorId": 1827637959,
+        "_flags": 0
+      }
+    ],
+    "date": 0,
+    "_constructor": "draftMessage#fd8e711f",
+    "constructorId": -40996577,
+    "_flags": 9
   },
   "_constructor": "dialog#e4def5db",
   "constructorId": -455150117,

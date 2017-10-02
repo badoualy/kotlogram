@@ -1,55 +1,37 @@
 {
   "queryId": 0,
-  "nextOffset": "wFfNcaPdPv7w4",
+  "nextOffset": "xWcGNiAtet2RjfrcBGB5ds5",
   "switchPm": {
-    "text": "R1dc5iQn",
-    "startParam": "PjLWWH",
+    "text": "jmBJCck9r4P9HSs0mfh04B",
+    "startParam": "DSCdgCKopRsMlVey1i",
     "_constructor": "inlineBotSwitchPM#3c20629f",
     "constructorId": 1008755359,
     "_flags": 0
   },
   "results": [
     {
-      "id": "oDBmyuqJfe0JhyuFMrFm2KgYuMruc",
-      "type": "FX07WRtqW",
-      "title": "WnGCgBkQLaF45GrQwcQbWARYSBDT",
-      "description": "XgIh4YJqW0A",
-      "url": "BVcvGauNI2ZgKsRuxyvr",
-      "thumbUrl": "TfpuzY6BUFEzPRQ0U",
-      "contentUrl": "N7HeRyd7yXCXR91bc6xSFOHeVsl",
-      "contentType": "vAUJtEEFpXIJJYxOwATORcQxv4yjs",
+      "id": "EFcLiCmbwdq1PrDWrLWej2tYtHie",
+      "type": "G2ekLJ5nhsYiONm7x",
+      "title": "VHDOTsEIoqBZu0SbR6",
+      "description": "goOD79Snz5JB9mC",
+      "url": "xz8sl7",
+      "thumbUrl": "PWUeyN1pTy7qwyB",
+      "contentUrl": "mJlPePgm",
+      "contentType": "ihTWRT3y0y436awkjCICYHeZWGor",
       "w": 0,
       "h": 0,
       "duration": 0,
       "sendMessage": {
-        "geo": {
-          "_long": 0.0,
-          "lat": 0.0,
-          "_constructor": "geoPoint#2049d70c",
-          "constructorId": 541710092,
-          "_flags": 0
-        },
+        "phoneNumber": "Ckkvvs",
+        "firstName": "i2LO8aXMsCzli0kQZ4ApzUsZ2lUuf",
+        "lastName": "qwjONp7",
         "replyMarkup": {
-          "rows": [
-            {
-              "buttons": [],
-              "_constructor": "keyboardButtonRow#77608b83",
-              "constructorId": 2002815875,
-              "_flags": 0
-            },
-            {
-              "buttons": [],
-              "_constructor": "keyboardButtonRow#77608b83",
-              "constructorId": 2002815875,
-              "_flags": 0
-            }
-          ],
-          "_constructor": "replyInlineMarkup#48a30254",
-          "constructorId": 1218642516,
+          "_constructor": "replyKeyboardForceReply#f4108aa0",
+          "constructorId": -200242528,
           "_flags": 0
         },
-        "_constructor": "botInlineMessageMediaGeo#3a8fd8b8",
-        "constructorId": 982505656,
+        "_constructor": "botInlineMessageMediaContact#35edb4d4",
+        "constructorId": 904770772,
         "_flags": 4
       },
       "_constructor": "botInlineResult#9bebaeb9",

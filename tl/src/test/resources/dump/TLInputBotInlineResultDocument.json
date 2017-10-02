@@ -1,69 +1,23 @@
 {
-  "id": "UEE2Q06qxvI",
-  "type": "tSIrU2CAWHHu0gh",
-  "title": "f0sFkZ3vsC",
-  "description": "OU41H5o1tuo1bK0Pn0",
+  "id": "jXE5ELcZLX1Ya1z",
+  "type": "OQP9l5uK0ymu0rQh4Y4e5WlAoMsqm",
+  "title": "UKSbYTBIrWyUmTOoDwtsVDDowk1Xp",
+  "description": "BucLdpkBs",
   "document": {
-    "id": 0,
-    "accessHash": 0,
-    "_constructor": "inputDocument#18798952",
-    "constructorId": 410618194,
+    "_constructor": "inputDocumentEmpty#72f0eaae",
+    "constructorId": 1928391342,
     "_flags": 0
   },
   "sendMessage": {
-    "message": "5y1KucvSb",
-    "entities": [
-      {
-        "offset": 0,
-        "length": 0,
-        "_constructor": "messageEntityUrl#6ed02538",
-        "constructorId": 1859134776,
-        "_flags": 0
-      },
-      {
-        "offset": 0,
-        "length": 0,
-        "userId": {
-          "userId": 0,
-          "accessHash": 0,
-          "_constructor": "inputUser#d8292816",
-          "constructorId": -668391402,
-          "_flags": 0
-        },
-        "_constructor": "inputMessageEntityMentionName#208e68c9",
-        "constructorId": 546203849,
-        "_flags": 0
-      }
-    ],
+    "caption": "4VqVITfYBdm9",
     "replyMarkup": {
-      "rows": [
-        {
-          "buttons": [
-            {
-              "text": "8hJVujgE7BNCIslagU9Qn1",
-              "_constructor": "keyboardButton#a2fa4880",
-              "constructorId": -1560655744,
-              "_flags": 0
-            },
-            {
-              "text": "96eSZoY",
-              "_constructor": "keyboardButtonBuy#afd93fbb",
-              "constructorId": -1344716869,
-              "_flags": 0
-            }
-          ],
-          "_constructor": "keyboardButtonRow#77608b83",
-          "constructorId": 2002815875,
-          "_flags": 0
-        }
-      ],
-      "_constructor": "replyKeyboardMarkup#3502758c",
-      "constructorId": 889353612,
+      "_constructor": "replyKeyboardHide#a03e5b85",
+      "constructorId": -1606526075,
       "_flags": 0
     },
-    "_constructor": "inputBotInlineMessageText#3dcd7a87",
-    "constructorId": 1036876423,
-    "_flags": 6
+    "_constructor": "inputBotInlineMessageMediaAuto#292fed13",
+    "constructorId": 691006739,
+    "_flags": 4
   },
   "_constructor": "inputBotInlineResultDocument#fff8fdc4",
   "constructorId": -459324,

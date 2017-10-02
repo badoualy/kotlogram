@@ -1,8 +1,14 @@
 {
   "text": {
-    "text": "2woMx",
-    "_constructor": "textPlain#744694e0",
-    "constructorId": 1950782688,
+    "text": {
+      "_constructor": "textEmpty#dc3d824f",
+      "constructorId": -599948721,
+      "_flags": 0
+    },
+    "url": "9xoW3ewvnyp7NJh22avAu0VsW6f",
+    "webpageId": 0,
+    "_constructor": "textUrl#3c2884c1",
+    "constructorId": 1009288385,
     "_flags": 0
   },
   "_constructor": "pageBlockSubtitle#8ffa9a1f",

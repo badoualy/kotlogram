@@ -1,5 +1,8 @@
 {
-  "messages": [],
+  "messages": [
+    0,
+    0
+  ],
   "pts": 0,
   "ptsCount": 0,
   "_constructor": "updateDeleteMessages#a20db0e5",

@@ -1,7 +1,9 @@
 {
   "geoPoint": {
-    "_constructor": "inputGeoPointEmpty#e4c123d6",
-    "constructorId": -457104426,
+    "lat": 0.0,
+    "_long": 0.0,
+    "_constructor": "inputGeoPoint#f3b7acc9",
+    "constructorId": -206066487,
     "_flags": 0
   },
   "_constructor": "inputMediaGeoPoint#f9c44144",

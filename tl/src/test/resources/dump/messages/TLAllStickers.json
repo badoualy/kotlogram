@@ -1,6 +1,29 @@
 {
   "hash": 0,
-  "sets": [],
+  "sets": [
+    {
+      "id": 0,
+      "accessHash": 0,
+      "title": "4G4QWVtKFkD3hGslMH",
+      "shortName": "6N4T8DLRgjrV02XjbXLmUK",
+      "count": 0,
+      "hash": 0,
+      "_constructor": "stickerSet#cd303b41",
+      "constructorId": -852477119,
+      "_flags": 0
+    },
+    {
+      "id": 0,
+      "accessHash": 0,
+      "title": "Lr2yDptZyRWb",
+      "shortName": "q2tDyXIiMprq0Lj9eAeQKe5",
+      "count": 0,
+      "hash": 0,
+      "_constructor": "stickerSet#cd303b41",
+      "constructorId": -852477119,
+      "_flags": 0
+    }
+  ],
   "_constructor": "messages.allStickers#edfd405f",
   "constructorId": -302170017,
   "_flags": 0

@@ -1,49 +1,11 @@
 {
   "text": {
-    "text": {
-      "text": {
-        "texts": [
-          {
-            "text": {
-              "text": {
-                "text": {
-                  "_constructor": "textEmpty#dc3d824f",
-                  "constructorId": -599948721,
-                  "_flags": 0
-                },
-                "_constructor": "textItalic#d912a59c",
-                "constructorId": -653089380,
-                "_flags": 0
-              },
-              "email": "UkndM8",
-              "_constructor": "textEmail#de5a0dd6",
-              "constructorId": -564523562,
-              "_flags": 0
-            },
-            "_constructor": "textItalic#d912a59c",
-            "constructorId": -653089380,
-            "_flags": 0
-          },
-          {
-            "texts": [],
-            "_constructor": "textConcat#7e6260d7",
-            "constructorId": 2120376535,
-            "_flags": 0
-          }
-        ],
-        "_constructor": "textConcat#7e6260d7",
-        "constructorId": 2120376535,
-        "_flags": 0
-      },
-      "_constructor": "textItalic#d912a59c",
-      "constructorId": -653089380,
-      "_flags": 0
-    },
-    "_constructor": "textStrike#9bf8bb95",
-    "constructorId": -1678197867,
+    "text": "X9r8fqPQ8tKFKEHQyXvP",
+    "_constructor": "textPlain#744694e0",
+    "constructorId": 1950782688,
     "_flags": 0
   },
-  "language": "oFPhtxTqsYydenJtZMyaD",
+  "language": "AZ1ku0B3DavztAee76u9moI",
   "_constructor": "pageBlockPreformatted#c070d93e",
   "constructorId": -1066346178,
   "_flags": 0

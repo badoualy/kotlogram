@@ -1,77 +1,21 @@
 {
-  "rules": [],
-  "users": [
+  "rules": [
     {
-      "id": 0,
-      "accessHash": 0,
-      "firstName": "oL0uE41n2fxPSiDx9sQDu8UZqH",
-      "lastName": "W76rM1eRQ3WoHzEsVVoqSBgW",
-      "username": "URhcLvS9sQ35MRFuVBpMguMktefAD",
-      "phone": "3nMqLZ0zhpUnGm5x96DIwA",
-      "photo": {
-        "_constructor": "userProfilePhotoEmpty#4f11bae1",
-        "constructorId": 1326562017,
-        "_flags": 0
-      },
-      "status": {
-        "_constructor": "userStatusEmpty#9d05049",
-        "constructorId": 164646985,
-        "_flags": 0
-      },
-      "botInfoVersion": 0,
-      "restrictionReason": "bZLG6bHGfqHC8f9aI",
-      "botInlinePlaceholder": "ovsXg",
-      "langCode": "iZc94ov8Ek2AwwpdEagiJ0S",
-      "_constructor": "user#2e13f4c3",
-      "constructorId": 773059779,
-      "_flags": 4997247
+      "_constructor": "privacyValueAllowContacts#fffe1bac",
+      "constructorId": -123988,
+      "_flags": 0
     },
     {
-      "id": 0,
-      "accessHash": 0,
-      "firstName": "64tqzjcetCcmT1zagJbCxn",
-      "lastName": "jloJptz34",
-      "username": "E667rSFOi2f4EQQckXwEVESUW1gR",
-      "phone": "ofvpC3d1nvZHFhPfF9jwxBw",
-      "photo": {
-        "photoId": 0,
-        "photoSmall": {
-          "dcId": 0,
-          "volumeId": 0,
-          "localId": 0,
-          "secret": 0,
-          "_constructor": "fileLocation#53d69076",
-          "constructorId": 1406570614,
-          "_flags": 0
-        },
-        "photoBig": {
-          "dcId": 0,
-          "volumeId": 0,
-          "localId": 0,
-          "secret": 0,
-          "_constructor": "fileLocation#53d69076",
-          "constructorId": 1406570614,
-          "_flags": 0
-        },
-        "_constructor": "userProfilePhoto#d559d8c8",
-        "constructorId": -715532088,
-        "_flags": 0
-      },
-      "status": {
-        "expires": 0,
-        "_constructor": "userStatusOnline#edb93949",
-        "constructorId": -306628279,
-        "_flags": 0
-      },
-      "botInfoVersion": 0,
-      "restrictionReason": "eHYwlPr",
-      "botInlinePlaceholder": "uCRwn7O2amK9L",
-      "langCode": "WXhm1khZu",
-      "_constructor": "user#2e13f4c3",
-      "constructorId": 773059779,
-      "_flags": 4997247
+      "users": [
+        0,
+        0
+      ],
+      "_constructor": "privacyValueDisallowUsers#c7f49b7",
+      "constructorId": 209668535,
+      "_flags": 0
     }
   ],
+  "users": [],
   "_constructor": "account.privacyRules#554abb6f",
   "constructorId": 1430961007,
   "_flags": 0

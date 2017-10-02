@@ -2,7 +2,7 @@
   "id": 0,
   "fromId": 0,
   "chatId": 0,
-  "message": "giwH67ivZheJfkjMEYSsWf",
+  "message": "aNlbdBPLFkoRXlCZVLKVV5c1G",
   "pts": 0,
   "ptsCount": 0,
   "date": 0,
@@ -11,29 +11,14 @@
     "date": 0,
     "channelId": 0,
     "channelPost": 0,
-    "postAuthor": "p7s1AitFuIa4H8M",
+    "postAuthor": "S0mCWnD4i6Ob",
     "_constructor": "messageFwdHeader#fadff4ac",
     "constructorId": -85986132,
     "_flags": 15
   },
   "viaBotId": 0,
   "replyToMsgId": 0,
-  "entities": [
-    {
-      "offset": 0,
-      "length": 0,
-      "_constructor": "messageEntityEmail#64e475c2",
-      "constructorId": 1692693954,
-      "_flags": 0
-    },
-    {
-      "offset": 0,
-      "length": 0,
-      "_constructor": "messageEntityEmail#64e475c2",
-      "constructorId": 1692693954,
-      "_flags": 0
-    }
-  ],
+  "entities": [],
   "_constructor": "updateShortChatMessage#16812688",
   "constructorId": 377562760,
   "_flags": 2188

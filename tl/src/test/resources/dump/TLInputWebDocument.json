@@ -1,19 +1,12 @@
 {
-  "url": "DZI4bK4eSwbSy8vAiUk",
+  "url": "BFuMq3xDcsMbhv",
   "size": 0,
-  "mimeType": "cfsiejF5zv9kZl8ZNV3riK",
+  "mimeType": "8UWndDeudtIOSynkLweQ1h5Fb",
   "attributes": [
     {
-      "duration": 0,
-      "w": 0,
-      "h": 0,
-      "_constructor": "documentAttributeVideo#ef02ce6",
-      "constructorId": 250621158,
-      "_flags": 0
-    },
-    {
-      "_constructor": "documentAttributeAnimated#11b58939",
-      "constructorId": 297109817,
+      "fileName": "E8daJRmSEWWDrGxSXd",
+      "_constructor": "documentAttributeFilename#15590068",
+      "constructorId": 358154344,
       "_flags": 0
     }
   ],

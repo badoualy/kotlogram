@@ -1,8 +1,8 @@
 {
   "chatId": 0,
   "userId": {
-    "_constructor": "inputUserSelf#f7c1b13f",
-    "constructorId": -138301121,
+    "_constructor": "inputUserEmpty#b98886cf",
+    "constructorId": -1182234929,
     "_flags": 0
   },
   "fwdLimit": 0,

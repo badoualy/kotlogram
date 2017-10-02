@@ -1,8 +1,9 @@
 {
   "userId": 0,
   "status": {
-    "_constructor": "userStatusLastWeek#7bf09fc",
-    "constructorId": 129960444,
+    "expires": 0,
+    "_constructor": "userStatusOnline#edb93949",
+    "constructorId": -306628279,
     "_flags": 0
   },
   "_constructor": "contactStatus#d3680c61",

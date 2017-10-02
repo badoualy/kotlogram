@@ -4,52 +4,14 @@
   "ptsCount": 0,
   "date": 0,
   "media": {
-    "title": "RujyYtIUxAO3wxzLGlggN",
-    "description": "hDShikD0NX3srHNA5bOAEecIO4A",
-    "photo": {
-      "url": "6QOjCXN2MSOFjpN4I",
-      "accessHash": 0,
-      "size": 0,
-      "mimeType": "tzNC4Z0h62YWQx8inf2",
-      "attributes": [
-        {
-          "duration": 0,
-          "title": "w4pA02BpnmcquPSOIPAgLeE",
-          "performer": "1m3zm8lxAc9N6e0W",
-          "waveform": {
-            "data": [
-              0,
-              0,
-              0,
-              0,
-              0,
-              0
-            ],
-            "offset": 0,
-            "length": 6
-          },
-          "_constructor": "documentAttributeAudio#9852f9c6",
-          "constructorId": -1739392570,
-          "_flags": 7
-        },
-        {
-          "_constructor": "documentAttributeHasStickers#9801d2f7",
-          "constructorId": -1744710921,
-          "_flags": 0
-        }
-      ],
-      "dcId": 0,
-      "_constructor": "webDocument#c61acbd8",
-      "constructorId": -971322408,
+    "geo": {
+      "_constructor": "geoPointEmpty#1117dd5f",
+      "constructorId": 286776671,
       "_flags": 0
     },
-    "receiptMsgId": 0,
-    "currency": "PXjqVPXNk1vvRnurbWBTD",
-    "totalAmount": 0,
-    "startParam": "N2SPMyHwZZDZR",
-    "_constructor": "messageMediaInvoice#84551347",
-    "constructorId": -2074799289,
-    "_flags": 5
+    "_constructor": "messageMediaGeo#56e0d474",
+    "constructorId": 1457575028,
+    "_flags": 0
   },
   "entities": [
     {
@@ -57,6 +19,13 @@
       "length": 0,
       "_constructor": "messageEntityCode#28a20571",
       "constructorId": 681706865,
+      "_flags": 0
+    },
+    {
+      "offset": 0,
+      "length": 0,
+      "_constructor": "messageEntityBold#bd610bc9",
+      "constructorId": -1117713463,
       "_flags": 0
     }
   ],

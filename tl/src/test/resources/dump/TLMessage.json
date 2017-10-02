@@ -2,9 +2,9 @@
   "id": 0,
   "fromId": 0,
   "toId": {
-    "chatId": 0,
-    "_constructor": "peerChat#bad0e5bb",
-    "constructorId": -1160714821,
+    "userId": 0,
+    "_constructor": "peerUser#9db1bc6d",
+    "constructorId": -1649296275,
     "_flags": 0
   },
   "fwdFrom": {
@@ -12,7 +12,7 @@
     "date": 0,
     "channelId": 0,
     "channelPost": 0,
-    "postAuthor": "y8bC0XU1gTSqmh6dobge4LUy65jl9",
+    "postAuthor": "dFpHbpI7CYbf9riT",
     "_constructor": "messageFwdHeader#fadff4ac",
     "constructorId": -85986132,
     "_flags": 15
@@ -20,29 +20,120 @@
   "viaBotId": 0,
   "replyToMsgId": 0,
   "date": 0,
-  "message": "3TDQYGqzMv8TP4XyunyH",
+  "message": "RZBDBdQwQyJP7zI2XItudH5gb",
   "media": {
-    "geo": {
-      "_long": 0.0,
-      "lat": 0.0,
-      "_constructor": "geoPoint#2049d70c",
-      "constructorId": 541710092,
-      "_flags": 0
+    "game": {
+      "id": 0,
+      "accessHash": 0,
+      "shortName": "cUx56Naxwg6XIeZY9yM",
+      "title": "JZCW0Ft",
+      "description": "0eaVch5",
+      "photo": {
+        "id": 0,
+        "accessHash": 0,
+        "date": 0,
+        "sizes": [
+          {
+            "type": "5HvYFZqDhsLmu0BXVATimKOC",
+            "location": {
+              "dcId": 0,
+              "volumeId": 0,
+              "localId": 0,
+              "secret": 0,
+              "_constructor": "fileLocation#53d69076",
+              "constructorId": 1406570614,
+              "_flags": 0
+            },
+            "w": 0,
+            "h": 0,
+            "size": 0,
+            "_constructor": "photoSize#77bfb61b",
+            "constructorId": 2009052699,
+            "_flags": 0
+          }
+        ],
+        "_constructor": "photo#9288dd29",
+        "constructorId": -1836524247,
+        "_flags": 0
+      },
+      "document": {
+        "id": 0,
+        "accessHash": 0,
+        "date": 0,
+        "mimeType": "AZltW",
+        "size": 0,
+        "thumb": {
+          "type": "urSK7h9iGFh2wHv",
+          "location": {
+            "dcId": 0,
+            "volumeId": 0,
+            "localId": 0,
+            "secret": 0,
+            "_constructor": "fileLocation#53d69076",
+            "constructorId": 1406570614,
+            "_flags": 0
+          },
+          "w": 0,
+          "h": 0,
+          "size": 0,
+          "_constructor": "photoSize#77bfb61b",
+          "constructorId": 2009052699,
+          "_flags": 0
+        },
+        "dcId": 0,
+        "version": 0,
+        "attributes": [],
+        "_constructor": "document#87232bc7",
+        "constructorId": -2027738169,
+        "_flags": 0
+      },
+      "_constructor": "game#bdf9653b",
+      "constructorId": -1107729093,
+      "_flags": 1
     },
-    "_constructor": "messageMediaGeo#56e0d474",
-    "constructorId": 1457575028,
+    "_constructor": "messageMediaGame#fdb19008",
+    "constructorId": -38694904,
     "_flags": 0
   },
   "replyMarkup": {
-    "rows": [],
-    "_constructor": "replyKeyboardMarkup#3502758c",
-    "constructorId": 889353612,
+    "rows": [
+      {
+        "buttons": [],
+        "_constructor": "keyboardButtonRow#77608b83",
+        "constructorId": 2002815875,
+        "_flags": 0
+      },
+      {
+        "buttons": [
+          {
+            "text": "O61j2lJWiWWv7uxigv9TVPs",
+            "url": "1b3LpVjA",
+            "_constructor": "keyboardButtonUrl#258aff05",
+            "constructorId": 629866245,
+            "_flags": 0
+          }
+        ],
+        "_constructor": "keyboardButtonRow#77608b83",
+        "constructorId": 2002815875,
+        "_flags": 0
+      }
+    ],
+    "_constructor": "replyInlineMarkup#48a30254",
+    "constructorId": 1218642516,
     "_flags": 0
   },
-  "entities": [],
+  "entities": [
+    {
+      "offset": 0,
+      "length": 0,
+      "_constructor": "messageEntityHashtag#6f635b0d",
+      "constructorId": 1868782349,
+      "_flags": 0
+    }
+  ],
   "views": 0,
   "editDate": 0,
-  "postAuthor": "H5c8hqbj",
+  "postAuthor": "xFEghPnf6dOq9VxuvzkaCF97K9Er",
   "_constructor": "message#90dddc11",
   "constructorId": -1864508399,
   "_flags": 102348

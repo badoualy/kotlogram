@@ -1,7 +1,14 @@
 {
   "peer": {
-    "_constructor": "inputNotifyChats#4a95e84e",
-    "constructorId": 1251338318,
+    "peer": {
+      "channelId": 0,
+      "accessHash": 0,
+      "_constructor": "inputPeerChannel#20adaef8",
+      "constructorId": 548253432,
+      "_flags": 0
+    },
+    "_constructor": "inputNotifyPeer#b8bc5b0c",
+    "constructorId": -1195615476,
     "_flags": 0
   },
   "_constructor": "account.getNotifySettings#12b3ad31",

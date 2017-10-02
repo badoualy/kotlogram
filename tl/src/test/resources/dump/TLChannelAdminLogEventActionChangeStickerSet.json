@@ -1,14 +1,15 @@
 {
   "prevStickerset": {
-    "_constructor": "inputStickerSetEmpty#ffb62b95",
-    "constructorId": -4838507,
-    "_flags": 0
-  },
-  "newStickerset": {
     "id": 0,
     "accessHash": 0,
     "_constructor": "inputStickerSetID#9de7a269",
     "constructorId": -1645763991,
+    "_flags": 0
+  },
+  "newStickerset": {
+    "shortName": "xhhcv8ARrqQeai8FwfCAwJRp",
+    "_constructor": "inputStickerSetShortName#861cc8a0",
+    "constructorId": -2044933984,
     "_flags": 0
   },
   "_constructor": "channelAdminLogEventActionChangeStickerSet#b1c3caa7",

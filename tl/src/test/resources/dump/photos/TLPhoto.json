@@ -5,33 +5,7 @@
     "constructorId": 590459437,
     "_flags": 0
   },
-  "users": [
-    {
-      "id": 0,
-      "accessHash": 0,
-      "firstName": "wjrJC1o",
-      "lastName": "srebXXZrRxVg",
-      "username": "HvDa7",
-      "phone": "slGINtdmmcI9vh",
-      "photo": {
-        "_constructor": "userProfilePhotoEmpty#4f11bae1",
-        "constructorId": 1326562017,
-        "_flags": 0
-      },
-      "status": {
-        "_constructor": "userStatusLastMonth#77ebc742",
-        "constructorId": 2011940674,
-        "_flags": 0
-      },
-      "botInfoVersion": 0,
-      "restrictionReason": "kY6QdIGvioEEJ",
-      "botInlinePlaceholder": "59sndWaIzfY",
-      "langCode": "bJwBOIy3Yy23Ql7A6",
-      "_constructor": "user#2e13f4c3",
-      "constructorId": 773059779,
-      "_flags": 4997247
-    }
-  ],
+  "users": [],
   "_constructor": "photos.photo#20212ca8",
   "constructorId": 539045032,
   "_flags": 0

@@ -8,6 +8,12 @@
       "_constructor": "chatParticipant#c8d7493e",
       "constructorId": -925415106,
       "_flags": 0
+    },
+    {
+      "userId": 0,
+      "_constructor": "chatParticipantCreator#da13538a",
+      "constructorId": -636267638,
+      "_flags": 0
     }
   ],
   "version": 0,

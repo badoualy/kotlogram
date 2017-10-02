@@ -1,13 +1,7 @@
 {
   "text": {
-    "text": {
-      "text": "KYmhBaLLed8",
-      "_constructor": "textPlain#744694e0",
-      "constructorId": 1950782688,
-      "_flags": 0
-    },
-    "_constructor": "textStrike#9bf8bb95",
-    "constructorId": -1678197867,
+    "_constructor": "textEmpty#dc3d824f",
+    "constructorId": -599948721,
     "_flags": 0
   },
   "_constructor": "pageBlockHeader#bfd064ec",

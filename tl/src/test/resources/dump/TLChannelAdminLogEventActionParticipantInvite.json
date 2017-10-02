@@ -1,16 +1,10 @@
 {
   "participant": {
     "userId": 0,
-    "kickedBy": 0,
+    "inviterId": 0,
     "date": 0,
-    "bannedRights": {
-      "untilDate": 0,
-      "_constructor": "channelBannedRights#58cf4249",
-      "constructorId": 1489977929,
-      "_flags": 0
-    },
-    "_constructor": "channelParticipantBanned#222c1886",
-    "constructorId": 573315206,
+    "_constructor": "channelParticipantSelf#a3289a6d",
+    "constructorId": -1557620115,
     "_flags": 0
   },
   "_constructor": "channelAdminLogEventActionParticipantInvite#e31c34d8",

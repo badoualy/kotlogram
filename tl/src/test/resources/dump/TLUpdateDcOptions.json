@@ -1,5 +1,22 @@
 {
-  "dcOptions": [],
+  "dcOptions": [
+    {
+      "id": 0,
+      "ipAddress": "bOVCTJd5V6jZ8uG0eQKhwxkbGzfcx",
+      "port": 0,
+      "_constructor": "dcOption#5d8c6cc",
+      "constructorId": 98092748,
+      "_flags": 0
+    },
+    {
+      "id": 0,
+      "ipAddress": "N9f8v5LkVJs55N4gbLLnZCMdv",
+      "port": 0,
+      "_constructor": "dcOption#5d8c6cc",
+      "constructorId": 98092748,
+      "_flags": 0
+    }
+  ],
   "_constructor": "updateDcOptions#8e5e9873",
   "constructorId": -1906403213,
   "_flags": 0

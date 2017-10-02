@@ -1,20 +1,19 @@
 {
-  "id": "MmQP6oODL4Y1mubXEkFtfXQ",
-  "type": "nygKrYteSLYSoIxafkptHl",
+  "id": "9OBjUe",
+  "type": "717WcBTHlZ5cR11KGNG",
   "photo": {
     "id": 0,
     "accessHash": 0,
     "date": 0,
     "sizes": [
       {
-        "type": "TROdGEfU4bd",
+        "type": "xlqnVkp9cRHpyyC2bsA",
         "location": {
-          "dcId": 0,
           "volumeId": 0,
           "localId": 0,
           "secret": 0,
-          "_constructor": "fileLocation#53d69076",
-          "constructorId": 1406570614,
+          "_constructor": "fileLocationUnavailable#7c596b46",
+          "constructorId": 2086234950,
           "_flags": 0
         },
         "w": 0,
@@ -25,7 +24,7 @@
         "_flags": 0
       },
       {
-        "type": "6KmCskp",
+        "type": "4pyXt6C7URXeVh8e7KSUFHlsB",
         "_constructor": "photoSizeEmpty#e17e23c",
         "constructorId": 236446268,
         "_flags": 0
@@ -41,17 +40,19 @@
     "constructorId": 922273905,
     "_flags": 0
   },
-  "title": "dndvqk85",
-  "description": "dNO2gBzKP90",
+  "title": "vlZvqXQLd4mDh6keFhao87LXB",
+  "description": "BxECV33han6KSGmRGgYXdYbMs",
   "sendMessage": {
-    "caption": "4YDA9D1uYZB7ctMGo4z",
+    "phoneNumber": "jpI0IACqkXre5XunUz80L",
+    "firstName": "821uGTTEgTDjLZcaXmeVCcsPW",
+    "lastName": "Iy5u9Kw1td2ygi0O8y6d",
     "replyMarkup": {
       "_constructor": "replyKeyboardForceReply#f4108aa0",
       "constructorId": -200242528,
       "_flags": 0
     },
-    "_constructor": "botInlineMessageMediaAuto#a74b15b",
-    "constructorId": 175419739,
+    "_constructor": "botInlineMessageMediaContact#35edb4d4",
+    "constructorId": 904770772,
     "_flags": 4
   },
   "_constructor": "botInlineMediaResult#17db940b",

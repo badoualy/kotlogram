@@ -8,10 +8,8 @@
   },
   "id": 0,
   "userId": {
-    "userId": 0,
-    "accessHash": 0,
-    "_constructor": "inputUser#d8292816",
-    "constructorId": -668391402,
+    "_constructor": "inputUserSelf#f7c1b13f",
+    "constructorId": -138301121,
     "_flags": 0
   },
   "_constructor": "messages.getGameHighScores#e822649d",

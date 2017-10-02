@@ -1,13 +1,14 @@
 {
   "peer": {
-    "_constructor": "inputPeerEmpty#7f3b18ea",
-    "constructorId": 2134579434,
+    "chatId": 0,
+    "_constructor": "inputPeerChat#179be863",
+    "constructorId": 396093539,
     "_flags": 0
   },
   "replyToMsgId": 0,
   "randomId": 0,
   "queryId": 0,
-  "id": "KfXwTVIr41",
+  "id": "RwK6BnwAF",
   "_constructor": "messages.sendInlineBotResult#b16e06fe",
   "constructorId": -1318189314,
   "_flags": 1

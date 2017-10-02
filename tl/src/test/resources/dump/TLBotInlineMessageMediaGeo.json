@@ -8,8 +8,8 @@
   },
   "replyMarkup": {
     "rows": [],
-    "_constructor": "replyInlineMarkup#48a30254",
-    "constructorId": 1218642516,
+    "_constructor": "replyKeyboardMarkup#3502758c",
+    "constructorId": 889353612,
     "_flags": 0
   },
   "_constructor": "botInlineMessageMediaGeo#3a8fd8b8",

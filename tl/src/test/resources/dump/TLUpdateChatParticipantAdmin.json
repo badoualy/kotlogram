@@ -1,7 +1,7 @@
 {
   "chatId": 0,
   "userId": 0,
-  "isAdmin": true,
+  "isAdmin": false,
   "version": 0,
   "_constructor": "updateChatParticipantAdmin#b6901959",
   "constructorId": -1232070311,

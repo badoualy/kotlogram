@@ -6,7 +6,7 @@
     "constructorId": -1343524562,
     "_flags": 0
   },
-  "enabled": false,
+  "enabled": true,
   "_constructor": "channels.toggleInvites#49609307",
   "constructorId": 1231065863,
   "_flags": 0

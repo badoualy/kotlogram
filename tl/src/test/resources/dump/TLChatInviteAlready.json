@@ -1,23 +1,12 @@
 {
   "chat": {
     "id": 0,
-    "title": "k4PMxZZLh",
-    "photo": {
-      "_constructor": "chatPhotoEmpty#37c1011c",
-      "constructorId": 935395612,
-      "_flags": 0
-    },
-    "participantsCount": 0,
-    "date": 0,
-    "version": 0,
-    "migratedTo": {
-      "_constructor": "inputChannelEmpty#ee8c1e86",
-      "constructorId": -292807034,
-      "_flags": 0
-    },
-    "_constructor": "chat#d91cdd54",
-    "constructorId": -652419756,
-    "_flags": 64
+    "accessHash": 0,
+    "title": "y5T96zkGhJYLMIShqlAL",
+    "untilDate": 0,
+    "_constructor": "channelForbidden#289da732",
+    "constructorId": 681420594,
+    "_flags": 65536
   },
   "_constructor": "chatInviteAlready#5a686d7c",
   "constructorId": 1516793212,

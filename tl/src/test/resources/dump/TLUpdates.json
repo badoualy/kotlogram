@@ -1,72 +1,28 @@
 {
-  "updates": [],
+  "updates": [
+    {
+      "_constructor": "updateContactsReset#7084a7be",
+      "constructorId": 1887741886,
+      "_flags": 0
+    }
+  ],
   "users": [
     {
       "id": 0,
       "_constructor": "userEmpty#200250ba",
       "constructorId": 537022650,
       "_flags": 0
-    },
-    {
-      "id": 0,
-      "accessHash": 0,
-      "firstName": "skewds5tlX6UVSe2gjrnnj",
-      "lastName": "RNx9GtU1QGNM1IByIkIDL3VPblsK",
-      "username": "akdIb",
-      "phone": "kWGpZvHX5zhL63PatnQbOWDr",
-      "photo": {
-        "_constructor": "userProfilePhotoEmpty#4f11bae1",
-        "constructorId": 1326562017,
-        "_flags": 0
-      },
-      "status": {
-        "_constructor": "userStatusLastMonth#77ebc742",
-        "constructorId": 2011940674,
-        "_flags": 0
-      },
-      "botInfoVersion": 0,
-      "restrictionReason": "rWJg1h117F22diGRpD1",
-      "botInlinePlaceholder": "X2CdmrIyzMxDNq",
-      "langCode": "fq6Pki23DXSksNd1xh",
-      "_constructor": "user#2e13f4c3",
-      "constructorId": 773059779,
-      "_flags": 4997247
     }
   ],
   "chats": [
     {
       "id": 0,
-      "_constructor": "chatEmpty#9ba2d800",
-      "constructorId": -1683826688,
-      "_flags": 0
-    },
-    {
-      "id": 0,
       "accessHash": 0,
-      "title": "g9CqVq",
-      "username": "W2xwYyRqVFZ7L27ofSC4T",
-      "photo": {
-        "_constructor": "chatPhotoEmpty#37c1011c",
-        "constructorId": 935395612,
-        "_flags": 0
-      },
-      "date": 0,
-      "version": 0,
-      "restrictionReason": "90vVtLz4RY",
-      "adminRights": {
-        "_constructor": "channelAdminRights#5d7ceba5",
-        "constructorId": 1568467877,
-        "_flags": 0
-      },
-      "bannedRights": {
-        "untilDate": 0,
-        "_constructor": "channelBannedRights#58cf4249",
-        "constructorId": 1489977929,
-        "_flags": 0
-      },
-      "_constructor": "channel#cb44b1c",
-      "constructorId": 213142300,
-      "_flags": 57920
+      "title": "Sjj2A0SyFHe5hYxh7",
+      "untilDate": 0,
+      "_constructor": "channelForbidden#289da732",
+      "constructorId": 681420594,
+      "_flags": 65536
     }
   ],
   "date": 0,

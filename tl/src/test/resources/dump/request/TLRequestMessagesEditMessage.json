@@ -1,16 +1,15 @@
 {
   "peer": {
-    "channelId": 0,
-    "accessHash": 0,
-    "_constructor": "inputPeerChannel#20adaef8",
-    "constructorId": 548253432,
+    "_constructor": "inputPeerSelf#7da07ec9",
+    "constructorId": 2107670217,
     "_flags": 0
   },
   "id": 0,
-  "message": "mV1J9l4As",
+  "message": "lMg1sic752k1FLVd0",
   "replyMarkup": {
-    "_constructor": "replyKeyboardHide#a03e5b85",
-    "constructorId": -1606526075,
+    "rows": [],
+    "_constructor": "replyKeyboardMarkup#3502758c",
+    "constructorId": 889353612,
     "_flags": 0
   },
   "entities": [],

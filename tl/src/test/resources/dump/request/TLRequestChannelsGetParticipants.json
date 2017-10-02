@@ -7,9 +7,8 @@
     "_flags": 0
   },
   "filter": {
-    "q": "qLsz42MpwYQj5drxgw",
-    "_constructor": "channelParticipantsBanned#1427a5e1",
-    "constructorId": 338142689,
+    "_constructor": "channelParticipantsAdmins#b4608969",
+    "constructorId": -1268741783,
     "_flags": 0
   },
   "offset": 0,

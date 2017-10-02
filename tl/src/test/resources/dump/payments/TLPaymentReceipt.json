@@ -2,10 +2,17 @@
   "date": 0,
   "botId": 0,
   "invoice": {
-    "currency": "1nM1VfGEvhUjgB",
+    "currency": "Qr35k63VjCOTp6zzePRWYdY",
     "prices": [
       {
-        "label": "MzNOjn4JxJ4",
+        "label": "KplN71LNGIAm4vdV",
+        "amount": 0,
+        "_constructor": "labeledPrice#cb296bf8",
+        "constructorId": -886477832,
+        "_flags": 0
+      },
+      {
+        "label": "eS6vNmRbxYDMBf9vlTtDKSc45RbQ",
         "amount": 0,
         "_constructor": "labeledPrice#cb296bf8",
         "constructorId": -886477832,
@@ -18,16 +25,16 @@
   },
   "providerId": 0,
   "info": {
-    "name": "opZ2f5q9rYCarZOYZodoaJ3j",
-    "phone": "tPUf2aKFH93OxQ",
-    "email": "zxzEknKpKNg2",
+    "name": "61AT6N9Y",
+    "phone": "nt5TXtdLc7y0Y",
+    "email": "bUNCRbbIS3o82qjdFI7CkKuQ4",
     "shippingAddress": {
-      "streetLine1": "CuURmdsOmubhtOu",
-      "streetLine2": "oUVhJ",
-      "city": "7T3jKoALx1",
-      "state": "kNUgw1uMTH0",
-      "countryIso2": "nr1Gz4fszuj4hhRB1l42hn",
-      "postCode": "IX1ifDVU6R",
+      "streetLine1": "YCkyEz9xIeQ",
+      "streetLine2": "R7wTLSLRaKVAYTLAXeZ",
+      "city": "CR8fP71QOfTBskSRRtr7uWlGHi1",
+      "state": "i8x5YBcwCupcDIcbMxnqMfE",
+      "countryIso2": "aPQBdpNjlOZMTczKRp",
+      "postCode": "PBBgR5OD5M17w9h",
       "_constructor": "postAddress#1e8caaeb",
       "constructorId": 512535275,
       "_flags": 0
@@ -37,18 +44,18 @@
     "_flags": 15
   },
   "shipping": {
-    "id": "S51ylPnmm",
-    "title": "mRnSTXssAC",
+    "id": "yCAZ9OtuAjgkUK",
+    "title": "5H0vBd127w",
     "prices": [
       {
-        "label": "UHgy1EX36tRa4YaxtgTOd8BNUIW5",
+        "label": "fliozUSKK3hyRLt",
         "amount": 0,
         "_constructor": "labeledPrice#cb296bf8",
         "constructorId": -886477832,
         "_flags": 0
       },
       {
-        "label": "SbbxKjovRCVY4qA5w2EY",
+        "label": "2lpV4SSib33yANVwlv",
         "amount": 0,
         "_constructor": "labeledPrice#cb296bf8",
         "constructorId": -886477832,
@@ -59,36 +66,10 @@
     "constructorId": -1239335713,
     "_flags": 0
   },
-  "currency": "gnIL7RY5O",
+  "currency": "liQcSstlUj8qn49PTJC",
   "totalAmount": 0,
-  "credentialsTitle": "flE1b2k7SjN5AkVc4CMXJUk",
-  "users": [
-    {
-      "id": 0,
-      "accessHash": 0,
-      "firstName": "VA7ZQanBJifiE6kOrG7z8",
-      "lastName": "mMpvjTDxyI7d42lATzgwYJRcMTZ",
-      "username": "UVcI2jagbt2iFzQKEhq6AmxpBhl",
-      "phone": "FRYrkver4ZvKVkuIu6cUDrnFMtzJ",
-      "photo": {
-        "_constructor": "userProfilePhotoEmpty#4f11bae1",
-        "constructorId": 1326562017,
-        "_flags": 0
-      },
-      "status": {
-        "_constructor": "userStatusLastWeek#7bf09fc",
-        "constructorId": 129960444,
-        "_flags": 0
-      },
-      "botInfoVersion": 0,
-      "restrictionReason": "YX6IOl7uGXMnUx0im",
-      "botInlinePlaceholder": "QkrxABii4RPE5XgCgiZN3KuANPyWA",
-      "langCode": "0rrpwkXNaJN06NZ0jhhO9WhC",
-      "_constructor": "user#2e13f4c3",
-      "constructorId": 773059779,
-      "_flags": 4997247
-    }
-  ],
+  "credentialsTitle": "PFAEonQQTutw6xyFC1jv",
+  "users": [],
   "_constructor": "payments.paymentReceipt#500911e1",
   "constructorId": 1342771681,
   "_flags": 3

@@ -3,17 +3,17 @@
     "id": 0,
     "fromId": 0,
     "toId": {
-      "userId": 0,
-      "_constructor": "peerUser#9db1bc6d",
-      "constructorId": -1649296275,
+      "channelId": 0,
+      "_constructor": "peerChannel#bddde532",
+      "constructorId": -1109531342,
       "_flags": 0
     },
     "replyToMsgId": 0,
     "date": 0,
     "action": {
-      "channelId": 0,
-      "_constructor": "messageActionChatMigrateTo#51bdb021",
-      "constructorId": 1371385889,
+      "title": "ZAFRxBzgmg5of0",
+      "_constructor": "messageActionChannelCreate#95d2ac92",
+      "constructorId": -1781355374,
       "_flags": 0
     },
     "_constructor": "messageService#9e19a1f6",

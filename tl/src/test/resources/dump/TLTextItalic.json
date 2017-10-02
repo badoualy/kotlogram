@@ -1,7 +1,26 @@
 {
   "text": {
-    "_constructor": "textEmpty#dc3d824f",
-    "constructorId": -599948721,
+    "text": {
+      "text": {
+        "text": {
+          "text": "hPQNs5IHZAYfxmQIdDUZxC",
+          "_constructor": "textPlain#744694e0",
+          "constructorId": 1950782688,
+          "_flags": 0
+        },
+        "url": "uyTz6eFbla",
+        "webpageId": 0,
+        "_constructor": "textUrl#3c2884c1",
+        "constructorId": 1009288385,
+        "_flags": 0
+      },
+      "_constructor": "textItalic#d912a59c",
+      "constructorId": -653089380,
+      "_flags": 0
+    },
+    "email": "fTGfZ",
+    "_constructor": "textEmail#de5a0dd6",
+    "constructorId": -564523562,
     "_flags": 0
   },
   "_constructor": "textItalic#d912a59c",

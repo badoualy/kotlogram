@@ -1,10 +1,12 @@
 {
   "botId": {
-    "_constructor": "inputUserSelf#f7c1b13f",
-    "constructorId": -138301121,
+    "userId": 0,
+    "accessHash": 0,
+    "_constructor": "inputUser#d8292816",
+    "constructorId": -668391402,
     "_flags": 0
   },
-  "shortName": "Peisco6wb7w1augZaGTulcEAz",
+  "shortName": "OyONIQkL362kzvJrKL30VHE",
   "_constructor": "inputGameShortName#c331e80a",
   "constructorId": -1020139510,
   "_flags": 0

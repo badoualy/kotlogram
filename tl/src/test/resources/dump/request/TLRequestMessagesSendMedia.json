@@ -6,18 +6,118 @@
   },
   "replyToMsgId": 0,
   "media": {
-    "url": "ijy53lidRurC",
-    "caption": "j92uBBCTmO0p3I1ImI4GaHzV",
-    "ttlSeconds": 0,
-    "_constructor": "inputMediaPhotoExternal#922aec1",
-    "constructorId": 153267905,
+    "title": "ZTCB91HQPBOHuSIUC",
+    "description": "LJCvIWoNJlqotXZ",
+    "photo": {
+      "url": "NLRrsr4INpyVlj65dBYKcvbtSBW",
+      "size": 0,
+      "mimeType": "igQD0vdmRfniAZvTYtEfvsFlkCrN",
+      "attributes": [
+        {
+          "fileName": "3kqlaSYX7pzrofeu8g1YP",
+          "_constructor": "documentAttributeFilename#15590068",
+          "constructorId": 358154344,
+          "_flags": 0
+        },
+        {
+          "_constructor": "documentAttributeAnimated#11b58939",
+          "constructorId": 297109817,
+          "_flags": 0
+        }
+      ],
+      "_constructor": "inputWebDocument#9bed434d",
+      "constructorId": -1678949555,
+      "_flags": 0
+    },
+    "invoice": {
+      "currency": "0zFgHJ4iLiu8CYJvbqbYS",
+      "prices": [
+        {
+          "label": "TVwi03pNSiLCeZM3opY921QRvCA",
+          "amount": 0,
+          "_constructor": "labeledPrice#cb296bf8",
+          "constructorId": -886477832,
+          "_flags": 0
+        },
+        {
+          "label": "p57aRlYuLg2l",
+          "amount": 0,
+          "_constructor": "labeledPrice#cb296bf8",
+          "constructorId": -886477832,
+          "_flags": 0
+        }
+      ],
+      "_constructor": "invoice#c30aa358",
+      "constructorId": -1022713000,
+      "_flags": 0
+    },
+    "payload": {
+      "data": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "offset": 0,
+      "length": 51
+    },
+    "provider": "YdLx6vBWWFVGbnJP",
+    "startParam": "ujFAVDjpHSMZYDdOCKraQbJQ",
+    "_constructor": "inputMediaInvoice#92153685",
+    "constructorId": -1844103547,
     "_flags": 1
   },
   "randomId": 0,
   "replyMarkup": {
-    "rows": [],
-    "_constructor": "replyKeyboardMarkup#3502758c",
-    "constructorId": 889353612,
+    "_constructor": "replyKeyboardForceReply#f4108aa0",
+    "constructorId": -200242528,
     "_flags": 0
   },
   "_constructor": "messages.sendMedia#c8f16791",

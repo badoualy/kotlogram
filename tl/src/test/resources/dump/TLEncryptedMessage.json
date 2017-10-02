@@ -51,19 +51,20 @@
       0,
       0,
       0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
       0
     ],
     "offset": 0,
-    "length": 48
+    "length": 54
   },
   "file": {
-    "id": 0,
-    "accessHash": 0,
-    "size": 0,
-    "dcId": 0,
-    "keyFingerprint": 0,
-    "_constructor": "encryptedFile#4a70994c",
-    "constructorId": 1248893260,
+    "_constructor": "encryptedFileEmpty#c21f497e",
+    "constructorId": -1038136962,
     "_flags": 0
   },
   "_constructor": "encryptedMessage#ed18c118",

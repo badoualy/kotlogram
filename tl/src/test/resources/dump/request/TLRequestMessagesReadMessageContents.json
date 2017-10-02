@@ -1,5 +1,8 @@
 {
-  "id": [],
+  "id": [
+    0,
+    0
+  ],
   "_constructor": "messages.readMessageContents#36a73f77",
   "constructorId": 916930423,
   "_flags": 0

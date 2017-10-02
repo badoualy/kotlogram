@@ -1,6 +1,14 @@
 {
-  "currency": "z1bou9LoMzh",
-  "prices": [],
+  "currency": "pf0ePRouMR3BhazKyNaCl",
+  "prices": [
+    {
+      "label": "Qe8ytt",
+      "amount": 0,
+      "_constructor": "labeledPrice#cb296bf8",
+      "constructorId": -886477832,
+      "_flags": 0
+    }
+  ],
   "_constructor": "invoice#c30aa358",
   "constructorId": -1022713000,
   "_flags": 0

@@ -1,11 +1,17 @@
 {
   "update": {
-    "userId": 0,
-    "firstName": "KvJy5rrXgjgo7HOJh",
-    "lastName": "kNiSILvHr9JexNd",
-    "username": "Fwexs37w3",
-    "_constructor": "updateUserName#a7332b73",
-    "constructorId": -1489818765,
+    "peer": {
+      "_constructor": "notifyAll#74d07c60",
+      "constructorId": 1959820384,
+      "_flags": 0
+    },
+    "notifySettings": {
+      "_constructor": "peerNotifySettingsEmpty#70a68512",
+      "constructorId": 1889961234,
+      "_flags": 0
+    },
+    "_constructor": "updateNotifySettings#bec268ef",
+    "constructorId": -1094555409,
     "_flags": 0
   },
   "date": 0,

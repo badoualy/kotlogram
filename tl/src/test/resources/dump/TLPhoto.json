@@ -4,7 +4,7 @@
   "date": 0,
   "sizes": [
     {
-      "type": "fHatyII8Jh3jWUVlTpyWvmwk",
+      "type": "u5hV89ZGFiress0yyfoHU32FCknx",
       "location": {
         "dcId": 0,
         "volumeId": 0,
@@ -19,6 +19,12 @@
       "size": 0,
       "_constructor": "photoSize#77bfb61b",
       "constructorId": 2009052699,
+      "_flags": 0
+    },
+    {
+      "type": "dwwduX4fUkfVpQvDN25",
+      "_constructor": "photoSizeEmpty#e17e23c",
+      "constructorId": 236446268,
       "_flags": 0
     }
   ],

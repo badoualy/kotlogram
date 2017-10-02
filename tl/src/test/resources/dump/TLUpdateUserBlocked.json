@@ -1,6 +1,6 @@
 {
   "userId": 0,
-  "blocked": false,
+  "blocked": true,
   "_constructor": "updateUserBlocked#80ece81a",
   "constructorId": -2131957734,
   "_flags": 0

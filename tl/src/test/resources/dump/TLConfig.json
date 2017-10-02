@@ -1,12 +1,12 @@
 {
   "date": 0,
   "expires": 0,
-  "testMode": false,
+  "testMode": true,
   "thisDc": 0,
   "dcOptions": [
     {
       "id": 0,
-      "ipAddress": "w4BWl",
+      "ipAddress": "59xSHes",
       "port": 0,
       "_constructor": "dcOption#5d8c6cc",
       "constructorId": 98092748,
@@ -36,8 +36,8 @@
   "callRingTimeoutMs": 0,
   "callConnectTimeoutMs": 0,
   "callPacketTimeoutMs": 0,
-  "meUrlPrefix": "kreSDat5T3ZlSeD7ioJcrAI",
-  "suggestedLangCode": "dK2VbJbiNAT8suRwjBob",
+  "meUrlPrefix": "xFB5diVJdsMOzZ3D",
+  "suggestedLangCode": "CaryI0jp",
   "langPackVersion": 0,
   "disabledFeatures": [],
   "_constructor": "config#8df376a4",

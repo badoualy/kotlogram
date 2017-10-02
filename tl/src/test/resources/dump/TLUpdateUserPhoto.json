@@ -2,8 +2,25 @@
   "userId": 0,
   "date": 0,
   "photo": {
-    "_constructor": "userProfilePhotoEmpty#4f11bae1",
-    "constructorId": 1326562017,
+    "photoId": 0,
+    "photoSmall": {
+      "volumeId": 0,
+      "localId": 0,
+      "secret": 0,
+      "_constructor": "fileLocationUnavailable#7c596b46",
+      "constructorId": 2086234950,
+      "_flags": 0
+    },
+    "photoBig": {
+      "volumeId": 0,
+      "localId": 0,
+      "secret": 0,
+      "_constructor": "fileLocationUnavailable#7c596b46",
+      "constructorId": 2086234950,
+      "_flags": 0
+    },
+    "_constructor": "userProfilePhoto#d559d8c8",
+    "constructorId": -715532088,
     "_flags": 0
   },
   "previous": false,

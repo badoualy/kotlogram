@@ -1,8 +1,8 @@
 {
-  "caption": "2yLPfBBBfJ",
+  "caption": "N57YBUEtsxNhgeVnX3JILEYJnh",
   "replyMarkup": {
-    "_constructor": "replyKeyboardHide#a03e5b85",
-    "constructorId": -1606526075,
+    "_constructor": "replyKeyboardForceReply#f4108aa0",
+    "constructorId": -200242528,
     "_flags": 0
   },
   "_constructor": "inputBotInlineMessageMediaAuto#292fed13",

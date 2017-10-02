@@ -6,13 +6,35 @@
     "constructorId": 541710092,
     "_flags": 0
   },
-  "title": "3EWxwanKiUlc1mtBJSTMGd7Z",
-  "address": "eyiDDNQobjQv1hKXwx",
-  "provider": "WDNOYQlNqRlFou",
-  "venueId": "BO2wy1",
+  "title": "m6C3T42Ld9cpVB",
+  "address": "XG1jHd6ESaURciPkRJM9",
+  "provider": "ILTmz",
+  "venueId": "DSJKbyKBVhJ8gpB",
   "replyMarkup": {
-    "_constructor": "replyKeyboardForceReply#f4108aa0",
-    "constructorId": -200242528,
+    "rows": [
+      {
+        "buttons": [],
+        "_constructor": "keyboardButtonRow#77608b83",
+        "constructorId": 2002815875,
+        "_flags": 0
+      },
+      {
+        "buttons": [
+          {
+            "text": "8b6rs2qFjJCg0HIMa",
+            "url": "aPVLnHYIa8ri99s8mavHE",
+            "_constructor": "keyboardButtonUrl#258aff05",
+            "constructorId": 629866245,
+            "_flags": 0
+          }
+        ],
+        "_constructor": "keyboardButtonRow#77608b83",
+        "constructorId": 2002815875,
+        "_flags": 0
+      }
+    ],
+    "_constructor": "replyInlineMarkup#48a30254",
+    "constructorId": 1218642516,
     "_flags": 0
   },
   "_constructor": "botInlineMessageMediaVenue#4366232e",

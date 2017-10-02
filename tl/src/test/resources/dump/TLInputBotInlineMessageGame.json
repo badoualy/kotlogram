@@ -1,7 +1,8 @@
 {
   "replyMarkup": {
-    "_constructor": "replyKeyboardHide#a03e5b85",
-    "constructorId": -1606526075,
+    "rows": [],
+    "_constructor": "replyKeyboardMarkup#3502758c",
+    "constructorId": 889353612,
     "_flags": 0
   },
   "_constructor": "inputBotInlineMessageGame#4b425864",

@@ -1,7 +1,19 @@
 {
   "text": {
-    "_constructor": "textEmpty#dc3d824f",
-    "constructorId": -599948721,
+    "text": {
+      "text": {
+        "text": "hxZoNVyxvOlMC2ZX5gcsZKxH",
+        "_constructor": "textPlain#744694e0",
+        "constructorId": 1950782688,
+        "_flags": 0
+      },
+      "email": "nuoJA3UT",
+      "_constructor": "textEmail#de5a0dd6",
+      "constructorId": -564523562,
+      "_flags": 0
+    },
+    "_constructor": "textStrike#9bf8bb95",
+    "constructorId": -1678197867,
     "_flags": 0
   },
   "_constructor": "pageBlockFooter#48870999",

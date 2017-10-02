@@ -1,39 +1,23 @@
 {
   "text": {
-    "text": {
-      "text": {
-        "text": {
-          "text": {
-            "text": {
-              "texts": [],
-              "_constructor": "textConcat#7e6260d7",
-              "constructorId": 2120376535,
-              "_flags": 0
-            },
-            "email": "JZkvxSe",
-            "_constructor": "textEmail#de5a0dd6",
-            "constructorId": -564523562,
-            "_flags": 0
-          },
-          "url": "TsTAp7K85CaIXeTcfa",
-          "webpageId": 0,
-          "_constructor": "textUrl#3c2884c1",
-          "constructorId": 1009288385,
-          "_flags": 0
-        },
-        "_constructor": "textUnderline#c12622c4",
-        "constructorId": -1054465340,
+    "texts": [
+      {
+        "_constructor": "textEmpty#dc3d824f",
+        "constructorId": -599948721,
         "_flags": 0
       },
-      "_constructor": "textStrike#9bf8bb95",
-      "constructorId": -1678197867,
-      "_flags": 0
-    },
-    "_constructor": "textItalic#d912a59c",
-    "constructorId": -653089380,
+      {
+        "text": "clmr5Uicpl35t4wgjNzeOo",
+        "_constructor": "textPlain#744694e0",
+        "constructorId": 1950782688,
+        "_flags": 0
+      }
+    ],
+    "_constructor": "textConcat#7e6260d7",
+    "constructorId": 2120376535,
     "_flags": 0
   },
-  "email": "BUEP4hHipZTPPGN",
+  "email": "HmKxk8FF1QKANoRTlRdOJjGpHldPm",
   "_constructor": "textEmail#de5a0dd6",
   "constructorId": -564523562,
   "_flags": 0

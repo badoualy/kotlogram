@@ -1,5 +1,12 @@
 {
-  "order": [],
+  "order": [
+    {
+      "userId": 0,
+      "_constructor": "peerUser#9db1bc6d",
+      "constructorId": -1649296275,
+      "_flags": 0
+    }
+  ],
   "_constructor": "updatePinnedDialogs#d8caf68d",
   "constructorId": -657787251,
   "_flags": 1

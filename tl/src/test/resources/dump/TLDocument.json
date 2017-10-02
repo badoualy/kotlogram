@@ -2,17 +2,16 @@
   "id": 0,
   "accessHash": 0,
   "date": 0,
-  "mimeType": "vd6oGCp0L9fVXGNnuXbS2iMi6DG",
+  "mimeType": "fnFpITYWfhdzi",
   "size": 0,
   "thumb": {
-    "type": "KC8FbpWMPnk3jm7DK6PH",
+    "type": "IsRrv6tnyq3rJCwCyI11ovF",
     "location": {
-      "dcId": 0,
       "volumeId": 0,
       "localId": 0,
       "secret": 0,
-      "_constructor": "fileLocation#53d69076",
-      "constructorId": 1406570614,
+      "_constructor": "fileLocationUnavailable#7c596b46",
+      "constructorId": 2086234950,
       "_flags": 0
     },
     "w": 0,
@@ -24,36 +23,7 @@
   },
   "dcId": 0,
   "version": 0,
-  "attributes": [
-    {
-      "fileName": "0eGkZLcO7F25g",
-      "_constructor": "documentAttributeFilename#15590068",
-      "constructorId": 358154344,
-      "_flags": 0
-    },
-    {
-      "alt": "6QR1o0J",
-      "stickerset": {
-        "id": 0,
-        "accessHash": 0,
-        "_constructor": "inputStickerSetID#9de7a269",
-        "constructorId": -1645763991,
-        "_flags": 0
-      },
-      "maskCoords": {
-        "n": 0,
-        "x": 0.0,
-        "y": 0.0,
-        "zoom": 0.0,
-        "_constructor": "maskCoords#aed6dbb2",
-        "constructorId": -1361650766,
-        "_flags": 0
-      },
-      "_constructor": "documentAttributeSticker#6319d612",
-      "constructorId": 1662637586,
-      "_flags": 1
-    }
-  ],
+  "attributes": [],
   "_constructor": "document#87232bc7",
   "constructorId": -2027738169,
   "_flags": 0

@@ -4,13 +4,13 @@
     "constructorId": -457104426,
     "_flags": 0
   },
-  "title": "9Vhi3It8lDUwR3urmKgwBIwmKd",
-  "address": "6BXqqnjAQJZ3E",
-  "provider": "Ru31UYRbLqawKj6MYf9RdHlYZP",
-  "venueId": "pni5W4w35esBumv",
+  "title": "8Su3waD5w57",
+  "address": "eMIUbtYQkuy9TII",
+  "provider": "29zKdtcx6986gOSzOMHh8z1aqEl",
+  "venueId": "WR1Db",
   "replyMarkup": {
-    "_constructor": "replyKeyboardHide#a03e5b85",
-    "constructorId": -1606526075,
+    "_constructor": "replyKeyboardForceReply#f4108aa0",
+    "constructorId": -200242528,
     "_flags": 0
   },
   "_constructor": "inputBotInlineMessageMediaVenue#aaafadc8",

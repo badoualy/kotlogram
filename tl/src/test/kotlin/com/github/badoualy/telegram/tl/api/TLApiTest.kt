@@ -39,7 +39,7 @@ class TLApiTest private constructor(private val clazz: Class<out TLObject>) : Ab
                             DumpUtils.toJson(tlObject),
                             "Deserialization of serialized object returned an object non-equals")
 
-        DumpUtils.dump(tlObject, bytes)
+        //DumpUtils.dump(tlObject, bytes)
     }
 
     override fun getTestName() = clazz.canonicalName.removePrefix(AbsTLApiTest.BASE_PACKAGE + ".")

@@ -1,31 +1,14 @@
 {
   "peer": {
-    "userId": 0,
-    "_constructor": "peerUser#9db1bc6d",
-    "constructorId": -1649296275,
+    "chatId": 0,
+    "_constructor": "peerChat#bad0e5bb",
+    "constructorId": -1160714821,
     "_flags": 0
   },
   "draft": {
     "replyToMsgId": 0,
-    "message": "YvXCpOXhnNJ9ycr9alA9bUng",
-    "entities": [
-      {
-        "offset": 0,
-        "length": 0,
-        "url": "1CeuvfG5ykbfHsyaD",
-        "_constructor": "messageEntityTextUrl#76a6d327",
-        "constructorId": 1990644519,
-        "_flags": 0
-      },
-      {
-        "offset": 0,
-        "length": 0,
-        "url": "b2qLfCm6FI0mE",
-        "_constructor": "messageEntityTextUrl#76a6d327",
-        "constructorId": 1990644519,
-        "_flags": 0
-      }
-    ],
+    "message": "pwXc1RzaJFfaf9Vg06lA51DH8HK1t",
+    "entities": [],
     "date": 0,
     "_constructor": "draftMessage#fd8e711f",
     "constructorId": -40996577,

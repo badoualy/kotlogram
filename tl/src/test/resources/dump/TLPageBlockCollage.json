@@ -1,33 +1,9 @@
 {
   "items": [],
   "caption": {
-    "text": {
-      "text": {
-        "text": {
-          "text": {
-            "text": "eeea9uvF3YjZFx6wznuk",
-            "_constructor": "textPlain#744694e0",
-            "constructorId": 1950782688,
-            "_flags": 0
-          },
-          "_constructor": "textFixed#6c3f19b9",
-          "constructorId": 1816074681,
-          "_flags": 0
-        },
-        "email": "SeNtxIx1NvZKUlONCDZyuD6QoPkU",
-        "_constructor": "textEmail#de5a0dd6",
-        "constructorId": -564523562,
-        "_flags": 0
-      },
-      "url": "uw4Sh8fWEWgb",
-      "webpageId": 0,
-      "_constructor": "textUrl#3c2884c1",
-      "constructorId": 1009288385,
-      "_flags": 0
-    },
-    "email": "xW95dBE02",
-    "_constructor": "textEmail#de5a0dd6",
-    "constructorId": -564523562,
+    "text": "AyHZnI9b",
+    "_constructor": "textPlain#744694e0",
+    "constructorId": 1950782688,
     "_flags": 0
   },
   "_constructor": "pageBlockCollage#8b31c4f",

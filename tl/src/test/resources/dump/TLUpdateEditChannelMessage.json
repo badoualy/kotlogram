@@ -1,23 +1,9 @@
 {
   "message": {
     "id": 0,
-    "fromId": 0,
-    "toId": {
-      "chatId": 0,
-      "_constructor": "peerChat#bad0e5bb",
-      "constructorId": -1160714821,
-      "_flags": 0
-    },
-    "replyToMsgId": 0,
-    "date": 0,
-    "action": {
-      "_constructor": "messageActionScreenshotTaken#4792929b",
-      "constructorId": 1200788123,
-      "_flags": 0
-    },
-    "_constructor": "messageService#9e19a1f6",
-    "constructorId": -1642487306,
-    "_flags": 264
+    "_constructor": "messageEmpty#83e5de54",
+    "constructorId": -2082087340,
+    "_flags": 0
   },
   "pts": 0,
   "ptsCount": 0,

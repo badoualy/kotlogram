@@ -1,8 +1,21 @@
 {
-  "langCode": "fHNaDViZPMz970",
+  "langCode": "eEFMlmlpKRAVEIeA",
   "fromVersion": 0,
   "version": 0,
-  "strings": [],
+  "strings": [
+    {
+      "key": "hril957NVd9Ipa2MjS",
+      "zeroValue": "p5sTwqj7SG",
+      "oneValue": "qqDYMCLM",
+      "twoValue": "uEnuCz4ZZFAOBUeX19WJ",
+      "fewValue": "z8vCRKr6kbGvHt5hSZLM3qbCPWE5",
+      "manyValue": "7yBvgLFzF096BDJukN0Y",
+      "otherValue": "goGVKENQ8xLxxeqIaQnkv5fA7S6H4",
+      "_constructor": "langPackStringPluralized#6c47ac9f",
+      "constructorId": 1816636575,
+      "_flags": 31
+    }
+  ],
   "_constructor": "langPackDifference#f385c1f6",
   "constructorId": -209337866,
   "_flags": 0

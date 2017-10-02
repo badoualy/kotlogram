@@ -1,7 +1,9 @@
 {
   "peer": {
-    "_constructor": "inputPeerEmpty#7f3b18ea",
-    "constructorId": 2134579434,
+    "channelId": 0,
+    "accessHash": 0,
+    "_constructor": "inputPeerChannel#20adaef8",
+    "constructorId": 548253432,
     "_flags": 0
   },
   "offsetId": 0,
