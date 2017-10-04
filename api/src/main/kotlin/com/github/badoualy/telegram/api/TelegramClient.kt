@@ -69,11 +69,11 @@ interface TelegramClient : TelegramSyncApi {
 
     /** Convenience method wrapping the argument with TelegramApp values */
     @Throws(RpcErrorException::class, IOException::class)
-    fun authSendCode(allowFlashcall: Boolean, phoneNumber: String, currentNumber: Boolean): TLSentCode
+    fun authSendCode(allowFlashcall: Boolean, phoneNumber: String, currentNumber: Boolean?): TLSentCode
 
     @Deprecated("Use authSendCode for more convenience",
                 ReplaceWith("authSendCode(allowFlashcall, phoneNumber, currentNumber)"))
-    override fun authSendCode(allowFlashcall: Boolean, phoneNumber: String, currentNumber: Boolean, apiId: Int, apiHash: String): TLSentCode
+    override fun authSendCode(allowFlashcall: Boolean, phoneNumber: String, currentNumber: Boolean?, apiId: Int, apiHash: String): TLSentCode
 
     /** Convenience method wrapping the argument with salt */
     @Throws(RpcErrorException::class, IOException::class)

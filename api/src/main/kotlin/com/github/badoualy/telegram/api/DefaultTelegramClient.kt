@@ -298,9 +298,8 @@ internal class DefaultTelegramClient internal constructor(val application: Teleg
     }
 
     @Throws(RpcErrorException::class, IOException::class)
-    override fun authSendCode(allowFlashcall: Boolean, phoneNumber: String, currentNumber: Boolean) =
-            authSendCode(allowFlashcall,
-                         phoneNumber, currentNumber,
+    override fun authSendCode(allowFlashcall: Boolean, phoneNumber: String, currentNumber: Boolean?) =
+            authSendCode(allowFlashcall, phoneNumber, currentNumber,
                          application.apiId, application.apiHash)
 
     @Throws(RpcErrorException::class, IOException::class)

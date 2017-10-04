@@ -1,15 +1,18 @@
-package com.github.badoualy.telegram.mtproto.transport
+package com.github.badoualy.telegram.mtproto.net
 
 import com.github.badoualy.telegram.mtproto.log.LogTag
+import com.github.badoualy.telegram.mtproto.log.Logger
 import com.github.badoualy.telegram.tl.ByteBufferUtils.*
-import org.slf4j.LoggerFactory
-import org.slf4j.MarkerFactory
+import io.reactivex.subjects.PublishSubject
+import io.reactivex.subjects.Subject
+import java.io.EOFException
 import java.io.IOException
 import java.net.ConnectException
 import java.net.InetSocketAddress
 import java.net.StandardSocketOptions
 import java.nio.ByteBuffer
 import java.nio.ByteOrder
+import java.nio.channels.SelectableChannel
 import java.nio.channels.SelectionKey
 import java.nio.channels.Selector
 import java.nio.channels.SocketChannel
@@ -21,35 +24,39 @@ internal class MTProtoTcpConnection
                           override var tag: LogTag,
                           abridgedProtocol: Boolean = true) : MTProtoConnection {
 
-    private val ATTEMPT_COUNT = 3
-
     private var socketChannel: SocketChannel
+
+    // Buffer
     private val msgHeaderBuffer = ByteBuffer.allocate(1)
     private val msgLengthBuffer = ByteBuffer.allocate(3)
 
     private var selectionKey: SelectionKey? = null
 
+    private val subject: Subject<ByteArray> = PublishSubject.create()
+
+    override val channel: SelectableChannel
+        get() = socketChannel
+
     init {
         var attempt = 1
         do {
             socketChannel = SocketChannel.open()
-            socketChannel.setOption(StandardSocketOptions.SO_KEEPALIVE, true)
-            //socketChannel.setOption(StandardSocketOptions.TCP_NODELAY, true)
-            socketChannel.configureBlocking(true)
+            //socketChannel.setOption(StandardSocketOptions.SO_KEEPALIVE, true)
+            socketChannel.setOption(StandardSocketOptions.TCP_NODELAY, true)
             try {
                 socketChannel.connect(InetSocketAddress(ip, port))
                 socketChannel.finishConnect()
 
                 if (abridgedProtocol) {
                     // @see https://core.telegram.org/mtproto/samples-auth_key
-                    logger.info(tag.marker, "Using abridged protocol")
+                    logger.info(tag, "Using abridged protocol")
                     socketChannel.write(ByteBuffer.wrap(byteArrayOf(0xef.toByte())))
                 }
-                logger.info(tag.marker, "Connected to $ip:$port")
+                logger.info(tag, "Connected to $ip:$port")
 
                 break
             } catch (e: Exception) {
-                logger.error(tag.marker, "Failed to connect", e)
+                logger.error(tag, "Failed to connect", e)
                 try {
                     socketChannel.close()
                 } catch (e: Exception) {
@@ -73,21 +80,22 @@ internal class MTProtoTcpConnection
         var length = readByteAsInt(readBytes(1, msgHeaderBuffer))
         if (length == 0x7f)
             length = readInt24(readBytes(3, msgLengthBuffer))
+        length *= 4
 
-        logger.debug(tag.marker, "About to read a message of length ${length * 4}")
-        val buffer = readBytes(length * 4)
+        logger.debug(tag, "About to read a message of length $length")
+        val buffer = readBytes(length)
 
-        // TODO: fix to return ByteBuffer
+        // Convert to a ByteArray
         val bytes = ByteArray(buffer.remaining())
         buffer.get(bytes, 0, buffer.remaining())
         return bytes
     }
 
     @Throws(IOException::class)
-    override fun writeMessage(request: ByteArray) {
+    override fun sendMessage(request: ByteArray) {
         val length = request.size / 4
         val headerLength = if (length >= 127) 4 else 1
-        val totalLength = request.size + headerLength
+        val totalLength = headerLength + request.size
         val buffer = ByteBuffer.allocate(totalLength)
 
         /*
@@ -98,7 +106,7 @@ internal class MTProtoTcpConnection
         In this case, server responses look the same (the server does not send 0xef as the first byte).
          */
         if (headerLength == 4) {
-            writeByte(127, buffer)
+            writeByte(0x7f, buffer)
             writeInt24(length, buffer)
         } else {
             writeByte(length, buffer)
@@ -110,10 +118,13 @@ internal class MTProtoTcpConnection
     }
 
     @Throws(IOException::class)
-    override fun executeMethod(request: ByteArray): ByteArray {
-        writeMessage(request)
+    @Deprecated("Remove this, use RX instead")
+    override fun executeMethodSync(request: ByteArray): ByteArray {
+        sendMessage(request)
         return readMessage()
     }
+
+    fun messageObservable() = subject.hide()
 
     override fun register(selector: Selector): SelectionKey {
         socketChannel.configureBlocking(false)
@@ -133,22 +144,26 @@ internal class MTProtoTcpConnection
 
     @Throws(IOException::class)
     override fun close() {
-        logger.debug(tag.marker, "Closing connection")
+        logger.debug(tag, "Closing connection")
         socketChannel.close()
     }
 
-    override fun isOpen() = socketChannel.isOpen && socketChannel.isConnected
+    override fun isAlive() = socketChannel.isOpen && socketChannel.isConnected
 
     private fun readBytes(length: Int, recycledBuffer: ByteBuffer? = null, order: ByteOrder = ByteOrder.BIG_ENDIAN): ByteBuffer {
         recycledBuffer?.clear()
-        val buffer = recycledBuffer ?: ByteBuffer.allocate(length)
+        val buffer =
+                if (recycledBuffer == null || recycledBuffer.capacity() < length)
+                    ByteBuffer.allocate(length)
+                else recycledBuffer
         buffer.order(order)
 
         var totalRead = 0
         while (totalRead < length) {
             val read = socketChannel.read(buffer)
             if (read == -1)
-                throw IOException("Reached end-of-stream")
+                throw EOFException(
+                        "Reached end-of-stream while reading $length bytes ($totalRead read)")
 
             totalRead += read
         }
@@ -163,6 +178,9 @@ internal class MTProtoTcpConnection
     }
 
     companion object {
-        private val logger = LoggerFactory.getLogger(MTProtoTcpConnection::class.java)
+        private val logger = Logger(MTProtoTcpConnection::class)
+
+        /** Initial connection attempt count before considering failure */
+        private const val ATTEMPT_COUNT = 3
     }
 }

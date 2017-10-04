@@ -9,8 +9,8 @@ import com.github.badoualy.telegram.mtproto.secure.MTProtoMessageEncryption
 import com.github.badoualy.telegram.mtproto.time.MTProtoTimer
 import com.github.badoualy.telegram.mtproto.time.TimeOverlord
 import com.github.badoualy.telegram.mtproto.tl.*
-import com.github.badoualy.telegram.mtproto.transport.MTProtoConnection
-import com.github.badoualy.telegram.mtproto.transport.MTProtoTcpConnection
+import com.github.badoualy.telegram.mtproto.net.MTProtoConnection
+import com.github.badoualy.telegram.mtproto.net.MTProtoTcpConnection
 import com.github.badoualy.telegram.mtproto.util.NamedThreadFactory
 import com.github.badoualy.telegram.tl.StreamUtils
 import com.github.badoualy.telegram.tl.api.TLAbsUpdates
@@ -183,7 +183,7 @@ class MTProtoHandler {
         if (methods.isEmpty())
             throw IllegalArgumentException("No methods to execute")
 
-        logger.debug(session.marker, "executeMethod ${methods.joinToString(", ")}")
+        logger.debug(session.marker, "executeMethodSync ${methods.joinToString(", ")}")
         val observable = Observable.create<TLMethod<T>> { subscriber ->
             try {
                 val mtMessages = ArrayList<MTMessage>(2)
@@ -285,7 +285,7 @@ class MTProtoHandler {
 
     /** If buffer timed out, check that the relevant buffer wasn't already flushed, and if not, flush it */
     private fun onBufferTimeout(id: Int, flush: Boolean = true) {
-        if (!(connection?.isOpen() ?: false))
+        if (!(connection?.isAlive() ?: false))
             return
 
         var list: ArrayList<Long>? = null
@@ -349,7 +349,7 @@ class MTProtoHandler {
      * @param data data to send
      * @throws IOException
      */
-    private fun sendData(data: ByteArray) = connection!!.writeMessage(data)
+    private fun sendData(data: ByteArray) = connection!!.sendMessage(data)
 
     /** Build a container with all the extras to send with a method invocation called */
     private fun getAckToSend(): MTMessage? {

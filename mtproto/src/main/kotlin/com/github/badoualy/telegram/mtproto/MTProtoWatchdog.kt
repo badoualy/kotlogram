@@ -1,6 +1,6 @@
 package com.github.badoualy.telegram.mtproto
 
-import com.github.badoualy.telegram.mtproto.transport.MTProtoConnection
+import com.github.badoualy.telegram.mtproto.net.MTProtoConnection
 import com.github.badoualy.telegram.mtproto.util.NamedThreadFactory
 import org.slf4j.LoggerFactory
 import rx.Observable
@@ -52,7 +52,7 @@ internal object MTProtoWatchdog : Runnable {
                         val connection = connectionMap[key]
                         if (connection != null) {
                             pool.execute {
-                                if (!connection.isOpen())
+                                if (!connection.isAlive())
                                     return@execute
                                 val wentGood = readMessage(connection)
 

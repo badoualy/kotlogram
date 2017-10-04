@@ -53,12 +53,15 @@ class Logger(val name: String) {
 
     fun error(message: String) = error(null, message)
 
-    fun error(tag: LogTag?, message: String) {
-        if (tag != null) {
+    fun error(tag: LogTag?, message: String) = error(tag, message, null)
+
+    fun error(tag: LogTag?, message: String, throwable: Throwable?) {
+        if (tag != null && throwable != null) {
+            delegate.error(tag.marker, message, throwable)
+        } else if (tag != null) {
             delegate.error(tag.marker, message)
         } else {
             delegate.error(message)
         }
     }
-
 }

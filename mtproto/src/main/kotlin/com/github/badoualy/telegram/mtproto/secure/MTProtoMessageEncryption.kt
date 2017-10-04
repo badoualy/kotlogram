@@ -1,13 +1,11 @@
 package com.github.badoualy.telegram.mtproto.secure
 
 import com.github.badoualy.telegram.mtproto.auth.AuthKey
-import com.github.badoualy.telegram.mtproto.auth.AuthKeyCreation
 import com.github.badoualy.telegram.mtproto.secure.CryptoUtils.*
 import com.github.badoualy.telegram.mtproto.tl.MTMessage
 import com.github.badoualy.telegram.mtproto.util.AesKeyIvPair
 import com.github.badoualy.telegram.tl.StreamUtils
 import com.github.badoualy.telegram.tl.StreamUtils.*
-import com.github.badoualy.telegram.tl.serialization.TLStreamDeserializer
 import com.github.badoualy.telegram.tl.serialization.TLStreamSerializer
 import java.io.ByteArrayInputStream
 import java.io.ByteArrayOutputStream
@@ -195,7 +193,7 @@ object MTProtoMessageEncryption {
             val length = readInt(inputStream)
             return readBytes(length, inputStream)!!
         } else {
-            throw IOException("Auth id must be equal to zero")
+            throw SecurityException("Auth id must be equal to zero")
         }
     }
 

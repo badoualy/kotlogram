@@ -1,8 +1,7 @@
 package com.github.badoualy.telegram.mtproto.auth
 
 import com.github.badoualy.telegram.mtproto.secure.CryptoUtils
-import com.github.badoualy.telegram.mtproto.transport.MTProtoConnection
-import java.math.BigInteger
+import com.github.badoualy.telegram.mtproto.net.MTProtoConnection
 import java.nio.ByteBuffer
 
 open class AuthKey(val key: ByteArray) {

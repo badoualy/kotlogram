@@ -14,8 +14,8 @@ import com.github.badoualy.telegram.mtproto.secure.RandomUtils
 import com.github.badoualy.telegram.mtproto.secure.pq.PQSolver
 import com.github.badoualy.telegram.mtproto.time.TimeOverlord
 import com.github.badoualy.telegram.mtproto.tl.auth.*
-import com.github.badoualy.telegram.mtproto.transport.MTProtoConnection
-import com.github.badoualy.telegram.mtproto.transport.MTProtoTcpConnection
+import com.github.badoualy.telegram.mtproto.net.MTProtoConnection
+import com.github.badoualy.telegram.mtproto.net.MTProtoTcpConnection
 import com.github.badoualy.telegram.mtproto.util.Pair
 import com.github.badoualy.telegram.mtproto.util.SolvedPQ
 import com.github.badoualy.telegram.tl.StreamUtils
@@ -94,7 +94,7 @@ object AuthKeyCreation {
         val message = MTProtoMessageEncryption.generateUnencryptedMessage(requestMessageId,
                                                                           data)
 
-        val response = connection!!.executeMethod(message)
+        val response = connection!!.executeMethodSync(message)
         val responseData = MTProtoMessageEncryption.extractUnencryptedMessage(response)
         return method.deserializeResponse(responseData, context)
     }
