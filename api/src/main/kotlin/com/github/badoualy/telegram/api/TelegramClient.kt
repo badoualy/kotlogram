@@ -11,7 +11,7 @@ import com.github.badoualy.telegram.tl.core.TLBytes
 import com.github.badoualy.telegram.tl.core.TLMethod
 import com.github.badoualy.telegram.tl.core.TLObject
 import com.github.badoualy.telegram.tl.exception.RpcErrorException
-import rx.Observable
+import io.reactivex.Observable
 import java.io.IOException
 import java.io.OutputStream
 

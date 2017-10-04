@@ -1,10 +1,9 @@
 package com.github.badoualy.telegram.mtproto.net
 
+import com.github.badoualy.telegram.mtproto.MTProtoWatchdog
 import com.github.badoualy.telegram.mtproto.log.LogTag
 import com.github.badoualy.telegram.mtproto.log.Logger
 import com.github.badoualy.telegram.tl.ByteBufferUtils.*
-import io.reactivex.subjects.PublishSubject
-import io.reactivex.subjects.Subject
 import java.io.EOFException
 import java.io.IOException
 import java.net.ConnectException
@@ -13,8 +12,6 @@ import java.net.StandardSocketOptions
 import java.nio.ByteBuffer
 import java.nio.ByteOrder
 import java.nio.channels.SelectableChannel
-import java.nio.channels.SelectionKey
-import java.nio.channels.Selector
 import java.nio.channels.SocketChannel
 import java.util.concurrent.TimeUnit
 
@@ -22,17 +19,13 @@ internal class MTProtoTcpConnection
 @Throws(IOException::class)
 @JvmOverloads constructor(override val ip: String, override val port: Int,
                           override var tag: LogTag,
-                          abridgedProtocol: Boolean = true) : MTProtoConnection {
+                          abridgedProtocol: Boolean = true) : MTProtoConnection, SelectableConnection {
 
     private var socketChannel: SocketChannel
 
     // Buffer
     private val msgHeaderBuffer = ByteBuffer.allocate(1)
     private val msgLengthBuffer = ByteBuffer.allocate(3)
-
-    private var selectionKey: SelectionKey? = null
-
-    private val subject: Subject<ByteArray> = PublishSubject.create()
 
     override val channel: SelectableChannel
         get() = socketChannel
@@ -45,15 +38,16 @@ internal class MTProtoTcpConnection
             socketChannel.setOption(StandardSocketOptions.TCP_NODELAY, true)
             try {
                 socketChannel.connect(InetSocketAddress(ip, port))
-                socketChannel.finishConnect()
+                if (!socketChannel.finishConnect()) {
+                    logger.error("finishConnect() returned false, this should not happen!!")
+                }
 
                 if (abridgedProtocol) {
                     // @see https://core.telegram.org/mtproto/samples-auth_key
-                    logger.info(tag, "Using abridged protocol")
-                    socketChannel.write(ByteBuffer.wrap(byteArrayOf(0xef.toByte())))
+                    logger.debug(tag, "Using abridged protocol")
+                    writeBytes(ByteBuffer.wrap(byteArrayOf(0xef.toByte())))
                 }
                 logger.info(tag, "Connected to $ip:$port")
-
                 break
             } catch (e: Exception) {
                 logger.error(tag, "Failed to connect", e)
@@ -78,8 +72,11 @@ internal class MTProtoTcpConnection
 
         // Read message length
         var length = readByteAsInt(readBytes(1, msgHeaderBuffer))
-        if (length == 0x7f)
+        logger.trace(tag, "Length first byte ${Integer.toHexString(length)}")
+        if (length == 0x7f) {
             length = readInt24(readBytes(3, msgLengthBuffer))
+            logger.trace(tag, "Long length bytes ${Integer.toHexString(length)}")
+        }
         length *= 4
 
         logger.debug(tag, "About to read a message of length $length")
@@ -124,23 +121,10 @@ internal class MTProtoTcpConnection
         return readMessage()
     }
 
-    fun messageObservable() = subject.hide()
-
-    override fun register(selector: Selector): SelectionKey {
-        socketChannel.configureBlocking(false)
-        selectionKey = socketChannel.register(selector, SelectionKey.OP_READ)
-        return selectionKey!!
-    }
-
-    override fun unregister(): SelectionKey? {
-        val selector = selectionKey?.selector()
-        selectionKey?.cancel()
-        selector?.wakeup()
-        socketChannel.configureBlocking(true) // Default mode
-        return selectionKey
-    }
-
-    override fun setBlocking(blocking: Boolean) = socketChannel.configureBlocking(blocking)!!
+    /**
+     * Convenience mapping to [MTProtoWatchdog.getMessageObservable]
+     */
+    override fun getMessageObservable() = MTProtoWatchdog.getMessageObservable(this)
 
     @Throws(IOException::class)
     override fun close() {
@@ -161,6 +145,9 @@ internal class MTProtoTcpConnection
         var totalRead = 0
         while (totalRead < length) {
             val read = socketChannel.read(buffer)
+
+            // TODO Maybe https://github.com/badoualy/kotlogram/issues/33 is caused because not every arrived at once?
+            // TODO Check logs to see if some part was read, maybe missing bytes will arrive after
             if (read == -1)
                 throw EOFException(
                         "Reached end-of-stream while reading $length bytes ($totalRead read)")

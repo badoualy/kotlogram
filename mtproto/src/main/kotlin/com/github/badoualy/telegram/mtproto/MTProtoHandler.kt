@@ -21,10 +21,12 @@ import com.github.badoualy.telegram.tl.core.TLObject
 import com.github.badoualy.telegram.tl.exception.DeserializationException
 import com.github.badoualy.telegram.tl.exception.RpcErrorException
 import com.github.badoualy.telegram.tl.serialization.TLStreamDeserializer
+import io.reactivex.disposables.Disposable
+import io.reactivex.rxkotlin.subscribeBy
+import io.reactivex.schedulers.Schedulers
+import io.reactivex.Observable
+import io.reactivex.ObservableEmitter
 import org.slf4j.LoggerFactory
-import rx.Observable
-import rx.Subscriber
-import rx.schedulers.Schedulers
 import java.io.ByteArrayInputStream
 import java.io.IOException
 import java.util.*
@@ -44,7 +46,8 @@ class MTProtoHandler {
     var session: MTSession
         private set
 
-    private val subscriberMap = Hashtable<Long, Subscriber<TLMethod<*>>>(10)
+    private var messageSubscription: Disposable? = null
+    private val subscriberMap = Hashtable<Long, ObservableEmitter<TLMethod<*>>>(10)
     private val requestMap = Hashtable<Long, TLMethod<*>>(10)
     private val sentMessageList = ArrayList<MTMessage>(10)
     private var messageToAckList = ArrayList<Long>(ACK_BUFFER_SIZE)
@@ -87,13 +90,17 @@ class MTProtoHandler {
 
     fun startWatchdog() {
         logger.info(session.marker, "startWatchdog()")
-        MTProtoWatchdog.start(connection!!)
+        messageSubscription = connection!!.getMessageObservable()
                 .observeOn(Schedulers.computation())
-                .subscribe({ onMessageReceived(it) },
-                           { onErrorReceived(it) })
+                .subscribeBy(onNext = { onMessageReceived(it) },
+                             onError = { onErrorReceived(it) },
+                             onComplete = { messageSubscription = null })
     }
 
-    private fun stopWatchdog() = MTProtoWatchdog.stop(connection!!)
+    private fun stopWatchdog() {
+        messageSubscription?.dispose()
+        messageSubscription = null
+    }
 
     /** Close the connection and re-open another one */
     @Throws(IOException::class)
@@ -129,7 +136,7 @@ class MTProtoHandler {
 
     @Throws(IOException::class)
     fun <T : TLObject> executeMethodSync(method: TLMethod<T>, timeout: Long): T =
-            executeMethod(method, timeout).toBlocking().first()
+            executeMethod(method, timeout).blockingFirst()
 
     /**
      * Execute the given methods synchronously and return the list of results (guaranties the order is conserved)
@@ -138,7 +145,7 @@ class MTProtoHandler {
      */
     @Throws(IOException::class)
     fun <T : TLObject> executeMethodsSync(methods: List<TLMethod<out T>>, timeout: Long): List<T> =
-            executeMethods(methods, timeout).toBlocking().toIterable()
+            executeMethods(methods, timeout).blockingIterable()
                     .sortedBy { methods.indexOf(it) }.map { it.response!! }.toList()
 
     /**
@@ -184,8 +191,11 @@ class MTProtoHandler {
             throw IllegalArgumentException("No methods to execute")
 
         logger.debug(session.marker, "executeMethodSync ${methods.joinToString(", ")}")
-        val observable = Observable.create<TLMethod<T>> { subscriber ->
+        val observable = Observable.create<TLMethod<T>> { emitter ->
             try {
+                @Suppress("UNCHECKED_CAST")
+                emitter as ObservableEmitter<TLMethod<*>>
+
                 val mtMessages = ArrayList<MTMessage>(2)
 
                 // ACK
@@ -201,8 +211,6 @@ class MTProtoHandler {
                 }
 
                 // Methods
-                @Suppress("UNCHECKED_CAST")
-                val s = subscriber as Subscriber<TLMethod<*>>
                 methods.forEach { method ->
                     val mtMessage = MTMessage(session.generateMessageId(),
                                               session.generateSeqNo(method),
@@ -211,7 +219,7 @@ class MTProtoHandler {
                     logger.info(session.marker,
                                 "Sending method $method with msgId ${mtMessage.messageId} and seqNo ${mtMessage.seqNo}")
 
-                    subscriberMap.put(mtMessage.messageId, s)
+                    subscriberMap.put(mtMessage.messageId, emitter)
                     requestMap.put(mtMessage.messageId, method)
                 }
 
@@ -228,7 +236,7 @@ class MTProtoHandler {
                     sendMessage(mtMessages.first())
                 }
             } catch (e: IOException) {
-                subscriber.onError(e)
+                emitter.onError(e)
             }
         }
         return observable.timeout(timeout, TimeUnit.MILLISECONDS)
@@ -393,7 +401,7 @@ class MTProtoHandler {
                     if (request.validityTimeout < time) {
                         logger.debug(session.marker,
                                      "Queued method ${request.method} timed out, dropping")
-                        request.subscriber.onCompleted()
+                        request.subscriber.onComplete()
                     } else {
                         toSend!!.add(request)
                     }
@@ -407,7 +415,7 @@ class MTProtoHandler {
         return toSend!!.map {
             val msgId = session.generateMessageId()
             @Suppress("UNCHECKED_CAST")
-            val s = it.subscriber as Subscriber<TLMethod<*>>
+            val s = it.subscriber as ObservableEmitter<TLMethod<*>>
             subscriberMap.put(msgId, s)
             requestMap.put(msgId, it.method)
             MTMessage(msgId, session.generateSeqNo(it.method), it.method.serialize())
@@ -647,7 +655,7 @@ class MTProtoHandler {
         }
 
         if (subscriber != null && !subscriberMap.containsValue(subscriber))
-            subscriber.onCompleted()
+            subscriber.onComplete()
     }
 
     companion object {
@@ -676,5 +684,5 @@ class MTProtoHandler {
         }
     }
 
-    private data class QueuedMethod<T : TLObject>(val method: TLMethod<T>, val validityTimeout: Long, val subscriber: Subscriber<in TLMethod<T>>)
+    private data class QueuedMethod<T : TLObject>(val method: TLMethod<T>, val validityTimeout: Long, val subscriber: ObservableEmitter<in TLMethod<T>>)
 }

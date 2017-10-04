@@ -1,81 +1,61 @@
 package com.github.badoualy.telegram.mtproto
 
+import com.github.badoualy.telegram.mtproto.log.Logger
 import com.github.badoualy.telegram.mtproto.net.MTProtoConnection
+import com.github.badoualy.telegram.mtproto.net.SelectableConnection
 import com.github.badoualy.telegram.mtproto.util.NamedThreadFactory
-import org.slf4j.LoggerFactory
-import rx.Observable
-import rx.Subscriber
-import java.io.IOException
+import io.reactivex.schedulers.Schedulers
+import io.reactivex.subjects.PublishSubject
+import io.reactivex.subjects.Subject
 import java.nio.channels.SelectionKey
 import java.nio.channels.Selector
-import java.util.*
 import java.util.concurrent.Executors
 
 /**
- * Permanently listen for messages on given MTProtoConnection and wrap everything in an Observable, each message will be send
- * to the subscriber
+ * Permanently listen for messages on given MTProtoConnection and wrap everything in an Observable,
+ * every received messages will be send to the subscriber
  */
 internal object MTProtoWatchdog : Runnable {
 
-    private val logger = LoggerFactory.getLogger(MTProtoWatchdog.javaClass)
+    private val logger = Logger(MTProtoWatchdog::class)
 
+    // select operation timeout
     private val SELECT_TIMEOUT_DELAY = 10 * 1000L // 10 seconds
 
     private val selector = Selector.open()
-    private val connectionMap = HashMap<SelectionKey, MTProtoConnection>()
+    private val subject: Subject<SelectionKey> = PublishSubject.create()
 
-    private val connectionList = ArrayList<MTProtoConnection>()
-    private val subscriberMap = HashMap<MTProtoConnection, Subscriber<in ByteArray>>()
+    private val executor = Executors.newSingleThreadExecutor(
+            NamedThreadFactory(javaClass.simpleName, true))
+    private val pool = Executors.newCachedThreadPool(
+            NamedThreadFactory("${javaClass.simpleName}-exec"))
 
-    private val executor = Executors.newSingleThreadExecutor(NamedThreadFactory(javaClass.simpleName, true))
-    private val pool = Executors.newCachedThreadPool(NamedThreadFactory("${javaClass.simpleName}-exec"))
-
-    @Volatile
-    private var dirty = false
     private var running = false
 
     override fun run() {
-        while (true) {
-            if (dirty) {
-                synchronized(this) {
-                    connectionList
-                            .filterNot { connectionMap.containsValue(it) }
-                            .forEach { connectionMap.put(it.register(selector), it) }
-                    dirty = false
-                }
-            }
-
+        logger.debug("Starting watchdog")
+        while (running) {
             if (selector.select(SELECT_TIMEOUT_DELAY) > 0) {
+                logger.trace("select() returned with results")
+                // We have key(s) ready to read
                 synchronized(this) {
                     selector.selectedKeys().forEach { key ->
-                        key.interestOps(0)
-                        val connection = connectionMap[key]
-                        if (connection != null) {
-                            pool.execute {
-                                if (!connection.isAlive())
-                                    return@execute
-                                val wentGood = readMessage(connection)
-
-                                // Done reading
-                                if (wentGood && key.isValid) {
-                                    key.interestOps(SelectionKey.OP_READ)
-                                    selector.wakeup()
-                                } else if (!wentGood) {
-                                    stop(connection)
-                                }
-                            }
-                        }
+                        key.noOps()
+                        subject.onNext(key)
                     }
                 }
                 selector.selectedKeys().clear()
             }
+            logger.trace("select() returned with nothing")
 
+            // Check if should stop
             // Avoid synchronizing each loop
-            if (connectionList.isEmpty()) {
+            // TODO: selectorKeys() is not thread-safe, check if isEmpty can really be called like this
+            if (selector.selectedKeys().isEmpty()) {
                 synchronized(this) {
-                    if (connectionList.isEmpty()) {
+                    if (selector.selectedKeys().isEmpty()) {
                         running = false
-                        logger.warn("Stopping watchdog...")
+                        logger.info("Stopping watchdog")
                         return
                     }
                 }
@@ -83,61 +63,74 @@ internal object MTProtoWatchdog : Runnable {
         }
     }
 
-    private fun readMessage(connection: MTProtoConnection): Boolean {
-        logger.info(connection.tag.marker, "readMessage()")
-        val subscriber = subscriberMap[connection]
-        if (subscriber == null || subscriber.isUnsubscribed || !connectionList.contains(connection)) {
-            logger.warn(connection.tag.marker, "Subscribed already unsubscribed, dropping")
-            return false
-        }
-
-        try {
-            val message = connection.readMessage()
-            logger.debug(connection.tag.marker, "New message of length: ${message.size}")
-            subscriber.onNext(message)
-        } catch (e: IOException) {
-            // Silent fail if no subscriber
-            if (!subscriber.isUnsubscribed) {
-                logger.error(connection.tag.marker, "Sending exception to subscriber")
-                subscriber.onError(e)
+    fun <T> getMessageObservable(connection: T) where T : MTProtoConnection, T : SelectableConnection = subject
+            .filter { it.attachment() === connection }
+            .observeOn(Schedulers.from(pool))
+            .map { key -> connection.readMessage().also { listen(key) } }
+            .doOnSubscribe {
+                logger.info(connection.tag, "onSubscribe")
+                register(connection)
+                runOrWakeup()
             }
-
-            logger.warn(connection.tag.marker, "Already unsubscribed")
-            return false
-        }
-
-        return true
-    }
-
-    fun start(connection: MTProtoConnection): Observable<ByteArray> = Observable.create<ByteArray> { s ->
-        logger.info(connection.tag.marker, "Adding ${connection.tag} to watchdog")
-        synchronized(this) {
-            connectionList.add(connection)
-            subscriberMap.put(connection, s)
-
-            dirty = true
-            if (!running) {
-                running = true
-                executor.execute(this)
+            .doOnError {
+                logger.error(connection.tag, "onError: cancel selectionKey")
+                cancelByTag(connection)
             }
-        }
-        selector.wakeup()
-    }
-
-    fun stop(connection: MTProtoConnection) {
-        logger.info(connection.tag.marker, "Stopping ${connection.tag}")
-        synchronized(this) {
-            connectionList.remove(connection)
-            val subscriber = subscriberMap.remove(connection)
-            subscriber?.unsubscribe()
-            val key = connection.unregister()
-            if (key != null) connectionMap.remove(key)
-        }
-    }
+            .doOnDispose {
+                logger.debug(connection.tag, "onDispose: cancel selectionKey")
+                cancelByTag(connection)
+            }
+            .observeOn(Schedulers.computation())!! // Ensure pool private usage
 
     fun shutdown() {
         logger.warn("==================== SHUTTING DOWN WATCHDOG ====================")
+        subject.onComplete()
         executor.shutdownNow()
         pool.shutdownNow()
     }
+
+    private fun runOrWakeup() {
+        synchronized(this) {
+            if (!running) {
+                running = true
+                executor.execute(this)
+            } else {
+                selector.wakeup()
+            }
+        }
+    }
+
+    private fun register(connection: SelectableConnection): SelectionKey {
+        var key: SelectionKey
+        synchronized(this) {
+            key = connection.register(selector, SelectionKey.OP_READ).apply {
+                attach(connection)
+            }
+            logger.info("has ${selector.keys().size} keys")
+            return key
+        }
+    }
+
+    private fun listen(key: SelectionKey) {
+        synchronized(this) {
+            key.readOp()
+            runOrWakeup()
+        }
+    }
+
+    private fun cancelByTag(connection: SelectableConnection) = selector.keys().firstOrNull {
+        it.attachment() === connection
+    }?.let { cancel(it) }
+
+    private fun cancel(key: SelectionKey) {
+        synchronized(this) {
+            key.attach(null)
+            key.cancel()
+            selector.wakeup()
+        }
+    }
+
+    private fun SelectionKey.noOps() = interestOps(0)
+
+    private fun SelectionKey.readOp() = interestOps(SelectionKey.OP_READ)
 }
