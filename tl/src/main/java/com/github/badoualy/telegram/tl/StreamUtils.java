@@ -16,6 +16,7 @@ import java.nio.charset.Charset;
 
 /**
  * Helper class for writing and reading data for tl (de-)serialization.
+ * TODO: refactor to extensions?
  */
 public final class StreamUtils {
 

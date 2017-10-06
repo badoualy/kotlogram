@@ -1,8 +1,10 @@
 package com.github.badoualy.telegram.mtproto.secure
 
 import com.github.badoualy.telegram.mtproto.auth.AuthKey
+import com.github.badoualy.telegram.mtproto.exception.AuthKeyIdDontMatchException
+import com.github.badoualy.telegram.mtproto.exception.MessageDecryptionException
 import com.github.badoualy.telegram.mtproto.secure.CryptoUtils.*
-import com.github.badoualy.telegram.mtproto.tl.MTMessage
+import com.github.badoualy.telegram.mtproto.tl.MTProtoMessage
 import com.github.badoualy.telegram.mtproto.util.AesKeyIvPair
 import com.github.badoualy.telegram.tl.StreamUtils
 import com.github.badoualy.telegram.tl.StreamUtils.*
@@ -40,7 +42,7 @@ object MTProtoMessageEncryption {
      * @see [Message Key](https://core.telegram.org/mtproto/description.message-key)
      */
     @JvmStatic
-    fun generateMsgKey(serverSalt: ByteArray, sessionId: ByteArray, message: MTMessage): ByteArray? {
+    fun generateMsgKey(serverSalt: ByteArray, sessionId: ByteArray, message: MTProtoMessage): ByteArray? {
         try {
             val crypt = MessageDigest.getInstance("SHA-1")
             crypt.reset()
@@ -73,7 +75,7 @@ object MTProtoMessageEncryption {
      */
     @Throws(IOException::class)
     @JvmStatic
-    fun generateEncryptedMessage(authKey: AuthKey, sessionId: ByteArray, serverSalt: Long, message: MTMessage): EncryptedMessage {
+    fun generateEncryptedMessage(authKey: AuthKey, sessionId: ByteArray, serverSalt: Long, message: MTProtoMessage): EncryptedMessage {
         // Build message body
         val unencryptedStream = ByteArrayOutputStream()
         writeLong(serverSalt, unencryptedStream)
@@ -127,13 +129,13 @@ object MTProtoMessageEncryption {
      */
     @Throws(IOException::class)
     @JvmStatic
-    fun extractMessage(authKey: AuthKey, sessionId: ByteArray, data: ByteArray): MTMessage {
+    fun extractMessage(authKey: AuthKey, sessionId: ByteArray, data: ByteArray): MTProtoMessage {
         val stream = ByteArrayInputStream(data)
 
         // Retrieve and check authKey
         val msgAuthKeyId = readBytes(8, stream)
         if (!Arrays.equals(authKey.keyId, msgAuthKeyId))
-            throw RuntimeException("Message's authKey doesn't match given authKey")
+            throw AuthKeyIdDontMatchException()
 
         // Message key
         val msgKey = readBytes(16, stream)
@@ -163,23 +165,23 @@ object MTProtoMessageEncryption {
         val paddingSize = encryptedDataLength - 32 - msgLength // serverSalt(8) + sessionId(8) + messageId(8) + seqNo(4) + msgLen(4)
 
         // Security checks
-        if (msgId % 2 == 0L) throw SecurityException("Message id of messages sent be the server must be odd, found $msgId")
-        if (msgLength % 4 != 0) throw SecurityException("Message length must be a multiple of 4, found $msgLength")
-        if (paddingSize > 15 || paddingSize < 0) throw SecurityException("Padding must be between 0 and 15 included, found $paddingSize")
+        if (msgId % 2 == 0L) throw MessageDecryptionException("Message id of messages sent be the server must be odd, found $msgId")
+        if (msgLength % 4 != 0) throw MessageDecryptionException("Message length must be a multiple of 4, found $msgLength")
+        if (paddingSize > 15 || paddingSize < 0) throw MessageDecryptionException("Padding must be between 0 and 15 included, found $paddingSize")
         if (!Arrays.equals(session,
-                           sessionId)) throw SecurityException("The message was not intended for this session, expected ${BigInteger(
+                           sessionId)) throw MessageDecryptionException("The message was not intended for this session, expected ${BigInteger(
                 sessionId).toLong()}, found ${BigInteger(session).toLong()}")
 
         // Read message
         val message = ByteArray(msgLength)
         readBytes(message, 0, msgLength, unencryptedStream)
 
-        val mtMessage = MTMessage(msgId, seqNo, message, message.size)
+        val mtMessage = MTProtoMessage(msgId, seqNo, message, message.size)
 
         // Check that msgKey is equal to the 128 lower-order bits of the SHA1 hash of the previously encrypted portion
         val checkMsgKey = generateMsgKey(serverSalt, session, mtMessage)
         if (!Arrays.equals(checkMsgKey, msgKey))
-            throw SecurityException("The message msgKey is inconsistent with it's data")
+            throw MessageDecryptionException("The message msgKey is inconsistent with it's data")
 
         return mtMessage
     }
@@ -193,7 +195,7 @@ object MTProtoMessageEncryption {
             val length = readInt(inputStream)
             return readBytes(length, inputStream)!!
         } else {
-            throw SecurityException("Auth id must be equal to zero")
+            throw MessageDecryptionException("Auth id must be equal to zero")
         }
     }
 

@@ -117,6 +117,7 @@ internal class MTProtoTcpConnection
     @Throws(IOException::class)
     @Deprecated("Remove this, use RX instead")
     override fun executeMethodSync(request: ByteArray): ByteArray {
+        // TODO: use RX to send/read and let user convert to blocking if needed
         sendMessage(request)
         return readMessage()
     }
@@ -126,10 +127,12 @@ internal class MTProtoTcpConnection
      */
     override fun getMessageObservable() = MTProtoWatchdog.getMessageObservable(this)
 
-    @Throws(IOException::class)
     override fun close() {
         logger.debug(tag, "Closing connection")
-        socketChannel.close()
+        try {
+            socketChannel.close()
+        } catch (e: IOException) {
+        }
     }
 
     override fun isAlive() = socketChannel.isOpen && socketChannel.isConnected

@@ -24,15 +24,13 @@ class MTNewSessionCreated @JvmOverloads constructor(var firstMsgId: Long = 0,
     }
 
     @Throws(IOException::class)
-    override fun deserializeBody(tlDeserializer: TLDeserializer) = with (tlDeserializer) {
+    override fun deserializeBody(tlDeserializer: TLDeserializer) = with(tlDeserializer) {
         firstMsgId = readLong()
         uniqId = readLong()
         serverSalt = readLong()
     }
 
-    override fun toString(): String {
-        return "new_session_created#9ec20908"
-    }
+    override fun toString() = "new_session_created#9ec20908"
 
     companion object {
         @JvmField

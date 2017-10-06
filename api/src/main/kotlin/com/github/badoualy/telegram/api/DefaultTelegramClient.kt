@@ -1,7 +1,7 @@
 package com.github.badoualy.telegram.api
 
 import com.github.badoualy.telegram.api.utils.InputFileLocation
-import com.github.badoualy.telegram.mtproto.TelegramApiCallback
+import com.github.badoualy.telegram.mtproto.MTProtoUpdateCallback
 import com.github.badoualy.telegram.mtproto.MTProtoHandler
 import com.github.badoualy.telegram.mtproto.auth.AuthKey
 import com.github.badoualy.telegram.mtproto.auth.AuthKeyCreation
@@ -36,7 +36,7 @@ internal class DefaultTelegramClient internal constructor(val application: Teleg
                                                           val tag: String) : TelegramSyncApiWrapper(),
                                                                              TelegramClient,
                                                                              RpcQuerySyncExecutor,
-                                                                             TelegramApiCallback {
+                                                                             MTProtoUpdateCallback {
 
     private var mtProtoHandler: MTProtoHandler? = null
     private var authKey: AuthKey? = null
@@ -78,8 +78,8 @@ internal class DefaultTelegramClient internal constructor(val application: Teleg
     private fun init(checkNearestDc: Boolean = true) {
         logger.debug(marker, "registerClasses() $checkNearestDc")
         mtProtoHandler =
-                if (generateAuthKey) MTProtoHandler(generateAuthKey(), this, tag)
-                else MTProtoHandler(dataCenter!!, authKey!!, apiStorage.loadSession(), this, tag)
+                if (generateAuthKey) MTProtoHandler(generateAuthKey(), this)
+                else MTProtoHandler(dataCenter!!, authKey!!, apiStorage.loadSession(), this)
         mtProtoHandler!!.startWatchdog()
 
         try {
@@ -353,7 +353,7 @@ internal class DefaultTelegramClient internal constructor(val application: Teleg
         return cachedHandler ?: if (authKeyMap.contains(dcId)) {
             logger.debug(marker, "Already have key for DC$dcId")
             val authKey = authKeyMap[dcId]!!
-            val mtProtoHandler = MTProtoHandler(Kotlogram.getDcById(dcId), authKey, null, null, tag)
+            val mtProtoHandler = MTProtoHandler(Kotlogram.getDcById(dcId), authKey, null, null)
             mtProtoHandler.startWatchdog()
             initConnection(mtProtoHandler, TLRequestHelpGetNearestDc())
             mtProtoHandler
@@ -363,7 +363,7 @@ internal class DefaultTelegramClient internal constructor(val application: Teleg
             val exportedAuthorization = authExportAuthorization(dcId)
             val authResult = AuthKeyCreation.createAuthKey(dc) ?: throw IOException(
                     "Couldn't create authorization key on DC$dcId")
-            val mtProtoHandler = MTProtoHandler(authResult, null, tag)
+            val mtProtoHandler = MTProtoHandler(authResult, null)
             mtProtoHandler.startWatchdog()
             initConnection(mtProtoHandler,
                            TLRequestAuthImportAuthorization(exportedAuthorization.id,

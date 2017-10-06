@@ -35,7 +35,9 @@ object AuthKeyCreation {
 
     private val logger = Logger(AuthKeyCreation::class)
 
+    /** Total generation retry count */
     private const val AUTH_ATTEMPT_COUNT = 5
+    /** Step 6-9 retry count */
     private const val AUTH_RETRY_COUNT = 5
     private const val TEMPORARY_KEY_DEFAULT_EXPIRE_DELAY = 24 * 60 * 60 // 24 hours
 
@@ -115,7 +117,7 @@ object AuthKeyCreation {
         // Step 2
         val publicKey = Key.AVAILABLE_KEYS.firstOrNull { k ->
             resPQ.fingerprints.contains(k.fingerprint)
-        } ?: throw FingerprintNotFoundException(resPQ.fingerprints.joinToString(", "))
+        } ?: throw FingerprintNotFoundException(resPQ.fingerprints.joinToString())
         logger.trace(connection!!.tag, "Step2 done")
 
         // Step 3 https://core.telegram.org/mtproto/auth_key#proof-of-work
@@ -155,7 +157,8 @@ object AuthKeyCreation {
                     AuthKey(keySaltPair.first)
                 } else {
                     TempAuthKey(keySaltPair.first,
-                                TimeOverlord.getServerTime(connection!!.dataCenter) + tmpKeyExpireDelay)
+                                TimeOverlord.getServerTime(
+                                        connection!!.dataCenter) + tmpKeyExpireDelay)
                 }
         return AuthResult(authKey, keySaltPair.second, connection!!)
     }
@@ -176,7 +179,8 @@ object AuthKeyCreation {
         val data = pqInnerData.serialize()
         val hash = SHA1(data)
         val paddingSize = 255 - (data.size + hash.size)
-        val padding = if (paddingSize > 0) RandomUtils.randomByteArray(paddingSize) else ByteArray(0)
+        val padding = if (paddingSize > 0) RandomUtils.randomByteArray(paddingSize) else ByteArray(
+                0)
         val dataWithHash = concat(hash, data, padding)
         val encryptedData = RSA(dataWithHash, publicKey.publicKey, publicKey.exponent)
 
@@ -201,7 +205,7 @@ object AuthKeyCreation {
         val answerHash = StreamUtils.readBytes(20, stream) // Hash
         val dhInner = TLStreamDeserializer(stream, context).readTLObject<ServerDhInner>()
         if (!Arrays.equals(answerHash, SHA1(dhInner.serialize()))) {
-            throw SecurityException()
+            throw SecurityException("answerHash doesn't match the one generated from dhInner")
         }
 
         TimeOverlord.setServerTime(connection!!.dataCenter, dhInner.serverTime * 1000L)
@@ -234,7 +238,7 @@ object AuthKeyCreation {
                 val newNonceHash = substring(SHA1(newNonce, byteArrayOf(1), authAuxHash), 4, 16)
 
                 if (!Arrays.equals(result.newNonceHash, newNonceHash))
-                    throw SecurityException()
+                    throw SecurityException("newNonceHash from result don't match generated one")
 
                 val serverSalt = StreamUtils.readLong(xor(substring(newNonce, 0, 8),
                                                           substring(resPQ.serverNonce, 0, 8)), 0)
@@ -245,18 +249,18 @@ object AuthKeyCreation {
                 val newNonceHash = substring(SHA1(newNonce, byteArrayOf(2), authAuxHash), 4, 16)
 
                 if (!Arrays.equals(result.newNonceHash, newNonceHash))
-                    throw SecurityException()
+                    throw SecurityException("newNonceHash from result don't match generated one")
             } else if (result is DhGenFailure) {
                 logger.warn(connection!!.tag, "Received ${result.javaClass.simpleName}")
                 val newNonceHash = substring(SHA1(newNonce, byteArrayOf(3), authAuxHash), 4, 16)
 
                 if (!Arrays.equals(result.newNonceHash, newNonceHash))
-                    throw SecurityException()
+                    throw SecurityException("newNonceHash from result don't match generated one")
 
-                throw AuthorizationException()
+                throw AuthorizationException("Received $result")
             }
         }
 
-        throw AuthorizationException()
+        throw AuthorizationException("Failed step 6 to 9 after $AUTH_RETRY_COUNT attempts")
     }
 }

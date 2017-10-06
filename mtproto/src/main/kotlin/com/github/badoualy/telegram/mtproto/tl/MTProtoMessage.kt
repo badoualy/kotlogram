@@ -6,10 +6,10 @@ import com.github.badoualy.telegram.tl.serialization.TLSerializer
 import java.io.IOException
 
 // TODO: doc, fake object
-class MTMessage @JvmOverloads constructor(var messageId: Long = 0,
-                                          var seqNo: Int = 0,
-                                          var payload: ByteArray = ByteArray(0),
-                                          var payloadLength: Int = payload.size) : TLObject() {
+class MTProtoMessage @JvmOverloads constructor(var messageId: Long = 0,
+                                               var seqNo: Int = 0,
+                                               var payload: ByteArray = ByteArray(0),
+                                               var payloadLength: Int = payload.size) : TLObject() {
 
     override val constructorId: Int = 0
 
@@ -32,6 +32,6 @@ class MTMessage @JvmOverloads constructor(var messageId: Long = 0,
     }
 
     override fun toString(): String {
-        return "MTMessage: {id: $messageId, seqNo: $seqNo}"
+        return "MTProtoMessage: {id: $messageId, seqNo: $seqNo}"
     }
 }

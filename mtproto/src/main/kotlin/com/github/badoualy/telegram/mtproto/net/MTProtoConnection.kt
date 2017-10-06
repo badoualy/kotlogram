@@ -32,7 +32,6 @@ interface MTProtoConnection {
     @Throws(IOException::class)
     fun executeMethodSync(request: ByteArray): ByteArray
 
-    @Throws(IOException::class)
     fun close()
 
     fun isAlive(): Boolean
