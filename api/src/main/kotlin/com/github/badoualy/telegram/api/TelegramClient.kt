@@ -31,23 +31,6 @@ interface TelegramClient : TelegramSyncApi {
 
     fun isClosed(): Boolean
 
-    /**
-     * Queue a method to be executed with the next message.
-     * @param method method to execute
-     * @param validityTimeout validity duration in ms, if nothing is sent during this period, this method will be discarded
-     */
-    fun <T : TLObject> queueMethodImmediate(method: TLMethod<T>, validityTimeout: Long)
-
-    /**
-     * Queue a method to be executed with the next message.
-     * @param method method to execute
-     * @param type of queue
-     * @param validityTimeout validity duration in ms, if nothing is sent during this period, this method will be discarded/send depending on type
-     * @param timeout request timeout (applied on the observable)
-     * @return an observable that will receive one unique item being the response
-     */
-    fun <T : TLObject> queueMethod(method: TLMethod<T>, type: Int = MTProtoHandler.QUEUE_TYPE_DISCARD, validityTimeout: Long, timeout: Long): Observable<T>?
-
     fun getDownloaderClient(): TelegramClient
 
     //////////////////////////////////////////////////////////

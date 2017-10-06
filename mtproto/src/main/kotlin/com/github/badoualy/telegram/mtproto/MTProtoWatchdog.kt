@@ -33,7 +33,7 @@ internal object MTProtoWatchdog : Runnable {
     private var running = false
 
     override fun run() {
-        logger.debug("Starting watchdog")
+        logger.trace("Starting watchdog")
         while (running) {
             if (selector.select(SELECT_TIMEOUT_DELAY) > 0) {
                 logger.trace("select() returned with results")
@@ -55,7 +55,7 @@ internal object MTProtoWatchdog : Runnable {
                 synchronized(this) {
                     if (selector.selectedKeys().isEmpty()) {
                         running = false
-                        logger.info("Stopping watchdog")
+                        logger.trace("Stopping watchdog")
                         return
                     }
                 }

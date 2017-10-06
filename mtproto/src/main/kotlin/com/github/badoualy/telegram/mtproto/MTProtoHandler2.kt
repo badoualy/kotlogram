@@ -52,7 +52,6 @@ class MTProtoHandler2 {
         private set
 
     private val messageSubject: Subject<Pair<MTProtoMessage, TLObject>> = PublishSubject.create()
-    private var messageSubscription: Disposable? = null
 
     private val requestByIdMap = Hashtable<Long, TLMethod<*>>(10)
     private val sentMessageList = ArrayList<MTProtoMessage>(10)
@@ -79,25 +78,25 @@ class MTProtoHandler2 {
 
     fun startSubscription() {
         logger.info(tag, "startWatchdog()")
-        messageSubscription = connection.getMessageObservable()
+        connection.getMessageObservable()
                 .observeOn(Schedulers.computation())
                 .flatMap(flatMapMessage())
                 .map(deserializePayload())
-                .subscribeBy()
+                .subscribe(messageSubject)
 
         messageSubject
                 .subscribeBy(onNext = onMessageReceived(),
-                             onError = { onErrorReceived(it) },
+                             onError = {
+                                 logger.error(tag, "onErrorReceived()", it)
+                             },
                              onComplete = {
                                  logger.warn(tag, "messageSubject onComplete()")
-                                 messageSubscription = null
                                  messageSubject.onComplete()
                              })
     }
 
     private fun stopSubscription() {
-        messageSubscription?.dispose()
-        messageSubscription = null
+        messageSubject.onComplete()
     }
 
     /** Close the connection and re-open another one, should fix most connection issues */
@@ -120,7 +119,10 @@ class MTProtoHandler2 {
     fun <T : TLObject> executeMethodSync(method: TLMethod<T>): T =
             executeMethod(method).blockingGet()
 
-    // TODO: single() without error?
+    fun <T: TLObject> executeMethodsSync(methods: List<TLMethod<*>>): List<T> =
+            executeMethods(methods).blockingIterable().map { it as T }.toList()
+
+            // TODO: single() without error?
     @Suppress("UNCHECKED_CAST")
     fun <T : TLObject> executeMethod(method: TLMethod<T>): Single<T> =
             executeMethods(listOf(method)).singleOrError().map { it as T }
@@ -404,11 +406,6 @@ class MTProtoHandler2 {
     private fun getQueuedToSend(): List<MTProtoMessage> {
         // TODO
         return emptyList()
-    }
-
-    private fun onErrorReceived(it: Throwable) {
-        logger.error(tag, "onErrorReceived()", it)
-        messageSubject.onError(it)
     }
 
     private fun newSession(dataCenter: DataCenter) = MTSession(dataCenter).also {

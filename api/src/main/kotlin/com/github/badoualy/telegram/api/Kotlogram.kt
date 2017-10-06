@@ -75,5 +75,9 @@ object Kotlogram {
 
     @JvmStatic
     fun getDcId(dataCenter: DataCenter) = PROD_DCS.indexOf(dataCenter) + 1
+
+    init {
+        System.setProperty("org.slf4j.simpleLogger.defaultLogLevel", "trace")
+    }
 }
 

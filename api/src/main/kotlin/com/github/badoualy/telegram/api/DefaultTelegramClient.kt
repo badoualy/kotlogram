@@ -3,6 +3,7 @@ package com.github.badoualy.telegram.api
 import com.github.badoualy.telegram.api.utils.InputFileLocation
 import com.github.badoualy.telegram.mtproto.MTProtoUpdateCallback
 import com.github.badoualy.telegram.mtproto.MTProtoHandler
+import com.github.badoualy.telegram.mtproto.MTProtoHandler2
 import com.github.badoualy.telegram.mtproto.auth.AuthKey
 import com.github.badoualy.telegram.mtproto.auth.AuthKeyCreation
 import com.github.badoualy.telegram.mtproto.auth.AuthResult
@@ -38,13 +39,13 @@ internal class DefaultTelegramClient internal constructor(val application: Teleg
                                                                              RpcQuerySyncExecutor,
                                                                              MTProtoUpdateCallback {
 
-    private var mtProtoHandler: MTProtoHandler? = null
+    private var mtProtoHandler: MTProtoHandler2? = null
     private var authKey: AuthKey? = null
     private var dataCenter: DataCenter? = null
     private var closed = false
 
     private val authKeyMap = HashMap<Int, AuthKey>()
-    private val exportedHandlerMap = HashMap<Int, MTProtoHandler>()
+    private val exportedHandlerMap = HashMap<Int, MTProtoHandler2>()
     private val exportedHandlerTimeoutMap = HashMap<Int, Long>()
 
     private var timeoutDuration: Long = 5000L
@@ -78,9 +79,9 @@ internal class DefaultTelegramClient internal constructor(val application: Teleg
     private fun init(checkNearestDc: Boolean = true) {
         logger.debug(marker, "registerClasses() $checkNearestDc")
         mtProtoHandler =
-                if (generateAuthKey) MTProtoHandler(generateAuthKey(), this)
-                else MTProtoHandler(dataCenter!!, authKey!!, apiStorage.loadSession(), this)
-        mtProtoHandler!!.startWatchdog()
+                if (generateAuthKey) MTProtoHandler2(generateAuthKey())
+                else MTProtoHandler2(dataCenter!!, authKey!!, apiStorage.loadSession())
+        mtProtoHandler!!.startSubscription()
 
         try {
             // Call to initConnection to setup information about this app for the user to see in "active sessions"
@@ -120,7 +121,7 @@ internal class DefaultTelegramClient internal constructor(val application: Teleg
     }
 
     @Throws(RpcErrorException::class, IOException::class)
-    private fun <T : TLObject> initConnection(mtProtoHandler: MTProtoHandler, method: TLMethod<T>): T {
+    private fun <T : TLObject> initConnection(mtProtoHandler: MTProtoHandler2, method: TLMethod<T>): T {
         logger.debug(marker, "Init connection with method $method")
         val initConnectionRequest = TLRequestInitConnection(application.apiId,
                                                             application.deviceModel,
@@ -182,15 +183,6 @@ internal class DefaultTelegramClient internal constructor(val application: Teleg
                                                                updateCallback, preferredDataCenter,
                                                                "Downloader:$tag")
 
-    /** Queue method now, without handling the result or any possible error */
-    override fun <T : TLObject> queueMethodImmediate(method: TLMethod<T>, validityTimeout: Long) {
-        queueMethod(method, MTProtoHandler.QUEUE_TYPE_DISCARD, validityTimeout,
-                    Long.MAX_VALUE)?.subscribe()
-    }
-
-    override fun <T : TLObject> queueMethod(method: TLMethod<T>, type: Int, validityTimeout: Long, timeout: Long) =
-            mtProtoHandler?.queueMethod(method, type, validityTimeout, timeout)
-
     @Throws(RpcErrorException::class, IOException::class)
     override fun <T : TLObject> executeRpcQuerySync(method: TLMethod<T>) = super.executeRpcQuerySync(
             method)
@@ -215,14 +207,14 @@ internal class DefaultTelegramClient internal constructor(val application: Teleg
     }
 
     @Throws(RpcErrorException::class, IOException::class)
-    private fun <T : TLObject> executeRpcQuerySync(method: TLMethod<T>, mtProtoHandler: MTProtoHandler, attemptCount: Int = 0) =
+    private fun <T : TLObject> executeRpcQuerySync(method: TLMethod<T>, mtProtoHandler: MTProtoHandler2, attemptCount: Int = 0) =
             executeRpcQueries(listOf(method), mtProtoHandler, attemptCount).first()
 
     @Throws(RpcErrorException::class, IOException::class)
-    private fun <T : TLObject> executeRpcQueries(methods: List<TLMethod<T>>, mtProtoHandler: MTProtoHandler, attemptCount: Int = 0): List<T> {
+    private fun <T : TLObject> executeRpcQueries(methods: List<TLMethod<T>>, mtProtoHandler: MTProtoHandler2, attemptCount: Int = 0): List<T> {
         // BlockingObservable.first() will throw a RuntimeException if onError() is called by observable
         try {
-            return mtProtoHandler.executeMethodsSync(methods, timeoutDuration)
+            return mtProtoHandler.executeMethodsSync(methods)
         } catch (exception: RuntimeException) {
             when (exception.cause) {
                 is RpcErrorException -> {
@@ -339,10 +331,10 @@ internal class DefaultTelegramClient internal constructor(val application: Teleg
     }
 
     @Throws(RpcErrorException::class, IOException::class)
-    private fun getExportedMTProtoHandler(dcId: Int): MTProtoHandler {
+    private fun getExportedMTProtoHandler(dcId: Int): MTProtoHandler2 {
         logger.trace(marker, "getExportedMTProtoHandler(DC$dcId)")
 
-        var cachedHandler: MTProtoHandler? = null
+        var cachedHandler: MTProtoHandler2? = null
         synchronized(exportedHandlerMap) {
             cachedHandler = exportedHandlerMap.remove(dcId)
         }
@@ -353,8 +345,8 @@ internal class DefaultTelegramClient internal constructor(val application: Teleg
         return cachedHandler ?: if (authKeyMap.contains(dcId)) {
             logger.debug(marker, "Already have key for DC$dcId")
             val authKey = authKeyMap[dcId]!!
-            val mtProtoHandler = MTProtoHandler(Kotlogram.getDcById(dcId), authKey, null, null)
-            mtProtoHandler.startWatchdog()
+            val mtProtoHandler = MTProtoHandler2(Kotlogram.getDcById(dcId), authKey, null)
+            mtProtoHandler.startSubscription()
             initConnection(mtProtoHandler, TLRequestHelpGetNearestDc())
             mtProtoHandler
         } else {
@@ -363,8 +355,8 @@ internal class DefaultTelegramClient internal constructor(val application: Teleg
             val exportedAuthorization = authExportAuthorization(dcId)
             val authResult = AuthKeyCreation.createAuthKey(dc) ?: throw IOException(
                     "Couldn't create authorization key on DC$dcId")
-            val mtProtoHandler = MTProtoHandler(authResult, null)
-            mtProtoHandler.startWatchdog()
+            val mtProtoHandler = MTProtoHandler2(authResult)
+            mtProtoHandler.startSubscription()
             initConnection(mtProtoHandler,
                            TLRequestAuthImportAuthorization(exportedAuthorization.id,
                                                             exportedAuthorization.bytes))
@@ -373,7 +365,7 @@ internal class DefaultTelegramClient internal constructor(val application: Teleg
         }
     }
 
-    private fun releaseExportedHandler(mtProtoHandler: MTProtoHandler, dcId: Int) {
+    private fun releaseExportedHandler(mtProtoHandler: MTProtoHandler2, dcId: Int) {
         synchronized(exportedHandlerMap) {
             if (exportedHandlerMap.containsKey(dcId)) {
                 mtProtoHandler.close()

@@ -72,14 +72,14 @@ internal class MTProtoTcpConnection
 
         // Read message length
         var length = readByteAsInt(readBytes(1, msgHeaderBuffer))
-        logger.trace(tag, "Length first byte ${Integer.toHexString(length)}")
+        logger.info(tag, "Length first byte ${Integer.toHexString(length)}")
         if (length == 0x7f) {
             length = readInt24(readBytes(3, msgLengthBuffer))
-            logger.trace(tag, "Long length bytes ${Integer.toHexString(length)}")
+            logger.info(tag, "Long length bytes ${Integer.toHexString(length)}")
         }
         length *= 4
 
-        logger.debug(tag, "About to read a message of length $length")
+        logger.info(tag, "About to read a message of length $length")
         val buffer = readBytes(length)
 
         // Convert to a ByteArray
