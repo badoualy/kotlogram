@@ -3,7 +3,7 @@ package com.github.badoualy.telegram.tl.serialization
 import com.github.badoualy.telegram.tl.core.TLBytes
 import java.io.OutputStream
 
-class TLStreamSerializer(private val stream: OutputStream) : TLSerializer {
+internal class TLStreamSerializer(private val stream: OutputStream) : TLSerializer {
 
     override fun writeByte(b: Int) {
         stream.write(b)

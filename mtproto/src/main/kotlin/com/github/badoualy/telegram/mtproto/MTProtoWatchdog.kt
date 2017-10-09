@@ -107,7 +107,7 @@ internal object MTProtoWatchdog : Runnable {
             key = connection.register(selector, SelectionKey.OP_READ).apply {
                 attach(connection)
             }
-            logger.info("has ${selector.keys().size} keys")
+            logger.debug("has ${selector.keys().size} keys")
             return key
         }
     }

@@ -9,7 +9,7 @@ import java.io.IOException
 import java.io.InputStream
 import java.util.zip.GZIPInputStream
 
-class TLStreamDeserializer(var stream: InputStream,
+internal class TLStreamDeserializer(var stream: InputStream,
                            override val context: TLContext) : TLDeserializer {
 
     constructor(byteArray: ByteArray, context: TLContext) :

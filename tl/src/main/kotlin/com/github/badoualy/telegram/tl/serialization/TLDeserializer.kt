@@ -53,7 +53,7 @@ interface TLDeserializer {
 
     fun <T : TLObject> readTLObject(): T = readTLObject(null, -1)
 
-    fun <T : TLObject> readTLObject(expectedClazz: KClass<T>? = null, expectedConstructorId: Int = -1): T {
+    fun <T : TLObject> readTLObject(expectedClazz: KClass<T>?, expectedConstructorId: Int): T {
         var clazz = expectedClazz?.java
         var constructorId = expectedConstructorId
 

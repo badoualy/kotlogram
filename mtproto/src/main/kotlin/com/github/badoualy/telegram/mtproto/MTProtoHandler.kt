@@ -16,12 +16,14 @@ import com.github.badoualy.telegram.mtproto.time.MTProtoTimer
 import com.github.badoualy.telegram.mtproto.time.TimeOverlord
 import com.github.badoualy.telegram.mtproto.tl.*
 import com.github.badoualy.telegram.tl.StreamUtils
+import com.github.badoualy.telegram.tl.TLContext
 import com.github.badoualy.telegram.tl.api.TLAbsUpdates
 import com.github.badoualy.telegram.tl.api.TLApiContext
 import com.github.badoualy.telegram.tl.core.TLMethod
 import com.github.badoualy.telegram.tl.core.TLObject
 import com.github.badoualy.telegram.tl.exception.RpcErrorException
-import com.github.badoualy.telegram.tl.serialization.TLStreamDeserializer
+import com.github.badoualy.telegram.tl.serialization.TLSerializerFactory
+import com.github.badoualy.telegram.tl.serialization.TLStreamSerializerFactory
 import io.reactivex.Maybe
 import io.reactivex.Observable
 import io.reactivex.Single
@@ -33,10 +35,10 @@ import io.reactivex.rxkotlin.toObservable
 import io.reactivex.schedulers.Schedulers
 import io.reactivex.subjects.PublishSubject
 import io.reactivex.subjects.Subject
-import java.io.ByteArrayInputStream
 import java.io.IOException
 import java.util.*
 import java.util.concurrent.TimeUnit
+import kotlin.reflect.KClass
 
 class MTProtoHandler {
 
@@ -57,6 +59,7 @@ class MTProtoHandler {
     private val tag: LogTag
         get() = session.tag
 
+    /** An observable emitting an item for each received [TLAbsUpdates] */
     val updateObservable: Observable<TLAbsUpdates>
         get() = updateSubject.hide()
 
@@ -79,6 +82,7 @@ class MTProtoHandler {
         logger.debug(tag, "Created from existing key (new session? ${session == null}}")
     }
 
+    /** Start listening for incoming messages. You need to call this before executing any method */
     fun start() {
         logger.info(tag, "startWatchdog()")
         connection.getMessageObservable()
@@ -104,7 +108,7 @@ class MTProtoHandler {
                 .let { compositeDisposable.add(it) }
     }
 
-    /** Close the connection and re-open another one, should fix most connection issues */
+    /** Closes the connection and re-open another one immediately, this should fix most connection issues */
     fun resetConnection() {
         logger.warn(session.tag, "resetConnection()")
         close()
@@ -115,6 +119,7 @@ class MTProtoHandler {
         start()
     }
 
+    /** Closes the connection and associated resources. The handler can still be used after being closed. */
     fun close() {
         logger.warn(tag, "close()")
         dispose() // Dispose before closing to avoid propagating errors!
@@ -130,16 +135,25 @@ class MTProtoHandler {
         messageSubject.onComplete() // Will propagate error to subscriber
     }
 
-    @Deprecated(message = "TO REMOVE")
+    @Deprecated(message = "TO REMOVE", replaceWith = ReplaceWith("rx"))
     fun <T : TLObject> executeMethodSync(method: TLMethod<T>): T =
             executeMethod(method).blockingGet()
 
-    @Deprecated(message = "TO REMOVE")
+    @Deprecated(message = "TO REMOVE", replaceWith = ReplaceWith("rx"))
     fun <T : TLObject> executeMethodsSync(methods: List<TLMethod<T>>): List<T> =
             executeMethods(methods).blockingIterable().toList()
 
+    /**
+     * @return a Single emitting the response upon success.
+     * The rpc call will be made only when subscribing to the returned [Single]
+     */
     fun <T : TLObject> executeMethod(method: TLMethod<T>): Single<T> = executeMethods(listOf(method)).singleOrError()
 
+    /**
+     * @return an [Observable] emitting one object per method (in random order)
+     * or throwing an [RpcErrorException] if an error was returned.
+     * The rpc call will be made only when subscribing to the returned [Observable]
+     */
     fun <T : TLObject> executeMethods(methods: List<TLMethod<T>>): Observable<T> =
             methods.takeIf { it.isNotEmpty() }?.let {
                 messageSubject
@@ -151,10 +165,13 @@ class MTProtoHandler {
                         .doOnSubscribe { executeMethods_(methods) }
                         .observeOn(Schedulers.computation())
                         .flatMapMaybe(mapResult())
-                        .map { it as T }
+                        .map {
+                            @Suppress("UNCHECKED_CAST")
+                            it as T
+                        }
             } ?: Observable.empty<T>()
 
-
+    /** Runs the code to execute the given methods (actually sends them NOW) */
     private fun executeMethods_(methods: List<TLMethod<*>>) {
         logger.trace("executeMethods ${methods.joinToString { it.toString() }}")
 
@@ -182,6 +199,7 @@ class MTProtoHandler {
         sendMessage(message)
     }
 
+    /** Sends the given [MTProtoMessage] after encrypting it */
     @Throws(IOException::class)
     private fun sendMessage(message: MTProtoMessage) {
         logger.debug(tag,
@@ -196,6 +214,11 @@ class MTProtoHandler {
         sentMessageList.add(message)
     }
 
+    /**
+     * Resends the message sent with the given messageId (generating a new message id if needed)
+     * @param messageId id of the message to resend
+     * @param updateMessageId if true the message id will be updated, else the same message id is kept
+     */
     @Throws(IOException::class)
     private fun resendMessage(messageId: Long, updateMessageId: Boolean) {
         logger.info("resendMessage $messageId")
@@ -240,9 +263,9 @@ class MTProtoHandler {
 
             when (StreamUtils.readInt(message.payload)) {
                 MTMessagesContainer.CONSTRUCTOR_ID -> {
-                    val tlDeserializer = TLStreamDeserializer(message.payload, mtProtoContext)
-                    val container = tlDeserializer.readTLObject(MTMessagesContainer::class,
-                                                                MTMessagesContainer.CONSTRUCTOR_ID)
+                    val container = readTLObject(message.payload, mtProtoContext,
+                                                 MTMessagesContainer::class,
+                                                 MTMessagesContainer.CONSTRUCTOR_ID)
                     logger.trace(tag, "Container has ${container.messages.size} items")
 
                     // Ensure valid container
@@ -261,6 +284,10 @@ class MTProtoHandler {
         }
     }
 
+    /**
+     * @return a function that handles a received [MTProtoMessage] to a [Pair] of the same
+     * [MTProtoMessage] and its deserialized [TLObject] content
+     */
     private fun deserializePayload(): (MTProtoMessage) -> Pair<MTProtoMessage, TLObject> = { message ->
         val classId = StreamUtils.readInt(message.payload)
         logger.trace(session.tag, "Payload constructor id: $classId")
@@ -274,12 +301,15 @@ class MTProtoHandler {
                     apiContext
                 }
 
-        val payload = TLStreamDeserializer(ByteArrayInputStream(message.payload),
-                                           context).readTLObject<TLObject>()
-
-        Pair(message, payload)
+        Pair(message, readTLObject(message.payload, context))
     }
 
+    /**
+     * @return a function that handles the received messages.
+     * - Queue the ack if needed
+     * - Propagate the updates if it is one
+     * - Handles bad messages
+     */
     @Throws(IOException::class)
     private fun onMessageReceived(): (Pair<MTProtoMessage, TLObject>) -> Unit = { (message, payload) ->
         logger.debug(tag, "handle $payload")
@@ -332,6 +362,12 @@ class MTProtoHandler {
         }
     }
 
+    /**
+     * @return a function mapping the a [MTRpcResult] to its result content.
+     * Or throw an exception if an error is received instead of the response
+     * @throws RpcErrorException if the result is a [MTRpcError]
+     */
+    @Throws(RpcErrorException::class)
     private fun mapResult(): (MTRpcResult) -> Maybe<out TLObject> = { result ->
         logger.debug(tag, "Got result for msgId ${result.messageId}")
 
@@ -346,11 +382,9 @@ class MTProtoHandler {
         val clazzId = StreamUtils.readInt(result.content)
         logger.trace(tag, "Response constructor id: $clazzId")
 
-        // TODO change TLStreamDeserializer instantiation, factory?
         val resultObject = when {
             mtProtoContext.contains(clazzId) -> {
-                val content = TLStreamDeserializer(result.content, mtProtoContext)
-                        .readTLObject<TLObject>()
+                val content = readTLObject<TLObject>(result.content, mtProtoContext)
                 if (content is MTRpcError) {
                     logger.error(tag,
                                  "rpcError ${content.errorCode}: ${content.message}")
@@ -364,13 +398,19 @@ class MTProtoHandler {
             else -> {
                 // Fallback, this will error if object is a non-TLObject vector (int, long, String)
                 logger.warn(tag, "Attempting to deserialize without knowing the type")
-                TLStreamDeserializer(result.content, apiContext).readTLObject()
+                readTLObject(result.content, apiContext)
             }
         }
 
         resultObject.toMaybe()
     }
 
+    /**
+     * Handles the given badMessage with the appropriate behavior.
+     * This method may resend the bad message with fixed parameters, or just ignore it.
+     * @param badMessage object received from Telegram
+     * @param container the message received from Telegram
+     */
     @Throws(IOException::class)
     private fun handleBadMessage(badMessage: MTBadMessageNotification, container: MTProtoMessage) {
         logger.error(tag, badMessage.toPrettyString())
@@ -408,28 +448,35 @@ class MTProtoHandler {
         }
     }
 
+    /** Add the given message id to the queue to be acknowledged to Telegram */
     private fun queueMessageAck(id: Long) {
         ackBuffer.add(id)
     }
 
+    /** @return a [MTProtoMessage] with a [MTMsgsAck] payload for all the message ids waiting to be ack to Telegram */
     private fun getAckMessage(): MTProtoMessage = newAckMessage(ackBuffer.get())
 
+    /** @return queued [MTProtoMessage] waiting to be sent with the next request */
     private fun getQueuedToSend(): List<MTProtoMessage> {
         // TODO
         return emptyList()
     }
 
+    /** @return a new session for the given [DataCenter] (with no salt, reset seqno value ...) */
     private fun newSession(dataCenter: DataCenter) = MTSession(dataCenter).also {
         logger.info(it.tag, "New session created")
     }
 
+    /** @return a [MTProtoMessage] with a [MTMsgsAck] payload for the given message ids */
     private fun newAckMessage(idList: List<Long>) = newMessage(MTMsgsAck(idList.toLongArray()))
 
+    /** @return a [MTProtoMessage] with the given [TLMethod] as a payload */
     private fun newMethodMessage(method: TLMethod<*>) = newMessage(method).also {
         logger.trace(tag, "Sending $method with msgId ${it.messageId} and seqNo ${it.seqNo}")
         requestByIdMap.put(it.messageId, method)
     }
 
+    /** @return a [MTProtoMessage] with the given [TLObject] as a payload */
     private fun newMessage(payload: TLObject) = MTProtoMessage(session.generateMessageId(),
                                                                session.generateSeqNo(payload),
                                                                payload.serialize())
@@ -445,9 +492,10 @@ class MTProtoHandler {
         private val apiContext = TLApiContext
 
         private val connectionFactory: MTProtoConnectionFactory = MTProtoTcpConnectionFactory()
+        private val tlSerializerFactory: TLSerializerFactory = TLStreamSerializerFactory
 
         /**
-         * Shutdown all the threads and resources associated to this instance.
+         * Shutdown all the threads and resources.
          * Calling this method will prevent further handlers from being created/used properly.
          */
         @JvmStatic
@@ -456,5 +504,14 @@ class MTProtoHandler {
             MTProtoWatchdog.shutdown()
             MTProtoTimer.shutdown()
         }
+
+        /** Convenience method to create a [com.github.badoualy.telegram.tl.serialization.TLDeserializer] and read a [TLObject] from it */
+        private inline fun <reified T : TLObject> readTLObject(payload: ByteArray, context: TLContext): T =
+                tlSerializerFactory.createDeserializer(payload, context).readTLObject()
+
+        /** Convenience method to create a [com.github.badoualy.telegram.tl.serialization.TLDeserializer] and read a [TLObject] from it */
+        private inline fun <reified T : TLObject> readTLObject(payload: ByteArray, context: TLContext, expectedClazz: KClass<T>?, expectedConstructorId: Int): T =
+                tlSerializerFactory.createDeserializer(payload, context)
+                        .readTLObject(expectedClazz, expectedConstructorId)
     }
 }

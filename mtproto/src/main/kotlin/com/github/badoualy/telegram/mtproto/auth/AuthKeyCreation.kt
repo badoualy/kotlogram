@@ -7,6 +7,8 @@ import com.github.badoualy.telegram.mtproto.exception.SecurityException
 import com.github.badoualy.telegram.mtproto.log.LogTag
 import com.github.badoualy.telegram.mtproto.log.Logger
 import com.github.badoualy.telegram.mtproto.model.DataCenter
+import com.github.badoualy.telegram.mtproto.net.MTProtoConnection
+import com.github.badoualy.telegram.mtproto.net.MTProtoTcpConnection
 import com.github.badoualy.telegram.mtproto.secure.CryptoUtils.*
 import com.github.badoualy.telegram.mtproto.secure.Key
 import com.github.badoualy.telegram.mtproto.secure.MTProtoMessageEncryption
@@ -14,15 +16,13 @@ import com.github.badoualy.telegram.mtproto.secure.RandomUtils
 import com.github.badoualy.telegram.mtproto.secure.pq.PQSolver
 import com.github.badoualy.telegram.mtproto.time.TimeOverlord
 import com.github.badoualy.telegram.mtproto.tl.auth.*
-import com.github.badoualy.telegram.mtproto.net.MTProtoConnection
-import com.github.badoualy.telegram.mtproto.net.MTProtoTcpConnection
 import com.github.badoualy.telegram.mtproto.util.Pair
 import com.github.badoualy.telegram.mtproto.util.SolvedPQ
 import com.github.badoualy.telegram.tl.StreamUtils
 import com.github.badoualy.telegram.tl.core.TLMethod
 import com.github.badoualy.telegram.tl.core.TLObject
-import com.github.badoualy.telegram.tl.serialization.TLStreamDeserializer
-import java.io.ByteArrayInputStream
+import com.github.badoualy.telegram.tl.serialization.TLSerializerFactory
+import com.github.badoualy.telegram.tl.serialization.TLStreamSerializerFactory
 import java.io.IOException
 import java.math.BigInteger
 import java.util.*
@@ -44,6 +44,7 @@ object AuthKeyCreation {
     private var connection: MTProtoConnection? = null
     private val context = TLAuthContext
     private const val tmpKeyExpireDelay = TEMPORARY_KEY_DEFAULT_EXPIRE_DELAY
+    private val tlSerializerFactory: TLSerializerFactory = TLStreamSerializerFactory
 
     /**
      * Create a permanent authorization key
@@ -201,9 +202,9 @@ object AuthKeyCreation {
                               substring(newNonce, 0, 4))
 
         val answer = AES256IGEDecrypt(encryptedAnswer, tmpAesIv, tmpAesKey)
-        val stream = ByteArrayInputStream(answer)
-        val answerHash = StreamUtils.readBytes(20, stream) // Hash
-        val dhInner = TLStreamDeserializer(stream, context).readTLObject<ServerDhInner>()
+        val tlDeserializer = tlSerializerFactory.createDeserializer(answer, context)
+        val answerHash = tlDeserializer.readBytes(20) // Hash
+        val dhInner = tlDeserializer.readTLObject<ServerDhInner>()
         if (!Arrays.equals(answerHash, SHA1(dhInner.serialize()))) {
             throw SecurityException("answerHash doesn't match the one generated from dhInner")
         }
