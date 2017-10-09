@@ -24,9 +24,9 @@ fun TLMethod.tlMethodName() = methodName(name)
 fun methodName(typeName: String) = typeName.uCamelCase()
 
 fun tlClassName(typeName: String, abstract: Boolean = false, request: Boolean = false) = when {
-    abstract -> "TLAbs${typeName.split('.').last().uFirstLetter()}"
+    abstract -> "TLAbs${typeName.split('.').last().uCamelCase()}"
     request -> "TLRequest${typeName.uCamelCase()}"
-    else -> "TL${typeName.split('.').last().uFirstLetter()}"
+    else -> "TL${typeName.split('.').last().uCamelCase()}"
 }
 
 // TODO: replace with ext on TLType

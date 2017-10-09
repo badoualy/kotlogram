@@ -29,7 +29,7 @@ object TLSchemaParser {
             when {
                 line.isBlank() -> Unit
                 line.startsWith("//") -> Unit
-                line == "---types---" -> Unit
+                line == "---types---" -> parsingMethods = false
                 line == "---functions---" -> parsingMethods = true
                 !tlTypeRegex.matches(line.trim()) ->
                     System.err.println("Line not matching tlTypeRegex:\n$line")

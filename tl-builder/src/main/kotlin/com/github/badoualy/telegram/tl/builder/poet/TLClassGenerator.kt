@@ -474,6 +474,7 @@ class TLClassGenerator(tlDefinition: TLDefinition, val config: Config) {
                 "string" -> String::class.asClassName()
                 "bytes" -> TYPE_TL_BYTES
                 "Bool", "true", "false" -> if (boxedInTl) TYPE_TL_BOOL else BOOLEAN
+                "int128", "int256" -> ByteArray::class.asTypeName()
                 else -> typeTypeNameMap[type] ?: throw RuntimeException("Unknown type $type")
             }
         }
@@ -491,6 +492,7 @@ class TLClassGenerator(tlDefinition: TLDefinition, val config: Config) {
         TYPE_TL_INT_VECTOR -> "TLIntVector()"
         TYPE_TL_LONG_VECTOR -> "TLLongVector()"
         TYPE_TL_STRING_VECTOR -> "TLStringVector()"
+        ByteArray::class.asTypeName() -> "ByteArray(0)"
         is ParameterizedTypeName -> {
             when (type.rawType) {
                 TYPE_TL_OBJECT_VECTOR -> "TLObjectVector()"

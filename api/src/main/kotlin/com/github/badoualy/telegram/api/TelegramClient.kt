@@ -1,7 +1,6 @@
 package com.github.badoualy.telegram.api
 
 import com.github.badoualy.telegram.api.utils.InputFileLocation
-import com.github.badoualy.telegram.mtproto.MTProtoHandler
 import com.github.badoualy.telegram.tl.api.*
 import com.github.badoualy.telegram.tl.api.auth.TLAuthorization
 import com.github.badoualy.telegram.tl.api.auth.TLSentCode
@@ -11,7 +10,6 @@ import com.github.badoualy.telegram.tl.core.TLBytes
 import com.github.badoualy.telegram.tl.core.TLMethod
 import com.github.badoualy.telegram.tl.core.TLObject
 import com.github.badoualy.telegram.tl.exception.RpcErrorException
-import io.reactivex.Observable
 import java.io.IOException
 import java.io.OutputStream
 

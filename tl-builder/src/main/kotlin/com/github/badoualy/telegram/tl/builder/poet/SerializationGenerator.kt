@@ -53,6 +53,8 @@ internal fun deserializeParameter(fieldTlType: TLType, fieldType: TypeName): Str
         "string" -> "readString()"
         "bytes" -> "readTLBytes()"
         "Bool" -> "readBoolean()"
+        "int128" -> "readBytes(16)"
+        "int256" -> "readBytes(32)"
         else -> {
             val className = (fieldType as ClassName).simpleName()
             val isAbstract = className.startsWith("TLAbs", true)

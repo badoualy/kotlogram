@@ -2,8 +2,10 @@ package com.github.badoualy.telegram.tl.builder.parser
 
 object TLDefinitionBuilder {
 
-    private val genericRegex = Regex("([a-zA-Z]+)<([a-zA-Z]+)>") // Vector<SomeKindOfType>
-    private val flagRegex = Regex("([a-zA-Z]+).(\\d+)\\?([a-zA-Z<>.]+)") // flags.0?true
+    private val genericRegex = Regex("([a-zA-Z]+)<([a-zA-Z_]+)>",
+                                     RegexOption.IGNORE_CASE) // Vector<SomeKindOfType>
+    private val flagRegex = Regex("([a-zA-Z]+).(\\d+)\\?([a-zA-Z<>.]+)",
+                                  RegexOption.IGNORE_CASE) // flags.0?true
     private val rawRegex = Regex("[a-zA-Z].+")
 
     private val typeMap = HashMap<String, TLTypeRaw>()
@@ -66,7 +68,9 @@ object TLDefinitionBuilder {
         println("Found ${supertypesConstructors.size} supertypes")
         println("Found ${supertypesConstructors.count { it.forEmptyConstructor }} (for-empty) supertypes")
 
-        return TLDefinition(supertypesConstructors.sorted(), typesConstructors.sorted(), methodsConstructors.sorted())
+        return TLDefinition(supertypesConstructors.sorted(),
+                            typesConstructors.sorted(),
+                            methodsConstructors.sorted())
     }
 
 
@@ -98,7 +102,7 @@ object TLDefinitionBuilder {
                     ?: throw RuntimeException("Unknown error with type $typeName")
             val genericName: String = groups[2]?.value
                     ?: throw RuntimeException("Unknown error with type $typeName")
-            if (!SupportedGenericTypes.contains(tlName))
+            if (SupportedGenericTypes.none { it.equals(tlName, true) })
                 throw RuntimeException("Unsupported generic type $tlName")
 
             TLTypeGeneric(tlName, arrayOf(createType(genericName)))
