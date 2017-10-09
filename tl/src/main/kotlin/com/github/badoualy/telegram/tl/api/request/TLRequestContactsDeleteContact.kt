@@ -25,7 +25,7 @@ class TLRequestContactsDeleteContact() : TLMethod<TLLink>() {
     }
 
     @Throws(IOException::class)
-    override fun deserializeResponse(tlDeserializer: TLDeserializer): TLLink = tlDeserializer.readTLObject(TLLink::class, TLLink.CONSTRUCTOR_ID)
+    override fun deserializeResponse_(tlDeserializer: TLDeserializer): TLLink = tlDeserializer.readTLObject(TLLink::class, TLLink.CONSTRUCTOR_ID)
 
     @Throws(IOException::class)
     override fun serializeBody(tlSerializer: TLSerializer) = with (tlSerializer)  {

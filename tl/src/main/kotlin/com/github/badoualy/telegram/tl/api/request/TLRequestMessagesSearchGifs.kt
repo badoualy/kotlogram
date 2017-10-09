@@ -28,7 +28,7 @@ class TLRequestMessagesSearchGifs() : TLMethod<TLFoundGifs>() {
     }
 
     @Throws(IOException::class)
-    override fun deserializeResponse(tlDeserializer: TLDeserializer): TLFoundGifs = tlDeserializer.readTLObject(TLFoundGifs::class, TLFoundGifs.CONSTRUCTOR_ID)
+    override fun deserializeResponse_(tlDeserializer: TLDeserializer): TLFoundGifs = tlDeserializer.readTLObject(TLFoundGifs::class, TLFoundGifs.CONSTRUCTOR_ID)
 
     @Throws(IOException::class)
     override fun serializeBody(tlSerializer: TLSerializer) = with (tlSerializer)  {

@@ -34,9 +34,6 @@ class TLRequestAccountChangePhone() : TLMethod<TLAbsUser>() {
     }
 
     @Throws(IOException::class)
-    override fun deserializeResponse(tlDeserializer: TLDeserializer): TLAbsUser = tlDeserializer.readTLObject()
-
-    @Throws(IOException::class)
     override fun serializeBody(tlSerializer: TLSerializer) = with (tlSerializer)  {
         writeString(phoneNumber)
         writeString(phoneCodeHash)

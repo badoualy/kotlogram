@@ -45,9 +45,6 @@ class TLRequestMessagesSearchGlobal() : TLMethod<TLAbsMessages>() {
     }
 
     @Throws(IOException::class)
-    override fun deserializeResponse(tlDeserializer: TLDeserializer): TLAbsMessages = tlDeserializer.readTLObject()
-
-    @Throws(IOException::class)
     override fun serializeBody(tlSerializer: TLSerializer) = with (tlSerializer)  {
         writeString(q)
         writeInt(offsetDate)

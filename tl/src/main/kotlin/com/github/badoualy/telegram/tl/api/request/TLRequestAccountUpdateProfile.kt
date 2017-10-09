@@ -34,9 +34,6 @@ class TLRequestAccountUpdateProfile() : TLMethod<TLAbsUser>() {
         this.about = about
     }
 
-    @Throws(IOException::class)
-    override fun deserializeResponse(tlDeserializer: TLDeserializer): TLAbsUser = tlDeserializer.readTLObject()
-
     protected override fun computeFlags() {
         _flags = 0
         updateFlags(firstName, 1)

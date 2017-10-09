@@ -36,9 +36,6 @@ class TLRequestUploadGetFile() : TLMethod<TLAbsFile>() {
     }
 
     @Throws(IOException::class)
-    override fun deserializeResponse(tlDeserializer: TLDeserializer): TLAbsFile = tlDeserializer.readTLObject()
-
-    @Throws(IOException::class)
     override fun serializeBody(tlSerializer: TLSerializer) = with (tlSerializer)  {
         writeTLObject(location)
         writeInt(offset)

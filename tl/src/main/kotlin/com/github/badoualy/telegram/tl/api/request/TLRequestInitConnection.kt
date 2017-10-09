@@ -55,7 +55,7 @@ class TLRequestInitConnection<T : TLObject>() : TLMethod<T>() {
     }
 
     @Throws(IOException::class)
-    override fun deserializeResponse(tlDeserializer: TLDeserializer): T = query.deserializeResponse(tlDeserializer)
+    override fun deserializeResponse_(tlDeserializer: TLDeserializer): T = query.deserializeResponse(tlDeserializer)
 
     @Throws(IOException::class)
     override fun serializeBody(tlSerializer: TLSerializer) = with (tlSerializer)  {

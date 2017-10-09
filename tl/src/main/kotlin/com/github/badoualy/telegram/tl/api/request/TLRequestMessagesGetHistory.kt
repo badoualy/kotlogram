@@ -52,9 +52,6 @@ class TLRequestMessagesGetHistory() : TLMethod<TLAbsMessages>() {
     }
 
     @Throws(IOException::class)
-    override fun deserializeResponse(tlDeserializer: TLDeserializer): TLAbsMessages = tlDeserializer.readTLObject()
-
-    @Throws(IOException::class)
     override fun serializeBody(tlSerializer: TLSerializer) = with (tlSerializer)  {
         writeTLObject(peer)
         writeInt(offsetId)

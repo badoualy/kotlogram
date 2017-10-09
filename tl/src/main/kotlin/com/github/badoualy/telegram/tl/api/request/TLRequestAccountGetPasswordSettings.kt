@@ -25,7 +25,7 @@ class TLRequestAccountGetPasswordSettings() : TLMethod<TLPasswordSettings>() {
     }
 
     @Throws(IOException::class)
-    override fun deserializeResponse(tlDeserializer: TLDeserializer): TLPasswordSettings = tlDeserializer.readTLObject(TLPasswordSettings::class, TLPasswordSettings.CONSTRUCTOR_ID)
+    override fun deserializeResponse_(tlDeserializer: TLDeserializer): TLPasswordSettings = tlDeserializer.readTLObject(TLPasswordSettings::class, TLPasswordSettings.CONSTRUCTOR_ID)
 
     @Throws(IOException::class)
     override fun serializeBody(tlSerializer: TLSerializer) = with (tlSerializer)  {

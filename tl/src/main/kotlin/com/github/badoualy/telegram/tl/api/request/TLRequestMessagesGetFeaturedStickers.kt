@@ -24,9 +24,6 @@ class TLRequestMessagesGetFeaturedStickers() : TLMethod<TLAbsFeaturedStickers>()
     }
 
     @Throws(IOException::class)
-    override fun deserializeResponse(tlDeserializer: TLDeserializer): TLAbsFeaturedStickers = tlDeserializer.readTLObject()
-
-    @Throws(IOException::class)
     override fun serializeBody(tlSerializer: TLSerializer) = with (tlSerializer)  {
         writeInt(hash)
     }

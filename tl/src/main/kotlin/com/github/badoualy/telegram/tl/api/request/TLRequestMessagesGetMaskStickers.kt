@@ -24,9 +24,6 @@ class TLRequestMessagesGetMaskStickers() : TLMethod<TLAbsAllStickers>() {
     }
 
     @Throws(IOException::class)
-    override fun deserializeResponse(tlDeserializer: TLDeserializer): TLAbsAllStickers = tlDeserializer.readTLObject()
-
-    @Throws(IOException::class)
     override fun serializeBody(tlSerializer: TLSerializer) = with (tlSerializer)  {
         writeInt(hash)
     }

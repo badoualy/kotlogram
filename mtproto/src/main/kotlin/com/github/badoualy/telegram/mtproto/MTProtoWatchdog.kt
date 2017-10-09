@@ -68,6 +68,7 @@ internal object MTProtoWatchdog : Runnable {
             .observeOn(Schedulers.from(pool))
             .map { key -> connection.readMessage().also { listen(key) } }
             .doOnSubscribe {
+                // TODO: ensure first subscribe only?
                 logger.info(connection.tag, "onSubscribe")
                 register(connection)
                 runOrWakeup()

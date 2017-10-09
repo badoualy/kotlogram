@@ -16,7 +16,7 @@ class TLRequestAccountGetWallPapers : TLMethod<TLObjectVector<TLAbsWallPaper>>()
     override val constructorId: Int = CONSTRUCTOR_ID
 
     @Throws(IOException::class)
-    override fun deserializeResponse(tlDeserializer: TLDeserializer): TLObjectVector<TLAbsWallPaper> = tlDeserializer.readTLVector<TLAbsWallPaper>()
+    override fun deserializeResponse_(tlDeserializer: TLDeserializer): TLObjectVector<TLAbsWallPaper> = tlDeserializer.readTLVector<TLAbsWallPaper>()
 
     override fun toString() = _constructor
 

@@ -45,7 +45,7 @@ class TLRequestAuthSendCode() : TLMethod<TLSentCode>() {
     }
 
     @Throws(IOException::class)
-    override fun deserializeResponse(tlDeserializer: TLDeserializer): TLSentCode = tlDeserializer.readTLObject(TLSentCode::class, TLSentCode.CONSTRUCTOR_ID)
+    override fun deserializeResponse_(tlDeserializer: TLDeserializer): TLSentCode = tlDeserializer.readTLObject(TLSentCode::class, TLSentCode.CONSTRUCTOR_ID)
 
     protected override fun computeFlags() {
         _flags = 0

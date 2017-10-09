@@ -24,7 +24,7 @@ class TLRequestContactsResolveUsername() : TLMethod<TLResolvedPeer>() {
     }
 
     @Throws(IOException::class)
-    override fun deserializeResponse(tlDeserializer: TLDeserializer): TLResolvedPeer = tlDeserializer.readTLObject(TLResolvedPeer::class, TLResolvedPeer.CONSTRUCTOR_ID)
+    override fun deserializeResponse_(tlDeserializer: TLDeserializer): TLResolvedPeer = tlDeserializer.readTLObject(TLResolvedPeer::class, TLResolvedPeer.CONSTRUCTOR_ID)
 
     @Throws(IOException::class)
     override fun serializeBody(tlSerializer: TLSerializer) = with (tlSerializer)  {

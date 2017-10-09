@@ -29,7 +29,7 @@ class TLRequestAccountGetTmpPassword() : TLMethod<TLTmpPassword>() {
     }
 
     @Throws(IOException::class)
-    override fun deserializeResponse(tlDeserializer: TLDeserializer): TLTmpPassword = tlDeserializer.readTLObject(TLTmpPassword::class, TLTmpPassword.CONSTRUCTOR_ID)
+    override fun deserializeResponse_(tlDeserializer: TLDeserializer): TLTmpPassword = tlDeserializer.readTLObject(TLTmpPassword::class, TLTmpPassword.CONSTRUCTOR_ID)
 
     @Throws(IOException::class)
     override fun serializeBody(tlSerializer: TLSerializer) = with (tlSerializer)  {

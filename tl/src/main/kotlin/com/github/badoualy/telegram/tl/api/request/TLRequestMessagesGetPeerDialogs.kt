@@ -25,7 +25,7 @@ class TLRequestMessagesGetPeerDialogs() : TLMethod<TLPeerDialogs>() {
     }
 
     @Throws(IOException::class)
-    override fun deserializeResponse(tlDeserializer: TLDeserializer): TLPeerDialogs = tlDeserializer.readTLObject(TLPeerDialogs::class, TLPeerDialogs.CONSTRUCTOR_ID)
+    override fun deserializeResponse_(tlDeserializer: TLDeserializer): TLPeerDialogs = tlDeserializer.readTLObject(TLPeerDialogs::class, TLPeerDialogs.CONSTRUCTOR_ID)
 
     @Throws(IOException::class)
     override fun serializeBody(tlSerializer: TLSerializer) = with (tlSerializer)  {

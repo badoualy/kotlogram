@@ -1,15 +1,9 @@
 package com.github.badoualy.telegram.mtproto.tl.auth
 
-import com.github.badoualy.telegram.tl.StreamUtils.readBytes
-import com.github.badoualy.telegram.tl.StreamUtils.writeByteArray
-import com.github.badoualy.telegram.tl.TLContext
 import com.github.badoualy.telegram.tl.core.TLMethod
-import com.github.badoualy.telegram.tl.exception.DeserializationException
 import com.github.badoualy.telegram.tl.serialization.TLDeserializer
 import com.github.badoualy.telegram.tl.serialization.TLSerializer
 import java.io.IOException
-import java.io.InputStream
-import java.io.OutputStream
 
 class ReqPQ constructor(nonce: ByteArray? = null) : TLMethod<ResPQ>() {
 
@@ -28,9 +22,6 @@ class ReqPQ constructor(nonce: ByteArray? = null) : TLMethod<ResPQ>() {
             throw IllegalArgumentException("nonce might be not null and 16 bytes length")
         this.nonce = nonce!!
     }
-
-    @Throws(IOException::class)
-    override fun deserializeResponse(tlDeserializer: TLDeserializer): ResPQ = tlDeserializer.readTLObject()
 
     @Throws(IOException::class)
     override fun serializeBody(tlSerializer: TLSerializer) = with(tlSerializer) {

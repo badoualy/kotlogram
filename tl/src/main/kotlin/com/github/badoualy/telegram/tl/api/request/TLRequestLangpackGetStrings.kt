@@ -29,7 +29,7 @@ class TLRequestLangpackGetStrings() : TLMethod<TLObjectVector<TLAbsLangPackStrin
     }
 
     @Throws(IOException::class)
-    override fun deserializeResponse(tlDeserializer: TLDeserializer): TLObjectVector<TLAbsLangPackString> = tlDeserializer.readTLVector<TLAbsLangPackString>()
+    override fun deserializeResponse_(tlDeserializer: TLDeserializer): TLObjectVector<TLAbsLangPackString> = tlDeserializer.readTLVector<TLAbsLangPackString>()
 
     @Throws(IOException::class)
     override fun serializeBody(tlSerializer: TLSerializer) = with (tlSerializer)  {

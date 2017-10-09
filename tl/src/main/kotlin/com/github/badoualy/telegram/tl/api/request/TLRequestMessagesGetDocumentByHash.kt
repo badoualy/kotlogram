@@ -37,9 +37,6 @@ class TLRequestMessagesGetDocumentByHash() : TLMethod<TLAbsDocument>() {
     }
 
     @Throws(IOException::class)
-    override fun deserializeResponse(tlDeserializer: TLDeserializer): TLAbsDocument = tlDeserializer.readTLObject()
-
-    @Throws(IOException::class)
     override fun serializeBody(tlSerializer: TLSerializer) = with (tlSerializer)  {
         writeTLBytes(sha256)
         writeInt(size)

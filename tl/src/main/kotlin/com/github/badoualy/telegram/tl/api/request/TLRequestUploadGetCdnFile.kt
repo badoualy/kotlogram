@@ -36,9 +36,6 @@ class TLRequestUploadGetCdnFile() : TLMethod<TLAbsCdnFile>() {
     }
 
     @Throws(IOException::class)
-    override fun deserializeResponse(tlDeserializer: TLDeserializer): TLAbsCdnFile = tlDeserializer.readTLObject()
-
-    @Throws(IOException::class)
     override fun serializeBody(tlSerializer: TLSerializer) = with (tlSerializer)  {
         writeTLBytes(fileToken)
         writeInt(offset)

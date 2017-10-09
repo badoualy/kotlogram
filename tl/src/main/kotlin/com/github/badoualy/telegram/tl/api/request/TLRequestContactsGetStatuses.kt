@@ -16,7 +16,7 @@ class TLRequestContactsGetStatuses : TLMethod<TLObjectVector<TLContactStatus>>()
     override val constructorId: Int = CONSTRUCTOR_ID
 
     @Throws(IOException::class)
-    override fun deserializeResponse(tlDeserializer: TLDeserializer): TLObjectVector<TLContactStatus> = tlDeserializer.readTLVector<TLContactStatus>()
+    override fun deserializeResponse_(tlDeserializer: TLDeserializer): TLObjectVector<TLContactStatus> = tlDeserializer.readTLVector<TLContactStatus>()
 
     override fun toString() = _constructor
 

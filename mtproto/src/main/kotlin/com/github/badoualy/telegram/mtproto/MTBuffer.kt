@@ -7,7 +7,6 @@ import io.reactivex.rxkotlin.toMaybe
 import io.reactivex.schedulers.Schedulers
 import io.reactivex.subjects.PublishSubject
 import io.reactivex.subjects.Subject
-import java.util.*
 import java.util.concurrent.TimeUnit
 
 class MTBuffer<T>(var bufferSize: Int,
@@ -22,6 +21,7 @@ class MTBuffer<T>(var bufferSize: Int,
     private val subject: Subject<List<T>> = PublishSubject.create()
     val observable: Observable<List<T>>
         get() = subject.hide()
+                .doOnNext { logger.trace(tag, "doOnNext ${it.joinToString()}") }
 
     fun add(item: T) {
         var flush = false
@@ -61,8 +61,9 @@ class MTBuffer<T>(var bufferSize: Int,
 
     fun get() = get(bufferId)
 
-    fun dispose() {
-        subject.onComplete()
+    fun reset() = synchronized(list) {
+        list = ArrayList(bufferSize)
+        bufferId = 0
     }
 
     private fun newBuffer() = synchronized(list) {

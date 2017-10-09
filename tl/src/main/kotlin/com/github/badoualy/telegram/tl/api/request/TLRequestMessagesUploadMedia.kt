@@ -26,9 +26,6 @@ class TLRequestMessagesUploadMedia() : TLMethod<TLAbsMessageMedia>() {
     }
 
     @Throws(IOException::class)
-    override fun deserializeResponse(tlDeserializer: TLDeserializer): TLAbsMessageMedia = tlDeserializer.readTLObject()
-
-    @Throws(IOException::class)
     override fun serializeBody(tlSerializer: TLSerializer) = with (tlSerializer)  {
         writeTLObject(peer)
         writeTLObject(media)

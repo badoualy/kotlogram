@@ -36,7 +36,7 @@ class TLRequestMessagesGetMessagesViews() : TLMethod<TLIntVector>() {
     }
 
     @Throws(IOException::class)
-    override fun deserializeResponse(tlDeserializer: TLDeserializer): TLIntVector = tlDeserializer.readTLIntVector()
+    override fun deserializeResponse_(tlDeserializer: TLDeserializer): TLIntVector = tlDeserializer.readTLIntVector()
 
     @Throws(IOException::class)
     override fun serializeBody(tlSerializer: TLSerializer) = with (tlSerializer)  {

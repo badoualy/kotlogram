@@ -47,9 +47,6 @@ class TLRequestMessagesSetGameScore() : TLMethod<TLAbsUpdates>() {
         this.score = score
     }
 
-    @Throws(IOException::class)
-    override fun deserializeResponse(tlDeserializer: TLDeserializer): TLAbsUpdates = tlDeserializer.readTLObject()
-
     protected override fun computeFlags() {
         _flags = 0
         updateFlags(editMessage, 1)

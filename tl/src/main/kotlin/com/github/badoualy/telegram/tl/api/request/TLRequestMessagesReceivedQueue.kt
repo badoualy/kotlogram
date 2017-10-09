@@ -24,7 +24,7 @@ class TLRequestMessagesReceivedQueue() : TLMethod<TLLongVector>() {
     }
 
     @Throws(IOException::class)
-    override fun deserializeResponse(tlDeserializer: TLDeserializer): TLLongVector = tlDeserializer.readTLLongVector()
+    override fun deserializeResponse_(tlDeserializer: TLDeserializer): TLLongVector = tlDeserializer.readTLLongVector()
 
     @Throws(IOException::class)
     override fun serializeBody(tlSerializer: TLSerializer) = with (tlSerializer)  {

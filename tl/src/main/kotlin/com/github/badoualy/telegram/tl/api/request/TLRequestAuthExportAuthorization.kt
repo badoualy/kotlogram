@@ -24,7 +24,7 @@ class TLRequestAuthExportAuthorization() : TLMethod<TLExportedAuthorization>() {
     }
 
     @Throws(IOException::class)
-    override fun deserializeResponse(tlDeserializer: TLDeserializer): TLExportedAuthorization = tlDeserializer.readTLObject(TLExportedAuthorization::class, TLExportedAuthorization.CONSTRUCTOR_ID)
+    override fun deserializeResponse_(tlDeserializer: TLDeserializer): TLExportedAuthorization = tlDeserializer.readTLObject(TLExportedAuthorization::class, TLExportedAuthorization.CONSTRUCTOR_ID)
 
     @Throws(IOException::class)
     override fun serializeBody(tlSerializer: TLSerializer) = with (tlSerializer)  {

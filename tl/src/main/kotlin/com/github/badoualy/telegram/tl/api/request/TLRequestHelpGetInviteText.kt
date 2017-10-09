@@ -15,7 +15,7 @@ class TLRequestHelpGetInviteText : TLMethod<TLInviteText>() {
     override val constructorId: Int = CONSTRUCTOR_ID
 
     @Throws(IOException::class)
-    override fun deserializeResponse(tlDeserializer: TLDeserializer): TLInviteText = tlDeserializer.readTLObject(TLInviteText::class, TLInviteText.CONSTRUCTOR_ID)
+    override fun deserializeResponse_(tlDeserializer: TLDeserializer): TLInviteText = tlDeserializer.readTLObject(TLInviteText::class, TLInviteText.CONSTRUCTOR_ID)
 
     override fun toString() = _constructor
 

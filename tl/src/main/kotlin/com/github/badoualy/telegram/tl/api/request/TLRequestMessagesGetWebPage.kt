@@ -28,9 +28,6 @@ class TLRequestMessagesGetWebPage() : TLMethod<TLAbsWebPage>() {
     }
 
     @Throws(IOException::class)
-    override fun deserializeResponse(tlDeserializer: TLDeserializer): TLAbsWebPage = tlDeserializer.readTLObject()
-
-    @Throws(IOException::class)
     override fun serializeBody(tlSerializer: TLSerializer) = with (tlSerializer)  {
         writeString(url)
         writeInt(hash)

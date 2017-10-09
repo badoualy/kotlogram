@@ -25,7 +25,7 @@ class TLRequestUsersGetUsers() : TLMethod<TLObjectVector<TLAbsUser>>() {
     }
 
     @Throws(IOException::class)
-    override fun deserializeResponse(tlDeserializer: TLDeserializer): TLObjectVector<TLAbsUser> = tlDeserializer.readTLVector<TLAbsUser>()
+    override fun deserializeResponse_(tlDeserializer: TLDeserializer): TLObjectVector<TLAbsUser> = tlDeserializer.readTLVector<TLAbsUser>()
 
     @Throws(IOException::class)
     override fun serializeBody(tlSerializer: TLSerializer) = with (tlSerializer)  {

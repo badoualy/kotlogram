@@ -35,9 +35,6 @@ class ReqDhParams @JvmOverloads constructor(var nonce: ByteArray = ByteArray(0),
         encryptedData = readTLBytesAsBytes()
     }
 
-    @Throws(IOException::class)
-    override fun deserializeResponse(tlDeserializer: TLDeserializer): ServerDhParams = tlDeserializer.readTLObject()
-
     override fun toString() = "req_DH_params#d712e4be"
 
     companion object {

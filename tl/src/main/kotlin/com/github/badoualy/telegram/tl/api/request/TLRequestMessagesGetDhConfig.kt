@@ -27,9 +27,6 @@ class TLRequestMessagesGetDhConfig() : TLMethod<TLAbsDhConfig>() {
     }
 
     @Throws(IOException::class)
-    override fun deserializeResponse(tlDeserializer: TLDeserializer): TLAbsDhConfig = tlDeserializer.readTLObject()
-
-    @Throws(IOException::class)
     override fun serializeBody(tlSerializer: TLSerializer) = with (tlSerializer)  {
         writeInt(version)
         writeInt(randomLength)

@@ -15,7 +15,7 @@ class TLRequestAccountGetAccountTTL : TLMethod<TLAccountDaysTTL>() {
     override val constructorId: Int = CONSTRUCTOR_ID
 
     @Throws(IOException::class)
-    override fun deserializeResponse(tlDeserializer: TLDeserializer): TLAccountDaysTTL = tlDeserializer.readTLObject(TLAccountDaysTTL::class, TLAccountDaysTTL.CONSTRUCTOR_ID)
+    override fun deserializeResponse_(tlDeserializer: TLDeserializer): TLAccountDaysTTL = tlDeserializer.readTLObject(TLAccountDaysTTL::class, TLAccountDaysTTL.CONSTRUCTOR_ID)
 
     override fun toString() = _constructor
 

@@ -40,9 +40,6 @@ class TLRequestPaymentsSendPaymentForm() : TLMethod<TLAbsPaymentResult>() {
         this.credentials = credentials
     }
 
-    @Throws(IOException::class)
-    override fun deserializeResponse(tlDeserializer: TLDeserializer): TLAbsPaymentResult = tlDeserializer.readTLObject()
-
     protected override fun computeFlags() {
         _flags = 0
         updateFlags(requestedInfoId, 1)

@@ -29,9 +29,6 @@ class TLRequestMessagesInstallStickerSet() : TLMethod<TLAbsStickerSetInstallResu
     }
 
     @Throws(IOException::class)
-    override fun deserializeResponse(tlDeserializer: TLDeserializer): TLAbsStickerSetInstallResult = tlDeserializer.readTLObject()
-
-    @Throws(IOException::class)
     override fun serializeBody(tlSerializer: TLSerializer) = with (tlSerializer)  {
         writeTLObject(stickerset)
         writeBoolean(archived)

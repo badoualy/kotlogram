@@ -57,7 +57,7 @@ class TLRequestChannelsGetAdminLog() : TLMethod<TLAdminLogResults>() {
     }
 
     @Throws(IOException::class)
-    override fun deserializeResponse(tlDeserializer: TLDeserializer): TLAdminLogResults = tlDeserializer.readTLObject(TLAdminLogResults::class, TLAdminLogResults.CONSTRUCTOR_ID)
+    override fun deserializeResponse_(tlDeserializer: TLDeserializer): TLAdminLogResults = tlDeserializer.readTLObject(TLAdminLogResults::class, TLAdminLogResults.CONSTRUCTOR_ID)
 
     protected override fun computeFlags() {
         _flags = 0

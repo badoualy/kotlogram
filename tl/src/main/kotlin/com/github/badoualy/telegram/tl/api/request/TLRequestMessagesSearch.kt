@@ -67,9 +67,6 @@ class TLRequestMessagesSearch() : TLMethod<TLAbsMessages>() {
         this.minId = minId
     }
 
-    @Throws(IOException::class)
-    override fun deserializeResponse(tlDeserializer: TLDeserializer): TLAbsMessages = tlDeserializer.readTLObject()
-
     protected override fun computeFlags() {
         _flags = 0
         updateFlags(fromId, 1)

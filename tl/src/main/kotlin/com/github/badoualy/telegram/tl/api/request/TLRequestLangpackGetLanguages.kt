@@ -16,7 +16,7 @@ class TLRequestLangpackGetLanguages : TLMethod<TLObjectVector<TLLangPackLanguage
     override val constructorId: Int = CONSTRUCTOR_ID
 
     @Throws(IOException::class)
-    override fun deserializeResponse(tlDeserializer: TLDeserializer): TLObjectVector<TLLangPackLanguage> = tlDeserializer.readTLVector<TLLangPackLanguage>()
+    override fun deserializeResponse_(tlDeserializer: TLDeserializer): TLObjectVector<TLLangPackLanguage> = tlDeserializer.readTLVector<TLLangPackLanguage>()
 
     override fun toString() = _constructor
 

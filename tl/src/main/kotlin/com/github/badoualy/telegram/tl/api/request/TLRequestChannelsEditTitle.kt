@@ -29,9 +29,6 @@ class TLRequestChannelsEditTitle() : TLMethod<TLAbsUpdates>() {
     }
 
     @Throws(IOException::class)
-    override fun deserializeResponse(tlDeserializer: TLDeserializer): TLAbsUpdates = tlDeserializer.readTLObject()
-
-    @Throws(IOException::class)
     override fun serializeBody(tlSerializer: TLSerializer) = with (tlSerializer)  {
         writeTLObject(channel)
         writeString(title)

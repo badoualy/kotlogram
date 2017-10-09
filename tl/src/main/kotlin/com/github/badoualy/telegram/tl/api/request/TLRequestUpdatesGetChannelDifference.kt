@@ -46,9 +46,6 @@ class TLRequestUpdatesGetChannelDifference() : TLMethod<TLAbsChannelDifference>(
         this.limit = limit
     }
 
-    @Throws(IOException::class)
-    override fun deserializeResponse(tlDeserializer: TLDeserializer): TLAbsChannelDifference = tlDeserializer.readTLObject()
-
     protected override fun computeFlags() {
         _flags = 0
         updateFlags(force, 1)

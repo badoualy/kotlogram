@@ -26,7 +26,7 @@ class TLRequestMessagesGetAttachedStickers() : TLMethod<TLObjectVector<TLAbsStic
     }
 
     @Throws(IOException::class)
-    override fun deserializeResponse(tlDeserializer: TLDeserializer): TLObjectVector<TLAbsStickerSetCovered> = tlDeserializer.readTLVector<TLAbsStickerSetCovered>()
+    override fun deserializeResponse_(tlDeserializer: TLDeserializer): TLObjectVector<TLAbsStickerSetCovered> = tlDeserializer.readTLVector<TLAbsStickerSetCovered>()
 
     @Throws(IOException::class)
     override fun serializeBody(tlSerializer: TLSerializer) = with (tlSerializer)  {

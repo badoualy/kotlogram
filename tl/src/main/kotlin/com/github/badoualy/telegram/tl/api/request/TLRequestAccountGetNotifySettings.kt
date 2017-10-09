@@ -25,9 +25,6 @@ class TLRequestAccountGetNotifySettings() : TLMethod<TLAbsPeerNotifySettings>() 
     }
 
     @Throws(IOException::class)
-    override fun deserializeResponse(tlDeserializer: TLDeserializer): TLAbsPeerNotifySettings = tlDeserializer.readTLObject()
-
-    @Throws(IOException::class)
     override fun serializeBody(tlSerializer: TLSerializer) = with (tlSerializer)  {
         writeTLObject(peer)
     }

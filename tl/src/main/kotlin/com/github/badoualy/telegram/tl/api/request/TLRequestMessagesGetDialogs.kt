@@ -44,9 +44,6 @@ class TLRequestMessagesGetDialogs() : TLMethod<TLAbsDialogs>() {
         this.limit = limit
     }
 
-    @Throws(IOException::class)
-    override fun deserializeResponse(tlDeserializer: TLDeserializer): TLAbsDialogs = tlDeserializer.readTLObject()
-
     protected override fun computeFlags() {
         _flags = 0
         updateFlags(excludePinned, 1)

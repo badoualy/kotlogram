@@ -24,9 +24,6 @@ class TLRequestMessagesGetSavedGifs() : TLMethod<TLAbsSavedGifs>() {
     }
 
     @Throws(IOException::class)
-    override fun deserializeResponse(tlDeserializer: TLDeserializer): TLAbsSavedGifs = tlDeserializer.readTLObject()
-
-    @Throws(IOException::class)
     override fun serializeBody(tlSerializer: TLSerializer) = with (tlSerializer)  {
         writeInt(hash)
     }

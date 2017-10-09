@@ -15,7 +15,7 @@ class TLRequestAccountGetAuthorizations : TLMethod<TLAuthorizations>() {
     override val constructorId: Int = CONSTRUCTOR_ID
 
     @Throws(IOException::class)
-    override fun deserializeResponse(tlDeserializer: TLDeserializer): TLAuthorizations = tlDeserializer.readTLObject(TLAuthorizations::class, TLAuthorizations.CONSTRUCTOR_ID)
+    override fun deserializeResponse_(tlDeserializer: TLDeserializer): TLAuthorizations = tlDeserializer.readTLObject(TLAuthorizations::class, TLAuthorizations.CONSTRUCTOR_ID)
 
     override fun toString() = _constructor
 

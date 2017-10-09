@@ -2,8 +2,6 @@ package com.github.badoualy.telegram.tl.api.request
 
 import com.github.badoualy.telegram.tl.api.help.TLAbsAppUpdate
 import com.github.badoualy.telegram.tl.core.TLMethod
-import com.github.badoualy.telegram.tl.serialization.TLDeserializer
-import java.io.IOException
 
 /**
  * @author Yannick Badoual yann.badoual@gmail.com
@@ -13,9 +11,6 @@ class TLRequestHelpGetAppUpdate : TLMethod<TLAbsAppUpdate>() {
     private val _constructor: String = "help.getAppUpdate#ae2de196"
 
     override val constructorId: Int = CONSTRUCTOR_ID
-
-    @Throws(IOException::class)
-    override fun deserializeResponse(tlDeserializer: TLDeserializer): TLAbsAppUpdate = tlDeserializer.readTLObject()
 
     override fun toString() = _constructor
 

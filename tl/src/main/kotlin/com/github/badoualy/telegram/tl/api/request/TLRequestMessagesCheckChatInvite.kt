@@ -24,9 +24,6 @@ class TLRequestMessagesCheckChatInvite() : TLMethod<TLAbsChatInvite>() {
     }
 
     @Throws(IOException::class)
-    override fun deserializeResponse(tlDeserializer: TLDeserializer): TLAbsChatInvite = tlDeserializer.readTLObject()
-
-    @Throws(IOException::class)
     override fun serializeBody(tlSerializer: TLSerializer) = with (tlSerializer)  {
         writeString(hash)
     }

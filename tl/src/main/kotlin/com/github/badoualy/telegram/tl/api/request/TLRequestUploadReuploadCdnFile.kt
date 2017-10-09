@@ -29,7 +29,7 @@ class TLRequestUploadReuploadCdnFile() : TLMethod<TLObjectVector<TLCdnFileHash>>
     }
 
     @Throws(IOException::class)
-    override fun deserializeResponse(tlDeserializer: TLDeserializer): TLObjectVector<TLCdnFileHash> = tlDeserializer.readTLVector<TLCdnFileHash>()
+    override fun deserializeResponse_(tlDeserializer: TLDeserializer): TLObjectVector<TLCdnFileHash> = tlDeserializer.readTLVector<TLCdnFileHash>()
 
     @Throws(IOException::class)
     override fun serializeBody(tlSerializer: TLSerializer) = with (tlSerializer)  {

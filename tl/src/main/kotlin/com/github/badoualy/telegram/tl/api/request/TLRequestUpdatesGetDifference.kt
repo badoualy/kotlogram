@@ -37,9 +37,6 @@ class TLRequestUpdatesGetDifference() : TLMethod<TLAbsDifference>() {
         this.qts = qts
     }
 
-    @Throws(IOException::class)
-    override fun deserializeResponse(tlDeserializer: TLDeserializer): TLAbsDifference = tlDeserializer.readTLObject()
-
     protected override fun computeFlags() {
         _flags = 0
         updateFlags(ptsTotalLimit, 1)

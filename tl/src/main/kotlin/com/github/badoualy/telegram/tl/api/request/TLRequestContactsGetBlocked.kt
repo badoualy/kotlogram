@@ -27,9 +27,6 @@ class TLRequestContactsGetBlocked() : TLMethod<TLAbsBlocked>() {
     }
 
     @Throws(IOException::class)
-    override fun deserializeResponse(tlDeserializer: TLDeserializer): TLAbsBlocked = tlDeserializer.readTLObject()
-
-    @Throws(IOException::class)
     override fun serializeBody(tlSerializer: TLSerializer) = with (tlSerializer)  {
         writeInt(offset)
         writeInt(limit)

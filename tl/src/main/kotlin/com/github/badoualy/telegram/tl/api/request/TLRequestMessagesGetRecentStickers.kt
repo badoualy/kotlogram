@@ -27,9 +27,6 @@ class TLRequestMessagesGetRecentStickers() : TLMethod<TLAbsRecentStickers>() {
         this.hash = hash
     }
 
-    @Throws(IOException::class)
-    override fun deserializeResponse(tlDeserializer: TLDeserializer): TLAbsRecentStickers = tlDeserializer.readTLObject()
-
     protected override fun computeFlags() {
         _flags = 0
         updateFlags(attached, 1)

@@ -24,7 +24,7 @@ class TLRequestPaymentsGetPaymentReceipt() : TLMethod<TLPaymentReceipt>() {
     }
 
     @Throws(IOException::class)
-    override fun deserializeResponse(tlDeserializer: TLDeserializer): TLPaymentReceipt = tlDeserializer.readTLObject(TLPaymentReceipt::class, TLPaymentReceipt.CONSTRUCTOR_ID)
+    override fun deserializeResponse_(tlDeserializer: TLDeserializer): TLPaymentReceipt = tlDeserializer.readTLObject(TLPaymentReceipt::class, TLPaymentReceipt.CONSTRUCTOR_ID)
 
     @Throws(IOException::class)
     override fun serializeBody(tlSerializer: TLSerializer) = with (tlSerializer)  {

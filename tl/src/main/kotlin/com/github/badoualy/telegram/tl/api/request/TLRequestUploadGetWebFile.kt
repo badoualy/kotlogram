@@ -35,7 +35,7 @@ class TLRequestUploadGetWebFile() : TLMethod<TLWebFile>() {
     }
 
     @Throws(IOException::class)
-    override fun deserializeResponse(tlDeserializer: TLDeserializer): TLWebFile = tlDeserializer.readTLObject(TLWebFile::class, TLWebFile.CONSTRUCTOR_ID)
+    override fun deserializeResponse_(tlDeserializer: TLDeserializer): TLWebFile = tlDeserializer.readTLObject(TLWebFile::class, TLWebFile.CONSTRUCTOR_ID)
 
     @Throws(IOException::class)
     override fun serializeBody(tlSerializer: TLSerializer) = with (tlSerializer)  {

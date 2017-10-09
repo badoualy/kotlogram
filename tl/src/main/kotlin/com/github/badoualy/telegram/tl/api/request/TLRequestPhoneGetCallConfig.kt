@@ -15,7 +15,7 @@ class TLRequestPhoneGetCallConfig : TLMethod<TLDataJSON>() {
     override val constructorId: Int = CONSTRUCTOR_ID
 
     @Throws(IOException::class)
-    override fun deserializeResponse(tlDeserializer: TLDeserializer): TLDataJSON = tlDeserializer.readTLObject(TLDataJSON::class, TLDataJSON.CONSTRUCTOR_ID)
+    override fun deserializeResponse_(tlDeserializer: TLDeserializer): TLDataJSON = tlDeserializer.readTLObject(TLDataJSON::class, TLDataJSON.CONSTRUCTOR_ID)
 
     override fun toString() = _constructor
 

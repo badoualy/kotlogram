@@ -43,9 +43,6 @@ class TLRequestMessagesSendEncryptedFile() : TLMethod<TLAbsSentEncryptedMessage>
     }
 
     @Throws(IOException::class)
-    override fun deserializeResponse(tlDeserializer: TLDeserializer): TLAbsSentEncryptedMessage = tlDeserializer.readTLObject()
-
-    @Throws(IOException::class)
     override fun serializeBody(tlSerializer: TLSerializer) = with (tlSerializer)  {
         writeTLObject(peer)
         writeLong(randomId)

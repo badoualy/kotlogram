@@ -18,13 +18,15 @@ abstract class TLMethod<T : TLObject> : TLObject() {
     var response: T? = null
 
     @Throws(IOException::class)
-    fun deserializeResponse(data: ByteArray, context: TLContext): T {
-        response = deserializeResponse(TLStreamDeserializer(data, context))
+    fun deserializeResponse(data: ByteArray, context: TLContext) =
+            deserializeResponse(TLStreamDeserializer(data, context))
+
+    @Throws(IOException::class)
+    fun deserializeResponse(tlDeserializer: TLDeserializer): T {
+        response = deserializeResponse_(tlDeserializer)
         return response!!
     }
 
-    // TODO: add an internal version to overload, and a public version
-    // The public version should set response field
     @Throws(IOException::class)
-    abstract fun deserializeResponse(tlDeserializer: TLDeserializer): T
+    protected open fun deserializeResponse_(tlDeserializer: TLDeserializer): T = tlDeserializer.readTLObject()
 }

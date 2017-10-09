@@ -29,7 +29,7 @@ class TLRequestMessagesGetMessageEditData() : TLMethod<TLMessageEditData>() {
     }
 
     @Throws(IOException::class)
-    override fun deserializeResponse(tlDeserializer: TLDeserializer): TLMessageEditData = tlDeserializer.readTLObject(TLMessageEditData::class, TLMessageEditData.CONSTRUCTOR_ID)
+    override fun deserializeResponse_(tlDeserializer: TLDeserializer): TLMessageEditData = tlDeserializer.readTLObject(TLMessageEditData::class, TLMessageEditData.CONSTRUCTOR_ID)
 
     @Throws(IOException::class)
     override fun serializeBody(tlSerializer: TLSerializer) = with (tlSerializer)  {

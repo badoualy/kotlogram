@@ -15,7 +15,7 @@ class TLRequestUpdatesGetState : TLMethod<TLState>() {
     override val constructorId: Int = CONSTRUCTOR_ID
 
     @Throws(IOException::class)
-    override fun deserializeResponse(tlDeserializer: TLDeserializer): TLState = tlDeserializer.readTLObject(TLState::class, TLState.CONSTRUCTOR_ID)
+    override fun deserializeResponse_(tlDeserializer: TLDeserializer): TLState = tlDeserializer.readTLObject(TLState::class, TLState.CONSTRUCTOR_ID)
 
     override fun toString() = _constructor
 

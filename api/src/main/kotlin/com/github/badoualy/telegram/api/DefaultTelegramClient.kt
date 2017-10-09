@@ -2,7 +2,6 @@ package com.github.badoualy.telegram.api
 
 import com.github.badoualy.telegram.api.utils.InputFileLocation
 import com.github.badoualy.telegram.mtproto.MTProtoUpdateCallback
-import com.github.badoualy.telegram.mtproto.MTProtoHandler
 import com.github.badoualy.telegram.mtproto.MTProtoHandler2
 import com.github.badoualy.telegram.mtproto.auth.AuthKey
 import com.github.badoualy.telegram.mtproto.auth.AuthKeyCreation
@@ -81,7 +80,7 @@ internal class DefaultTelegramClient internal constructor(val application: Teleg
         mtProtoHandler =
                 if (generateAuthKey) MTProtoHandler2(generateAuthKey())
                 else MTProtoHandler2(dataCenter!!, authKey!!, apiStorage.loadSession())
-        mtProtoHandler!!.startSubscription()
+        mtProtoHandler!!.start()
 
         try {
             // Call to initConnection to setup information about this app for the user to see in "active sessions"
@@ -346,7 +345,7 @@ internal class DefaultTelegramClient internal constructor(val application: Teleg
             logger.debug(marker, "Already have key for DC$dcId")
             val authKey = authKeyMap[dcId]!!
             val mtProtoHandler = MTProtoHandler2(Kotlogram.getDcById(dcId), authKey, null)
-            mtProtoHandler.startSubscription()
+            mtProtoHandler.start()
             initConnection(mtProtoHandler, TLRequestHelpGetNearestDc())
             mtProtoHandler
         } else {
@@ -356,7 +355,7 @@ internal class DefaultTelegramClient internal constructor(val application: Teleg
             val authResult = AuthKeyCreation.createAuthKey(dc) ?: throw IOException(
                     "Couldn't create authorization key on DC$dcId")
             val mtProtoHandler = MTProtoHandler2(authResult)
-            mtProtoHandler.startSubscription()
+            mtProtoHandler.start()
             initConnection(mtProtoHandler,
                            TLRequestAuthImportAuthorization(exportedAuthorization.id,
                                                             exportedAuthorization.bytes))

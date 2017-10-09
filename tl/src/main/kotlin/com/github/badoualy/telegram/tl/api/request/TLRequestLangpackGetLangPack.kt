@@ -24,7 +24,7 @@ class TLRequestLangpackGetLangPack() : TLMethod<TLLangPackDifference>() {
     }
 
     @Throws(IOException::class)
-    override fun deserializeResponse(tlDeserializer: TLDeserializer): TLLangPackDifference = tlDeserializer.readTLObject(TLLangPackDifference::class, TLLangPackDifference.CONSTRUCTOR_ID)
+    override fun deserializeResponse_(tlDeserializer: TLDeserializer): TLLangPackDifference = tlDeserializer.readTLObject(TLLangPackDifference::class, TLLangPackDifference.CONSTRUCTOR_ID)
 
     @Throws(IOException::class)
     override fun serializeBody(tlSerializer: TLSerializer) = with (tlSerializer)  {

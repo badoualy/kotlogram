@@ -36,7 +36,7 @@ class TLRequestMessagesGetArchivedStickers() : TLMethod<TLArchivedStickers>() {
     }
 
     @Throws(IOException::class)
-    override fun deserializeResponse(tlDeserializer: TLDeserializer): TLArchivedStickers = tlDeserializer.readTLObject(TLArchivedStickers::class, TLArchivedStickers.CONSTRUCTOR_ID)
+    override fun deserializeResponse_(tlDeserializer: TLDeserializer): TLArchivedStickers = tlDeserializer.readTLObject(TLArchivedStickers::class, TLArchivedStickers.CONSTRUCTOR_ID)
 
     protected override fun computeFlags() {
         _flags = 0

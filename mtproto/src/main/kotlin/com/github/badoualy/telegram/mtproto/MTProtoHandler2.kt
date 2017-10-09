@@ -26,8 +26,10 @@ import com.github.badoualy.telegram.tl.serialization.TLStreamDeserializer
 import io.reactivex.Maybe
 import io.reactivex.Observable
 import io.reactivex.Single
+import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.rxkotlin.ofType
 import io.reactivex.rxkotlin.subscribeBy
+import io.reactivex.rxkotlin.toMaybe
 import io.reactivex.rxkotlin.toObservable
 import io.reactivex.schedulers.Schedulers
 import io.reactivex.subjects.PublishSubject
@@ -47,14 +49,19 @@ class MTProtoHandler2 {
     var session: MTSession
         private set
 
-    private val messageSubject: Subject<Pair<MTProtoMessage, TLObject>> = PublishSubject.create()
-
     private val requestByIdMap = Hashtable<Long, TLMethod<*>>(10)
     private val sentMessageList = ArrayList<MTProtoMessage>(10)
     private var ackBuffer = MTBuffer<Long>(ACK_BUFFER_SIZE, ACK_BUFFER_TIMEOUT, TimeUnit.SECONDS)
 
-    val tag: LogTag
+    private var messageSubject: Subject<Pair<MTProtoMessage, TLObject>> = PublishSubject.create()
+    private var updateSubject: Subject<TLAbsUpdates> = PublishSubject.create()
+    private val compositeDisposable = CompositeDisposable()
+
+    private val tag: LogTag
         get() = session.tag
+
+    val updateObservable: Observable<TLAbsUpdates>
+        get() = updateSubject.hide()
 
     constructor(authResult: AuthResult) {
         authKey = authResult.authKey
@@ -75,7 +82,7 @@ class MTProtoHandler2 {
         logger.debug(tag, "Created from existing key (new session? ${session == null}}")
     }
 
-    fun startSubscription() {
+    fun start() {
         logger.info(tag, "startWatchdog()")
         connection.getMessageObservable()
                 .observeOn(Schedulers.computation())
@@ -89,55 +96,52 @@ class MTProtoHandler2 {
                                  logger.error(tag, "messageSubject onErrorReceived()", it)
                              },
                              onComplete = {
-                                 logger.warn(tag, "messageSubject onComplete()")
-                                 messageSubject.onComplete()
+                                 logger.info(tag, "messageSubject onComplete()")
                              })
+                .let { compositeDisposable.add(it) }
 
         ackBuffer.observable
-                .map {
-                    logger.info(tag, "ackBuffer emitted ${it.joinToString()}")
-                    newAckMessage(it)
-                }
+                .map { newAckMessage(it) }
                 .observeOn(Schedulers.io())
                 .subscribeBy(onNext = { sendMessage(it) })
-    }
-
-    private fun stopSubscription() {
-        messageSubject.onComplete()
+                .let { compositeDisposable.add(it) }
     }
 
     /** Close the connection and re-open another one, should fix most connection issues */
-    @Throws(IOException::class)
     fun resetConnection() {
         logger.warn(session.tag, "resetConnection()")
         close()
 
-        // TODO: maybe we could keep the session, and handle seqno difference
         session = newSession(connection.dataCenter)
         connection = connectionFactory.create(connection.ip, connection.port, session.tag)
-        startSubscription()
+        messageSubject = PublishSubject.create()
+        start()
     }
 
     fun close() {
-        logger.info(tag, "close()")
-        ackBuffer.dispose()
-        stopSubscription()
+        logger.warn(tag, "close()")
+        dispose() // Dispose before closing to avoid propagating errors!
         connection.close()
 
-        sentMessageList.clear()
         requestByIdMap.clear()
+        sentMessageList.clear()
+        ackBuffer.reset()
     }
 
+    private fun dispose() {
+        compositeDisposable.clear()
+        messageSubject.onComplete() // Will propagate error to subscriber
+    }
+
+    @Deprecated(message = "TO REMOVE")
     fun <T : TLObject> executeMethodSync(method: TLMethod<T>): T =
             executeMethod(method).blockingGet()
 
+    @Deprecated(message = "TO REMOVE")
     fun <T : TLObject> executeMethodsSync(methods: List<TLMethod<T>>): List<T> =
             executeMethods(methods).blockingIterable().toList()
 
-    // TODO: single() without error?
-    @Suppress("UNCHECKED_CAST")
-    fun <T : TLObject> executeMethod(method: TLMethod<T>): Single<T> =
-            executeMethods(listOf(method)).singleOrError()
+    fun <T : TLObject> executeMethod(method: TLMethod<T>): Single<T> = executeMethods(listOf(method)).singleOrError()
 
     fun <T : TLObject> executeMethods(methods: List<TLMethod<T>>): Observable<T> =
             methods.takeIf { it.isNotEmpty() }?.let {
@@ -168,6 +172,7 @@ class MTProtoHandler2 {
         // Queue method
         messages.addAll(getQueuedToSend())
 
+        // Wrap in container or send as single
         val message =
                 if (messages.size > 1) {
                     logger.trace("Sending container with ${messages.size} items")
@@ -285,15 +290,16 @@ class MTProtoHandler2 {
         when (payload) {
             is MTMsgsAck -> {
                 // TODO: MessageACK will not get an ack, it'll stack here...
+                // TODO check missing ack ?
                 sentMessageList.removeAll { payload.messages.contains(it.messageId) }
                 logger.debug(tag, "Received ack for ${payload.messages.joinToString()}")
-                // TODO check missing ack ?
             }
             is MTRpcResult -> {
                 queueMessageAck(message.messageId)
             }
             is TLAbsUpdates -> {
                 queueMessageAck(message.messageId)
+                updateSubject.onNext(payload)
             }
             is MTNewSessionCreated -> {
                 //session.salt = messageContent.serverSalt
@@ -325,10 +331,7 @@ class MTProtoHandler2 {
                 logger.warn(tag, "TODO MTFutureSalts")
                 // TODO
             }
-            else -> {
-                logger.error(tag,
-                             "Unsupported constructor in handleMessage() $payload: ${payload.javaClass.simpleName}")
-            }
+            else -> logger.error(tag, "Unsupported constructor in handleMessage() $payload")
         }
     }
 
@@ -347,7 +350,6 @@ class MTProtoHandler2 {
         logger.trace(tag, "Response constructor id: $clazzId")
 
         // TODO change TLStreamDeserializer instantiation, factory?
-
         val resultObject = when {
             mtProtoContext.contains(clazzId) -> {
                 val content = TLStreamDeserializer(result.content, mtProtoContext)
@@ -369,7 +371,7 @@ class MTProtoHandler2 {
             }
         }
 
-        resultObject?.let { Maybe.just(it) } ?: Maybe.empty<TLObject>()
+        resultObject.toMaybe()
     }
 
     @Throws(IOException::class)
@@ -385,7 +387,6 @@ class MTProtoHandler2 {
                 resendMessage(badMessage.badMsgId, true)
             }
             MTBadMessage.ERROR_SEQNO_TOO_LOW, MTBadMessage.ERROR_SEQNO_TOO_HIGH -> {
-                // TODO: should probably use badMessage.badMsgSeqno
                 if (badMessage.errorCode == MTBadMessage.ERROR_MSG_ID_TOO_LOW)
                     session.contentRelatedCount++
                 else
@@ -445,13 +446,6 @@ class MTProtoHandler2 {
 
         private val mtProtoContext = MTProtoContext
         private val apiContext = TLApiContext
-
-        /** Thread pool to forward update callback */
-        // TODO: check values
-        private val updatePool = ThreadPoolExecutor(4, 8,
-                                                    0L, TimeUnit.MILLISECONDS,
-                                                    LinkedBlockingQueue<Runnable>(),
-                                                    NamedThreadFactory("UpdatePool"))
 
         private val connectionFactory: MTProtoConnectionFactory = MTProtoTcpConnectionFactory()
 

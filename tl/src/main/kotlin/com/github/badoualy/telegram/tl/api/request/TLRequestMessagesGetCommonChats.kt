@@ -36,9 +36,6 @@ class TLRequestMessagesGetCommonChats() : TLMethod<TLAbsChats>() {
     }
 
     @Throws(IOException::class)
-    override fun deserializeResponse(tlDeserializer: TLDeserializer): TLAbsChats = tlDeserializer.readTLObject()
-
-    @Throws(IOException::class)
     override fun serializeBody(tlSerializer: TLSerializer) = with (tlSerializer)  {
         writeTLObject(userId)
         writeInt(maxId)

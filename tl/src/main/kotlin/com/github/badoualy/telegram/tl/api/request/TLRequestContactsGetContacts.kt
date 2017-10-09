@@ -24,9 +24,6 @@ class TLRequestContactsGetContacts() : TLMethod<TLAbsContacts>() {
     }
 
     @Throws(IOException::class)
-    override fun deserializeResponse(tlDeserializer: TLDeserializer): TLAbsContacts = tlDeserializer.readTLObject()
-
-    @Throws(IOException::class)
     override fun serializeBody(tlSerializer: TLSerializer) = with (tlSerializer)  {
         writeInt(hash)
     }

@@ -24,7 +24,7 @@ class TLRequestAuthCheckPhone() : TLMethod<TLCheckedPhone>() {
     }
 
     @Throws(IOException::class)
-    override fun deserializeResponse(tlDeserializer: TLDeserializer): TLCheckedPhone = tlDeserializer.readTLObject(TLCheckedPhone::class, TLCheckedPhone.CONSTRUCTOR_ID)
+    override fun deserializeResponse_(tlDeserializer: TLDeserializer): TLCheckedPhone = tlDeserializer.readTLObject(TLCheckedPhone::class, TLCheckedPhone.CONSTRUCTOR_ID)
 
     @Throws(IOException::class)
     override fun serializeBody(tlSerializer: TLSerializer) = with (tlSerializer)  {

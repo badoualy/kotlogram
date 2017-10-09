@@ -68,9 +68,6 @@ class TLRequestMessagesSendMessage() : TLMethod<TLAbsUpdates>() {
         this.entities = entities
     }
 
-    @Throws(IOException::class)
-    override fun deserializeResponse(tlDeserializer: TLDeserializer): TLAbsUpdates = tlDeserializer.readTLObject()
-
     protected override fun computeFlags() {
         _flags = 0
         updateFlags(noWebpage, 2)

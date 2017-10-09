@@ -15,7 +15,7 @@ class TLRequestContactsExportCard : TLMethod<TLIntVector>() {
     override val constructorId: Int = CONSTRUCTOR_ID
 
     @Throws(IOException::class)
-    override fun deserializeResponse(tlDeserializer: TLDeserializer): TLIntVector = tlDeserializer.readTLIntVector()
+    override fun deserializeResponse_(tlDeserializer: TLDeserializer): TLIntVector = tlDeserializer.readTLIntVector()
 
     override fun toString() = _constructor
 

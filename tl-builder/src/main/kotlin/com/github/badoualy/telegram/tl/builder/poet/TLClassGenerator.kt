@@ -172,10 +172,11 @@ class TLClassGenerator(tlDefinition: TLDefinition, val config: Config) {
         val responseType = getType(tlType)
         val clazz = TypeSpec.makeTLMethodClass(tlClassName(), responseType)
 
-        val responseFun = FunSpec.makeOverride("deserializeResponse")
+        val responseFun = FunSpec.makeOverride("deserializeResponse_")
                 .addParameter("tlDeserializer", TYPE_TL_DESERIALIZER)
                 .addThrows(IOException::class)
                 .returns(responseType)
+        var addResponseFun = true
 
         when (tlType) {
             is TLTypeAny -> {
@@ -203,11 +204,14 @@ class TLClassGenerator(tlDefinition: TLDefinition, val config: Config) {
                             "return tlDeserializer.readTLObject(%1T::class, %1T.CONSTRUCTOR_ID)",
                             responseType)
                 } else {
+                    addResponseFun = false // Default super behavior
                     responseFun.addStatement("return tlDeserializer.readTLObject()")
                 }
             }
         }
-        clazz.addFunction(responseFun.build())
+
+        if (addResponseFun)
+            clazz.addFunction(responseFun.build())
 
         val apiResponseType = ParameterizedTypeName.get(TYPE_SINGLE, responseType)
         apiFun = makeApiFun(apiResponseType)

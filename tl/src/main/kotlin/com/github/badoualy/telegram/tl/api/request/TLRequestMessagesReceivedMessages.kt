@@ -25,7 +25,7 @@ class TLRequestMessagesReceivedMessages() : TLMethod<TLObjectVector<TLReceivedNo
     }
 
     @Throws(IOException::class)
-    override fun deserializeResponse(tlDeserializer: TLDeserializer): TLObjectVector<TLReceivedNotifyMessage> = tlDeserializer.readTLVector<TLReceivedNotifyMessage>()
+    override fun deserializeResponse_(tlDeserializer: TLDeserializer): TLObjectVector<TLReceivedNotifyMessage> = tlDeserializer.readTLVector<TLReceivedNotifyMessage>()
 
     @Throws(IOException::class)
     override fun serializeBody(tlSerializer: TLSerializer) = with (tlSerializer)  {

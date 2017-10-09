@@ -63,9 +63,6 @@ class TLRequestContactsGetTopPeers() : TLMethod<TLAbsTopPeers>() {
         this.hash = hash
     }
 
-    @Throws(IOException::class)
-    override fun deserializeResponse(tlDeserializer: TLDeserializer): TLAbsTopPeers = tlDeserializer.readTLObject()
-
     protected override fun computeFlags() {
         _flags = 0
         updateFlags(correspondents, 1)

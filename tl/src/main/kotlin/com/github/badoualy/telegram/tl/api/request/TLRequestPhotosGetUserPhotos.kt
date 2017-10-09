@@ -41,9 +41,6 @@ class TLRequestPhotosGetUserPhotos() : TLMethod<TLAbsPhotos>() {
     }
 
     @Throws(IOException::class)
-    override fun deserializeResponse(tlDeserializer: TLDeserializer): TLAbsPhotos = tlDeserializer.readTLObject()
-
-    @Throws(IOException::class)
     override fun serializeBody(tlSerializer: TLSerializer) = with (tlSerializer)  {
         writeTLObject(userId)
         writeInt(offset)

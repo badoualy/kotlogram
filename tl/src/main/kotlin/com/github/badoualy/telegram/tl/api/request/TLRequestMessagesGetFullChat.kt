@@ -24,7 +24,7 @@ class TLRequestMessagesGetFullChat() : TLMethod<TLChatFull>() {
     }
 
     @Throws(IOException::class)
-    override fun deserializeResponse(tlDeserializer: TLDeserializer): TLChatFull = tlDeserializer.readTLObject(TLChatFull::class, TLChatFull.CONSTRUCTOR_ID)
+    override fun deserializeResponse_(tlDeserializer: TLDeserializer): TLChatFull = tlDeserializer.readTLObject(TLChatFull::class, TLChatFull.CONSTRUCTOR_ID)
 
     @Throws(IOException::class)
     override fun serializeBody(tlSerializer: TLSerializer) = with (tlSerializer)  {

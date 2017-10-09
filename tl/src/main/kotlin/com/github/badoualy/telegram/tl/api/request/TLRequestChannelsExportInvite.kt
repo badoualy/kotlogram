@@ -25,9 +25,6 @@ class TLRequestChannelsExportInvite() : TLMethod<TLAbsExportedChatInvite>() {
     }
 
     @Throws(IOException::class)
-    override fun deserializeResponse(tlDeserializer: TLDeserializer): TLAbsExportedChatInvite = tlDeserializer.readTLObject()
-
-    @Throws(IOException::class)
     override fun serializeBody(tlSerializer: TLSerializer) = with (tlSerializer)  {
         writeTLObject(channel)
     }

@@ -25,9 +25,6 @@ class TLRequestPhotosUpdateProfilePhoto() : TLMethod<TLAbsUserProfilePhoto>() {
     }
 
     @Throws(IOException::class)
-    override fun deserializeResponse(tlDeserializer: TLDeserializer): TLAbsUserProfilePhoto = tlDeserializer.readTLObject()
-
-    @Throws(IOException::class)
     override fun serializeBody(tlSerializer: TLSerializer) = with (tlSerializer)  {
         writeTLObject(id)
     }

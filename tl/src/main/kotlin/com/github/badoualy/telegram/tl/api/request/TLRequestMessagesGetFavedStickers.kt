@@ -24,9 +24,6 @@ class TLRequestMessagesGetFavedStickers() : TLMethod<TLAbsFavedStickers>() {
     }
 
     @Throws(IOException::class)
-    override fun deserializeResponse(tlDeserializer: TLDeserializer): TLAbsFavedStickers = tlDeserializer.readTLObject()
-
-    @Throws(IOException::class)
     override fun serializeBody(tlSerializer: TLSerializer) = with (tlSerializer)  {
         writeInt(hash)
     }

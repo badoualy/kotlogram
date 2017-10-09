@@ -25,7 +25,7 @@ class TLRequestUsersGetFullUser() : TLMethod<TLUserFull>() {
     }
 
     @Throws(IOException::class)
-    override fun deserializeResponse(tlDeserializer: TLDeserializer): TLUserFull = tlDeserializer.readTLObject(TLUserFull::class, TLUserFull.CONSTRUCTOR_ID)
+    override fun deserializeResponse_(tlDeserializer: TLDeserializer): TLUserFull = tlDeserializer.readTLObject(TLUserFull::class, TLUserFull.CONSTRUCTOR_ID)
 
     @Throws(IOException::class)
     override fun serializeBody(tlSerializer: TLSerializer) = with (tlSerializer)  {
