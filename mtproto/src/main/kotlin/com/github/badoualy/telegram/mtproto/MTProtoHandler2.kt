@@ -41,9 +41,6 @@ import java.util.concurrent.TimeUnit
 
 class MTProtoHandler2 {
 
-    private val ACK_BUFFER_SIZE = 15
-    private val ACK_BUFFER_TIMEOUT: Long = TimeUnit.SECONDS.toMillis(150)
-
     private var connection: MTProtoConnection
     var authKey: AuthKey
         private set
@@ -54,7 +51,7 @@ class MTProtoHandler2 {
 
     private val requestByIdMap = Hashtable<Long, TLMethod<*>>(10)
     private val sentMessageList = ArrayList<MTProtoMessage>(10)
-    private var ackBuffer = MTBuffer<Long>()
+    private var ackBuffer = MTBuffer<Long>(ACK_BUFFER_SIZE, ACK_BUFFER_TIMEOUT, TimeUnit.SECONDS)
 
     val tag: LogTag
         get() = session.tag
@@ -442,6 +439,9 @@ class MTProtoHandler2 {
     companion object {
 
         private val logger = Logger(MTProtoHandler2::class)
+
+        private const val ACK_BUFFER_SIZE = 30
+        private const val ACK_BUFFER_TIMEOUT = 5L
 
         private val mtProtoContext = MTProtoContext
         private val apiContext = TLApiContext

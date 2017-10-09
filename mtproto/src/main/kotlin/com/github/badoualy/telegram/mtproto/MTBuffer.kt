@@ -2,35 +2,26 @@ package com.github.badoualy.telegram.mtproto
 
 import com.github.badoualy.telegram.mtproto.log.LogTag
 import com.github.badoualy.telegram.mtproto.log.Logger
-import com.github.badoualy.telegram.mtproto.time.MTProtoTimer
 import io.reactivex.Observable
-import io.reactivex.Observer
-import io.reactivex.Scheduler
+import io.reactivex.rxkotlin.toMaybe
 import io.reactivex.schedulers.Schedulers
 import io.reactivex.subjects.PublishSubject
 import io.reactivex.subjects.Subject
 import java.util.*
 import java.util.concurrent.TimeUnit
 
-class MTBuffer<T>(var tag: LogTag? = null) {
+class MTBuffer<T>(var bufferSize: Int,
+                  var bufferTimeout: Long, var bufferTimeoutUnit: TimeUnit,
+                  var tag: LogTag? = null) {
 
-    private var list = ArrayList<T>(ACK_BUFFER_SIZE)
+    private val logger = Logger(MTBuffer::class)
 
-    private var timeoutTask: TimerTask? = null
     private var bufferId = 0
+    private var list = ArrayList<T>(bufferSize)
 
     private val subject: Subject<List<T>> = PublishSubject.create()
     val observable: Observable<List<T>>
         get() = subject.hide()
-
-    fun newBuffer(cancelTask: Boolean) = synchronized(list) {
-        list = ArrayList(ACK_BUFFER_SIZE)
-        bufferId++
-        if (cancelTask) {
-            timeoutTask?.cancel()
-            timeoutTask = null
-        }
-    }
 
     fun add(item: T) {
         var flush = false
@@ -46,87 +37,52 @@ class MTBuffer<T>(var tag: LogTag? = null) {
 
             when {
                 list.size == 1 -> startTimer = true
-                list.size < ACK_BUFFER_SIZE -> return
+                list.size < bufferSize -> return
                 else -> {
-                    newBuffer(true)
+                    newBuffer()
                     flush = true
                 }
             }
         }
 
         if (startTimer) {
-            try {
-                timeoutTask = MTProtoTimer.schedule(ACK_BUFFER_TIMEOUT,
-                                                    { onBufferTimeout(id) })
-            } catch (e: IllegalStateException) {
-                // TODO: remove Timer use
-                // Timer already cancelled.
-            }
+            Observable.just(id)
+                    .delay(bufferTimeout, bufferTimeoutUnit)
+                    .observeOn(Schedulers.computation())
+                    .flatMapMaybe { get(it).takeIf { it.isNotEmpty() }.toMaybe() }
+                    .subscribe(subject)
         }
 
         if (flush) {
             logger.info(tag, "Flushing buffer $bufferId")
-            flushBuffer(list)
+            subject.onNext(list)
         }
     }
 
-    fun get(): List<T> {
-        var list: List<T> = emptyList()
-
-        synchronized(this.list) {
-            if (this.list.isNotEmpty()) {
-                list = this.list
-                newBuffer(true)
-            }
-        }
-
-        return list
-    }
+    fun get() = get(bufferId)
 
     fun dispose() {
         subject.onComplete()
     }
 
-    private fun onBufferTimeout(id: Int) {
+    private fun newBuffer() = synchronized(list) {
+        list = ArrayList(bufferSize)
+        bufferId++
+    }
+
+    private operator fun get(id: Int): List<T> {
         var list: List<T> = emptyList()
 
         synchronized(this.list) {
             if (id != bufferId) {
                 // Already flushed
-                return
+                return emptyList()
             }
 
             list = this.list
-            newBuffer(false)
-            timeoutTask = null
+            newBuffer()
         }
 
-        flushBuffer(list)
+        return list
     }
-
-    private fun flushBuffer(list: List<T>) {
-        if (list.isNotEmpty())
-            subject.onNext(list)
-    }
-
-    companion object {
-        private val logger = Logger(MTBuffer::class)
-
-        private const val ACK_BUFFER_SIZE = 30
-        private val ACK_BUFFER_TIMEOUT: Long = TimeUnit.SECONDS.toMillis(5)
-    }
-}
-
-fun main(args: Array<String>) {
-    val mtBuffer = MTBuffer<Long>()
-
-    mtBuffer.observable
-            .observeOn(Schedulers.computation())
-            .subscribe { println("Next: " + it.joinToString()) }
-
-    for (i in 0..50)
-        mtBuffer.add(i.toLong())
-
-    Thread.sleep(10 * 1000)
-    println("Done sleeping")
 }

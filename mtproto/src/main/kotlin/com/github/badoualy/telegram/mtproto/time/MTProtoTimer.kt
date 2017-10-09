@@ -3,6 +3,7 @@ package com.github.badoualy.telegram.mtproto.time
 import java.util.*
 import kotlin.concurrent.schedule
 
+@Deprecated(message = "Use RX instead!")
 object MTProtoTimer {
 
     private var timer = Timer(javaClass.simpleName)
