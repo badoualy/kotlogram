@@ -26,7 +26,6 @@ import com.github.badoualy.telegram.tl.serialization.TLStreamDeserializer
 import io.reactivex.Maybe
 import io.reactivex.Observable
 import io.reactivex.Single
-import io.reactivex.disposables.Disposable
 import io.reactivex.rxkotlin.ofType
 import io.reactivex.rxkotlin.subscribeBy
 import io.reactivex.rxkotlin.toObservable
@@ -55,6 +54,7 @@ class MTProtoHandler2 {
 
     private val requestByIdMap = Hashtable<Long, TLMethod<*>>(10)
     private val sentMessageList = ArrayList<MTProtoMessage>(10)
+    private var ackBuffer = MTBuffer<Long>()
 
     val tag: LogTag
         get() = session.tag
@@ -65,6 +65,7 @@ class MTProtoHandler2 {
         session = newSession(connection.dataCenter)
         session.salt = authResult.serverSalt
         connection.tag = session.tag
+        ackBuffer.tag = session.tag
         logger.debug(tag, "Created from auth result")
     }
 
@@ -73,6 +74,7 @@ class MTProtoHandler2 {
         this.authKey = authKey
         this.session = session ?: newSession(dataCenter)
         connection = connectionFactory.create(dataCenter.ip, dataCenter.port, this.session.tag)
+        ackBuffer.tag = this.session.tag
         logger.debug(tag, "Created from existing key (new session? ${session == null}}")
     }
 
@@ -87,12 +89,20 @@ class MTProtoHandler2 {
         messageSubject
                 .subscribeBy(onNext = onMessageReceived(),
                              onError = {
-                                 logger.error(tag, "onErrorReceived()", it)
+                                 logger.error(tag, "messageSubject onErrorReceived()", it)
                              },
                              onComplete = {
                                  logger.warn(tag, "messageSubject onComplete()")
                                  messageSubject.onComplete()
                              })
+
+        ackBuffer.observable
+                .map {
+                    logger.info(tag, "ackBuffer emitted ${it.joinToString()}")
+                    newAckMessage(it)
+                }
+                .observeOn(Schedulers.io())
+                .subscribeBy(onNext = { sendMessage(it) })
     }
 
     private fun stopSubscription() {
@@ -113,44 +123,53 @@ class MTProtoHandler2 {
 
     fun close() {
         logger.info(tag, "close()")
+        ackBuffer.dispose()
+        stopSubscription()
         connection.close()
+
+        sentMessageList.clear()
+        requestByIdMap.clear()
     }
 
     fun <T : TLObject> executeMethodSync(method: TLMethod<T>): T =
             executeMethod(method).blockingGet()
 
-    fun <T: TLObject> executeMethodsSync(methods: List<TLMethod<*>>): List<T> =
-            executeMethods(methods).blockingIterable().map { it as T }.toList()
+    fun <T : TLObject> executeMethodsSync(methods: List<TLMethod<T>>): List<T> =
+            executeMethods(methods).blockingIterable().toList()
 
-            // TODO: single() without error?
+    // TODO: single() without error?
     @Suppress("UNCHECKED_CAST")
     fun <T : TLObject> executeMethod(method: TLMethod<T>): Single<T> =
-            executeMethods(listOf(method)).singleOrError().map { it as T }
+            executeMethods(listOf(method)).singleOrError()
 
-    fun executeMethods(methods: List<TLMethod<*>>): Observable<out TLObject> =
-            messageSubject
-                    .map { it.second }
-                    .ofType<MTRpcResult>()
-                    .filter { methods.contains(requestByIdMap[it.messageId]) } // TODO: check null
-                    .take(methods.size.toLong())
-                    .subscribeOn(Schedulers.io())
-                    .doOnSubscribe { executeMethods_(methods) }
-                    .flatMapMaybe(mapResult())
+    fun <T : TLObject> executeMethods(methods: List<TLMethod<T>>): Observable<T> =
+            methods.takeIf { it.isNotEmpty() }?.let {
+                messageSubject
+                        .map { it.second }
+                        .ofType<MTRpcResult>()
+                        .filter { methods.contains(requestByIdMap[it.messageId]) } // TODO: check null
+                        .take(methods.size.toLong())
+                        .subscribeOn(Schedulers.io())
+                        .doOnSubscribe { executeMethods_(methods) }
+                        .observeOn(Schedulers.computation())
+                        .flatMapMaybe(mapResult())
+                        .map { it as T }
+            } ?: Observable.empty<T>()
+
 
     private fun executeMethods_(methods: List<TLMethod<*>>) {
-        // TODO: empty list
         logger.trace("executeMethods ${methods.joinToString { it.toString() }}")
 
         val messages = ArrayList<MTProtoMessage>(methods.size)
 
-        // Queue method
-        messages.addAll(getAckToSend())
-
-        // Add ACK messages
-        messages.addAll(getQueuedToSend())
-
         // Methods
         methods.mapTo(messages) { newMethodMessage(it) }
+
+        // Add ACK messages
+        messages.add(getAckMessage())
+
+        // Queue method
+        messages.addAll(getQueuedToSend())
 
         val message =
                 if (messages.size > 1) {
@@ -395,13 +414,10 @@ class MTProtoHandler2 {
     }
 
     private fun queueMessageAck(id: Long) {
-        // TODO
+        ackBuffer.add(id)
     }
 
-    private fun getAckToSend(): List<MTProtoMessage> {
-        // TODO
-        return emptyList()
-    }
+    private fun getAckMessage(): MTProtoMessage = newAckMessage(ackBuffer.get())
 
     private fun getQueuedToSend(): List<MTProtoMessage> {
         // TODO
@@ -411,6 +427,8 @@ class MTProtoHandler2 {
     private fun newSession(dataCenter: DataCenter) = MTSession(dataCenter).also {
         logger.info(it.tag, "New session created")
     }
+
+    private fun newAckMessage(idList: List<Long>) = newMessage(MTMsgsAck(idList.toLongArray()))
 
     private fun newMethodMessage(method: TLMethod<*>) = newMessage(method).also {
         logger.trace(tag, "Sending $method with msgId ${it.messageId} and seqNo ${it.seqNo}")
