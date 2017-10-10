@@ -1,28 +1,14 @@
 package com.github.badoualy.telegram.tl.api
 
-import com.github.badoualy.telegram.tl.core.TLBool
-import com.github.badoualy.telegram.tl.core.TLBytes
-import com.github.badoualy.telegram.tl.core.TLIntVector
-import com.github.badoualy.telegram.tl.core.TLLongVector
-import com.github.badoualy.telegram.tl.core.TLObject
-import com.github.badoualy.telegram.tl.core.TLObjectVector
-import com.github.badoualy.telegram.tl.core.TLStringVector
-import com.github.badoualy.telegram.tl.core.TLVector
-
+import com.github.badoualy.telegram.tl.core.*
 import org.apache.commons.lang3.RandomStringUtils
 import org.reflections.Reflections
 import org.reflections.util.ClasspathHelper
-
-import java.lang.reflect.Constructor
 import java.lang.reflect.Field
 import java.lang.reflect.Modifier
 import java.lang.reflect.ParameterizedType
-import java.lang.reflect.Type
 import java.net.URL
-import java.util.ArrayList
-import java.util.Collections
-import java.util.Comparator
-import java.util.Random
+import java.util.*
 
 abstract class AbsTLApiTest {
 

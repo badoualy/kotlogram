@@ -1,8 +1,8 @@
 package com.github.badoualy.telegram.api
 
 import com.github.badoualy.telegram.api.utils.InputFileLocation
-import com.github.badoualy.telegram.mtproto.MTProtoUpdateCallback
 import com.github.badoualy.telegram.mtproto.MTProtoHandler
+import com.github.badoualy.telegram.mtproto.MTProtoUpdateCallback
 import com.github.badoualy.telegram.mtproto.auth.AuthKey
 import com.github.badoualy.telegram.mtproto.auth.AuthKeyCreation
 import com.github.badoualy.telegram.mtproto.auth.AuthResult
@@ -30,13 +30,13 @@ import java.nio.channels.ClosedChannelException
 import java.util.*
 import java.util.concurrent.TimeoutException
 
-internal class DefaultTelegramClient internal constructor(val application: TelegramApp, val apiStorage: TelegramApiStorage,
-                                                          val updateCallback: UpdateCallback?,
-                                                          val preferredDataCenter: DataCenter,
-                                                          val tag: String) : TelegramSyncApiWrapper(),
-                                                                             TelegramClient,
-                                                                             RpcQuerySyncExecutor,
-                                                                             MTProtoUpdateCallback {
+internal class DefaultTelegramClientOld internal constructor(val application: TelegramApp, val apiStorage: TelegramApiStorage,
+                                                             val updateCallback: UpdateCallback?,
+                                                             val preferredDataCenter: DataCenter,
+                                                             val tag: String) : TelegramSyncApiWrapper(),
+                                                                                TelegramClientOld,
+                                                                                RpcQuerySyncExecutor,
+                                                                                MTProtoUpdateCallback {
 
     private var mtProtoHandler: MTProtoHandler? = null
     private var authKey: AuthKey? = null
@@ -63,7 +63,8 @@ internal class DefaultTelegramClient internal constructor(val application: Teleg
             if (!generateAuthKey) {
                 apiStorage.deleteAuthKey()
                 apiStorage.saveSession(null)
-                throw RuntimeException("Found an authorization key in storage, but the DC configuration was not found, deleting authorization key")
+                throw RuntimeException(
+                        "Found an authorization key in storage, but the DC configuration was not found, deleting authorization key")
             }
             logger.warn(marker,
                         "No data center found in storage, using preferred $preferredDataCenter")
@@ -126,8 +127,8 @@ internal class DefaultTelegramClient internal constructor(val application: Teleg
                                                             application.deviceModel,
                                                             application.systemVersion,
                                                             application.appVersion,
-                                                            application.langCode,
-                                                            "",
+                                                            application.systemLangCode,
+                                                            application.langPack,
                                                             application.langCode, method)
         val result = executeRpcQuerySync(
                 TLRequestInvokeWithLayer(Kotlogram.API_LAYER, initConnectionRequest),
@@ -145,7 +146,8 @@ internal class DefaultTelegramClient internal constructor(val application: Teleg
                 // Key was provided, yet selected DC is not the nearest
                 // TODO: Should handle authKey migration via auth.exportAuthorization
                 mtProtoHandler?.close()
-                throw RuntimeException("You tried to connect to an incorrect data center (DC${nearestDc.thisDc}) with an authorization key in storage, please connect to the nearest (DC${nearestDc.nearestDc})")
+                throw RuntimeException(
+                        "You tried to connect to an incorrect data center (DC${nearestDc.thisDc}) with an authorization key in storage, please connect to the nearest (DC${nearestDc.nearestDc})")
             }
             migrate(nearestDc.nearestDc)
         } else {
@@ -176,11 +178,12 @@ internal class DefaultTelegramClient internal constructor(val application: Teleg
 
     override fun isClosed() = closed
 
-    override fun getDownloaderClient() = DefaultTelegramClient(application,
-                                                               ReadOnlyApiStorage(authKey!!,
-                                                                                  mtProtoHandler!!.session),
-                                                               updateCallback, preferredDataCenter,
-                                                               "Downloader:$tag")
+    override fun getDownloaderClient() = DefaultTelegramClientOld(application,
+                                                                  ReadOnlyApiStorage(authKey!!,
+                                                                                     mtProtoHandler!!.session),
+                                                                  updateCallback,
+                                                                  preferredDataCenter,
+                                                                  "Downloader:$tag")
 
     @Throws(RpcErrorException::class, IOException::class)
     override fun <T : TLObject> executeRpcQuerySync(method: TLMethod<T>) = super.executeRpcQuerySync(
@@ -402,6 +405,6 @@ internal class DefaultTelegramClient internal constructor(val application: Teleg
     }
 
     companion object {
-        private val logger = LoggerFactory.getLogger(TelegramClient::class.java)
+        private val logger = LoggerFactory.getLogger(TelegramClientOld::class.java)
     }
 }

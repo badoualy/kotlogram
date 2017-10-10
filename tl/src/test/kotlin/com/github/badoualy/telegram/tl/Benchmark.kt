@@ -2,11 +2,8 @@ package com.github.badoualy.telegram.tl
 
 import com.github.badoualy.telegram.tl.api.TLApiTestContext
 import com.github.badoualy.telegram.tl.utils.DumpUtils
-import com.github.badoualy.telegram.tl.core.TLObject
-
 import org.apache.commons.codec.DecoderException
 import org.apache.commons.io.FileUtils
-
 import java.io.File
 import java.io.IOException
 import java.nio.charset.Charset

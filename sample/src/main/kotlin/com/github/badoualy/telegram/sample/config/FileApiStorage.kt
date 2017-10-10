@@ -1,5 +1,6 @@
 package com.github.badoualy.telegram.sample.config
 
+import com.github.badoualy.telegram.api.Kotlogram
 import com.github.badoualy.telegram.api.TelegramApiStorage
 import com.github.badoualy.telegram.mtproto.auth.AuthKey
 import com.github.badoualy.telegram.mtproto.model.DataCenter
@@ -22,12 +23,11 @@ class FileApiStorage : TelegramApiStorage {
     }
 
     override fun saveDc(dataCenter: DataCenter) = NEAREST_DC_FILE.tryWrite {
-        it.writeText(dataCenter.toString())
+        it.writeText(dataCenter.id.toString())
     }
 
     override fun loadDc() = NEAREST_DC_FILE.tryRead {
-        val fields = it.readText().split(":")
-        DataCenter(fields[0], fields[1].toInt())
+        it.readText().toIntOrNull()?.takeIf { it in 1..5 }?.let { Kotlogram.getDcById(it) }
     }
 
     override fun deleteAuthKey() = AUTH_KEY_FILE.tryWrite { FileUtils.forceDelete(it) }

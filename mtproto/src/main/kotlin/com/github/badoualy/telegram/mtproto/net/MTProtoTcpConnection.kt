@@ -3,6 +3,7 @@ package com.github.badoualy.telegram.mtproto.net
 import com.github.badoualy.telegram.mtproto.MTProtoWatchdog
 import com.github.badoualy.telegram.mtproto.log.LogTag
 import com.github.badoualy.telegram.mtproto.log.Logger
+import com.github.badoualy.telegram.mtproto.model.DataCenter
 import com.github.badoualy.telegram.tl.ByteBufferUtils.*
 import java.io.EOFException
 import java.io.IOException
@@ -23,7 +24,7 @@ import java.util.concurrent.TimeUnit
  */
 internal class MTProtoTcpConnection
 @Throws(IOException::class)
-@JvmOverloads constructor(override val ip: String, override val port: Int,
+@JvmOverloads constructor(override val dataCenter: DataCenter,
                           override var tag: LogTag,
                           abridgedProtocol: Boolean = true) : MTProtoSelectableConnection {
 
@@ -43,7 +44,7 @@ internal class MTProtoTcpConnection
             //socketChannel.setOption(StandardSocketOptions.SO_KEEPALIVE, true)
             socketChannel.setOption(StandardSocketOptions.TCP_NODELAY, true)
             try {
-                socketChannel.connect(InetSocketAddress(ip, port))
+                socketChannel.connect(InetSocketAddress(dataCenter.ipv4, dataCenter.port))
                 if (!socketChannel.finishConnect()) {
                     logger.error("finishConnect() returned false, this should not happen!!")
                 }
@@ -53,7 +54,7 @@ internal class MTProtoTcpConnection
                     logger.debug(tag, "Using abridged protocol")
                     writeBytes(ByteBuffer.wrap(byteArrayOf(0xef.toByte())))
                 }
-                logger.info(tag, "Connected to $ip:$port")
+                logger.info(tag, "Connected to $dataCenter")
                 break
             } catch (e: Exception) {
                 logger.error(tag, "Failed to connect", e)
@@ -65,7 +66,7 @@ internal class MTProtoTcpConnection
             Thread.sleep(TimeUnit.SECONDS.toMillis(2))
 
             if (attempt == ATTEMPT_COUNT)
-                throw ConnectException("Failed to join Telegram server at $ip:$port")
+                throw ConnectException("Failed to join Telegram server at $dataCenter")
         } while (attempt++ < ATTEMPT_COUNT)
     }
 

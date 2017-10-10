@@ -2,20 +2,21 @@ package com.github.badoualy.telegram.api
 
 import com.github.badoualy.telegram.tl.api.*
 
+/** Map [TLAbsUpdates] updates into one method per constructor */
 interface UpdateCallback {
 
-    fun onUpdates(client: TelegramClient, updates: TLUpdates)
+    fun onUpdates(client: TelegramClientOld, updates: TLUpdates)
 
-    fun onUpdatesCombined(client: TelegramClient, updates: TLUpdatesCombined)
+    fun onUpdatesCombined(client: TelegramClientOld, updates: TLUpdatesCombined)
 
-    fun onUpdateShort(client: TelegramClient, update: TLUpdateShort)
+    fun onUpdateShort(client: TelegramClientOld, update: TLUpdateShort)
 
-    fun onShortChatMessage(client: TelegramClient, message: TLUpdateShortChatMessage)
+    fun onShortChatMessage(client: TelegramClientOld, message: TLUpdateShortChatMessage)
 
-    fun onShortMessage(client: TelegramClient, message: TLUpdateShortMessage)
+    fun onShortMessage(client: TelegramClientOld, message: TLUpdateShortMessage)
 
-    fun onShortSentMessage(client: TelegramClient, message: TLUpdateShortSentMessage)
+    fun onShortSentMessage(client: TelegramClientOld, message: TLUpdateShortSentMessage)
 
-    fun onUpdateTooLong(client: TelegramClient)
+    fun onUpdateTooLong(client: TelegramClientOld)
 
 }

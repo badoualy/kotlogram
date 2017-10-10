@@ -30,10 +30,12 @@ object Kotlogram {
                          apiStorage: TelegramApiStorage,
                          updateCallback: UpdateCallback? = null,
                          preferredDataCenter: DataCenter = PROD_DC4,
-                         tag: String = RandomUtils.randomInt().toString()): TelegramClient =
-            DefaultTelegramClient(application, apiStorage, updateCallback, preferredDataCenter, tag)
+                         tag: String = RandomUtils.randomInt().toString()): TelegramClientOld =
+            DefaultTelegramClientOld(application, apiStorage, updateCallback, preferredDataCenter,
+                                     tag)
 
     @JvmStatic
+    @Deprecated("REMOVE AND USE DAEMON THREAD")
     fun shutdown() {
         logger.warn("==================== SHUTTING DOWN ====================")
         TelegramClientPool.DEFAULT_POOL.shutdown()
@@ -43,32 +45,18 @@ object Kotlogram {
     }
 
     @JvmField
-    val PROD_DC1 = DataCenter("149.154.175.50", 443)
+    val PROD_DC1 = DataCenter(1, "149.154.175.50", "2001:0b28:f23d:f001:0000:0000:0000:000a", 443)
     @JvmField
-    val PROD_DC2 = DataCenter("149.154.167.51", 443)
+    val PROD_DC2 = DataCenter(2, "149.154.167.51", "2001:067c:04e8:f002:0000:0000:0000:000a", 443)
     @JvmField
-    val PROD_DC3 = DataCenter("149.154.175.100", 443)
+    val PROD_DC3 = DataCenter(3, "149.154.175.100", "2001:0b28:f23d:f003:0000:0000:0000:000a", 443)
     @JvmField
-    val PROD_DC4 = DataCenter("149.154.167.91", 443) // 149.154.166.120
+    val PROD_DC4 = DataCenter(4, "149.154.167.91", "2001:067c:04e8:f004:0000:0000:0000:000a", 443)
     @JvmField
-    val PROD_DC5 = DataCenter("91.108.56.165", 443)
-
-    @JvmField
-    val PROD_DC1_IP6 = DataCenter("2001:0b28:f23d:f001:0000:0000:0000:000a", 443)
-    @JvmField
-    val PROD_DC2_IP6 = DataCenter("2001:067c:04e8:f002:0000:0000:0000:000a", 443)
-    @JvmField
-    val PROD_DC3_IP6 = DataCenter("2001:0b28:f23d:f003:0000:0000:0000:000a", 443)
-    @JvmField
-    val PROD_DC4_IP6 = DataCenter("2001:067c:04e8:f004:0000:0000:0000:000a", 443)
-    @JvmField
-    val PROD_DC5_IP6 = DataCenter("2001:0b28:f23f:f005:0000:0000:0000:000a", 443)
+    val PROD_DC5 = DataCenter(5, "91.108.56.165", "2001:0b28:f23f:f005:0000:0000:0000:000a", 443)
 
     @JvmField
     val PROD_DCS = arrayOf(PROD_DC1, PROD_DC2, PROD_DC3, PROD_DC4, PROD_DC5)
-
-    @JvmField
-    val PROD_DCS_IP6 = arrayOf(PROD_DC1_IP6, PROD_DC2_IP6, PROD_DC3_IP6, PROD_DC4_IP6, PROD_DC5_IP6)
 
     @JvmStatic
     fun getDcById(id: Int) = PROD_DCS[id - 1]

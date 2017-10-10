@@ -214,8 +214,8 @@ class TLClassGenerator(tlDefinition: TLDefinition, val config: Config) {
         val apiResponseType = ParameterizedTypeName.get(TYPE_SINGLE, responseType)
         apiFun = makeApiFun(apiResponseType)
         apiSyncFun = makeApiFun(responseType)
-        apiWrapperFun = makeApiWrapperFun(apiResponseType, executeMethodName)
-        apiSyncWrapperFun = makeApiWrapperFun(responseType, executeSyncMethodName)
+        apiWrapperFun = makeApiWrapperFun(apiResponseType, executeMethodName, false)
+        apiSyncWrapperFun = makeApiWrapperFun(responseType, executeSyncMethodName, true)
 
         generateClassCommon(clazz)
 
@@ -344,7 +344,7 @@ class TLClassGenerator(tlDefinition: TLDefinition, val config: Config) {
             val fieldTlType = parameter.tlType
             val fieldType = getType(fieldTlType).let {
                 val nullable = (fieldTlType is TLTypeConditional && !fieldTlType.realType.isTrueFalseFlag())
-                || (fieldTlType is TLTypeFunctional)
+                        || (fieldTlType is TLTypeFunctional)
                 if (nullable) it.asNullable() else it
             }
 
@@ -513,9 +513,12 @@ class TLClassGenerator(tlDefinition: TLDefinition, val config: Config) {
         }?.value ?: constructors.sortedBy { it.key.parameters.size }.first().value
     }
 
-    private fun TLMethod.makeApiWrapperFun(responseType: TypeName, methodName: String) =
+    private fun TLMethod.makeApiWrapperFun(responseType: TypeName, methodName: String, addExceptions: Boolean) =
             FunSpec.makeOverride(name.lCamelCase())
-                    .addThrowsByTypename(TYPE_RPC_EXCEPTION, IOException::class.asTypeName())
+                    .apply {
+                        if (addExceptions)
+                            addThrowsByTypename(TYPE_RPC_EXCEPTION, IOException::class.asTypeName())
+                    }
                     .returns(responseType)
                     .addStatement("return $methodName(%T(%L))",
                                   typeName(),

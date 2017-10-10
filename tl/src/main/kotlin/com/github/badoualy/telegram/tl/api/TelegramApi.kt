@@ -26,7 +26,7 @@ import com.github.badoualy.telegram.tl.api.upload.TLAbsFile
 import com.github.badoualy.telegram.tl.api.upload.TLWebFile
 import com.github.badoualy.telegram.tl.core.*
 import com.github.badoualy.telegram.tl.exception.RpcErrorException
-import rx.Single
+import io.reactivex.Single
 import java.io.IOException
 
 interface TelegramApi {

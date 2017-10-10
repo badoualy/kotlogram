@@ -77,7 +77,7 @@ class MTProtoHandler {
     constructor(dataCenter: DataCenter, authKey: AuthKey, session: MTSession?) {
         this.authKey = authKey
         this.session = session ?: newSession(dataCenter)
-        connection = connectionFactory.create(dataCenter.ip, dataCenter.port, this.session.tag)
+        connection = connectionFactory.create(dataCenter, this.session.tag)
         ackBuffer.tag = this.session.tag
         logger.debug(tag, "Created from existing key (new session? ${session == null}}")
     }
@@ -114,7 +114,7 @@ class MTProtoHandler {
         close()
 
         session = newSession(connection.dataCenter)
-        connection = connectionFactory.create(connection.ip, connection.port, session.tag)
+        connection = connectionFactory.create(connection.dataCenter, session.tag)
         messageSubject = PublishSubject.create()
         start()
     }

@@ -36,6 +36,8 @@ object Config {
                                   deviceModel,
                                   systemVersion,
                                   appVersion,
+                                  langCode,
+                                  "",
                                   langCode)
 
     init {

@@ -1,14 +1,12 @@
 package com.github.badoualy.telegram.tl.api
 
-import com.github.badoualy.telegram.tl.utils.DumpUtils
 import com.github.badoualy.telegram.tl.core.TLObject
 import com.github.badoualy.telegram.tl.serialization.TLStreamDeserializer
-
+import com.github.badoualy.telegram.tl.utils.DumpUtils
 import org.testng.Assert
 import org.testng.ITest
 import org.testng.annotations.Factory
 import org.testng.annotations.Test
-
 import java.io.ByteArrayInputStream
 
 /**

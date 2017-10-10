@@ -16,7 +16,7 @@ class TelegramClientPool private constructor(name: String) {
     private val DEFAULT_EXPIRATION_DELAY = 5L * 60L * 1000L // 5 minutes
 
     private var timer = Timer("Timer-${TelegramClientPool::class.java.simpleName}-$name")
-    private val map = HashMap<Long, TelegramClient>()
+    private val map = HashMap<Long, TelegramClientOld>()
     private val listenerMap = HashMap<Long, OnClientTimeoutListener>()
     private val expireMap = HashMap<Long, Long>()
 
@@ -28,7 +28,7 @@ class TelegramClientPool private constructor(name: String) {
      * @param expiresIn time before expiration (in ms)
      */
     @JvmOverloads
-    fun put(id: Long, client: TelegramClient, listener: OnClientTimeoutListener?, expiresIn: Long = DEFAULT_EXPIRATION_DELAY) {
+    fun put(id: Long, client: TelegramClientOld, listener: OnClientTimeoutListener?, expiresIn: Long = DEFAULT_EXPIRATION_DELAY) {
         logger.debug(marker, "Adding client with id $id")
         synchronized(this) {
             // Already have a client with this id, close the new one and reset timer
@@ -59,7 +59,7 @@ class TelegramClientPool private constructor(name: String) {
      * @param id id used to cache the client
      * @return cached client, or null if no client cached for the given id
      */
-    fun peek(id: Long): TelegramClient? {
+    fun peek(id: Long): TelegramClientOld? {
         synchronized(this) {
             return map[id]
         }
@@ -70,7 +70,7 @@ class TelegramClientPool private constructor(name: String) {
      * @param id id used to cache the client
      * @return cached client, or null if no client cached for the given id
      */
-    fun getAndRemove(id: Long): TelegramClient? {
+    fun getAndRemove(id: Long): TelegramClientOld? {
         synchronized(this) {
             expireMap.remove(id)
             return map.remove(id)
