@@ -1,8 +1,7 @@
 package com.github.badoualy.telegram.mtproto
 
 import com.github.badoualy.telegram.mtproto.log.Logger
-import com.github.badoualy.telegram.mtproto.net.MTProtoConnection
-import com.github.badoualy.telegram.mtproto.net.SelectableConnection
+import com.github.badoualy.telegram.mtproto.net.MTProtoSelectableConnection
 import com.github.badoualy.telegram.mtproto.util.NamedThreadFactory
 import io.reactivex.schedulers.Schedulers
 import io.reactivex.subjects.PublishSubject
@@ -12,9 +11,11 @@ import java.nio.channels.Selector
 import java.util.concurrent.Executors
 
 /**
- * Permanently listen for messages on given MTProtoConnection and wrap everything in an Observable,
- * every received messages will be send to the subscriber
- */
+ * Permanently listen for messages on registered connections and wrap everything in an Observable,
+ * every received messages will be send to the subscribers.
+ * If no connections are registered, the thread will stop itself
+ * (but still be usable, and restart itself when a new connection is registered).
+ * */
 internal object MTProtoWatchdog : Runnable {
 
     private val logger = Logger(MTProtoWatchdog::class)
@@ -63,7 +64,7 @@ internal object MTProtoWatchdog : Runnable {
         }
     }
 
-    fun <T> getMessageObservable(connection: T) where T : MTProtoConnection, T : SelectableConnection = subject
+    fun getMessageObservable(connection: MTProtoSelectableConnection) = subject
             .filter { it.attachment() === connection }
             .observeOn(Schedulers.from(pool))
             .map { key -> connection.readMessage().also { listen(key) } }
@@ -101,7 +102,7 @@ internal object MTProtoWatchdog : Runnable {
         }
     }
 
-    private fun register(connection: SelectableConnection): SelectionKey {
+    private fun register(connection: MTProtoSelectableConnection): SelectionKey {
         var key: SelectionKey
         synchronized(this) {
             key = connection.register(selector, SelectionKey.OP_READ).apply {
@@ -119,7 +120,7 @@ internal object MTProtoWatchdog : Runnable {
         }
     }
 
-    private fun cancelByTag(connection: SelectableConnection) = selector.keys().firstOrNull {
+    private fun cancelByTag(connection: MTProtoSelectableConnection) = selector.keys().firstOrNull {
         it.attachment() === connection
     }?.let { cancel(it) }
 
@@ -134,4 +135,9 @@ internal object MTProtoWatchdog : Runnable {
     private fun SelectionKey.noOps() = interestOps(0)
 
     private fun SelectionKey.readOp() = interestOps(SelectionKey.OP_READ)
+
+    private fun MTProtoSelectableConnection.register(selector: Selector, ops: Int): SelectionKey {
+        channel.configureBlocking(false)
+        return channel.register(selector, ops)!!
+    }
 }

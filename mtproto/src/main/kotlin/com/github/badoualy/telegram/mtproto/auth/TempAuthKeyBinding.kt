@@ -2,9 +2,7 @@ package com.github.badoualy.telegram.mtproto.auth
 
 
 import com.github.badoualy.telegram.mtproto.MTProtoHandler
-import com.github.badoualy.telegram.mtproto.secure.RandomUtils
 import java.io.IOException
-import java.math.BigInteger
 import java.util.*
 
 
@@ -30,29 +28,8 @@ object TempAuthKeyBinding {
     @Throws(IOException::class)
     @JvmStatic
     fun bindKey(tempAuthKey: TempAuthKey, authKey: AuthKey, mtProtoHandler: MTProtoHandler): Boolean {
-        if (!Arrays.equals(mtProtoHandler.authKey!!.keyId, tempAuthKey.keyId))
+        if (!Arrays.equals(mtProtoHandler.authKey.keyId, tempAuthKey.keyId))
             throw IllegalStateException("The MTProtoHandler must use the temporary authorization key that you want to bind")
-
-        val nonce = BigInteger(RandomUtils.randomByteArray(8)).toLong()
-
-//        val bindingMessage = BindAuthKeyInner(nonce,
-//                                              tempAuthKey.keyIdAsLong, authKey.keyIdAsLong,
-//                                              mtProtoHandler.session.id, tempAuthKey.expiresAt)
-//
-//        val randomPart1 = RandomUtils.randomByteArray(8) // replace session_id
-//        val randomPart2 = RandomUtils.randomLong() // replace salt
-
-        // Build inner message
-//        val msgId = 0L //TimeOverlord.generateMessageId()
-        //val mtBindingMessage = MTProtoMessage(msgId, 0, bindingMessage.serialize())
-        //val encryptedMessage = MTProtoMessageEncryption.encrypt(authKey, randomPart1, randomPart2, mtBindingMessage)
-
-        // Build request
-//        val request = TLRequestAuthBindTempAuthKey(authKey.keyIdAsLong, nonce,
-//                                                   tempAuthKey.expiresAt,
-//                                                   TLBytes(encryptedMessage.data))
-//        @Suppress("UNUSED_VARIABLE")
-//        val message = MTProtoMessage(msgId, 0, request.serialize())
 
         return false
     }

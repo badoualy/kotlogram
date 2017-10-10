@@ -15,36 +15,36 @@ import java.io.IOException
 class TLRequestInvokeAfterMsg<T : TLObject>() : TLMethod<T>() {
     var msgId: Long = 0L
 
-    var query: TLMethod<T> = TLRequestHelpGetConfig() as TLMethod<T>
+    var query: TLMethod<T>? = null
 
     private val _constructor: String = "invokeAfterMsg#cb9f372d"
 
     override val constructorId: Int = CONSTRUCTOR_ID
 
-    constructor(msgId: Long, query: TLMethod<T>) : this() {
+    constructor(msgId: Long, query: TLMethod<T>?) : this() {
         this.msgId = msgId
         this.query = query
     }
 
     @Throws(IOException::class)
-    override fun deserializeResponse_(tlDeserializer: TLDeserializer): T = query.deserializeResponse(tlDeserializer)
+    override fun deserializeResponse_(tlDeserializer: TLDeserializer): T = query!!.deserializeResponse(tlDeserializer)
 
     @Throws(IOException::class)
     override fun serializeBody(tlSerializer: TLSerializer) = with (tlSerializer)  {
         writeLong(msgId)
-        writeTLMethod(query)
+        writeTLMethod(query!!)
     }
 
     @Throws(IOException::class)
     override fun deserializeBody(tlDeserializer: TLDeserializer) = with (tlDeserializer)  {
         msgId = readLong()
-        query = readTLMethod<T>()
+        query = readTLMethod()
     }
 
     override fun computeSerializedSize(): Int {
         var size = SIZE_CONSTRUCTOR_ID
         size += SIZE_INT64
-        size += query.computeSerializedSize()
+        size += query!!.computeSerializedSize()
         return size
     }
 

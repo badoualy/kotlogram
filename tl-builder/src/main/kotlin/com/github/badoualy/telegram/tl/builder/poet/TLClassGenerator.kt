@@ -8,8 +8,6 @@ import com.github.badoualy.telegram.tl.builder.utils.lCamelCase
 import com.github.badoualy.telegram.tl.builder.utils.uCamelCase
 import com.squareup.kotlinpoet.*
 import java.io.IOException
-import java.io.InputStream
-import java.io.OutputStream
 
 @Suppress("MemberVisibilityCanPrivate")
 class TLClassGenerator(tlDefinition: TLDefinition, val config: Config) {
@@ -184,7 +182,7 @@ class TLClassGenerator(tlDefinition: TLDefinition, val config: Config) {
                 clazz.addTypeVariable(TypeVariableName.ofTLObject())
 
                 // Delegate
-                responseFun.addStatement("return query.deserializeResponse(tlDeserializer)")
+                responseFun.addStatement("return query!!.deserializeResponse(tlDeserializer)")
             }
             is TLTypeGeneric -> {
                 val methodName = when (responseType) {
@@ -346,6 +344,7 @@ class TLClassGenerator(tlDefinition: TLDefinition, val config: Config) {
             val fieldTlType = parameter.tlType
             val fieldType = getType(fieldTlType).let {
                 val nullable = (fieldTlType is TLTypeConditional && !fieldTlType.realType.isTrueFalseFlag())
+                || (fieldTlType is TLTypeFunctional)
                 if (nullable) it.asNullable() else it
             }
 
@@ -496,7 +495,7 @@ class TLClassGenerator(tlDefinition: TLDefinition, val config: Config) {
         is ParameterizedTypeName -> {
             when (type.rawType) {
                 TYPE_TL_OBJECT_VECTOR -> "TLObjectVector()"
-                TYPE_TL_METHOD -> "TLRequestHelpGetConfig() as TLMethod<T>"
+                TYPE_TL_METHOD -> "null"
                 else -> throw RuntimeException("Unsupported type $type")
             }
         }

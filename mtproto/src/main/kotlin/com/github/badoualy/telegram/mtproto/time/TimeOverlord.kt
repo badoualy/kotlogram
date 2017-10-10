@@ -1,32 +1,38 @@
 package com.github.badoualy.telegram.mtproto.time
 
+import com.github.badoualy.telegram.mtproto.log.Logger
 import com.github.badoualy.telegram.mtproto.model.DataCenter
-import org.slf4j.LoggerFactory
 import java.util.*
 
-
+/**
+ * Handles the current server time to be able to generate valid **weak** message id.
+ * (Actually remembers the delta between device time and server time).
+ */
 internal object TimeOverlord {
 
-    private val logger = LoggerFactory.getLogger(TimeOverlord::class.java)
+    private val logger = Logger(TimeOverlord::class)
 
-    // Delta between server time and client time in ms
-    private val deltaMap = HashMap<DataCenter, Long>()
+    /** Delta between server time and client time in ms for each [DataCenter] */
+    private val deltaByDcMap = HashMap<DataCenter, Long>()
 
-    private val localTime: Long // ms
+    /** Current device time in ms */
+    private val localTime: Long
         get() = System.currentTimeMillis()
 
-    fun getServerTime(dataCenter: DataCenter) = localTime + deltaMap.getOrDefault(dataCenter, 0L)
+    /** @return current server time in ms */
+    fun getServerTime(dataCenter: DataCenter) = localTime + deltaByDcMap.getOrDefault(dataCenter, 0L)
 
-    // Take time in seconds and shift left
+    /** @return a weak message id generated from server time (time in seconds with 32 bits left shift) */
     fun generateMessageId(dataCenter: DataCenter) = (getServerTime(dataCenter) / 1000) shl 32
 
+    /** Set the current server time for the given to the given time in ms */
     fun setServerTime(dataCenter: DataCenter, serverTime: Long) {
-        deltaMap.put(dataCenter, serverTime - localTime)
+        deltaByDcMap.put(dataCenter, serverTime - localTime)
         logger.warn("New server time for $dataCenter is $serverTime")
-        logger.warn("New time delta for $dataCenter is ${deltaMap[dataCenter]}")
+        logger.warn("New time delta for $dataCenter is ${deltaByDcMap[dataCenter]}")
     }
 
-    // Reverse operation, shift right then multiply by 1000
+    /** Update server time for the given [DataCenter] from the given messageId (supposed to be received just now) */
     fun synchronizeTime(dataCenter: DataCenter, messageId: Long) {
         setServerTime(dataCenter, (messageId ushr 32) * 1000)
     }

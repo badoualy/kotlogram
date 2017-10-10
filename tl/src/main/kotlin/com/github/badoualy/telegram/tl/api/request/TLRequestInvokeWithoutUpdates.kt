@@ -12,32 +12,32 @@ import java.io.IOException
  * @see <a href="http://github.com/badoualy/kotlogram">http://github.com/badoualy/kotlogram</a>
  */
 class TLRequestInvokeWithoutUpdates<T : TLObject>() : TLMethod<T>() {
-    var query: TLMethod<T> = TLRequestHelpGetConfig() as TLMethod<T>
+    var query: TLMethod<T>? = null
 
     private val _constructor: String = "invokeWithoutUpdates#bf9459b7"
 
     override val constructorId: Int = CONSTRUCTOR_ID
 
-    constructor(query: TLMethod<T>) : this() {
+    constructor(query: TLMethod<T>?) : this() {
         this.query = query
     }
 
     @Throws(IOException::class)
-    override fun deserializeResponse_(tlDeserializer: TLDeserializer): T = query.deserializeResponse(tlDeserializer)
+    override fun deserializeResponse_(tlDeserializer: TLDeserializer): T = query!!.deserializeResponse(tlDeserializer)
 
     @Throws(IOException::class)
     override fun serializeBody(tlSerializer: TLSerializer) = with (tlSerializer)  {
-        writeTLMethod(query)
+        writeTLMethod(query!!)
     }
 
     @Throws(IOException::class)
     override fun deserializeBody(tlDeserializer: TLDeserializer) = with (tlDeserializer)  {
-        query = readTLMethod<T>()
+        query = readTLMethod()
     }
 
     override fun computeSerializedSize(): Int {
         var size = SIZE_CONSTRUCTOR_ID
-        size += query.computeSerializedSize()
+        size += query!!.computeSerializedSize()
         return size
     }
 

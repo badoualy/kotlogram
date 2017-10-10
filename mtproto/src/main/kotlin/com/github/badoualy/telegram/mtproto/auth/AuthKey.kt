@@ -1,13 +1,15 @@
 package com.github.badoualy.telegram.mtproto.auth
 
-import com.github.badoualy.telegram.mtproto.secure.CryptoUtils
 import com.github.badoualy.telegram.mtproto.net.MTProtoConnection
+import com.github.badoualy.telegram.mtproto.secure.CryptoUtils
 import java.nio.ByteBuffer
 
 open class AuthKey(val key: ByteArray) {
 
-    // see https://core.telegram.org/mtproto/description#key-identifier
-    // SHA1 generates 20 bytes long hash, authKeyId is the lower 8 bytes
+    /**
+     * Key identifier of this [AuthKey]. Lower 8 bytes of the SHA1 hash.
+     * @see <a href="https://core.telegram.org/mtproto/description#key-identifier">MTProto description - Key Identifier</a>
+     */
     val keyId = CryptoUtils.SHA1(key).takeLast(8).toByteArray()
 
     constructor(key: ByteBuffer) : this(key.array())

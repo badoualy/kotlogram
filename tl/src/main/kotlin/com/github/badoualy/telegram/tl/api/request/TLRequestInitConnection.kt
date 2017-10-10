@@ -28,7 +28,7 @@ class TLRequestInitConnection<T : TLObject>() : TLMethod<T>() {
 
     var langCode: String = ""
 
-    var query: TLMethod<T> = TLRequestHelpGetConfig() as TLMethod<T>
+    var query: TLMethod<T>? = null
 
     private val _constructor: String = "initConnection#c7481da6"
 
@@ -42,7 +42,7 @@ class TLRequestInitConnection<T : TLObject>() : TLMethod<T>() {
             systemLangCode: String,
             langPack: String,
             langCode: String,
-            query: TLMethod<T>
+            query: TLMethod<T>?
     ) : this() {
         this.apiId = apiId
         this.deviceModel = deviceModel
@@ -55,7 +55,7 @@ class TLRequestInitConnection<T : TLObject>() : TLMethod<T>() {
     }
 
     @Throws(IOException::class)
-    override fun deserializeResponse_(tlDeserializer: TLDeserializer): T = query.deserializeResponse(tlDeserializer)
+    override fun deserializeResponse_(tlDeserializer: TLDeserializer): T = query!!.deserializeResponse(tlDeserializer)
 
     @Throws(IOException::class)
     override fun serializeBody(tlSerializer: TLSerializer) = with (tlSerializer)  {
@@ -66,7 +66,7 @@ class TLRequestInitConnection<T : TLObject>() : TLMethod<T>() {
         writeString(systemLangCode)
         writeString(langPack)
         writeString(langCode)
-        writeTLMethod(query)
+        writeTLMethod(query!!)
     }
 
     @Throws(IOException::class)
@@ -78,7 +78,7 @@ class TLRequestInitConnection<T : TLObject>() : TLMethod<T>() {
         systemLangCode = readString()
         langPack = readString()
         langCode = readString()
-        query = readTLMethod<T>()
+        query = readTLMethod()
     }
 
     override fun computeSerializedSize(): Int {
@@ -90,7 +90,7 @@ class TLRequestInitConnection<T : TLObject>() : TLMethod<T>() {
         size += computeTLStringSerializedSize(systemLangCode)
         size += computeTLStringSerializedSize(langPack)
         size += computeTLStringSerializedSize(langCode)
-        size += query.computeSerializedSize()
+        size += query!!.computeSerializedSize()
         return size
     }
 

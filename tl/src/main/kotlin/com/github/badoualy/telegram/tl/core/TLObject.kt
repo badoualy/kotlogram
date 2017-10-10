@@ -147,7 +147,7 @@ abstract class TLObject : Serializable {
      * @param provider function to execute if the bitmask is true
      * @return return value from provider if the bitmask is true, null otherwise
      */
-    inline protected fun <T> readIfMask(maskValue: Int, provider: () -> T): T? =
+    inline protected fun <reified T> readIfMask(maskValue: Int, provider: () -> T): T? =
             if (isMask(maskValue)) provider.invoke() else null
 
     /**
@@ -156,7 +156,7 @@ abstract class TLObject : Serializable {
      * @param maskValue bitmask to check
      * @param action function to execute if the bitmask is true
      */
-    inline protected fun <T> doIfMask(value: T?, maskValue: Int, action: (T) -> Unit) {
+    inline protected fun <reified T> doIfMask(value: T?, maskValue: Int, action: (T) -> Unit) {
         if (isMask(maskValue)) action.invoke(ensureNotNull(value))
     }
 
@@ -167,6 +167,6 @@ abstract class TLObject : Serializable {
      * @param provider function to execute if the bitmask is true
      * @return return value from provider if the bitmask is true, 0 otherwise
      */
-    inline protected fun <T> getIntIfMask(value: T?, maskValue: Int, provider: (T) -> Int) =
+    inline protected fun <reified T> getIntIfMask(value: T?, maskValue: Int, provider: (T) -> Int) =
             if (isMask(maskValue)) provider.invoke(ensureNotNull(value)) else 0
 }

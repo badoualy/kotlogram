@@ -319,20 +319,20 @@ abstract class TelegramApiWrapper : TelegramApi, RpcQueryExecutor {
             systemLangCode: String,
             langPack: String,
             langCode: String,
-            query: TLMethod<T>
+            query: TLMethod<T>?
     ): Single<T> = executeRpcQuery(TLRequestInitConnection(apiId, deviceModel, systemVersion, appVersion, systemLangCode, langPack, langCode, query))
 
     @Throws(RpcErrorException::class,IOException::class)
-    override fun <T : TLObject> invokeAfterMsg(msgId: Long, query: TLMethod<T>): Single<T> = executeRpcQuery(TLRequestInvokeAfterMsg(msgId, query))
+    override fun <T : TLObject> invokeAfterMsg(msgId: Long, query: TLMethod<T>?): Single<T> = executeRpcQuery(TLRequestInvokeAfterMsg(msgId, query))
 
     @Throws(RpcErrorException::class,IOException::class)
-    override fun <T : TLObject> invokeAfterMsgs(msgIds: TLLongVector, query: TLMethod<T>): Single<T> = executeRpcQuery(TLRequestInvokeAfterMsgs(msgIds, query))
+    override fun <T : TLObject> invokeAfterMsgs(msgIds: TLLongVector, query: TLMethod<T>?): Single<T> = executeRpcQuery(TLRequestInvokeAfterMsgs(msgIds, query))
 
     @Throws(RpcErrorException::class,IOException::class)
-    override fun <T : TLObject> invokeWithLayer(layer: Int, query: TLMethod<T>): Single<T> = executeRpcQuery(TLRequestInvokeWithLayer(layer, query))
+    override fun <T : TLObject> invokeWithLayer(layer: Int, query: TLMethod<T>?): Single<T> = executeRpcQuery(TLRequestInvokeWithLayer(layer, query))
 
     @Throws(RpcErrorException::class,IOException::class)
-    override fun <T : TLObject> invokeWithoutUpdates(query: TLMethod<T>): Single<T> = executeRpcQuery(TLRequestInvokeWithoutUpdates(query))
+    override fun <T : TLObject> invokeWithoutUpdates(query: TLMethod<T>?): Single<T> = executeRpcQuery(TLRequestInvokeWithoutUpdates(query))
 
     @Throws(RpcErrorException::class,IOException::class)
     override fun langpackGetDifference(fromVersion: Int): Single<TLLangPackDifference> = executeRpcQuery(TLRequestLangpackGetDifference(fromVersion))

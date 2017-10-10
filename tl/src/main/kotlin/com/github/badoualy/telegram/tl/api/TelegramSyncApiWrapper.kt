@@ -318,20 +318,20 @@ abstract class TelegramSyncApiWrapper : TelegramSyncApi, RpcQuerySyncExecutor {
             systemLangCode: String,
             langPack: String,
             langCode: String,
-            query: TLMethod<T>
+            query: TLMethod<T>?
     ): T = executeRpcQuerySync(TLRequestInitConnection(apiId, deviceModel, systemVersion, appVersion, systemLangCode, langPack, langCode, query))
 
     @Throws(RpcErrorException::class,IOException::class)
-    override fun <T : TLObject> invokeAfterMsg(msgId: Long, query: TLMethod<T>): T = executeRpcQuerySync(TLRequestInvokeAfterMsg(msgId, query))
+    override fun <T : TLObject> invokeAfterMsg(msgId: Long, query: TLMethod<T>?): T = executeRpcQuerySync(TLRequestInvokeAfterMsg(msgId, query))
 
     @Throws(RpcErrorException::class,IOException::class)
-    override fun <T : TLObject> invokeAfterMsgs(msgIds: TLLongVector, query: TLMethod<T>): T = executeRpcQuerySync(TLRequestInvokeAfterMsgs(msgIds, query))
+    override fun <T : TLObject> invokeAfterMsgs(msgIds: TLLongVector, query: TLMethod<T>?): T = executeRpcQuerySync(TLRequestInvokeAfterMsgs(msgIds, query))
 
     @Throws(RpcErrorException::class,IOException::class)
-    override fun <T : TLObject> invokeWithLayer(layer: Int, query: TLMethod<T>): T = executeRpcQuerySync(TLRequestInvokeWithLayer(layer, query))
+    override fun <T : TLObject> invokeWithLayer(layer: Int, query: TLMethod<T>?): T = executeRpcQuerySync(TLRequestInvokeWithLayer(layer, query))
 
     @Throws(RpcErrorException::class,IOException::class)
-    override fun <T : TLObject> invokeWithoutUpdates(query: TLMethod<T>): T = executeRpcQuerySync(TLRequestInvokeWithoutUpdates(query))
+    override fun <T : TLObject> invokeWithoutUpdates(query: TLMethod<T>?): T = executeRpcQuerySync(TLRequestInvokeWithoutUpdates(query))
 
     @Throws(RpcErrorException::class,IOException::class)
     override fun langpackGetDifference(fromVersion: Int): TLLangPackDifference = executeRpcQuerySync(TLRequestLangpackGetDifference(fromVersion))

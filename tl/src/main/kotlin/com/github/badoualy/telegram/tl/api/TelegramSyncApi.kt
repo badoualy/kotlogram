@@ -316,20 +316,20 @@ interface TelegramSyncApi {
             systemLangCode: String,
             langPack: String,
             langCode: String,
-            query: TLMethod<T>
+            query: TLMethod<T>?
     ): T
 
     @Throws(RpcErrorException::class,IOException::class)
-    fun <T : TLObject> invokeAfterMsg(msgId: Long, query: TLMethod<T>): T
+    fun <T : TLObject> invokeAfterMsg(msgId: Long, query: TLMethod<T>?): T
 
     @Throws(RpcErrorException::class,IOException::class)
-    fun <T : TLObject> invokeAfterMsgs(msgIds: TLLongVector, query: TLMethod<T>): T
+    fun <T : TLObject> invokeAfterMsgs(msgIds: TLLongVector, query: TLMethod<T>?): T
 
     @Throws(RpcErrorException::class,IOException::class)
-    fun <T : TLObject> invokeWithLayer(layer: Int, query: TLMethod<T>): T
+    fun <T : TLObject> invokeWithLayer(layer: Int, query: TLMethod<T>?): T
 
     @Throws(RpcErrorException::class,IOException::class)
-    fun <T : TLObject> invokeWithoutUpdates(query: TLMethod<T>): T
+    fun <T : TLObject> invokeWithoutUpdates(query: TLMethod<T>?): T
 
     @Throws(RpcErrorException::class,IOException::class)
     fun langpackGetDifference(fromVersion: Int): TLLangPackDifference

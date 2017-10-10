@@ -15,11 +15,17 @@ import java.nio.channels.SelectableChannel
 import java.nio.channels.SocketChannel
 import java.util.concurrent.TimeUnit
 
+/**
+ * An implementation of [MTProtoConnection] using TCP as transport layer.
+ * The implementation is using a [SocketChannel] to be able to use [java.nio.channels.Selector] for scalability.
+ * For now this class only implements the abridged protocol.
+ * @see <a href="https://core.telegram.org/mtproto#tcp-transport">MTProto description - TCP Transport</a>
+ */
 internal class MTProtoTcpConnection
 @Throws(IOException::class)
 @JvmOverloads constructor(override val ip: String, override val port: Int,
                           override var tag: LogTag,
-                          abridgedProtocol: Boolean = true) : MTProtoConnection, SelectableConnection {
+                          abridgedProtocol: Boolean = true) : MTProtoSelectableConnection {
 
     private var socketChannel: SocketChannel
 

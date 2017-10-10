@@ -9,7 +9,9 @@ import java.math.BigInteger
 import kotlin.reflect.KClass
 
 /**
- * see https://core.telegram.org/mtproto/description#session
+ * This class encapsulate all data related to an MTProto session (id, salt, number of content related message sent, ...)
+ * // TODO: handles updates/diff state
+ * @see <a href="https://core.telegram.org/mtproto/description#session">MTProto description - Session</a>
  */
 class MTSession(var dataCenter: DataCenter,
                 var id: ByteArray = RandomUtils.randomSessionId(),

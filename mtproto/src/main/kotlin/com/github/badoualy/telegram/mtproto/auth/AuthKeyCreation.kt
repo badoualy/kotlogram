@@ -188,7 +188,7 @@ object AuthKeyCreation {
         val reqDhParams = ReqDhParams(resPQ.nonce, resPQ.serverNonce,
                                       fromBigInt(pq.p), fromBigInt(pq.q), publicKey.fingerprint,
                                       encryptedData)
-        return Pair.create(reqDhParams, newNonce)
+        return Pair(reqDhParams, newNonce)
     }
 
     /** see https://core.telegram.org/mtproto/auth_key#dh-key-exchange-complete  */

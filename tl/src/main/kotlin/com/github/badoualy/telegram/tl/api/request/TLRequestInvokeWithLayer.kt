@@ -15,36 +15,36 @@ import java.io.IOException
 class TLRequestInvokeWithLayer<T : TLObject>() : TLMethod<T>() {
     var layer: Int = 0
 
-    var query: TLMethod<T> = TLRequestHelpGetConfig() as TLMethod<T>
+    var query: TLMethod<T>? = null
 
     private val _constructor: String = "invokeWithLayer#da9b0d0d"
 
     override val constructorId: Int = CONSTRUCTOR_ID
 
-    constructor(layer: Int, query: TLMethod<T>) : this() {
+    constructor(layer: Int, query: TLMethod<T>?) : this() {
         this.layer = layer
         this.query = query
     }
 
     @Throws(IOException::class)
-    override fun deserializeResponse_(tlDeserializer: TLDeserializer): T = query.deserializeResponse(tlDeserializer)
+    override fun deserializeResponse_(tlDeserializer: TLDeserializer): T = query!!.deserializeResponse(tlDeserializer)
 
     @Throws(IOException::class)
     override fun serializeBody(tlSerializer: TLSerializer) = with (tlSerializer)  {
         writeInt(layer)
-        writeTLMethod(query)
+        writeTLMethod(query!!)
     }
 
     @Throws(IOException::class)
     override fun deserializeBody(tlDeserializer: TLDeserializer) = with (tlDeserializer)  {
         layer = readInt()
-        query = readTLMethod<T>()
+        query = readTLMethod()
     }
 
     override fun computeSerializedSize(): Int {
         var size = SIZE_CONSTRUCTOR_ID
         size += SIZE_INT32
-        size += query.computeSerializedSize()
+        size += query!!.computeSerializedSize()
         return size
     }
 

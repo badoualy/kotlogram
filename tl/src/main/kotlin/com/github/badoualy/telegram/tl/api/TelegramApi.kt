@@ -317,20 +317,20 @@ interface TelegramApi {
             systemLangCode: String,
             langPack: String,
             langCode: String,
-            query: TLMethod<T>
+            query: TLMethod<T>?
     ): Single<T>
 
     @Throws(RpcErrorException::class,IOException::class)
-    fun <T : TLObject> invokeAfterMsg(msgId: Long, query: TLMethod<T>): Single<T>
+    fun <T : TLObject> invokeAfterMsg(msgId: Long, query: TLMethod<T>?): Single<T>
 
     @Throws(RpcErrorException::class,IOException::class)
-    fun <T : TLObject> invokeAfterMsgs(msgIds: TLLongVector, query: TLMethod<T>): Single<T>
+    fun <T : TLObject> invokeAfterMsgs(msgIds: TLLongVector, query: TLMethod<T>?): Single<T>
 
     @Throws(RpcErrorException::class,IOException::class)
-    fun <T : TLObject> invokeWithLayer(layer: Int, query: TLMethod<T>): Single<T>
+    fun <T : TLObject> invokeWithLayer(layer: Int, query: TLMethod<T>?): Single<T>
 
     @Throws(RpcErrorException::class,IOException::class)
-    fun <T : TLObject> invokeWithoutUpdates(query: TLMethod<T>): Single<T>
+    fun <T : TLObject> invokeWithoutUpdates(query: TLMethod<T>?): Single<T>
 
     @Throws(RpcErrorException::class,IOException::class)
     fun langpackGetDifference(fromVersion: Int): Single<TLLangPackDifference>

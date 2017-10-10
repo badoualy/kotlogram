@@ -5,7 +5,7 @@ import com.squareup.kotlinpoet.ClassName
 import com.squareup.kotlinpoet.TypeName
 
 internal fun serializeParameter(fieldName: String, fieldTlType: TLType): String = when (fieldTlType) {
-    is TLTypeFunctional -> "writeTLMethod($fieldName)"
+    is TLTypeFunctional -> "writeTLMethod($fieldName!!)"
     is TLTypeFlag -> "writeInt($fieldName)"
     is TLTypeConditional -> {
         "doIfMask($fieldName, ${fieldTlType.pow2Value()}) " +
@@ -27,7 +27,7 @@ internal fun serializeParameter(fieldName: String, fieldTlType: TLType): String 
 }
 
 internal fun deserializeParameter(fieldTlType: TLType, fieldType: TypeName): String = when (fieldTlType) {
-    is TLTypeFunctional -> "readTLMethod<T>()"
+    is TLTypeFunctional -> "readTLMethod()"
     is TLTypeFlag -> "readInt()"
     is TLTypeConditional -> {
         val realType = fieldTlType.realType
@@ -69,7 +69,7 @@ internal fun deserializeParameter(fieldTlType: TLType, fieldType: TypeName): Str
 }
 
 internal fun computeSizeParameter(fieldName: String, fieldTlType: TLType): String = when (fieldTlType) {
-    is TLTypeFunctional -> "$fieldName.computeSerializedSize()"
+    is TLTypeFunctional -> "$fieldName!!.computeSerializedSize()"
     is TLTypeFlag -> "SIZE_INT32"
     is TLTypeConditional -> {
         "getIntIfMask($fieldName, ${fieldTlType.pow2Value()}) " +

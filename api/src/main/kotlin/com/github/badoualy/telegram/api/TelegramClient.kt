@@ -63,16 +63,13 @@ interface TelegramClient : TelegramSyncApi {
     @Deprecated("Use authCheckPassword for more convenience", ReplaceWith("authCheckPassword()"))
     override fun authCheckPassword(passwordHash: TLBytes): TLAuthorization
 
-    @Throws(RpcErrorException::class, IOException::class)
-    override fun <T : TLObject> invokeWithLayer(layer: Int, query: TLMethod<T>): T
-
     /** Convenience method wrapping the argument with TelegramApp values and casting result with good type */
     @Suppress("UNCHECKED_CAST")
     @Throws(RpcErrorException::class, IOException::class)
     fun <T : TLObject> initConnection(query: TLMethod<T>): T
 
     @Deprecated("Use initConnection for more convenience", ReplaceWith("initConnection(query)"))
-    override fun <T : TLObject> initConnection(apiId: Int, deviceModel: String, systemVersion: String, appVersion: String, systemLangCode: String, langPack: String, langCode: String, query: TLMethod<T>): T
+    override fun <T : TLObject> initConnection(apiId: Int, deviceModel: String, systemVersion: String, appVersion: String, systemLangCode: String, langPack: String, langCode: String, query: TLMethod<T>?): T
 
     /** Convenience method wrapping the argument for a plain text message */
     fun messagesSendMessage(peer: TLAbsInputPeer, message: String, randomId: Long): TLAbsUpdates?
