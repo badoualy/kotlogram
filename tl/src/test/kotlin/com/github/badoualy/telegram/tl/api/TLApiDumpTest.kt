@@ -25,13 +25,13 @@ class TLApiDumpTest private constructor(private val file: File) : ITest {
     @Throws(IOException::class, DecoderException::class)
     fun runTest() {
         val dumpSerialization = DumpUtils.load(file)
-        val dumpJson = DumpUtils.loadJson(file)
+        val dumpJson = DumpUtils.loadJson(file).replace("\r\n", "\n")
 
         // Deserialize and check if json is identical
         val tlDeserializer = TLStreamDeserializer(dumpSerialization,
                                                   TLApiTestContext)
         val tlObject = tlDeserializer.readTLObject<TLObject>()
-        val json = DumpUtils.toJson(tlObject)
+        val json = DumpUtils.toJson(tlObject).replace("\r\n", "\n")
         Assert.assertEquals(json, dumpJson, file.name)
 
         // Re-serialize and check bytes
