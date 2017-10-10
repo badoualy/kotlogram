@@ -8,7 +8,8 @@ import com.github.badoualy.telegram.mtproto.tl.MTProtoMessage
 import com.github.badoualy.telegram.mtproto.util.AesKeyIvPair
 import com.github.badoualy.telegram.tl.StreamUtils
 import com.github.badoualy.telegram.tl.StreamUtils.*
-import com.github.badoualy.telegram.tl.serialization.TLStreamSerializer
+import com.github.badoualy.telegram.tl.serialization.TLSerializerFactory
+import com.github.badoualy.telegram.tl.serialization.TLStreamSerializerFactory
 import java.io.ByteArrayInputStream
 import java.io.ByteArrayOutputStream
 import java.io.IOException
@@ -21,6 +22,8 @@ import java.util.*
  * Helper class to handle the encryption/decryption of message following the MTProto protocol description
  */
 object MTProtoMessageEncryption {
+
+    private val tlSerializerFactory: TLSerializerFactory = TLStreamSerializerFactory
 
     /**
      * Generate message key
@@ -108,7 +111,7 @@ object MTProtoMessageEncryption {
     fun generateUnencryptedMessage(messageId: Long, data: ByteArray): ByteArray {
         // @see https://core.telegram.org/mtproto/description#unencrypted-message
         val out = ByteArrayOutputStream()
-        TLStreamSerializer(out).apply {
+        tlSerializerFactory.createSerializer(out).apply {
             writeLong(0L)  // auth_key_id
             writeLong(messageId) // message_id
             writeInt(data.size) // message_data_length

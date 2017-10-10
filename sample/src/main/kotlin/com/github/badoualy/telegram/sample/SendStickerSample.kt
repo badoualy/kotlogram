@@ -17,7 +17,7 @@ object SendStickerSample {
 
     @JvmStatic fun main(args: Array<String>) {
         // This is a synchronous client, that will block until the response arrive (or until timeout)
-        val client = Kotlogram.getDefaultClient(Config.application, FileApiStorage())
+        val client = Kotlogram.getDefaultClientSync(Config.application, FileApiStorage())
 
         // You can start making requests
         try {

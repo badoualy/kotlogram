@@ -14,7 +14,7 @@ object GetHistorySample {
 
     @JvmStatic fun main(args: Array<String>) {
         // This is a synchronous client, that will block until the response arrive (or until timeout)
-        val client = Kotlogram.getDefaultClient(Config.application, FileApiStorage())
+        val client = Kotlogram.getDefaultClientSync(Config.application, FileApiStorage())
 
         // How many messages we want to get (same than dialogs, there is a cap)
         // (Telegram has an internal max, your value will be capped)

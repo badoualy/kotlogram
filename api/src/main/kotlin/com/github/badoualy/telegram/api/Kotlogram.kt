@@ -4,6 +4,7 @@ import com.github.badoualy.telegram.mtproto.MTProtoHandler
 import com.github.badoualy.telegram.mtproto.model.DataCenter
 import com.github.badoualy.telegram.mtproto.secure.RandomUtils
 import org.slf4j.LoggerFactory
+import java.lang.IllegalArgumentException
 
 object Kotlogram {
 
@@ -11,6 +12,18 @@ object Kotlogram {
 
     @JvmField
     val API_LAYER = 71
+
+    @JvmStatic
+    val prodDcByIdMap = mapOf(
+            1 to DataCenter(1, "149.154.175.50", "2001:0b28:f23d:f001:0000:0000:0000:000a", 443),
+            2 to DataCenter(2, "149.154.167.51", "2001:067c:04e8:f002:0000:0000:0000:000a", 443),
+            3 to DataCenter(3, "149.154.175.100", "2001:0b28:f23d:f003:0000:0000:0000:000a", 443),
+            4 to DataCenter(4, "149.154.167.91", "2001:067c:04e8:f004:0000:0000:0000:000a", 443),
+            5 to DataCenter(5, "91.108.56.165", "2001:0b28:f23f:f005:0000:0000:0000:000a", 443)
+    )
+
+    @JvmStatic
+    val testDcByIdMap = mapOf<Int, DataCenter>()
 
     init {
         logger.info("""
@@ -26,13 +39,23 @@ object Kotlogram {
 
     @JvmOverloads
     @JvmStatic
+    fun getDefaultClientSync(application: TelegramApp,
+                             apiStorage: TelegramApiStorage,
+                             updateCallback: UpdateCallback? = null,
+                             preferredDataCenter: DataCenter = getDcById(4),
+                             tag: String = RandomUtils.randomInt().toString()): TelegramClientOld =
+            DefaultTelegramClientOld(application, apiStorage, updateCallback, preferredDataCenter,
+                                     tag)
+
+    @JvmOverloads
+    @JvmStatic
     fun getDefaultClient(application: TelegramApp,
                          apiStorage: TelegramApiStorage,
                          updateCallback: UpdateCallback? = null,
-                         preferredDataCenter: DataCenter = PROD_DC4,
-                         tag: String = RandomUtils.randomInt().toString()): TelegramClientOld =
-            DefaultTelegramClientOld(application, apiStorage, updateCallback, preferredDataCenter,
-                                     tag)
+                         preferredDataCenter: DataCenter = getDcById(4),
+                         tag: String = RandomUtils.randomInt().toString()): TelegramClient =
+            TelegramClientImpl(application, apiStorage, preferredDataCenter,
+                               tag)
 
     @JvmStatic
     @Deprecated("REMOVE AND USE DAEMON THREAD")
@@ -44,28 +67,10 @@ object Kotlogram {
         logger.warn("==================== SHUT DOWN DONE ====================")
     }
 
-    @JvmField
-    val PROD_DC1 = DataCenter(1, "149.154.175.50", "2001:0b28:f23d:f001:0000:0000:0000:000a", 443)
-    @JvmField
-    val PROD_DC2 = DataCenter(2, "149.154.167.51", "2001:067c:04e8:f002:0000:0000:0000:000a", 443)
-    @JvmField
-    val PROD_DC3 = DataCenter(3, "149.154.175.100", "2001:0b28:f23d:f003:0000:0000:0000:000a", 443)
-    @JvmField
-    val PROD_DC4 = DataCenter(4, "149.154.167.91", "2001:067c:04e8:f004:0000:0000:0000:000a", 443)
-    @JvmField
-    val PROD_DC5 = DataCenter(5, "91.108.56.165", "2001:0b28:f23f:f005:0000:0000:0000:000a", 443)
-
-    @JvmField
-    val PROD_DCS = arrayOf(PROD_DC1, PROD_DC2, PROD_DC3, PROD_DC4, PROD_DC5)
+    @JvmStatic
+    fun getDcById(id: Int) = prodDcByIdMap[id] ?: throw IllegalArgumentException("Unkwnown DataCenter id: $id")
 
     @JvmStatic
-    fun getDcById(id: Int) = PROD_DCS[id - 1]
-
-    @JvmStatic
-    fun getDcId(dataCenter: DataCenter) = PROD_DCS.indexOf(dataCenter) + 1
-
-    init {
-        System.setProperty("org.slf4j.simpleLogger.defaultLogLevel", "trace")
-    }
+    fun getDcId(dataCenter: DataCenter) = prodDcByIdMap.filter { it.value == dataCenter }.keys.first()
 }
 

@@ -2,12 +2,10 @@ package com.github.badoualy.telegram
 
 import com.github.badoualy.telegram.tl.api.TLApiContext
 import com.github.badoualy.telegram.tl.core.TLObject
-import com.github.badoualy.telegram.tl.serialization.TLStreamDeserializer
-import com.github.badoualy.telegram.tl.serialization.TLStreamSerializer
+import com.github.badoualy.telegram.tl.serialization.TLStreamSerializerFactory
 import com.google.gson.GsonBuilder
 import org.apache.commons.codec.DecoderException
 import org.apache.commons.codec.binary.Hex
-import java.io.ByteArrayInputStream
 import java.io.File
 import java.io.IOException
 
@@ -27,7 +25,7 @@ object DecodeHexDump {
 
         val payload = Hex(Charsets.UTF_8).decode(file.readText()) as ByteArray
 
-        val tlObject = TLStreamDeserializer(ByteArrayInputStream(payload), TLApiContext)
+        val tlObject = TLStreamSerializerFactory.createDeserializer(payload, TLApiContext)
                 .readTLObject<TLObject>()
 
         println("Found ${tlObject.javaClass.canonicalName}\n\n")

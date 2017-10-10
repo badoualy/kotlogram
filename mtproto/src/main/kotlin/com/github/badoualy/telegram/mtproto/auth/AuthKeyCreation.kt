@@ -23,6 +23,7 @@ import com.github.badoualy.telegram.tl.core.TLMethod
 import com.github.badoualy.telegram.tl.core.TLObject
 import com.github.badoualy.telegram.tl.serialization.TLSerializerFactory
 import com.github.badoualy.telegram.tl.serialization.TLStreamSerializerFactory
+import io.reactivex.Single
 import java.io.IOException
 import java.math.BigInteger
 import java.util.*
@@ -51,7 +52,18 @@ object AuthKeyCreation {
      * @return an object containing the auth key, the connection created, and the server salt received, or null if the creation failed
      * @see [Creating an Authorization Key](https://core.telegram.org/mtproto/auth_key)
      */
-    fun createAuthKey(dataCenter: DataCenter) = createAuthKeyInternal(dataCenter, false)
+    fun createAuthKey(dataCenter: DataCenter) = Single.fromCallable {
+        createAuthKeyInternal(dataCenter, false)
+                ?: throw RuntimeException("Failed to generate authorization key")
+    }!!
+
+    /**
+     * Create a permanent authorization key
+     * @return an object containing the auth key, the connection created, and the server salt received, or null if the creation failed
+     * @see [Creating an Authorization Key](https://core.telegram.org/mtproto/auth_key)
+     */
+    @Deprecated("Use RX!")
+    fun createAuthKeySync(dataCenter: DataCenter): AuthResult? = createAuthKey(dataCenter).onErrorReturn { null }.blockingGet()
 
     private fun createAuthKeyInternal(dataCenter: DataCenter, tmpKey: Boolean): AuthResult? {
         val start = System.currentTimeMillis()

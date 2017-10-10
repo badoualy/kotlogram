@@ -7,7 +7,7 @@ interface MTProtoConnectionFactory {
     fun create(dataCenter: DataCenter, tag: LogTag): MTProtoConnection
 }
 
-class MTProtoTcpConnectionFactory : MTProtoConnectionFactory {
+object MTProtoTcpConnectionFactory : MTProtoConnectionFactory {
     override fun create(dataCenter: DataCenter, tag: LogTag): MTProtoConnection =
             MTProtoTcpConnection(dataCenter, tag)
 }

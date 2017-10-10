@@ -1,6 +1,6 @@
 package com.github.badoualy.telegram.api
 
-/** Info about the application created on Telegram's console and using this API */
+/** Info about the app created on Telegram's console and using this API */
 data class TelegramApp(val apiId: Int, val apiHash: String,
                        val deviceModel: String, val systemVersion: String, val appVersion: String,
                        val systemLangCode: String,

@@ -60,7 +60,7 @@ class MTProtoHandler {
         get() = session.tag
 
     /** An observable emitting an item for each received [TLAbsUpdates] */
-    val updateObservable: Observable<TLAbsUpdates>
+    val updatesObservable: Observable<TLAbsUpdates>
         get() = updateSubject.hide()
 
     constructor(authResult: AuthResult) {
@@ -92,6 +92,7 @@ class MTProtoHandler {
                 .subscribe(messageSubject)
 
         messageSubject
+                .observeOn(Schedulers.computation())
                 .subscribeBy(onNext = onMessageReceived(),
                              onError = {
                                  logger.error(tag, "messageSubject onErrorReceived()", it)
@@ -157,13 +158,13 @@ class MTProtoHandler {
     fun <T : TLObject> executeMethods(methods: List<TLMethod<T>>): Observable<T> =
             methods.takeIf { it.isNotEmpty() }?.let {
                 messageSubject
+                        .observeOn(Schedulers.computation())
                         .map { it.second }
                         .ofType<MTRpcResult>()
-                        .filter { methods.contains(requestByIdMap[it.messageId]) } // TODO: check null
+                        .filter { methods.contains(requestByIdMap[it.messageId]) }
                         .take(methods.size.toLong())
-                        .subscribeOn(Schedulers.io())
                         .doOnSubscribe { executeMethods_(methods) }
-                        .observeOn(Schedulers.computation())
+                        .subscribeOn(Schedulers.io())
                         .flatMapMaybe(mapResult())
                         .map {
                             @Suppress("UNCHECKED_CAST")
@@ -491,7 +492,7 @@ class MTProtoHandler {
         private val mtProtoContext = MTProtoContext
         private val apiContext = TLApiContext
 
-        private val connectionFactory: MTProtoConnectionFactory = MTProtoTcpConnectionFactory()
+        private val connectionFactory: MTProtoConnectionFactory = MTProtoTcpConnectionFactory
         private val tlSerializerFactory: TLSerializerFactory = TLStreamSerializerFactory
 
         /**
