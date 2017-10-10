@@ -1,13 +1,13 @@
 ![Kotlogram](http://s28.postimg.org/u3sc3e24t/logo.png)<br/>
 [![Release](https://jitpack.io/v/badoualy/kotlogram.svg)](https://jitpack.io/#badoualy/kotlogram) [![Build Status](https://travis-ci.org/badoualy/kotlogram.svg?branch=master)](https://travis-ci.org/badoualy/kotlogram)
 
+**Easy to use** and **straightforward** Kotlin and Java binding of [Telegram API](https://core.telegram.org/api).
+The project is coded in **Kotlin**, with some classes (mostly legacy classes) in Java
+
 Current layer: 66
 ===========
 Documentation@[http://kotlogram.badoualy.com](http://kotlogram.badoualy.com)
 ===========
-
-> **Easy to use** and **straightforward** Kotlin (and Java) binding of [Telegram API](https://core.telegram.org/api).
-> The project is coded in **Kotlin**, with some classes (mostly generated and legacy classes) in Java
 
 Kotlin, what is that, I don't know this language!
 ----------------
