@@ -16,7 +16,8 @@ import java.io.IOException
 
 object SendMessageSample {
 
-    @JvmStatic fun main(args: Array<String>) {
+    @JvmStatic
+    fun main(args: Array<String>) {
         // This is a synchronous client, that will block until the response arrive (or until timeout)
         val client = Kotlogram.getDefaultClientSync(Config.application, FileApiStorage())
 

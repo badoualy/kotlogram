@@ -14,40 +14,44 @@ class Logger(val name: String) {
     fun trace(message: String) = trace(null, message)
 
     fun trace(tag: LogTag?, message: String) {
-        if (tag != null) {
-            delegate.trace(tag.marker, message)
-        } else {
-            delegate.trace(message)
+        when {
+            tag != null -> delegate.trace(tag.marker, message)
+            else -> delegate.trace(message)
         }
     }
 
     fun debug(message: String) = debug(null, message)
 
     fun debug(tag: LogTag?, message: String) {
-        if (tag != null) {
-            delegate.debug(tag.marker, message)
-        } else {
-            delegate.debug(message)
+        when {
+            tag != null -> delegate.debug(tag.marker, message)
+            else -> delegate.debug(message)
         }
     }
 
     fun info(message: String) = info(null, message)
 
     fun info(tag: LogTag?, message: String) {
-        if (tag != null) {
-            delegate.info(tag.marker, message)
-        } else {
-            delegate.info(message)
+        when {
+            tag != null -> delegate.info(tag.marker, message)
+            else -> delegate.info(message)
         }
     }
 
     fun warn(message: String) = warn(null, message)
 
     fun warn(tag: LogTag?, message: String) {
-        if (tag != null) {
-            delegate.warn(tag.marker, message)
-        } else {
-            delegate.warn(message)
+        when {
+            tag != null -> delegate.warn(tag.marker, message)
+            else -> delegate.warn(message)
+        }
+    }
+
+    fun warn(tag: LogTag?, message: String, throwable: Throwable?) {
+        when {
+            tag != null && throwable != null -> delegate.warn(tag.marker, message, throwable)
+            tag != null -> delegate.warn(tag.marker, message)
+            else -> delegate.warn(message)
         }
     }
 
@@ -56,12 +60,10 @@ class Logger(val name: String) {
     fun error(tag: LogTag?, message: String) = error(tag, message, null)
 
     fun error(tag: LogTag?, message: String, throwable: Throwable?) {
-        if (tag != null && throwable != null) {
-            delegate.error(tag.marker, message, throwable)
-        } else if (tag != null) {
-            delegate.error(tag.marker, message)
-        } else {
-            delegate.error(message)
+        when {
+            tag != null && throwable != null -> delegate.error(tag.marker, message, throwable)
+            tag != null -> delegate.error(tag.marker, message)
+            else -> delegate.error(message)
         }
     }
 }

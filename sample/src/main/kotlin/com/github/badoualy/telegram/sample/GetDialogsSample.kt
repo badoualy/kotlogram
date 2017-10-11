@@ -14,10 +14,10 @@ import java.io.IOException
 
 object GetDialogsSample {
 
-    @JvmStatic fun main(args: Array<String>) {
+    @JvmStatic
+    fun main(args: Array<String>) {
         // This is a synchronous client, that will block until the response arrive (or until timeout)
         val client = Kotlogram.getDefaultClient(Config.application, FileApiStorage())
-        client.init()
 
         // Number of recent conversation you want to get
         // (Telegram has an internal max, your value will be capped)
@@ -25,7 +25,8 @@ object GetDialogsSample {
 
         // You can start making requests
         try {
-            val tlAbsDialogs = client.messagesGetDialogs(true, 0, 0, TLInputPeerEmpty(), count).blockingGet()
+            val tlAbsDialogs = client.messagesGetDialogs(true, 0, 0, TLInputPeerEmpty(),
+                                                         count).blockingGet()
 
             // Create a map of id to name map
             val nameMap = HashMap<Int, String>()

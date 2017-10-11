@@ -14,7 +14,6 @@ dependencies {
     //compile 'commons-io:commons-io:2.4'
     //compile 'org.apache.commons:commons-lang3:3.4'
 
-    compile 'io.reactivex:rxjava:1.2.0'
     compile 'io.reactivex.rxjava2:rxjava:2.1.4'
     compile 'io.reactivex.rxjava2:rxkotlin:2.1.0'
     compile 'org.slf4j:slf4j-simple:1.7.21'
@@ -26,7 +25,7 @@ task fatJar(type: Jar) {
     manifest {
         attributes("Application-Name": "Kotlogram MTProto",
                    "Specification-Title": "Kotlogram MTProto",
-                   "Implementation-Title": "com.github.badoualy.telegram.mtproto",
+                   "Implementation-Title": "com.github.badoualy.kotlogram.mtproto",
                    "Implementation-Version": version)
     }
     baseName = "kotlogram-$project.name"

@@ -21,7 +21,7 @@ dependencies {
         attributes("Main-Class": "com.github.badoualy.telegram.tl.builder.MainKt",
                    "Application-Name": "Kotlogram TL-Builder",
                    "Specification-Title": "Kotlogram TL-Builder",
-                   "Implementation-Title": "com.github.badoualy.telegram.tl.builder",
+                   "Implementation-Title": "com.github.badoualy.kotlogram.tl.builder",
                    "Implementation-Version": version)
     }
     baseName = "kotlogram-$project.name"

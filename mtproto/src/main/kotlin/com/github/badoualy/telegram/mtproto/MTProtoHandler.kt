@@ -96,6 +96,8 @@ class MTProtoHandler {
                 .subscribeBy(onNext = onMessageReceived(),
                              onError = {
                                  logger.error(tag, "messageSubject onErrorReceived()", it)
+                                 // TODO: enable?
+                                 //resetConnection()
                              },
                              onComplete = {
                                  logger.info(tag, "messageSubject onComplete()")

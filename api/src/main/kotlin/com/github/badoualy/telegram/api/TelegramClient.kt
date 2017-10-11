@@ -29,16 +29,26 @@ abstract class TelegramClient : TelegramApiWrapper(), TelegramApi, Closeable {
     /** Changes the timeout value for an exported handler to expire (and be closed) with the supplied value (in ms) */
     abstract var exportedClientTimeout: Long
 
+    /**
+     * Number of attempts to re-execute a request when an error occurs.
+     * A method will not be re-executed if the result is a [com.github.badoualy.telegram.mtproto.tl.MTRpcError]
+     */
+    abstract var requestRetryCount: Int
+
     protected abstract var tag: LogTag
 
     /** Init the client (connect to Telegram). You should not be calling this in your main [Thread] */
     abstract fun init()
+
+    abstract fun <T : TLObject> executeMethod(method: TLMethod<T>, dcId: Int): Single<T>
 
     abstract fun <T : TLObject> executeMethods(methods: List<TLMethod<T>>): Observable<T>
 
     abstract fun <T : TLObject> executeMethods(methods: List<TLMethod<T>>, dcId: Int): Observable<T>
 
     //abstract fun getDownloaderClient(): TelegramClient
+
+    abstract fun sync(): TelegramSyncClient
 
     //abstract fun downloadFile(inputFileLocation: InputFileLocation, size: Int, outputStream: OutputStream)
 
