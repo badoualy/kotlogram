@@ -18,12 +18,12 @@ object DownloadMessageMediaSample {
     @JvmStatic
     fun main(args: Array<String>) {
         // This is a synchronous client, that will block until the response arrive (or until timeout)
-        val client = Kotlogram.getDefaultClientSync(Config.application, FileApiStorage())
+        val client = Kotlogram.getDefaultClient(Config.application, FileApiStorage())
 
         // You can start making requests
         try {
-            val tlAbsDialogs = client.messagesGetDialogs(false, 0, 0, TLInputPeerEmpty(), 1)
-            val tlAbsPeer = tlAbsDialogs.dialogs[0].peer
+            val tlAbsDialogs = client.messagesGetDialogs(false, 0, 0, TLInputPeerEmpty(), 1).blockingGet()
+            val tlAbsPeer = tlAbsDialogs.dialogs[1].peer
             val tlPeerObj: TLObject =
                     if (tlAbsPeer is TLPeerUser) tlAbsDialogs.users.first { it.id == tlAbsPeer.id }
                     else tlAbsDialogs.chats.first { it.id == tlAbsPeer.id }
@@ -35,7 +35,7 @@ object DownloadMessageMediaSample {
                 else -> null
             } ?: TLInputPeerEmpty()
 
-            val tlAbsMessages = client.messagesGetHistory(inputPeer, 0, 0, 0, 100, 0, 0)
+            val tlAbsMessages = client.messagesGetHistory(inputPeer, 0, 0, 0, 100, 0, 0).blockingGet()
             val tlMessage = tlAbsMessages.messages.firstOrNull { it is TLMessage && it.media != null } as TLMessage?
                     ?: throw RuntimeException("Found no messages with media in last 100 messages")
 
@@ -52,8 +52,9 @@ object DownloadMessageMediaSample {
                     }
                 }
 
+                println("Download ${mediaInput.inputFileLocation}")
                 val fos = FileOutputStream(File(Config.ROOT_DIR, fileName))
-                client.downloadSync(mediaInput.inputFileLocation, mediaInput.size, fos)
+                client.downloadFile(mediaInput.inputFileLocation, mediaInput.size, fos)
             } else println("Nothing to download for this media...")
         } catch (e: RpcErrorException) {
             e.printStackTrace()

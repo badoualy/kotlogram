@@ -1,5 +1,6 @@
 package com.github.badoualy.telegram.api
 
+import com.github.badoualy.telegram.api.utils.InputFileLocation
 import com.github.badoualy.telegram.mtproto.MTProtoHandler
 import com.github.badoualy.telegram.mtproto.auth.AuthKey
 import com.github.badoualy.telegram.mtproto.auth.AuthKeyCreation
@@ -9,17 +10,24 @@ import com.github.badoualy.telegram.mtproto.log.LogTag
 import com.github.badoualy.telegram.mtproto.log.Logger
 import com.github.badoualy.telegram.mtproto.model.DataCenter
 import com.github.badoualy.telegram.mtproto.model.MTSession
+import com.github.badoualy.telegram.mtproto.time.MTProtoTimer
 import com.github.badoualy.telegram.tl.api.TLAbsUpdates
 import com.github.badoualy.telegram.tl.api.TLNearestDc
 import com.github.badoualy.telegram.tl.api.request.*
+import com.github.badoualy.telegram.tl.api.upload.TLFile
 import com.github.badoualy.telegram.tl.core.TLMethod
 import com.github.badoualy.telegram.tl.core.TLObject
 import com.github.badoualy.telegram.tl.exception.RpcErrorException
 import io.reactivex.Completable
+import io.reactivex.Maybe
 import io.reactivex.Observable
 import io.reactivex.Single
+import io.reactivex.rxkotlin.subscribeBy
+import io.reactivex.rxkotlin.toMaybe
 import io.reactivex.rxkotlin.zipWith
 import io.reactivex.schedulers.Schedulers
+import java.io.OutputStream
+import java.lang.Math.ceil
 import java.util.concurrent.TimeUnit
 
 class TelegramClientImpl internal constructor(override val app: TelegramApp,
@@ -29,7 +37,7 @@ class TelegramClientImpl internal constructor(override val app: TelegramApp,
 
     private var mtProtoHandler: MTProtoHandler? = null
     private var authKey: AuthKey? = null
-    private var dataCenter: DataCenter? = null
+    private var dataCenter: DataCenter = preferredDataCenter
     override var closed: Boolean = false
 
     private val authKeyMap = HashMap<Int, AuthKey>()
@@ -54,10 +62,11 @@ class TelegramClientImpl internal constructor(override val app: TelegramApp,
         init()
     }
 
+    // TODO: move to RX
     override fun init() {
         logger.trace(tag, "init()")
         authKey = apiStorage.loadAuthKey()
-        dataCenter = apiStorage.loadDc()
+        var dataCenter = apiStorage.loadDc()
         generateAuthKey = authKey == null
 
         if (dataCenter == null) {
@@ -69,20 +78,34 @@ class TelegramClientImpl internal constructor(override val app: TelegramApp,
             logger.warn(tag, "No dc found in storage, preferred: $preferredDataCenter")
             dataCenter = preferredDataCenter
         }
+        this.dataCenter = dataCenter
 
         // No need to check DC if we have an authKey in storage
         init(checkNearestDc = generateAuthKey)
         logger.info(tag, "Client ready")
     }
 
-    // Move to RX?
+    // TODO: move to RX
     private fun init(checkNearestDc: Boolean) {
         logger.trace(tag, "init(): $checkNearestDc")
         mtProtoHandler = executeSync {
-            (if (generateAuthKey) getNewHandler()
-            else getNewHandler(dataCenter!!, authKey!!, apiStorage.loadSession()))
+            (if (generateAuthKey) {
+                dataCenter.let { dataCenter ->
+                    createAuthKey(dataCenter)
+                            .subscribeOn(Schedulers.io())
+                            .observeOn(Schedulers.io())
+                            .doOnSuccess { authResult ->
+                                // Save to storage
+                                authKey = authResult.authKey
+                                apiStorage.saveAuthKey(authKey!!)
+                                apiStorage.saveDc(dataCenter)
+                            }
+                            .flatMap { createHandler(it) }
+                }
+            } else {
+                createHandler(dataCenter, authKey!!, apiStorage.loadSession())
+            }).doOnSuccess { it.start() }
         }
-        mtProtoHandler!!.start()
 
         try {
             // Call to initConnection to setup information about this app for the user to see in "active sessions"
@@ -115,9 +138,16 @@ class TelegramClientImpl internal constructor(override val app: TelegramApp,
     override fun <T : TLObject> executeRpcQuery(method: TLMethod<T>): Single<T> =
             executeMethod(method, mtProtoHandler!!)
 
-    override fun <T : TLObject> executeMethod(method: TLMethod<T>, dcId: Int): Single<T> {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
+    override fun <T : TLObject> executeMethod(method: TLMethod<T>, dcId: Int): Single<T> =
+            if (dcId == dataCenter.id) {
+                executeRpcQuery(method)
+            } else {
+                getExportedHandler(dcId)
+                        .flatMap { handler ->
+                            executeMethod(method, handler)
+                                    .doFinally(releaseExportedHandler(handler, dcId))
+                        }
+            }
 
     private fun <T : TLObject> executeMethod(method: TLMethod<T>, mtProtoHandler: MTProtoHandler): Single<T> =
             executeMethods(listOf(method), mtProtoHandler).singleOrError()
@@ -125,12 +155,21 @@ class TelegramClientImpl internal constructor(override val app: TelegramApp,
     override fun <T : TLObject> executeMethods(methods: List<TLMethod<T>>): Observable<T> =
             executeMethods(methods, mtProtoHandler!!)
 
-    override fun <T : TLObject> executeMethods(methods: List<TLMethod<T>>, dcId: Int): Observable<T> {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
+    override fun <T : TLObject> executeMethods(methods: List<TLMethod<T>>, dcId: Int): Observable<T> =
+            if (dcId == dataCenter.id) {
+                executeMethods(methods)
+            } else {
+                getExportedHandler(dcId)
+                        .doOnSuccess { logger.error("SUCCESS EXPORTED") }
+                        .flatMapObservable { handler ->
+                            logger.error("FLATMAPPING WITH NEW HANDLER")
+                            executeMethods(methods, handler)
+                                    .doFinally(releaseExportedHandler(handler, dcId))
+                        }
+            }
 
     private fun <T : TLObject> executeMethods(methods: List<TLMethod<T>>, mtProtoHandler: MTProtoHandler): Observable<T> =
-            Thread.currentThread().stackTrace.let { stackTrace ->
+            Thread.currentThread().stackTrace.drop(1).let { stackTrace ->
                 mtProtoHandler.executeMethods(methods)
                         .timeout(timeout, TimeUnit.MILLISECONDS)
                         .retryWhen {
@@ -138,8 +177,73 @@ class TelegramClientImpl internal constructor(override val app: TelegramApp,
                                 Pair(err, i)
                             }.flatMap(retryIfNeeded(mtProtoHandler))
                         }
-                        .doOnError { (it as? RpcErrorException)?.stackTrace = stackTrace }
+                        .onErrorResumeNext(resumeIfNeeded(methods))
+                        .doOnError { (it as? RpcErrorException)?.stackTrace = stackTrace.toTypedArray() }
             }
+
+    private fun releaseExportedHandler(handler: MTProtoHandler, dcId: Int): () -> Unit = {
+        var closeHandler = false
+        synchronized(exportedHandlerMap) {
+            if (exportedHandlerMap.contains(dcId)) {
+                closeHandler = true
+            } else {
+                exportedHandlerMap.put(dcId, handler)
+            }
+            exportedHandlerTimeoutMap.put(dcId, System.currentTimeMillis() + exportedClientTimeout)
+        }
+        if (closeHandler)
+            handler.close()
+
+        Single.timer(exportedClientTimeout, TimeUnit.MILLISECONDS)
+                .subscribeBy(onSuccess = { onExportedHandlerTimeout(dcId) })
+    }
+
+    private fun retryIfNeeded(mtProtoHandler: MTProtoHandler): (Pair<Throwable, Int>) -> Observable<*> = { (error, i) ->
+        logger.warn(tag,
+                    "method(s) failed at attempt $i (${error.javaClass.simpleName}): ${error.message}")
+        when (error) {
+            is RpcErrorException -> {
+                when (error.code) {
+                    303 -> { // DC error
+                        val dcId = error.tagInteger
+                        when {
+                            error.tag.startsWithAny("PHONE_MIGRATE_", "NETWORK_MIGRATE_") -> {
+                                logger.info(tag, "Repeat request after migration on DC$dcId")
+                                migrate(dcId).toSingleDefault(Unit)
+                            }
+                            else -> Single.error(error)
+                        }
+                    }
+                    else -> Single.error(error)
+                }
+            }
+            else -> Single.fromCallable {
+                logger.error(tag, "Attempting MTProtoHandler reset")
+                mtProtoHandler.resetConnection()
+            }.delay(i.toLong(), TimeUnit.SECONDS)
+        }.subscribeOn(Schedulers.io()).toObservable()
+    }
+
+    val partSize = 128 * 1024
+
+    override fun downloadFile(inputFileLocation: InputFileLocation, size: Int, outputStream: OutputStream) {
+        val partCount = ceil(size.toDouble() / partSize).toInt()
+        println("Has $partCount part")
+        (0 until partCount)
+                .map { it * partSize }
+                .map { TLRequestUploadGetFile(inputFileLocation.inputFileLocation, it, partSize) }
+                .withIndex()
+                .groupBy({ it.index % 5 }, { it.value })
+                .map { executeMethods(it.value, inputFileLocation.dcId).blockingIterable() }
+                .flatMap { it }
+                //.flatMap { it.value }
+                //.sortedBy { it.offset }
+                .map { it as TLFile }
+                .forEach { outputStream.write(it.bytes.data) }
+
+        outputStream.flush()
+        outputStream.close()
+    }
 
     override fun sync(): TelegramSyncClient = TelegramSyncClientImpl(this)
 
@@ -152,18 +256,7 @@ class TelegramClientImpl internal constructor(override val app: TelegramApp,
         mtProtoHandler?.session?.let { apiStorage.saveSession(it) }
     }
 
-    private fun getNewHandler(): Single<MTProtoHandler> = getNewAuthKey().map { MTProtoHandler(it) }
-
-    private fun getNewHandler(dataCenter: DataCenter, authKey: AuthKey, session: MTSession? = null): Single<MTProtoHandler> =
-            Single.fromCallable { MTProtoHandler(dataCenter, authKey, session) }
-
-    private fun getNewAuthKey(): Single<AuthResult> = AuthKeyCreation.createAuthKey(dataCenter!!)
-            .doOnSuccess { authResult ->
-                authKey = authResult.authKey
-                apiStorage.saveAuthKey(authKey!!)
-                apiStorage.saveDc(dataCenter!!)
-            }
-
+    // TODO: move to RX
     private fun <T : TLObject> initConnection(method: TLMethod<T>, mtProtoHandler: MTProtoHandler): T {
         logger.debug(tag, "Init connection with $method")
         val initConnectionRequest = with(app) {
@@ -178,6 +271,7 @@ class TelegramClientImpl internal constructor(override val app: TelegramApp,
         return executeSync { executeMethod(request, mtProtoHandler) }
     }
 
+    // TODO: move to RX
     private fun ensureNearestDc(nearestDc: TLNearestDc) {
         logger.trace(tag, "ensureNearestDc()")
         if (nearestDc.thisDc != nearestDc.nearestDc) {
@@ -202,72 +296,71 @@ class TelegramClientImpl internal constructor(override val app: TelegramApp,
         init(checkNearestDc = false)
     }
 
-    private fun getExportedHandler(dcId: Int): MTProtoHandler {
-        logger.trace(tag, "getExportedHandler(DC$dcId)")
+    /**
+     * [Maybe.switchIfEmpty] is buggy with kotlin, have to use this syntax
+     * Use [Single.defer] to avoid creating unnecessary objects
+     */
+    private fun getExportedHandler(dcId: Int): Single<MTProtoHandler> =
+            Maybe.fromCallable<MTProtoHandler> {
+                logger.trace(tag, "getExportedHandler(DC$dcId)")
 
-        var cachedHandler: MTProtoHandler? = null
-        synchronized(exportedHandlerMap) {
-            cachedHandler = exportedHandlerMap.remove(dcId)
-        }
+                var cachedHandler: MTProtoHandler? = null
+                synchronized(exportedHandlerMap) {
+                    cachedHandler = exportedHandlerMap.remove(dcId)
+                }
 
-        cachedHandler?.let { logger.debug(tag, "Using cached handler") }
+                cachedHandler?.apply { logger.debug(tag, "Using cached handler") }
+            }.switchIfEmpty(Single.defer {
+                // No cached handler, check for existing key
+                authKeyMap[dcId].toMaybe()
+                        .flatMap { createExportedHandler(dcId, it).toMaybe() }
+                        // If nothing, create a new exported handler
+                        .switchIfEmpty(Single.defer { createExportedHandler(dcId) })
+            })
 
-        return cachedHandler ?: if (authKeyMap.containsKey(dcId)) {
-            logger.debug(tag, "Already have key for DC$dcId")
-            executeSync {
-                getNewHandler(Kotlogram.getDcById(dcId), authKeyMap[dcId]!!, null)
-                        .doAfterSuccess {
-                            it.start()
-                            initConnection(TLRequestHelpGetNearestDc(), it)
-                        }
+    private fun createExportedHandler(dcId: Int, key: AuthKey): Single<MTProtoHandler> =
+            createHandler(Kotlogram.getDcById(dcId), key, null)
+                    .doOnSubscribe {
+                        logger.debug(tag, "Using existing exported auth key on DC$dcId")
+                    }
+                    .doAfterSuccess { it.start() }
+                    .doAfterSuccess { initConnection(TLRequestHelpGetNearestDc(), it) }
+
+    private fun createExportedHandler(dcId: Int): Single<MTProtoHandler> =
+            authExportAuthorization(dcId)
+                    .doOnSubscribe { logger.debug(tag, "Creating new handler on DC$dcId") }
+                    .map { TLRequestAuthImportAuthorization(it.id, it.bytes) }
+                    .doOnSuccess { logger.error("GATE 1 -------------------------------------") }
+                    .zipWith(createAuthKey(Kotlogram.getDcById(dcId))
+                                     .flatMap { createHandler(it) }
+                                     .doOnSuccess { it.start() }
+                                     .doOnSuccess { logger.error("GATE 2 -------------------------------------") })
+                    .doOnSuccess { logger.error("GATE 3 -------------------------------------") }
+                    .doOnSuccess { (request, handler) -> initConnection(request, handler) }
+                    .doOnSuccess { (_, handler) -> authKeyMap.put(dcId, handler.authKey) }
+                    .map { (_, handler) -> handler }
+                    .doOnSuccess { logger.error("GATE END -------------------------------------") }
+
+    private fun <T : TLObject> resumeIfNeeded(methods: List<TLMethod<T>>): (Throwable) -> Observable<T> = { error ->
+        when (error) {
+            is RpcErrorException -> when {
+                error.code == 303 && error.tag.startsWith("FILE_MIGRATE_") -> {
+                    getExportedHandler(error.tagInteger)
+                            .flatMapObservable { executeMethods(methods, it) }
+                }
+                else -> Observable.error(error)
             }
-        } else {
-            executeSync {
-                logger.debug(tag, "Creating new handler on DC$dcId")
-                authExportAuthorization(dcId)
-                        .zipWith(AuthKeyCreation.createAuthKey(Kotlogram.getDcById(dcId))
-                                         .map { MTProtoHandler(it).apply { start() } })
-                        .doOnSuccess {
-                            initConnection(TLRequestAuthImportAuthorization(it.first.id,
-                                                                            it.first.bytes),
-                                           it.second)
-                        }
-                        .doOnSuccess { authKeyMap.put(dcId, it.second.authKey) }
-                        .map { it.second }
-            }
+            else -> Observable.error(error)
         }
     }
 
-    private fun retryIfNeeded(mtProtoHandler: MTProtoHandler): (Pair<Throwable, Int>) -> Observable<*> = { (err, i) ->
-        logger.warn(tag,
-                    "method(s) failed at attempt $i (${err.javaClass.simpleName}): ${err.message}")
-        when (err) {
-            is RpcErrorException -> {
-                when (err.code) {
-                    303 -> { // DC error
-                        val dcId = err.tagInteger
-                        when {
-                            err.tag.startsWithAny("PHONE_MIGRATE_", "NETWORK_MIGRATE_") -> {
-                                logger.info(tag, "Repeat request after migration on DC$dcId")
-                                migrate(dcId).toSingleDefault(Unit)
-                            }
-                            err.tag.startsWith("FILE_MIGRATE_") -> {
-                                logger.info(tag, "Repeat request on DC$dcId")
-                                // TODO
-                                //Single.fromCallable { getExportedHandler(dcId) }
-                                Single.error(err)
-                            }
-                            else -> Single.error(err)
-                        }
-                    }
-                    else -> Single.error(err)
-                }
+    private fun onExportedHandlerTimeout(dcId: Int) {
+        synchronized(exportedHandlerMap) {
+            if (System.currentTimeMillis() >= exportedHandlerTimeoutMap.getOrDefault(dcId, -1)) {
+                exportedHandlerMap.remove(dcId)?.close()
+                exportedHandlerTimeoutMap.remove(dcId)
             }
-            else -> Single.fromCallable {
-                logger.error(tag, "Attempting MTProtoHandler reset")
-                mtProtoHandler.resetConnection()
-            }.delay(i.toLong(), TimeUnit.SECONDS)
-        }.subscribeOn(Schedulers.io()).toObservable()
+        }
     }
 
     companion object {
@@ -287,5 +380,14 @@ class TelegramClientImpl internal constructor(override val app: TelegramApp,
                 throw e.cause as RpcErrorException
             throw e
         }
+
+        private fun createHandler(dataCenter: DataCenter, authKey: AuthKey, session: MTSession? = null): Single<MTProtoHandler> =
+                Single.fromCallable { MTProtoHandler(dataCenter, authKey, session) }
+
+        private fun createHandler(authResult: AuthResult): Single<MTProtoHandler> =
+                Single.fromCallable { MTProtoHandler(authResult) }
+
+        private fun createAuthKey(dataCenter: DataCenter): Single<AuthResult> =
+                AuthKeyCreation.createAuthKey(dataCenter)
     }
 }

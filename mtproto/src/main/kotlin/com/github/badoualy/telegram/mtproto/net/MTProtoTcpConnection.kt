@@ -46,7 +46,7 @@ internal class MTProtoTcpConnection
             try {
                 socketChannel.connect(InetSocketAddress(dataCenter.ipv4, dataCenter.port))
                 if (!socketChannel.finishConnect()) {
-                    logger.error("finishConnect() returned false, this should not happen!!")
+                    logger.error(tag, "finishConnect() returned false, this should not happen!!")
                 }
 
                 if (abridgedProtocol) {

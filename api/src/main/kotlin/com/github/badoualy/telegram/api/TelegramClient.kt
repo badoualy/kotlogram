@@ -1,5 +1,6 @@
 package com.github.badoualy.telegram.api
 
+import com.github.badoualy.telegram.api.utils.InputFileLocation
 import com.github.badoualy.telegram.mtproto.log.LogTag
 import com.github.badoualy.telegram.mtproto.secure.CryptoUtils
 import com.github.badoualy.telegram.tl.api.TLAbsInputPeer
@@ -15,6 +16,7 @@ import com.github.badoualy.telegram.tl.exception.RpcErrorException
 import io.reactivex.Observable
 import io.reactivex.Single
 import java.io.Closeable
+import java.io.OutputStream
 
 abstract class TelegramClient : TelegramApiWrapper(), TelegramApi, Closeable {
 
@@ -50,7 +52,7 @@ abstract class TelegramClient : TelegramApiWrapper(), TelegramApi, Closeable {
 
     abstract fun sync(): TelegramSyncClient
 
-    //abstract fun downloadFile(inputFileLocation: InputFileLocation, size: Int, outputStream: OutputStream)
+    abstract fun downloadFile(inputFileLocation: InputFileLocation, size: Int, outputStream: OutputStream)
 
     //fun getUserPhoto(user: TLAbsUser, big: Boolean = true)
 

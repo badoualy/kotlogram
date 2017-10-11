@@ -15,7 +15,7 @@ object GetHistorySample {
     @JvmStatic
     fun main(args: Array<String>) {
         // This is a synchronous client, that will block until the response arrive (or until timeout)
-        val client = Kotlogram.getDefaultClientSync(Config.application, FileApiStorage())
+        val client = Kotlogram.getDefaultClient(Config.application, FileApiStorage())
 
         // How many messages we want to get (same than dialogs, there is a cap)
         // (Telegram has an internal max, your value will be capped)
@@ -23,8 +23,8 @@ object GetHistorySample {
 
         // You can start making requests
         try {
-            val tlAbsDialogs = client.messagesGetDialogs(false, 0, 0, TLInputPeerEmpty(), 1)
-            val tlAbsPeer = tlAbsDialogs.dialogs[0].peer
+            val tlAbsDialogs = client.messagesGetDialogs(false, 0, 0, TLInputPeerEmpty(), 1).blockingGet()
+            val tlAbsPeer = tlAbsDialogs.dialogs[2].peer
             val tlPeerObj: TLObject =
                     if (tlAbsPeer is TLPeerUser) tlAbsDialogs.users.first { it.id == tlAbsPeer.id }
                     else tlAbsDialogs.chats.first { it.id == tlAbsPeer.id }
@@ -36,7 +36,7 @@ object GetHistorySample {
                 else -> null
             } ?: TLInputPeerEmpty()
 
-            val tlAbsMessages = client.messagesGetHistory(inputPeer, 0, 0, 0, count, 0, 0)
+            val tlAbsMessages = client.messagesGetHistory(inputPeer, 0, 0, 0, count, 0, 0).blockingGet()
             // Note: first message in the list is most recent
             tlAbsMessages.messages.reversed().forEach {
                 val messageContent =
