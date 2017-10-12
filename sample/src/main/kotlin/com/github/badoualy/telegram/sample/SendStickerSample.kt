@@ -18,11 +18,11 @@ object SendStickerSample {
     @JvmStatic
     fun main(args: Array<String>) {
         // This is a synchronous client, that will block until the response arrive (or until timeout)
-        val client = Kotlogram.getDefaultClientSync(Config.application, FileApiStorage())
+        val client = Kotlogram.getClient(Config.application, FileApiStorage())
 
         // You can start making requests
         try {
-            val tlAbsDialogs = client.messagesGetDialogs(false, 0, 0, TLInputPeerEmpty(), 1)
+            val tlAbsDialogs = client.messagesGetDialogs(false, 0, 0, TLInputPeerEmpty(), 1).blockingGet()
             val tlAbsPeer = tlAbsDialogs.dialogs[0].peer
             val tlPeerObj: TLObject =
                     if (tlAbsPeer is TLPeerUser) tlAbsDialogs.users.first { it.id == tlAbsPeer.id }
@@ -42,7 +42,7 @@ object SendStickerSample {
             println("Using sticker set: ${tlStickerSet.title}")
             // We have 2 different classes called TLStickerSet, one in message subpackage
             val set = client.messagesGetStickerSet(TLInputStickerSetID(tlStickerSet.id,
-                                                                       tlStickerSet.accessHash))
+                                                                       tlStickerSet.accessHash)).blockingGet()
 
             if (set.documents.isNotEmpty()) {
                 val tlInputDocument = set.documents.first().toInputDocument()

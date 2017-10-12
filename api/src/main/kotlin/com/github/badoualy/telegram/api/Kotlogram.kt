@@ -39,30 +39,16 @@ object Kotlogram {
 
     @JvmOverloads
     @JvmStatic
-    fun getDefaultClientSync(application: TelegramApp,
-                             apiStorage: TelegramApiStorage,
-                             updateCallback: UpdateCallback? = null,
-                             preferredDataCenter: DataCenter = getDcById(4),
-                             tag: String = RandomUtils.randomInt().toString()): TelegramClientOld =
-            DefaultTelegramClientOld(application, apiStorage, updateCallback, preferredDataCenter,
-                                     tag)
-
-    @JvmOverloads
-    @JvmStatic
-    fun getDefaultClient(application: TelegramApp,
-                         apiStorage: TelegramApiStorage,
-                         updateCallback: UpdateCallback? = null,
-                         preferredDataCenter: DataCenter = getDcById(4),
-                         tag: String = RandomUtils.randomInt().toString()): TelegramClient =
-            TelegramClientImpl(application, apiStorage, preferredDataCenter,
-                               tag)
+    fun getClient(application: TelegramApp,
+                  apiStorage: TelegramApiStorage,
+                  preferredDataCenter: DataCenter = getDcById(4),
+                  tag: String = RandomUtils.randomInt().toString()): TelegramClient =
+            TelegramClientImpl(application, apiStorage, preferredDataCenter, tag)
 
     @JvmStatic
     @Deprecated("REMOVE AND USE DAEMON THREAD")
     fun shutdown() {
         logger.warn("==================== SHUTTING DOWN ====================")
-        TelegramClientPool.DEFAULT_POOL.shutdown()
-        TelegramClientPool.DOWNLOADER_POOL.shutdown()
         MTProtoHandler.shutdown()
         logger.warn("==================== SHUT DOWN DONE ====================")
     }
