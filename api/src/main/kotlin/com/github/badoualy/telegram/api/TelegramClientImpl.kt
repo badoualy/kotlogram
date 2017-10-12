@@ -377,6 +377,7 @@ class TelegramClientImpl internal constructor(override val app: TelegramApp,
                                                                 mtProtoHandler!!.authKey,
                                                                 it))
                 }
+                .observeOn(Schedulers.io())
                 .doOnSuccess { logger.error("PFS SUCCESS BITCH") }
                 .doOnSuccess { it.first.close() }
                 .blockingGet()

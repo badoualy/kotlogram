@@ -47,7 +47,7 @@ object GetDialogsSample {
                 println("${nameMap[dialog.peer.id]}: $topMessageContent")
             }
 
-            client.pfs()
+            //client.pfs()
         } catch (e: RpcErrorException) {
             e.printStackTrace()
         } catch (e: IOException) {

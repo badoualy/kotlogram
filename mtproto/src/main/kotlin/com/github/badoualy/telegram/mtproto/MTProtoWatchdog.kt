@@ -30,10 +30,12 @@ internal object MTProtoWatchdog : Runnable {
     private val subject: Subject<SelectionKey> = PublishSubject.create()
     private val registerQueue = ArrayList<MTProtoSelectableConnection>()
 
-    private val executor = Executors.newSingleThreadExecutor(
-            NamedThreadFactory(javaClass.simpleName, true))
-    private val pool = Executors.newCachedThreadPool(
-            NamedThreadFactory("${javaClass.simpleName}-exec"))
+    private val executor = Executors.newSingleThreadExecutor(NamedThreadFactory(javaClass.simpleName,
+                                                                                singleThread = true,
+                                                                                daemon = true))
+    private val pool = Executors.newCachedThreadPool(NamedThreadFactory("${javaClass.simpleName}-exec",
+                                                                        singleThread = false,
+                                                                        daemon = true))
 
     @Volatile
     private var running = false
@@ -112,13 +114,6 @@ internal object MTProtoWatchdog : Runnable {
                 cancelByTag(connection)
             }
             .observeOn(Schedulers.computation())!! // Ensure pool private usage
-
-    fun shutdown() {
-        logger.warn("==================== SHUTTING DOWN WATCHDOG ====================")
-        subject.onComplete()
-        executor.shutdownNow()
-        pool.shutdownNow()
-    }
 
     /**
      * Start listening on the [executor] thread or wakeup [selector]

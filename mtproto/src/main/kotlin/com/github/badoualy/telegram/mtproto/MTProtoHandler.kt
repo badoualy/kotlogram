@@ -12,7 +12,6 @@ import com.github.badoualy.telegram.mtproto.net.MTProtoConnection
 import com.github.badoualy.telegram.mtproto.net.MTProtoConnectionFactory
 import com.github.badoualy.telegram.mtproto.net.MTProtoTcpConnectionFactory
 import com.github.badoualy.telegram.mtproto.secure.MTProtoMessageEncryption
-import com.github.badoualy.telegram.mtproto.time.MTProtoTimer
 import com.github.badoualy.telegram.mtproto.time.TimeOverlord
 import com.github.badoualy.telegram.mtproto.tl.*
 import com.github.badoualy.telegram.tl.StreamUtils
@@ -90,8 +89,8 @@ class MTProtoHandler {
         logger.info(tag, "startWatchdog()")
         connection.getMessageObservable()
                 .observeOn(Schedulers.computation())
-                .flatMap(flatMapMessage())
-                .map(deserializePayload())
+                .flatMap { flatMapMessage(it) }
+                .map { deserializePayload(it) }
                 .subscribe(messageSubject)
 
         messageSubject
@@ -168,7 +167,7 @@ class MTProtoHandler {
                         .take(methods.size.toLong())
                         .doOnSubscribe { executeMethods_(methods) }
                         .subscribeOn(Schedulers.io())
-                        .flatMapMaybe(mapResult())
+                        .flatMapMaybe { mapResult(it) }
                         .map {
                             @Suppress("UNCHECKED_CAST")
                             it as T
@@ -263,11 +262,11 @@ class MTProtoHandler {
      * @return an observable emitting zero to multiple [MTProtoMessage], each being guaranteed to not be a [MTMessagesContainer].
      */
     @Throws(AuthKeyInvalidException::class)
-    private fun flatMapMessage(): (ByteArray) -> Observable<MTProtoMessage> = { bytes: ByteArray ->
+    private fun flatMapMessage(bytes: ByteArray): Observable<MTProtoMessage> {
         if (bytes.size == 4)
             throw AuthKeyInvalidException(StreamUtils.readInt(bytes))
 
-        try {
+        return try {
             val message = MTProtoMessageEncryption.extractMessage(authKey, session.id, bytes)
             logger.debug(tag, "Received msg ${message.messageId} with seqNo ${message.seqNo}")
 
@@ -299,7 +298,7 @@ class MTProtoHandler {
      * @return a function that handles a received [MTProtoMessage] to a [Pair] of the same
      * [MTProtoMessage] and its deserialized [TLObject] content
      */
-    private fun deserializePayload(): (MTProtoMessage) -> Pair<MTProtoMessage, TLObject> = { message ->
+    private fun deserializePayload(message: MTProtoMessage): Pair<MTProtoMessage, TLObject> {
         val classId = StreamUtils.readInt(message.payload)
         logger.trace(session.tag, "Payload constructor id: $classId")
 
@@ -312,7 +311,7 @@ class MTProtoHandler {
                     apiContext
                 }
 
-        Pair(message, readTLObject(message.payload, context))
+        return Pair(message, readTLObject(message.payload, context))
     }
 
     /**
@@ -327,8 +326,7 @@ class MTProtoHandler {
 
         when (payload) {
             is MTMsgsAck -> {
-                // TODO: MessageACK will not get an ack, it'll stack here...
-                // TODO check missing ack ?
+                // TODO: MessageACK will not get an ack, it'll stack in sentMessageList...
                 sentMessageList.removeAll { payload.messages.contains(it.messageId) }
                 logger.debug(tag, "Received ack for ${payload.messages.joinToString()}")
             }
@@ -380,7 +378,7 @@ class MTProtoHandler {
      * @throws RpcErrorException if the result is a [MTRpcError]
      */
     @Throws(RpcErrorException::class)
-    private fun mapResult(): (MTRpcResult) -> Maybe<out TLObject> = { result ->
+    internal fun mapResult(result: MTRpcResult): Maybe<out TLObject> {
         logger.debug(tag, "Got result for msgId ${result.messageId}")
 
         val request =
@@ -392,7 +390,7 @@ class MTProtoHandler {
                 }
 
         val clazzId = StreamUtils.readInt(result.content)
-        logger.trace(tag, "Response constructor id: $clazzId")
+        logger.trace(tag, "Response constructor id: #${Integer.toHexString(clazzId)}")
 
         val resultObject = when {
             mtProtoContext.contains(clazzId) -> {
@@ -414,7 +412,8 @@ class MTProtoHandler {
             }
         }
 
-        resultObject.toMaybe()
+        logger.debug("result: $resultObject")
+        return resultObject.toMaybe()
     }
 
     /**
@@ -505,17 +504,6 @@ class MTProtoHandler {
 
         private val connectionFactory: MTProtoConnectionFactory = MTProtoTcpConnectionFactory
         private val tlSerializerFactory: TLSerializerFactory = TLStreamSerializerFactory
-
-        /**
-         * Shutdown all the threads and resources.
-         * Calling this method will prevent further handlers from being created/used properly.
-         */
-        @JvmStatic
-        fun shutdown() {
-            logger.warn("shutdown()")
-            MTProtoWatchdog.shutdown()
-            MTProtoTimer.shutdown()
-        }
 
         /** Convenience method to create a [com.github.badoualy.telegram.tl.serialization.TLDeserializer] and read a [TLObject] from it */
         private inline fun <reified T : TLObject> readTLObject(payload: ByteArray, context: TLContext): T =

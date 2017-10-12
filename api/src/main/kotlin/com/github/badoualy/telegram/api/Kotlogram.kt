@@ -46,14 +46,6 @@ object Kotlogram {
             TelegramClientImpl(application, apiStorage, preferredDataCenter, tag)
 
     @JvmStatic
-    @Deprecated("REMOVE AND USE DAEMON THREAD")
-    fun shutdown() {
-        logger.warn("==================== SHUTTING DOWN ====================")
-        MTProtoHandler.shutdown()
-        logger.warn("==================== SHUT DOWN DONE ====================")
-    }
-
-    @JvmStatic
     fun getDcById(id: Int) = prodDcByIdMap[id] ?: throw IllegalArgumentException("Unkwnown DataCenter id: $id")
 
     @JvmStatic
