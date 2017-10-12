@@ -36,6 +36,12 @@ abstract class TelegramApiWrapper : TelegramApi, RpcQueryExecutor {
             phoneCode: String
     ): Single<TLAbsUser> = executeRpcQuery(TLRequestAccountChangePhone(phoneNumber, phoneCodeHash, phoneCode))
 
+    override fun accountCheckUsername(username: String): Single<TLBool> = executeRpcQuery(TLRequestAccountCheckUsername(username))
+
+    override fun accountConfirmPhone(phoneCodeHash: String, phoneCode: String): Single<TLBool> = executeRpcQuery(TLRequestAccountConfirmPhone(phoneCodeHash, phoneCode))
+
+    override fun accountDeleteAccount(reason: String): Single<TLBool> = executeRpcQuery(TLRequestAccountDeleteAccount(reason))
+
     override fun accountGetAccountTTL(): Single<TLAccountDaysTTL> = executeRpcQuery(TLRequestAccountGetAccountTTL())
 
     override fun accountGetAuthorizations(): Single<TLAuthorizations> = executeRpcQuery(TLRequestAccountGetAuthorizations())
@@ -52,6 +58,14 @@ abstract class TelegramApiWrapper : TelegramApi, RpcQueryExecutor {
 
     override fun accountGetWallPapers(): Single<TLObjectVector<TLAbsWallPaper>> = executeRpcQuery(TLRequestAccountGetWallPapers())
 
+    override fun accountRegisterDevice(tokenType: Int, token: String): Single<TLBool> = executeRpcQuery(TLRequestAccountRegisterDevice(tokenType, token))
+
+    override fun accountReportPeer(peer: TLAbsInputPeer, reason: TLAbsReportReason): Single<TLBool> = executeRpcQuery(TLRequestAccountReportPeer(peer, reason))
+
+    override fun accountResetAuthorization(hash: Long): Single<TLBool> = executeRpcQuery(TLRequestAccountResetAuthorization(hash))
+
+    override fun accountResetNotifySettings(): Single<TLBool> = executeRpcQuery(TLRequestAccountResetNotifySettings())
+
     override fun accountSendChangePhoneCode(
             allowFlashcall: Boolean,
             phoneNumber: String,
@@ -64,7 +78,17 @@ abstract class TelegramApiWrapper : TelegramApi, RpcQueryExecutor {
             currentNumber: Boolean?
     ): Single<TLSentCode> = executeRpcQuery(TLRequestAccountSendConfirmPhoneCode(allowFlashcall, hash, currentNumber))
 
+    override fun accountSetAccountTTL(ttl: TLAccountDaysTTL): Single<TLBool> = executeRpcQuery(TLRequestAccountSetAccountTTL(ttl))
+
     override fun accountSetPrivacy(key: TLAbsInputPrivacyKey, rules: TLObjectVector<TLAbsInputPrivacyRule>): Single<TLPrivacyRules> = executeRpcQuery(TLRequestAccountSetPrivacy(key, rules))
+
+    override fun accountUnregisterDevice(tokenType: Int, token: String): Single<TLBool> = executeRpcQuery(TLRequestAccountUnregisterDevice(tokenType, token))
+
+    override fun accountUpdateDeviceLocked(period: Int): Single<TLBool> = executeRpcQuery(TLRequestAccountUpdateDeviceLocked(period))
+
+    override fun accountUpdateNotifySettings(peer: TLAbsInputNotifyPeer, settings: TLInputPeerNotifySettings): Single<TLBool> = executeRpcQuery(TLRequestAccountUpdateNotifySettings(peer, settings))
+
+    override fun accountUpdatePasswordSettings(currentPasswordHash: TLBytes, newSettings: TLPasswordInputSettings): Single<TLBool> = executeRpcQuery(TLRequestAccountUpdatePasswordSettings(currentPasswordHash, newSettings))
 
     override fun accountUpdateProfile(
             firstName: String?,
@@ -72,11 +96,24 @@ abstract class TelegramApiWrapper : TelegramApi, RpcQueryExecutor {
             about: String?
     ): Single<TLAbsUser> = executeRpcQuery(TLRequestAccountUpdateProfile(firstName, lastName, about))
 
+    override fun accountUpdateStatus(offline: Boolean): Single<TLBool> = executeRpcQuery(TLRequestAccountUpdateStatus(offline))
+
     override fun accountUpdateUsername(username: String): Single<TLAbsUser> = executeRpcQuery(TLRequestAccountUpdateUsername(username))
+
+    override fun authBindTempAuthKey(
+            permAuthKeyId: Long,
+            nonce: Long,
+            expiresAt: Int,
+            encryptedMessage: TLBytes
+    ): Single<TLBool> = executeRpcQuery(TLRequestAuthBindTempAuthKey(permAuthKeyId, nonce, expiresAt, encryptedMessage))
+
+    override fun authCancelCode(phoneNumber: String, phoneCodeHash: String): Single<TLBool> = executeRpcQuery(TLRequestAuthCancelCode(phoneNumber, phoneCodeHash))
 
     override fun authCheckPassword(passwordHash: TLBytes): Single<TLAuthorization> = executeRpcQuery(TLRequestAuthCheckPassword(passwordHash))
 
     override fun authCheckPhone(phoneNumber: String): Single<TLCheckedPhone> = executeRpcQuery(TLRequestAuthCheckPhone(phoneNumber))
+
+    override fun authDropTempAuthKeys(exceptAuthKeys: TLLongVector): Single<TLBool> = executeRpcQuery(TLRequestAuthDropTempAuthKeys(exceptAuthKeys))
 
     override fun authExportAuthorization(dcId: Int): Single<TLExportedAuthorization> = executeRpcQuery(TLRequestAuthExportAuthorization(dcId))
 
@@ -89,11 +126,15 @@ abstract class TelegramApiWrapper : TelegramApi, RpcQueryExecutor {
             botAuthToken: String
     ): Single<TLAuthorization> = executeRpcQuery(TLRequestAuthImportBotAuthorization(flags, apiId, apiHash, botAuthToken))
 
+    override fun authLogOut(): Single<TLBool> = executeRpcQuery(TLRequestAuthLogOut())
+
     override fun authRecoverPassword(code: String): Single<TLAuthorization> = executeRpcQuery(TLRequestAuthRecoverPassword(code))
 
     override fun authRequestPasswordRecovery(): Single<TLPasswordRecovery> = executeRpcQuery(TLRequestAuthRequestPasswordRecovery())
 
     override fun authResendCode(phoneNumber: String, phoneCodeHash: String): Single<TLSentCode> = executeRpcQuery(TLRequestAuthResendCode(phoneNumber, phoneCodeHash))
+
+    override fun authResetAuthorizations(): Single<TLBool> = executeRpcQuery(TLRequestAuthResetAuthorizations())
 
     override fun authSendCode(
             allowFlashcall: Boolean,
@@ -102,6 +143,8 @@ abstract class TelegramApiWrapper : TelegramApi, RpcQueryExecutor {
             apiId: Int,
             apiHash: String
     ): Single<TLSentCode> = executeRpcQuery(TLRequestAuthSendCode(allowFlashcall, phoneNumber, currentNumber, apiId, apiHash))
+
+    override fun authSendInvites(phoneNumbers: TLStringVector, message: String): Single<TLBool> = executeRpcQuery(TLRequestAuthSendInvites(phoneNumbers, message))
 
     override fun authSignIn(
             phoneNumber: String,
@@ -117,7 +160,11 @@ abstract class TelegramApiWrapper : TelegramApi, RpcQueryExecutor {
             lastName: String
     ): Single<TLAuthorization> = executeRpcQuery(TLRequestAuthSignUp(phoneNumber, phoneCodeHash, phoneCode, firstName, lastName))
 
+    override fun botsAnswerWebhookJSONQuery(queryId: Long, data: TLDataJSON): Single<TLBool> = executeRpcQuery(TLRequestBotsAnswerWebhookJSONQuery(queryId, data))
+
     override fun botsSendCustomRequest(customMethod: String, params: TLDataJSON): Single<TLDataJSON> = executeRpcQuery(TLRequestBotsSendCustomRequest(customMethod, params))
+
+    override fun channelsCheckUsername(channel: TLAbsInputChannel, username: String): Single<TLBool> = executeRpcQuery(TLRequestChannelsCheckUsername(channel, username))
 
     override fun channelsCreateChannel(
             broadcast: Boolean,
@@ -131,6 +178,8 @@ abstract class TelegramApiWrapper : TelegramApi, RpcQueryExecutor {
     override fun channelsDeleteMessages(channel: TLAbsInputChannel, id: TLIntVector): Single<TLAffectedMessages> = executeRpcQuery(TLRequestChannelsDeleteMessages(channel, id))
 
     override fun channelsDeleteUserHistory(channel: TLAbsInputChannel, userId: TLAbsInputUser): Single<TLAffectedHistory> = executeRpcQuery(TLRequestChannelsDeleteUserHistory(channel, userId))
+
+    override fun channelsEditAbout(channel: TLAbsInputChannel, about: String): Single<TLBool> = executeRpcQuery(TLRequestChannelsEditAbout(channel, about))
 
     override fun channelsEditAdmin(
             channel: TLAbsInputChannel,
@@ -185,6 +234,18 @@ abstract class TelegramApiWrapper : TelegramApi, RpcQueryExecutor {
 
     override fun channelsLeaveChannel(channel: TLAbsInputChannel): Single<TLAbsUpdates> = executeRpcQuery(TLRequestChannelsLeaveChannel(channel))
 
+    override fun channelsReadHistory(channel: TLAbsInputChannel, maxId: Int): Single<TLBool> = executeRpcQuery(TLRequestChannelsReadHistory(channel, maxId))
+
+    override fun channelsReadMessageContents(channel: TLAbsInputChannel, id: TLIntVector): Single<TLBool> = executeRpcQuery(TLRequestChannelsReadMessageContents(channel, id))
+
+    override fun channelsReportSpam(
+            channel: TLAbsInputChannel,
+            userId: TLAbsInputUser,
+            id: TLIntVector
+    ): Single<TLBool> = executeRpcQuery(TLRequestChannelsReportSpam(channel, userId, id))
+
+    override fun channelsSetStickers(channel: TLAbsInputChannel, stickerset: TLAbsInputStickerSet): Single<TLBool> = executeRpcQuery(TLRequestChannelsSetStickers(channel, stickerset))
+
     override fun channelsToggleInvites(channel: TLAbsInputChannel, enabled: Boolean): Single<TLAbsUpdates> = executeRpcQuery(TLRequestChannelsToggleInvites(channel, enabled))
 
     override fun channelsToggleSignatures(channel: TLAbsInputChannel, enabled: Boolean): Single<TLAbsUpdates> = executeRpcQuery(TLRequestChannelsToggleSignatures(channel, enabled))
@@ -195,7 +256,13 @@ abstract class TelegramApiWrapper : TelegramApi, RpcQueryExecutor {
             id: Int
     ): Single<TLAbsUpdates> = executeRpcQuery(TLRequestChannelsUpdatePinnedMessage(silent, channel, id))
 
+    override fun channelsUpdateUsername(channel: TLAbsInputChannel, username: String): Single<TLBool> = executeRpcQuery(TLRequestChannelsUpdateUsername(channel, username))
+
+    override fun contactsBlock(id: TLAbsInputUser): Single<TLBool> = executeRpcQuery(TLRequestContactsBlock(id))
+
     override fun contactsDeleteContact(id: TLAbsInputUser): Single<TLLink> = executeRpcQuery(TLRequestContactsDeleteContact(id))
+
+    override fun contactsDeleteContacts(id: TLObjectVector<TLAbsInputUser>): Single<TLBool> = executeRpcQuery(TLRequestContactsDeleteContacts(id))
 
     override fun contactsExportCard(): Single<TLIntVector> = executeRpcQuery(TLRequestContactsExportCard())
 
@@ -221,9 +288,15 @@ abstract class TelegramApiWrapper : TelegramApi, RpcQueryExecutor {
 
     override fun contactsImportContacts(contacts: TLObjectVector<TLInputPhoneContact>): Single<TLImportedContacts> = executeRpcQuery(TLRequestContactsImportContacts(contacts))
 
+    override fun contactsResetSaved(): Single<TLBool> = executeRpcQuery(TLRequestContactsResetSaved())
+
+    override fun contactsResetTopPeerRating(category: TLAbsTopPeerCategory, peer: TLAbsInputPeer): Single<TLBool> = executeRpcQuery(TLRequestContactsResetTopPeerRating(category, peer))
+
     override fun contactsResolveUsername(username: String): Single<TLResolvedPeer> = executeRpcQuery(TLRequestContactsResolveUsername(username))
 
     override fun contactsSearch(q: String, limit: Int): Single<TLFound> = executeRpcQuery(TLRequestContactsSearch(q, limit))
+
+    override fun contactsUnblock(id: TLAbsInputUser): Single<TLBool> = executeRpcQuery(TLRequestContactsUnblock(id))
 
     override fun helpGetAppChangelog(prevAppVersion: String): Single<TLAbsUpdates> = executeRpcQuery(TLRequestHelpGetAppChangelog(prevAppVersion))
 
@@ -240,6 +313,10 @@ abstract class TelegramApiWrapper : TelegramApi, RpcQueryExecutor {
     override fun helpGetSupport(): Single<TLSupport> = executeRpcQuery(TLRequestHelpGetSupport())
 
     override fun helpGetTermsOfService(): Single<TLTermsOfService> = executeRpcQuery(TLRequestHelpGetTermsOfService())
+
+    override fun helpSaveAppLog(events: TLObjectVector<TLInputAppEvent>): Single<TLBool> = executeRpcQuery(TLRequestHelpSaveAppLog(events))
+
+    override fun helpSetBotUpdatesStatus(pendingUpdatesCount: Int, message: String): Single<TLBool> = executeRpcQuery(TLRequestHelpSetBotUpdatesStatus(pendingUpdatesCount, message))
 
     override fun <T : TLObject> initConnection(
             apiId: Int,
@@ -282,6 +359,8 @@ abstract class TelegramApiWrapper : TelegramApi, RpcQueryExecutor {
 
     override fun messagesCheckChatInvite(hash: String): Single<TLAbsChatInvite> = executeRpcQuery(TLRequestMessagesCheckChatInvite(hash))
 
+    override fun messagesClearRecentStickers(attached: Boolean): Single<TLBool> = executeRpcQuery(TLRequestMessagesClearRecentStickers(attached))
+
     override fun messagesCreateChat(users: TLObjectVector<TLAbsInputUser>, title: String): Single<TLAbsUpdates> = executeRpcQuery(TLRequestMessagesCreateChat(users, title))
 
     override fun messagesDeleteChatUser(chatId: Int, userId: TLAbsInputUser): Single<TLAbsUpdates> = executeRpcQuery(TLRequestMessagesDeleteChatUser(chatId, userId))
@@ -294,9 +373,25 @@ abstract class TelegramApiWrapper : TelegramApi, RpcQueryExecutor {
 
     override fun messagesDeleteMessages(revoke: Boolean, id: TLIntVector): Single<TLAffectedMessages> = executeRpcQuery(TLRequestMessagesDeleteMessages(revoke, id))
 
+    override fun messagesDiscardEncryption(chatId: Int): Single<TLBool> = executeRpcQuery(TLRequestMessagesDiscardEncryption(chatId))
+
+    override fun messagesEditChatAdmin(
+            chatId: Int,
+            userId: TLAbsInputUser,
+            isAdmin: Boolean
+    ): Single<TLBool> = executeRpcQuery(TLRequestMessagesEditChatAdmin(chatId, userId, isAdmin))
+
     override fun messagesEditChatPhoto(chatId: Int, photo: TLAbsInputChatPhoto): Single<TLAbsUpdates> = executeRpcQuery(TLRequestMessagesEditChatPhoto(chatId, photo))
 
     override fun messagesEditChatTitle(chatId: Int, title: String): Single<TLAbsUpdates> = executeRpcQuery(TLRequestMessagesEditChatTitle(chatId, title))
+
+    override fun messagesEditInlineBotMessage(
+            noWebpage: Boolean,
+            id: TLInputBotInlineMessageID,
+            message: String?,
+            replyMarkup: TLAbsReplyMarkup?,
+            entities: TLObjectVector<TLAbsMessageEntity>?
+    ): Single<TLBool> = executeRpcQuery(TLRequestMessagesEditInlineBotMessage(noWebpage, id, message, replyMarkup, entities))
 
     override fun messagesEditMessage(
             noWebpage: Boolean,
@@ -308,6 +403,8 @@ abstract class TelegramApiWrapper : TelegramApi, RpcQueryExecutor {
     ): Single<TLAbsUpdates> = executeRpcQuery(TLRequestMessagesEditMessage(noWebpage, peer, id, message, replyMarkup, entities))
 
     override fun messagesExportChatInvite(chatId: Int): Single<TLAbsExportedChatInvite> = executeRpcQuery(TLRequestMessagesExportChatInvite(chatId))
+
+    override fun messagesFaveSticker(id: TLAbsInputDocument, unfave: Boolean): Single<TLBool> = executeRpcQuery(TLRequestMessagesFaveSticker(id, unfave))
 
     override fun messagesForwardMessage(
             peer: TLAbsInputPeer,
@@ -439,11 +536,17 @@ abstract class TelegramApiWrapper : TelegramApi, RpcQueryExecutor {
 
     override fun messagesGetWebPagePreview(message: String): Single<TLAbsMessageMedia> = executeRpcQuery(TLRequestMessagesGetWebPagePreview(message))
 
+    override fun messagesHideReportSpam(peer: TLAbsInputPeer): Single<TLBool> = executeRpcQuery(TLRequestMessagesHideReportSpam(peer))
+
     override fun messagesImportChatInvite(hash: String): Single<TLAbsUpdates> = executeRpcQuery(TLRequestMessagesImportChatInvite(hash))
 
     override fun messagesInstallStickerSet(stickerset: TLAbsInputStickerSet, archived: Boolean): Single<TLAbsStickerSetInstallResult> = executeRpcQuery(TLRequestMessagesInstallStickerSet(stickerset, archived))
 
     override fun messagesMigrateChat(chatId: Int): Single<TLAbsUpdates> = executeRpcQuery(TLRequestMessagesMigrateChat(chatId))
+
+    override fun messagesReadEncryptedHistory(peer: TLInputEncryptedChat, maxDate: Int): Single<TLBool> = executeRpcQuery(TLRequestMessagesReadEncryptedHistory(peer, maxDate))
+
+    override fun messagesReadFeaturedStickers(id: TLLongVector): Single<TLBool> = executeRpcQuery(TLRequestMessagesReadFeaturedStickers(id))
 
     override fun messagesReadHistory(peer: TLAbsInputPeer, maxId: Int): Single<TLAffectedMessages> = executeRpcQuery(TLRequestMessagesReadHistory(peer, maxId))
 
@@ -453,11 +556,35 @@ abstract class TelegramApiWrapper : TelegramApi, RpcQueryExecutor {
 
     override fun messagesReceivedQueue(maxQts: Int): Single<TLLongVector> = executeRpcQuery(TLRequestMessagesReceivedQueue(maxQts))
 
+    override fun messagesReorderPinnedDialogs(force: Boolean, order: TLObjectVector<TLAbsInputPeer>): Single<TLBool> = executeRpcQuery(TLRequestMessagesReorderPinnedDialogs(force, order))
+
+    override fun messagesReorderStickerSets(masks: Boolean, order: TLLongVector): Single<TLBool> = executeRpcQuery(TLRequestMessagesReorderStickerSets(masks, order))
+
+    override fun messagesReportEncryptedSpam(peer: TLInputEncryptedChat): Single<TLBool> = executeRpcQuery(TLRequestMessagesReportEncryptedSpam(peer))
+
+    override fun messagesReportSpam(peer: TLAbsInputPeer): Single<TLBool> = executeRpcQuery(TLRequestMessagesReportSpam(peer))
+
     override fun messagesRequestEncryption(
             userId: TLAbsInputUser,
             randomId: Int,
             gA: TLBytes
     ): Single<TLAbsEncryptedChat> = executeRpcQuery(TLRequestMessagesRequestEncryption(userId, randomId, gA))
+
+    override fun messagesSaveDraft(
+            noWebpage: Boolean,
+            replyToMsgId: Int?,
+            peer: TLAbsInputPeer,
+            message: String,
+            entities: TLObjectVector<TLAbsMessageEntity>?
+    ): Single<TLBool> = executeRpcQuery(TLRequestMessagesSaveDraft(noWebpage, replyToMsgId, peer, message, entities))
+
+    override fun messagesSaveGif(id: TLAbsInputDocument, unsave: Boolean): Single<TLBool> = executeRpcQuery(TLRequestMessagesSaveGif(id, unsave))
+
+    override fun messagesSaveRecentSticker(
+            attached: Boolean,
+            id: TLAbsInputDocument,
+            unsave: Boolean
+    ): Single<TLBool> = executeRpcQuery(TLRequestMessagesSaveRecentSticker(attached, id, unsave))
 
     override fun messagesSearch(
             peer: TLAbsInputPeer,
@@ -543,6 +670,28 @@ abstract class TelegramApiWrapper : TelegramApi, RpcQueryExecutor {
             randomId: Long
     ): Single<TLAbsUpdates> = executeRpcQuery(TLRequestMessagesSendScreenshotNotification(peer, replyToMsgId, randomId))
 
+    override fun messagesSetBotCallbackAnswer(
+            alert: Boolean,
+            queryId: Long,
+            message: String?,
+            url: String?,
+            cacheTime: Int
+    ): Single<TLBool> = executeRpcQuery(TLRequestMessagesSetBotCallbackAnswer(alert, queryId, message, url, cacheTime))
+
+    override fun messagesSetBotPrecheckoutResults(
+            success: Boolean,
+            queryId: Long,
+            error: String?
+    ): Single<TLBool> = executeRpcQuery(TLRequestMessagesSetBotPrecheckoutResults(success, queryId, error))
+
+    override fun messagesSetBotShippingResults(
+            queryId: Long,
+            error: String?,
+            shippingOptions: TLObjectVector<TLShippingOption>?
+    ): Single<TLBool> = executeRpcQuery(TLRequestMessagesSetBotShippingResults(queryId, error, shippingOptions))
+
+    override fun messagesSetEncryptedTyping(peer: TLInputEncryptedChat, typing: Boolean): Single<TLBool> = executeRpcQuery(TLRequestMessagesSetEncryptedTyping(peer, typing))
+
     override fun messagesSetGameScore(
             editMessage: Boolean,
             force: Boolean,
@@ -551,6 +700,26 @@ abstract class TelegramApiWrapper : TelegramApi, RpcQueryExecutor {
             userId: TLAbsInputUser,
             score: Int
     ): Single<TLAbsUpdates> = executeRpcQuery(TLRequestMessagesSetGameScore(editMessage, force, peer, id, userId, score))
+
+    override fun messagesSetInlineBotResults(
+            gallery: Boolean,
+            _private: Boolean,
+            queryId: Long,
+            results: TLObjectVector<TLAbsInputBotInlineResult>,
+            cacheTime: Int,
+            nextOffset: String?,
+            switchPm: TLInlineBotSwitchPM?
+    ): Single<TLBool> = executeRpcQuery(TLRequestMessagesSetInlineBotResults(gallery, _private, queryId, results, cacheTime, nextOffset, switchPm))
+
+    override fun messagesSetInlineGameScore(
+            editMessage: Boolean,
+            force: Boolean,
+            id: TLInputBotInlineMessageID,
+            userId: TLAbsInputUser,
+            score: Int
+    ): Single<TLBool> = executeRpcQuery(TLRequestMessagesSetInlineGameScore(editMessage, force, id, userId, score))
+
+    override fun messagesSetTyping(peer: TLAbsInputPeer, action: TLAbsSendMessageAction): Single<TLBool> = executeRpcQuery(TLRequestMessagesSetTyping(peer, action))
 
     override fun messagesStartBot(
             bot: TLAbsInputUser,
@@ -561,7 +730,13 @@ abstract class TelegramApiWrapper : TelegramApi, RpcQueryExecutor {
 
     override fun messagesToggleChatAdmins(chatId: Int, enabled: Boolean): Single<TLAbsUpdates> = executeRpcQuery(TLRequestMessagesToggleChatAdmins(chatId, enabled))
 
+    override fun messagesToggleDialogPin(pinned: Boolean, peer: TLAbsInputPeer): Single<TLBool> = executeRpcQuery(TLRequestMessagesToggleDialogPin(pinned, peer))
+
+    override fun messagesUninstallStickerSet(stickerset: TLAbsInputStickerSet): Single<TLBool> = executeRpcQuery(TLRequestMessagesUninstallStickerSet(stickerset))
+
     override fun messagesUploadMedia(peer: TLAbsInputPeer, media: TLAbsInputMedia): Single<TLAbsMessageMedia> = executeRpcQuery(TLRequestMessagesUploadMedia(peer, media))
+
+    override fun paymentsClearSavedInfo(credentials: Boolean, info: Boolean): Single<TLBool> = executeRpcQuery(TLRequestPaymentsClearSavedInfo(credentials, info))
 
     override fun paymentsGetPaymentForm(msgId: Int): Single<TLPaymentForm> = executeRpcQuery(TLRequestPaymentsGetPaymentForm(msgId))
 
@@ -604,12 +779,16 @@ abstract class TelegramApiWrapper : TelegramApi, RpcQueryExecutor {
 
     override fun phoneGetCallConfig(): Single<TLDataJSON> = executeRpcQuery(TLRequestPhoneGetCallConfig())
 
+    override fun phoneReceivedCall(peer: TLInputPhoneCall): Single<TLBool> = executeRpcQuery(TLRequestPhoneReceivedCall(peer))
+
     override fun phoneRequestCall(
             userId: TLAbsInputUser,
             randomId: Int,
             gAHash: TLBytes,
             protocol: TLPhoneCallProtocol
     ): Single<TLPhoneCall> = executeRpcQuery(TLRequestPhoneRequestCall(userId, randomId, gAHash, protocol))
+
+    override fun phoneSaveCallDebug(peer: TLInputPhoneCall, debug: TLDataJSON): Single<TLBool> = executeRpcQuery(TLRequestPhoneSaveCallDebug(peer, debug))
 
     override fun phoneSetCallRating(
             peer: TLInputPhoneCall,
@@ -682,6 +861,19 @@ abstract class TelegramApiWrapper : TelegramApi, RpcQueryExecutor {
     ): Single<TLWebFile> = executeRpcQuery(TLRequestUploadGetWebFile(location, offset, limit))
 
     override fun uploadReuploadCdnFile(fileToken: TLBytes, requestToken: TLBytes): Single<TLObjectVector<TLCdnFileHash>> = executeRpcQuery(TLRequestUploadReuploadCdnFile(fileToken, requestToken))
+
+    override fun uploadSaveBigFilePart(
+            fileId: Long,
+            filePart: Int,
+            fileTotalParts: Int,
+            bytes: TLBytes
+    ): Single<TLBool> = executeRpcQuery(TLRequestUploadSaveBigFilePart(fileId, filePart, fileTotalParts, bytes))
+
+    override fun uploadSaveFilePart(
+            fileId: Long,
+            filePart: Int,
+            bytes: TLBytes
+    ): Single<TLBool> = executeRpcQuery(TLRequestUploadSaveFilePart(fileId, filePart, bytes))
 
     override fun usersGetFullUser(id: TLAbsInputUser): Single<TLUserFull> = executeRpcQuery(TLRequestUsersGetFullUser(id))
 

@@ -175,7 +175,7 @@ internal class MTProtoTcpConnection
     }
 
     companion object {
-        private val logger = Logger(MTProtoTcpConnection::class)
+        private val logger = Logger.Factory.create(MTProtoTcpConnection::class)
 
         /** Initial connection attempt count before considering failure */
         private const val ATTEMPT_COUNT = 3

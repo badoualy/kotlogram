@@ -3,6 +3,7 @@ package com.github.badoualy.telegram.mtproto.auth
 import com.github.badoualy.telegram.mtproto.net.MTProtoConnection
 import com.github.badoualy.telegram.mtproto.secure.CryptoUtils
 import java.nio.ByteBuffer
+import java.nio.ByteOrder
 
 open class AuthKey(val key: ByteArray) {
 
@@ -12,6 +13,11 @@ open class AuthKey(val key: ByteArray) {
      */
     val keyId = CryptoUtils.SHA1(key).takeLast(8).toByteArray()
 
+    val keyIdAsLong: Long
+        get() = ByteBuffer.wrap(keyId)
+                .apply { order(ByteOrder.LITTLE_ENDIAN) }
+                .long
+
     constructor(key: ByteBuffer) : this(key.array())
 
     init {
@@ -20,7 +26,7 @@ open class AuthKey(val key: ByteArray) {
     }
 }
 
-class TempAuthKey(key: ByteArray, val expiresAt: Long) : AuthKey(key)
+class TempAuthKey(key: ByteArray, val expiresAt: Int) : AuthKey(key)
 
 /**
  * Result of the "Creating an Authorization Key" flow execution

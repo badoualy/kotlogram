@@ -2,15 +2,12 @@ package com.github.badoualy.telegram.api
 
 import com.github.badoualy.telegram.api.utils.InputFileLocation
 import com.github.badoualy.telegram.mtproto.MTProtoHandler
-import com.github.badoualy.telegram.mtproto.auth.AuthKey
-import com.github.badoualy.telegram.mtproto.auth.AuthKeyCreation
-import com.github.badoualy.telegram.mtproto.auth.AuthResult
+import com.github.badoualy.telegram.mtproto.auth.*
 import com.github.badoualy.telegram.mtproto.exception.SecurityException
 import com.github.badoualy.telegram.mtproto.log.LogTag
 import com.github.badoualy.telegram.mtproto.log.Logger
 import com.github.badoualy.telegram.mtproto.model.DataCenter
 import com.github.badoualy.telegram.mtproto.model.MTSession
-import com.github.badoualy.telegram.mtproto.time.MTProtoTimer
 import com.github.badoualy.telegram.tl.api.TLAbsUpdates
 import com.github.badoualy.telegram.tl.api.TLNearestDc
 import com.github.badoualy.telegram.tl.api.request.*
@@ -92,7 +89,6 @@ class TelegramClientImpl internal constructor(override val app: TelegramApp,
             (if (generateAuthKey) {
                 dataCenter.let { dataCenter ->
                     createAuthKey(dataCenter)
-                            .subscribeOn(Schedulers.io())
                             .observeOn(Schedulers.io())
                             .doOnSuccess { authResult ->
                                 // Save to storage
@@ -104,7 +100,9 @@ class TelegramClientImpl internal constructor(override val app: TelegramApp,
                 }
             } else {
                 createHandler(dataCenter, authKey!!, apiStorage.loadSession())
-            }).doOnSuccess { it.start() }
+            }).observeOn(Schedulers.io())
+                    .subscribeOn(Schedulers.io())
+                    .doOnSuccess { it.start() }
         }
 
         try {
@@ -160,9 +158,8 @@ class TelegramClientImpl internal constructor(override val app: TelegramApp,
                 executeMethods(methods)
             } else {
                 getExportedHandler(dcId)
-                        .doOnSuccess { logger.error("SUCCESS EXPORTED") }
                         .flatMapObservable { handler ->
-                            logger.error("FLATMAPPING WITH NEW HANDLER")
+                            logger.error("executeMethods on new exported dc--------")
                             executeMethods(methods, handler)
                                     .doFinally(releaseExportedHandler(handler, dcId))
                         }
@@ -249,6 +246,7 @@ class TelegramClientImpl internal constructor(override val app: TelegramApp,
 
     override fun close() {
         try {
+            exportedHandlerMap.values.forEach { it.close() }
             mtProtoHandler?.close()
         } catch (e: Exception) {
         }
@@ -334,7 +332,10 @@ class TelegramClientImpl internal constructor(override val app: TelegramApp,
                     .zipWith(createAuthKey(Kotlogram.getDcById(dcId))
                                      .flatMap { createHandler(it) }
                                      .doOnSuccess { it.start() }
-                                     .doOnSuccess { logger.error("GATE 2 -------------------------------------") })
+                                     .doOnSuccess {
+                                         logger.error(
+                                                 "GATE 2 -------------------------------------")
+                                     })
                     .doOnSuccess { logger.error("GATE 3 -------------------------------------") }
                     .doOnSuccess { (request, handler) -> initConnection(request, handler) }
                     .doOnSuccess { (_, handler) -> authKeyMap.put(dcId, handler.authKey) }
@@ -363,8 +364,26 @@ class TelegramClientImpl internal constructor(override val app: TelegramApp,
         }
     }
 
+    override fun pfs() {
+        createAuthKey(dataCenter, true)
+                .subscribeOn(Schedulers.io())
+                .observeOn(Schedulers.io())
+                .flatMap { createHandler(it) }
+                .doOnSuccess { it.start() }
+                .doOnSuccess { initConnection(TLRequestHelpGetNearestDc(), it) }
+                .flatMap {
+                    Single.just(it)
+                            .zipWith(TempAuthKeyBinding.bindKey(it.authKey as TempAuthKey,
+                                                                mtProtoHandler!!.authKey,
+                                                                it))
+                }
+                .doOnSuccess { logger.error("PFS SUCCESS BITCH") }
+                .doOnSuccess { it.first.close() }
+                .subscribe()
+    }
+
     companion object {
-        private val logger = Logger(TelegramClient::class)
+        private val logger = Logger.Factory.create(TelegramClient::class)
 
         private const val DEFAULT_RETRY_COUNT = 2
 
@@ -387,7 +406,7 @@ class TelegramClientImpl internal constructor(override val app: TelegramApp,
         private fun createHandler(authResult: AuthResult): Single<MTProtoHandler> =
                 Single.fromCallable { MTProtoHandler(authResult) }
 
-        private fun createAuthKey(dataCenter: DataCenter): Single<AuthResult> =
-                AuthKeyCreation.createAuthKey(dataCenter)
+        private fun createAuthKey(dataCenter: DataCenter, tmpKey: Boolean = false): Single<AuthResult> =
+                AuthKeyCreation.createAuthKey(dataCenter, tmpKey)
     }
 }

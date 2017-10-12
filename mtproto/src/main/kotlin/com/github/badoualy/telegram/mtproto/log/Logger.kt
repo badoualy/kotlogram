@@ -3,13 +3,9 @@ package com.github.badoualy.telegram.mtproto.log
 import org.slf4j.LoggerFactory
 import kotlin.reflect.KClass
 
-class Logger(val name: String) {
+class Logger private constructor(val name: String) {
 
-    val delegate = LoggerFactory.getLogger(name)!!
-
-    constructor(clazz: KClass<*>) : this(clazz.java)
-
-    constructor(clazz: Class<*>) : this(clazz.simpleName!!)
+    private val delegate = LoggerFactory.getLogger(name)!!
 
     fun trace(message: String) = trace(null, message)
 
@@ -40,12 +36,7 @@ class Logger(val name: String) {
 
     fun warn(message: String) = warn(null, message)
 
-    fun warn(tag: LogTag?, message: String) {
-        when {
-            tag != null -> delegate.warn(tag.marker, message)
-            else -> delegate.warn(message)
-        }
-    }
+    fun warn(tag: LogTag?, message: String) = warn(tag, message, null)
 
     fun warn(tag: LogTag?, message: String, throwable: Throwable?) {
         when {
@@ -65,5 +56,10 @@ class Logger(val name: String) {
             tag != null -> delegate.error(tag.marker, message)
             else -> delegate.error(message)
         }
+    }
+
+    companion object Factory {
+        fun create(name: String) = ConsoleLogger(name)
+        fun create(clazz: KClass<*>) = ConsoleLogger(clazz.java.simpleName)
     }
 }

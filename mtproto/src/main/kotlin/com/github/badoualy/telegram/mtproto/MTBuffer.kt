@@ -13,7 +13,7 @@ class MTBuffer<T>(var bufferSize: Int,
                   var bufferTimeout: Long, var bufferTimeoutUnit: TimeUnit,
                   var tag: LogTag? = null) {
 
-    private val logger = Logger(MTBuffer::class)
+    private val logger = Logger.Factory.create(MTBuffer::class)
 
     private var bufferId = 0
     private var list = ArrayList<T>(bufferSize)

@@ -9,8 +9,8 @@ object TLSchemaParser {
     fun parseTlSchema(file: File): Pair<List<ConstructorDef>, List<ConstructorDef>> {
         val defList = splitTlSchema(file)
 
-        val typesDef = mapToConstructorDef(defList.first)
-        val methodsDef = mapToConstructorDef(defList.second)
+        val typesDef = mapToConstructorDef(defList.first, true)
+        val methodsDef = mapToConstructorDef(defList.second, false)
 
         return Pair(typesDef, methodsDef)
     }
@@ -45,7 +45,7 @@ object TLSchemaParser {
         return nodes
     }
 
-    private fun mapToConstructorDef(constructorsDef: List<String>) = constructorsDef.mapNotNull { def ->
+    private fun mapToConstructorDef(constructorsDef: List<String>, skipIgnoredType: Boolean) = constructorsDef.mapNotNull { def ->
         val groups = tlTypeRegex.matchEntire(def)!!.groups
 
         val name = groups[1]!!.value
@@ -53,7 +53,7 @@ object TLSchemaParser {
         val paramsDef = if (groups.size == 5) groups[3]!!.value.trim().split(' ') else emptyList()
         val type = groups.last()!!.value
 
-        if (IgnoredTypes.contains(type))
+        if (skipIgnoredType && IgnoredTypes.contains(type))
             return@mapNotNull null
 
         val parameters = paramsDef.mapNotNull { paramDef ->

@@ -167,7 +167,7 @@ class TLClassGenerator(tlDefinition: TLDefinition, val config: Config) {
     }
 
     fun TLMethod.generateMethodClass(): TypeSpec {
-        val responseType = getType(tlType)
+        val responseType = getType(tlType, true)
         val clazz = TypeSpec.makeTLMethodClass(tlClassName(), responseType)
 
         val responseFun = FunSpec.makeOverride("deserializeResponse_")
@@ -197,7 +197,7 @@ class TLClassGenerator(tlDefinition: TLDefinition, val config: Config) {
                                          } else Unit)
             }
             else -> {
-                if (supertypes.none { it.tlType == tlType }) {
+                if (supertypes.none { it.tlType == tlType } && responseType != TYPE_TL_BOOL) {
                     responseFun.addStatement(
                             "return tlDeserializer.readTLObject(%1T::class, %1T.CONSTRUCTOR_ID)",
                             responseType)

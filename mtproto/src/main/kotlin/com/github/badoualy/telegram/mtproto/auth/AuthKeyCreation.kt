@@ -28,6 +28,7 @@ import io.reactivex.schedulers.Schedulers
 import java.io.IOException
 import java.math.BigInteger
 import java.util.*
+import java.util.concurrent.TimeUnit
 
 /**
  * Helper class to execute the "Creating an Authorization Key" flow
@@ -35,7 +36,7 @@ import java.util.*
  */
 object AuthKeyCreation {
 
-    private val logger = Logger(AuthKeyCreation::class)
+    private val logger = Logger.Factory.create(AuthKeyCreation::class)
 
     /** Total generation retry count */
     private const val AUTH_ATTEMPT_COUNT = 5
@@ -53,10 +54,10 @@ object AuthKeyCreation {
      * @return an object containing the auth key, the connection created, and the server salt received, or null if the creation failed
      * @see [Creating an Authorization Key](https://core.telegram.org/mtproto/auth_key)
      */
-    fun createAuthKey(dataCenter: DataCenter) = Single.fromCallable {
-        createAuthKeyInternal(dataCenter, false)
+    fun createAuthKey(dataCenter: DataCenter, tmpKey: Boolean = false): Single<AuthResult> = Single.fromCallable {
+        createAuthKeyInternal(dataCenter, tmpKey)
                 ?: throw RuntimeException("Failed to generate authorization key")
-    }!!
+    }.subscribeOn(Schedulers.io())
 
     /**
      * Create a permanent authorization key
@@ -64,7 +65,8 @@ object AuthKeyCreation {
      * @see [Creating an Authorization Key](https://core.telegram.org/mtproto/auth_key)
      */
     @Deprecated("Use RX!")
-    fun createAuthKeySync(dataCenter: DataCenter): AuthResult? = createAuthKey(dataCenter).onErrorReturnItem(null).blockingGet()
+    fun createAuthKeySync(dataCenter: DataCenter): AuthResult? =
+            createAuthKey(dataCenter).onErrorReturnItem(null).blockingGet()
 
     private fun createAuthKeyInternal(dataCenter: DataCenter, tmpKey: Boolean): AuthResult? {
         val start = System.currentTimeMillis()
@@ -114,11 +116,14 @@ object AuthKeyCreation {
         return method.deserializeResponse(responseData, context)
     }
 
-    /** For details about the protocol, see https://core.telegram.org/mtproto/auth_key */
+    /**
+     * For details about the protocol and flow see doc.
+     * @see <a href="https://core.telegram.org/mtproto/auth_key">MTProto description - Auth Key</a>
+     */
     @Throws(IOException::class, FingerprintNotFoundException::class)
     private fun createKey(tmpKey: Boolean): AuthResult {
         logger.debug(connection!!.tag,
-                     "Attempting to create a ${if (tmpKey) "temporary " else "permanent"} Authorization Key")
+                     "Attempting to create a ${if (tmpKey) "temporary " else "permanent"} authorization key")
 
         // Step 1 https://core.telegram.org/mtproto/auth_key#dh-exchange-initiation
         val nonce = RandomUtils.randomInt128() // int128
@@ -170,8 +175,7 @@ object AuthKeyCreation {
                     AuthKey(keySaltPair.first)
                 } else {
                     TempAuthKey(keySaltPair.first,
-                                TimeOverlord.getServerTime(
-                                        connection!!.dataCenter) + tmpKeyExpireDelay)
+                                TimeUnit.MILLISECONDS.toSeconds(TimeOverlord.getServerTime(connection!!.dataCenter) + tmpKeyExpireDelay).toInt())
                 }
         return AuthResult(authKey, keySaltPair.second, connection!!)
     }

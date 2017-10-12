@@ -28,7 +28,6 @@ import io.reactivex.Maybe
 import io.reactivex.Observable
 import io.reactivex.Single
 import io.reactivex.disposables.CompositeDisposable
-import io.reactivex.rxkotlin.ofType
 import io.reactivex.rxkotlin.subscribeBy
 import io.reactivex.rxkotlin.toMaybe
 import io.reactivex.rxkotlin.toObservable
@@ -54,6 +53,7 @@ class MTProtoHandler {
 
     private var messageSubject: Subject<Pair<MTProtoMessage, TLObject>> = PublishSubject.create()
     private var updateSubject: Subject<TLAbsUpdates> = PublishSubject.create()
+    private var rpcResultSubject: Subject<MTRpcResult> = PublishSubject.create()
     private val compositeDisposable = CompositeDisposable()
 
     private val tag: LogTag
@@ -62,6 +62,9 @@ class MTProtoHandler {
     /** An observable emitting an item for each received [TLAbsUpdates] */
     val updatesObservable: Observable<TLAbsUpdates>
         get() = updateSubject.hide()
+
+    internal val rpcResultObservable: Observable<MTRpcResult>
+        get() = rpcResultSubject.hide()
 
     constructor(authResult: AuthResult) {
         authKey = authResult.authKey
@@ -150,7 +153,8 @@ class MTProtoHandler {
      * @return a Single emitting the response upon success.
      * The rpc call will be made only when subscribing to the returned [Single]
      */
-    fun <T : TLObject> executeMethod(method: TLMethod<T>): Single<T> = executeMethods(listOf(method)).singleOrError()
+    fun <T : TLObject> executeMethod(method: TLMethod<T>): Single<T> = executeMethods(
+            listOf(method)).singleOrError()
 
     /**
      * @return an [Observable] emitting one object per method (in random order)
@@ -159,10 +163,7 @@ class MTProtoHandler {
      */
     fun <T : TLObject> executeMethods(methods: List<TLMethod<T>>): Observable<T> =
             methods.takeIf { it.isNotEmpty() }?.let {
-                messageSubject
-                        .observeOn(Schedulers.computation())
-                        .map { it.second }
-                        .ofType<MTRpcResult>()
+                rpcResultSubject
                         .filter { methods.contains(requestByIdMap[it.messageId]) }
                         .take(methods.size.toLong())
                         .doOnSubscribe { executeMethods_(methods) }
@@ -213,8 +214,14 @@ class MTProtoHandler {
                                                                                  session.salt,
                                                                                  message)
 
-        connection.sendMessage(encryptedMessage.data)
+        sendMessage(encryptedMessage.data)
         sentMessageList.add(message)
+    }
+
+    /** Sends the given [ByteArray] message as is*/
+    @Throws(IOException::class)
+    internal fun sendMessage(message: ByteArray) {
+        connection.sendMessage(message)
     }
 
     /**
@@ -326,6 +333,7 @@ class MTProtoHandler {
             }
             is MTRpcResult -> {
                 queueMessageAck(message.messageId)
+                rpcResultSubject.onNext(payload)
             }
             is TLAbsUpdates -> {
                 queueMessageAck(message.messageId)
@@ -486,7 +494,7 @@ class MTProtoHandler {
 
     companion object {
 
-        private val logger = Logger(MTProtoHandler::class)
+        private val logger = Logger.Factory.create(MTProtoHandler::class)
 
         private const val ACK_BUFFER_SIZE = 30
         private const val ACK_BUFFER_TIMEOUT = 5L

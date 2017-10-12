@@ -4,7 +4,7 @@ import com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_CONSTRUCTOR_ID
 import com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_INT32
 import com.github.badoualy.telegram.tl.api.TLAbsChannelParticipantsFilter
 import com.github.badoualy.telegram.tl.api.TLAbsInputChannel
-import com.github.badoualy.telegram.tl.api.TLChannelParticipantsAdmins
+import com.github.badoualy.telegram.tl.api.TLChannelParticipantsRecent
 import com.github.badoualy.telegram.tl.api.TLInputChannelEmpty
 import com.github.badoualy.telegram.tl.api.channels.TLChannelParticipants
 import com.github.badoualy.telegram.tl.core.TLMethod
@@ -19,7 +19,7 @@ import java.io.IOException
 class TLRequestChannelsGetParticipants() : TLMethod<TLChannelParticipants>() {
     var channel: TLAbsInputChannel = TLInputChannelEmpty()
 
-    var filter: TLAbsChannelParticipantsFilter = TLChannelParticipantsAdmins()
+    var filter: TLAbsChannelParticipantsFilter = TLChannelParticipantsRecent()
 
     var offset: Int = 0
 

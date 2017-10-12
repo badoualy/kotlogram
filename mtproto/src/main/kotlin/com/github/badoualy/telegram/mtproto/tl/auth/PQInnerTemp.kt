@@ -27,6 +27,8 @@ class PQInnerTemp @JvmOverloads constructor(pq: ByteArray = ByteArray(0),
         expiresIn = readInt()
     }
 
+    override fun toString() = "p_q_inner_data_temp#3c6a84d4"
+
     companion object {
         @JvmField
         val CONSTRUCTOR_ID = 1013613780

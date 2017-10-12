@@ -54,6 +54,8 @@ abstract class TelegramClient : TelegramApiWrapper(), TelegramApi, Closeable {
 
     abstract fun downloadFile(inputFileLocation: InputFileLocation, size: Int, outputStream: OutputStream)
 
+    abstract fun pfs()
+
     //fun getUserPhoto(user: TLAbsUser, big: Boolean = true)
 
     //fun getChatPhoto(chat: TLAbsChat, big: Boolean = true)

@@ -10,7 +10,7 @@ import java.util.*
  */
 internal object TimeOverlord {
 
-    private val logger = Logger(TimeOverlord::class)
+    private val logger = Logger.Factory.create(TimeOverlord::class)
 
     /** Delta between server time and client time in ms for each [DataCenter] */
     private val deltaByDcMap = HashMap<DataCenter, Long>()

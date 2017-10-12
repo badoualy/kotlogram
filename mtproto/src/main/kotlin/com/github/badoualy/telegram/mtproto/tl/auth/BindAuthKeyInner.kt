@@ -1,26 +1,15 @@
 package com.github.badoualy.telegram.mtproto.tl.auth
 
-import com.github.badoualy.telegram.tl.StreamUtils.*
-import com.github.badoualy.telegram.tl.TLContext
 import com.github.badoualy.telegram.tl.core.TLObject
 import com.github.badoualy.telegram.tl.serialization.TLDeserializer
 import com.github.badoualy.telegram.tl.serialization.TLSerializer
 import java.io.IOException
-import java.io.InputStream
-import java.io.OutputStream
-import java.math.BigInteger
 
 class BindAuthKeyInner @JvmOverloads constructor(var nonce: Long = 0,
-                                                 var tempAuthKeyId: Long = 0,
-                                                 var permAuthKeyId: Long = 0,
-                                                 var tempSessionId: Long = 0,
+                                                 var tempAuthKeyId: ByteArray = ByteArray(0),
+                                                 var permAuthKeyId: ByteArray = ByteArray(0),
+                                                 var tempSessionId: ByteArray = ByteArray(0),
                                                  var expiresAt: Int = 0) : TLObject() {
-
-    constructor(nonce: Long, tempAuthKeyId: Long, permAuthKeyId: Long,
-                tempSessionId: ByteArray, expiresAt: Int) : this(nonce,
-                                                                 tempAuthKeyId, permAuthKeyId,
-                                                                 BigInteger(tempSessionId).toLong(),
-                                                                 expiresAt)
 
     override val constructorId: Int = CONSTRUCTOR_ID
 
@@ -28,20 +17,22 @@ class BindAuthKeyInner @JvmOverloads constructor(var nonce: Long = 0,
     override fun serializeBody(tlSerializer: TLSerializer) = with(tlSerializer) {
         // see https://core.telegram.org/method/auth.bindTempAuthKey#encrypting-the-binding-message
         writeLong(nonce)
-        writeLong(tempAuthKeyId)
-        writeLong(permAuthKeyId)
-        writeLong(tempSessionId)
+        writeByteArray(tempAuthKeyId)
+        writeByteArray(permAuthKeyId)
+        writeByteArray(tempSessionId)
         writeInt(expiresAt)
     }
 
     @Throws(IOException::class)
-    override fun deserializeBody(tlDeserializer: TLDeserializer) = with (tlDeserializer) {
+    override fun deserializeBody(tlDeserializer: TLDeserializer) = with(tlDeserializer) {
         nonce = readLong()
-        tempAuthKeyId = readLong()
-        permAuthKeyId = readLong()
-        tempSessionId = readLong()
+        tempAuthKeyId = readBytes(8)
+        permAuthKeyId = readBytes(8)
+        tempSessionId = readBytes(8)
         expiresAt = readInt()
     }
+
+    override fun toString() = "bind_auth_key_inner#75a3f765"
 
     companion object {
         @JvmField
