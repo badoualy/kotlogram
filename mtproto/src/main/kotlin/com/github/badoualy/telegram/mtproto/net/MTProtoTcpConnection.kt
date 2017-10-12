@@ -165,6 +165,10 @@ internal class MTProtoTcpConnection
             totalRead += read
         }
 
+        if (totalRead != length) {
+            logger.error("Read $totalRead instead of $length")
+        }
+
         buffer.flip()
         return buffer
     }

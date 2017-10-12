@@ -2,13 +2,17 @@ package com.github.badoualy.telegram.mtproto.auth
 
 
 import com.github.badoualy.telegram.mtproto.MTProtoHandler
+import com.github.badoualy.telegram.mtproto.log.Logger
 import com.github.badoualy.telegram.mtproto.secure.MTProtoMessageEncryption
 import com.github.badoualy.telegram.mtproto.secure.RandomUtils
 import com.github.badoualy.telegram.mtproto.tl.MTProtoMessage
 import com.github.badoualy.telegram.mtproto.tl.MTRpcResult
 import com.github.badoualy.telegram.mtproto.tl.auth.BindAuthKeyInner
+import com.github.badoualy.telegram.tl.api.TLApiContext
 import com.github.badoualy.telegram.tl.api.request.TLRequestAuthBindTempAuthKey
 import com.github.badoualy.telegram.tl.core.TLBytes
+import com.github.badoualy.telegram.tl.core.TLObject
+import com.github.badoualy.telegram.tl.serialization.TLStreamSerializerFactory
 import io.reactivex.Single
 import io.reactivex.schedulers.Schedulers
 import java.io.IOException
@@ -21,7 +25,7 @@ import java.util.*
  */
 object TempAuthKeyBinding {
 
-    private val TAG = "TempAuthKeyBinding"
+    private val logger = Logger.Factory.create(TempAuthKeyBinding::class)
 
     /**
      * Binds a temporary authorization key temp_auth_key_id to the permanent authorization key perm_auth_key_id.
@@ -66,7 +70,7 @@ object TempAuthKeyBinding {
                                      request.serialize())
 
         val encryptedMessage = MTProtoMessageEncryption.generateEncryptedMessage(
-                authKey = authKey,
+                authKey = tempAuthKey,
                 sessionId = mtProtoHandler.session.id,
                 serverSalt = mtProtoHandler.session.salt,
                 message = message)
@@ -74,6 +78,13 @@ object TempAuthKeyBinding {
         return mtProtoHandler.rpcResultObservable
                 .filter { it.messageId == innerMessage.messageId }
                 .doOnSubscribe { mtProtoHandler.sendMessage(encryptedMessage.data) }
+                .doOnNext {
+                    // TODO
+                    val result = TLStreamSerializerFactory.createDeserializer(it.content,
+                                                                              TLApiContext)
+                            .readTLObject<TLObject>()
+                    logger.error("Result $result")
+                }
                 .subscribeOn(Schedulers.io())
                 .observeOn(Schedulers.computation())
                 .singleOrError()

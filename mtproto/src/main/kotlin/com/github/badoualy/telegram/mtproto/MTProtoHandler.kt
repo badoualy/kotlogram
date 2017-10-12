@@ -290,6 +290,7 @@ class MTProtoHandler {
         } catch (e: Exception) {
             // This is not a terminal event, don't kill observable
             logger.error(tag, "Error while extracting message", e)
+            logger.error(tag, "Dump:\n" + StreamUtils.toHexString(bytes))
             Observable.empty<MTProtoMessage>()
         }
     }

@@ -138,7 +138,7 @@ object MTProtoMessageEncryption {
         // Retrieve and check authKey
         val msgAuthKeyId = readBytes(8, stream)
         if (!Arrays.equals(authKey.keyId, msgAuthKeyId))
-            throw AuthKeyIdDontMatchException()
+            throw AuthKeyIdDontMatchException(msgAuthKeyId, authKey.key)
 
         // Message key
         val msgKey = readBytes(16, stream)

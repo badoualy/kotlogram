@@ -1,6 +1,7 @@
 package com.github.badoualy.telegram.mtproto.exception
 
 import com.github.badoualy.telegram.mtproto.tl.MTMessagesContainer
+import java.math.BigInteger
 
 open class MTProtoException : Exception {
     constructor()
@@ -14,8 +15,9 @@ class FingerprintNotFoundException(s: String) : SecurityException(s)
 
 class AuthorizationException(message: String) : MTProtoException(message)
 class AuthKeyInvalidException(errorCode: Int) : MTProtoException("AUTH_KEY_INVALID (error code $errorCode)")
-class AuthKeyIdDontMatchException : MTProtoException(
-        "The authKey id received doesn't match current auth key")
+class AuthKeyIdDontMatchException(found: ByteArray, expected: ByteArray) : MTProtoException(
+        "The authKey id received doesn't match current auth key, expected ${BigInteger(expected).toLong()}, " +
+                "found ${BigInteger(found).toLong()}")
 
 class MessageDecryptionException(message: String) : SecurityException(message)
 

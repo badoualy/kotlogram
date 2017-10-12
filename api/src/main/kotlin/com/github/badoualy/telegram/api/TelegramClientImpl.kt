@@ -379,7 +379,7 @@ class TelegramClientImpl internal constructor(override val app: TelegramApp,
                 }
                 .doOnSuccess { logger.error("PFS SUCCESS BITCH") }
                 .doOnSuccess { it.first.close() }
-                .subscribe()
+                .blockingGet()
     }
 
     companion object {
