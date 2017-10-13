@@ -86,6 +86,11 @@ class MTProtoHandler {
 
     /** Start listening for incoming messages. You need to call this before executing any method */
     fun start() {
+        if (messageSubject.hasObservers()){
+            logger.error(tag, "Handler already started")
+            return
+        }
+
         logger.info(tag, "startWatchdog()")
         connection.getMessageObservable()
                 .observeOn(Schedulers.computation())
@@ -300,7 +305,7 @@ class MTProtoHandler {
      */
     private fun deserializePayload(message: MTProtoMessage): Pair<MTProtoMessage, TLObject> {
         val classId = StreamUtils.readInt(message.payload)
-        logger.trace(session.tag, "Payload constructor id: $classId")
+        logger.trace(session.tag, "Payload constructor id: #${Integer.toHexString(classId)}")
 
         val context =
                 if (mtProtoContext.contains(classId)) {

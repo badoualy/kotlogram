@@ -10,6 +10,7 @@ object Config {
     val ROOT_DIR = File("sample${File.separator}")
     private val CONFIG_FILE = "config.properties"
     val AUTH_KEY_FILE = File(ROOT_DIR, "auth.key")
+    val TEMP_AUTH_KEY_FILE = File(ROOT_DIR, "temp_auth.key")
     val NEAREST_DC_FILE = File(ROOT_DIR, "dc.save")
 
     private val properties = Properties().apply {
@@ -41,7 +42,7 @@ object Config {
                                   langCode)
 
     init {
-        println("Application config: ${application}")
+        println("Application config: $application")
     }
 
     private fun getProp(key: String, default: String) = properties.getProperty(key, default)!!

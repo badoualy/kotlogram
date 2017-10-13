@@ -1,6 +1,5 @@
 package com.github.badoualy.telegram.api
 
-import com.github.badoualy.telegram.mtproto.MTProtoHandler
 import com.github.badoualy.telegram.mtproto.model.DataCenter
 import com.github.badoualy.telegram.mtproto.secure.RandomUtils
 import org.slf4j.LoggerFactory
@@ -23,7 +22,11 @@ object Kotlogram {
     )
 
     @JvmStatic
-    val testDcByIdMap = mapOf<Int, DataCenter>()
+    val testDcByIdMap = mapOf(
+            1 to DataCenter(1, "149.154.175.10", "2001:b28:f23d:f001::e", 443),
+            2 to DataCenter(2, "149.154.167.40", "2001:67c:4e8:f002::e", 443),
+            3 to DataCenter(3, "149.154.175.117", "2001:b28:f23d:f003::e", 443)
+    )
 
     init {
         logger.info("""
@@ -46,7 +49,8 @@ object Kotlogram {
             TelegramClientImpl(application, apiStorage, preferredDataCenter, tag)
 
     @JvmStatic
-    fun getDcById(id: Int) = prodDcByIdMap[id] ?: throw IllegalArgumentException("Unkwnown DataCenter id: $id")
+    fun getDcById(id: Int) = prodDcByIdMap[id] ?: throw IllegalArgumentException(
+            "Unkwnown DataCenter id: $id")
 
     @JvmStatic
     fun getDcId(dataCenter: DataCenter) = prodDcByIdMap.filter { it.value == dataCenter }.keys.first()

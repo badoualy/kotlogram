@@ -1,8 +1,10 @@
 package com.github.badoualy.telegram.sample
 
 import com.github.badoualy.telegram.api.Kotlogram
+import com.github.badoualy.telegram.api.TelegramTestHelper
 import com.github.badoualy.telegram.sample.config.Config
 import com.github.badoualy.telegram.sample.config.FileApiStorage
+import com.github.badoualy.telegram.tl.api.auth.TLAuthorization
 import com.github.badoualy.telegram.tl.exception.RpcErrorException
 import java.io.IOException
 import java.util.*
@@ -12,7 +14,8 @@ object SignInSample {
     @JvmStatic
     fun main(args: Array<String>) {
         // This is a synchronous client, that will block until the response arrive (or until timeout)
-        val client = Kotlogram.getClient(Config.application, FileApiStorage())
+        val client = Kotlogram.getClient(Config.application, FileApiStorage(),
+                                         preferredDataCenter = Kotlogram.testDcByIdMap[2]!!)
 
         // You can start making requests
         try {
@@ -22,13 +25,16 @@ object SignInSample {
             val code = Scanner(System.`in`).nextLine()
 
             // Auth with the received code
-            val authorization =
+            val authorization: TLAuthorization =
                     try {
                         try {
-                            client.authSignIn(Config.phoneNumber, sentCode.phoneCodeHash, code).blockingGet()
+                            client.authSignIn(Config.phoneNumber, sentCode.phoneCodeHash,
+                                              code).blockingGet()
                         } catch (e: RuntimeException) {
-                            if (e.cause is RpcErrorException)
-                                throw e.cause as Exception
+                            val cause = e.cause
+                            if (cause is RpcErrorException) {
+                                throw cause
+                            }
                             throw e
                         }
                     } catch (e: RpcErrorException) {
@@ -37,6 +43,13 @@ object SignInSample {
                             println("Two-step auth password: ")
                             val password = Scanner(System.`in`).nextLine()
                             client.authCheckPassword(password).blockingGet()
+                        } else if (e.tag.equals("PHONE_NUMBER_UNOCCUPIED", true)) {
+                            client.authSignUp(Config.phoneNumber,
+                                              sentCode.phoneCodeHash,
+                                              TelegramTestHelper.getValidationCode(
+                                                      Config.phoneNumber),
+                                              "Danill",
+                                              "Pony").blockingGet()
                         } else throw e
                     }
 

@@ -33,6 +33,7 @@ internal class MTProtoTcpConnection
     // Buffer
     private val msgHeaderBuffer = ByteBuffer.allocate(1)
     private val msgLengthBuffer = ByteBuffer.allocate(3)
+    private val msgBuffer = ByteBuffer.allocate(BUFFER_SIZE)
 
     override val channel: SelectableChannel
         get() = socketChannel
@@ -41,7 +42,7 @@ internal class MTProtoTcpConnection
         var attempt = 1
         do {
             socketChannel = SocketChannel.open()
-            //socketChannel.setOption(StandardSocketOptions.SO_KEEPALIVE, true)
+            socketChannel.setOption(StandardSocketOptions.SO_KEEPALIVE, false)
             socketChannel.setOption(StandardSocketOptions.TCP_NODELAY, true)
             try {
                 socketChannel.connect(InetSocketAddress(dataCenter.ipv4, dataCenter.port))
@@ -55,6 +56,8 @@ internal class MTProtoTcpConnection
                     writeBytes(ByteBuffer.wrap(byteArrayOf(0xef.toByte())))
                 }
                 logger.info(tag, "Connected to $dataCenter")
+                socketChannel.socket().sendBufferSize = BUFFER_SIZE
+                socketChannel.socket().receiveBufferSize = BUFFER_SIZE
                 break
             } catch (e: Exception) {
                 logger.error(tag, "Failed to connect", e)
@@ -79,15 +82,15 @@ internal class MTProtoTcpConnection
 
         // Read message length
         var length = readByteAsInt(readBytes(1, msgHeaderBuffer))
-        logger.info(tag, "Length first byte ${Integer.toHexString(length)}")
+        logger.debug(tag, "Length first byte ${Integer.toHexString(length)}")
         if (length == 0x7f) {
             length = readInt24(readBytes(3, msgLengthBuffer))
-            logger.info(tag, "Long length bytes ${Integer.toHexString(length)}")
+            logger.debug(tag, "Long length bytes ${Integer.toHexString(length)}")
         }
         length *= 4
 
-        logger.info(tag, "About to read a message of length $length")
-        val buffer = readBytes(length)
+        logger.debug(tag, "About to read a message of length $length")
+        val buffer = readBytes(length, msgBuffer)
 
         // Convert to a ByteArray
         val bytes = ByteArray(buffer.remaining())
@@ -151,8 +154,10 @@ internal class MTProtoTcpConnection
                     ByteBuffer.allocate(length)
                 else recycledBuffer
         buffer.order(order)
+        buffer.limit(length)
 
         var totalRead = 0
+        logger.trace(tag, "readBytes(): $length, bufferSize: ${buffer.capacity()}")
         while (totalRead < length) {
             val read = socketChannel.read(buffer)
 
@@ -163,6 +168,11 @@ internal class MTProtoTcpConnection
                         "Reached end-of-stream while reading $length bytes ($totalRead read)")
 
             totalRead += read
+
+            if (read == 0 && totalRead < length) {
+                logger.error(tag, "Yield ---------------------------------------- ${buffer.remaining()} $totalRead $length")
+                Thread.yield()
+            }
         }
 
         if (totalRead != length) {
@@ -183,5 +193,7 @@ internal class MTProtoTcpConnection
 
         /** Initial connection attempt count before considering failure */
         private const val ATTEMPT_COUNT = 3
+
+        private const val BUFFER_SIZE = 64 * 1024
     }
 }

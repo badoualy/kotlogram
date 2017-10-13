@@ -92,6 +92,7 @@ internal object MTProtoWatchdog : Runnable {
      * The connection will be registered on the [Selector] when a subscription is made to the [Observable]
      *  @return an observable that'll emit each received message from the given connection.
      */
+    // TODO: ha
     fun getMessageObservable(connection: MTProtoSelectableConnection): Observable<ByteArray> = subject
             .filter { it.attachment() === connection }
             .observeOn(Schedulers.from(pool))

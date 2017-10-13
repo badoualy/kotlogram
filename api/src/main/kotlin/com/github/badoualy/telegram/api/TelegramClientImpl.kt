@@ -34,6 +34,7 @@ class TelegramClientImpl internal constructor(override val app: TelegramApp,
 
     private var mtProtoHandler: MTProtoHandler? = null
     private var authKey: AuthKey? = null
+    private var tempAuthKey: TempAuthKey? = null
     private var dataCenter: DataCenter = preferredDataCenter
     override var closed: Boolean = false
 
@@ -48,7 +49,7 @@ class TelegramClientImpl internal constructor(override val app: TelegramApp,
             field = maxOf(0, value)
         }
 
-    private var generateAuthKey: Boolean = false
+    private var generatePermAuthKey: Boolean = false
 
     override var tag = LogTag(tag)
 
@@ -62,15 +63,22 @@ class TelegramClientImpl internal constructor(override val app: TelegramApp,
     // TODO: move to RX
     override fun init() {
         logger.trace(tag, "init()")
-        authKey = apiStorage.loadAuthKey()
-        var dataCenter = apiStorage.loadDc()
-        generateAuthKey = authKey == null
+        authKey = apiStorage.authKey
+        tempAuthKey = apiStorage.tempAuthKey
+        var dataCenter = apiStorage.dataCenter
+        generatePermAuthKey = authKey == null
+
+        if (generatePermAuthKey){
+            tempAuthKey = null
+            apiStorage.tempAuthKey = null
+        }
 
         if (dataCenter == null) {
-            if (!generateAuthKey) {
+            if (!generatePermAuthKey) {
                 logger.error(tag, "Found an auth key in storage but no dc")
-                apiStorage.deleteAuthKey()
-                apiStorage.saveSession(null)
+                apiStorage.authKey = null
+                apiStorage.tempAuthKey = null
+                apiStorage.session = null
             }
             logger.warn(tag, "No dc found in storage, preferred: $preferredDataCenter")
             dataCenter = preferredDataCenter
@@ -78,59 +86,42 @@ class TelegramClientImpl internal constructor(override val app: TelegramApp,
         this.dataCenter = dataCenter
 
         // No need to check DC if we have an authKey in storage
-        init(checkNearestDc = generateAuthKey)
+        init(ensureNearestDc = generatePermAuthKey)
         logger.info(tag, "Client ready")
     }
 
     // TODO: move to RX
-    private fun init(checkNearestDc: Boolean) {
-        logger.trace(tag, "init(): $checkNearestDc")
+    private fun init(ensureNearestDc: Boolean) {
+        logger.trace(tag, "init(): $ensureNearestDc")
         mtProtoHandler = executeSync {
-            (if (generateAuthKey) {
+            (if (generatePermAuthKey) {
                 dataCenter.let { dataCenter ->
                     createAuthKey(dataCenter)
                             .observeOn(Schedulers.io())
                             .doOnSuccess { authResult ->
                                 // Save to storage
                                 authKey = authResult.authKey
-                                apiStorage.saveAuthKey(authKey!!)
-                                apiStorage.saveDc(dataCenter)
+                                apiStorage.authKey = authKey
+                                apiStorage.dataCenter = dataCenter
+                                // We don't need it anymore, we have the perm key
+                                authResult?.connection?.close()
                             }
-                            .flatMap { createHandler(it) }
-                }
-            } else {
-                createHandler(dataCenter, authKey!!, apiStorage.loadSession())
-            }).observeOn(Schedulers.io())
-                    .subscribeOn(Schedulers.io())
-                    .doOnSuccess { it.start() }
-        }
-
-        try {
-            // Call to initConnection to setup information about this app for the user to see in "active sessions"
-            // Also will indicate to Telegram which layer to use through InvokeWithLayer
-            // Re-call every time to ensure connection is alive and to update layer
-            when {
-                checkNearestDc -> ensureNearestDc(initConnection(TLRequestHelpGetNearestDc(),
-                                                                 mtProtoHandler!!))
-                !generateAuthKey -> try {
-                    // authKey already existed, user is probably connected, resume and start update
-                    // TODO: replace with getDifference for updates
-                    initConnection(TLRequestUpdatesGetState(), mtProtoHandler!!)
-                    return
-                } catch (e: RpcErrorException) {
-                    when (e.code) {
-                        401 -> logger.warn(tag, "Had auth key but user not signed in: ${e.message}")
-                        else -> throw e
+                    .flatMap { pfs(permKey = authKey!!) }
+                    .doOnSuccess {
+                        tempAuthKey = it.authKey as TempAuthKey
+                        apiStorage.tempAuthKey = tempAuthKey
                     }
                 }
-                else -> initConnection(TLRequestHelpGetNearestDc(), mtProtoHandler!!)
-            }
-        } catch (e: Exception) {
-            mtProtoHandler?.close()
-            if (e is RpcErrorException && e.code == -404)
-                throw SecurityException("Authorization key is invalid (error $e)")
-            throw e
+            } else {
+                // TODO: handle expiration, stop creating a new one each time
+                pfs(authKey!!)
+                //createHandler(dataCenter, tempAuthKey!!, apiStorage.session)
+            }).observeOn(Schedulers.io())
+                    .subscribeOn(Schedulers.io())
+                    //.doOnSuccess { it.start() }
         }
+
+        initConnection(mtProtoHandler!!, ensureNearestDc)
     }
 
     override fun <T : TLObject> executeRpcQuery(method: TLMethod<T>): Single<T> =
@@ -159,7 +150,6 @@ class TelegramClientImpl internal constructor(override val app: TelegramApp,
             } else {
                 getExportedHandler(dcId)
                         .flatMapObservable { handler ->
-                            logger.error("executeMethods on new exported dc--------")
                             executeMethods(methods, handler)
                                     .doFinally(releaseExportedHandler(handler, dcId))
                         }
@@ -245,16 +235,50 @@ class TelegramClientImpl internal constructor(override val app: TelegramApp,
     override fun sync(): TelegramSyncClient = TelegramSyncClientImpl(this)
 
     override fun close() {
-        try {
-            exportedHandlerMap.values.forEach { it.close() }
-            mtProtoHandler?.close()
-        } catch (e: Exception) {
-        }
+        exportedHandlerMap.values.forEach { it.close() }
+        mtProtoHandler?.close()
         closed = true
-        mtProtoHandler?.session?.let { apiStorage.saveSession(it) }
+        mtProtoHandler?.session?.let { apiStorage.session = it }
     }
 
     // TODO: move to RX
+    private fun initConnection(mtProtoHandler: MTProtoHandler, ensureNearestDc: Boolean) {
+        try {
+            // Call to initConnection to setup information about this app for the user to see in "active sessions"
+            // Also will indicate to Telegram which layer to use through InvokeWithLayer
+            // Re-call every time to ensure connection is alive and to update layer
+            when {
+                ensureNearestDc -> ensureNearestDc(initConnection(TLRequestHelpGetNearestDc(),
+                                                                  mtProtoHandler))
+                !generatePermAuthKey -> try {
+                    // authKey already existed, user is probably connected, resume and start update
+                    // TODO: replace with getDifference for updates
+                    initConnection(TLRequestUpdatesGetState(), mtProtoHandler)
+                    return
+                } catch (e: RpcErrorException) {
+                    when (e.code) {
+                        401 -> logger.warn(tag, "Had auth key but user not signed in: ${e.message}")
+                        else -> throw e
+                    }
+                }
+                else -> initConnection(TLRequestHelpGetNearestDc(), mtProtoHandler)
+            }
+        } catch (e: Exception) {
+            mtProtoHandler.close()
+            if (e is RpcErrorException && e.code == -404)
+                throw SecurityException("Authorization key is invalid (error $e)")
+            throw e
+        }
+    }
+
+    /**
+     * Execute a **synchronous ** call to [TLRequestInvokeWithLayer] with [Kotlogram.API_LAYER] as value,
+     * and a [TLRequestInitConnection] as the request argument,
+     * itself containing the given method param.
+     * @param method method to execute inside the [TLRequestInitConnection]
+     * @param mtProtoHandler handler to execute the request on
+     * // TODO: move to RX
+     */
     private fun <T : TLObject> initConnection(method: TLMethod<T>, mtProtoHandler: MTProtoHandler): T {
         logger.debug(tag, "Init connection with $method")
         val initConnectionRequest = with(app) {
@@ -286,12 +310,12 @@ class TelegramClientImpl internal constructor(override val app: TelegramApp,
         mtProtoHandler?.close()
         authKey = null
         dataCenter = Kotlogram.getDcById(dcId)
-        apiStorage.deleteAuthKey()
-        apiStorage.deleteDc()
-        apiStorage.saveSession(null)
-        generateAuthKey = true
+        apiStorage.authKey = null
+        apiStorage.dataCenter = null
+        apiStorage.session = null
+        generatePermAuthKey = true
 
-        init(checkNearestDc = false)
+        init(ensureNearestDc = false)
     }
 
     /**
@@ -364,24 +388,27 @@ class TelegramClientImpl internal constructor(override val app: TelegramApp,
         }
     }
 
-    override fun pfs() {
-        createAuthKey(dataCenter, true)
-                .subscribeOn(Schedulers.io())
-                .observeOn(Schedulers.io())
-                .flatMap { createHandler(it) }
-                .doOnSuccess { it.start() }
-                .doOnSuccess { initConnection(TLRequestHelpGetNearestDc(), it) }
-                .flatMap {
-                    Single.just(it)
-                            .zipWith(TempAuthKeyBinding.bindKey(it.authKey as TempAuthKey,
-                                                                mtProtoHandler!!.authKey,
-                                                                it))
-                }
-                .observeOn(Schedulers.io())
-                .doOnSuccess { logger.error("PFS SUCCESS BITCH") }
-                .doOnSuccess { it.first.close() }
-                .blockingGet()
-    }
+    private fun pfs(permKey: AuthKey): Single<MTProtoHandler> =
+            createAuthKey(dataCenter, tmpKey = true)
+                    .flatMap { createHandler(it) }
+                    .doOnSuccess { mtProtoHandler = it }
+                    .doOnSuccess { it.start() }
+                    .doOnSuccess { initConnection(TLRequestHelpGetNearestDc(), it) }
+                    .flatMap {
+                        Single.just(it)
+                                .zipWith(TempAuthKeyBinding.bindKey(it.authKey as TempAuthKey,
+                                                                    permKey,
+                                                                    it))
+                    }
+                    .observeOn(Schedulers.io())
+                    .map {
+                        if (!it.second) throw RuntimeException("Failed to bind temp auth key")
+                        else it.first
+                    }
+                    .doOnError {
+                        mtProtoHandler?.close()
+                        mtProtoHandler = null
+                    }
 
     companion object {
         private val logger = Logger.Factory.create(TelegramClient::class)

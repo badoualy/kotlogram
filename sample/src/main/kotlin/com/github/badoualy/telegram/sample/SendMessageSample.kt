@@ -38,7 +38,7 @@ object SendMessageSample {
 
             val tlAbsUpdates = client.messagesSendMessage(inputPeer,
                                                           "Sent from Kotlogram :)",
-                                                          RandomUtils.randomLong())
+                                                          RandomUtils.randomLong()).blockingGet()
             // tlAbsUpdates contains the id and date of the message in a TLUpdateShortSentMessage
         } catch (e: RpcErrorException) {
             e.printStackTrace()

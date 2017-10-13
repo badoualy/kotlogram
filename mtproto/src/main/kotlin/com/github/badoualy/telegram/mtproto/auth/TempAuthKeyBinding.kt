@@ -6,19 +6,11 @@ import com.github.badoualy.telegram.mtproto.log.Logger
 import com.github.badoualy.telegram.mtproto.secure.MTProtoMessageEncryption
 import com.github.badoualy.telegram.mtproto.secure.RandomUtils
 import com.github.badoualy.telegram.mtproto.tl.MTProtoMessage
-import com.github.badoualy.telegram.mtproto.tl.MTRpcResult
 import com.github.badoualy.telegram.mtproto.tl.auth.BindAuthKeyInner
-import com.github.badoualy.telegram.tl.api.TLApiContext
 import com.github.badoualy.telegram.tl.api.request.TLRequestAuthBindTempAuthKey
 import com.github.badoualy.telegram.tl.core.TLBool
 import com.github.badoualy.telegram.tl.core.TLBytes
-import com.github.badoualy.telegram.tl.core.TLObject
-import com.github.badoualy.telegram.tl.serialization.TLStreamSerializerFactory
-import io.reactivex.Observable
 import io.reactivex.Single
-import io.reactivex.rxkotlin.ofType
-import io.reactivex.rxkotlin.toSingle
-import io.reactivex.rxkotlin.zipWith
 import io.reactivex.schedulers.Schedulers
 import java.io.IOException
 import java.util.*
@@ -41,7 +33,7 @@ object TempAuthKeyBinding {
      */
     @Throws(IOException::class)
     @JvmStatic
-    fun bindKey(tempAuthKey: TempAuthKey, authKey: AuthKey, mtProtoHandler: MTProtoHandler): Single<TLBool> {
+    fun bindKey(tempAuthKey: TempAuthKey, authKey: AuthKey, mtProtoHandler: MTProtoHandler): Single<Boolean> {
         if (!Arrays.equals(mtProtoHandler.authKey.keyId, tempAuthKey.keyId))
             throw IllegalArgumentException(
                     "The handler must use the temporary authorization key that you want to bind")
@@ -84,8 +76,7 @@ object TempAuthKeyBinding {
                 .filter { it.messageId == innerMessage.messageId }
                 .firstOrError()
                 .doOnSubscribe { mtProtoHandler.sendMessage(encryptedMessage.data) }
-                .flatMap { mtProtoHandler.mapResult(it).toSingle() }
-                .cast(TLBool::class.java)
+                .flatMap { mtProtoHandler.mapResult(it).map { it == TLBool.TRUE }.toSingle() }
                 .subscribeOn(Schedulers.io())
     }
 }
