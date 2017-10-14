@@ -83,8 +83,8 @@ internal class TelegramSyncClientImpl(val client: TelegramClient) : TelegramSync
     override val app: TelegramApp
         get() = client.app
 
-    override fun <T : TLObject> executeRpcQuerySync(method: TLMethod<T>): T = try {
-        client.executeRpcQuery(method).blockingGet()
+    override fun <T : TLObject> executeMethod(method: TLMethod<T>): T = try {
+        client.executeMethod(method).blockingGet()
     } catch (e: RuntimeException) {
         if (e.cause is RpcErrorException)
             throw e.cause as RpcErrorException

@@ -132,12 +132,12 @@ class TelegramClientImpl internal constructor(override val app: TelegramApp,
         initConnection(mtProtoHandler!!, ensureNearestDc)
     }
 
-    override fun <T : TLObject> executeRpcQuery(method: TLMethod<T>): Single<T> =
+    override fun <T : TLObject> executeMethod(method: TLMethod<T>): Single<T> =
             executeMethod(method, mtProtoHandler!!)
 
     override fun <T : TLObject> executeMethod(method: TLMethod<T>, dcId: Int): Single<T> =
             if (dcId == dataCenter.id) {
-                executeRpcQuery(method)
+                executeMethod(method)
             } else {
                 getExportedHandler(dcId)
                         .flatMap { handler ->

@@ -5,9 +5,9 @@ import com.github.badoualy.telegram.tl.core.TLObject
 import io.reactivex.Single
 
 interface RpcQueryExecutor {
-    fun <T : TLObject> executeRpcQuery(method: TLMethod<T>): Single<T>
+    fun <T : TLObject> executeMethod(method: TLMethod<T>): Single<T>
 }
 
 interface RpcQuerySyncExecutor {
-    fun <T : TLObject> executeRpcQuerySync(method: TLMethod<T>): T
+    fun <T : TLObject> executeMethod(method: TLMethod<T>): T
 }
