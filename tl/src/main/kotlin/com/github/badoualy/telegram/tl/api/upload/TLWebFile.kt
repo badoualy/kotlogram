@@ -5,7 +5,7 @@ import com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_INT32
 import com.github.badoualy.telegram.tl.TLObjectUtils.computeTLBytesSerializedSize
 import com.github.badoualy.telegram.tl.TLObjectUtils.computeTLStringSerializedSize
 import com.github.badoualy.telegram.tl.api.storage.TLAbsFileType
-import com.github.badoualy.telegram.tl.api.storage.TLFileMp4
+import com.github.badoualy.telegram.tl.api.storage.TLFileMov
 import com.github.badoualy.telegram.tl.core.TLBytes
 import com.github.badoualy.telegram.tl.core.TLObject
 import com.github.badoualy.telegram.tl.serialization.TLDeserializer
@@ -23,7 +23,7 @@ class TLWebFile() : TLObject() {
 
     var mimeType: String = ""
 
-    var fileType: TLAbsFileType = TLFileMp4()
+    var fileType: TLAbsFileType = TLFileMov()
 
     var mtime: Int = 0
 

@@ -12,7 +12,7 @@ import java.io.IOException
  * @see <a href="http://github.com/badoualy/kotlogram">http://github.com/badoualy/kotlogram</a>
  */
 class TLInputMediaGame() : TLAbsInputMedia() {
-    var id: TLAbsInputGame = TLInputGameShortName()
+    var id: TLAbsInputGame = TLInputGameID()
 
     private val _constructor: String = "inputMediaGame#d33f43f3"
 

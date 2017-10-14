@@ -18,7 +18,7 @@ class TLSentCode() : TLObject() {
     @Transient
     var phoneRegistered: Boolean = false
 
-    var type: TLAbsSentCodeType = TLSentCodeTypeSms()
+    var type: TLAbsSentCodeType = TLSentCodeTypeFlashCall()
 
     var phoneCodeHash: String = ""
 

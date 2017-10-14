@@ -15,7 +15,7 @@ import java.io.IOException
  * @see <a href="http://github.com/badoualy/kotlogram">http://github.com/badoualy/kotlogram</a>
  */
 class TLTopPeerCategoryPeers() : TLObject() {
-    var category: TLAbsTopPeerCategory = TLTopPeerCategoryGroups()
+    var category: TLAbsTopPeerCategory = TLTopPeerCategoryChannels()
 
     var count: Int = 0
 

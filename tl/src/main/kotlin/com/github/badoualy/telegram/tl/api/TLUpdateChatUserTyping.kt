@@ -17,7 +17,7 @@ class TLUpdateChatUserTyping() : TLAbsUpdate() {
 
     var userId: Int = 0
 
-    var action: TLAbsSendMessageAction = TLSendMessageChooseContactAction()
+    var action: TLAbsSendMessageAction = TLSendMessageRecordVideoAction()
 
     private val _constructor: String = "updateChatUserTyping#9a65ea1f"
 

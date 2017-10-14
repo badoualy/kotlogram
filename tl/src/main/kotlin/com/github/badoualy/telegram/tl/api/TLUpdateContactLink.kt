@@ -15,9 +15,9 @@ import java.io.IOException
 class TLUpdateContactLink() : TLAbsUpdate() {
     var userId: Int = 0
 
-    var myLink: TLAbsContactLink = TLContactLinkContact()
+    var myLink: TLAbsContactLink = TLContactLinkHasPhone()
 
-    var foreignLink: TLAbsContactLink = TLContactLinkContact()
+    var foreignLink: TLAbsContactLink = TLContactLinkHasPhone()
 
     private val _constructor: String = "updateContactLink#9d2e67c5"
 

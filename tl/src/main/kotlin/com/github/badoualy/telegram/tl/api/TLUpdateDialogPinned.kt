@@ -16,7 +16,7 @@ class TLUpdateDialogPinned() : TLAbsUpdate() {
     @Transient
     var pinned: Boolean = false
 
-    var peer: TLAbsPeer = TLPeerChannel()
+    var peer: TLAbsPeer = TLPeerUser()
 
     private val _constructor: String = "updateDialogPinned#d711a2cc"
 

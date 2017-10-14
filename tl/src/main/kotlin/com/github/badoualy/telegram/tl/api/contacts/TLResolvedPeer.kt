@@ -4,7 +4,7 @@ import com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_CONSTRUCTOR_ID
 import com.github.badoualy.telegram.tl.api.TLAbsChat
 import com.github.badoualy.telegram.tl.api.TLAbsPeer
 import com.github.badoualy.telegram.tl.api.TLAbsUser
-import com.github.badoualy.telegram.tl.api.TLPeerChannel
+import com.github.badoualy.telegram.tl.api.TLPeerUser
 import com.github.badoualy.telegram.tl.core.TLObject
 import com.github.badoualy.telegram.tl.core.TLObjectVector
 import com.github.badoualy.telegram.tl.serialization.TLDeserializer
@@ -18,7 +18,7 @@ import java.io.IOException
  * @see <a href="http://github.com/badoualy/kotlogram">http://github.com/badoualy/kotlogram</a>
  */
 class TLResolvedPeer() : TLObject() {
-    var peer: TLAbsPeer = TLPeerChannel()
+    var peer: TLAbsPeer = TLPeerUser()
 
     var chats: TLObjectVector<TLAbsChat> = TLObjectVector()
 

@@ -17,7 +17,7 @@ class TLDialog() : TLObject() {
     @Transient
     var pinned: Boolean = false
 
-    var peer: TLAbsPeer = TLPeerChannel()
+    var peer: TLAbsPeer = TLPeerUser()
 
     var topMessage: Int = 0
 

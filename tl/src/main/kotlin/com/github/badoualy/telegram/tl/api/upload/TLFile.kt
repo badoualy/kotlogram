@@ -4,7 +4,7 @@ import com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_CONSTRUCTOR_ID
 import com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_INT32
 import com.github.badoualy.telegram.tl.TLObjectUtils.computeTLBytesSerializedSize
 import com.github.badoualy.telegram.tl.api.storage.TLAbsFileType
-import com.github.badoualy.telegram.tl.api.storage.TLFileMp4
+import com.github.badoualy.telegram.tl.api.storage.TLFileMov
 import com.github.badoualy.telegram.tl.core.TLBytes
 import com.github.badoualy.telegram.tl.serialization.TLDeserializer
 import com.github.badoualy.telegram.tl.serialization.TLSerializer
@@ -17,7 +17,7 @@ import java.io.IOException
  * @see <a href="http://github.com/badoualy/kotlogram">http://github.com/badoualy/kotlogram</a>
  */
 class TLFile() : TLAbsFile() {
-    var type: TLAbsFileType = TLFileMp4()
+    var type: TLAbsFileType = TLFileMov()
 
     var mtime: Int = 0
 

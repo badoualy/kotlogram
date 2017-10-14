@@ -13,7 +13,7 @@ import java.io.IOException
  * @see <a href="http://github.com/badoualy/kotlogram">http://github.com/badoualy/kotlogram</a>
  */
 class TLUpdateReadHistoryOutbox() : TLAbsUpdate() {
-    var peer: TLAbsPeer = TLPeerChannel()
+    var peer: TLAbsPeer = TLPeerUser()
 
     var maxId: Int = 0
 

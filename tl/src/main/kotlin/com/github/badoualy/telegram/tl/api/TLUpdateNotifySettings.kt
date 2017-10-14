@@ -12,7 +12,7 @@ import java.io.IOException
  * @see <a href="http://github.com/badoualy/kotlogram">http://github.com/badoualy/kotlogram</a>
  */
 class TLUpdateNotifySettings() : TLAbsUpdate() {
-    var peer: TLAbsNotifyPeer = TLNotifyUsers()
+    var peer: TLAbsNotifyPeer = TLNotifyChats()
 
     var notifySettings: TLAbsPeerNotifySettings = TLPeerNotifySettingsEmpty()
 

@@ -34,7 +34,7 @@ class TLMessage() : TLAbsMessage() {
 
     var fromId: Int? = null
 
-    var toId: TLAbsPeer = TLPeerChannel()
+    var toId: TLAbsPeer = TLPeerUser()
 
     var fwdFrom: TLMessageFwdHeader? = null
 

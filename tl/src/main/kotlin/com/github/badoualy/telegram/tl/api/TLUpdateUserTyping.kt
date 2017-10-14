@@ -15,7 +15,7 @@ import java.io.IOException
 class TLUpdateUserTyping() : TLAbsUpdate() {
     var userId: Int = 0
 
-    var action: TLAbsSendMessageAction = TLSendMessageChooseContactAction()
+    var action: TLAbsSendMessageAction = TLSendMessageRecordVideoAction()
 
     private val _constructor: String = "updateUserTyping#5c486927"
 

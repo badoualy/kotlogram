@@ -21,7 +21,7 @@ class TLUpdateBotCallbackQuery() : TLAbsUpdate() {
 
     var userId: Int = 0
 
-    var peer: TLAbsPeer = TLPeerChannel()
+    var peer: TLAbsPeer = TLPeerUser()
 
     var msgId: Int = 0
 
