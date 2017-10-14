@@ -32,7 +32,7 @@ class MTRpcError @JvmOverloads constructor(var code: Int = 0,
     companion object {
 
         val TYPE_REGEX = "[A-Z_0-9]+".toRegex()
-        val NUMBER_REGEX = "[0-9]*".toRegex()
+        val NUMBER_REGEX = "[0-9]+".toRegex()
 
         @JvmField
         val CONSTRUCTOR_ID = 558156313

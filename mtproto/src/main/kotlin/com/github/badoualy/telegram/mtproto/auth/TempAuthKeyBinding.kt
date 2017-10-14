@@ -77,6 +77,7 @@ object TempAuthKeyBinding {
                 .firstOrError()
                 .doOnSubscribe { mtProtoHandler.sendMessage(encryptedMessage.data) }
                 .flatMap { mtProtoHandler.mapResult(it).map { it == TLBool.TRUE }.toSingle() }
+                .onErrorReturnItem(false)
                 .subscribeOn(Schedulers.io())
     }
 }

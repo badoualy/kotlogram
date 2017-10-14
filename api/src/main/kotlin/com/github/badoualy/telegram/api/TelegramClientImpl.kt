@@ -3,6 +3,8 @@ package com.github.badoualy.telegram.api
 import com.github.badoualy.telegram.api.utils.InputFileLocation
 import com.github.badoualy.telegram.mtproto.MTProtoHandler
 import com.github.badoualy.telegram.mtproto.auth.*
+import com.github.badoualy.telegram.mtproto.exception.RpcErrors.AUTH_KEY_PERM_EMPTY
+import com.github.badoualy.telegram.mtproto.exception.RpcErrors.AUTH_KEY_UNREGISTERED
 import com.github.badoualy.telegram.mtproto.exception.RpcErrors.FILE_MIGRATE_X
 import com.github.badoualy.telegram.mtproto.exception.RpcErrors.NETWORK_MIGRATE_X
 import com.github.badoualy.telegram.mtproto.exception.RpcErrors.PHONE_MIGRATE_X
@@ -12,6 +14,7 @@ import com.github.badoualy.telegram.mtproto.log.LogTag
 import com.github.badoualy.telegram.mtproto.log.Logger
 import com.github.badoualy.telegram.mtproto.model.DataCenter
 import com.github.badoualy.telegram.mtproto.model.MTSession
+import com.github.badoualy.telegram.mtproto.rx.flatZip
 import com.github.badoualy.telegram.tl.api.TLAbsUpdates
 import com.github.badoualy.telegram.tl.api.TLNearestDc
 import com.github.badoualy.telegram.tl.api.request.*
@@ -110,21 +113,17 @@ class TelegramClientImpl internal constructor(override val app: TelegramApp,
                                 // We don't need it anymore, we have the perm key
                                 authResult?.connection?.close()
                             }
-                            .flatMap { pfs(permKey = authKey!!) }
-                            .doOnSuccess {
-                                tempAuthKey = it.authKey as TempAuthKey
-                                apiStorage.tempAuthKey = tempAuthKey
-                            }
+                            .flatMap { pfs(permKey = authKey!!, exportedHandler = false) }
                 }
             } else {
                 // TODO: handle expiration, stop creating a new one each time
-                pfs(authKey!!)
-                        .doOnSuccess {
-                            tempAuthKey = it.authKey as TempAuthKey
-                            apiStorage.tempAuthKey = tempAuthKey
-                        }
-//                createHandler(dataCenter, tempAuthKey!!, apiStorage.session)
-//                        .doOnSuccess { it.start() }
+                //                pfs(authKey!!)
+                //                        .doOnSuccess {
+                //                            tempAuthKey = it.authKey as TempAuthKey
+                //                            apiStorage.tempAuthKey = tempAuthKey
+                //                        }
+                createHandler(dataCenter, tempAuthKey!!, apiStorage.session)
+                        .doOnSuccess { it.start() }
             }).observeOn(Schedulers.io())
                     .subscribeOn(Schedulers.io())
         }
@@ -142,7 +141,7 @@ class TelegramClientImpl internal constructor(override val app: TelegramApp,
                 getExportedHandler(dcId)
                         .flatMap { handler ->
                             executeMethod(method, handler)
-                                    .doFinally(releaseExportedHandler(handler, dcId))
+                                    .doFinally { releaseExportedHandler(handler, dcId) }
                         }
             }
 
@@ -159,7 +158,7 @@ class TelegramClientImpl internal constructor(override val app: TelegramApp,
                 getExportedHandler(dcId)
                         .flatMapObservable { handler ->
                             executeMethods(methods, handler)
-                                    .doFinally(releaseExportedHandler(handler, dcId))
+                                    .doFinally { releaseExportedHandler(handler, dcId) }
                         }
             }
 
@@ -168,15 +167,18 @@ class TelegramClientImpl internal constructor(override val app: TelegramApp,
                 mtProtoHandler.executeMethods(methods)
                         .timeout(timeout, TimeUnit.MILLISECONDS)
                         .retryWhen {
-                            it.zipWith(Observable.range(1, requestRetryCount)) { err, i ->
-                                Pair(err, i)
-                            }.flatMap(retryIfNeeded(mtProtoHandler))
+                            // Retry with same parameters
+                            it.zipWith(Observable.range(1, requestRetryCount))
+                                    .flatMap { retryIfNeeded(it, mtProtoHandler) }
                         }
-                        .onErrorResumeNext(resumeIfNeeded(methods))
+                        .onErrorResumeNext { throwable: Throwable ->
+                            // Retry with some other parameters
+                            resumeIfNeeded(throwable, methods, mtProtoHandler)
+                        }
                         .doOnError { (it as? RpcErrorException)?.stackTrace = stackTrace.toTypedArray() }
             }
 
-    private fun releaseExportedHandler(handler: MTProtoHandler, dcId: Int): () -> Unit = {
+    private fun releaseExportedHandler(handler: MTProtoHandler, dcId: Int) {
         var closeHandler = false
         synchronized(exportedHandlerMap) {
             if (exportedHandlerMap.contains(dcId)) {
@@ -193,10 +195,11 @@ class TelegramClientImpl internal constructor(override val app: TelegramApp,
                 .subscribeBy(onSuccess = { onExportedHandlerTimeout(dcId) })
     }
 
-    private fun retryIfNeeded(mtProtoHandler: MTProtoHandler): (Pair<Throwable, Int>) -> Observable<*> = { (exception, i) ->
+    private fun retryIfNeeded(pair: Pair<Throwable, Int>, mtProtoHandler: MTProtoHandler): Observable<*> {
+        val (exception, i) = pair
         logger.error(tag,
-                    "method(s) failed at attempt $i (${exception.javaClass.simpleName}): ${exception.message}")
-        when (exception) {
+                     "method(s) failed at attempt $i (${exception.javaClass.simpleName}): ${exception.message}")
+        return when (exception) {
             is RpcErrorException -> {
                 val error = exception.getError()
                 when (error.code) {
@@ -220,16 +223,35 @@ class TelegramClientImpl internal constructor(override val app: TelegramApp,
         }.subscribeOn(Schedulers.io()).toObservable()
     }
 
-    private fun <T : TLObject> resumeIfNeeded(methods: List<TLMethod<T>>): (Throwable) -> Observable<T> = { error ->
-        when (error) {
-            is RpcErrorException -> when (FILE_MIGRATE_X) {
-                error.getError() -> {
-                    getExportedHandler(error.typeValue)
-                            .flatMapObservable { executeMethods(methods, it) }
+    private fun <T : TLObject> resumeIfNeeded(exception: Throwable, methods: List<TLMethod<T>>, mtProtoHandler: MTProtoHandler): Observable<T> {
+        logger.error(tag,
+                     "attempt to resume (${exception.javaClass.simpleName}): ${exception.message}")
+        return when (exception) {
+            is RpcErrorException -> {
+                val error = exception.getError()
+                when {
+                    error == FILE_MIGRATE_X -> {
+                        val dcId = exception.typeValue
+                        // TODO: check what happens with pfs
+                        getExportedHandler(dcId)
+                                .flatMapObservable {
+                                    executeMethods(methods, it)
+                                            .doFinally { releaseExportedHandler(it, dcId) }
+                                }
+                    }
+                // TODO: check all cases
+                    error.oneOf(AUTH_KEY_PERM_EMPTY) -> {
+                        if (mtProtoHandler == this.mtProtoHandler) {
+                            logger.error("Attempting to generate new key")
+                            mtProtoHandler.close()
+                            pfs(authKey!!, false)
+                                    .flatMapObservable { executeMethods(methods) }
+                        } else Observable.error(exception)
+                    }
+                    else -> Observable.error(exception)
                 }
-                else -> Observable.error(error)
             }
-            else -> Observable.error(error)
+            else -> Observable.error(exception)
         }
     }
 
@@ -278,8 +300,12 @@ class TelegramClientImpl internal constructor(override val app: TelegramApp,
                     initConnection(TLRequestUpdatesGetState(), mtProtoHandler)
                     return
                 } catch (e: RpcErrorException) {
-                    when (e.code) {
-                        401 -> logger.warn(tag, "Had auth key but user not signed in: ${e.message}")
+                    when (e.getError()) {
+                        AUTH_KEY_UNREGISTERED -> {
+                            logger.warn(tag, "Had auth key but user not signed in: ${e.message}")
+                            generatePermAuthKey = true
+                            initConnection(mtProtoHandler, ensureNearestDc)
+                        }
                         else -> throw e
                     }
                 }
@@ -390,26 +416,26 @@ class TelegramClientImpl internal constructor(override val app: TelegramApp,
         }
     }
 
-    private fun pfs(permKey: AuthKey): Single<MTProtoHandler> =
+    private fun pfs(permKey: AuthKey, exportedHandler: Boolean): Single<MTProtoHandler> =
             createAuthKey(dataCenter, tmpKey = true)
                     .flatMap { createHandler(it) }
-                    .doOnSuccess { mtProtoHandler = it }
+                    .doOnSuccess { if (!exportedHandler) mtProtoHandler = it }
                     .doOnSuccess { it.start() }
                     .doOnSuccess { initConnection(TLRequestHelpGetNearestDc(), it) }
-                    .flatMap {
-                        Single.just(it)
-                                .zipWith(TempAuthKeyBinding.bindKey(it.authKey as TempAuthKey,
-                                                                    permKey,
-                                                                    it))
-                    }
+                    .flatZip { TempAuthKeyBinding.bindKey(it.authKey as TempAuthKey, permKey, it) }
                     .observeOn(Schedulers.io())
                     .map {
-                        if (!it.second) throw RuntimeException("Failed to bind temp auth key")
-                        else it.first
+                        if (!it.second) {
+                            it.first.close()
+                            if (!exportedHandler) {
+                                mtProtoHandler = null
+                            }
+                            throw RuntimeException("Failed to bind temp auth key")
+                        } else it.first
                     }
-                    .doOnError {
-                        mtProtoHandler?.close()
-                        mtProtoHandler = null
+                    .doOnSuccess {
+                        tempAuthKey = it.authKey as TempAuthKey
+                        apiStorage.tempAuthKey = tempAuthKey
                     }
 
     companion object {

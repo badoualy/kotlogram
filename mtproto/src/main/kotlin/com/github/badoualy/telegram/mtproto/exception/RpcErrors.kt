@@ -35,14 +35,15 @@ object RpcErrors {
     @JvmField val MSG_WAIT_FAILED = RpcError(400, "MSG_WAIT_FAILED", "A waiting call returned an error")
 
     // 401 UNAUTHORIZED
-    @JvmField val AUTH_KEY_UNREGISTERED = RpcError(400, "AUTH_KEY_UNREGISTERED", "The key is not registered in the system")
-    @JvmField val AUTH_KEY_INVALID = RpcError(400, "AUTH_KEY_INVALID", "The key is invalid")
-    @JvmField val USER_DEACTIVATED = RpcError(400, "USER_DEACTIVATED", "The user has been deleted/deactivated")
-    @JvmField val SESSION_REVOKED = RpcError(400, "SESSION_REVOKED", "The authorization has been invalidated, because of the user terminating all sessions")
-    @JvmField val SESSION_EXPIRED = RpcError(400, "SESSION_EXPIRED", "The authorization has expired")
-    @JvmField val ACTIVE_USER_REQUIRED = RpcError(400, "ACTIVE_USER_REQUIRED", "The method is only available to already activated users")
-    @JvmField val AUTH_KEY_PERM_EMPTY = RpcError(400, "AUTH_KEY_PERM_EMPTY", "The method is unavailble for temporary authorization key, not bound to permanent")
-    @JvmField val FLOOD_WAIT_X = RpcError(400, "FLOOD_WAIT_X", "A wait of X seconds is required (where X is a number)")
+    /** Not signed in */
+    @JvmField val AUTH_KEY_UNREGISTERED = RpcError(401, "AUTH_KEY_UNREGISTERED", "The key is not registered in the system")
+    @JvmField val AUTH_KEY_INVALID = RpcError(401, "AUTH_KEY_INVALID", "The key is invalid")
+    @JvmField val USER_DEACTIVATED = RpcError(401, "USER_DEACTIVATED", "The user has been deleted/deactivated")
+    @JvmField val SESSION_REVOKED = RpcError(401, "SESSION_REVOKED", "The authorization has been invalidated, because of the user terminating all sessions")
+    @JvmField val SESSION_EXPIRED = RpcError(401, "SESSION_EXPIRED", "The authorization has expired")
+    @JvmField val ACTIVE_USER_REQUIRED = RpcError(401, "ACTIVE_USER_REQUIRED", "The method is only available to already activated users")
+    @JvmField val AUTH_KEY_PERM_EMPTY = RpcError(401, "AUTH_KEY_PERM_EMPTY", "The method is unavailble for temporary authorization key, not bound to permanent")
+    @JvmField val FLOOD_WAIT_X = RpcError(401, "FLOOD_WAIT_X", "A wait of X seconds is required (where X is a number)")
 }
 
 data class RpcError(val code: Int, val type: String, val description: String) {
