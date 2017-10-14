@@ -4,6 +4,7 @@
 auth.key
 dc.save
 config.properties
+temp_auth.key
 
 # Downloaded files...
 *.jpg

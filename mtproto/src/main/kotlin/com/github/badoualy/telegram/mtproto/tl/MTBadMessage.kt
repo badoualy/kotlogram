@@ -22,7 +22,7 @@ abstract class MTBadMessage @JvmOverloads constructor(var badMsgId: Long = 0,
                 else -> ""
             }
 
-    fun toPrettyString() = "{id: $badMsgId, seqNo: $badMsqSeqno, errorCode: $errorCode, errorMessage: $errorMessage}"
+    fun toPrettyString() = "{id: $badMsgId, seqNo: $badMsqSeqno, code: $errorCode, errorMessage: $errorMessage}"
 
     companion object {
         @JvmField

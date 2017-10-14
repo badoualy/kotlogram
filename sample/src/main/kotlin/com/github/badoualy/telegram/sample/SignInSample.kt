@@ -14,8 +14,7 @@ object SignInSample {
     @JvmStatic
     fun main(args: Array<String>) {
         // This is a synchronous client, that will block until the response arrive (or until timeout)
-        val client = Kotlogram.getClient(Config.application, FileApiStorage(),
-                                         preferredDataCenter = Kotlogram.testDcByIdMap[2]!!)
+        val client = Kotlogram.getClient(Config.application, FileApiStorage())
 
         // You can start making requests
         try {
@@ -38,12 +37,12 @@ object SignInSample {
                             throw e
                         }
                     } catch (e: RpcErrorException) {
-                        if (e.tag.equals("SESSION_PASSWORD_NEEDED", true)) {
+                        if (e.type.equals("SESSION_PASSWORD_NEEDED", true)) {
                             // We receive this error is two-step auth is enabled
                             println("Two-step auth password: ")
                             val password = Scanner(System.`in`).nextLine()
                             client.authCheckPassword(password).blockingGet()
-                        } else if (e.tag.equals("PHONE_NUMBER_UNOCCUPIED", true)) {
+                        } else if (e.type.equals("PHONE_NUMBER_UNOCCUPIED", true)) {
                             client.authSignUp(Config.phoneNumber,
                                               sentCode.phoneCodeHash,
                                               TelegramTestHelper.getValidationCode(

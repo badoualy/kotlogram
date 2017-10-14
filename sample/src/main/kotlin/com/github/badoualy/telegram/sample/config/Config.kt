@@ -1,5 +1,6 @@
 package com.github.badoualy.telegram.sample.config
 
+import com.github.badoualy.telegram.api.Kotlogram
 import com.github.badoualy.telegram.api.TelegramApp
 import java.io.File
 import java.io.FileInputStream
@@ -43,6 +44,7 @@ object Config {
 
     init {
         println("Application config: $application")
+        Kotlogram.testMode = true
     }
 
     private fun getProp(key: String, default: String) = properties.getProperty(key, default)!!

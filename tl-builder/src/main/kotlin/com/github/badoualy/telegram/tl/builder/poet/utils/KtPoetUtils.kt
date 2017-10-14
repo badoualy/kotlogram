@@ -53,7 +53,7 @@ fun FunSpec.Builder.addThrows(vararg clazz: KClass<*>) = addThrowsByTypename(
 fun FunSpec.Builder.addThrowsByTypename(vararg clazz: TypeName) = apply {
     addAnnotation(AnnotationSpec.builder(Throws::class)
                           .addMember("value",
-                                     clazz.joinToString(",") { "%T::class" },
+                                     clazz.joinToString { "%T::class" },
                                      *clazz)
                           .build())
 }

@@ -212,8 +212,8 @@ class TLClassGenerator(tlDefinition: TLDefinition, val config: Config) {
             clazz.addFunction(responseFun.build())
 
         val apiResponseType = ParameterizedTypeName.get(TYPE_SINGLE, responseType)
-        apiFun = makeApiFun(apiResponseType)
-        apiSyncFun = makeApiFun(responseType)
+        apiFun = makeApiFun(apiResponseType, false)
+        apiSyncFun = makeApiFun(responseType, true)
         apiWrapperFun = makeApiWrapperFun(apiResponseType, executeMethodName, false)
         apiSyncWrapperFun = makeApiWrapperFun(responseType, executeSyncMethodName, true)
 
@@ -529,10 +529,13 @@ class TLClassGenerator(tlDefinition: TLDefinition, val config: Config) {
                                                       ", ") { it.name.lCamelCase().javaEscape() }
                                   } else "")
 
-    private fun TLMethod.makeApiFun(responseType: TypeName) =
+    private fun TLMethod.makeApiFun(responseType: TypeName, addExceptions: Boolean) =
             FunSpec.builder(name.lCamelCase())
                     .addModifiers(KModifier.ABSTRACT)
-                    .addThrowsByTypename(TYPE_RPC_EXCEPTION, IOException::class.asTypeName())
+                    .apply {
+                        if (addExceptions)
+                            addThrowsByTypename(TYPE_RPC_EXCEPTION, IOException::class.asTypeName())
+                    }
                     .returns(responseType)
 
     data class Config(val outputMain: String, val outputTest: String)

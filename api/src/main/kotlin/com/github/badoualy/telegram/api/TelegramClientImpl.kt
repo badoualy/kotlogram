@@ -114,11 +114,15 @@ class TelegramClientImpl internal constructor(override val app: TelegramApp,
                 }
             } else {
                 // TODO: handle expiration, stop creating a new one each time
-                pfs(authKey!!)
-                //createHandler(dataCenter, tempAuthKey!!, apiStorage.session)
+//                pfs(authKey!!)
+//                        .doOnSuccess {
+//                            tempAuthKey = it.authKey as TempAuthKey
+//                            apiStorage.tempAuthKey = tempAuthKey
+//                        }
+                createHandler(dataCenter, tempAuthKey!!, apiStorage.session)
+                        .doOnSuccess { it.start() }
             }).observeOn(Schedulers.io())
                     .subscribeOn(Schedulers.io())
-                    //.doOnSuccess { it.start() }
         }
 
         initConnection(mtProtoHandler!!, ensureNearestDc)
@@ -192,9 +196,9 @@ class TelegramClientImpl internal constructor(override val app: TelegramApp,
             is RpcErrorException -> {
                 when (error.code) {
                     303 -> { // DC error
-                        val dcId = error.tagInteger
+                        val dcId = error.typeValue
                         when {
-                            error.tag.startsWithAny("PHONE_MIGRATE_", "NETWORK_MIGRATE_") -> {
+                                error.type.startsWithAny("PHONE_MIGRATE_", "NETWORK_MIGRATE_") -> {
                                 logger.info(tag, "Repeat request after migration on DC$dcId")
                                 migrate(dcId).toSingleDefault(Unit)
                             }
@@ -272,7 +276,7 @@ class TelegramClientImpl internal constructor(override val app: TelegramApp,
     }
 
     /**
-     * Execute a **synchronous ** call to [TLRequestInvokeWithLayer] with [Kotlogram.API_LAYER] as value,
+     * Execute a **synchronous ** call to [TLRequestInvokeWithLayer] with [Kotlogram.apiLayer] as value,
      * and a [TLRequestInitConnection] as the request argument,
      * itself containing the given method param.
      * @param method method to execute inside the [TLRequestInitConnection]
@@ -289,7 +293,7 @@ class TelegramClientImpl internal constructor(override val app: TelegramApp,
                                     method)
         }
 
-        val request = TLRequestInvokeWithLayer(Kotlogram.API_LAYER, initConnectionRequest)
+        val request = TLRequestInvokeWithLayer(Kotlogram.apiLayer, initConnectionRequest)
         return executeSync { executeMethod(request, mtProtoHandler) }
     }
 
@@ -352,25 +356,18 @@ class TelegramClientImpl internal constructor(override val app: TelegramApp,
             authExportAuthorization(dcId)
                     .doOnSubscribe { logger.debug(tag, "Creating new handler on DC$dcId") }
                     .map { TLRequestAuthImportAuthorization(it.id, it.bytes) }
-                    .doOnSuccess { logger.error("GATE 1 -------------------------------------") }
                     .zipWith(createAuthKey(Kotlogram.getDcById(dcId))
                                      .flatMap { createHandler(it) }
-                                     .doOnSuccess { it.start() }
-                                     .doOnSuccess {
-                                         logger.error(
-                                                 "GATE 2 -------------------------------------")
-                                     })
-                    .doOnSuccess { logger.error("GATE 3 -------------------------------------") }
+                                     .doOnSuccess { it.start() })
                     .doOnSuccess { (request, handler) -> initConnection(request, handler) }
                     .doOnSuccess { (_, handler) -> authKeyMap.put(dcId, handler.authKey) }
                     .map { (_, handler) -> handler }
-                    .doOnSuccess { logger.error("GATE END -------------------------------------") }
 
     private fun <T : TLObject> resumeIfNeeded(methods: List<TLMethod<T>>): (Throwable) -> Observable<T> = { error ->
         when (error) {
             is RpcErrorException -> when {
-                error.code == 303 && error.tag.startsWith("FILE_MIGRATE_") -> {
-                    getExportedHandler(error.tagInteger)
+                error.code == 303 && error.type.startsWith("FILE_MIGRATE_") -> {
+                    getExportedHandler(error.typeValue)
                             .flatMapObservable { executeMethods(methods, it) }
                 }
                 else -> Observable.error(error)

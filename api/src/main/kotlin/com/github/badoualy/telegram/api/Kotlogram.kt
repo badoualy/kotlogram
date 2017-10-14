@@ -10,10 +10,18 @@ object Kotlogram {
     private val logger = LoggerFactory.getLogger(Kotlogram::class.java)!!
 
     @JvmField
-    val API_LAYER = 71
+    val apiLayer = 71
 
-    @JvmStatic
-    val prodDcByIdMap = mapOf(
+    @JvmField
+    var testMode = false
+
+    @JvmField
+    var defaultTestDc = 2
+
+    @JvmField
+    var defaultProdDc = 4
+
+    private val prodDcByIdMap = mapOf(
             1 to DataCenter(1, "149.154.175.50", "2001:0b28:f23d:f001:0000:0000:0000:000a", 443),
             2 to DataCenter(2, "149.154.167.51", "2001:067c:04e8:f002:0000:0000:0000:000a", 443),
             3 to DataCenter(3, "149.154.175.100", "2001:0b28:f23d:f003:0000:0000:0000:000a", 443),
@@ -21,8 +29,7 @@ object Kotlogram {
             5 to DataCenter(5, "91.108.56.165", "2001:0b28:f23f:f005:0000:0000:0000:000a", 443)
     )
 
-    @JvmStatic
-    val testDcByIdMap = mapOf(
+    private val testDcByIdMap = mapOf(
             1 to DataCenter(1, "149.154.175.10", "2001:b28:f23d:f001::e", 443),
             2 to DataCenter(2, "149.154.167.40", "2001:67c:4e8:f002::e", 443),
             3 to DataCenter(3, "149.154.175.117", "2001:b28:f23d:f003::e", 443)
@@ -36,7 +43,7 @@ object Kotlogram {
         |    <   |  |  |  |     |  |     |  |     |  |  |  | |  | |_ | |      /      /  /_\  \   |  |\/|  |
         |  .  \  |  `--'  |     |  |     |  `----.|  `--'  | |  |__| | |  |\  \----./  _____  \  |  |  |  |
         |__|\__\  \______/      |__|     |_______| \______/   \______| | _| `._____/__/     \__\ |__|  |__|
-        Using layer $API_LAYER
+        Using layer $apiLayer
         """)
     }
 
@@ -44,15 +51,13 @@ object Kotlogram {
     @JvmStatic
     fun getClient(application: TelegramApp,
                   apiStorage: TelegramApiStorage,
-                  preferredDataCenter: DataCenter = getDcById(4),
+                  preferredDataCenter: DataCenter = getDcById(if (testMode) defaultTestDc else defaultProdDc),
                   tag: String = RandomUtils.randomInt().toString()): TelegramClient =
             TelegramClientImpl(application, apiStorage, preferredDataCenter, tag)
 
     @JvmStatic
-    fun getDcById(id: Int) = prodDcByIdMap[id] ?: throw IllegalArgumentException(
-            "Unkwnown DataCenter id: $id")
+    fun getDcById(id: Int) = (if (testMode) testDcByIdMap[id] else prodDcByIdMap[id])
+            ?: throw IllegalArgumentException("Unkwnown DataCenter id: $id")
 
-    @JvmStatic
-    fun getDcId(dataCenter: DataCenter) = prodDcByIdMap.filter { it.value == dataCenter }.keys.first()
 }
 

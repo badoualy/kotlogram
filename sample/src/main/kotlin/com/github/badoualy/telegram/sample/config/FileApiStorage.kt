@@ -42,7 +42,7 @@ class FileApiStorage : TelegramApiStorage {
 
     override var dataCenter: DataCenter?
         get() = NEAREST_DC_FILE.tryRead {
-            it.readText().toIntOrNull()?.takeIf { it in 1..5 }?.let { Kotlogram.testDcByIdMap[it] }
+            it.readText().toIntOrNull()?.takeIf { it in 1..5 }?.let { Kotlogram.getDcById(it) }
         }
         set(value) {
             if (value != null) {

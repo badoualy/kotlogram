@@ -72,7 +72,7 @@ class MTProtoHandler {
         session.salt = authResult.serverSalt
         connection.tag = session.tag
         ackBuffer.tag = session.tag
-        logger.debug(tag, "Created from auth result")
+        logger.debug(tag, "Created from auth result ${authKey.keyIdAsLong}")
     }
 
     @Throws(IOException::class)
@@ -81,12 +81,13 @@ class MTProtoHandler {
         this.session = session ?: newSession(dataCenter)
         connection = connectionFactory.create(dataCenter, this.session.tag)
         ackBuffer.tag = this.session.tag
-        logger.debug(tag, "Created from existing key (new session? ${session == null}}")
+        logger.debug(tag,
+                     "Created from existing key (new session? ${session == null}}  ${authKey.keyIdAsLong}")
     }
 
     /** Start listening for incoming messages. You need to call this before executing any method */
     fun start() {
-        if (messageSubject.hasObservers()){
+        if (messageSubject.hasObservers()) {
             logger.error(tag, "Handler already started")
             return
         }
@@ -304,15 +305,15 @@ class MTProtoHandler {
      * [MTProtoMessage] and its deserialized [TLObject] content
      */
     private fun deserializePayload(message: MTProtoMessage): Pair<MTProtoMessage, TLObject> {
-        val classId = StreamUtils.readInt(message.payload)
-        logger.trace(session.tag, "Payload constructor id: #${Integer.toHexString(classId)}")
+        val clazzId = StreamUtils.readInt(message.payload)
+        logger.trace(session.tag, "Payload constructor id: #${Integer.toHexString(clazzId)}")
 
         val context =
-                if (mtProtoContext.contains(classId)) {
-                    logger.trace(tag, "$classId is supported by MTProtoContext")
+                if (mtProtoContext.contains(clazzId)) {
+                    logger.trace(tag, "$clazzId is supported by MTProtoContext")
                     mtProtoContext
                 } else {
-                    logger.trace(tag, "$classId is not supported by MTProtoContext")
+                    logger.trace(tag, "$clazzId is not supported by MTProtoContext")
                     apiContext
                 }
 
@@ -402,8 +403,8 @@ class MTProtoHandler {
                 val content = readTLObject<TLObject>(result.content, mtProtoContext)
                 if (content is MTRpcError) {
                     logger.error(tag,
-                                 "rpcError ${content.errorCode}: ${content.message}")
-                    throw RpcErrorException(content.errorCode, content.errorTag)
+                                 "rpcError ${content.code}: ${content.message}")
+                    throw RpcErrorException(content.code, content.message)
                 } else {
                     logger.error(tag, "Unsupported content $content")
                     null
