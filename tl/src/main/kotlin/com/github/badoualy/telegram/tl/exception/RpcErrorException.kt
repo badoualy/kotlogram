@@ -12,6 +12,6 @@ class RpcErrorException(val code: Int, val type: String) : Exception("$code: $ty
      * @return extracted integer value
      */
     val typeValue: Int by lazy {
-        type.split('_').last().toIntOrNull() ?: 0
+        type.filter { Character.isDigit(it) }.toIntOrNull() ?: -1
     }
 }

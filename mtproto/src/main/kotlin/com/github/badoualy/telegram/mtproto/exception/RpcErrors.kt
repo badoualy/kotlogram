@@ -43,33 +43,11 @@ object RpcErrors {
     @JvmField val ACTIVE_USER_REQUIRED = RpcError(400, "ACTIVE_USER_REQUIRED", "The method is only available to already activated users")
     @JvmField val AUTH_KEY_PERM_EMPTY = RpcError(400, "AUTH_KEY_PERM_EMPTY", "The method is unavailble for temporary authorization key, not bound to permanent")
     @JvmField val FLOOD_WAIT_X = RpcError(400, "FLOOD_WAIT_X", "A wait of X seconds is required (where X is a number)")
-
-//    val errorsByCodeMap = mapOf(
-//            300 to listOf(FILE_MIGRATE_X, PHONE_MIGRATE_X, NETWORK_MIGRATE_X, USER_MIGRATE_X),
-//            400 to listOf(FIRSTNAME_INVALID, LASTNAME_INVALID,
-//                          PHONE_NUMBER_INVALID,
-//                          PHONE_CODE_HASH_EMPTY, PHONE_CODE_EMPTY, PHONE_CODE_EXPIRED,
-//                          API_ID_INVALID,
-//                          PHONE_NUMBER_OCCUPIED, PHONE_NUMBER_UNOCCUPIED,
-//                          USERS_TOO_FEW, USERS_TOO_MUCH,
-//                          TYPE_CONSTRUCTOR_INVALID,
-//                          FILE_PART_INVALID, FILE_PARTS_INVALID, FILE_PART_X_MISSING,
-//                          MD5_CHECKSUM_INVALID,
-//                          PHOTO_INVALID_DIMENSIONS,
-//                          FIELD_NAME_INVALID, FIELD_NAME_EMPTY,
-//                          MSG_WAIT_FAILED),
-//            401 to listOf(AUTH_KEY_UNREGISTERED, AUTH_KEY_INVALID, USER_DEACTIVATED,
-//                          SESSION_REVOKED, SESSION_EXPIRED, ACTIVE_USER_REQUIRED,
-//                          AUTH_KEY_PERM_EMPTY, FLOOD_WAIT_X)
-//    )
-
-    // @formatter:on
-    fun RpcErrorException.getError() = RpcError(code,
-                                                type.replace(MTRpcError.NUMBER_REGEX, "X"),
-                                                "")
 }
 
 data class RpcError(val code: Int, val type: String, val description: String) {
+
+    override fun toString() = "$code $type: $description"
 
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
@@ -89,7 +67,13 @@ data class RpcError(val code: Int, val type: String, val description: String) {
         return result
     }
 
+    fun oneOf(vararg errors: RpcError): Boolean = errors.contains(this)
 }
+
+// @formatter:on
+fun RpcErrorException.getError() = RpcError(code,
+                                            type.replace(MTRpcError.NUMBER_REGEX, "X"),
+                                            "")
 
 // Generate field list by input from https://core.telegram.org/api/errors
 // regex /^([A-Z_0-9]+)(: (.+))?/
