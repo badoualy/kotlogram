@@ -18,11 +18,11 @@ import com.github.badoualy.telegram.mtproto.time.TimeOverlord
 import com.github.badoualy.telegram.mtproto.tl.auth.*
 import com.github.badoualy.telegram.mtproto.util.Pair
 import com.github.badoualy.telegram.mtproto.util.SolvedPQ
-import com.github.badoualy.telegram.tl.StreamUtils
 import com.github.badoualy.telegram.tl.core.TLMethod
 import com.github.badoualy.telegram.tl.core.TLObject
 import com.github.badoualy.telegram.tl.serialization.TLSerializerFactory
 import com.github.badoualy.telegram.tl.serialization.TLStreamSerializerFactory
+import com.github.badoualy.telegram.tl.stream.readLong
 import io.reactivex.Single
 import io.reactivex.schedulers.Schedulers
 import java.io.IOException
@@ -257,8 +257,9 @@ object AuthKeyCreation {
                 if (!Arrays.equals(result.newNonceHash, newNonceHash))
                     throw SecurityException("newNonceHash from result don't match generated one")
 
-                val serverSalt = StreamUtils.readLong(xor(substring(newNonce, 0, 8),
-                                                          substring(resPQ.serverNonce, 0, 8)), 0)
+
+                val serverSalt = xor(substring(newNonce, 0, 8),
+                                     substring(resPQ.serverNonce, 0, 8)).readLong()
 
                 return Pair(authKey, serverSalt)
             } else if (result is DhGenRetry) {

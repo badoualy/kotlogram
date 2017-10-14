@@ -14,7 +14,6 @@ import com.github.badoualy.telegram.mtproto.net.MTProtoTcpConnectionFactory
 import com.github.badoualy.telegram.mtproto.secure.MTProtoMessageEncryption
 import com.github.badoualy.telegram.mtproto.time.TimeOverlord
 import com.github.badoualy.telegram.mtproto.tl.*
-import com.github.badoualy.telegram.tl.StreamUtils
 import com.github.badoualy.telegram.tl.TLContext
 import com.github.badoualy.telegram.tl.api.TLAbsUpdates
 import com.github.badoualy.telegram.tl.api.TLApiContext
@@ -23,6 +22,9 @@ import com.github.badoualy.telegram.tl.core.TLObject
 import com.github.badoualy.telegram.tl.exception.RpcErrorException
 import com.github.badoualy.telegram.tl.serialization.TLSerializerFactory
 import com.github.badoualy.telegram.tl.serialization.TLStreamSerializerFactory
+import com.github.badoualy.telegram.tl.stream.readConstructorId
+import com.github.badoualy.telegram.tl.stream.readInt
+import com.github.badoualy.telegram.tl.stream.toHexString
 import io.reactivex.Maybe
 import io.reactivex.Observable
 import io.reactivex.Single
@@ -270,13 +272,13 @@ class MTProtoHandler {
     @Throws(AuthKeyInvalidException::class)
     private fun flatMapMessage(bytes: ByteArray): Observable<MTProtoMessage> {
         if (bytes.size == 4)
-            throw AuthKeyInvalidException(StreamUtils.readInt(bytes))
+            throw AuthKeyInvalidException(bytes.readInt())
 
         return try {
             val message = MTProtoMessageEncryption.extractMessage(authKey, session.id, bytes)
             logger.debug(tag, "Received msg ${message.messageId} with seqNo ${message.seqNo}")
 
-            when (StreamUtils.readInt(message.payload)) {
+            when (message.payload.readConstructorId()) {
                 MTMessagesContainer.CONSTRUCTOR_ID -> {
                     val container = readTLObject(message.payload, mtProtoContext,
                                                  MTMessagesContainer::class,
@@ -295,7 +297,7 @@ class MTProtoHandler {
         } catch (e: Exception) {
             // This is not a terminal event, don't kill observable
             logger.error(tag, "Error while extracting message", e)
-            logger.error(tag, "Dump:\n" + StreamUtils.toHexString(bytes))
+            logger.error(tag, "Dump:\n" + bytes.toHexString())
             Observable.empty<MTProtoMessage>()
         }
     }
@@ -305,7 +307,7 @@ class MTProtoHandler {
      * [MTProtoMessage] and its deserialized [TLObject] content
      */
     private fun deserializePayload(message: MTProtoMessage): Pair<MTProtoMessage, TLObject> {
-        val clazzId = StreamUtils.readInt(message.payload)
+        val clazzId = message.payload.readConstructorId()
         logger.trace(session.tag, "Payload constructor id: #${Integer.toHexString(clazzId)}")
 
         val context =
@@ -395,7 +397,7 @@ class MTProtoHandler {
                     null
                 }
 
-        val clazzId = StreamUtils.readInt(result.content)
+        val clazzId = result.content.readConstructorId()
         logger.trace(tag, "Response constructor id: #${Integer.toHexString(clazzId)}")
 
         val resultObject = when {

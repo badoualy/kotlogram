@@ -6,7 +6,6 @@ import com.github.badoualy.telegram.tl.builder.parser.TLType
 import com.github.badoualy.telegram.tl.builder.poet.PACKAGE_TL_API
 import com.github.badoualy.telegram.tl.builder.poet.PACKAGE_TL_API_REQUEST
 import com.github.badoualy.telegram.tl.builder.utils.uCamelCase
-import com.github.badoualy.telegram.tl.builder.utils.uFirstLetter
 import com.squareup.kotlinpoet.ClassName
 
 fun TLType.packageName() = packageName(name, this is TLMethod)

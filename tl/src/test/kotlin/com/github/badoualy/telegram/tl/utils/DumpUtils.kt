@@ -1,8 +1,8 @@
 package com.github.badoualy.telegram.tl.utils
 
-import com.github.badoualy.telegram.tl.StreamUtils
 import com.github.badoualy.telegram.tl.api.AbsTLApiTest
 import com.github.badoualy.telegram.tl.core.TLObject
+import com.github.badoualy.telegram.tl.stream.toHexString
 import com.google.gson.GsonBuilder
 
 import org.apache.commons.codec.DecoderException
@@ -45,7 +45,7 @@ object DumpUtils {
                                         toJson(`object`),
                                         Charset.forName("UTF-8"))
             FileUtils.writeStringToFile(File(dumpDir + path + ".dump"),
-                                        StreamUtils.toHexString(serialized),
+                                        serialized.toHexString(),
                                         Charset.forName("UTF-8"))
             HexDump.dump(serialized,
                          0,

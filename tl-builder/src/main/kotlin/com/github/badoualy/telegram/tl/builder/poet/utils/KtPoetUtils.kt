@@ -1,6 +1,8 @@
 package com.github.badoualy.telegram.tl.builder.poet.utils
 
-import com.github.badoualy.telegram.tl.builder.poet.*
+import com.github.badoualy.telegram.tl.builder.poet.TYPE_TLOBJECT_UTILS
+import com.github.badoualy.telegram.tl.builder.poet.TYPE_TL_METHOD
+import com.github.badoualy.telegram.tl.builder.poet.TYPE_TL_OBJECT
 import com.squareup.kotlinpoet.*
 import java.io.File
 import kotlin.reflect.KClass
@@ -29,7 +31,6 @@ fun TypeSpec.Builder.emptyConstructor() = apply {
 
 fun TypeSpec.writeToFile(packageName: String, outputDir: String) {
     FileSpec.builder(packageName, name!!)
-            .addStaticImport(TYPE_STREAM_UTILS, "*")
             .addStaticImport(TYPE_TLOBJECT_UTILS,
                              "SIZE_INT32", "SIZE_INT64",
                              "SIZE_CONSTRUCTOR_ID", "SIZE_BOOLEAN", "SIZE_DOUBLE",

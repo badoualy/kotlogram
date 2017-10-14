@@ -6,8 +6,6 @@ import com.github.badoualy.telegram.mtproto.exception.MessageDecryptionException
 import com.github.badoualy.telegram.mtproto.secure.CryptoUtils.*
 import com.github.badoualy.telegram.mtproto.tl.MTProtoMessage
 import com.github.badoualy.telegram.mtproto.util.AesKeyIvPair
-import com.github.badoualy.telegram.tl.StreamUtils
-import com.github.badoualy.telegram.tl.StreamUtils.*
 import com.github.badoualy.telegram.tl.serialization.TLSerializerFactory
 import com.github.badoualy.telegram.tl.serialization.TLStreamSerializerFactory
 import com.github.badoualy.telegram.tl.stream.*
@@ -52,9 +50,9 @@ object MTProtoMessageEncryption {
             crypt.reset()
             crypt.update(serverSalt)
             crypt.update(sessionId)
-            crypt.update(longToBytes(message.messageId))
-            crypt.update(intToBytes(message.seqNo))
-            crypt.update(intToBytes(message.payloadLength))
+            crypt.update(message.messageId.toBytes())
+            crypt.update(message.seqNo.toBytes())
+            crypt.update(message.payloadLength.toBytes())
             crypt.update(message.payload,
                          0,
                          message.payloadLength) // Use len as payload may have padding

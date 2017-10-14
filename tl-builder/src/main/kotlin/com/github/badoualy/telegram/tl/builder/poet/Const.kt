@@ -1,3 +1,5 @@
+@file:Suppress("PropertyName")
+
 package com.github.badoualy.telegram.tl.builder.poet
 
 import com.github.badoualy.telegram.tl.builder.poet.utils.get
@@ -24,7 +26,6 @@ val TYPE_TELEGRAM_SYNC_API_WRAPPER = ClassName.get(PACKAGE_TL_API, TELEGRAM_SYNC
 val TYPE_TL_API_CONTEXT = ClassName.get(PACKAGE_TL_API, TL_API_CONTEXT)
 val TYPE_TL_API_TEST_CONTEXT = ClassName.get(PACKAGE_TL_API, TL_API_TEST_CONTEXT)
 
-val TYPE_STREAM_UTILS = ClassName.get(PACKAGE_TL, "StreamUtils")
 val TYPE_RPC_QUERY_EXECUTOR = ClassName.get(PACKAGE_TL, "RpcQueryExecutor")
 val TYPE_RPC_QUERY_SYNC_EXECUTOR = ClassName.get(PACKAGE_TL, "RpcQuerySyncExecutor")
 val TYPE_TL_CONTEXT = ClassName.get(PACKAGE_TL, "TLContext")
