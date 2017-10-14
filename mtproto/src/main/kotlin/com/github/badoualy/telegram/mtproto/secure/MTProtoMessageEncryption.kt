@@ -10,6 +10,7 @@ import com.github.badoualy.telegram.tl.StreamUtils
 import com.github.badoualy.telegram.tl.StreamUtils.*
 import com.github.badoualy.telegram.tl.serialization.TLSerializerFactory
 import com.github.badoualy.telegram.tl.serialization.TLStreamSerializerFactory
+import com.github.badoualy.telegram.tl.stream.*
 import java.io.ByteArrayInputStream
 import java.io.ByteArrayOutputStream
 import java.io.IOException
@@ -80,13 +81,14 @@ object MTProtoMessageEncryption {
     @JvmStatic
     fun generateEncryptedMessage(authKey: AuthKey, sessionId: ByteArray, serverSalt: Long, message: MTProtoMessage): EncryptedMessage {
         // Build message body
-        val unencryptedStream = ByteArrayOutputStream()
-        writeLong(serverSalt, unencryptedStream)
-        writeByteArray(sessionId, unencryptedStream)
-        writeLong(message.messageId, unencryptedStream)
-        writeInt(message.seqNo, unencryptedStream)
-        writeInt(message.payload.size, unencryptedStream)
-        writeByteArray(message.payload, unencryptedStream)
+        val unencryptedStream = ByteArrayOutputStream().apply {
+            writeLong(serverSalt)
+            writeByteArray(sessionId)
+            writeLong(message.messageId)
+            writeInt(message.seqNo)
+            writeInt(message.payload.size)
+            writeByteArray(message.payload)
+        }
 
         val unencryptedData = unencryptedStream.toByteArray()
         val msgKey = generateMsgKey(unencryptedData)
@@ -98,10 +100,11 @@ object MTProtoMessageEncryption {
                                              aesKeyIvPair.key)
 
         // Auth key is 8 bytes, Message key is 16
-        val out = ByteArrayOutputStream(24 + encryptedData.size)
-        writeByteArray(authKey.keyId, out)
-        writeByteArray(msgKey, out)
-        writeByteArray(encryptedData, out)
+        val out = ByteArrayOutputStream(24 + encryptedData.size).apply {
+            writeByteArray(authKey.keyId)
+            writeByteArray(msgKey)
+            writeByteArray(encryptedData)
+        }
 
         return EncryptedMessage(message, out.toByteArray())
     }
@@ -136,18 +139,18 @@ object MTProtoMessageEncryption {
         val stream = ByteArrayInputStream(data)
 
         // Retrieve and check authKey
-        val msgAuthKeyId = readBytes(8, stream)
+        val msgAuthKeyId = stream.readBytes(8)
         if (!Arrays.equals(authKey.keyId, msgAuthKeyId))
             throw AuthKeyIdDontMatchException(msgAuthKeyId, authKey.key)
 
         // Message key
-        val msgKey = readBytes(16, stream)
+        val msgKey = stream.readBytes(16)
         val aesKeyIvPair = computeAESKeyAndInitVector(authKey, msgKey, 8)
 
         // Read encrypted data
         val encryptedDataLength = data.size - 24 // Subtract authKey(8) + msgKey(16) length
         val encryptedData = ByteArray(encryptedDataLength)
-        readBytes(encryptedData, 0, encryptedDataLength, stream)
+        stream.readBytes(encryptedData, 0, encryptedDataLength)
 
         // Decrypt
         val unencryptedData = ByteArray(encryptedDataLength) // AES input/output have the same size
@@ -159,12 +162,12 @@ object MTProtoMessageEncryption {
 
         // Decompose
         val unencryptedStream = ByteArrayInputStream(unencryptedData)
-        val serverSalt = readBytes(8, unencryptedStream)
-        val session = readBytes(8, unencryptedStream)
+        val serverSalt = unencryptedStream.readBytes(8)
+        val session = unencryptedStream.readBytes(8)
         // Payload starts here
-        val msgId = readLong(unencryptedStream)
-        val seqNo = StreamUtils.readInt(unencryptedStream)
-        val msgLength = StreamUtils.readInt(unencryptedStream)
+        val msgId = unencryptedStream.readLong()
+        val seqNo = unencryptedStream.readInt()
+        val msgLength = unencryptedStream.readInt()
         val paddingSize = encryptedDataLength - 32 - msgLength // serverSalt(8) + sessionId(8) + messageId(8) + seqNo(4) + msgLen(4)
 
         // Security checks
@@ -181,7 +184,7 @@ object MTProtoMessageEncryption {
 
         // Read message
         val message = ByteArray(msgLength)
-        readBytes(message, 0, msgLength, unencryptedStream)
+        unencryptedStream.readBytes(message, 0, msgLength)
 
         val mtMessage = MTProtoMessage(msgId, seqNo, message, message.size)
 
@@ -194,15 +197,13 @@ object MTProtoMessageEncryption {
     }
 
     fun extractUnencryptedMessage(data: ByteArray): ByteArray {
-        val inputStream = ByteArrayInputStream(data)
-        val authId = readLong(inputStream)
-        if (authId == 0L) {
-            @Suppress("UNUSED_VARIABLE")
-            val messageId = readLong(inputStream)
-            val length = readInt(inputStream)
-            return readBytes(length, inputStream)!!
-        } else {
-            throw MessageDecryptionException("Auth id must be equal to zero")
+        return with(ByteArrayInputStream(data)) {
+            readLong().takeIf { it == 0L }?.let {
+                @Suppress("UNUSED_VARIABLE")
+                val messageId = readLong()
+                val length = readInt()
+                readBytes(length)
+            } ?: throw MessageDecryptionException("Auth id must be equal to zero")
         }
     }
 
