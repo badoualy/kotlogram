@@ -1,7 +1,7 @@
 ![Kotlogram](http://s28.postimg.org/u3sc3e24t/logo.png)<br/>
 [![Release](https://jitpack.io/v/badoualy/kotlogram.svg)](https://jitpack.io/#badoualy/kotlogram) [![Build Status](https://travis-ci.org/badoualy/kotlogram.svg?branch=master)](https://travis-ci.org/badoualy/kotlogram)
 
-Current layer: 66
+Current layer: 72
 ===========
 Documentation@[http://kotlogram.badoualy.com](http://kotlogram.badoualy.com)
 ===========
@@ -16,7 +16,6 @@ Kotlogram uses Kotlin to improve the usability of the lib. The TL Language used 
 
 TODO list
 ----------------
-- Implement [Perfect Forward Secrecy](https://core.telegram.org/api/pfs).
 - Implement CDN redirection handling when downloading files.
 
 Important notes
