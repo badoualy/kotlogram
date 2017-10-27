@@ -9,7 +9,7 @@ import com.github.badoualy.telegram.tl.serialization.TLSerializer
 import java.io.IOException
 
 /**
- * channelFull#17f45fcf
+ * channelFull#76af5481
  *
  * @author Yannick Badoual yann.badoual@gmail.com
  * @see <a href="http://github.com/badoualy/kotlogram">http://github.com/badoualy/kotlogram</a>
@@ -23,6 +23,9 @@ class TLChannelFull() : TLAbsChatFull() {
 
     @Transient
     var canSetStickers: Boolean = false
+
+    @Transient
+    var hiddenPrehistory: Boolean = false
 
     override var id: Int = 0
 
@@ -58,7 +61,9 @@ class TLChannelFull() : TLAbsChatFull() {
 
     var stickerset: TLStickerSet? = null
 
-    private val _constructor: String = "channelFull#17f45fcf"
+    var availableMinId: Int? = null
+
+    private val _constructor: String = "channelFull#76af5481"
 
     override val constructorId: Int = CONSTRUCTOR_ID
 
@@ -66,6 +71,7 @@ class TLChannelFull() : TLAbsChatFull() {
             canViewParticipants: Boolean,
             canSetUsername: Boolean,
             canSetStickers: Boolean,
+            hiddenPrehistory: Boolean,
             id: Int,
             about: String,
             participantsCount: Int?,
@@ -82,11 +88,13 @@ class TLChannelFull() : TLAbsChatFull() {
             migratedFromChatId: Int?,
             migratedFromMaxId: Int?,
             pinnedMsgId: Int?,
-            stickerset: TLStickerSet?
+            stickerset: TLStickerSet?,
+            availableMinId: Int?
     ) : this() {
         this.canViewParticipants = canViewParticipants
         this.canSetUsername = canSetUsername
         this.canSetStickers = canSetStickers
+        this.hiddenPrehistory = hiddenPrehistory
         this.id = id
         this.about = about
         this.participantsCount = participantsCount
@@ -104,6 +112,7 @@ class TLChannelFull() : TLAbsChatFull() {
         this.migratedFromMaxId = migratedFromMaxId
         this.pinnedMsgId = pinnedMsgId
         this.stickerset = stickerset
+        this.availableMinId = availableMinId
     }
 
     protected override fun computeFlags() {
@@ -111,6 +120,7 @@ class TLChannelFull() : TLAbsChatFull() {
         updateFlags(canViewParticipants, 8)
         updateFlags(canSetUsername, 64)
         updateFlags(canSetStickers, 128)
+        updateFlags(hiddenPrehistory, 1024)
         updateFlags(participantsCount, 1)
         updateFlags(adminsCount, 2)
         updateFlags(kickedCount, 4)
@@ -119,6 +129,7 @@ class TLChannelFull() : TLAbsChatFull() {
         updateFlags(migratedFromMaxId, 16)
         updateFlags(pinnedMsgId, 32)
         updateFlags(stickerset, 256)
+        updateFlags(availableMinId, 512)
     }
 
     @Throws(IOException::class)
@@ -143,6 +154,7 @@ class TLChannelFull() : TLAbsChatFull() {
         doIfMask(migratedFromMaxId, 16) { writeInt(it) }
         doIfMask(pinnedMsgId, 32) { writeInt(it) }
         doIfMask(stickerset, 256) { writeTLObject(it) }
+        doIfMask(availableMinId, 512) { writeInt(it) }
     }
 
     @Throws(IOException::class)
@@ -151,6 +163,7 @@ class TLChannelFull() : TLAbsChatFull() {
         canViewParticipants = isMask(8)
         canSetUsername = isMask(64)
         canSetStickers = isMask(128)
+        hiddenPrehistory = isMask(1024)
         id = readInt()
         about = readString()
         participantsCount = readIfMask(1) { readInt() }
@@ -168,6 +181,7 @@ class TLChannelFull() : TLAbsChatFull() {
         migratedFromMaxId = readIfMask(16) { readInt() }
         pinnedMsgId = readIfMask(32) { readInt() }
         stickerset = readIfMask(256) { readTLObject<TLStickerSet>(TLStickerSet::class, TLStickerSet.CONSTRUCTOR_ID) }
+        availableMinId = readIfMask(512) { readInt() }
     }
 
     override fun computeSerializedSize(): Int {
@@ -192,6 +206,7 @@ class TLChannelFull() : TLAbsChatFull() {
         size += getIntIfMask(migratedFromMaxId, 16) { SIZE_INT32 }
         size += getIntIfMask(pinnedMsgId, 32) { SIZE_INT32 }
         size += getIntIfMask(stickerset, 256) { it.computeSerializedSize() }
+        size += getIntIfMask(availableMinId, 512) { SIZE_INT32 }
         return size
     }
 
@@ -205,6 +220,7 @@ class TLChannelFull() : TLAbsChatFull() {
                 && canViewParticipants == other.canViewParticipants
                 && canSetUsername == other.canSetUsername
                 && canSetStickers == other.canSetStickers
+                && hiddenPrehistory == other.hiddenPrehistory
                 && id == other.id
                 && about == other.about
                 && participantsCount == other.participantsCount
@@ -222,8 +238,9 @@ class TLChannelFull() : TLAbsChatFull() {
                 && migratedFromMaxId == other.migratedFromMaxId
                 && pinnedMsgId == other.pinnedMsgId
                 && stickerset == other.stickerset
+                && availableMinId == other.availableMinId
     }
     companion object  {
-        const val CONSTRUCTOR_ID: Int = 0x17f45fcf.toInt()
+        const val CONSTRUCTOR_ID: Int = 0x76af5481.toInt()
     }
 }

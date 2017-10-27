@@ -12,6 +12,7 @@ import com.github.badoualy.telegram.tl.core.TLObject
  * * [updateBotWebhookJSON#8317c0c3][TLUpdateBotWebhookJSON]
  * * [updateBotWebhookJSONQuery#9b9240a6][TLUpdateBotWebhookJSONQuery]
  * * [updateChannel#b6d45656][TLUpdateChannel]
+ * * [updateChannelAvailableMessages#70db6837][TLUpdateChannelAvailableMessages]
  * * [updateChannelMessageViews#98a12b4b][TLUpdateChannelMessageViews]
  * * [updateChannelPinnedMessage#98592475][TLUpdateChannelPinnedMessage]
  * * [updateChannelReadMessagesContents#89893b45][TLUpdateChannelReadMessagesContents]

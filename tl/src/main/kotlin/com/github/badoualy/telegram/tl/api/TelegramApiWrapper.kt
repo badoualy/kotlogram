@@ -4,14 +4,11 @@ import com.github.badoualy.telegram.tl.RpcQueryExecutor
 import com.github.badoualy.telegram.tl.api.account.*
 import com.github.badoualy.telegram.tl.api.auth.*
 import com.github.badoualy.telegram.tl.api.auth.TLAuthorization
+import com.github.badoualy.telegram.tl.api.channels.TLAbsChannelParticipants
 import com.github.badoualy.telegram.tl.api.channels.TLAdminLogResults
 import com.github.badoualy.telegram.tl.api.channels.TLChannelParticipant
-import com.github.badoualy.telegram.tl.api.channels.TLChannelParticipants
 import com.github.badoualy.telegram.tl.api.contacts.*
-import com.github.badoualy.telegram.tl.api.help.TLAbsAppUpdate
-import com.github.badoualy.telegram.tl.api.help.TLInviteText
-import com.github.badoualy.telegram.tl.api.help.TLSupport
-import com.github.badoualy.telegram.tl.api.help.TLTermsOfService
+import com.github.badoualy.telegram.tl.api.help.*
 import com.github.badoualy.telegram.tl.api.messages.*
 import com.github.badoualy.telegram.tl.api.messages.TLChatFull
 import com.github.badoualy.telegram.tl.api.messages.TLStickerSet
@@ -34,107 +31,107 @@ abstract class TelegramApiWrapper : TelegramApi, RpcQueryExecutor {
             phoneNumber: String,
             phoneCodeHash: String,
             phoneCode: String
-    ): Single<TLAbsUser> = executeMethod(TLRequestAccountChangePhone(phoneNumber, phoneCodeHash, phoneCode))
+    ): Single<TLAbsUser> = executeRpcQuery(TLRequestAccountChangePhone(phoneNumber, phoneCodeHash, phoneCode))
 
-    override fun accountCheckUsername(username: String): Single<TLBool> = executeMethod(TLRequestAccountCheckUsername(username))
+    override fun accountCheckUsername(username: String): Single<TLBool> = executeRpcQuery(TLRequestAccountCheckUsername(username))
 
-    override fun accountConfirmPhone(phoneCodeHash: String, phoneCode: String): Single<TLBool> = executeMethod(TLRequestAccountConfirmPhone(phoneCodeHash, phoneCode))
+    override fun accountConfirmPhone(phoneCodeHash: String, phoneCode: String): Single<TLBool> = executeRpcQuery(TLRequestAccountConfirmPhone(phoneCodeHash, phoneCode))
 
-    override fun accountDeleteAccount(reason: String): Single<TLBool> = executeMethod(TLRequestAccountDeleteAccount(reason))
+    override fun accountDeleteAccount(reason: String): Single<TLBool> = executeRpcQuery(TLRequestAccountDeleteAccount(reason))
 
-    override fun accountGetAccountTTL(): Single<TLAccountDaysTTL> = executeMethod(TLRequestAccountGetAccountTTL())
+    override fun accountGetAccountTTL(): Single<TLAccountDaysTTL> = executeRpcQuery(TLRequestAccountGetAccountTTL())
 
-    override fun accountGetAuthorizations(): Single<TLAuthorizations> = executeMethod(TLRequestAccountGetAuthorizations())
+    override fun accountGetAuthorizations(): Single<TLAuthorizations> = executeRpcQuery(TLRequestAccountGetAuthorizations())
 
-    override fun accountGetNotifySettings(peer: TLAbsInputNotifyPeer): Single<TLAbsPeerNotifySettings> = executeMethod(TLRequestAccountGetNotifySettings(peer))
+    override fun accountGetNotifySettings(peer: TLAbsInputNotifyPeer): Single<TLAbsPeerNotifySettings> = executeRpcQuery(TLRequestAccountGetNotifySettings(peer))
 
-    override fun accountGetPassword(): Single<TLAbsPassword> = executeMethod(TLRequestAccountGetPassword())
+    override fun accountGetPassword(): Single<TLAbsPassword> = executeRpcQuery(TLRequestAccountGetPassword())
 
-    override fun accountGetPasswordSettings(currentPasswordHash: TLBytes): Single<TLPasswordSettings> = executeMethod(TLRequestAccountGetPasswordSettings(currentPasswordHash))
+    override fun accountGetPasswordSettings(currentPasswordHash: TLBytes): Single<TLPasswordSettings> = executeRpcQuery(TLRequestAccountGetPasswordSettings(currentPasswordHash))
 
-    override fun accountGetPrivacy(key: TLAbsInputPrivacyKey): Single<TLPrivacyRules> = executeMethod(TLRequestAccountGetPrivacy(key))
+    override fun accountGetPrivacy(key: TLAbsInputPrivacyKey): Single<TLPrivacyRules> = executeRpcQuery(TLRequestAccountGetPrivacy(key))
 
-    override fun accountGetTmpPassword(passwordHash: TLBytes, period: Int): Single<TLTmpPassword> = executeMethod(TLRequestAccountGetTmpPassword(passwordHash, period))
+    override fun accountGetTmpPassword(passwordHash: TLBytes, period: Int): Single<TLTmpPassword> = executeRpcQuery(TLRequestAccountGetTmpPassword(passwordHash, period))
 
-    override fun accountGetWallPapers(): Single<TLObjectVector<TLAbsWallPaper>> = executeMethod(TLRequestAccountGetWallPapers())
+    override fun accountGetWallPapers(): Single<TLObjectVector<TLAbsWallPaper>> = executeRpcQuery(TLRequestAccountGetWallPapers())
 
-    override fun accountRegisterDevice(tokenType: Int, token: String): Single<TLBool> = executeMethod(TLRequestAccountRegisterDevice(tokenType, token))
+    override fun accountRegisterDevice(tokenType: Int, token: String): Single<TLBool> = executeRpcQuery(TLRequestAccountRegisterDevice(tokenType, token))
 
-    override fun accountReportPeer(peer: TLAbsInputPeer, reason: TLAbsReportReason): Single<TLBool> = executeMethod(TLRequestAccountReportPeer(peer, reason))
+    override fun accountReportPeer(peer: TLAbsInputPeer, reason: TLAbsReportReason): Single<TLBool> = executeRpcQuery(TLRequestAccountReportPeer(peer, reason))
 
-    override fun accountResetAuthorization(hash: Long): Single<TLBool> = executeMethod(TLRequestAccountResetAuthorization(hash))
+    override fun accountResetAuthorization(hash: Long): Single<TLBool> = executeRpcQuery(TLRequestAccountResetAuthorization(hash))
 
-    override fun accountResetNotifySettings(): Single<TLBool> = executeMethod(TLRequestAccountResetNotifySettings())
+    override fun accountResetNotifySettings(): Single<TLBool> = executeRpcQuery(TLRequestAccountResetNotifySettings())
 
     override fun accountSendChangePhoneCode(
             allowFlashcall: Boolean,
             phoneNumber: String,
             currentNumber: Boolean?
-    ): Single<TLSentCode> = executeMethod(TLRequestAccountSendChangePhoneCode(allowFlashcall, phoneNumber, currentNumber))
+    ): Single<TLSentCode> = executeRpcQuery(TLRequestAccountSendChangePhoneCode(allowFlashcall, phoneNumber, currentNumber))
 
     override fun accountSendConfirmPhoneCode(
             allowFlashcall: Boolean,
             hash: String,
             currentNumber: Boolean?
-    ): Single<TLSentCode> = executeMethod(TLRequestAccountSendConfirmPhoneCode(allowFlashcall, hash, currentNumber))
+    ): Single<TLSentCode> = executeRpcQuery(TLRequestAccountSendConfirmPhoneCode(allowFlashcall, hash, currentNumber))
 
-    override fun accountSetAccountTTL(ttl: TLAccountDaysTTL): Single<TLBool> = executeMethod(TLRequestAccountSetAccountTTL(ttl))
+    override fun accountSetAccountTTL(ttl: TLAccountDaysTTL): Single<TLBool> = executeRpcQuery(TLRequestAccountSetAccountTTL(ttl))
 
-    override fun accountSetPrivacy(key: TLAbsInputPrivacyKey, rules: TLObjectVector<TLAbsInputPrivacyRule>): Single<TLPrivacyRules> = executeMethod(TLRequestAccountSetPrivacy(key, rules))
+    override fun accountSetPrivacy(key: TLAbsInputPrivacyKey, rules: TLObjectVector<TLAbsInputPrivacyRule>): Single<TLPrivacyRules> = executeRpcQuery(TLRequestAccountSetPrivacy(key, rules))
 
-    override fun accountUnregisterDevice(tokenType: Int, token: String): Single<TLBool> = executeMethod(TLRequestAccountUnregisterDevice(tokenType, token))
+    override fun accountUnregisterDevice(tokenType: Int, token: String): Single<TLBool> = executeRpcQuery(TLRequestAccountUnregisterDevice(tokenType, token))
 
-    override fun accountUpdateDeviceLocked(period: Int): Single<TLBool> = executeMethod(TLRequestAccountUpdateDeviceLocked(period))
+    override fun accountUpdateDeviceLocked(period: Int): Single<TLBool> = executeRpcQuery(TLRequestAccountUpdateDeviceLocked(period))
 
-    override fun accountUpdateNotifySettings(peer: TLAbsInputNotifyPeer, settings: TLInputPeerNotifySettings): Single<TLBool> = executeMethod(TLRequestAccountUpdateNotifySettings(peer, settings))
+    override fun accountUpdateNotifySettings(peer: TLAbsInputNotifyPeer, settings: TLInputPeerNotifySettings): Single<TLBool> = executeRpcQuery(TLRequestAccountUpdateNotifySettings(peer, settings))
 
-    override fun accountUpdatePasswordSettings(currentPasswordHash: TLBytes, newSettings: TLPasswordInputSettings): Single<TLBool> = executeMethod(TLRequestAccountUpdatePasswordSettings(currentPasswordHash, newSettings))
+    override fun accountUpdatePasswordSettings(currentPasswordHash: TLBytes, newSettings: TLPasswordInputSettings): Single<TLBool> = executeRpcQuery(TLRequestAccountUpdatePasswordSettings(currentPasswordHash, newSettings))
 
     override fun accountUpdateProfile(
             firstName: String?,
             lastName: String?,
             about: String?
-    ): Single<TLAbsUser> = executeMethod(TLRequestAccountUpdateProfile(firstName, lastName, about))
+    ): Single<TLAbsUser> = executeRpcQuery(TLRequestAccountUpdateProfile(firstName, lastName, about))
 
-    override fun accountUpdateStatus(offline: Boolean): Single<TLBool> = executeMethod(TLRequestAccountUpdateStatus(offline))
+    override fun accountUpdateStatus(offline: Boolean): Single<TLBool> = executeRpcQuery(TLRequestAccountUpdateStatus(offline))
 
-    override fun accountUpdateUsername(username: String): Single<TLAbsUser> = executeMethod(TLRequestAccountUpdateUsername(username))
+    override fun accountUpdateUsername(username: String): Single<TLAbsUser> = executeRpcQuery(TLRequestAccountUpdateUsername(username))
 
     override fun authBindTempAuthKey(
             permAuthKeyId: Long,
             nonce: Long,
             expiresAt: Int,
             encryptedMessage: TLBytes
-    ): Single<TLBool> = executeMethod(TLRequestAuthBindTempAuthKey(permAuthKeyId, nonce, expiresAt, encryptedMessage))
+    ): Single<TLBool> = executeRpcQuery(TLRequestAuthBindTempAuthKey(permAuthKeyId, nonce, expiresAt, encryptedMessage))
 
-    override fun authCancelCode(phoneNumber: String, phoneCodeHash: String): Single<TLBool> = executeMethod(TLRequestAuthCancelCode(phoneNumber, phoneCodeHash))
+    override fun authCancelCode(phoneNumber: String, phoneCodeHash: String): Single<TLBool> = executeRpcQuery(TLRequestAuthCancelCode(phoneNumber, phoneCodeHash))
 
-    override fun authCheckPassword(passwordHash: TLBytes): Single<TLAuthorization> = executeMethod(TLRequestAuthCheckPassword(passwordHash))
+    override fun authCheckPassword(passwordHash: TLBytes): Single<TLAuthorization> = executeRpcQuery(TLRequestAuthCheckPassword(passwordHash))
 
-    override fun authCheckPhone(phoneNumber: String): Single<TLCheckedPhone> = executeMethod(TLRequestAuthCheckPhone(phoneNumber))
+    override fun authCheckPhone(phoneNumber: String): Single<TLCheckedPhone> = executeRpcQuery(TLRequestAuthCheckPhone(phoneNumber))
 
-    override fun authDropTempAuthKeys(exceptAuthKeys: TLLongVector): Single<TLBool> = executeMethod(TLRequestAuthDropTempAuthKeys(exceptAuthKeys))
+    override fun authDropTempAuthKeys(exceptAuthKeys: TLLongVector): Single<TLBool> = executeRpcQuery(TLRequestAuthDropTempAuthKeys(exceptAuthKeys))
 
-    override fun authExportAuthorization(dcId: Int): Single<TLExportedAuthorization> = executeMethod(TLRequestAuthExportAuthorization(dcId))
+    override fun authExportAuthorization(dcId: Int): Single<TLExportedAuthorization> = executeRpcQuery(TLRequestAuthExportAuthorization(dcId))
 
-    override fun authImportAuthorization(id: Int, bytes: TLBytes): Single<TLAuthorization> = executeMethod(TLRequestAuthImportAuthorization(id, bytes))
+    override fun authImportAuthorization(id: Int, bytes: TLBytes): Single<TLAuthorization> = executeRpcQuery(TLRequestAuthImportAuthorization(id, bytes))
 
     override fun authImportBotAuthorization(
             flags: Int,
             apiId: Int,
             apiHash: String,
             botAuthToken: String
-    ): Single<TLAuthorization> = executeMethod(TLRequestAuthImportBotAuthorization(flags, apiId, apiHash, botAuthToken))
+    ): Single<TLAuthorization> = executeRpcQuery(TLRequestAuthImportBotAuthorization(flags, apiId, apiHash, botAuthToken))
 
-    override fun authLogOut(): Single<TLBool> = executeMethod(TLRequestAuthLogOut())
+    override fun authLogOut(): Single<TLBool> = executeRpcQuery(TLRequestAuthLogOut())
 
-    override fun authRecoverPassword(code: String): Single<TLAuthorization> = executeMethod(TLRequestAuthRecoverPassword(code))
+    override fun authRecoverPassword(code: String): Single<TLAuthorization> = executeRpcQuery(TLRequestAuthRecoverPassword(code))
 
-    override fun authRequestPasswordRecovery(): Single<TLPasswordRecovery> = executeMethod(TLRequestAuthRequestPasswordRecovery())
+    override fun authRequestPasswordRecovery(): Single<TLPasswordRecovery> = executeRpcQuery(TLRequestAuthRequestPasswordRecovery())
 
-    override fun authResendCode(phoneNumber: String, phoneCodeHash: String): Single<TLSentCode> = executeMethod(TLRequestAuthResendCode(phoneNumber, phoneCodeHash))
+    override fun authResendCode(phoneNumber: String, phoneCodeHash: String): Single<TLSentCode> = executeRpcQuery(TLRequestAuthResendCode(phoneNumber, phoneCodeHash))
 
-    override fun authResetAuthorizations(): Single<TLBool> = executeMethod(TLRequestAuthResetAuthorizations())
+    override fun authResetAuthorizations(): Single<TLBool> = executeRpcQuery(TLRequestAuthResetAuthorizations())
 
     override fun authSendCode(
             allowFlashcall: Boolean,
@@ -142,15 +139,15 @@ abstract class TelegramApiWrapper : TelegramApi, RpcQueryExecutor {
             currentNumber: Boolean?,
             apiId: Int,
             apiHash: String
-    ): Single<TLSentCode> = executeMethod(TLRequestAuthSendCode(allowFlashcall, phoneNumber, currentNumber, apiId, apiHash))
+    ): Single<TLSentCode> = executeRpcQuery(TLRequestAuthSendCode(allowFlashcall, phoneNumber, currentNumber, apiId, apiHash))
 
-    override fun authSendInvites(phoneNumbers: TLStringVector, message: String): Single<TLBool> = executeMethod(TLRequestAuthSendInvites(phoneNumbers, message))
+    override fun authSendInvites(phoneNumbers: TLStringVector, message: String): Single<TLBool> = executeRpcQuery(TLRequestAuthSendInvites(phoneNumbers, message))
 
     override fun authSignIn(
             phoneNumber: String,
             phoneCodeHash: String,
             phoneCode: String
-    ): Single<TLAuthorization> = executeMethod(TLRequestAuthSignIn(phoneNumber, phoneCodeHash, phoneCode))
+    ): Single<TLAuthorization> = executeRpcQuery(TLRequestAuthSignIn(phoneNumber, phoneCodeHash, phoneCode))
 
     override fun authSignUp(
             phoneNumber: String,
@@ -158,48 +155,50 @@ abstract class TelegramApiWrapper : TelegramApi, RpcQueryExecutor {
             phoneCode: String,
             firstName: String,
             lastName: String
-    ): Single<TLAuthorization> = executeMethod(TLRequestAuthSignUp(phoneNumber, phoneCodeHash, phoneCode, firstName, lastName))
+    ): Single<TLAuthorization> = executeRpcQuery(TLRequestAuthSignUp(phoneNumber, phoneCodeHash, phoneCode, firstName, lastName))
 
-    override fun botsAnswerWebhookJSONQuery(queryId: Long, data: TLDataJSON): Single<TLBool> = executeMethod(TLRequestBotsAnswerWebhookJSONQuery(queryId, data))
+    override fun botsAnswerWebhookJSONQuery(queryId: Long, data: TLDataJSON): Single<TLBool> = executeRpcQuery(TLRequestBotsAnswerWebhookJSONQuery(queryId, data))
 
-    override fun botsSendCustomRequest(customMethod: String, params: TLDataJSON): Single<TLDataJSON> = executeMethod(TLRequestBotsSendCustomRequest(customMethod, params))
+    override fun botsSendCustomRequest(customMethod: String, params: TLDataJSON): Single<TLDataJSON> = executeRpcQuery(TLRequestBotsSendCustomRequest(customMethod, params))
 
-    override fun channelsCheckUsername(channel: TLAbsInputChannel, username: String): Single<TLBool> = executeMethod(TLRequestChannelsCheckUsername(channel, username))
+    override fun channelsCheckUsername(channel: TLAbsInputChannel, username: String): Single<TLBool> = executeRpcQuery(TLRequestChannelsCheckUsername(channel, username))
 
     override fun channelsCreateChannel(
             broadcast: Boolean,
             megagroup: Boolean,
             title: String,
             about: String
-    ): Single<TLAbsUpdates> = executeMethod(TLRequestChannelsCreateChannel(broadcast, megagroup, title, about))
+    ): Single<TLAbsUpdates> = executeRpcQuery(TLRequestChannelsCreateChannel(broadcast, megagroup, title, about))
 
-    override fun channelsDeleteChannel(channel: TLAbsInputChannel): Single<TLAbsUpdates> = executeMethod(TLRequestChannelsDeleteChannel(channel))
+    override fun channelsDeleteChannel(channel: TLAbsInputChannel): Single<TLAbsUpdates> = executeRpcQuery(TLRequestChannelsDeleteChannel(channel))
 
-    override fun channelsDeleteMessages(channel: TLAbsInputChannel, id: TLIntVector): Single<TLAffectedMessages> = executeMethod(TLRequestChannelsDeleteMessages(channel, id))
+    override fun channelsDeleteHistory(channel: TLAbsInputChannel, maxId: Int): Single<TLBool> = executeRpcQuery(TLRequestChannelsDeleteHistory(channel, maxId))
 
-    override fun channelsDeleteUserHistory(channel: TLAbsInputChannel, userId: TLAbsInputUser): Single<TLAffectedHistory> = executeMethod(TLRequestChannelsDeleteUserHistory(channel, userId))
+    override fun channelsDeleteMessages(channel: TLAbsInputChannel, id: TLIntVector): Single<TLAffectedMessages> = executeRpcQuery(TLRequestChannelsDeleteMessages(channel, id))
 
-    override fun channelsEditAbout(channel: TLAbsInputChannel, about: String): Single<TLBool> = executeMethod(TLRequestChannelsEditAbout(channel, about))
+    override fun channelsDeleteUserHistory(channel: TLAbsInputChannel, userId: TLAbsInputUser): Single<TLAffectedHistory> = executeRpcQuery(TLRequestChannelsDeleteUserHistory(channel, userId))
+
+    override fun channelsEditAbout(channel: TLAbsInputChannel, about: String): Single<TLBool> = executeRpcQuery(TLRequestChannelsEditAbout(channel, about))
 
     override fun channelsEditAdmin(
             channel: TLAbsInputChannel,
             userId: TLAbsInputUser,
             adminRights: TLChannelAdminRights
-    ): Single<TLAbsUpdates> = executeMethod(TLRequestChannelsEditAdmin(channel, userId, adminRights))
+    ): Single<TLAbsUpdates> = executeRpcQuery(TLRequestChannelsEditAdmin(channel, userId, adminRights))
 
     override fun channelsEditBanned(
             channel: TLAbsInputChannel,
             userId: TLAbsInputUser,
             bannedRights: TLChannelBannedRights
-    ): Single<TLAbsUpdates> = executeMethod(TLRequestChannelsEditBanned(channel, userId, bannedRights))
+    ): Single<TLAbsUpdates> = executeRpcQuery(TLRequestChannelsEditBanned(channel, userId, bannedRights))
 
-    override fun channelsEditPhoto(channel: TLAbsInputChannel, photo: TLAbsInputChatPhoto): Single<TLAbsUpdates> = executeMethod(TLRequestChannelsEditPhoto(channel, photo))
+    override fun channelsEditPhoto(channel: TLAbsInputChannel, photo: TLAbsInputChatPhoto): Single<TLAbsUpdates> = executeRpcQuery(TLRequestChannelsEditPhoto(channel, photo))
 
-    override fun channelsEditTitle(channel: TLAbsInputChannel, title: String): Single<TLAbsUpdates> = executeMethod(TLRequestChannelsEditTitle(channel, title))
+    override fun channelsEditTitle(channel: TLAbsInputChannel, title: String): Single<TLAbsUpdates> = executeRpcQuery(TLRequestChannelsEditTitle(channel, title))
 
-    override fun channelsExportInvite(channel: TLAbsInputChannel): Single<TLAbsExportedChatInvite> = executeMethod(TLRequestChannelsExportInvite(channel))
+    override fun channelsExportInvite(channel: TLAbsInputChannel): Single<TLAbsExportedChatInvite> = executeRpcQuery(TLRequestChannelsExportInvite(channel))
 
-    override fun channelsExportMessageLink(channel: TLAbsInputChannel, id: Int): Single<TLExportedMessageLink> = executeMethod(TLRequestChannelsExportMessageLink(channel, id))
+    override fun channelsExportMessageLink(channel: TLAbsInputChannel, id: Int): Single<TLExportedMessageLink> = executeRpcQuery(TLRequestChannelsExportMessageLink(channel, id))
 
     override fun channelsGetAdminLog(
             channel: TLAbsInputChannel,
@@ -209,68 +208,71 @@ abstract class TelegramApiWrapper : TelegramApi, RpcQueryExecutor {
             maxId: Long,
             minId: Long,
             limit: Int
-    ): Single<TLAdminLogResults> = executeMethod(TLRequestChannelsGetAdminLog(channel, q, eventsFilter, admins, maxId, minId, limit))
+    ): Single<TLAdminLogResults> = executeRpcQuery(TLRequestChannelsGetAdminLog(channel, q, eventsFilter, admins, maxId, minId, limit))
 
-    override fun channelsGetAdminedPublicChannels(): Single<TLAbsChats> = executeMethod(TLRequestChannelsGetAdminedPublicChannels())
+    override fun channelsGetAdminedPublicChannels(): Single<TLAbsChats> = executeRpcQuery(TLRequestChannelsGetAdminedPublicChannels())
 
-    override fun channelsGetChannels(id: TLObjectVector<TLAbsInputChannel>): Single<TLAbsChats> = executeMethod(TLRequestChannelsGetChannels(id))
+    override fun channelsGetChannels(id: TLObjectVector<TLAbsInputChannel>): Single<TLAbsChats> = executeRpcQuery(TLRequestChannelsGetChannels(id))
 
-    override fun channelsGetFullChannel(channel: TLAbsInputChannel): Single<TLChatFull> = executeMethod(TLRequestChannelsGetFullChannel(channel))
+    override fun channelsGetFullChannel(channel: TLAbsInputChannel): Single<TLChatFull> = executeRpcQuery(TLRequestChannelsGetFullChannel(channel))
 
-    override fun channelsGetMessages(channel: TLAbsInputChannel, id: TLIntVector): Single<TLAbsMessages> = executeMethod(TLRequestChannelsGetMessages(channel, id))
+    override fun channelsGetMessages(channel: TLAbsInputChannel, id: TLIntVector): Single<TLAbsMessages> = executeRpcQuery(TLRequestChannelsGetMessages(channel, id))
 
-    override fun channelsGetParticipant(channel: TLAbsInputChannel, userId: TLAbsInputUser): Single<TLChannelParticipant> = executeMethod(TLRequestChannelsGetParticipant(channel, userId))
+    override fun channelsGetParticipant(channel: TLAbsInputChannel, userId: TLAbsInputUser): Single<TLChannelParticipant> = executeRpcQuery(TLRequestChannelsGetParticipant(channel, userId))
 
     override fun channelsGetParticipants(
             channel: TLAbsInputChannel,
             filter: TLAbsChannelParticipantsFilter,
             offset: Int,
-            limit: Int
-    ): Single<TLChannelParticipants> = executeMethod(TLRequestChannelsGetParticipants(channel, filter, offset, limit))
+            limit: Int,
+            hash: Int
+    ): Single<TLAbsChannelParticipants> = executeRpcQuery(TLRequestChannelsGetParticipants(channel, filter, offset, limit, hash))
 
-    override fun channelsInviteToChannel(channel: TLAbsInputChannel, users: TLObjectVector<TLAbsInputUser>): Single<TLAbsUpdates> = executeMethod(TLRequestChannelsInviteToChannel(channel, users))
+    override fun channelsInviteToChannel(channel: TLAbsInputChannel, users: TLObjectVector<TLAbsInputUser>): Single<TLAbsUpdates> = executeRpcQuery(TLRequestChannelsInviteToChannel(channel, users))
 
-    override fun channelsJoinChannel(channel: TLAbsInputChannel): Single<TLAbsUpdates> = executeMethod(TLRequestChannelsJoinChannel(channel))
+    override fun channelsJoinChannel(channel: TLAbsInputChannel): Single<TLAbsUpdates> = executeRpcQuery(TLRequestChannelsJoinChannel(channel))
 
-    override fun channelsLeaveChannel(channel: TLAbsInputChannel): Single<TLAbsUpdates> = executeMethod(TLRequestChannelsLeaveChannel(channel))
+    override fun channelsLeaveChannel(channel: TLAbsInputChannel): Single<TLAbsUpdates> = executeRpcQuery(TLRequestChannelsLeaveChannel(channel))
 
-    override fun channelsReadHistory(channel: TLAbsInputChannel, maxId: Int): Single<TLBool> = executeMethod(TLRequestChannelsReadHistory(channel, maxId))
+    override fun channelsReadHistory(channel: TLAbsInputChannel, maxId: Int): Single<TLBool> = executeRpcQuery(TLRequestChannelsReadHistory(channel, maxId))
 
-    override fun channelsReadMessageContents(channel: TLAbsInputChannel, id: TLIntVector): Single<TLBool> = executeMethod(TLRequestChannelsReadMessageContents(channel, id))
+    override fun channelsReadMessageContents(channel: TLAbsInputChannel, id: TLIntVector): Single<TLBool> = executeRpcQuery(TLRequestChannelsReadMessageContents(channel, id))
 
     override fun channelsReportSpam(
             channel: TLAbsInputChannel,
             userId: TLAbsInputUser,
             id: TLIntVector
-    ): Single<TLBool> = executeMethod(TLRequestChannelsReportSpam(channel, userId, id))
+    ): Single<TLBool> = executeRpcQuery(TLRequestChannelsReportSpam(channel, userId, id))
 
-    override fun channelsSetStickers(channel: TLAbsInputChannel, stickerset: TLAbsInputStickerSet): Single<TLBool> = executeMethod(TLRequestChannelsSetStickers(channel, stickerset))
+    override fun channelsSetStickers(channel: TLAbsInputChannel, stickerset: TLAbsInputStickerSet): Single<TLBool> = executeRpcQuery(TLRequestChannelsSetStickers(channel, stickerset))
 
-    override fun channelsToggleInvites(channel: TLAbsInputChannel, enabled: Boolean): Single<TLAbsUpdates> = executeMethod(TLRequestChannelsToggleInvites(channel, enabled))
+    override fun channelsToggleInvites(channel: TLAbsInputChannel, enabled: Boolean): Single<TLAbsUpdates> = executeRpcQuery(TLRequestChannelsToggleInvites(channel, enabled))
 
-    override fun channelsToggleSignatures(channel: TLAbsInputChannel, enabled: Boolean): Single<TLAbsUpdates> = executeMethod(TLRequestChannelsToggleSignatures(channel, enabled))
+    override fun channelsTogglePreHistoryHidden(channel: TLAbsInputChannel, enabled: Boolean): Single<TLAbsUpdates> = executeRpcQuery(TLRequestChannelsTogglePreHistoryHidden(channel, enabled))
+
+    override fun channelsToggleSignatures(channel: TLAbsInputChannel, enabled: Boolean): Single<TLAbsUpdates> = executeRpcQuery(TLRequestChannelsToggleSignatures(channel, enabled))
 
     override fun channelsUpdatePinnedMessage(
             silent: Boolean,
             channel: TLAbsInputChannel,
             id: Int
-    ): Single<TLAbsUpdates> = executeMethod(TLRequestChannelsUpdatePinnedMessage(silent, channel, id))
+    ): Single<TLAbsUpdates> = executeRpcQuery(TLRequestChannelsUpdatePinnedMessage(silent, channel, id))
 
-    override fun channelsUpdateUsername(channel: TLAbsInputChannel, username: String): Single<TLBool> = executeMethod(TLRequestChannelsUpdateUsername(channel, username))
+    override fun channelsUpdateUsername(channel: TLAbsInputChannel, username: String): Single<TLBool> = executeRpcQuery(TLRequestChannelsUpdateUsername(channel, username))
 
-    override fun contactsBlock(id: TLAbsInputUser): Single<TLBool> = executeMethod(TLRequestContactsBlock(id))
+    override fun contactsBlock(id: TLAbsInputUser): Single<TLBool> = executeRpcQuery(TLRequestContactsBlock(id))
 
-    override fun contactsDeleteContact(id: TLAbsInputUser): Single<TLLink> = executeMethod(TLRequestContactsDeleteContact(id))
+    override fun contactsDeleteContact(id: TLAbsInputUser): Single<TLLink> = executeRpcQuery(TLRequestContactsDeleteContact(id))
 
-    override fun contactsDeleteContacts(id: TLObjectVector<TLAbsInputUser>): Single<TLBool> = executeMethod(TLRequestContactsDeleteContacts(id))
+    override fun contactsDeleteContacts(id: TLObjectVector<TLAbsInputUser>): Single<TLBool> = executeRpcQuery(TLRequestContactsDeleteContacts(id))
 
-    override fun contactsExportCard(): Single<TLIntVector> = executeMethod(TLRequestContactsExportCard())
+    override fun contactsExportCard(): Single<TLIntVector> = executeRpcQuery(TLRequestContactsExportCard())
 
-    override fun contactsGetBlocked(offset: Int, limit: Int): Single<TLAbsBlocked> = executeMethod(TLRequestContactsGetBlocked(offset, limit))
+    override fun contactsGetBlocked(offset: Int, limit: Int): Single<TLAbsBlocked> = executeRpcQuery(TLRequestContactsGetBlocked(offset, limit))
 
-    override fun contactsGetContacts(hash: Int): Single<TLAbsContacts> = executeMethod(TLRequestContactsGetContacts(hash))
+    override fun contactsGetContacts(hash: Int): Single<TLAbsContacts> = executeRpcQuery(TLRequestContactsGetContacts(hash))
 
-    override fun contactsGetStatuses(): Single<TLObjectVector<TLContactStatus>> = executeMethod(TLRequestContactsGetStatuses())
+    override fun contactsGetStatuses(): Single<TLObjectVector<TLContactStatus>> = executeRpcQuery(TLRequestContactsGetStatuses())
 
     override fun contactsGetTopPeers(
             correspondents: Boolean,
@@ -282,41 +284,43 @@ abstract class TelegramApiWrapper : TelegramApi, RpcQueryExecutor {
             offset: Int,
             limit: Int,
             hash: Int
-    ): Single<TLAbsTopPeers> = executeMethod(TLRequestContactsGetTopPeers(correspondents, botsPm, botsInline, phoneCalls, groups, channels, offset, limit, hash))
+    ): Single<TLAbsTopPeers> = executeRpcQuery(TLRequestContactsGetTopPeers(correspondents, botsPm, botsInline, phoneCalls, groups, channels, offset, limit, hash))
 
-    override fun contactsImportCard(exportCard: TLIntVector): Single<TLAbsUser> = executeMethod(TLRequestContactsImportCard(exportCard))
+    override fun contactsImportCard(exportCard: TLIntVector): Single<TLAbsUser> = executeRpcQuery(TLRequestContactsImportCard(exportCard))
 
-    override fun contactsImportContacts(contacts: TLObjectVector<TLInputPhoneContact>): Single<TLImportedContacts> = executeMethod(TLRequestContactsImportContacts(contacts))
+    override fun contactsImportContacts(contacts: TLObjectVector<TLInputPhoneContact>): Single<TLImportedContacts> = executeRpcQuery(TLRequestContactsImportContacts(contacts))
 
-    override fun contactsResetSaved(): Single<TLBool> = executeMethod(TLRequestContactsResetSaved())
+    override fun contactsResetSaved(): Single<TLBool> = executeRpcQuery(TLRequestContactsResetSaved())
 
-    override fun contactsResetTopPeerRating(category: TLAbsTopPeerCategory, peer: TLAbsInputPeer): Single<TLBool> = executeMethod(TLRequestContactsResetTopPeerRating(category, peer))
+    override fun contactsResetTopPeerRating(category: TLAbsTopPeerCategory, peer: TLAbsInputPeer): Single<TLBool> = executeRpcQuery(TLRequestContactsResetTopPeerRating(category, peer))
 
-    override fun contactsResolveUsername(username: String): Single<TLResolvedPeer> = executeMethod(TLRequestContactsResolveUsername(username))
+    override fun contactsResolveUsername(username: String): Single<TLResolvedPeer> = executeRpcQuery(TLRequestContactsResolveUsername(username))
 
-    override fun contactsSearch(q: String, limit: Int): Single<TLFound> = executeMethod(TLRequestContactsSearch(q, limit))
+    override fun contactsSearch(q: String, limit: Int): Single<TLFound> = executeRpcQuery(TLRequestContactsSearch(q, limit))
 
-    override fun contactsUnblock(id: TLAbsInputUser): Single<TLBool> = executeMethod(TLRequestContactsUnblock(id))
+    override fun contactsUnblock(id: TLAbsInputUser): Single<TLBool> = executeRpcQuery(TLRequestContactsUnblock(id))
 
-    override fun helpGetAppChangelog(prevAppVersion: String): Single<TLAbsUpdates> = executeMethod(TLRequestHelpGetAppChangelog(prevAppVersion))
+    override fun helpGetAppChangelog(prevAppVersion: String): Single<TLAbsUpdates> = executeRpcQuery(TLRequestHelpGetAppChangelog(prevAppVersion))
 
-    override fun helpGetAppUpdate(): Single<TLAbsAppUpdate> = executeMethod(TLRequestHelpGetAppUpdate())
+    override fun helpGetAppUpdate(): Single<TLAbsAppUpdate> = executeRpcQuery(TLRequestHelpGetAppUpdate())
 
-    override fun helpGetCdnConfig(): Single<TLCdnConfig> = executeMethod(TLRequestHelpGetCdnConfig())
+    override fun helpGetCdnConfig(): Single<TLCdnConfig> = executeRpcQuery(TLRequestHelpGetCdnConfig())
 
-    override fun helpGetConfig(): Single<TLConfig> = executeMethod(TLRequestHelpGetConfig())
+    override fun helpGetConfig(): Single<TLConfig> = executeRpcQuery(TLRequestHelpGetConfig())
 
-    override fun helpGetInviteText(): Single<TLInviteText> = executeMethod(TLRequestHelpGetInviteText())
+    override fun helpGetInviteText(): Single<TLInviteText> = executeRpcQuery(TLRequestHelpGetInviteText())
 
-    override fun helpGetNearestDc(): Single<TLNearestDc> = executeMethod(TLRequestHelpGetNearestDc())
+    override fun helpGetNearestDc(): Single<TLNearestDc> = executeRpcQuery(TLRequestHelpGetNearestDc())
 
-    override fun helpGetSupport(): Single<TLSupport> = executeMethod(TLRequestHelpGetSupport())
+    override fun helpGetRecentMeUrls(referer: String): Single<TLRecentMeUrls> = executeRpcQuery(TLRequestHelpGetRecentMeUrls(referer))
 
-    override fun helpGetTermsOfService(): Single<TLTermsOfService> = executeMethod(TLRequestHelpGetTermsOfService())
+    override fun helpGetSupport(): Single<TLSupport> = executeRpcQuery(TLRequestHelpGetSupport())
 
-    override fun helpSaveAppLog(events: TLObjectVector<TLInputAppEvent>): Single<TLBool> = executeMethod(TLRequestHelpSaveAppLog(events))
+    override fun helpGetTermsOfService(): Single<TLTermsOfService> = executeRpcQuery(TLRequestHelpGetTermsOfService())
 
-    override fun helpSetBotUpdatesStatus(pendingUpdatesCount: Int, message: String): Single<TLBool> = executeMethod(TLRequestHelpSetBotUpdatesStatus(pendingUpdatesCount, message))
+    override fun helpSaveAppLog(events: TLObjectVector<TLInputAppEvent>): Single<TLBool> = executeRpcQuery(TLRequestHelpSaveAppLog(events))
+
+    override fun helpSetBotUpdatesStatus(pendingUpdatesCount: Int, message: String): Single<TLBool> = executeRpcQuery(TLRequestHelpSetBotUpdatesStatus(pendingUpdatesCount, message))
 
     override fun <T : TLObject> initConnection(
             apiId: Int,
@@ -327,63 +331,63 @@ abstract class TelegramApiWrapper : TelegramApi, RpcQueryExecutor {
             langPack: String,
             langCode: String,
             query: TLMethod<T>?
-    ): Single<T> = executeMethod(TLRequestInitConnection(apiId, deviceModel, systemVersion, appVersion, systemLangCode, langPack, langCode, query))
+    ): Single<T> = executeRpcQuery(TLRequestInitConnection(apiId, deviceModel, systemVersion, appVersion, systemLangCode, langPack, langCode, query))
 
-    override fun <T : TLObject> invokeAfterMsg(msgId: Long, query: TLMethod<T>?): Single<T> = executeMethod(TLRequestInvokeAfterMsg(msgId, query))
+    override fun <T : TLObject> invokeAfterMsg(msgId: Long, query: TLMethod<T>?): Single<T> = executeRpcQuery(TLRequestInvokeAfterMsg(msgId, query))
 
-    override fun <T : TLObject> invokeAfterMsgs(msgIds: TLLongVector, query: TLMethod<T>?): Single<T> = executeMethod(TLRequestInvokeAfterMsgs(msgIds, query))
+    override fun <T : TLObject> invokeAfterMsgs(msgIds: TLLongVector, query: TLMethod<T>?): Single<T> = executeRpcQuery(TLRequestInvokeAfterMsgs(msgIds, query))
 
-    override fun <T : TLObject> invokeWithLayer(layer: Int, query: TLMethod<T>?): Single<T> = executeMethod(TLRequestInvokeWithLayer(layer, query))
+    override fun <T : TLObject> invokeWithLayer(layer: Int, query: TLMethod<T>?): Single<T> = executeRpcQuery(TLRequestInvokeWithLayer(layer, query))
 
-    override fun <T : TLObject> invokeWithoutUpdates(query: TLMethod<T>?): Single<T> = executeMethod(TLRequestInvokeWithoutUpdates(query))
+    override fun <T : TLObject> invokeWithoutUpdates(query: TLMethod<T>?): Single<T> = executeRpcQuery(TLRequestInvokeWithoutUpdates(query))
 
-    override fun langpackGetDifference(fromVersion: Int): Single<TLLangPackDifference> = executeMethod(TLRequestLangpackGetDifference(fromVersion))
+    override fun langpackGetDifference(fromVersion: Int): Single<TLLangPackDifference> = executeRpcQuery(TLRequestLangpackGetDifference(fromVersion))
 
-    override fun langpackGetLangPack(langCode: String): Single<TLLangPackDifference> = executeMethod(TLRequestLangpackGetLangPack(langCode))
+    override fun langpackGetLangPack(langCode: String): Single<TLLangPackDifference> = executeRpcQuery(TLRequestLangpackGetLangPack(langCode))
 
-    override fun langpackGetLanguages(): Single<TLObjectVector<TLLangPackLanguage>> = executeMethod(TLRequestLangpackGetLanguages())
+    override fun langpackGetLanguages(): Single<TLObjectVector<TLLangPackLanguage>> = executeRpcQuery(TLRequestLangpackGetLanguages())
 
-    override fun langpackGetStrings(langCode: String, keys: TLStringVector): Single<TLObjectVector<TLAbsLangPackString>> = executeMethod(TLRequestLangpackGetStrings(langCode, keys))
+    override fun langpackGetStrings(langCode: String, keys: TLStringVector): Single<TLObjectVector<TLAbsLangPackString>> = executeRpcQuery(TLRequestLangpackGetStrings(langCode, keys))
 
     override fun messagesAcceptEncryption(
             peer: TLInputEncryptedChat,
             gB: TLBytes,
             keyFingerprint: Long
-    ): Single<TLAbsEncryptedChat> = executeMethod(TLRequestMessagesAcceptEncryption(peer, gB, keyFingerprint))
+    ): Single<TLAbsEncryptedChat> = executeRpcQuery(TLRequestMessagesAcceptEncryption(peer, gB, keyFingerprint))
 
     override fun messagesAddChatUser(
             chatId: Int,
             userId: TLAbsInputUser,
             fwdLimit: Int
-    ): Single<TLAbsUpdates> = executeMethod(TLRequestMessagesAddChatUser(chatId, userId, fwdLimit))
+    ): Single<TLAbsUpdates> = executeRpcQuery(TLRequestMessagesAddChatUser(chatId, userId, fwdLimit))
 
-    override fun messagesCheckChatInvite(hash: String): Single<TLAbsChatInvite> = executeMethod(TLRequestMessagesCheckChatInvite(hash))
+    override fun messagesCheckChatInvite(hash: String): Single<TLAbsChatInvite> = executeRpcQuery(TLRequestMessagesCheckChatInvite(hash))
 
-    override fun messagesClearRecentStickers(attached: Boolean): Single<TLBool> = executeMethod(TLRequestMessagesClearRecentStickers(attached))
+    override fun messagesClearRecentStickers(attached: Boolean): Single<TLBool> = executeRpcQuery(TLRequestMessagesClearRecentStickers(attached))
 
-    override fun messagesCreateChat(users: TLObjectVector<TLAbsInputUser>, title: String): Single<TLAbsUpdates> = executeMethod(TLRequestMessagesCreateChat(users, title))
+    override fun messagesCreateChat(users: TLObjectVector<TLAbsInputUser>, title: String): Single<TLAbsUpdates> = executeRpcQuery(TLRequestMessagesCreateChat(users, title))
 
-    override fun messagesDeleteChatUser(chatId: Int, userId: TLAbsInputUser): Single<TLAbsUpdates> = executeMethod(TLRequestMessagesDeleteChatUser(chatId, userId))
+    override fun messagesDeleteChatUser(chatId: Int, userId: TLAbsInputUser): Single<TLAbsUpdates> = executeRpcQuery(TLRequestMessagesDeleteChatUser(chatId, userId))
 
     override fun messagesDeleteHistory(
             justClear: Boolean,
             peer: TLAbsInputPeer,
             maxId: Int
-    ): Single<TLAffectedHistory> = executeMethod(TLRequestMessagesDeleteHistory(justClear, peer, maxId))
+    ): Single<TLAffectedHistory> = executeRpcQuery(TLRequestMessagesDeleteHistory(justClear, peer, maxId))
 
-    override fun messagesDeleteMessages(revoke: Boolean, id: TLIntVector): Single<TLAffectedMessages> = executeMethod(TLRequestMessagesDeleteMessages(revoke, id))
+    override fun messagesDeleteMessages(revoke: Boolean, id: TLIntVector): Single<TLAffectedMessages> = executeRpcQuery(TLRequestMessagesDeleteMessages(revoke, id))
 
-    override fun messagesDiscardEncryption(chatId: Int): Single<TLBool> = executeMethod(TLRequestMessagesDiscardEncryption(chatId))
+    override fun messagesDiscardEncryption(chatId: Int): Single<TLBool> = executeRpcQuery(TLRequestMessagesDiscardEncryption(chatId))
 
     override fun messagesEditChatAdmin(
             chatId: Int,
             userId: TLAbsInputUser,
             isAdmin: Boolean
-    ): Single<TLBool> = executeMethod(TLRequestMessagesEditChatAdmin(chatId, userId, isAdmin))
+    ): Single<TLBool> = executeRpcQuery(TLRequestMessagesEditChatAdmin(chatId, userId, isAdmin))
 
-    override fun messagesEditChatPhoto(chatId: Int, photo: TLAbsInputChatPhoto): Single<TLAbsUpdates> = executeMethod(TLRequestMessagesEditChatPhoto(chatId, photo))
+    override fun messagesEditChatPhoto(chatId: Int, photo: TLAbsInputChatPhoto): Single<TLAbsUpdates> = executeRpcQuery(TLRequestMessagesEditChatPhoto(chatId, photo))
 
-    override fun messagesEditChatTitle(chatId: Int, title: String): Single<TLAbsUpdates> = executeMethod(TLRequestMessagesEditChatTitle(chatId, title))
+    override fun messagesEditChatTitle(chatId: Int, title: String): Single<TLAbsUpdates> = executeRpcQuery(TLRequestMessagesEditChatTitle(chatId, title))
 
     override fun messagesEditInlineBotMessage(
             noWebpage: Boolean,
@@ -391,26 +395,28 @@ abstract class TelegramApiWrapper : TelegramApi, RpcQueryExecutor {
             message: String?,
             replyMarkup: TLAbsReplyMarkup?,
             entities: TLObjectVector<TLAbsMessageEntity>?
-    ): Single<TLBool> = executeMethod(TLRequestMessagesEditInlineBotMessage(noWebpage, id, message, replyMarkup, entities))
+    ): Single<TLBool> = executeRpcQuery(TLRequestMessagesEditInlineBotMessage(noWebpage, id, message, replyMarkup, entities))
 
     override fun messagesEditMessage(
             noWebpage: Boolean,
+            stopGeoLive: Boolean,
             peer: TLAbsInputPeer,
             id: Int,
             message: String?,
             replyMarkup: TLAbsReplyMarkup?,
-            entities: TLObjectVector<TLAbsMessageEntity>?
-    ): Single<TLAbsUpdates> = executeMethod(TLRequestMessagesEditMessage(noWebpage, peer, id, message, replyMarkup, entities))
+            entities: TLObjectVector<TLAbsMessageEntity>?,
+            geoPoint: TLAbsInputGeoPoint?
+    ): Single<TLAbsUpdates> = executeRpcQuery(TLRequestMessagesEditMessage(noWebpage, stopGeoLive, peer, id, message, replyMarkup, entities, geoPoint))
 
-    override fun messagesExportChatInvite(chatId: Int): Single<TLAbsExportedChatInvite> = executeMethod(TLRequestMessagesExportChatInvite(chatId))
+    override fun messagesExportChatInvite(chatId: Int): Single<TLAbsExportedChatInvite> = executeRpcQuery(TLRequestMessagesExportChatInvite(chatId))
 
-    override fun messagesFaveSticker(id: TLAbsInputDocument, unfave: Boolean): Single<TLBool> = executeMethod(TLRequestMessagesFaveSticker(id, unfave))
+    override fun messagesFaveSticker(id: TLAbsInputDocument, unfave: Boolean): Single<TLBool> = executeRpcQuery(TLRequestMessagesFaveSticker(id, unfave))
 
     override fun messagesForwardMessage(
             peer: TLAbsInputPeer,
             id: Int,
             randomId: Long
-    ): Single<TLAbsUpdates> = executeMethod(TLRequestMessagesForwardMessage(peer, id, randomId))
+    ): Single<TLAbsUpdates> = executeRpcQuery(TLRequestMessagesForwardMessage(peer, id, randomId))
 
     override fun messagesForwardMessages(
             silent: Boolean,
@@ -420,38 +426,38 @@ abstract class TelegramApiWrapper : TelegramApi, RpcQueryExecutor {
             id: TLIntVector,
             randomId: TLLongVector,
             toPeer: TLAbsInputPeer
-    ): Single<TLAbsUpdates> = executeMethod(TLRequestMessagesForwardMessages(silent, background, withMyScore, fromPeer, id, randomId, toPeer))
+    ): Single<TLAbsUpdates> = executeRpcQuery(TLRequestMessagesForwardMessages(silent, background, withMyScore, fromPeer, id, randomId, toPeer))
 
-    override fun messagesGetAllChats(exceptIds: TLIntVector): Single<TLAbsChats> = executeMethod(TLRequestMessagesGetAllChats(exceptIds))
+    override fun messagesGetAllChats(exceptIds: TLIntVector): Single<TLAbsChats> = executeRpcQuery(TLRequestMessagesGetAllChats(exceptIds))
 
-    override fun messagesGetAllDrafts(): Single<TLAbsUpdates> = executeMethod(TLRequestMessagesGetAllDrafts())
+    override fun messagesGetAllDrafts(): Single<TLAbsUpdates> = executeRpcQuery(TLRequestMessagesGetAllDrafts())
 
-    override fun messagesGetAllStickers(hash: Int): Single<TLAbsAllStickers> = executeMethod(TLRequestMessagesGetAllStickers(hash))
+    override fun messagesGetAllStickers(hash: Int): Single<TLAbsAllStickers> = executeRpcQuery(TLRequestMessagesGetAllStickers(hash))
 
     override fun messagesGetArchivedStickers(
             masks: Boolean,
             offsetId: Long,
             limit: Int
-    ): Single<TLArchivedStickers> = executeMethod(TLRequestMessagesGetArchivedStickers(masks, offsetId, limit))
+    ): Single<TLArchivedStickers> = executeRpcQuery(TLRequestMessagesGetArchivedStickers(masks, offsetId, limit))
 
-    override fun messagesGetAttachedStickers(media: TLAbsInputStickeredMedia): Single<TLObjectVector<TLAbsStickerSetCovered>> = executeMethod(TLRequestMessagesGetAttachedStickers(media))
+    override fun messagesGetAttachedStickers(media: TLAbsInputStickeredMedia): Single<TLObjectVector<TLAbsStickerSetCovered>> = executeRpcQuery(TLRequestMessagesGetAttachedStickers(media))
 
     override fun messagesGetBotCallbackAnswer(
             game: Boolean,
             peer: TLAbsInputPeer,
             msgId: Int,
             data: TLBytes?
-    ): Single<TLBotCallbackAnswer> = executeMethod(TLRequestMessagesGetBotCallbackAnswer(game, peer, msgId, data))
+    ): Single<TLBotCallbackAnswer> = executeRpcQuery(TLRequestMessagesGetBotCallbackAnswer(game, peer, msgId, data))
 
-    override fun messagesGetChats(id: TLIntVector): Single<TLAbsChats> = executeMethod(TLRequestMessagesGetChats(id))
+    override fun messagesGetChats(id: TLIntVector): Single<TLAbsChats> = executeRpcQuery(TLRequestMessagesGetChats(id))
 
     override fun messagesGetCommonChats(
             userId: TLAbsInputUser,
             maxId: Int,
             limit: Int
-    ): Single<TLAbsChats> = executeMethod(TLRequestMessagesGetCommonChats(userId, maxId, limit))
+    ): Single<TLAbsChats> = executeRpcQuery(TLRequestMessagesGetCommonChats(userId, maxId, limit))
 
-    override fun messagesGetDhConfig(version: Int, randomLength: Int): Single<TLAbsDhConfig> = executeMethod(TLRequestMessagesGetDhConfig(version, randomLength))
+    override fun messagesGetDhConfig(version: Int, randomLength: Int): Single<TLAbsDhConfig> = executeRpcQuery(TLRequestMessagesGetDhConfig(version, randomLength))
 
     override fun messagesGetDialogs(
             excludePinned: Boolean,
@@ -459,25 +465,25 @@ abstract class TelegramApiWrapper : TelegramApi, RpcQueryExecutor {
             offsetId: Int,
             offsetPeer: TLAbsInputPeer,
             limit: Int
-    ): Single<TLAbsDialogs> = executeMethod(TLRequestMessagesGetDialogs(excludePinned, offsetDate, offsetId, offsetPeer, limit))
+    ): Single<TLAbsDialogs> = executeRpcQuery(TLRequestMessagesGetDialogs(excludePinned, offsetDate, offsetId, offsetPeer, limit))
 
     override fun messagesGetDocumentByHash(
             sha256: TLBytes,
             size: Int,
             mimeType: String
-    ): Single<TLAbsDocument> = executeMethod(TLRequestMessagesGetDocumentByHash(sha256, size, mimeType))
+    ): Single<TLAbsDocument> = executeRpcQuery(TLRequestMessagesGetDocumentByHash(sha256, size, mimeType))
 
-    override fun messagesGetFavedStickers(hash: Int): Single<TLAbsFavedStickers> = executeMethod(TLRequestMessagesGetFavedStickers(hash))
+    override fun messagesGetFavedStickers(hash: Int): Single<TLAbsFavedStickers> = executeRpcQuery(TLRequestMessagesGetFavedStickers(hash))
 
-    override fun messagesGetFeaturedStickers(hash: Int): Single<TLAbsFeaturedStickers> = executeMethod(TLRequestMessagesGetFeaturedStickers(hash))
+    override fun messagesGetFeaturedStickers(hash: Int): Single<TLAbsFeaturedStickers> = executeRpcQuery(TLRequestMessagesGetFeaturedStickers(hash))
 
-    override fun messagesGetFullChat(chatId: Int): Single<TLChatFull> = executeMethod(TLRequestMessagesGetFullChat(chatId))
+    override fun messagesGetFullChat(chatId: Int): Single<TLChatFull> = executeRpcQuery(TLRequestMessagesGetFullChat(chatId))
 
     override fun messagesGetGameHighScores(
             peer: TLAbsInputPeer,
             id: Int,
             userId: TLAbsInputUser
-    ): Single<TLHighScores> = executeMethod(TLRequestMessagesGetGameHighScores(peer, id, userId))
+    ): Single<TLHighScores> = executeRpcQuery(TLRequestMessagesGetGameHighScores(peer, id, userId))
 
     override fun messagesGetHistory(
             peer: TLAbsInputPeer,
@@ -487,7 +493,7 @@ abstract class TelegramApiWrapper : TelegramApi, RpcQueryExecutor {
             limit: Int,
             maxId: Int,
             minId: Int
-    ): Single<TLAbsMessages> = executeMethod(TLRequestMessagesGetHistory(peer, offsetId, offsetDate, addOffset, limit, maxId, minId))
+    ): Single<TLAbsMessages> = executeRpcQuery(TLRequestMessagesGetHistory(peer, offsetId, offsetDate, addOffset, limit, maxId, minId))
 
     override fun messagesGetInlineBotResults(
             bot: TLAbsInputUser,
@@ -495,33 +501,35 @@ abstract class TelegramApiWrapper : TelegramApi, RpcQueryExecutor {
             geoPoint: TLAbsInputGeoPoint?,
             query: String,
             offset: String
-    ): Single<TLBotResults> = executeMethod(TLRequestMessagesGetInlineBotResults(bot, peer, geoPoint, query, offset))
+    ): Single<TLBotResults> = executeRpcQuery(TLRequestMessagesGetInlineBotResults(bot, peer, geoPoint, query, offset))
 
-    override fun messagesGetInlineGameHighScores(id: TLInputBotInlineMessageID, userId: TLAbsInputUser): Single<TLHighScores> = executeMethod(TLRequestMessagesGetInlineGameHighScores(id, userId))
+    override fun messagesGetInlineGameHighScores(id: TLInputBotInlineMessageID, userId: TLAbsInputUser): Single<TLHighScores> = executeRpcQuery(TLRequestMessagesGetInlineGameHighScores(id, userId))
 
-    override fun messagesGetMaskStickers(hash: Int): Single<TLAbsAllStickers> = executeMethod(TLRequestMessagesGetMaskStickers(hash))
+    override fun messagesGetMaskStickers(hash: Int): Single<TLAbsAllStickers> = executeRpcQuery(TLRequestMessagesGetMaskStickers(hash))
 
-    override fun messagesGetMessageEditData(peer: TLAbsInputPeer, id: Int): Single<TLMessageEditData> = executeMethod(TLRequestMessagesGetMessageEditData(peer, id))
+    override fun messagesGetMessageEditData(peer: TLAbsInputPeer, id: Int): Single<TLMessageEditData> = executeRpcQuery(TLRequestMessagesGetMessageEditData(peer, id))
 
-    override fun messagesGetMessages(id: TLIntVector): Single<TLAbsMessages> = executeMethod(TLRequestMessagesGetMessages(id))
+    override fun messagesGetMessages(id: TLIntVector): Single<TLAbsMessages> = executeRpcQuery(TLRequestMessagesGetMessages(id))
 
     override fun messagesGetMessagesViews(
             peer: TLAbsInputPeer,
             id: TLIntVector,
             increment: Boolean
-    ): Single<TLIntVector> = executeMethod(TLRequestMessagesGetMessagesViews(peer, id, increment))
+    ): Single<TLIntVector> = executeRpcQuery(TLRequestMessagesGetMessagesViews(peer, id, increment))
 
-    override fun messagesGetPeerDialogs(peers: TLObjectVector<TLAbsInputPeer>): Single<TLPeerDialogs> = executeMethod(TLRequestMessagesGetPeerDialogs(peers))
+    override fun messagesGetPeerDialogs(peers: TLObjectVector<TLAbsInputPeer>): Single<TLPeerDialogs> = executeRpcQuery(TLRequestMessagesGetPeerDialogs(peers))
 
-    override fun messagesGetPeerSettings(peer: TLAbsInputPeer): Single<TLPeerSettings> = executeMethod(TLRequestMessagesGetPeerSettings(peer))
+    override fun messagesGetPeerSettings(peer: TLAbsInputPeer): Single<TLPeerSettings> = executeRpcQuery(TLRequestMessagesGetPeerSettings(peer))
 
-    override fun messagesGetPinnedDialogs(): Single<TLPeerDialogs> = executeMethod(TLRequestMessagesGetPinnedDialogs())
+    override fun messagesGetPinnedDialogs(): Single<TLPeerDialogs> = executeRpcQuery(TLRequestMessagesGetPinnedDialogs())
 
-    override fun messagesGetRecentStickers(attached: Boolean, hash: Int): Single<TLAbsRecentStickers> = executeMethod(TLRequestMessagesGetRecentStickers(attached, hash))
+    override fun messagesGetRecentLocations(peer: TLAbsInputPeer, limit: Int): Single<TLAbsMessages> = executeRpcQuery(TLRequestMessagesGetRecentLocations(peer, limit))
 
-    override fun messagesGetSavedGifs(hash: Int): Single<TLAbsSavedGifs> = executeMethod(TLRequestMessagesGetSavedGifs(hash))
+    override fun messagesGetRecentStickers(attached: Boolean, hash: Int): Single<TLAbsRecentStickers> = executeRpcQuery(TLRequestMessagesGetRecentStickers(attached, hash))
 
-    override fun messagesGetStickerSet(stickerset: TLAbsInputStickerSet): Single<TLStickerSet> = executeMethod(TLRequestMessagesGetStickerSet(stickerset))
+    override fun messagesGetSavedGifs(hash: Int): Single<TLAbsSavedGifs> = executeRpcQuery(TLRequestMessagesGetSavedGifs(hash))
+
+    override fun messagesGetStickerSet(stickerset: TLAbsInputStickerSet): Single<TLStickerSet> = executeRpcQuery(TLRequestMessagesGetStickerSet(stickerset))
 
     override fun messagesGetUnreadMentions(
             peer: TLAbsInputPeer,
@@ -530,45 +538,47 @@ abstract class TelegramApiWrapper : TelegramApi, RpcQueryExecutor {
             limit: Int,
             maxId: Int,
             minId: Int
-    ): Single<TLAbsMessages> = executeMethod(TLRequestMessagesGetUnreadMentions(peer, offsetId, addOffset, limit, maxId, minId))
+    ): Single<TLAbsMessages> = executeRpcQuery(TLRequestMessagesGetUnreadMentions(peer, offsetId, addOffset, limit, maxId, minId))
 
-    override fun messagesGetWebPage(url: String, hash: Int): Single<TLAbsWebPage> = executeMethod(TLRequestMessagesGetWebPage(url, hash))
+    override fun messagesGetWebPage(url: String, hash: Int): Single<TLAbsWebPage> = executeRpcQuery(TLRequestMessagesGetWebPage(url, hash))
 
-    override fun messagesGetWebPagePreview(message: String): Single<TLAbsMessageMedia> = executeMethod(TLRequestMessagesGetWebPagePreview(message))
+    override fun messagesGetWebPagePreview(message: String): Single<TLAbsMessageMedia> = executeRpcQuery(TLRequestMessagesGetWebPagePreview(message))
 
-    override fun messagesHideReportSpam(peer: TLAbsInputPeer): Single<TLBool> = executeMethod(TLRequestMessagesHideReportSpam(peer))
+    override fun messagesHideReportSpam(peer: TLAbsInputPeer): Single<TLBool> = executeRpcQuery(TLRequestMessagesHideReportSpam(peer))
 
-    override fun messagesImportChatInvite(hash: String): Single<TLAbsUpdates> = executeMethod(TLRequestMessagesImportChatInvite(hash))
+    override fun messagesImportChatInvite(hash: String): Single<TLAbsUpdates> = executeRpcQuery(TLRequestMessagesImportChatInvite(hash))
 
-    override fun messagesInstallStickerSet(stickerset: TLAbsInputStickerSet, archived: Boolean): Single<TLAbsStickerSetInstallResult> = executeMethod(TLRequestMessagesInstallStickerSet(stickerset, archived))
+    override fun messagesInstallStickerSet(stickerset: TLAbsInputStickerSet, archived: Boolean): Single<TLAbsStickerSetInstallResult> = executeRpcQuery(TLRequestMessagesInstallStickerSet(stickerset, archived))
 
-    override fun messagesMigrateChat(chatId: Int): Single<TLAbsUpdates> = executeMethod(TLRequestMessagesMigrateChat(chatId))
+    override fun messagesMigrateChat(chatId: Int): Single<TLAbsUpdates> = executeRpcQuery(TLRequestMessagesMigrateChat(chatId))
 
-    override fun messagesReadEncryptedHistory(peer: TLInputEncryptedChat, maxDate: Int): Single<TLBool> = executeMethod(TLRequestMessagesReadEncryptedHistory(peer, maxDate))
+    override fun messagesReadEncryptedHistory(peer: TLInputEncryptedChat, maxDate: Int): Single<TLBool> = executeRpcQuery(TLRequestMessagesReadEncryptedHistory(peer, maxDate))
 
-    override fun messagesReadFeaturedStickers(id: TLLongVector): Single<TLBool> = executeMethod(TLRequestMessagesReadFeaturedStickers(id))
+    override fun messagesReadFeaturedStickers(id: TLLongVector): Single<TLBool> = executeRpcQuery(TLRequestMessagesReadFeaturedStickers(id))
 
-    override fun messagesReadHistory(peer: TLAbsInputPeer, maxId: Int): Single<TLAffectedMessages> = executeMethod(TLRequestMessagesReadHistory(peer, maxId))
+    override fun messagesReadHistory(peer: TLAbsInputPeer, maxId: Int): Single<TLAffectedMessages> = executeRpcQuery(TLRequestMessagesReadHistory(peer, maxId))
 
-    override fun messagesReadMessageContents(id: TLIntVector): Single<TLAffectedMessages> = executeMethod(TLRequestMessagesReadMessageContents(id))
+    override fun messagesReadMentions(peer: TLAbsInputPeer): Single<TLAffectedHistory> = executeRpcQuery(TLRequestMessagesReadMentions(peer))
 
-    override fun messagesReceivedMessages(maxId: Int): Single<TLObjectVector<TLReceivedNotifyMessage>> = executeMethod(TLRequestMessagesReceivedMessages(maxId))
+    override fun messagesReadMessageContents(id: TLIntVector): Single<TLAffectedMessages> = executeRpcQuery(TLRequestMessagesReadMessageContents(id))
 
-    override fun messagesReceivedQueue(maxQts: Int): Single<TLLongVector> = executeMethod(TLRequestMessagesReceivedQueue(maxQts))
+    override fun messagesReceivedMessages(maxId: Int): Single<TLObjectVector<TLReceivedNotifyMessage>> = executeRpcQuery(TLRequestMessagesReceivedMessages(maxId))
 
-    override fun messagesReorderPinnedDialogs(force: Boolean, order: TLObjectVector<TLAbsInputPeer>): Single<TLBool> = executeMethod(TLRequestMessagesReorderPinnedDialogs(force, order))
+    override fun messagesReceivedQueue(maxQts: Int): Single<TLLongVector> = executeRpcQuery(TLRequestMessagesReceivedQueue(maxQts))
 
-    override fun messagesReorderStickerSets(masks: Boolean, order: TLLongVector): Single<TLBool> = executeMethod(TLRequestMessagesReorderStickerSets(masks, order))
+    override fun messagesReorderPinnedDialogs(force: Boolean, order: TLObjectVector<TLAbsInputPeer>): Single<TLBool> = executeRpcQuery(TLRequestMessagesReorderPinnedDialogs(force, order))
 
-    override fun messagesReportEncryptedSpam(peer: TLInputEncryptedChat): Single<TLBool> = executeMethod(TLRequestMessagesReportEncryptedSpam(peer))
+    override fun messagesReorderStickerSets(masks: Boolean, order: TLLongVector): Single<TLBool> = executeRpcQuery(TLRequestMessagesReorderStickerSets(masks, order))
 
-    override fun messagesReportSpam(peer: TLAbsInputPeer): Single<TLBool> = executeMethod(TLRequestMessagesReportSpam(peer))
+    override fun messagesReportEncryptedSpam(peer: TLInputEncryptedChat): Single<TLBool> = executeRpcQuery(TLRequestMessagesReportEncryptedSpam(peer))
+
+    override fun messagesReportSpam(peer: TLAbsInputPeer): Single<TLBool> = executeRpcQuery(TLRequestMessagesReportSpam(peer))
 
     override fun messagesRequestEncryption(
             userId: TLAbsInputUser,
             randomId: Int,
             gA: TLBytes
-    ): Single<TLAbsEncryptedChat> = executeMethod(TLRequestMessagesRequestEncryption(userId, randomId, gA))
+    ): Single<TLAbsEncryptedChat> = executeRpcQuery(TLRequestMessagesRequestEncryption(userId, randomId, gA))
 
     override fun messagesSaveDraft(
             noWebpage: Boolean,
@@ -576,15 +586,15 @@ abstract class TelegramApiWrapper : TelegramApi, RpcQueryExecutor {
             peer: TLAbsInputPeer,
             message: String,
             entities: TLObjectVector<TLAbsMessageEntity>?
-    ): Single<TLBool> = executeMethod(TLRequestMessagesSaveDraft(noWebpage, replyToMsgId, peer, message, entities))
+    ): Single<TLBool> = executeRpcQuery(TLRequestMessagesSaveDraft(noWebpage, replyToMsgId, peer, message, entities))
 
-    override fun messagesSaveGif(id: TLAbsInputDocument, unsave: Boolean): Single<TLBool> = executeMethod(TLRequestMessagesSaveGif(id, unsave))
+    override fun messagesSaveGif(id: TLAbsInputDocument, unsave: Boolean): Single<TLBool> = executeRpcQuery(TLRequestMessagesSaveGif(id, unsave))
 
     override fun messagesSaveRecentSticker(
             attached: Boolean,
             id: TLAbsInputDocument,
             unsave: Boolean
-    ): Single<TLBool> = executeMethod(TLRequestMessagesSaveRecentSticker(attached, id, unsave))
+    ): Single<TLBool> = executeRpcQuery(TLRequestMessagesSaveRecentSticker(attached, id, unsave))
 
     override fun messagesSearch(
             peer: TLAbsInputPeer,
@@ -598,9 +608,9 @@ abstract class TelegramApiWrapper : TelegramApi, RpcQueryExecutor {
             limit: Int,
             maxId: Int,
             minId: Int
-    ): Single<TLAbsMessages> = executeMethod(TLRequestMessagesSearch(peer, q, fromId, filter, minDate, maxDate, offsetId, addOffset, limit, maxId, minId))
+    ): Single<TLAbsMessages> = executeRpcQuery(TLRequestMessagesSearch(peer, q, fromId, filter, minDate, maxDate, offsetId, addOffset, limit, maxId, minId))
 
-    override fun messagesSearchGifs(q: String, offset: Int): Single<TLFoundGifs> = executeMethod(TLRequestMessagesSearchGifs(q, offset))
+    override fun messagesSearchGifs(q: String, offset: Int): Single<TLFoundGifs> = executeRpcQuery(TLRequestMessagesSearchGifs(q, offset))
 
     override fun messagesSearchGlobal(
             q: String,
@@ -608,26 +618,26 @@ abstract class TelegramApiWrapper : TelegramApi, RpcQueryExecutor {
             offsetPeer: TLAbsInputPeer,
             offsetId: Int,
             limit: Int
-    ): Single<TLAbsMessages> = executeMethod(TLRequestMessagesSearchGlobal(q, offsetDate, offsetPeer, offsetId, limit))
+    ): Single<TLAbsMessages> = executeRpcQuery(TLRequestMessagesSearchGlobal(q, offsetDate, offsetPeer, offsetId, limit))
 
     override fun messagesSendEncrypted(
             peer: TLInputEncryptedChat,
             randomId: Long,
             data: TLBytes
-    ): Single<TLAbsSentEncryptedMessage> = executeMethod(TLRequestMessagesSendEncrypted(peer, randomId, data))
+    ): Single<TLAbsSentEncryptedMessage> = executeRpcQuery(TLRequestMessagesSendEncrypted(peer, randomId, data))
 
     override fun messagesSendEncryptedFile(
             peer: TLInputEncryptedChat,
             randomId: Long,
             data: TLBytes,
             file: TLAbsInputEncryptedFile
-    ): Single<TLAbsSentEncryptedMessage> = executeMethod(TLRequestMessagesSendEncryptedFile(peer, randomId, data, file))
+    ): Single<TLAbsSentEncryptedMessage> = executeRpcQuery(TLRequestMessagesSendEncryptedFile(peer, randomId, data, file))
 
     override fun messagesSendEncryptedService(
             peer: TLInputEncryptedChat,
             randomId: Long,
             data: TLBytes
-    ): Single<TLAbsSentEncryptedMessage> = executeMethod(TLRequestMessagesSendEncryptedService(peer, randomId, data))
+    ): Single<TLAbsSentEncryptedMessage> = executeRpcQuery(TLRequestMessagesSendEncryptedService(peer, randomId, data))
 
     override fun messagesSendInlineBotResult(
             silent: Boolean,
@@ -638,7 +648,7 @@ abstract class TelegramApiWrapper : TelegramApi, RpcQueryExecutor {
             randomId: Long,
             queryId: Long,
             id: String
-    ): Single<TLAbsUpdates> = executeMethod(TLRequestMessagesSendInlineBotResult(silent, background, clearDraft, peer, replyToMsgId, randomId, queryId, id))
+    ): Single<TLAbsUpdates> = executeRpcQuery(TLRequestMessagesSendInlineBotResult(silent, background, clearDraft, peer, replyToMsgId, randomId, queryId, id))
 
     override fun messagesSendMedia(
             silent: Boolean,
@@ -649,7 +659,7 @@ abstract class TelegramApiWrapper : TelegramApi, RpcQueryExecutor {
             media: TLAbsInputMedia,
             randomId: Long,
             replyMarkup: TLAbsReplyMarkup?
-    ): Single<TLAbsUpdates> = executeMethod(TLRequestMessagesSendMedia(silent, background, clearDraft, peer, replyToMsgId, media, randomId, replyMarkup))
+    ): Single<TLAbsUpdates> = executeRpcQuery(TLRequestMessagesSendMedia(silent, background, clearDraft, peer, replyToMsgId, media, randomId, replyMarkup))
 
     override fun messagesSendMessage(
             noWebpage: Boolean,
@@ -662,13 +672,13 @@ abstract class TelegramApiWrapper : TelegramApi, RpcQueryExecutor {
             randomId: Long,
             replyMarkup: TLAbsReplyMarkup?,
             entities: TLObjectVector<TLAbsMessageEntity>?
-    ): Single<TLAbsUpdates> = executeMethod(TLRequestMessagesSendMessage(noWebpage, silent, background, clearDraft, peer, replyToMsgId, message, randomId, replyMarkup, entities))
+    ): Single<TLAbsUpdates> = executeRpcQuery(TLRequestMessagesSendMessage(noWebpage, silent, background, clearDraft, peer, replyToMsgId, message, randomId, replyMarkup, entities))
 
     override fun messagesSendScreenshotNotification(
             peer: TLAbsInputPeer,
             replyToMsgId: Int,
             randomId: Long
-    ): Single<TLAbsUpdates> = executeMethod(TLRequestMessagesSendScreenshotNotification(peer, replyToMsgId, randomId))
+    ): Single<TLAbsUpdates> = executeRpcQuery(TLRequestMessagesSendScreenshotNotification(peer, replyToMsgId, randomId))
 
     override fun messagesSetBotCallbackAnswer(
             alert: Boolean,
@@ -676,21 +686,21 @@ abstract class TelegramApiWrapper : TelegramApi, RpcQueryExecutor {
             message: String?,
             url: String?,
             cacheTime: Int
-    ): Single<TLBool> = executeMethod(TLRequestMessagesSetBotCallbackAnswer(alert, queryId, message, url, cacheTime))
+    ): Single<TLBool> = executeRpcQuery(TLRequestMessagesSetBotCallbackAnswer(alert, queryId, message, url, cacheTime))
 
     override fun messagesSetBotPrecheckoutResults(
             success: Boolean,
             queryId: Long,
             error: String?
-    ): Single<TLBool> = executeMethod(TLRequestMessagesSetBotPrecheckoutResults(success, queryId, error))
+    ): Single<TLBool> = executeRpcQuery(TLRequestMessagesSetBotPrecheckoutResults(success, queryId, error))
 
     override fun messagesSetBotShippingResults(
             queryId: Long,
             error: String?,
             shippingOptions: TLObjectVector<TLShippingOption>?
-    ): Single<TLBool> = executeMethod(TLRequestMessagesSetBotShippingResults(queryId, error, shippingOptions))
+    ): Single<TLBool> = executeRpcQuery(TLRequestMessagesSetBotShippingResults(queryId, error, shippingOptions))
 
-    override fun messagesSetEncryptedTyping(peer: TLInputEncryptedChat, typing: Boolean): Single<TLBool> = executeMethod(TLRequestMessagesSetEncryptedTyping(peer, typing))
+    override fun messagesSetEncryptedTyping(peer: TLInputEncryptedChat, typing: Boolean): Single<TLBool> = executeRpcQuery(TLRequestMessagesSetEncryptedTyping(peer, typing))
 
     override fun messagesSetGameScore(
             editMessage: Boolean,
@@ -699,7 +709,7 @@ abstract class TelegramApiWrapper : TelegramApi, RpcQueryExecutor {
             id: Int,
             userId: TLAbsInputUser,
             score: Int
-    ): Single<TLAbsUpdates> = executeMethod(TLRequestMessagesSetGameScore(editMessage, force, peer, id, userId, score))
+    ): Single<TLAbsUpdates> = executeRpcQuery(TLRequestMessagesSetGameScore(editMessage, force, peer, id, userId, score))
 
     override fun messagesSetInlineBotResults(
             gallery: Boolean,
@@ -709,7 +719,7 @@ abstract class TelegramApiWrapper : TelegramApi, RpcQueryExecutor {
             cacheTime: Int,
             nextOffset: String?,
             switchPm: TLInlineBotSwitchPM?
-    ): Single<TLBool> = executeMethod(TLRequestMessagesSetInlineBotResults(gallery, _private, queryId, results, cacheTime, nextOffset, switchPm))
+    ): Single<TLBool> = executeRpcQuery(TLRequestMessagesSetInlineBotResults(gallery, _private, queryId, results, cacheTime, nextOffset, switchPm))
 
     override fun messagesSetInlineGameScore(
             editMessage: Boolean,
@@ -717,101 +727,101 @@ abstract class TelegramApiWrapper : TelegramApi, RpcQueryExecutor {
             id: TLInputBotInlineMessageID,
             userId: TLAbsInputUser,
             score: Int
-    ): Single<TLBool> = executeMethod(TLRequestMessagesSetInlineGameScore(editMessage, force, id, userId, score))
+    ): Single<TLBool> = executeRpcQuery(TLRequestMessagesSetInlineGameScore(editMessage, force, id, userId, score))
 
-    override fun messagesSetTyping(peer: TLAbsInputPeer, action: TLAbsSendMessageAction): Single<TLBool> = executeMethod(TLRequestMessagesSetTyping(peer, action))
+    override fun messagesSetTyping(peer: TLAbsInputPeer, action: TLAbsSendMessageAction): Single<TLBool> = executeRpcQuery(TLRequestMessagesSetTyping(peer, action))
 
     override fun messagesStartBot(
             bot: TLAbsInputUser,
             peer: TLAbsInputPeer,
             randomId: Long,
             startParam: String
-    ): Single<TLAbsUpdates> = executeMethod(TLRequestMessagesStartBot(bot, peer, randomId, startParam))
+    ): Single<TLAbsUpdates> = executeRpcQuery(TLRequestMessagesStartBot(bot, peer, randomId, startParam))
 
-    override fun messagesToggleChatAdmins(chatId: Int, enabled: Boolean): Single<TLAbsUpdates> = executeMethod(TLRequestMessagesToggleChatAdmins(chatId, enabled))
+    override fun messagesToggleChatAdmins(chatId: Int, enabled: Boolean): Single<TLAbsUpdates> = executeRpcQuery(TLRequestMessagesToggleChatAdmins(chatId, enabled))
 
-    override fun messagesToggleDialogPin(pinned: Boolean, peer: TLAbsInputPeer): Single<TLBool> = executeMethod(TLRequestMessagesToggleDialogPin(pinned, peer))
+    override fun messagesToggleDialogPin(pinned: Boolean, peer: TLAbsInputPeer): Single<TLBool> = executeRpcQuery(TLRequestMessagesToggleDialogPin(pinned, peer))
 
-    override fun messagesUninstallStickerSet(stickerset: TLAbsInputStickerSet): Single<TLBool> = executeMethod(TLRequestMessagesUninstallStickerSet(stickerset))
+    override fun messagesUninstallStickerSet(stickerset: TLAbsInputStickerSet): Single<TLBool> = executeRpcQuery(TLRequestMessagesUninstallStickerSet(stickerset))
 
-    override fun messagesUploadMedia(peer: TLAbsInputPeer, media: TLAbsInputMedia): Single<TLAbsMessageMedia> = executeMethod(TLRequestMessagesUploadMedia(peer, media))
+    override fun messagesUploadMedia(peer: TLAbsInputPeer, media: TLAbsInputMedia): Single<TLAbsMessageMedia> = executeRpcQuery(TLRequestMessagesUploadMedia(peer, media))
 
-    override fun paymentsClearSavedInfo(credentials: Boolean, info: Boolean): Single<TLBool> = executeMethod(TLRequestPaymentsClearSavedInfo(credentials, info))
+    override fun paymentsClearSavedInfo(credentials: Boolean, info: Boolean): Single<TLBool> = executeRpcQuery(TLRequestPaymentsClearSavedInfo(credentials, info))
 
-    override fun paymentsGetPaymentForm(msgId: Int): Single<TLPaymentForm> = executeMethod(TLRequestPaymentsGetPaymentForm(msgId))
+    override fun paymentsGetPaymentForm(msgId: Int): Single<TLPaymentForm> = executeRpcQuery(TLRequestPaymentsGetPaymentForm(msgId))
 
-    override fun paymentsGetPaymentReceipt(msgId: Int): Single<TLPaymentReceipt> = executeMethod(TLRequestPaymentsGetPaymentReceipt(msgId))
+    override fun paymentsGetPaymentReceipt(msgId: Int): Single<TLPaymentReceipt> = executeRpcQuery(TLRequestPaymentsGetPaymentReceipt(msgId))
 
-    override fun paymentsGetSavedInfo(): Single<TLSavedInfo> = executeMethod(TLRequestPaymentsGetSavedInfo())
+    override fun paymentsGetSavedInfo(): Single<TLSavedInfo> = executeRpcQuery(TLRequestPaymentsGetSavedInfo())
 
     override fun paymentsSendPaymentForm(
             msgId: Int,
             requestedInfoId: String?,
             shippingOptionId: String?,
             credentials: TLAbsInputPaymentCredentials
-    ): Single<TLAbsPaymentResult> = executeMethod(TLRequestPaymentsSendPaymentForm(msgId, requestedInfoId, shippingOptionId, credentials))
+    ): Single<TLAbsPaymentResult> = executeRpcQuery(TLRequestPaymentsSendPaymentForm(msgId, requestedInfoId, shippingOptionId, credentials))
 
     override fun paymentsValidateRequestedInfo(
             save: Boolean,
             msgId: Int,
             info: TLPaymentRequestedInfo
-    ): Single<TLValidatedRequestedInfo> = executeMethod(TLRequestPaymentsValidateRequestedInfo(save, msgId, info))
+    ): Single<TLValidatedRequestedInfo> = executeRpcQuery(TLRequestPaymentsValidateRequestedInfo(save, msgId, info))
 
     override fun phoneAcceptCall(
             peer: TLInputPhoneCall,
             gB: TLBytes,
             protocol: TLPhoneCallProtocol
-    ): Single<TLPhoneCall> = executeMethod(TLRequestPhoneAcceptCall(peer, gB, protocol))
+    ): Single<TLPhoneCall> = executeRpcQuery(TLRequestPhoneAcceptCall(peer, gB, protocol))
 
     override fun phoneConfirmCall(
             peer: TLInputPhoneCall,
             gA: TLBytes,
             keyFingerprint: Long,
             protocol: TLPhoneCallProtocol
-    ): Single<TLPhoneCall> = executeMethod(TLRequestPhoneConfirmCall(peer, gA, keyFingerprint, protocol))
+    ): Single<TLPhoneCall> = executeRpcQuery(TLRequestPhoneConfirmCall(peer, gA, keyFingerprint, protocol))
 
     override fun phoneDiscardCall(
             peer: TLInputPhoneCall,
             duration: Int,
             reason: TLAbsPhoneCallDiscardReason,
             connectionId: Long
-    ): Single<TLAbsUpdates> = executeMethod(TLRequestPhoneDiscardCall(peer, duration, reason, connectionId))
+    ): Single<TLAbsUpdates> = executeRpcQuery(TLRequestPhoneDiscardCall(peer, duration, reason, connectionId))
 
-    override fun phoneGetCallConfig(): Single<TLDataJSON> = executeMethod(TLRequestPhoneGetCallConfig())
+    override fun phoneGetCallConfig(): Single<TLDataJSON> = executeRpcQuery(TLRequestPhoneGetCallConfig())
 
-    override fun phoneReceivedCall(peer: TLInputPhoneCall): Single<TLBool> = executeMethod(TLRequestPhoneReceivedCall(peer))
+    override fun phoneReceivedCall(peer: TLInputPhoneCall): Single<TLBool> = executeRpcQuery(TLRequestPhoneReceivedCall(peer))
 
     override fun phoneRequestCall(
             userId: TLAbsInputUser,
             randomId: Int,
             gAHash: TLBytes,
             protocol: TLPhoneCallProtocol
-    ): Single<TLPhoneCall> = executeMethod(TLRequestPhoneRequestCall(userId, randomId, gAHash, protocol))
+    ): Single<TLPhoneCall> = executeRpcQuery(TLRequestPhoneRequestCall(userId, randomId, gAHash, protocol))
 
-    override fun phoneSaveCallDebug(peer: TLInputPhoneCall, debug: TLDataJSON): Single<TLBool> = executeMethod(TLRequestPhoneSaveCallDebug(peer, debug))
+    override fun phoneSaveCallDebug(peer: TLInputPhoneCall, debug: TLDataJSON): Single<TLBool> = executeRpcQuery(TLRequestPhoneSaveCallDebug(peer, debug))
 
     override fun phoneSetCallRating(
             peer: TLInputPhoneCall,
             rating: Int,
             comment: String
-    ): Single<TLAbsUpdates> = executeMethod(TLRequestPhoneSetCallRating(peer, rating, comment))
+    ): Single<TLAbsUpdates> = executeRpcQuery(TLRequestPhoneSetCallRating(peer, rating, comment))
 
-    override fun photosDeletePhotos(id: TLObjectVector<TLAbsInputPhoto>): Single<TLLongVector> = executeMethod(TLRequestPhotosDeletePhotos(id))
+    override fun photosDeletePhotos(id: TLObjectVector<TLAbsInputPhoto>): Single<TLLongVector> = executeRpcQuery(TLRequestPhotosDeletePhotos(id))
 
     override fun photosGetUserPhotos(
             userId: TLAbsInputUser,
             offset: Int,
             maxId: Long,
             limit: Int
-    ): Single<TLAbsPhotos> = executeMethod(TLRequestPhotosGetUserPhotos(userId, offset, maxId, limit))
+    ): Single<TLAbsPhotos> = executeRpcQuery(TLRequestPhotosGetUserPhotos(userId, offset, maxId, limit))
 
-    override fun photosUpdateProfilePhoto(id: TLAbsInputPhoto): Single<TLAbsUserProfilePhoto> = executeMethod(TLRequestPhotosUpdateProfilePhoto(id))
+    override fun photosUpdateProfilePhoto(id: TLAbsInputPhoto): Single<TLAbsUserProfilePhoto> = executeRpcQuery(TLRequestPhotosUpdateProfilePhoto(id))
 
-    override fun photosUploadProfilePhoto(file: TLAbsInputFile): Single<TLPhoto> = executeMethod(TLRequestPhotosUploadProfilePhoto(file))
+    override fun photosUploadProfilePhoto(file: TLAbsInputFile): Single<TLPhoto> = executeRpcQuery(TLRequestPhotosUploadProfilePhoto(file))
 
-    override fun stickersAddStickerToSet(stickerset: TLAbsInputStickerSet, sticker: TLInputStickerSetItem): Single<TLStickerSet> = executeMethod(TLRequestStickersAddStickerToSet(stickerset, sticker))
+    override fun stickersAddStickerToSet(stickerset: TLAbsInputStickerSet, sticker: TLInputStickerSetItem): Single<TLStickerSet> = executeRpcQuery(TLRequestStickersAddStickerToSet(stickerset, sticker))
 
-    override fun stickersChangeStickerPosition(sticker: TLAbsInputDocument, position: Int): Single<TLStickerSet> = executeMethod(TLRequestStickersChangeStickerPosition(sticker, position))
+    override fun stickersChangeStickerPosition(sticker: TLAbsInputDocument, position: Int): Single<TLStickerSet> = executeRpcQuery(TLRequestStickersChangeStickerPosition(sticker, position))
 
     override fun stickersCreateStickerSet(
             masks: Boolean,
@@ -819,9 +829,9 @@ abstract class TelegramApiWrapper : TelegramApi, RpcQueryExecutor {
             title: String,
             shortName: String,
             stickers: TLObjectVector<TLInputStickerSetItem>
-    ): Single<TLStickerSet> = executeMethod(TLRequestStickersCreateStickerSet(masks, userId, title, shortName, stickers))
+    ): Single<TLStickerSet> = executeRpcQuery(TLRequestStickersCreateStickerSet(masks, userId, title, shortName, stickers))
 
-    override fun stickersRemoveStickerFromSet(sticker: TLAbsInputDocument): Single<TLStickerSet> = executeMethod(TLRequestStickersRemoveStickerFromSet(sticker))
+    override fun stickersRemoveStickerFromSet(sticker: TLAbsInputDocument): Single<TLStickerSet> = executeRpcQuery(TLRequestStickersRemoveStickerFromSet(sticker))
 
     override fun updatesGetChannelDifference(
             force: Boolean,
@@ -829,53 +839,53 @@ abstract class TelegramApiWrapper : TelegramApi, RpcQueryExecutor {
             filter: TLAbsChannelMessagesFilter,
             pts: Int,
             limit: Int
-    ): Single<TLAbsChannelDifference> = executeMethod(TLRequestUpdatesGetChannelDifference(force, channel, filter, pts, limit))
+    ): Single<TLAbsChannelDifference> = executeRpcQuery(TLRequestUpdatesGetChannelDifference(force, channel, filter, pts, limit))
 
     override fun updatesGetDifference(
             pts: Int,
             ptsTotalLimit: Int?,
             date: Int,
             qts: Int
-    ): Single<TLAbsDifference> = executeMethod(TLRequestUpdatesGetDifference(pts, ptsTotalLimit, date, qts))
+    ): Single<TLAbsDifference> = executeRpcQuery(TLRequestUpdatesGetDifference(pts, ptsTotalLimit, date, qts))
 
-    override fun updatesGetState(): Single<TLState> = executeMethod(TLRequestUpdatesGetState())
+    override fun updatesGetState(): Single<TLState> = executeRpcQuery(TLRequestUpdatesGetState())
 
     override fun uploadGetCdnFile(
             fileToken: TLBytes,
             offset: Int,
             limit: Int
-    ): Single<TLAbsCdnFile> = executeMethod(TLRequestUploadGetCdnFile(fileToken, offset, limit))
+    ): Single<TLAbsCdnFile> = executeRpcQuery(TLRequestUploadGetCdnFile(fileToken, offset, limit))
 
-    override fun uploadGetCdnFileHashes(fileToken: TLBytes, offset: Int): Single<TLObjectVector<TLCdnFileHash>> = executeMethod(TLRequestUploadGetCdnFileHashes(fileToken, offset))
+    override fun uploadGetCdnFileHashes(fileToken: TLBytes, offset: Int): Single<TLObjectVector<TLCdnFileHash>> = executeRpcQuery(TLRequestUploadGetCdnFileHashes(fileToken, offset))
 
     override fun uploadGetFile(
             location: TLAbsInputFileLocation,
             offset: Int,
             limit: Int
-    ): Single<TLAbsFile> = executeMethod(TLRequestUploadGetFile(location, offset, limit))
+    ): Single<TLAbsFile> = executeRpcQuery(TLRequestUploadGetFile(location, offset, limit))
 
     override fun uploadGetWebFile(
             location: TLInputWebFileLocation,
             offset: Int,
             limit: Int
-    ): Single<TLWebFile> = executeMethod(TLRequestUploadGetWebFile(location, offset, limit))
+    ): Single<TLWebFile> = executeRpcQuery(TLRequestUploadGetWebFile(location, offset, limit))
 
-    override fun uploadReuploadCdnFile(fileToken: TLBytes, requestToken: TLBytes): Single<TLObjectVector<TLCdnFileHash>> = executeMethod(TLRequestUploadReuploadCdnFile(fileToken, requestToken))
+    override fun uploadReuploadCdnFile(fileToken: TLBytes, requestToken: TLBytes): Single<TLObjectVector<TLCdnFileHash>> = executeRpcQuery(TLRequestUploadReuploadCdnFile(fileToken, requestToken))
 
     override fun uploadSaveBigFilePart(
             fileId: Long,
             filePart: Int,
             fileTotalParts: Int,
             bytes: TLBytes
-    ): Single<TLBool> = executeMethod(TLRequestUploadSaveBigFilePart(fileId, filePart, fileTotalParts, bytes))
+    ): Single<TLBool> = executeRpcQuery(TLRequestUploadSaveBigFilePart(fileId, filePart, fileTotalParts, bytes))
 
     override fun uploadSaveFilePart(
             fileId: Long,
             filePart: Int,
             bytes: TLBytes
-    ): Single<TLBool> = executeMethod(TLRequestUploadSaveFilePart(fileId, filePart, bytes))
+    ): Single<TLBool> = executeRpcQuery(TLRequestUploadSaveFilePart(fileId, filePart, bytes))
 
-    override fun usersGetFullUser(id: TLAbsInputUser): Single<TLUserFull> = executeMethod(TLRequestUsersGetFullUser(id))
+    override fun usersGetFullUser(id: TLAbsInputUser): Single<TLUserFull> = executeRpcQuery(TLRequestUsersGetFullUser(id))
 
-    override fun usersGetUsers(id: TLObjectVector<TLAbsInputUser>): Single<TLObjectVector<TLAbsUser>> = executeMethod(TLRequestUsersGetUsers(id))
+    override fun usersGetUsers(id: TLObjectVector<TLAbsInputUser>): Single<TLObjectVector<TLAbsUser>> = executeRpcQuery(TLRequestUsersGetUsers(id))
 }

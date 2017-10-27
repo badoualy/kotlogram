@@ -11,7 +11,7 @@ import com.github.badoualy.telegram.tl.serialization.TLSerializer
 import java.io.IOException
 
 /**
- * config#8df376a4
+ * config#9c840964
  *
  * @author Yannick Badoual yann.badoual@gmail.com
  * @see <a href="http://github.com/badoualy/kotlogram">http://github.com/badoualy/kotlogram</a>
@@ -64,6 +64,8 @@ class TLConfig() : TLObject() {
 
     var stickersFavedLimit: Int = 0
 
+    var channelsReadMediaPeriod: Int = 0
+
     var tmpSessions: Int? = null
 
     var pinnedDialogsCountMax: Int = 0
@@ -84,7 +86,7 @@ class TLConfig() : TLObject() {
 
     var disabledFeatures: TLObjectVector<TLDisabledFeature> = TLObjectVector()
 
-    private val _constructor: String = "config#8df376a4"
+    private val _constructor: String = "config#9c840964"
 
     override val constructorId: Int = CONSTRUCTOR_ID
 
@@ -112,6 +114,7 @@ class TLConfig() : TLObject() {
             ratingEDecay: Int,
             stickersRecentLimit: Int,
             stickersFavedLimit: Int,
+            channelsReadMediaPeriod: Int,
             tmpSessions: Int?,
             pinnedDialogsCountMax: Int,
             callReceiveTimeoutMs: Int,
@@ -146,6 +149,7 @@ class TLConfig() : TLObject() {
         this.ratingEDecay = ratingEDecay
         this.stickersRecentLimit = stickersRecentLimit
         this.stickersFavedLimit = stickersFavedLimit
+        this.channelsReadMediaPeriod = channelsReadMediaPeriod
         this.tmpSessions = tmpSessions
         this.pinnedDialogsCountMax = pinnedDialogsCountMax
         this.callReceiveTimeoutMs = callReceiveTimeoutMs
@@ -193,6 +197,7 @@ class TLConfig() : TLObject() {
         writeInt(ratingEDecay)
         writeInt(stickersRecentLimit)
         writeInt(stickersFavedLimit)
+        writeInt(channelsReadMediaPeriod)
         doIfMask(tmpSessions, 1) { writeInt(it) }
         writeInt(pinnedDialogsCountMax)
         writeInt(callReceiveTimeoutMs)
@@ -231,6 +236,7 @@ class TLConfig() : TLObject() {
         ratingEDecay = readInt()
         stickersRecentLimit = readInt()
         stickersFavedLimit = readInt()
+        channelsReadMediaPeriod = readInt()
         tmpSessions = readIfMask(1) { readInt() }
         pinnedDialogsCountMax = readInt()
         callReceiveTimeoutMs = readInt()
@@ -253,6 +259,7 @@ class TLConfig() : TLObject() {
         size += SIZE_BOOLEAN
         size += SIZE_INT32
         size += dcOptions.computeSerializedSize()
+        size += SIZE_INT32
         size += SIZE_INT32
         size += SIZE_INT32
         size += SIZE_INT32
@@ -313,6 +320,7 @@ class TLConfig() : TLObject() {
                 && ratingEDecay == other.ratingEDecay
                 && stickersRecentLimit == other.stickersRecentLimit
                 && stickersFavedLimit == other.stickersFavedLimit
+                && channelsReadMediaPeriod == other.channelsReadMediaPeriod
                 && tmpSessions == other.tmpSessions
                 && pinnedDialogsCountMax == other.pinnedDialogsCountMax
                 && callReceiveTimeoutMs == other.callReceiveTimeoutMs
@@ -325,6 +333,6 @@ class TLConfig() : TLObject() {
                 && disabledFeatures == other.disabledFeatures
     }
     companion object  {
-        const val CONSTRUCTOR_ID: Int = 0x8df376a4.toInt()
+        const val CONSTRUCTOR_ID: Int = 0x9c840964.toInt()
     }
 }

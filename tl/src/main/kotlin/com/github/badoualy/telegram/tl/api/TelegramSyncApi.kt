@@ -3,14 +3,11 @@ package com.github.badoualy.telegram.tl.api
 import com.github.badoualy.telegram.tl.api.account.*
 import com.github.badoualy.telegram.tl.api.auth.*
 import com.github.badoualy.telegram.tl.api.auth.TLAuthorization
+import com.github.badoualy.telegram.tl.api.channels.TLAbsChannelParticipants
 import com.github.badoualy.telegram.tl.api.channels.TLAdminLogResults
 import com.github.badoualy.telegram.tl.api.channels.TLChannelParticipant
-import com.github.badoualy.telegram.tl.api.channels.TLChannelParticipants
 import com.github.badoualy.telegram.tl.api.contacts.*
-import com.github.badoualy.telegram.tl.api.help.TLAbsAppUpdate
-import com.github.badoualy.telegram.tl.api.help.TLInviteText
-import com.github.badoualy.telegram.tl.api.help.TLSupport
-import com.github.badoualy.telegram.tl.api.help.TLTermsOfService
+import com.github.badoualy.telegram.tl.api.help.*
 import com.github.badoualy.telegram.tl.api.messages.*
 import com.github.badoualy.telegram.tl.api.messages.TLChatFull
 import com.github.badoualy.telegram.tl.api.messages.TLStickerSet
@@ -224,6 +221,9 @@ interface TelegramSyncApi {
     fun channelsDeleteChannel(channel: TLAbsInputChannel): TLAbsUpdates
 
     @Throws(RpcErrorException::class, IOException::class)
+    fun channelsDeleteHistory(channel: TLAbsInputChannel, maxId: Int): TLBool
+
+    @Throws(RpcErrorException::class, IOException::class)
     fun channelsDeleteMessages(channel: TLAbsInputChannel, id: TLIntVector): TLAffectedMessages
 
     @Throws(RpcErrorException::class, IOException::class)
@@ -289,8 +289,9 @@ interface TelegramSyncApi {
             channel: TLAbsInputChannel,
             filter: TLAbsChannelParticipantsFilter,
             offset: Int,
-            limit: Int
-    ): TLChannelParticipants
+            limit: Int,
+            hash: Int
+    ): TLAbsChannelParticipants
 
     @Throws(RpcErrorException::class, IOException::class)
     fun channelsInviteToChannel(channel: TLAbsInputChannel, users: TLObjectVector<TLAbsInputUser>): TLAbsUpdates
@@ -319,6 +320,9 @@ interface TelegramSyncApi {
 
     @Throws(RpcErrorException::class, IOException::class)
     fun channelsToggleInvites(channel: TLAbsInputChannel, enabled: Boolean): TLAbsUpdates
+
+    @Throws(RpcErrorException::class, IOException::class)
+    fun channelsTogglePreHistoryHidden(channel: TLAbsInputChannel, enabled: Boolean): TLAbsUpdates
 
     @Throws(RpcErrorException::class, IOException::class)
     fun channelsToggleSignatures(channel: TLAbsInputChannel, enabled: Boolean): TLAbsUpdates
@@ -405,6 +409,9 @@ interface TelegramSyncApi {
 
     @Throws(RpcErrorException::class, IOException::class)
     fun helpGetNearestDc(): TLNearestDc
+
+    @Throws(RpcErrorException::class, IOException::class)
+    fun helpGetRecentMeUrls(referer: String): TLRecentMeUrls
 
     @Throws(RpcErrorException::class, IOException::class)
     fun helpGetSupport(): TLSupport
@@ -518,11 +525,13 @@ interface TelegramSyncApi {
     @Throws(RpcErrorException::class, IOException::class)
     fun messagesEditMessage(
             noWebpage: Boolean,
+            stopGeoLive: Boolean,
             peer: TLAbsInputPeer,
             id: Int,
             message: String?,
             replyMarkup: TLAbsReplyMarkup?,
-            entities: TLObjectVector<TLAbsMessageEntity>?
+            entities: TLObjectVector<TLAbsMessageEntity>?,
+            geoPoint: TLAbsInputGeoPoint?
     ): TLAbsUpdates
 
     @Throws(RpcErrorException::class, IOException::class)
@@ -670,6 +679,9 @@ interface TelegramSyncApi {
     fun messagesGetPinnedDialogs(): TLPeerDialogs
 
     @Throws(RpcErrorException::class, IOException::class)
+    fun messagesGetRecentLocations(peer: TLAbsInputPeer, limit: Int): TLAbsMessages
+
+    @Throws(RpcErrorException::class, IOException::class)
     fun messagesGetRecentStickers(attached: Boolean, hash: Int): TLAbsRecentStickers
 
     @Throws(RpcErrorException::class, IOException::class)
@@ -714,6 +726,9 @@ interface TelegramSyncApi {
 
     @Throws(RpcErrorException::class, IOException::class)
     fun messagesReadHistory(peer: TLAbsInputPeer, maxId: Int): TLAffectedMessages
+
+    @Throws(RpcErrorException::class, IOException::class)
+    fun messagesReadMentions(peer: TLAbsInputPeer): TLAffectedHistory
 
     @Throws(RpcErrorException::class, IOException::class)
     fun messagesReadMessageContents(id: TLIntVector): TLAffectedMessages

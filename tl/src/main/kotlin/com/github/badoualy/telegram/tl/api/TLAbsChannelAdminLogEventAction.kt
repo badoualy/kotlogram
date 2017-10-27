@@ -17,6 +17,7 @@ import com.github.badoualy.telegram.tl.core.TLObject
  * * [channelAdminLogEventActionParticipantToggleAdmin#d5676710][TLChannelAdminLogEventActionParticipantToggleAdmin]
  * * [channelAdminLogEventActionParticipantToggleBan#e6d83d7e][TLChannelAdminLogEventActionParticipantToggleBan]
  * * [channelAdminLogEventActionToggleInvites#1b7907ae][TLChannelAdminLogEventActionToggleInvites]
+ * * [channelAdminLogEventActionTogglePreHistoryHidden#5f5c95f1][TLChannelAdminLogEventActionTogglePreHistoryHidden]
  * * [channelAdminLogEventActionToggleSignatures#26ae0971][TLChannelAdminLogEventActionToggleSignatures]
  * * [channelAdminLogEventActionUpdatePinned#e9e82c18][TLChannelAdminLogEventActionUpdatePinned]
  *

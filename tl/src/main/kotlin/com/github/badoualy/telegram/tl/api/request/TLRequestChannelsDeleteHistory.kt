@@ -2,11 +2,9 @@ package com.github.badoualy.telegram.tl.api.request
 
 import com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_CONSTRUCTOR_ID
 import com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_INT32
-import com.github.badoualy.telegram.tl.api.TLAbsChannelParticipantsFilter
 import com.github.badoualy.telegram.tl.api.TLAbsInputChannel
-import com.github.badoualy.telegram.tl.api.TLChannelParticipantsRecent
 import com.github.badoualy.telegram.tl.api.TLInputChannelEmpty
-import com.github.badoualy.telegram.tl.api.channels.TLAbsChannelParticipants
+import com.github.badoualy.telegram.tl.core.TLBool
 import com.github.badoualy.telegram.tl.core.TLMethod
 import com.github.badoualy.telegram.tl.serialization.TLDeserializer
 import com.github.badoualy.telegram.tl.serialization.TLSerializer
@@ -16,59 +14,35 @@ import java.io.IOException
  * @author Yannick Badoual yann.badoual@gmail.com
  * @see <a href="http://github.com/badoualy/kotlogram">http://github.com/badoualy/kotlogram</a>
  */
-class TLRequestChannelsGetParticipants() : TLMethod<TLAbsChannelParticipants>() {
+class TLRequestChannelsDeleteHistory() : TLMethod<TLBool>() {
     var channel: TLAbsInputChannel = TLInputChannelEmpty()
 
-    var filter: TLAbsChannelParticipantsFilter = TLChannelParticipantsRecent()
+    var maxId: Int = 0
 
-    var offset: Int = 0
-
-    var limit: Int = 0
-
-    var hash: Int = 0
-
-    private val _constructor: String = "channels.getParticipants#123e05e9"
+    private val _constructor: String = "channels.deleteHistory#af369d42"
 
     override val constructorId: Int = CONSTRUCTOR_ID
 
-    constructor(
-            channel: TLAbsInputChannel,
-            filter: TLAbsChannelParticipantsFilter,
-            offset: Int,
-            limit: Int,
-            hash: Int
-    ) : this() {
+    constructor(channel: TLAbsInputChannel, maxId: Int) : this() {
         this.channel = channel
-        this.filter = filter
-        this.offset = offset
-        this.limit = limit
-        this.hash = hash
+        this.maxId = maxId
     }
 
     @Throws(IOException::class)
     override fun serializeBody(tlSerializer: TLSerializer) = with (tlSerializer)  {
         writeTLObject(channel)
-        writeTLObject(filter)
-        writeInt(offset)
-        writeInt(limit)
-        writeInt(hash)
+        writeInt(maxId)
     }
 
     @Throws(IOException::class)
     override fun deserializeBody(tlDeserializer: TLDeserializer) = with (tlDeserializer)  {
         channel = readTLObject<TLAbsInputChannel>()
-        filter = readTLObject<TLAbsChannelParticipantsFilter>()
-        offset = readInt()
-        limit = readInt()
-        hash = readInt()
+        maxId = readInt()
     }
 
     override fun computeSerializedSize(): Int {
         var size = SIZE_CONSTRUCTOR_ID
         size += channel.computeSerializedSize()
-        size += filter.computeSerializedSize()
-        size += SIZE_INT32
-        size += SIZE_INT32
         size += SIZE_INT32
         return size
     }
@@ -76,16 +50,13 @@ class TLRequestChannelsGetParticipants() : TLMethod<TLAbsChannelParticipants>() 
     override fun toString() = _constructor
 
     override fun equals(other: Any?): Boolean {
-        if (other !is TLRequestChannelsGetParticipants) return false
+        if (other !is TLRequestChannelsDeleteHistory) return false
         if (other === this) return true
 
         return channel == other.channel
-                && filter == other.filter
-                && offset == other.offset
-                && limit == other.limit
-                && hash == other.hash
+                && maxId == other.maxId
     }
     companion object  {
-        const val CONSTRUCTOR_ID: Int = 0x123e05e9.toInt()
+        const val CONSTRUCTOR_ID: Int = 0xaf369d42.toInt()
     }
 }

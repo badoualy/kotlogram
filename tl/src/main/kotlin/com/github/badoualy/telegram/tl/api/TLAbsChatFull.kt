@@ -5,7 +5,7 @@ import com.github.badoualy.telegram.tl.core.TLObjectVector
 
 /**
  * Abstraction level for the following constructors:
- * * [channelFull#17f45fcf][TLChannelFull]
+ * * [channelFull#76af5481][TLChannelFull]
  * * [chatFull#2e02a614][TLChatFull]
  *
  * @author Yannick Badoual yann.badoual@gmail.com

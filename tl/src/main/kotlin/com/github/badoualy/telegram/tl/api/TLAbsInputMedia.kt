@@ -9,6 +9,7 @@ import com.github.badoualy.telegram.tl.core.TLObject
  * * [inputMediaDocumentExternal#b6f74335][TLInputMediaDocumentExternal]
  * * [inputMediaEmpty#9664f57f][TLInputMediaEmpty]
  * * [inputMediaGame#d33f43f3][TLInputMediaGame]
+ * * [inputMediaGeoLive#7b1a118f][TLInputMediaGeoLive]
  * * [inputMediaGeoPoint#f9c44144][TLInputMediaGeoPoint]
  * * [inputMediaGifExternal#4843b0fd][TLInputMediaGifExternal]
  * * [inputMediaInvoice#92153685][TLInputMediaInvoice]
@@ -16,7 +17,7 @@ import com.github.badoualy.telegram.tl.core.TLObject
  * * [inputMediaPhotoExternal#922aec1][TLInputMediaPhotoExternal]
  * * [inputMediaUploadedDocument#e39621fd][TLInputMediaUploadedDocument]
  * * [inputMediaUploadedPhoto#2f37e231][TLInputMediaUploadedPhoto]
- * * [inputMediaVenue#2827a81a][TLInputMediaVenue]
+ * * [inputMediaVenue#c13d1c11][TLInputMediaVenue]
  *
  * @author Yannick Badoual yann.badoual@gmail.com
  * @see <a href="http://github.com/badoualy/kotlogram">http://github.com/badoualy/kotlogram</a>

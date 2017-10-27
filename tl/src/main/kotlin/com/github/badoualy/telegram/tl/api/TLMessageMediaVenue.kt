@@ -7,7 +7,7 @@ import com.github.badoualy.telegram.tl.serialization.TLSerializer
 import java.io.IOException
 
 /**
- * messageMediaVenue#7912b71f
+ * messageMediaVenue#2ec0533f
  *
  * @author Yannick Badoual yann.badoual@gmail.com
  * @see <a href="http://github.com/badoualy/kotlogram">http://github.com/badoualy/kotlogram</a>
@@ -23,7 +23,9 @@ class TLMessageMediaVenue() : TLAbsMessageMedia() {
 
     var venueId: String = ""
 
-    private val _constructor: String = "messageMediaVenue#7912b71f"
+    var venueType: String = ""
+
+    private val _constructor: String = "messageMediaVenue#2ec0533f"
 
     override val constructorId: Int = CONSTRUCTOR_ID
 
@@ -32,13 +34,15 @@ class TLMessageMediaVenue() : TLAbsMessageMedia() {
             title: String,
             address: String,
             provider: String,
-            venueId: String
+            venueId: String,
+            venueType: String
     ) : this() {
         this.geo = geo
         this.title = title
         this.address = address
         this.provider = provider
         this.venueId = venueId
+        this.venueType = venueType
     }
 
     @Throws(IOException::class)
@@ -48,6 +52,7 @@ class TLMessageMediaVenue() : TLAbsMessageMedia() {
         writeString(address)
         writeString(provider)
         writeString(venueId)
+        writeString(venueType)
     }
 
     @Throws(IOException::class)
@@ -57,6 +62,7 @@ class TLMessageMediaVenue() : TLAbsMessageMedia() {
         address = readString()
         provider = readString()
         venueId = readString()
+        venueType = readString()
     }
 
     override fun computeSerializedSize(): Int {
@@ -66,6 +72,7 @@ class TLMessageMediaVenue() : TLAbsMessageMedia() {
         size += computeTLStringSerializedSize(address)
         size += computeTLStringSerializedSize(provider)
         size += computeTLStringSerializedSize(venueId)
+        size += computeTLStringSerializedSize(venueType)
         return size
     }
 
@@ -80,8 +87,9 @@ class TLMessageMediaVenue() : TLAbsMessageMedia() {
                 && address == other.address
                 && provider == other.provider
                 && venueId == other.venueId
+                && venueType == other.venueType
     }
     companion object  {
-        const val CONSTRUCTOR_ID: Int = 0x7912b71f.toInt()
+        const val CONSTRUCTOR_ID: Int = 0x2ec0533f.toInt()
     }
 }

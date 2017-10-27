@@ -15,6 +15,7 @@ import com.github.badoualy.telegram.tl.api.auth.TLSentCodeTypeFlashCall
 import com.github.badoualy.telegram.tl.api.auth.TLSentCodeTypeSms
 import com.github.badoualy.telegram.tl.api.channels.TLAdminLogResults
 import com.github.badoualy.telegram.tl.api.channels.TLChannelParticipants
+import com.github.badoualy.telegram.tl.api.channels.TLChannelParticipantsNotModified
 import com.github.badoualy.telegram.tl.api.contacts.*
 import com.github.badoualy.telegram.tl.api.help.*
 import com.github.badoualy.telegram.tl.api.messages.TLAffectedHistory
@@ -58,7 +59,7 @@ import com.github.badoualy.telegram.tl.api.storage.*
 import com.github.badoualy.telegram.tl.api.updates.*
 import com.github.badoualy.telegram.tl.api.upload.*
 
-object TLApiContext : TLContext(579) {
+object TLApiContext : TLContext(593) {
     init {
         registerClasses()
     }
@@ -112,6 +113,7 @@ object TLApiContext : TLContext(579) {
         registerClass(TLChannelAdminLogEventActionParticipantToggleAdmin.CONSTRUCTOR_ID, TLChannelAdminLogEventActionParticipantToggleAdmin::class.java)
         registerClass(TLChannelAdminLogEventActionParticipantToggleBan.CONSTRUCTOR_ID, TLChannelAdminLogEventActionParticipantToggleBan::class.java)
         registerClass(TLChannelAdminLogEventActionToggleInvites.CONSTRUCTOR_ID, TLChannelAdminLogEventActionToggleInvites::class.java)
+        registerClass(TLChannelAdminLogEventActionTogglePreHistoryHidden.CONSTRUCTOR_ID, TLChannelAdminLogEventActionTogglePreHistoryHidden::class.java)
         registerClass(TLChannelAdminLogEventActionToggleSignatures.CONSTRUCTOR_ID, TLChannelAdminLogEventActionToggleSignatures::class.java)
         registerClass(TLChannelAdminLogEventActionUpdatePinned.CONSTRUCTOR_ID, TLChannelAdminLogEventActionUpdatePinned::class.java)
         registerClass(TLChannelAdminLogEventsFilter.CONSTRUCTOR_ID, TLChannelAdminLogEventsFilter::class.java)
@@ -135,6 +137,7 @@ object TLApiContext : TLContext(579) {
         registerClass(TLAdminLogResults.CONSTRUCTOR_ID, TLAdminLogResults::class.java)
         registerClass(com.github.badoualy.telegram.tl.api.channels.TLChannelParticipant.CONSTRUCTOR_ID, com.github.badoualy.telegram.tl.api.channels.TLChannelParticipant::class.java)
         registerClass(TLChannelParticipants.CONSTRUCTOR_ID, TLChannelParticipants::class.java)
+        registerClass(TLChannelParticipantsNotModified.CONSTRUCTOR_ID, TLChannelParticipantsNotModified::class.java)
         registerClass(TLChat.CONSTRUCTOR_ID, TLChat::class.java)
         registerClass(TLChatEmpty.CONSTRUCTOR_ID, TLChatEmpty::class.java)
         registerClass(TLChatForbidden.CONSTRUCTOR_ID, TLChatForbidden::class.java)
@@ -203,6 +206,7 @@ object TLApiContext : TLContext(579) {
         registerClass(TLAppUpdate.CONSTRUCTOR_ID, TLAppUpdate::class.java)
         registerClass(TLInviteText.CONSTRUCTOR_ID, TLInviteText::class.java)
         registerClass(TLNoAppUpdate.CONSTRUCTOR_ID, TLNoAppUpdate::class.java)
+        registerClass(TLRecentMeUrls.CONSTRUCTOR_ID, TLRecentMeUrls::class.java)
         registerClass(TLSupport.CONSTRUCTOR_ID, TLSupport::class.java)
         registerClass(TLTermsOfService.CONSTRUCTOR_ID, TLTermsOfService::class.java)
         registerClass(TLHighScore.CONSTRUCTOR_ID, TLHighScore::class.java)
@@ -246,6 +250,7 @@ object TLApiContext : TLContext(579) {
         registerClass(TLInputMediaDocumentExternal.CONSTRUCTOR_ID, TLInputMediaDocumentExternal::class.java)
         registerClass(TLInputMediaEmpty.CONSTRUCTOR_ID, TLInputMediaEmpty::class.java)
         registerClass(TLInputMediaGame.CONSTRUCTOR_ID, TLInputMediaGame::class.java)
+        registerClass(TLInputMediaGeoLive.CONSTRUCTOR_ID, TLInputMediaGeoLive::class.java)
         registerClass(TLInputMediaGeoPoint.CONSTRUCTOR_ID, TLInputMediaGeoPoint::class.java)
         registerClass(TLInputMediaGifExternal.CONSTRUCTOR_ID, TLInputMediaGifExternal::class.java)
         registerClass(TLInputMediaInvoice.CONSTRUCTOR_ID, TLInputMediaInvoice::class.java)
@@ -256,8 +261,10 @@ object TLApiContext : TLContext(579) {
         registerClass(TLInputMediaVenue.CONSTRUCTOR_ID, TLInputMediaVenue::class.java)
         registerClass(TLInputMessageEntityMentionName.CONSTRUCTOR_ID, TLInputMessageEntityMentionName::class.java)
         registerClass(TLInputMessagesFilterChatPhotos.CONSTRUCTOR_ID, TLInputMessagesFilterChatPhotos::class.java)
+        registerClass(TLInputMessagesFilterContacts.CONSTRUCTOR_ID, TLInputMessagesFilterContacts::class.java)
         registerClass(TLInputMessagesFilterDocument.CONSTRUCTOR_ID, TLInputMessagesFilterDocument::class.java)
         registerClass(TLInputMessagesFilterEmpty.CONSTRUCTOR_ID, TLInputMessagesFilterEmpty::class.java)
+        registerClass(TLInputMessagesFilterGeo.CONSTRUCTOR_ID, TLInputMessagesFilterGeo::class.java)
         registerClass(TLInputMessagesFilterGif.CONSTRUCTOR_ID, TLInputMessagesFilterGif::class.java)
         registerClass(TLInputMessagesFilterMusic.CONSTRUCTOR_ID, TLInputMessagesFilterMusic::class.java)
         registerClass(TLInputMessagesFilterMyMentions.CONSTRUCTOR_ID, TLInputMessagesFilterMyMentions::class.java)
@@ -340,6 +347,7 @@ object TLApiContext : TLContext(579) {
         registerClass(TLMessageActionChatEditTitle.CONSTRUCTOR_ID, TLMessageActionChatEditTitle::class.java)
         registerClass(TLMessageActionChatJoinedByLink.CONSTRUCTOR_ID, TLMessageActionChatJoinedByLink::class.java)
         registerClass(TLMessageActionChatMigrateTo.CONSTRUCTOR_ID, TLMessageActionChatMigrateTo::class.java)
+        registerClass(TLMessageActionCustomAction.CONSTRUCTOR_ID, TLMessageActionCustomAction::class.java)
         registerClass(TLMessageActionEmpty.CONSTRUCTOR_ID, TLMessageActionEmpty::class.java)
         registerClass(TLMessageActionGameScore.CONSTRUCTOR_ID, TLMessageActionGameScore::class.java)
         registerClass(TLMessageActionHistoryClear.CONSTRUCTOR_ID, TLMessageActionHistoryClear::class.java)
@@ -367,6 +375,7 @@ object TLApiContext : TLContext(579) {
         registerClass(TLMessageMediaEmpty.CONSTRUCTOR_ID, TLMessageMediaEmpty::class.java)
         registerClass(TLMessageMediaGame.CONSTRUCTOR_ID, TLMessageMediaGame::class.java)
         registerClass(TLMessageMediaGeo.CONSTRUCTOR_ID, TLMessageMediaGeo::class.java)
+        registerClass(TLMessageMediaGeoLive.CONSTRUCTOR_ID, TLMessageMediaGeoLive::class.java)
         registerClass(TLMessageMediaInvoice.CONSTRUCTOR_ID, TLMessageMediaInvoice::class.java)
         registerClass(TLMessageMediaPhoto.CONSTRUCTOR_ID, TLMessageMediaPhoto::class.java)
         registerClass(TLMessageMediaUnsupported.CONSTRUCTOR_ID, TLMessageMediaUnsupported::class.java)
@@ -490,6 +499,11 @@ object TLApiContext : TLContext(579) {
         registerClass(TLPrivacyValueDisallowContacts.CONSTRUCTOR_ID, TLPrivacyValueDisallowContacts::class.java)
         registerClass(TLPrivacyValueDisallowUsers.CONSTRUCTOR_ID, TLPrivacyValueDisallowUsers::class.java)
         registerClass(TLReceivedNotifyMessage.CONSTRUCTOR_ID, TLReceivedNotifyMessage::class.java)
+        registerClass(TLRecentMeUrlChat.CONSTRUCTOR_ID, TLRecentMeUrlChat::class.java)
+        registerClass(TLRecentMeUrlChatInvite.CONSTRUCTOR_ID, TLRecentMeUrlChatInvite::class.java)
+        registerClass(TLRecentMeUrlStickerSet.CONSTRUCTOR_ID, TLRecentMeUrlStickerSet::class.java)
+        registerClass(TLRecentMeUrlUnknown.CONSTRUCTOR_ID, TLRecentMeUrlUnknown::class.java)
+        registerClass(TLRecentMeUrlUser.CONSTRUCTOR_ID, TLRecentMeUrlUser::class.java)
         registerClass(TLReplyInlineMarkup.CONSTRUCTOR_ID, TLReplyInlineMarkup::class.java)
         registerClass(TLReplyKeyboardForceReply.CONSTRUCTOR_ID, TLReplyKeyboardForceReply::class.java)
         registerClass(TLReplyKeyboardHide.CONSTRUCTOR_ID, TLReplyKeyboardHide::class.java)
@@ -548,6 +562,7 @@ object TLApiContext : TLContext(579) {
         registerClass(TLUpdateBotWebhookJSON.CONSTRUCTOR_ID, TLUpdateBotWebhookJSON::class.java)
         registerClass(TLUpdateBotWebhookJSONQuery.CONSTRUCTOR_ID, TLUpdateBotWebhookJSONQuery::class.java)
         registerClass(TLUpdateChannel.CONSTRUCTOR_ID, TLUpdateChannel::class.java)
+        registerClass(TLUpdateChannelAvailableMessages.CONSTRUCTOR_ID, TLUpdateChannelAvailableMessages::class.java)
         registerClass(TLUpdateChannelMessageViews.CONSTRUCTOR_ID, TLUpdateChannelMessageViews::class.java)
         registerClass(TLUpdateChannelPinnedMessage.CONSTRUCTOR_ID, TLUpdateChannelPinnedMessage::class.java)
         registerClass(TLUpdateChannelReadMessagesContents.CONSTRUCTOR_ID, TLUpdateChannelReadMessagesContents::class.java)

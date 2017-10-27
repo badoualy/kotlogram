@@ -5,7 +5,7 @@ import com.github.badoualy.telegram.tl.builder.parser.TLSchemaParser
 import com.github.badoualy.telegram.tl.builder.poet.TLClassGenerator
 import java.io.File
 
-private val TL_SCHEMA_LEVEL = 71
+private val TL_SCHEMA_LEVEL = 72
 private val TL_SCHEMA_PATH = "./tl-builder/src/main/resources/tl-schema-$TL_SCHEMA_LEVEL.tl"
 private val MTPROTO_TL_SCHEMA_PATH = "./tl-builder/src/main/resources/mtproto-tl-schema.tl"
 
