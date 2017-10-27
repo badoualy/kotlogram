@@ -33,97 +33,97 @@ abstract class TelegramSyncApiWrapper : TelegramSyncApi, RpcQuerySyncExecutor {
             phoneNumber: String,
             phoneCodeHash: String,
             phoneCode: String
-    ): TLAbsUser = executeRpcQuerySync(TLRequestAccountChangePhone(phoneNumber, phoneCodeHash, phoneCode))
+    ): TLAbsUser = executeMethod(TLRequestAccountChangePhone(phoneNumber, phoneCodeHash, phoneCode))
 
     @Throws(RpcErrorException::class, IOException::class)
-    override fun accountCheckUsername(username: String): TLBool = executeRpcQuerySync(TLRequestAccountCheckUsername(username))
+    override fun accountCheckUsername(username: String): TLBool = executeMethod(TLRequestAccountCheckUsername(username))
 
     @Throws(RpcErrorException::class, IOException::class)
-    override fun accountConfirmPhone(phoneCodeHash: String, phoneCode: String): TLBool = executeRpcQuerySync(TLRequestAccountConfirmPhone(phoneCodeHash, phoneCode))
+    override fun accountConfirmPhone(phoneCodeHash: String, phoneCode: String): TLBool = executeMethod(TLRequestAccountConfirmPhone(phoneCodeHash, phoneCode))
 
     @Throws(RpcErrorException::class, IOException::class)
-    override fun accountDeleteAccount(reason: String): TLBool = executeRpcQuerySync(TLRequestAccountDeleteAccount(reason))
+    override fun accountDeleteAccount(reason: String): TLBool = executeMethod(TLRequestAccountDeleteAccount(reason))
 
     @Throws(RpcErrorException::class, IOException::class)
-    override fun accountGetAccountTTL(): TLAccountDaysTTL = executeRpcQuerySync(TLRequestAccountGetAccountTTL())
+    override fun accountGetAccountTTL(): TLAccountDaysTTL = executeMethod(TLRequestAccountGetAccountTTL())
 
     @Throws(RpcErrorException::class, IOException::class)
-    override fun accountGetAuthorizations(): TLAuthorizations = executeRpcQuerySync(TLRequestAccountGetAuthorizations())
+    override fun accountGetAuthorizations(): TLAuthorizations = executeMethod(TLRequestAccountGetAuthorizations())
 
     @Throws(RpcErrorException::class, IOException::class)
-    override fun accountGetNotifySettings(peer: TLAbsInputNotifyPeer): TLAbsPeerNotifySettings = executeRpcQuerySync(TLRequestAccountGetNotifySettings(peer))
+    override fun accountGetNotifySettings(peer: TLAbsInputNotifyPeer): TLAbsPeerNotifySettings = executeMethod(TLRequestAccountGetNotifySettings(peer))
 
     @Throws(RpcErrorException::class, IOException::class)
-    override fun accountGetPassword(): TLAbsPassword = executeRpcQuerySync(TLRequestAccountGetPassword())
+    override fun accountGetPassword(): TLAbsPassword = executeMethod(TLRequestAccountGetPassword())
 
     @Throws(RpcErrorException::class, IOException::class)
-    override fun accountGetPasswordSettings(currentPasswordHash: TLBytes): TLPasswordSettings = executeRpcQuerySync(TLRequestAccountGetPasswordSettings(currentPasswordHash))
+    override fun accountGetPasswordSettings(currentPasswordHash: TLBytes): TLPasswordSettings = executeMethod(TLRequestAccountGetPasswordSettings(currentPasswordHash))
 
     @Throws(RpcErrorException::class, IOException::class)
-    override fun accountGetPrivacy(key: TLAbsInputPrivacyKey): TLPrivacyRules = executeRpcQuerySync(TLRequestAccountGetPrivacy(key))
+    override fun accountGetPrivacy(key: TLAbsInputPrivacyKey): TLPrivacyRules = executeMethod(TLRequestAccountGetPrivacy(key))
 
     @Throws(RpcErrorException::class, IOException::class)
-    override fun accountGetTmpPassword(passwordHash: TLBytes, period: Int): TLTmpPassword = executeRpcQuerySync(TLRequestAccountGetTmpPassword(passwordHash, period))
+    override fun accountGetTmpPassword(passwordHash: TLBytes, period: Int): TLTmpPassword = executeMethod(TLRequestAccountGetTmpPassword(passwordHash, period))
 
     @Throws(RpcErrorException::class, IOException::class)
-    override fun accountGetWallPapers(): TLObjectVector<TLAbsWallPaper> = executeRpcQuerySync(TLRequestAccountGetWallPapers())
+    override fun accountGetWallPapers(): TLObjectVector<TLAbsWallPaper> = executeMethod(TLRequestAccountGetWallPapers())
 
     @Throws(RpcErrorException::class, IOException::class)
-    override fun accountRegisterDevice(tokenType: Int, token: String): TLBool = executeRpcQuerySync(TLRequestAccountRegisterDevice(tokenType, token))
+    override fun accountRegisterDevice(tokenType: Int, token: String): TLBool = executeMethod(TLRequestAccountRegisterDevice(tokenType, token))
 
     @Throws(RpcErrorException::class, IOException::class)
-    override fun accountReportPeer(peer: TLAbsInputPeer, reason: TLAbsReportReason): TLBool = executeRpcQuerySync(TLRequestAccountReportPeer(peer, reason))
+    override fun accountReportPeer(peer: TLAbsInputPeer, reason: TLAbsReportReason): TLBool = executeMethod(TLRequestAccountReportPeer(peer, reason))
 
     @Throws(RpcErrorException::class, IOException::class)
-    override fun accountResetAuthorization(hash: Long): TLBool = executeRpcQuerySync(TLRequestAccountResetAuthorization(hash))
+    override fun accountResetAuthorization(hash: Long): TLBool = executeMethod(TLRequestAccountResetAuthorization(hash))
 
     @Throws(RpcErrorException::class, IOException::class)
-    override fun accountResetNotifySettings(): TLBool = executeRpcQuerySync(TLRequestAccountResetNotifySettings())
+    override fun accountResetNotifySettings(): TLBool = executeMethod(TLRequestAccountResetNotifySettings())
 
     @Throws(RpcErrorException::class, IOException::class)
     override fun accountSendChangePhoneCode(
             allowFlashcall: Boolean,
             phoneNumber: String,
             currentNumber: Boolean?
-    ): TLSentCode = executeRpcQuerySync(TLRequestAccountSendChangePhoneCode(allowFlashcall, phoneNumber, currentNumber))
+    ): TLSentCode = executeMethod(TLRequestAccountSendChangePhoneCode(allowFlashcall, phoneNumber, currentNumber))
 
     @Throws(RpcErrorException::class, IOException::class)
     override fun accountSendConfirmPhoneCode(
             allowFlashcall: Boolean,
             hash: String,
             currentNumber: Boolean?
-    ): TLSentCode = executeRpcQuerySync(TLRequestAccountSendConfirmPhoneCode(allowFlashcall, hash, currentNumber))
+    ): TLSentCode = executeMethod(TLRequestAccountSendConfirmPhoneCode(allowFlashcall, hash, currentNumber))
 
     @Throws(RpcErrorException::class, IOException::class)
-    override fun accountSetAccountTTL(ttl: TLAccountDaysTTL): TLBool = executeRpcQuerySync(TLRequestAccountSetAccountTTL(ttl))
+    override fun accountSetAccountTTL(ttl: TLAccountDaysTTL): TLBool = executeMethod(TLRequestAccountSetAccountTTL(ttl))
 
     @Throws(RpcErrorException::class, IOException::class)
-    override fun accountSetPrivacy(key: TLAbsInputPrivacyKey, rules: TLObjectVector<TLAbsInputPrivacyRule>): TLPrivacyRules = executeRpcQuerySync(TLRequestAccountSetPrivacy(key, rules))
+    override fun accountSetPrivacy(key: TLAbsInputPrivacyKey, rules: TLObjectVector<TLAbsInputPrivacyRule>): TLPrivacyRules = executeMethod(TLRequestAccountSetPrivacy(key, rules))
 
     @Throws(RpcErrorException::class, IOException::class)
-    override fun accountUnregisterDevice(tokenType: Int, token: String): TLBool = executeRpcQuerySync(TLRequestAccountUnregisterDevice(tokenType, token))
+    override fun accountUnregisterDevice(tokenType: Int, token: String): TLBool = executeMethod(TLRequestAccountUnregisterDevice(tokenType, token))
 
     @Throws(RpcErrorException::class, IOException::class)
-    override fun accountUpdateDeviceLocked(period: Int): TLBool = executeRpcQuerySync(TLRequestAccountUpdateDeviceLocked(period))
+    override fun accountUpdateDeviceLocked(period: Int): TLBool = executeMethod(TLRequestAccountUpdateDeviceLocked(period))
 
     @Throws(RpcErrorException::class, IOException::class)
-    override fun accountUpdateNotifySettings(peer: TLAbsInputNotifyPeer, settings: TLInputPeerNotifySettings): TLBool = executeRpcQuerySync(TLRequestAccountUpdateNotifySettings(peer, settings))
+    override fun accountUpdateNotifySettings(peer: TLAbsInputNotifyPeer, settings: TLInputPeerNotifySettings): TLBool = executeMethod(TLRequestAccountUpdateNotifySettings(peer, settings))
 
     @Throws(RpcErrorException::class, IOException::class)
-    override fun accountUpdatePasswordSettings(currentPasswordHash: TLBytes, newSettings: TLPasswordInputSettings): TLBool = executeRpcQuerySync(TLRequestAccountUpdatePasswordSettings(currentPasswordHash, newSettings))
+    override fun accountUpdatePasswordSettings(currentPasswordHash: TLBytes, newSettings: TLPasswordInputSettings): TLBool = executeMethod(TLRequestAccountUpdatePasswordSettings(currentPasswordHash, newSettings))
 
     @Throws(RpcErrorException::class, IOException::class)
     override fun accountUpdateProfile(
             firstName: String?,
             lastName: String?,
             about: String?
-    ): TLAbsUser = executeRpcQuerySync(TLRequestAccountUpdateProfile(firstName, lastName, about))
+    ): TLAbsUser = executeMethod(TLRequestAccountUpdateProfile(firstName, lastName, about))
 
     @Throws(RpcErrorException::class, IOException::class)
-    override fun accountUpdateStatus(offline: Boolean): TLBool = executeRpcQuerySync(TLRequestAccountUpdateStatus(offline))
+    override fun accountUpdateStatus(offline: Boolean): TLBool = executeMethod(TLRequestAccountUpdateStatus(offline))
 
     @Throws(RpcErrorException::class, IOException::class)
-    override fun accountUpdateUsername(username: String): TLAbsUser = executeRpcQuerySync(TLRequestAccountUpdateUsername(username))
+    override fun accountUpdateUsername(username: String): TLAbsUser = executeMethod(TLRequestAccountUpdateUsername(username))
 
     @Throws(RpcErrorException::class, IOException::class)
     override fun authBindTempAuthKey(
@@ -131,25 +131,25 @@ abstract class TelegramSyncApiWrapper : TelegramSyncApi, RpcQuerySyncExecutor {
             nonce: Long,
             expiresAt: Int,
             encryptedMessage: TLBytes
-    ): TLBool = executeRpcQuerySync(TLRequestAuthBindTempAuthKey(permAuthKeyId, nonce, expiresAt, encryptedMessage))
+    ): TLBool = executeMethod(TLRequestAuthBindTempAuthKey(permAuthKeyId, nonce, expiresAt, encryptedMessage))
 
     @Throws(RpcErrorException::class, IOException::class)
-    override fun authCancelCode(phoneNumber: String, phoneCodeHash: String): TLBool = executeRpcQuerySync(TLRequestAuthCancelCode(phoneNumber, phoneCodeHash))
+    override fun authCancelCode(phoneNumber: String, phoneCodeHash: String): TLBool = executeMethod(TLRequestAuthCancelCode(phoneNumber, phoneCodeHash))
 
     @Throws(RpcErrorException::class, IOException::class)
-    override fun authCheckPassword(passwordHash: TLBytes): TLAuthorization = executeRpcQuerySync(TLRequestAuthCheckPassword(passwordHash))
+    override fun authCheckPassword(passwordHash: TLBytes): TLAuthorization = executeMethod(TLRequestAuthCheckPassword(passwordHash))
 
     @Throws(RpcErrorException::class, IOException::class)
-    override fun authCheckPhone(phoneNumber: String): TLCheckedPhone = executeRpcQuerySync(TLRequestAuthCheckPhone(phoneNumber))
+    override fun authCheckPhone(phoneNumber: String): TLCheckedPhone = executeMethod(TLRequestAuthCheckPhone(phoneNumber))
 
     @Throws(RpcErrorException::class, IOException::class)
-    override fun authDropTempAuthKeys(exceptAuthKeys: TLLongVector): TLBool = executeRpcQuerySync(TLRequestAuthDropTempAuthKeys(exceptAuthKeys))
+    override fun authDropTempAuthKeys(exceptAuthKeys: TLLongVector): TLBool = executeMethod(TLRequestAuthDropTempAuthKeys(exceptAuthKeys))
 
     @Throws(RpcErrorException::class, IOException::class)
-    override fun authExportAuthorization(dcId: Int): TLExportedAuthorization = executeRpcQuerySync(TLRequestAuthExportAuthorization(dcId))
+    override fun authExportAuthorization(dcId: Int): TLExportedAuthorization = executeMethod(TLRequestAuthExportAuthorization(dcId))
 
     @Throws(RpcErrorException::class, IOException::class)
-    override fun authImportAuthorization(id: Int, bytes: TLBytes): TLAuthorization = executeRpcQuerySync(TLRequestAuthImportAuthorization(id, bytes))
+    override fun authImportAuthorization(id: Int, bytes: TLBytes): TLAuthorization = executeMethod(TLRequestAuthImportAuthorization(id, bytes))
 
     @Throws(RpcErrorException::class, IOException::class)
     override fun authImportBotAuthorization(
@@ -157,22 +157,22 @@ abstract class TelegramSyncApiWrapper : TelegramSyncApi, RpcQuerySyncExecutor {
             apiId: Int,
             apiHash: String,
             botAuthToken: String
-    ): TLAuthorization = executeRpcQuerySync(TLRequestAuthImportBotAuthorization(flags, apiId, apiHash, botAuthToken))
+    ): TLAuthorization = executeMethod(TLRequestAuthImportBotAuthorization(flags, apiId, apiHash, botAuthToken))
 
     @Throws(RpcErrorException::class, IOException::class)
-    override fun authLogOut(): TLBool = executeRpcQuerySync(TLRequestAuthLogOut())
+    override fun authLogOut(): TLBool = executeMethod(TLRequestAuthLogOut())
 
     @Throws(RpcErrorException::class, IOException::class)
-    override fun authRecoverPassword(code: String): TLAuthorization = executeRpcQuerySync(TLRequestAuthRecoverPassword(code))
+    override fun authRecoverPassword(code: String): TLAuthorization = executeMethod(TLRequestAuthRecoverPassword(code))
 
     @Throws(RpcErrorException::class, IOException::class)
-    override fun authRequestPasswordRecovery(): TLPasswordRecovery = executeRpcQuerySync(TLRequestAuthRequestPasswordRecovery())
+    override fun authRequestPasswordRecovery(): TLPasswordRecovery = executeMethod(TLRequestAuthRequestPasswordRecovery())
 
     @Throws(RpcErrorException::class, IOException::class)
-    override fun authResendCode(phoneNumber: String, phoneCodeHash: String): TLSentCode = executeRpcQuerySync(TLRequestAuthResendCode(phoneNumber, phoneCodeHash))
+    override fun authResendCode(phoneNumber: String, phoneCodeHash: String): TLSentCode = executeMethod(TLRequestAuthResendCode(phoneNumber, phoneCodeHash))
 
     @Throws(RpcErrorException::class, IOException::class)
-    override fun authResetAuthorizations(): TLBool = executeRpcQuerySync(TLRequestAuthResetAuthorizations())
+    override fun authResetAuthorizations(): TLBool = executeMethod(TLRequestAuthResetAuthorizations())
 
     @Throws(RpcErrorException::class, IOException::class)
     override fun authSendCode(
@@ -181,17 +181,17 @@ abstract class TelegramSyncApiWrapper : TelegramSyncApi, RpcQuerySyncExecutor {
             currentNumber: Boolean?,
             apiId: Int,
             apiHash: String
-    ): TLSentCode = executeRpcQuerySync(TLRequestAuthSendCode(allowFlashcall, phoneNumber, currentNumber, apiId, apiHash))
+    ): TLSentCode = executeMethod(TLRequestAuthSendCode(allowFlashcall, phoneNumber, currentNumber, apiId, apiHash))
 
     @Throws(RpcErrorException::class, IOException::class)
-    override fun authSendInvites(phoneNumbers: TLStringVector, message: String): TLBool = executeRpcQuerySync(TLRequestAuthSendInvites(phoneNumbers, message))
+    override fun authSendInvites(phoneNumbers: TLStringVector, message: String): TLBool = executeMethod(TLRequestAuthSendInvites(phoneNumbers, message))
 
     @Throws(RpcErrorException::class, IOException::class)
     override fun authSignIn(
             phoneNumber: String,
             phoneCodeHash: String,
             phoneCode: String
-    ): TLAuthorization = executeRpcQuerySync(TLRequestAuthSignIn(phoneNumber, phoneCodeHash, phoneCode))
+    ): TLAuthorization = executeMethod(TLRequestAuthSignIn(phoneNumber, phoneCodeHash, phoneCode))
 
     @Throws(RpcErrorException::class, IOException::class)
     override fun authSignUp(
@@ -200,16 +200,16 @@ abstract class TelegramSyncApiWrapper : TelegramSyncApi, RpcQuerySyncExecutor {
             phoneCode: String,
             firstName: String,
             lastName: String
-    ): TLAuthorization = executeRpcQuerySync(TLRequestAuthSignUp(phoneNumber, phoneCodeHash, phoneCode, firstName, lastName))
+    ): TLAuthorization = executeMethod(TLRequestAuthSignUp(phoneNumber, phoneCodeHash, phoneCode, firstName, lastName))
 
     @Throws(RpcErrorException::class, IOException::class)
-    override fun botsAnswerWebhookJSONQuery(queryId: Long, data: TLDataJSON): TLBool = executeRpcQuerySync(TLRequestBotsAnswerWebhookJSONQuery(queryId, data))
+    override fun botsAnswerWebhookJSONQuery(queryId: Long, data: TLDataJSON): TLBool = executeMethod(TLRequestBotsAnswerWebhookJSONQuery(queryId, data))
 
     @Throws(RpcErrorException::class, IOException::class)
-    override fun botsSendCustomRequest(customMethod: String, params: TLDataJSON): TLDataJSON = executeRpcQuerySync(TLRequestBotsSendCustomRequest(customMethod, params))
+    override fun botsSendCustomRequest(customMethod: String, params: TLDataJSON): TLDataJSON = executeMethod(TLRequestBotsSendCustomRequest(customMethod, params))
 
     @Throws(RpcErrorException::class, IOException::class)
-    override fun channelsCheckUsername(channel: TLAbsInputChannel, username: String): TLBool = executeRpcQuerySync(TLRequestChannelsCheckUsername(channel, username))
+    override fun channelsCheckUsername(channel: TLAbsInputChannel, username: String): TLBool = executeMethod(TLRequestChannelsCheckUsername(channel, username))
 
     @Throws(RpcErrorException::class, IOException::class)
     override fun channelsCreateChannel(
@@ -217,48 +217,48 @@ abstract class TelegramSyncApiWrapper : TelegramSyncApi, RpcQuerySyncExecutor {
             megagroup: Boolean,
             title: String,
             about: String
-    ): TLAbsUpdates = executeRpcQuerySync(TLRequestChannelsCreateChannel(broadcast, megagroup, title, about))
+    ): TLAbsUpdates = executeMethod(TLRequestChannelsCreateChannel(broadcast, megagroup, title, about))
 
     @Throws(RpcErrorException::class, IOException::class)
-    override fun channelsDeleteChannel(channel: TLAbsInputChannel): TLAbsUpdates = executeRpcQuerySync(TLRequestChannelsDeleteChannel(channel))
+    override fun channelsDeleteChannel(channel: TLAbsInputChannel): TLAbsUpdates = executeMethod(TLRequestChannelsDeleteChannel(channel))
 
     @Throws(RpcErrorException::class, IOException::class)
-    override fun channelsDeleteHistory(channel: TLAbsInputChannel, maxId: Int): TLBool = executeRpcQuerySync(TLRequestChannelsDeleteHistory(channel, maxId))
+    override fun channelsDeleteHistory(channel: TLAbsInputChannel, maxId: Int): TLBool = executeMethod(TLRequestChannelsDeleteHistory(channel, maxId))
 
     @Throws(RpcErrorException::class, IOException::class)
-    override fun channelsDeleteMessages(channel: TLAbsInputChannel, id: TLIntVector): TLAffectedMessages = executeRpcQuerySync(TLRequestChannelsDeleteMessages(channel, id))
+    override fun channelsDeleteMessages(channel: TLAbsInputChannel, id: TLIntVector): TLAffectedMessages = executeMethod(TLRequestChannelsDeleteMessages(channel, id))
 
     @Throws(RpcErrorException::class, IOException::class)
-    override fun channelsDeleteUserHistory(channel: TLAbsInputChannel, userId: TLAbsInputUser): TLAffectedHistory = executeRpcQuerySync(TLRequestChannelsDeleteUserHistory(channel, userId))
+    override fun channelsDeleteUserHistory(channel: TLAbsInputChannel, userId: TLAbsInputUser): TLAffectedHistory = executeMethod(TLRequestChannelsDeleteUserHistory(channel, userId))
 
     @Throws(RpcErrorException::class, IOException::class)
-    override fun channelsEditAbout(channel: TLAbsInputChannel, about: String): TLBool = executeRpcQuerySync(TLRequestChannelsEditAbout(channel, about))
+    override fun channelsEditAbout(channel: TLAbsInputChannel, about: String): TLBool = executeMethod(TLRequestChannelsEditAbout(channel, about))
 
     @Throws(RpcErrorException::class, IOException::class)
     override fun channelsEditAdmin(
             channel: TLAbsInputChannel,
             userId: TLAbsInputUser,
             adminRights: TLChannelAdminRights
-    ): TLAbsUpdates = executeRpcQuerySync(TLRequestChannelsEditAdmin(channel, userId, adminRights))
+    ): TLAbsUpdates = executeMethod(TLRequestChannelsEditAdmin(channel, userId, adminRights))
 
     @Throws(RpcErrorException::class, IOException::class)
     override fun channelsEditBanned(
             channel: TLAbsInputChannel,
             userId: TLAbsInputUser,
             bannedRights: TLChannelBannedRights
-    ): TLAbsUpdates = executeRpcQuerySync(TLRequestChannelsEditBanned(channel, userId, bannedRights))
+    ): TLAbsUpdates = executeMethod(TLRequestChannelsEditBanned(channel, userId, bannedRights))
 
     @Throws(RpcErrorException::class, IOException::class)
-    override fun channelsEditPhoto(channel: TLAbsInputChannel, photo: TLAbsInputChatPhoto): TLAbsUpdates = executeRpcQuerySync(TLRequestChannelsEditPhoto(channel, photo))
+    override fun channelsEditPhoto(channel: TLAbsInputChannel, photo: TLAbsInputChatPhoto): TLAbsUpdates = executeMethod(TLRequestChannelsEditPhoto(channel, photo))
 
     @Throws(RpcErrorException::class, IOException::class)
-    override fun channelsEditTitle(channel: TLAbsInputChannel, title: String): TLAbsUpdates = executeRpcQuerySync(TLRequestChannelsEditTitle(channel, title))
+    override fun channelsEditTitle(channel: TLAbsInputChannel, title: String): TLAbsUpdates = executeMethod(TLRequestChannelsEditTitle(channel, title))
 
     @Throws(RpcErrorException::class, IOException::class)
-    override fun channelsExportInvite(channel: TLAbsInputChannel): TLAbsExportedChatInvite = executeRpcQuerySync(TLRequestChannelsExportInvite(channel))
+    override fun channelsExportInvite(channel: TLAbsInputChannel): TLAbsExportedChatInvite = executeMethod(TLRequestChannelsExportInvite(channel))
 
     @Throws(RpcErrorException::class, IOException::class)
-    override fun channelsExportMessageLink(channel: TLAbsInputChannel, id: Int): TLExportedMessageLink = executeRpcQuerySync(TLRequestChannelsExportMessageLink(channel, id))
+    override fun channelsExportMessageLink(channel: TLAbsInputChannel, id: Int): TLExportedMessageLink = executeMethod(TLRequestChannelsExportMessageLink(channel, id))
 
     @Throws(RpcErrorException::class, IOException::class)
     override fun channelsGetAdminLog(
@@ -269,22 +269,22 @@ abstract class TelegramSyncApiWrapper : TelegramSyncApi, RpcQuerySyncExecutor {
             maxId: Long,
             minId: Long,
             limit: Int
-    ): TLAdminLogResults = executeRpcQuerySync(TLRequestChannelsGetAdminLog(channel, q, eventsFilter, admins, maxId, minId, limit))
+    ): TLAdminLogResults = executeMethod(TLRequestChannelsGetAdminLog(channel, q, eventsFilter, admins, maxId, minId, limit))
 
     @Throws(RpcErrorException::class, IOException::class)
-    override fun channelsGetAdminedPublicChannels(): TLAbsChats = executeRpcQuerySync(TLRequestChannelsGetAdminedPublicChannels())
+    override fun channelsGetAdminedPublicChannels(): TLAbsChats = executeMethod(TLRequestChannelsGetAdminedPublicChannels())
 
     @Throws(RpcErrorException::class, IOException::class)
-    override fun channelsGetChannels(id: TLObjectVector<TLAbsInputChannel>): TLAbsChats = executeRpcQuerySync(TLRequestChannelsGetChannels(id))
+    override fun channelsGetChannels(id: TLObjectVector<TLAbsInputChannel>): TLAbsChats = executeMethod(TLRequestChannelsGetChannels(id))
 
     @Throws(RpcErrorException::class, IOException::class)
-    override fun channelsGetFullChannel(channel: TLAbsInputChannel): TLChatFull = executeRpcQuerySync(TLRequestChannelsGetFullChannel(channel))
+    override fun channelsGetFullChannel(channel: TLAbsInputChannel): TLChatFull = executeMethod(TLRequestChannelsGetFullChannel(channel))
 
     @Throws(RpcErrorException::class, IOException::class)
-    override fun channelsGetMessages(channel: TLAbsInputChannel, id: TLIntVector): TLAbsMessages = executeRpcQuerySync(TLRequestChannelsGetMessages(channel, id))
+    override fun channelsGetMessages(channel: TLAbsInputChannel, id: TLIntVector): TLAbsMessages = executeMethod(TLRequestChannelsGetMessages(channel, id))
 
     @Throws(RpcErrorException::class, IOException::class)
-    override fun channelsGetParticipant(channel: TLAbsInputChannel, userId: TLAbsInputUser): TLChannelParticipant = executeRpcQuerySync(TLRequestChannelsGetParticipant(channel, userId))
+    override fun channelsGetParticipant(channel: TLAbsInputChannel, userId: TLAbsInputUser): TLChannelParticipant = executeMethod(TLRequestChannelsGetParticipant(channel, userId))
 
     @Throws(RpcErrorException::class, IOException::class)
     override fun channelsGetParticipants(
@@ -293,72 +293,72 @@ abstract class TelegramSyncApiWrapper : TelegramSyncApi, RpcQuerySyncExecutor {
             offset: Int,
             limit: Int,
             hash: Int
-    ): TLAbsChannelParticipants = executeRpcQuerySync(TLRequestChannelsGetParticipants(channel, filter, offset, limit, hash))
+    ): TLAbsChannelParticipants = executeMethod(TLRequestChannelsGetParticipants(channel, filter, offset, limit, hash))
 
     @Throws(RpcErrorException::class, IOException::class)
-    override fun channelsInviteToChannel(channel: TLAbsInputChannel, users: TLObjectVector<TLAbsInputUser>): TLAbsUpdates = executeRpcQuerySync(TLRequestChannelsInviteToChannel(channel, users))
+    override fun channelsInviteToChannel(channel: TLAbsInputChannel, users: TLObjectVector<TLAbsInputUser>): TLAbsUpdates = executeMethod(TLRequestChannelsInviteToChannel(channel, users))
 
     @Throws(RpcErrorException::class, IOException::class)
-    override fun channelsJoinChannel(channel: TLAbsInputChannel): TLAbsUpdates = executeRpcQuerySync(TLRequestChannelsJoinChannel(channel))
+    override fun channelsJoinChannel(channel: TLAbsInputChannel): TLAbsUpdates = executeMethod(TLRequestChannelsJoinChannel(channel))
 
     @Throws(RpcErrorException::class, IOException::class)
-    override fun channelsLeaveChannel(channel: TLAbsInputChannel): TLAbsUpdates = executeRpcQuerySync(TLRequestChannelsLeaveChannel(channel))
+    override fun channelsLeaveChannel(channel: TLAbsInputChannel): TLAbsUpdates = executeMethod(TLRequestChannelsLeaveChannel(channel))
 
     @Throws(RpcErrorException::class, IOException::class)
-    override fun channelsReadHistory(channel: TLAbsInputChannel, maxId: Int): TLBool = executeRpcQuerySync(TLRequestChannelsReadHistory(channel, maxId))
+    override fun channelsReadHistory(channel: TLAbsInputChannel, maxId: Int): TLBool = executeMethod(TLRequestChannelsReadHistory(channel, maxId))
 
     @Throws(RpcErrorException::class, IOException::class)
-    override fun channelsReadMessageContents(channel: TLAbsInputChannel, id: TLIntVector): TLBool = executeRpcQuerySync(TLRequestChannelsReadMessageContents(channel, id))
+    override fun channelsReadMessageContents(channel: TLAbsInputChannel, id: TLIntVector): TLBool = executeMethod(TLRequestChannelsReadMessageContents(channel, id))
 
     @Throws(RpcErrorException::class, IOException::class)
     override fun channelsReportSpam(
             channel: TLAbsInputChannel,
             userId: TLAbsInputUser,
             id: TLIntVector
-    ): TLBool = executeRpcQuerySync(TLRequestChannelsReportSpam(channel, userId, id))
+    ): TLBool = executeMethod(TLRequestChannelsReportSpam(channel, userId, id))
 
     @Throws(RpcErrorException::class, IOException::class)
-    override fun channelsSetStickers(channel: TLAbsInputChannel, stickerset: TLAbsInputStickerSet): TLBool = executeRpcQuerySync(TLRequestChannelsSetStickers(channel, stickerset))
+    override fun channelsSetStickers(channel: TLAbsInputChannel, stickerset: TLAbsInputStickerSet): TLBool = executeMethod(TLRequestChannelsSetStickers(channel, stickerset))
 
     @Throws(RpcErrorException::class, IOException::class)
-    override fun channelsToggleInvites(channel: TLAbsInputChannel, enabled: Boolean): TLAbsUpdates = executeRpcQuerySync(TLRequestChannelsToggleInvites(channel, enabled))
+    override fun channelsToggleInvites(channel: TLAbsInputChannel, enabled: Boolean): TLAbsUpdates = executeMethod(TLRequestChannelsToggleInvites(channel, enabled))
 
     @Throws(RpcErrorException::class, IOException::class)
-    override fun channelsTogglePreHistoryHidden(channel: TLAbsInputChannel, enabled: Boolean): TLAbsUpdates = executeRpcQuerySync(TLRequestChannelsTogglePreHistoryHidden(channel, enabled))
+    override fun channelsTogglePreHistoryHidden(channel: TLAbsInputChannel, enabled: Boolean): TLAbsUpdates = executeMethod(TLRequestChannelsTogglePreHistoryHidden(channel, enabled))
 
     @Throws(RpcErrorException::class, IOException::class)
-    override fun channelsToggleSignatures(channel: TLAbsInputChannel, enabled: Boolean): TLAbsUpdates = executeRpcQuerySync(TLRequestChannelsToggleSignatures(channel, enabled))
+    override fun channelsToggleSignatures(channel: TLAbsInputChannel, enabled: Boolean): TLAbsUpdates = executeMethod(TLRequestChannelsToggleSignatures(channel, enabled))
 
     @Throws(RpcErrorException::class, IOException::class)
     override fun channelsUpdatePinnedMessage(
             silent: Boolean,
             channel: TLAbsInputChannel,
             id: Int
-    ): TLAbsUpdates = executeRpcQuerySync(TLRequestChannelsUpdatePinnedMessage(silent, channel, id))
+    ): TLAbsUpdates = executeMethod(TLRequestChannelsUpdatePinnedMessage(silent, channel, id))
 
     @Throws(RpcErrorException::class, IOException::class)
-    override fun channelsUpdateUsername(channel: TLAbsInputChannel, username: String): TLBool = executeRpcQuerySync(TLRequestChannelsUpdateUsername(channel, username))
+    override fun channelsUpdateUsername(channel: TLAbsInputChannel, username: String): TLBool = executeMethod(TLRequestChannelsUpdateUsername(channel, username))
 
     @Throws(RpcErrorException::class, IOException::class)
-    override fun contactsBlock(id: TLAbsInputUser): TLBool = executeRpcQuerySync(TLRequestContactsBlock(id))
+    override fun contactsBlock(id: TLAbsInputUser): TLBool = executeMethod(TLRequestContactsBlock(id))
 
     @Throws(RpcErrorException::class, IOException::class)
-    override fun contactsDeleteContact(id: TLAbsInputUser): TLLink = executeRpcQuerySync(TLRequestContactsDeleteContact(id))
+    override fun contactsDeleteContact(id: TLAbsInputUser): TLLink = executeMethod(TLRequestContactsDeleteContact(id))
 
     @Throws(RpcErrorException::class, IOException::class)
-    override fun contactsDeleteContacts(id: TLObjectVector<TLAbsInputUser>): TLBool = executeRpcQuerySync(TLRequestContactsDeleteContacts(id))
+    override fun contactsDeleteContacts(id: TLObjectVector<TLAbsInputUser>): TLBool = executeMethod(TLRequestContactsDeleteContacts(id))
 
     @Throws(RpcErrorException::class, IOException::class)
-    override fun contactsExportCard(): TLIntVector = executeRpcQuerySync(TLRequestContactsExportCard())
+    override fun contactsExportCard(): TLIntVector = executeMethod(TLRequestContactsExportCard())
 
     @Throws(RpcErrorException::class, IOException::class)
-    override fun contactsGetBlocked(offset: Int, limit: Int): TLAbsBlocked = executeRpcQuerySync(TLRequestContactsGetBlocked(offset, limit))
+    override fun contactsGetBlocked(offset: Int, limit: Int): TLAbsBlocked = executeMethod(TLRequestContactsGetBlocked(offset, limit))
 
     @Throws(RpcErrorException::class, IOException::class)
-    override fun contactsGetContacts(hash: Int): TLAbsContacts = executeRpcQuerySync(TLRequestContactsGetContacts(hash))
+    override fun contactsGetContacts(hash: Int): TLAbsContacts = executeMethod(TLRequestContactsGetContacts(hash))
 
     @Throws(RpcErrorException::class, IOException::class)
-    override fun contactsGetStatuses(): TLObjectVector<TLContactStatus> = executeRpcQuerySync(TLRequestContactsGetStatuses())
+    override fun contactsGetStatuses(): TLObjectVector<TLContactStatus> = executeMethod(TLRequestContactsGetStatuses())
 
     @Throws(RpcErrorException::class, IOException::class)
     override fun contactsGetTopPeers(
@@ -371,61 +371,61 @@ abstract class TelegramSyncApiWrapper : TelegramSyncApi, RpcQuerySyncExecutor {
             offset: Int,
             limit: Int,
             hash: Int
-    ): TLAbsTopPeers = executeRpcQuerySync(TLRequestContactsGetTopPeers(correspondents, botsPm, botsInline, phoneCalls, groups, channels, offset, limit, hash))
+    ): TLAbsTopPeers = executeMethod(TLRequestContactsGetTopPeers(correspondents, botsPm, botsInline, phoneCalls, groups, channels, offset, limit, hash))
 
     @Throws(RpcErrorException::class, IOException::class)
-    override fun contactsImportCard(exportCard: TLIntVector): TLAbsUser = executeRpcQuerySync(TLRequestContactsImportCard(exportCard))
+    override fun contactsImportCard(exportCard: TLIntVector): TLAbsUser = executeMethod(TLRequestContactsImportCard(exportCard))
 
     @Throws(RpcErrorException::class, IOException::class)
-    override fun contactsImportContacts(contacts: TLObjectVector<TLInputPhoneContact>): TLImportedContacts = executeRpcQuerySync(TLRequestContactsImportContacts(contacts))
+    override fun contactsImportContacts(contacts: TLObjectVector<TLInputPhoneContact>): TLImportedContacts = executeMethod(TLRequestContactsImportContacts(contacts))
 
     @Throws(RpcErrorException::class, IOException::class)
-    override fun contactsResetSaved(): TLBool = executeRpcQuerySync(TLRequestContactsResetSaved())
+    override fun contactsResetSaved(): TLBool = executeMethod(TLRequestContactsResetSaved())
 
     @Throws(RpcErrorException::class, IOException::class)
-    override fun contactsResetTopPeerRating(category: TLAbsTopPeerCategory, peer: TLAbsInputPeer): TLBool = executeRpcQuerySync(TLRequestContactsResetTopPeerRating(category, peer))
+    override fun contactsResetTopPeerRating(category: TLAbsTopPeerCategory, peer: TLAbsInputPeer): TLBool = executeMethod(TLRequestContactsResetTopPeerRating(category, peer))
 
     @Throws(RpcErrorException::class, IOException::class)
-    override fun contactsResolveUsername(username: String): TLResolvedPeer = executeRpcQuerySync(TLRequestContactsResolveUsername(username))
+    override fun contactsResolveUsername(username: String): TLResolvedPeer = executeMethod(TLRequestContactsResolveUsername(username))
 
     @Throws(RpcErrorException::class, IOException::class)
-    override fun contactsSearch(q: String, limit: Int): TLFound = executeRpcQuerySync(TLRequestContactsSearch(q, limit))
+    override fun contactsSearch(q: String, limit: Int): TLFound = executeMethod(TLRequestContactsSearch(q, limit))
 
     @Throws(RpcErrorException::class, IOException::class)
-    override fun contactsUnblock(id: TLAbsInputUser): TLBool = executeRpcQuerySync(TLRequestContactsUnblock(id))
+    override fun contactsUnblock(id: TLAbsInputUser): TLBool = executeMethod(TLRequestContactsUnblock(id))
 
     @Throws(RpcErrorException::class, IOException::class)
-    override fun helpGetAppChangelog(prevAppVersion: String): TLAbsUpdates = executeRpcQuerySync(TLRequestHelpGetAppChangelog(prevAppVersion))
+    override fun helpGetAppChangelog(prevAppVersion: String): TLAbsUpdates = executeMethod(TLRequestHelpGetAppChangelog(prevAppVersion))
 
     @Throws(RpcErrorException::class, IOException::class)
-    override fun helpGetAppUpdate(): TLAbsAppUpdate = executeRpcQuerySync(TLRequestHelpGetAppUpdate())
+    override fun helpGetAppUpdate(): TLAbsAppUpdate = executeMethod(TLRequestHelpGetAppUpdate())
 
     @Throws(RpcErrorException::class, IOException::class)
-    override fun helpGetCdnConfig(): TLCdnConfig = executeRpcQuerySync(TLRequestHelpGetCdnConfig())
+    override fun helpGetCdnConfig(): TLCdnConfig = executeMethod(TLRequestHelpGetCdnConfig())
 
     @Throws(RpcErrorException::class, IOException::class)
-    override fun helpGetConfig(): TLConfig = executeRpcQuerySync(TLRequestHelpGetConfig())
+    override fun helpGetConfig(): TLConfig = executeMethod(TLRequestHelpGetConfig())
 
     @Throws(RpcErrorException::class, IOException::class)
-    override fun helpGetInviteText(): TLInviteText = executeRpcQuerySync(TLRequestHelpGetInviteText())
+    override fun helpGetInviteText(): TLInviteText = executeMethod(TLRequestHelpGetInviteText())
 
     @Throws(RpcErrorException::class, IOException::class)
-    override fun helpGetNearestDc(): TLNearestDc = executeRpcQuerySync(TLRequestHelpGetNearestDc())
+    override fun helpGetNearestDc(): TLNearestDc = executeMethod(TLRequestHelpGetNearestDc())
 
     @Throws(RpcErrorException::class, IOException::class)
-    override fun helpGetRecentMeUrls(referer: String): TLRecentMeUrls = executeRpcQuerySync(TLRequestHelpGetRecentMeUrls(referer))
+    override fun helpGetRecentMeUrls(referer: String): TLRecentMeUrls = executeMethod(TLRequestHelpGetRecentMeUrls(referer))
 
     @Throws(RpcErrorException::class, IOException::class)
-    override fun helpGetSupport(): TLSupport = executeRpcQuerySync(TLRequestHelpGetSupport())
+    override fun helpGetSupport(): TLSupport = executeMethod(TLRequestHelpGetSupport())
 
     @Throws(RpcErrorException::class, IOException::class)
-    override fun helpGetTermsOfService(): TLTermsOfService = executeRpcQuerySync(TLRequestHelpGetTermsOfService())
+    override fun helpGetTermsOfService(): TLTermsOfService = executeMethod(TLRequestHelpGetTermsOfService())
 
     @Throws(RpcErrorException::class, IOException::class)
-    override fun helpSaveAppLog(events: TLObjectVector<TLInputAppEvent>): TLBool = executeRpcQuerySync(TLRequestHelpSaveAppLog(events))
+    override fun helpSaveAppLog(events: TLObjectVector<TLInputAppEvent>): TLBool = executeMethod(TLRequestHelpSaveAppLog(events))
 
     @Throws(RpcErrorException::class, IOException::class)
-    override fun helpSetBotUpdatesStatus(pendingUpdatesCount: Int, message: String): TLBool = executeRpcQuerySync(TLRequestHelpSetBotUpdatesStatus(pendingUpdatesCount, message))
+    override fun helpSetBotUpdatesStatus(pendingUpdatesCount: Int, message: String): TLBool = executeMethod(TLRequestHelpSetBotUpdatesStatus(pendingUpdatesCount, message))
 
     @Throws(RpcErrorException::class, IOException::class)
     override fun <T : TLObject> initConnection(
@@ -437,83 +437,83 @@ abstract class TelegramSyncApiWrapper : TelegramSyncApi, RpcQuerySyncExecutor {
             langPack: String,
             langCode: String,
             query: TLMethod<T>?
-    ): T = executeRpcQuerySync(TLRequestInitConnection(apiId, deviceModel, systemVersion, appVersion, systemLangCode, langPack, langCode, query))
+    ): T = executeMethod(TLRequestInitConnection(apiId, deviceModel, systemVersion, appVersion, systemLangCode, langPack, langCode, query))
 
     @Throws(RpcErrorException::class, IOException::class)
-    override fun <T : TLObject> invokeAfterMsg(msgId: Long, query: TLMethod<T>?): T = executeRpcQuerySync(TLRequestInvokeAfterMsg(msgId, query))
+    override fun <T : TLObject> invokeAfterMsg(msgId: Long, query: TLMethod<T>?): T = executeMethod(TLRequestInvokeAfterMsg(msgId, query))
 
     @Throws(RpcErrorException::class, IOException::class)
-    override fun <T : TLObject> invokeAfterMsgs(msgIds: TLLongVector, query: TLMethod<T>?): T = executeRpcQuerySync(TLRequestInvokeAfterMsgs(msgIds, query))
+    override fun <T : TLObject> invokeAfterMsgs(msgIds: TLLongVector, query: TLMethod<T>?): T = executeMethod(TLRequestInvokeAfterMsgs(msgIds, query))
 
     @Throws(RpcErrorException::class, IOException::class)
-    override fun <T : TLObject> invokeWithLayer(layer: Int, query: TLMethod<T>?): T = executeRpcQuerySync(TLRequestInvokeWithLayer(layer, query))
+    override fun <T : TLObject> invokeWithLayer(layer: Int, query: TLMethod<T>?): T = executeMethod(TLRequestInvokeWithLayer(layer, query))
 
     @Throws(RpcErrorException::class, IOException::class)
-    override fun <T : TLObject> invokeWithoutUpdates(query: TLMethod<T>?): T = executeRpcQuerySync(TLRequestInvokeWithoutUpdates(query))
+    override fun <T : TLObject> invokeWithoutUpdates(query: TLMethod<T>?): T = executeMethod(TLRequestInvokeWithoutUpdates(query))
 
     @Throws(RpcErrorException::class, IOException::class)
-    override fun langpackGetDifference(fromVersion: Int): TLLangPackDifference = executeRpcQuerySync(TLRequestLangpackGetDifference(fromVersion))
+    override fun langpackGetDifference(fromVersion: Int): TLLangPackDifference = executeMethod(TLRequestLangpackGetDifference(fromVersion))
 
     @Throws(RpcErrorException::class, IOException::class)
-    override fun langpackGetLangPack(langCode: String): TLLangPackDifference = executeRpcQuerySync(TLRequestLangpackGetLangPack(langCode))
+    override fun langpackGetLangPack(langCode: String): TLLangPackDifference = executeMethod(TLRequestLangpackGetLangPack(langCode))
 
     @Throws(RpcErrorException::class, IOException::class)
-    override fun langpackGetLanguages(): TLObjectVector<TLLangPackLanguage> = executeRpcQuerySync(TLRequestLangpackGetLanguages())
+    override fun langpackGetLanguages(): TLObjectVector<TLLangPackLanguage> = executeMethod(TLRequestLangpackGetLanguages())
 
     @Throws(RpcErrorException::class, IOException::class)
-    override fun langpackGetStrings(langCode: String, keys: TLStringVector): TLObjectVector<TLAbsLangPackString> = executeRpcQuerySync(TLRequestLangpackGetStrings(langCode, keys))
+    override fun langpackGetStrings(langCode: String, keys: TLStringVector): TLObjectVector<TLAbsLangPackString> = executeMethod(TLRequestLangpackGetStrings(langCode, keys))
 
     @Throws(RpcErrorException::class, IOException::class)
     override fun messagesAcceptEncryption(
             peer: TLInputEncryptedChat,
             gB: TLBytes,
             keyFingerprint: Long
-    ): TLAbsEncryptedChat = executeRpcQuerySync(TLRequestMessagesAcceptEncryption(peer, gB, keyFingerprint))
+    ): TLAbsEncryptedChat = executeMethod(TLRequestMessagesAcceptEncryption(peer, gB, keyFingerprint))
 
     @Throws(RpcErrorException::class, IOException::class)
     override fun messagesAddChatUser(
             chatId: Int,
             userId: TLAbsInputUser,
             fwdLimit: Int
-    ): TLAbsUpdates = executeRpcQuerySync(TLRequestMessagesAddChatUser(chatId, userId, fwdLimit))
+    ): TLAbsUpdates = executeMethod(TLRequestMessagesAddChatUser(chatId, userId, fwdLimit))
 
     @Throws(RpcErrorException::class, IOException::class)
-    override fun messagesCheckChatInvite(hash: String): TLAbsChatInvite = executeRpcQuerySync(TLRequestMessagesCheckChatInvite(hash))
+    override fun messagesCheckChatInvite(hash: String): TLAbsChatInvite = executeMethod(TLRequestMessagesCheckChatInvite(hash))
 
     @Throws(RpcErrorException::class, IOException::class)
-    override fun messagesClearRecentStickers(attached: Boolean): TLBool = executeRpcQuerySync(TLRequestMessagesClearRecentStickers(attached))
+    override fun messagesClearRecentStickers(attached: Boolean): TLBool = executeMethod(TLRequestMessagesClearRecentStickers(attached))
 
     @Throws(RpcErrorException::class, IOException::class)
-    override fun messagesCreateChat(users: TLObjectVector<TLAbsInputUser>, title: String): TLAbsUpdates = executeRpcQuerySync(TLRequestMessagesCreateChat(users, title))
+    override fun messagesCreateChat(users: TLObjectVector<TLAbsInputUser>, title: String): TLAbsUpdates = executeMethod(TLRequestMessagesCreateChat(users, title))
 
     @Throws(RpcErrorException::class, IOException::class)
-    override fun messagesDeleteChatUser(chatId: Int, userId: TLAbsInputUser): TLAbsUpdates = executeRpcQuerySync(TLRequestMessagesDeleteChatUser(chatId, userId))
+    override fun messagesDeleteChatUser(chatId: Int, userId: TLAbsInputUser): TLAbsUpdates = executeMethod(TLRequestMessagesDeleteChatUser(chatId, userId))
 
     @Throws(RpcErrorException::class, IOException::class)
     override fun messagesDeleteHistory(
             justClear: Boolean,
             peer: TLAbsInputPeer,
             maxId: Int
-    ): TLAffectedHistory = executeRpcQuerySync(TLRequestMessagesDeleteHistory(justClear, peer, maxId))
+    ): TLAffectedHistory = executeMethod(TLRequestMessagesDeleteHistory(justClear, peer, maxId))
 
     @Throws(RpcErrorException::class, IOException::class)
-    override fun messagesDeleteMessages(revoke: Boolean, id: TLIntVector): TLAffectedMessages = executeRpcQuerySync(TLRequestMessagesDeleteMessages(revoke, id))
+    override fun messagesDeleteMessages(revoke: Boolean, id: TLIntVector): TLAffectedMessages = executeMethod(TLRequestMessagesDeleteMessages(revoke, id))
 
     @Throws(RpcErrorException::class, IOException::class)
-    override fun messagesDiscardEncryption(chatId: Int): TLBool = executeRpcQuerySync(TLRequestMessagesDiscardEncryption(chatId))
+    override fun messagesDiscardEncryption(chatId: Int): TLBool = executeMethod(TLRequestMessagesDiscardEncryption(chatId))
 
     @Throws(RpcErrorException::class, IOException::class)
     override fun messagesEditChatAdmin(
             chatId: Int,
             userId: TLAbsInputUser,
             isAdmin: Boolean
-    ): TLBool = executeRpcQuerySync(TLRequestMessagesEditChatAdmin(chatId, userId, isAdmin))
+    ): TLBool = executeMethod(TLRequestMessagesEditChatAdmin(chatId, userId, isAdmin))
 
     @Throws(RpcErrorException::class, IOException::class)
-    override fun messagesEditChatPhoto(chatId: Int, photo: TLAbsInputChatPhoto): TLAbsUpdates = executeRpcQuerySync(TLRequestMessagesEditChatPhoto(chatId, photo))
+    override fun messagesEditChatPhoto(chatId: Int, photo: TLAbsInputChatPhoto): TLAbsUpdates = executeMethod(TLRequestMessagesEditChatPhoto(chatId, photo))
 
     @Throws(RpcErrorException::class, IOException::class)
-    override fun messagesEditChatTitle(chatId: Int, title: String): TLAbsUpdates = executeRpcQuerySync(TLRequestMessagesEditChatTitle(chatId, title))
+    override fun messagesEditChatTitle(chatId: Int, title: String): TLAbsUpdates = executeMethod(TLRequestMessagesEditChatTitle(chatId, title))
 
     @Throws(RpcErrorException::class, IOException::class)
     override fun messagesEditInlineBotMessage(
@@ -522,7 +522,7 @@ abstract class TelegramSyncApiWrapper : TelegramSyncApi, RpcQuerySyncExecutor {
             message: String?,
             replyMarkup: TLAbsReplyMarkup?,
             entities: TLObjectVector<TLAbsMessageEntity>?
-    ): TLBool = executeRpcQuerySync(TLRequestMessagesEditInlineBotMessage(noWebpage, id, message, replyMarkup, entities))
+    ): TLBool = executeMethod(TLRequestMessagesEditInlineBotMessage(noWebpage, id, message, replyMarkup, entities))
 
     @Throws(RpcErrorException::class, IOException::class)
     override fun messagesEditMessage(
@@ -534,20 +534,20 @@ abstract class TelegramSyncApiWrapper : TelegramSyncApi, RpcQuerySyncExecutor {
             replyMarkup: TLAbsReplyMarkup?,
             entities: TLObjectVector<TLAbsMessageEntity>?,
             geoPoint: TLAbsInputGeoPoint?
-    ): TLAbsUpdates = executeRpcQuerySync(TLRequestMessagesEditMessage(noWebpage, stopGeoLive, peer, id, message, replyMarkup, entities, geoPoint))
+    ): TLAbsUpdates = executeMethod(TLRequestMessagesEditMessage(noWebpage, stopGeoLive, peer, id, message, replyMarkup, entities, geoPoint))
 
     @Throws(RpcErrorException::class, IOException::class)
-    override fun messagesExportChatInvite(chatId: Int): TLAbsExportedChatInvite = executeRpcQuerySync(TLRequestMessagesExportChatInvite(chatId))
+    override fun messagesExportChatInvite(chatId: Int): TLAbsExportedChatInvite = executeMethod(TLRequestMessagesExportChatInvite(chatId))
 
     @Throws(RpcErrorException::class, IOException::class)
-    override fun messagesFaveSticker(id: TLAbsInputDocument, unfave: Boolean): TLBool = executeRpcQuerySync(TLRequestMessagesFaveSticker(id, unfave))
+    override fun messagesFaveSticker(id: TLAbsInputDocument, unfave: Boolean): TLBool = executeMethod(TLRequestMessagesFaveSticker(id, unfave))
 
     @Throws(RpcErrorException::class, IOException::class)
     override fun messagesForwardMessage(
             peer: TLAbsInputPeer,
             id: Int,
             randomId: Long
-    ): TLAbsUpdates = executeRpcQuerySync(TLRequestMessagesForwardMessage(peer, id, randomId))
+    ): TLAbsUpdates = executeMethod(TLRequestMessagesForwardMessage(peer, id, randomId))
 
     @Throws(RpcErrorException::class, IOException::class)
     override fun messagesForwardMessages(
@@ -558,26 +558,26 @@ abstract class TelegramSyncApiWrapper : TelegramSyncApi, RpcQuerySyncExecutor {
             id: TLIntVector,
             randomId: TLLongVector,
             toPeer: TLAbsInputPeer
-    ): TLAbsUpdates = executeRpcQuerySync(TLRequestMessagesForwardMessages(silent, background, withMyScore, fromPeer, id, randomId, toPeer))
+    ): TLAbsUpdates = executeMethod(TLRequestMessagesForwardMessages(silent, background, withMyScore, fromPeer, id, randomId, toPeer))
 
     @Throws(RpcErrorException::class, IOException::class)
-    override fun messagesGetAllChats(exceptIds: TLIntVector): TLAbsChats = executeRpcQuerySync(TLRequestMessagesGetAllChats(exceptIds))
+    override fun messagesGetAllChats(exceptIds: TLIntVector): TLAbsChats = executeMethod(TLRequestMessagesGetAllChats(exceptIds))
 
     @Throws(RpcErrorException::class, IOException::class)
-    override fun messagesGetAllDrafts(): TLAbsUpdates = executeRpcQuerySync(TLRequestMessagesGetAllDrafts())
+    override fun messagesGetAllDrafts(): TLAbsUpdates = executeMethod(TLRequestMessagesGetAllDrafts())
 
     @Throws(RpcErrorException::class, IOException::class)
-    override fun messagesGetAllStickers(hash: Int): TLAbsAllStickers = executeRpcQuerySync(TLRequestMessagesGetAllStickers(hash))
+    override fun messagesGetAllStickers(hash: Int): TLAbsAllStickers = executeMethod(TLRequestMessagesGetAllStickers(hash))
 
     @Throws(RpcErrorException::class, IOException::class)
     override fun messagesGetArchivedStickers(
             masks: Boolean,
             offsetId: Long,
             limit: Int
-    ): TLArchivedStickers = executeRpcQuerySync(TLRequestMessagesGetArchivedStickers(masks, offsetId, limit))
+    ): TLArchivedStickers = executeMethod(TLRequestMessagesGetArchivedStickers(masks, offsetId, limit))
 
     @Throws(RpcErrorException::class, IOException::class)
-    override fun messagesGetAttachedStickers(media: TLAbsInputStickeredMedia): TLObjectVector<TLAbsStickerSetCovered> = executeRpcQuerySync(TLRequestMessagesGetAttachedStickers(media))
+    override fun messagesGetAttachedStickers(media: TLAbsInputStickeredMedia): TLObjectVector<TLAbsStickerSetCovered> = executeMethod(TLRequestMessagesGetAttachedStickers(media))
 
     @Throws(RpcErrorException::class, IOException::class)
     override fun messagesGetBotCallbackAnswer(
@@ -585,20 +585,20 @@ abstract class TelegramSyncApiWrapper : TelegramSyncApi, RpcQuerySyncExecutor {
             peer: TLAbsInputPeer,
             msgId: Int,
             data: TLBytes?
-    ): TLBotCallbackAnswer = executeRpcQuerySync(TLRequestMessagesGetBotCallbackAnswer(game, peer, msgId, data))
+    ): TLBotCallbackAnswer = executeMethod(TLRequestMessagesGetBotCallbackAnswer(game, peer, msgId, data))
 
     @Throws(RpcErrorException::class, IOException::class)
-    override fun messagesGetChats(id: TLIntVector): TLAbsChats = executeRpcQuerySync(TLRequestMessagesGetChats(id))
+    override fun messagesGetChats(id: TLIntVector): TLAbsChats = executeMethod(TLRequestMessagesGetChats(id))
 
     @Throws(RpcErrorException::class, IOException::class)
     override fun messagesGetCommonChats(
             userId: TLAbsInputUser,
             maxId: Int,
             limit: Int
-    ): TLAbsChats = executeRpcQuerySync(TLRequestMessagesGetCommonChats(userId, maxId, limit))
+    ): TLAbsChats = executeMethod(TLRequestMessagesGetCommonChats(userId, maxId, limit))
 
     @Throws(RpcErrorException::class, IOException::class)
-    override fun messagesGetDhConfig(version: Int, randomLength: Int): TLAbsDhConfig = executeRpcQuerySync(TLRequestMessagesGetDhConfig(version, randomLength))
+    override fun messagesGetDhConfig(version: Int, randomLength: Int): TLAbsDhConfig = executeMethod(TLRequestMessagesGetDhConfig(version, randomLength))
 
     @Throws(RpcErrorException::class, IOException::class)
     override fun messagesGetDialogs(
@@ -607,30 +607,30 @@ abstract class TelegramSyncApiWrapper : TelegramSyncApi, RpcQuerySyncExecutor {
             offsetId: Int,
             offsetPeer: TLAbsInputPeer,
             limit: Int
-    ): TLAbsDialogs = executeRpcQuerySync(TLRequestMessagesGetDialogs(excludePinned, offsetDate, offsetId, offsetPeer, limit))
+    ): TLAbsDialogs = executeMethod(TLRequestMessagesGetDialogs(excludePinned, offsetDate, offsetId, offsetPeer, limit))
 
     @Throws(RpcErrorException::class, IOException::class)
     override fun messagesGetDocumentByHash(
             sha256: TLBytes,
             size: Int,
             mimeType: String
-    ): TLAbsDocument = executeRpcQuerySync(TLRequestMessagesGetDocumentByHash(sha256, size, mimeType))
+    ): TLAbsDocument = executeMethod(TLRequestMessagesGetDocumentByHash(sha256, size, mimeType))
 
     @Throws(RpcErrorException::class, IOException::class)
-    override fun messagesGetFavedStickers(hash: Int): TLAbsFavedStickers = executeRpcQuerySync(TLRequestMessagesGetFavedStickers(hash))
+    override fun messagesGetFavedStickers(hash: Int): TLAbsFavedStickers = executeMethod(TLRequestMessagesGetFavedStickers(hash))
 
     @Throws(RpcErrorException::class, IOException::class)
-    override fun messagesGetFeaturedStickers(hash: Int): TLAbsFeaturedStickers = executeRpcQuerySync(TLRequestMessagesGetFeaturedStickers(hash))
+    override fun messagesGetFeaturedStickers(hash: Int): TLAbsFeaturedStickers = executeMethod(TLRequestMessagesGetFeaturedStickers(hash))
 
     @Throws(RpcErrorException::class, IOException::class)
-    override fun messagesGetFullChat(chatId: Int): TLChatFull = executeRpcQuerySync(TLRequestMessagesGetFullChat(chatId))
+    override fun messagesGetFullChat(chatId: Int): TLChatFull = executeMethod(TLRequestMessagesGetFullChat(chatId))
 
     @Throws(RpcErrorException::class, IOException::class)
     override fun messagesGetGameHighScores(
             peer: TLAbsInputPeer,
             id: Int,
             userId: TLAbsInputUser
-    ): TLHighScores = executeRpcQuerySync(TLRequestMessagesGetGameHighScores(peer, id, userId))
+    ): TLHighScores = executeMethod(TLRequestMessagesGetGameHighScores(peer, id, userId))
 
     @Throws(RpcErrorException::class, IOException::class)
     override fun messagesGetHistory(
@@ -641,7 +641,7 @@ abstract class TelegramSyncApiWrapper : TelegramSyncApi, RpcQuerySyncExecutor {
             limit: Int,
             maxId: Int,
             minId: Int
-    ): TLAbsMessages = executeRpcQuerySync(TLRequestMessagesGetHistory(peer, offsetId, offsetDate, addOffset, limit, maxId, minId))
+    ): TLAbsMessages = executeMethod(TLRequestMessagesGetHistory(peer, offsetId, offsetDate, addOffset, limit, maxId, minId))
 
     @Throws(RpcErrorException::class, IOException::class)
     override fun messagesGetInlineBotResults(
@@ -650,47 +650,47 @@ abstract class TelegramSyncApiWrapper : TelegramSyncApi, RpcQuerySyncExecutor {
             geoPoint: TLAbsInputGeoPoint?,
             query: String,
             offset: String
-    ): TLBotResults = executeRpcQuerySync(TLRequestMessagesGetInlineBotResults(bot, peer, geoPoint, query, offset))
+    ): TLBotResults = executeMethod(TLRequestMessagesGetInlineBotResults(bot, peer, geoPoint, query, offset))
 
     @Throws(RpcErrorException::class, IOException::class)
-    override fun messagesGetInlineGameHighScores(id: TLInputBotInlineMessageID, userId: TLAbsInputUser): TLHighScores = executeRpcQuerySync(TLRequestMessagesGetInlineGameHighScores(id, userId))
+    override fun messagesGetInlineGameHighScores(id: TLInputBotInlineMessageID, userId: TLAbsInputUser): TLHighScores = executeMethod(TLRequestMessagesGetInlineGameHighScores(id, userId))
 
     @Throws(RpcErrorException::class, IOException::class)
-    override fun messagesGetMaskStickers(hash: Int): TLAbsAllStickers = executeRpcQuerySync(TLRequestMessagesGetMaskStickers(hash))
+    override fun messagesGetMaskStickers(hash: Int): TLAbsAllStickers = executeMethod(TLRequestMessagesGetMaskStickers(hash))
 
     @Throws(RpcErrorException::class, IOException::class)
-    override fun messagesGetMessageEditData(peer: TLAbsInputPeer, id: Int): TLMessageEditData = executeRpcQuerySync(TLRequestMessagesGetMessageEditData(peer, id))
+    override fun messagesGetMessageEditData(peer: TLAbsInputPeer, id: Int): TLMessageEditData = executeMethod(TLRequestMessagesGetMessageEditData(peer, id))
 
     @Throws(RpcErrorException::class, IOException::class)
-    override fun messagesGetMessages(id: TLIntVector): TLAbsMessages = executeRpcQuerySync(TLRequestMessagesGetMessages(id))
+    override fun messagesGetMessages(id: TLIntVector): TLAbsMessages = executeMethod(TLRequestMessagesGetMessages(id))
 
     @Throws(RpcErrorException::class, IOException::class)
     override fun messagesGetMessagesViews(
             peer: TLAbsInputPeer,
             id: TLIntVector,
             increment: Boolean
-    ): TLIntVector = executeRpcQuerySync(TLRequestMessagesGetMessagesViews(peer, id, increment))
+    ): TLIntVector = executeMethod(TLRequestMessagesGetMessagesViews(peer, id, increment))
 
     @Throws(RpcErrorException::class, IOException::class)
-    override fun messagesGetPeerDialogs(peers: TLObjectVector<TLAbsInputPeer>): TLPeerDialogs = executeRpcQuerySync(TLRequestMessagesGetPeerDialogs(peers))
+    override fun messagesGetPeerDialogs(peers: TLObjectVector<TLAbsInputPeer>): TLPeerDialogs = executeMethod(TLRequestMessagesGetPeerDialogs(peers))
 
     @Throws(RpcErrorException::class, IOException::class)
-    override fun messagesGetPeerSettings(peer: TLAbsInputPeer): TLPeerSettings = executeRpcQuerySync(TLRequestMessagesGetPeerSettings(peer))
+    override fun messagesGetPeerSettings(peer: TLAbsInputPeer): TLPeerSettings = executeMethod(TLRequestMessagesGetPeerSettings(peer))
 
     @Throws(RpcErrorException::class, IOException::class)
-    override fun messagesGetPinnedDialogs(): TLPeerDialogs = executeRpcQuerySync(TLRequestMessagesGetPinnedDialogs())
+    override fun messagesGetPinnedDialogs(): TLPeerDialogs = executeMethod(TLRequestMessagesGetPinnedDialogs())
 
     @Throws(RpcErrorException::class, IOException::class)
-    override fun messagesGetRecentLocations(peer: TLAbsInputPeer, limit: Int): TLAbsMessages = executeRpcQuerySync(TLRequestMessagesGetRecentLocations(peer, limit))
+    override fun messagesGetRecentLocations(peer: TLAbsInputPeer, limit: Int): TLAbsMessages = executeMethod(TLRequestMessagesGetRecentLocations(peer, limit))
 
     @Throws(RpcErrorException::class, IOException::class)
-    override fun messagesGetRecentStickers(attached: Boolean, hash: Int): TLAbsRecentStickers = executeRpcQuerySync(TLRequestMessagesGetRecentStickers(attached, hash))
+    override fun messagesGetRecentStickers(attached: Boolean, hash: Int): TLAbsRecentStickers = executeMethod(TLRequestMessagesGetRecentStickers(attached, hash))
 
     @Throws(RpcErrorException::class, IOException::class)
-    override fun messagesGetSavedGifs(hash: Int): TLAbsSavedGifs = executeRpcQuerySync(TLRequestMessagesGetSavedGifs(hash))
+    override fun messagesGetSavedGifs(hash: Int): TLAbsSavedGifs = executeMethod(TLRequestMessagesGetSavedGifs(hash))
 
     @Throws(RpcErrorException::class, IOException::class)
-    override fun messagesGetStickerSet(stickerset: TLAbsInputStickerSet): TLStickerSet = executeRpcQuerySync(TLRequestMessagesGetStickerSet(stickerset))
+    override fun messagesGetStickerSet(stickerset: TLAbsInputStickerSet): TLStickerSet = executeMethod(TLRequestMessagesGetStickerSet(stickerset))
 
     @Throws(RpcErrorException::class, IOException::class)
     override fun messagesGetUnreadMentions(
@@ -700,65 +700,65 @@ abstract class TelegramSyncApiWrapper : TelegramSyncApi, RpcQuerySyncExecutor {
             limit: Int,
             maxId: Int,
             minId: Int
-    ): TLAbsMessages = executeRpcQuerySync(TLRequestMessagesGetUnreadMentions(peer, offsetId, addOffset, limit, maxId, minId))
+    ): TLAbsMessages = executeMethod(TLRequestMessagesGetUnreadMentions(peer, offsetId, addOffset, limit, maxId, minId))
 
     @Throws(RpcErrorException::class, IOException::class)
-    override fun messagesGetWebPage(url: String, hash: Int): TLAbsWebPage = executeRpcQuerySync(TLRequestMessagesGetWebPage(url, hash))
+    override fun messagesGetWebPage(url: String, hash: Int): TLAbsWebPage = executeMethod(TLRequestMessagesGetWebPage(url, hash))
 
     @Throws(RpcErrorException::class, IOException::class)
-    override fun messagesGetWebPagePreview(message: String): TLAbsMessageMedia = executeRpcQuerySync(TLRequestMessagesGetWebPagePreview(message))
+    override fun messagesGetWebPagePreview(message: String): TLAbsMessageMedia = executeMethod(TLRequestMessagesGetWebPagePreview(message))
 
     @Throws(RpcErrorException::class, IOException::class)
-    override fun messagesHideReportSpam(peer: TLAbsInputPeer): TLBool = executeRpcQuerySync(TLRequestMessagesHideReportSpam(peer))
+    override fun messagesHideReportSpam(peer: TLAbsInputPeer): TLBool = executeMethod(TLRequestMessagesHideReportSpam(peer))
 
     @Throws(RpcErrorException::class, IOException::class)
-    override fun messagesImportChatInvite(hash: String): TLAbsUpdates = executeRpcQuerySync(TLRequestMessagesImportChatInvite(hash))
+    override fun messagesImportChatInvite(hash: String): TLAbsUpdates = executeMethod(TLRequestMessagesImportChatInvite(hash))
 
     @Throws(RpcErrorException::class, IOException::class)
-    override fun messagesInstallStickerSet(stickerset: TLAbsInputStickerSet, archived: Boolean): TLAbsStickerSetInstallResult = executeRpcQuerySync(TLRequestMessagesInstallStickerSet(stickerset, archived))
+    override fun messagesInstallStickerSet(stickerset: TLAbsInputStickerSet, archived: Boolean): TLAbsStickerSetInstallResult = executeMethod(TLRequestMessagesInstallStickerSet(stickerset, archived))
 
     @Throws(RpcErrorException::class, IOException::class)
-    override fun messagesMigrateChat(chatId: Int): TLAbsUpdates = executeRpcQuerySync(TLRequestMessagesMigrateChat(chatId))
+    override fun messagesMigrateChat(chatId: Int): TLAbsUpdates = executeMethod(TLRequestMessagesMigrateChat(chatId))
 
     @Throws(RpcErrorException::class, IOException::class)
-    override fun messagesReadEncryptedHistory(peer: TLInputEncryptedChat, maxDate: Int): TLBool = executeRpcQuerySync(TLRequestMessagesReadEncryptedHistory(peer, maxDate))
+    override fun messagesReadEncryptedHistory(peer: TLInputEncryptedChat, maxDate: Int): TLBool = executeMethod(TLRequestMessagesReadEncryptedHistory(peer, maxDate))
 
     @Throws(RpcErrorException::class, IOException::class)
-    override fun messagesReadFeaturedStickers(id: TLLongVector): TLBool = executeRpcQuerySync(TLRequestMessagesReadFeaturedStickers(id))
+    override fun messagesReadFeaturedStickers(id: TLLongVector): TLBool = executeMethod(TLRequestMessagesReadFeaturedStickers(id))
 
     @Throws(RpcErrorException::class, IOException::class)
-    override fun messagesReadHistory(peer: TLAbsInputPeer, maxId: Int): TLAffectedMessages = executeRpcQuerySync(TLRequestMessagesReadHistory(peer, maxId))
+    override fun messagesReadHistory(peer: TLAbsInputPeer, maxId: Int): TLAffectedMessages = executeMethod(TLRequestMessagesReadHistory(peer, maxId))
 
     @Throws(RpcErrorException::class, IOException::class)
-    override fun messagesReadMentions(peer: TLAbsInputPeer): TLAffectedHistory = executeRpcQuerySync(TLRequestMessagesReadMentions(peer))
+    override fun messagesReadMentions(peer: TLAbsInputPeer): TLAffectedHistory = executeMethod(TLRequestMessagesReadMentions(peer))
 
     @Throws(RpcErrorException::class, IOException::class)
-    override fun messagesReadMessageContents(id: TLIntVector): TLAffectedMessages = executeRpcQuerySync(TLRequestMessagesReadMessageContents(id))
+    override fun messagesReadMessageContents(id: TLIntVector): TLAffectedMessages = executeMethod(TLRequestMessagesReadMessageContents(id))
 
     @Throws(RpcErrorException::class, IOException::class)
-    override fun messagesReceivedMessages(maxId: Int): TLObjectVector<TLReceivedNotifyMessage> = executeRpcQuerySync(TLRequestMessagesReceivedMessages(maxId))
+    override fun messagesReceivedMessages(maxId: Int): TLObjectVector<TLReceivedNotifyMessage> = executeMethod(TLRequestMessagesReceivedMessages(maxId))
 
     @Throws(RpcErrorException::class, IOException::class)
-    override fun messagesReceivedQueue(maxQts: Int): TLLongVector = executeRpcQuerySync(TLRequestMessagesReceivedQueue(maxQts))
+    override fun messagesReceivedQueue(maxQts: Int): TLLongVector = executeMethod(TLRequestMessagesReceivedQueue(maxQts))
 
     @Throws(RpcErrorException::class, IOException::class)
-    override fun messagesReorderPinnedDialogs(force: Boolean, order: TLObjectVector<TLAbsInputPeer>): TLBool = executeRpcQuerySync(TLRequestMessagesReorderPinnedDialogs(force, order))
+    override fun messagesReorderPinnedDialogs(force: Boolean, order: TLObjectVector<TLAbsInputPeer>): TLBool = executeMethod(TLRequestMessagesReorderPinnedDialogs(force, order))
 
     @Throws(RpcErrorException::class, IOException::class)
-    override fun messagesReorderStickerSets(masks: Boolean, order: TLLongVector): TLBool = executeRpcQuerySync(TLRequestMessagesReorderStickerSets(masks, order))
+    override fun messagesReorderStickerSets(masks: Boolean, order: TLLongVector): TLBool = executeMethod(TLRequestMessagesReorderStickerSets(masks, order))
 
     @Throws(RpcErrorException::class, IOException::class)
-    override fun messagesReportEncryptedSpam(peer: TLInputEncryptedChat): TLBool = executeRpcQuerySync(TLRequestMessagesReportEncryptedSpam(peer))
+    override fun messagesReportEncryptedSpam(peer: TLInputEncryptedChat): TLBool = executeMethod(TLRequestMessagesReportEncryptedSpam(peer))
 
     @Throws(RpcErrorException::class, IOException::class)
-    override fun messagesReportSpam(peer: TLAbsInputPeer): TLBool = executeRpcQuerySync(TLRequestMessagesReportSpam(peer))
+    override fun messagesReportSpam(peer: TLAbsInputPeer): TLBool = executeMethod(TLRequestMessagesReportSpam(peer))
 
     @Throws(RpcErrorException::class, IOException::class)
     override fun messagesRequestEncryption(
             userId: TLAbsInputUser,
             randomId: Int,
             gA: TLBytes
-    ): TLAbsEncryptedChat = executeRpcQuerySync(TLRequestMessagesRequestEncryption(userId, randomId, gA))
+    ): TLAbsEncryptedChat = executeMethod(TLRequestMessagesRequestEncryption(userId, randomId, gA))
 
     @Throws(RpcErrorException::class, IOException::class)
     override fun messagesSaveDraft(
@@ -767,17 +767,17 @@ abstract class TelegramSyncApiWrapper : TelegramSyncApi, RpcQuerySyncExecutor {
             peer: TLAbsInputPeer,
             message: String,
             entities: TLObjectVector<TLAbsMessageEntity>?
-    ): TLBool = executeRpcQuerySync(TLRequestMessagesSaveDraft(noWebpage, replyToMsgId, peer, message, entities))
+    ): TLBool = executeMethod(TLRequestMessagesSaveDraft(noWebpage, replyToMsgId, peer, message, entities))
 
     @Throws(RpcErrorException::class, IOException::class)
-    override fun messagesSaveGif(id: TLAbsInputDocument, unsave: Boolean): TLBool = executeRpcQuerySync(TLRequestMessagesSaveGif(id, unsave))
+    override fun messagesSaveGif(id: TLAbsInputDocument, unsave: Boolean): TLBool = executeMethod(TLRequestMessagesSaveGif(id, unsave))
 
     @Throws(RpcErrorException::class, IOException::class)
     override fun messagesSaveRecentSticker(
             attached: Boolean,
             id: TLAbsInputDocument,
             unsave: Boolean
-    ): TLBool = executeRpcQuerySync(TLRequestMessagesSaveRecentSticker(attached, id, unsave))
+    ): TLBool = executeMethod(TLRequestMessagesSaveRecentSticker(attached, id, unsave))
 
     @Throws(RpcErrorException::class, IOException::class)
     override fun messagesSearch(
@@ -792,10 +792,10 @@ abstract class TelegramSyncApiWrapper : TelegramSyncApi, RpcQuerySyncExecutor {
             limit: Int,
             maxId: Int,
             minId: Int
-    ): TLAbsMessages = executeRpcQuerySync(TLRequestMessagesSearch(peer, q, fromId, filter, minDate, maxDate, offsetId, addOffset, limit, maxId, minId))
+    ): TLAbsMessages = executeMethod(TLRequestMessagesSearch(peer, q, fromId, filter, minDate, maxDate, offsetId, addOffset, limit, maxId, minId))
 
     @Throws(RpcErrorException::class, IOException::class)
-    override fun messagesSearchGifs(q: String, offset: Int): TLFoundGifs = executeRpcQuerySync(TLRequestMessagesSearchGifs(q, offset))
+    override fun messagesSearchGifs(q: String, offset: Int): TLFoundGifs = executeMethod(TLRequestMessagesSearchGifs(q, offset))
 
     @Throws(RpcErrorException::class, IOException::class)
     override fun messagesSearchGlobal(
@@ -804,14 +804,14 @@ abstract class TelegramSyncApiWrapper : TelegramSyncApi, RpcQuerySyncExecutor {
             offsetPeer: TLAbsInputPeer,
             offsetId: Int,
             limit: Int
-    ): TLAbsMessages = executeRpcQuerySync(TLRequestMessagesSearchGlobal(q, offsetDate, offsetPeer, offsetId, limit))
+    ): TLAbsMessages = executeMethod(TLRequestMessagesSearchGlobal(q, offsetDate, offsetPeer, offsetId, limit))
 
     @Throws(RpcErrorException::class, IOException::class)
     override fun messagesSendEncrypted(
             peer: TLInputEncryptedChat,
             randomId: Long,
             data: TLBytes
-    ): TLAbsSentEncryptedMessage = executeRpcQuerySync(TLRequestMessagesSendEncrypted(peer, randomId, data))
+    ): TLAbsSentEncryptedMessage = executeMethod(TLRequestMessagesSendEncrypted(peer, randomId, data))
 
     @Throws(RpcErrorException::class, IOException::class)
     override fun messagesSendEncryptedFile(
@@ -819,14 +819,14 @@ abstract class TelegramSyncApiWrapper : TelegramSyncApi, RpcQuerySyncExecutor {
             randomId: Long,
             data: TLBytes,
             file: TLAbsInputEncryptedFile
-    ): TLAbsSentEncryptedMessage = executeRpcQuerySync(TLRequestMessagesSendEncryptedFile(peer, randomId, data, file))
+    ): TLAbsSentEncryptedMessage = executeMethod(TLRequestMessagesSendEncryptedFile(peer, randomId, data, file))
 
     @Throws(RpcErrorException::class, IOException::class)
     override fun messagesSendEncryptedService(
             peer: TLInputEncryptedChat,
             randomId: Long,
             data: TLBytes
-    ): TLAbsSentEncryptedMessage = executeRpcQuerySync(TLRequestMessagesSendEncryptedService(peer, randomId, data))
+    ): TLAbsSentEncryptedMessage = executeMethod(TLRequestMessagesSendEncryptedService(peer, randomId, data))
 
     @Throws(RpcErrorException::class, IOException::class)
     override fun messagesSendInlineBotResult(
@@ -838,7 +838,7 @@ abstract class TelegramSyncApiWrapper : TelegramSyncApi, RpcQuerySyncExecutor {
             randomId: Long,
             queryId: Long,
             id: String
-    ): TLAbsUpdates = executeRpcQuerySync(TLRequestMessagesSendInlineBotResult(silent, background, clearDraft, peer, replyToMsgId, randomId, queryId, id))
+    ): TLAbsUpdates = executeMethod(TLRequestMessagesSendInlineBotResult(silent, background, clearDraft, peer, replyToMsgId, randomId, queryId, id))
 
     @Throws(RpcErrorException::class, IOException::class)
     override fun messagesSendMedia(
@@ -850,7 +850,7 @@ abstract class TelegramSyncApiWrapper : TelegramSyncApi, RpcQuerySyncExecutor {
             media: TLAbsInputMedia,
             randomId: Long,
             replyMarkup: TLAbsReplyMarkup?
-    ): TLAbsUpdates = executeRpcQuerySync(TLRequestMessagesSendMedia(silent, background, clearDraft, peer, replyToMsgId, media, randomId, replyMarkup))
+    ): TLAbsUpdates = executeMethod(TLRequestMessagesSendMedia(silent, background, clearDraft, peer, replyToMsgId, media, randomId, replyMarkup))
 
     @Throws(RpcErrorException::class, IOException::class)
     override fun messagesSendMessage(
@@ -864,14 +864,14 @@ abstract class TelegramSyncApiWrapper : TelegramSyncApi, RpcQuerySyncExecutor {
             randomId: Long,
             replyMarkup: TLAbsReplyMarkup?,
             entities: TLObjectVector<TLAbsMessageEntity>?
-    ): TLAbsUpdates = executeRpcQuerySync(TLRequestMessagesSendMessage(noWebpage, silent, background, clearDraft, peer, replyToMsgId, message, randomId, replyMarkup, entities))
+    ): TLAbsUpdates = executeMethod(TLRequestMessagesSendMessage(noWebpage, silent, background, clearDraft, peer, replyToMsgId, message, randomId, replyMarkup, entities))
 
     @Throws(RpcErrorException::class, IOException::class)
     override fun messagesSendScreenshotNotification(
             peer: TLAbsInputPeer,
             replyToMsgId: Int,
             randomId: Long
-    ): TLAbsUpdates = executeRpcQuerySync(TLRequestMessagesSendScreenshotNotification(peer, replyToMsgId, randomId))
+    ): TLAbsUpdates = executeMethod(TLRequestMessagesSendScreenshotNotification(peer, replyToMsgId, randomId))
 
     @Throws(RpcErrorException::class, IOException::class)
     override fun messagesSetBotCallbackAnswer(
@@ -880,24 +880,24 @@ abstract class TelegramSyncApiWrapper : TelegramSyncApi, RpcQuerySyncExecutor {
             message: String?,
             url: String?,
             cacheTime: Int
-    ): TLBool = executeRpcQuerySync(TLRequestMessagesSetBotCallbackAnswer(alert, queryId, message, url, cacheTime))
+    ): TLBool = executeMethod(TLRequestMessagesSetBotCallbackAnswer(alert, queryId, message, url, cacheTime))
 
     @Throws(RpcErrorException::class, IOException::class)
     override fun messagesSetBotPrecheckoutResults(
             success: Boolean,
             queryId: Long,
             error: String?
-    ): TLBool = executeRpcQuerySync(TLRequestMessagesSetBotPrecheckoutResults(success, queryId, error))
+    ): TLBool = executeMethod(TLRequestMessagesSetBotPrecheckoutResults(success, queryId, error))
 
     @Throws(RpcErrorException::class, IOException::class)
     override fun messagesSetBotShippingResults(
             queryId: Long,
             error: String?,
             shippingOptions: TLObjectVector<TLShippingOption>?
-    ): TLBool = executeRpcQuerySync(TLRequestMessagesSetBotShippingResults(queryId, error, shippingOptions))
+    ): TLBool = executeMethod(TLRequestMessagesSetBotShippingResults(queryId, error, shippingOptions))
 
     @Throws(RpcErrorException::class, IOException::class)
-    override fun messagesSetEncryptedTyping(peer: TLInputEncryptedChat, typing: Boolean): TLBool = executeRpcQuerySync(TLRequestMessagesSetEncryptedTyping(peer, typing))
+    override fun messagesSetEncryptedTyping(peer: TLInputEncryptedChat, typing: Boolean): TLBool = executeMethod(TLRequestMessagesSetEncryptedTyping(peer, typing))
 
     @Throws(RpcErrorException::class, IOException::class)
     override fun messagesSetGameScore(
@@ -907,7 +907,7 @@ abstract class TelegramSyncApiWrapper : TelegramSyncApi, RpcQuerySyncExecutor {
             id: Int,
             userId: TLAbsInputUser,
             score: Int
-    ): TLAbsUpdates = executeRpcQuerySync(TLRequestMessagesSetGameScore(editMessage, force, peer, id, userId, score))
+    ): TLAbsUpdates = executeMethod(TLRequestMessagesSetGameScore(editMessage, force, peer, id, userId, score))
 
     @Throws(RpcErrorException::class, IOException::class)
     override fun messagesSetInlineBotResults(
@@ -918,7 +918,7 @@ abstract class TelegramSyncApiWrapper : TelegramSyncApi, RpcQuerySyncExecutor {
             cacheTime: Int,
             nextOffset: String?,
             switchPm: TLInlineBotSwitchPM?
-    ): TLBool = executeRpcQuerySync(TLRequestMessagesSetInlineBotResults(gallery, _private, queryId, results, cacheTime, nextOffset, switchPm))
+    ): TLBool = executeMethod(TLRequestMessagesSetInlineBotResults(gallery, _private, queryId, results, cacheTime, nextOffset, switchPm))
 
     @Throws(RpcErrorException::class, IOException::class)
     override fun messagesSetInlineGameScore(
@@ -927,10 +927,10 @@ abstract class TelegramSyncApiWrapper : TelegramSyncApi, RpcQuerySyncExecutor {
             id: TLInputBotInlineMessageID,
             userId: TLAbsInputUser,
             score: Int
-    ): TLBool = executeRpcQuerySync(TLRequestMessagesSetInlineGameScore(editMessage, force, id, userId, score))
+    ): TLBool = executeMethod(TLRequestMessagesSetInlineGameScore(editMessage, force, id, userId, score))
 
     @Throws(RpcErrorException::class, IOException::class)
-    override fun messagesSetTyping(peer: TLAbsInputPeer, action: TLAbsSendMessageAction): TLBool = executeRpcQuerySync(TLRequestMessagesSetTyping(peer, action))
+    override fun messagesSetTyping(peer: TLAbsInputPeer, action: TLAbsSendMessageAction): TLBool = executeMethod(TLRequestMessagesSetTyping(peer, action))
 
     @Throws(RpcErrorException::class, IOException::class)
     override fun messagesStartBot(
@@ -938,31 +938,31 @@ abstract class TelegramSyncApiWrapper : TelegramSyncApi, RpcQuerySyncExecutor {
             peer: TLAbsInputPeer,
             randomId: Long,
             startParam: String
-    ): TLAbsUpdates = executeRpcQuerySync(TLRequestMessagesStartBot(bot, peer, randomId, startParam))
+    ): TLAbsUpdates = executeMethod(TLRequestMessagesStartBot(bot, peer, randomId, startParam))
 
     @Throws(RpcErrorException::class, IOException::class)
-    override fun messagesToggleChatAdmins(chatId: Int, enabled: Boolean): TLAbsUpdates = executeRpcQuerySync(TLRequestMessagesToggleChatAdmins(chatId, enabled))
+    override fun messagesToggleChatAdmins(chatId: Int, enabled: Boolean): TLAbsUpdates = executeMethod(TLRequestMessagesToggleChatAdmins(chatId, enabled))
 
     @Throws(RpcErrorException::class, IOException::class)
-    override fun messagesToggleDialogPin(pinned: Boolean, peer: TLAbsInputPeer): TLBool = executeRpcQuerySync(TLRequestMessagesToggleDialogPin(pinned, peer))
+    override fun messagesToggleDialogPin(pinned: Boolean, peer: TLAbsInputPeer): TLBool = executeMethod(TLRequestMessagesToggleDialogPin(pinned, peer))
 
     @Throws(RpcErrorException::class, IOException::class)
-    override fun messagesUninstallStickerSet(stickerset: TLAbsInputStickerSet): TLBool = executeRpcQuerySync(TLRequestMessagesUninstallStickerSet(stickerset))
+    override fun messagesUninstallStickerSet(stickerset: TLAbsInputStickerSet): TLBool = executeMethod(TLRequestMessagesUninstallStickerSet(stickerset))
 
     @Throws(RpcErrorException::class, IOException::class)
-    override fun messagesUploadMedia(peer: TLAbsInputPeer, media: TLAbsInputMedia): TLAbsMessageMedia = executeRpcQuerySync(TLRequestMessagesUploadMedia(peer, media))
+    override fun messagesUploadMedia(peer: TLAbsInputPeer, media: TLAbsInputMedia): TLAbsMessageMedia = executeMethod(TLRequestMessagesUploadMedia(peer, media))
 
     @Throws(RpcErrorException::class, IOException::class)
-    override fun paymentsClearSavedInfo(credentials: Boolean, info: Boolean): TLBool = executeRpcQuerySync(TLRequestPaymentsClearSavedInfo(credentials, info))
+    override fun paymentsClearSavedInfo(credentials: Boolean, info: Boolean): TLBool = executeMethod(TLRequestPaymentsClearSavedInfo(credentials, info))
 
     @Throws(RpcErrorException::class, IOException::class)
-    override fun paymentsGetPaymentForm(msgId: Int): TLPaymentForm = executeRpcQuerySync(TLRequestPaymentsGetPaymentForm(msgId))
+    override fun paymentsGetPaymentForm(msgId: Int): TLPaymentForm = executeMethod(TLRequestPaymentsGetPaymentForm(msgId))
 
     @Throws(RpcErrorException::class, IOException::class)
-    override fun paymentsGetPaymentReceipt(msgId: Int): TLPaymentReceipt = executeRpcQuerySync(TLRequestPaymentsGetPaymentReceipt(msgId))
+    override fun paymentsGetPaymentReceipt(msgId: Int): TLPaymentReceipt = executeMethod(TLRequestPaymentsGetPaymentReceipt(msgId))
 
     @Throws(RpcErrorException::class, IOException::class)
-    override fun paymentsGetSavedInfo(): TLSavedInfo = executeRpcQuerySync(TLRequestPaymentsGetSavedInfo())
+    override fun paymentsGetSavedInfo(): TLSavedInfo = executeMethod(TLRequestPaymentsGetSavedInfo())
 
     @Throws(RpcErrorException::class, IOException::class)
     override fun paymentsSendPaymentForm(
@@ -970,21 +970,21 @@ abstract class TelegramSyncApiWrapper : TelegramSyncApi, RpcQuerySyncExecutor {
             requestedInfoId: String?,
             shippingOptionId: String?,
             credentials: TLAbsInputPaymentCredentials
-    ): TLAbsPaymentResult = executeRpcQuerySync(TLRequestPaymentsSendPaymentForm(msgId, requestedInfoId, shippingOptionId, credentials))
+    ): TLAbsPaymentResult = executeMethod(TLRequestPaymentsSendPaymentForm(msgId, requestedInfoId, shippingOptionId, credentials))
 
     @Throws(RpcErrorException::class, IOException::class)
     override fun paymentsValidateRequestedInfo(
             save: Boolean,
             msgId: Int,
             info: TLPaymentRequestedInfo
-    ): TLValidatedRequestedInfo = executeRpcQuerySync(TLRequestPaymentsValidateRequestedInfo(save, msgId, info))
+    ): TLValidatedRequestedInfo = executeMethod(TLRequestPaymentsValidateRequestedInfo(save, msgId, info))
 
     @Throws(RpcErrorException::class, IOException::class)
     override fun phoneAcceptCall(
             peer: TLInputPhoneCall,
             gB: TLBytes,
             protocol: TLPhoneCallProtocol
-    ): TLPhoneCall = executeRpcQuerySync(TLRequestPhoneAcceptCall(peer, gB, protocol))
+    ): TLPhoneCall = executeMethod(TLRequestPhoneAcceptCall(peer, gB, protocol))
 
     @Throws(RpcErrorException::class, IOException::class)
     override fun phoneConfirmCall(
@@ -992,7 +992,7 @@ abstract class TelegramSyncApiWrapper : TelegramSyncApi, RpcQuerySyncExecutor {
             gA: TLBytes,
             keyFingerprint: Long,
             protocol: TLPhoneCallProtocol
-    ): TLPhoneCall = executeRpcQuerySync(TLRequestPhoneConfirmCall(peer, gA, keyFingerprint, protocol))
+    ): TLPhoneCall = executeMethod(TLRequestPhoneConfirmCall(peer, gA, keyFingerprint, protocol))
 
     @Throws(RpcErrorException::class, IOException::class)
     override fun phoneDiscardCall(
@@ -1000,13 +1000,13 @@ abstract class TelegramSyncApiWrapper : TelegramSyncApi, RpcQuerySyncExecutor {
             duration: Int,
             reason: TLAbsPhoneCallDiscardReason,
             connectionId: Long
-    ): TLAbsUpdates = executeRpcQuerySync(TLRequestPhoneDiscardCall(peer, duration, reason, connectionId))
+    ): TLAbsUpdates = executeMethod(TLRequestPhoneDiscardCall(peer, duration, reason, connectionId))
 
     @Throws(RpcErrorException::class, IOException::class)
-    override fun phoneGetCallConfig(): TLDataJSON = executeRpcQuerySync(TLRequestPhoneGetCallConfig())
+    override fun phoneGetCallConfig(): TLDataJSON = executeMethod(TLRequestPhoneGetCallConfig())
 
     @Throws(RpcErrorException::class, IOException::class)
-    override fun phoneReceivedCall(peer: TLInputPhoneCall): TLBool = executeRpcQuerySync(TLRequestPhoneReceivedCall(peer))
+    override fun phoneReceivedCall(peer: TLInputPhoneCall): TLBool = executeMethod(TLRequestPhoneReceivedCall(peer))
 
     @Throws(RpcErrorException::class, IOException::class)
     override fun phoneRequestCall(
@@ -1014,20 +1014,20 @@ abstract class TelegramSyncApiWrapper : TelegramSyncApi, RpcQuerySyncExecutor {
             randomId: Int,
             gAHash: TLBytes,
             protocol: TLPhoneCallProtocol
-    ): TLPhoneCall = executeRpcQuerySync(TLRequestPhoneRequestCall(userId, randomId, gAHash, protocol))
+    ): TLPhoneCall = executeMethod(TLRequestPhoneRequestCall(userId, randomId, gAHash, protocol))
 
     @Throws(RpcErrorException::class, IOException::class)
-    override fun phoneSaveCallDebug(peer: TLInputPhoneCall, debug: TLDataJSON): TLBool = executeRpcQuerySync(TLRequestPhoneSaveCallDebug(peer, debug))
+    override fun phoneSaveCallDebug(peer: TLInputPhoneCall, debug: TLDataJSON): TLBool = executeMethod(TLRequestPhoneSaveCallDebug(peer, debug))
 
     @Throws(RpcErrorException::class, IOException::class)
     override fun phoneSetCallRating(
             peer: TLInputPhoneCall,
             rating: Int,
             comment: String
-    ): TLAbsUpdates = executeRpcQuerySync(TLRequestPhoneSetCallRating(peer, rating, comment))
+    ): TLAbsUpdates = executeMethod(TLRequestPhoneSetCallRating(peer, rating, comment))
 
     @Throws(RpcErrorException::class, IOException::class)
-    override fun photosDeletePhotos(id: TLObjectVector<TLAbsInputPhoto>): TLLongVector = executeRpcQuerySync(TLRequestPhotosDeletePhotos(id))
+    override fun photosDeletePhotos(id: TLObjectVector<TLAbsInputPhoto>): TLLongVector = executeMethod(TLRequestPhotosDeletePhotos(id))
 
     @Throws(RpcErrorException::class, IOException::class)
     override fun photosGetUserPhotos(
@@ -1035,19 +1035,19 @@ abstract class TelegramSyncApiWrapper : TelegramSyncApi, RpcQuerySyncExecutor {
             offset: Int,
             maxId: Long,
             limit: Int
-    ): TLAbsPhotos = executeRpcQuerySync(TLRequestPhotosGetUserPhotos(userId, offset, maxId, limit))
+    ): TLAbsPhotos = executeMethod(TLRequestPhotosGetUserPhotos(userId, offset, maxId, limit))
 
     @Throws(RpcErrorException::class, IOException::class)
-    override fun photosUpdateProfilePhoto(id: TLAbsInputPhoto): TLAbsUserProfilePhoto = executeRpcQuerySync(TLRequestPhotosUpdateProfilePhoto(id))
+    override fun photosUpdateProfilePhoto(id: TLAbsInputPhoto): TLAbsUserProfilePhoto = executeMethod(TLRequestPhotosUpdateProfilePhoto(id))
 
     @Throws(RpcErrorException::class, IOException::class)
-    override fun photosUploadProfilePhoto(file: TLAbsInputFile): TLPhoto = executeRpcQuerySync(TLRequestPhotosUploadProfilePhoto(file))
+    override fun photosUploadProfilePhoto(file: TLAbsInputFile): TLPhoto = executeMethod(TLRequestPhotosUploadProfilePhoto(file))
 
     @Throws(RpcErrorException::class, IOException::class)
-    override fun stickersAddStickerToSet(stickerset: TLAbsInputStickerSet, sticker: TLInputStickerSetItem): TLStickerSet = executeRpcQuerySync(TLRequestStickersAddStickerToSet(stickerset, sticker))
+    override fun stickersAddStickerToSet(stickerset: TLAbsInputStickerSet, sticker: TLInputStickerSetItem): TLStickerSet = executeMethod(TLRequestStickersAddStickerToSet(stickerset, sticker))
 
     @Throws(RpcErrorException::class, IOException::class)
-    override fun stickersChangeStickerPosition(sticker: TLAbsInputDocument, position: Int): TLStickerSet = executeRpcQuerySync(TLRequestStickersChangeStickerPosition(sticker, position))
+    override fun stickersChangeStickerPosition(sticker: TLAbsInputDocument, position: Int): TLStickerSet = executeMethod(TLRequestStickersChangeStickerPosition(sticker, position))
 
     @Throws(RpcErrorException::class, IOException::class)
     override fun stickersCreateStickerSet(
@@ -1056,10 +1056,10 @@ abstract class TelegramSyncApiWrapper : TelegramSyncApi, RpcQuerySyncExecutor {
             title: String,
             shortName: String,
             stickers: TLObjectVector<TLInputStickerSetItem>
-    ): TLStickerSet = executeRpcQuerySync(TLRequestStickersCreateStickerSet(masks, userId, title, shortName, stickers))
+    ): TLStickerSet = executeMethod(TLRequestStickersCreateStickerSet(masks, userId, title, shortName, stickers))
 
     @Throws(RpcErrorException::class, IOException::class)
-    override fun stickersRemoveStickerFromSet(sticker: TLAbsInputDocument): TLStickerSet = executeRpcQuerySync(TLRequestStickersRemoveStickerFromSet(sticker))
+    override fun stickersRemoveStickerFromSet(sticker: TLAbsInputDocument): TLStickerSet = executeMethod(TLRequestStickersRemoveStickerFromSet(sticker))
 
     @Throws(RpcErrorException::class, IOException::class)
     override fun updatesGetChannelDifference(
@@ -1068,7 +1068,7 @@ abstract class TelegramSyncApiWrapper : TelegramSyncApi, RpcQuerySyncExecutor {
             filter: TLAbsChannelMessagesFilter,
             pts: Int,
             limit: Int
-    ): TLAbsChannelDifference = executeRpcQuerySync(TLRequestUpdatesGetChannelDifference(force, channel, filter, pts, limit))
+    ): TLAbsChannelDifference = executeMethod(TLRequestUpdatesGetChannelDifference(force, channel, filter, pts, limit))
 
     @Throws(RpcErrorException::class, IOException::class)
     override fun updatesGetDifference(
@@ -1076,37 +1076,37 @@ abstract class TelegramSyncApiWrapper : TelegramSyncApi, RpcQuerySyncExecutor {
             ptsTotalLimit: Int?,
             date: Int,
             qts: Int
-    ): TLAbsDifference = executeRpcQuerySync(TLRequestUpdatesGetDifference(pts, ptsTotalLimit, date, qts))
+    ): TLAbsDifference = executeMethod(TLRequestUpdatesGetDifference(pts, ptsTotalLimit, date, qts))
 
     @Throws(RpcErrorException::class, IOException::class)
-    override fun updatesGetState(): TLState = executeRpcQuerySync(TLRequestUpdatesGetState())
+    override fun updatesGetState(): TLState = executeMethod(TLRequestUpdatesGetState())
 
     @Throws(RpcErrorException::class, IOException::class)
     override fun uploadGetCdnFile(
             fileToken: TLBytes,
             offset: Int,
             limit: Int
-    ): TLAbsCdnFile = executeRpcQuerySync(TLRequestUploadGetCdnFile(fileToken, offset, limit))
+    ): TLAbsCdnFile = executeMethod(TLRequestUploadGetCdnFile(fileToken, offset, limit))
 
     @Throws(RpcErrorException::class, IOException::class)
-    override fun uploadGetCdnFileHashes(fileToken: TLBytes, offset: Int): TLObjectVector<TLCdnFileHash> = executeRpcQuerySync(TLRequestUploadGetCdnFileHashes(fileToken, offset))
+    override fun uploadGetCdnFileHashes(fileToken: TLBytes, offset: Int): TLObjectVector<TLCdnFileHash> = executeMethod(TLRequestUploadGetCdnFileHashes(fileToken, offset))
 
     @Throws(RpcErrorException::class, IOException::class)
     override fun uploadGetFile(
             location: TLAbsInputFileLocation,
             offset: Int,
             limit: Int
-    ): TLAbsFile = executeRpcQuerySync(TLRequestUploadGetFile(location, offset, limit))
+    ): TLAbsFile = executeMethod(TLRequestUploadGetFile(location, offset, limit))
 
     @Throws(RpcErrorException::class, IOException::class)
     override fun uploadGetWebFile(
             location: TLInputWebFileLocation,
             offset: Int,
             limit: Int
-    ): TLWebFile = executeRpcQuerySync(TLRequestUploadGetWebFile(location, offset, limit))
+    ): TLWebFile = executeMethod(TLRequestUploadGetWebFile(location, offset, limit))
 
     @Throws(RpcErrorException::class, IOException::class)
-    override fun uploadReuploadCdnFile(fileToken: TLBytes, requestToken: TLBytes): TLObjectVector<TLCdnFileHash> = executeRpcQuerySync(TLRequestUploadReuploadCdnFile(fileToken, requestToken))
+    override fun uploadReuploadCdnFile(fileToken: TLBytes, requestToken: TLBytes): TLObjectVector<TLCdnFileHash> = executeMethod(TLRequestUploadReuploadCdnFile(fileToken, requestToken))
 
     @Throws(RpcErrorException::class, IOException::class)
     override fun uploadSaveBigFilePart(
@@ -1114,18 +1114,18 @@ abstract class TelegramSyncApiWrapper : TelegramSyncApi, RpcQuerySyncExecutor {
             filePart: Int,
             fileTotalParts: Int,
             bytes: TLBytes
-    ): TLBool = executeRpcQuerySync(TLRequestUploadSaveBigFilePart(fileId, filePart, fileTotalParts, bytes))
+    ): TLBool = executeMethod(TLRequestUploadSaveBigFilePart(fileId, filePart, fileTotalParts, bytes))
 
     @Throws(RpcErrorException::class, IOException::class)
     override fun uploadSaveFilePart(
             fileId: Long,
             filePart: Int,
             bytes: TLBytes
-    ): TLBool = executeRpcQuerySync(TLRequestUploadSaveFilePart(fileId, filePart, bytes))
+    ): TLBool = executeMethod(TLRequestUploadSaveFilePart(fileId, filePart, bytes))
 
     @Throws(RpcErrorException::class, IOException::class)
-    override fun usersGetFullUser(id: TLAbsInputUser): TLUserFull = executeRpcQuerySync(TLRequestUsersGetFullUser(id))
+    override fun usersGetFullUser(id: TLAbsInputUser): TLUserFull = executeMethod(TLRequestUsersGetFullUser(id))
 
     @Throws(RpcErrorException::class, IOException::class)
-    override fun usersGetUsers(id: TLObjectVector<TLAbsInputUser>): TLObjectVector<TLAbsUser> = executeRpcQuerySync(TLRequestUsersGetUsers(id))
+    override fun usersGetUsers(id: TLObjectVector<TLAbsInputUser>): TLObjectVector<TLAbsUser> = executeMethod(TLRequestUsersGetUsers(id))
 }
