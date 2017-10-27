@@ -1,16 +1,15 @@
 {
   "geo": {
-    "_long": 0.0,
-    "lat": 0.0,
-    "_constructor": "geoPoint#2049d70c",
-    "constructorId": 541710092,
+    "_constructor": "geoPointEmpty#1117dd5f",
+    "constructorId": 286776671,
     "_flags": 0
   },
-  "title": "5cp2Mdisj168qRe6ON6mmui",
-  "address": "CgqB8Bnncbkk6LVHk",
-  "provider": "QNkWpIo",
-  "venueId": "0uFQdKbeyqrF",
-  "_constructor": "messageMediaVenue#7912b71f",
-  "constructorId": 2031269663,
+  "title": "V0YT1Km1mP1cRw8kU4KAO",
+  "address": "5Ojmws1qv",
+  "provider": "766OuNqnMT",
+  "venueId": "wdE4so",
+  "venueType": "16VJ9kXL7OOf6SHw8B4fZHxZXG1tX",
+  "_constructor": "messageMediaVenue#2ec0533f",
+  "constructorId": 784356159,
   "_flags": 0
 }

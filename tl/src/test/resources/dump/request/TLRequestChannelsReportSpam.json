@@ -1,0 +1,18 @@
+{
+  "channel": {
+    "_constructor": "inputChannelEmpty#ee8c1e86",
+    "constructorId": -292807034,
+    "_flags": 0
+  },
+  "userId": {
+    "_constructor": "inputUserEmpty#b98886cf",
+    "constructorId": -1182234929,
+    "_flags": 0
+  },
+  "id": [
+    0
+  ],
+  "_constructor": "channels.reportSpam#fe087810",
+  "constructorId": -32999408,
+  "_flags": 0
+}

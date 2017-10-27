@@ -1,0 +1,13 @@
+{
+  "geoPoint": {
+    "lat": 0.0,
+    "_long": 0.0,
+    "_constructor": "inputGeoPoint#f3b7acc9",
+    "constructorId": -206066487,
+    "_flags": 0
+  },
+  "period": 0,
+  "_constructor": "inputMediaGeoLive#7b1a118f",
+  "constructorId": 2065305999,
+  "_flags": 0
+}

@@ -175,10 +175,18 @@
       0,
       0,
       0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
       0
     ],
     "offset": 0,
-    "length": 170
+    "length": 178
   },
   "keyFingerprint": 0,
   "_constructor": "encryptedChat#fa56ce36",

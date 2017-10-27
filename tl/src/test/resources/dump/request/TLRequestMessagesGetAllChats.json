@@ -1,5 +1,6 @@
 {
   "exceptIds": [
+    0,
     0
   ],
   "_constructor": "messages.getAllChats#eba80ff0",

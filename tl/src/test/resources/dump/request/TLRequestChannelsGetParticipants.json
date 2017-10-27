@@ -1,19 +1,19 @@
 {
   "channel": {
-    "channelId": 0,
-    "accessHash": 0,
-    "_constructor": "inputChannel#afeb712e",
-    "constructorId": -1343524562,
+    "_constructor": "inputChannelEmpty#ee8c1e86",
+    "constructorId": -292807034,
     "_flags": 0
   },
   "filter": {
-    "_constructor": "channelParticipantsAdmins#b4608969",
-    "constructorId": -1268741783,
+    "q": "Tpg7a9HdyWj",
+    "_constructor": "channelParticipantsBanned#1427a5e1",
+    "constructorId": 338142689,
     "_flags": 0
   },
   "offset": 0,
   "limit": 0,
-  "_constructor": "channels.getParticipants#24d98f92",
-  "constructorId": 618237842,
+  "hash": 0,
+  "_constructor": "channels.getParticipants#123e05e9",
+  "constructorId": 306054633,
   "_flags": 0
 }

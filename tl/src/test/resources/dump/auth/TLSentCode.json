@@ -1,14 +1,14 @@
 {
   "type": {
     "length": 0,
-    "_constructor": "auth.sentCodeTypeSms#c000bba2",
-    "constructorId": -1073693790,
+    "_constructor": "auth.sentCodeTypeApp#3dbb5986",
+    "constructorId": 1035688326,
     "_flags": 0
   },
-  "phoneCodeHash": "D5va1YhfqZR8dQYOpWNoujE3C",
+  "phoneCodeHash": "IsWl4YkiYS2e5o1xwfYXF4GaT3N",
   "nextType": {
-    "_constructor": "auth.codeTypeFlashCall#226ccefb",
-    "constructorId": 577556219,
+    "_constructor": "auth.codeTypeSms#72a3158c",
+    "constructorId": 1923290508,
     "_flags": 0
   },
   "timeout": 0,

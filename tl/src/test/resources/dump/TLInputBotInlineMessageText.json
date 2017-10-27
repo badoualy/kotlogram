@@ -1,17 +1,43 @@
 {
-  "message": "JEawiXs",
+  "message": "l06mjHhduuuNR1WqDmmluU5C5s",
   "entities": [
     {
       "offset": 0,
       "length": 0,
-      "_constructor": "messageEntityItalic#826f8b60",
-      "constructorId": -2106619040,
+      "userId": {
+        "_constructor": "inputUserSelf#f7c1b13f",
+        "constructorId": -138301121,
+        "_flags": 0
+      },
+      "_constructor": "inputMessageEntityMentionName#208e68c9",
+      "constructorId": 546203849,
+      "_flags": 0
+    },
+    {
+      "offset": 0,
+      "length": 0,
+      "_constructor": "messageEntityUnknown#bb92ba95",
+      "constructorId": -1148011883,
       "_flags": 0
     }
   ],
   "replyMarkup": {
-    "_constructor": "replyKeyboardForceReply#f4108aa0",
-    "constructorId": -200242528,
+    "rows": [
+      {
+        "buttons": [],
+        "_constructor": "keyboardButtonRow#77608b83",
+        "constructorId": 2002815875,
+        "_flags": 0
+      },
+      {
+        "buttons": [],
+        "_constructor": "keyboardButtonRow#77608b83",
+        "constructorId": 2002815875,
+        "_flags": 0
+      }
+    ],
+    "_constructor": "replyInlineMarkup#48a30254",
+    "constructorId": 1218642516,
     "_flags": 0
   },
   "_constructor": "inputBotInlineMessageText#3dcd7a87",

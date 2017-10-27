@@ -1,9 +1,8 @@
 {
   "userId": 0,
   "status": {
-    "wasOnline": 0,
-    "_constructor": "userStatusOffline#8c703f",
-    "constructorId": 9203775,
+    "_constructor": "userStatusRecently#e26f42f1",
+    "constructorId": -496024847,
     "_flags": 0
   },
   "_constructor": "updateUserStatus#1bfbd823",

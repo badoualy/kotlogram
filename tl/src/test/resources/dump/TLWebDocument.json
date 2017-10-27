@@ -1,14 +1,25 @@
 {
-  "url": "NOcN1",
+  "url": "oTVym",
   "accessHash": 0,
   "size": 0,
-  "mimeType": "bWZFuVeqSfP",
+  "mimeType": "5hGBaSDI4c0MjDStW1g7C3Sqo",
   "attributes": [
     {
-      "fileName": "nMztcjRcR8aPu9",
-      "_constructor": "documentAttributeFilename#15590068",
-      "constructorId": 358154344,
-      "_flags": 0
+      "duration": 0,
+      "title": "sLmQQHqfl",
+      "performer": "KqP5S",
+      "waveform": {
+        "data": [
+          0,
+          0,
+          0
+        ],
+        "offset": 0,
+        "length": 3
+      },
+      "_constructor": "documentAttributeAudio#9852f9c6",
+      "constructorId": -1739392570,
+      "_flags": 7
     }
   ],
   "dcId": 0,

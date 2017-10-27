@@ -1,0 +1,13 @@
+{
+  "peer": {
+    "chatId": 0,
+    "accessHash": 0,
+    "_constructor": "inputEncryptedChat#f141b5e1",
+    "constructorId": -247351839,
+    "_flags": 0
+  },
+  "typing": false,
+  "_constructor": "messages.setEncryptedTyping#791451ed",
+  "constructorId": 2031374829,
+  "_flags": 0
+}

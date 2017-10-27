@@ -235,10 +235,20 @@
       0,
       0,
       0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
       0
     ],
     "offset": 0,
-    "length": 230
+    "length": 240
   },
   "_constructor": "encryptedChatRequested#c878527e",
   "constructorId": -931638658,

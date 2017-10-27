@@ -4,13 +4,8 @@
   "ptsCount": 0,
   "date": 0,
   "media": {
-    "geo": {
-      "_constructor": "geoPointEmpty#1117dd5f",
-      "constructorId": 286776671,
-      "_flags": 0
-    },
-    "_constructor": "messageMediaGeo#56e0d474",
-    "constructorId": 1457575028,
+    "_constructor": "messageMediaEmpty#3ded6320",
+    "constructorId": 1038967584,
     "_flags": 0
   },
   "entities": [
@@ -19,13 +14,6 @@
       "length": 0,
       "_constructor": "messageEntityCode#28a20571",
       "constructorId": 681706865,
-      "_flags": 0
-    },
-    {
-      "offset": 0,
-      "length": 0,
-      "_constructor": "messageEntityBold#bd610bc9",
-      "constructorId": -1117713463,
       "_flags": 0
     }
   ],

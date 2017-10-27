@@ -1,10 +1,21 @@
 {
   "key": {
-    "_constructor": "privacyKeyStatusTimestamp#bc2eab30",
-    "constructorId": -1137792208,
+    "_constructor": "privacyKeyPhoneCall#3d662b7b",
+    "constructorId": 1030105979,
     "_flags": 0
   },
-  "rules": [],
+  "rules": [
+    {
+      "_constructor": "privacyValueAllowAll#65427b82",
+      "constructorId": 1698855810,
+      "_flags": 0
+    },
+    {
+      "_constructor": "privacyValueAllowAll#65427b82",
+      "constructorId": 1698855810,
+      "_flags": 0
+    }
+  ],
   "_constructor": "updatePrivacy#ee3b272a",
   "constructorId": -298113238,
   "_flags": 0

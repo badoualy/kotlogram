@@ -2,23 +2,30 @@
   "id": 0,
   "participants": {
     "chatId": 0,
-    "participants": [],
-    "version": 0,
-    "_constructor": "chatParticipants#3f460fed",
-    "constructorId": 1061556205,
-    "_flags": 0
+    "selfParticipant": {
+      "userId": 0,
+      "inviterId": 0,
+      "date": 0,
+      "_constructor": "chatParticipant#c8d7493e",
+      "constructorId": -925415106,
+      "_flags": 0
+    },
+    "_constructor": "chatParticipantsForbidden#fc900c2b",
+    "constructorId": -57668565,
+    "_flags": 1
   },
   "chatPhoto": {
     "id": 0,
-    "_constructor": "photoEmpty#2331b22d",
-    "constructorId": 590459437,
+    "accessHash": 0,
+    "date": 0,
+    "sizes": [],
+    "_constructor": "photo#9288dd29",
+    "constructorId": -1836524247,
     "_flags": 0
   },
   "notifySettings": {
-    "muteUntil": 0,
-    "sound": "bZQMa3Y8EN",
-    "_constructor": "peerNotifySettings#9acda4c0",
-    "constructorId": -1697798976,
+    "_constructor": "peerNotifySettingsEmpty#70a68512",
+    "constructorId": 1889961234,
     "_flags": 0
   },
   "exportedInvite": {

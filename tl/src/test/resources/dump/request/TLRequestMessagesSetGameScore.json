@@ -1,13 +1,17 @@
 {
   "peer": {
-    "_constructor": "inputPeerSelf#7da07ec9",
-    "constructorId": 2107670217,
+    "userId": 0,
+    "accessHash": 0,
+    "_constructor": "inputPeerUser#7b8e7de6",
+    "constructorId": 2072935910,
     "_flags": 0
   },
   "id": 0,
   "userId": {
-    "_constructor": "inputUserSelf#f7c1b13f",
-    "constructorId": -138301121,
+    "userId": 0,
+    "accessHash": 0,
+    "_constructor": "inputUser#d8292816",
+    "constructorId": -668391402,
     "_flags": 0
   },
   "score": 0,

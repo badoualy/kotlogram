@@ -1,18 +1,29 @@
 {
   "channel": {
-    "channelId": 0,
-    "accessHash": 0,
-    "_constructor": "inputChannel#afeb712e",
-    "constructorId": -1343524562,
+    "_constructor": "inputChannelEmpty#ee8c1e86",
+    "constructorId": -292807034,
     "_flags": 0
   },
-  "q": "m49STr2aqQiazLciygV",
+  "q": "e7zn7sDc",
   "eventsFilter": {
     "_constructor": "channelAdminLogEventsFilter#ea107ae4",
     "constructorId": -368018716,
     "_flags": 0
   },
-  "admins": [],
+  "admins": [
+    {
+      "userId": 0,
+      "accessHash": 0,
+      "_constructor": "inputUser#d8292816",
+      "constructorId": -668391402,
+      "_flags": 0
+    },
+    {
+      "_constructor": "inputUserEmpty#b98886cf",
+      "constructorId": -1182234929,
+      "_flags": 0
+    }
+  ],
   "maxId": 0,
   "minId": 0,
   "limit": 0,

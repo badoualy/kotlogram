@@ -1,35 +1,53 @@
 {
   "myLink": {
-    "_constructor": "contactLinkHasPhone#268f3f59",
-    "constructorId": 646922073,
+    "_constructor": "contactLinkUnknown#5f4f9247",
+    "constructorId": 1599050311,
     "_flags": 0
   },
   "foreignLink": {
-    "_constructor": "contactLinkContact#d502c2d0",
-    "constructorId": -721239344,
+    "_constructor": "contactLinkHasPhone#268f3f59",
+    "constructorId": 646922073,
     "_flags": 0
   },
   "user": {
     "id": 0,
     "accessHash": 0,
-    "firstName": "FUflwwHdTeBJ",
-    "lastName": "mmmsCFUoRr1",
-    "username": "9oDcfR8sw79XKFb",
-    "phone": "3buZ9c",
+    "firstName": "BlUpzOTS32rOwf2RYRqVdoiBfBhZu",
+    "lastName": "m4orRDsb",
+    "username": "30XpzkWRGFleGBbVydoZLBqT",
+    "phone": "x25L7ugReDQjXKkWgeLhw",
     "photo": {
-      "_constructor": "userProfilePhotoEmpty#4f11bae1",
-      "constructorId": 1326562017,
+      "photoId": 0,
+      "photoSmall": {
+        "volumeId": 0,
+        "localId": 0,
+        "secret": 0,
+        "_constructor": "fileLocationUnavailable#7c596b46",
+        "constructorId": 2086234950,
+        "_flags": 0
+      },
+      "photoBig": {
+        "dcId": 0,
+        "volumeId": 0,
+        "localId": 0,
+        "secret": 0,
+        "_constructor": "fileLocation#53d69076",
+        "constructorId": 1406570614,
+        "_flags": 0
+      },
+      "_constructor": "userProfilePhoto#d559d8c8",
+      "constructorId": -715532088,
       "_flags": 0
     },
     "status": {
-      "_constructor": "userStatusRecently#e26f42f1",
-      "constructorId": -496024847,
+      "_constructor": "userStatusLastMonth#77ebc742",
+      "constructorId": 2011940674,
       "_flags": 0
     },
     "botInfoVersion": 0,
-    "restrictionReason": "4bCv24pcgn",
-    "botInlinePlaceholder": "47yv2DPW4dVVZYf23J8qKIJZoKdOq",
-    "langCode": "kkyWlcKPs0V8B4Nlq2YvT",
+    "restrictionReason": "JqiwlnkU13IFK0ubQ2AskF2Qk",
+    "botInlinePlaceholder": "hpdV6JWT4V",
+    "langCode": "jSqzvmS7",
     "_constructor": "user#2e13f4c3",
     "constructorId": 773059779,
     "_flags": 4997247

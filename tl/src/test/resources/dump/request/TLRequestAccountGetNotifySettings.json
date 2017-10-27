@@ -1,10 +1,8 @@
 {
   "peer": {
     "peer": {
-      "channelId": 0,
-      "accessHash": 0,
-      "_constructor": "inputPeerChannel#20adaef8",
-      "constructorId": 548253432,
+      "_constructor": "inputPeerSelf#7da07ec9",
+      "constructorId": 2107670217,
       "_flags": 0
     },
     "_constructor": "inputNotifyPeer#b8bc5b0c",

@@ -1,10 +1,12 @@
 {
   "channel": {
-    "_constructor": "inputChannelEmpty#ee8c1e86",
-    "constructorId": -292807034,
+    "channelId": 0,
+    "accessHash": 0,
+    "_constructor": "inputChannel#afeb712e",
+    "constructorId": -1343524562,
     "_flags": 0
   },
-  "title": "h5ZoC6vKQdyekvLKdtByRhO9ftUun",
+  "title": "2MHknqO5RcWH",
   "_constructor": "channels.editTitle#566decd0",
   "constructorId": 1450044624,
   "_flags": 0

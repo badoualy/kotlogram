@@ -2,11 +2,30 @@
   "channel": {
     "id": 0,
     "accessHash": 0,
-    "title": "uoo3tKQBsGle",
-    "untilDate": 0,
-    "_constructor": "channelForbidden#289da732",
-    "constructorId": 681420594,
-    "_flags": 65536
+    "title": "vaUv6GM8OK655HeEQbZvmTM1b",
+    "username": "2BrDZhhq",
+    "photo": {
+      "_constructor": "chatPhotoEmpty#37c1011c",
+      "constructorId": 935395612,
+      "_flags": 0
+    },
+    "date": 0,
+    "version": 0,
+    "restrictionReason": "j0aZO8lmv13RBDXUss",
+    "adminRights": {
+      "_constructor": "channelAdminRights#5d7ceba5",
+      "constructorId": 1568467877,
+      "_flags": 0
+    },
+    "bannedRights": {
+      "untilDate": 0,
+      "_constructor": "channelBannedRights#58cf4249",
+      "constructorId": 1489977929,
+      "_flags": 0
+    },
+    "_constructor": "channel#cb44b1c",
+    "constructorId": 213142300,
+    "_flags": 57920
   },
   "_constructor": "pageBlockChannel#ef1751b5",
   "constructorId": -283684427,

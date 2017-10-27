@@ -1,46 +1,17 @@
 {
   "queryId": 0,
-  "nextOffset": "xWcGNiAtet2RjfrcBGB5ds5",
+  "nextOffset": "We5pMg9LSckohDGnP",
   "switchPm": {
-    "text": "jmBJCck9r4P9HSs0mfh04B",
-    "startParam": "DSCdgCKopRsMlVey1i",
+    "text": "HSlzFezxXRymBv35oe",
+    "startParam": "KQlHAwwOVHxSf776PXq5VR",
     "_constructor": "inlineBotSwitchPM#3c20629f",
     "constructorId": 1008755359,
     "_flags": 0
   },
-  "results": [
-    {
-      "id": "EFcLiCmbwdq1PrDWrLWej2tYtHie",
-      "type": "G2ekLJ5nhsYiONm7x",
-      "title": "VHDOTsEIoqBZu0SbR6",
-      "description": "goOD79Snz5JB9mC",
-      "url": "xz8sl7",
-      "thumbUrl": "PWUeyN1pTy7qwyB",
-      "contentUrl": "mJlPePgm",
-      "contentType": "ihTWRT3y0y436awkjCICYHeZWGor",
-      "w": 0,
-      "h": 0,
-      "duration": 0,
-      "sendMessage": {
-        "phoneNumber": "Ckkvvs",
-        "firstName": "i2LO8aXMsCzli0kQZ4ApzUsZ2lUuf",
-        "lastName": "qwjONp7",
-        "replyMarkup": {
-          "_constructor": "replyKeyboardForceReply#f4108aa0",
-          "constructorId": -200242528,
-          "_flags": 0
-        },
-        "_constructor": "botInlineMessageMediaContact#35edb4d4",
-        "constructorId": 904770772,
-        "_flags": 4
-      },
-      "_constructor": "botInlineResult#9bebaeb9",
-      "constructorId": -1679053127,
-      "_flags": 254
-    }
-  ],
+  "results": [],
   "cacheTime": 0,
-  "_constructor": "messages.botResults#ccd3563d",
-  "constructorId": -858565059,
+  "users": [],
+  "_constructor": "messages.botResults#947ca848",
+  "constructorId": -1803769784,
   "_flags": 6
 }

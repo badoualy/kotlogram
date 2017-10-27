@@ -1,0 +1,11 @@
+{
+  "ttl": {
+    "days": 0,
+    "_constructor": "accountDaysTTL#b8d0afdf",
+    "constructorId": -1194283041,
+    "_flags": 0
+  },
+  "_constructor": "account.setAccountTTL#2442485e",
+  "constructorId": 608323678,
+  "_flags": 0
+}

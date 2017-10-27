@@ -1,48 +1,21 @@
 {
-  "title": "h3BeqDqBTBG4k",
-  "description": "lnGMVAdiorCbr6oFaFpm1UP",
+  "title": "JcTlqSdTBB155Gn",
+  "description": "IbEvAgvprdrEf",
   "photo": {
-    "url": "0JyZJhc2Hc9V473Q773VD",
+    "url": "MaduPnwI",
     "accessHash": 0,
     "size": 0,
-    "mimeType": "KBNpMgH6VKj4yaCy",
-    "attributes": [
-      {
-        "alt": "m3q4VM7X3",
-        "stickerset": {
-          "shortName": "UvYbhIBBcYZ6WhyeM0jt7hywT4OB",
-          "_constructor": "inputStickerSetShortName#861cc8a0",
-          "constructorId": -2044933984,
-          "_flags": 0
-        },
-        "maskCoords": {
-          "n": 0,
-          "x": 0.0,
-          "y": 0.0,
-          "zoom": 0.0,
-          "_constructor": "maskCoords#aed6dbb2",
-          "constructorId": -1361650766,
-          "_flags": 0
-        },
-        "_constructor": "documentAttributeSticker#6319d612",
-        "constructorId": 1662637586,
-        "_flags": 1
-      },
-      {
-        "_constructor": "documentAttributeAnimated#11b58939",
-        "constructorId": 297109817,
-        "_flags": 0
-      }
-    ],
+    "mimeType": "5OpZtoW32tly0eL2ZLmk4",
+    "attributes": [],
     "dcId": 0,
     "_constructor": "webDocument#c61acbd8",
     "constructorId": -971322408,
     "_flags": 0
   },
   "receiptMsgId": 0,
-  "currency": "4zosR8qLTNUBroaYjmrvjxOmyE5Ym",
+  "currency": "5dgFBV8w",
   "totalAmount": 0,
-  "startParam": "xBZvcXnY",
+  "startParam": "rpLMz0H",
   "_constructor": "messageMediaInvoice#84551347",
   "constructorId": -2074799289,
   "_flags": 5

@@ -1,15 +1,15 @@
 {
   "peer": {
-    "userId": 0,
+    "channelId": 0,
     "accessHash": 0,
-    "_constructor": "inputPeerUser#7b8e7de6",
-    "constructorId": 2072935910,
+    "_constructor": "inputPeerChannel#20adaef8",
+    "constructorId": 548253432,
     "_flags": 0
   },
   "id": 0,
   "userId": {
-    "_constructor": "inputUserSelf#f7c1b13f",
-    "constructorId": -138301121,
+    "_constructor": "inputUserEmpty#b98886cf",
+    "constructorId": -1182234929,
     "_flags": 0
   },
   "_constructor": "messages.getGameHighScores#e822649d",

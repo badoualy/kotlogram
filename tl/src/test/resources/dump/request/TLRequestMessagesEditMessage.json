@@ -5,15 +5,34 @@
     "_flags": 0
   },
   "id": 0,
-  "message": "lMg1sic752k1FLVd0",
+  "message": "386Siv",
   "replyMarkup": {
-    "rows": [],
-    "_constructor": "replyKeyboardMarkup#3502758c",
-    "constructorId": 889353612,
+    "_constructor": "replyKeyboardHide#a03e5b85",
+    "constructorId": -1606526075,
     "_flags": 0
   },
-  "entities": [],
-  "_constructor": "messages.editMessage#ce91e4ca",
-  "constructorId": -829299510,
-  "_flags": 2060
+  "entities": [
+    {
+      "offset": 0,
+      "length": 0,
+      "_constructor": "messageEntityHashtag#6f635b0d",
+      "constructorId": 1868782349,
+      "_flags": 0
+    },
+    {
+      "offset": 0,
+      "length": 0,
+      "_constructor": "messageEntityBotCommand#6cef8ac7",
+      "constructorId": 1827637959,
+      "_flags": 0
+    }
+  ],
+  "geoPoint": {
+    "_constructor": "inputGeoPointEmpty#e4c123d6",
+    "constructorId": -457104426,
+    "_flags": 0
+  },
+  "_constructor": "messages.editMessage#5d1b8dd",
+  "constructorId": 97630429,
+  "_flags": 10252
 }

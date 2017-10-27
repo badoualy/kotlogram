@@ -3,10 +3,30 @@
   "date": 0,
   "userId": 0,
   "action": {
-    "prevValue": "Lpk2NoDUvOIJ3bB8x2Pv0u7CXaa",
-    "newValue": "acXJvAxKYvtljOhfylEoCr3A",
-    "_constructor": "channelAdminLogEventActionChangeTitle#e6dfb825",
-    "constructorId": -421545947,
+    "message": {
+      "id": 0,
+      "fromId": 0,
+      "toId": {
+        "chatId": 0,
+        "_constructor": "peerChat#bad0e5bb",
+        "constructorId": -1160714821,
+        "_flags": 0
+      },
+      "replyToMsgId": 0,
+      "date": 0,
+      "action": {
+        "title": "4jYMTNoiUdDZvlUyP9uf",
+        "chatId": 0,
+        "_constructor": "messageActionChannelMigrateFrom#b055eaee",
+        "constructorId": -1336546578,
+        "_flags": 0
+      },
+      "_constructor": "messageService#9e19a1f6",
+      "constructorId": -1642487306,
+      "_flags": 264
+    },
+    "_constructor": "channelAdminLogEventActionUpdatePinned#e9e82c18",
+    "constructorId": -370660328,
     "_flags": 0
   },
   "_constructor": "channelAdminLogEvent#3b5a3e40",

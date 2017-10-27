@@ -17,29 +17,9 @@
   },
   "pts": 0,
   "draft": {
-    "replyToMsgId": 0,
-    "message": "gz02xy",
-    "entities": [
-      {
-        "offset": 0,
-        "length": 0,
-        "url": "LrpmL9BtZaB",
-        "_constructor": "messageEntityTextUrl#76a6d327",
-        "constructorId": 1990644519,
-        "_flags": 0
-      },
-      {
-        "offset": 0,
-        "length": 0,
-        "_constructor": "messageEntityBotCommand#6cef8ac7",
-        "constructorId": 1827637959,
-        "_flags": 0
-      }
-    ],
-    "date": 0,
-    "_constructor": "draftMessage#fd8e711f",
-    "constructorId": -40996577,
-    "_flags": 9
+    "_constructor": "draftMessageEmpty#ba4baec5",
+    "constructorId": -1169445179,
+    "_flags": 0
   },
   "_constructor": "dialog#e4def5db",
   "constructorId": -455150117,

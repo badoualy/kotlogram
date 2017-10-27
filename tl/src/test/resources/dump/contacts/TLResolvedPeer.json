@@ -9,8 +9,8 @@
     {
       "id": 0,
       "accessHash": 0,
-      "title": "W0VOATI1eDki",
-      "username": "QrZ5ZfXEdXItSwNVd2L",
+      "title": "Qj4z4dpS",
+      "username": "GL6yZdXNVyFCWuiTY",
       "photo": {
         "_constructor": "chatPhotoEmpty#37c1011c",
         "constructorId": 935395612,
@@ -18,7 +18,7 @@
       },
       "date": 0,
       "version": 0,
-      "restrictionReason": "3MOA1Whd052jJ5DEHhIN3oZd",
+      "restrictionReason": "CjxJ1Bpf0T1ERSJ",
       "adminRights": {
         "_constructor": "channelAdminRights#5d7ceba5",
         "constructorId": 1568467877,
@@ -45,42 +45,24 @@
     {
       "id": 0,
       "accessHash": 0,
-      "firstName": "Dtq5RDh",
-      "lastName": "fQF6b1xZHTv1",
-      "username": "NZWjYHD61vUx5",
-      "phone": "TP3b5rcwaG8fQYeirEd2Eo6i",
+      "firstName": "7LevZNVeqXmBjqwqKselNn",
+      "lastName": "29IVOVVIHqz7D4qWff",
+      "username": "VYfHJg9I54iZ0GSZFl8LznKfC0lw1",
+      "phone": "s03QUzQFka",
       "photo": {
-        "photoId": 0,
-        "photoSmall": {
-          "dcId": 0,
-          "volumeId": 0,
-          "localId": 0,
-          "secret": 0,
-          "_constructor": "fileLocation#53d69076",
-          "constructorId": 1406570614,
-          "_flags": 0
-        },
-        "photoBig": {
-          "volumeId": 0,
-          "localId": 0,
-          "secret": 0,
-          "_constructor": "fileLocationUnavailable#7c596b46",
-          "constructorId": 2086234950,
-          "_flags": 0
-        },
-        "_constructor": "userProfilePhoto#d559d8c8",
-        "constructorId": -715532088,
+        "_constructor": "userProfilePhotoEmpty#4f11bae1",
+        "constructorId": 1326562017,
         "_flags": 0
       },
       "status": {
-        "_constructor": "userStatusRecently#e26f42f1",
-        "constructorId": -496024847,
+        "_constructor": "userStatusLastMonth#77ebc742",
+        "constructorId": 2011940674,
         "_flags": 0
       },
       "botInfoVersion": 0,
-      "restrictionReason": "4a3ojqhby7HOF2",
-      "botInlinePlaceholder": "FKYBPeiHVIdkIdf",
-      "langCode": "bDGB3bCRiHMJPdwlQ",
+      "restrictionReason": "GCGPUqfVPPuule1mMNHKrT",
+      "botInlinePlaceholder": "ibOzX6V",
+      "langCode": "444nN",
       "_constructor": "user#2e13f4c3",
       "constructorId": 773059779,
       "_flags": 4997247

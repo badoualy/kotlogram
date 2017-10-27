@@ -7,19 +7,19 @@
     "_flags": 0
   },
   "peer": {
-    "channelId": 0,
-    "accessHash": 0,
-    "_constructor": "inputPeerChannel#20adaef8",
-    "constructorId": 548253432,
+    "_constructor": "inputPeerEmpty#7f3b18ea",
+    "constructorId": 2134579434,
     "_flags": 0
   },
   "geoPoint": {
-    "_constructor": "inputGeoPointEmpty#e4c123d6",
-    "constructorId": -457104426,
+    "lat": 0.0,
+    "_long": 0.0,
+    "_constructor": "inputGeoPoint#f3b7acc9",
+    "constructorId": -206066487,
     "_flags": 0
   },
-  "query": "tIrhy6bfn3OmY9ha2VfmlPVb5Bn",
-  "offset": "nTGNNz",
+  "query": "34pAgV1SQCjBJSjXhUYg5aI1RV2",
+  "offset": "fvwfz9CMWBShkoKc12bAI4Y3Aw5",
   "_constructor": "messages.getInlineBotResults#514e999d",
   "constructorId": 1364105629,
   "_flags": 1

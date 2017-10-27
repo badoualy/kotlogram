@@ -1,0 +1,17 @@
+{
+  "peer": {
+    "_constructor": "inputNotifyUsers#193b4417",
+    "constructorId": 423314455,
+    "_flags": 0
+  },
+  "settings": {
+    "muteUntil": 0,
+    "sound": "HnB7NSkj",
+    "_constructor": "inputPeerNotifySettings#38935eb2",
+    "constructorId": 949182130,
+    "_flags": 0
+  },
+  "_constructor": "account.updateNotifySettings#84be5b93",
+  "constructorId": -2067899501,
+  "_flags": 0
+}

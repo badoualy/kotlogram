@@ -7,51 +7,18 @@
   "unreadCount": 0,
   "unreadMentionsCount": 0,
   "messages": [],
-  "chats": [],
-  "users": [
+  "chats": [
     {
       "id": 0,
       "accessHash": 0,
-      "firstName": "PPYeT2cehJJWbe4o",
-      "lastName": "dmDQQR",
-      "username": "OZ2WF",
-      "phone": "m4DDZFK7NlhQcmgZV8CnA47koix5r",
-      "photo": {
-        "photoId": 0,
-        "photoSmall": {
-          "volumeId": 0,
-          "localId": 0,
-          "secret": 0,
-          "_constructor": "fileLocationUnavailable#7c596b46",
-          "constructorId": 2086234950,
-          "_flags": 0
-        },
-        "photoBig": {
-          "volumeId": 0,
-          "localId": 0,
-          "secret": 0,
-          "_constructor": "fileLocationUnavailable#7c596b46",
-          "constructorId": 2086234950,
-          "_flags": 0
-        },
-        "_constructor": "userProfilePhoto#d559d8c8",
-        "constructorId": -715532088,
-        "_flags": 0
-      },
-      "status": {
-        "_constructor": "userStatusEmpty#9d05049",
-        "constructorId": 164646985,
-        "_flags": 0
-      },
-      "botInfoVersion": 0,
-      "restrictionReason": "0Mv6YfvB7JB2BKO8x919Kas49fzS",
-      "botInlinePlaceholder": "02LDjmq2iSe5KtauOM2X5Bbi3",
-      "langCode": "EEsYO23",
-      "_constructor": "user#2e13f4c3",
-      "constructorId": 773059779,
-      "_flags": 4997247
+      "title": "XqbBYXnmL6F",
+      "untilDate": 0,
+      "_constructor": "channelForbidden#289da732",
+      "constructorId": 681420594,
+      "_flags": 65536
     }
   ],
+  "users": [],
   "_constructor": "updates.channelDifferenceTooLong#6a9d7b35",
   "constructorId": 1788705589,
   "_flags": 2

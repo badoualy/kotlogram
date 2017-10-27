@@ -1,0 +1,15 @@
+{
+  "peer": {
+    "_constructor": "inputPeerSelf#7da07ec9",
+    "constructorId": 2107670217,
+    "_flags": 0
+  },
+  "reason": {
+    "_constructor": "inputReportReasonViolence#1e22c78d",
+    "constructorId": 505595789,
+    "_flags": 0
+  },
+  "_constructor": "account.reportPeer#ae189d5f",
+  "constructorId": -1374118561,
+  "_flags": 0
+}

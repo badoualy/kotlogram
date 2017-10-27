@@ -4,7 +4,7 @@
     "constructorId": -292807034,
     "_flags": 0
   },
-  "enabled": false,
+  "enabled": true,
   "_constructor": "channels.toggleSignatures#1f69b606",
   "constructorId": 527021574,
   "_flags": 0

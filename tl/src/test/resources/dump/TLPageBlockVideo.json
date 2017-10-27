@@ -3,18 +3,27 @@
   "caption": {
     "text": {
       "text": {
-        "text": "bZLTwnidAXUgR27H",
-        "_constructor": "textPlain#744694e0",
-        "constructorId": 1950782688,
+        "text": {
+          "text": {
+            "text": "XaeY5A",
+            "_constructor": "textPlain#744694e0",
+            "constructorId": 1950782688,
+            "_flags": 0
+          },
+          "_constructor": "textStrike#9bf8bb95",
+          "constructorId": -1678197867,
+          "_flags": 0
+        },
+        "_constructor": "textUnderline#c12622c4",
+        "constructorId": -1054465340,
         "_flags": 0
       },
-      "email": "qKOMRw3Uh3DKi6Fe",
-      "_constructor": "textEmail#de5a0dd6",
-      "constructorId": -564523562,
+      "_constructor": "textFixed#6c3f19b9",
+      "constructorId": 1816074681,
       "_flags": 0
     },
-    "_constructor": "textUnderline#c12622c4",
-    "constructorId": -1054465340,
+    "_constructor": "textItalic#d912a59c",
+    "constructorId": -653089380,
     "_flags": 0
   },
   "_constructor": "pageBlockVideo#d9d71866",

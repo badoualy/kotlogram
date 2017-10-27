@@ -1,24 +1,5 @@
 {
-  "authorizations": [
-    {
-      "hash": 0,
-      "flags": 0,
-      "deviceModel": "vmzgtnQnjJuZ5n",
-      "platform": "Ypsxd1",
-      "systemVersion": "QiLDO",
-      "apiId": 0,
-      "appName": "QFVM4gz7iunpq3wGo",
-      "appVersion": "ZZRc1OmNwDQfp4HJn",
-      "dateCreated": 0,
-      "dateActive": 0,
-      "ip": "VdpdE9yzJuXFAzTXVNvWHR",
-      "country": "q9xgSXOpI8J0",
-      "region": "ylHAUH3il5SFJP628NgVsEqGZ",
-      "_constructor": "authorization#7bf2e6f6",
-      "constructorId": 2079516406,
-      "_flags": 0
-    }
-  ],
+  "authorizations": [],
   "_constructor": "account.authorizations#1250abde",
   "constructorId": 307276766,
   "_flags": 0

@@ -6,8 +6,13 @@
   },
   "rules": [
     {
-      "_constructor": "inputPrivacyValueDisallowAll#d66b66c9",
-      "constructorId": -697604407,
+      "_constructor": "inputPrivacyValueAllowContacts#d09e07b",
+      "constructorId": 218751099,
+      "_flags": 0
+    },
+    {
+      "_constructor": "inputPrivacyValueDisallowContacts#ba52007",
+      "constructorId": 195371015,
       "_flags": 0
     }
   ],

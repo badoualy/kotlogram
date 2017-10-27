@@ -1,13 +1,7 @@
 {
   "peer": {
-    "peer": {
-      "channelId": 0,
-      "_constructor": "peerChannel#bddde532",
-      "constructorId": -1109531342,
-      "_flags": 0
-    },
-    "_constructor": "notifyPeer#9fd40bd8",
-    "constructorId": -1613493288,
+    "_constructor": "notifyChats#c007cec3",
+    "constructorId": -1073230141,
     "_flags": 0
   },
   "notifySettings": {

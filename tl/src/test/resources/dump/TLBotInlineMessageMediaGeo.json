@@ -6,13 +6,54 @@
     "constructorId": 541710092,
     "_flags": 0
   },
+  "period": 0,
   "replyMarkup": {
-    "rows": [],
+    "rows": [
+      {
+        "buttons": [
+          {
+            "text": "vAAxMpjrcpHmn3LZ4v2ji",
+            "_constructor": "keyboardButton#a2fa4880",
+            "constructorId": -1560655744,
+            "_flags": 0
+          },
+          {
+            "text": "TsgmLQEp",
+            "_constructor": "keyboardButtonBuy#afd93fbb",
+            "constructorId": -1344716869,
+            "_flags": 0
+          }
+        ],
+        "_constructor": "keyboardButtonRow#77608b83",
+        "constructorId": 2002815875,
+        "_flags": 0
+      },
+      {
+        "buttons": [
+          {
+            "text": "3RynEH0ubs",
+            "_constructor": "keyboardButtonGame#50f41ccf",
+            "constructorId": 1358175439,
+            "_flags": 0
+          },
+          {
+            "text": "dF35Unk",
+            "query": "Ukg3PQS4yapm3WoaLV",
+            "_constructor": "keyboardButtonSwitchInline#568a748",
+            "constructorId": 90744648,
+            "_flags": 0
+          }
+        ],
+        "_constructor": "keyboardButtonRow#77608b83",
+        "constructorId": 2002815875,
+        "_flags": 0
+      }
+    ],
     "_constructor": "replyKeyboardMarkup#3502758c",
     "constructorId": 889353612,
     "_flags": 0
   },
-  "_constructor": "botInlineMessageMediaGeo#3a8fd8b8",
-  "constructorId": 982505656,
+  "_constructor": "botInlineMessageMediaGeo#b722de65",
+  "constructorId": -1222451611,
   "_flags": 4
 }
