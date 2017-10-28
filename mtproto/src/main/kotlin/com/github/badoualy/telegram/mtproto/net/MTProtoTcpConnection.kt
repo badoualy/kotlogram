@@ -161,8 +161,7 @@ internal class MTProtoTcpConnection
         while (totalRead < length) {
             val read = socketChannel.read(buffer)
 
-            // TODO Maybe https://github.com/badoualy/kotlogram/issues/33 is caused because not every arrived at once?
-            // TODO Check logs to see if some part was read, maybe missing bytes will arrive after
+            // TODO https://github.com/badoualy/kotlogram/issues/33
             if (read == -1)
                 throw EOFException(
                         "Reached end-of-stream while reading $length bytes ($totalRead read)")
@@ -170,7 +169,7 @@ internal class MTProtoTcpConnection
             totalRead += read
 
             if (read == 0 && totalRead < length) {
-                logger.error(tag, "Yield ---------------------------------------- ${buffer.remaining()} $totalRead $length")
+                // TODO: implement reading later
                 Thread.yield()
             }
         }

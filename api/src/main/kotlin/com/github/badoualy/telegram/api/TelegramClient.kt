@@ -7,6 +7,7 @@ import com.github.badoualy.telegram.tl.api.TLAbsInputPeer
 import com.github.badoualy.telegram.tl.api.TelegramApi
 import com.github.badoualy.telegram.tl.api.TelegramApiWrapper
 import com.github.badoualy.telegram.tl.api.account.TLPassword
+import com.github.badoualy.telegram.tl.api.upload.TLFile
 import com.github.badoualy.telegram.tl.core.TLBytes
 import com.github.badoualy.telegram.tl.core.TLMethod
 import com.github.badoualy.telegram.tl.core.TLObject
@@ -50,7 +51,7 @@ abstract class TelegramClient : TelegramApiWrapper(), TelegramApi, Closeable {
 
     abstract fun sync(): TelegramSyncClient
 
-    abstract fun downloadFile(inputFileLocation: InputFileLocation, size: Int, outputStream: OutputStream)
+    abstract fun downloadFile(inputFileLocation: InputFileLocation, size: Int): Observable<TLFile>
 
     //fun getUserPhoto(user: TLAbsUser, big: Boolean = true)
 

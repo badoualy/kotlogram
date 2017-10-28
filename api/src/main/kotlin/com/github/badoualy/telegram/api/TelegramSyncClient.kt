@@ -1,5 +1,6 @@
 package com.github.badoualy.telegram.api
 
+import com.github.badoualy.telegram.api.utils.InputFileLocation
 import com.github.badoualy.telegram.mtproto.secure.CryptoUtils
 import com.github.badoualy.telegram.tl.api.TLAbsInputPeer
 import com.github.badoualy.telegram.tl.api.TelegramSyncApiWrapper
@@ -9,6 +10,8 @@ import com.github.badoualy.telegram.tl.core.TLBytes
 import com.github.badoualy.telegram.tl.core.TLMethod
 import com.github.badoualy.telegram.tl.core.TLObject
 import com.github.badoualy.telegram.tl.exception.RpcErrorException
+import io.reactivex.schedulers.Schedulers
+import java.io.OutputStream
 
 /**
  * A Telegram client to make synchronous rpc calls.
@@ -16,6 +19,8 @@ import com.github.badoualy.telegram.tl.exception.RpcErrorException
 abstract class TelegramSyncClient : TelegramSyncApiWrapper() {
 
     abstract val app: TelegramApp
+
+    abstract fun downloadFile(inputFileLocation: InputFileLocation, size: Int, outputStream: OutputStream)
 
     /** Convenience method wrapping the argument with [TelegramApp] values and without flashcall */
     fun authSendCode(phoneNumber: String) = authSendCode(false, phoneNumber, null)
@@ -86,8 +91,32 @@ internal class TelegramSyncClientImpl(val client: TelegramClient) : TelegramSync
     override fun <T : TLObject> executeMethod(method: TLMethod<T>): T = try {
         client.executeMethod(method).blockingGet()
     } catch (e: RuntimeException) {
-        if (e.cause is RpcErrorException)
-            throw e.cause as RpcErrorException
-        throw e
+        throw e.unwrapRpcError()
+    }
+
+    override fun downloadFile(inputFileLocation: InputFileLocation, size: Int, outputStream: OutputStream) {
+        try {
+            client.downloadFile(inputFileLocation, size)
+                    .subscribeOn(Schedulers.io())
+                    .observeOn(Schedulers.io())
+                    .blockingIterable()
+                    .forEach {
+                        outputStream.write(it.bytes.data)
+                    }
+
+            outputStream.flush()
+            outputStream.close()
+        } catch (e: RuntimeException) {
+            throw   e.unwrapRpcError()
+        }
+    }
+
+    companion object {
+        @Throws(Throwable::class)
+        fun Throwable.unwrapRpcError() =
+                when (cause) {
+                    is RpcErrorException -> cause as RpcErrorException
+                    else -> this
+                }
     }
 }

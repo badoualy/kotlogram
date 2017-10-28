@@ -164,7 +164,7 @@ class MTProtoHandler {
             listOf(method)).singleOrError()
 
     /**
-     * @return an [Observable] emitting one object per method (in random order)
+     * @return an [Observable] emitting one object per method (the original ordered is not assured!!)
      * or throwing an [RpcErrorException] if an error was returned.
      * The rpc call will be made only when subscribing to the returned [Observable]
      */
@@ -176,6 +176,11 @@ class MTProtoHandler {
                         .doOnSubscribe { executeMethods_(methods) }
                         .subscribeOn(Schedulers.io())
                         .flatMapMaybe { mapResult(it) }
+                        .sorted { o1, o2 ->
+                            val index1 = methods.indexOfFirst { it.response === o1 }
+                            val index2 = methods.indexOfFirst { it.response === o2 }
+                            Integer.compare(index1, index2)
+                        }
                         .map {
                             @Suppress("UNCHECKED_CAST")
                             it as T

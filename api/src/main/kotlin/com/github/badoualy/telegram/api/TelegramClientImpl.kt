@@ -260,26 +260,22 @@ class TelegramClientImpl internal constructor(override val app: TelegramApp,
         }
     }
 
-    val partSize = 128 * 1024
-
-    override fun downloadFile(inputFileLocation: InputFileLocation, size: Int, outputStream: OutputStream) {
-        val partCount = ceil(size.toDouble() / partSize).toInt()
-        println("Has $partCount part")
-        (0 until partCount)
-                .map { it * partSize }
-                .map { TLRequestUploadGetFile(inputFileLocation.inputFileLocation, it, partSize) }
-                .withIndex()
-                .groupBy({ it.index % 5 }, { it.value })
-                .map { executeMethods(it.value, inputFileLocation.dcId).blockingIterable() }
-                .flatMap { it }
-                //.flatMap { it.value }
-                //.sortedBy { it.offset }
-                .map { it as TLFile }
-                .forEach { outputStream.write(it.bytes.data) }
-
-        outputStream.flush()
-        outputStream.close()
-    }
+    override fun downloadFile(inputFileLocation: InputFileLocation, size: Int): Observable<TLFile> =
+            (0 until size.splitInParts(DOWNLOAD_PART_SIZE))
+                    .map { it * DOWNLOAD_PART_SIZE } // Map to offset
+                    .map { offset ->
+                        TLRequestUploadGetFile(inputFileLocation.inputFileLocation,
+                                               offset, DOWNLOAD_PART_SIZE)
+                    }
+                    .withIndex()
+                    .groupBy({ it.index / DOWNLOAD_GROUP_SIZE }, { it.value })
+                    // executeMethods already has a retry policy
+                    .map { (_, methods) -> executeMethods(methods, inputFileLocation.dcId) }
+                    .reduce { acc, observable ->
+                        acc.concatWith(observable.delaySubscription(DOWNLOAD_FAIR_DELAY,
+                                                                    TimeUnit.MILLISECONDS))
+                    }
+                    .map { it as TLFile }
 
     override fun sync(): TelegramSyncClient = TelegramSyncClientImpl(this)
 
@@ -438,6 +434,10 @@ class TelegramClientImpl internal constructor(override val app: TelegramApp,
 
         private const val DEFAULT_RETRY_COUNT = 2
 
+        private const val DOWNLOAD_PART_SIZE = 128 * 1024
+        private const val DOWNLOAD_GROUP_SIZE = 5
+        private const val DOWNLOAD_FAIR_DELAY = 200L
+
         /** Unwrap [RpcErrorException] */
         private inline fun <T> executeSync(body: () -> Single<T>): T = try {
             body.invoke().blockingGet()
@@ -455,5 +455,7 @@ class TelegramClientImpl internal constructor(override val app: TelegramApp,
 
         private fun createAuthKey(dataCenter: DataCenter, tmpKey: Boolean = false): Single<AuthResult> =
                 AuthKeyCreation.createAuthKey(dataCenter, tmpKey)
+
+        private fun Int.splitInParts(partSize: Int) = ceil(toDouble() / partSize).toInt()
     }
 }

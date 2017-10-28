@@ -44,7 +44,7 @@ object Config {
 
     init {
         println("Application config: $application")
-        Kotlogram.testMode = true
+        //Kotlogram.testMode = true
     }
 
     private fun getProp(key: String, default: String) = properties.getProperty(key, default)!!

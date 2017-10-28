@@ -10,6 +10,7 @@ import java.lang.reflect.ParameterizedType
 import java.net.URL
 import java.util.*
 
+@Suppress("UNCHECKED_CAST")
 abstract class AbsTLApiTest {
 
     fun <T : TLObject> randomize(`object`: T): T {

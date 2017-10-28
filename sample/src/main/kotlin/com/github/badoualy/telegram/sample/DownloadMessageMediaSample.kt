@@ -54,7 +54,7 @@ object DownloadMessageMediaSample {
 
                 println("Download ${mediaInput.inputFileLocation}")
                 val fos = FileOutputStream(File(Config.ROOT_DIR, fileName))
-                client.downloadFile(mediaInput.inputFileLocation, mediaInput.size, fos)
+                client.sync().downloadFile(mediaInput.inputFileLocation, mediaInput.size, fos)
             } else println("Nothing to download for this media...")
         } catch (e: RpcErrorException) {
             e.printStackTrace()
