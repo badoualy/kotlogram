@@ -1,12 +1,5 @@
 {
-  "buttons": [
-    {
-      "text": "88cDzie",
-      "_constructor": "keyboardButtonBuy#afd93fbb",
-      "constructorId": -1344716869,
-      "_flags": 0
-    }
-  ],
+  "buttons": [],
   "_constructor": "keyboardButtonRow#77608b83",
   "constructorId": 2002815875,
   "_flags": 0

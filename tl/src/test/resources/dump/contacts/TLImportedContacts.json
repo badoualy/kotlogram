@@ -1,20 +1,5 @@
 {
-  "imported": [
-    {
-      "userId": 0,
-      "clientId": 0,
-      "_constructor": "importedContact#d0028438",
-      "constructorId": -805141448,
-      "_flags": 0
-    },
-    {
-      "userId": 0,
-      "clientId": 0,
-      "_constructor": "importedContact#d0028438",
-      "constructorId": -805141448,
-      "_flags": 0
-    }
-  ],
+  "imported": [],
   "popularInvites": [
     {
       "clientId": 0,
@@ -32,9 +17,23 @@
     }
   ],
   "retryContacts": [
+    0,
     0
   ],
-  "users": [],
+  "users": [
+    {
+      "id": 0,
+      "_constructor": "userEmpty#200250ba",
+      "constructorId": 537022650,
+      "_flags": 0
+    },
+    {
+      "id": 0,
+      "_constructor": "userEmpty#200250ba",
+      "constructorId": 537022650,
+      "_flags": 0
+    }
+  ],
   "_constructor": "contacts.importedContacts#77d01c3b",
   "constructorId": 2010127419,
   "_flags": 0

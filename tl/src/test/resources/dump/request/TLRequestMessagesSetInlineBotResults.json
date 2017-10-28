@@ -1,0 +1,79 @@
+{
+  "queryId": 0,
+  "results": [
+    {
+      "id": "BhntPIE",
+      "type": "OdHuQ8F2VftqBSHkVIZTwj5E",
+      "photo": {
+        "id": 0,
+        "accessHash": 0,
+        "_constructor": "inputPhoto#fb95c6c4",
+        "constructorId": -74070332,
+        "_flags": 0
+      },
+      "sendMessage": {
+        "message": "QstR2jGk1bx",
+        "entities": [
+          {
+            "offset": 0,
+            "length": 0,
+            "_constructor": "messageEntityEmail#64e475c2",
+            "constructorId": 1692693954,
+            "_flags": 0
+          }
+        ],
+        "replyMarkup": {
+          "_constructor": "replyKeyboardHide#a03e5b85",
+          "constructorId": -1606526075,
+          "_flags": 0
+        },
+        "_constructor": "inputBotInlineMessageText#3dcd7a87",
+        "constructorId": 1036876423,
+        "_flags": 6
+      },
+      "_constructor": "inputBotInlineResultPhoto#a8d864a7",
+      "constructorId": -1462213465,
+      "_flags": 0
+    },
+    {
+      "id": "RbfEjle6C61poKIANyoL",
+      "type": "ZkqI0IBemE3xoQUwbqY4nOBXt68ex",
+      "title": "sWqB0thuecN3kZ6nISzYWIrlKi",
+      "description": "UpckS3",
+      "url": "WWG8j7uXXyBeZTWLNVbGRLMEX",
+      "thumbUrl": "FgYuocSSUiPsC1aJT6GkeC",
+      "contentUrl": "Xe6bbjYvVgeomoLbzVKE",
+      "contentType": "DBPDPksScv078",
+      "w": 0,
+      "h": 0,
+      "duration": 0,
+      "sendMessage": {
+        "message": "ozpNF8wk4H",
+        "entities": [],
+        "replyMarkup": {
+          "_constructor": "replyKeyboardForceReply#f4108aa0",
+          "constructorId": -200242528,
+          "_flags": 0
+        },
+        "_constructor": "inputBotInlineMessageText#3dcd7a87",
+        "constructorId": 1036876423,
+        "_flags": 6
+      },
+      "_constructor": "inputBotInlineResult#2cbbe15a",
+      "constructorId": 750510426,
+      "_flags": 254
+    }
+  ],
+  "cacheTime": 0,
+  "nextOffset": "Mvhhya6j5V",
+  "switchPm": {
+    "text": "w4UcKD2miq5JtgAAhD76S0m",
+    "startParam": "bmx0lrlKW",
+    "_constructor": "inlineBotSwitchPM#3c20629f",
+    "constructorId": 1008755359,
+    "_flags": 0
+  },
+  "_constructor": "messages.setInlineBotResults#eb5ea206",
+  "constructorId": -346119674,
+  "_flags": 12
+}

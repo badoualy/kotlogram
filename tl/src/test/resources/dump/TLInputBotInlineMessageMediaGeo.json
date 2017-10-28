@@ -1,15 +1,18 @@
 {
   "geoPoint": {
-    "_constructor": "inputGeoPointEmpty#e4c123d6",
-    "constructorId": -457104426,
+    "lat": 0.0,
+    "_long": 0.0,
+    "_constructor": "inputGeoPoint#f3b7acc9",
+    "constructorId": -206066487,
     "_flags": 0
   },
+  "period": 0,
   "replyMarkup": {
-    "_constructor": "replyKeyboardHide#a03e5b85",
-    "constructorId": -1606526075,
+    "_constructor": "replyKeyboardForceReply#f4108aa0",
+    "constructorId": -200242528,
     "_flags": 0
   },
-  "_constructor": "inputBotInlineMessageMediaGeo#f4a59de1",
-  "constructorId": -190472735,
+  "_constructor": "inputBotInlineMessageMediaGeo#c1b15d65",
+  "constructorId": -1045340827,
   "_flags": 4
 }

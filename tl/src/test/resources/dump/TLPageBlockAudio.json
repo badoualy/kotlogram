@@ -2,12 +2,42 @@
   "audioId": 0,
   "caption": {
     "text": {
-      "_constructor": "textEmpty#dc3d824f",
-      "constructorId": -599948721,
+      "text": {
+        "text": {
+          "text": {
+            "text": {
+              "text": {
+                "text": "iAMleHkZHSZM8KDCnTkkF1W61",
+                "_constructor": "textPlain#744694e0",
+                "constructorId": 1950782688,
+                "_flags": 0
+              },
+              "_constructor": "textStrike#9bf8bb95",
+              "constructorId": -1678197867,
+              "_flags": 0
+            },
+            "url": "9uzpzzN",
+            "webpageId": 0,
+            "_constructor": "textUrl#3c2884c1",
+            "constructorId": 1009288385,
+            "_flags": 0
+          },
+          "_constructor": "textStrike#9bf8bb95",
+          "constructorId": -1678197867,
+          "_flags": 0
+        },
+        "_constructor": "textUnderline#c12622c4",
+        "constructorId": -1054465340,
+        "_flags": 0
+      },
+      "url": "fjMCiRkc6RgmHAin6W",
+      "webpageId": 0,
+      "_constructor": "textUrl#3c2884c1",
+      "constructorId": 1009288385,
       "_flags": 0
     },
-    "_constructor": "textBold#6724abc4",
-    "constructorId": 1730456516,
+    "_constructor": "textUnderline#c12622c4",
+    "constructorId": -1054465340,
     "_flags": 0
   },
   "_constructor": "pageBlockAudio#31b81a7f",

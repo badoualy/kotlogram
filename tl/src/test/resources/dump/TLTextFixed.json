@@ -2,55 +2,33 @@
   "text": {
     "text": {
       "text": {
-        "texts": [
-          {
+        "text": {
+          "text": {
             "text": {
-              "text": {
-                "text": {
-                  "text": {
-                    "texts": [
-                      {
-                        "text": "7mXjTqysxCT",
-                        "_constructor": "textPlain#744694e0",
-                        "constructorId": 1950782688,
-                        "_flags": 0
-                      }
-                    ],
-                    "_constructor": "textConcat#7e6260d7",
-                    "constructorId": 2120376535,
-                    "_flags": 0
-                  },
-                  "_constructor": "textItalic#d912a59c",
-                  "constructorId": -653089380,
-                  "_flags": 0
-                },
-                "_constructor": "textItalic#d912a59c",
-                "constructorId": -653089380,
-                "_flags": 0
-              },
-              "_constructor": "textFixed#6c3f19b9",
-              "constructorId": 1816074681,
+              "_constructor": "textEmpty#dc3d824f",
+              "constructorId": -599948721,
               "_flags": 0
             },
-            "_constructor": "textUnderline#c12622c4",
-            "constructorId": -1054465340,
+            "_constructor": "textStrike#9bf8bb95",
+            "constructorId": -1678197867,
             "_flags": 0
-          }
-        ],
-        "_constructor": "textConcat#7e6260d7",
-        "constructorId": 2120376535,
+          },
+          "_constructor": "textBold#6724abc4",
+          "constructorId": 1730456516,
+          "_flags": 0
+        },
+        "_constructor": "textFixed#6c3f19b9",
+        "constructorId": 1816074681,
         "_flags": 0
       },
-      "url": "TMuKcuSVOrQvDcoZn2",
+      "url": "hIxNwPQL",
       "webpageId": 0,
       "_constructor": "textUrl#3c2884c1",
       "constructorId": 1009288385,
       "_flags": 0
     },
-    "url": "8g7Kv36YfOUOH37kkckfc1Qi",
-    "webpageId": 0,
-    "_constructor": "textUrl#3c2884c1",
-    "constructorId": 1009288385,
+    "_constructor": "textUnderline#c12622c4",
+    "constructorId": -1054465340,
     "_flags": 0
   },
   "_constructor": "textFixed#6c3f19b9",

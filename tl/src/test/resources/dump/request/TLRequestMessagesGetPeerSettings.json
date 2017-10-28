@@ -1,7 +1,7 @@
 {
   "peer": {
-    "_constructor": "inputPeerSelf#7da07ec9",
-    "constructorId": 2107670217,
+    "_constructor": "inputPeerEmpty#7f3b18ea",
+    "constructorId": 2134579434,
     "_flags": 0
   },
   "_constructor": "messages.getPeerSettings#3672e09c",

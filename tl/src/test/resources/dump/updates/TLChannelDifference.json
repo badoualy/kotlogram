@@ -16,7 +16,7 @@
         "date": 0,
         "channelId": 0,
         "channelPost": 0,
-        "postAuthor": "vcupCx5n",
+        "postAuthor": "cNhLWoI",
         "_constructor": "messageFwdHeader#fadff4ac",
         "constructorId": -85986132,
         "_flags": 15
@@ -24,26 +24,25 @@
       "viaBotId": 0,
       "replyToMsgId": 0,
       "date": 0,
-      "message": "QGSXbOFn3j",
+      "message": "DPmDWNtCPoe2QI42s4K",
       "media": {
-        "photo": {
-          "id": 0,
-          "_constructor": "photoEmpty#2331b22d",
-          "constructorId": 590459437,
-          "_flags": 0
-        },
-        "caption": "BDJjk3cRUpURZX",
-        "ttlSeconds": 0,
-        "_constructor": "messageMediaPhoto#b5223b0f",
-        "constructorId": -1256047857,
-        "_flags": 7
+        "_constructor": "messageMediaEmpty#3ded6320",
+        "constructorId": 1038967584,
+        "_flags": 0
       },
       "replyMarkup": {
         "rows": [
           {
             "buttons": [
               {
-                "text": "pCAglF2bgi",
+                "text": "14pdmFOpZBqZEd3is",
+                "query": "FK0USuS3Ro51Xu6TvcyS7R",
+                "_constructor": "keyboardButtonSwitchInline#568a748",
+                "constructorId": 90744648,
+                "_flags": 0
+              },
+              {
+                "text": "VuUQDLpXMsQkCLpLqolkF9fQI",
                 "_constructor": "keyboardButtonGame#50f41ccf",
                 "constructorId": 1358175439,
                 "_flags": 0
@@ -54,217 +53,74 @@
             "_flags": 0
           }
         ],
-        "_constructor": "replyInlineMarkup#48a30254",
-        "constructorId": 1218642516,
+        "_constructor": "replyKeyboardMarkup#3502758c",
+        "constructorId": 889353612,
         "_flags": 0
       },
-      "entities": [],
+      "entities": [
+        {
+          "offset": 0,
+          "length": 0,
+          "userId": 0,
+          "_constructor": "messageEntityMentionName#352dca58",
+          "constructorId": 892193368,
+          "_flags": 0
+        }
+      ],
       "views": 0,
       "editDate": 0,
-      "postAuthor": "olHYRZl5zGgSUrWY3kYDFD0C50",
+      "postAuthor": "C1ebWvcTsnWfeBRLlqeccKd",
       "_constructor": "message#90dddc11",
       "constructorId": -1864508399,
       "_flags": 102348
-    },
-    {
-      "id": 0,
-      "fromId": 0,
-      "toId": {
-        "chatId": 0,
-        "_constructor": "peerChat#bad0e5bb",
-        "constructorId": -1160714821,
-        "_flags": 0
-      },
-      "replyToMsgId": 0,
-      "date": 0,
-      "action": {
-        "currency": "6vie45",
-        "totalAmount": 0,
-        "payload": {
-          "data": [
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0
-          ],
-          "offset": 0,
-          "length": 109
-        },
-        "info": {
-          "name": "hTDO87u6En19",
-          "phone": "TqdbyOromZ94leZ",
-          "email": "yGHjcifvR1ifgShYLzgIUL",
-          "shippingAddress": {
-            "streetLine1": "XoNbA3M95mfXSqBGWh2Brg",
-            "streetLine2": "fThye4aPxm03qN0eFcFOf23Isp",
-            "city": "qXZOHA6b3iEoD8PMxvZPH",
-            "state": "NNU6utNnX7b4XuckRnC",
-            "countryIso2": "NflFp2B7ZKUWTZ1yHHh5lEKXAAmz",
-            "postCode": "nrVuKiOrI0w7UgWzjaDCDU",
-            "_constructor": "postAddress#1e8caaeb",
-            "constructorId": 512535275,
-            "_flags": 0
-          },
-          "_constructor": "paymentRequestedInfo#909c3f94",
-          "constructorId": -1868808300,
-          "_flags": 15
-        },
-        "shippingOptionId": "TzffMvyWWLA",
-        "charge": {
-          "id": "yfjMksH9t30xASf9j",
-          "providerChargeId": "ddZ1qB8ad13g2uht",
-          "_constructor": "paymentCharge#ea02c27e",
-          "constructorId": -368917890,
-          "_flags": 0
-        },
-        "_constructor": "messageActionPaymentSentMe#8f31b327",
-        "constructorId": -1892568281,
-        "_flags": 3
-      },
-      "_constructor": "messageService#9e19a1f6",
-      "constructorId": -1642487306,
-      "_flags": 264
     }
   ],
-  "otherUpdates": [
-    {
-      "chat": {
-        "id": 0,
-        "_constructor": "encryptedChatDiscarded#13d6dd27",
-        "constructorId": 332848423,
-        "_flags": 0
-      },
-      "date": 0,
-      "_constructor": "updateEncryption#b4a2e88d",
-      "constructorId": -1264392051,
-      "_flags": 0
-    },
-    {
-      "channelId": 0,
-      "messages": [],
-      "pts": 0,
-      "ptsCount": 0,
-      "_constructor": "updateDeleteChannelMessages#c37521c9",
-      "constructorId": -1015733815,
-      "_flags": 0
-    }
-  ],
+  "otherUpdates": [],
   "chats": [
     {
       "id": 0,
-      "_constructor": "chatEmpty#9ba2d800",
-      "constructorId": -1683826688,
-      "_flags": 0
+      "title": "FIz6GPKseQhCi3dpaESOT0cbdWk",
+      "photo": {
+        "photoSmall": {
+          "dcId": 0,
+          "volumeId": 0,
+          "localId": 0,
+          "secret": 0,
+          "_constructor": "fileLocation#53d69076",
+          "constructorId": 1406570614,
+          "_flags": 0
+        },
+        "photoBig": {
+          "dcId": 0,
+          "volumeId": 0,
+          "localId": 0,
+          "secret": 0,
+          "_constructor": "fileLocation#53d69076",
+          "constructorId": 1406570614,
+          "_flags": 0
+        },
+        "_constructor": "chatPhoto#6153276a",
+        "constructorId": 1632839530,
+        "_flags": 0
+      },
+      "participantsCount": 0,
+      "date": 0,
+      "version": 0,
+      "migratedTo": {
+        "channelId": 0,
+        "accessHash": 0,
+        "_constructor": "inputChannel#afeb712e",
+        "constructorId": -1343524562,
+        "_flags": 0
+      },
+      "_constructor": "chat#d91cdd54",
+      "constructorId": -652419756,
+      "_flags": 64
     },
     {
       "id": 0,
       "accessHash": 0,
-      "title": "imzBeMOha",
+      "title": "la4icQSmR",
       "untilDate": 0,
       "_constructor": "channelForbidden#289da732",
       "constructorId": 681420594,

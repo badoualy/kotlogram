@@ -1,7 +1,8 @@
 {
   "peer": {
-    "_constructor": "inputPeerEmpty#7f3b18ea",
-    "constructorId": 2134579434,
+    "chatId": 0,
+    "_constructor": "inputPeerChat#179be863",
+    "constructorId": 396093539,
     "_flags": 0
   },
   "id": 0,

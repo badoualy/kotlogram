@@ -1,0 +1,20 @@
+{
+  "order": [
+    {
+      "chatId": 0,
+      "_constructor": "inputPeerChat#179be863",
+      "constructorId": 396093539,
+      "_flags": 0
+    },
+    {
+      "channelId": 0,
+      "accessHash": 0,
+      "_constructor": "inputPeerChannel#20adaef8",
+      "constructorId": 548253432,
+      "_flags": 0
+    }
+  ],
+  "_constructor": "messages.reorderPinnedDialogs#959ff644",
+  "constructorId": -1784678844,
+  "_flags": 0
+}

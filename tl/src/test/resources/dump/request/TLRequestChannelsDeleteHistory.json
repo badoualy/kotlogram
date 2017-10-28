@@ -1,0 +1,11 @@
+{
+  "channel": {
+    "_constructor": "inputChannelEmpty#ee8c1e86",
+    "constructorId": -292807034,
+    "_flags": 0
+  },
+  "maxId": 0,
+  "_constructor": "channels.deleteHistory#af369d42",
+  "constructorId": -1355375294,
+  "_flags": 0
+}

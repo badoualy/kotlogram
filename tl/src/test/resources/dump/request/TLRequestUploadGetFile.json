@@ -2,9 +2,8 @@
   "location": {
     "id": 0,
     "accessHash": 0,
-    "version": 0,
-    "_constructor": "inputDocumentFileLocation#430f0724",
-    "constructorId": 1125058340,
+    "_constructor": "inputEncryptedFileLocation#f5235d55",
+    "constructorId": -182231723,
     "_flags": 0
   },
   "offset": 0,

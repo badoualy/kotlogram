@@ -2,9 +2,9 @@
   "game": {
     "id": 0,
     "accessHash": 0,
-    "shortName": "vwjKZhM94l05J",
-    "title": "siT31m7Bcy",
-    "description": "1LkqcP569iPvQP",
+    "shortName": "eXvibmbk9BDiaZCcQajPtbqkr",
+    "title": "kR70vAJgkP0O1zG7",
+    "description": "fvKf7PeshWJFoaLIapNFJfPiTJpdx",
     "photo": {
       "id": 0,
       "_constructor": "photoEmpty#2331b22d",
@@ -13,8 +13,40 @@
     },
     "document": {
       "id": 0,
-      "_constructor": "documentEmpty#36f8c871",
-      "constructorId": 922273905,
+      "accessHash": 0,
+      "date": 0,
+      "mimeType": "X19zOjW2f",
+      "size": 0,
+      "thumb": {
+        "type": "3GRNJx1P95SMtlWNJ2LVBJ3WvjH",
+        "location": {
+          "volumeId": 0,
+          "localId": 0,
+          "secret": 0,
+          "_constructor": "fileLocationUnavailable#7c596b46",
+          "constructorId": 2086234950,
+          "_flags": 0
+        },
+        "w": 0,
+        "h": 0,
+        "size": 0,
+        "_constructor": "photoSize#77bfb61b",
+        "constructorId": 2009052699,
+        "_flags": 0
+      },
+      "dcId": 0,
+      "version": 0,
+      "attributes": [
+        {
+          "w": 0,
+          "h": 0,
+          "_constructor": "documentAttributeImageSize#6c37c15c",
+          "constructorId": 1815593308,
+          "_flags": 0
+        }
+      ],
+      "_constructor": "document#87232bc7",
+      "constructorId": -2027738169,
       "_flags": 0
     },
     "_constructor": "game#bdf9653b",

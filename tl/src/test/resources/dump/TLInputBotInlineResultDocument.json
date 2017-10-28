@@ -1,22 +1,27 @@
 {
-  "id": "jXE5ELcZLX1Ya1z",
-  "type": "OQP9l5uK0ymu0rQh4Y4e5WlAoMsqm",
-  "title": "UKSbYTBIrWyUmTOoDwtsVDDowk1Xp",
-  "description": "BucLdpkBs",
+  "id": "fE3Ibgg44F5d0scQbXXC",
+  "type": "veucP3fQF",
+  "title": "BD9oGj",
+  "description": "c43Cw9",
   "document": {
     "_constructor": "inputDocumentEmpty#72f0eaae",
     "constructorId": 1928391342,
     "_flags": 0
   },
   "sendMessage": {
-    "caption": "4VqVITfYBdm9",
-    "replyMarkup": {
-      "_constructor": "replyKeyboardHide#a03e5b85",
-      "constructorId": -1606526075,
+    "geoPoint": {
+      "_constructor": "inputGeoPointEmpty#e4c123d6",
+      "constructorId": -457104426,
       "_flags": 0
     },
-    "_constructor": "inputBotInlineMessageMediaAuto#292fed13",
-    "constructorId": 691006739,
+    "period": 0,
+    "replyMarkup": {
+      "_constructor": "replyKeyboardForceReply#f4108aa0",
+      "constructorId": -200242528,
+      "_flags": 0
+    },
+    "_constructor": "inputBotInlineMessageMediaGeo#c1b15d65",
+    "constructorId": -1045340827,
     "_flags": 4
   },
   "_constructor": "inputBotInlineResultDocument#fff8fdc4",

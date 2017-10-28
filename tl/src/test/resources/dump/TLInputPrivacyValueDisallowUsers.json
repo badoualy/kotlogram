@@ -1,13 +1,5 @@
 {
-  "users": [
-    {
-      "userId": 0,
-      "accessHash": 0,
-      "_constructor": "inputUser#d8292816",
-      "constructorId": -668391402,
-      "_flags": 0
-    }
-  ],
+  "users": [],
   "_constructor": "inputPrivacyValueDisallowUsers#90110467",
   "constructorId": -1877932953,
   "_flags": 0

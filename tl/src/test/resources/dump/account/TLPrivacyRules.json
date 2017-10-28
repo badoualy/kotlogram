@@ -1,21 +1,24 @@
 {
   "rules": [
     {
-      "_constructor": "privacyValueAllowContacts#fffe1bac",
-      "constructorId": -123988,
+      "_constructor": "privacyValueAllowAll#65427b82",
+      "constructorId": 1698855810,
       "_flags": 0
     },
     {
-      "users": [
-        0,
-        0
-      ],
-      "_constructor": "privacyValueDisallowUsers#c7f49b7",
-      "constructorId": 209668535,
+      "_constructor": "privacyValueAllowAll#65427b82",
+      "constructorId": 1698855810,
       "_flags": 0
     }
   ],
-  "users": [],
+  "users": [
+    {
+      "id": 0,
+      "_constructor": "userEmpty#200250ba",
+      "constructorId": 537022650,
+      "_flags": 0
+    }
+  ],
   "_constructor": "account.privacyRules#554abb6f",
   "constructorId": 1430961007,
   "_flags": 0

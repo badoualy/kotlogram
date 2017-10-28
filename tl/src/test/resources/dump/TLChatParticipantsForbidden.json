@@ -2,8 +2,10 @@
   "chatId": 0,
   "selfParticipant": {
     "userId": 0,
-    "_constructor": "chatParticipantCreator#da13538a",
-    "constructorId": -636267638,
+    "inviterId": 0,
+    "date": 0,
+    "_constructor": "chatParticipantAdmin#e2d6e436",
+    "constructorId": -489233354,
     "_flags": 0
   },
   "_constructor": "chatParticipantsForbidden#fc900c2b",

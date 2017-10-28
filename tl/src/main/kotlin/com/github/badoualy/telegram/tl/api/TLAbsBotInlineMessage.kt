@@ -6,7 +6,7 @@ import com.github.badoualy.telegram.tl.core.TLObject
  * Abstraction level for the following constructors:
  * * [botInlineMessageMediaAuto#a74b15b][TLBotInlineMessageMediaAuto]
  * * [botInlineMessageMediaContact#35edb4d4][TLBotInlineMessageMediaContact]
- * * [botInlineMessageMediaGeo#3a8fd8b8][TLBotInlineMessageMediaGeo]
+ * * [botInlineMessageMediaGeo#b722de65][TLBotInlineMessageMediaGeo]
  * * [botInlineMessageMediaVenue#4366232e][TLBotInlineMessageMediaVenue]
  * * [botInlineMessageText#8c7f65e2][TLBotInlineMessageText]
  *

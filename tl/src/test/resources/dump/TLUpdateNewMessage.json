@@ -3,20 +3,16 @@
     "id": 0,
     "fromId": 0,
     "toId": {
-      "userId": 0,
-      "_constructor": "peerUser#9db1bc6d",
-      "constructorId": -1649296275,
+      "channelId": 0,
+      "_constructor": "peerChannel#bddde532",
+      "constructorId": -1109531342,
       "_flags": 0
     },
     "replyToMsgId": 0,
     "date": 0,
     "action": {
-      "users": [
-        0,
-        0
-      ],
-      "_constructor": "messageActionChatAddUser#488a7337",
-      "constructorId": 1217033015,
+      "_constructor": "messageActionHistoryClear#9fbab604",
+      "constructorId": -1615153660,
       "_flags": 0
     },
     "_constructor": "messageService#9e19a1f6",

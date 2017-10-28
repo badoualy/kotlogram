@@ -1,28 +1,65 @@
 {
-  "id": "B3dlKk7pDciKo1cU5CuvXjCM18XF",
-  "type": "zmj445LxyxURyW4pAH914fcH",
-  "title": "xqH87xhUKNDMGoA28LTJHqqlimz",
-  "description": "tHpRUzjw9QjQnI",
-  "url": "ETJLznxRm87oyYBDrKkuzm",
-  "thumbUrl": "FIpnJEnW6BD3R",
-  "contentUrl": "vdR2Dlbbur9iLEKCbT9",
-  "contentType": "bf1bGyI4s4",
+  "id": "6TKsHN4KfZT50JGZyhTXUTZ",
+  "type": "5S01z3DoMxy",
+  "title": "F3dxaD3XsXODmFrmQY1c0I",
+  "description": "1V7nORVwWw9",
+  "url": "C29FlH6UnSrNEj",
+  "thumbUrl": "A1mCO8joXqsz",
+  "contentUrl": "VgVDLS",
+  "contentType": "mBAPZWVXyvSCw5t",
   "w": 0,
   "h": 0,
   "duration": 0,
   "sendMessage": {
-    "geoPoint": {
-      "_constructor": "inputGeoPointEmpty#e4c123d6",
-      "constructorId": -457104426,
-      "_flags": 0
-    },
+    "caption": "mq3eh",
     "replyMarkup": {
-      "_constructor": "replyKeyboardForceReply#f4108aa0",
-      "constructorId": -200242528,
+      "rows": [
+        {
+          "buttons": [
+            {
+              "text": "55pkWdiW887Rm",
+              "_constructor": "keyboardButtonRequestPhone#b16a6c29",
+              "constructorId": -1318425559,
+              "_flags": 0
+            },
+            {
+              "text": "r7C6Q6iAdbJo1suwkcm",
+              "query": "J0W8eS",
+              "_constructor": "keyboardButtonSwitchInline#568a748",
+              "constructorId": 90744648,
+              "_flags": 0
+            }
+          ],
+          "_constructor": "keyboardButtonRow#77608b83",
+          "constructorId": 2002815875,
+          "_flags": 0
+        },
+        {
+          "buttons": [
+            {
+              "text": "V3kszMavdWTHYSR5CO",
+              "_constructor": "keyboardButtonRequestPhone#b16a6c29",
+              "constructorId": -1318425559,
+              "_flags": 0
+            },
+            {
+              "text": "GHX8egU7nigB",
+              "_constructor": "keyboardButtonGame#50f41ccf",
+              "constructorId": 1358175439,
+              "_flags": 0
+            }
+          ],
+          "_constructor": "keyboardButtonRow#77608b83",
+          "constructorId": 2002815875,
+          "_flags": 0
+        }
+      ],
+      "_constructor": "replyKeyboardMarkup#3502758c",
+      "constructorId": 889353612,
       "_flags": 0
     },
-    "_constructor": "inputBotInlineMessageMediaGeo#f4a59de1",
-    "constructorId": -190472735,
+    "_constructor": "inputBotInlineMessageMediaAuto#292fed13",
+    "constructorId": 691006739,
     "_flags": 4
   },
   "_constructor": "inputBotInlineResult#2cbbe15a",

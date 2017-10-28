@@ -7,7 +7,7 @@ import com.github.badoualy.telegram.tl.core.TLObject
  * * [inputBotInlineMessageGame#4b425864][TLInputBotInlineMessageGame]
  * * [inputBotInlineMessageMediaAuto#292fed13][TLInputBotInlineMessageMediaAuto]
  * * [inputBotInlineMessageMediaContact#2daf01a7][TLInputBotInlineMessageMediaContact]
- * * [inputBotInlineMessageMediaGeo#f4a59de1][TLInputBotInlineMessageMediaGeo]
+ * * [inputBotInlineMessageMediaGeo#c1b15d65][TLInputBotInlineMessageMediaGeo]
  * * [inputBotInlineMessageMediaVenue#aaafadc8][TLInputBotInlineMessageMediaVenue]
  * * [inputBotInlineMessageText#3dcd7a87][TLInputBotInlineMessageText]
  *

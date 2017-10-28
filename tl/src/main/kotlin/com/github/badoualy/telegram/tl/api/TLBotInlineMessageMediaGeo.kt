@@ -7,7 +7,7 @@ import com.github.badoualy.telegram.tl.serialization.TLSerializer
 import java.io.IOException
 
 /**
- * botInlineMessageMediaGeo#3a8fd8b8
+ * botInlineMessageMediaGeo#b722de65
  *
  * @author Yannick Badoual yann.badoual@gmail.com
  * @see <a href="http://github.com/badoualy/kotlogram">http://github.com/badoualy/kotlogram</a>
@@ -15,14 +15,21 @@ import java.io.IOException
 class TLBotInlineMessageMediaGeo() : TLAbsBotInlineMessage() {
     var geo: TLAbsGeoPoint = TLGeoPointEmpty()
 
+    var period: Int = 0
+
     override var replyMarkup: TLAbsReplyMarkup? = null
 
-    private val _constructor: String = "botInlineMessageMediaGeo#3a8fd8b8"
+    private val _constructor: String = "botInlineMessageMediaGeo#b722de65"
 
     override val constructorId: Int = CONSTRUCTOR_ID
 
-    constructor(geo: TLAbsGeoPoint, replyMarkup: TLAbsReplyMarkup?) : this() {
+    constructor(
+            geo: TLAbsGeoPoint,
+            period: Int,
+            replyMarkup: TLAbsReplyMarkup?
+    ) : this() {
         this.geo = geo
+        this.period = period
         this.replyMarkup = replyMarkup
     }
 
@@ -37,6 +44,7 @@ class TLBotInlineMessageMediaGeo() : TLAbsBotInlineMessage() {
 
         writeInt(_flags)
         writeTLObject(geo)
+        writeInt(period)
         doIfMask(replyMarkup, 4) { writeTLObject(it) }
     }
 
@@ -44,6 +52,7 @@ class TLBotInlineMessageMediaGeo() : TLAbsBotInlineMessage() {
     override fun deserializeBody(tlDeserializer: TLDeserializer) = with (tlDeserializer)  {
         _flags = readInt()
         geo = readTLObject<TLAbsGeoPoint>()
+        period = readInt()
         replyMarkup = readIfMask(4) { readTLObject<TLAbsReplyMarkup>() }
     }
 
@@ -53,6 +62,7 @@ class TLBotInlineMessageMediaGeo() : TLAbsBotInlineMessage() {
         var size = SIZE_CONSTRUCTOR_ID
         size += SIZE_INT32
         size += geo.computeSerializedSize()
+        size += SIZE_INT32
         size += getIntIfMask(replyMarkup, 4) { it.computeSerializedSize() }
         return size
     }
@@ -65,9 +75,10 @@ class TLBotInlineMessageMediaGeo() : TLAbsBotInlineMessage() {
 
         return _flags == other._flags
                 && geo == other.geo
+                && period == other.period
                 && replyMarkup == other.replyMarkup
     }
     companion object  {
-        const val CONSTRUCTOR_ID: Int = 0x3a8fd8b8.toInt()
+        const val CONSTRUCTOR_ID: Int = 0xb722de65.toInt()
     }
 }

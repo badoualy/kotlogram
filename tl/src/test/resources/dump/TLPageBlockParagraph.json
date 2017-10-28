@@ -1,7 +1,22 @@
 {
   "text": {
-    "_constructor": "textEmpty#dc3d824f",
-    "constructorId": -599948721,
+    "text": {
+      "text": {
+        "text": {
+          "_constructor": "textEmpty#dc3d824f",
+          "constructorId": -599948721,
+          "_flags": 0
+        },
+        "_constructor": "textItalic#d912a59c",
+        "constructorId": -653089380,
+        "_flags": 0
+      },
+      "_constructor": "textUnderline#c12622c4",
+      "constructorId": -1054465340,
+      "_flags": 0
+    },
+    "_constructor": "textStrike#9bf8bb95",
+    "constructorId": -1678197867,
     "_flags": 0
   },
   "_constructor": "pageBlockParagraph#467a0766",

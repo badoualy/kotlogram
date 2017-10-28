@@ -1,0 +1,11 @@
+{
+  "geo": {
+    "_constructor": "geoPointEmpty#1117dd5f",
+    "constructorId": 286776671,
+    "_flags": 0
+  },
+  "period": 0,
+  "_constructor": "messageMediaGeoLive#7c3c2609",
+  "constructorId": 2084316681,
+  "_flags": 0
+}

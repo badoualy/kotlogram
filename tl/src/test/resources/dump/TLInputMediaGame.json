@@ -1,9 +1,13 @@
 {
   "id": {
-    "id": 0,
-    "accessHash": 0,
-    "_constructor": "inputGameID#32c3e77",
-    "constructorId": 53231223,
+    "botId": {
+      "_constructor": "inputUserEmpty#b98886cf",
+      "constructorId": -1182234929,
+      "_flags": 0
+    },
+    "shortName": "wXbV50VoWO",
+    "_constructor": "inputGameShortName#c331e80a",
+    "constructorId": -1020139510,
     "_flags": 0
   },
   "_constructor": "inputMediaGame#d33f43f3",

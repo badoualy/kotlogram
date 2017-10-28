@@ -14,6 +14,7 @@ import com.github.badoualy.telegram.tl.core.TLObject
  * * [messageActionChatEditTitle#b5a1ce5a][TLMessageActionChatEditTitle]
  * * [messageActionChatJoinedByLink#f89cf5e8][TLMessageActionChatJoinedByLink]
  * * [messageActionChatMigrateTo#51bdb021][TLMessageActionChatMigrateTo]
+ * * [messageActionCustomAction#fae69f56][TLMessageActionCustomAction]
  * * [messageActionEmpty#b6aef7b0][TLMessageActionEmpty]
  * * [messageActionGameScore#92a72876][TLMessageActionGameScore]
  * * [messageActionHistoryClear#9fbab604][TLMessageActionHistoryClear]

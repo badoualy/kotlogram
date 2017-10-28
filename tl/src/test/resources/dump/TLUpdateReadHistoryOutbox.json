@@ -1,8 +1,8 @@
 {
   "peer": {
-    "channelId": 0,
-    "_constructor": "peerChannel#bddde532",
-    "constructorId": -1109531342,
+    "userId": 0,
+    "_constructor": "peerUser#9db1bc6d",
+    "constructorId": -1649296275,
     "_flags": 0
   },
   "maxId": 0,

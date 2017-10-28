@@ -1,14 +1,17 @@
 {
   "geoPoint": {
-    "_constructor": "inputGeoPointEmpty#e4c123d6",
-    "constructorId": -457104426,
+    "lat": 0.0,
+    "_long": 0.0,
+    "_constructor": "inputGeoPoint#f3b7acc9",
+    "constructorId": -206066487,
     "_flags": 0
   },
-  "title": "7DPF3ar1kcp5WqZJGqwuwewx",
-  "address": "JFk5TxdbOkMXu",
-  "provider": "SvOMWqC29jw8mdINc1B",
-  "venueId": "ex4UV287cXKlng",
-  "_constructor": "inputMediaVenue#2827a81a",
-  "constructorId": 673687578,
+  "title": "yLps9EvRp",
+  "address": "jst0KGMYd",
+  "provider": "ej5PQrbLs9waU",
+  "venueId": "ekIMijCkynblxKt6mj1Ga1tBeqn",
+  "venueType": "VihkIUdT2vwe8vmh",
+  "_constructor": "inputMediaVenue#c13d1c11",
+  "constructorId": -1052959727,
   "_flags": 0
 }

@@ -2,17 +2,10 @@
   "date": 0,
   "botId": 0,
   "invoice": {
-    "currency": "Qr35k63VjCOTp6zzePRWYdY",
+    "currency": "h13n0misOnvypu",
     "prices": [
       {
-        "label": "KplN71LNGIAm4vdV",
-        "amount": 0,
-        "_constructor": "labeledPrice#cb296bf8",
-        "constructorId": -886477832,
-        "_flags": 0
-      },
-      {
-        "label": "eS6vNmRbxYDMBf9vlTtDKSc45RbQ",
+        "label": "CGzx5QCwbLCGB65kO38t9Q8K3iI",
         "amount": 0,
         "_constructor": "labeledPrice#cb296bf8",
         "constructorId": -886477832,
@@ -25,16 +18,16 @@
   },
   "providerId": 0,
   "info": {
-    "name": "61AT6N9Y",
-    "phone": "nt5TXtdLc7y0Y",
-    "email": "bUNCRbbIS3o82qjdFI7CkKuQ4",
+    "name": "yx3wO8IpDwbVLdUy",
+    "phone": "Ao8EEt4",
+    "email": "oKv34vlpSvU58wINazrmSNM",
     "shippingAddress": {
-      "streetLine1": "YCkyEz9xIeQ",
-      "streetLine2": "R7wTLSLRaKVAYTLAXeZ",
-      "city": "CR8fP71QOfTBskSRRtr7uWlGHi1",
-      "state": "i8x5YBcwCupcDIcbMxnqMfE",
-      "countryIso2": "aPQBdpNjlOZMTczKRp",
-      "postCode": "PBBgR5OD5M17w9h",
+      "streetLine1": "MtaDcy3Pijgf",
+      "streetLine2": "121gc01xmxDnNKEEVhe5",
+      "city": "cVUhslpj0Sy27qBpYhwjEUtAYK1xK",
+      "state": "Q7ceMXR3UItVnm7595P",
+      "countryIso2": "1TJJ76YZb4M0VYcYbRTwh2",
+      "postCode": "8bmW97BI0XHpetKXMURRxGg",
       "_constructor": "postAddress#1e8caaeb",
       "constructorId": 512535275,
       "_flags": 0
@@ -44,18 +37,11 @@
     "_flags": 15
   },
   "shipping": {
-    "id": "yCAZ9OtuAjgkUK",
-    "title": "5H0vBd127w",
+    "id": "QiYAiP8I9a3SEE5S",
+    "title": "bQL10",
     "prices": [
       {
-        "label": "fliozUSKK3hyRLt",
-        "amount": 0,
-        "_constructor": "labeledPrice#cb296bf8",
-        "constructorId": -886477832,
-        "_flags": 0
-      },
-      {
-        "label": "2lpV4SSib33yANVwlv",
+        "label": "34JVS0CNIiy1I5ijludrRCcmnr",
         "amount": 0,
         "_constructor": "labeledPrice#cb296bf8",
         "constructorId": -886477832,
@@ -66,9 +52,9 @@
     "constructorId": -1239335713,
     "_flags": 0
   },
-  "currency": "liQcSstlUj8qn49PTJC",
+  "currency": "idgzI0aqwGNqmO04QnKyr70Xg4F",
   "totalAmount": 0,
-  "credentialsTitle": "PFAEonQQTutw6xyFC1jv",
+  "credentialsTitle": "ciP7RjsmF4CAPJ8Qg8ZORTim55V",
   "users": [],
   "_constructor": "payments.paymentReceipt#500911e1",
   "constructorId": 1342771681,

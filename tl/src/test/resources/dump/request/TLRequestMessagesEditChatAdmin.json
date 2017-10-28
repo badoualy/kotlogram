@@ -1,0 +1,12 @@
+{
+  "chatId": 0,
+  "userId": {
+    "_constructor": "inputUserSelf#f7c1b13f",
+    "constructorId": -138301121,
+    "_flags": 0
+  },
+  "isAdmin": true,
+  "_constructor": "messages.editChatAdmin#a9e69f2e",
+  "constructorId": -1444503762,
+  "_flags": 0
+}

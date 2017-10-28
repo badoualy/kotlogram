@@ -4,7 +4,13 @@
   "date": 0,
   "sizes": [
     {
-      "type": "u5hV89ZGFiress0yyfoHU32FCknx",
+      "type": "IUf6V8SoQhu6cpDkFtt",
+      "_constructor": "photoSizeEmpty#e17e23c",
+      "constructorId": 236446268,
+      "_flags": 0
+    },
+    {
+      "type": "1mkGgIcDuHCF2xxiZG",
       "location": {
         "dcId": 0,
         "volumeId": 0,
@@ -16,15 +22,40 @@
       },
       "w": 0,
       "h": 0,
-      "size": 0,
-      "_constructor": "photoSize#77bfb61b",
-      "constructorId": 2009052699,
-      "_flags": 0
-    },
-    {
-      "type": "dwwduX4fUkfVpQvDN25",
-      "_constructor": "photoSizeEmpty#e17e23c",
-      "constructorId": 236446268,
+      "bytes": {
+        "data": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "offset": 0,
+        "length": 26
+      },
+      "_constructor": "photoCachedSize#e9a734fa",
+      "constructorId": -374917894,
       "_flags": 0
     }
   ],

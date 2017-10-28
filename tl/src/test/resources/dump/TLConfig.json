@@ -6,7 +6,7 @@
   "dcOptions": [
     {
       "id": 0,
-      "ipAddress": "59xSHes",
+      "ipAddress": "Lhl3rwnMD0lXkdcFHlbofNnUN",
       "port": 0,
       "_constructor": "dcOption#5d8c6cc",
       "constructorId": 98092748,
@@ -30,17 +30,18 @@
   "ratingEDecay": 0,
   "stickersRecentLimit": 0,
   "stickersFavedLimit": 0,
+  "channelsReadMediaPeriod": 0,
   "tmpSessions": 0,
   "pinnedDialogsCountMax": 0,
   "callReceiveTimeoutMs": 0,
   "callRingTimeoutMs": 0,
   "callConnectTimeoutMs": 0,
   "callPacketTimeoutMs": 0,
-  "meUrlPrefix": "xFB5diVJdsMOzZ3D",
-  "suggestedLangCode": "CaryI0jp",
+  "meUrlPrefix": "xq7P6z18AzmffZ1qelF",
+  "suggestedLangCode": "K7QWwtiQmXsY",
   "langPackVersion": 0,
   "disabledFeatures": [],
-  "_constructor": "config#8df376a4",
-  "constructorId": -1913424220,
+  "_constructor": "config#9c840964",
+  "constructorId": -1669068444,
   "_flags": 5
 }

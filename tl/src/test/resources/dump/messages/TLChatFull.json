@@ -3,23 +3,97 @@
     "id": 0,
     "participants": {
       "chatId": 0,
-      "selfParticipant": {
-        "userId": 0,
-        "inviterId": 0,
-        "date": 0,
-        "_constructor": "chatParticipant#c8d7493e",
-        "constructorId": -925415106,
-        "_flags": 0
-      },
-      "_constructor": "chatParticipantsForbidden#fc900c2b",
-      "constructorId": -57668565,
-      "_flags": 1
+      "participants": [
+        {
+          "userId": 0,
+          "inviterId": 0,
+          "date": 0,
+          "_constructor": "chatParticipantAdmin#e2d6e436",
+          "constructorId": -489233354,
+          "_flags": 0
+        }
+      ],
+      "version": 0,
+      "_constructor": "chatParticipants#3f460fed",
+      "constructorId": 1061556205,
+      "_flags": 0
     },
     "chatPhoto": {
       "id": 0,
       "accessHash": 0,
       "date": 0,
-      "sizes": [],
+      "sizes": [
+        {
+          "type": "A5DZ3fKNs",
+          "location": {
+            "volumeId": 0,
+            "localId": 0,
+            "secret": 0,
+            "_constructor": "fileLocationUnavailable#7c596b46",
+            "constructorId": 2086234950,
+            "_flags": 0
+          },
+          "w": 0,
+          "h": 0,
+          "bytes": {
+            "data": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "offset": 0,
+            "length": 30
+          },
+          "_constructor": "photoCachedSize#e9a734fa",
+          "constructorId": -374917894,
+          "_flags": 0
+        },
+        {
+          "type": "TD8V3kEfoXSvgXIUYuPL3C",
+          "location": {
+            "dcId": 0,
+            "volumeId": 0,
+            "localId": 0,
+            "secret": 0,
+            "_constructor": "fileLocation#53d69076",
+            "constructorId": 1406570614,
+            "_flags": 0
+          },
+          "w": 0,
+          "h": 0,
+          "size": 0,
+          "_constructor": "photoSize#77bfb61b",
+          "constructorId": 2009052699,
+          "_flags": 0
+        }
+      ],
       "_constructor": "photo#9288dd29",
       "constructorId": -1836524247,
       "_flags": 0
@@ -30,7 +104,7 @@
       "_flags": 0
     },
     "exportedInvite": {
-      "link": "qWGWkjb3z7yQ9C2nFkeb3",
+      "link": "VzD4n61fvJCBUU9sDziOaG1xhx",
       "_constructor": "chatInviteExported#fc2e05bc",
       "constructorId": -64092740,
       "_flags": 0
@@ -38,11 +112,34 @@
     "botInfo": [
       {
         "userId": 0,
-        "description": "w6TSsZ1VgOBSQRxoGUFcJ",
+        "description": "sIB1g38jGjsDND7Un3SZVlht",
         "commands": [
           {
-            "command": "NSkQtxKw1kkUamSYm1ix",
-            "description": "xPA3G9QdjdHp3oe3zWMJ",
+            "command": "xKY3E0TSjHZk5k3tGYrde",
+            "description": "uOaFxLRYIALl",
+            "_constructor": "botCommand#c27ac8c7",
+            "constructorId": -1032140601,
+            "_flags": 0
+          }
+        ],
+        "_constructor": "botInfo#98e81d3a",
+        "constructorId": -1729618630,
+        "_flags": 0
+      },
+      {
+        "userId": 0,
+        "description": "l8Zye7J7ua3CBoMIp0k",
+        "commands": [
+          {
+            "command": "VrANPdarej5EcKS69sciG",
+            "description": "9EnYI3f",
+            "_constructor": "botCommand#c27ac8c7",
+            "constructorId": -1032140601,
+            "_flags": 0
+          },
+          {
+            "command": "eBV8jbJ8OsBmUKL8iWHsFOgwocC",
+            "description": "fwlhJMTUzylYsLW",
             "_constructor": "botCommand#c27ac8c7",
             "constructorId": -1032140601,
             "_flags": 0
@@ -60,10 +157,18 @@
   "chats": [
     {
       "id": 0,
-      "title": "tIw0tR035JR5zTbAz4c",
-      "_constructor": "chatForbidden#7328bdb",
-      "constructorId": 120753115,
+      "_constructor": "chatEmpty#9ba2d800",
+      "constructorId": -1683826688,
       "_flags": 0
+    },
+    {
+      "id": 0,
+      "accessHash": 0,
+      "title": "b97ZzW",
+      "untilDate": 0,
+      "_constructor": "channelForbidden#289da732",
+      "constructorId": 681420594,
+      "_flags": 65536
     }
   ],
   "users": [],

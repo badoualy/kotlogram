@@ -1,10 +1,17 @@
 {
   "userId": 0,
-  "description": "nIWBHZiFbnJiqfNOSGSss",
+  "description": "7NZtXiO1lb2k7",
   "commands": [
     {
-      "command": "fBBzqZaTU5fmI6XUhPhwmtVmwYL8L",
-      "description": "nS2U5MCf",
+      "command": "TWgXMRH702P1S3qo",
+      "description": "TuaIxPcery5",
+      "_constructor": "botCommand#c27ac8c7",
+      "constructorId": -1032140601,
+      "_flags": 0
+    },
+    {
+      "command": "zdoUSVdFoXZ6c3W",
+      "description": "QZemPxGXhixm",
       "_constructor": "botCommand#c27ac8c7",
       "constructorId": -1032140601,
       "_flags": 0

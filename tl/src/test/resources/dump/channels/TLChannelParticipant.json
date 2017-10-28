@@ -1,33 +1,94 @@
 {
   "participant": {
     "userId": 0,
-    "date": 0,
-    "_constructor": "channelParticipant#15ebac1d",
-    "constructorId": 367766557,
+    "_constructor": "channelParticipantCreator#e3e2e1f9",
+    "constructorId": -471670279,
     "_flags": 0
   },
   "users": [
     {
       "id": 0,
       "accessHash": 0,
-      "firstName": "dz2twnIqN4Dj49s",
-      "lastName": "9OKE0Ti70kKTZ0sbum3lJpwgtN",
-      "username": "mZKHdamRGVzULl",
-      "phone": "gmQzJ",
+      "firstName": "fR933XhbBBRzQrZkKNvfLDrAo5",
+      "lastName": "mx7TsbB6ESN8LdhSxAhUnmav",
+      "username": "CyH85MC",
+      "phone": "nS2d2",
       "photo": {
-        "_constructor": "userProfilePhotoEmpty#4f11bae1",
-        "constructorId": 1326562017,
+        "photoId": 0,
+        "photoSmall": {
+          "volumeId": 0,
+          "localId": 0,
+          "secret": 0,
+          "_constructor": "fileLocationUnavailable#7c596b46",
+          "constructorId": 2086234950,
+          "_flags": 0
+        },
+        "photoBig": {
+          "dcId": 0,
+          "volumeId": 0,
+          "localId": 0,
+          "secret": 0,
+          "_constructor": "fileLocation#53d69076",
+          "constructorId": 1406570614,
+          "_flags": 0
+        },
+        "_constructor": "userProfilePhoto#d559d8c8",
+        "constructorId": -715532088,
         "_flags": 0
       },
       "status": {
-        "_constructor": "userStatusRecently#e26f42f1",
-        "constructorId": -496024847,
+        "_constructor": "userStatusEmpty#9d05049",
+        "constructorId": 164646985,
         "_flags": 0
       },
       "botInfoVersion": 0,
-      "restrictionReason": "wmAObcmg0lpna3ZPhG",
-      "botInlinePlaceholder": "YrL4ezDKPByIt2IUaMjWz",
-      "langCode": "nitKOpLEQU40WDf11ZeD4WgKSLJZ",
+      "restrictionReason": "YmIOBBTzIJfPLRpQrf9BA73Sfj",
+      "botInlinePlaceholder": "ouUbkg9ETBi7wQ0",
+      "langCode": "d13zUdkW8HSatW39QO5Q",
+      "_constructor": "user#2e13f4c3",
+      "constructorId": 773059779,
+      "_flags": 4997247
+    },
+    {
+      "id": 0,
+      "accessHash": 0,
+      "firstName": "OqiaKYYJ",
+      "lastName": "LE4R7",
+      "username": "UOMEzX6",
+      "phone": "efgQVWcObYQs2HWfY88scTS",
+      "photo": {
+        "photoId": 0,
+        "photoSmall": {
+          "dcId": 0,
+          "volumeId": 0,
+          "localId": 0,
+          "secret": 0,
+          "_constructor": "fileLocation#53d69076",
+          "constructorId": 1406570614,
+          "_flags": 0
+        },
+        "photoBig": {
+          "volumeId": 0,
+          "localId": 0,
+          "secret": 0,
+          "_constructor": "fileLocationUnavailable#7c596b46",
+          "constructorId": 2086234950,
+          "_flags": 0
+        },
+        "_constructor": "userProfilePhoto#d559d8c8",
+        "constructorId": -715532088,
+        "_flags": 0
+      },
+      "status": {
+        "wasOnline": 0,
+        "_constructor": "userStatusOffline#8c703f",
+        "constructorId": 9203775,
+        "_flags": 0
+      },
+      "botInfoVersion": 0,
+      "restrictionReason": "ZXeGD9AzPSoJSX7Ul",
+      "botInlinePlaceholder": "ge6eTinTSnwPXKLLcPsDd",
+      "langCode": "jFj9djNtr",
       "_constructor": "user#2e13f4c3",
       "constructorId": 773059779,
       "_flags": 4997247

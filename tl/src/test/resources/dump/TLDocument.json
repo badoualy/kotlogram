@@ -2,28 +2,23 @@
   "id": 0,
   "accessHash": 0,
   "date": 0,
-  "mimeType": "fnFpITYWfhdzi",
+  "mimeType": "Bu6F5d1caNrR80Nxz9lIj448bX",
   "size": 0,
   "thumb": {
-    "type": "IsRrv6tnyq3rJCwCyI11ovF",
-    "location": {
-      "volumeId": 0,
-      "localId": 0,
-      "secret": 0,
-      "_constructor": "fileLocationUnavailable#7c596b46",
-      "constructorId": 2086234950,
-      "_flags": 0
-    },
-    "w": 0,
-    "h": 0,
-    "size": 0,
-    "_constructor": "photoSize#77bfb61b",
-    "constructorId": 2009052699,
+    "type": "UDf8VVA9NlfJ1Eq",
+    "_constructor": "photoSizeEmpty#e17e23c",
+    "constructorId": 236446268,
     "_flags": 0
   },
   "dcId": 0,
   "version": 0,
-  "attributes": [],
+  "attributes": [
+    {
+      "_constructor": "documentAttributeHasStickers#9801d2f7",
+      "constructorId": -1744710921,
+      "_flags": 0
+    }
+  ],
   "_constructor": "document#87232bc7",
   "constructorId": -2027738169,
   "_flags": 0

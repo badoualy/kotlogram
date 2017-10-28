@@ -4,14 +4,11 @@ import com.github.badoualy.telegram.tl.RpcQueryExecutor
 import com.github.badoualy.telegram.tl.api.account.*
 import com.github.badoualy.telegram.tl.api.auth.*
 import com.github.badoualy.telegram.tl.api.auth.TLAuthorization
+import com.github.badoualy.telegram.tl.api.channels.TLAbsChannelParticipants
 import com.github.badoualy.telegram.tl.api.channels.TLAdminLogResults
 import com.github.badoualy.telegram.tl.api.channels.TLChannelParticipant
-import com.github.badoualy.telegram.tl.api.channels.TLChannelParticipants
 import com.github.badoualy.telegram.tl.api.contacts.*
-import com.github.badoualy.telegram.tl.api.help.TLAbsAppUpdate
-import com.github.badoualy.telegram.tl.api.help.TLInviteText
-import com.github.badoualy.telegram.tl.api.help.TLSupport
-import com.github.badoualy.telegram.tl.api.help.TLTermsOfService
+import com.github.badoualy.telegram.tl.api.help.*
 import com.github.badoualy.telegram.tl.api.messages.*
 import com.github.badoualy.telegram.tl.api.messages.TLChatFull
 import com.github.badoualy.telegram.tl.api.messages.TLStickerSet
@@ -175,6 +172,8 @@ abstract class TelegramApiWrapper : TelegramApi, RpcQueryExecutor {
 
     override fun channelsDeleteChannel(channel: TLAbsInputChannel): Single<TLAbsUpdates> = executeMethod(TLRequestChannelsDeleteChannel(channel))
 
+    override fun channelsDeleteHistory(channel: TLAbsInputChannel, maxId: Int): Single<TLBool> = executeMethod(TLRequestChannelsDeleteHistory(channel, maxId))
+
     override fun channelsDeleteMessages(channel: TLAbsInputChannel, id: TLIntVector): Single<TLAffectedMessages> = executeMethod(TLRequestChannelsDeleteMessages(channel, id))
 
     override fun channelsDeleteUserHistory(channel: TLAbsInputChannel, userId: TLAbsInputUser): Single<TLAffectedHistory> = executeMethod(TLRequestChannelsDeleteUserHistory(channel, userId))
@@ -225,8 +224,9 @@ abstract class TelegramApiWrapper : TelegramApi, RpcQueryExecutor {
             channel: TLAbsInputChannel,
             filter: TLAbsChannelParticipantsFilter,
             offset: Int,
-            limit: Int
-    ): Single<TLChannelParticipants> = executeMethod(TLRequestChannelsGetParticipants(channel, filter, offset, limit))
+            limit: Int,
+            hash: Int
+    ): Single<TLAbsChannelParticipants> = executeMethod(TLRequestChannelsGetParticipants(channel, filter, offset, limit, hash))
 
     override fun channelsInviteToChannel(channel: TLAbsInputChannel, users: TLObjectVector<TLAbsInputUser>): Single<TLAbsUpdates> = executeMethod(TLRequestChannelsInviteToChannel(channel, users))
 
@@ -247,6 +247,8 @@ abstract class TelegramApiWrapper : TelegramApi, RpcQueryExecutor {
     override fun channelsSetStickers(channel: TLAbsInputChannel, stickerset: TLAbsInputStickerSet): Single<TLBool> = executeMethod(TLRequestChannelsSetStickers(channel, stickerset))
 
     override fun channelsToggleInvites(channel: TLAbsInputChannel, enabled: Boolean): Single<TLAbsUpdates> = executeMethod(TLRequestChannelsToggleInvites(channel, enabled))
+
+    override fun channelsTogglePreHistoryHidden(channel: TLAbsInputChannel, enabled: Boolean): Single<TLAbsUpdates> = executeMethod(TLRequestChannelsTogglePreHistoryHidden(channel, enabled))
 
     override fun channelsToggleSignatures(channel: TLAbsInputChannel, enabled: Boolean): Single<TLAbsUpdates> = executeMethod(TLRequestChannelsToggleSignatures(channel, enabled))
 
@@ -309,6 +311,8 @@ abstract class TelegramApiWrapper : TelegramApi, RpcQueryExecutor {
     override fun helpGetInviteText(): Single<TLInviteText> = executeMethod(TLRequestHelpGetInviteText())
 
     override fun helpGetNearestDc(): Single<TLNearestDc> = executeMethod(TLRequestHelpGetNearestDc())
+
+    override fun helpGetRecentMeUrls(referer: String): Single<TLRecentMeUrls> = executeMethod(TLRequestHelpGetRecentMeUrls(referer))
 
     override fun helpGetSupport(): Single<TLSupport> = executeMethod(TLRequestHelpGetSupport())
 
@@ -395,12 +399,14 @@ abstract class TelegramApiWrapper : TelegramApi, RpcQueryExecutor {
 
     override fun messagesEditMessage(
             noWebpage: Boolean,
+            stopGeoLive: Boolean,
             peer: TLAbsInputPeer,
             id: Int,
             message: String?,
             replyMarkup: TLAbsReplyMarkup?,
-            entities: TLObjectVector<TLAbsMessageEntity>?
-    ): Single<TLAbsUpdates> = executeMethod(TLRequestMessagesEditMessage(noWebpage, peer, id, message, replyMarkup, entities))
+            entities: TLObjectVector<TLAbsMessageEntity>?,
+            geoPoint: TLAbsInputGeoPoint?
+    ): Single<TLAbsUpdates> = executeMethod(TLRequestMessagesEditMessage(noWebpage, stopGeoLive, peer, id, message, replyMarkup, entities, geoPoint))
 
     override fun messagesExportChatInvite(chatId: Int): Single<TLAbsExportedChatInvite> = executeMethod(TLRequestMessagesExportChatInvite(chatId))
 
@@ -517,6 +523,8 @@ abstract class TelegramApiWrapper : TelegramApi, RpcQueryExecutor {
 
     override fun messagesGetPinnedDialogs(): Single<TLPeerDialogs> = executeMethod(TLRequestMessagesGetPinnedDialogs())
 
+    override fun messagesGetRecentLocations(peer: TLAbsInputPeer, limit: Int): Single<TLAbsMessages> = executeMethod(TLRequestMessagesGetRecentLocations(peer, limit))
+
     override fun messagesGetRecentStickers(attached: Boolean, hash: Int): Single<TLAbsRecentStickers> = executeMethod(TLRequestMessagesGetRecentStickers(attached, hash))
 
     override fun messagesGetSavedGifs(hash: Int): Single<TLAbsSavedGifs> = executeMethod(TLRequestMessagesGetSavedGifs(hash))
@@ -549,6 +557,8 @@ abstract class TelegramApiWrapper : TelegramApi, RpcQueryExecutor {
     override fun messagesReadFeaturedStickers(id: TLLongVector): Single<TLBool> = executeMethod(TLRequestMessagesReadFeaturedStickers(id))
 
     override fun messagesReadHistory(peer: TLAbsInputPeer, maxId: Int): Single<TLAffectedMessages> = executeMethod(TLRequestMessagesReadHistory(peer, maxId))
+
+    override fun messagesReadMentions(peer: TLAbsInputPeer): Single<TLAffectedHistory> = executeMethod(TLRequestMessagesReadMentions(peer))
 
     override fun messagesReadMessageContents(id: TLIntVector): Single<TLAffectedMessages> = executeMethod(TLRequestMessagesReadMessageContents(id))
 

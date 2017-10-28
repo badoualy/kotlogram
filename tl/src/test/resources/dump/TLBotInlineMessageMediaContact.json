@@ -1,11 +1,10 @@
 {
-  "phoneNumber": "4g5YltpnvP0yxz8dY6RBTDn",
-  "firstName": "NDCX2n3rrf9HJKXNPz",
-  "lastName": "Fnhe6Iq765I6m72qVqU",
+  "phoneNumber": "puHklCJO3MCJ20mSjSklHslOUf",
+  "firstName": "dKHidTQJIPEaCYdKkvBpu0WgmrFUE",
+  "lastName": "3uZT1Qpub0sn7p",
   "replyMarkup": {
-    "rows": [],
-    "_constructor": "replyInlineMarkup#48a30254",
-    "constructorId": 1218642516,
+    "_constructor": "replyKeyboardForceReply#f4108aa0",
+    "constructorId": -200242528,
     "_flags": 0
   },
   "_constructor": "botInlineMessageMediaContact#35edb4d4",

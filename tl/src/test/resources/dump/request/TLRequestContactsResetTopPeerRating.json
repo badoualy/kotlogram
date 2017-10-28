@@ -1,0 +1,15 @@
+{
+  "category": {
+    "_constructor": "topPeerCategoryCorrespondents#637b7ed",
+    "constructorId": 104314861,
+    "_flags": 0
+  },
+  "peer": {
+    "_constructor": "inputPeerEmpty#7f3b18ea",
+    "constructorId": 2134579434,
+    "_flags": 0
+  },
+  "_constructor": "contacts.resetTopPeerRating#1ae373ac",
+  "constructorId": 451113900,
+  "_flags": 0
+}

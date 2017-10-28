@@ -1,28 +1,15 @@
 {
   "participants": {
     "chatId": 0,
-    "participants": [
-      {
-        "userId": 0,
-        "inviterId": 0,
-        "date": 0,
-        "_constructor": "chatParticipant#c8d7493e",
-        "constructorId": -925415106,
-        "_flags": 0
-      },
-      {
-        "userId": 0,
-        "inviterId": 0,
-        "date": 0,
-        "_constructor": "chatParticipant#c8d7493e",
-        "constructorId": -925415106,
-        "_flags": 0
-      }
-    ],
-    "version": 0,
-    "_constructor": "chatParticipants#3f460fed",
-    "constructorId": 1061556205,
-    "_flags": 0
+    "selfParticipant": {
+      "userId": 0,
+      "_constructor": "chatParticipantCreator#da13538a",
+      "constructorId": -636267638,
+      "_flags": 0
+    },
+    "_constructor": "chatParticipantsForbidden#fc900c2b",
+    "constructorId": -57668565,
+    "_flags": 1
   },
   "_constructor": "updateChatParticipants#7761198",
   "constructorId": 125178264,

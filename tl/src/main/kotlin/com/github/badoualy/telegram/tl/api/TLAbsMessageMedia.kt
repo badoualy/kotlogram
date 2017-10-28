@@ -9,10 +9,11 @@ import com.github.badoualy.telegram.tl.core.TLObject
  * * [messageMediaEmpty#3ded6320][TLMessageMediaEmpty]
  * * [messageMediaGame#fdb19008][TLMessageMediaGame]
  * * [messageMediaGeo#56e0d474][TLMessageMediaGeo]
+ * * [messageMediaGeoLive#7c3c2609][TLMessageMediaGeoLive]
  * * [messageMediaInvoice#84551347][TLMessageMediaInvoice]
  * * [messageMediaPhoto#b5223b0f][TLMessageMediaPhoto]
  * * [messageMediaUnsupported#9f84f49e][TLMessageMediaUnsupported]
- * * [messageMediaVenue#7912b71f][TLMessageMediaVenue]
+ * * [messageMediaVenue#2ec0533f][TLMessageMediaVenue]
  * * [messageMediaWebPage#a32dd600][TLMessageMediaWebPage]
  *
  * @author Yannick Badoual yann.badoual@gmail.com

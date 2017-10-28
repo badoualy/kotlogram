@@ -1,5 +1,7 @@
 {
-  "users": [],
+  "users": [
+    0
+  ],
   "_constructor": "privacyValueDisallowUsers#c7f49b7",
   "constructorId": 209668535,
   "_flags": 0

@@ -144,10 +144,17 @@
       0,
       0,
       0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
       0
     ],
     "offset": 0,
-    "length": 137
+    "length": 144
   },
   "keyFingerprint": 0,
   "_constructor": "messages.acceptEncryption#3dbc0415",

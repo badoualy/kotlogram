@@ -1,43 +1,13 @@
 {
   "results": [
     {
-      "channelId": 0,
-      "_constructor": "peerChannel#bddde532",
-      "constructorId": -1109531342,
+      "chatId": 0,
+      "_constructor": "peerChat#bad0e5bb",
+      "constructorId": -1160714821,
       "_flags": 0
     }
   ],
-  "chats": [
-    {
-      "id": 0,
-      "title": "BcojOsBvOgWLLtBckA3ZZSLNongs",
-      "photo": {
-        "_constructor": "chatPhotoEmpty#37c1011c",
-        "constructorId": 935395612,
-        "_flags": 0
-      },
-      "participantsCount": 0,
-      "date": 0,
-      "version": 0,
-      "migratedTo": {
-        "channelId": 0,
-        "accessHash": 0,
-        "_constructor": "inputChannel#afeb712e",
-        "constructorId": -1343524562,
-        "_flags": 0
-      },
-      "_constructor": "chat#d91cdd54",
-      "constructorId": -652419756,
-      "_flags": 64
-    },
-    {
-      "id": 0,
-      "title": "MuIf9ZSSNM5MJvO5uJtXzbikUr",
-      "_constructor": "chatForbidden#7328bdb",
-      "constructorId": 120753115,
-      "_flags": 0
-    }
-  ],
+  "chats": [],
   "users": [],
   "_constructor": "contacts.found#1aa1f784",
   "constructorId": 446822276,

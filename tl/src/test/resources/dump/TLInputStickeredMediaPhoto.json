@@ -1,9 +1,7 @@
 {
   "id": {
-    "id": 0,
-    "accessHash": 0,
-    "_constructor": "inputPhoto#fb95c6c4",
-    "constructorId": -74070332,
+    "_constructor": "inputPhotoEmpty#1cd7bf0d",
+    "constructorId": 483901197,
     "_flags": 0
   },
   "_constructor": "inputStickeredMediaPhoto#4a992157",

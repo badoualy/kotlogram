@@ -7,7 +7,7 @@ import com.github.badoualy.telegram.tl.serialization.TLSerializer
 import java.io.IOException
 
 /**
- * inputBotInlineMessageMediaGeo#f4a59de1
+ * inputBotInlineMessageMediaGeo#c1b15d65
  *
  * @author Yannick Badoual yann.badoual@gmail.com
  * @see <a href="http://github.com/badoualy/kotlogram">http://github.com/badoualy/kotlogram</a>
@@ -15,14 +15,21 @@ import java.io.IOException
 class TLInputBotInlineMessageMediaGeo() : TLAbsInputBotInlineMessage() {
     var geoPoint: TLAbsInputGeoPoint = TLInputGeoPointEmpty()
 
+    var period: Int = 0
+
     override var replyMarkup: TLAbsReplyMarkup? = null
 
-    private val _constructor: String = "inputBotInlineMessageMediaGeo#f4a59de1"
+    private val _constructor: String = "inputBotInlineMessageMediaGeo#c1b15d65"
 
     override val constructorId: Int = CONSTRUCTOR_ID
 
-    constructor(geoPoint: TLAbsInputGeoPoint, replyMarkup: TLAbsReplyMarkup?) : this() {
+    constructor(
+            geoPoint: TLAbsInputGeoPoint,
+            period: Int,
+            replyMarkup: TLAbsReplyMarkup?
+    ) : this() {
         this.geoPoint = geoPoint
+        this.period = period
         this.replyMarkup = replyMarkup
     }
 
@@ -37,6 +44,7 @@ class TLInputBotInlineMessageMediaGeo() : TLAbsInputBotInlineMessage() {
 
         writeInt(_flags)
         writeTLObject(geoPoint)
+        writeInt(period)
         doIfMask(replyMarkup, 4) { writeTLObject(it) }
     }
 
@@ -44,6 +52,7 @@ class TLInputBotInlineMessageMediaGeo() : TLAbsInputBotInlineMessage() {
     override fun deserializeBody(tlDeserializer: TLDeserializer) = with (tlDeserializer)  {
         _flags = readInt()
         geoPoint = readTLObject<TLAbsInputGeoPoint>()
+        period = readInt()
         replyMarkup = readIfMask(4) { readTLObject<TLAbsReplyMarkup>() }
     }
 
@@ -53,6 +62,7 @@ class TLInputBotInlineMessageMediaGeo() : TLAbsInputBotInlineMessage() {
         var size = SIZE_CONSTRUCTOR_ID
         size += SIZE_INT32
         size += geoPoint.computeSerializedSize()
+        size += SIZE_INT32
         size += getIntIfMask(replyMarkup, 4) { it.computeSerializedSize() }
         return size
     }
@@ -65,9 +75,10 @@ class TLInputBotInlineMessageMediaGeo() : TLAbsInputBotInlineMessage() {
 
         return _flags == other._flags
                 && geoPoint == other.geoPoint
+                && period == other.period
                 && replyMarkup == other.replyMarkup
     }
     companion object  {
-        const val CONSTRUCTOR_ID: Int = 0xf4a59de1.toInt()
+        const val CONSTRUCTOR_ID: Int = 0xc1b15d65.toInt()
     }
 }

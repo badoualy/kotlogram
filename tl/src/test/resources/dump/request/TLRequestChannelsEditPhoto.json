@@ -7,17 +7,8 @@
     "_flags": 0
   },
   "photo": {
-    "file": {
-      "id": 0,
-      "parts": 0,
-      "name": "yJsvbUR5xyP49g",
-      "md5Checksum": "oRtHegYEZIi9PM4hJWpXpoP",
-      "_constructor": "inputFile#f52ff27f",
-      "constructorId": -181407105,
-      "_flags": 0
-    },
-    "_constructor": "inputChatUploadedPhoto#927c55b4",
-    "constructorId": -1837345356,
+    "_constructor": "inputChatPhotoEmpty#1ca48f57",
+    "constructorId": 480546647,
     "_flags": 0
   },
   "_constructor": "channels.editPhoto#f12e57c9",

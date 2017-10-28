@@ -1,12 +1,14 @@
 {
   "userId": 0,
-  "query": "4gbuIkJ19c",
+  "query": "G7mkQ6x090Kl",
   "geo": {
-    "_constructor": "geoPointEmpty#1117dd5f",
-    "constructorId": 286776671,
+    "_long": 0.0,
+    "lat": 0.0,
+    "_constructor": "geoPoint#2049d70c",
+    "constructorId": 541710092,
     "_flags": 0
   },
-  "id": "e9NMLAAN3JSHDU",
+  "id": "75pU5blPHII7E0PCNsa",
   "msgId": {
     "dcId": 0,
     "id": 0,

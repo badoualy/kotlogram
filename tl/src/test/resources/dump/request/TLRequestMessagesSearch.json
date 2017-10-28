@@ -1,19 +1,22 @@
 {
   "peer": {
-    "chatId": 0,
-    "_constructor": "inputPeerChat#179be863",
-    "constructorId": 396093539,
+    "userId": 0,
+    "accessHash": 0,
+    "_constructor": "inputPeerUser#7b8e7de6",
+    "constructorId": 2072935910,
     "_flags": 0
   },
-  "q": "NjtY5kkXSVc7BEP",
+  "q": "4ZO9u5i5dTfgq7c",
   "fromId": {
-    "_constructor": "inputUserEmpty#b98886cf",
-    "constructorId": -1182234929,
+    "userId": 0,
+    "accessHash": 0,
+    "_constructor": "inputUser#d8292816",
+    "constructorId": -668391402,
     "_flags": 0
   },
   "filter": {
-    "_constructor": "inputMessagesFilterPhotoVideo#56e9f0e4",
-    "constructorId": 1458172132,
+    "_constructor": "inputMessagesFilterPhoneCalls#80c99768",
+    "constructorId": -2134272152,
     "_flags": 0
   },
   "minDate": 0,

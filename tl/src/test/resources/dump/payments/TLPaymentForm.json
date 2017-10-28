@@ -1,32 +1,32 @@
 {
   "botId": 0,
   "invoice": {
-    "currency": "sLFlacYMRQoGv",
+    "currency": "nZFjiE2gaA3dH",
     "prices": [],
     "_constructor": "invoice#c30aa358",
     "constructorId": -1022713000,
     "_flags": 0
   },
   "providerId": 0,
-  "url": "wkjRdbQtDGzKP",
-  "nativeProvider": "QPPKXPb52WCcC7619nodZtNrvI",
+  "url": "9ehtrhfs8RWK1ycMIFLIcsWzYvQ",
+  "nativeProvider": "Rt2gotAteg",
   "nativeParams": {
-    "data": "tp4piW0ZRfqFGECHTvbHlDsqLf",
+    "data": "npVSS23dVStjDuSTSW02WrMwhXNf",
     "_constructor": "dataJSON#7d748d04",
     "constructorId": 2104790276,
     "_flags": 0
   },
   "savedInfo": {
-    "name": "DvZZVtHqhH6",
-    "phone": "qBFzPCE2sz0ouI",
-    "email": "z1PL8CzmSd",
+    "name": "CgDUo3I",
+    "phone": "pnEOAzlHAdGG2U",
+    "email": "1CWmGi8hBul2kEaVVjfteOKUyJK",
     "shippingAddress": {
-      "streetLine1": "YU1TpUHVh",
-      "streetLine2": "fsq6lOM2l1Ot5uaq81SU",
-      "city": "BNGrOKt1bGyNbmRowx",
-      "state": "dSTUCRHeSw7F642",
-      "countryIso2": "ajjmKyoX",
-      "postCode": "2vVSHtZ8eKRBY2quZzU79udcu8pWT",
+      "streetLine1": "2adza54RIrVqMyBiIeN7Qq",
+      "streetLine2": "oXBUzcCyc8InfJ",
+      "city": "89F5P",
+      "state": "OHTSCMZGXlFxO4LbBO4n8qPXYzZs6",
+      "countryIso2": "mgG97oNX9ZAkQeCdz02ZcyaT",
+      "postCode": "BpSGzVPLGSx",
       "_constructor": "postAddress#1e8caaeb",
       "constructorId": 512535275,
       "_flags": 0
@@ -36,8 +36,8 @@
     "_flags": 15
   },
   "savedCredentials": {
-    "id": "K5mgjwUHBbeeQGrxma1NfdHDK",
-    "title": "z5zUyWULz",
+    "id": "PuP4l1YWp9VHg",
+    "title": "Fu4c1S",
     "_constructor": "paymentSavedCredentialsCard#cdc27a1f",
     "constructorId": -842892769,
     "_flags": 0
@@ -45,28 +45,9 @@
   "users": [
     {
       "id": 0,
-      "accessHash": 0,
-      "firstName": "bvrNbbXw7u",
-      "lastName": "Rdv7unfrFGpiR",
-      "username": "glBK1T9lktvb9PZc6xkKUJOy1RV",
-      "phone": "8J1DzFpTU55WOEPvo4PUAzXxs9m",
-      "photo": {
-        "_constructor": "userProfilePhotoEmpty#4f11bae1",
-        "constructorId": 1326562017,
-        "_flags": 0
-      },
-      "status": {
-        "_constructor": "userStatusLastMonth#77ebc742",
-        "constructorId": 2011940674,
-        "_flags": 0
-      },
-      "botInfoVersion": 0,
-      "restrictionReason": "r4jweeCkMosh7zu7",
-      "botInlinePlaceholder": "weSo4i",
-      "langCode": "u9CFiaGw24rD7DQ",
-      "_constructor": "user#2e13f4c3",
-      "constructorId": 773059779,
-      "_flags": 4997247
+      "_constructor": "userEmpty#200250ba",
+      "constructorId": 537022650,
+      "_flags": 0
     },
     {
       "id": 0,

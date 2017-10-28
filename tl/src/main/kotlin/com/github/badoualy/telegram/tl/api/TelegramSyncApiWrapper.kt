@@ -4,14 +4,11 @@ import com.github.badoualy.telegram.tl.RpcQuerySyncExecutor
 import com.github.badoualy.telegram.tl.api.account.*
 import com.github.badoualy.telegram.tl.api.auth.*
 import com.github.badoualy.telegram.tl.api.auth.TLAuthorization
+import com.github.badoualy.telegram.tl.api.channels.TLAbsChannelParticipants
 import com.github.badoualy.telegram.tl.api.channels.TLAdminLogResults
 import com.github.badoualy.telegram.tl.api.channels.TLChannelParticipant
-import com.github.badoualy.telegram.tl.api.channels.TLChannelParticipants
 import com.github.badoualy.telegram.tl.api.contacts.*
-import com.github.badoualy.telegram.tl.api.help.TLAbsAppUpdate
-import com.github.badoualy.telegram.tl.api.help.TLInviteText
-import com.github.badoualy.telegram.tl.api.help.TLSupport
-import com.github.badoualy.telegram.tl.api.help.TLTermsOfService
+import com.github.badoualy.telegram.tl.api.help.*
 import com.github.badoualy.telegram.tl.api.messages.*
 import com.github.badoualy.telegram.tl.api.messages.TLChatFull
 import com.github.badoualy.telegram.tl.api.messages.TLStickerSet
@@ -226,6 +223,9 @@ abstract class TelegramSyncApiWrapper : TelegramSyncApi, RpcQuerySyncExecutor {
     override fun channelsDeleteChannel(channel: TLAbsInputChannel): TLAbsUpdates = executeMethod(TLRequestChannelsDeleteChannel(channel))
 
     @Throws(RpcErrorException::class, IOException::class)
+    override fun channelsDeleteHistory(channel: TLAbsInputChannel, maxId: Int): TLBool = executeMethod(TLRequestChannelsDeleteHistory(channel, maxId))
+
+    @Throws(RpcErrorException::class, IOException::class)
     override fun channelsDeleteMessages(channel: TLAbsInputChannel, id: TLIntVector): TLAffectedMessages = executeMethod(TLRequestChannelsDeleteMessages(channel, id))
 
     @Throws(RpcErrorException::class, IOException::class)
@@ -291,8 +291,9 @@ abstract class TelegramSyncApiWrapper : TelegramSyncApi, RpcQuerySyncExecutor {
             channel: TLAbsInputChannel,
             filter: TLAbsChannelParticipantsFilter,
             offset: Int,
-            limit: Int
-    ): TLChannelParticipants = executeMethod(TLRequestChannelsGetParticipants(channel, filter, offset, limit))
+            limit: Int,
+            hash: Int
+    ): TLAbsChannelParticipants = executeMethod(TLRequestChannelsGetParticipants(channel, filter, offset, limit, hash))
 
     @Throws(RpcErrorException::class, IOException::class)
     override fun channelsInviteToChannel(channel: TLAbsInputChannel, users: TLObjectVector<TLAbsInputUser>): TLAbsUpdates = executeMethod(TLRequestChannelsInviteToChannel(channel, users))
@@ -321,6 +322,9 @@ abstract class TelegramSyncApiWrapper : TelegramSyncApi, RpcQuerySyncExecutor {
 
     @Throws(RpcErrorException::class, IOException::class)
     override fun channelsToggleInvites(channel: TLAbsInputChannel, enabled: Boolean): TLAbsUpdates = executeMethod(TLRequestChannelsToggleInvites(channel, enabled))
+
+    @Throws(RpcErrorException::class, IOException::class)
+    override fun channelsTogglePreHistoryHidden(channel: TLAbsInputChannel, enabled: Boolean): TLAbsUpdates = executeMethod(TLRequestChannelsTogglePreHistoryHidden(channel, enabled))
 
     @Throws(RpcErrorException::class, IOException::class)
     override fun channelsToggleSignatures(channel: TLAbsInputChannel, enabled: Boolean): TLAbsUpdates = executeMethod(TLRequestChannelsToggleSignatures(channel, enabled))
@@ -407,6 +411,9 @@ abstract class TelegramSyncApiWrapper : TelegramSyncApi, RpcQuerySyncExecutor {
 
     @Throws(RpcErrorException::class, IOException::class)
     override fun helpGetNearestDc(): TLNearestDc = executeMethod(TLRequestHelpGetNearestDc())
+
+    @Throws(RpcErrorException::class, IOException::class)
+    override fun helpGetRecentMeUrls(referer: String): TLRecentMeUrls = executeMethod(TLRequestHelpGetRecentMeUrls(referer))
 
     @Throws(RpcErrorException::class, IOException::class)
     override fun helpGetSupport(): TLSupport = executeMethod(TLRequestHelpGetSupport())
@@ -520,12 +527,14 @@ abstract class TelegramSyncApiWrapper : TelegramSyncApi, RpcQuerySyncExecutor {
     @Throws(RpcErrorException::class, IOException::class)
     override fun messagesEditMessage(
             noWebpage: Boolean,
+            stopGeoLive: Boolean,
             peer: TLAbsInputPeer,
             id: Int,
             message: String?,
             replyMarkup: TLAbsReplyMarkup?,
-            entities: TLObjectVector<TLAbsMessageEntity>?
-    ): TLAbsUpdates = executeMethod(TLRequestMessagesEditMessage(noWebpage, peer, id, message, replyMarkup, entities))
+            entities: TLObjectVector<TLAbsMessageEntity>?,
+            geoPoint: TLAbsInputGeoPoint?
+    ): TLAbsUpdates = executeMethod(TLRequestMessagesEditMessage(noWebpage, stopGeoLive, peer, id, message, replyMarkup, entities, geoPoint))
 
     @Throws(RpcErrorException::class, IOException::class)
     override fun messagesExportChatInvite(chatId: Int): TLAbsExportedChatInvite = executeMethod(TLRequestMessagesExportChatInvite(chatId))
@@ -672,6 +681,9 @@ abstract class TelegramSyncApiWrapper : TelegramSyncApi, RpcQuerySyncExecutor {
     override fun messagesGetPinnedDialogs(): TLPeerDialogs = executeMethod(TLRequestMessagesGetPinnedDialogs())
 
     @Throws(RpcErrorException::class, IOException::class)
+    override fun messagesGetRecentLocations(peer: TLAbsInputPeer, limit: Int): TLAbsMessages = executeMethod(TLRequestMessagesGetRecentLocations(peer, limit))
+
+    @Throws(RpcErrorException::class, IOException::class)
     override fun messagesGetRecentStickers(attached: Boolean, hash: Int): TLAbsRecentStickers = executeMethod(TLRequestMessagesGetRecentStickers(attached, hash))
 
     @Throws(RpcErrorException::class, IOException::class)
@@ -716,6 +728,9 @@ abstract class TelegramSyncApiWrapper : TelegramSyncApi, RpcQuerySyncExecutor {
 
     @Throws(RpcErrorException::class, IOException::class)
     override fun messagesReadHistory(peer: TLAbsInputPeer, maxId: Int): TLAffectedMessages = executeMethod(TLRequestMessagesReadHistory(peer, maxId))
+
+    @Throws(RpcErrorException::class, IOException::class)
+    override fun messagesReadMentions(peer: TLAbsInputPeer): TLAffectedHistory = executeMethod(TLRequestMessagesReadMentions(peer))
 
     @Throws(RpcErrorException::class, IOException::class)
     override fun messagesReadMessageContents(id: TLIntVector): TLAffectedMessages = executeMethod(TLRequestMessagesReadMessageContents(id))

@@ -1,8 +1,8 @@
 {
   "id": 0,
   "reason": {
-    "_constructor": "phoneCallDiscardReasonMissed#85e42301",
-    "constructorId": -2048646399,
+    "_constructor": "phoneCallDiscardReasonDisconnect#e095c1a0",
+    "constructorId": -527056480,
     "_flags": 0
   },
   "duration": 0,

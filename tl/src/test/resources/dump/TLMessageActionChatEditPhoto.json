@@ -1,8 +1,11 @@
 {
   "photo": {
     "id": 0,
-    "_constructor": "photoEmpty#2331b22d",
-    "constructorId": 590459437,
+    "accessHash": 0,
+    "date": 0,
+    "sizes": [],
+    "_constructor": "photo#9288dd29",
+    "constructorId": -1836524247,
     "_flags": 0
   },
   "_constructor": "messageActionChatEditPhoto#7fcb13a8",

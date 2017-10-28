@@ -1,0 +1,28 @@
+{
+  "replyToMsgId": 0,
+  "peer": {
+    "_constructor": "inputPeerSelf#7da07ec9",
+    "constructorId": 2107670217,
+    "_flags": 0
+  },
+  "message": "kmZ6U5AGHmcxf",
+  "entities": [
+    {
+      "offset": 0,
+      "length": 0,
+      "_constructor": "messageEntityItalic#826f8b60",
+      "constructorId": -2106619040,
+      "_flags": 0
+    },
+    {
+      "offset": 0,
+      "length": 0,
+      "_constructor": "messageEntityUrl#6ed02538",
+      "constructorId": 1859134776,
+      "_flags": 0
+    }
+  ],
+  "_constructor": "messages.saveDraft#bc39e14b",
+  "constructorId": -1137057461,
+  "_flags": 9
+}

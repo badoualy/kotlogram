@@ -8,8 +8,8 @@
   },
   "duration": 0,
   "reason": {
-    "_constructor": "phoneCallDiscardReasonBusy#faf7e8c9",
-    "constructorId": -84416311,
+    "_constructor": "phoneCallDiscardReasonDisconnect#e095c1a0",
+    "constructorId": -527056480,
     "_flags": 0
   },
   "connectionId": 0,

@@ -1,17 +1,9 @@
 {
   "update": {
-    "peer": {
-      "_constructor": "notifyAll#74d07c60",
-      "constructorId": 1959820384,
-      "_flags": 0
-    },
-    "notifySettings": {
-      "_constructor": "peerNotifySettingsEmpty#70a68512",
-      "constructorId": 1889961234,
-      "_flags": 0
-    },
-    "_constructor": "updateNotifySettings#bec268ef",
-    "constructorId": -1094555409,
+    "userId": 0,
+    "blocked": false,
+    "_constructor": "updateUserBlocked#80ece81a",
+    "constructorId": -2131957734,
     "_flags": 0
   },
   "date": 0,

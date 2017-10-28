@@ -1,8 +1,20 @@
 {
   "text": {
-    "text": "Ti7VKJGdq7Z8j7I",
-    "_constructor": "textPlain#744694e0",
-    "constructorId": 1950782688,
+    "text": {
+      "text": {
+        "text": "yiJcwwHjprC84Ueo",
+        "_constructor": "textPlain#744694e0",
+        "constructorId": 1950782688,
+        "_flags": 0
+      },
+      "url": "CAb0RpVf9CZQy0yabk1",
+      "webpageId": 0,
+      "_constructor": "textUrl#3c2884c1",
+      "constructorId": 1009288385,
+      "_flags": 0
+    },
+    "_constructor": "textItalic#d912a59c",
+    "constructorId": -653089380,
     "_flags": 0
   },
   "_constructor": "textStrike#9bf8bb95",

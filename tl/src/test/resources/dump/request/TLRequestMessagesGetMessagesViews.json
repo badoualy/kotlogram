@@ -1,14 +1,14 @@
 {
   "peer": {
-    "_constructor": "inputPeerEmpty#7f3b18ea",
-    "constructorId": 2134579434,
+    "_constructor": "inputPeerSelf#7da07ec9",
+    "constructorId": 2107670217,
     "_flags": 0
   },
   "id": [
     0,
     0
   ],
-  "increment": true,
+  "increment": false,
   "_constructor": "messages.getMessagesViews#c4c8a55d",
   "constructorId": -993483427,
   "_flags": 0

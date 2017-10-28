@@ -1,6 +1,46 @@
 {
-  "id": "8fwAJC8ctyC",
-  "shippingOptions": [],
+  "id": "2yznPlABsFhX",
+  "shippingOptions": [
+    {
+      "id": "zsB7doucXY",
+      "title": "hm7XSOdAermPk0r",
+      "prices": [
+        {
+          "label": "rHcBtl29en",
+          "amount": 0,
+          "_constructor": "labeledPrice#cb296bf8",
+          "constructorId": -886477832,
+          "_flags": 0
+        },
+        {
+          "label": "pBeIPpvJes6H3IjsnrTqIy253j5",
+          "amount": 0,
+          "_constructor": "labeledPrice#cb296bf8",
+          "constructorId": -886477832,
+          "_flags": 0
+        }
+      ],
+      "_constructor": "shippingOption#b6213cdf",
+      "constructorId": -1239335713,
+      "_flags": 0
+    },
+    {
+      "id": "8313vIDJPeNuYOuT",
+      "title": "XGtnWY",
+      "prices": [
+        {
+          "label": "0vIVT",
+          "amount": 0,
+          "_constructor": "labeledPrice#cb296bf8",
+          "constructorId": -886477832,
+          "_flags": 0
+        }
+      ],
+      "_constructor": "shippingOption#b6213cdf",
+      "constructorId": -1239335713,
+      "_flags": 0
+    }
+  ],
   "_constructor": "payments.validatedRequestedInfo#d1451883",
   "constructorId": -784000893,
   "_flags": 3

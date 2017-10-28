@@ -1,6 +1,61 @@
 {
   "count": 0,
-  "chats": [],
+  "chats": [
+    {
+      "id": 0,
+      "accessHash": 0,
+      "title": "T2Aeiye7aHmfO7uqZ",
+      "username": "w0oZcjbpQyfRZ2NUhO1gkhZLZi",
+      "photo": {
+        "photoSmall": {
+          "dcId": 0,
+          "volumeId": 0,
+          "localId": 0,
+          "secret": 0,
+          "_constructor": "fileLocation#53d69076",
+          "constructorId": 1406570614,
+          "_flags": 0
+        },
+        "photoBig": {
+          "volumeId": 0,
+          "localId": 0,
+          "secret": 0,
+          "_constructor": "fileLocationUnavailable#7c596b46",
+          "constructorId": 2086234950,
+          "_flags": 0
+        },
+        "_constructor": "chatPhoto#6153276a",
+        "constructorId": 1632839530,
+        "_flags": 0
+      },
+      "date": 0,
+      "version": 0,
+      "restrictionReason": "Q2JE3IWSJsffueero",
+      "adminRights": {
+        "_constructor": "channelAdminRights#5d7ceba5",
+        "constructorId": 1568467877,
+        "_flags": 0
+      },
+      "bannedRights": {
+        "untilDate": 0,
+        "_constructor": "channelBannedRights#58cf4249",
+        "constructorId": 1489977929,
+        "_flags": 0
+      },
+      "_constructor": "channel#cb44b1c",
+      "constructorId": 213142300,
+      "_flags": 57920
+    },
+    {
+      "id": 0,
+      "accessHash": 0,
+      "title": "d49k6KQTSl7iVBC4Fq",
+      "untilDate": 0,
+      "_constructor": "channelForbidden#289da732",
+      "constructorId": 681420594,
+      "_flags": 65536
+    }
+  ],
   "_constructor": "messages.chatsSlice#9cd81144",
   "constructorId": -1663561404,
   "_flags": 0

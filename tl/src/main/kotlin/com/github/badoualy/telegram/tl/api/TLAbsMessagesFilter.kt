@@ -5,8 +5,10 @@ import com.github.badoualy.telegram.tl.core.TLObject
 /**
  * Abstraction level for the following constructors:
  * * [inputMessagesFilterChatPhotos#3a20ecb8][TLInputMessagesFilterChatPhotos]
+ * * [inputMessagesFilterContacts#e062db83][TLInputMessagesFilterContacts]
  * * [inputMessagesFilterDocument#9eddf188][TLInputMessagesFilterDocument]
  * * [inputMessagesFilterEmpty#57e2f66c][TLInputMessagesFilterEmpty]
+ * * [inputMessagesFilterGeo#e7026d0d][TLInputMessagesFilterGeo]
  * * [inputMessagesFilterGif#ffc86587][TLInputMessagesFilterGif]
  * * [inputMessagesFilterMusic#3751b49e][TLInputMessagesFilterMusic]
  * * [inputMessagesFilterMyMentions#c1f8e69a][TLInputMessagesFilterMyMentions]

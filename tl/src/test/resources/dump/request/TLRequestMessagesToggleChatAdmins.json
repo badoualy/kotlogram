@@ -1,6 +1,6 @@
 {
   "chatId": 0,
-  "enabled": true,
+  "enabled": false,
   "_constructor": "messages.toggleChatAdmins#ec8bd9e1",
   "constructorId": -326379039,
   "_flags": 0

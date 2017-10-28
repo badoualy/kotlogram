@@ -3,8 +3,8 @@
     "set": {
       "id": 0,
       "accessHash": 0,
-      "title": "ZPCi4fNfocwCa4okUl3rz8x0HBAlT",
-      "shortName": "lkf4kPHMMLnDMy",
+      "title": "Ti54wH1IGmpOIg7uu",
+      "shortName": "YPDdm6ZUHhG2O5f9dIAqBR6",
       "count": 0,
       "hash": 0,
       "_constructor": "stickerSet#cd303b41",
@@ -13,7 +13,7 @@
     },
     "packs": [
       {
-        "emoticon": "kXZw17WfjLOlO",
+        "emoticon": "oRrB8i4chtxcH75FkRzbIzy",
         "documents": [
           0,
           0
@@ -23,11 +23,8 @@
         "_flags": 0
       },
       {
-        "emoticon": "BZdzeO",
-        "documents": [
-          0,
-          0
-        ],
+        "emoticon": "ue58NpoqpWcYhJRM7POlShE88Mi79",
+        "documents": [],
         "_constructor": "stickerPack#12b299d4",
         "constructorId": 313694676,
         "_flags": 0

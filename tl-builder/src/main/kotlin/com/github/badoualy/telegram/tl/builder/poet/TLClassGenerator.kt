@@ -16,8 +16,8 @@ class TLClassGenerator(tlDefinition: TLDefinition, val config: Config) {
     val supertypes = tlDefinition.supertypes
     val types = tlDefinition.types
 
-    val executeMethodName = "executeRpcQuery"
-    val executeSyncMethodName = "executeRpcQuerySync"
+    val executeMethodName = "executeMethod"
+    val executeSyncMethodName = "executeMethod"
 
     val typeTypeNameMap = HashMap<TLType, ClassName>()
     val constructorTypeNameMap = HashMap<TLTypeConstructor<*>, ClassName>()

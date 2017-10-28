@@ -2,8 +2,8 @@
   "chatId": 0,
   "userId": 0,
   "action": {
-    "_constructor": "sendMessageCancelAction#fd5ec8f5",
-    "constructorId": -44119819,
+    "_constructor": "sendMessageRecordAudioAction#d52f73f7",
+    "constructorId": -718310409,
     "_flags": 0
   },
   "_constructor": "updateChatUserTyping#9a65ea1f",

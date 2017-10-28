@@ -1,8 +1,15 @@
 {
-  "currency": "pf0ePRouMR3BhazKyNaCl",
+  "currency": "HCOZCVVjpbRjzE3x",
   "prices": [
     {
-      "label": "Qe8ytt",
+      "label": "uhxdWjxVsZsAm",
+      "amount": 0,
+      "_constructor": "labeledPrice#cb296bf8",
+      "constructorId": -886477832,
+      "_flags": 0
+    },
+    {
+      "label": "MhOUi",
       "amount": 0,
       "_constructor": "labeledPrice#cb296bf8",
       "constructorId": -886477832,

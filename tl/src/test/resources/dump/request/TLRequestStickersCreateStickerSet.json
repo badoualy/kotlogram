@@ -4,9 +4,52 @@
     "constructorId": -1182234929,
     "_flags": 0
   },
-  "title": "ywMO6MlOcivj",
-  "shortName": "lptGVJbecyQ5h453KAFnONvbiHZ",
-  "stickers": [],
+  "title": "SCN5Vwh4xQn6A0vu0WScAkP7qgIk",
+  "shortName": "Z1YGsxb5PDR2ICEPNj",
+  "stickers": [
+    {
+      "document": {
+        "_constructor": "inputDocumentEmpty#72f0eaae",
+        "constructorId": 1928391342,
+        "_flags": 0
+      },
+      "emoji": "twgmAxRbdL8T262fqwjIdACZ7exWj",
+      "maskCoords": {
+        "n": 0,
+        "x": 0.0,
+        "y": 0.0,
+        "zoom": 0.0,
+        "_constructor": "maskCoords#aed6dbb2",
+        "constructorId": -1361650766,
+        "_flags": 0
+      },
+      "_constructor": "inputStickerSetItem#ffa0a496",
+      "constructorId": -6249322,
+      "_flags": 1
+    },
+    {
+      "document": {
+        "id": 0,
+        "accessHash": 0,
+        "_constructor": "inputDocument#18798952",
+        "constructorId": 410618194,
+        "_flags": 0
+      },
+      "emoji": "e8EdWIrqzojFqNMeKgMXZBH",
+      "maskCoords": {
+        "n": 0,
+        "x": 0.0,
+        "y": 0.0,
+        "zoom": 0.0,
+        "_constructor": "maskCoords#aed6dbb2",
+        "constructorId": -1361650766,
+        "_flags": 0
+      },
+      "_constructor": "inputStickerSetItem#ffa0a496",
+      "constructorId": -6249322,
+      "_flags": 1
+    }
+  ],
   "_constructor": "stickers.createStickerSet#9bd86e6a",
   "constructorId": -1680314774,
   "_flags": 0

@@ -1,21 +1,27 @@
 {
   "difference": {
-    "langCode": "DjoFjYqOkQpnh6hubxvIfh",
+    "langCode": "RWEU5egwXLn9kk0waWdIRZS74xq",
     "fromVersion": 0,
     "version": 0,
     "strings": [
       {
-        "key": "85ZrsyvD8bnOj",
-        "_constructor": "langPackStringDeleted#2979eeb2",
-        "constructorId": 695856818,
-        "_flags": 0
-      },
-      {
-        "key": "NTlPuWy2w07y",
-        "value": "5Ypxg1",
+        "key": "ecocfxdPZt8x7VbfWMAvRpGI",
+        "value": "3UzMMs5ZlR213gq1y",
         "_constructor": "langPackString#cad181f6",
         "constructorId": -892239370,
         "_flags": 0
+      },
+      {
+        "key": "70IbXK0W2uINaM0jgyKJC8hs1F",
+        "zeroValue": "xytvrzF3XCNqq956iMFv",
+        "oneValue": "fxfmAl",
+        "twoValue": "LDgsaZzhsmgX5mBDHi",
+        "fewValue": "Ko5tWy2",
+        "manyValue": "qyJwJ",
+        "otherValue": "yj2szRv9PY88mo5d0fVAA58Qj",
+        "_constructor": "langPackStringPluralized#6c47ac9f",
+        "constructorId": 1816636575,
+        "_flags": 31
       }
     ],
     "_constructor": "langPackDifference#f385c1f6",

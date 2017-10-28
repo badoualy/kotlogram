@@ -3,14 +3,11 @@ package com.github.badoualy.telegram.tl.api
 import com.github.badoualy.telegram.tl.api.account.*
 import com.github.badoualy.telegram.tl.api.auth.*
 import com.github.badoualy.telegram.tl.api.auth.TLAuthorization
+import com.github.badoualy.telegram.tl.api.channels.TLAbsChannelParticipants
 import com.github.badoualy.telegram.tl.api.channels.TLAdminLogResults
 import com.github.badoualy.telegram.tl.api.channels.TLChannelParticipant
-import com.github.badoualy.telegram.tl.api.channels.TLChannelParticipants
 import com.github.badoualy.telegram.tl.api.contacts.*
-import com.github.badoualy.telegram.tl.api.help.TLAbsAppUpdate
-import com.github.badoualy.telegram.tl.api.help.TLInviteText
-import com.github.badoualy.telegram.tl.api.help.TLSupport
-import com.github.badoualy.telegram.tl.api.help.TLTermsOfService
+import com.github.badoualy.telegram.tl.api.help.*
 import com.github.badoualy.telegram.tl.api.messages.*
 import com.github.badoualy.telegram.tl.api.messages.TLChatFull
 import com.github.badoualy.telegram.tl.api.messages.TLStickerSet
@@ -173,6 +170,8 @@ interface TelegramApi {
 
     fun channelsDeleteChannel(channel: TLAbsInputChannel): Single<TLAbsUpdates>
 
+    fun channelsDeleteHistory(channel: TLAbsInputChannel, maxId: Int): Single<TLBool>
+
     fun channelsDeleteMessages(channel: TLAbsInputChannel, id: TLIntVector): Single<TLAffectedMessages>
 
     fun channelsDeleteUserHistory(channel: TLAbsInputChannel, userId: TLAbsInputUser): Single<TLAffectedHistory>
@@ -223,8 +222,9 @@ interface TelegramApi {
             channel: TLAbsInputChannel,
             filter: TLAbsChannelParticipantsFilter,
             offset: Int,
-            limit: Int
-    ): Single<TLChannelParticipants>
+            limit: Int,
+            hash: Int
+    ): Single<TLAbsChannelParticipants>
 
     fun channelsInviteToChannel(channel: TLAbsInputChannel, users: TLObjectVector<TLAbsInputUser>): Single<TLAbsUpdates>
 
@@ -245,6 +245,8 @@ interface TelegramApi {
     fun channelsSetStickers(channel: TLAbsInputChannel, stickerset: TLAbsInputStickerSet): Single<TLBool>
 
     fun channelsToggleInvites(channel: TLAbsInputChannel, enabled: Boolean): Single<TLAbsUpdates>
+
+    fun channelsTogglePreHistoryHidden(channel: TLAbsInputChannel, enabled: Boolean): Single<TLAbsUpdates>
 
     fun channelsToggleSignatures(channel: TLAbsInputChannel, enabled: Boolean): Single<TLAbsUpdates>
 
@@ -307,6 +309,8 @@ interface TelegramApi {
     fun helpGetInviteText(): Single<TLInviteText>
 
     fun helpGetNearestDc(): Single<TLNearestDc>
+
+    fun helpGetRecentMeUrls(referer: String): Single<TLRecentMeUrls>
 
     fun helpGetSupport(): Single<TLSupport>
 
@@ -393,11 +397,13 @@ interface TelegramApi {
 
     fun messagesEditMessage(
             noWebpage: Boolean,
+            stopGeoLive: Boolean,
             peer: TLAbsInputPeer,
             id: Int,
             message: String?,
             replyMarkup: TLAbsReplyMarkup?,
-            entities: TLObjectVector<TLAbsMessageEntity>?
+            entities: TLObjectVector<TLAbsMessageEntity>?,
+            geoPoint: TLAbsInputGeoPoint?
     ): Single<TLAbsUpdates>
 
     fun messagesExportChatInvite(chatId: Int): Single<TLAbsExportedChatInvite>
@@ -515,6 +521,8 @@ interface TelegramApi {
 
     fun messagesGetPinnedDialogs(): Single<TLPeerDialogs>
 
+    fun messagesGetRecentLocations(peer: TLAbsInputPeer, limit: Int): Single<TLAbsMessages>
+
     fun messagesGetRecentStickers(attached: Boolean, hash: Int): Single<TLAbsRecentStickers>
 
     fun messagesGetSavedGifs(hash: Int): Single<TLAbsSavedGifs>
@@ -547,6 +555,8 @@ interface TelegramApi {
     fun messagesReadFeaturedStickers(id: TLLongVector): Single<TLBool>
 
     fun messagesReadHistory(peer: TLAbsInputPeer, maxId: Int): Single<TLAffectedMessages>
+
+    fun messagesReadMentions(peer: TLAbsInputPeer): Single<TLAffectedHistory>
 
     fun messagesReadMessageContents(id: TLIntVector): Single<TLAffectedMessages>
 

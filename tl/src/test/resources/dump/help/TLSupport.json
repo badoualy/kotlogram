@@ -1,10 +1,30 @@
 {
-  "phoneNumber": "ZausrljPvIL",
+  "phoneNumber": "eMjCZZ8OCZoBZj",
   "user": {
     "id": 0,
-    "_constructor": "userEmpty#200250ba",
-    "constructorId": 537022650,
-    "_flags": 0
+    "accessHash": 0,
+    "firstName": "iBMx5",
+    "lastName": "ctzcxq5pdc2o7F7AYs8deD7Qcsjp",
+    "username": "Rn5WztGJwymlj8Ez5DX6e9704dYB",
+    "phone": "RCooxjq6D085S6",
+    "photo": {
+      "_constructor": "userProfilePhotoEmpty#4f11bae1",
+      "constructorId": 1326562017,
+      "_flags": 0
+    },
+    "status": {
+      "wasOnline": 0,
+      "_constructor": "userStatusOffline#8c703f",
+      "constructorId": 9203775,
+      "_flags": 0
+    },
+    "botInfoVersion": 0,
+    "restrictionReason": "nZCDN4Kb",
+    "botInlinePlaceholder": "TiaISdWiKISuyBwN8gZxH",
+    "langCode": "NroELedMHU",
+    "_constructor": "user#2e13f4c3",
+    "constructorId": 773059779,
+    "_flags": 4997247
   },
   "_constructor": "help.support#17c6b5f6",
   "constructorId": 398898678,

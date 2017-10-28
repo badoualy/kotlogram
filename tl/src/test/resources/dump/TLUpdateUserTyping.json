@@ -1,8 +1,9 @@
 {
   "userId": 0,
   "action": {
-    "_constructor": "sendMessageRecordVideoAction#a187d66f",
-    "constructorId": -1584933265,
+    "progress": 0,
+    "_constructor": "sendMessageUploadRoundAction#243e1c66",
+    "constructorId": 608050278,
     "_flags": 0
   },
   "_constructor": "updateUserTyping#5c486927",

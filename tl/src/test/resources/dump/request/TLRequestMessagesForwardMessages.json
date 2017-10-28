@@ -5,14 +5,18 @@
     "constructorId": 396093539,
     "_flags": 0
   },
-  "id": [],
+  "id": [
+    0,
+    0
+  ],
   "randomId": [
     0
   ],
   "toPeer": {
-    "chatId": 0,
-    "_constructor": "inputPeerChat#179be863",
-    "constructorId": 396093539,
+    "channelId": 0,
+    "accessHash": 0,
+    "_constructor": "inputPeerChannel#20adaef8",
+    "constructorId": 548253432,
     "_flags": 0
   },
   "_constructor": "messages.forwardMessages#708e0195",

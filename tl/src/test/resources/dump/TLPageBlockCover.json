@@ -1,37 +1,9 @@
 {
   "cover": {
-    "text": {
-      "text": {
-        "text": {
-          "texts": [
-            {
-              "text": {
-                "texts": [],
-                "_constructor": "textConcat#7e6260d7",
-                "constructorId": 2120376535,
-                "_flags": 0
-              },
-              "_constructor": "textItalic#d912a59c",
-              "constructorId": -653089380,
-              "_flags": 0
-            }
-          ],
-          "_constructor": "textConcat#7e6260d7",
-          "constructorId": 2120376535,
-          "_flags": 0
-        },
-        "url": "XdlzmHlXzFbteK",
-        "webpageId": 0,
-        "_constructor": "textUrl#3c2884c1",
-        "constructorId": 1009288385,
-        "_flags": 0
-      },
-      "_constructor": "textBold#6724abc4",
-      "constructorId": 1730456516,
-      "_flags": 0
-    },
-    "_constructor": "pageBlockTitle#70abc3fd",
-    "constructorId": 1890305021,
+    "ordered": false,
+    "items": [],
+    "_constructor": "pageBlockList#3a58c7f4",
+    "constructorId": 978896884,
     "_flags": 0
   },
   "_constructor": "pageBlockCover#39f23300",

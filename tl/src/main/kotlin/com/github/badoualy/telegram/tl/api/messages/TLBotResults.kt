@@ -5,6 +5,7 @@ import com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_INT32
 import com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_INT64
 import com.github.badoualy.telegram.tl.TLObjectUtils.computeTLStringSerializedSize
 import com.github.badoualy.telegram.tl.api.TLAbsBotInlineResult
+import com.github.badoualy.telegram.tl.api.TLAbsUser
 import com.github.badoualy.telegram.tl.api.TLInlineBotSwitchPM
 import com.github.badoualy.telegram.tl.core.TLObject
 import com.github.badoualy.telegram.tl.core.TLObjectVector
@@ -13,7 +14,7 @@ import com.github.badoualy.telegram.tl.serialization.TLSerializer
 import java.io.IOException
 
 /**
- * messages.botResults#ccd3563d
+ * messages.botResults#947ca848
  *
  * @author Yannick Badoual yann.badoual@gmail.com
  * @see <a href="http://github.com/badoualy/kotlogram">http://github.com/badoualy/kotlogram</a>
@@ -32,7 +33,9 @@ class TLBotResults() : TLObject() {
 
     var cacheTime: Int = 0
 
-    private val _constructor: String = "messages.botResults#ccd3563d"
+    var users: TLObjectVector<TLAbsUser> = TLObjectVector()
+
+    private val _constructor: String = "messages.botResults#947ca848"
 
     override val constructorId: Int = CONSTRUCTOR_ID
 
@@ -42,7 +45,8 @@ class TLBotResults() : TLObject() {
             nextOffset: String?,
             switchPm: TLInlineBotSwitchPM?,
             results: TLObjectVector<TLAbsBotInlineResult>,
-            cacheTime: Int
+            cacheTime: Int,
+            users: TLObjectVector<TLAbsUser>
     ) : this() {
         this.gallery = gallery
         this.queryId = queryId
@@ -50,6 +54,7 @@ class TLBotResults() : TLObject() {
         this.switchPm = switchPm
         this.results = results
         this.cacheTime = cacheTime
+        this.users = users
     }
 
     protected override fun computeFlags() {
@@ -69,6 +74,7 @@ class TLBotResults() : TLObject() {
         doIfMask(switchPm, 4) { writeTLObject(it) }
         writeTLVector(results)
         writeInt(cacheTime)
+        writeTLVector(users)
     }
 
     @Throws(IOException::class)
@@ -80,6 +86,7 @@ class TLBotResults() : TLObject() {
         switchPm = readIfMask(4) { readTLObject<TLInlineBotSwitchPM>(TLInlineBotSwitchPM::class, TLInlineBotSwitchPM.CONSTRUCTOR_ID) }
         results = readTLVector<TLAbsBotInlineResult>()
         cacheTime = readInt()
+        users = readTLVector<TLAbsUser>()
     }
 
     override fun computeSerializedSize(): Int {
@@ -92,6 +99,7 @@ class TLBotResults() : TLObject() {
         size += getIntIfMask(switchPm, 4) { it.computeSerializedSize() }
         size += results.computeSerializedSize()
         size += SIZE_INT32
+        size += users.computeSerializedSize()
         return size
     }
 
@@ -108,8 +116,9 @@ class TLBotResults() : TLObject() {
                 && switchPm == other.switchPm
                 && results == other.results
                 && cacheTime == other.cacheTime
+                && users == other.users
     }
     companion object  {
-        const val CONSTRUCTOR_ID: Int = 0xccd3563d.toInt()
+        const val CONSTRUCTOR_ID: Int = 0x947ca848.toInt()
     }
 }

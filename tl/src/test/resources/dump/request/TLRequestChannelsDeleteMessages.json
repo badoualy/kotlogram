@@ -1,10 +1,14 @@
 {
   "channel": {
-    "_constructor": "inputChannelEmpty#ee8c1e86",
-    "constructorId": -292807034,
+    "channelId": 0,
+    "accessHash": 0,
+    "_constructor": "inputChannel#afeb712e",
+    "constructorId": -1343524562,
     "_flags": 0
   },
-  "id": [],
+  "id": [
+    0
+  ],
   "_constructor": "channels.deleteMessages#84c1fd4e",
   "constructorId": -2067661490,
   "_flags": 0

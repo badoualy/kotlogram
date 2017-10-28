@@ -1,25 +1,24 @@
 {
   "id": 0,
   "accessHash": 0,
-  "firstName": "izbvxXO8jdQ7n9y3U9Zhx",
-  "lastName": "ho6UtWAKjcLsO",
-  "username": "9yuKV8cEkMEYKxJaB0v8D0",
-  "phone": "ZRpLQFrT",
+  "firstName": "xGQfO",
+  "lastName": "AOLAqRkIiznaBwcmT9RWvH7cfE",
+  "username": "20uALL",
+  "phone": "l00iyXevq2h90uPoXMvq",
   "photo": {
     "_constructor": "userProfilePhotoEmpty#4f11bae1",
     "constructorId": 1326562017,
     "_flags": 0
   },
   "status": {
-    "expires": 0,
-    "_constructor": "userStatusOnline#edb93949",
-    "constructorId": -306628279,
+    "_constructor": "userStatusRecently#e26f42f1",
+    "constructorId": -496024847,
     "_flags": 0
   },
   "botInfoVersion": 0,
-  "restrictionReason": "Ah8obirlkJlBlVsSMu4tCMzLsMfN9",
-  "botInlinePlaceholder": "Z0y0KN57v7X881wH",
-  "langCode": "oaoW555nP3wuLIZhLjDNND",
+  "restrictionReason": "yFRyDHt",
+  "botInlinePlaceholder": "NBujbxXSu23ODFeo0gvZA8TlAfA8Y",
+  "langCode": "DiKWHKn2BK",
   "_constructor": "user#2e13f4c3",
   "constructorId": 773059779,
   "_flags": 4997247
