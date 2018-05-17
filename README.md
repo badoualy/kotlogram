@@ -43,6 +43,24 @@ Then add the library dependency:
 compile 'com.github.badoualy:kotlogram:1.0.0-RC3'
 ```
 
+Javadoc
+-------
+
+You can use [Dokka](https://github.com/Kotlin/dokka) to generate a unified Javadoc-like documentation of the Kotlin and Java classes:
+
+~~~bash
+./gradlew dokka
+~~~
+
+This might take a while (up to an hour) because of the large number of source files in the [tl](https://github.com/badoualy/kotlogram/tree/master/tl) module.
+
+The documentation will be placed separately for each module in the following directories:
+
+- `api/build/javadoc`
+- `mtproto/build/javadoc`
+- `tl/build/javadoc`
+- `tl-builder/build/javadoc`
+
 Licence
 ----------------
 ```

@@ -27,3 +27,10 @@ dependencies {
     from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } }
     with jar
 }*/
+
+apply plugin: 'org.jetbrains.dokka'
+
+dokka {
+    outputFormat = 'javadoc'
+    outputDirectory = "$buildDir/javadoc"
+}
