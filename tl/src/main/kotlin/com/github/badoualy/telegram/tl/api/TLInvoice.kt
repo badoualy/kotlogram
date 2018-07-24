@@ -1,13 +1,23 @@
 package com.github.badoualy.telegram.tl.api
 
+import com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_BOOLEAN
 import com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_CONSTRUCTOR_ID
+import com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_DOUBLE
 import com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_INT32
+import com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_INT64
+import com.github.badoualy.telegram.tl.TLObjectUtils.computeTLBytesSerializedSize
 import com.github.badoualy.telegram.tl.TLObjectUtils.computeTLStringSerializedSize
 import com.github.badoualy.telegram.tl.core.TLObject
 import com.github.badoualy.telegram.tl.core.TLObjectVector
 import com.github.badoualy.telegram.tl.serialization.TLDeserializer
 import com.github.badoualy.telegram.tl.serialization.TLSerializer
 import java.io.IOException
+import kotlin.Any
+import kotlin.Boolean
+import kotlin.Int
+import kotlin.String
+import kotlin.jvm.Throws
+import kotlin.jvm.Transient
 
 /**
  * invoice#c30aa358
@@ -34,6 +44,12 @@ class TLInvoice() : TLObject() {
     @Transient
     var flexible: Boolean = false
 
+    @Transient
+    var phoneToProvider: Boolean = false
+
+    @Transient
+    var emailToProvider: Boolean = false
+
     var currency: String = ""
 
     var prices: TLObjectVector<TLLabeledPrice> = TLObjectVector()
@@ -49,6 +65,8 @@ class TLInvoice() : TLObject() {
             emailRequested: Boolean,
             shippingAddressRequested: Boolean,
             flexible: Boolean,
+            phoneToProvider: Boolean,
+            emailToProvider: Boolean,
             currency: String,
             prices: TLObjectVector<TLLabeledPrice>
     ) : this() {
@@ -58,6 +76,8 @@ class TLInvoice() : TLObject() {
         this.emailRequested = emailRequested
         this.shippingAddressRequested = shippingAddressRequested
         this.flexible = flexible
+        this.phoneToProvider = phoneToProvider
+        this.emailToProvider = emailToProvider
         this.currency = currency
         this.prices = prices
     }
@@ -70,6 +90,8 @@ class TLInvoice() : TLObject() {
         updateFlags(emailRequested, 8)
         updateFlags(shippingAddressRequested, 16)
         updateFlags(flexible, 32)
+        updateFlags(phoneToProvider, 64)
+        updateFlags(emailToProvider, 128)
     }
 
     @Throws(IOException::class)
@@ -90,6 +112,8 @@ class TLInvoice() : TLObject() {
         emailRequested = isMask(8)
         shippingAddressRequested = isMask(16)
         flexible = isMask(32)
+        phoneToProvider = isMask(64)
+        emailToProvider = isMask(128)
         currency = readString()
         prices = readTLVector<TLLabeledPrice>()
     }
@@ -117,6 +141,8 @@ class TLInvoice() : TLObject() {
                 && emailRequested == other.emailRequested
                 && shippingAddressRequested == other.shippingAddressRequested
                 && flexible == other.flexible
+                && phoneToProvider == other.phoneToProvider
+                && emailToProvider == other.emailToProvider
                 && currency == other.currency
                 && prices == other.prices
     }

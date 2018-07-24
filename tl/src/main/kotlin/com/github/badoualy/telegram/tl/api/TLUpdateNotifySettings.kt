@@ -1,9 +1,20 @@
 package com.github.badoualy.telegram.tl.api
 
+import com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_BOOLEAN
 import com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_CONSTRUCTOR_ID
+import com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_DOUBLE
+import com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_INT32
+import com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_INT64
+import com.github.badoualy.telegram.tl.TLObjectUtils.computeTLBytesSerializedSize
+import com.github.badoualy.telegram.tl.TLObjectUtils.computeTLStringSerializedSize
 import com.github.badoualy.telegram.tl.serialization.TLDeserializer
 import com.github.badoualy.telegram.tl.serialization.TLSerializer
 import java.io.IOException
+import kotlin.Any
+import kotlin.Boolean
+import kotlin.Int
+import kotlin.String
+import kotlin.jvm.Throws
 
 /**
  * updateNotifySettings#bec268ef
@@ -14,13 +25,13 @@ import java.io.IOException
 class TLUpdateNotifySettings() : TLAbsUpdate() {
     var peer: TLAbsNotifyPeer = TLNotifyChats()
 
-    var notifySettings: TLAbsPeerNotifySettings = TLPeerNotifySettingsEmpty()
+    var notifySettings: TLPeerNotifySettings = TLPeerNotifySettings()
 
     private val _constructor: String = "updateNotifySettings#bec268ef"
 
     override val constructorId: Int = CONSTRUCTOR_ID
 
-    constructor(peer: TLAbsNotifyPeer, notifySettings: TLAbsPeerNotifySettings) : this() {
+    constructor(peer: TLAbsNotifyPeer, notifySettings: TLPeerNotifySettings) : this() {
         this.peer = peer
         this.notifySettings = notifySettings
     }
@@ -34,7 +45,7 @@ class TLUpdateNotifySettings() : TLAbsUpdate() {
     @Throws(IOException::class)
     override fun deserializeBody(tlDeserializer: TLDeserializer) = with (tlDeserializer)  {
         peer = readTLObject<TLAbsNotifyPeer>()
-        notifySettings = readTLObject<TLAbsPeerNotifySettings>()
+        notifySettings = readTLObject<TLPeerNotifySettings>(TLPeerNotifySettings::class, TLPeerNotifySettings.CONSTRUCTOR_ID)
     }
 
     override fun computeSerializedSize(): Int {

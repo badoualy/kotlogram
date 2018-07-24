@@ -1,7 +1,12 @@
 package com.github.badoualy.telegram.tl.api.request
 
+import com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_BOOLEAN
 import com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_CONSTRUCTOR_ID
+import com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_DOUBLE
 import com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_INT32
+import com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_INT64
+import com.github.badoualy.telegram.tl.TLObjectUtils.computeTLBytesSerializedSize
+import com.github.badoualy.telegram.tl.TLObjectUtils.computeTLStringSerializedSize
 import com.github.badoualy.telegram.tl.api.TLAbsInputPeer
 import com.github.badoualy.telegram.tl.api.TLAbsUpdates
 import com.github.badoualy.telegram.tl.api.TLInputPeerEmpty
@@ -11,6 +16,12 @@ import com.github.badoualy.telegram.tl.core.TLMethod
 import com.github.badoualy.telegram.tl.serialization.TLDeserializer
 import com.github.badoualy.telegram.tl.serialization.TLSerializer
 import java.io.IOException
+import kotlin.Any
+import kotlin.Boolean
+import kotlin.Int
+import kotlin.String
+import kotlin.jvm.Throws
+import kotlin.jvm.Transient
 
 /**
  * @author Yannick Badoual yann.badoual@gmail.com
@@ -25,6 +36,9 @@ class TLRequestMessagesForwardMessages() : TLMethod<TLAbsUpdates>() {
 
     @Transient
     var withMyScore: Boolean = false
+
+    @Transient
+    var grouped: Boolean = false
 
     var fromPeer: TLAbsInputPeer = TLInputPeerEmpty()
 
@@ -42,6 +56,7 @@ class TLRequestMessagesForwardMessages() : TLMethod<TLAbsUpdates>() {
             silent: Boolean,
             background: Boolean,
             withMyScore: Boolean,
+            grouped: Boolean,
             fromPeer: TLAbsInputPeer,
             id: TLIntVector,
             randomId: TLLongVector,
@@ -50,6 +65,7 @@ class TLRequestMessagesForwardMessages() : TLMethod<TLAbsUpdates>() {
         this.silent = silent
         this.background = background
         this.withMyScore = withMyScore
+        this.grouped = grouped
         this.fromPeer = fromPeer
         this.id = id
         this.randomId = randomId
@@ -61,6 +77,7 @@ class TLRequestMessagesForwardMessages() : TLMethod<TLAbsUpdates>() {
         updateFlags(silent, 32)
         updateFlags(background, 64)
         updateFlags(withMyScore, 256)
+        updateFlags(grouped, 512)
     }
 
     @Throws(IOException::class)
@@ -80,6 +97,7 @@ class TLRequestMessagesForwardMessages() : TLMethod<TLAbsUpdates>() {
         silent = isMask(32)
         background = isMask(64)
         withMyScore = isMask(256)
+        grouped = isMask(512)
         fromPeer = readTLObject<TLAbsInputPeer>()
         id = readTLIntVector()
         randomId = readTLLongVector()
@@ -108,6 +126,7 @@ class TLRequestMessagesForwardMessages() : TLMethod<TLAbsUpdates>() {
                 && silent == other.silent
                 && background == other.background
                 && withMyScore == other.withMyScore
+                && grouped == other.grouped
                 && fromPeer == other.fromPeer
                 && id == other.id
                 && randomId == other.randomId

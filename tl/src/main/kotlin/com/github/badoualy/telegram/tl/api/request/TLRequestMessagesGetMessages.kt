@@ -1,25 +1,37 @@
 package com.github.badoualy.telegram.tl.api.request
 
+import com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_BOOLEAN
 import com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_CONSTRUCTOR_ID
+import com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_DOUBLE
+import com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_INT32
+import com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_INT64
+import com.github.badoualy.telegram.tl.TLObjectUtils.computeTLBytesSerializedSize
+import com.github.badoualy.telegram.tl.TLObjectUtils.computeTLStringSerializedSize
+import com.github.badoualy.telegram.tl.api.TLAbsInputMessage
 import com.github.badoualy.telegram.tl.api.messages.TLAbsMessages
-import com.github.badoualy.telegram.tl.core.TLIntVector
 import com.github.badoualy.telegram.tl.core.TLMethod
+import com.github.badoualy.telegram.tl.core.TLObjectVector
 import com.github.badoualy.telegram.tl.serialization.TLDeserializer
 import com.github.badoualy.telegram.tl.serialization.TLSerializer
 import java.io.IOException
+import kotlin.Any
+import kotlin.Boolean
+import kotlin.Int
+import kotlin.String
+import kotlin.jvm.Throws
 
 /**
  * @author Yannick Badoual yann.badoual@gmail.com
  * @see <a href="http://github.com/badoualy/kotlogram">http://github.com/badoualy/kotlogram</a>
  */
 class TLRequestMessagesGetMessages() : TLMethod<TLAbsMessages>() {
-    var id: TLIntVector = TLIntVector()
+    var id: TLObjectVector<TLAbsInputMessage> = TLObjectVector()
 
-    private val _constructor: String = "messages.getMessages#4222fa74"
+    private val _constructor: String = "messages.getMessages#63c66506"
 
     override val constructorId: Int = CONSTRUCTOR_ID
 
-    constructor(id: TLIntVector) : this() {
+    constructor(id: TLObjectVector<TLAbsInputMessage>) : this() {
         this.id = id
     }
 
@@ -30,7 +42,7 @@ class TLRequestMessagesGetMessages() : TLMethod<TLAbsMessages>() {
 
     @Throws(IOException::class)
     override fun deserializeBody(tlDeserializer: TLDeserializer) = with (tlDeserializer)  {
-        id = readTLIntVector()
+        id = readTLVector<TLAbsInputMessage>()
     }
 
     override fun computeSerializedSize(): Int {
@@ -48,6 +60,6 @@ class TLRequestMessagesGetMessages() : TLMethod<TLAbsMessages>() {
         return id == other.id
     }
     companion object  {
-        const val CONSTRUCTOR_ID: Int = 0x4222fa74.toInt()
+        const val CONSTRUCTOR_ID: Int = 0x63c66506.toInt()
     }
 }

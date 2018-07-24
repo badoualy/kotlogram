@@ -2,16 +2,25 @@ package com.github.badoualy.telegram.tl.api
 
 import com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_BOOLEAN
 import com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_CONSTRUCTOR_ID
+import com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_DOUBLE
 import com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_INT32
+import com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_INT64
+import com.github.badoualy.telegram.tl.TLObjectUtils.computeTLBytesSerializedSize
 import com.github.badoualy.telegram.tl.TLObjectUtils.computeTLStringSerializedSize
 import com.github.badoualy.telegram.tl.core.TLObject
 import com.github.badoualy.telegram.tl.core.TLObjectVector
 import com.github.badoualy.telegram.tl.serialization.TLDeserializer
 import com.github.badoualy.telegram.tl.serialization.TLSerializer
 import java.io.IOException
+import kotlin.Any
+import kotlin.Boolean
+import kotlin.Int
+import kotlin.String
+import kotlin.jvm.Throws
+import kotlin.jvm.Transient
 
 /**
- * config#9c840964
+ * config#3213dbba
  *
  * @author Yannick Badoual yann.badoual@gmail.com
  * @see <a href="http://github.com/badoualy/kotlogram">http://github.com/badoualy/kotlogram</a>
@@ -19,6 +28,21 @@ import java.io.IOException
 class TLConfig() : TLObject() {
     @Transient
     var phonecallsEnabled: Boolean = false
+
+    @Transient
+    var defaultP2pContacts: Boolean = false
+
+    @Transient
+    var preloadFeaturedStickers: Boolean = false
+
+    @Transient
+    var ignorePhoneEntities: Boolean = false
+
+    @Transient
+    var revokePmInbox: Boolean = false
+
+    @Transient
+    var blockedMode: Boolean = false
 
     var date: Int = 0
 
@@ -29,6 +53,8 @@ class TLConfig() : TLObject() {
     var thisDc: Int = 0
 
     var dcOptions: TLObjectVector<TLDcOption> = TLObjectVector()
+
+    var dcTxtDomainName: String = ""
 
     var chatSizeMax: Int = 0
 
@@ -48,8 +74,6 @@ class TLConfig() : TLObject() {
 
     var notifyDefaultDelayMs: Int = 0
 
-    var chatBigSize: Int = 0
-
     var pushChatPeriodMs: Int = 0
 
     var pushChatLimit: Int = 0
@@ -57,6 +81,10 @@ class TLConfig() : TLObject() {
     var savedGifsLimit: Int = 0
 
     var editTimeLimit: Int = 0
+
+    var revokeTimeLimit: Int = 0
+
+    var revokePmTimeLimit: Int = 0
 
     var ratingEDecay: Int = 0
 
@@ -80,23 +108,43 @@ class TLConfig() : TLObject() {
 
     var meUrlPrefix: String = ""
 
+    var autoupdateUrlPrefix: String? = null
+
+    var gifSearchUsername: String? = null
+
+    var venueSearchUsername: String? = null
+
+    var imgSearchUsername: String? = null
+
+    var staticMapsProvider: String? = null
+
+    var captionLengthMax: Int = 0
+
+    var messageLengthMax: Int = 0
+
+    var webfileDcId: Int = 0
+
     var suggestedLangCode: String? = null
 
     var langPackVersion: Int? = null
 
-    var disabledFeatures: TLObjectVector<TLDisabledFeature> = TLObjectVector()
-
-    private val _constructor: String = "config#9c840964"
+    private val _constructor: String = "config#3213dbba"
 
     override val constructorId: Int = CONSTRUCTOR_ID
 
     constructor(
             phonecallsEnabled: Boolean,
+            defaultP2pContacts: Boolean,
+            preloadFeaturedStickers: Boolean,
+            ignorePhoneEntities: Boolean,
+            revokePmInbox: Boolean,
+            blockedMode: Boolean,
             date: Int,
             expires: Int,
             testMode: Boolean,
             thisDc: Int,
             dcOptions: TLObjectVector<TLDcOption>,
+            dcTxtDomainName: String,
             chatSizeMax: Int,
             megagroupSizeMax: Int,
             forwardedCountMax: Int,
@@ -106,11 +154,12 @@ class TLConfig() : TLObject() {
             onlineCloudTimeoutMs: Int,
             notifyCloudDelayMs: Int,
             notifyDefaultDelayMs: Int,
-            chatBigSize: Int,
             pushChatPeriodMs: Int,
             pushChatLimit: Int,
             savedGifsLimit: Int,
             editTimeLimit: Int,
+            revokeTimeLimit: Int,
+            revokePmTimeLimit: Int,
             ratingEDecay: Int,
             stickersRecentLimit: Int,
             stickersFavedLimit: Int,
@@ -122,16 +171,29 @@ class TLConfig() : TLObject() {
             callConnectTimeoutMs: Int,
             callPacketTimeoutMs: Int,
             meUrlPrefix: String,
+            autoupdateUrlPrefix: String?,
+            gifSearchUsername: String?,
+            venueSearchUsername: String?,
+            imgSearchUsername: String?,
+            staticMapsProvider: String?,
+            captionLengthMax: Int,
+            messageLengthMax: Int,
+            webfileDcId: Int,
             suggestedLangCode: String?,
-            langPackVersion: Int?,
-            disabledFeatures: TLObjectVector<TLDisabledFeature>
+            langPackVersion: Int?
     ) : this() {
         this.phonecallsEnabled = phonecallsEnabled
+        this.defaultP2pContacts = defaultP2pContacts
+        this.preloadFeaturedStickers = preloadFeaturedStickers
+        this.ignorePhoneEntities = ignorePhoneEntities
+        this.revokePmInbox = revokePmInbox
+        this.blockedMode = blockedMode
         this.date = date
         this.expires = expires
         this.testMode = testMode
         this.thisDc = thisDc
         this.dcOptions = dcOptions
+        this.dcTxtDomainName = dcTxtDomainName
         this.chatSizeMax = chatSizeMax
         this.megagroupSizeMax = megagroupSizeMax
         this.forwardedCountMax = forwardedCountMax
@@ -141,11 +203,12 @@ class TLConfig() : TLObject() {
         this.onlineCloudTimeoutMs = onlineCloudTimeoutMs
         this.notifyCloudDelayMs = notifyCloudDelayMs
         this.notifyDefaultDelayMs = notifyDefaultDelayMs
-        this.chatBigSize = chatBigSize
         this.pushChatPeriodMs = pushChatPeriodMs
         this.pushChatLimit = pushChatLimit
         this.savedGifsLimit = savedGifsLimit
         this.editTimeLimit = editTimeLimit
+        this.revokeTimeLimit = revokeTimeLimit
+        this.revokePmTimeLimit = revokePmTimeLimit
         this.ratingEDecay = ratingEDecay
         this.stickersRecentLimit = stickersRecentLimit
         this.stickersFavedLimit = stickersFavedLimit
@@ -157,15 +220,32 @@ class TLConfig() : TLObject() {
         this.callConnectTimeoutMs = callConnectTimeoutMs
         this.callPacketTimeoutMs = callPacketTimeoutMs
         this.meUrlPrefix = meUrlPrefix
+        this.autoupdateUrlPrefix = autoupdateUrlPrefix
+        this.gifSearchUsername = gifSearchUsername
+        this.venueSearchUsername = venueSearchUsername
+        this.imgSearchUsername = imgSearchUsername
+        this.staticMapsProvider = staticMapsProvider
+        this.captionLengthMax = captionLengthMax
+        this.messageLengthMax = messageLengthMax
+        this.webfileDcId = webfileDcId
         this.suggestedLangCode = suggestedLangCode
         this.langPackVersion = langPackVersion
-        this.disabledFeatures = disabledFeatures
     }
 
     protected override fun computeFlags() {
         _flags = 0
         updateFlags(phonecallsEnabled, 2)
+        updateFlags(defaultP2pContacts, 8)
+        updateFlags(preloadFeaturedStickers, 16)
+        updateFlags(ignorePhoneEntities, 32)
+        updateFlags(revokePmInbox, 64)
+        updateFlags(blockedMode, 256)
         updateFlags(tmpSessions, 1)
+        updateFlags(autoupdateUrlPrefix, 128)
+        updateFlags(gifSearchUsername, 512)
+        updateFlags(venueSearchUsername, 1024)
+        updateFlags(imgSearchUsername, 2048)
+        updateFlags(staticMapsProvider, 4096)
         updateFlags(suggestedLangCode, 4)
         updateFlags(langPackVersion, 4)
     }
@@ -180,6 +260,7 @@ class TLConfig() : TLObject() {
         writeBoolean(testMode)
         writeInt(thisDc)
         writeTLVector(dcOptions)
+        writeString(dcTxtDomainName)
         writeInt(chatSizeMax)
         writeInt(megagroupSizeMax)
         writeInt(forwardedCountMax)
@@ -189,11 +270,12 @@ class TLConfig() : TLObject() {
         writeInt(onlineCloudTimeoutMs)
         writeInt(notifyCloudDelayMs)
         writeInt(notifyDefaultDelayMs)
-        writeInt(chatBigSize)
         writeInt(pushChatPeriodMs)
         writeInt(pushChatLimit)
         writeInt(savedGifsLimit)
         writeInt(editTimeLimit)
+        writeInt(revokeTimeLimit)
+        writeInt(revokePmTimeLimit)
         writeInt(ratingEDecay)
         writeInt(stickersRecentLimit)
         writeInt(stickersFavedLimit)
@@ -205,20 +287,33 @@ class TLConfig() : TLObject() {
         writeInt(callConnectTimeoutMs)
         writeInt(callPacketTimeoutMs)
         writeString(meUrlPrefix)
+        doIfMask(autoupdateUrlPrefix, 128) { writeString(it) }
+        doIfMask(gifSearchUsername, 512) { writeString(it) }
+        doIfMask(venueSearchUsername, 1024) { writeString(it) }
+        doIfMask(imgSearchUsername, 2048) { writeString(it) }
+        doIfMask(staticMapsProvider, 4096) { writeString(it) }
+        writeInt(captionLengthMax)
+        writeInt(messageLengthMax)
+        writeInt(webfileDcId)
         doIfMask(suggestedLangCode, 4) { writeString(it) }
         doIfMask(langPackVersion, 4) { writeInt(it) }
-        writeTLVector(disabledFeatures)
     }
 
     @Throws(IOException::class)
     override fun deserializeBody(tlDeserializer: TLDeserializer) = with (tlDeserializer)  {
         _flags = readInt()
         phonecallsEnabled = isMask(2)
+        defaultP2pContacts = isMask(8)
+        preloadFeaturedStickers = isMask(16)
+        ignorePhoneEntities = isMask(32)
+        revokePmInbox = isMask(64)
+        blockedMode = isMask(256)
         date = readInt()
         expires = readInt()
         testMode = readBoolean()
         thisDc = readInt()
         dcOptions = readTLVector<TLDcOption>()
+        dcTxtDomainName = readString()
         chatSizeMax = readInt()
         megagroupSizeMax = readInt()
         forwardedCountMax = readInt()
@@ -228,11 +323,12 @@ class TLConfig() : TLObject() {
         onlineCloudTimeoutMs = readInt()
         notifyCloudDelayMs = readInt()
         notifyDefaultDelayMs = readInt()
-        chatBigSize = readInt()
         pushChatPeriodMs = readInt()
         pushChatLimit = readInt()
         savedGifsLimit = readInt()
         editTimeLimit = readInt()
+        revokeTimeLimit = readInt()
+        revokePmTimeLimit = readInt()
         ratingEDecay = readInt()
         stickersRecentLimit = readInt()
         stickersFavedLimit = readInt()
@@ -244,9 +340,16 @@ class TLConfig() : TLObject() {
         callConnectTimeoutMs = readInt()
         callPacketTimeoutMs = readInt()
         meUrlPrefix = readString()
+        autoupdateUrlPrefix = readIfMask(128) { readString() }
+        gifSearchUsername = readIfMask(512) { readString() }
+        venueSearchUsername = readIfMask(1024) { readString() }
+        imgSearchUsername = readIfMask(2048) { readString() }
+        staticMapsProvider = readIfMask(4096) { readString() }
+        captionLengthMax = readInt()
+        messageLengthMax = readInt()
+        webfileDcId = readInt()
         suggestedLangCode = readIfMask(4) { readString() }
         langPackVersion = readIfMask(4) { readInt() }
-        disabledFeatures = readTLVector<TLDisabledFeature>()
     }
 
     override fun computeSerializedSize(): Int {
@@ -259,6 +362,8 @@ class TLConfig() : TLObject() {
         size += SIZE_BOOLEAN
         size += SIZE_INT32
         size += dcOptions.computeSerializedSize()
+        size += computeTLStringSerializedSize(dcTxtDomainName)
+        size += SIZE_INT32
         size += SIZE_INT32
         size += SIZE_INT32
         size += SIZE_INT32
@@ -284,9 +389,16 @@ class TLConfig() : TLObject() {
         size += SIZE_INT32
         size += SIZE_INT32
         size += computeTLStringSerializedSize(meUrlPrefix)
+        size += getIntIfMask(autoupdateUrlPrefix, 128) { computeTLStringSerializedSize(it) }
+        size += getIntIfMask(gifSearchUsername, 512) { computeTLStringSerializedSize(it) }
+        size += getIntIfMask(venueSearchUsername, 1024) { computeTLStringSerializedSize(it) }
+        size += getIntIfMask(imgSearchUsername, 2048) { computeTLStringSerializedSize(it) }
+        size += getIntIfMask(staticMapsProvider, 4096) { computeTLStringSerializedSize(it) }
+        size += SIZE_INT32
+        size += SIZE_INT32
+        size += SIZE_INT32
         size += getIntIfMask(suggestedLangCode, 4) { computeTLStringSerializedSize(it) }
         size += getIntIfMask(langPackVersion, 4) { SIZE_INT32 }
-        size += disabledFeatures.computeSerializedSize()
         return size
     }
 
@@ -298,11 +410,17 @@ class TLConfig() : TLObject() {
 
         return _flags == other._flags
                 && phonecallsEnabled == other.phonecallsEnabled
+                && defaultP2pContacts == other.defaultP2pContacts
+                && preloadFeaturedStickers == other.preloadFeaturedStickers
+                && ignorePhoneEntities == other.ignorePhoneEntities
+                && revokePmInbox == other.revokePmInbox
+                && blockedMode == other.blockedMode
                 && date == other.date
                 && expires == other.expires
                 && testMode == other.testMode
                 && thisDc == other.thisDc
                 && dcOptions == other.dcOptions
+                && dcTxtDomainName == other.dcTxtDomainName
                 && chatSizeMax == other.chatSizeMax
                 && megagroupSizeMax == other.megagroupSizeMax
                 && forwardedCountMax == other.forwardedCountMax
@@ -312,11 +430,12 @@ class TLConfig() : TLObject() {
                 && onlineCloudTimeoutMs == other.onlineCloudTimeoutMs
                 && notifyCloudDelayMs == other.notifyCloudDelayMs
                 && notifyDefaultDelayMs == other.notifyDefaultDelayMs
-                && chatBigSize == other.chatBigSize
                 && pushChatPeriodMs == other.pushChatPeriodMs
                 && pushChatLimit == other.pushChatLimit
                 && savedGifsLimit == other.savedGifsLimit
                 && editTimeLimit == other.editTimeLimit
+                && revokeTimeLimit == other.revokeTimeLimit
+                && revokePmTimeLimit == other.revokePmTimeLimit
                 && ratingEDecay == other.ratingEDecay
                 && stickersRecentLimit == other.stickersRecentLimit
                 && stickersFavedLimit == other.stickersFavedLimit
@@ -328,11 +447,18 @@ class TLConfig() : TLObject() {
                 && callConnectTimeoutMs == other.callConnectTimeoutMs
                 && callPacketTimeoutMs == other.callPacketTimeoutMs
                 && meUrlPrefix == other.meUrlPrefix
+                && autoupdateUrlPrefix == other.autoupdateUrlPrefix
+                && gifSearchUsername == other.gifSearchUsername
+                && venueSearchUsername == other.venueSearchUsername
+                && imgSearchUsername == other.imgSearchUsername
+                && staticMapsProvider == other.staticMapsProvider
+                && captionLengthMax == other.captionLengthMax
+                && messageLengthMax == other.messageLengthMax
+                && webfileDcId == other.webfileDcId
                 && suggestedLangCode == other.suggestedLangCode
                 && langPackVersion == other.langPackVersion
-                && disabledFeatures == other.disabledFeatures
     }
     companion object  {
-        const val CONSTRUCTOR_ID: Int = 0x9c840964.toInt()
+        const val CONSTRUCTOR_ID: Int = 0x3213dbba.toInt()
     }
 }

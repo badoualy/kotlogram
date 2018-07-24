@@ -1,12 +1,22 @@
 package com.github.badoualy.telegram.tl.api
 
+import com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_BOOLEAN
 import com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_CONSTRUCTOR_ID
+import com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_DOUBLE
 import com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_INT32
+import com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_INT64
+import com.github.badoualy.telegram.tl.TLObjectUtils.computeTLBytesSerializedSize
 import com.github.badoualy.telegram.tl.TLObjectUtils.computeTLStringSerializedSize
 import com.github.badoualy.telegram.tl.core.TLObjectVector
 import com.github.badoualy.telegram.tl.serialization.TLDeserializer
 import com.github.badoualy.telegram.tl.serialization.TLSerializer
 import java.io.IOException
+import kotlin.Any
+import kotlin.Boolean
+import kotlin.Int
+import kotlin.String
+import kotlin.jvm.Throws
+import kotlin.jvm.Transient
 
 /**
  * channelFull#76af5481
@@ -47,7 +57,7 @@ class TLChannelFull() : TLAbsChatFull() {
 
     override var chatPhoto: TLAbsPhoto = TLPhotoEmpty()
 
-    override var notifySettings: TLAbsPeerNotifySettings = TLPeerNotifySettingsEmpty()
+    override var notifySettings: TLPeerNotifySettings = TLPeerNotifySettings()
 
     override var exportedInvite: TLAbsExportedChatInvite = TLChatInviteEmpty()
 
@@ -82,7 +92,7 @@ class TLChannelFull() : TLAbsChatFull() {
             readOutboxMaxId: Int,
             unreadCount: Int,
             chatPhoto: TLAbsPhoto,
-            notifySettings: TLAbsPeerNotifySettings,
+            notifySettings: TLPeerNotifySettings,
             exportedInvite: TLAbsExportedChatInvite,
             botInfo: TLObjectVector<TLBotInfo>,
             migratedFromChatId: Int?,
@@ -174,7 +184,7 @@ class TLChannelFull() : TLAbsChatFull() {
         readOutboxMaxId = readInt()
         unreadCount = readInt()
         chatPhoto = readTLObject<TLAbsPhoto>()
-        notifySettings = readTLObject<TLAbsPeerNotifySettings>()
+        notifySettings = readTLObject<TLPeerNotifySettings>(TLPeerNotifySettings::class, TLPeerNotifySettings.CONSTRUCTOR_ID)
         exportedInvite = readTLObject<TLAbsExportedChatInvite>()
         botInfo = readTLVector<TLBotInfo>()
         migratedFromChatId = readIfMask(16) { readInt() }

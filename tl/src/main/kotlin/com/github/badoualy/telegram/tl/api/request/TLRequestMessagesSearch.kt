@@ -1,14 +1,27 @@
 package com.github.badoualy.telegram.tl.api.request
 
+import com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_BOOLEAN
 import com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_CONSTRUCTOR_ID
+import com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_DOUBLE
 import com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_INT32
+import com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_INT64
+import com.github.badoualy.telegram.tl.TLObjectUtils.computeTLBytesSerializedSize
 import com.github.badoualy.telegram.tl.TLObjectUtils.computeTLStringSerializedSize
-import com.github.badoualy.telegram.tl.api.*
+import com.github.badoualy.telegram.tl.api.TLAbsInputPeer
+import com.github.badoualy.telegram.tl.api.TLAbsInputUser
+import com.github.badoualy.telegram.tl.api.TLAbsMessagesFilter
+import com.github.badoualy.telegram.tl.api.TLInputMessagesFilterEmpty
+import com.github.badoualy.telegram.tl.api.TLInputPeerEmpty
 import com.github.badoualy.telegram.tl.api.messages.TLAbsMessages
 import com.github.badoualy.telegram.tl.core.TLMethod
 import com.github.badoualy.telegram.tl.serialization.TLDeserializer
 import com.github.badoualy.telegram.tl.serialization.TLSerializer
 import java.io.IOException
+import kotlin.Any
+import kotlin.Boolean
+import kotlin.Int
+import kotlin.String
+import kotlin.jvm.Throws
 
 /**
  * @author Yannick Badoual yann.badoual@gmail.com
@@ -37,7 +50,9 @@ class TLRequestMessagesSearch() : TLMethod<TLAbsMessages>() {
 
     var minId: Int = 0
 
-    private val _constructor: String = "messages.search#39e9ea0"
+    var hash: Int = 0
+
+    private val _constructor: String = "messages.search#8614ef68"
 
     override val constructorId: Int = CONSTRUCTOR_ID
 
@@ -52,7 +67,8 @@ class TLRequestMessagesSearch() : TLMethod<TLAbsMessages>() {
             addOffset: Int,
             limit: Int,
             maxId: Int,
-            minId: Int
+            minId: Int,
+            hash: Int
     ) : this() {
         this.peer = peer
         this.q = q
@@ -65,6 +81,7 @@ class TLRequestMessagesSearch() : TLMethod<TLAbsMessages>() {
         this.limit = limit
         this.maxId = maxId
         this.minId = minId
+        this.hash = hash
     }
 
     protected override fun computeFlags() {
@@ -88,6 +105,7 @@ class TLRequestMessagesSearch() : TLMethod<TLAbsMessages>() {
         writeInt(limit)
         writeInt(maxId)
         writeInt(minId)
+        writeInt(hash)
     }
 
     @Throws(IOException::class)
@@ -104,6 +122,7 @@ class TLRequestMessagesSearch() : TLMethod<TLAbsMessages>() {
         limit = readInt()
         maxId = readInt()
         minId = readInt()
+        hash = readInt()
     }
 
     override fun computeSerializedSize(): Int {
@@ -115,6 +134,7 @@ class TLRequestMessagesSearch() : TLMethod<TLAbsMessages>() {
         size += computeTLStringSerializedSize(q)
         size += getIntIfMask(fromId, 1) { it.computeSerializedSize() }
         size += filter.computeSerializedSize()
+        size += SIZE_INT32
         size += SIZE_INT32
         size += SIZE_INT32
         size += SIZE_INT32
@@ -143,8 +163,9 @@ class TLRequestMessagesSearch() : TLMethod<TLAbsMessages>() {
                 && limit == other.limit
                 && maxId == other.maxId
                 && minId == other.minId
+                && hash == other.hash
     }
     companion object  {
-        const val CONSTRUCTOR_ID: Int = 0x39e9ea0.toInt()
+        const val CONSTRUCTOR_ID: Int = 0x8614ef68.toInt()
     }
 }

@@ -1,14 +1,23 @@
 package com.github.badoualy.telegram.tl.api
 
+import com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_BOOLEAN
 import com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_CONSTRUCTOR_ID
+import com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_DOUBLE
 import com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_INT32
+import com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_INT64
+import com.github.badoualy.telegram.tl.TLObjectUtils.computeTLBytesSerializedSize
 import com.github.badoualy.telegram.tl.TLObjectUtils.computeTLStringSerializedSize
 import com.github.badoualy.telegram.tl.serialization.TLDeserializer
 import com.github.badoualy.telegram.tl.serialization.TLSerializer
 import java.io.IOException
+import kotlin.Any
+import kotlin.Boolean
+import kotlin.Int
+import kotlin.String
+import kotlin.jvm.Throws
 
 /**
- * inputBotInlineMessageMediaVenue#aaafadc8
+ * inputBotInlineMessageMediaVenue#417bbf11
  *
  * @author Yannick Badoual yann.badoual@gmail.com
  * @see <a href="http://github.com/badoualy/kotlogram">http://github.com/badoualy/kotlogram</a>
@@ -24,9 +33,11 @@ class TLInputBotInlineMessageMediaVenue() : TLAbsInputBotInlineMessage() {
 
     var venueId: String = ""
 
+    var venueType: String = ""
+
     override var replyMarkup: TLAbsReplyMarkup? = null
 
-    private val _constructor: String = "inputBotInlineMessageMediaVenue#aaafadc8"
+    private val _constructor: String = "inputBotInlineMessageMediaVenue#417bbf11"
 
     override val constructorId: Int = CONSTRUCTOR_ID
 
@@ -36,6 +47,7 @@ class TLInputBotInlineMessageMediaVenue() : TLAbsInputBotInlineMessage() {
             address: String,
             provider: String,
             venueId: String,
+            venueType: String,
             replyMarkup: TLAbsReplyMarkup?
     ) : this() {
         this.geoPoint = geoPoint
@@ -43,6 +55,7 @@ class TLInputBotInlineMessageMediaVenue() : TLAbsInputBotInlineMessage() {
         this.address = address
         this.provider = provider
         this.venueId = venueId
+        this.venueType = venueType
         this.replyMarkup = replyMarkup
     }
 
@@ -61,6 +74,7 @@ class TLInputBotInlineMessageMediaVenue() : TLAbsInputBotInlineMessage() {
         writeString(address)
         writeString(provider)
         writeString(venueId)
+        writeString(venueType)
         doIfMask(replyMarkup, 4) { writeTLObject(it) }
     }
 
@@ -72,6 +86,7 @@ class TLInputBotInlineMessageMediaVenue() : TLAbsInputBotInlineMessage() {
         address = readString()
         provider = readString()
         venueId = readString()
+        venueType = readString()
         replyMarkup = readIfMask(4) { readTLObject<TLAbsReplyMarkup>() }
     }
 
@@ -85,6 +100,7 @@ class TLInputBotInlineMessageMediaVenue() : TLAbsInputBotInlineMessage() {
         size += computeTLStringSerializedSize(address)
         size += computeTLStringSerializedSize(provider)
         size += computeTLStringSerializedSize(venueId)
+        size += computeTLStringSerializedSize(venueType)
         size += getIntIfMask(replyMarkup, 4) { it.computeSerializedSize() }
         return size
     }
@@ -101,9 +117,10 @@ class TLInputBotInlineMessageMediaVenue() : TLAbsInputBotInlineMessage() {
                 && address == other.address
                 && provider == other.provider
                 && venueId == other.venueId
+                && venueType == other.venueType
                 && replyMarkup == other.replyMarkup
     }
     companion object  {
-        const val CONSTRUCTOR_ID: Int = 0xaaafadc8.toInt()
+        const val CONSTRUCTOR_ID: Int = 0x417bbf11.toInt()
     }
 }

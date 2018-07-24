@@ -1,17 +1,72 @@
 package com.github.badoualy.telegram.tl.api
 
-import com.github.badoualy.telegram.tl.api.account.*
-import com.github.badoualy.telegram.tl.api.auth.*
+import com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_BOOLEAN
+import com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_CONSTRUCTOR_ID
+import com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_DOUBLE
+import com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_INT32
+import com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_INT64
+import com.github.badoualy.telegram.tl.TLObjectUtils.computeTLBytesSerializedSize
+import com.github.badoualy.telegram.tl.TLObjectUtils.computeTLStringSerializedSize
+import com.github.badoualy.telegram.tl.api.account.TLAbsPassword
+import com.github.badoualy.telegram.tl.api.account.TLAuthorizationForm
+import com.github.badoualy.telegram.tl.api.account.TLAuthorizations
+import com.github.badoualy.telegram.tl.api.account.TLPasswordInputSettings
+import com.github.badoualy.telegram.tl.api.account.TLPasswordSettings
+import com.github.badoualy.telegram.tl.api.account.TLPrivacyRules
+import com.github.badoualy.telegram.tl.api.account.TLSentEmailCode
+import com.github.badoualy.telegram.tl.api.account.TLTakeout
+import com.github.badoualy.telegram.tl.api.account.TLTmpPassword
+import com.github.badoualy.telegram.tl.api.account.TLWebAuthorizations
 import com.github.badoualy.telegram.tl.api.auth.TLAuthorization
+import com.github.badoualy.telegram.tl.api.auth.TLExportedAuthorization
+import com.github.badoualy.telegram.tl.api.auth.TLPasswordRecovery
+import com.github.badoualy.telegram.tl.api.auth.TLSentCode
 import com.github.badoualy.telegram.tl.api.channels.TLAbsChannelParticipants
 import com.github.badoualy.telegram.tl.api.channels.TLAdminLogResults
 import com.github.badoualy.telegram.tl.api.channels.TLChannelParticipant
-import com.github.badoualy.telegram.tl.api.contacts.*
-import com.github.badoualy.telegram.tl.api.help.*
-import com.github.badoualy.telegram.tl.api.messages.*
+import com.github.badoualy.telegram.tl.api.contacts.TLAbsBlocked
+import com.github.badoualy.telegram.tl.api.contacts.TLAbsContacts
+import com.github.badoualy.telegram.tl.api.contacts.TLAbsTopPeers
+import com.github.badoualy.telegram.tl.api.contacts.TLFound
+import com.github.badoualy.telegram.tl.api.contacts.TLImportedContacts
+import com.github.badoualy.telegram.tl.api.contacts.TLLink
+import com.github.badoualy.telegram.tl.api.contacts.TLResolvedPeer
+import com.github.badoualy.telegram.tl.api.help.TLAbsAppUpdate
+import com.github.badoualy.telegram.tl.api.help.TLAbsDeepLinkInfo
+import com.github.badoualy.telegram.tl.api.help.TLAbsProxyData
+import com.github.badoualy.telegram.tl.api.help.TLAbsTermsOfServiceUpdate
+import com.github.badoualy.telegram.tl.api.help.TLInviteText
+import com.github.badoualy.telegram.tl.api.help.TLRecentMeUrls
+import com.github.badoualy.telegram.tl.api.help.TLSupport
+import com.github.badoualy.telegram.tl.api.messages.TLAbsAllStickers
+import com.github.badoualy.telegram.tl.api.messages.TLAbsChats
+import com.github.badoualy.telegram.tl.api.messages.TLAbsDhConfig
+import com.github.badoualy.telegram.tl.api.messages.TLAbsDialogs
+import com.github.badoualy.telegram.tl.api.messages.TLAbsFavedStickers
+import com.github.badoualy.telegram.tl.api.messages.TLAbsFeaturedStickers
+import com.github.badoualy.telegram.tl.api.messages.TLAbsFoundStickerSets
+import com.github.badoualy.telegram.tl.api.messages.TLAbsMessages
+import com.github.badoualy.telegram.tl.api.messages.TLAbsRecentStickers
+import com.github.badoualy.telegram.tl.api.messages.TLAbsSavedGifs
+import com.github.badoualy.telegram.tl.api.messages.TLAbsSentEncryptedMessage
+import com.github.badoualy.telegram.tl.api.messages.TLAbsStickerSetInstallResult
+import com.github.badoualy.telegram.tl.api.messages.TLAbsStickers
+import com.github.badoualy.telegram.tl.api.messages.TLAffectedHistory
+import com.github.badoualy.telegram.tl.api.messages.TLAffectedMessages
+import com.github.badoualy.telegram.tl.api.messages.TLArchivedStickers
+import com.github.badoualy.telegram.tl.api.messages.TLBotCallbackAnswer
+import com.github.badoualy.telegram.tl.api.messages.TLBotResults
 import com.github.badoualy.telegram.tl.api.messages.TLChatFull
+import com.github.badoualy.telegram.tl.api.messages.TLFoundGifs
+import com.github.badoualy.telegram.tl.api.messages.TLHighScores
+import com.github.badoualy.telegram.tl.api.messages.TLMessageEditData
+import com.github.badoualy.telegram.tl.api.messages.TLPeerDialogs
 import com.github.badoualy.telegram.tl.api.messages.TLStickerSet
-import com.github.badoualy.telegram.tl.api.payments.*
+import com.github.badoualy.telegram.tl.api.payments.TLAbsPaymentResult
+import com.github.badoualy.telegram.tl.api.payments.TLPaymentForm
+import com.github.badoualy.telegram.tl.api.payments.TLPaymentReceipt
+import com.github.badoualy.telegram.tl.api.payments.TLSavedInfo
+import com.github.badoualy.telegram.tl.api.payments.TLValidatedRequestedInfo
 import com.github.badoualy.telegram.tl.api.phone.TLPhoneCall
 import com.github.badoualy.telegram.tl.api.photos.TLAbsPhotos
 import com.github.badoualy.telegram.tl.api.photos.TLPhoto
@@ -21,11 +76,32 @@ import com.github.badoualy.telegram.tl.api.updates.TLState
 import com.github.badoualy.telegram.tl.api.upload.TLAbsCdnFile
 import com.github.badoualy.telegram.tl.api.upload.TLAbsFile
 import com.github.badoualy.telegram.tl.api.upload.TLWebFile
-import com.github.badoualy.telegram.tl.core.*
+import com.github.badoualy.telegram.tl.core.TLBool
+import com.github.badoualy.telegram.tl.core.TLBytes
+import com.github.badoualy.telegram.tl.core.TLIntVector
+import com.github.badoualy.telegram.tl.core.TLLongVector
+import com.github.badoualy.telegram.tl.core.TLMethod
+import com.github.badoualy.telegram.tl.core.TLObject
+import com.github.badoualy.telegram.tl.core.TLObjectVector
+import com.github.badoualy.telegram.tl.core.TLStringVector
 import com.github.badoualy.telegram.tl.exception.RpcErrorException
 import java.io.IOException
+import kotlin.Boolean
+import kotlin.Int
+import kotlin.Long
+import kotlin.String
+import kotlin.jvm.Throws
 
 interface TelegramSyncApi {
+    @Throws(RpcErrorException::class, IOException::class)
+    fun accountAcceptAuthorization(
+            botId: Int,
+            scope: String,
+            publicKey: String,
+            valueHashes: TLObjectVector<TLSecureValueHash>,
+            credentials: TLSecureCredentialsEncrypted
+    ): TLBool
+
     @Throws(RpcErrorException::class, IOException::class)
     fun accountChangePhone(
             phoneNumber: String,
@@ -43,13 +119,29 @@ interface TelegramSyncApi {
     fun accountDeleteAccount(reason: String): TLBool
 
     @Throws(RpcErrorException::class, IOException::class)
+    fun accountDeleteSecureValue(types: TLObjectVector<TLAbsSecureValueType>): TLBool
+
+    @Throws(RpcErrorException::class, IOException::class)
+    fun accountFinishTakeoutSession(success: Boolean): TLBool
+
+    @Throws(RpcErrorException::class, IOException::class)
     fun accountGetAccountTTL(): TLAccountDaysTTL
+
+    @Throws(RpcErrorException::class, IOException::class)
+    fun accountGetAllSecureValues(): TLObjectVector<TLSecureValue>
+
+    @Throws(RpcErrorException::class, IOException::class)
+    fun accountGetAuthorizationForm(
+            botId: Int,
+            scope: String,
+            publicKey: String
+    ): TLAuthorizationForm
 
     @Throws(RpcErrorException::class, IOException::class)
     fun accountGetAuthorizations(): TLAuthorizations
 
     @Throws(RpcErrorException::class, IOException::class)
-    fun accountGetNotifySettings(peer: TLAbsInputNotifyPeer): TLAbsPeerNotifySettings
+    fun accountGetNotifySettings(peer: TLAbsInputNotifyPeer): TLPeerNotifySettings
 
     @Throws(RpcErrorException::class, IOException::class)
     fun accountGetPassword(): TLAbsPassword
@@ -61,13 +153,36 @@ interface TelegramSyncApi {
     fun accountGetPrivacy(key: TLAbsInputPrivacyKey): TLPrivacyRules
 
     @Throws(RpcErrorException::class, IOException::class)
+    fun accountGetSecureValue(types: TLObjectVector<TLAbsSecureValueType>): TLObjectVector<TLSecureValue>
+
+    @Throws(RpcErrorException::class, IOException::class)
     fun accountGetTmpPassword(passwordHash: TLBytes, period: Int): TLTmpPassword
 
     @Throws(RpcErrorException::class, IOException::class)
     fun accountGetWallPapers(): TLObjectVector<TLAbsWallPaper>
 
     @Throws(RpcErrorException::class, IOException::class)
-    fun accountRegisterDevice(tokenType: Int, token: String): TLBool
+    fun accountGetWebAuthorizations(): TLWebAuthorizations
+
+    @Throws(RpcErrorException::class, IOException::class)
+    fun accountInitTakeoutSession(
+            contacts: Boolean,
+            messageUsers: Boolean,
+            messageChats: Boolean,
+            messageMegagroups: Boolean,
+            messageChannels: Boolean,
+            files: Boolean,
+            fileMaxSize: Int?
+    ): TLTakeout
+
+    @Throws(RpcErrorException::class, IOException::class)
+    fun accountRegisterDevice(
+            tokenType: Int,
+            token: String,
+            appSandbox: Boolean,
+            secret: TLBytes,
+            otherUids: TLIntVector
+    ): TLBool
 
     @Throws(RpcErrorException::class, IOException::class)
     fun accountReportPeer(peer: TLAbsInputPeer, reason: TLAbsReportReason): TLBool
@@ -77,6 +192,15 @@ interface TelegramSyncApi {
 
     @Throws(RpcErrorException::class, IOException::class)
     fun accountResetNotifySettings(): TLBool
+
+    @Throws(RpcErrorException::class, IOException::class)
+    fun accountResetWebAuthorization(hash: Long): TLBool
+
+    @Throws(RpcErrorException::class, IOException::class)
+    fun accountResetWebAuthorizations(): TLBool
+
+    @Throws(RpcErrorException::class, IOException::class)
+    fun accountSaveSecureValue(value: TLInputSecureValue, secureSecretId: Long): TLSecureValue
 
     @Throws(RpcErrorException::class, IOException::class)
     fun accountSendChangePhoneCode(
@@ -93,13 +217,27 @@ interface TelegramSyncApi {
     ): TLSentCode
 
     @Throws(RpcErrorException::class, IOException::class)
+    fun accountSendVerifyEmailCode(email: String): TLSentEmailCode
+
+    @Throws(RpcErrorException::class, IOException::class)
+    fun accountSendVerifyPhoneCode(
+            allowFlashcall: Boolean,
+            phoneNumber: String,
+            currentNumber: Boolean?
+    ): TLSentCode
+
+    @Throws(RpcErrorException::class, IOException::class)
     fun accountSetAccountTTL(ttl: TLAccountDaysTTL): TLBool
 
     @Throws(RpcErrorException::class, IOException::class)
     fun accountSetPrivacy(key: TLAbsInputPrivacyKey, rules: TLObjectVector<TLAbsInputPrivacyRule>): TLPrivacyRules
 
     @Throws(RpcErrorException::class, IOException::class)
-    fun accountUnregisterDevice(tokenType: Int, token: String): TLBool
+    fun accountUnregisterDevice(
+            tokenType: Int,
+            token: String,
+            otherUids: TLIntVector
+    ): TLBool
 
     @Throws(RpcErrorException::class, IOException::class)
     fun accountUpdateDeviceLocked(period: Int): TLBool
@@ -124,6 +262,16 @@ interface TelegramSyncApi {
     fun accountUpdateUsername(username: String): TLAbsUser
 
     @Throws(RpcErrorException::class, IOException::class)
+    fun accountVerifyEmail(email: String, code: String): TLBool
+
+    @Throws(RpcErrorException::class, IOException::class)
+    fun accountVerifyPhone(
+            phoneNumber: String,
+            phoneCodeHash: String,
+            phoneCode: String
+    ): TLBool
+
+    @Throws(RpcErrorException::class, IOException::class)
     fun authBindTempAuthKey(
             permAuthKeyId: Long,
             nonce: Long,
@@ -136,9 +284,6 @@ interface TelegramSyncApi {
 
     @Throws(RpcErrorException::class, IOException::class)
     fun authCheckPassword(passwordHash: TLBytes): TLAuthorization
-
-    @Throws(RpcErrorException::class, IOException::class)
-    fun authCheckPhone(phoneNumber: String): TLCheckedPhone
 
     @Throws(RpcErrorException::class, IOException::class)
     fun authDropTempAuthKeys(exceptAuthKeys: TLLongVector): TLBool
@@ -180,9 +325,6 @@ interface TelegramSyncApi {
             apiId: Int,
             apiHash: String
     ): TLSentCode
-
-    @Throws(RpcErrorException::class, IOException::class)
-    fun authSendInvites(phoneNumbers: TLStringVector, message: String): TLBool
 
     @Throws(RpcErrorException::class, IOException::class)
     fun authSignIn(
@@ -256,7 +398,11 @@ interface TelegramSyncApi {
     fun channelsExportInvite(channel: TLAbsInputChannel): TLAbsExportedChatInvite
 
     @Throws(RpcErrorException::class, IOException::class)
-    fun channelsExportMessageLink(channel: TLAbsInputChannel, id: Int): TLExportedMessageLink
+    fun channelsExportMessageLink(
+            channel: TLAbsInputChannel,
+            id: Int,
+            grouped: Boolean
+    ): TLExportedMessageLink
 
     @Throws(RpcErrorException::class, IOException::class)
     fun channelsGetAdminLog(
@@ -279,7 +425,10 @@ interface TelegramSyncApi {
     fun channelsGetFullChannel(channel: TLAbsInputChannel): TLChatFull
 
     @Throws(RpcErrorException::class, IOException::class)
-    fun channelsGetMessages(channel: TLAbsInputChannel, id: TLIntVector): TLAbsMessages
+    fun channelsGetLeftChannels(offset: Int): TLAbsChats
+
+    @Throws(RpcErrorException::class, IOException::class)
+    fun channelsGetMessages(channel: TLAbsInputChannel, id: TLObjectVector<TLAbsInputMessage>): TLAbsMessages
 
     @Throws(RpcErrorException::class, IOException::class)
     fun channelsGetParticipant(channel: TLAbsInputChannel, userId: TLAbsInputUser): TLChannelParticipant
@@ -356,6 +505,9 @@ interface TelegramSyncApi {
     fun contactsGetContacts(hash: Int): TLAbsContacts
 
     @Throws(RpcErrorException::class, IOException::class)
+    fun contactsGetSaved(): TLObjectVector<TLSavedPhoneContact>
+
+    @Throws(RpcErrorException::class, IOException::class)
     fun contactsGetStatuses(): TLObjectVector<TLContactStatus>
 
     @Throws(RpcErrorException::class, IOException::class)
@@ -390,7 +542,13 @@ interface TelegramSyncApi {
     fun contactsSearch(q: String, limit: Int): TLFound
 
     @Throws(RpcErrorException::class, IOException::class)
+    fun contactsToggleTopPeers(enabled: Boolean): TLBool
+
+    @Throws(RpcErrorException::class, IOException::class)
     fun contactsUnblock(id: TLAbsInputUser): TLBool
+
+    @Throws(RpcErrorException::class, IOException::class)
+    fun helpAcceptTermsOfService(id: TLDataJSON): TLBool
 
     @Throws(RpcErrorException::class, IOException::class)
     fun helpGetAppChangelog(prevAppVersion: String): TLAbsUpdates
@@ -405,10 +563,16 @@ interface TelegramSyncApi {
     fun helpGetConfig(): TLConfig
 
     @Throws(RpcErrorException::class, IOException::class)
+    fun helpGetDeepLinkInfo(path: String): TLAbsDeepLinkInfo
+
+    @Throws(RpcErrorException::class, IOException::class)
     fun helpGetInviteText(): TLInviteText
 
     @Throws(RpcErrorException::class, IOException::class)
     fun helpGetNearestDc(): TLNearestDc
+
+    @Throws(RpcErrorException::class, IOException::class)
+    fun helpGetProxyData(): TLAbsProxyData
 
     @Throws(RpcErrorException::class, IOException::class)
     fun helpGetRecentMeUrls(referer: String): TLRecentMeUrls
@@ -417,7 +581,7 @@ interface TelegramSyncApi {
     fun helpGetSupport(): TLSupport
 
     @Throws(RpcErrorException::class, IOException::class)
-    fun helpGetTermsOfService(): TLTermsOfService
+    fun helpGetTermsOfServiceUpdate(): TLAbsTermsOfServiceUpdate
 
     @Throws(RpcErrorException::class, IOException::class)
     fun helpSaveAppLog(events: TLObjectVector<TLInputAppEvent>): TLBool
@@ -434,6 +598,7 @@ interface TelegramSyncApi {
             systemLangCode: String,
             langPack: String,
             langCode: String,
+            proxy: TLInputClientProxy?,
             query: TLMethod<T>?
     ): T
 
@@ -445,6 +610,12 @@ interface TelegramSyncApi {
 
     @Throws(RpcErrorException::class, IOException::class)
     fun <T : TLObject> invokeWithLayer(layer: Int, query: TLMethod<T>?): T
+
+    @Throws(RpcErrorException::class, IOException::class)
+    fun <T : TLObject> invokeWithMessagesRange(range: TLMessageRange, query: TLMethod<T>?): T
+
+    @Throws(RpcErrorException::class, IOException::class)
+    fun <T : TLObject> invokeWithTakeout(takeoutId: Long, query: TLMethod<T>?): T
 
     @Throws(RpcErrorException::class, IOException::class)
     fun <T : TLObject> invokeWithoutUpdates(query: TLMethod<T>?): T
@@ -516,10 +687,13 @@ interface TelegramSyncApi {
     @Throws(RpcErrorException::class, IOException::class)
     fun messagesEditInlineBotMessage(
             noWebpage: Boolean,
+            stopGeoLive: Boolean,
             id: TLInputBotInlineMessageID,
             message: String?,
+            media: TLAbsInputMedia?,
             replyMarkup: TLAbsReplyMarkup?,
-            entities: TLObjectVector<TLAbsMessageEntity>?
+            entities: TLObjectVector<TLAbsMessageEntity>?,
+            geoPoint: TLAbsInputGeoPoint?
     ): TLBool
 
     @Throws(RpcErrorException::class, IOException::class)
@@ -529,6 +703,7 @@ interface TelegramSyncApi {
             peer: TLAbsInputPeer,
             id: Int,
             message: String?,
+            media: TLAbsInputMedia?,
             replyMarkup: TLAbsReplyMarkup?,
             entities: TLObjectVector<TLAbsMessageEntity>?,
             geoPoint: TLAbsInputGeoPoint?
@@ -541,17 +716,11 @@ interface TelegramSyncApi {
     fun messagesFaveSticker(id: TLAbsInputDocument, unfave: Boolean): TLBool
 
     @Throws(RpcErrorException::class, IOException::class)
-    fun messagesForwardMessage(
-            peer: TLAbsInputPeer,
-            id: Int,
-            randomId: Long
-    ): TLAbsUpdates
-
-    @Throws(RpcErrorException::class, IOException::class)
     fun messagesForwardMessages(
             silent: Boolean,
             background: Boolean,
             withMyScore: Boolean,
+            grouped: Boolean,
             fromPeer: TLAbsInputPeer,
             id: TLIntVector,
             randomId: TLLongVector,
@@ -599,12 +768,16 @@ interface TelegramSyncApi {
     fun messagesGetDhConfig(version: Int, randomLength: Int): TLAbsDhConfig
 
     @Throws(RpcErrorException::class, IOException::class)
+    fun messagesGetDialogUnreadMarks(): TLObjectVector<TLDialogPeer>
+
+    @Throws(RpcErrorException::class, IOException::class)
     fun messagesGetDialogs(
             excludePinned: Boolean,
             offsetDate: Int,
             offsetId: Int,
             offsetPeer: TLAbsInputPeer,
-            limit: Int
+            limit: Int,
+            hash: Int
     ): TLAbsDialogs
 
     @Throws(RpcErrorException::class, IOException::class)
@@ -638,7 +811,8 @@ interface TelegramSyncApi {
             addOffset: Int,
             limit: Int,
             maxId: Int,
-            minId: Int
+            minId: Int,
+            hash: Int
     ): TLAbsMessages
 
     @Throws(RpcErrorException::class, IOException::class)
@@ -660,7 +834,7 @@ interface TelegramSyncApi {
     fun messagesGetMessageEditData(peer: TLAbsInputPeer, id: Int): TLMessageEditData
 
     @Throws(RpcErrorException::class, IOException::class)
-    fun messagesGetMessages(id: TLIntVector): TLAbsMessages
+    fun messagesGetMessages(id: TLObjectVector<TLAbsInputMessage>): TLAbsMessages
 
     @Throws(RpcErrorException::class, IOException::class)
     fun messagesGetMessagesViews(
@@ -670,7 +844,7 @@ interface TelegramSyncApi {
     ): TLIntVector
 
     @Throws(RpcErrorException::class, IOException::class)
-    fun messagesGetPeerDialogs(peers: TLObjectVector<TLAbsInputPeer>): TLPeerDialogs
+    fun messagesGetPeerDialogs(peers: TLObjectVector<TLInputDialogPeer>): TLPeerDialogs
 
     @Throws(RpcErrorException::class, IOException::class)
     fun messagesGetPeerSettings(peer: TLAbsInputPeer): TLPeerSettings
@@ -679,7 +853,11 @@ interface TelegramSyncApi {
     fun messagesGetPinnedDialogs(): TLPeerDialogs
 
     @Throws(RpcErrorException::class, IOException::class)
-    fun messagesGetRecentLocations(peer: TLAbsInputPeer, limit: Int): TLAbsMessages
+    fun messagesGetRecentLocations(
+            peer: TLAbsInputPeer,
+            limit: Int,
+            hash: Int
+    ): TLAbsMessages
 
     @Throws(RpcErrorException::class, IOException::class)
     fun messagesGetRecentStickers(attached: Boolean, hash: Int): TLAbsRecentStickers
@@ -688,7 +866,13 @@ interface TelegramSyncApi {
     fun messagesGetSavedGifs(hash: Int): TLAbsSavedGifs
 
     @Throws(RpcErrorException::class, IOException::class)
+    fun messagesGetSplitRanges(): TLObjectVector<TLMessageRange>
+
+    @Throws(RpcErrorException::class, IOException::class)
     fun messagesGetStickerSet(stickerset: TLAbsInputStickerSet): TLStickerSet
+
+    @Throws(RpcErrorException::class, IOException::class)
+    fun messagesGetStickers(emoticon: String, hash: Int): TLAbsStickers
 
     @Throws(RpcErrorException::class, IOException::class)
     fun messagesGetUnreadMentions(
@@ -704,7 +888,7 @@ interface TelegramSyncApi {
     fun messagesGetWebPage(url: String, hash: Int): TLAbsWebPage
 
     @Throws(RpcErrorException::class, IOException::class)
-    fun messagesGetWebPagePreview(message: String): TLAbsMessageMedia
+    fun messagesGetWebPagePreview(message: String, entities: TLObjectVector<TLAbsMessageEntity>?): TLAbsMessageMedia
 
     @Throws(RpcErrorException::class, IOException::class)
     fun messagesHideReportSpam(peer: TLAbsInputPeer): TLBool
@@ -714,6 +898,9 @@ interface TelegramSyncApi {
 
     @Throws(RpcErrorException::class, IOException::class)
     fun messagesInstallStickerSet(stickerset: TLAbsInputStickerSet, archived: Boolean): TLAbsStickerSetInstallResult
+
+    @Throws(RpcErrorException::class, IOException::class)
+    fun messagesMarkDialogUnread(unread: Boolean, peer: TLInputDialogPeer): TLBool
 
     @Throws(RpcErrorException::class, IOException::class)
     fun messagesMigrateChat(chatId: Int): TLAbsUpdates
@@ -740,10 +927,17 @@ interface TelegramSyncApi {
     fun messagesReceivedQueue(maxQts: Int): TLLongVector
 
     @Throws(RpcErrorException::class, IOException::class)
-    fun messagesReorderPinnedDialogs(force: Boolean, order: TLObjectVector<TLAbsInputPeer>): TLBool
+    fun messagesReorderPinnedDialogs(force: Boolean, order: TLObjectVector<TLInputDialogPeer>): TLBool
 
     @Throws(RpcErrorException::class, IOException::class)
     fun messagesReorderStickerSets(masks: Boolean, order: TLLongVector): TLBool
+
+    @Throws(RpcErrorException::class, IOException::class)
+    fun messagesReport(
+            peer: TLAbsInputPeer,
+            id: TLIntVector,
+            reason: TLAbsReportReason
+    ): TLBool
 
     @Throws(RpcErrorException::class, IOException::class)
     fun messagesReportEncryptedSpam(peer: TLInputEncryptedChat): TLBool
@@ -789,7 +983,8 @@ interface TelegramSyncApi {
             addOffset: Int,
             limit: Int,
             maxId: Int,
-            minId: Int
+            minId: Int,
+            hash: Int
     ): TLAbsMessages
 
     @Throws(RpcErrorException::class, IOException::class)
@@ -803,6 +998,13 @@ interface TelegramSyncApi {
             offsetId: Int,
             limit: Int
     ): TLAbsMessages
+
+    @Throws(RpcErrorException::class, IOException::class)
+    fun messagesSearchStickerSets(
+            excludeFeatured: Boolean,
+            q: String,
+            hash: Int
+    ): TLAbsFoundStickerSets
 
     @Throws(RpcErrorException::class, IOException::class)
     fun messagesSendEncrypted(
@@ -846,8 +1048,10 @@ interface TelegramSyncApi {
             peer: TLAbsInputPeer,
             replyToMsgId: Int?,
             media: TLAbsInputMedia,
+            message: String,
             randomId: Long,
-            replyMarkup: TLAbsReplyMarkup?
+            replyMarkup: TLAbsReplyMarkup?,
+            entities: TLObjectVector<TLAbsMessageEntity>?
     ): TLAbsUpdates
 
     @Throws(RpcErrorException::class, IOException::class)
@@ -862,6 +1066,16 @@ interface TelegramSyncApi {
             randomId: Long,
             replyMarkup: TLAbsReplyMarkup?,
             entities: TLObjectVector<TLAbsMessageEntity>?
+    ): TLAbsUpdates
+
+    @Throws(RpcErrorException::class, IOException::class)
+    fun messagesSendMultiMedia(
+            silent: Boolean,
+            background: Boolean,
+            clearDraft: Boolean,
+            peer: TLAbsInputPeer,
+            replyToMsgId: Int?,
+            multiMedia: TLObjectVector<TLInputSingleMedia>
     ): TLAbsUpdates
 
     @Throws(RpcErrorException::class, IOException::class)
@@ -942,10 +1156,13 @@ interface TelegramSyncApi {
     fun messagesToggleChatAdmins(chatId: Int, enabled: Boolean): TLAbsUpdates
 
     @Throws(RpcErrorException::class, IOException::class)
-    fun messagesToggleDialogPin(pinned: Boolean, peer: TLAbsInputPeer): TLBool
+    fun messagesToggleDialogPin(pinned: Boolean, peer: TLInputDialogPeer): TLBool
 
     @Throws(RpcErrorException::class, IOException::class)
     fun messagesUninstallStickerSet(stickerset: TLAbsInputStickerSet): TLBool
+
+    @Throws(RpcErrorException::class, IOException::class)
+    fun messagesUploadEncryptedFile(peer: TLInputEncryptedChat, file: TLAbsInputEncryptedFile): TLAbsEncryptedFile
 
     @Throws(RpcErrorException::class, IOException::class)
     fun messagesUploadMedia(peer: TLAbsInputPeer, media: TLAbsInputMedia): TLAbsMessageMedia
@@ -1087,7 +1304,7 @@ interface TelegramSyncApi {
     ): TLAbsCdnFile
 
     @Throws(RpcErrorException::class, IOException::class)
-    fun uploadGetCdnFileHashes(fileToken: TLBytes, offset: Int): TLObjectVector<TLCdnFileHash>
+    fun uploadGetCdnFileHashes(fileToken: TLBytes, offset: Int): TLObjectVector<TLFileHash>
 
     @Throws(RpcErrorException::class, IOException::class)
     fun uploadGetFile(
@@ -1097,14 +1314,17 @@ interface TelegramSyncApi {
     ): TLAbsFile
 
     @Throws(RpcErrorException::class, IOException::class)
+    fun uploadGetFileHashes(location: TLAbsInputFileLocation, offset: Int): TLObjectVector<TLFileHash>
+
+    @Throws(RpcErrorException::class, IOException::class)
     fun uploadGetWebFile(
-            location: TLInputWebFileLocation,
+            location: TLAbsInputWebFileLocation,
             offset: Int,
             limit: Int
     ): TLWebFile
 
     @Throws(RpcErrorException::class, IOException::class)
-    fun uploadReuploadCdnFile(fileToken: TLBytes, requestToken: TLBytes): TLObjectVector<TLCdnFileHash>
+    fun uploadReuploadCdnFile(fileToken: TLBytes, requestToken: TLBytes): TLObjectVector<TLFileHash>
 
     @Throws(RpcErrorException::class, IOException::class)
     fun uploadSaveBigFilePart(
@@ -1126,4 +1346,7 @@ interface TelegramSyncApi {
 
     @Throws(RpcErrorException::class, IOException::class)
     fun usersGetUsers(id: TLObjectVector<TLAbsInputUser>): TLObjectVector<TLAbsUser>
+
+    @Throws(RpcErrorException::class, IOException::class)
+    fun usersSetSecureValueErrors(id: TLAbsInputUser, errors: TLObjectVector<TLAbsSecureValueError>): TLBool
 }

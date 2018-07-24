@@ -1,11 +1,22 @@
 package com.github.badoualy.telegram.tl.api
 
+import com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_BOOLEAN
 import com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_CONSTRUCTOR_ID
+import com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_DOUBLE
 import com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_INT32
+import com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_INT64
+import com.github.badoualy.telegram.tl.TLObjectUtils.computeTLBytesSerializedSize
+import com.github.badoualy.telegram.tl.TLObjectUtils.computeTLStringSerializedSize
 import com.github.badoualy.telegram.tl.core.TLObject
 import com.github.badoualy.telegram.tl.serialization.TLDeserializer
 import com.github.badoualy.telegram.tl.serialization.TLSerializer
 import java.io.IOException
+import kotlin.Any
+import kotlin.Boolean
+import kotlin.Int
+import kotlin.String
+import kotlin.jvm.Throws
+import kotlin.jvm.Transient
 
 /**
  * channelAdminRights#5d7ceba5
@@ -41,6 +52,9 @@ class TLChannelAdminRights() : TLObject() {
     @Transient
     var addAdmins: Boolean = false
 
+    @Transient
+    var manageCall: Boolean = false
+
     private val _constructor: String = "channelAdminRights#5d7ceba5"
 
     override val constructorId: Int = CONSTRUCTOR_ID
@@ -54,7 +68,8 @@ class TLChannelAdminRights() : TLObject() {
             inviteUsers: Boolean,
             inviteLink: Boolean,
             pinMessages: Boolean,
-            addAdmins: Boolean
+            addAdmins: Boolean,
+            manageCall: Boolean
     ) : this() {
         this.changeInfo = changeInfo
         this.postMessages = postMessages
@@ -65,6 +80,7 @@ class TLChannelAdminRights() : TLObject() {
         this.inviteLink = inviteLink
         this.pinMessages = pinMessages
         this.addAdmins = addAdmins
+        this.manageCall = manageCall
     }
 
     protected override fun computeFlags() {
@@ -78,6 +94,7 @@ class TLChannelAdminRights() : TLObject() {
         updateFlags(inviteLink, 64)
         updateFlags(pinMessages, 128)
         updateFlags(addAdmins, 512)
+        updateFlags(manageCall, 1024)
     }
 
     @Throws(IOException::class)
@@ -99,6 +116,7 @@ class TLChannelAdminRights() : TLObject() {
         inviteLink = isMask(64)
         pinMessages = isMask(128)
         addAdmins = isMask(512)
+        manageCall = isMask(1024)
     }
 
     override fun computeSerializedSize(): Int {
@@ -125,6 +143,7 @@ class TLChannelAdminRights() : TLObject() {
                 && inviteLink == other.inviteLink
                 && pinMessages == other.pinMessages
                 && addAdmins == other.addAdmins
+                && manageCall == other.manageCall
     }
     companion object  {
         const val CONSTRUCTOR_ID: Int = 0x5d7ceba5.toInt()

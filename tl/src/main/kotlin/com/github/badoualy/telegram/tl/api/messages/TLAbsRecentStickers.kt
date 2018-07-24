@@ -1,10 +1,17 @@
 package com.github.badoualy.telegram.tl.api.messages
 
+import com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_BOOLEAN
+import com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_CONSTRUCTOR_ID
+import com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_DOUBLE
+import com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_INT32
+import com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_INT64
+import com.github.badoualy.telegram.tl.TLObjectUtils.computeTLBytesSerializedSize
+import com.github.badoualy.telegram.tl.TLObjectUtils.computeTLStringSerializedSize
 import com.github.badoualy.telegram.tl.core.TLObject
 
 /**
  * Abstraction level for the following constructors:
- * * [messages.recentStickers#5ce20970][TLRecentStickers]
+ * * [messages.recentStickers#22f3afb3][TLRecentStickers]
  * * [messages.recentStickersNotModified#b17f890][TLRecentStickersNotModified]
  *
  * @author Yannick Badoual yann.badoual@gmail.com

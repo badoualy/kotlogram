@@ -47,7 +47,7 @@ class TLDialogsSlice() : TLAbsDialogs() {
     }
 
     @Throws(IOException::class)
-    override fun serializeBody(tlSerializer: TLSerializer) = with (tlSerializer)  {
+    override fun serializeBody(tlSerializer: TLSerializer) = with(tlSerializer) {
         writeInt(count)
         writeTLVector(dialogs)
         writeTLVector(messages)
@@ -56,7 +56,7 @@ class TLDialogsSlice() : TLAbsDialogs() {
     }
 
     @Throws(IOException::class)
-    override fun deserializeBody(tlDeserializer: TLDeserializer) = with (tlDeserializer)  {
+    override fun deserializeBody(tlDeserializer: TLDeserializer) = with(tlDeserializer) {
         count = readInt()
         dialogs = readTLVector<TLDialog>()
         messages = readTLVector<TLAbsMessage>()
@@ -86,7 +86,8 @@ class TLDialogsSlice() : TLAbsDialogs() {
                 && chats == other.chats
                 && users == other.users
     }
-    companion object  {
+
+    companion object {
         const val CONSTRUCTOR_ID: Int = 0x71e094f3.toInt()
     }
 }

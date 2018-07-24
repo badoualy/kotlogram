@@ -10,6 +10,7 @@ import com.github.badoualy.telegram.tl.api.TLAbsChat
 import com.github.badoualy.telegram.tl.api.TLInputPeerEmpty
 import com.github.badoualy.telegram.tl.api.TLPeerUser
 import com.github.badoualy.telegram.tl.api.TLUser
+import com.github.badoualy.telegram.tl.api.messages.TLDialogs
 import com.github.badoualy.telegram.tl.core.TLObject
 import com.github.badoualy.telegram.tl.exception.RpcErrorException
 import java.io.IOException
@@ -23,7 +24,7 @@ object SendMessageSample {
 
         // You can start making requests
         try {
-            val tlAbsDialogs = client.messagesGetDialogs(false, 0, 0, TLInputPeerEmpty(), 1).blockingGet()
+            val tlAbsDialogs = client.messagesGetDialogs(false, 0, 0, TLInputPeerEmpty(), 1,0).blockingGet()
             val tlAbsPeer = tlAbsDialogs.dialogs[0].peer
             val tlPeerObj: TLObject =
                     if (tlAbsPeer is TLPeerUser) tlAbsDialogs.users.first { it.id == tlAbsPeer.id }
@@ -37,8 +38,8 @@ object SendMessageSample {
             } ?: TLInputPeerEmpty()
 
             val tlAbsUpdates = client.messagesSendMessage(inputPeer,
-                                                          "Sent from Kotlogram :)",
-                                                          RandomUtils.randomLong()).blockingGet()
+                    "Sent from Kotlogram :)",
+                    RandomUtils.randomLong()).blockingGet()
             // tlAbsUpdates contains the id and date of the message in a TLUpdateShortSentMessage
         } catch (e: RpcErrorException) {
             e.printStackTrace()

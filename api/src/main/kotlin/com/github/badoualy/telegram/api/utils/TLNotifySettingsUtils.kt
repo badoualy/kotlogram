@@ -6,6 +6,6 @@ import java.util.concurrent.TimeUnit
 
 val TLAbsPeerNotifySettings.isMuted: Boolean
     get() = when (this) {
-        is TLPeerNotifySettings -> muteUntil > TimeUnit.MILLISECONDS.toSeconds(System.currentTimeMillis()) + 60
+        is TLPeerNotifySettings -> muteUntil ?: 0 > TimeUnit.MILLISECONDS.toSeconds(System.currentTimeMillis()) + 60
         else -> false
     }

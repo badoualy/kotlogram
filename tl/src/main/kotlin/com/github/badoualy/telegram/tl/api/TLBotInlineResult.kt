@@ -1,14 +1,23 @@
 package com.github.badoualy.telegram.tl.api
 
+import com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_BOOLEAN
 import com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_CONSTRUCTOR_ID
+import com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_DOUBLE
 import com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_INT32
+import com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_INT64
+import com.github.badoualy.telegram.tl.TLObjectUtils.computeTLBytesSerializedSize
 import com.github.badoualy.telegram.tl.TLObjectUtils.computeTLStringSerializedSize
 import com.github.badoualy.telegram.tl.serialization.TLDeserializer
 import com.github.badoualy.telegram.tl.serialization.TLSerializer
 import java.io.IOException
+import kotlin.Any
+import kotlin.Boolean
+import kotlin.Int
+import kotlin.String
+import kotlin.jvm.Throws
 
 /**
- * botInlineResult#9bebaeb9
+ * botInlineResult#11965f3a
  *
  * @author Yannick Badoual yann.badoual@gmail.com
  * @see <a href="http://github.com/badoualy/kotlogram">http://github.com/badoualy/kotlogram</a>
@@ -24,21 +33,13 @@ class TLBotInlineResult() : TLAbsBotInlineResult() {
 
     var url: String? = null
 
-    var thumbUrl: String? = null
+    var thumb: TLAbsWebDocument? = null
 
-    var contentUrl: String? = null
-
-    var contentType: String? = null
-
-    var w: Int? = null
-
-    var h: Int? = null
-
-    var duration: Int? = null
+    var content: TLAbsWebDocument? = null
 
     override var sendMessage: TLAbsBotInlineMessage = TLBotInlineMessageMediaAuto()
 
-    private val _constructor: String = "botInlineResult#9bebaeb9"
+    private val _constructor: String = "botInlineResult#11965f3a"
 
     override val constructorId: Int = CONSTRUCTOR_ID
 
@@ -48,12 +49,8 @@ class TLBotInlineResult() : TLAbsBotInlineResult() {
             title: String?,
             description: String?,
             url: String?,
-            thumbUrl: String?,
-            contentUrl: String?,
-            contentType: String?,
-            w: Int?,
-            h: Int?,
-            duration: Int?,
+            thumb: TLAbsWebDocument?,
+            content: TLAbsWebDocument?,
             sendMessage: TLAbsBotInlineMessage
     ) : this() {
         this.id = id
@@ -61,12 +58,8 @@ class TLBotInlineResult() : TLAbsBotInlineResult() {
         this.title = title
         this.description = description
         this.url = url
-        this.thumbUrl = thumbUrl
-        this.contentUrl = contentUrl
-        this.contentType = contentType
-        this.w = w
-        this.h = h
-        this.duration = duration
+        this.thumb = thumb
+        this.content = content
         this.sendMessage = sendMessage
     }
 
@@ -75,12 +68,8 @@ class TLBotInlineResult() : TLAbsBotInlineResult() {
         updateFlags(title, 2)
         updateFlags(description, 4)
         updateFlags(url, 8)
-        updateFlags(thumbUrl, 16)
-        updateFlags(contentUrl, 32)
-        updateFlags(contentType, 32)
-        updateFlags(w, 64)
-        updateFlags(h, 64)
-        updateFlags(duration, 128)
+        updateFlags(thumb, 16)
+        updateFlags(content, 32)
     }
 
     @Throws(IOException::class)
@@ -93,12 +82,8 @@ class TLBotInlineResult() : TLAbsBotInlineResult() {
         doIfMask(title, 2) { writeString(it) }
         doIfMask(description, 4) { writeString(it) }
         doIfMask(url, 8) { writeString(it) }
-        doIfMask(thumbUrl, 16) { writeString(it) }
-        doIfMask(contentUrl, 32) { writeString(it) }
-        doIfMask(contentType, 32) { writeString(it) }
-        doIfMask(w, 64) { writeInt(it) }
-        doIfMask(h, 64) { writeInt(it) }
-        doIfMask(duration, 128) { writeInt(it) }
+        doIfMask(thumb, 16) { writeTLObject(it) }
+        doIfMask(content, 32) { writeTLObject(it) }
         writeTLObject(sendMessage)
     }
 
@@ -110,12 +95,8 @@ class TLBotInlineResult() : TLAbsBotInlineResult() {
         title = readIfMask(2) { readString() }
         description = readIfMask(4) { readString() }
         url = readIfMask(8) { readString() }
-        thumbUrl = readIfMask(16) { readString() }
-        contentUrl = readIfMask(32) { readString() }
-        contentType = readIfMask(32) { readString() }
-        w = readIfMask(64) { readInt() }
-        h = readIfMask(64) { readInt() }
-        duration = readIfMask(128) { readInt() }
+        thumb = readIfMask(16) { readTLObject<TLAbsWebDocument>() }
+        content = readIfMask(32) { readTLObject<TLAbsWebDocument>() }
         sendMessage = readTLObject<TLAbsBotInlineMessage>()
     }
 
@@ -129,12 +110,8 @@ class TLBotInlineResult() : TLAbsBotInlineResult() {
         size += getIntIfMask(title, 2) { computeTLStringSerializedSize(it) }
         size += getIntIfMask(description, 4) { computeTLStringSerializedSize(it) }
         size += getIntIfMask(url, 8) { computeTLStringSerializedSize(it) }
-        size += getIntIfMask(thumbUrl, 16) { computeTLStringSerializedSize(it) }
-        size += getIntIfMask(contentUrl, 32) { computeTLStringSerializedSize(it) }
-        size += getIntIfMask(contentType, 32) { computeTLStringSerializedSize(it) }
-        size += getIntIfMask(w, 64) { SIZE_INT32 }
-        size += getIntIfMask(h, 64) { SIZE_INT32 }
-        size += getIntIfMask(duration, 128) { SIZE_INT32 }
+        size += getIntIfMask(thumb, 16) { it.computeSerializedSize() }
+        size += getIntIfMask(content, 32) { it.computeSerializedSize() }
         size += sendMessage.computeSerializedSize()
         return size
     }
@@ -151,15 +128,11 @@ class TLBotInlineResult() : TLAbsBotInlineResult() {
                 && title == other.title
                 && description == other.description
                 && url == other.url
-                && thumbUrl == other.thumbUrl
-                && contentUrl == other.contentUrl
-                && contentType == other.contentType
-                && w == other.w
-                && h == other.h
-                && duration == other.duration
+                && thumb == other.thumb
+                && content == other.content
                 && sendMessage == other.sendMessage
     }
     companion object  {
-        const val CONSTRUCTOR_ID: Int = 0x9bebaeb9.toInt()
+        const val CONSTRUCTOR_ID: Int = 0x11965f3a.toInt()
     }
 }

@@ -1,9 +1,17 @@
 package com.github.badoualy.telegram.tl.api
 
+import com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_BOOLEAN
+import com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_CONSTRUCTOR_ID
+import com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_DOUBLE
+import com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_INT32
+import com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_INT64
+import com.github.badoualy.telegram.tl.TLObjectUtils.computeTLBytesSerializedSize
+import com.github.badoualy.telegram.tl.TLObjectUtils.computeTLStringSerializedSize
 import com.github.badoualy.telegram.tl.core.TLObject
 
 /**
  * Abstraction level for the following constructors:
+ * * [messageActionBotAllowed#abe9affe][TLMessageActionBotAllowed]
  * * [messageActionChannelCreate#95d2ac92][TLMessageActionChannelCreate]
  * * [messageActionChannelMigrateFrom#b055eaee][TLMessageActionChannelMigrateFrom]
  * * [messageActionChatAddUser#488a7337][TLMessageActionChatAddUser]
@@ -23,6 +31,8 @@ import com.github.badoualy.telegram.tl.core.TLObject
  * * [messageActionPhoneCall#80e11a7f][TLMessageActionPhoneCall]
  * * [messageActionPinMessage#94bd38ed][TLMessageActionPinMessage]
  * * [messageActionScreenshotTaken#4792929b][TLMessageActionScreenshotTaken]
+ * * [messageActionSecureValuesSent#d95c6154][TLMessageActionSecureValuesSent]
+ * * [messageActionSecureValuesSentMe#1b287353][TLMessageActionSecureValuesSentMe]
  *
  * @author Yannick Badoual yann.badoual@gmail.com
  * @see <a href="http://github.com/badoualy/kotlogram">http://github.com/badoualy/kotlogram</a>

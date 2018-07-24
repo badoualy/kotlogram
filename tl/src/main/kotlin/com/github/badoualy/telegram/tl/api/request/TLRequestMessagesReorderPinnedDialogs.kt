@@ -1,14 +1,25 @@
 package com.github.badoualy.telegram.tl.api.request
 
+import com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_BOOLEAN
 import com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_CONSTRUCTOR_ID
+import com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_DOUBLE
 import com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_INT32
-import com.github.badoualy.telegram.tl.api.TLAbsInputPeer
+import com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_INT64
+import com.github.badoualy.telegram.tl.TLObjectUtils.computeTLBytesSerializedSize
+import com.github.badoualy.telegram.tl.TLObjectUtils.computeTLStringSerializedSize
+import com.github.badoualy.telegram.tl.api.TLInputDialogPeer
 import com.github.badoualy.telegram.tl.core.TLBool
 import com.github.badoualy.telegram.tl.core.TLMethod
 import com.github.badoualy.telegram.tl.core.TLObjectVector
 import com.github.badoualy.telegram.tl.serialization.TLDeserializer
 import com.github.badoualy.telegram.tl.serialization.TLSerializer
 import java.io.IOException
+import kotlin.Any
+import kotlin.Boolean
+import kotlin.Int
+import kotlin.String
+import kotlin.jvm.Throws
+import kotlin.jvm.Transient
 
 /**
  * @author Yannick Badoual yann.badoual@gmail.com
@@ -18,13 +29,13 @@ class TLRequestMessagesReorderPinnedDialogs() : TLMethod<TLBool>() {
     @Transient
     var force: Boolean = false
 
-    var order: TLObjectVector<TLAbsInputPeer> = TLObjectVector()
+    var order: TLObjectVector<TLInputDialogPeer> = TLObjectVector()
 
-    private val _constructor: String = "messages.reorderPinnedDialogs#959ff644"
+    private val _constructor: String = "messages.reorderPinnedDialogs#5b51d63f"
 
     override val constructorId: Int = CONSTRUCTOR_ID
 
-    constructor(force: Boolean, order: TLObjectVector<TLAbsInputPeer>) : this() {
+    constructor(force: Boolean, order: TLObjectVector<TLInputDialogPeer>) : this() {
         this.force = force
         this.order = order
     }
@@ -46,7 +57,7 @@ class TLRequestMessagesReorderPinnedDialogs() : TLMethod<TLBool>() {
     override fun deserializeBody(tlDeserializer: TLDeserializer) = with (tlDeserializer)  {
         _flags = readInt()
         force = isMask(1)
-        order = readTLVector<TLAbsInputPeer>()
+        order = readTLVector<TLInputDialogPeer>()
     }
 
     override fun computeSerializedSize(): Int {
@@ -69,6 +80,6 @@ class TLRequestMessagesReorderPinnedDialogs() : TLMethod<TLBool>() {
                 && order == other.order
     }
     companion object  {
-        const val CONSTRUCTOR_ID: Int = 0x959ff644.toInt()
+        const val CONSTRUCTOR_ID: Int = 0x5b51d63f.toInt()
     }
 }

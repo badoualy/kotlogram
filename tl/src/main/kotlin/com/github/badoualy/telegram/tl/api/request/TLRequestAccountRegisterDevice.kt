@@ -1,13 +1,24 @@
 package com.github.badoualy.telegram.tl.api.request
 
+import com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_BOOLEAN
 import com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_CONSTRUCTOR_ID
+import com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_DOUBLE
 import com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_INT32
+import com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_INT64
+import com.github.badoualy.telegram.tl.TLObjectUtils.computeTLBytesSerializedSize
 import com.github.badoualy.telegram.tl.TLObjectUtils.computeTLStringSerializedSize
 import com.github.badoualy.telegram.tl.core.TLBool
+import com.github.badoualy.telegram.tl.core.TLBytes
+import com.github.badoualy.telegram.tl.core.TLIntVector
 import com.github.badoualy.telegram.tl.core.TLMethod
 import com.github.badoualy.telegram.tl.serialization.TLDeserializer
 import com.github.badoualy.telegram.tl.serialization.TLSerializer
 import java.io.IOException
+import kotlin.Any
+import kotlin.Boolean
+import kotlin.Int
+import kotlin.String
+import kotlin.jvm.Throws
 
 /**
  * @author Yannick Badoual yann.badoual@gmail.com
@@ -18,31 +29,55 @@ class TLRequestAccountRegisterDevice() : TLMethod<TLBool>() {
 
     var token: String = ""
 
-    private val _constructor: String = "account.registerDevice#637ea878"
+    var appSandbox: Boolean = false
+
+    var secret: TLBytes = TLBytes.EMPTY
+
+    var otherUids: TLIntVector = TLIntVector()
+
+    private val _constructor: String = "account.registerDevice#5cbea590"
 
     override val constructorId: Int = CONSTRUCTOR_ID
 
-    constructor(tokenType: Int, token: String) : this() {
+    constructor(
+            tokenType: Int,
+            token: String,
+            appSandbox: Boolean,
+            secret: TLBytes,
+            otherUids: TLIntVector
+    ) : this() {
         this.tokenType = tokenType
         this.token = token
+        this.appSandbox = appSandbox
+        this.secret = secret
+        this.otherUids = otherUids
     }
 
     @Throws(IOException::class)
     override fun serializeBody(tlSerializer: TLSerializer) = with (tlSerializer)  {
         writeInt(tokenType)
         writeString(token)
+        writeBoolean(appSandbox)
+        writeTLBytes(secret)
+        writeTLVector(otherUids)
     }
 
     @Throws(IOException::class)
     override fun deserializeBody(tlDeserializer: TLDeserializer) = with (tlDeserializer)  {
         tokenType = readInt()
         token = readString()
+        appSandbox = readBoolean()
+        secret = readTLBytes()
+        otherUids = readTLIntVector()
     }
 
     override fun computeSerializedSize(): Int {
         var size = SIZE_CONSTRUCTOR_ID
         size += SIZE_INT32
         size += computeTLStringSerializedSize(token)
+        size += SIZE_BOOLEAN
+        size += computeTLBytesSerializedSize(secret)
+        size += otherUids.computeSerializedSize()
         return size
     }
 
@@ -54,8 +89,11 @@ class TLRequestAccountRegisterDevice() : TLMethod<TLBool>() {
 
         return tokenType == other.tokenType
                 && token == other.token
+                && appSandbox == other.appSandbox
+                && secret == other.secret
+                && otherUids == other.otherUids
     }
     companion object  {
-        const val CONSTRUCTOR_ID: Int = 0x637ea878.toInt()
+        const val CONSTRUCTOR_ID: Int = 0x5cbea590.toInt()
     }
 }

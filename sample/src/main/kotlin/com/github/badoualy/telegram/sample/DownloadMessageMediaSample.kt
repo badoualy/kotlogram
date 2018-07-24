@@ -22,7 +22,7 @@ object DownloadMessageMediaSample {
 
         // You can start making requests
         try {
-            val tlAbsDialogs = client.messagesGetDialogs(false, 0, 0, TLInputPeerEmpty(), 1).blockingGet()
+            val tlAbsDialogs = client.messagesGetDialogs(false, 0, 0, TLInputPeerEmpty(), 1,0).blockingGet()
             val tlAbsPeer = tlAbsDialogs.dialogs[0].peer
             val tlPeerObj: TLObject =
                     if (tlAbsPeer is TLPeerUser) tlAbsDialogs.users.first { it.id == tlAbsPeer.id }
@@ -35,7 +35,7 @@ object DownloadMessageMediaSample {
                 else -> null
             } ?: TLInputPeerEmpty()
 
-            val tlAbsMessages = client.messagesGetHistory(inputPeer, 0, 0, 0, 100, 0, 0).blockingGet()
+            val tlAbsMessages = client.messagesGetHistory(inputPeer, 0, 0, 0, 100, 0, 0,0).blockingGet()
             val tlMessage = tlAbsMessages.messages.firstOrNull { it is TLMessage && it.media != null } as TLMessage?
                     ?: throw RuntimeException("Found no messages with media in last 100 messages")
 

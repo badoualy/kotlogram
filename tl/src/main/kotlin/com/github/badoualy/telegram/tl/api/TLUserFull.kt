@@ -1,13 +1,23 @@
 package com.github.badoualy.telegram.tl.api
 
+import com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_BOOLEAN
 import com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_CONSTRUCTOR_ID
+import com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_DOUBLE
 import com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_INT32
+import com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_INT64
+import com.github.badoualy.telegram.tl.TLObjectUtils.computeTLBytesSerializedSize
 import com.github.badoualy.telegram.tl.TLObjectUtils.computeTLStringSerializedSize
 import com.github.badoualy.telegram.tl.api.contacts.TLLink
 import com.github.badoualy.telegram.tl.core.TLObject
 import com.github.badoualy.telegram.tl.serialization.TLDeserializer
 import com.github.badoualy.telegram.tl.serialization.TLSerializer
 import java.io.IOException
+import kotlin.Any
+import kotlin.Boolean
+import kotlin.Int
+import kotlin.String
+import kotlin.jvm.Throws
+import kotlin.jvm.Transient
 
 /**
  * userFull#f220f3f
@@ -33,7 +43,7 @@ class TLUserFull() : TLObject() {
 
     var profilePhoto: TLAbsPhoto? = null
 
-    var notifySettings: TLAbsPeerNotifySettings = TLPeerNotifySettingsEmpty()
+    var notifySettings: TLPeerNotifySettings = TLPeerNotifySettings()
 
     var botInfo: TLBotInfo? = null
 
@@ -51,7 +61,7 @@ class TLUserFull() : TLObject() {
             about: String?,
             link: TLLink,
             profilePhoto: TLAbsPhoto?,
-            notifySettings: TLAbsPeerNotifySettings,
+            notifySettings: TLPeerNotifySettings,
             botInfo: TLBotInfo?,
             commonChatsCount: Int
     ) : this() {
@@ -101,7 +111,7 @@ class TLUserFull() : TLObject() {
         about = readIfMask(2) { readString() }
         link = readTLObject<TLLink>(TLLink::class, TLLink.CONSTRUCTOR_ID)
         profilePhoto = readIfMask(4) { readTLObject<TLAbsPhoto>() }
-        notifySettings = readTLObject<TLAbsPeerNotifySettings>()
+        notifySettings = readTLObject<TLPeerNotifySettings>(TLPeerNotifySettings::class, TLPeerNotifySettings.CONSTRUCTOR_ID)
         botInfo = readIfMask(8) { readTLObject<TLBotInfo>(TLBotInfo::class, TLBotInfo.CONSTRUCTOR_ID) }
         commonChatsCount = readInt()
     }

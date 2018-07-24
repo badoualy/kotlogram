@@ -3,6 +3,7 @@ package com.github.badoualy.telegram.api
 import com.github.badoualy.telegram.api.utils.InputFileLocation
 import com.github.badoualy.telegram.mtproto.secure.CryptoUtils
 import com.github.badoualy.telegram.tl.api.TLAbsInputPeer
+import com.github.badoualy.telegram.tl.api.TLInputClientProxy
 import com.github.badoualy.telegram.tl.api.TelegramSyncApiWrapper
 import com.github.badoualy.telegram.tl.api.account.TLPassword
 import com.github.badoualy.telegram.tl.api.auth.TLAuthorization
@@ -56,7 +57,7 @@ abstract class TelegramSyncClient : TelegramSyncApiWrapper() {
         @Suppress("DEPRECATION")
         initConnection(apiId, deviceModel,
                        systemVersion, appVersion,
-                       systemLangCode, langPack, langCode,
+                       systemLangCode, langPack, langCode,null,
                        query)
     }
 
@@ -67,9 +68,10 @@ abstract class TelegramSyncClient : TelegramSyncApiWrapper() {
                                                systemLangCode: String,
                                                langPack: String,
                                                langCode: String,
+                                               proxy: TLInputClientProxy?,
                                                query: TLMethod<T>?) =
             super.initConnection(apiId, deviceModel, systemVersion, appVersion,
-                                 systemLangCode, langPack, langCode, query)
+                                 systemLangCode, langPack, langCode,null, query)
 
     /** Convenience method wrapping the argument for a plain text message */
     fun messagesSendMessage(peer: TLAbsInputPeer, message: String, randomId: Long) =

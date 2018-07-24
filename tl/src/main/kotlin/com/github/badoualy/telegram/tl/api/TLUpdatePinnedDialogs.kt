@@ -1,26 +1,36 @@
 package com.github.badoualy.telegram.tl.api
 
+import com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_BOOLEAN
 import com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_CONSTRUCTOR_ID
+import com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_DOUBLE
 import com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_INT32
+import com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_INT64
+import com.github.badoualy.telegram.tl.TLObjectUtils.computeTLBytesSerializedSize
+import com.github.badoualy.telegram.tl.TLObjectUtils.computeTLStringSerializedSize
 import com.github.badoualy.telegram.tl.core.TLObjectVector
 import com.github.badoualy.telegram.tl.serialization.TLDeserializer
 import com.github.badoualy.telegram.tl.serialization.TLSerializer
 import java.io.IOException
+import kotlin.Any
+import kotlin.Boolean
+import kotlin.Int
+import kotlin.String
+import kotlin.jvm.Throws
 
 /**
- * updatePinnedDialogs#d8caf68d
+ * updatePinnedDialogs#ea4cb65b
  *
  * @author Yannick Badoual yann.badoual@gmail.com
  * @see <a href="http://github.com/badoualy/kotlogram">http://github.com/badoualy/kotlogram</a>
  */
 class TLUpdatePinnedDialogs() : TLAbsUpdate() {
-    var order: TLObjectVector<TLAbsPeer>? = TLObjectVector()
+    var order: TLObjectVector<TLDialogPeer>? = TLObjectVector()
 
-    private val _constructor: String = "updatePinnedDialogs#d8caf68d"
+    private val _constructor: String = "updatePinnedDialogs#ea4cb65b"
 
     override val constructorId: Int = CONSTRUCTOR_ID
 
-    constructor(order: TLObjectVector<TLAbsPeer>?) : this() {
+    constructor(order: TLObjectVector<TLDialogPeer>?) : this() {
         this.order = order
     }
 
@@ -40,7 +50,7 @@ class TLUpdatePinnedDialogs() : TLAbsUpdate() {
     @Throws(IOException::class)
     override fun deserializeBody(tlDeserializer: TLDeserializer) = with (tlDeserializer)  {
         _flags = readInt()
-        order = readIfMask(1) { readTLVector<TLAbsPeer>() }
+        order = readIfMask(1) { readTLVector<TLDialogPeer>() }
     }
 
     override fun computeSerializedSize(): Int {
@@ -62,6 +72,6 @@ class TLUpdatePinnedDialogs() : TLAbsUpdate() {
                 && order == other.order
     }
     companion object  {
-        const val CONSTRUCTOR_ID: Int = 0xd8caf68d.toInt()
+        const val CONSTRUCTOR_ID: Int = 0xea4cb65b.toInt()
     }
 }

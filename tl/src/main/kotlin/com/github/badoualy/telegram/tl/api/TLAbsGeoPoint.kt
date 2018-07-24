@@ -1,10 +1,18 @@
 package com.github.badoualy.telegram.tl.api
 
+import com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_BOOLEAN
+import com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_CONSTRUCTOR_ID
+import com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_DOUBLE
+import com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_INT32
+import com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_INT64
+import com.github.badoualy.telegram.tl.TLObjectUtils.computeTLBytesSerializedSize
+import com.github.badoualy.telegram.tl.TLObjectUtils.computeTLStringSerializedSize
 import com.github.badoualy.telegram.tl.core.TLObject
+import kotlin.Boolean
 
 /**
  * Abstraction level for the following constructors:
- * * [geoPoint#2049d70c][TLGeoPoint]
+ * * [geoPoint#296f104][TLGeoPoint]
  * * [geoPointEmpty#1117dd5f][TLGeoPointEmpty]
  *
  * @author Yannick Badoual yann.badoual@gmail.com

@@ -1,12 +1,22 @@
 package com.github.badoualy.telegram.tl.api
 
+import com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_BOOLEAN
 import com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_CONSTRUCTOR_ID
+import com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_DOUBLE
 import com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_INT32
 import com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_INT64
+import com.github.badoualy.telegram.tl.TLObjectUtils.computeTLBytesSerializedSize
 import com.github.badoualy.telegram.tl.TLObjectUtils.computeTLStringSerializedSize
 import com.github.badoualy.telegram.tl.serialization.TLDeserializer
 import com.github.badoualy.telegram.tl.serialization.TLSerializer
 import java.io.IOException
+import kotlin.Any
+import kotlin.Boolean
+import kotlin.Int
+import kotlin.Long
+import kotlin.String
+import kotlin.jvm.Throws
+import kotlin.jvm.Transient
 
 /**
  * messageMediaInvoice#84551347
@@ -25,7 +35,7 @@ class TLMessageMediaInvoice() : TLAbsMessageMedia() {
 
     var description: String = ""
 
-    var photo: TLWebDocument? = null
+    var photo: TLAbsWebDocument? = null
 
     var receiptMsgId: Int? = null
 
@@ -44,7 +54,7 @@ class TLMessageMediaInvoice() : TLAbsMessageMedia() {
             test: Boolean,
             title: String,
             description: String,
-            photo: TLWebDocument?,
+            photo: TLAbsWebDocument?,
             receiptMsgId: Int?,
             currency: String,
             totalAmount: Long,
@@ -90,7 +100,7 @@ class TLMessageMediaInvoice() : TLAbsMessageMedia() {
         test = isMask(8)
         title = readString()
         description = readString()
-        photo = readIfMask(1) { readTLObject<TLWebDocument>(TLWebDocument::class, TLWebDocument.CONSTRUCTOR_ID) }
+        photo = readIfMask(1) { readTLObject<TLAbsWebDocument>() }
         receiptMsgId = readIfMask(4) { readInt() }
         currency = readString()
         totalAmount = readLong()

@@ -1,5 +1,12 @@
 package com.github.badoualy.telegram.tl.api
 
+import com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_BOOLEAN
+import com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_CONSTRUCTOR_ID
+import com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_DOUBLE
+import com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_INT32
+import com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_INT64
+import com.github.badoualy.telegram.tl.TLObjectUtils.computeTLBytesSerializedSize
+import com.github.badoualy.telegram.tl.TLObjectUtils.computeTLStringSerializedSize
 import com.github.badoualy.telegram.tl.core.TLObject
 
 /**
@@ -14,7 +21,6 @@ import com.github.badoualy.telegram.tl.core.TLObject
  * * [inputMessagesFilterMyMentions#c1f8e69a][TLInputMessagesFilterMyMentions]
  * * [inputMessagesFilterPhoneCalls#80c99768][TLInputMessagesFilterPhoneCalls]
  * * [inputMessagesFilterPhotoVideo#56e9f0e4][TLInputMessagesFilterPhotoVideo]
- * * [inputMessagesFilterPhotoVideoDocuments#d95e73bb][TLInputMessagesFilterPhotoVideoDocuments]
  * * [inputMessagesFilterPhotos#9609a51c][TLInputMessagesFilterPhotos]
  * * [inputMessagesFilterRoundVideo#b549da53][TLInputMessagesFilterRoundVideo]
  * * [inputMessagesFilterRoundVoice#7a7c17a4][TLInputMessagesFilterRoundVoice]

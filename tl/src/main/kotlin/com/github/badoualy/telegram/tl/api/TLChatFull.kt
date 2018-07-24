@@ -1,11 +1,21 @@
 package com.github.badoualy.telegram.tl.api
 
+import com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_BOOLEAN
 import com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_CONSTRUCTOR_ID
+import com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_DOUBLE
 import com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_INT32
+import com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_INT64
+import com.github.badoualy.telegram.tl.TLObjectUtils.computeTLBytesSerializedSize
+import com.github.badoualy.telegram.tl.TLObjectUtils.computeTLStringSerializedSize
 import com.github.badoualy.telegram.tl.core.TLObjectVector
 import com.github.badoualy.telegram.tl.serialization.TLDeserializer
 import com.github.badoualy.telegram.tl.serialization.TLSerializer
 import java.io.IOException
+import kotlin.Any
+import kotlin.Boolean
+import kotlin.Int
+import kotlin.String
+import kotlin.jvm.Throws
 
 /**
  * chatFull#2e02a614
@@ -20,7 +30,7 @@ class TLChatFull() : TLAbsChatFull() {
 
     override var chatPhoto: TLAbsPhoto = TLPhotoEmpty()
 
-    override var notifySettings: TLAbsPeerNotifySettings = TLPeerNotifySettingsEmpty()
+    override var notifySettings: TLPeerNotifySettings = TLPeerNotifySettings()
 
     override var exportedInvite: TLAbsExportedChatInvite = TLChatInviteEmpty()
 
@@ -34,7 +44,7 @@ class TLChatFull() : TLAbsChatFull() {
             id: Int,
             participants: TLAbsChatParticipants,
             chatPhoto: TLAbsPhoto,
-            notifySettings: TLAbsPeerNotifySettings,
+            notifySettings: TLPeerNotifySettings,
             exportedInvite: TLAbsExportedChatInvite,
             botInfo: TLObjectVector<TLBotInfo>
     ) : this() {
@@ -61,7 +71,7 @@ class TLChatFull() : TLAbsChatFull() {
         id = readInt()
         participants = readTLObject<TLAbsChatParticipants>()
         chatPhoto = readTLObject<TLAbsPhoto>()
-        notifySettings = readTLObject<TLAbsPeerNotifySettings>()
+        notifySettings = readTLObject<TLPeerNotifySettings>(TLPeerNotifySettings::class, TLPeerNotifySettings.CONSTRUCTOR_ID)
         exportedInvite = readTLObject<TLAbsExportedChatInvite>()
         botInfo = readTLVector<TLBotInfo>()
     }

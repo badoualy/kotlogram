@@ -1,14 +1,26 @@
 package com.github.badoualy.telegram.tl.api.request
 
+import com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_BOOLEAN
 import com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_CONSTRUCTOR_ID
+import com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_DOUBLE
+import com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_INT32
+import com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_INT64
+import com.github.badoualy.telegram.tl.TLObjectUtils.computeTLBytesSerializedSize
+import com.github.badoualy.telegram.tl.TLObjectUtils.computeTLStringSerializedSize
 import com.github.badoualy.telegram.tl.api.TLAbsInputChannel
+import com.github.badoualy.telegram.tl.api.TLAbsInputMessage
 import com.github.badoualy.telegram.tl.api.TLInputChannelEmpty
 import com.github.badoualy.telegram.tl.api.messages.TLAbsMessages
-import com.github.badoualy.telegram.tl.core.TLIntVector
 import com.github.badoualy.telegram.tl.core.TLMethod
+import com.github.badoualy.telegram.tl.core.TLObjectVector
 import com.github.badoualy.telegram.tl.serialization.TLDeserializer
 import com.github.badoualy.telegram.tl.serialization.TLSerializer
 import java.io.IOException
+import kotlin.Any
+import kotlin.Boolean
+import kotlin.Int
+import kotlin.String
+import kotlin.jvm.Throws
 
 /**
  * @author Yannick Badoual yann.badoual@gmail.com
@@ -17,13 +29,13 @@ import java.io.IOException
 class TLRequestChannelsGetMessages() : TLMethod<TLAbsMessages>() {
     var channel: TLAbsInputChannel = TLInputChannelEmpty()
 
-    var id: TLIntVector = TLIntVector()
+    var id: TLObjectVector<TLAbsInputMessage> = TLObjectVector()
 
-    private val _constructor: String = "channels.getMessages#93d7b347"
+    private val _constructor: String = "channels.getMessages#ad8c9a23"
 
     override val constructorId: Int = CONSTRUCTOR_ID
 
-    constructor(channel: TLAbsInputChannel, id: TLIntVector) : this() {
+    constructor(channel: TLAbsInputChannel, id: TLObjectVector<TLAbsInputMessage>) : this() {
         this.channel = channel
         this.id = id
     }
@@ -37,7 +49,7 @@ class TLRequestChannelsGetMessages() : TLMethod<TLAbsMessages>() {
     @Throws(IOException::class)
     override fun deserializeBody(tlDeserializer: TLDeserializer) = with (tlDeserializer)  {
         channel = readTLObject<TLAbsInputChannel>()
-        id = readTLIntVector()
+        id = readTLVector<TLAbsInputMessage>()
     }
 
     override fun computeSerializedSize(): Int {
@@ -57,6 +69,6 @@ class TLRequestChannelsGetMessages() : TLMethod<TLAbsMessages>() {
                 && id == other.id
     }
     companion object  {
-        const val CONSTRUCTOR_ID: Int = 0x93d7b347.toInt()
+        const val CONSTRUCTOR_ID: Int = 0xad8c9a23.toInt()
     }
 }
