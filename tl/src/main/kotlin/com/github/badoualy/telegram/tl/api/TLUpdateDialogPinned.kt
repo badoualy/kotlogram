@@ -1,13 +1,24 @@
 package com.github.badoualy.telegram.tl.api
 
+import com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_BOOLEAN
 import com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_CONSTRUCTOR_ID
+import com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_DOUBLE
 import com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_INT32
+import com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_INT64
+import com.github.badoualy.telegram.tl.TLObjectUtils.computeTLBytesSerializedSize
+import com.github.badoualy.telegram.tl.TLObjectUtils.computeTLStringSerializedSize
 import com.github.badoualy.telegram.tl.serialization.TLDeserializer
 import com.github.badoualy.telegram.tl.serialization.TLSerializer
 import java.io.IOException
+import kotlin.Any
+import kotlin.Boolean
+import kotlin.Int
+import kotlin.String
+import kotlin.jvm.Throws
+import kotlin.jvm.Transient
 
 /**
- * updateDialogPinned#d711a2cc
+ * updateDialogPinned#19d27f3c
  *
  * @author Yannick Badoual yann.badoual@gmail.com
  * @see <a href="http://github.com/badoualy/kotlogram">http://github.com/badoualy/kotlogram</a>
@@ -16,13 +27,13 @@ class TLUpdateDialogPinned() : TLAbsUpdate() {
     @Transient
     var pinned: Boolean = false
 
-    var peer: TLAbsPeer = TLPeerUser()
+    var peer: TLDialogPeer = TLDialogPeer()
 
-    private val _constructor: String = "updateDialogPinned#d711a2cc"
+    private val _constructor: String = "updateDialogPinned#19d27f3c"
 
     override val constructorId: Int = CONSTRUCTOR_ID
 
-    constructor(pinned: Boolean, peer: TLAbsPeer) : this() {
+    constructor(pinned: Boolean, peer: TLDialogPeer) : this() {
         this.pinned = pinned
         this.peer = peer
     }
@@ -44,7 +55,7 @@ class TLUpdateDialogPinned() : TLAbsUpdate() {
     override fun deserializeBody(tlDeserializer: TLDeserializer) = with (tlDeserializer)  {
         _flags = readInt()
         pinned = isMask(1)
-        peer = readTLObject<TLAbsPeer>()
+        peer = readTLObject<TLDialogPeer>(TLDialogPeer::class, TLDialogPeer.CONSTRUCTOR_ID)
     }
 
     override fun computeSerializedSize(): Int {
@@ -67,6 +78,6 @@ class TLUpdateDialogPinned() : TLAbsUpdate() {
                 && peer == other.peer
     }
     companion object  {
-        const val CONSTRUCTOR_ID: Int = 0xd711a2cc.toInt()
+        const val CONSTRUCTOR_ID: Int = 0x19d27f3c.toInt()
     }
 }

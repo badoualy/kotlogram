@@ -26,7 +26,7 @@ object GetDialogsSample {
         // You can start making requests
         try {
             val tlAbsDialogs = client.messagesGetDialogs(true, 0, 0, TLInputPeerEmpty(),
-                                                         count).blockingGet()
+                                                         count,0).blockingGet()
 
             // Create a map of id to name map
             val nameMap = HashMap<Int, String>()

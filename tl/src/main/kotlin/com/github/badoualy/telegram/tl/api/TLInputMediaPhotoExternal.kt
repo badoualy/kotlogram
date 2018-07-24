@@ -1,14 +1,23 @@
 package com.github.badoualy.telegram.tl.api
 
+import com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_BOOLEAN
 import com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_CONSTRUCTOR_ID
+import com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_DOUBLE
 import com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_INT32
+import com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_INT64
+import com.github.badoualy.telegram.tl.TLObjectUtils.computeTLBytesSerializedSize
 import com.github.badoualy.telegram.tl.TLObjectUtils.computeTLStringSerializedSize
 import com.github.badoualy.telegram.tl.serialization.TLDeserializer
 import com.github.badoualy.telegram.tl.serialization.TLSerializer
 import java.io.IOException
+import kotlin.Any
+import kotlin.Boolean
+import kotlin.Int
+import kotlin.String
+import kotlin.jvm.Throws
 
 /**
- * inputMediaPhotoExternal#922aec1
+ * inputMediaPhotoExternal#e5bbfe1a
  *
  * @author Yannick Badoual yann.badoual@gmail.com
  * @see <a href="http://github.com/badoualy/kotlogram">http://github.com/badoualy/kotlogram</a>
@@ -16,21 +25,14 @@ import java.io.IOException
 class TLInputMediaPhotoExternal() : TLAbsInputMedia() {
     var url: String = ""
 
-    var caption: String = ""
-
     var ttlSeconds: Int? = null
 
-    private val _constructor: String = "inputMediaPhotoExternal#922aec1"
+    private val _constructor: String = "inputMediaPhotoExternal#e5bbfe1a"
 
     override val constructorId: Int = CONSTRUCTOR_ID
 
-    constructor(
-            url: String,
-            caption: String,
-            ttlSeconds: Int?
-    ) : this() {
+    constructor(url: String, ttlSeconds: Int?) : this() {
         this.url = url
-        this.caption = caption
         this.ttlSeconds = ttlSeconds
     }
 
@@ -45,7 +47,6 @@ class TLInputMediaPhotoExternal() : TLAbsInputMedia() {
 
         writeInt(_flags)
         writeString(url)
-        writeString(caption)
         doIfMask(ttlSeconds, 1) { writeInt(it) }
     }
 
@@ -53,7 +54,6 @@ class TLInputMediaPhotoExternal() : TLAbsInputMedia() {
     override fun deserializeBody(tlDeserializer: TLDeserializer) = with (tlDeserializer)  {
         _flags = readInt()
         url = readString()
-        caption = readString()
         ttlSeconds = readIfMask(1) { readInt() }
     }
 
@@ -63,7 +63,6 @@ class TLInputMediaPhotoExternal() : TLAbsInputMedia() {
         var size = SIZE_CONSTRUCTOR_ID
         size += SIZE_INT32
         size += computeTLStringSerializedSize(url)
-        size += computeTLStringSerializedSize(caption)
         size += getIntIfMask(ttlSeconds, 1) { SIZE_INT32 }
         return size
     }
@@ -76,10 +75,9 @@ class TLInputMediaPhotoExternal() : TLAbsInputMedia() {
 
         return _flags == other._flags
                 && url == other.url
-                && caption == other.caption
                 && ttlSeconds == other.ttlSeconds
     }
     companion object  {
-        const val CONSTRUCTOR_ID: Int = 0x922aec1.toInt()
+        const val CONSTRUCTOR_ID: Int = 0xe5bbfe1a.toInt()
     }
 }

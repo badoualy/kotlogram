@@ -101,6 +101,7 @@ interface TLDeserializer {
     fun readTLIntVector(): TLIntVector = deserializeVector(TLIntVector())
     fun readTLLongVector(): TLLongVector = deserializeVector(TLLongVector())
     fun readTLStringVector(): TLStringVector = deserializeVector(TLStringVector())
+    fun readTLBytesVector(): TLBytesVector = deserializeVector(TLBytesVector())
 
     fun unzip()
 

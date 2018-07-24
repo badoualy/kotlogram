@@ -1,15 +1,24 @@
 package com.github.badoualy.telegram.tl.api
 
+import com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_BOOLEAN
 import com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_CONSTRUCTOR_ID
+import com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_DOUBLE
 import com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_INT32
+import com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_INT64
+import com.github.badoualy.telegram.tl.TLObjectUtils.computeTLBytesSerializedSize
 import com.github.badoualy.telegram.tl.TLObjectUtils.computeTLStringSerializedSize
 import com.github.badoualy.telegram.tl.core.TLObject
 import com.github.badoualy.telegram.tl.serialization.TLDeserializer
 import com.github.badoualy.telegram.tl.serialization.TLSerializer
 import java.io.IOException
+import kotlin.Any
+import kotlin.Boolean
+import kotlin.Int
+import kotlin.String
+import kotlin.jvm.Throws
 
 /**
- * messageFwdHeader#fadff4ac
+ * messageFwdHeader#559ebe6d
  *
  * @author Yannick Badoual yann.badoual@gmail.com
  * @see <a href="http://github.com/badoualy/kotlogram">http://github.com/badoualy/kotlogram</a>
@@ -25,7 +34,11 @@ class TLMessageFwdHeader() : TLObject() {
 
     var postAuthor: String? = null
 
-    private val _constructor: String = "messageFwdHeader#fadff4ac"
+    var savedFromPeer: TLAbsPeer? = null
+
+    var savedFromMsgId: Int? = null
+
+    private val _constructor: String = "messageFwdHeader#559ebe6d"
 
     override val constructorId: Int = CONSTRUCTOR_ID
 
@@ -34,13 +47,17 @@ class TLMessageFwdHeader() : TLObject() {
             date: Int,
             channelId: Int?,
             channelPost: Int?,
-            postAuthor: String?
+            postAuthor: String?,
+            savedFromPeer: TLAbsPeer?,
+            savedFromMsgId: Int?
     ) : this() {
         this.fromId = fromId
         this.date = date
         this.channelId = channelId
         this.channelPost = channelPost
         this.postAuthor = postAuthor
+        this.savedFromPeer = savedFromPeer
+        this.savedFromMsgId = savedFromMsgId
     }
 
     protected override fun computeFlags() {
@@ -49,6 +66,8 @@ class TLMessageFwdHeader() : TLObject() {
         updateFlags(channelId, 2)
         updateFlags(channelPost, 4)
         updateFlags(postAuthor, 8)
+        updateFlags(savedFromPeer, 16)
+        updateFlags(savedFromMsgId, 16)
     }
 
     @Throws(IOException::class)
@@ -61,6 +80,8 @@ class TLMessageFwdHeader() : TLObject() {
         doIfMask(channelId, 2) { writeInt(it) }
         doIfMask(channelPost, 4) { writeInt(it) }
         doIfMask(postAuthor, 8) { writeString(it) }
+        doIfMask(savedFromPeer, 16) { writeTLObject(it) }
+        doIfMask(savedFromMsgId, 16) { writeInt(it) }
     }
 
     @Throws(IOException::class)
@@ -71,6 +92,8 @@ class TLMessageFwdHeader() : TLObject() {
         channelId = readIfMask(2) { readInt() }
         channelPost = readIfMask(4) { readInt() }
         postAuthor = readIfMask(8) { readString() }
+        savedFromPeer = readIfMask(16) { readTLObject<TLAbsPeer>() }
+        savedFromMsgId = readIfMask(16) { readInt() }
     }
 
     override fun computeSerializedSize(): Int {
@@ -83,6 +106,8 @@ class TLMessageFwdHeader() : TLObject() {
         size += getIntIfMask(channelId, 2) { SIZE_INT32 }
         size += getIntIfMask(channelPost, 4) { SIZE_INT32 }
         size += getIntIfMask(postAuthor, 8) { computeTLStringSerializedSize(it) }
+        size += getIntIfMask(savedFromPeer, 16) { it.computeSerializedSize() }
+        size += getIntIfMask(savedFromMsgId, 16) { SIZE_INT32 }
         return size
     }
 
@@ -98,8 +123,10 @@ class TLMessageFwdHeader() : TLObject() {
                 && channelId == other.channelId
                 && channelPost == other.channelPost
                 && postAuthor == other.postAuthor
+                && savedFromPeer == other.savedFromPeer
+                && savedFromMsgId == other.savedFromMsgId
     }
     companion object  {
-        const val CONSTRUCTOR_ID: Int = 0xfadff4ac.toInt()
+        const val CONSTRUCTOR_ID: Int = 0x559ebe6d.toInt()
     }
 }

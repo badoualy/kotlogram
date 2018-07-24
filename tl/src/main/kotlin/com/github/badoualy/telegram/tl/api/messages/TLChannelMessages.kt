@@ -46,7 +46,7 @@ class TLChannelMessages() : TLAbsMessages() {
     }
 
     @Throws(IOException::class)
-    override fun serializeBody(tlSerializer: TLSerializer) = with (tlSerializer)  {
+    override fun serializeBody(tlSerializer: TLSerializer) = with(tlSerializer) {
         writeInt(_flags)
         writeInt(pts)
         writeInt(count)
@@ -56,7 +56,7 @@ class TLChannelMessages() : TLAbsMessages() {
     }
 
     @Throws(IOException::class)
-    override fun deserializeBody(tlDeserializer: TLDeserializer) = with (tlDeserializer)  {
+    override fun deserializeBody(tlDeserializer: TLDeserializer) = with(tlDeserializer) {
         _flags = readInt()
         pts = readInt()
         count = readInt()
@@ -89,7 +89,8 @@ class TLChannelMessages() : TLAbsMessages() {
                 && chats == other.chats
                 && users == other.users
     }
-    companion object  {
+
+    companion object {
         const val CONSTRUCTOR_ID: Int = 0x99262e37.toInt()
     }
 }

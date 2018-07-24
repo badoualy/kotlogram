@@ -1,15 +1,26 @@
 package com.github.badoualy.telegram.tl.api
 
+import com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_BOOLEAN
 import com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_CONSTRUCTOR_ID
+import com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_DOUBLE
 import com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_INT32
+import com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_INT64
+import com.github.badoualy.telegram.tl.TLObjectUtils.computeTLBytesSerializedSize
 import com.github.badoualy.telegram.tl.TLObjectUtils.computeTLStringSerializedSize
 import com.github.badoualy.telegram.tl.core.TLObjectVector
 import com.github.badoualy.telegram.tl.serialization.TLDeserializer
 import com.github.badoualy.telegram.tl.serialization.TLSerializer
 import java.io.IOException
+import kotlin.Any
+import kotlin.Boolean
+import kotlin.Int
+import kotlin.Long
+import kotlin.String
+import kotlin.jvm.Throws
+import kotlin.jvm.Transient
 
 /**
- * message#90dddc11
+ * message#44f9b43d
  *
  * @author Yannick Badoual yann.badoual@gmail.com
  * @see <a href="http://github.com/badoualy/kotlogram">http://github.com/badoualy/kotlogram</a>
@@ -58,7 +69,9 @@ class TLMessage() : TLAbsMessage() {
 
     var postAuthor: String? = null
 
-    private val _constructor: String = "message#90dddc11"
+    var groupedId: Long? = null
+
+    private val _constructor: String = "message#44f9b43d"
 
     override val constructorId: Int = CONSTRUCTOR_ID
 
@@ -81,7 +94,8 @@ class TLMessage() : TLAbsMessage() {
             entities: TLObjectVector<TLAbsMessageEntity>?,
             views: Int?,
             editDate: Int?,
-            postAuthor: String?
+            postAuthor: String?,
+            groupedId: Long?
     ) : this() {
         this.out = out
         this.mentioned = mentioned
@@ -102,6 +116,7 @@ class TLMessage() : TLAbsMessage() {
         this.views = views
         this.editDate = editDate
         this.postAuthor = postAuthor
+        this.groupedId = groupedId
     }
 
     protected override fun computeFlags() {
@@ -121,6 +136,7 @@ class TLMessage() : TLAbsMessage() {
         updateFlags(views, 1024)
         updateFlags(editDate, 32768)
         updateFlags(postAuthor, 65536)
+        updateFlags(groupedId, 131072)
     }
 
     @Throws(IOException::class)
@@ -142,6 +158,7 @@ class TLMessage() : TLAbsMessage() {
         doIfMask(views, 1024) { writeInt(it) }
         doIfMask(editDate, 32768) { writeInt(it) }
         doIfMask(postAuthor, 65536) { writeString(it) }
+        doIfMask(groupedId, 131072) { writeLong(it) }
     }
 
     @Throws(IOException::class)
@@ -166,6 +183,7 @@ class TLMessage() : TLAbsMessage() {
         views = readIfMask(1024) { readInt() }
         editDate = readIfMask(32768) { readInt() }
         postAuthor = readIfMask(65536) { readString() }
+        groupedId = readIfMask(131072) { readLong() }
     }
 
     override fun computeSerializedSize(): Int {
@@ -187,6 +205,7 @@ class TLMessage() : TLAbsMessage() {
         size += getIntIfMask(views, 1024) { SIZE_INT32 }
         size += getIntIfMask(editDate, 32768) { SIZE_INT32 }
         size += getIntIfMask(postAuthor, 65536) { computeTLStringSerializedSize(it) }
+        size += getIntIfMask(groupedId, 131072) { SIZE_INT64 }
         return size
     }
 
@@ -216,8 +235,9 @@ class TLMessage() : TLAbsMessage() {
                 && views == other.views
                 && editDate == other.editDate
                 && postAuthor == other.postAuthor
+                && groupedId == other.groupedId
     }
     companion object  {
-        const val CONSTRUCTOR_ID: Int = 0x90dddc11.toInt()
+        const val CONSTRUCTOR_ID: Int = 0x44f9b43d.toInt()
     }
 }

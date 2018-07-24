@@ -1,15 +1,25 @@
 package com.github.badoualy.telegram.tl.api
 
+import com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_BOOLEAN
 import com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_CONSTRUCTOR_ID
+import com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_DOUBLE
 import com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_INT32
 import com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_INT64
+import com.github.badoualy.telegram.tl.TLObjectUtils.computeTLBytesSerializedSize
 import com.github.badoualy.telegram.tl.TLObjectUtils.computeTLStringSerializedSize
 import com.github.badoualy.telegram.tl.serialization.TLDeserializer
 import com.github.badoualy.telegram.tl.serialization.TLSerializer
 import java.io.IOException
+import kotlin.Any
+import kotlin.Boolean
+import kotlin.Int
+import kotlin.Long
+import kotlin.String
+import kotlin.jvm.Throws
+import kotlin.jvm.Transient
 
 /**
- * channel#cb44b1c
+ * channel#c88974ac
  *
  * @author Yannick Badoual yann.badoual@gmail.com
  * @see <a href="http://github.com/badoualy/kotlogram">http://github.com/badoualy/kotlogram</a>
@@ -65,7 +75,9 @@ class TLChannel() : TLAbsChat() {
 
     var bannedRights: TLChannelBannedRights? = null
 
-    private val _constructor: String = "channel#cb44b1c"
+    var participantsCount: Int? = null
+
+    private val _constructor: String = "channel#c88974ac"
 
     override val constructorId: Int = CONSTRUCTOR_ID
 
@@ -89,7 +101,8 @@ class TLChannel() : TLAbsChat() {
             version: Int,
             restrictionReason: String?,
             adminRights: TLChannelAdminRights?,
-            bannedRights: TLChannelBannedRights?
+            bannedRights: TLChannelBannedRights?,
+            participantsCount: Int?
     ) : this() {
         this.creator = creator
         this.left = left
@@ -111,6 +124,7 @@ class TLChannel() : TLAbsChat() {
         this.restrictionReason = restrictionReason
         this.adminRights = adminRights
         this.bannedRights = bannedRights
+        this.participantsCount = participantsCount
     }
 
     protected override fun computeFlags() {
@@ -130,6 +144,7 @@ class TLChannel() : TLAbsChat() {
         updateFlags(restrictionReason, 512)
         updateFlags(adminRights, 16384)
         updateFlags(bannedRights, 32768)
+        updateFlags(participantsCount, 131072)
 
         // Following parameters might be forced to true by another field that updated the flags
         restricted = isMask(512)
@@ -150,6 +165,7 @@ class TLChannel() : TLAbsChat() {
         doIfMask(restrictionReason, 512) { writeString(it) }
         doIfMask(adminRights, 16384) { writeTLObject(it) }
         doIfMask(bannedRights, 32768) { writeTLObject(it) }
+        doIfMask(participantsCount, 131072) { writeInt(it) }
     }
 
     @Throws(IOException::class)
@@ -175,6 +191,7 @@ class TLChannel() : TLAbsChat() {
         restrictionReason = readIfMask(512) { readString() }
         adminRights = readIfMask(16384) { readTLObject<TLChannelAdminRights>(TLChannelAdminRights::class, TLChannelAdminRights.CONSTRUCTOR_ID) }
         bannedRights = readIfMask(32768) { readTLObject<TLChannelBannedRights>(TLChannelBannedRights::class, TLChannelBannedRights.CONSTRUCTOR_ID) }
+        participantsCount = readIfMask(131072) { readInt() }
     }
 
     override fun computeSerializedSize(): Int {
@@ -192,6 +209,7 @@ class TLChannel() : TLAbsChat() {
         size += getIntIfMask(restrictionReason, 512) { computeTLStringSerializedSize(it) }
         size += getIntIfMask(adminRights, 16384) { it.computeSerializedSize() }
         size += getIntIfMask(bannedRights, 32768) { it.computeSerializedSize() }
+        size += getIntIfMask(participantsCount, 131072) { SIZE_INT32 }
         return size
     }
 
@@ -222,8 +240,9 @@ class TLChannel() : TLAbsChat() {
                 && restrictionReason == other.restrictionReason
                 && adminRights == other.adminRights
                 && bannedRights == other.bannedRights
+                && participantsCount == other.participantsCount
     }
     companion object  {
-        const val CONSTRUCTOR_ID: Int = 0xcb44b1c.toInt()
+        const val CONSTRUCTOR_ID: Int = 0xc88974ac.toInt()
     }
 }

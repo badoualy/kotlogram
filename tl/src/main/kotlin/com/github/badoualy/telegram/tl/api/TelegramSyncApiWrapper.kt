@@ -1,33 +1,377 @@
 package com.github.badoualy.telegram.tl.api
 
 import com.github.badoualy.telegram.tl.RpcQuerySyncExecutor
-import com.github.badoualy.telegram.tl.api.account.*
-import com.github.badoualy.telegram.tl.api.auth.*
+import com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_BOOLEAN
+import com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_CONSTRUCTOR_ID
+import com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_DOUBLE
+import com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_INT32
+import com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_INT64
+import com.github.badoualy.telegram.tl.TLObjectUtils.computeTLBytesSerializedSize
+import com.github.badoualy.telegram.tl.TLObjectUtils.computeTLStringSerializedSize
+import com.github.badoualy.telegram.tl.api.account.TLAbsPassword
+import com.github.badoualy.telegram.tl.api.account.TLAuthorizationForm
+import com.github.badoualy.telegram.tl.api.account.TLAuthorizations
+import com.github.badoualy.telegram.tl.api.account.TLPasswordInputSettings
+import com.github.badoualy.telegram.tl.api.account.TLPasswordSettings
+import com.github.badoualy.telegram.tl.api.account.TLPrivacyRules
+import com.github.badoualy.telegram.tl.api.account.TLSentEmailCode
+import com.github.badoualy.telegram.tl.api.account.TLTakeout
+import com.github.badoualy.telegram.tl.api.account.TLTmpPassword
+import com.github.badoualy.telegram.tl.api.account.TLWebAuthorizations
 import com.github.badoualy.telegram.tl.api.auth.TLAuthorization
+import com.github.badoualy.telegram.tl.api.auth.TLExportedAuthorization
+import com.github.badoualy.telegram.tl.api.auth.TLPasswordRecovery
+import com.github.badoualy.telegram.tl.api.auth.TLSentCode
 import com.github.badoualy.telegram.tl.api.channels.TLAbsChannelParticipants
 import com.github.badoualy.telegram.tl.api.channels.TLAdminLogResults
 import com.github.badoualy.telegram.tl.api.channels.TLChannelParticipant
-import com.github.badoualy.telegram.tl.api.contacts.*
-import com.github.badoualy.telegram.tl.api.help.*
-import com.github.badoualy.telegram.tl.api.messages.*
+import com.github.badoualy.telegram.tl.api.contacts.TLAbsBlocked
+import com.github.badoualy.telegram.tl.api.contacts.TLAbsContacts
+import com.github.badoualy.telegram.tl.api.contacts.TLAbsTopPeers
+import com.github.badoualy.telegram.tl.api.contacts.TLFound
+import com.github.badoualy.telegram.tl.api.contacts.TLImportedContacts
+import com.github.badoualy.telegram.tl.api.contacts.TLLink
+import com.github.badoualy.telegram.tl.api.contacts.TLResolvedPeer
+import com.github.badoualy.telegram.tl.api.help.TLAbsAppUpdate
+import com.github.badoualy.telegram.tl.api.help.TLAbsDeepLinkInfo
+import com.github.badoualy.telegram.tl.api.help.TLAbsProxyData
+import com.github.badoualy.telegram.tl.api.help.TLAbsTermsOfServiceUpdate
+import com.github.badoualy.telegram.tl.api.help.TLInviteText
+import com.github.badoualy.telegram.tl.api.help.TLRecentMeUrls
+import com.github.badoualy.telegram.tl.api.help.TLSupport
+import com.github.badoualy.telegram.tl.api.messages.TLAbsAllStickers
+import com.github.badoualy.telegram.tl.api.messages.TLAbsChats
+import com.github.badoualy.telegram.tl.api.messages.TLAbsDhConfig
+import com.github.badoualy.telegram.tl.api.messages.TLAbsDialogs
+import com.github.badoualy.telegram.tl.api.messages.TLAbsFavedStickers
+import com.github.badoualy.telegram.tl.api.messages.TLAbsFeaturedStickers
+import com.github.badoualy.telegram.tl.api.messages.TLAbsFoundStickerSets
+import com.github.badoualy.telegram.tl.api.messages.TLAbsMessages
+import com.github.badoualy.telegram.tl.api.messages.TLAbsRecentStickers
+import com.github.badoualy.telegram.tl.api.messages.TLAbsSavedGifs
+import com.github.badoualy.telegram.tl.api.messages.TLAbsSentEncryptedMessage
+import com.github.badoualy.telegram.tl.api.messages.TLAbsStickerSetInstallResult
+import com.github.badoualy.telegram.tl.api.messages.TLAbsStickers
+import com.github.badoualy.telegram.tl.api.messages.TLAffectedHistory
+import com.github.badoualy.telegram.tl.api.messages.TLAffectedMessages
+import com.github.badoualy.telegram.tl.api.messages.TLArchivedStickers
+import com.github.badoualy.telegram.tl.api.messages.TLBotCallbackAnswer
+import com.github.badoualy.telegram.tl.api.messages.TLBotResults
 import com.github.badoualy.telegram.tl.api.messages.TLChatFull
+import com.github.badoualy.telegram.tl.api.messages.TLFoundGifs
+import com.github.badoualy.telegram.tl.api.messages.TLHighScores
+import com.github.badoualy.telegram.tl.api.messages.TLMessageEditData
+import com.github.badoualy.telegram.tl.api.messages.TLPeerDialogs
 import com.github.badoualy.telegram.tl.api.messages.TLStickerSet
-import com.github.badoualy.telegram.tl.api.payments.*
+import com.github.badoualy.telegram.tl.api.payments.TLAbsPaymentResult
+import com.github.badoualy.telegram.tl.api.payments.TLPaymentForm
+import com.github.badoualy.telegram.tl.api.payments.TLPaymentReceipt
+import com.github.badoualy.telegram.tl.api.payments.TLSavedInfo
+import com.github.badoualy.telegram.tl.api.payments.TLValidatedRequestedInfo
 import com.github.badoualy.telegram.tl.api.phone.TLPhoneCall
 import com.github.badoualy.telegram.tl.api.photos.TLAbsPhotos
 import com.github.badoualy.telegram.tl.api.photos.TLPhoto
-import com.github.badoualy.telegram.tl.api.request.*
+import com.github.badoualy.telegram.tl.api.request.TLRequestAccountAcceptAuthorization
+import com.github.badoualy.telegram.tl.api.request.TLRequestAccountChangePhone
+import com.github.badoualy.telegram.tl.api.request.TLRequestAccountCheckUsername
+import com.github.badoualy.telegram.tl.api.request.TLRequestAccountConfirmPhone
+import com.github.badoualy.telegram.tl.api.request.TLRequestAccountDeleteAccount
+import com.github.badoualy.telegram.tl.api.request.TLRequestAccountDeleteSecureValue
+import com.github.badoualy.telegram.tl.api.request.TLRequestAccountFinishTakeoutSession
+import com.github.badoualy.telegram.tl.api.request.TLRequestAccountGetAccountTTL
+import com.github.badoualy.telegram.tl.api.request.TLRequestAccountGetAllSecureValues
+import com.github.badoualy.telegram.tl.api.request.TLRequestAccountGetAuthorizationForm
+import com.github.badoualy.telegram.tl.api.request.TLRequestAccountGetAuthorizations
+import com.github.badoualy.telegram.tl.api.request.TLRequestAccountGetNotifySettings
+import com.github.badoualy.telegram.tl.api.request.TLRequestAccountGetPassword
+import com.github.badoualy.telegram.tl.api.request.TLRequestAccountGetPasswordSettings
+import com.github.badoualy.telegram.tl.api.request.TLRequestAccountGetPrivacy
+import com.github.badoualy.telegram.tl.api.request.TLRequestAccountGetSecureValue
+import com.github.badoualy.telegram.tl.api.request.TLRequestAccountGetTmpPassword
+import com.github.badoualy.telegram.tl.api.request.TLRequestAccountGetWallPapers
+import com.github.badoualy.telegram.tl.api.request.TLRequestAccountGetWebAuthorizations
+import com.github.badoualy.telegram.tl.api.request.TLRequestAccountInitTakeoutSession
+import com.github.badoualy.telegram.tl.api.request.TLRequestAccountRegisterDevice
+import com.github.badoualy.telegram.tl.api.request.TLRequestAccountReportPeer
+import com.github.badoualy.telegram.tl.api.request.TLRequestAccountResetAuthorization
+import com.github.badoualy.telegram.tl.api.request.TLRequestAccountResetNotifySettings
+import com.github.badoualy.telegram.tl.api.request.TLRequestAccountResetWebAuthorization
+import com.github.badoualy.telegram.tl.api.request.TLRequestAccountResetWebAuthorizations
+import com.github.badoualy.telegram.tl.api.request.TLRequestAccountSaveSecureValue
+import com.github.badoualy.telegram.tl.api.request.TLRequestAccountSendChangePhoneCode
+import com.github.badoualy.telegram.tl.api.request.TLRequestAccountSendConfirmPhoneCode
+import com.github.badoualy.telegram.tl.api.request.TLRequestAccountSendVerifyEmailCode
+import com.github.badoualy.telegram.tl.api.request.TLRequestAccountSendVerifyPhoneCode
+import com.github.badoualy.telegram.tl.api.request.TLRequestAccountSetAccountTTL
+import com.github.badoualy.telegram.tl.api.request.TLRequestAccountSetPrivacy
+import com.github.badoualy.telegram.tl.api.request.TLRequestAccountUnregisterDevice
+import com.github.badoualy.telegram.tl.api.request.TLRequestAccountUpdateDeviceLocked
+import com.github.badoualy.telegram.tl.api.request.TLRequestAccountUpdateNotifySettings
+import com.github.badoualy.telegram.tl.api.request.TLRequestAccountUpdatePasswordSettings
+import com.github.badoualy.telegram.tl.api.request.TLRequestAccountUpdateProfile
+import com.github.badoualy.telegram.tl.api.request.TLRequestAccountUpdateStatus
+import com.github.badoualy.telegram.tl.api.request.TLRequestAccountUpdateUsername
+import com.github.badoualy.telegram.tl.api.request.TLRequestAccountVerifyEmail
+import com.github.badoualy.telegram.tl.api.request.TLRequestAccountVerifyPhone
+import com.github.badoualy.telegram.tl.api.request.TLRequestAuthBindTempAuthKey
+import com.github.badoualy.telegram.tl.api.request.TLRequestAuthCancelCode
+import com.github.badoualy.telegram.tl.api.request.TLRequestAuthCheckPassword
+import com.github.badoualy.telegram.tl.api.request.TLRequestAuthDropTempAuthKeys
+import com.github.badoualy.telegram.tl.api.request.TLRequestAuthExportAuthorization
+import com.github.badoualy.telegram.tl.api.request.TLRequestAuthImportAuthorization
+import com.github.badoualy.telegram.tl.api.request.TLRequestAuthImportBotAuthorization
+import com.github.badoualy.telegram.tl.api.request.TLRequestAuthLogOut
+import com.github.badoualy.telegram.tl.api.request.TLRequestAuthRecoverPassword
+import com.github.badoualy.telegram.tl.api.request.TLRequestAuthRequestPasswordRecovery
+import com.github.badoualy.telegram.tl.api.request.TLRequestAuthResendCode
+import com.github.badoualy.telegram.tl.api.request.TLRequestAuthResetAuthorizations
+import com.github.badoualy.telegram.tl.api.request.TLRequestAuthSendCode
+import com.github.badoualy.telegram.tl.api.request.TLRequestAuthSignIn
+import com.github.badoualy.telegram.tl.api.request.TLRequestAuthSignUp
+import com.github.badoualy.telegram.tl.api.request.TLRequestBotsAnswerWebhookJSONQuery
+import com.github.badoualy.telegram.tl.api.request.TLRequestBotsSendCustomRequest
+import com.github.badoualy.telegram.tl.api.request.TLRequestChannelsCheckUsername
+import com.github.badoualy.telegram.tl.api.request.TLRequestChannelsCreateChannel
+import com.github.badoualy.telegram.tl.api.request.TLRequestChannelsDeleteChannel
+import com.github.badoualy.telegram.tl.api.request.TLRequestChannelsDeleteHistory
+import com.github.badoualy.telegram.tl.api.request.TLRequestChannelsDeleteMessages
+import com.github.badoualy.telegram.tl.api.request.TLRequestChannelsDeleteUserHistory
+import com.github.badoualy.telegram.tl.api.request.TLRequestChannelsEditAbout
+import com.github.badoualy.telegram.tl.api.request.TLRequestChannelsEditAdmin
+import com.github.badoualy.telegram.tl.api.request.TLRequestChannelsEditBanned
+import com.github.badoualy.telegram.tl.api.request.TLRequestChannelsEditPhoto
+import com.github.badoualy.telegram.tl.api.request.TLRequestChannelsEditTitle
+import com.github.badoualy.telegram.tl.api.request.TLRequestChannelsExportInvite
+import com.github.badoualy.telegram.tl.api.request.TLRequestChannelsExportMessageLink
+import com.github.badoualy.telegram.tl.api.request.TLRequestChannelsGetAdminLog
+import com.github.badoualy.telegram.tl.api.request.TLRequestChannelsGetAdminedPublicChannels
+import com.github.badoualy.telegram.tl.api.request.TLRequestChannelsGetChannels
+import com.github.badoualy.telegram.tl.api.request.TLRequestChannelsGetFullChannel
+import com.github.badoualy.telegram.tl.api.request.TLRequestChannelsGetLeftChannels
+import com.github.badoualy.telegram.tl.api.request.TLRequestChannelsGetMessages
+import com.github.badoualy.telegram.tl.api.request.TLRequestChannelsGetParticipant
+import com.github.badoualy.telegram.tl.api.request.TLRequestChannelsGetParticipants
+import com.github.badoualy.telegram.tl.api.request.TLRequestChannelsInviteToChannel
+import com.github.badoualy.telegram.tl.api.request.TLRequestChannelsJoinChannel
+import com.github.badoualy.telegram.tl.api.request.TLRequestChannelsLeaveChannel
+import com.github.badoualy.telegram.tl.api.request.TLRequestChannelsReadHistory
+import com.github.badoualy.telegram.tl.api.request.TLRequestChannelsReadMessageContents
+import com.github.badoualy.telegram.tl.api.request.TLRequestChannelsReportSpam
+import com.github.badoualy.telegram.tl.api.request.TLRequestChannelsSetStickers
+import com.github.badoualy.telegram.tl.api.request.TLRequestChannelsToggleInvites
+import com.github.badoualy.telegram.tl.api.request.TLRequestChannelsTogglePreHistoryHidden
+import com.github.badoualy.telegram.tl.api.request.TLRequestChannelsToggleSignatures
+import com.github.badoualy.telegram.tl.api.request.TLRequestChannelsUpdatePinnedMessage
+import com.github.badoualy.telegram.tl.api.request.TLRequestChannelsUpdateUsername
+import com.github.badoualy.telegram.tl.api.request.TLRequestContactsBlock
+import com.github.badoualy.telegram.tl.api.request.TLRequestContactsDeleteContact
+import com.github.badoualy.telegram.tl.api.request.TLRequestContactsDeleteContacts
+import com.github.badoualy.telegram.tl.api.request.TLRequestContactsExportCard
+import com.github.badoualy.telegram.tl.api.request.TLRequestContactsGetBlocked
+import com.github.badoualy.telegram.tl.api.request.TLRequestContactsGetContacts
+import com.github.badoualy.telegram.tl.api.request.TLRequestContactsGetSaved
+import com.github.badoualy.telegram.tl.api.request.TLRequestContactsGetStatuses
+import com.github.badoualy.telegram.tl.api.request.TLRequestContactsGetTopPeers
+import com.github.badoualy.telegram.tl.api.request.TLRequestContactsImportCard
+import com.github.badoualy.telegram.tl.api.request.TLRequestContactsImportContacts
+import com.github.badoualy.telegram.tl.api.request.TLRequestContactsResetSaved
+import com.github.badoualy.telegram.tl.api.request.TLRequestContactsResetTopPeerRating
+import com.github.badoualy.telegram.tl.api.request.TLRequestContactsResolveUsername
+import com.github.badoualy.telegram.tl.api.request.TLRequestContactsSearch
+import com.github.badoualy.telegram.tl.api.request.TLRequestContactsToggleTopPeers
+import com.github.badoualy.telegram.tl.api.request.TLRequestContactsUnblock
+import com.github.badoualy.telegram.tl.api.request.TLRequestHelpAcceptTermsOfService
+import com.github.badoualy.telegram.tl.api.request.TLRequestHelpGetAppChangelog
+import com.github.badoualy.telegram.tl.api.request.TLRequestHelpGetAppUpdate
+import com.github.badoualy.telegram.tl.api.request.TLRequestHelpGetCdnConfig
+import com.github.badoualy.telegram.tl.api.request.TLRequestHelpGetConfig
+import com.github.badoualy.telegram.tl.api.request.TLRequestHelpGetDeepLinkInfo
+import com.github.badoualy.telegram.tl.api.request.TLRequestHelpGetInviteText
+import com.github.badoualy.telegram.tl.api.request.TLRequestHelpGetNearestDc
+import com.github.badoualy.telegram.tl.api.request.TLRequestHelpGetProxyData
+import com.github.badoualy.telegram.tl.api.request.TLRequestHelpGetRecentMeUrls
+import com.github.badoualy.telegram.tl.api.request.TLRequestHelpGetSupport
+import com.github.badoualy.telegram.tl.api.request.TLRequestHelpGetTermsOfServiceUpdate
+import com.github.badoualy.telegram.tl.api.request.TLRequestHelpSaveAppLog
+import com.github.badoualy.telegram.tl.api.request.TLRequestHelpSetBotUpdatesStatus
+import com.github.badoualy.telegram.tl.api.request.TLRequestInitConnection
+import com.github.badoualy.telegram.tl.api.request.TLRequestInvokeAfterMsg
+import com.github.badoualy.telegram.tl.api.request.TLRequestInvokeAfterMsgs
+import com.github.badoualy.telegram.tl.api.request.TLRequestInvokeWithLayer
+import com.github.badoualy.telegram.tl.api.request.TLRequestInvokeWithMessagesRange
+import com.github.badoualy.telegram.tl.api.request.TLRequestInvokeWithTakeout
+import com.github.badoualy.telegram.tl.api.request.TLRequestInvokeWithoutUpdates
+import com.github.badoualy.telegram.tl.api.request.TLRequestLangpackGetDifference
+import com.github.badoualy.telegram.tl.api.request.TLRequestLangpackGetLangPack
+import com.github.badoualy.telegram.tl.api.request.TLRequestLangpackGetLanguages
+import com.github.badoualy.telegram.tl.api.request.TLRequestLangpackGetStrings
+import com.github.badoualy.telegram.tl.api.request.TLRequestMessagesAcceptEncryption
+import com.github.badoualy.telegram.tl.api.request.TLRequestMessagesAddChatUser
+import com.github.badoualy.telegram.tl.api.request.TLRequestMessagesCheckChatInvite
+import com.github.badoualy.telegram.tl.api.request.TLRequestMessagesClearRecentStickers
+import com.github.badoualy.telegram.tl.api.request.TLRequestMessagesCreateChat
+import com.github.badoualy.telegram.tl.api.request.TLRequestMessagesDeleteChatUser
+import com.github.badoualy.telegram.tl.api.request.TLRequestMessagesDeleteHistory
+import com.github.badoualy.telegram.tl.api.request.TLRequestMessagesDeleteMessages
+import com.github.badoualy.telegram.tl.api.request.TLRequestMessagesDiscardEncryption
+import com.github.badoualy.telegram.tl.api.request.TLRequestMessagesEditChatAdmin
+import com.github.badoualy.telegram.tl.api.request.TLRequestMessagesEditChatPhoto
+import com.github.badoualy.telegram.tl.api.request.TLRequestMessagesEditChatTitle
+import com.github.badoualy.telegram.tl.api.request.TLRequestMessagesEditInlineBotMessage
+import com.github.badoualy.telegram.tl.api.request.TLRequestMessagesEditMessage
+import com.github.badoualy.telegram.tl.api.request.TLRequestMessagesExportChatInvite
+import com.github.badoualy.telegram.tl.api.request.TLRequestMessagesFaveSticker
+import com.github.badoualy.telegram.tl.api.request.TLRequestMessagesForwardMessages
+import com.github.badoualy.telegram.tl.api.request.TLRequestMessagesGetAllChats
+import com.github.badoualy.telegram.tl.api.request.TLRequestMessagesGetAllDrafts
+import com.github.badoualy.telegram.tl.api.request.TLRequestMessagesGetAllStickers
+import com.github.badoualy.telegram.tl.api.request.TLRequestMessagesGetArchivedStickers
+import com.github.badoualy.telegram.tl.api.request.TLRequestMessagesGetAttachedStickers
+import com.github.badoualy.telegram.tl.api.request.TLRequestMessagesGetBotCallbackAnswer
+import com.github.badoualy.telegram.tl.api.request.TLRequestMessagesGetChats
+import com.github.badoualy.telegram.tl.api.request.TLRequestMessagesGetCommonChats
+import com.github.badoualy.telegram.tl.api.request.TLRequestMessagesGetDhConfig
+import com.github.badoualy.telegram.tl.api.request.TLRequestMessagesGetDialogUnreadMarks
+import com.github.badoualy.telegram.tl.api.request.TLRequestMessagesGetDialogs
+import com.github.badoualy.telegram.tl.api.request.TLRequestMessagesGetDocumentByHash
+import com.github.badoualy.telegram.tl.api.request.TLRequestMessagesGetFavedStickers
+import com.github.badoualy.telegram.tl.api.request.TLRequestMessagesGetFeaturedStickers
+import com.github.badoualy.telegram.tl.api.request.TLRequestMessagesGetFullChat
+import com.github.badoualy.telegram.tl.api.request.TLRequestMessagesGetGameHighScores
+import com.github.badoualy.telegram.tl.api.request.TLRequestMessagesGetHistory
+import com.github.badoualy.telegram.tl.api.request.TLRequestMessagesGetInlineBotResults
+import com.github.badoualy.telegram.tl.api.request.TLRequestMessagesGetInlineGameHighScores
+import com.github.badoualy.telegram.tl.api.request.TLRequestMessagesGetMaskStickers
+import com.github.badoualy.telegram.tl.api.request.TLRequestMessagesGetMessageEditData
+import com.github.badoualy.telegram.tl.api.request.TLRequestMessagesGetMessages
+import com.github.badoualy.telegram.tl.api.request.TLRequestMessagesGetMessagesViews
+import com.github.badoualy.telegram.tl.api.request.TLRequestMessagesGetPeerDialogs
+import com.github.badoualy.telegram.tl.api.request.TLRequestMessagesGetPeerSettings
+import com.github.badoualy.telegram.tl.api.request.TLRequestMessagesGetPinnedDialogs
+import com.github.badoualy.telegram.tl.api.request.TLRequestMessagesGetRecentLocations
+import com.github.badoualy.telegram.tl.api.request.TLRequestMessagesGetRecentStickers
+import com.github.badoualy.telegram.tl.api.request.TLRequestMessagesGetSavedGifs
+import com.github.badoualy.telegram.tl.api.request.TLRequestMessagesGetSplitRanges
+import com.github.badoualy.telegram.tl.api.request.TLRequestMessagesGetStickerSet
+import com.github.badoualy.telegram.tl.api.request.TLRequestMessagesGetStickers
+import com.github.badoualy.telegram.tl.api.request.TLRequestMessagesGetUnreadMentions
+import com.github.badoualy.telegram.tl.api.request.TLRequestMessagesGetWebPage
+import com.github.badoualy.telegram.tl.api.request.TLRequestMessagesGetWebPagePreview
+import com.github.badoualy.telegram.tl.api.request.TLRequestMessagesHideReportSpam
+import com.github.badoualy.telegram.tl.api.request.TLRequestMessagesImportChatInvite
+import com.github.badoualy.telegram.tl.api.request.TLRequestMessagesInstallStickerSet
+import com.github.badoualy.telegram.tl.api.request.TLRequestMessagesMarkDialogUnread
+import com.github.badoualy.telegram.tl.api.request.TLRequestMessagesMigrateChat
+import com.github.badoualy.telegram.tl.api.request.TLRequestMessagesReadEncryptedHistory
+import com.github.badoualy.telegram.tl.api.request.TLRequestMessagesReadFeaturedStickers
+import com.github.badoualy.telegram.tl.api.request.TLRequestMessagesReadHistory
+import com.github.badoualy.telegram.tl.api.request.TLRequestMessagesReadMentions
+import com.github.badoualy.telegram.tl.api.request.TLRequestMessagesReadMessageContents
+import com.github.badoualy.telegram.tl.api.request.TLRequestMessagesReceivedMessages
+import com.github.badoualy.telegram.tl.api.request.TLRequestMessagesReceivedQueue
+import com.github.badoualy.telegram.tl.api.request.TLRequestMessagesReorderPinnedDialogs
+import com.github.badoualy.telegram.tl.api.request.TLRequestMessagesReorderStickerSets
+import com.github.badoualy.telegram.tl.api.request.TLRequestMessagesReport
+import com.github.badoualy.telegram.tl.api.request.TLRequestMessagesReportEncryptedSpam
+import com.github.badoualy.telegram.tl.api.request.TLRequestMessagesReportSpam
+import com.github.badoualy.telegram.tl.api.request.TLRequestMessagesRequestEncryption
+import com.github.badoualy.telegram.tl.api.request.TLRequestMessagesSaveDraft
+import com.github.badoualy.telegram.tl.api.request.TLRequestMessagesSaveGif
+import com.github.badoualy.telegram.tl.api.request.TLRequestMessagesSaveRecentSticker
+import com.github.badoualy.telegram.tl.api.request.TLRequestMessagesSearch
+import com.github.badoualy.telegram.tl.api.request.TLRequestMessagesSearchGifs
+import com.github.badoualy.telegram.tl.api.request.TLRequestMessagesSearchGlobal
+import com.github.badoualy.telegram.tl.api.request.TLRequestMessagesSearchStickerSets
+import com.github.badoualy.telegram.tl.api.request.TLRequestMessagesSendEncrypted
+import com.github.badoualy.telegram.tl.api.request.TLRequestMessagesSendEncryptedFile
+import com.github.badoualy.telegram.tl.api.request.TLRequestMessagesSendEncryptedService
+import com.github.badoualy.telegram.tl.api.request.TLRequestMessagesSendInlineBotResult
+import com.github.badoualy.telegram.tl.api.request.TLRequestMessagesSendMedia
+import com.github.badoualy.telegram.tl.api.request.TLRequestMessagesSendMessage
+import com.github.badoualy.telegram.tl.api.request.TLRequestMessagesSendMultiMedia
+import com.github.badoualy.telegram.tl.api.request.TLRequestMessagesSendScreenshotNotification
+import com.github.badoualy.telegram.tl.api.request.TLRequestMessagesSetBotCallbackAnswer
+import com.github.badoualy.telegram.tl.api.request.TLRequestMessagesSetBotPrecheckoutResults
+import com.github.badoualy.telegram.tl.api.request.TLRequestMessagesSetBotShippingResults
+import com.github.badoualy.telegram.tl.api.request.TLRequestMessagesSetEncryptedTyping
+import com.github.badoualy.telegram.tl.api.request.TLRequestMessagesSetGameScore
+import com.github.badoualy.telegram.tl.api.request.TLRequestMessagesSetInlineBotResults
+import com.github.badoualy.telegram.tl.api.request.TLRequestMessagesSetInlineGameScore
+import com.github.badoualy.telegram.tl.api.request.TLRequestMessagesSetTyping
+import com.github.badoualy.telegram.tl.api.request.TLRequestMessagesStartBot
+import com.github.badoualy.telegram.tl.api.request.TLRequestMessagesToggleChatAdmins
+import com.github.badoualy.telegram.tl.api.request.TLRequestMessagesToggleDialogPin
+import com.github.badoualy.telegram.tl.api.request.TLRequestMessagesUninstallStickerSet
+import com.github.badoualy.telegram.tl.api.request.TLRequestMessagesUploadEncryptedFile
+import com.github.badoualy.telegram.tl.api.request.TLRequestMessagesUploadMedia
+import com.github.badoualy.telegram.tl.api.request.TLRequestPaymentsClearSavedInfo
+import com.github.badoualy.telegram.tl.api.request.TLRequestPaymentsGetPaymentForm
+import com.github.badoualy.telegram.tl.api.request.TLRequestPaymentsGetPaymentReceipt
+import com.github.badoualy.telegram.tl.api.request.TLRequestPaymentsGetSavedInfo
+import com.github.badoualy.telegram.tl.api.request.TLRequestPaymentsSendPaymentForm
+import com.github.badoualy.telegram.tl.api.request.TLRequestPaymentsValidateRequestedInfo
+import com.github.badoualy.telegram.tl.api.request.TLRequestPhoneAcceptCall
+import com.github.badoualy.telegram.tl.api.request.TLRequestPhoneConfirmCall
+import com.github.badoualy.telegram.tl.api.request.TLRequestPhoneDiscardCall
+import com.github.badoualy.telegram.tl.api.request.TLRequestPhoneGetCallConfig
+import com.github.badoualy.telegram.tl.api.request.TLRequestPhoneReceivedCall
+import com.github.badoualy.telegram.tl.api.request.TLRequestPhoneRequestCall
+import com.github.badoualy.telegram.tl.api.request.TLRequestPhoneSaveCallDebug
+import com.github.badoualy.telegram.tl.api.request.TLRequestPhoneSetCallRating
+import com.github.badoualy.telegram.tl.api.request.TLRequestPhotosDeletePhotos
+import com.github.badoualy.telegram.tl.api.request.TLRequestPhotosGetUserPhotos
+import com.github.badoualy.telegram.tl.api.request.TLRequestPhotosUpdateProfilePhoto
+import com.github.badoualy.telegram.tl.api.request.TLRequestPhotosUploadProfilePhoto
+import com.github.badoualy.telegram.tl.api.request.TLRequestStickersAddStickerToSet
+import com.github.badoualy.telegram.tl.api.request.TLRequestStickersChangeStickerPosition
+import com.github.badoualy.telegram.tl.api.request.TLRequestStickersCreateStickerSet
+import com.github.badoualy.telegram.tl.api.request.TLRequestStickersRemoveStickerFromSet
+import com.github.badoualy.telegram.tl.api.request.TLRequestUpdatesGetChannelDifference
+import com.github.badoualy.telegram.tl.api.request.TLRequestUpdatesGetDifference
+import com.github.badoualy.telegram.tl.api.request.TLRequestUpdatesGetState
+import com.github.badoualy.telegram.tl.api.request.TLRequestUploadGetCdnFile
+import com.github.badoualy.telegram.tl.api.request.TLRequestUploadGetCdnFileHashes
+import com.github.badoualy.telegram.tl.api.request.TLRequestUploadGetFile
+import com.github.badoualy.telegram.tl.api.request.TLRequestUploadGetFileHashes
+import com.github.badoualy.telegram.tl.api.request.TLRequestUploadGetWebFile
+import com.github.badoualy.telegram.tl.api.request.TLRequestUploadReuploadCdnFile
+import com.github.badoualy.telegram.tl.api.request.TLRequestUploadSaveBigFilePart
+import com.github.badoualy.telegram.tl.api.request.TLRequestUploadSaveFilePart
+import com.github.badoualy.telegram.tl.api.request.TLRequestUsersGetFullUser
+import com.github.badoualy.telegram.tl.api.request.TLRequestUsersGetUsers
+import com.github.badoualy.telegram.tl.api.request.TLRequestUsersSetSecureValueErrors
 import com.github.badoualy.telegram.tl.api.updates.TLAbsChannelDifference
 import com.github.badoualy.telegram.tl.api.updates.TLAbsDifference
 import com.github.badoualy.telegram.tl.api.updates.TLState
 import com.github.badoualy.telegram.tl.api.upload.TLAbsCdnFile
 import com.github.badoualy.telegram.tl.api.upload.TLAbsFile
 import com.github.badoualy.telegram.tl.api.upload.TLWebFile
-import com.github.badoualy.telegram.tl.core.*
+import com.github.badoualy.telegram.tl.core.TLBool
+import com.github.badoualy.telegram.tl.core.TLBytes
+import com.github.badoualy.telegram.tl.core.TLIntVector
+import com.github.badoualy.telegram.tl.core.TLLongVector
+import com.github.badoualy.telegram.tl.core.TLMethod
+import com.github.badoualy.telegram.tl.core.TLObject
+import com.github.badoualy.telegram.tl.core.TLObjectVector
+import com.github.badoualy.telegram.tl.core.TLStringVector
 import com.github.badoualy.telegram.tl.exception.RpcErrorException
 import java.io.IOException
+import kotlin.Boolean
+import kotlin.Int
+import kotlin.Long
+import kotlin.String
+import kotlin.jvm.Throws
 
 abstract class TelegramSyncApiWrapper : TelegramSyncApi, RpcQuerySyncExecutor {
+    @Throws(RpcErrorException::class, IOException::class)
+    override fun accountAcceptAuthorization(
+            botId: Int,
+            scope: String,
+            publicKey: String,
+            valueHashes: TLObjectVector<TLSecureValueHash>,
+            credentials: TLSecureCredentialsEncrypted
+    ): TLBool = executeMethod(TLRequestAccountAcceptAuthorization(botId, scope, publicKey, valueHashes, credentials))
+
     @Throws(RpcErrorException::class, IOException::class)
     override fun accountChangePhone(
             phoneNumber: String,
@@ -45,13 +389,29 @@ abstract class TelegramSyncApiWrapper : TelegramSyncApi, RpcQuerySyncExecutor {
     override fun accountDeleteAccount(reason: String): TLBool = executeMethod(TLRequestAccountDeleteAccount(reason))
 
     @Throws(RpcErrorException::class, IOException::class)
+    override fun accountDeleteSecureValue(types: TLObjectVector<TLAbsSecureValueType>): TLBool = executeMethod(TLRequestAccountDeleteSecureValue(types))
+
+    @Throws(RpcErrorException::class, IOException::class)
+    override fun accountFinishTakeoutSession(success: Boolean): TLBool = executeMethod(TLRequestAccountFinishTakeoutSession(success))
+
+    @Throws(RpcErrorException::class, IOException::class)
     override fun accountGetAccountTTL(): TLAccountDaysTTL = executeMethod(TLRequestAccountGetAccountTTL())
+
+    @Throws(RpcErrorException::class, IOException::class)
+    override fun accountGetAllSecureValues(): TLObjectVector<TLSecureValue> = executeMethod(TLRequestAccountGetAllSecureValues())
+
+    @Throws(RpcErrorException::class, IOException::class)
+    override fun accountGetAuthorizationForm(
+            botId: Int,
+            scope: String,
+            publicKey: String
+    ): TLAuthorizationForm = executeMethod(TLRequestAccountGetAuthorizationForm(botId, scope, publicKey))
 
     @Throws(RpcErrorException::class, IOException::class)
     override fun accountGetAuthorizations(): TLAuthorizations = executeMethod(TLRequestAccountGetAuthorizations())
 
     @Throws(RpcErrorException::class, IOException::class)
-    override fun accountGetNotifySettings(peer: TLAbsInputNotifyPeer): TLAbsPeerNotifySettings = executeMethod(TLRequestAccountGetNotifySettings(peer))
+    override fun accountGetNotifySettings(peer: TLAbsInputNotifyPeer): TLPeerNotifySettings = executeMethod(TLRequestAccountGetNotifySettings(peer))
 
     @Throws(RpcErrorException::class, IOException::class)
     override fun accountGetPassword(): TLAbsPassword = executeMethod(TLRequestAccountGetPassword())
@@ -63,13 +423,36 @@ abstract class TelegramSyncApiWrapper : TelegramSyncApi, RpcQuerySyncExecutor {
     override fun accountGetPrivacy(key: TLAbsInputPrivacyKey): TLPrivacyRules = executeMethod(TLRequestAccountGetPrivacy(key))
 
     @Throws(RpcErrorException::class, IOException::class)
+    override fun accountGetSecureValue(types: TLObjectVector<TLAbsSecureValueType>): TLObjectVector<TLSecureValue> = executeMethod(TLRequestAccountGetSecureValue(types))
+
+    @Throws(RpcErrorException::class, IOException::class)
     override fun accountGetTmpPassword(passwordHash: TLBytes, period: Int): TLTmpPassword = executeMethod(TLRequestAccountGetTmpPassword(passwordHash, period))
 
     @Throws(RpcErrorException::class, IOException::class)
     override fun accountGetWallPapers(): TLObjectVector<TLAbsWallPaper> = executeMethod(TLRequestAccountGetWallPapers())
 
     @Throws(RpcErrorException::class, IOException::class)
-    override fun accountRegisterDevice(tokenType: Int, token: String): TLBool = executeMethod(TLRequestAccountRegisterDevice(tokenType, token))
+    override fun accountGetWebAuthorizations(): TLWebAuthorizations = executeMethod(TLRequestAccountGetWebAuthorizations())
+
+    @Throws(RpcErrorException::class, IOException::class)
+    override fun accountInitTakeoutSession(
+            contacts: Boolean,
+            messageUsers: Boolean,
+            messageChats: Boolean,
+            messageMegagroups: Boolean,
+            messageChannels: Boolean,
+            files: Boolean,
+            fileMaxSize: Int?
+    ): TLTakeout = executeMethod(TLRequestAccountInitTakeoutSession(contacts, messageUsers, messageChats, messageMegagroups, messageChannels, files, fileMaxSize))
+
+    @Throws(RpcErrorException::class, IOException::class)
+    override fun accountRegisterDevice(
+            tokenType: Int,
+            token: String,
+            appSandbox: Boolean,
+            secret: TLBytes,
+            otherUids: TLIntVector
+    ): TLBool = executeMethod(TLRequestAccountRegisterDevice(tokenType, token, appSandbox, secret, otherUids))
 
     @Throws(RpcErrorException::class, IOException::class)
     override fun accountReportPeer(peer: TLAbsInputPeer, reason: TLAbsReportReason): TLBool = executeMethod(TLRequestAccountReportPeer(peer, reason))
@@ -79,6 +462,15 @@ abstract class TelegramSyncApiWrapper : TelegramSyncApi, RpcQuerySyncExecutor {
 
     @Throws(RpcErrorException::class, IOException::class)
     override fun accountResetNotifySettings(): TLBool = executeMethod(TLRequestAccountResetNotifySettings())
+
+    @Throws(RpcErrorException::class, IOException::class)
+    override fun accountResetWebAuthorization(hash: Long): TLBool = executeMethod(TLRequestAccountResetWebAuthorization(hash))
+
+    @Throws(RpcErrorException::class, IOException::class)
+    override fun accountResetWebAuthorizations(): TLBool = executeMethod(TLRequestAccountResetWebAuthorizations())
+
+    @Throws(RpcErrorException::class, IOException::class)
+    override fun accountSaveSecureValue(value: TLInputSecureValue, secureSecretId: Long): TLSecureValue = executeMethod(TLRequestAccountSaveSecureValue(value, secureSecretId))
 
     @Throws(RpcErrorException::class, IOException::class)
     override fun accountSendChangePhoneCode(
@@ -95,13 +487,27 @@ abstract class TelegramSyncApiWrapper : TelegramSyncApi, RpcQuerySyncExecutor {
     ): TLSentCode = executeMethod(TLRequestAccountSendConfirmPhoneCode(allowFlashcall, hash, currentNumber))
 
     @Throws(RpcErrorException::class, IOException::class)
+    override fun accountSendVerifyEmailCode(email: String): TLSentEmailCode = executeMethod(TLRequestAccountSendVerifyEmailCode(email))
+
+    @Throws(RpcErrorException::class, IOException::class)
+    override fun accountSendVerifyPhoneCode(
+            allowFlashcall: Boolean,
+            phoneNumber: String,
+            currentNumber: Boolean?
+    ): TLSentCode = executeMethod(TLRequestAccountSendVerifyPhoneCode(allowFlashcall, phoneNumber, currentNumber))
+
+    @Throws(RpcErrorException::class, IOException::class)
     override fun accountSetAccountTTL(ttl: TLAccountDaysTTL): TLBool = executeMethod(TLRequestAccountSetAccountTTL(ttl))
 
     @Throws(RpcErrorException::class, IOException::class)
     override fun accountSetPrivacy(key: TLAbsInputPrivacyKey, rules: TLObjectVector<TLAbsInputPrivacyRule>): TLPrivacyRules = executeMethod(TLRequestAccountSetPrivacy(key, rules))
 
     @Throws(RpcErrorException::class, IOException::class)
-    override fun accountUnregisterDevice(tokenType: Int, token: String): TLBool = executeMethod(TLRequestAccountUnregisterDevice(tokenType, token))
+    override fun accountUnregisterDevice(
+            tokenType: Int,
+            token: String,
+            otherUids: TLIntVector
+    ): TLBool = executeMethod(TLRequestAccountUnregisterDevice(tokenType, token, otherUids))
 
     @Throws(RpcErrorException::class, IOException::class)
     override fun accountUpdateDeviceLocked(period: Int): TLBool = executeMethod(TLRequestAccountUpdateDeviceLocked(period))
@@ -126,6 +532,16 @@ abstract class TelegramSyncApiWrapper : TelegramSyncApi, RpcQuerySyncExecutor {
     override fun accountUpdateUsername(username: String): TLAbsUser = executeMethod(TLRequestAccountUpdateUsername(username))
 
     @Throws(RpcErrorException::class, IOException::class)
+    override fun accountVerifyEmail(email: String, code: String): TLBool = executeMethod(TLRequestAccountVerifyEmail(email, code))
+
+    @Throws(RpcErrorException::class, IOException::class)
+    override fun accountVerifyPhone(
+            phoneNumber: String,
+            phoneCodeHash: String,
+            phoneCode: String
+    ): TLBool = executeMethod(TLRequestAccountVerifyPhone(phoneNumber, phoneCodeHash, phoneCode))
+
+    @Throws(RpcErrorException::class, IOException::class)
     override fun authBindTempAuthKey(
             permAuthKeyId: Long,
             nonce: Long,
@@ -138,9 +554,6 @@ abstract class TelegramSyncApiWrapper : TelegramSyncApi, RpcQuerySyncExecutor {
 
     @Throws(RpcErrorException::class, IOException::class)
     override fun authCheckPassword(passwordHash: TLBytes): TLAuthorization = executeMethod(TLRequestAuthCheckPassword(passwordHash))
-
-    @Throws(RpcErrorException::class, IOException::class)
-    override fun authCheckPhone(phoneNumber: String): TLCheckedPhone = executeMethod(TLRequestAuthCheckPhone(phoneNumber))
 
     @Throws(RpcErrorException::class, IOException::class)
     override fun authDropTempAuthKeys(exceptAuthKeys: TLLongVector): TLBool = executeMethod(TLRequestAuthDropTempAuthKeys(exceptAuthKeys))
@@ -182,9 +595,6 @@ abstract class TelegramSyncApiWrapper : TelegramSyncApi, RpcQuerySyncExecutor {
             apiId: Int,
             apiHash: String
     ): TLSentCode = executeMethod(TLRequestAuthSendCode(allowFlashcall, phoneNumber, currentNumber, apiId, apiHash))
-
-    @Throws(RpcErrorException::class, IOException::class)
-    override fun authSendInvites(phoneNumbers: TLStringVector, message: String): TLBool = executeMethod(TLRequestAuthSendInvites(phoneNumbers, message))
 
     @Throws(RpcErrorException::class, IOException::class)
     override fun authSignIn(
@@ -258,7 +668,11 @@ abstract class TelegramSyncApiWrapper : TelegramSyncApi, RpcQuerySyncExecutor {
     override fun channelsExportInvite(channel: TLAbsInputChannel): TLAbsExportedChatInvite = executeMethod(TLRequestChannelsExportInvite(channel))
 
     @Throws(RpcErrorException::class, IOException::class)
-    override fun channelsExportMessageLink(channel: TLAbsInputChannel, id: Int): TLExportedMessageLink = executeMethod(TLRequestChannelsExportMessageLink(channel, id))
+    override fun channelsExportMessageLink(
+            channel: TLAbsInputChannel,
+            id: Int,
+            grouped: Boolean
+    ): TLExportedMessageLink = executeMethod(TLRequestChannelsExportMessageLink(channel, id, grouped))
 
     @Throws(RpcErrorException::class, IOException::class)
     override fun channelsGetAdminLog(
@@ -281,7 +695,10 @@ abstract class TelegramSyncApiWrapper : TelegramSyncApi, RpcQuerySyncExecutor {
     override fun channelsGetFullChannel(channel: TLAbsInputChannel): TLChatFull = executeMethod(TLRequestChannelsGetFullChannel(channel))
 
     @Throws(RpcErrorException::class, IOException::class)
-    override fun channelsGetMessages(channel: TLAbsInputChannel, id: TLIntVector): TLAbsMessages = executeMethod(TLRequestChannelsGetMessages(channel, id))
+    override fun channelsGetLeftChannels(offset: Int): TLAbsChats = executeMethod(TLRequestChannelsGetLeftChannels(offset))
+
+    @Throws(RpcErrorException::class, IOException::class)
+    override fun channelsGetMessages(channel: TLAbsInputChannel, id: TLObjectVector<TLAbsInputMessage>): TLAbsMessages = executeMethod(TLRequestChannelsGetMessages(channel, id))
 
     @Throws(RpcErrorException::class, IOException::class)
     override fun channelsGetParticipant(channel: TLAbsInputChannel, userId: TLAbsInputUser): TLChannelParticipant = executeMethod(TLRequestChannelsGetParticipant(channel, userId))
@@ -358,6 +775,9 @@ abstract class TelegramSyncApiWrapper : TelegramSyncApi, RpcQuerySyncExecutor {
     override fun contactsGetContacts(hash: Int): TLAbsContacts = executeMethod(TLRequestContactsGetContacts(hash))
 
     @Throws(RpcErrorException::class, IOException::class)
+    override fun contactsGetSaved(): TLObjectVector<TLSavedPhoneContact> = executeMethod(TLRequestContactsGetSaved())
+
+    @Throws(RpcErrorException::class, IOException::class)
     override fun contactsGetStatuses(): TLObjectVector<TLContactStatus> = executeMethod(TLRequestContactsGetStatuses())
 
     @Throws(RpcErrorException::class, IOException::class)
@@ -392,7 +812,13 @@ abstract class TelegramSyncApiWrapper : TelegramSyncApi, RpcQuerySyncExecutor {
     override fun contactsSearch(q: String, limit: Int): TLFound = executeMethod(TLRequestContactsSearch(q, limit))
 
     @Throws(RpcErrorException::class, IOException::class)
+    override fun contactsToggleTopPeers(enabled: Boolean): TLBool = executeMethod(TLRequestContactsToggleTopPeers(enabled))
+
+    @Throws(RpcErrorException::class, IOException::class)
     override fun contactsUnblock(id: TLAbsInputUser): TLBool = executeMethod(TLRequestContactsUnblock(id))
+
+    @Throws(RpcErrorException::class, IOException::class)
+    override fun helpAcceptTermsOfService(id: TLDataJSON): TLBool = executeMethod(TLRequestHelpAcceptTermsOfService(id))
 
     @Throws(RpcErrorException::class, IOException::class)
     override fun helpGetAppChangelog(prevAppVersion: String): TLAbsUpdates = executeMethod(TLRequestHelpGetAppChangelog(prevAppVersion))
@@ -407,10 +833,16 @@ abstract class TelegramSyncApiWrapper : TelegramSyncApi, RpcQuerySyncExecutor {
     override fun helpGetConfig(): TLConfig = executeMethod(TLRequestHelpGetConfig())
 
     @Throws(RpcErrorException::class, IOException::class)
+    override fun helpGetDeepLinkInfo(path: String): TLAbsDeepLinkInfo = executeMethod(TLRequestHelpGetDeepLinkInfo(path))
+
+    @Throws(RpcErrorException::class, IOException::class)
     override fun helpGetInviteText(): TLInviteText = executeMethod(TLRequestHelpGetInviteText())
 
     @Throws(RpcErrorException::class, IOException::class)
     override fun helpGetNearestDc(): TLNearestDc = executeMethod(TLRequestHelpGetNearestDc())
+
+    @Throws(RpcErrorException::class, IOException::class)
+    override fun helpGetProxyData(): TLAbsProxyData = executeMethod(TLRequestHelpGetProxyData())
 
     @Throws(RpcErrorException::class, IOException::class)
     override fun helpGetRecentMeUrls(referer: String): TLRecentMeUrls = executeMethod(TLRequestHelpGetRecentMeUrls(referer))
@@ -419,7 +851,7 @@ abstract class TelegramSyncApiWrapper : TelegramSyncApi, RpcQuerySyncExecutor {
     override fun helpGetSupport(): TLSupport = executeMethod(TLRequestHelpGetSupport())
 
     @Throws(RpcErrorException::class, IOException::class)
-    override fun helpGetTermsOfService(): TLTermsOfService = executeMethod(TLRequestHelpGetTermsOfService())
+    override fun helpGetTermsOfServiceUpdate(): TLAbsTermsOfServiceUpdate = executeMethod(TLRequestHelpGetTermsOfServiceUpdate())
 
     @Throws(RpcErrorException::class, IOException::class)
     override fun helpSaveAppLog(events: TLObjectVector<TLInputAppEvent>): TLBool = executeMethod(TLRequestHelpSaveAppLog(events))
@@ -436,8 +868,9 @@ abstract class TelegramSyncApiWrapper : TelegramSyncApi, RpcQuerySyncExecutor {
             systemLangCode: String,
             langPack: String,
             langCode: String,
+            proxy: TLInputClientProxy?,
             query: TLMethod<T>?
-    ): T = executeMethod(TLRequestInitConnection(apiId, deviceModel, systemVersion, appVersion, systemLangCode, langPack, langCode, query))
+    ): T = executeMethod(TLRequestInitConnection(apiId, deviceModel, systemVersion, appVersion, systemLangCode, langPack, langCode, proxy, query))
 
     @Throws(RpcErrorException::class, IOException::class)
     override fun <T : TLObject> invokeAfterMsg(msgId: Long, query: TLMethod<T>?): T = executeMethod(TLRequestInvokeAfterMsg(msgId, query))
@@ -447,6 +880,12 @@ abstract class TelegramSyncApiWrapper : TelegramSyncApi, RpcQuerySyncExecutor {
 
     @Throws(RpcErrorException::class, IOException::class)
     override fun <T : TLObject> invokeWithLayer(layer: Int, query: TLMethod<T>?): T = executeMethod(TLRequestInvokeWithLayer(layer, query))
+
+    @Throws(RpcErrorException::class, IOException::class)
+    override fun <T : TLObject> invokeWithMessagesRange(range: TLMessageRange, query: TLMethod<T>?): T = executeMethod(TLRequestInvokeWithMessagesRange(range, query))
+
+    @Throws(RpcErrorException::class, IOException::class)
+    override fun <T : TLObject> invokeWithTakeout(takeoutId: Long, query: TLMethod<T>?): T = executeMethod(TLRequestInvokeWithTakeout(takeoutId, query))
 
     @Throws(RpcErrorException::class, IOException::class)
     override fun <T : TLObject> invokeWithoutUpdates(query: TLMethod<T>?): T = executeMethod(TLRequestInvokeWithoutUpdates(query))
@@ -518,11 +957,14 @@ abstract class TelegramSyncApiWrapper : TelegramSyncApi, RpcQuerySyncExecutor {
     @Throws(RpcErrorException::class, IOException::class)
     override fun messagesEditInlineBotMessage(
             noWebpage: Boolean,
+            stopGeoLive: Boolean,
             id: TLInputBotInlineMessageID,
             message: String?,
+            media: TLAbsInputMedia?,
             replyMarkup: TLAbsReplyMarkup?,
-            entities: TLObjectVector<TLAbsMessageEntity>?
-    ): TLBool = executeMethod(TLRequestMessagesEditInlineBotMessage(noWebpage, id, message, replyMarkup, entities))
+            entities: TLObjectVector<TLAbsMessageEntity>?,
+            geoPoint: TLAbsInputGeoPoint?
+    ): TLBool = executeMethod(TLRequestMessagesEditInlineBotMessage(noWebpage, stopGeoLive, id, message, media, replyMarkup, entities, geoPoint))
 
     @Throws(RpcErrorException::class, IOException::class)
     override fun messagesEditMessage(
@@ -531,10 +973,11 @@ abstract class TelegramSyncApiWrapper : TelegramSyncApi, RpcQuerySyncExecutor {
             peer: TLAbsInputPeer,
             id: Int,
             message: String?,
+            media: TLAbsInputMedia?,
             replyMarkup: TLAbsReplyMarkup?,
             entities: TLObjectVector<TLAbsMessageEntity>?,
             geoPoint: TLAbsInputGeoPoint?
-    ): TLAbsUpdates = executeMethod(TLRequestMessagesEditMessage(noWebpage, stopGeoLive, peer, id, message, replyMarkup, entities, geoPoint))
+    ): TLAbsUpdates = executeMethod(TLRequestMessagesEditMessage(noWebpage, stopGeoLive, peer, id, message, media, replyMarkup, entities, geoPoint))
 
     @Throws(RpcErrorException::class, IOException::class)
     override fun messagesExportChatInvite(chatId: Int): TLAbsExportedChatInvite = executeMethod(TLRequestMessagesExportChatInvite(chatId))
@@ -543,22 +986,16 @@ abstract class TelegramSyncApiWrapper : TelegramSyncApi, RpcQuerySyncExecutor {
     override fun messagesFaveSticker(id: TLAbsInputDocument, unfave: Boolean): TLBool = executeMethod(TLRequestMessagesFaveSticker(id, unfave))
 
     @Throws(RpcErrorException::class, IOException::class)
-    override fun messagesForwardMessage(
-            peer: TLAbsInputPeer,
-            id: Int,
-            randomId: Long
-    ): TLAbsUpdates = executeMethod(TLRequestMessagesForwardMessage(peer, id, randomId))
-
-    @Throws(RpcErrorException::class, IOException::class)
     override fun messagesForwardMessages(
             silent: Boolean,
             background: Boolean,
             withMyScore: Boolean,
+            grouped: Boolean,
             fromPeer: TLAbsInputPeer,
             id: TLIntVector,
             randomId: TLLongVector,
             toPeer: TLAbsInputPeer
-    ): TLAbsUpdates = executeMethod(TLRequestMessagesForwardMessages(silent, background, withMyScore, fromPeer, id, randomId, toPeer))
+    ): TLAbsUpdates = executeMethod(TLRequestMessagesForwardMessages(silent, background, withMyScore, grouped, fromPeer, id, randomId, toPeer))
 
     @Throws(RpcErrorException::class, IOException::class)
     override fun messagesGetAllChats(exceptIds: TLIntVector): TLAbsChats = executeMethod(TLRequestMessagesGetAllChats(exceptIds))
@@ -601,13 +1038,17 @@ abstract class TelegramSyncApiWrapper : TelegramSyncApi, RpcQuerySyncExecutor {
     override fun messagesGetDhConfig(version: Int, randomLength: Int): TLAbsDhConfig = executeMethod(TLRequestMessagesGetDhConfig(version, randomLength))
 
     @Throws(RpcErrorException::class, IOException::class)
+    override fun messagesGetDialogUnreadMarks(): TLObjectVector<TLDialogPeer> = executeMethod(TLRequestMessagesGetDialogUnreadMarks())
+
+    @Throws(RpcErrorException::class, IOException::class)
     override fun messagesGetDialogs(
             excludePinned: Boolean,
             offsetDate: Int,
             offsetId: Int,
             offsetPeer: TLAbsInputPeer,
-            limit: Int
-    ): TLAbsDialogs = executeMethod(TLRequestMessagesGetDialogs(excludePinned, offsetDate, offsetId, offsetPeer, limit))
+            limit: Int,
+            hash: Int
+    ): TLAbsDialogs = executeMethod(TLRequestMessagesGetDialogs(excludePinned, offsetDate, offsetId, offsetPeer, limit, hash))
 
     @Throws(RpcErrorException::class, IOException::class)
     override fun messagesGetDocumentByHash(
@@ -640,8 +1081,9 @@ abstract class TelegramSyncApiWrapper : TelegramSyncApi, RpcQuerySyncExecutor {
             addOffset: Int,
             limit: Int,
             maxId: Int,
-            minId: Int
-    ): TLAbsMessages = executeMethod(TLRequestMessagesGetHistory(peer, offsetId, offsetDate, addOffset, limit, maxId, minId))
+            minId: Int,
+            hash: Int
+    ): TLAbsMessages = executeMethod(TLRequestMessagesGetHistory(peer, offsetId, offsetDate, addOffset, limit, maxId, minId, hash))
 
     @Throws(RpcErrorException::class, IOException::class)
     override fun messagesGetInlineBotResults(
@@ -662,7 +1104,7 @@ abstract class TelegramSyncApiWrapper : TelegramSyncApi, RpcQuerySyncExecutor {
     override fun messagesGetMessageEditData(peer: TLAbsInputPeer, id: Int): TLMessageEditData = executeMethod(TLRequestMessagesGetMessageEditData(peer, id))
 
     @Throws(RpcErrorException::class, IOException::class)
-    override fun messagesGetMessages(id: TLIntVector): TLAbsMessages = executeMethod(TLRequestMessagesGetMessages(id))
+    override fun messagesGetMessages(id: TLObjectVector<TLAbsInputMessage>): TLAbsMessages = executeMethod(TLRequestMessagesGetMessages(id))
 
     @Throws(RpcErrorException::class, IOException::class)
     override fun messagesGetMessagesViews(
@@ -672,7 +1114,7 @@ abstract class TelegramSyncApiWrapper : TelegramSyncApi, RpcQuerySyncExecutor {
     ): TLIntVector = executeMethod(TLRequestMessagesGetMessagesViews(peer, id, increment))
 
     @Throws(RpcErrorException::class, IOException::class)
-    override fun messagesGetPeerDialogs(peers: TLObjectVector<TLAbsInputPeer>): TLPeerDialogs = executeMethod(TLRequestMessagesGetPeerDialogs(peers))
+    override fun messagesGetPeerDialogs(peers: TLObjectVector<TLInputDialogPeer>): TLPeerDialogs = executeMethod(TLRequestMessagesGetPeerDialogs(peers))
 
     @Throws(RpcErrorException::class, IOException::class)
     override fun messagesGetPeerSettings(peer: TLAbsInputPeer): TLPeerSettings = executeMethod(TLRequestMessagesGetPeerSettings(peer))
@@ -681,7 +1123,11 @@ abstract class TelegramSyncApiWrapper : TelegramSyncApi, RpcQuerySyncExecutor {
     override fun messagesGetPinnedDialogs(): TLPeerDialogs = executeMethod(TLRequestMessagesGetPinnedDialogs())
 
     @Throws(RpcErrorException::class, IOException::class)
-    override fun messagesGetRecentLocations(peer: TLAbsInputPeer, limit: Int): TLAbsMessages = executeMethod(TLRequestMessagesGetRecentLocations(peer, limit))
+    override fun messagesGetRecentLocations(
+            peer: TLAbsInputPeer,
+            limit: Int,
+            hash: Int
+    ): TLAbsMessages = executeMethod(TLRequestMessagesGetRecentLocations(peer, limit, hash))
 
     @Throws(RpcErrorException::class, IOException::class)
     override fun messagesGetRecentStickers(attached: Boolean, hash: Int): TLAbsRecentStickers = executeMethod(TLRequestMessagesGetRecentStickers(attached, hash))
@@ -690,7 +1136,13 @@ abstract class TelegramSyncApiWrapper : TelegramSyncApi, RpcQuerySyncExecutor {
     override fun messagesGetSavedGifs(hash: Int): TLAbsSavedGifs = executeMethod(TLRequestMessagesGetSavedGifs(hash))
 
     @Throws(RpcErrorException::class, IOException::class)
+    override fun messagesGetSplitRanges(): TLObjectVector<TLMessageRange> = executeMethod(TLRequestMessagesGetSplitRanges())
+
+    @Throws(RpcErrorException::class, IOException::class)
     override fun messagesGetStickerSet(stickerset: TLAbsInputStickerSet): TLStickerSet = executeMethod(TLRequestMessagesGetStickerSet(stickerset))
+
+    @Throws(RpcErrorException::class, IOException::class)
+    override fun messagesGetStickers(emoticon: String, hash: Int): TLAbsStickers = executeMethod(TLRequestMessagesGetStickers(emoticon, hash))
 
     @Throws(RpcErrorException::class, IOException::class)
     override fun messagesGetUnreadMentions(
@@ -706,7 +1158,7 @@ abstract class TelegramSyncApiWrapper : TelegramSyncApi, RpcQuerySyncExecutor {
     override fun messagesGetWebPage(url: String, hash: Int): TLAbsWebPage = executeMethod(TLRequestMessagesGetWebPage(url, hash))
 
     @Throws(RpcErrorException::class, IOException::class)
-    override fun messagesGetWebPagePreview(message: String): TLAbsMessageMedia = executeMethod(TLRequestMessagesGetWebPagePreview(message))
+    override fun messagesGetWebPagePreview(message: String, entities: TLObjectVector<TLAbsMessageEntity>?): TLAbsMessageMedia = executeMethod(TLRequestMessagesGetWebPagePreview(message, entities))
 
     @Throws(RpcErrorException::class, IOException::class)
     override fun messagesHideReportSpam(peer: TLAbsInputPeer): TLBool = executeMethod(TLRequestMessagesHideReportSpam(peer))
@@ -716,6 +1168,9 @@ abstract class TelegramSyncApiWrapper : TelegramSyncApi, RpcQuerySyncExecutor {
 
     @Throws(RpcErrorException::class, IOException::class)
     override fun messagesInstallStickerSet(stickerset: TLAbsInputStickerSet, archived: Boolean): TLAbsStickerSetInstallResult = executeMethod(TLRequestMessagesInstallStickerSet(stickerset, archived))
+
+    @Throws(RpcErrorException::class, IOException::class)
+    override fun messagesMarkDialogUnread(unread: Boolean, peer: TLInputDialogPeer): TLBool = executeMethod(TLRequestMessagesMarkDialogUnread(unread, peer))
 
     @Throws(RpcErrorException::class, IOException::class)
     override fun messagesMigrateChat(chatId: Int): TLAbsUpdates = executeMethod(TLRequestMessagesMigrateChat(chatId))
@@ -742,10 +1197,17 @@ abstract class TelegramSyncApiWrapper : TelegramSyncApi, RpcQuerySyncExecutor {
     override fun messagesReceivedQueue(maxQts: Int): TLLongVector = executeMethod(TLRequestMessagesReceivedQueue(maxQts))
 
     @Throws(RpcErrorException::class, IOException::class)
-    override fun messagesReorderPinnedDialogs(force: Boolean, order: TLObjectVector<TLAbsInputPeer>): TLBool = executeMethod(TLRequestMessagesReorderPinnedDialogs(force, order))
+    override fun messagesReorderPinnedDialogs(force: Boolean, order: TLObjectVector<TLInputDialogPeer>): TLBool = executeMethod(TLRequestMessagesReorderPinnedDialogs(force, order))
 
     @Throws(RpcErrorException::class, IOException::class)
     override fun messagesReorderStickerSets(masks: Boolean, order: TLLongVector): TLBool = executeMethod(TLRequestMessagesReorderStickerSets(masks, order))
+
+    @Throws(RpcErrorException::class, IOException::class)
+    override fun messagesReport(
+            peer: TLAbsInputPeer,
+            id: TLIntVector,
+            reason: TLAbsReportReason
+    ): TLBool = executeMethod(TLRequestMessagesReport(peer, id, reason))
 
     @Throws(RpcErrorException::class, IOException::class)
     override fun messagesReportEncryptedSpam(peer: TLInputEncryptedChat): TLBool = executeMethod(TLRequestMessagesReportEncryptedSpam(peer))
@@ -791,8 +1253,9 @@ abstract class TelegramSyncApiWrapper : TelegramSyncApi, RpcQuerySyncExecutor {
             addOffset: Int,
             limit: Int,
             maxId: Int,
-            minId: Int
-    ): TLAbsMessages = executeMethod(TLRequestMessagesSearch(peer, q, fromId, filter, minDate, maxDate, offsetId, addOffset, limit, maxId, minId))
+            minId: Int,
+            hash: Int
+    ): TLAbsMessages = executeMethod(TLRequestMessagesSearch(peer, q, fromId, filter, minDate, maxDate, offsetId, addOffset, limit, maxId, minId, hash))
 
     @Throws(RpcErrorException::class, IOException::class)
     override fun messagesSearchGifs(q: String, offset: Int): TLFoundGifs = executeMethod(TLRequestMessagesSearchGifs(q, offset))
@@ -805,6 +1268,13 @@ abstract class TelegramSyncApiWrapper : TelegramSyncApi, RpcQuerySyncExecutor {
             offsetId: Int,
             limit: Int
     ): TLAbsMessages = executeMethod(TLRequestMessagesSearchGlobal(q, offsetDate, offsetPeer, offsetId, limit))
+
+    @Throws(RpcErrorException::class, IOException::class)
+    override fun messagesSearchStickerSets(
+            excludeFeatured: Boolean,
+            q: String,
+            hash: Int
+    ): TLAbsFoundStickerSets = executeMethod(TLRequestMessagesSearchStickerSets(excludeFeatured, q, hash))
 
     @Throws(RpcErrorException::class, IOException::class)
     override fun messagesSendEncrypted(
@@ -848,9 +1318,11 @@ abstract class TelegramSyncApiWrapper : TelegramSyncApi, RpcQuerySyncExecutor {
             peer: TLAbsInputPeer,
             replyToMsgId: Int?,
             media: TLAbsInputMedia,
+            message: String,
             randomId: Long,
-            replyMarkup: TLAbsReplyMarkup?
-    ): TLAbsUpdates = executeMethod(TLRequestMessagesSendMedia(silent, background, clearDraft, peer, replyToMsgId, media, randomId, replyMarkup))
+            replyMarkup: TLAbsReplyMarkup?,
+            entities: TLObjectVector<TLAbsMessageEntity>?
+    ): TLAbsUpdates = executeMethod(TLRequestMessagesSendMedia(silent, background, clearDraft, peer, replyToMsgId, media, message, randomId, replyMarkup, entities))
 
     @Throws(RpcErrorException::class, IOException::class)
     override fun messagesSendMessage(
@@ -865,6 +1337,16 @@ abstract class TelegramSyncApiWrapper : TelegramSyncApi, RpcQuerySyncExecutor {
             replyMarkup: TLAbsReplyMarkup?,
             entities: TLObjectVector<TLAbsMessageEntity>?
     ): TLAbsUpdates = executeMethod(TLRequestMessagesSendMessage(noWebpage, silent, background, clearDraft, peer, replyToMsgId, message, randomId, replyMarkup, entities))
+
+    @Throws(RpcErrorException::class, IOException::class)
+    override fun messagesSendMultiMedia(
+            silent: Boolean,
+            background: Boolean,
+            clearDraft: Boolean,
+            peer: TLAbsInputPeer,
+            replyToMsgId: Int?,
+            multiMedia: TLObjectVector<TLInputSingleMedia>
+    ): TLAbsUpdates = executeMethod(TLRequestMessagesSendMultiMedia(silent, background, clearDraft, peer, replyToMsgId, multiMedia))
 
     @Throws(RpcErrorException::class, IOException::class)
     override fun messagesSendScreenshotNotification(
@@ -944,10 +1426,13 @@ abstract class TelegramSyncApiWrapper : TelegramSyncApi, RpcQuerySyncExecutor {
     override fun messagesToggleChatAdmins(chatId: Int, enabled: Boolean): TLAbsUpdates = executeMethod(TLRequestMessagesToggleChatAdmins(chatId, enabled))
 
     @Throws(RpcErrorException::class, IOException::class)
-    override fun messagesToggleDialogPin(pinned: Boolean, peer: TLAbsInputPeer): TLBool = executeMethod(TLRequestMessagesToggleDialogPin(pinned, peer))
+    override fun messagesToggleDialogPin(pinned: Boolean, peer: TLInputDialogPeer): TLBool = executeMethod(TLRequestMessagesToggleDialogPin(pinned, peer))
 
     @Throws(RpcErrorException::class, IOException::class)
     override fun messagesUninstallStickerSet(stickerset: TLAbsInputStickerSet): TLBool = executeMethod(TLRequestMessagesUninstallStickerSet(stickerset))
+
+    @Throws(RpcErrorException::class, IOException::class)
+    override fun messagesUploadEncryptedFile(peer: TLInputEncryptedChat, file: TLAbsInputEncryptedFile): TLAbsEncryptedFile = executeMethod(TLRequestMessagesUploadEncryptedFile(peer, file))
 
     @Throws(RpcErrorException::class, IOException::class)
     override fun messagesUploadMedia(peer: TLAbsInputPeer, media: TLAbsInputMedia): TLAbsMessageMedia = executeMethod(TLRequestMessagesUploadMedia(peer, media))
@@ -1089,7 +1574,7 @@ abstract class TelegramSyncApiWrapper : TelegramSyncApi, RpcQuerySyncExecutor {
     ): TLAbsCdnFile = executeMethod(TLRequestUploadGetCdnFile(fileToken, offset, limit))
 
     @Throws(RpcErrorException::class, IOException::class)
-    override fun uploadGetCdnFileHashes(fileToken: TLBytes, offset: Int): TLObjectVector<TLCdnFileHash> = executeMethod(TLRequestUploadGetCdnFileHashes(fileToken, offset))
+    override fun uploadGetCdnFileHashes(fileToken: TLBytes, offset: Int): TLObjectVector<TLFileHash> = executeMethod(TLRequestUploadGetCdnFileHashes(fileToken, offset))
 
     @Throws(RpcErrorException::class, IOException::class)
     override fun uploadGetFile(
@@ -1099,14 +1584,17 @@ abstract class TelegramSyncApiWrapper : TelegramSyncApi, RpcQuerySyncExecutor {
     ): TLAbsFile = executeMethod(TLRequestUploadGetFile(location, offset, limit))
 
     @Throws(RpcErrorException::class, IOException::class)
+    override fun uploadGetFileHashes(location: TLAbsInputFileLocation, offset: Int): TLObjectVector<TLFileHash> = executeMethod(TLRequestUploadGetFileHashes(location, offset))
+
+    @Throws(RpcErrorException::class, IOException::class)
     override fun uploadGetWebFile(
-            location: TLInputWebFileLocation,
+            location: TLAbsInputWebFileLocation,
             offset: Int,
             limit: Int
     ): TLWebFile = executeMethod(TLRequestUploadGetWebFile(location, offset, limit))
 
     @Throws(RpcErrorException::class, IOException::class)
-    override fun uploadReuploadCdnFile(fileToken: TLBytes, requestToken: TLBytes): TLObjectVector<TLCdnFileHash> = executeMethod(TLRequestUploadReuploadCdnFile(fileToken, requestToken))
+    override fun uploadReuploadCdnFile(fileToken: TLBytes, requestToken: TLBytes): TLObjectVector<TLFileHash> = executeMethod(TLRequestUploadReuploadCdnFile(fileToken, requestToken))
 
     @Throws(RpcErrorException::class, IOException::class)
     override fun uploadSaveBigFilePart(
@@ -1128,4 +1616,7 @@ abstract class TelegramSyncApiWrapper : TelegramSyncApi, RpcQuerySyncExecutor {
 
     @Throws(RpcErrorException::class, IOException::class)
     override fun usersGetUsers(id: TLObjectVector<TLAbsInputUser>): TLObjectVector<TLAbsUser> = executeMethod(TLRequestUsersGetUsers(id))
+
+    @Throws(RpcErrorException::class, IOException::class)
+    override fun usersSetSecureValueErrors(id: TLAbsInputUser, errors: TLObjectVector<TLAbsSecureValueError>): TLBool = executeMethod(TLRequestUsersSetSecureValueErrors(id, errors))
 }

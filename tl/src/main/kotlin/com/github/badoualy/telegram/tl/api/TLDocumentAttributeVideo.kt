@@ -1,10 +1,21 @@
 package com.github.badoualy.telegram.tl.api
 
+import com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_BOOLEAN
 import com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_CONSTRUCTOR_ID
+import com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_DOUBLE
 import com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_INT32
+import com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_INT64
+import com.github.badoualy.telegram.tl.TLObjectUtils.computeTLBytesSerializedSize
+import com.github.badoualy.telegram.tl.TLObjectUtils.computeTLStringSerializedSize
 import com.github.badoualy.telegram.tl.serialization.TLDeserializer
 import com.github.badoualy.telegram.tl.serialization.TLSerializer
 import java.io.IOException
+import kotlin.Any
+import kotlin.Boolean
+import kotlin.Int
+import kotlin.String
+import kotlin.jvm.Throws
+import kotlin.jvm.Transient
 
 /**
  * documentAttributeVideo#ef02ce6
@@ -15,6 +26,9 @@ import java.io.IOException
 class TLDocumentAttributeVideo() : TLAbsDocumentAttribute() {
     @Transient
     var roundMessage: Boolean = false
+
+    @Transient
+    var supportsStreaming: Boolean = false
 
     var duration: Int = 0
 
@@ -28,11 +42,13 @@ class TLDocumentAttributeVideo() : TLAbsDocumentAttribute() {
 
     constructor(
             roundMessage: Boolean,
+            supportsStreaming: Boolean,
             duration: Int,
             w: Int,
             h: Int
     ) : this() {
         this.roundMessage = roundMessage
+        this.supportsStreaming = supportsStreaming
         this.duration = duration
         this.w = w
         this.h = h
@@ -41,6 +57,7 @@ class TLDocumentAttributeVideo() : TLAbsDocumentAttribute() {
     protected override fun computeFlags() {
         _flags = 0
         updateFlags(roundMessage, 1)
+        updateFlags(supportsStreaming, 2)
     }
 
     @Throws(IOException::class)
@@ -57,6 +74,7 @@ class TLDocumentAttributeVideo() : TLAbsDocumentAttribute() {
     override fun deserializeBody(tlDeserializer: TLDeserializer) = with (tlDeserializer)  {
         _flags = readInt()
         roundMessage = isMask(1)
+        supportsStreaming = isMask(2)
         duration = readInt()
         w = readInt()
         h = readInt()
@@ -81,6 +99,7 @@ class TLDocumentAttributeVideo() : TLAbsDocumentAttribute() {
 
         return _flags == other._flags
                 && roundMessage == other.roundMessage
+                && supportsStreaming == other.supportsStreaming
                 && duration == other.duration
                 && w == other.w
                 && h == other.h

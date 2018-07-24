@@ -22,7 +22,7 @@ object SendStickerSample {
 
         // You can start making requests
         try {
-            val tlAbsDialogs = client.messagesGetDialogs(false, 0, 0, TLInputPeerEmpty(), 1).blockingGet()
+            val tlAbsDialogs = client.messagesGetDialogs(false, 0, 0, TLInputPeerEmpty(), 1,0).blockingGet()
             val tlAbsPeer = tlAbsDialogs.dialogs[0].peer
             val tlPeerObj: TLObject =
                     if (tlAbsPeer is TLPeerUser) tlAbsDialogs.users.first { it.id == tlAbsPeer.id }
@@ -46,12 +46,12 @@ object SendStickerSample {
 
             if (set.documents.isNotEmpty()) {
                 val tlInputDocument = set.documents.first().toInputDocument()
-                val tlInputMediaDocument = TLInputMediaDocument(tlInputDocument, "", null)
+                val tlInputMediaDocument = TLInputMediaDocument(tlInputDocument,  null)
 
                 val tlAbsUpdates = client.messagesSendMedia(false, false, false,
                                                             inputPeer, null,
-                                                            tlInputMediaDocument,
-                                                            RandomUtils.randomLong(), null)
+                                                            tlInputMediaDocument,"",
+                                                            RandomUtils.randomLong(),null,null)
                 // tlAbsUpdates contains the id and date of the message in a TLUpdateShortSentMessage
             } else throw RuntimeException("No sticker found in set")
         } catch (e: RpcErrorException) {

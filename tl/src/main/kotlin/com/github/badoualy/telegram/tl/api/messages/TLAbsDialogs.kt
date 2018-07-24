@@ -10,6 +10,7 @@ import com.github.badoualy.telegram.tl.core.TLObjectVector
 /**
  * Abstraction level for the following constructors:
  * * [messages.dialogs#15ba6c40][TLDialogs]
+ * * [messages.dialogsNotModified#f0e3e596][TLDialogsNotModified]
  * * [messages.dialogsSlice#71e094f3][TLDialogsSlice]
  *
  * @author Yannick Badoual yann.badoual@gmail.com

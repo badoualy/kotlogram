@@ -1,13 +1,19 @@
 package com.github.badoualy.telegram.tl.builder.parser
 
 import java.io.File
+import java.io.FileInputStream
+import java.io.InputStream
 
 object TLSchemaParser {
 
     private val tlTypeRegex = "([^#]+)#([a-f0-9]+) ([^=]*?) ?= ([^;]+);".toRegex()
 
     fun parseTlSchema(file: File): Pair<List<ConstructorDef>, List<ConstructorDef>> {
-        val defList = splitTlSchema(file)
+        return parseTlSchema(FileInputStream(file))
+    }
+
+    fun parseTlSchema(`is`: InputStream): Pair<List<ConstructorDef>, List<ConstructorDef>> {
+        val defList = splitTlSchema(`is`)
 
         val typesDef = mapToConstructorDef(defList.first, true)
         val methodsDef = mapToConstructorDef(defList.second, false)
@@ -20,12 +26,11 @@ object TLSchemaParser {
         throw NotImplementedError()
     }
 
-    /** Split def list between types and methods constructors */
-    private fun splitTlSchema(file: File): Pair<List<String>, List<String>> {
+    private fun splitTlSchema(stream: InputStream): Pair<List<String>, List<String>> {
         val nodes = Pair(ArrayList<String>(), ArrayList<String>())
 
         var parsingMethods = false
-        file.forEachLine { line ->
+        stream.reader().forEachLine { line ->
             when {
                 line.isBlank() -> Unit
                 line.startsWith("//") -> Unit
@@ -43,6 +48,11 @@ object TLSchemaParser {
         }
 
         return nodes
+    }
+
+    /** Split def list between types and methods constructors */
+    private fun splitTlSchema(file: File): Pair<List<String>, List<String>> {
+        return splitTlSchema(FileInputStream(file))
     }
 
     private fun mapToConstructorDef(constructorsDef: List<String>, skipIgnoredType: Boolean) = constructorsDef.mapNotNull { def ->

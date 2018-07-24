@@ -332,7 +332,7 @@ class TelegramClientImpl internal constructor(override val app: TelegramApp,
             TLRequestInitConnection(apiId,
                                     deviceModel,
                                     systemVersion, appVersion,
-                                    systemLangCode, langPack, langCode,
+                                    systemLangCode, langPack, langCode,null,
                                     method)
         }
 

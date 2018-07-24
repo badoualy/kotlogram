@@ -10,7 +10,7 @@ object Kotlogram {
     private val logger = LoggerFactory.getLogger(Kotlogram::class.java)!!
 
     @JvmField
-    val apiLayer = 72
+    val apiLayer = 82
 
     @JvmField
     var testMode = false

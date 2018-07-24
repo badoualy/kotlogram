@@ -23,7 +23,7 @@ object GetHistorySample {
 
         // You can start making requests
         try {
-            val tlAbsDialogs = client.messagesGetDialogs(false, 0, 0, TLInputPeerEmpty(), 1).blockingGet()
+            val tlAbsDialogs = client.messagesGetDialogs(false, 0, 0, TLInputPeerEmpty(), 1,0).blockingGet()
             val tlAbsPeer = tlAbsDialogs.dialogs[2].peer
             val tlPeerObj: TLObject =
                     if (tlAbsPeer is TLPeerUser) tlAbsDialogs.users.first { it.id == tlAbsPeer.id }
@@ -36,7 +36,7 @@ object GetHistorySample {
                 else -> null
             } ?: TLInputPeerEmpty()
 
-            val tlAbsMessages = client.messagesGetHistory(inputPeer, 0, 0, 0, count, 0, 0).blockingGet()
+            val tlAbsMessages = client.messagesGetHistory(inputPeer, 0, 0, 0, count, 0, 0,0).blockingGet()
             // Note: first message in the list is most recent
             tlAbsMessages.messages.reversed().forEach {
                 val messageContent =

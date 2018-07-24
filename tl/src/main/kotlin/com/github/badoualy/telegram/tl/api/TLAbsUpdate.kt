@@ -1,5 +1,12 @@
 package com.github.badoualy.telegram.tl.api
 
+import com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_BOOLEAN
+import com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_CONSTRUCTOR_ID
+import com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_DOUBLE
+import com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_INT32
+import com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_INT64
+import com.github.badoualy.telegram.tl.TLObjectUtils.computeTLBytesSerializedSize
+import com.github.badoualy.telegram.tl.TLObjectUtils.computeTLStringSerializedSize
 import com.github.badoualy.telegram.tl.core.TLObject
 
 /**
@@ -31,7 +38,8 @@ import com.github.badoualy.telegram.tl.core.TLObject
  * * [updateDcOptions#8e5e9873][TLUpdateDcOptions]
  * * [updateDeleteChannelMessages#c37521c9][TLUpdateDeleteChannelMessages]
  * * [updateDeleteMessages#a20db0e5][TLUpdateDeleteMessages]
- * * [updateDialogPinned#d711a2cc][TLUpdateDialogPinned]
+ * * [updateDialogPinned#19d27f3c][TLUpdateDialogPinned]
+ * * [updateDialogUnreadMark#e16459c3][TLUpdateDialogUnreadMark]
  * * [updateDraftMessage#ee2bb969][TLUpdateDraftMessage]
  * * [updateEditChannelMessage#1b3f4df7][TLUpdateEditChannelMessage]
  * * [updateEditMessage#e40370a3][TLUpdateEditMessage]
@@ -49,7 +57,7 @@ import com.github.badoualy.telegram.tl.core.TLObject
  * * [updateNewStickerSet#688a30aa][TLUpdateNewStickerSet]
  * * [updateNotifySettings#bec268ef][TLUpdateNotifySettings]
  * * [updatePhoneCall#ab0f6b1e][TLUpdatePhoneCall]
- * * [updatePinnedDialogs#d8caf68d][TLUpdatePinnedDialogs]
+ * * [updatePinnedDialogs#ea4cb65b][TLUpdatePinnedDialogs]
  * * [updatePrivacy#ee3b272a][TLUpdatePrivacy]
  * * [updatePtsChanged#3354678f][TLUpdatePtsChanged]
  * * [updateReadChannelInbox#4214f37f][TLUpdateReadChannelInbox]

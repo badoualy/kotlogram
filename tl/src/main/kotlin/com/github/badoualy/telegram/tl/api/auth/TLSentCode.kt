@@ -1,15 +1,26 @@
 package com.github.badoualy.telegram.tl.api.auth
 
+import com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_BOOLEAN
 import com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_CONSTRUCTOR_ID
+import com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_DOUBLE
 import com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_INT32
+import com.github.badoualy.telegram.tl.TLObjectUtils.SIZE_INT64
+import com.github.badoualy.telegram.tl.TLObjectUtils.computeTLBytesSerializedSize
 import com.github.badoualy.telegram.tl.TLObjectUtils.computeTLStringSerializedSize
+import com.github.badoualy.telegram.tl.api.help.TLTermsOfService
 import com.github.badoualy.telegram.tl.core.TLObject
 import com.github.badoualy.telegram.tl.serialization.TLDeserializer
 import com.github.badoualy.telegram.tl.serialization.TLSerializer
 import java.io.IOException
+import kotlin.Any
+import kotlin.Boolean
+import kotlin.Int
+import kotlin.String
+import kotlin.jvm.Throws
+import kotlin.jvm.Transient
 
 /**
- * auth.sentCode#5e002502
+ * auth.sentCode#38faab5f
  *
  * @author Yannick Badoual yann.badoual@gmail.com
  * @see <a href="http://github.com/badoualy/kotlogram">http://github.com/badoualy/kotlogram</a>
@@ -26,7 +37,9 @@ class TLSentCode() : TLObject() {
 
     var timeout: Int? = null
 
-    private val _constructor: String = "auth.sentCode#5e002502"
+    var termsOfService: TLTermsOfService? = null
+
+    private val _constructor: String = "auth.sentCode#38faab5f"
 
     override val constructorId: Int = CONSTRUCTOR_ID
 
@@ -35,13 +48,15 @@ class TLSentCode() : TLObject() {
             type: TLAbsSentCodeType,
             phoneCodeHash: String,
             nextType: TLAbsCodeType?,
-            timeout: Int?
+            timeout: Int?,
+            termsOfService: TLTermsOfService?
     ) : this() {
         this.phoneRegistered = phoneRegistered
         this.type = type
         this.phoneCodeHash = phoneCodeHash
         this.nextType = nextType
         this.timeout = timeout
+        this.termsOfService = termsOfService
     }
 
     protected override fun computeFlags() {
@@ -49,6 +64,7 @@ class TLSentCode() : TLObject() {
         updateFlags(phoneRegistered, 1)
         updateFlags(nextType, 2)
         updateFlags(timeout, 4)
+        updateFlags(termsOfService, 8)
     }
 
     @Throws(IOException::class)
@@ -60,6 +76,7 @@ class TLSentCode() : TLObject() {
         writeString(phoneCodeHash)
         doIfMask(nextType, 2) { writeTLObject(it) }
         doIfMask(timeout, 4) { writeInt(it) }
+        doIfMask(termsOfService, 8) { writeTLObject(it) }
     }
 
     @Throws(IOException::class)
@@ -70,6 +87,7 @@ class TLSentCode() : TLObject() {
         phoneCodeHash = readString()
         nextType = readIfMask(2) { readTLObject<TLAbsCodeType>() }
         timeout = readIfMask(4) { readInt() }
+        termsOfService = readIfMask(8) { readTLObject<TLTermsOfService>(TLTermsOfService::class, TLTermsOfService.CONSTRUCTOR_ID) }
     }
 
     override fun computeSerializedSize(): Int {
@@ -81,6 +99,7 @@ class TLSentCode() : TLObject() {
         size += computeTLStringSerializedSize(phoneCodeHash)
         size += getIntIfMask(nextType, 2) { it.computeSerializedSize() }
         size += getIntIfMask(timeout, 4) { SIZE_INT32 }
+        size += getIntIfMask(termsOfService, 8) { it.computeSerializedSize() }
         return size
     }
 
@@ -96,8 +115,9 @@ class TLSentCode() : TLObject() {
                 && phoneCodeHash == other.phoneCodeHash
                 && nextType == other.nextType
                 && timeout == other.timeout
+                && termsOfService == other.termsOfService
     }
     companion object  {
-        const val CONSTRUCTOR_ID: Int = 0x5e002502.toInt()
+        const val CONSTRUCTOR_ID: Int = 0x38faab5f.toInt()
     }
 }
